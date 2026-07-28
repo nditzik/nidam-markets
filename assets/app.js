@@ -298,6 +298,30 @@
     });
   }
 
+  function renderMorning(el, d) {
+    if (!d || d._status === "pending" || !d.paragraphs || !d.paragraphs.length) {
+      emptyPanel(el, "🌅", "סקירת בוקר — בקרוב", "תחובר ברגע שצינור ה-Barchart יופעל.");
+      return;
+    }
+    var body = d.paragraphs.map(function (p) {
+      var isHead = p.length < 70 && !/[.!?”"]$/.test(p);
+      return isHead
+        ? '<h3 style="margin:18px 0 6px;font-size:1.02rem">' + esc(p) + "</h3>"
+        : "<p style=\"margin:0 0 12px\">" + esc(p) + "</p>";
+    }).join("");
+
+    el.innerHTML = stamp(d._meta) +
+      '<div class="section-title" style="margin-top:0">🌅 סקירת בוקר</div>' +
+      '<div class="card">' +
+      '<div style="border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:14px">' +
+      "<strong>" + esc(d.title || "") + "</strong>" +
+      '<div class="stamp" style="margin:4px 0 0">' + esc(d.source || "") +
+      (d.dateLabel ? " · " + esc(d.dateLabel) : "") + (d.time ? " " + esc(d.time) : "") +
+      " · תקציר באנגלית</div></div>" +
+      '<div dir="ltr" style="text-align:left">' + body + "</div>" +
+      "</div>";
+  }
+
   /* ---------- boot ---------- */
   function boot() {
     // Home + indices share the indices dataset
@@ -317,9 +341,12 @@
       .then(function (d) { renderBriefing(document.getElementById("panel-briefing"), d); })
       .catch(function () { emptyPanel(document.getElementById("panel-briefing"), "📣", "תדרוך משקיעים — בקרוב", ""); });
 
-    // Still pending: connected in later stages
+    fetchJSON("data/morning.json")
+      .then(function (d) { renderMorning(document.getElementById("panel-morning"), d); })
+      .catch(function () { emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
+
+    // Still pending: connected in stage 4
     loadPlaceholder("candidates", "🎯", "מועמדים למסחר");
-    loadPlaceholder("morning", "🌅", "סקירת בוקר");
 
     // deep-link
     var start = location.hash.slice(1);

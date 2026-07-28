@@ -51,6 +51,14 @@ jobs:
         run: python scripts/fetch_gmail.py
         continue-on-error: true
 
+      # --- משיכת סקירת בוקר (Barchart Pre-Market Bulletin) מג'ימייל ---
+      - name: Fetch Barchart morning review
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/fetch_barchart.py
+        continue-on-error: true
+
       - name: Commit if changed
         run: |
           git config user.name "nidam-markets-bot"
