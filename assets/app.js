@@ -31,7 +31,59 @@
     document.querySelectorAll(".panel").forEach(function (p) {
       p.classList.toggle("is-active", p.id === "panel-" + name);
     });
+    markSeen(name);
+    updateTodayBarVis();
     if (location.hash.slice(1) !== name) history.replaceState(null, "", "#" + name);
+  }
+
+  /* ---- "new since last visit" tab badges ---- */
+  var SIGS = {};
+  function noteSig(tab, d) {
+    var sig = (d && d._meta && d._meta.updatedAt) || (d && d.date) || "";
+    if (!sig) return;
+    SIGS[tab] = sig;
+    var key = "seen-" + tab;
+    var seen = localStorage.getItem(key);
+    if (seen === null) { localStorage.setItem(key, sig); return; } // first visit = baseline
+    if (seen !== sig) {
+      var btn = document.querySelector('.tab[data-tab="' + tab + '"]');
+      var active = btn && btn.classList.contains("is-active");
+      if (btn && !btn.querySelector(".tab-badge") && !active) {
+        var dot = document.createElement("span");
+        dot.className = "tab-badge";
+        btn.appendChild(dot);
+      }
+    }
+  }
+  function markSeen(tab) {
+    if (SIGS[tab]) localStorage.setItem("seen-" + tab, SIGS[tab]);
+    var btn = document.querySelector('.tab[data-tab="' + tab + '"]');
+    var b = btn && btn.querySelector(".tab-badge");
+    if (b) b.remove();
+  }
+
+  /* ---- "what's new today" bar (home only) ---- */
+  function renderTodayBar(el, health) {
+    if (!el) return;
+    var items = (health && health.today) || [];
+    if (!items.length) { el.dataset.has = "0"; updateTodayBarVis(); return; }
+    var parts = items.map(function (it) {
+      if (it.arrived && it.time) {
+        return '<button class="tu-item" onclick="__goTab(\'' + it.tab + '\')">' +
+          '<span class="tu-time">' + esc(it.time) + "</span>" + esc(it.label) + "</button>";
+      }
+      return '<span class="tu-item tu-wait">' + esc(it.label) + " · ממתין</span>";
+    }).join("");
+    el.innerHTML = '<span class="tu-lead">🆕 היום</span>' + parts;
+    el.dataset.has = "1";
+    updateTodayBarVis();
+  }
+  function updateTodayBarVis() {
+    var el = document.getElementById("today-bar");
+    if (!el) return;
+    var act = document.querySelector(".tab.is-active");
+    var onHome = act && act.dataset.tab === "home";
+    el.style.display = (onHome && el.dataset.has === "1") ? "flex" : "none";
   }
   // expose for CTA buttons
   window.__goTab = activate;
@@ -359,29 +411,33 @@
     fetchJSON("data/indices.json").then(function (d) {
       renderMarketOverview(document.getElementById("panel-home"), d, { showLinks: true });
       renderIndicesDetail(document.getElementById("panel-indices"), d);
+      noteSig("indices", d);
     }).catch(function (err) {
       emptyPanel(document.getElementById("panel-home"), "📡", "נתוני השוק לא נטענו", String(err.message || err));
       emptyPanel(document.getElementById("panel-indices"), "📡", "נתוני המדדים לא נטענו", "");
     });
 
     fetchJSON("data/momentum.json")
-      .then(function (d) { renderMomentum(document.getElementById("panel-momentum"), d); })
+      .then(function (d) { renderMomentum(document.getElementById("panel-momentum"), d); noteSig("momentum", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
     fetchJSON("data/briefing.json")
-      .then(function (d) { renderBriefing(document.getElementById("panel-briefing"), d); })
+      .then(function (d) { renderBriefing(document.getElementById("panel-briefing"), d); noteSig("briefing", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-briefing"), "📣", "תדרוך משקיעים — בקרוב", ""); });
 
     fetchJSON("data/morning.json")
-      .then(function (d) { renderMorning(document.getElementById("panel-morning"), d); })
+      .then(function (d) { renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
 
     fetchJSON("data/candidates.json")
-      .then(function (d) { renderCandidates(document.getElementById("panel-candidates"), d); })
+      .then(function (d) { renderCandidates(document.getElementById("panel-candidates"), d); noteSig("candidates", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
 
     fetchJSON("data/_health.json")
-      .then(function (d) { renderHealth(document.getElementById("health"), d); })
+      .then(function (d) {
+        renderHealth(document.getElementById("health"), d);
+        renderTodayBar(document.getElementById("today-bar"), d);
+      })
       .catch(function () {});
 
     // deep-link

@@ -139,6 +139,42 @@ body {
   color: #fff;
 }
 
+/* ---- "What's new today" bar ---- */
+.today-bar {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, var(--accent-soft), transparent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.tu-lead { font-size: .82rem; font-weight: 800; color: var(--accent); }
+.tu-item {
+  font-family: inherit;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 999px; padding: 4px 11px;
+  font-size: .82rem; font-weight: 600; color: var(--text);
+  cursor: pointer;
+}
+.tu-item:hover { border-color: var(--accent); color: var(--accent); }
+.tu-time { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; }
+.tu-wait { color: var(--text-soft); cursor: default; opacity: .8; }
+.tu-wait:hover { border-color: var(--border); color: var(--text-soft); }
+
+/* ---- Tab "new" badge ---- */
+.tab { position: relative; }
+.tab-badge {
+  position: absolute; top: 5px; inset-inline-start: 7px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--down);
+  box-shadow: 0 0 0 2px var(--surface);
+}
+.tab.is-active .tab-badge { box-shadow: 0 0 0 2px var(--accent); }
+
 /* ---- Panels ---- */
 main { padding: 22px 0 60px; }
 .panel { display: none; animation: fade .25s ease; }

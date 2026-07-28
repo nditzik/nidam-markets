@@ -41,9 +41,63 @@ def parse_stamp(s):
         return None
 
 
+def _load(fname):
+    path = os.path.join(DATA, fname)
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def _meta_today(d, today_str):
+    """(arrived_today, time_str) מתוך _meta.updatedAt של הקובץ."""
+    stamp = (d.get("_meta") or {}).get("updatedAt") if isinstance(d, dict) else None
+    if not stamp or " " not in stamp:
+        return False, None
+    dpart, tpart = stamp.split(" ", 1)
+    return dpart == today_str, tpart
+
+
+def today_updates(today_str):
+    """רשימת 'מה חדש היום' לסרגל דף הבית."""
+    items = []
+
+    b = _load("briefing.json")
+    if isinstance(b, dict):
+        for slot, label in (("morning", "תדרוך בוקר"), ("afternoon", "תדרוך אחה\"צ")):
+            s = b.get(slot)
+            if isinstance(s, dict):
+                items.append({"label": label, "tab": "briefing",
+                              "time": s.get("time"),
+                              "arrived": s.get("dateLabel") == today_str})
+
+    m = _load("morning.json")
+    if isinstance(m, dict) and m.get("_status") != "pending":
+        arrived, _ = _meta_today(m, today_str)
+        items.append({"label": "סקירת בוקר", "tab": "morning",
+                      "time": m.get("time"), "arrived": arrived})
+
+    for fname, label, tab in (("indices.json", "מדדים", "indices"),
+                              ("momentum.json", "מומנטום", "momentum"),
+                              ("candidates.json", "מועמדים", "candidates")):
+        d = _load(fname)
+        if isinstance(d, dict) and d.get("_status") != "pending":
+            arrived, t = _meta_today(d, today_str)
+            items.append({"label": label, "tab": tab, "time": t, "arrived": arrived})
+
+    # שהגיעו קודם (לפי שעה), הממתינים בסוף
+    items.sort(key=lambda it: (0, it.get("time") or "") if it.get("arrived") else (1, ""))
+    return items
+
+
 def main():
     now = israel_now().replace(tzinfo=None)
-    out = {"generatedAt": now.strftime("%d/%m/%Y %H:%M"), "sources": []}
+    today_str = now.strftime("%d/%m/%Y")
+    out = {"generatedAt": now.strftime("%d/%m/%Y %H:%M"),
+           "today": today_updates(today_str), "sources": []}
 
     for key, fname, label in SOURCES:
         path = os.path.join(DATA, fname)
