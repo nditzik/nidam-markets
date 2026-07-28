@@ -266,38 +266,142 @@
     return "";
   }
 
+  /* ---- momentum classification (ported verbatim from the local dashboard) ---- */
+  var MIN_VOL = 750000;
+  function passesBase(d) {
+    var vol = +d.vol || 0, px = +d.price || 0, a = parseFloat(d.wtd_alpha),
+        ma20 = +d.ma20 || 0, rsi = +d.rel_str || 0;
+    if (!vol || vol <= 0) return false;
+    if (!px || px <= 0) return false;
+    if (d.wtd_alpha == null || isNaN(a) || a <= 0) return false;
+    if (!ma20 || ma20 <= 0) return false;
+    if (!rsi || rsi <= 0) return false;
+    if (vol < MIN_VOL) return false;
+    if (d.w52_chg) {
+      var w = +d.w52_chg;
+      if (!isNaN(w) && a < w) {
+        var str = (d.strength || "").toLowerCase();
+        if (!(str.indexOf("top") >= 0 || str.indexOf("max") >= 0 || str.indexOf("strong") >= 0)) return false;
+      }
+    }
+    var stoch = +d.stoch || 0, ma50 = +d.ma50 || 0, ma100 = +d.ma100 || 0;
+    if (rsi > 0 && stoch > 0 && rsi > 72 && stoch > 82) return false;
+    if (px > 0 && ma50 > 0 && ma100 > 0 && px < ma50 && px < ma100) return false;
+    if (d.strength && /weak/i.test(d.strength)) return false;
+    if (d.opinion && /\bsell\b/i.test(d.opinion)) return false;
+    return true;
+  }
+  function calcDipScore(d) {
+    var rsi = parseFloat(d.rel_str || 0), stoch = parseFloat(d.stoch || 0),
+        px = parseFloat(d.price || 0), ma50 = parseFloat(d.ma50 || 0),
+        ma100 = parseFloat(d.ma100 || 0), rvol = parseFloat(d.rvol || 0);
+    var score = 0, parts = 0;
+    if (rsi > 0) { parts++; if (rsi >= 35 && rsi <= 58) score += 25; else if (rsi < 35) score += 10; else if (rsi <= 65) score += 12; }
+    if (stoch > 0) { parts++; if (stoch >= 20 && stoch <= 48) score += 22; else if (stoch < 20) score += 10; else if (stoch <= 65) score += 10; }
+    if (px > 0 && ma50 > 0) { parts++; if (px > ma50) score += 18; else score += 2; }
+    if (px > 0 && ma100 > 0) { if (px > ma100) score += 10; }
+    if (rvol > 0) { parts++; if (rvol < 0.7) score += 14; else if (rvol < 1.0) score += 8; else if (rvol < 1.3) score += 3; }
+    if (parts === 0) return 0;
+    return Math.min(100, Math.round(score));
+  }
+  function isDipEntry(d) {
+    if ((d.signal_count || 0) < 2) return false;
+    if (calcDipScore(d) < 65) return false;
+    var px = +d.price || 0, ma20 = +d.ma20 || 0, ma50 = +d.ma50 || 0;
+    var n20 = ma20 > 0 && px <= ma20 * 1.05 && px >= ma20 * 0.98;
+    var n50 = ma50 > 0 && px <= ma50 * 1.05 && px >= ma50 * 0.98;
+    return n20 || n50;
+  }
+  function isBreakoutEntry(d) {
+    if ((d.signal_count || 0) < 2) return false;
+    var px = +d.price || 0, ma20 = +d.ma20 || 0;
+    if (!(ma20 > 0 && px >= ma20)) return false;
+    var chg = +d.change_pct || 0, rv = +d.rvol || 0;
+    if (chg >= 1.0 && rv >= 1.3) return true;
+    var stoch = +d.stoch || 0, bbp = (d.bb_pct == null ? -1 : +d.bb_pct);
+    if (chg >= 0 && rv >= 1.0 && stoch >= 75 && bbp >= 70) return true;
+    return false;
+  }
+  function isReversalEntry(d) {
+    if ((d.signal_count || 0) < 2) return false;
+    if (calcDipScore(d) < 65) return false;
+    var px = +d.price || 0, ma20 = +d.ma20 || 0, ma50 = +d.ma50 || 0;
+    var on20 = ma20 > 0 && px >= ma20 && px <= ma20 * 1.05;
+    var on50 = ma50 > 0 && px >= ma50 && px <= ma50 * 1.05;
+    if (!(on20 || on50)) return false;
+    if ((+d.change_pct || 0) < 0.3) return false;
+    if ((+d.rvol || 0) <= 1.0) return false;
+    return true;
+  }
+
+  var SIG_LABEL = { strength: "Strength", hot_prospects: "Hot", "6m_high": "6M-High", ttm_squeeze: "TTM", macd_buy: "MACD" };
+  function tvLink(sym) {
+    return '<a class="tv" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
+      '/" target="_blank" rel="noopener" title="פתח ב-TradingView">' + esc(sym) + " ↗</a>";
+  }
+  function fmt(v, d) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(d == null ? 2 : d); }
+  function pct(v) {
+    if (v == null || isNaN(v)) return '<span class="num">—</span>';
+    var cls = v > 0 ? "up" : (v < 0 ? "down" : "");
+    return '<span class="num ' + cls + '">' + (v > 0 ? "+" : "") + Number(v).toFixed(2) + "%</span>";
+  }
+
   function renderMomentum(el, d) {
-    if (!d || !d.lists || !d.lists.length) {
+    if (!d || !d.stocks || !d.stocks.length) {
       emptyPanel(el, "🚀", "מומנטום — בקרוב", "");
       return;
     }
-    var nav = '<div class="chips" style="margin-bottom:14px">' +
-      d.lists.map(function (l, i) {
-        return '<button class="chip mom-tab' + (i === 0 ? " lead" : "") + '" data-mom="' + i + '">' +
-          esc(l.title) + " <span class=\"num\">" + l.count + "</span></button>";
-      }).join("") + "</div>";
+    var base = d.stocks.filter(passesBase);
+    var byAlpha = function (a, b) { return (b.wtd_alpha || 0) - (a.wtd_alpha || 0); };
+    var cats = [
+      { key: "s4", emoji: "🔥", title: "4 סיגנלים", rows: base.filter(function (x) { return x.signal_count >= 4; }).sort(byAlpha) },
+      { key: "s3", emoji: "⚡", title: "3 סיגנלים", rows: base.filter(function (x) { return x.signal_count === 3; }).sort(byAlpha) },
+      { key: "s2", emoji: "✨", title: "2 סיגנלים", rows: base.filter(function (x) { return x.signal_count === 2; }).sort(byAlpha) },
+      { key: "dip", emoji: "📉", title: "כניסת דיפ", rows: base.filter(isDipEntry).sort(byAlpha) },
+      { key: "brk", emoji: "🚀", title: "כניסת פריצה", rows: base.filter(isBreakoutEntry).sort(byAlpha) },
+      { key: "rev", emoji: "🔄", title: "מניות בהיפוך", rows: base.filter(isReversalEntry).sort(byAlpha) }
+    ];
+    var firstNon = 0;
+    for (var i = 0; i < cats.length; i++) { if (cats[i].rows.length) { firstNon = i; break; } }
 
-    var tables = d.lists.map(function (l, i) {
-      var rows = l.rows.map(function (r) {
-        return "<tr><td><b>" + esc(r.sym) + "</b></td>" +
-          "<td>" + esc(r.name) + "</td>" +
-          '<td class="num">' + esc(r.last) + "</td>" +
-          '<td class="num ' + chgClass(r.chg) + '">' + esc(r.chg) + "</td>" +
-          "<td>" + esc(r.trend) + "</td>" +
-          "<td>" + esc(r.opinion) + "</td>" +
-          "<td>" + esc(r.strength) + "</td>" +
-          '<td class="num">' + esc(r.rsi) + "</td></tr>";
-      }).join("");
-      return '<div class="mom-list" data-mom="' + i + '" style="display:' + (i === 0 ? "block" : "none") + '">' +
-        '<div class="table-wrap"><table><thead><tr>' +
-        "<th>סימבול</th><th>שם</th><th class=\"num\">מחיר</th><th class=\"num\">שינוי</th>" +
-        "<th>מגמה</th><th>המלצה</th><th>חוזק</th><th class=\"num\">RSI</th>" +
-        "</tr></thead><tbody>" + rows + "</tbody></table></div>" +
-        '<p class="stamp">מקור: ' + esc(l.file) + " · מוצגות עד 30 שורות מובילות</p></div>";
+    var nav = '<div class="chips" style="margin-bottom:14px">' + cats.map(function (c, i) {
+      return '<button class="chip mom-tab' + (i === firstNon ? " lead" : "") + '" data-mom="' + i + '">' +
+        c.emoji + " " + esc(c.title) + ' <span class="num">' + c.rows.length + "</span></button>";
+    }).join("") + "</div>";
+
+    var panels = cats.map(function (c, i) {
+      var body;
+      if (!c.rows.length) {
+        body = '<div class="panel-empty" style="padding:34px">אין מניות בקטגוריה זו היום.</div>';
+      } else {
+        var rows = c.rows.map(function (r) {
+          var sigs = (r.signals || []).map(function (s) {
+            return '<span class="sig-badge" title="' + esc(SIG_LABEL[s] || s) + '">' + esc(SIG_LABEL[s] || s) + "</span>";
+          }).join("");
+          return "<tr>" +
+            '<td class="num"><b>' + r.signal_count + "</b></td>" +
+            "<td>" + tvLink(r.symbol) + "</td>" +
+            '<td class="mom-name">' + esc(r.name) + "</td>" +
+            '<td class="num">' + fmt(r.price) + "</td>" +
+            "<td>" + pct(r.change_pct) + "</td>" +
+            '<td class="num">' + fmt(r.rel_str, 0) + "</td>" +
+            '<td class="num">' + fmt(r.stoch, 0) + "</td>" +
+            '<td class="num">' + fmt(r.rvol) + "</td>" +
+            '<td class="sig-cell">' + sigs + "</td></tr>";
+        }).join("");
+        body = '<div class="table-wrap"><table><thead><tr>' +
+          '<th class="num">#</th><th>סימבול</th><th>שם</th><th class="num">מחיר</th>' +
+          '<th class="num">שינוי</th><th class="num">RSI</th><th class="num">Stoch</th>' +
+          '<th class="num">RVOL</th><th>סיגנלים</th>' +
+          "</tr></thead><tbody>" + rows + "</tbody></table></div>";
+      }
+      return '<div class="mom-list" data-mom="' + i + '" style="display:' + (i === firstNon ? "block" : "none") + '">' + body + "</div>";
     }).join("");
 
     el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">🚀 סורק מומנטום</div>' + nav + tables +
+      '<div class="section-title" style="margin-top:0">🚀 סורק מומנטום</div>' +
+      '<p class="stamp" style="margin-top:-6px">' + base.length + ' מניות איכות (2+ סיגנלים, אחרי פילטר בסיס) · לחיצה על טיקר פותחת ב-TradingView</p>' +
+      nav + panels +
       '<p class="stamp"><a href="https://nditzik.github.io/stocks-momentum/" target="_blank" rel="noopener">דשבורד המומנטום המלא ↗</a></p>';
 
     el.querySelectorAll(".mom-tab").forEach(function (b) {

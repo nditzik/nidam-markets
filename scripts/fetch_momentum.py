@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-fetch_momentum.py — מושך את רשימות המומנטום מריפו stocks-momentum
-ומייצר data/momentum.json.
+fetch_momentum.py — מושך את 5 סורקי המומנטום מריפו stocks-momentum, ממזג לכל
+מניה את מספר הסיגנלים (בכמה סורקים היא מופיעה) + כל האינדיקטורים, ומייצר
+data/momentum.json. שומר רק מניות עם 2+ סיגנלים (כל הקטגוריות דורשות 2+).
 
-מזהה אוטומטית את קובץ ה-CSV העדכני לכל רשימה (השם כולל תאריך MM-DD-YYYY)
-דרך GitHub Contents API. נופל לקובץ מקומי אם ה-API לא זמין.
-עמידות: אם המשיכה נכשלת אבל כבר יש momentum.json — משאיר אותו.
+הסיווג לקטגוריות (דיפ/פריצה/היפוך) נעשה בצד הלקוח, עם אותן נוסחאות בדיוק
+כמו בדשבורד המקומי (מועתקות ל-app.js).
 """
 import csv
 import io
@@ -14,6 +14,7 @@ import os
 import re
 import sys
 import urllib.request
+from datetime import datetime, timezone, timedelta
 
 API = "https://api.github.com/repos/nditzik/stocks-momentum/contents/data"
 RAW = "https://raw.githubusercontent.com/nditzik/stocks-momentum/main/data/"
@@ -21,18 +22,31 @@ LOCAL_DIR = os.path.join("..", "..", "מסמכים אישיים", "market-sentim
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "momentum.json")
-MAX_ROWS = 30
 
-# prefix → כותרת בעברית
-LISTS = [
-    ("stocks-screener-hot-prospects", "מועמדים חמים"),
-    ("stocks-screener-strength-and-direction", "חוזק וכיוון"),
-    ("stocks-screener-nearing-6-month-highs", "מתקרבות לשיא 6 חודשים"),
-    ("emacd-new-buy-signals-stocks", "איתותי קנייה חדשים (EMACD)"),
-    ("ttm-squeeze-triggered", "TTM Squeeze"),
+# prefix → מפתח סיגנל (חייב להתאים לתוויות ב-app.js)
+SCANNERS = [
+    ("stocks-screener-strength-and-direction", "strength"),
+    ("stocks-screener-hot-prospects", "hot_prospects"),
+    ("stocks-screener-nearing-6-month-highs", "6m_high"),
+    ("ttm-squeeze-triggered", "ttm_squeeze"),
+    ("emacd-new-buy-signals-stocks", "macd_buy"),
 ]
 
 DATE_RE = re.compile(r"(\d{2})-(\d{2})-(\d{4})\.csv$")
+
+
+def num(v):
+    """מנקה מחרוזת מספרית ('+14.93%', '1,234', 'N/A') → float או None."""
+    if v is None:
+        return None
+    s = str(v).strip().replace(",", "").replace("%", "").replace("$", "")
+    s = s.replace("−", "-").replace("+", "").strip('"').strip()
+    if not s or s.upper() == "N/A":
+        return None
+    try:
+        return float(s)
+    except ValueError:
+        return None
 
 
 def _get(url):
@@ -41,18 +55,13 @@ def _get(url):
         return r.read()
 
 
-def list_remote_files():
+def list_remote():
     try:
         data = json.loads(_get(API).decode("utf-8"))
-        return [item["name"] for item in data if item.get("type") == "file"]
+        return [x["name"] for x in data if x.get("type") == "file"]
     except Exception as e:
         print(f"[warn] GitHub API נכשל: {e}")
         return None
-
-
-def list_local_files():
-    d = os.path.normpath(os.path.join(ROOT, LOCAL_DIR))
-    return os.listdir(d) if os.path.isdir(d) else None, d
 
 
 def latest_for(prefix, files):
@@ -61,29 +70,6 @@ def latest_for(prefix, files):
         m = DATE_RE.search(f)
         return (int(m.group(3)), int(m.group(1)), int(m.group(2))) if m else (0, 0, 0)
     return max(cands, key=key) if cands else None
-
-
-def parse_csv(text):
-    rows = []
-    reader = csv.DictReader(io.StringIO(text))
-    for r in reader:
-        rows.append({
-            "sym": r.get("Symbol", ""),
-            "name": r.get("Name", ""),
-            "industry": r.get("Industry", ""),
-            "last": r.get("Latest", ""),
-            "chg": r.get("%Change", ""),
-            "trend": r.get("Trend", ""),
-            "opinion": r.get("Opinion", ""),
-            "alpha": r.get("Wtd Alpha", ""),
-            "chg52w": r.get("52W %Chg", ""),
-            "rsi": r.get("14D RSI", ""),
-            "direction": r.get("Direction", ""),
-            "strength": r.get("Strength", ""),
-        })
-        if len(rows) >= MAX_ROWS:
-            break
-    return rows
 
 
 def load_text(fname, remote_ok, local_dir):
@@ -100,49 +86,85 @@ def load_text(fname, remote_ok, local_dir):
     return None
 
 
+def row_fields(r):
+    return {
+        "name": r.get("Name", ""),
+        "industry": r.get("Industry", ""),
+        "price": num(r.get("Latest")),
+        "change_pct": num(r.get("%Change")),
+        "vol": num(r.get("200D Avg Vol")),
+        "wtd_alpha": num(r.get("Wtd Alpha")),
+        "w52_chg": num(r.get("52W %Chg")),
+        "ma20": num(r.get("20D MA")),
+        "ma50": num(r.get("50D MA")),
+        "ma100": num(r.get("100D MA")),
+        "rel_str": num(r.get("14D RSI")),
+        "stoch": num(r.get("14D Stoch %K")),
+        "rvol": num(r.get("50D RelVol")),
+        "bb_pct": num(r.get("BB%")),
+        "strength": r.get("Strength", ""),
+        "opinion": r.get("Opinion", ""),
+        "direction": r.get("Direction", ""),
+        "trend": r.get("Trend", ""),
+    }
+
+
 def main():
-    files = list_remote_files()
+    files = list_remote()
     remote_ok = files is not None
-    local_files, local_dir = (None, None)
+    local_dir = None
     if not remote_ok:
-        local_files, local_dir = list_local_files()
-        files = local_files
+        local_dir = os.path.normpath(os.path.join(ROOT, LOCAL_DIR))
+        files = os.listdir(local_dir) if os.path.isdir(local_dir) else None
     if not files:
         if os.path.exists(OUT):
             print("[keep] אין מקור — משאיר momentum.json קיים.")
             return 0
-        print("[fail] אין מקור ואין קובץ קיים.")
         return 1
 
-    out_lists = []
-    for prefix, title in LISTS:
+    merged = {}  # symbol -> fields + signals[]
+    for prefix, key in SCANNERS:
         fname = latest_for(prefix, files)
         if not fname:
-            print(f"[skip] לא נמצא קובץ ל-{prefix}")
             continue
         text = load_text(fname, remote_ok, local_dir)
         if not text:
             continue
-        rows = parse_csv(text)
-        out_lists.append({"key": prefix, "title": title, "file": fname, "count": len(rows), "rows": rows})
-        print(f"[ok] {title}: {len(rows)} שורות מ-{fname}")
+        for r in csv.DictReader(io.StringIO(text)):
+            sym = (r.get("Symbol") or "").strip()
+            if not sym:
+                continue
+            if sym not in merged:
+                merged[sym] = row_fields(r)
+                merged[sym]["symbol"] = sym
+                merged[sym]["signals"] = []
+            if key not in merged[sym]["signals"]:
+                merged[sym]["signals"].append(key)
+        print(f"[ok] {key}: {fname}")
 
-    if not out_lists:
+    # רק 2+ סיגנלים (כל הקטגוריות דורשות זאת) — מקטין מאוד את הקובץ
+    stocks = []
+    for s in merged.values():
+        s["signal_count"] = len(s["signals"])
+        if s["signal_count"] >= 2:
+            stocks.append(s)
+    stocks.sort(key=lambda s: (s["signal_count"], s.get("wtd_alpha") or 0), reverse=True)
+
+    if not stocks:
         if os.path.exists(OUT):
-            print("[keep] לא נמשכו רשימות — משאיר קיים.")
+            print("[keep] לא נמצאו מניות 2+ — משאיר קיים.")
             return 0
         return 1
 
-    from datetime import datetime, timezone, timedelta
     now = datetime.now(timezone.utc)
     off = 3 if 4 <= now.month <= 10 else 2
     stamp = (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
-
-    payload = {"lists": out_lists, "_meta": {"updatedAt": stamp, "source": "stocks-momentum"}}
+    payload = {"stocks": stocks, "count": len(stocks),
+               "_meta": {"updatedAt": stamp, "source": "stocks-momentum"}}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
-    print(f"[done] נכתב {OUT}")
+    print(f"[done] נכתב {OUT} ({len(stocks)} מניות 2+ סיגנלים)")
     return 0
 
 

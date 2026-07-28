@@ -292,6 +292,17 @@ th { background: var(--surface-2); font-weight: 700; }
 td.num, th.num { text-align: left; font-variant-numeric: tabular-nums; }
 tr:last-child td { border-bottom: none; }
 
+/* ---- Momentum table extras ---- */
+a.tv { color: var(--accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
+a.tv:hover { text-decoration: underline; }
+.mom-name { color: var(--text-soft); font-size: .84rem; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sig-cell { white-space: nowrap; }
+.sig-badge {
+  display: inline-block; margin-inline-end: 3px;
+  background: var(--accent-soft); color: var(--accent);
+  border-radius: 5px; padding: 1px 5px; font-size: .66rem; font-weight: 700;
+}
+
 /* ---- Updated stamp ---- */
 .stamp { font-size: .8rem; color: var(--text-soft); margin: 4px 0 18px; }
 .stamp .dot-live { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--up); margin-inline-start: 6px; }
