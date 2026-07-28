@@ -9,13 +9,17 @@
 - `scripts/fetch_dashboards.py` — מושך מדדים מ-indexes-status → `data/indices.json`
 - `.github/workflows/update.yml` — Action פעמיים ביום + הרצה ידנית
 
-## סטטוס טאבים (שלב 1)
-| טאב | מצב |
-|---|---|
-| בית / מדדים | ✅ חי (מ-`indexes-status`) |
-| מומנטום | ⏳ ממתין למקור |
-| מועמדים (IBKR) | ⏳ שלב ד' |
-| סקירת בוקר / תדרוך משקיעים | ⏳ שלב ג' (ג'ימייל) |
+## סטטוס טאבים
+| טאב | מצב | מקור |
+|---|---|---|
+| בית / מדדים | ✅ חי | `indexes-status` |
+| מומנטום | ✅ חי | `stocks-momentum` |
+| סקירת בוקר | ✅ חי | Barchart Pre-Market Bulletin (ג'ימייל) |
+| תדרוך משקיעים | ✅ חי | הבריפים העצמיים (ג'ימייל) |
+| מועמדים (IBKR) | ✅ חי | מייל `[IBKR-CANDIDATES]` מ-`ibkr-swing-system` |
+
+**דרוש להפעלה מלאה:** GitHub Pages (main/root) + Secrets `GMAIL_USER` + `GMAIL_APP_PASSWORD`.
+צד השליחה של IBKR: `ibkr-swing-system/export_candidates.py` — הרץ אחרי כל סריקה.
 
 ## הרצה מקומית
 ```bash
