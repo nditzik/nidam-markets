@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>שוק ההון של איציק נידם</title>
+  <meta name="description" content="סקירת שוק יומית: מדדים, מומנטום, מועמדים למסחר ותדריכי משקיעים — במקום אחד." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">דלג לתוכן</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-mark">₪</span>
+        <div class="brand-text">
+          <h1>שוק ההון של איציק נידם</h1>
+          <p class="tagline">סקירת שוק יומית · מדדים · מומנטום · מועמדים · תדריכים</p>
+        </div>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="החלף מצב תצוגה">🌙</button>
+    </div>
+  </header>
+
+  <nav class="tabs wrap" role="tablist" aria-label="ניווט ראשי">
+    <button class="tab is-active" role="tab" data-tab="home">בית</button>
+    <button class="tab" role="tab" data-tab="momentum">מומנטום</button>
+    <button class="tab" role="tab" data-tab="indices">מדדים</button>
+    <button class="tab" role="tab" data-tab="candidates">מועמדים</button>
+    <button class="tab" role="tab" data-tab="morning">סקירת בוקר</button>
+    <button class="tab" role="tab" data-tab="briefing">תדרוך משקיעים</button>
+  </nav>
+
+  <main id="main" class="wrap">
+    <!-- Home / market overview -->
+    <section class="panel is-active" id="panel-home" role="tabpanel">
+      <div class="panel-loading">טוען נתוני שוק…</div>
+    </section>
+
+    <section class="panel" id="panel-momentum" role="tabpanel"></section>
+    <section class="panel" id="panel-indices" role="tabpanel"></section>
+    <section class="panel" id="panel-candidates" role="tabpanel"></section>
+    <section class="panel" id="panel-morning" role="tabpanel"></section>
+    <section class="panel" id="panel-briefing" role="tabpanel"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">התוכן באתר אינו מהווה ייעוץ השקעות ואינו תחליף לייעוץ המתחשב בנתוניו של כל אדם.</p>
+      <p class="credit">© <span id="year"></span> איציק נידם · שוק ההון</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

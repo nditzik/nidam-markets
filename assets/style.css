@@ -1,0 +1,273 @@
+/* ==== שוק ההון של איציק נידם — עיצוב בסיס ==== */
+
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #eef1f6;
+  --border: #e2e6ee;
+  --text: #16202e;
+  --text-soft: #5a6675;
+  --accent: #1f6feb;
+  --accent-soft: #e8f0fe;
+  --up: #16a34a;
+  --down: #dc2626;
+  --warn: #d97706;
+  --shadow: 0 1px 3px rgba(16, 32, 46, .06), 0 6px 20px rgba(16, 32, 46, .05);
+  --radius: 14px;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #1c232d;
+  --border: #2a3340;
+  --text: #e6edf3;
+  --text-soft: #97a3b3;
+  --accent: #4d8bf5;
+  --accent-soft: #17253f;
+  --up: #3fb950;
+  --down: #f85149;
+  --warn: #e3a008;
+  --shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .3);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Heebo", system-ui, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background .2s ease, color .2s ease;
+}
+
+.wrap {
+  width: min(1080px, 100% - 32px);
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  right: -999px;
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  z-index: 100;
+}
+.skip-link:focus { right: 16px; top: 10px; }
+
+/* ---- Header ---- */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--accent), #6aa6ff);
+  color: #fff;
+  font-weight: 800;
+  font-size: 22px;
+  border-radius: 12px;
+  flex: none;
+}
+.brand-text h1 { font-size: 1.15rem; margin: 0; font-weight: 800; }
+.tagline { margin: 0; font-size: .78rem; color: var(--text-soft); }
+.theme-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex: none;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+
+/* ---- Tabs ---- */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 18px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+.tab {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-soft);
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s ease;
+}
+.tab:hover { color: var(--text); border-color: var(--accent); }
+.tab.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---- Panels ---- */
+main { padding: 22px 0 60px; }
+.panel { display: none; animation: fade .25s ease; }
+.panel.is-active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.panel-loading, .panel-empty {
+  text-align: center;
+  color: var(--text-soft);
+  padding: 60px 20px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+.panel-empty .emoji { font-size: 2.4rem; display: block; margin-bottom: 10px; }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+.grid { display: grid; gap: 16px; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 760px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 26px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---- Verdict hero ---- */
+.verdict {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border-right: 5px solid var(--accent);
+}
+.verdict.tone-pos, .verdict.tone-good { border-right-color: var(--up); }
+.verdict.tone-warn { border-right-color: var(--warn); }
+.verdict.tone-neg, .verdict.tone-bad { border-right-color: var(--down); }
+.verdict .emoji { font-size: 2.6rem; line-height: 1; flex: none; }
+.verdict h2 { margin: 0 0 6px; font-size: 1.3rem; }
+.verdict p { margin: 0; color: var(--text-soft); }
+
+/* ---- Lights ---- */
+.lights { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.light {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--surface-2);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.light .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--text-soft); }
+.light.pos .dot, .light.good .dot { background: var(--up); }
+.light.warn .dot { background: var(--warn); }
+.light.neg .dot, .light.bad .dot { background: var(--down); }
+
+/* ---- Stat tiles ---- */
+.stat { text-align: center; }
+.stat .label { font-size: .8rem; color: var(--text-soft); margin-bottom: 4px; }
+.stat .value { font-size: 1.7rem; font-weight: 800; }
+.stat .sub { font-size: .78rem; color: var(--text-soft); }
+.num { font-variant-numeric: tabular-nums; }
+.up { color: var(--up); }
+.down { color: var(--down); }
+
+/* score ring color by band */
+.score-hi { color: var(--up); }
+.score-mid { color: var(--warn); }
+.score-lo { color: var(--down); }
+
+/* ---- Analysis list ---- */
+.analysis { list-style: none; margin: 0; padding: 0; }
+.analysis li {
+  display: flex; gap: 10px; align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.analysis li:last-child { border-bottom: none; }
+.analysis .domain { font-weight: 700; min-width: 92px; flex: none; }
+.analysis .tone-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; align-self: center; background: var(--text-soft); }
+.analysis .tone-pos .tone-dot, .analysis .tone-good .tone-dot { background: var(--up); }
+.analysis .tone-warn .tone-dot { background: var(--warn); }
+.analysis .tone-neg .tone-dot, .analysis .tone-bad .tone-dot { background: var(--down); }
+
+/* ---- Recommendation box ---- */
+.reco { background: var(--accent-soft); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+.reco h3 { margin: 0 0 8px; font-size: 1rem; }
+.reco .line { margin: 6px 0; }
+.reco .line b { color: var(--text); }
+
+/* ---- Sectors / chips ---- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; font-size: .85rem; font-weight: 600; }
+.chip.lead { background: color-mix(in srgb, var(--up) 15%, transparent); border-color: var(--up); }
+
+/* ---- Table ---- */
+.table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; background: var(--surface); }
+th, td { padding: 10px 14px; text-align: right; border-bottom: 1px solid var(--border); font-size: .9rem; }
+th { background: var(--surface-2); font-weight: 700; }
+td.num, th.num { text-align: left; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: none; }
+
+/* ---- Updated stamp ---- */
+.stamp { font-size: .8rem; color: var(--text-soft); margin: 4px 0 18px; }
+.stamp .dot-live { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--up); margin-inline-start: 6px; }
+
+.cta-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 16px; cursor: pointer;
+  font-family: inherit; font-size: .9rem; font-weight: 600; color: var(--text);
+}
+.cta:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 22px 0;
+  margin-top: 30px;
+}
+.disclaimer { font-size: .82rem; color: var(--text-soft); margin: 0 0 6px; }
+.credit { font-size: .8rem; color: var(--text-soft); margin: 0; }

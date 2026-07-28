@@ -1,0 +1,359 @@
+{
+  "date": "2026-07-27",
+  "formulaVersion": "v4",
+  "scores": {
+    "tech": 67,
+    "breadth": 88,
+    "flow": 74,
+    "combined": 75
+  },
+  "phase": {
+    "id": "uptrend_pressure",
+    "label": "מגמה תחת לחץ"
+  },
+  "riskOff": {
+    "active": true,
+    "acute": false,
+    "reasons": [
+      "5 ימי מכירה רחבה בחודש האחרון (הסף: 4) — לחץ מוסדי מצטבר"
+    ],
+    "sellingDays": [
+      {
+        "date": "2026-06-23",
+        "chg": -1.44
+      },
+      {
+        "date": "2026-07-13",
+        "chg": -0.79
+      },
+      {
+        "date": "2026-07-16",
+        "chg": -0.51
+      },
+      {
+        "date": "2026-07-17",
+        "chg": -1.01
+      },
+      {
+        "date": "2026-07-23",
+        "chg": -1.21
+      }
+    ],
+    "tone": "neutral",
+    "stateLine": "לחץ מכירות מוסדי מצטבר — על רקע שוק חזק (75)",
+    "evidenceLine": "5 ימי מכירה ב-25 הימים · 3 מהם בשבועיים האחרונים",
+    "actionLine": "להחזיק קיימות · כניסות חדשות במנות קטנות בלבד · בלי מינוף עד שהלחץ יירד מתחת ל-4 ימים",
+    "sellDaysMap": [
+      {
+        "date": "2026-06-22",
+        "chgPct": -0.37,
+        "isSell": false
+      },
+      {
+        "date": "2026-06-23",
+        "chgPct": -1.44,
+        "isSell": true
+      },
+      {
+        "date": "2026-06-24",
+        "chgPct": -0.1,
+        "isSell": false
+      },
+      {
+        "date": "2026-06-25",
+        "chgPct": -0.01,
+        "isSell": false
+      },
+      {
+        "date": "2026-06-26",
+        "chgPct": -0.05,
+        "isSell": false
+      },
+      {
+        "date": "2026-06-29",
+        "chgPct": 1.18,
+        "isSell": false
+      },
+      {
+        "date": "2026-06-30",
+        "chgPct": 0.79,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-01",
+        "chgPct": -0.22,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-02",
+        "chgPct": 0.0,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-06",
+        "chgPct": 0.72,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-07",
+        "chgPct": -0.45,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-08",
+        "chgPct": -0.28,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-09",
+        "chgPct": 0.81,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-10",
+        "chgPct": 0.42,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-13",
+        "chgPct": -0.79,
+        "isSell": true
+      },
+      {
+        "date": "2026-07-14",
+        "chgPct": 0.38,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-15",
+        "chgPct": 0.38,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-16",
+        "chgPct": -0.51,
+        "isSell": true
+      },
+      {
+        "date": "2026-07-17",
+        "chgPct": -1.01,
+        "isSell": true
+      },
+      {
+        "date": "2026-07-20",
+        "chgPct": -0.19,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-21",
+        "chgPct": 0.89,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-22",
+        "chgPct": -0.14,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-23",
+        "chgPct": -1.21,
+        "isSell": true
+      },
+      {
+        "date": "2026-07-24",
+        "chgPct": 0.05,
+        "isSell": false
+      },
+      {
+        "date": "2026-07-27",
+        "chgPct": 0.02,
+        "isSell": false
+      }
+    ]
+  },
+  "flowWeight": {
+    "effective": 0.1963,
+    "directionalShare": 0.5609,
+    "midShare": 0.439
+  },
+  "flow": {
+    "midPct": 43.9,
+    "directionLabel": "התקפי",
+    "directionReason": "פרמיית Puts דומיננטית (P/C 1.17)",
+    "smoothed": 53,
+    "streak": 2,
+    "compareLine": "היום התקפי יותר מהממוצע החודשי — יום 2 ברצף"
+  },
+  "vixTermRatio": 0.9243,
+  "evidence": {
+    "spxPrice": 7413.18,
+    "spxMa200": 7008.37,
+    "pctMa200": 68.5,
+    "vix": 18.67,
+    "nhCount": 113,
+    "nlCount": 96,
+    "eqSpx20": 1.48
+  },
+  "rotation": {
+    "leadingSectors": [
+      "FIN",
+      "IND",
+      "HC",
+      "CS"
+    ],
+    "sectorRs": {
+      "CS": {
+        "rs5": 1.63,
+        "rs20": 0.97,
+        "leading": true
+      },
+      "ENE": {
+        "rs5": -0.84,
+        "rs20": -3.06,
+        "leading": false
+      },
+      "IT": {
+        "rs5": 1.42,
+        "rs20": -1.77,
+        "leading": false
+      },
+      "UTL": {
+        "rs5": 1.6,
+        "rs20": -2.3,
+        "leading": false
+      },
+      "RE": {
+        "rs5": 1.19,
+        "rs20": -0.61,
+        "leading": false
+      },
+      "IND": {
+        "rs5": 3.58,
+        "rs20": 1.75,
+        "leading": true
+      },
+      "MAT": {
+        "rs5": 3.87,
+        "rs20": -0.97,
+        "leading": false
+      },
+      "HC": {
+        "rs5": 1.86,
+        "rs20": 1.16,
+        "leading": true
+      },
+      "COM": {
+        "rs5": -1.24,
+        "rs20": -0.13,
+        "leading": false
+      },
+      "CD": {
+        "rs5": 1.91,
+        "rs20": -2.6,
+        "leading": false
+      },
+      "FIN": {
+        "rs5": 1.72,
+        "rs20": 7.3,
+        "leading": true
+      }
+    },
+    "cyclicalLeading": 2,
+    "defensiveLeading": 2,
+    "series": [
+      0.704,
+      2.358,
+      1.586,
+      -0.537,
+      1.106,
+      -0.157,
+      0.51,
+      1.756,
+      1.319,
+      0.742,
+      1.82,
+      1.642,
+      0.043,
+      0.294,
+      0.438,
+      1.195,
+      0.852,
+      0.52,
+      0.38,
+      0.302
+    ]
+  },
+  "verdict": {
+    "headline": "השוק יציב — אך עם לחץ מכירות מצטבר, בזהירות",
+    "subline": "5 ימי מכירה רחבה בחודש האחרון (הסף: 4) — לחץ מוסדי מצטבר · מגמה תחת לחץ",
+    "tone": "warn",
+    "emoji": "🟡",
+    "lights": {
+      "trend": "pos",
+      "breadth": "pos",
+      "volatility": "warn",
+      "rotation": "warn"
+    }
+  },
+  "conclusion": {
+    "state": "narrow_strength",
+    "headline": "יום שטוח — המדד כמעט ללא שינוי",
+    "subline": "לחץ מכירות מצטבר (5 ימי מכירה ב-25) · ציון משולב 75",
+    "analysis": [
+      {
+        "domain": "מחיר ומגמה",
+        "text": "SPX מעל MA200 כבר 65 ימי מסחר · ציון טכני 67.",
+        "tone": "pos"
+      },
+      {
+        "domain": "רוחב",
+        "text": "68% מהמניות מעל MA200.",
+        "tone": "pos"
+      },
+      {
+        "domain": "תנודתיות",
+        "text": "VIX 18.7 · רגוע.",
+        "tone": "pos"
+      },
+      {
+        "domain": "אופציות",
+        "text": "Flow 74 (התקפי) · 44% Mid.",
+        "tone": "pos"
+      },
+      {
+        "domain": "רוטציה",
+        "text": "מובילים: פיננסים · תעשייה · בריאות · צריכה בסיסית (מחזוריים 2 / הגנתיים 2).",
+        "tone": "warn"
+      },
+      {
+        "domain": "לחץ",
+        "text": "5 ימי מכירה ב-25 · 1 ב-3 האחרונים.",
+        "tone": "neg"
+      }
+    ],
+    "conclusion": "השוק חזק כלפי חוץ אבל מתקרר מבפנים — 5 ימי מכירה ב-25. עלייה לא-מאושרת: חוזק מחיר שאינו מגובה ברוחב פנימי.",
+    "recommendation": {
+      "action": "להחזיק קיים · לא להוסיף חשיפה חדשה · להדק סטופים על החלשות.",
+      "improve": "המדד השוויוני מדביק (רוחב מתרחב) + Flow מעל ~58",
+      "worsen": "יום מכירה נוסף או %MA50 מתחת ל-65%"
+    },
+    "conviction": "medium",
+    "insight": "פער EQ-SPX ל-20 יום +1.5% — רוחב רחב",
+    "change": [
+      "Flow 60→74 ↑",
+      "רוחב 65%→68% ↑"
+    ]
+  },
+  "narrative": {
+    "headline": "מגמה יציבה",
+    "rationale": "המגמה הטכנית חיובית, אין סטייה משמעותית השבוע",
+    "today": "המדד השוויוני עלה 0.75% בעוד המדד עלה 0.02%.",
+    "week": "המדד השוויוני הביס את המדד הקאפ-משוקלל ב-1.7% — מגמת השתתפות חיובית.",
+    "background": "מצב השוק: \"מגמה תחת לחץ\". כל הקריטריונים יושבים יחד: ציון בריאות 75, VIX 18.7. השוק במגמה חיובית (SPX מעל MA200) כבר 65 ימי מסחר — תקופה ארוכה. 3 ימים שליליים חזקים ב-10 הימים האחרונים — אשכול טרי, סימן אזהרה.",
+    "watchFor": "ימי מכירה כבדה יורדים מתחת ל-5 (כעת 5) → שיפור פאזה. · VIX מטפס מעל 22 (כעת 18.7) → אזהרה חדשה."
+  },
+  "_meta": {
+    "updatedAt": "28/07/2026 14:41",
+    "source": "indexes-status"
+  }
+}

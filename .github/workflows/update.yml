@@ -1,0 +1,59 @@
+name: update-data
+
+# עדכון אוטומטי פעמיים ביום. cron ב-GitHub הוא UTC.
+# 04:30 UTC ≈ 07:30 בוקר (שעון קיץ) · 09:30 UTC ≈ 12:30 צהריים (שעון קיץ).
+# הערה: בשעון חורף (נוב'–מרץ) ישראל היא UTC+2, כך שהשעות יזוזו בשעה.
+on:
+  schedule:
+    - cron: "30 4 * * 1-6"
+    - cron: "30 9 * * 1-6"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # --- משיכת מדדים מריפו indexes-status ---
+      - name: Fetch indices
+        run: python scripts/fetch_dashboards.py
+        continue-on-error: true   # עמידות: כשל מקור אחד לא מפיל את כל הריצה
+
+      # --- משיכת מומנטום מריפו stocks-momentum ---
+      - name: Fetch momentum
+        run: python scripts/fetch_momentum.py
+        continue-on-error: true
+
+      # --- משיכת תדרוך משקיעים מג'ימייל (דורש GMAIL_USER + GMAIL_APP_PASSWORD ב-Secrets) ---
+      - name: Fetch gmail briefings
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/fetch_gmail.py
+        continue-on-error: true
+
+      - name: Commit if changed
+        run: |
+          git config user.name "nidam-markets-bot"
+          git config user.email "actions@github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "אין שינוי בנתונים — לא מבצע commit."
+          else
+            git commit -m "data: עדכון אוטומטי $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
