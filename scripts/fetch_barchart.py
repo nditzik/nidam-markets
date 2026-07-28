@@ -121,9 +121,10 @@ def run_offline(path):
 
 
 def run_imap():
-    user, pw = os.environ.get("GMAIL_USER"), os.environ.get("GMAIL_APP_PASSWORD")
-    if not user or not pw:
-        print("[warn] חסרים GMAIL_USER / GMAIL_APP_PASSWORD.")
+    user = os.environ.get("GMAIL_USER") or "nditzik@gmail.com"
+    pw = os.environ.get("GMAIL_APP_PASSWORD")
+    if not pw:
+        print("[warn] חסר GMAIL_APP_PASSWORD.")
         return 0 if os.path.exists(OUT_JSON) else 1
     try:
         imap = imaplib.IMAP4_SSL("imap.gmail.com")

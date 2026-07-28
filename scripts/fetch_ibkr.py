@@ -71,10 +71,10 @@ def write_if_changed(payload):
 
 
 def main():
-    user = os.environ.get("GMAIL_USER")
+    user = os.environ.get("GMAIL_USER") or "nditzik@gmail.com"
     pw = os.environ.get("GMAIL_APP_PASSWORD")
-    if not user or not pw:
-        print("[warn] חסרים GMAIL_USER / GMAIL_APP_PASSWORD.")
+    if not pw:
+        print("[warn] חסר GMAIL_APP_PASSWORD.")
         return 0 if os.path.exists(OUT) else 1
     try:
         imap = imaplib.IMAP4_SSL("imap.gmail.com")
