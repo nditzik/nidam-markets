@@ -322,6 +322,44 @@
       "</div>";
   }
 
+  function renderCandidates(el, d) {
+    if (!d || d._status === "pending" || !d.candidates) {
+      emptyPanel(el, "🎯", "מועמדים — בקרוב", "יחובר ברגע שצינור ה-IBKR יופעל.");
+      return;
+    }
+    if (!d.candidates.length) {
+      el.innerHTML = stamp(d._meta) +
+        '<div class="panel-empty"><span class="emoji">🎯</span><strong>אין מועמדים ל-' +
+        esc(d.date || "") + "</strong><p style=\"margin:8px 0 0\">הסריקה לא מצאה איתותים היום.</p></div>";
+      return;
+    }
+    function n(v, dgts) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(dgts); }
+    var rows = d.candidates.map(function (c) {
+      return "<tr><td class=\"num\">" + c.rank + "</td>" +
+        "<td><b>" + esc(c.symbol) + "</b></td>" +
+        "<td>" + esc(c.setup || "") + "</td>" +
+        '<td class="num">' + n(c.entry, 2) + "</td>" +
+        '<td class="num">' + n(c.stop, 2) + "</td>" +
+        '<td class="num">' + n(c.target, 2) + "</td>" +
+        '<td class="num ' + (c.risk_pct > 5 ? "down" : "") + '">' + n(c.risk_pct, 1) + "%</td>" +
+        '<td class="num up">' + n(c.tp_pct, 1) + "%</td>" +
+        '<td class="num">' + n(c.rvol, 2) + "</td>" +
+        '<td class="num ' + (c.hist_r >= 0 ? "up" : "down") + '">' + n(c.hist_r, 1) + "</td></tr>";
+    }).join("");
+
+    el.innerHTML = stamp(d._meta) +
+      '<div class="section-title" style="margin-top:0">🎯 מועמדים למסחר (IBKR)</div>' +
+      '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
+      "<strong>" + esc(d.date || "") + "</strong> · " + (d.count || 0) + " מועמדים" +
+      (d.shown && d.shown < d.count ? " (מוצגים " + d.shown + " מובילים)" : "") +
+      '<div class="stamp" style="margin:6px 0 0">Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב</div></div>' +
+      '<div class="table-wrap"><table><thead><tr>' +
+      "<th class=\"num\">#</th><th>סימבול</th><th>Setup</th>" +
+      "<th class=\"num\">כניסה</th><th class=\"num\">סטופ</th><th class=\"num\">מטרה</th>" +
+      "<th class=\"num\">סיכון</th><th class=\"num\">TP</th><th class=\"num\">RVOL</th><th class=\"num\">R היסט'</th>" +
+      "</tr></thead><tbody>" + rows + "</tbody></table></div>";
+  }
+
   /* ---------- boot ---------- */
   function boot() {
     // Home + indices share the indices dataset
@@ -345,8 +383,9 @@
       .then(function (d) { renderMorning(document.getElementById("panel-morning"), d); })
       .catch(function () { emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
 
-    // Still pending: connected in stage 4
-    loadPlaceholder("candidates", "🎯", "מועמדים למסחר");
+    fetchJSON("data/candidates.json")
+      .then(function (d) { renderCandidates(document.getElementById("panel-candidates"), d); })
+      .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
 
     // deep-link
     var start = location.hash.slice(1);

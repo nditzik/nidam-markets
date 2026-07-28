@@ -59,6 +59,14 @@ jobs:
         run: python scripts/fetch_barchart.py
         continue-on-error: true
 
+      # --- משיכת מועמדי IBKR ממייל [IBKR-CANDIDATES] (נשלח מהמערכת המקומית) ---
+      - name: Fetch IBKR candidates
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/fetch_ibkr.py
+        continue-on-error: true
+
       - name: Commit if changed
         run: |
           git config user.name "nidam-markets-bot"
