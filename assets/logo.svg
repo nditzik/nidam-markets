@@ -1,33 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 60" width="168" height="60" role="img" aria-label="שוק ההון">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" width="170" height="60" role="img" aria-label="שוק ההון">
   <defs>
-    <linearGradient id="ng" x1="0" y1="1" x2="1" y2="0" gradientUnits="objectBoundingBox">
+    <linearGradient id="ng" x1="14" y1="0" x2="152" y2="0" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#1f6feb"/>
-      <stop offset="0.45" stop-color="#19c3d6"/>
-      <stop offset="0.75" stop-color="#37d84a"/>
-      <stop offset="1" stop-color="#8bf34a"/>
+      <stop offset="0.42" stop-color="#17b6d8"/>
+      <stop offset="0.72" stop-color="#38d84a"/>
+      <stop offset="1" stop-color="#93f24a"/>
     </linearGradient>
     <radialGradient id="node" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="0.35" stop-color="#eaffb0"/>
-      <stop offset="0.7" stop-color="#6fe83a"/>
-      <stop offset="1" stop-color="#6fe83a" stop-opacity="0"/>
+      <stop offset="0.3" stop-color="#f2ffb4"/>
+      <stop offset="0.62" stop-color="#8bef3c"/>
+      <stop offset="1" stop-color="#8bef3c" stop-opacity="0"/>
     </radialGradient>
-    <filter id="glow" x="-40%" y="-60%" width="180%" height="220%">
-      <feGaussianBlur stdDeviation="3.2" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="glow" x="-40%" y="-70%" width="180%" height="240%">
+      <feGaussianBlur stdDeviation="2.6"/>
     </filter>
+    <path id="ribbon" d="M14,49 L72,26.8 L90,35.8 L126,17.8 L152,7 L126,22.2 L90,40.2 L72,31.2 Z"/>
   </defs>
   <!-- soft glow underlay -->
-  <polyline points="10,52 74,26 92,44 128,18 156,5" fill="none" stroke="url(#ng)"
-    stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.35" filter="url(#glow)"/>
-  <!-- main chart line -->
-  <polyline points="10,52 74,26 92,44 128,18 156,5" fill="none" stroke="url(#ng)"
-    stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- sparkle dots along the line -->
-  <circle cx="40" cy="39" r="1.5" fill="#bfe9ff"/>
-  <circle cx="83" cy="35" r="1.4" fill="#d8ffe0"/>
-  <circle cx="110" cy="29" r="1.4" fill="#eaffc0"/>
+  <use href="#ribbon" fill="url(#ng)" filter="url(#glow)" opacity="0.55"/>
+  <!-- crisp tapered ribbon: sharp points at both ends -->
+  <use href="#ribbon" fill="url(#ng)" stroke="url(#ng)" stroke-width="1.4" stroke-linejoin="round"/>
+  <!-- sparkle highlights along the line -->
+  <circle cx="43" cy="37" r="1.4" fill="#eaf6ff"/>
+  <circle cx="82" cy="33.4" r="1.3" fill="#e6fff0"/>
+  <circle cx="110" cy="27" r="1.3" fill="#f2ffcf"/>
   <!-- glowing node -->
-  <circle cx="128" cy="18" r="12" fill="url(#node)"/>
-  <circle cx="128" cy="18" r="3.6" fill="#ffffff"/>
+  <circle cx="126" cy="19" r="13" fill="url(#node)"/>
+  <circle cx="126" cy="19" r="3.4" fill="#ffffff"/>
 </svg>
