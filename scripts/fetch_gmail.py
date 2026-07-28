@@ -68,22 +68,44 @@ def sentiment_of(html):
     return {"emoji": m.group(1), "text": word}
 
 
-def pick_latest(imap, mark, exclude=None):
-    """מחזיר (subject, date_dt, html) עבור המייל האחרון שכותרתו מכילה 'תדרוך משקיעים' + mark."""
-    typ, data = imap.search(None, 'FROM', f'"{SENDER}"', 'SUBJECT', '"תדרוך"')
-    ids = data[0].split() if data and data[0] else []
-    # מהחדש לישן
-    for mid in reversed(ids):
+def imap_since(days=4):
+    """מחרוזת IMAP SINCE (DD-Mon-YYYY, אנגלית) לימים האחרונים."""
+    d = datetime.now(timezone.utc) - timedelta(days=days)
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    return f"{d.day:02d}-{months[d.month - 1]}-{d.year}"
+
+
+def fetch_candidates(imap):
+    """
+    שולף את כל המיילים מהשולח מהימים האחרונים ומחזיר רשימת (subject, date_dt, msg)
+    ממוינת מהחדש לישן. חיפוש ASCII בלבד (FROM+SINCE) — אין עברית בשאילתת IMAP
+    (חיפוש כותרת בעברית ב-Gmail IMAP נכשל ללא charset ומחזיר ריק).
+    """
+    typ, data = imap.search(None, 'FROM', SENDER, 'SINCE', imap_since())
+    ids = data[0].split() if typ == "OK" and data and data[0] else []
+    out = []
+    for mid in ids:
         typ, msg_data = imap.fetch(mid, "(RFC822)")
         if typ != "OK" or not msg_data or not msg_data[0]:
             continue
         msg = email.message_from_bytes(msg_data[0][1])
         subject = dec(msg.get("Subject"))
+        date_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
+        out.append((subject, date_dt, msg))
+    out.sort(key=lambda t: (t[1] or datetime(1970, 1, 1, tzinfo=timezone.utc)), reverse=True)
+    return out
+
+
+def pick_latest(candidates, mark, exclude=None):
+    """מחזיר (subject, date_dt, html) עבור הבריף האחרון שכותרתו מכילה 'תדרוך משקיעים' + mark."""
+    for subject, date_dt, msg in candidates:
+        if subject.startswith("Fwd:") or subject.startswith("Fw:"):
+            continue  # דילוג על העברות (Forward) — לא המקור
         if "תדרוך משקיעים" not in subject or mark not in subject:
             continue
         if exclude and exclude in subject:
             continue
-        date_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
         return subject, date_dt, html_of(msg)
     return None
 
@@ -114,8 +136,10 @@ def main():
         return 0 if os.path.exists(OUT_JSON) else 1
 
     try:
-        morning = build_slot(pick_latest(imap, MORNING_MARK))
-        afternoon = build_slot(pick_latest(imap, AFTERNOON_MARK))
+        candidates = fetch_candidates(imap)
+        print(f"[info] נמצאו {len(candidates)} מיילים מהשולח בימים האחרונים.")
+        morning = build_slot(pick_latest(candidates, MORNING_MARK))
+        afternoon = build_slot(pick_latest(candidates, AFTERNOON_MARK))
     finally:
         try:
             imap.logout()
@@ -126,28 +150,54 @@ def main():
         print("[warn] לא נמצאו בריפים.")
         return 0 if os.path.exists(OUT_JSON) else 1
 
+    # התחל מהקיים כדי לא לאבד צד שלא נמשך הפעם
+    existing = {}
+    if os.path.exists(OUT_JSON):
+        try:
+            with open(OUT_JSON, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+        except Exception:
+            existing = {}
+
     os.makedirs(OUT_DIR, exist_ok=True)
-    out = {"_meta": {"updatedAt": israel_stamp(), "source": "gmail"}}
+    out = {k: v for k, v in existing.items() if k != "_meta"}
+    changed = False
 
     for key, slot, fname in (("morning", morning, "morning.html"),
                              ("afternoon", afternoon, "afternoon.html")):
         if not slot:
             continue
-        with open(os.path.join(OUT_DIR, fname), "w", encoding="utf-8") as f:
-            f.write(slot["html"])
+        path = os.path.join(OUT_DIR, fname)
+        old_html = None
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                old_html = f.read()
+        if slot["html"] != old_html:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(slot["html"])
+            changed = True
         d = slot["date_dt"]
-        out[key] = {
+        meta = {
             "subject": slot["subject"],
             "dateLabel": d.strftime("%d/%m/%Y") if d else "",
             "time": d.astimezone(timezone(timedelta(hours=3))).strftime("%H:%M") if d else "",
             "sentiment": sentiment_of(slot["html"]),
             "file": f"data/briefings/{fname}",
         }
+        if out.get(key) != meta:
+            changed = True
+        out[key] = meta
         print(f"[ok] {key}: {slot['subject']}")
 
+    # "commit רק אם יש שינוי": אם שום בריף לא השתנה — לא נוגעים בקבצים
+    if not changed and os.path.exists(OUT_JSON):
+        print("[nochange] אין בריף חדש — briefing.json נשאר כפי שהוא.")
+        return 0
+
+    out["_meta"] = {"updatedAt": israel_stamp(), "source": "gmail"}
     with open(OUT_JSON, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
-    print(f"[done] נכתב {OUT_JSON}")
+    print(f"[done] נכתב {OUT_JSON} (שינוי זוהה)")
     return 0
 
 
