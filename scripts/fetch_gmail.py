@@ -26,7 +26,7 @@ MAILBOX = '"[Gmail]/All Mail"'
 SENDER = "nditzik@gmail.com"
 MORNING_MARK = "בוקר"
 AFTERNOON_MARK = "אחר הצהריים"
-SENTIMENT_RE = re.compile(r"([🟢🟡🔴])\s*([^<\n]{0,24})")
+SENTIMENT_RE = re.compile(r"([🟢🟡🔴])\s*([^;<\n]{0,40})")
 
 
 def israel_stamp():
