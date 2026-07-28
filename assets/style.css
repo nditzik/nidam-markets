@@ -276,5 +276,25 @@ tr:last-child td { border-bottom: none; }
   padding: 22px 0;
   margin-top: 30px;
 }
+/* ---- Health strip ---- */
+.health {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  padding: 10px 0 14px; margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.hlabel { font-size: .8rem; color: var(--text-soft); font-weight: 600; }
+.hchip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 4px 11px; font-size: .8rem; font-weight: 600;
+  cursor: default;
+}
+.hchip .hdot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-soft); flex: none; }
+.hchip.ok .hdot { background: var(--up); }
+.hchip.stale .hdot { background: var(--warn); }
+.hchip.down .hdot { background: var(--down); }
+.hchip.pending .hdot { background: var(--text-soft); }
+.hgen { font-size: .74rem; color: var(--text-soft); margin-inline-start: auto; }
+
 .disclaimer { font-size: .82rem; color: var(--text-soft); margin: 0 0 6px; }
 .credit { font-size: .8rem; color: var(--text-soft); margin: 0; }

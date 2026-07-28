@@ -380,9 +380,30 @@
       .then(function (d) { renderCandidates(document.getElementById("panel-candidates"), d); })
       .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
 
+    fetchJSON("data/_health.json")
+      .then(function (d) { renderHealth(document.getElementById("health"), d); })
+      .catch(function () {});
+
     // deep-link
     var start = location.hash.slice(1);
     if (start && document.getElementById("panel-" + start)) activate(start);
+  }
+
+  function renderHealth(el, d) {
+    if (!el || !d || !d.sources) return;
+    var STAT = {
+      ok: ["ok", "מעודכן"], stale: ["stale", "מיושן"],
+      down: ["down", "לא זמין"], pending: ["pending", "טרם חובר"]
+    };
+    var chips = d.sources.map(function (s) {
+      var st = STAT[s.status] || STAT.down;
+      var when = s.updatedAt ? "עודכן " + s.updatedAt : (s.detail || st[1]);
+      return '<span class="hchip ' + st[0] + '" title="' + esc(s.label + " — " + when) + '">' +
+        '<span class="hdot"></span>' + esc(s.label) + "</span>";
+    }).join("");
+    el.innerHTML =
+      '<span class="hlabel">מצב מקורות:</span>' + chips +
+      (d.generatedAt ? '<span class="hgen">נבדק ' + esc(d.generatedAt) + "</span>" : "");
   }
 
   function loadPlaceholder(name, emoji, title) {

@@ -67,6 +67,11 @@ jobs:
         run: python scripts/fetch_ibkr.py
         continue-on-error: true
 
+      # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
+      - name: Build health status
+        run: python scripts/build_health.py
+        continue-on-error: true
+
       - name: Commit if changed
         run: |
           git config user.name "nidam-markets-bot"
