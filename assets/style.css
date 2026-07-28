@@ -89,6 +89,13 @@ body {
   border-radius: 12px;
   flex: none;
 }
+.brand-logo {
+  height: 46px;
+  width: auto;
+  flex: none;
+  display: block;
+}
+@media (max-width: 500px) { .brand-logo { height: 38px; } }
 .brand-text h1 { font-size: 1.15rem; margin: 0; font-weight: 800; }
 .tagline { margin: 0; font-size: .78rem; color: var(--text-soft); }
 .theme-toggle {

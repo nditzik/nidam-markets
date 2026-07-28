@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 60" width="168" height="60" role="img" aria-label="שוק ההון">
+  <defs>
+    <linearGradient id="ng" x1="0" y1="1" x2="1" y2="0" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1f6feb"/>
+      <stop offset="0.45" stop-color="#19c3d6"/>
+      <stop offset="0.75" stop-color="#37d84a"/>
+      <stop offset="1" stop-color="#8bf34a"/>
+    </linearGradient>
+    <radialGradient id="node" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.35" stop-color="#eaffb0"/>
+      <stop offset="0.7" stop-color="#6fe83a"/>
+      <stop offset="1" stop-color="#6fe83a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-60%" width="180%" height="220%">
+      <feGaussianBlur stdDeviation="3.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- soft glow underlay -->
+  <polyline points="10,52 74,26 92,44 128,18 156,5" fill="none" stroke="url(#ng)"
+    stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.35" filter="url(#glow)"/>
+  <!-- main chart line -->
+  <polyline points="10,52 74,26 92,44 128,18 156,5" fill="none" stroke="url(#ng)"
+    stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- sparkle dots along the line -->
+  <circle cx="40" cy="39" r="1.5" fill="#bfe9ff"/>
+  <circle cx="83" cy="35" r="1.4" fill="#d8ffe0"/>
+  <circle cx="110" cy="29" r="1.4" fill="#eaffc0"/>
+  <!-- glowing node -->
+  <circle cx="128" cy="18" r="12" fill="url(#node)"/>
+  <circle cx="128" cy="18" r="3.6" fill="#ffffff"/>
+</svg>
