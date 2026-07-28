@@ -299,27 +299,20 @@
   }
 
   function renderMorning(el, d) {
-    if (!d || d._status === "pending" || !d.paragraphs || !d.paragraphs.length) {
+    if (!d || d._status === "pending" || !d.file) {
       emptyPanel(el, "🌅", "סקירת בוקר — בקרוב", "תחובר ברגע שצינור ה-Barchart יופעל.");
       return;
     }
-    var body = d.paragraphs.map(function (p) {
-      var isHead = p.length < 70 && !/[.!?”"]$/.test(p);
-      return isHead
-        ? '<h3 style="margin:18px 0 6px;font-size:1.02rem">' + esc(p) + "</h3>"
-        : "<p style=\"margin:0 0 12px\">" + esc(p) + "</p>";
-    }).join("");
-
     el.innerHTML = stamp(d._meta) +
       '<div class="section-title" style="margin-top:0">🌅 סקירת בוקר</div>' +
-      '<div class="card">' +
-      '<div style="border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:14px">' +
-      "<strong>" + esc(d.title || "") + "</strong>" +
-      '<div class="stamp" style="margin:4px 0 0">' + esc(d.source || "") +
-      (d.dateLabel ? " · " + esc(d.dateLabel) : "") + (d.time ? " " + esc(d.time) : "") +
-      " · תקציר באנגלית</div></div>" +
-      '<div dir="ltr" style="text-align:left">' + body + "</div>" +
-      "</div>";
+      '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
+      "<strong>" + esc(d.subject || "סיכום Barchart יומי") + "</strong>" +
+      (d.dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(d.dateLabel) +
+        (d.time ? " · " + esc(d.time) : "") + "</div>" : "") +
+      "</div>" +
+      '<iframe class="brief-frame" src="' + esc(d.file) + '" title="' + esc(d.subject || "") +
+      '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
+      'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
   }
 
   function renderCandidates(el, d) {
