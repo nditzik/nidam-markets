@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>מוקאפ עיצוב — נקי·חד·אלגנטי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#f4f6f9; --surface:#ffffff; --raise:#fbfcfe;
+  --line:#e4e8ef; --line-strong:#d3d9e3;
+  --ink:#0e1726; --ink-soft:#3a4657; --muted:#697689;
+  --accent:#1f4fd0; --accent-soft:#eef2fd;
+  --up:#0a7d55; --down:#c23b34; --warn:#b7791f;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Heebo",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1080px,100% - 40px);margin-inline:auto}
+.serif{font-family:"Frank Ruhl Libre",Georgia,serif}
+.mono{font-family:"IBM Plex Mono",monospace}
+.num{font-variant-numeric:tabular-nums}
+.up{color:var(--up)} .down{color:var(--down)}
+
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:16px;height:1px;background:var(--line-strong)}
+
+.site-header{background:var(--surface);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{height:42px;width:auto;border-radius:11px}
+.brand h1{font-size:1.28rem;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-top:3px}
+.hdr-right{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);text-align:left}
+.hdr-right b{color:var(--ink);font-weight:600}
+
+.tabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin-top:26px}
+.tab{padding:0 0 14px;font-size:.98rem;font-weight:600;color:var(--muted);
+  border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap}
+.tab.on{color:var(--ink);border-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+
+.today{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:22px 0 4px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-soft)}
+.today .lead{color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:11px}
+.today a{color:var(--ink-soft);text-decoration:none;display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.today a b{color:var(--accent)}
+.today a:hover{color:var(--accent)}
+
+main{padding:30px 0 70px}
+
+.hero{margin-top:14px}
+.hero h2{font-size:2.15rem;line-height:1.18;margin:12px 0 10px;font-weight:700;
+  letter-spacing:-.015em;text-wrap:balance;max-width:22ch}
+.hero .sub{color:var(--ink-soft);max-width:60ch;font-size:1.02rem;margin:0}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.status{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line-strong);
+  background:var(--surface);border-radius:999px;padding:7px 15px;font-size:.86rem;font-weight:600}
+.status .dot{width:9px;height:9px;border-radius:50%}
+.tone-warn .dot{background:var(--warn)} .tone-warn{color:var(--warn)}
+.lights{display:flex;gap:26px;margin-top:20px;flex-wrap:wrap}
+.light{display:flex;align-items:center;gap:9px}
+.light .d{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.light.pos .d{background:var(--up)} .light.warn .d{background:var(--warn)}
+.light .lbl{font-size:.9rem;color:var(--ink-soft);font-weight:500}
+.light .st{font-family:"IBM Plex Mono",monospace;font-size:10.5px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted)}
+
+.rule{height:1px;background:var(--line);margin:34px 0}
+
+.grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.cell{background:var(--surface);padding:20px 22px}
+.cell .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.cell .v{font-size:2rem;font-weight:700;letter-spacing:-.02em;line-height:1}
+.cell .meta{font-size:.8rem;color:var(--muted);margin-top:7px}
+.score .v{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:2.4rem}
+.bar{height:3px;border-radius:2px;background:var(--line);margin-top:12px;overflow:hidden}
+.bar > i{display:block;height:100%;border-radius:2px}
+
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px}
+.panel h3{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:1.3rem;margin:14px 0 10px;line-height:1.35}
+.panel p{margin:0;color:var(--ink-soft)}
+.reco{background:var(--ink);color:#eaf0f8;border:none}
+.reco .eyebrow{color:#8fa3c0}
+.reco .eyebrow::before{background:#39465c}
+.reco h3{color:#fff;font-size:1.12rem}
+.reco .action{color:#fff;font-size:1.02rem;line-height:1.55;margin:6px 0 0}
+.reco .line{margin:14px 0 0;font-size:.95rem;color:#c4d0e2}
+.reco .line b{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;display:block;margin-bottom:2px;color:#8fa3c0;font-weight:600}
+
+.section-head{margin:38px 0 16px}
+
+.note{max-width:760px;margin:0 auto 26px;padding:14px 18px;background:#fffbe8;border:1px solid #f0e2ad;
+  border-radius:10px;color:#6b5a1e;font-size:.9rem}
+</style>
+</head>
+<body>
+
+<div class="wrap"><p class="note">👀 מוקאפ עיצוב — דף הבית בסגנון "נקי·חד·אלגנטי". זהו עמוד תצוגה בלבד (לא האתר החי). הנתונים אמיתיים.</p></div>
+
+<header class="site-header">
+  <div class="wrap hdr">
+    <div class="brand">
+      <img src="assets/favicon.svg" alt="NM" />
+      <div>
+        <h1>שוק ההון של איציק נידם</h1>
+        <div class="tag">DAILY MARKET INTELLIGENCE</div>
+      </div>
+    </div>
+    <div class="hdr-right">עודכן <b>28.07 · 15:36</b><br>שעון ישראל</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="tabs">
+    <div class="tab on">בית</div>
+    <div class="tab">מומנטום</div>
+    <div class="tab">מדדים</div>
+    <div class="tab">מועמדים</div>
+    <div class="tab">סקירת בוקר</div>
+    <div class="tab">תדרוך משקיעים</div>
+  </nav>
+
+  <div class="today">
+    <span class="lead">היום</span>
+    <a><b>06:01</b> סקירת בוקר</a>
+    <a><b>06:06</b> תדרוך בוקר</a>
+    <a><b>15:08</b> תדרוך אחה״צ</a>
+    <a><b>16:14</b> מועמדים</a>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">מצב שוק · יום שלישי 28 יולי 2026</div>
+    <div class="hero-top">
+      <h2 class="serif">השוק יציב — אך עם לחץ מכירות מצטבר, בזהירות</h2>
+      <span class="status tone-warn"><span class="dot"></span>זהירות</span>
+    </div>
+    <p class="sub">5 ימי מכירה רחבה בחודש האחרון (הסף: 4) — לחץ מוסדי מצטבר על רקע שוק חזק. מגמה תחת לחץ.</p>
+    <div class="lights">
+      <div class="light pos"><span class="d"></span><span class="lbl">מגמה</span><span class="st">POS</span></div>
+      <div class="light pos"><span class="d"></span><span class="lbl">רוחב</span><span class="st">POS</span></div>
+      <div class="light warn"><span class="d"></span><span class="lbl">תנודתיות</span><span class="st">WARN</span></div>
+      <div class="light warn"><span class="d"></span><span class="lbl">רוטציה</span><span class="st">WARN</span></div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <div class="eyebrow" style="margin-bottom:14px">ציוני בריאות</div>
+  <div class="grid grid-4">
+    <div class="cell score"><div class="k">ציון משולב</div><div class="v">75</div>
+      <div class="bar"><i style="width:75%;background:var(--up)"></i></div></div>
+    <div class="cell score"><div class="k">טכני</div><div class="v">67</div>
+      <div class="bar"><i style="width:67%;background:var(--up)"></i></div></div>
+    <div class="cell score"><div class="k">רוחב</div><div class="v">88</div>
+      <div class="bar"><i style="width:88%;background:var(--up)"></i></div></div>
+    <div class="cell score"><div class="k">Flow</div><div class="v">74</div>
+      <div class="bar"><i style="width:74%;background:var(--up)"></i></div></div>
+  </div>
+
+  <div class="eyebrow" style="margin:26px 0 14px">נתוני שוק</div>
+  <div class="grid grid-4">
+    <div class="cell"><div class="k">S&amp;P 500</div><div class="v num">7,413<span style="font-size:1.1rem;color:var(--muted)">.18</span></div><div class="meta">68.5% מעל MA200</div></div>
+    <div class="cell"><div class="k">VIX</div><div class="v num">18.7</div><div class="meta">רגוע</div></div>
+    <div class="cell"><div class="k">שיאים / שפלים</div><div class="v num">113<span style="color:var(--muted)"> / </span>96</div><div class="meta">52 שבועות</div></div>
+    <div class="cell"><div class="k">EQ vs SPX · 20י</div><div class="v num up">+1.48%</div><div class="meta">רוחב פנימי</div></div>
+  </div>
+
+  <div class="section-head"><div class="eyebrow">המסקנה של איציק</div></div>
+  <div class="two">
+    <div class="panel">
+      <div class="eyebrow">ניתוח</div>
+      <h3 class="serif">השוק חזק כלפי חוץ — אך מתקרר מבפנים</h3>
+      <p>עלייה לא-מאושרת: חוזק מחיר שאינו מגובה ברוחב פנימי. 5 ימי מכירה ב-25 הימים האחרונים, שלושה מהם בשבועיים — אשכול טרי שמסמן זהירות לקראת הפד ודוחות המגה-קאפ.</p>
+    </div>
+    <div class="panel reco">
+      <div class="eyebrow">המלצה</div>
+      <p class="action">להחזיק קיים · לא להוסיף חשיפה · להדק סטופים על החלשות.</p>
+      <p class="line"><b>ישתפר אם</b>המדד השוויוני מדביק + Flow מעל 58</p>
+      <p class="line"><b>יורע אם</b>יום מכירה נוסף או %MA50 מתחת ל-65%</p>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
