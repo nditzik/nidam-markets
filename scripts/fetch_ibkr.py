@@ -1,28 +1,23 @@
 #!/usr/bin/env python3
 """
-fetch_ibkr.py — מושך את מועמדי ה-IBKR מג'ימייל (IMAP) → data/candidates.json.
+fetch_ibkr.py — מושך את מועמדי ה-IBKR מהריפו הציבורי nidam-candidates → data/candidates.json.
 
-מאתר את המייל האחרון עם נושא שמתחיל ב-"[IBKR-CANDIDATES]" (נשלח מהמערכת המקומית
-דרך export_candidates.py), מחלץ את הקובץ המצורף candidates.json וכותב אותו.
-המייל הוא candidate-only מעצם בנייתו — אין בו נתוני חשבון/פוזיציות/יתרות.
+המערכת המקומית דוחפת candidates.json ל-nidam-candidates (דרך export_candidates.py),
+והאתר קורא אותו ישירות — בלי מייל ובלי סיסמה. הקובץ הוא candidate-only מעצם בנייתו
+(אין נתוני חשבון/פוזיציות/יתרות).
 
-דורש סודות (זהים לשאר): GMAIL_USER + GMAIL_APP_PASSWORD.
-עמידות: כשל/היעדר מקור → משאיר candidates.json קיים.
+עמידות: כשל משיכה → משאיר candidates.json קיים (לא מפיל את ה-Action).
 """
-import email
-import email.header
-import email.utils
-import imaplib
 import json
 import os
 import sys
+import urllib.request
 from datetime import datetime, timezone, timedelta
+
+RAW_URL = "https://raw.githubusercontent.com/nditzik/nidam-candidates/main/candidates.json"
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "candidates.json")
-
-MAILBOX = '"[Gmail]/All Mail"'
-SUBJECT_TAG = "[IBKR-CANDIDATES]"
 
 
 def israel_stamp():
@@ -31,27 +26,24 @@ def israel_stamp():
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 
-def imap_since(days=7):
-    d = datetime.now(timezone.utc) - timedelta(days=days)
-    m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    return f"{d.day:02d}-{m[d.month - 1]}-{d.year}"
+def fetch():
+    req = urllib.request.Request(RAW_URL, headers={"User-Agent": "nidam-markets-bot"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.loads(r.read().decode("utf-8"))
 
 
-def extract_json_attachment(msg):
-    for part in msg.walk():
-        fn = part.get_filename() or ""
-        ctype = part.get_content_type()
-        if fn.lower().endswith(".json") or ctype == "application/json":
-            payload = part.get_payload(decode=True)
-            if payload:
-                try:
-                    return json.loads(payload.decode("utf-8", "ignore"))
-                except Exception as e:
-                    print(f"[warn] קובץ מצורף לא תקין: {e}")
-    return None
+def main():
+    try:
+        payload = fetch()
+    except Exception as e:
+        print(f"[warn] משיכת מועמדים נכשלה: {e}")
+        return 0 if os.path.exists(OUT) else 1
 
+    if not isinstance(payload, dict) or "candidates" not in payload:
+        print("[warn] פורמט מועמדים לא תקין.")
+        return 0 if os.path.exists(OUT) else 1
 
-def write_if_changed(payload):
+    # מודע-תוכן: כותב רק אם השתנה (משאיר את _meta של המקור, מרענן חותמת משיכה)
     existing = {}
     if os.path.exists(OUT):
         try:
@@ -61,53 +53,20 @@ def write_if_changed(payload):
             existing = {}
     if {k: v for k, v in existing.items() if k != "_meta"} == \
        {k: v for k, v in payload.items() if k != "_meta"}:
-        print("[nochange] אין מועמדים חדשים — candidates.json נשאר כפי שהוא.")
-        return
-    payload = dict(payload)
-    payload["_meta"] = {"updatedAt": israel_stamp(), "source": "ibkr-swing-system"}
+        print("[nochange] אין מועמדים חדשים.")
+        return 0
+
+    meta = payload.get("_meta") or {}
+    meta["fetchedAt"] = israel_stamp()
+    if "updatedAt" not in meta:
+        meta["updatedAt"] = meta["fetchedAt"]
+    meta["source"] = "ibkr-swing-system"
+    payload["_meta"] = meta
+
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"[done] נכתב {OUT} ({payload.get('shown', '?')} מועמדים, {payload.get('date')})")
-
-
-def main():
-    user = os.environ.get("GMAIL_USER") or "nditzik@gmail.com"
-    pw = os.environ.get("GMAIL_APP_PASSWORD")
-    if not pw:
-        print("[warn] חסר GMAIL_APP_PASSWORD.")
-        return 0 if os.path.exists(OUT) else 1
-    try:
-        imap = imaplib.IMAP4_SSL("imap.gmail.com")
-        imap.login(user, pw)
-        imap.select(MAILBOX, readonly=True)
-    except Exception as e:
-        print(f"[warn] חיבור IMAP נכשל: {e}")
-        return 0 if os.path.exists(OUT) else 1
-    try:
-        # חיפוש ASCII-בטוח: נושא + טווח זמן
-        typ, data = imap.search(None, "SUBJECT", SUBJECT_TAG, "SINCE", imap_since())
-        ids = data[0].split() if typ == "OK" and data and data[0] else []
-        for mid in reversed(ids):  # מהחדש לישן
-            typ, md = imap.fetch(mid, "(RFC822)")
-            if typ != "OK" or not md or not md[0]:
-                continue
-            msg = email.message_from_bytes(md[0][1])
-            subject = str(email.header.make_header(email.header.decode_header(msg.get("Subject") or ""))) \
-                if msg.get("Subject") else ""
-            if SUBJECT_TAG not in subject:
-                continue
-            payload = extract_json_attachment(msg)
-            if payload and "candidates" in payload:
-                write_if_changed(payload)
-                print(f"[ok] {subject}")
-                return 0
-        print("[warn] לא נמצא מייל [IBKR-CANDIDATES] עם קובץ תקין.")
-        return 0 if os.path.exists(OUT) else 1
-    finally:
-        try:
-            imap.logout()
-        except Exception:
-            pass
+    return 0
 
 
 if __name__ == "__main__":
