@@ -110,6 +110,11 @@
     if (!meta || !meta.updatedAt) return "";
     return '<p class="stamp"><span class="dot-live"></span> עודכן לאחרונה: ' + esc(meta.updatedAt) + "</p>";
   }
+  // append a version query so browsers/CDN always fetch the freshest iframe HTML
+  function bust(url, meta) {
+    var v = (meta && (meta.updatedAt || meta.fetchedAt)) || "";
+    return esc(url) + "?v=" + encodeURIComponent(v);
+  }
   function emptyPanel(el, emoji, title, note) {
     el.innerHTML =
       '<div class="panel-empty"><span class="emoji">' + emoji + "</span>" +
@@ -437,7 +442,7 @@
         (sl.sentiment && sl.sentiment.text ? ' · <span>' + h(sl.sentiment.emoji) + " " + esc(sl.sentiment.text) + "</span>" : "") +
         (sl.dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(sl.dateLabel) + (sl.time ? " · " + esc(sl.time) : "") + "</div>" : "") +
         "</div>" +
-        '<iframe class="brief-frame" src="' + esc(sl.file) + '" title="' + esc(sl.subject || "") +
+        '<iframe class="brief-frame" src="' + bust(sl.file, d._meta) + '" title="' + esc(sl.subject || "") +
         '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
         'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe></div>';
     }).join("");
@@ -466,7 +471,7 @@
       (d.dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(d.dateLabel) +
         (d.time ? " · " + esc(d.time) : "") + "</div>" : "") +
       "</div>" +
-      '<iframe class="brief-frame" src="' + esc(d.file) + '" title="' + esc(d.subject || "") +
+      '<iframe class="brief-frame" src="' + bust(d.file, d._meta) + '" title="' + esc(d.subject || "") +
       '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
       'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
   }
