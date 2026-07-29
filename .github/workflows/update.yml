@@ -78,5 +78,14 @@ jobs:
             echo "אין שינוי בנתונים — לא מבצע commit."
           else
             git commit -m "data: עדכון אוטומטי $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git push
+            # עמידות להתנגשות דחיפה (שתי ריצות במקביל): rebase על הרמוט ונסה שוב
+            for i in 1 2 3 4 5; do
+              if git push; then
+                echo "pushed on attempt $i"; exit 0
+              fi
+              echo "push rejected — rebasing and retrying ($i)…"
+              git pull --rebase --autostash origin main || true
+              sleep 3
+            done
+            echo "push failed after retries"; exit 1
           fi
