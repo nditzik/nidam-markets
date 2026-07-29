@@ -485,7 +485,7 @@
     function n(v, dgts) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(dgts); }
     var rows = d.candidates.map(function (c) {
       return "<tr><td class=\"num\">" + c.rank + "</td>" +
-        "<td><b>" + esc(c.symbol) + "</b></td>" +
+        "<td>" + tvLink(c.symbol) + "</td>" +
         "<td>" + esc(c.setup || "") + "</td>" +
         '<td class="num">' + n(c.entry, 2) + "</td>" +
         '<td class="num">' + n(c.stop, 2) + "</td>" +
@@ -501,7 +501,7 @@
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
       "<strong>" + esc(d.date || "") + "</strong> · " + (d.count || 0) + " מועמדים" +
       (d.shown && d.shown < d.count ? " (מוצגים " + d.shown + " מובילים)" : "") +
-      '<div class="stamp" style="margin:6px 0 0">Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב</div></div>' +
+      '<div class="stamp" style="margin:6px 0 0">Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב · לחיצה על טיקר פותחת ב-TradingView</div></div>' +
       '<div class="table-wrap"><table><thead><tr>' +
       "<th class=\"num\">#</th><th>סימבול</th><th>Setup</th>" +
       "<th class=\"num\">כניסה</th><th class=\"num\">סטופ</th><th class=\"num\">מטרה</th>" +
