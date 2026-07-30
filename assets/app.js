@@ -15,6 +15,7 @@
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("nidam-theme", next);
     syncThemeIcon();
+    initTicker();
   });
   function syncThemeIcon() {
     var dark = document.documentElement.getAttribute("data-theme") === "dark";
@@ -33,7 +34,51 @@
     });
     markSeen(name);
     updateTodayBarVis();
+    var tw = document.getElementById("ticker-wrap");
+    if (tw) tw.style.display = name === "home" ? "block" : "none";
     if (location.hash.slice(1) !== name) history.replaceState(null, "", "#" + name);
+  }
+
+  /* ---- live market ticker (TradingView) ---- */
+  var TICKER_SYMBOLS = [
+    { description: "S&P Futures", proxy: "CME_MINI:ES1!" },
+    { description: "Nasdaq Futures", proxy: "CME_MINI:NQ1!" },
+    { description: "SPY", proxy: "AMEX:SPY" },
+    { description: "QQQ", proxy: "NASDAQ:QQQ" },
+    { description: "IWM", proxy: "AMEX:IWM" },
+    { description: "VIX", proxy: "CBOE:VIX" },
+    { description: "US 10Y", proxy: "TVC:US10Y" },
+    { description: "DXY", proxy: "TVC:DXY" }
+  ];
+  function isDark() {
+    var t = document.documentElement.getAttribute("data-theme");
+    if (t === "dark") return true;
+    if (t === "light") return false;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function initTicker() {
+    var el = document.getElementById("ticker");
+    if (!el) return;
+    el.innerHTML = "";
+    var container = document.createElement("div");
+    container.className = "tradingview-widget-container";
+    var widget = document.createElement("div");
+    widget.className = "tradingview-widget-container__widget";
+    container.appendChild(widget);
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    s.text = JSON.stringify({
+      symbols: TICKER_SYMBOLS,
+      showSymbolLogo: false,
+      isTransparent: true,
+      displayMode: "adaptive",
+      colorTheme: isDark() ? "dark" : "light",
+      locale: "en"
+    });
+    container.appendChild(s);
+    el.appendChild(container);
   }
 
   /* ---- "new since last visit" tab badges ---- */
@@ -516,6 +561,7 @@
 
   /* ---------- boot ---------- */
   function boot() {
+    initTicker();
     // Home + indices share the indices dataset
     fetchJSON("data/indices.json").then(function (d) {
       renderMarketOverview(document.getElementById("panel-home"), d, { showLinks: true });
