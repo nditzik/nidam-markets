@@ -12,7 +12,12 @@ on:
     - cron: "30 4 * * 1-6"
     - cron: "30 9 * * 1-6"
     - cron: "30 12 * * 1-6"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      test_telegram:
+        description: "שלח הודעת בדיקה לערוץ הטלגרם"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -62,6 +67,15 @@ jobs:
       # --- משיכת מועמדי IBKR מהריפו הציבורי nidam-candidates (נדחף מהמערכת המקומית) ---
       - name: Fetch IBKR candidates
         run: python scripts/fetch_ibkr.py
+        continue-on-error: true
+
+      # --- בדיקת חיבור טלגרם (רק כשמריצים ידנית עם הסימון) ---
+      - name: Telegram connection test
+        if: ${{ inputs.test_telegram }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/notify_telegram.py --test
         continue-on-error: true
 
       # --- תזכורת טלגרם על תדרוך חדש (דורש TELEGRAM_BOT_TOKEN + TELEGRAM_CHANNEL) ---
