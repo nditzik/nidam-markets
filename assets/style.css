@@ -224,6 +224,7 @@ main { padding: 26px 0 70px; }
   margin: 0 0 8px; font-size: 1.8rem; font-weight: 800; letter-spacing: -.025em;
   line-height: 1.15; text-wrap: balance; max-width: 24ch;
 }
+.verdict h2 .vday { color: var(--text-3); font-weight: 600; letter-spacing: -.01em; }
 .verdict p { margin: 0; color: var(--text-soft); font-size: 1.02rem; line-height: 1.45; max-width: 64ch; }
 @media (max-width: 560px) { .verdict h2 { font-size: 1.45rem; } .verdict .emoji { font-size: 1.9rem; } }
 

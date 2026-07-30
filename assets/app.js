@@ -130,6 +130,11 @@
     if (v == null || isNaN(v)) return "—";
     return Number(v).toLocaleString("en-US", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
   }
+  function fmtTradeDate(iso) {
+    // "2026-07-29" → "29.7.26"  (no leading zeros, 2-digit year)
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
+    return m ? (+m[3]) + "." + (+m[2]) + "." + m[1].slice(2) : "";
+  }
   function fetchJSON(url) {
     return fetch(url, { cache: "no-store" }).then(function (r) {
       if (!r.ok) throw new Error(url + " → " + r.status);
@@ -174,10 +179,15 @@
       }).join("") + "</div>";
     }
 
+    var tradeDate = fmtTradeDate(d.date);
+    var headHtml =
+      (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + ' · </span>' : "") +
+      esc(v.headline || "סקירת שוק");
+
     var verdictCard =
       '<div class="card verdict tone-' + esc(v.tone || "") + '">' +
         '<span class="emoji">' + h(v.emoji || "📊") + "</span>" +
-        "<div><h2>" + esc(v.headline || "סקירת שוק") + "</h2>" +
+        "<div><h2>" + headHtml + "</h2>" +
         "<p>" + esc(v.subline || "") + "</p>" + lights + "</div>" +
       "</div>";
 
