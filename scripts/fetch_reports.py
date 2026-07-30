@@ -26,6 +26,11 @@ OUT_JSON = os.path.join(ROOT, "data", "reports.json")
 
 FMP_LOGO = "https://financialmodelingprep.com/image-stock/{}.png"
 
+# חברות שנשמרות לפי שם ולא לפי טיקר — מיפוי לסמל ש-FMP מכיר (הכרטיס עדיין מציג את השם המקורי)
+LOGO_ALIAS = {
+    "ALPHABET": "GOOGL", "GOOGLE": "GOOGL", "FACEBOOK": "META", "BERKSHIRE": "BRK-B",
+}
+
 NAME_RE = re.compile(r"^([A-Za-z0-9.\-]+)__(\d{4}-\d{2}-\d{2})")
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 
@@ -54,8 +59,9 @@ def fetch_logo(ticker):
     path = os.path.join(LOGO_DIR, ticker + ".png")
     if os.path.exists(path) and os.path.getsize(path) > 300:
         return rel
+    sym = LOGO_ALIAS.get(ticker.upper(), ticker)
     try:
-        data = _get(FMP_LOGO.format(urllib.parse.quote(ticker)), binary=True)
+        data = _get(FMP_LOGO.format(urllib.parse.quote(sym)), binary=True)
         # bad tickers return a 404/HTML page, so the PNG magic is the real guard
         if data and len(data) > 300 and data[:4] == b"\x89PNG":
             os.makedirs(LOGO_DIR, exist_ok=True)
