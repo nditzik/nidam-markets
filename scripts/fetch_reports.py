@@ -12,6 +12,7 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
@@ -20,7 +21,10 @@ RAW = "https://raw.githubusercontent.com/nditzik/nidam-reports/main/"
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "data", "reports")
+LOGO_DIR = os.path.join(OUT_DIR, "logos")
 OUT_JSON = os.path.join(ROOT, "data", "reports.json")
+
+FMP_LOGO = "https://financialmodelingprep.com/image-stock/{}.png"
 
 NAME_RE = re.compile(r"^([A-Za-z0-9.\-]+)__(\d{4}-\d{2}-\d{2})")
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
@@ -42,6 +46,24 @@ def list_html():
     data = json.loads(_get(API))
     return [f["name"] for f in data
             if f.get("type") == "file" and f["name"].lower().endswith(".html")]
+
+
+def fetch_logo(ticker):
+    """מוריד לוגו חברה לפי טיקר (FMP) ל-data/reports/logos/. מחזיר נתיב יחסי או None."""
+    rel = "data/reports/logos/" + ticker + ".png"
+    path = os.path.join(LOGO_DIR, ticker + ".png")
+    if os.path.exists(path) and os.path.getsize(path) > 1000:
+        return rel
+    try:
+        data = _get(FMP_LOGO.format(urllib.parse.quote(ticker)), binary=True)
+        if data and len(data) > 1000 and data[:4] == b"\x89PNG":
+            os.makedirs(LOGO_DIR, exist_ok=True)
+            with open(path, "wb") as f:
+                f.write(data)
+            return rel
+    except Exception as e:
+        print(f"[logo skip] {ticker}: {e}")
+    return None
 
 
 def parse_meta(fname, content):
@@ -84,9 +106,10 @@ def main():
             with open(path, "w", encoding="utf-8") as f:
                 f.write(content)
         ticker, date, title = parse_meta(name, content)
+        logo = fetch_logo(ticker) if ticker else None
         reports.append({"file": "data/reports/" + name, "ticker": ticker,
-                        "date": date, "title": title})
-        print(f"[ok] {ticker} {date} — {title[:40]}")
+                        "date": date, "title": title, "logo": logo})
+        print(f"[ok] {ticker} {date} — {title[:40]}" + ("  🖼" if logo else ""))
 
     reports.sort(key=lambda r: r.get("date") or "", reverse=True)
     _write(reports)

@@ -550,8 +550,10 @@
       return;
     }
     var cards = reports.map(function (r, i) {
-      return '<button class="rep-card" data-rep="' + i + '">' +
-        (r.ticker ? '<span class="rep-ticker">' + esc(r.ticker) + "</span>" : "") +
+      var head = '<div class="rep-head">' +
+        (r.logo ? '<img class="rep-logo" src="' + esc(r.logo) + '" alt="' + esc(r.ticker || "") + '" onerror="this.remove()">' : "") +
+        (r.ticker ? '<span class="rep-ticker">' + esc(r.ticker) + "</span>" : "") + "</div>";
+      return '<button class="rep-card" data-rep="' + i + '">' + head +
         '<span class="rep-title">' + esc(r.title || r.file) + "</span>" +
         (r.date ? '<span class="rep-date">' + esc(r.date) + "</span>" : "") + "</button>";
     }).join("");
