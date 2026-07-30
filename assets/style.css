@@ -96,6 +96,16 @@ body {
 }
 .brand-text h1 { font-size: 1.18rem; margin: 0; font-weight: 700; letter-spacing: -.02em; }
 .tagline { margin: 1px 0 0; font-size: .78rem; color: var(--text-3); font-weight: 500; }
+.tg-cta { display: flex; justify-content: flex-end; margin-top: 10px; }
+.tg-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #229ED9; color: #fff; border-radius: 999px;
+  padding: 9px 16px; font-size: .88rem; font-weight: 600; text-decoration: none;
+  white-space: nowrap; transition: background .15s;
+}
+.tg-btn:hover { background: #1b87ba; }
+.tg-btn svg { width: 17px; height: 17px; fill: #fff; flex: none; }
+@media (max-width: 560px) { .tg-cta { justify-content: stretch; } .tg-btn { flex: 1; justify-content: center; } }
 .theme-toggle {
   border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
   width: 40px; height: 40px; border-radius: 50%; font-size: 1.05rem; cursor: pointer; flex: none;
