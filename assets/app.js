@@ -215,16 +215,8 @@
         "</div>";
     }
 
-    var links = opts.showLinks ?
-      '<div class="cta-links">' +
-        '<button class="cta" onclick="__goTab(\'indices\')">פירוט מדדים מלא ←</button>' +
-        '<button class="cta" onclick="__goTab(\'momentum\')">מומנטום ←</button>' +
-        '<button class="cta" onclick="__goTab(\'briefing\')">תדרוך משקיעים ←</button>' +
-      "</div>" : "";
-
     el.innerHTML =
       stamp(d._meta) + verdictCard + scoreCards + marketCards +
-      (opts.showLinks ? '<div class="section-title">מבט מהיר</div>' + links : "") +
       concl;
   }
 
