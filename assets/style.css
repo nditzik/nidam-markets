@@ -217,7 +217,7 @@ main { padding: 26px 0 70px; }
 }
 
 /* ---- Verdict hero (open, no card) ---- */
-.verdict { background: transparent; padding: 4px 0 0; }
+.verdict { margin-top: 24px; }   /* כרטיס תחום (רקע+פדינג יורשים מ-.card) + מרווח מהתדריך שמעליו */
 .verdict .v-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
 .verdict .emoji { font-size: 1.5rem; line-height: 1; flex: none; }
 .verdict .vday { font-size: 1.05rem; font-weight: 700; color: var(--text-3); letter-spacing: 0; }
