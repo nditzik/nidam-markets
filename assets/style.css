@@ -84,10 +84,11 @@ body {
   position: sticky; top: 0; z-index: 20;
 }
 .header-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; padding: 15px 0;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  gap: 12px; padding: 15px 0;
 }
-.brand { display: flex; align-items: center; gap: 13px; }
+.brand { display: flex; align-items: center; gap: 13px; justify-self: start; }
+.theme-toggle { justify-self: end; }
 .brand-logo { height: 40px; width: auto; flex: none; display: block; border-radius: 10px; }
 .brand-mark {
   width: 42px; height: 42px; display: grid; place-items: center;
