@@ -68,6 +68,68 @@ def sentiment_of(html):
     return {"emoji": m.group(1), "text": word}
 
 
+def _clean(s):
+    """מנקה טקסט מתוך HTML: מסיר תגיות, ישויות, רווחים כפולים ורווח לפני פיסוק."""
+    s = re.sub(r"<[^>]+>", "", s)
+    for a, b in (("&nbsp;", " "), ("&amp;", "&"), ("&#8203;", ""),
+                 ("&lt;", "<"), ("&gt;", ">"), ("&quot;", '"')):
+        s = s.replace(a, b)
+    s = re.sub(r"\s+", " ", s).strip()
+    s = re.sub(r"\s+([,.;:%])", r"\1", s)
+    return s.lstrip("◆").strip()
+
+
+def _section(html, start, ends):
+    """מחזיר את קטע ה-HTML מ-start עד ה-marker הבא מבין ends (או עד הסוף)."""
+    i = html.find(start)
+    if i < 0:
+        return ""
+    stop = len(html)
+    for e in ends:
+        j = html.find(e, i + len(start))
+        if 0 <= j < stop:
+            stop = j
+    return html[i:stop]
+
+
+# מקטעי-קצה אפשריים אחרי מקטע הידיעות / הלוז
+_ENDS = ["RISK VECTOR", "MARKET GRID", "VIX PRIMARY", "TIMELINE", "WATCHLIST", "BOTTOM LINE"]
+
+
+def headlines_of(html):
+    """4 הידיעות הראשיות — לפי המהדורה: צהריים=תבליטי DELTA UPDATE, בוקר=SIGNAL 01–04."""
+    out = []
+    delta = _section(html, "DELTA UPDATE", _ENDS)   # מהדורת צהריים ("חדש מאז הבוקר")
+    if delta:
+        for cell in re.findall(r"<td[^>]*>(.*?)</td>", delta, re.S):
+            if "◆" in cell:
+                t = _clean(cell)
+                if t:
+                    out.append(t)
+    if not out:                                      # מהדורת בוקר
+        keysig = _section(html, "KEY SIGNALS", ["TIMELINE", "WATCHLIST", "BOTTOM LINE"])
+        for m in re.finditer(r"SIGNAL\s*\d+\s*</div>\s*<div[^>]*>(.*?)</div>", keysig or html, re.S):
+            t = _clean(m.group(1))
+            if t:
+                out.append(t)
+    return out[:4]
+
+
+def schedule_of(html):
+    """הלוז היומי מתוך מקטע TIMELINE — זוגות (שעה, אירוע)."""
+    sec = _section(html, "TIMELINE", ["WATCHLIST", "BOTTOM LINE"])
+    out = []
+    for tr in re.findall(r"<tr>(.*?)</tr>", sec, re.S):
+        tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
+        if len(tds) < 2:
+            continue
+        tm = re.search(r"\d{1,2}:\d{2}", _clean(tds[0]))
+        ev = _clean(tds[1])
+        if tm and ev:
+            out.append({"time": tm.group(0), "text": ev})
+    return out
+
+
 def imap_since(days=4):
     """מחרוזת IMAP SINCE (DD-Mon-YYYY, אנגלית) לימים האחרונים."""
     d = datetime.now(timezone.utc) - timedelta(days=days)
@@ -182,6 +244,8 @@ def main():
             "dateLabel": d.strftime("%d/%m/%Y") if d else "",
             "time": d.astimezone(timezone(timedelta(hours=3))).strftime("%H:%M") if d else "",
             "sentiment": sentiment_of(slot["html"]),
+            "headlines": headlines_of(slot["html"]),
+            "schedule": schedule_of(slot["html"]),
             "file": f"data/briefings/{fname}",
         }
         if out.get(key) != meta:

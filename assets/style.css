@@ -251,6 +251,27 @@ main { padding: 26px 0 70px; }
 .score-mid { color: var(--warn); }
 .score-lo { color: var(--down); }
 
+/* ---- Home briefing card (latest edition) ---- */
+.brief-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.brief-ed { font-weight: 700; font-size: 1.02rem; }
+.brief-date { color: var(--text-3); font-weight: 600; }
+.brief-sent { flex: none; font-weight: 600; font-size: .88rem; white-space: nowrap;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; }
+.brief-news { margin: 0; padding: 0; list-style: none; counter-reset: bn; }
+.brief-news li { position: relative; padding: 9px 34px 9px 0; border-bottom: 1px solid var(--border);
+  line-height: 1.5; font-size: .95rem; }
+.brief-news li:last-child { border-bottom: 0; }
+.brief-news li::before { counter-increment: bn; content: counter(bn);
+  position: absolute; right: 0; top: 8px; width: 23px; height: 23px; border-radius: 50%;
+  background: var(--surface-2); color: var(--text-2); font-size: .74rem; font-weight: 700;
+  display: grid; place-items: center; }
+.brief-sched { margin-top: 15px; padding-top: 14px; border-top: 1px solid var(--border); }
+.bs-title { font-weight: 700; font-size: .9rem; margin-bottom: 9px; color: var(--text-2); }
+.brief-sched ul { margin: 0; padding: 0; list-style: none; }
+.brief-sched li { display: flex; gap: 12px; align-items: baseline; padding: 4px 0; font-size: .9rem; }
+.bs-time { flex: none; min-width: 48px; color: var(--accent); font-weight: 700; }
+.bs-ev { color: var(--text-soft); }
+
 /* ---- Analysis list ---- */
 .analysis { list-style: none; margin: 0; padding: 0; }
 .analysis li {

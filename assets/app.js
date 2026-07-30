@@ -162,6 +162,50 @@
     IT: "טכנולוגיה", ENE: "אנרגיה", UTL: "תשתיות", RE: "נדל\"ן", MAT: "חומרים", COM: "תקשורת"
   };
 
+  /* ---------- home briefing card (latest edition: sentiment + 4 headlines + schedule) ---------- */
+  var BRIEF = null;
+  function briefKey(s) {
+    if (!s) return -1;
+    var m = /(\d{2})\/(\d{2})\/(\d{4})/.exec(s.dateLabel || "");
+    var t = /(\d{1,2}):(\d{2})/.exec(s.time || "");
+    if (!m) return 0;
+    return (+m[3]) * 1e6 + (+m[2]) * 1e4 + (+m[1]) * 1e2 + (t ? (+t[1]) + (+t[2]) / 100 : 0);
+  }
+  function renderHomeBriefing() {
+    var el = document.getElementById("home-briefing");
+    if (!el || !BRIEF) return;
+    var m = BRIEF.morning, a = BRIEF.afternoon, edition, s;
+    if (m && a) { if (briefKey(a) >= briefKey(m)) { edition = "afternoon"; s = a; } else { edition = "morning"; s = m; } }
+    else if (a) { edition = "afternoon"; s = a; }
+    else if (m) { edition = "morning"; s = m; }
+    else { el.innerHTML = ""; return; }
+
+    var label = edition === "afternoon" ? "אחר הצהריים" : "בוקר";
+    var sent = s.sentiment || {};
+    var news = (s.headlines || []).slice(0, 4);
+    var sched = (s.schedule || []).slice(0, 6);
+
+    var sentHtml = sent.text
+      ? '<span class="brief-sent">' + h(sent.emoji || "") + " " + esc(sent.text) + "</span>" : "";
+    var newsHtml = news.length
+      ? '<ol class="brief-news">' + news.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ol>" : "";
+    var schedHtml = sched.length
+      ? '<div class="brief-sched"><div class="bs-title">🕐 לוז יומי צפוי</div><ul>' +
+        sched.map(function (x) {
+          return '<li><span class="bs-time num" dir="ltr">' + esc(x.time) + "</span>" +
+            '<span class="bs-ev">' + esc(x.text) + "</span></li>";
+        }).join("") + "</ul></div>" : "";
+
+    el.innerHTML =
+      '<div class="section-title">📋 תדרוך משקיעים אחרון</div>' +
+      '<div class="card brief-card">' +
+        '<div class="brief-head"><span class="brief-ed">' + esc(label) +
+          (s.dateLabel ? ' · <span class="brief-date" dir="ltr">' + esc(s.dateLabel) + "</span>" : "") +
+        "</span>" + sentHtml + "</div>" +
+        newsHtml + schedHtml +
+      "</div>";
+  }
+
   /* ---------- renderers ---------- */
   function renderMarketOverview(el, d, opts) {
     opts = opts || {};
@@ -230,12 +274,21 @@
         "</div>";
     }
 
-    var hs = document.getElementById("head-stamp");
-    if (hs) hs.innerHTML = stamp(d._meta);
+    // חותמת עדכון: בבית מוצגת בשורת הטלגרם (head-stamp); בטאב מדדים — inline בראש הכרטיס
+    var stampHtml = "";
+    if (opts.home) {
+      var hs = document.getElementById("head-stamp");
+      if (hs) hs.innerHTML = stamp(d._meta);
+    } else {
+      stampHtml = stamp(d._meta);
+    }
 
     el.innerHTML =
-      verdictCard + scoreCards + marketCards +
-      concl;
+      stampHtml + verdictCard + scoreCards + marketCards +
+      (opts.home ? '<div id="home-briefing"></div>' : "") +
+      (opts.detail ? concl : "");   // "המסקנה של איציק" רק בטאב מדדים, לא בבית
+
+    if (opts.home) renderHomeBriefing();
   }
 
   function renderIndicesDetail(el, d) {
@@ -292,7 +345,7 @@
 
     var head = '<div class="section-title" style="margin-top:0">📈 תמונת מצב מדדים</div>';
     var overview = document.createElement("div");
-    renderMarketOverview(overview, d, { showLinks: false });
+    renderMarketOverview(overview, d, { detail: true });
 
     el.innerHTML = "";
     el.insertAdjacentHTML("beforeend", head);
@@ -600,7 +653,7 @@
     setInterval(loadTicker, 180000); // refresh the strip every 3 min
     // Home + indices share the indices dataset
     fetchJSON("data/indices.json").then(function (d) {
-      renderMarketOverview(document.getElementById("panel-home"), d, { showLinks: true });
+      renderMarketOverview(document.getElementById("panel-home"), d, { home: true });
       renderIndicesDetail(document.getElementById("panel-indices"), d);
       noteSig("indices", d);
     }).catch(function (err) {
@@ -613,7 +666,7 @@
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
     fetchJSON("data/briefing.json")
-      .then(function (d) { renderBriefing(document.getElementById("panel-briefing"), d); noteSig("briefing", d); })
+      .then(function (d) { BRIEF = d; renderBriefing(document.getElementById("panel-briefing"), d); renderHomeBriefing(); noteSig("briefing", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-briefing"), "📣", "תדרוך משקיעים — בקרוב", ""); });
 
     fetchJSON("data/morning.json")
