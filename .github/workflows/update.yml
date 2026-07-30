@@ -86,6 +86,11 @@ jobs:
         run: python scripts/notify_telegram.py
         continue-on-error: true
 
+      # --- משיכת ניתוחי דוחות חברות מריפו nidam-reports ---
+      - name: Fetch reports
+        run: python scripts/fetch_reports.py
+        continue-on-error: true
+
       # --- מחירי שוק חיים (Yahoo Finance) לסרט בדף הבית ---
       - name: Fetch market quotes
         run: python scripts/fetch_market.py

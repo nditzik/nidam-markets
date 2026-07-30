@@ -542,6 +542,44 @@
       "</tr></thead><tbody>" + rows + "</tbody></table></div>";
   }
 
+  function renderReports(el, d) {
+    var reports = (d && d.reports) || [];
+    if (!reports.length) {
+      emptyPanel(el, "📑", "ניתוח דוחות חברות — בקרוב",
+        "כאן יופיעו ניתוחי דוחות רבעוניים של חברות. הדוח הראשון בדרך.");
+      return;
+    }
+    var cards = reports.map(function (r, i) {
+      return '<button class="rep-card" data-rep="' + i + '">' +
+        (r.ticker ? '<span class="rep-ticker">' + esc(r.ticker) + "</span>" : "") +
+        '<span class="rep-title">' + esc(r.title || r.file) + "</span>" +
+        (r.date ? '<span class="rep-date">' + esc(r.date) + "</span>" : "") + "</button>";
+    }).join("");
+    el.innerHTML = stamp(d._meta) +
+      '<div class="section-title" style="margin-top:0">📑 ניתוח דוחות חברות</div>' +
+      '<div id="rep-list" class="rep-grid">' + cards + "</div>" +
+      '<div id="rep-view"></div>';
+
+    var list = el.querySelector("#rep-list");
+    var view = el.querySelector("#rep-view");
+    function back() { view.style.display = "none"; view.innerHTML = ""; list.style.display = ""; }
+    el.querySelectorAll(".rep-card").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var r = reports[+b.dataset.rep];
+        list.style.display = "none";
+        view.style.display = "block";
+        view.innerHTML =
+          '<div class="rep-bar"><button class="cta rep-back">← חזרה לרשימה</button>' +
+          '<a class="cta" href="' + esc(r.file) + '" target="_blank" rel="noopener">פתח במסך מלא ↗</a></div>' +
+          '<iframe class="brief-frame" src="' + bust(r.file, d._meta) + '" title="' + esc(r.title || "") +
+          '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px;margin-top:12px" ' +
+          'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+        view.querySelector(".rep-back").addEventListener("click", back);
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
   /* ---------- boot ---------- */
   function boot() {
     loadTicker();
@@ -571,6 +609,10 @@
     fetchJSON("data/candidates.json")
       .then(function (d) { renderCandidates(document.getElementById("panel-candidates"), d); noteSig("candidates", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
+
+    fetchJSON("data/reports.json")
+      .then(function (d) { renderReports(document.getElementById("panel-reports"), d); noteSig("reports", d); })
+      .catch(function () { emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
 
     fetchJSON("data/_health.json")
       .then(function (d) {
