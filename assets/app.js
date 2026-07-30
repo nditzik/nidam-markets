@@ -284,8 +284,9 @@
     }
 
     el.innerHTML =
-      stampHtml + verdictCard + scoreCards + marketCards +
-      (opts.home ? '<div id="home-briefing"></div>' : "") +
+      stampHtml +
+      (opts.home ? '<div id="home-briefing"></div>' : "") +   // תדריך אחרון — מעל תמונת המצב
+      verdictCard + scoreCards + marketCards +
       (opts.detail ? concl : "");   // "המסקנה של איציק" רק בטאב מדדים, לא בבית
 
     if (opts.home) renderHomeBriefing();
