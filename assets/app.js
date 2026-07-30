@@ -59,26 +59,28 @@
   function initTicker() {
     var el = document.getElementById("ticker");
     if (!el) return;
-    el.innerHTML = "";
-    var container = document.createElement("div");
-    container.className = "tradingview-widget-container";
-    var widget = document.createElement("div");
-    widget.className = "tradingview-widget-container__widget";
-    container.appendChild(widget);
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-    s.text = JSON.stringify({
+    var cfg = {
       symbols: TICKER_SYMBOLS,
       showSymbolLogo: false,
       isTransparent: true,
       displayMode: "adaptive",
       colorTheme: isDark() ? "dark" : "light",
       locale: "en"
-    });
-    container.appendChild(s);
-    el.appendChild(container);
+    };
+    // Embed via iframe srcdoc: TradingView's loader relies on document.currentScript,
+    // which is null for dynamically-injected async scripts — inside an iframe it works.
+    var html =
+      '<!DOCTYPE html><html><head><meta charset="utf-8">' +
+      '<style>html,body{margin:0;background:transparent;overflow:hidden}</style></head><body>' +
+      '<div class="tradingview-widget-container">' +
+      '<div class="tradingview-widget-container__widget"></div>' +
+      '<scr' + 'ipt type="text/javascript" ' +
+      'src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>' +
+      JSON.stringify(cfg) +
+      '</scr' + 'ipt></div></body></html>';
+    el.innerHTML = '<iframe title="נתוני שוק בזמן אמת" scrolling="no" frameborder="0" ' +
+      'style="width:100%;height:46px;border:0;display:block;background:transparent"></iframe>';
+    el.querySelector("iframe").srcdoc = html;
   }
 
   /* ---- "new since last visit" tab badges ---- */
