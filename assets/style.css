@@ -98,7 +98,8 @@ body {
 .brand-text { text-align: center; }
 .brand-text h1 { font-size: 1.18rem; margin: 0; font-weight: 700; letter-spacing: -.02em; }
 .tagline { margin: 1px 0 0; font-size: .78rem; color: var(--text-3); font-weight: 500; }
-.tg-cta { display: flex; justify-content: flex-end; margin-top: 10px; }
+.tg-cta { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; }
+.head-stamp .stamp { margin: 0; }
 .tg-btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: #229ED9; color: #fff; border-radius: 999px;
@@ -107,7 +108,7 @@ body {
 }
 .tg-btn:hover { background: #1b87ba; }
 .tg-btn svg { width: 17px; height: 17px; fill: #fff; flex: none; }
-@media (max-width: 560px) { .tg-cta { justify-content: stretch; } .tg-btn { flex: 1; justify-content: center; } }
+@media (max-width: 560px) { .head-stamp { display: none; } .tg-btn { flex: 1; justify-content: center; } }
 .theme-toggle {
   border: 1px solid var(--border); background: var(--surface-2); color: var(--text-2);
   width: 40px; height: 40px; border-radius: 50%; cursor: pointer; flex: none;
@@ -216,22 +217,19 @@ main { padding: 26px 0 70px; }
 }
 
 /* ---- Verdict hero (open, no card) ---- */
-.verdict {
-  background: transparent; padding: 4px 0 0; display: flex; gap: 16px; align-items: flex-start;
-}
-.verdict .emoji { font-size: 2.4rem; line-height: 1; flex: none; }
+.verdict { background: transparent; padding: 4px 0 0; }
+.verdict .v-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.verdict .emoji { font-size: 1.5rem; line-height: 1; flex: none; }
+.verdict .vday { font-size: 1.05rem; font-weight: 700; color: var(--text-3); letter-spacing: 0; }
 .verdict h2 {
   margin: 0 0 8px; font-size: 1.8rem; font-weight: 800; letter-spacing: -.025em;
-  line-height: 1.15; text-wrap: balance; max-width: none; white-space: nowrap;
+  line-height: 1.15; white-space: nowrap;
 }
-.verdict h2 .vday {
-  display: block; white-space: normal;
-  font-size: .82rem; font-weight: 600; color: var(--text-3);
-  letter-spacing: 0; margin-bottom: 3px;
+.verdict p { margin: 0; color: var(--text-soft); font-size: 1.02rem; line-height: 1.45; white-space: nowrap; }
+@media (max-width: 700px) {
+  .verdict h2 { white-space: normal; font-size: 1.45rem; }
+  .verdict p { white-space: normal; }
 }
-.verdict p { margin: 0; color: var(--text-soft); font-size: 1.02rem; line-height: 1.45; max-width: 56ch; text-wrap: balance; }
-@media (max-width: 560px) { .verdict h2 { white-space: normal; } }
-@media (max-width: 560px) { .verdict h2 { font-size: 1.45rem; } .verdict .emoji { font-size: 1.9rem; } }
 
 /* ---- Lights ---- */
 .lights { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }

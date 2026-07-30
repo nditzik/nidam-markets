@@ -180,15 +180,14 @@
     }
 
     var tradeDate = fmtTradeDate(d.date);
-    var headHtml =
-      (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + '</span>' : "") +
-      esc(v.headline || "סקירת שוק");
-
     var verdictCard =
       '<div class="card verdict tone-' + esc(v.tone || "") + '">' +
-        '<span class="emoji">' + h(v.emoji || "📊") + "</span>" +
-        "<div><h2>" + headHtml + "</h2>" +
-        "<p>" + esc(v.subline || "") + "</p>" + lights + "</div>" +
+        '<div class="v-top">' +
+          '<span class="emoji">' + h(v.emoji || "📊") + "</span>" +
+          (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + "</span>" : "") +
+        "</div>" +
+        "<h2>" + esc(v.headline || "סקירת שוק") + "</h2>" +
+        "<p>" + esc(v.subline || "") + "</p>" + lights +
       "</div>";
 
     var scoreCards =
@@ -225,8 +224,11 @@
         "</div>";
     }
 
+    var hs = document.getElementById("head-stamp");
+    if (hs) hs.innerHTML = stamp(d._meta);
+
     el.innerHTML =
-      stamp(d._meta) + verdictCard + scoreCards + marketCards +
+      verdictCard + scoreCards + marketCards +
       concl;
   }
 
