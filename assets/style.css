@@ -252,9 +252,10 @@ main { padding: 26px 0 70px; }
 .score-lo { color: var(--down); }
 
 /* ---- Home briefing card (latest edition) ---- */
+.section-title.brief-top { margin-top: 10px; }
 .brief-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
 .brief-ed { font-weight: 700; font-size: 1.02rem; }
-.brief-date { color: var(--text-3); font-weight: 600; }
+.brief-date, .brief-asof { color: var(--text-3); font-weight: 600; }
 .brief-sent { flex: none; font-weight: 600; font-size: .88rem; white-space: nowrap;
   background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; }
 .brief-news { margin: 0; padding: 0; list-style: none; counter-reset: bn; }
