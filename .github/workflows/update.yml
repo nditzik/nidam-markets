@@ -64,6 +64,11 @@ jobs:
         run: python scripts/fetch_ibkr.py
         continue-on-error: true
 
+      # --- מחירי שוק חיים (Yahoo Finance) לסרט בדף הבית ---
+      - name: Fetch market quotes
+        run: python scripts/fetch_market.py
+        continue-on-error: true
+
       # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
       - name: Build health status
         run: python scripts/build_health.py

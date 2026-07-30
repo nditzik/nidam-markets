@@ -119,15 +119,36 @@ body {
 .tab:not(.is-active):hover { color: var(--text); }
 .tab.is-active { background: var(--seg-active); color: var(--text); box-shadow: var(--shadow-sm); }
 
-/* ---- Live market ticker (TradingView) ---- */
+/* ---- Live market ticker (own strip, Yahoo data) ---- */
 #ticker-wrap { margin-top: 14px; }
 .ticker-tape {
   background: var(--surface-2);
   border-radius: 12px;
   overflow: hidden;
-  min-height: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
-.ticker-tape .tradingview-widget-container { padding: 0; }
+.mt-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: mt-scroll 70s linear infinite;
+}
+.ticker-tape:hover .mt-track { animation-play-state: paused; }
+@keyframes mt-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .mt-track { animation: none; } }
+.mt-item {
+  display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 0 20px; border-inline-end: 1px solid var(--border);
+  font-size: .92rem; white-space: nowrap;
+}
+.mt-label { color: var(--text-soft); font-weight: 600; }
+.mt-price { font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.mt-chg { font-weight: 700; font-variant-numeric: tabular-nums; font-size: .85rem; }
+.mt-chg.up { color: var(--up); }
+.mt-chg.down { color: var(--down); }
 
 /* ---- "What's new today" bar ---- */
 .today-bar {

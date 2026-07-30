@@ -15,7 +15,6 @@
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("nidam-theme", next);
     syncThemeIcon();
-    initTicker();
   });
   function syncThemeIcon() {
     var dark = document.documentElement.getAttribute("data-theme") === "dark";
@@ -39,48 +38,30 @@
     if (location.hash.slice(1) !== name) history.replaceState(null, "", "#" + name);
   }
 
-  /* ---- live market ticker (TradingView) ---- */
-  var TICKER_SYMBOLS = [
-    { description: "S&P Futures", proxy: "CME_MINI:ES1!" },
-    { description: "Nasdaq Futures", proxy: "CME_MINI:NQ1!" },
-    { description: "SPY", proxy: "AMEX:SPY" },
-    { description: "QQQ", proxy: "NASDAQ:QQQ" },
-    { description: "IWM", proxy: "AMEX:IWM" },
-    { description: "VIX", proxy: "CBOE:VIX" },
-    { description: "US 10Y", proxy: "TVC:US10Y" },
-    { description: "DXY", proxy: "TVC:DXY" }
-  ];
-  function isDark() {
-    var t = document.documentElement.getAttribute("data-theme");
-    if (t === "dark") return true;
-    if (t === "light") return false;
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  /* ---- live market ticker (our own strip, from data/market.json via Yahoo) ---- */
+  function fmtQuote(v) {
+    if (v == null || isNaN(v)) return "—";
+    var d = Math.abs(v) < 10 ? 3 : 2;
+    return Number(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: d });
   }
-  function initTicker() {
+  function renderMarketTicker(el, data) {
+    if (!el || !data || !data.items || !data.items.length) return;
+    var one = data.items.map(function (it) {
+      var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
+      var chg = (c == null) ? "" :
+        ' <span class="mt-chg ' + cls + '">' + arr + " " + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>";
+      return '<span class="mt-item"><span class="mt-label">' + esc(it.label) + "</span>" +
+        '<span class="mt-price num">' + fmtQuote(it.price) + "</span>" + chg + "</span>";
+    }).join("");
+    // duplicate for a seamless scrolling loop
+    el.innerHTML = '<div class="mt-track">' + one + one + "</div>";
+  }
+  function loadTicker() {
     var el = document.getElementById("ticker");
     if (!el) return;
-    var cfg = {
-      symbols: TICKER_SYMBOLS,
-      showSymbolLogo: false,
-      isTransparent: true,
-      displayMode: "adaptive",
-      colorTheme: isDark() ? "dark" : "light",
-      locale: "en"
-    };
-    // Embed via iframe srcdoc: TradingView's loader relies on document.currentScript,
-    // which is null for dynamically-injected async scripts — inside an iframe it works.
-    var html =
-      '<!DOCTYPE html><html><head><meta charset="utf-8">' +
-      '<style>html,body{margin:0;background:transparent;overflow:hidden}</style></head><body>' +
-      '<div class="tradingview-widget-container">' +
-      '<div class="tradingview-widget-container__widget"></div>' +
-      '<scr' + 'ipt type="text/javascript" ' +
-      'src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>' +
-      JSON.stringify(cfg) +
-      '</scr' + 'ipt></div></body></html>';
-    el.innerHTML = '<iframe title="נתוני שוק בזמן אמת" scrolling="no" frameborder="0" ' +
-      'style="width:100%;height:46px;border:0;display:block;background:transparent"></iframe>';
-    el.querySelector("iframe").srcdoc = html;
+    fetchJSON("data/market.json")
+      .then(function (d) { renderMarketTicker(el, d); })
+      .catch(function () {});
   }
 
   /* ---- "new since last visit" tab badges ---- */
@@ -563,7 +544,8 @@
 
   /* ---------- boot ---------- */
   function boot() {
-    initTicker();
+    loadTicker();
+    setInterval(loadTicker, 180000); // refresh the strip every 3 min
     // Home + indices share the indices dataset
     fetchJSON("data/indices.json").then(function (d) {
       renderMarketOverview(document.getElementById("panel-home"), d, { showLinks: true });
