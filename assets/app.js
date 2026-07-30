@@ -181,7 +181,7 @@
 
     var tradeDate = fmtTradeDate(d.date);
     var headHtml =
-      (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + ' · </span>' : "") +
+      (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + '</span>' : "") +
       esc(v.headline || "סקירת שוק");
 
     var verdictCard =

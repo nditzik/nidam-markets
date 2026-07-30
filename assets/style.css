@@ -222,10 +222,15 @@ main { padding: 26px 0 70px; }
 .verdict .emoji { font-size: 2.4rem; line-height: 1; flex: none; }
 .verdict h2 {
   margin: 0 0 8px; font-size: 1.8rem; font-weight: 800; letter-spacing: -.025em;
-  line-height: 1.15; text-wrap: balance; max-width: 24ch;
+  line-height: 1.15; text-wrap: balance; max-width: none; white-space: nowrap;
 }
-.verdict h2 .vday { color: var(--text-3); font-weight: 600; letter-spacing: -.01em; }
-.verdict p { margin: 0; color: var(--text-soft); font-size: 1.02rem; line-height: 1.45; max-width: 64ch; }
+.verdict h2 .vday {
+  display: block; white-space: normal;
+  font-size: .82rem; font-weight: 600; color: var(--text-3);
+  letter-spacing: 0; margin-bottom: 3px;
+}
+.verdict p { margin: 0; color: var(--text-soft); font-size: 1.02rem; line-height: 1.45; max-width: 56ch; text-wrap: balance; }
+@media (max-width: 560px) { .verdict h2 { white-space: normal; } }
 @media (max-width: 560px) { .verdict h2 { font-size: 1.45rem; } .verdict .emoji { font-size: 1.9rem; } }
 
 /* ---- Lights ---- */
