@@ -52,11 +52,12 @@ def fetch_logo(ticker):
     """מוריד לוגו חברה לפי טיקר (FMP) ל-data/reports/logos/. מחזיר נתיב יחסי או None."""
     rel = "data/reports/logos/" + ticker + ".png"
     path = os.path.join(LOGO_DIR, ticker + ".png")
-    if os.path.exists(path) and os.path.getsize(path) > 1000:
+    if os.path.exists(path) and os.path.getsize(path) > 300:
         return rel
     try:
         data = _get(FMP_LOGO.format(urllib.parse.quote(ticker)), binary=True)
-        if data and len(data) > 1000 and data[:4] == b"\x89PNG":
+        # bad tickers return a 404/HTML page, so the PNG magic is the real guard
+        if data and len(data) > 300 and data[:4] == b"\x89PNG":
             os.makedirs(LOGO_DIR, exist_ok=True)
             with open(path, "wb") as f:
                 f.write(data)
