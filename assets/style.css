@@ -22,6 +22,10 @@
   --seg-active: #ffffff;
   --shadow: 0 1px 3px rgba(0,0,0,.05), 0 10px 34px rgba(0,0,0,.05);
   --shadow-sm: 0 1px 4px rgba(0,0,0,.09);
+  --card-bg: #ffffff;
+  --card-border: rgba(16,32,64,.05);
+  --card-shadow: 0 1px 2px rgba(16,32,64,.05), 0 10px 30px rgba(16,32,64,.06);
+  --bg-arch: url("bg-arch.svg");
   --radius: 18px;
   --radius-sm: 12px;
 }
@@ -37,6 +41,9 @@
     --seg-active: #48484a;
     --shadow: 0 1px 3px rgba(0,0,0,.5), 0 10px 34px rgba(0,0,0,.4);
     --shadow-sm: 0 1px 4px rgba(0,0,0,.5);
+    --card-bg: #1c1c1e; --card-border: rgba(255,255,255,.07);
+    --card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 8px 30px rgba(0,0,0,.4);
+    --bg-arch: url("bg-arch-dark.svg");
   }
 }
 :root[data-theme="dark"] {
@@ -49,6 +56,9 @@
   --seg-active: #48484a;
   --shadow: 0 1px 3px rgba(0,0,0,.5), 0 10px 34px rgba(0,0,0,.4);
   --shadow-sm: 0 1px 4px rgba(0,0,0,.5);
+  --card-bg: #1c1c1e; --card-border: rgba(255,255,255,.07);
+  --card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 8px 30px rgba(0,0,0,.4);
+  --bg-arch: url("bg-arch-dark.svg");
 }
 
 * { box-sizing: border-box; }
@@ -56,12 +66,16 @@ html, body { margin: 0; padding: 0; }
 
 body {
   font-family: "Heebo", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--bg-arch);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 1440px auto;
   color: var(--text);
   line-height: 1.5;
   letter-spacing: -.006em;
   -webkit-font-smoothing: antialiased;
-  transition: background .25s ease, color .25s ease;
+  transition: background-color .25s ease, color .25s ease;
 }
 
 .wrap { width: min(1080px, 100% - 44px); margin-inline: auto; }
@@ -203,7 +217,8 @@ main { padding: 26px 0 70px; }
 
 /* ---- Cards ---- */
 .card {
-  background: var(--surface-2); border-radius: var(--radius); padding: 18px 20px;
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--card-shadow);
 }
 .grid { display: grid; gap: 12px; }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
