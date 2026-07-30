@@ -190,13 +190,19 @@
         "<p>" + esc(v.subline || "") + "</p>" + lights +
       "</div>";
 
+    var fl = d.flow || {};
     var scoreCards =
       '<div class="grid grid-4" style="margin-top:16px">' +
-      [["combined", "ציון משולב"], ["tech", "טכני"], ["breadth", "רוחב"], ["flow", "Flow"]]
+      [["combined", "ציון משולב"], ["tech", "טכני"], ["breadth", "רוחב"], ["flow", "אופציות"]]
         .map(function (p) {
           var val = s[p[0]];
-          return '<div class="card stat"><div class="label">' + p[1] + "</div>" +
-            '<div class="value num ' + scoreBand(val) + '">' + (val == null ? "—" : val) + "</div></div>";
+          var sub = "", tip = "";
+          if (p[0] === "flow" && fl.directionLabel) {
+            sub = '<div class="sub">' + esc(fl.directionLabel) + "</div>";
+            if (fl.directionReason) tip = ' title="' + esc(fl.directionReason) + '"';
+          }
+          return '<div class="card stat"' + tip + '><div class="label">' + p[1] + "</div>" +
+            '<div class="value num ' + scoreBand(val) + '">' + (val == null ? "—" : val) + "</div>" + sub + "</div>";
         }).join("") + "</div>";
 
     var marketCards =

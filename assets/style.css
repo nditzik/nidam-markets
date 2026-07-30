@@ -243,7 +243,7 @@ main { padding: 26px 0 70px; }
 .light.neg .dot, .light.bad .dot { background: var(--down); }
 
 /* ---- Stat tiles ---- */
-.stat { text-align: center; }
+.stat { text-align: center; display: flex; flex-direction: column; justify-content: center; }
 .stat .label { font-size: .84rem; color: var(--text-soft); font-weight: 600; margin-bottom: 9px; }
 .stat .value { font-size: 2rem; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
 .stat .sub { font-size: .8rem; color: var(--text-3); margin-top: 7px; }
