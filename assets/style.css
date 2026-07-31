@@ -314,19 +314,19 @@ main { padding: 26px 0 70px; }
 /* ---- Home pulse: Edge Meter (right) + market clock (left), compact edge cards ---- */
 .home-pulse { display: flex; justify-content: space-between; align-items: stretch; gap: 14px; margin: 2px 0 14px; flex-wrap: wrap; }
 .home-pulse:empty { display: none; }
-.pulse-card { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px 16px 10px; width: min(320px, 100%); }
-.pulse-title { font-weight: 700; font-size: .86rem; letter-spacing: -.01em; margin-bottom: 2px; color: var(--text-soft); }
-.meter-svg { width: 172px; }
+.pulse-card { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 14px 7px; width: min(240px, 100%); }
+.pulse-title { font-weight: 700; font-size: .72rem; letter-spacing: -.01em; margin-bottom: 1px; color: var(--text-soft); }
+.meter-svg { width: 118px; }
 .meter-needle { transition: transform 1.5s cubic-bezier(.34, 1.3, .4, 1); transform-origin: 100px 100px; }
-.meter-score { font-size: 1.7rem; font-weight: 800; letter-spacing: -.03em; line-height: 1; margin-top: -4px; }
-.meter-word { font-weight: 700; font-size: .84rem; margin-top: 2px; }
-.meter-sub { font-size: .72rem; color: var(--text-3); margin-top: 4px; }
-.clock-badge { font-size: .74rem; font-weight: 700; border-radius: 999px; padding: 3px 11px; }
+.meter-score { font-size: 1.3rem; font-weight: 800; letter-spacing: -.03em; line-height: 1; margin-top: -3px; }
+.meter-word { font-weight: 700; font-size: .74rem; margin-top: 1px; }
+.meter-sub { font-size: .66rem; color: var(--text-3); margin-top: 3px; }
+.clock-badge { font-size: .68rem; font-weight: 700; border-radius: 999px; padding: 2px 9px; }
 .clock-badge.open { background: color-mix(in srgb, var(--up) 15%, transparent); color: var(--up); }
 .clock-badge.closed { background: var(--surface-2); color: var(--text-soft); }
-.clock-time { font-size: 2rem; font-weight: 800; letter-spacing: .02em; font-variant-numeric: tabular-nums; margin: 6px 0 1px; }
-.clock-label { color: var(--text-soft); font-size: .85rem; }
-.clock-next { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--border-soft); font-size: .76rem; color: var(--text-3); width: 100%; text-align: center; }
+.clock-time { font-size: 1.5rem; font-weight: 800; letter-spacing: .02em; font-variant-numeric: tabular-nums; margin: 4px 0 0; }
+.clock-label { color: var(--text-soft); font-size: .76rem; }
+.clock-next { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border-soft); font-size: .7rem; color: var(--text-3); width: 100%; text-align: center; }
 .clock-next b { color: var(--accent); }
 @media (max-width: 720px) { .home-pulse { justify-content: center; } }
 
