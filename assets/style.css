@@ -109,8 +109,8 @@ body {
 .brand-text h1 { font-size: 1.18rem; margin: 0; font-weight: 700; letter-spacing: -.02em; }
 .brand-name { text-transform: uppercase; letter-spacing: .06em; }
 .brand-lockup { margin: 0; line-height: 0; }
-.brand-logo-full { height: 46px; width: auto; display: block; }
-@media (max-width: 560px) { .brand-logo-full { height: 34px; } }
+.brand-logo-full { height: 60px; width: auto; display: block; }
+@media (max-width: 560px) { .brand-logo-full { height: 44px; } }
 /* logo variant by theme: light-bg → dark-text logo; dark-bg → light-text logo */
 .logo-dark { display: none; }
 @media (prefers-color-scheme: dark) {
