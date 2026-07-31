@@ -444,9 +444,9 @@
     renderMarketOverview(overview, d, { detail: true });
 
     el.innerHTML = "";
-    el.insertAdjacentHTML("beforeend", head);
+    el.insertAdjacentHTML("beforeend", head + INDICES_EXPLAINER);   // ההסבר מיד מתחת לכותרת, מעל תמונת המצב
     el.appendChild(overview);
-    el.insertAdjacentHTML("beforeend", INDICES_EXPLAINER + analysis + sectors + selling + narr);
+    el.insertAdjacentHTML("beforeend", analysis + sectors + selling + narr);
     var link = document.createElement("p");
     link.className = "stamp";
     link.innerHTML = 'מקור: <a href="https://nditzik.github.io/indexes-status/" target="_blank" rel="noopener">דשבורד המדדים המלא ↗</a>';
