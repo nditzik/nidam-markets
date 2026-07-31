@@ -24,11 +24,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_JSON = os.path.join(ROOT, "data", "news.json")
 CACHE_JSON = os.path.join(ROOT, "data", "_news_cache.json")
 
+# סדר = עדיפות בסבב (הראשונים מקבלים יותר מקומות). Nasdaq הוסר (timeout כרוני),
+# WSJ/MarketWatch נבדקו ונמצאו קפואים על 2025. GoogleNews = שער ל-Reuters/NYT/BBC.
 FEEDS = [
+    ("Bloomberg", "https://feeds.bloomberg.com/markets/news.rss"),
     ("CNBC", "https://www.cnbc.com/id/20910258/device/rss/rss.html"),        # Markets
     ("CNBC", "https://www.cnbc.com/id/10000664/device/rss/rss.html"),        # Economy/Finance
-    ("Investing", "https://www.investing.com/rss/news_25.rss"),              # Stock market news
-    ("Nasdaq", "https://www.nasdaq.com/feed/rssoutbound?category=Markets"),
+    ("GoogleNews", "https://news.google.com/rss/search?q=stock%20market%20when:1d&hl=en-US&gl=US&ceid=US:en"),
+    ("Investing", "https://www.investing.com/rss/news_25.rss"),              # גיבוי — אחרון בסבב
 ]
 
 # מסננים: טורי ייעוץ אישי + דוחות סגירה של בורסות משניות (דנמרק/טורקיה וכו')
@@ -79,6 +82,14 @@ def parse_feed(name, url):
         title = clean(it.findtext("title"))
         link = (it.findtext("link") or "").strip()
         pub = it.findtext("pubDate") or ""
+        src = name
+        if name == "GoogleNews":
+            # שם המפרסם האמיתי (Reuters/NYT/BBC...) יושב בתגית <source>;
+            # מסירים את הסיומת " - Publisher" מהכותרת אם קיימת
+            src = clean(it.findtext("source")) or "News"
+            suffix = " - " + src
+            if title.lower().endswith(suffix.lower()):
+                title = title[: -len(suffix)].rstrip()
         if not title or not link or SKIP_RE.search(title):
             continue
         try:
@@ -87,7 +98,7 @@ def parse_feed(name, url):
                 dt = dt.replace(tzinfo=timezone.utc)
         except Exception:
             dt = datetime.now(timezone.utc)
-        out.append({"source": name, "title_en": title, "link": link, "dt": dt})
+        out.append({"group": name, "source": src, "title_en": title, "link": link, "dt": dt})
     return out
 
 
@@ -143,13 +154,16 @@ def main():
         seen.add(k)
         uniq.append(it)
 
-    # שילוב מקורות (round-robin) — שלא יגיע פיד אחד וישתלט על כל הרשימה
+    # שילוב מקורות (round-robin לפי קבוצת-פיד, בסדר עדיפות קבוע) — שלא ישתלט
+    # פיד אחד; כל כותרות GoogleNews נחשבות קבוצה אחת (Reuters/NYT/BBC וכו')
+    PRIORITY = ["Bloomberg", "CNBC", "GoogleNews", "Investing"]
     buckets = {}
     for it in uniq:
-        buckets.setdefault(it["source"], []).append(it)
+        buckets.setdefault(it["group"], []).append(it)
+    order = [g for g in PRIORITY if g in buckets] + [g for g in buckets if g not in PRIORITY]
     mixed, i = [], 0
     while len(mixed) < MAX_ITEMS and any(buckets.values()):
-        for src in list(buckets):
+        for src in order:
             if buckets[src] and len(mixed) < MAX_ITEMS:
                 mixed.append(buckets[src].pop(0))
         i += 1
@@ -196,7 +210,7 @@ def main():
     with open(CACHE_JSON, "w", encoding="utf-8") as f:
         json.dump({"_v": 2, "items": cache}, f, ensure_ascii=False, indent=1)
 
-    payload = {"news": news, "_meta": {"updatedAt": israel_stamp(), "source": "CNBC · MarketWatch"}}
+    payload = {"news": news, "_meta": {"updatedAt": israel_stamp(), "source": "Bloomberg · CNBC · Reuters+"}}
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
     with open(OUT_JSON, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
