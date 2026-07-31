@@ -421,7 +421,7 @@
     var asOf = edition === "afternoon" ? "15:00" : "06:00";   // שעת המהדורה (משתנה בין בוקר/צהריים)
 
     el.innerHTML =
-      '<div class="section-title brief-top">📋 תדרוך משקיעים אחרון</div>' +
+      '<div class="section-title brief-top">📋 תדרוך משקיעים</div>' +
       '<div class="card brief-card">' +
         '<div class="brief-head"><span class="brief-ed">' + esc(label) +
           (s.dateLabel ? ' · <span class="brief-date" dir="ltr">' + esc(s.dateLabel) + "</span>" : "") +
@@ -517,11 +517,17 @@
       stampHtml = stamp(d._meta);
     }
 
-    // #home-split ו-#home-briefing הם קונטיינרים סטטיים ב-HTML (עמידות: לא תלויים ברנדור הזה)
-    el.innerHTML =
-      stampHtml +
-      verdictCard + scoreCards + marketCards +
-      (opts.detail ? concl : "");   // "המסקנה של איציק" רק בטאב מדדים, לא בבית
+    // בבית: כרטיס תמונת-המצב יושב בעמודה השמאלית (#home-verdict), הנתונים מתחת (קונטיינרים סטטיים)
+    if (opts.home) {
+      var hv = document.getElementById("home-verdict");
+      if (hv) hv.innerHTML = verdictCard;
+      el.innerHTML = scoreCards + marketCards;
+    } else {
+      el.innerHTML =
+        stampHtml +
+        verdictCard + scoreCards + marketCards +
+        (opts.detail ? concl : "");   // "המסקנה של איציק" רק בטאב מדדים
+    }
   }
 
   function renderIndicesDetail(el, d) {
