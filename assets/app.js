@@ -66,15 +66,25 @@
       .catch(function () {});
   }
 
-  /* ---- "new since last visit" tab badges ---- */
+  /* ---- tab badge: green dot only when a category's CONTENT actually changed since you viewed it ---- */
   var SIGS = {};
+  function contentSig(d) {
+    if (d == null) return "";
+    var s;
+    // hash the real content, skipping volatile _meta (updatedAt changes on every fetch → false "new")
+    try { s = JSON.stringify(d, function (k, v) { return k === "_meta" ? undefined : v; }); }
+    catch (e) { s = String((d && d.date) || ""); }
+    var h = 5381, i = s.length;
+    while (i) { h = (h * 33) ^ s.charCodeAt(--i); }
+    return (h >>> 0).toString(36);
+  }
   function noteSig(tab, d) {
-    var sig = (d && d._meta && d._meta.updatedAt) || (d && d.date) || "";
+    var sig = contentSig(d);
     if (!sig) return;
     SIGS[tab] = sig;
-    var key = "seen-" + tab;
+    var key = "cseen-" + tab;   // content-seen (fresh baseline; ignores old timestamp-based keys)
     var seen = localStorage.getItem(key);
-    if (seen === null) { localStorage.setItem(key, sig); return; } // first visit = baseline
+    if (seen === null) { localStorage.setItem(key, sig); return; } // first visit = baseline, no dot
     if (seen !== sig) {
       var btn = document.querySelector('.tab[data-tab="' + tab + '"]');
       var active = btn && btn.classList.contains("is-active");
@@ -86,7 +96,7 @@
     }
   }
   function markSeen(tab) {
-    if (SIGS[tab]) localStorage.setItem("seen-" + tab, SIGS[tab]);
+    if (SIGS[tab]) localStorage.setItem("cseen-" + tab, SIGS[tab]);
     var btn = document.querySelector('.tab[data-tab="' + tab + '"]');
     var b = btn && btn.querySelector(".tab-badge");
     if (b) b.remove();

@@ -197,7 +197,7 @@ body {
 /* ---- Tab "new" badge ---- */
 .tab-badge {
   position: absolute; top: 4px; inset-inline-start: 6px;
-  width: 7px; height: 7px; border-radius: 50%; background: var(--down);
+  width: 7px; height: 7px; border-radius: 50%; background: var(--up);
   box-shadow: 0 0 0 2px var(--surface-2);
 }
 .tab.is-active .tab-badge { box-shadow: 0 0 0 2px var(--seg-active); }
