@@ -26,7 +26,7 @@ MAILBOX = '"[Gmail]/All Mail"'
 SENDER = "nditzik@gmail.com"
 MORNING_MARK = "בוקר"
 AFTERNOON_MARK = "אחר הצהריים"
-SENTIMENT_RE = re.compile(r"([🟢🟡🔴])\s*([^;<\n]{0,40})")
+SENTIMENT_RE = re.compile(r"([🟢🟡🔴])\s*([^;<\n—–]{0,40})")
 
 
 def israel_stamp():
@@ -96,9 +96,40 @@ def _section(html, start, ends):
 _ENDS = ["RISK VECTOR", "MARKET GRID", "VIX PRIMARY", "TIMELINE", "WATCHLIST", "BOTTOM LINE"]
 
 
+def _after_heading(html, *labels):
+    """קטע ה-HTML שאחרי כותרת המכילה אחת מהתוויות, עד הכותרת הבאה (מבנה 2026+)."""
+    for lab in labels:
+        i = html.find(lab)
+        if i < 0:
+            continue
+        j = html.find("<h2", i + len(lab))
+        return html[i: j if j > 0 else len(html)]
+    return ""
+
+
 def headlines_of(html):
-    """4 הידיעות הראשיות — לפי המהדורה: צהריים=תבליטי DELTA UPDATE, בוקר=SIGNAL 01–04."""
+    """4 הידיעות הראשיות — לפי המהדורה: צהריים='חדש מאז הבוקר', בוקר=הידיעות המרכזיות.
+    תומך במבנה החדש (כותרות עבריות) ובישן (סמני DELTA UPDATE / KEY SIGNALS)."""
     out = []
+
+    # --- מבנה חדש: <h2>🆕 חדש מאז בריף הבוקר</h2> + <ul class="bullets"> ---
+    delta_new = _after_heading(html, "חדש מאז בריף", "חדש מאז הבוקר")
+    if delta_new:
+        for li in re.findall(r"<li[^>]*>(.*?)</li>", delta_new, re.S):
+            t = _clean(li)
+            if t:
+                out.append(t)
+    # --- מבנה חדש: <h2>📰 הידיעות המרכזיות</h2> + <div class="story"><h3>כותרת</h3> ---
+    if not out:
+        stories = _after_heading(html, "הידיעות המרכזיות")
+        for m in re.findall(r"<h3[^>]*>(.*?)</h3>", stories, re.S):
+            t = _clean(m)
+            if t:
+                out.append(t)
+    if out:
+        return out[:4]
+
+    # --- מבנה ישן ---
     delta = _section(html, "DELTA UPDATE", _ENDS)   # מהדורת צהריים ("חדש מאז הבוקר")
     if delta:
         for cell in re.findall(r"<td[^>]*>(.*?)</td>", delta, re.S):
@@ -116,8 +147,10 @@ def headlines_of(html):
 
 
 def schedule_of(html):
-    """הלוז היומי מתוך מקטע TIMELINE — זוגות (שעה, אירוע)."""
-    sec = _section(html, "TIMELINE", ["WATCHLIST", "BOTTOM LINE"])
+    """הלוז היומי — זוגות (שעה, אירוע). מבנה חדש: כותרת 📅 + <table>; ישן: מקטע TIMELINE."""
+    sec = _after_heading(html, "מה נשאר ביומן", "יומן השוק")
+    if not sec:
+        sec = _section(html, "TIMELINE", ["WATCHLIST", "BOTTOM LINE"])
     out = []
     for tr in re.findall(r"<tr>(.*?)</tr>", sec, re.S):
         tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
