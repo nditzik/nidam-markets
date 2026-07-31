@@ -191,6 +191,124 @@
     IT: "טכנולוגיה", ENE: "אנרגיה", UTL: "תשתיות", RE: "נדל\"ן", MAT: "חומרים", COM: "תקשורת"
   };
 
+  /* ---------- home pulse: Edge Meter (right) + live market clock (left) ---------- */
+  function mPolar(cx, cy, r, deg) {   // deg מ"12:00": ‎-90=שמאל, ‎+90=ימין
+    var a = deg * Math.PI / 180;
+    return [cx + r * Math.sin(a), cy - r * Math.cos(a)];
+  }
+  function mArc(cx, cy, r, a1, a2) {
+    var p1 = mPolar(cx, cy, r, a1), p2 = mPolar(cx, cy, r, a2);
+    return "M" + p1[0].toFixed(1) + "," + p1[1].toFixed(1) +
+      " A" + r + "," + r + " 0 0 1 " + p2[0].toFixed(1) + "," + p2[1].toFixed(1);
+  }
+  function mDeg(score) { return -90 + score * 1.8; }
+  function meterWord(v) { return v >= 66 ? ["חיובי", "var(--up)"] : v >= 45 ? ["זהיר", "var(--warn)"] : ["הגנתי", "var(--down)"]; }
+
+  function initHomePulse() {
+    var el = document.getElementById("home-pulse");
+    if (!el) return;
+    el.innerHTML =
+      '<section class="card pulse-card">' +
+        '<div class="pulse-title">🎯 The Edge Meter · מד השוק היומי</div>' +
+        '<svg class="meter-svg" viewBox="0 0 200 118" aria-label="מד ציון משולב">' +
+          '<g id="meter-arcs" fill="none" stroke-linecap="round"></g>' +
+          '<g id="meter-ticks" stroke="var(--text-3)" stroke-width="1" opacity=".55"></g>' +
+          '<g class="meter-needle" id="meter-needle" style="transform:rotate(-90deg)">' +
+            '<line x1="100" y1="100" x2="100" y2="36" stroke="var(--text)" stroke-width="3.2" stroke-linecap="round"/>' +
+            '<circle cx="100" cy="100" r="6.5" fill="var(--text)"/>' +
+            '<circle cx="100" cy="100" r="2.4" fill="var(--card-bg)"/>' +
+          "</g></svg>" +
+        '<div class="meter-score num" id="meter-score">—</div>' +
+        '<div class="meter-word" id="meter-word"></div>' +
+        '<div class="meter-sub" id="meter-sub"></div>' +
+      "</section>" +
+      '<section class="card pulse-card clock-card">' +
+        '<span class="clock-badge closed" id="clock-badge">…</span>' +
+        '<div class="clock-time num" id="clock-time" dir="ltr">--:--:--</div>' +
+        '<div class="clock-label" id="clock-label"></div>' +
+        '<div class="clock-next" id="clock-next" style="display:none"></div>' +
+      "</section>";
+
+    // קשתות אזורי הצבע + שנתות
+    var arcs = document.getElementById("meter-arcs");
+    [[0, 44, "var(--down)"], [45, 65, "var(--warn)"], [66, 100, "var(--up)"]].forEach(function (z) {
+      var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      p.setAttribute("d", mArc(100, 100, 78, mDeg(z[0]) + 1, mDeg(z[1]) - 1));
+      p.setAttribute("stroke", z[2]); p.setAttribute("stroke-width", "13"); p.setAttribute("opacity", ".92");
+      arcs.appendChild(p);
+    });
+    var ticks = document.getElementById("meter-ticks");
+    [0, 25, 50, 75, 100].forEach(function (v) {
+      var a = mDeg(v), o = mPolar(100, 100, 66, a), i2 = mPolar(100, 100, 60, a);
+      var l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      l.setAttribute("x1", o[0]); l.setAttribute("y1", o[1]);
+      l.setAttribute("x2", i2[0]); l.setAttribute("y2", i2[1]);
+      ticks.appendChild(l);
+    });
+    startClock();
+  }
+
+  function renderMeter(d) {
+    var v = (d.scores || {}).combined;
+    var score = document.getElementById("meter-score");
+    if (!score || v == null) return;
+    var w = meterWord(v);
+    score.textContent = v; score.style.color = w[1];
+    var word = document.getElementById("meter-word");
+    word.textContent = w[0]; word.style.color = w[1];
+    document.getElementById("meter-sub").textContent =
+      "טכני " + (d.scores.tech != null ? d.scores.tech : "—") +
+      " · רוחב " + (d.scores.breadth != null ? d.scores.breadth : "—") +
+      " · אופציות " + (d.scores.flow != null ? d.scores.flow : "—");
+    requestAnimationFrame(function () { setTimeout(function () {
+      var n = document.getElementById("meter-needle");
+      if (n) n.style.transform = "rotate(" + mDeg(v) + "deg)";
+    }, 150); });
+  }
+
+  /* שעון המסחר — שעון ישראל מקומי; פתיחה 16:30, סגירה 23:00, ב'-ו' */
+  var OPEN_T = { h: 16, m: 30 }, CLOSE_T = { h: 23, m: 0 };
+  function atTime(base, t) { var d = new Date(base); d.setHours(t.h, t.m, 0, 0); return d; }
+  function tradingDay(d) { var w = d.getDay(); return w >= 1 && w <= 5; }
+  function clockTarget() {
+    var now = new Date();
+    if (tradingDay(now) && now < atTime(now, OPEN_T)) return { t: atTime(now, OPEN_T), label: "לפתיחת המסחר בוול-סטריט", open: false };
+    if (tradingDay(now) && now < atTime(now, CLOSE_T)) return { t: atTime(now, CLOSE_T), label: "לסגירת המסחר", open: true };
+    var d = new Date(now); d.setDate(d.getDate() + 1);
+    while (!tradingDay(d)) d.setDate(d.getDate() + 1);
+    return { t: atTime(d, OPEN_T), label: "לפתיחת המסחר הבאה", open: false };
+  }
+  function startClock() {
+    var timeEl = document.getElementById("clock-time");
+    if (!timeEl) return;
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    function tick() {
+      var g = clockTarget(), s = Math.max(0, Math.floor((g.t - new Date()) / 1000));
+      timeEl.textContent = pad(Math.floor(s / 3600)) + ":" + pad(Math.floor((s % 3600) / 60)) + ":" + pad(s % 60);
+      document.getElementById("clock-label").textContent = g.label;
+      var b = document.getElementById("clock-badge");
+      b.textContent = g.open ? "● המסחר פתוח" : "המסחר סגור";
+      b.className = "clock-badge " + (g.open ? "open" : "closed");
+    }
+    tick(); setInterval(tick, 1000);
+  }
+  function renderClockNext() {
+    var el = document.getElementById("clock-next");
+    if (!el || !BRIEF) return;
+    var sched = (BRIEF.afternoon && BRIEF.afternoon.schedule) || (BRIEF.morning && BRIEF.morning.schedule) || [];
+    var now = new Date();
+    for (var i = 0; i < sched.length; i++) {
+      var m = /^(\d{1,2}):(\d{2})$/.exec(sched[i].time || "");
+      if (!m) continue;
+      var t = new Date(now); t.setHours(+m[1], +m[2], 0, 0);
+      if (t > now) {
+        el.innerHTML = 'האירוע הבא היום: <b dir="ltr">' + esc(sched[i].time) + "</b> · " + esc(sched[i].text);
+        el.style.display = "block";
+        return;
+      }
+    }
+  }
+
   /* ---------- home split: market news (right) + today's earnings (left) ---------- */
   var NEWS = null, EARN = null;
   function renderHomeSplit() {
@@ -749,6 +867,7 @@
   function boot() {
     loadTicker();
     setInterval(loadTicker, 180000); // refresh the strip every 3 min
+    initHomePulse();                 // מד השוק + שעון המסחר (מתמלאים כשנתונים מגיעים)
 
     // home split — market news + today's earnings (each renders as soon as it lands)
     fetchJSON("data/news.json")
@@ -761,6 +880,7 @@
     fetchJSON("data/indices.json").then(function (d) {
       renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
       renderIndicesDetail(document.getElementById("panel-indices"), d);
+      renderMeter(d);
       noteSig("indices", d);
     }).catch(function (err) {
       // כשל מדדים מפיל רק את תמונת-המצב — חדשות/מדווחות/תדריך ממשיכים לעבוד
@@ -773,7 +893,7 @@
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
     fetchJSON("data/briefing.json")
-      .then(function (d) { BRIEF = d; renderBriefing(document.getElementById("panel-briefing"), d); renderHomeBriefing(); noteSig("briefing", d); })
+      .then(function (d) { BRIEF = d; renderBriefing(document.getElementById("panel-briefing"), d); renderHomeBriefing(); renderClockNext(); noteSig("briefing", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-briefing"), "📣", "תדרוך משקיעים — בקרוב", ""); });
 
     fetchJSON("data/morning.json")

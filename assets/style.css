@@ -130,8 +130,8 @@ body {
 .hero-sub { margin: 9px 0 16px; font-size: 1.02rem; color: var(--text-soft); }
 @media (max-width: 560px) { .hero { padding: 16px 0 8px; } .hero-sub { font-size: .95rem; } }
 
-.tg-cta { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; }
-.head-stamp .stamp { margin: 0; }
+.head-stamp { justify-self: start; }
+.head-stamp .stamp { margin: 0; font-size: .78rem; }
 .tg-btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: #229ED9; color: #fff; border-radius: 999px;
@@ -310,6 +310,25 @@ main { padding: 26px 0 70px; }
 .score-hi { color: var(--up); }
 .score-mid { color: var(--warn); }
 .score-lo { color: var(--down); }
+
+/* ---- Home pulse: Edge Meter (right) + market clock (left) ---- */
+.home-pulse { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 2px 0 14px; align-items: stretch; }
+.home-pulse:empty { display: none; }
+.pulse-card { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 18px 20px 16px; }
+.pulse-title { align-self: flex-start; font-weight: 700; font-size: 1.02rem; letter-spacing: -.02em; margin-bottom: 2px; }
+.meter-svg { width: min(290px, 88%); }
+.meter-needle { transition: transform 1.5s cubic-bezier(.34, 1.3, .4, 1); transform-origin: 100px 100px; }
+.meter-score { font-size: 2.4rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin-top: -6px; }
+.meter-word { font-weight: 700; font-size: .95rem; margin-top: 4px; }
+.meter-sub { font-size: .78rem; color: var(--text-3); margin-top: 6px; }
+.clock-badge { font-size: .8rem; font-weight: 700; border-radius: 999px; padding: 4px 13px; }
+.clock-badge.open { background: color-mix(in srgb, var(--up) 15%, transparent); color: var(--up); }
+.clock-badge.closed { background: var(--surface-2); color: var(--text-soft); }
+.clock-time { font-size: clamp(2.4rem, 4.6vw, 3.1rem); font-weight: 800; letter-spacing: .02em; font-variant-numeric: tabular-nums; margin: 8px 0 2px; }
+.clock-label { color: var(--text-soft); font-size: .95rem; }
+.clock-next { margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--border-soft); font-size: .84rem; color: var(--text-3); width: 100%; text-align: center; }
+.clock-next b { color: var(--accent); }
+@media (max-width: 720px) { .home-pulse { grid-template-columns: 1fr; } }
 
 /* ---- Home split: news (right) + earnings (left) ---- */
 .home-split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0 4px; align-items: stretch; }
