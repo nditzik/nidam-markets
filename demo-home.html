@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דמו — רכיבים חדשים לדף הבית</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .demo-note { background: var(--warn-soft); color: var(--warn); font-weight: 700; font-size: .85rem;
+    text-align: center; padding: 8px; border-radius: 0 0 12px 12px; }
+  .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; align-items: stretch; }
+  @media (max-width: 720px) { .demo-grid { grid-template-columns: 1fr; } }
+
+  /* ---- Edge Meter ---- */
+  .meter-card { display: flex; flex-direction: column; align-items: center; padding: 22px 20px 18px; }
+  .meter-title { font-weight: 700; font-size: 1.02rem; letter-spacing: -.02em; align-self: flex-start; margin-bottom: 4px; }
+  .meter-svg { width: min(340px, 90%); }
+  .meter-needle { transition: transform 1.6s cubic-bezier(.34,1.3,.4,1); transform-origin: 100px 100px; }
+  .meter-score { font-size: 2.6rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin-top: -8px; }
+  .meter-word { font-weight: 700; font-size: 1rem; margin-top: 5px; }
+  .meter-sub { font-size: .8rem; color: var(--text-3); margin-top: 6px; }
+
+  /* ---- Countdown ---- */
+  .clock-card { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 22px 20px; }
+  .clock-badge { font-size: .8rem; font-weight: 700; border-radius: 999px; padding: 4px 13px; }
+  .clock-badge.open { background: color-mix(in srgb, var(--up) 15%, transparent); color: var(--up); }
+  .clock-badge.closed { background: var(--surface-2); color: var(--text-soft); }
+  .clock-time { font-size: 3.2rem; font-weight: 800; letter-spacing: .02em; font-variant-numeric: tabular-nums; margin: 10px 0 2px; direction: ltr; }
+  .clock-label { color: var(--text-soft); font-size: .95rem; }
+  .clock-next { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-soft); font-size: .85rem; color: var(--text-3); width: 100%; text-align: center; }
+  .clock-next b { color: var(--accent); }
+
+  /* ---- Movers ---- */
+  .mv-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .mv-tab { border: none; font-family: inherit; cursor: pointer; background: var(--surface-2);
+    border-radius: 999px; padding: 6px 14px; font-size: .85rem; font-weight: 600; color: var(--text-soft); }
+  .mv-tab.on { background: var(--accent); color: #fff; }
+  .mv-list { margin: 0; padding: 0; list-style: none; }
+  .mv-list li { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
+  .mv-list li:last-child { border-bottom: 0; }
+  .mv-sym { font-weight: 700; color: var(--accent); min-width: 56px; text-decoration: none; }
+  .mv-sym:hover { text-decoration: underline; }
+  .mv-name { flex: 1; color: var(--text-soft); font-size: .86rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: ltr; text-align: right; }
+  .mv-px { font-variant-numeric: tabular-nums; font-weight: 600; font-size: .88rem; direction: ltr; }
+  .mv-chg { font-variant-numeric: tabular-nums; font-weight: 700; font-size: .88rem; min-width: 74px; text-align: left; direction: ltr; }
+
+  /* ---- Number of the day ---- */
+  .nod-card { display: flex; align-items: center; gap: 22px; padding: 24px 26px; }
+  .nod-big { font-size: 3.4rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; direction: ltr; flex: none; }
+  .nod-txt b { font-size: 1.05rem; }
+  .nod-txt p { margin: 4px 0 0; color: var(--text-soft); font-size: .92rem; }
+  @media (max-width: 560px) { .nod-card { flex-direction: column; text-align: center; gap: 10px; } }
+</style>
+</head>
+<body>
+<div class="wrap"><div class="demo-note">🧪 דמו — רכיבים חדשים לדף הבית · תצוגה בלבד, האתר עצמו לא שונה</div></div>
+
+<main class="wrap" style="padding:18px 0 60px">
+
+  <div class="demo-grid">
+    <!-- Edge Meter -->
+    <section class="card meter-card">
+      <div class="meter-title">🎯 The Edge Meter — מד השוק היומי</div>
+      <svg class="meter-svg" viewBox="0 0 200 118" aria-label="מד ציון משולב">
+        <g id="meter-arcs" fill="none" stroke-linecap="round"></g>
+        <g id="meter-ticks" stroke="var(--text-3)" stroke-width="1"></g>
+        <g class="meter-needle" id="meter-needle" style="transform:rotate(-90deg)">
+          <line x1="100" y1="100" x2="100" y2="34" stroke="var(--text)" stroke-width="3.4" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="7" fill="var(--text)"/>
+          <circle cx="100" cy="100" r="2.6" fill="var(--card-bg)"/>
+        </g>
+      </svg>
+      <div class="meter-score num" id="meter-score">—</div>
+      <div class="meter-word" id="meter-word"></div>
+      <div class="meter-sub" id="meter-sub"></div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="card clock-card">
+      <span class="clock-badge closed" id="clock-badge">…</span>
+      <div class="clock-time num" id="clock-time">--:--:--</div>
+      <div class="clock-label" id="clock-label"></div>
+      <div class="clock-next" id="clock-next" style="display:none"></div>
+    </section>
+  </div>
+
+  <!-- Movers -->
+  <section class="card" style="margin-top:14px;padding:16px 18px">
+    <div class="split-head"><span class="split-title">🔥 הבולטות של היום</span>
+      <span class="split-sub" id="mv-stamp"></span></div>
+    <div class="mv-tabs" id="mv-tabs">
+      <button class="mv-tab on" data-g="gainers">📈 עולות</button>
+      <button class="mv-tab" data-g="losers">📉 יורדות</button>
+      <button class="mv-tab" data-g="active">🔄 הכי נסחרות</button>
+    </div>
+    <ul class="mv-list" id="mv-list"></ul>
+  </section>
+
+  <!-- Number of the day -->
+  <section class="card nod-card" style="margin-top:14px">
+    <div class="nod-big" id="nod-big">—</div>
+    <div class="nod-txt"><b>💡 המספר של היום</b><p id="nod-txt">…</p></div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function J(u){return fetch(u,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json();});}
+
+  /* ===== Edge Meter ===== */
+  /* deg נמדד מ"12:00": ‎-90=שמאל, 0=למעלה, ‎+90=ימין */
+  function polar(cx,cy,r,deg){var a=deg*Math.PI/180;return[cx+r*Math.sin(a),cy-r*Math.cos(a)];}
+  function arc(cx,cy,r,a1,a2){var p1=polar(cx,cy,r,a1),p2=polar(cx,cy,r,a2);
+    return "M"+p1[0].toFixed(1)+","+p1[1].toFixed(1)+" A"+r+","+r+" 0 0 1 "+p2[0].toFixed(1)+","+p2[1].toFixed(1);}
+  function deg(score){return -90+score*1.8;}
+  var zones=[[0,44,"var(--down)"],[45,65,"var(--warn)"],[66,100,"var(--up)"]];
+  var arcs=document.getElementById("meter-arcs");
+  zones.forEach(function(z){
+    var p=document.createElementNS("http://www.w3.org/2000/svg","path");
+    p.setAttribute("d",arc(100,100,78,deg(z[0])+1,deg(z[1])-1));
+    p.setAttribute("stroke",z[2]);p.setAttribute("stroke-width","13");p.setAttribute("opacity",".9");
+    arcs.appendChild(p);
+  });
+  var ticks=document.getElementById("meter-ticks");
+  [0,25,50,75,100].forEach(function(v){
+    var a=deg(v),o=polar(100,100,66,a),i=polar(100,100,60,a);
+    var l=document.createElementNS("http://www.w3.org/2000/svg","line");
+    l.setAttribute("x1",o[0]);l.setAttribute("y1",o[1]);l.setAttribute("x2",i[0]);l.setAttribute("y2",i[1]);
+    ticks.appendChild(l);
+  });
+  function word(v){return v>=66?["חיובי","var(--up)"]:v>=45?["זהיר","var(--warn)"]:["הגנתי","var(--down)"];}
+  J("data/indices.json").then(function(d){
+    var v=(d.scores||{}).combined;
+    if(v==null)return;
+    var w=word(v);
+    document.getElementById("meter-score").textContent=v;
+    document.getElementById("meter-score").style.color=w[1];
+    document.getElementById("meter-word").textContent=w[0];
+    document.getElementById("meter-word").style.color=w[1];
+    document.getElementById("meter-sub").textContent="טכני "+((d.scores||{}).tech??"—")+" · רוחב "+((d.scores||{}).breadth??"—")+" · אופציות "+((d.scores||{}).flow??"—");
+    requestAnimationFrame(function(){setTimeout(function(){
+      document.getElementById("meter-needle").style.transform="rotate("+deg(v)+"deg)";
+    },150);});
+  }).catch(function(){});
+
+  /* ===== Countdown (שעון ישראל = השעון המקומי) ===== */
+  var OPEN={h:16,m:30}, CLOSE={h:23,m:0};
+  function nextAt(base,t){var d=new Date(base);d.setHours(t.h,t.m,0,0);return d;}
+  function isTradingDay(d){var w=d.getDay();return w>=1&&w<=5;} /* ב-IL: ב'-ו' = ימי מסחר NY... שני-שישי */
+  function target(){
+    var now=new Date();
+    var open=nextAt(now,OPEN),close=nextAt(now,CLOSE);
+    if(isTradingDay(now)&&now<open) return{t:open,label:"לפתיחת המסחר בוול-סטריט",open:false};
+    if(isTradingDay(now)&&now>=open&&now<close) return{t:close,label:"לסגירת המסחר",open:true};
+    var d=new Date(now); d.setDate(d.getDate()+1);
+    while(!isTradingDay(d)) d.setDate(d.getDate()+1);
+    return{t:nextAt(d,OPEN),label:"לפתיחת המסחר הבאה",open:false};
+  }
+  function pad(n){return (n<10?"0":"")+n;}
+  function tick(){
+    var g=target(),ms=g.t-new Date();
+    var s=Math.max(0,Math.floor(ms/1000));
+    var hh=Math.floor(s/3600),mm=Math.floor((s%3600)/60),ss=s%60;
+    document.getElementById("clock-time").textContent=pad(hh)+":"+pad(mm)+":"+pad(ss);
+    document.getElementById("clock-label").textContent=g.label;
+    var b=document.getElementById("clock-badge");
+    b.textContent=g.open?"● המסחר פתוח":"המסחר סגור";
+    b.className="clock-badge "+(g.open?"open":"closed");
+  }
+  tick(); setInterval(tick,1000);
+  /* האירוע הבא מהלוז של התדריך */
+  J("data/briefing.json").then(function(d){
+    var s=(d.afternoon&&d.afternoon.schedule)||(d.morning&&d.morning.schedule)||[];
+    var now=new Date();
+    for(var i=0;i<s.length;i++){
+      var m=/^(\d{1,2}):(\d{2})$/.exec(s[i].time||"");if(!m)continue;
+      var t=new Date(now);t.setHours(+m[1],+m[2],0,0);
+      if(t>now){var el=document.getElementById("clock-next");
+        el.innerHTML="האירוע הבא היום: <b>"+esc(s[i].time)+"</b> · "+esc(s[i].text);
+        el.style.display="block";break;}
+    }
+  }).catch(function(){});
+
+  /* ===== Movers ===== */
+  var MV=null,cur="gainers";
+  function chg(v){var c=v>0?"up":v<0?"down":"";return '<span class="mv-chg '+c+'">'+(v>0?"+":"")+Number(v).toFixed(2)+"%</span>";}
+  function renderMv(){
+    if(!MV)return;
+    var rows=(MV[cur]||[]).map(function(x){
+      return "<li><a class=\"mv-sym\" target=\"_blank\" rel=\"noopener\" href=\"https://www.tradingview.com/symbols/"+encodeURIComponent(x.symbol)+"/\">"+esc(x.symbol)+"</a>"+
+        '<span class="mv-name">'+esc(x.name)+"</span>"+
+        '<span class="mv-px num">'+(x.price==null?"—":Number(x.price).toLocaleString("en-US",{maximumFractionDigits:2}))+"</span>"+chg(x.chg)+"</li>";
+    }).join("");
+    document.getElementById("mv-list").innerHTML=rows||'<li style="color:var(--text-3)">אין נתונים כרגע.</li>';
+  }
+  document.getElementById("mv-tabs").addEventListener("click",function(e){
+    var b=e.target.closest(".mv-tab");if(!b)return;
+    cur=b.dataset.g;
+    document.querySelectorAll(".mv-tab").forEach(function(x){x.classList.toggle("on",x===b);});
+    renderMv();
+  });
+  J("data/movers.json").then(function(d){
+    MV=d;renderMv();
+    document.getElementById("mv-stamp").textContent=((d._meta||{}).updatedAt?"עודכן "+d._meta.updatedAt:"");
+    /* ===== Number of the day — התנועה הקיצונית ביותר ===== */
+    var all=[].concat(d.gainers||[],d.losers||[],d.active||[]);
+    if(all.length){
+      var top=all.reduce(function(a,b){return Math.abs(b.chg)>Math.abs(a.chg)?b:a;});
+      var big=document.getElementById("nod-big");
+      big.textContent=(top.chg>0?"+":"")+top.chg.toFixed(1)+"%";
+      big.style.color=top.chg>=0?"var(--up)":"var(--down)";
+      document.getElementById("nod-txt").innerHTML="<b>"+esc(top.symbol)+"</b> ("+esc(top.name)+") — "+
+        (top.chg>=0?"הזינוק":"הצניחה")+" הבולט"+(top.chg>=0?"":"ה")+" של היום בשוק האמריקאי.";
+    }
+  }).catch(function(){});
+})();
+</script>
+</body></html>
