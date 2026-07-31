@@ -3,6 +3,11 @@
   "todayCount": 15,
   "reporting": [
     {
+      "ticker": "XOM",
+      "name": "Exxonmobil Holdings Corp",
+      "logo": "data/earnings/logos/XOM.png"
+    },
+    {
       "ticker": "ABBV",
       "name": "Abbvie Inc",
       "logo": "data/earnings/logos/ABBV.png"
@@ -13,39 +18,14 @@
       "logo": "data/earnings/logos/CVX.png"
     },
     {
-      "ticker": "ETN",
-      "name": "Eaton Corp",
-      "logo": "data/earnings/logos/ETN.png"
-    },
-    {
       "ticker": "LIN",
       "name": "Linde Plc",
       "logo": "data/earnings/logos/LIN.png"
     },
     {
-      "ticker": "XOM",
-      "name": "Exxonmobil Holdings Corp",
-      "logo": "data/earnings/logos/XOM.png"
-    },
-    {
-      "ticker": "ARES",
-      "name": "Ares Management LP",
-      "logo": "data/earnings/logos/ARES.png"
-    },
-    {
-      "ticker": "BEN",
-      "name": "Franklin Resources",
-      "logo": "data/earnings/logos/BEN.png"
-    },
-    {
-      "ticker": "CBOE",
-      "name": "CBOE Global Markets",
-      "logo": "data/earnings/logos/CBOE.png"
-    },
-    {
-      "ticker": "CHD",
-      "name": "Church & Dwight Company",
-      "logo": "data/earnings/logos/CHD.png"
+      "ticker": "ETN",
+      "name": "Eaton Corp",
+      "logo": "data/earnings/logos/ETN.png"
     },
     {
       "ticker": "CL",
@@ -58,9 +38,29 @@
       "logo": "data/earnings/logos/D.png"
     },
     {
-      "ticker": "FRT",
-      "name": "Federal Realty Investment Trust",
-      "logo": "data/earnings/logos/FRT.png"
+      "ticker": "ARES",
+      "name": "Ares Management LP",
+      "logo": "data/earnings/logos/ARES.png"
+    },
+    {
+      "ticker": "CBOE",
+      "name": "CBOE Global Markets",
+      "logo": "data/earnings/logos/CBOE.png"
+    },
+    {
+      "ticker": "TROW",
+      "name": "T Rowe Price Group",
+      "logo": "data/earnings/logos/TROW.png"
+    },
+    {
+      "ticker": "CHD",
+      "name": "Church & Dwight Company",
+      "logo": "data/earnings/logos/CHD.png"
+    },
+    {
+      "ticker": "MRNA",
+      "name": "Moderna Inc",
+      "logo": "data/earnings/logos/MRNA.png"
     }
   ],
   "more": 3,
@@ -71,12 +71,12 @@
       "dow": "ב׳",
       "count": 14,
       "tickers": [
-        "MAR",
-        "MELI",
         "PLTR",
         "VRTX",
-        "ARE",
-        "CLX"
+        "MAR",
+        "MELI",
+        "WMB",
+        "FANG"
       ]
     },
     {
@@ -85,12 +85,12 @@
       "dow": "ג׳",
       "count": 54,
       "tickers": [
+        "SPCX",
         "AMD",
-        "AMGN",
-        "ANET",
-        "BKNG",
         "CAT",
-        "GILD"
+        "MRK",
+        "ANET",
+        "AMGN"
       ]
     },
     {
@@ -99,11 +99,11 @@
       "dow": "ד׳",
       "count": 44,
       "tickers": [
-        "APP",
-        "CVS",
-        "DASH",
-        "DIS",
         "LLY",
+        "SNDK",
+        "WDC",
+        "DIS",
+        "SHOP",
         "UBER"
       ]
     },
@@ -113,12 +113,12 @@
       "dow": "ה׳",
       "count": 30,
       "tickers": [
-        "ABNB",
-        "CEG",
         "COP",
-        "AFL",
-        "AIG",
-        "AKAM"
+        "PH",
+        "HWM",
+        "DDOG",
+        "MNST",
+        "CEG"
       ]
     },
     {
@@ -128,19 +128,15 @@
       "count": 5,
       "tickers": [
         "BRK.B",
+        "VST",
         "TTWO",
-        "ECHO",
         "PPL",
-        "VST"
+        "ECHO"
       ]
     }
   ],
   "_meta": {
-<<<<<<< Updated upstream
-    "updatedAt": "31/07/2026 14:45",
-=======
-    "updatedAt": "31/07/2026 14:43",
->>>>>>> Stashed changes
+    "updatedAt": "31/07/2026 14:51",
     "source": "earnings.csv"
   }
 }
