@@ -208,20 +208,19 @@
       var rep = EARN.reporting || [], up = EARN.upcoming || [];
       var body;
       if (rep.length) {
-        body = '<ul class="earn-list">' + rep.map(function (r) {
-          return "<li>" +
-            (r.logo ? '<img class="earn-logo" src="' + esc(r.logo) + '" alt="" onerror="this.remove()">'
-                    : '<span class="earn-logo earn-logo-ph"></span>') +
-            '<a class="earn-tic" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) +
-              '/" target="_blank" rel="noopener" title="פתח ב-TradingView">' + esc(r.ticker) + "</a>" +
-            '<span class="earn-name">' + esc(r.name) + "</span></li>";
-        }).join("") + "</ul>" +
+        body = '<div class="earn-grid">' + rep.map(function (r) {
+          return '<a class="earn-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) +
+            '/" target="_blank" rel="noopener" title="' + esc(r.name) + " — פתח ב-TradingView\">" +
+            (r.logo ? '<img src="' + esc(r.logo) + '" alt="" onerror="this.remove()">'
+                    : '<span class="earn-ph"></span>') +
+            "<span>" + esc(r.ticker) + "</span></a>";
+        }).join("") + "</div>" +
         (EARN.more ? '<p class="earn-more">ועוד ' + EARN.more + " חברות מדווחות היום</p>" : "");
       } else {
         body = '<p class="earn-empty">אין דיווחים מתוכננים להיום.</p>';
       }
       var upHtml = up.length
-        ? '<div class="earn-up"><div class="earn-up-t">בהמשך השבוע</div>' +
+        ? '<div class="earn-up"><div class="earn-up-t">מדווחות שבוע הבא</div>' +
           up.map(function (u) {
             return '<div class="earn-up-row"><span class="earn-up-day">' + esc(u.dow) + " " +
               '<span dir="ltr">' + esc(u.label) + "</span></span>" +
