@@ -86,6 +86,7 @@ body {
 .skip-link:focus { right: 16px; top: 10px; }
 
 /* ---- Header ---- */
+.site-header { border-bottom: 1px solid var(--border-soft); }
 /* sticky top bar = header + tabs pinned together on every tab */
 .topbar {
   position: sticky; top: 0; z-index: 30;
@@ -150,15 +151,16 @@ body {
 @media (max-width: 500px) { .brand-logo { height: 34px; } .brand-text h1 { font-size: 1.02rem; } }
 
 /* ---- Tabs — segmented control ---- */
-.tabs-row { display: flex; align-items: center; gap: 12px; margin: 14px 0; }
+.tabs-row { display: grid; grid-template-columns: 1fr minmax(0, auto) 1fr; align-items: center; gap: 10px; margin: 14px 0; }
 .tabs {
   display: flex; gap: 3px; padding: 4px;
   background: var(--surface-2); border-radius: 14px;
-  width: max-content; max-width: 100%; min-width: 0; flex: 0 1 auto;
+  width: max-content; max-width: 100%; min-width: 0;
+  grid-column: 2; justify-self: center;
   overflow-x: auto; scrollbar-width: none;
 }
 .tabs::-webkit-scrollbar { display: none; }
-.tabs-tg { margin-inline-start: auto; flex: none; padding: 7px 13px; font-size: .82rem; }
+.tabs-tg { grid-column: 3; justify-self: end; padding: 7px 13px; font-size: .82rem; }
 .tabs-tg svg { width: 15px; height: 15px; }
 .tab {
   position: relative; border: none; background: transparent; color: var(--text-soft);
