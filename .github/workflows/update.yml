@@ -117,6 +117,11 @@ jobs:
         run: python scripts/fetch_news.py
         continue-on-error: true
 
+      # --- המניות הבולטות של היום (Yahoo screeners) ---
+      - name: Fetch top movers
+        run: python scripts/fetch_movers.py
+        continue-on-error: true
+
       # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
       - name: Build health status
         run: python scripts/build_health.py

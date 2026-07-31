@@ -222,6 +222,10 @@
         '<div class="meter-word" id="meter-word"></div>' +
         '<div class="meter-sub" id="meter-sub"></div>' +
       "</section>" +
+      '<section class="card pulse-card pulse-news">' +
+        '<div class="pulse-title pn-title">📰 חדשות השוק</div>' +
+        '<ul class="pn-list" id="pn-list"></ul>' +
+      "</section>" +
       '<section class="card pulse-card clock-card">' +
         '<span class="clock-badge closed" id="clock-badge">…</span>' +
         '<div class="clock-time num" id="clock-time" dir="ltr">--:--:--</div>' +
@@ -309,26 +313,41 @@
     }
   }
 
-  /* ---------- home split: market news (right) + today's earnings (left) ---------- */
-  var NEWS = null, EARN = null;
+  /* compact news in the middle of the pulse row */
+  function renderPulseNews() {
+    var el = document.getElementById("pn-list");
+    if (!el || !NEWS || !NEWS.news) return;
+    el.innerHTML = NEWS.news.slice(0, 4).map(function (n) {
+      return '<li><a href="' + esc(n.link) + '" target="_blank" rel="noopener">' +
+        '<span class="pn-time num" dir="ltr">' + esc(n.time) + "</span>" + esc(n.title) + "</a></li>";
+    }).join("");
+  }
+
+  /* ---------- home split: top movers (right) + today's earnings (left) ---------- */
+  var NEWS = null, EARN = null, MOVERS = null, MV_CUR = "gainers";
   function renderHomeSplit() {
     var el = document.getElementById("home-split");
     if (!el) return;
     var html = "";
 
-    // ---- חדשות השוק (עמודה ימנית ב-RTL = ראשונה ב-DOM) ----
-    if (NEWS && NEWS.news && NEWS.news.length) {
+    // ---- הבולטות של היום (עמודה ימנית ב-RTL = ראשונה ב-DOM) ----
+    if (MOVERS && (MOVERS.gainers || []).length + (MOVERS.losers || []).length) {
+      var tabs = [["gainers", "📈 עולות"], ["losers", "📉 יורדות"], ["active", "🔄 הכי נסחרות"]];
+      var rows = (MOVERS[MV_CUR] || []).map(function (x) {
+        var c = x.chg > 0 ? "up" : x.chg < 0 ? "down" : "";
+        return '<li><a class="mv-sym" target="_blank" rel="noopener" href="https://www.tradingview.com/symbols/' +
+          encodeURIComponent(x.symbol) + '/" title="פתח ב-TradingView">' + esc(x.symbol) + "</a>" +
+          '<span class="mv-name">' + esc(x.name) + "</span>" +
+          '<span class="mv-px num" dir="ltr">' + (x.price == null ? "—" : Number(x.price).toLocaleString("en-US", { maximumFractionDigits: 2 })) + "</span>" +
+          '<span class="mv-chg ' + c + '" dir="ltr">' + (x.chg > 0 ? "+" : "") + Number(x.chg).toFixed(2) + "%</span></li>";
+      }).join("");
       html += '<section class="card split-card">' +
-        '<div class="split-head"><span class="split-title">📰 חדשות השוק</span>' +
-          '<span class="split-sub">' + esc((NEWS._meta || {}).source || "") + "</span></div>" +
-        '<ul class="news-list">' +
-        NEWS.news.map(function (n) {
-          return "<li>" +
-            '<a href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title) + "</a>" +
-            '<div class="news-meta"><span class="news-time num" dir="ltr">' + esc(n.time) + "</span>" +
-            '<span class="news-src">' + esc(n.source) + "</span></div>" +
-            "</li>";
-        }).join("") + "</ul></section>";
+        '<div class="split-head"><span class="split-title">🔥 הבולטות של היום</span>' +
+          '<span class="split-sub">' + esc(((MOVERS._meta || {}).updatedAt ? "עודכן " + MOVERS._meta.updatedAt : "")) + "</span></div>" +
+        '<div class="mv-tabs">' + tabs.map(function (t) {
+          return '<button class="mv-tab' + (t[0] === MV_CUR ? " on" : "") + '" data-g="' + t[0] + '">' + t[1] + "</button>";
+        }).join("") + "</div>" +
+        '<ul class="mv-list">' + (rows || '<li style="color:var(--text-3)">אין נתונים כרגע.</li>') + "</ul></section>";
     }
 
     // ---- מדווחות היום (עמודה שמאלית) ----
@@ -869,13 +888,24 @@
     setInterval(loadTicker, 180000); // refresh the strip every 3 min
     initHomePulse();                 // מד השוק + שעון המסחר (מתמלאים כשנתונים מגיעים)
 
-    // home split — market news + today's earnings (each renders as soon as it lands)
+    // home content — news (pulse middle), movers + earnings (split row); each renders as it lands
     fetchJSON("data/news.json")
-      .then(function (d) { NEWS = d; renderHomeSplit(); })
+      .then(function (d) { NEWS = d; renderPulseNews(); })
+      .catch(function () {});
+    fetchJSON("data/movers.json")
+      .then(function (d) { MOVERS = d; renderHomeSplit(); })
       .catch(function () {});
     fetchJSON("data/earnings.json")
       .then(function (d) { EARN = d; renderHomeSplit(); })
       .catch(function () {});
+    // החלפת קבוצות בבולטות (delegation — שורד רינדור מחדש)
+    var splitEl = document.getElementById("home-split");
+    if (splitEl) splitEl.addEventListener("click", function (e) {
+      var b = e.target.closest(".mv-tab");
+      if (!b) return;
+      MV_CUR = b.dataset.g;
+      renderHomeSplit();
+    });
     // Home + indices share the indices dataset
     fetchJSON("data/indices.json").then(function (d) {
       renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
