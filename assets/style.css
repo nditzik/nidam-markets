@@ -320,15 +320,14 @@ main { padding: 26px 0 70px; }
 .news-time { font-size: .74rem; color: var(--accent); font-weight: 700; }
 .news-src { font-size: .74rem; color: var(--text-3); font-weight: 600; }
 
-.earn-list li { display: flex; align-items: center; gap: 9px; padding: 7px 0; border-bottom: 1px solid var(--border-soft); }
+.earn-list li { display: flex; align-items: center; gap: 9px; padding: 5px 0; border-bottom: 1px solid var(--border-soft); }
 .earn-list li:first-child { padding-top: 0; }
 .earn-list li:last-child { border-bottom: 0; }
-.earn-logo { width: 22px; height: 22px; border-radius: 5px; object-fit: contain; flex: none; background: #fff; }
+.earn-logo { width: 20px; height: 20px; border-radius: 5px; object-fit: contain; flex: none; background: #fff; }
 .earn-logo-ph { background: var(--surface-3); }
-.earn-tic { font-weight: 700; font-size: .86rem; color: var(--accent); text-decoration: none; flex: none; min-width: 46px; }
+.earn-tic { font-weight: 700; font-size: .85rem; color: var(--accent); text-decoration: none; flex: none; min-width: 46px; }
 .earn-tic:hover { text-decoration: underline; }
-.earn-name { font-size: .84rem; color: var(--text-soft); flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.earn-price { font-size: .82rem; color: var(--text-3); font-weight: 600; flex: none; }
+.earn-name { font-size: .83rem; color: var(--text-soft); flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .earn-more, .earn-empty { margin: 10px 0 0; font-size: .8rem; color: var(--text-3); }
 .earn-up { margin-top: 13px; padding-top: 11px; border-top: 1px solid var(--border); }
 .earn-up-t { font-size: .78rem; font-weight: 700; color: var(--text-2); margin-bottom: 6px; }

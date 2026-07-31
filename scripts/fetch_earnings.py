@@ -32,6 +32,55 @@ CSV_CANDIDATES = [
 UPCOMING_DAYS = 7      # כמה ימים קדימה להציג ב"בהמשך"
 MAX_TODAY = 12         # תקרת כרטיסים ליום (השאר נספרים ב-more)
 
+# שמות אפשריים לעמודת שווי שוק — אם קיימת, ממיינים לפיה (הגדולות קודם)
+CAP_COLS = ["Market Cap", "MarketCap", "Mkt Cap", "Market Capitalization", "Cap"]
+
+# גיבוי עד שתתווסף עמודת שווי שוק: חברות ענק מוכרות יוצגו ראשונות
+MEGA = set("""AAPL MSFT NVDA GOOGL GOOG AMZN META AVGO TSLA BRK.B LLY JPM V XOM UNH MA COST
+HD PG WMT NFLX JNJ ABBV CRM BAC ORCL CVX KO AMD PEP MRK TMO LIN ADBE ACN MCD CSCO PM ABT
+GE INTU DIS CAT VZ TXN QCOM IBM AMGN NOW BKNG SPGI RTX AXP NEE UBER PFE LOW HON BLK SYK
+AMAT PGR TJX ETN BSX C UNP COP ADP MDT VRTX PLTR MU LRCX ANET SBUX GILD MMM CB ADI DE
+INTC MDLZ REGN CI SO ISRG PANW KLAC APP MELI CEG DASH ABNB TTWO MAR CVS""".split())
+
+
+def parse_cap(val):
+    """'1.23T' / '456.7B' / '12,345M' / '1234567' -> float (מיליוני דולר). None אם לא ניתן."""
+    if not val:
+        return None
+    s = str(val).strip().upper().replace(",", "").replace("$", "")
+    mult = 1.0
+    if s.endswith("T"):
+        mult, s = 1_000_000.0, s[:-1]
+    elif s.endswith("B"):
+        mult, s = 1_000.0, s[:-1]
+    elif s.endswith("M"):
+        mult, s = 1.0, s[:-1]
+    try:
+        return float(s) * mult
+    except ValueError:
+        return None
+
+
+def cap_col(rows):
+    """מחזיר את שם עמודת שווי השוק אם קיימת בקובץ."""
+    if not rows:
+        return None
+    keys = {k.strip().lower(): k for k in rows[0].keys() if k}
+    for c in CAP_COLS:
+        if c.lower() in keys:
+            return keys[c.lower()]
+    return None
+
+
+def rank_key(r, capk):
+    """מפתח מיון: הגדולות קודם. לפי שווי שוק אם יש, אחרת רשימת חברות הענק."""
+    sym = (r.get("Symbol") or "").strip().upper()
+    if capk:
+        c = parse_cap(r.get(capk))
+        if c is not None:
+            return (0, -c, sym)
+    return (0 if sym in MEGA else 1, 0, sym)
+
 
 def israel_today():
     now = datetime.now(timezone.utc)
@@ -76,11 +125,7 @@ def fetch_logo(ticker):
 
 def row_to_item(r, with_logo=False):
     sym = (r.get("Symbol") or "").strip().upper()
-    item = {
-        "ticker": sym,
-        "name": (r.get("Name") or "").strip(),
-        "price": (r.get("Latest") or "").strip(),
-    }
+    item = {"ticker": sym, "name": (r.get("Name") or "").strip()}
     if with_logo and sym:
         logo = fetch_logo(sym)
         if logo:
@@ -112,8 +157,11 @@ def main():
         if d:
             by_date.setdefault(d, []).append(r)
 
+    capk = cap_col(rows)
+    print("[info] מיון לפי %s" % ("עמודת '%s'" % capk if capk else "רשימת חברות ענק (אין עמודת שווי שוק)"))
+
     key = today.isoformat()
-    today_rows = sorted(by_date.get(key, []), key=lambda r: r.get("Symbol", ""))
+    today_rows = sorted(by_date.get(key, []), key=lambda r: rank_key(r, capk))
     today_items = [row_to_item(r, with_logo=True) for r in today_rows[:MAX_TODAY]]
 
     upcoming = []
@@ -128,7 +176,8 @@ def main():
             "label": "%d/%d" % (d.day, d.month),
             "dow": ["ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳", "א׳"][d.weekday()],
             "count": len(rs),
-            "tickers": [(r.get("Symbol") or "").strip().upper() for r in sorted(rs, key=lambda r: r.get("Symbol", ""))][:6],
+            "tickers": [(r.get("Symbol") or "").strip().upper()
+                        for r in sorted(rs, key=lambda r: rank_key(r, capk))][:6],
         })
 
     payload = {

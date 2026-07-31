@@ -214,9 +214,7 @@
                     : '<span class="earn-logo earn-logo-ph"></span>') +
             '<a class="earn-tic" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) +
               '/" target="_blank" rel="noopener" title="פתח ב-TradingView">' + esc(r.ticker) + "</a>" +
-            '<span class="earn-name">' + esc(r.name) + "</span>" +
-            (r.price ? '<span class="earn-price num" dir="ltr">' + esc(r.price) + "</span>" : "") +
-            "</li>";
+            '<span class="earn-name">' + esc(r.name) + "</span></li>";
         }).join("") + "</ul>" +
         (EARN.more ? '<p class="earn-more">ועוד ' + EARN.more + " חברות מדווחות היום</p>" : "");
       } else {
