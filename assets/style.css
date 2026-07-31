@@ -405,7 +405,7 @@ main { padding: 26px 0 70px; }
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 .home-duo .verdict .v-top { justify-content: center; margin-bottom: 8px; }
-.home-duo .verdict h2 { white-space: normal; font-size: 1.4rem; }
+.home-duo .verdict h2 { white-space: normal; font-size: 1.4rem; margin-top: auto; }   /* מרכוז אנכי: רווח שווה מעל הטקסט ומתחתיו */
 .home-duo .verdict p { white-space: normal; }
 .home-duo .verdict .verdict-narr p { text-align: center; }
 .home-duo .verdict .lights { margin-top: auto; justify-content: center; padding-top: 16px; }
