@@ -160,6 +160,14 @@
     var v = (meta && (meta.updatedAt || meta.fetchedAt)) || "";
     return esc(url) + "?v=" + encodeURIComponent(v);
   }
+  /* per-tab explanation text (uniform style via .tab-intro) */
+  var TAB_INTROS = {
+    candidates: "כל בוקר אנחנו סורקים מאות מניות מומנטום ומחפשים מניות שעשו תיקון קטן חזרה לממוצע ועכשיו חוזרות לעלות — קונים את התיקון, לא את השיא. המערכת מדרגת ומציגה את הטובות ביותר, עם מחיר כניסה, סטופ ויעד. לצורכי לימוד בלבד, לא המלצה."
+  };
+  function tabIntro(key) {
+    var t = TAB_INTROS[key];
+    return t ? '<p class="tab-intro">' + esc(t) + "</p>" : "";
+  }
   function emptyPanel(el, emoji, title, note) {
     el.innerHTML =
       '<div class="panel-empty"><span class="emoji">' + emoji + "</span>" +
@@ -619,6 +627,7 @@
 
     el.innerHTML = stamp(d._meta) +
       '<div class="section-title" style="margin-top:0">🎯 מועמדים למסחר (IBKR)</div>' +
+      tabIntro("candidates") +
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
       "<strong>" + esc(d.date || "") + "</strong> · " + (d.count || 0) + " מועמדים" +
       (d.shown && d.shown < d.count ? " (מוצגים " + d.shown + " מובילים)" : "") +
