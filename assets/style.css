@@ -114,7 +114,7 @@ body {
 .brand-name { text-transform: uppercase; letter-spacing: .06em; }
 .tagline { margin: 1px 0 0; font-size: .78rem; color: var(--text-3); font-weight: 500; }
 /* ---- Home hero (marketing) ---- */
-.hero { text-align: center; padding: 24px 0 12px; }
+.hero { text-align: center; padding: 10px 0 8px; }
 .hero-title { margin: 0; font-size: clamp(1.5rem, 3.4vw, 2.15rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.14; }
 .hero-sub { margin: 9px 0 16px; font-size: 1.02rem; color: var(--text-soft); }
 @media (max-width: 560px) { .hero { padding: 16px 0 8px; } .hero-sub { font-size: .95rem; } }
@@ -129,7 +129,7 @@ body {
 }
 .tg-btn:hover { background: #1b87ba; }
 .tg-btn svg { width: 17px; height: 17px; fill: #fff; flex: none; }
-@media (max-width: 560px) { .head-stamp { display: none; } .tg-btn { flex: 1; justify-content: center; } }
+@media (max-width: 560px) { .head-stamp { display: none; } .tabs-tg .tg-txt { display: none; } .tabs-tg { padding: 7px; } }
 .theme-toggle {
   border: 1px solid var(--border); background: var(--surface-2); color: var(--text-2);
   width: 40px; height: 40px; border-radius: 50%; cursor: pointer; flex: none;
@@ -140,12 +140,16 @@ body {
 @media (max-width: 500px) { .brand-logo { height: 34px; } .brand-text h1 { font-size: 1.02rem; } }
 
 /* ---- Tabs — segmented control ---- */
+.tabs-row { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
 .tabs {
-  display: flex; gap: 3px; margin-top: 26px; padding: 4px;
+  display: flex; gap: 3px; padding: 4px;
   background: var(--surface-2); border-radius: 14px;
-  width: max-content; max-width: 100%; overflow-x: auto; scrollbar-width: none;
+  width: max-content; max-width: 100%; min-width: 0; flex: 0 1 auto;
+  overflow-x: auto; scrollbar-width: none;
 }
 .tabs::-webkit-scrollbar { display: none; }
+.tabs-tg { margin-inline-start: auto; flex: none; padding: 7px 13px; font-size: .82rem; }
+.tabs-tg svg { width: 15px; height: 15px; }
 .tab {
   position: relative; border: none; background: transparent; color: var(--text-soft);
   padding: 8px 17px; border-radius: 10px; font-family: inherit; font-size: .92rem;
@@ -155,7 +159,7 @@ body {
 .tab.is-active { background: var(--seg-active); color: var(--text); box-shadow: var(--shadow-sm); }
 
 /* ---- Live market ticker (own strip, Yahoo data) ---- */
-#ticker-wrap { margin-top: 14px; }
+#ticker-wrap { margin-top: 8px; }
 .ticker-tape {
   background: var(--surface-2);
   border-radius: 12px;
