@@ -31,11 +31,12 @@ FEEDS = [
     ("Nasdaq", "https://www.nasdaq.com/feed/rssoutbound?category=Markets"),
 ]
 
-# פיד "top stories" נוטה לכלול טורי ייעוץ אישי — מסננים אותם החוצה
+# מסננים: טורי ייעוץ אישי + דוחות סגירה של בורסות משניות (דנמרק/טורקיה וכו')
 SKIP_RE = re.compile(
     r"\b(I'm|I am|my (wife|husband|son|daughter|mother|father|friend|boss)|"
     r"should I|can I|dear |my \d{2}-year|how much should|is it (ok|fine)|"
-    r"suze orman|my portfolio|advice)\b", re.I)
+    r"suze orman|my portfolio|advice|"
+    r"stocks (higher|lower|mixed) at close)\b", re.I)
 
 MAX_ITEMS = 6            # כמה כותרות להציג
 MAX_NEW_TRANSLATIONS = 8  # תקרת תרגומים חדשים לריצה (הגנה על המכסה)
@@ -111,15 +112,16 @@ def tr_google(text):
 
 
 def translate(text):
-    """מחזיר (טקסט, האם תורגם). נופל בחן בין המנועים."""
-    for fn in (tr_mymemory, tr_google):
+    """מחזיר (טקסט, מנוע|None). גוגל ראשי (איכות טובה יותר), MyMemory גיבוי.
+    הערה: GitHub Models נבדק כמועמד LLM ונמצא בתהליך סגירה (HTTP 410 retirement)."""
+    for name, fn in (("google", tr_google), ("mymemory", tr_mymemory)):
         try:
             t = fn(text)
             if t and t != text:
-                return t, True
+                return t, name
         except Exception as e:
-            print(f"[tr {fn.__name__}] {e}")
-    return text, False
+            print(f"[tr {name}] {e}")
+    return text, None
 
 
 def main():
@@ -155,11 +157,14 @@ def main():
             break
     uniq = mixed
 
+    # מטמון v2: {en: {"t": תרגום, "e": מנוע}} — פורמט ישן (מחרוזות) מנוקה ומתורגם מחדש
     cache = {}
     if os.path.exists(CACHE_JSON):
         try:
             with open(CACHE_JSON, "r", encoding="utf-8") as f:
-                cache = json.load(f)
+                raw = json.load(f)
+            if isinstance(raw, dict) and raw.get("_v") == 2:
+                cache = raw.get("items", {})
         except Exception:
             cache = {}
 
@@ -167,12 +172,15 @@ def main():
     news = []
     for it in uniq:
         en = it["title_en"]
-        he = cache.get(en)
+        hit = cache.get(en)
+        he = hit.get("t") if isinstance(hit, dict) else None
         if he is None and budget > 0:
-            he, ok = translate(en)
-            if ok:
-                cache[en] = he
+            he, engine = translate(en)
+            if engine:
+                cache[en] = {"t": he, "e": engine}
                 budget -= 1
+            else:
+                he = None
         news.append({
             "title": he or en,
             "titleEn": en,
@@ -186,7 +194,7 @@ def main():
     if len(cache) > 400:
         cache = dict(list(cache.items())[-400:])
     with open(CACHE_JSON, "w", encoding="utf-8") as f:
-        json.dump(cache, f, ensure_ascii=False, indent=1)
+        json.dump({"_v": 2, "items": cache}, f, ensure_ascii=False, indent=1)
 
     payload = {"news": news, "_meta": {"updatedAt": israel_stamp(), "source": "CNBC · MarketWatch"}}
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
