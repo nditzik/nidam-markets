@@ -337,6 +337,9 @@ main { padding: 26px 0 70px; }
 .pn-list a { color: var(--text); text-decoration: none; font-size: .8rem; font-weight: 500; }
 .pn-list a:hover { color: var(--accent); }
 .pn-time { color: var(--accent); font-weight: 700; font-size: .7rem; margin: 0 0 0 8px; }
+/* English display mode: items read LTR, time on the left */
+.pn-list.en { direction: ltr; text-align: left; }
+.pn-list.en .pn-time { margin: 0 8px 0 0; }
 @media (max-width: 720px) { .home-pulse { justify-content: center; } .pulse-news { flex: 1 1 100%; } }
 
 /* top movers card (home split) */
