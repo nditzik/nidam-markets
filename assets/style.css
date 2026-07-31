@@ -248,6 +248,10 @@ main { padding: 26px 0 70px; }
   line-height: 1.15; white-space: nowrap;
 }
 .verdict p { margin: 0; color: var(--text-soft); font-size: 1.02rem; line-height: 1.45; white-space: nowrap; }
+.verdict-narr { margin-top: 14px; }
+.verdict-narr p { margin: 0 0 7px; color: var(--text-soft); font-size: .92rem; line-height: 1.55; white-space: normal; }
+.verdict-narr p:last-child { margin-bottom: 0; }
+.verdict-narr b { color: var(--text); font-weight: 700; }
 @media (max-width: 700px) {
   .verdict h2 { white-space: normal; font-size: 1.45rem; }
   .verdict p { white-space: normal; }

@@ -237,6 +237,15 @@
     }
 
     var tradeDate = fmtTradeDate(d.date);
+    // משפטי רקע (היום/השבוע/לעקוב) — בבית בלבד (בטאב מדדים הם מופיעים כבר במקטע "רקע")
+    var nrt = d.narrative || {};
+    var narr = (opts.home && (nrt.today || nrt.week || nrt.watchFor))
+      ? '<div class="verdict-narr">' +
+          (nrt.today ? "<p><b>היום:</b> " + esc(nrt.today) + "</p>" : "") +
+          (nrt.week ? "<p><b>השבוע:</b> " + esc(nrt.week) + "</p>" : "") +
+          (nrt.watchFor ? "<p><b>לעקוב:</b> " + esc(nrt.watchFor) + "</p>" : "") +
+        "</div>"
+      : "";
     var verdictCard =
       '<div class="card verdict tone-' + esc(v.tone || "") + '">' +
         '<div class="v-top">' +
@@ -244,7 +253,7 @@
           (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + "</span>" : "") +
         "</div>" +
         "<h2>" + esc(v.headline || "סקירת שוק") + "</h2>" +
-        "<p>" + esc(v.subline || "") + "</p>" + lights +
+        "<p>" + esc(v.subline || "") + "</p>" + narr + lights +
       "</div>";
 
     var fl = d.flow || {};
