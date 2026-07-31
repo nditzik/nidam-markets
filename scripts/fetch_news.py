@@ -91,8 +91,9 @@ def parse_feed(name, url):
 
 
 def tr_mymemory(text):
+    # de= (כתובת מייל) מרחיב את המכסה החינמית היומית פי ~10 — בלי הרשמה
     url = "https://api.mymemory.translated.net/get?" + urllib.parse.urlencode(
-        {"q": text, "langpair": "en|he"})
+        {"q": text, "langpair": "en|he", "de": "nditzik@gmail.com"})
     d = json.loads(_get(url, timeout=25))
     if d.get("quotaFinished"):
         raise RuntimeError("quota finished")

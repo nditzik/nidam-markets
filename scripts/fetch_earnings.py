@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""
+r"""
 fetch_earnings.py — קורא את קובץ הדיווחים (earnings.csv) שאיציק מעדכן שבועית
 ובונה את data/earnings.json: מי מדווחת היום + מי בהמשך השבוע.
 
-מקור: earnings.csv בשורש הפרויקט (או data/earnings.csv), בפורמט:
-    Symbol,Name,Latest,"Earnings Date"
-    AAPL,"Apple Inc",333.43,2026-07-30
+מקור ראשי: earnings.csv בריפו nidam-reports — איציק שומר את הקובץ ל-
+C:\challenge\reports (המשימה המתוזמנת דוחפת אותו לבד תוך ~5 דק').
+גיבוי: עותק מקומי בריפו הזה (שורש או data/) אם המשיכה נכשלה.
+
+פורמט:
+    Symbol,Name,Latest,"Earnings Date","Market Cap"
+    AAPL,"Apple Inc",333.43,2026-07-30,4897204800000
 
 לוגואים נמשכים לפי טיקר (FMP) ל-data/earnings/logos/ — content-aware, כל טיקר פעם אחת.
 עמידות: אם הקובץ חסר/פגום — משאיר earnings.json קיים.
@@ -23,7 +27,10 @@ OUT_JSON = os.path.join(ROOT, "data", "earnings.json")
 LOGO_DIR = os.path.join(ROOT, "data", "earnings", "logos")
 FMP_LOGO = "https://financialmodelingprep.com/image-stock/{}.png"
 
-# מחפש את ה-CSV בשני המקומות — כך שלא משנה איפה איציק שומר אותו
+# מקור ראשי: nidam-reports (מסתנכרן לבד מ-C:\challenge\reports)
+REMOTE_CSV = "https://raw.githubusercontent.com/nditzik/nidam-reports/main/earnings.csv"
+
+# גיבוי: עותק מקומי בריפו הזה
 CSV_CANDIDATES = [
     os.path.join(ROOT, "data", "earnings.csv"),
     os.path.join(ROOT, "earnings.csv"),
@@ -133,17 +140,36 @@ def row_to_item(r, with_logo=False):
     return item
 
 
-def main():
+def load_rows():
+    """שורות ה-CSV: קודם מ-nidam-reports (המקור שאיציק מעדכן), אחרת עותק מקומי."""
+    import io
+    try:
+        req = urllib.request.Request(REMOTE_CSV, headers={"User-Agent": "nidam-markets-bot"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            text = r.read().decode("utf-8-sig", "replace")
+        rows = list(csv.DictReader(io.StringIO(text)))
+        if rows and "Earnings Date" in rows[0]:
+            print("[info] earnings.csv נטען מ-nidam-reports")
+            return rows
+        print("[warn] ה-CSV המרוחק בפורמט לא צפוי — עובר לעותק המקומי")
+    except Exception as e:
+        print(f"[info] אין earnings.csv ב-nidam-reports ({e}) — עובר לעותק המקומי")
+
     path = find_csv()
     if not path:
-        print("[warn] לא נמצא earnings.csv")
-        return 0 if os.path.exists(OUT_JSON) else 1
-
+        return None
     try:
         with open(path, "r", encoding="utf-8-sig") as f:
-            rows = list(csv.DictReader(f))
+            return list(csv.DictReader(f))
     except Exception as e:
-        print(f"[warn] קריאת CSV נכשלה: {e}")
+        print(f"[warn] קריאת CSV מקומי נכשלה: {e}")
+        return None
+
+
+def main():
+    rows = load_rows()
+    if rows is None:
+        print("[warn] לא נמצא earnings.csv")
         return 0 if os.path.exists(OUT_JSON) else 1
 
     if not rows or "Earnings Date" not in rows[0]:
@@ -186,7 +212,7 @@ def main():
         "reporting": today_items,
         "more": max(0, len(today_rows) - len(today_items)),
         "upcoming": upcoming,
-        "_meta": {"updatedAt": israel_stamp(), "source": os.path.basename(path)},
+        "_meta": {"updatedAt": israel_stamp(), "source": "earnings.csv"},
     }
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
     with open(OUT_JSON, "w", encoding="utf-8") as f:

@@ -370,14 +370,11 @@
       stampHtml = stamp(d._meta);
     }
 
+    // #home-split ו-#home-briefing הם קונטיינרים סטטיים ב-HTML (עמידות: לא תלויים ברנדור הזה)
     el.innerHTML =
       stampHtml +
-      (opts.home ? '<div id="home-split" class="home-split"></div>' : "") +  // חדשות | מדווחות
-      (opts.home ? '<div id="home-briefing"></div>' : "") +   // תדריך אחרון — מעל תמונת המצב
       verdictCard + scoreCards + marketCards +
       (opts.detail ? concl : "");   // "המסקנה של איציק" רק בטאב מדדים, לא בבית
-
-    if (opts.home) { renderHomeSplit(); renderHomeBriefing(); }
   }
 
   function renderIndicesDetail(el, d) {
@@ -752,11 +749,12 @@
       .catch(function () {});
     // Home + indices share the indices dataset
     fetchJSON("data/indices.json").then(function (d) {
-      renderMarketOverview(document.getElementById("panel-home"), d, { home: true });
+      renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
       renderIndicesDetail(document.getElementById("panel-indices"), d);
       noteSig("indices", d);
     }).catch(function (err) {
-      emptyPanel(document.getElementById("panel-home"), "📡", "נתוני השוק לא נטענו", String(err.message || err));
+      // כשל מדדים מפיל רק את תמונת-המצב — חדשות/מדווחות/תדריך ממשיכים לעבוד
+      emptyPanel(document.getElementById("home-overview"), "📡", "נתוני השוק לא נטענו", String(err.message || err));
       emptyPanel(document.getElementById("panel-indices"), "📡", "נתוני המדדים לא נטענו", "");
     });
 
