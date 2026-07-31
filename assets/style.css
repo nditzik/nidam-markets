@@ -151,7 +151,7 @@ body {
 @media (max-width: 500px) { .brand-logo { height: 34px; } .brand-text h1 { font-size: 1.02rem; } }
 
 /* ---- Tabs — segmented control ---- */
-.tabs-row { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; margin-block: 14px; }
+.tabs-row { position: relative; display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-block: 14px; }
 .tabs {
   display: flex; gap: 3px; padding: 4px;
   background: var(--surface-2); border-radius: 14px;
