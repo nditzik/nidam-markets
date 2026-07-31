@@ -302,6 +302,43 @@ main { padding: 26px 0 70px; }
 .score-mid { color: var(--warn); }
 .score-lo { color: var(--down); }
 
+/* ---- Home split: news (right) + earnings (left) ---- */
+.home-split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0 4px; align-items: start; }
+.home-split:empty { display: none; }
+.split-card { padding: 16px 18px; }
+.split-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.split-title { font-weight: 700; font-size: 1.02rem; letter-spacing: -.02em; }
+.split-sub { font-size: .76rem; color: var(--text-3); font-weight: 600; }
+
+.news-list, .earn-list { margin: 0; padding: 0; list-style: none; }
+.news-list li { padding: 9px 0; border-bottom: 1px solid var(--border-soft); }
+.news-list li:first-child { padding-top: 0; }
+.news-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.news-list a { color: var(--text); text-decoration: none; font-size: .92rem; line-height: 1.5; font-weight: 500; }
+.news-list a:hover { color: var(--accent); }
+.news-meta { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+.news-time { font-size: .74rem; color: var(--accent); font-weight: 700; }
+.news-src { font-size: .74rem; color: var(--text-3); font-weight: 600; }
+
+.earn-list li { display: flex; align-items: center; gap: 9px; padding: 7px 0; border-bottom: 1px solid var(--border-soft); }
+.earn-list li:first-child { padding-top: 0; }
+.earn-list li:last-child { border-bottom: 0; }
+.earn-logo { width: 22px; height: 22px; border-radius: 5px; object-fit: contain; flex: none; background: #fff; }
+.earn-logo-ph { background: var(--surface-3); }
+.earn-tic { font-weight: 700; font-size: .86rem; color: var(--accent); text-decoration: none; flex: none; min-width: 46px; }
+.earn-tic:hover { text-decoration: underline; }
+.earn-name { font-size: .84rem; color: var(--text-soft); flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.earn-price { font-size: .82rem; color: var(--text-3); font-weight: 600; flex: none; }
+.earn-more, .earn-empty { margin: 10px 0 0; font-size: .8rem; color: var(--text-3); }
+.earn-up { margin-top: 13px; padding-top: 11px; border-top: 1px solid var(--border); }
+.earn-up-t { font-size: .78rem; font-weight: 700; color: var(--text-2); margin-bottom: 6px; }
+.earn-up-row { display: flex; align-items: center; gap: 9px; padding: 3px 0; font-size: .78rem; }
+.earn-up-day { color: var(--text-soft); font-weight: 600; flex: none; min-width: 52px; }
+.earn-up-n { color: var(--accent); font-weight: 700; flex: none; min-width: 20px; }
+.earn-up-tk { color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 720px) { .home-split { grid-template-columns: 1fr; } }
+
 /* ---- Home briefing card (latest edition) ---- */
 .section-title.brief-top { margin-top: 10px; }
 .brief-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }

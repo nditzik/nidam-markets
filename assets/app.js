@@ -181,6 +181,65 @@
     IT: "טכנולוגיה", ENE: "אנרגיה", UTL: "תשתיות", RE: "נדל\"ן", MAT: "חומרים", COM: "תקשורת"
   };
 
+  /* ---------- home split: market news (right) + today's earnings (left) ---------- */
+  var NEWS = null, EARN = null;
+  function renderHomeSplit() {
+    var el = document.getElementById("home-split");
+    if (!el) return;
+    var html = "";
+
+    // ---- חדשות השוק (עמודה ימנית ב-RTL = ראשונה ב-DOM) ----
+    if (NEWS && NEWS.news && NEWS.news.length) {
+      html += '<section class="card split-card">' +
+        '<div class="split-head"><span class="split-title">📰 חדשות השוק</span>' +
+          '<span class="split-sub">' + esc((NEWS._meta || {}).source || "") + "</span></div>" +
+        '<ul class="news-list">' +
+        NEWS.news.map(function (n) {
+          return "<li>" +
+            '<a href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title) + "</a>" +
+            '<div class="news-meta"><span class="news-time num" dir="ltr">' + esc(n.time) + "</span>" +
+            '<span class="news-src">' + esc(n.source) + "</span></div>" +
+            "</li>";
+        }).join("") + "</ul></section>";
+    }
+
+    // ---- מדווחות היום (עמודה שמאלית) ----
+    if (EARN) {
+      var rep = EARN.reporting || [], up = EARN.upcoming || [];
+      var body;
+      if (rep.length) {
+        body = '<ul class="earn-list">' + rep.map(function (r) {
+          return "<li>" +
+            (r.logo ? '<img class="earn-logo" src="' + esc(r.logo) + '" alt="" onerror="this.remove()">'
+                    : '<span class="earn-logo earn-logo-ph"></span>') +
+            '<a class="earn-tic" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) +
+              '/" target="_blank" rel="noopener" title="פתח ב-TradingView">' + esc(r.ticker) + "</a>" +
+            '<span class="earn-name">' + esc(r.name) + "</span>" +
+            (r.price ? '<span class="earn-price num" dir="ltr">' + esc(r.price) + "</span>" : "") +
+            "</li>";
+        }).join("") + "</ul>" +
+        (EARN.more ? '<p class="earn-more">ועוד ' + EARN.more + " חברות מדווחות היום</p>" : "");
+      } else {
+        body = '<p class="earn-empty">אין דיווחים מתוכננים להיום.</p>';
+      }
+      var upHtml = up.length
+        ? '<div class="earn-up"><div class="earn-up-t">בהמשך השבוע</div>' +
+          up.map(function (u) {
+            return '<div class="earn-up-row"><span class="earn-up-day">' + esc(u.dow) + " " +
+              '<span dir="ltr">' + esc(u.label) + "</span></span>" +
+              '<span class="earn-up-n">' + u.count + "</span>" +
+              '<span class="earn-up-tk">' + esc((u.tickers || []).slice(0, 4).join(" · ")) + "</span></div>";
+          }).join("") + "</div>"
+        : "";
+      html += '<section class="card split-card">' +
+        '<div class="split-head"><span class="split-title">📊 מדווחות היום</span>' +
+          '<span class="split-sub">' + (EARN.todayCount || 0) + " חברות</span></div>" +
+        body + upHtml + "</section>";
+    }
+
+    el.innerHTML = html;
+  }
+
   /* ---------- home briefing card (latest edition: sentiment + 4 headlines + schedule) ---------- */
   var BRIEF = null;
   function briefKey(s) {
@@ -316,11 +375,12 @@
 
     el.innerHTML =
       stampHtml +
+      (opts.home ? '<div id="home-split" class="home-split"></div>' : "") +  // חדשות | מדווחות
       (opts.home ? '<div id="home-briefing"></div>' : "") +   // תדריך אחרון — מעל תמונת המצב
       verdictCard + scoreCards + marketCards +
       (opts.detail ? concl : "");   // "המסקנה של איציק" רק בטאב מדדים, לא בבית
 
-    if (opts.home) renderHomeBriefing();
+    if (opts.home) { renderHomeSplit(); renderHomeBriefing(); }
   }
 
   function renderIndicesDetail(el, d) {
@@ -685,6 +745,14 @@
   function boot() {
     loadTicker();
     setInterval(loadTicker, 180000); // refresh the strip every 3 min
+
+    // home split — market news + today's earnings (each renders as soon as it lands)
+    fetchJSON("data/news.json")
+      .then(function (d) { NEWS = d; renderHomeSplit(); })
+      .catch(function () {});
+    fetchJSON("data/earnings.json")
+      .then(function (d) { EARN = d; renderHomeSplit(); })
+      .catch(function () {});
     // Home + indices share the indices dataset
     fetchJSON("data/indices.json").then(function (d) {
       renderMarketOverview(document.getElementById("panel-home"), d, { home: true });

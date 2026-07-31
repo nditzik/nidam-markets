@@ -96,6 +96,16 @@ jobs:
         run: python scripts/fetch_market.py
         continue-on-error: true
 
+      # --- מי מדווחת היום (מתוך earnings.csv שאיציק מעדכן שבועית) ---
+      - name: Fetch earnings calendar
+        run: python scripts/fetch_earnings.py
+        continue-on-error: true
+
+      # --- כותרות שוק מ-RSS, מתורגמות לעברית (עם מטמון) ---
+      - name: Fetch market news
+        run: python scripts/fetch_news.py
+        continue-on-error: true
+
       # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
       - name: Build health status
         run: python scripts/build_health.py
