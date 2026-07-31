@@ -239,10 +239,14 @@ def main():
                 f.write(slot["html"])
             changed = True
         d = slot["date_dt"]
+        # גם התאריך וגם השעה בשעון ישראל — אחרת מייל שנשלח לפי אזור-זמן זר
+        # (למשל -0400) נותן תאריך גולמי של אתמול ומבלבל את בחירת המהדורה בבית.
+        off = 3 if 4 <= datetime.now(timezone.utc).month <= 10 else 2
+        il = d.astimezone(timezone(timedelta(hours=off))) if d else None
         meta = {
             "subject": slot["subject"],
-            "dateLabel": d.strftime("%d/%m/%Y") if d else "",
-            "time": d.astimezone(timezone(timedelta(hours=3))).strftime("%H:%M") if d else "",
+            "dateLabel": il.strftime("%d/%m/%Y") if il else "",
+            "time": il.strftime("%H:%M") if il else "",
             "sentiment": sentiment_of(slot["html"]),
             "headlines": headlines_of(slot["html"]),
             "schedule": schedule_of(slot["html"]),
