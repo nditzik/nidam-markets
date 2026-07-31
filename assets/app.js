@@ -169,6 +169,16 @@
     var t = TAB_INTROS[key];
     return t ? '<p class="tab-intro">' + esc(t) + "</p>" : "";
   }
+  /* הסבר מורחב לטאב מדדים (מוצג מתחת לתמונת המצב) */
+  var INDICES_EXPLAINER =
+    '<div class="tab-intro intro-rich">' +
+      "<h3>איך זה עובד</h3>" +
+      "<p>כל בוקר המערכת אוספת את נתוני היום — מחירים, רוחב השוק, מדד הפחד (VIX) וזרימת האופציות — ומנתחת אותם אוטומטית. במקום ערימת מספרים, היא מפיקה שלושה דברים:<br>" +
+      "<b>ניתוח</b> (מה קרה) · <b>מסקנה</b> (מה זה אומר) · <b>המלצה</b> (מה לעשות).</p>" +
+      "<h3>מה חשוב לדעת על השוק</h3>" +
+      '<p>השוק לא נע בקו ישר. מעל פני השטח יש "עלה או ירד" — אבל מתחת מסתתרת הבריאות האמיתית: האם העלייה רחבה (הרבה מניות עולות) או צרה (רק מעטות), האם הכסף הגדול קונה או נערך להגנה, וכמה פחד יש בשוק. המערכת מסתכלת על כל אלה יחד — ונותנת תמונה כנה, כולל רמת הביטחון שלה.</p>' +
+      '<p class="intro-disc">⚠️ <b>הסתייגות:</b> המידע כאן הוא לצורך מידע והתרשמות בלבד, ואינו ייעוץ השקעות או המלצה לפעולה. השקעה בשוק ההון כרוכה בסיכון. כל החלטה — באחריותך.</p>' +
+    "</div>";
   function emptyPanel(el, emoji, title, note) {
     el.innerHTML =
       '<div class="panel-empty"><span class="emoji">' + emoji + "</span>" +
@@ -436,7 +446,7 @@
     el.innerHTML = "";
     el.insertAdjacentHTML("beforeend", head);
     el.appendChild(overview);
-    el.insertAdjacentHTML("beforeend", analysis + sectors + selling + narr);
+    el.insertAdjacentHTML("beforeend", INDICES_EXPLAINER + analysis + sectors + selling + narr);
     var link = document.createElement("p");
     link.className = "stamp";
     link.innerHTML = 'מקור: <a href="https://nditzik.github.io/indexes-status/" target="_blank" rel="noopener">דשבורד המדדים המלא ↗</a>';

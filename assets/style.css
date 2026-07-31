@@ -262,6 +262,15 @@ main { padding: 26px 0 70px; }
   background: var(--card-bg); border: 1px solid var(--card-border);
   border-radius: var(--radius); padding: 14px 18px; box-shadow: var(--card-shadow);
 }
+/* rich multi-section explainer (indices tab) */
+.intro-rich { margin-top: 20px; padding: 18px 20px; }
+.intro-rich h3 { margin: 0 0 7px; font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
+.intro-rich p { margin: 0 0 16px; }
+.intro-rich p b { color: var(--text); }
+.intro-rich .intro-disc {
+  margin: 0; padding-top: 13px; border-top: 1px solid var(--border-soft);
+  font-size: .84rem; color: var(--text-3);
+}
 
 /* ---- Verdict hero (open, no card) ---- */
 .verdict { margin-top: 24px; }   /* כרטיס תחום (רקע+פדינג יורשים מ-.card) + מרווח מהתדריך שמעליו */
