@@ -112,6 +112,12 @@ body {
 .brand-text { text-align: center; }
 .brand-text h1 { font-size: 1.18rem; margin: 0; font-weight: 700; letter-spacing: -.02em; }
 .tagline { margin: 1px 0 0; font-size: .78rem; color: var(--text-3); font-weight: 500; }
+/* ---- Home hero (marketing) ---- */
+.hero { text-align: center; padding: 24px 0 12px; }
+.hero-title { margin: 0; font-size: clamp(1.5rem, 3.4vw, 2.15rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.14; }
+.hero-sub { margin: 9px 0 16px; font-size: 1.02rem; color: var(--text-soft); }
+@media (max-width: 560px) { .hero { padding: 16px 0 8px; } .hero-sub { font-size: .95rem; } }
+
 .tg-cta { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; }
 .head-stamp .stamp { margin: 0; }
 .tg-btn {
