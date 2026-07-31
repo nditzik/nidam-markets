@@ -75,7 +75,10 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
-        run: python scripts/notify_telegram.py --test
+          TELEGRAM_ADMIN_CHAT: ${{ secrets.TELEGRAM_ADMIN_CHAT }}
+        run: |
+          python scripts/notify_telegram.py --test
+          python scripts/notify_earnings_age.py --test
         continue-on-error: true
 
       # --- תזכורת טלגרם על תדרוך חדש (דורש TELEGRAM_BOT_TOKEN + TELEGRAM_CHANNEL) ---
@@ -99,6 +102,14 @@ jobs:
       # --- מי מדווחת היום (מתוך earnings.csv שאיציק מעדכן שבועית) ---
       - name: Fetch earnings calendar
         run: python scripts/fetch_earnings.py
+        continue-on-error: true
+
+      # --- התראה פרטית לאיציק אם earnings.csv מתיישן (21+ יום) ---
+      - name: Earnings staleness alert
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT: ${{ secrets.TELEGRAM_ADMIN_CHAT }}
+        run: python scripts/notify_earnings_age.py
         continue-on-error: true
 
       # --- כותרות שוק מ-RSS, מתורגמות לעברית (עם מטמון) ---
