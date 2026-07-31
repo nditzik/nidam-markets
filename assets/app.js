@@ -895,13 +895,18 @@
     setInterval(loadTicker, 180000); // refresh the strip every 3 min
     initHomePulse();                 // מד השוק + שעון המסחר (מתמלאים כשנתונים מגיעים)
 
-    // home content — news (pulse middle), movers + earnings (split row); each renders as it lands
-    fetchJSON("data/news.json")
-      .then(function (d) { NEWS = d; renderPulseNews(); })
-      .catch(function () {});
-    fetchJSON("data/movers.json")
-      .then(function (d) { MOVERS = d; renderHomeSplit(); })
-      .catch(function () {});
+    // home content — news (pulse middle), movers + earnings (split row); each renders as it lands.
+    // חדשות + בולטות מתרעננות לבד כל 5 דק' כשהדף פתוח (כמו סרט המדדים)
+    function loadLiveContent() {
+      fetchJSON("data/news.json")
+        .then(function (d) { NEWS = d; renderPulseNews(); })
+        .catch(function () {});
+      fetchJSON("data/movers.json")
+        .then(function (d) { MOVERS = d; renderHomeSplit(); })
+        .catch(function () {});
+    }
+    loadLiveContent();
+    setInterval(loadLiveContent, 300000);
     fetchJSON("data/earnings.json")
       .then(function (d) { EARN = d; renderHomeSplit(); })
       .catch(function () {});
