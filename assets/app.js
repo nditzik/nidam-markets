@@ -421,8 +421,8 @@
     var asOf = edition === "afternoon" ? "15:00" : "06:00";   // שעת המהדורה (משתנה בין בוקר/צהריים)
 
     el.innerHTML =
-      '<div class="section-title brief-top">📋 תדרוך משקיעים</div>' +
       '<div class="card brief-card">' +
+        '<div class="brief-card-title">📋 תדרוך משקיעים</div>' +
         '<div class="brief-head"><span class="brief-ed">' + esc(label) +
           (s.dateLabel ? ' · <span class="brief-date" dir="ltr">' + esc(s.dateLabel) + "</span>" : "") +
           ' · <span class="brief-asof">נכון לשעה <span dir="ltr">' + asOf + "</span></span>" +

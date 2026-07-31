@@ -403,7 +403,7 @@ main { padding: 26px 0 70px; }
 @media (max-width: 820px) { .home-duo { grid-template-columns: 1fr; } }
 
 /* ---- Home briefing card (latest edition) ---- */
-.section-title.brief-top { margin-top: 10px; }
+.brief-card-title { font-weight: 700; font-size: 1.15rem; letter-spacing: -.02em; margin: 0 0 14px; }
 .brief-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
 .brief-ed { font-weight: 700; font-size: 1.02rem; }
 .brief-date, .brief-asof { color: var(--text-3); font-weight: 600; }
