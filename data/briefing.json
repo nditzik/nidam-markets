@@ -1,41 +1,37 @@
 {
   "morning": {
-    "subject": "📈 תדרוך משקיעים – בוקר | 30 ביולי 2026",
-    "dateLabel": "29/07/2026",
-    "time": "06:08",
+    "subject": "📈 תדרוך משקיעים – בוקר | 31 ביולי 2026",
+    "dateLabel": "30/07/2026",
+    "time": "06:05",
     "sentiment": {
-      "emoji": "🔴",
-      "text": "דובי"
+      "emoji": "🟡",
+      "text": "חיובי־זהיר"
     },
-    "file": "data/briefings/morning.html",
     "headlines": [
-      "🏦 הפד עצר — אך המסר וההצבעה ניציים",
-      "☁️ Microsoft מוכיחה שה־AI מייצר הכנסות",
-      "🧠 Meta: פרסום חזק, תזרים כמעט נעלם",
-      "📱 Qualcomm מזהירה מפגיעה מואצת מצד Apple"
+      "☁️ Microsoft הופכת הוצאות AI לראלי שוק",
+      "🏛️ צמיחה חלשה בכותרת, ביקוש מקומי עמיד",
+      "🌡️ PCE התקרר — נפט עלול להפוך את המגמה",
+      "🚀 Amazon: AWS מאיצה, CapEx עולה"
     ],
     "schedule": [
       {
-        "time": "15:30",
-        "text": "אומדן ראשון ל־GDP רבעון שני"
+        "time": "16:30",
+        "text": "דוחות Exxon Mobil (XOM), Chevron (CVX), Cboe (CBOE) וחברות נוספות"
       },
       {
         "time": "15:30",
-        "text": "הכנסה והוצאה אישית ליוני, כולל PCE ו־Core PCE"
-      },
-      {
-        "time": "15:30",
-        "text": "תביעות אבטלה שבועיות"
+        "text": "מדד עלות התעסוקה (ECI) לרבעון השני"
       },
       {
         "time": "16:30",
-        "text": "פתיחת וול סטריט ותגובה מלאה לדוחות הלילה"
+        "text": "פתיחת המסחר; תגובה מלאה לדוחות Apple ו־Amazon"
       },
       {
-        "time": "00:00",
-        "text": "שיחת המשקיעים של Amazon"
+        "time": "17:00",
+        "text": "סנטימנט מישיגן הסופי ליולי וציפיות אינפלציה"
       }
-    ]
+    ],
+    "file": "data/briefings/morning.html"
   },
   "afternoon": {
     "subject": "📈 תדרוך משקיעים – אחר הצהריים | 30.07.2026",
@@ -45,7 +41,6 @@
       "emoji": "🟡",
       "text": "חיובי־זהיר"
     },
-    "file": "data/briefings/afternoon.html",
     "headlines": [
       "חוזי Nasdaq 100 עולים +0.86%, S&P 500 עולה +0.41% ו־Dow עולה +0.23%, בהובלת Microsoft.",
       "Microsoft (MSFT) מזנקת כמעט 9% לאחר צמיחה של 43% ב־Azure ותחזית חזקה.",
@@ -69,10 +64,11 @@
         "time": "00:00",
         "text": "שיחות המשקיעים של Apple ו־Amazon"
       }
-    ]
+    ],
+    "file": "data/briefings/afternoon.html"
   },
   "_meta": {
-    "updatedAt": "30/07/2026 20:30",
+    "updatedAt": "31/07/2026 06:15",
     "source": "gmail"
   }
 }
