@@ -395,24 +395,46 @@
     var repSet = {};
     if (REPD && REPD.reports) REPD.reports.forEach(function (r) { repSet[(r.ticker || "").toUpperCase()] = 1; });
 
+    // שם/מחיר/שינוי — מהמומנטום או מהבולטות (מה שזמין)
+    var info = {};
+    if (MOMD && MOMD.stocks) MOMD.stocks.forEach(function (s) {
+      info[(s.symbol || "").toUpperCase()] = { name: s.name, px: s.price, chg: s.change_pct };
+    });
+    if (MOVERS) ["gainers", "losers", "active"].forEach(function (g) {
+      (MOVERS[g] || []).forEach(function (x) {
+        var k = (x.symbol || "").toUpperCase();
+        if (!info[k]) info[k] = { name: x.name, px: x.price, chg: x.chg };
+      });
+    });
+
     el.innerHTML =
       '<section class="card focus-card">' +
         '<div class="split-head"><span class="split-title">🎯 מניות במוקד</span>' +
           '<span class="split-sub">מופיעות בכמה מערכות במקביל</span></div>' +
         '<div class="fc-grid">' +
         focus.map(function (h) {
+          var inf = info[h.sym] || {};
+          var chg = inf.chg;
+          var pxHtml = (inf.px != null && !isNaN(inf.px))
+            ? '<span class="fc-px num" dir="ltr">' + Number(inf.px).toLocaleString("en-US", { maximumFractionDigits: 2 }) +
+              (chg != null && !isNaN(chg)
+                ? ' <b class="' + (chg >= 0 ? "up" : "down") + '">' + (chg > 0 ? "+" : "") + Number(chg).toFixed(2) + "%</b>" : "") +
+              "</span>"
+            : "";
           var tags = [];
-          if (h.mom != null) tags.push('<span class="fc-tag">🚀 מומנטום · ' + h.mom + " סיגנלים</span>");
-          if (h.cand != null) tags.push('<span class="fc-tag">🎯 מועמדת #' + h.cand + "</span>");
-          if (h.mv != null) tags.push('<span class="fc-tag ' + (h.mv >= 0 ? "up" : "down") + '">🔥 בולטת <span dir="ltr">' +
-            (h.mv > 0 ? "+" : "") + Number(h.mv).toFixed(1) + "%</span></span>");
+          if (h.mom != null) tags.push('<span class="fc-t">מומנטום · <b>' + h.mom + " סיגנלים</b></span>");
+          if (h.cand != null) tags.push('<span class="fc-t">מועמדת <b>#' + h.cand + "</b></span>");
+          if (h.mv != null) tags.push('<span class="fc-t"><b class="' + (h.mv >= 0 ? "up" : "down") + '">בולטת היום</b></span>');
           var iso = EARNW[h.sym];
-          if (iso) { var m = /-(\d{2})-(\d{2})$/.exec(iso); if (m) tags.push('<span class="fc-tag warn">📅 מדווחת ' + (+m[2]) + "." + (+m[1]) + "</span>"); }
-          if (repSet[h.sym]) tags.push('<button class="fc-tag rep" onclick="__goTab(\'reports\')">📑 יש ניתוח</button>');
+          if (iso) { var m = /-(\d{2})-(\d{2})$/.exec(iso); if (m) tags.push('<span class="fc-t fc-warn">📅 מדווחת ' + (+m[2]) + "." + (+m[1]) + "</span>"); }
+          if (repSet[h.sym]) tags.push('<button class="fc-t fc-rep" onclick="__goTab(\'reports\')">📑 ניתוח</button>');
           return '<div class="fc-item">' +
-            '<a class="fc-sym" href="https://www.tradingview.com/symbols/' + encodeURIComponent(h.sym) +
-              '/" target="_blank" rel="noopener">' + esc(h.sym) + " ↗</a>" +
-            '<div class="fc-tags">' + tags.join("") + "</div></div>";
+            '<div class="fc-head">' +
+              '<a class="fc-sym" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(h.sym) +
+                '/" target="_blank" rel="noopener">' + esc(h.sym) + "</a>" + pxHtml +
+            "</div>" +
+            (inf.name ? '<div class="fc-name" dir="ltr">' + esc(inf.name) + "</div>" : "") +
+            '<div class="fc-tags">' + tags.join('<span class="fc-sep">·</span>') + "</div></div>";
         }).join("") + "</div></section>";
   }
 
