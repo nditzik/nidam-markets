@@ -18,6 +18,10 @@ on:
         description: "שלח הודעת בדיקה לערוץ הטלגרם"
         type: boolean
         default: false
+      test_digest:
+        description: "שלח תקציר בוקר לניסיון (לערוץ)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -143,6 +147,15 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
         run: python scripts/notify_digest.py
+        continue-on-error: true
+
+      # --- ניסיון ידני של התקציר (עוקף שערים, נשלח מיד לערוץ) ---
+      - name: Digest test
+        if: ${{ inputs.test_digest }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/notify_digest.py --test
         continue-on-error: true
 
       # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
