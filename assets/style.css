@@ -486,6 +486,13 @@ tr:last-child td { border-bottom: none; }
 tbody tr { transition: background .12s; }
 tbody tr:hover { background: var(--surface-3); }
 
+/* earnings-proximity badge on momentum/candidates rows */
+.er-badge {
+  display: inline-block; margin-inline-start: 6px; background: var(--warn-soft); color: var(--warn);
+  border-radius: 6px; padding: 1px 6px; font-size: .68rem; font-weight: 700; white-space: nowrap;
+  cursor: default;
+}
+
 /* ---- Momentum extras ---- */
 a.tv { color: var(--accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
 a.tv:hover { text-decoration: underline; }

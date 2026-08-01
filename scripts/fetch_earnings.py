@@ -206,12 +206,22 @@ def main():
                         for r in sorted(rs, key=lambda r: rank_key(r, capk))][:6],
         })
 
+    # מפת חיפוש מלאה לתגי "מדווחת בקרוב": טיקר → תאריך דיווח (היום עד +7 ימים)
+    window = {}
+    for i in range(0, UPCOMING_DAYS + 1):
+        k = (today + timedelta(days=i)).isoformat()
+        for r in by_date.get(k, []):
+            sym = (r.get("Symbol") or "").strip().upper()
+            if sym:
+                window[sym] = k
+
     payload = {
         "today": key,
         "todayCount": len(today_rows),
         "reporting": today_items,
         "more": max(0, len(today_rows) - len(today_items)),
         "upcoming": upcoming,
+        "window": window,
         "_meta": {"updatedAt": israel_stamp(), "source": "earnings.csv"},
     }
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)

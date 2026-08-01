@@ -717,6 +717,19 @@
     return true;
   }
 
+  /* תג "מדווחת בקרוב" — אזהרת דוחות לסוחרי סווינג (מהמפה שב-earnings.json) */
+  var EARNW = {};
+  function erBadge(sym) {
+    var iso = EARNW[(sym || "").toUpperCase()];
+    if (!iso) return "";
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+    if (!m) return "";
+    var today = new Date();
+    var isToday = today.getFullYear() === +m[1] && (today.getMonth() + 1) === +m[2] && today.getDate() === +m[3];
+    var label = isToday ? "היום" : (+m[3]) + "." + (+m[2]);
+    return '<span class="er-badge" title="מדווחת דוחות ב-' + (+m[3]) + "." + (+m[2]) + "." + m[1].slice(2) + '">📅 ' + label + "</span>";
+  }
+
   var SIG_LABEL = { strength: "Strength", hot_prospects: "Hot", "6m_high": "6M-High", ttm_squeeze: "TTM", macd_buy: "MACD" };
   function tvLink(sym) {
     return '<a class="tv" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
@@ -763,7 +776,7 @@
           }).join("");
           return "<tr>" +
             '<td class="num"><b>' + r.signal_count + "</b></td>" +
-            "<td>" + tvLink(r.symbol) + "</td>" +
+            "<td>" + tvLink(r.symbol) + erBadge(r.symbol) + "</td>" +
             '<td class="mom-name">' + esc(r.name) + "</td>" +
             '<td class="num">' + fmt(r.price) + "</td>" +
             "<td>" + pct(r.change_pct) + "</td>" +
@@ -869,7 +882,7 @@
     function n(v, dgts) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(dgts); }
     var rows = d.candidates.map(function (c) {
       return "<tr><td class=\"num\">" + c.rank + "</td>" +
-        "<td>" + tvLink(c.symbol) + "</td>" +
+        "<td>" + tvLink(c.symbol) + erBadge(c.symbol) + "</td>" +
         "<td>" + esc(c.setup || "") + "</td>" +
         '<td class="num">' + n(c.entry, 2) + "</td>" +
         '<td class="num">' + n(c.stop, 2) + "</td>" +
@@ -972,8 +985,15 @@
     loadLiveContent();
     setInterval(loadLiveContent, 300000);
     fetchJSON("data/earnings.json")
-      .then(function (d) { EARN = d; renderHomeSplit(); })
+      .then(function (d) {
+        EARN = d; EARNW = d.window || {};
+        renderHomeSplit();
+        // תגי "מדווחת בקרוב" על טבלאות שכבר רונדרו לפני שהמפה הגיעה
+        if (MOMD) renderMomentum(document.getElementById("panel-momentum"), MOMD);
+        if (CANDD) renderCandidates(document.getElementById("panel-candidates"), CANDD);
+      })
       .catch(function () {});
+    var MOMD = null, CANDD = null;
     // החלפת קבוצות בבולטות (delegation — שורד רינדור מחדש)
     var splitEl = document.getElementById("home-split");
     if (splitEl) splitEl.addEventListener("click", function (e) {
@@ -995,7 +1015,7 @@
     });
 
     fetchJSON("data/momentum.json")
-      .then(function (d) { renderMomentum(document.getElementById("panel-momentum"), d); noteSig("momentum", d); })
+      .then(function (d) { MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); noteSig("momentum", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
     // briefing.json נטען ומתרענן דרך loadLiveContent (עם שומר-שינוי)
@@ -1005,7 +1025,7 @@
       .catch(function () { emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
 
     fetchJSON("data/candidates.json")
-      .then(function (d) { renderCandidates(document.getElementById("panel-candidates"), d); noteSig("candidates", d); })
+      .then(function (d) { CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); noteSig("candidates", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
 
     fetchJSON("data/reports.json")
