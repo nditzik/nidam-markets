@@ -31,7 +31,8 @@ LOGO_ALIAS = {
     "ALPHABET": "GOOGL", "GOOGLE": "GOOGL", "FACEBOOK": "META", "BERKSHIRE": "BRK-B",
 }
 
-NAME_RE = re.compile(r"^([A-Za-z0-9.\-]+)__(\d{4}-\d{2}-\d{2})")
+# סלחן: קו-תחתון אחד או שניים בין הטיקר לתאריך (CVX_2026-07-31 וגם CVX__2026-07-31)
+NAME_RE = re.compile(r"^([A-Za-z0-9.\-]+?)_+(\d{4}-\d{2}-\d{2})")
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 
 
@@ -95,6 +96,18 @@ def main():
         _write([])
         return 0
 
+    # "מתי הדוח הופיע לראשונה" — נשמר בין ריצות, כדי שחדש שעולה ייכנס לראש הרשימה
+    prev_added = {}
+    if os.path.exists(OUT_JSON):
+        try:
+            with open(OUT_JSON, "r", encoding="utf-8") as f:
+                for r in json.load(f).get("reports", []):
+                    if r.get("added"):
+                        prev_added[os.path.basename(r.get("file", ""))] = r["added"]
+        except Exception:
+            prev_added = {}
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
+
     os.makedirs(OUT_DIR, exist_ok=True)
     reports = []
     for name in files:
@@ -115,10 +128,12 @@ def main():
         ticker, date, title = parse_meta(name, content)
         logo = fetch_logo(ticker) if ticker else None
         reports.append({"file": "data/reports/" + name, "ticker": ticker,
-                        "date": date, "title": title, "logo": logo})
+                        "date": date, "title": title, "logo": logo,
+                        "added": prev_added.get(name, now_iso)})
         print(f"[ok] {ticker} {date} — {title[:40]}" + ("  🖼" if logo else ""))
 
-    reports.sort(key=lambda r: r.get("date") or "", reverse=True)
+    # חדש ראשון: תאריך הדוח, ובתוך אותו יום — מי שהועלה אחרון קודם
+    reports.sort(key=lambda r: (r.get("date") or "", r.get("added") or ""), reverse=True)
     _write(reports)
     print(f"[done] {len(reports)} דוחות")
     return 0
