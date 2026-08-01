@@ -43,6 +43,11 @@ jobs:
         run: python scripts/fetch_dashboards.py
         continue-on-error: true   # עמידות: כשל מקור אחד לא מפיל את כל הריצה
 
+      # --- ארכיון ציונים יומי (מזין את גרף המגמה של המד) ---
+      - name: Archive daily scores
+        run: python scripts/archive_scores.py
+        continue-on-error: true
+
       # --- משיכת מומנטום מריפו stocks-momentum ---
       - name: Fetch momentum
         run: python scripts/fetch_momentum.py

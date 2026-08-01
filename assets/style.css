@@ -321,6 +321,11 @@ main { padding: 26px 0 70px; }
 .meter-score { font-size: 1.3rem; font-weight: 800; letter-spacing: -.03em; line-height: 1; margin-top: -3px; }
 .meter-word { font-weight: 700; font-size: .74rem; margin-top: 1px; }
 .meter-sub { font-size: .66rem; color: var(--text-3); margin-top: 3px; }
+.meter-spark { width: 128px; height: 30px; margin-top: 7px; overflow: visible; }
+.spark-label { font-size: .62rem; color: var(--text-3); margin-top: 2px; }
+.stat .diff { font-size: .78rem; font-weight: 700; margin-inline-start: 6px; vertical-align: 3px; }
+.stat .diff.up { color: var(--up); }
+.stat .diff.down { color: var(--down); }
 .clock-badge { font-size: .68rem; font-weight: 700; border-radius: 999px; padding: 2px 9px; }
 .clock-badge.open { background: color-mix(in srgb, var(--up) 15%, transparent); color: var(--up); }
 .clock-badge.closed { background: var(--surface-2); color: var(--text-soft); }

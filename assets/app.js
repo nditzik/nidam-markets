@@ -221,6 +221,8 @@
         '<div class="meter-score num" id="meter-score">—</div>' +
         '<div class="meter-word" id="meter-word"></div>' +
         '<div class="meter-sub" id="meter-sub"></div>' +
+        '<svg class="meter-spark" id="meter-spark" viewBox="0 0 120 30" preserveAspectRatio="none"></svg>' +
+        '<div class="spark-label" id="spark-label"></div>' +
       "</section>" +
       '<section class="card pulse-card pulse-news">' +
         '<div class="pulse-title pn-title">📰 חדשות השוק</div>' +
@@ -452,6 +454,47 @@
   /* ---------- home split: top movers (right) + today's earnings (left) ---------- */
   var NEWS = null, EARN = null, MOVERS = null, MV_CUR = "gainers";
   var MOMD = null, CANDD = null, REPD = null;   // מאגרי-על לחישוב "מניות במוקד"
+  var HIST = null, DIFFS = null, INDD = null;   // היסטוריית ציונים + שינוי-יומי
+
+  /* גרף מגמה קטן מתחת למד — הציון המשולב לאורך הימים האחרונים */
+  function renderSpark() {
+    var svg = document.getElementById("meter-spark");
+    if (!svg || !HIST || !(HIST.days || []).length) return;
+    var days = HIST.days.slice(-30);
+    var vals = days.map(function (d) { return d.combined; }).filter(function (v) { return v != null; });
+    if (vals.length < 2) return;
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    var pad = Math.max(2, (max - min) * 0.12); min -= pad; max += pad;
+    var W = 120, Hh = 30;
+    var pts = vals.map(function (v, i) {
+      var x = i * (W / (vals.length - 1));
+      var y = Hh - ((v - min) / (max - min)) * Hh;
+      return x.toFixed(1) + "," + y.toFixed(1);
+    });
+    var last = vals[vals.length - 1];
+    var lastPt = pts[pts.length - 1].split(",");
+    svg.innerHTML =
+      '<polyline points="' + pts.join(" ") + '" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>' +
+      '<circle cx="' + lastPt[0] + '" cy="' + lastPt[1] + '" r="2.6" fill="' + meterWord(last)[1] + '"/>';
+    var lbl = document.getElementById("spark-label");
+    if (lbl) lbl.textContent = vals.length + " ימי מסחר אחרונים";
+  }
+
+  /* שינוי-יומי לציונים (מול יום המסחר הקודם) */
+  function computeDiffs() {
+    DIFFS = null;
+    if (!HIST || (HIST.days || []).length < 2) return;
+    var a = HIST.days[HIST.days.length - 2], b = HIST.days[HIST.days.length - 1];
+    DIFFS = {};
+    ["combined", "tech", "breadth", "flow"].forEach(function (k) {
+      if (a[k] != null && b[k] != null) DIFFS[k] = b[k] - a[k];
+    });
+  }
+  function diffTag(key) {
+    if (!DIFFS || DIFFS[key] == null || DIFFS[key] === 0) return "";
+    var v = DIFFS[key];
+    return '<span class="diff ' + (v > 0 ? "up" : "down") + '" dir="ltr">' + (v > 0 ? "▲" : "▼") + Math.abs(v) + "</span>";
+  }
   function renderHomeSplit() {
     var el = document.getElementById("home-split");
     if (!el) return;
@@ -609,7 +652,7 @@
             if (fl.directionReason) tip = ' title="' + esc(fl.directionReason) + '"';
           }
           return '<div class="card stat"' + tip + '><div class="label">' + p[1] + "</div>" +
-            '<div class="value num ' + scoreBand(val) + '">' + (val == null ? "—" : val) + "</div>" + sub + "</div>";
+            '<div class="value num ' + scoreBand(val) + '">' + (val == null ? "—" : val) + diffTag(p[0]) + "</div>" + sub + "</div>";
         }).join("") + "</div>";
 
     var marketCards =
@@ -1036,6 +1079,17 @@
     setInterval(loadTicker, 180000); // refresh the strip every 3 min
     initHomePulse();                 // מד השוק + שעון המסחר (מתמלאים כשנתונים מגיעים)
 
+    // היסטוריית ציונים — גרף המגמה + חצי שינוי-יומי
+    fetchJSON("data/history.json")
+      .then(function (d) {
+        HIST = d; computeDiffs(); renderSpark();
+        if (INDD) {   // הוסף חצים לכרטיסים שכבר רונדרו
+          renderMarketOverview(document.getElementById("home-overview"), INDD, { home: true });
+          renderIndicesDetail(document.getElementById("panel-indices"), INDD);
+        }
+      })
+      .catch(function () {});
+
     // home content — news (pulse middle), movers + earnings (split row); each renders as it lands.
     // חדשות + בולטות מתרעננות לבד כל 5 דק' כשהדף פתוח (כמו סרט המדדים)
     function loadLiveContent() {
@@ -1087,6 +1141,7 @@
     });
     // Home + indices share the indices dataset
     fetchJSON("data/indices.json").then(function (d) {
+      INDD = d;
       renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
       renderIndicesDetail(document.getElementById("panel-indices"), d);
       renderMeter(d);
