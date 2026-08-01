@@ -30,8 +30,10 @@ SOURCES = [
     ("@KobeissiLetter", "tg", "thekobeissiletter"),
     ("Walter Bloomberg", "tg", "walter_bloomberg"),
     ("FinancialJuice", "tg", "financialjuice"),
+    ("@Barchart", "tg", "barchartx"),          # טלגרם רשמי (התגלה בציוץ שלהם)
     ("@wallstengine", "nitter", "wallstengine"),
     ("@LiveSquawk", "nitter", "LiveSquawk"),
+    ("@StockMKTNewz", "nitter", "StockMKTNewz"),
 ]
 NITTER_HOSTS = ["nitter.net", "xcancel.com"]
 
