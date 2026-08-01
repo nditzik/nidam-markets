@@ -977,6 +977,49 @@
     });
   }
 
+  /* טאב סקטורים — הדוח השבועי האחרון + ארכיון שבועות קודמים */
+  var SECT = null;
+  function secDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
+    return m ? (+m[3]) + "." + (+m[2]) + "." + m[1].slice(2) : iso;
+  }
+  function renderSectors(el, d) {
+    SECT = d;
+    var reps = (d && d.reports) || [];
+    if (!reps.length) {
+      emptyPanel(el, "🔄", "דוח סקטורים — בקרוב", "הדוח השבועי הראשון בדרך.");
+      return;
+    }
+    var nav = reps.length > 1
+      ? '<div class="chips" style="margin-bottom:12px">' + reps.map(function (r, i) {
+          return '<button class="chip sec-tab' + (i === 0 ? " lead" : "") + '" data-sec="' + i + '">' + esc(secDate(r.date)) + "</button>";
+        }).join("") + "</div>"
+      : "";
+    el.innerHTML = stamp(d._meta) +
+      '<div class="section-title" style="margin-top:0">🔄 דוח סקטורים שבועי</div>' +
+      nav + '<div id="sec-view"></div>';
+    showSector(0);
+    el.querySelectorAll(".sec-tab").forEach(function (b) {
+      b.addEventListener("click", function () {
+        el.querySelectorAll(".sec-tab").forEach(function (x) { x.classList.toggle("lead", x === b); });
+        showSector(+b.dataset.sec);
+      });
+    });
+  }
+  function showSector(i) {
+    var view = document.getElementById("sec-view");
+    if (!view || !SECT) return;
+    var r = (SECT.reports || [])[i];
+    if (!r) return;
+    view.innerHTML =
+      '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
+        "<strong>" + esc(r.title) + "</strong>" +
+        '<div class="stamp" style="margin:4px 0 0">שבוע שהסתיים ב-' + esc(secDate(r.date)) + "</div></div>" +
+      '<iframe class="brief-frame" src="' + bust(r.file, SECT._meta) + '" title="' + esc(r.title) +
+      '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
+      'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+  }
+
   function renderMorning(el, d) {
     if (!d || d._status === "pending" || !d.file) {
       emptyPanel(el, "🌅", "סקירת בוקר — בקרוב", "תחובר ברגע שצינור ה-Barchart יופעל.");
@@ -1157,6 +1200,10 @@
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
     // briefing.json נטען ומתרענן דרך loadLiveContent (עם שומר-שינוי)
+
+    fetchJSON("data/sectors.json")
+      .then(function (d) { renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
+      .catch(function () { emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
 
     fetchJSON("data/morning.json")
       .then(function (d) { renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })

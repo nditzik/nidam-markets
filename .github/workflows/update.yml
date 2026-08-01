@@ -99,6 +99,11 @@ jobs:
         run: python scripts/fetch_reports.py
         continue-on-error: true
 
+      # --- דוח הרוטציה הסקטוריאלית השבועי (nidam-reports/sectors) ---
+      - name: Fetch sector reports
+        run: python scripts/fetch_sectors.py
+        continue-on-error: true
+
       # --- מחירי שוק חיים (Yahoo Finance) לסרט בדף הבית ---
       - name: Fetch market quotes
         run: python scripts/fetch_market.py
