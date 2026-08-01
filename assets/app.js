@@ -335,17 +335,24 @@
     var el = document.getElementById("home-x");
     if (!el) return;
     if (!PULSE_X || !(PULSE_X.items || []).length) { el.innerHTML = ""; return; }
+    function row(it) {
+      return '<li><a href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
+        '<span class="x-time num">' + esc(it.time) + "</span>" +
+        '<span class="x-src">' + esc(it.source) + "</span>" +
+        '<span class="x-txt">' + esc(it.text) + "</span></a></li>";
+    }
+    // מילוי אנכי: העמודה הימנית = החדשים ביותר מלמעלה למטה, השמאלית ממשיכה
+    var items = PULSE_X.items;
+    var half = Math.ceil(items.length / 2);
+    var colRight = items.slice(0, half), colLeft = items.slice(half);
     el.innerHTML =
       '<section class="card x-card">' +
         '<div class="split-head"><span class="split-title">⚡ בזק מהרשת</span>' +
           '<span class="split-sub">X · עדכוני זמן-אמת</span></div>' +
-        '<ul class="x-list">' +
-        PULSE_X.items.map(function (it) {
-          return '<li><a href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
-            '<span class="x-time num">' + esc(it.time) + "</span>" +
-            '<span class="x-src">' + esc(it.source) + "</span>" +
-            '<span class="x-txt">' + esc(it.text) + "</span></a></li>";
-        }).join("") + "</ul></section>";
+        '<div class="x-cols">' +
+          '<ul class="x-list">' + colRight.map(row).join("") + "</ul>" +
+          '<ul class="x-list">' + colLeft.map(row).join("") + "</ul>" +
+        "</div></section>";
   }
 
   /* compact news in the middle of the pulse row — displayed in original English */
