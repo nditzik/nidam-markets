@@ -432,8 +432,12 @@
           if (repSet[h.sym]) tags.push('<button class="fc-t fc-rep" onclick="__goTab(\'reports\')">📑 ניתוח</button>');
           return '<div class="fc-item">' +
             '<div class="fc-head">' +
-              '<a class="fc-sym" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(h.sym) +
-                '/" target="_blank" rel="noopener">' + esc(h.sym) + "</a>" + pxHtml +
+              '<span class="fc-id">' +
+                '<img class="fc-logo" src="https://financialmodelingprep.com/image-stock/' + encodeURIComponent(h.sym) +
+                  '.png" alt="" loading="lazy" onerror="this.remove()">' +
+                '<a class="fc-sym" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(h.sym) +
+                  '/" target="_blank" rel="noopener">' + esc(h.sym) + "</a>" +
+              "</span>" + pxHtml +
             "</div>" +
             (inf.name ? '<div class="fc-name" dir="ltr">' + esc(inf.name) + "</div>" : "") +
             '<div class="fc-tags">' + tags.join('<span class="fc-sep">·</span>') + "</div></div>";

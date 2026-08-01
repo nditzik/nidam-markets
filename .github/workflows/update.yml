@@ -137,6 +137,14 @@ jobs:
         run: python scripts/fetch_pulse.py
         continue-on-error: true
 
+      # --- תקציר בוקר לערוץ (נשלח רק כשמדדים+מומנטום+מועמדים+תדרוך בוקר עודכנו היום) ---
+      - name: Morning digest to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/notify_digest.py
+        continue-on-error: true
+
       # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
       - name: Build health status
         run: python scripts/build_health.py
