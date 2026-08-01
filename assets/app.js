@@ -299,8 +299,14 @@
   function renderClockNext() {
     var el = document.getElementById("clock-next");
     if (!el || !BRIEF) return;
-    var sched = (BRIEF.afternoon && BRIEF.afternoon.schedule) || (BRIEF.morning && BRIEF.morning.schedule) || [];
+    var slot = (BRIEF.afternoon && BRIEF.afternoon.schedule && BRIEF.afternoon) ||
+               (BRIEF.morning && BRIEF.morning.schedule && BRIEF.morning) || null;
+    if (!slot) return;
+    // הלוז רלוונטי רק אם התדריך הוא מהיום — אחרת מציגים אירועים של אתמול
     var now = new Date();
+    var todayLabel = ("0" + now.getDate()).slice(-2) + "/" + ("0" + (now.getMonth() + 1)).slice(-2) + "/" + now.getFullYear();
+    if (slot.dateLabel !== todayLabel) { el.style.display = "none"; return; }
+    var sched = slot.schedule || [];
     for (var i = 0; i < sched.length; i++) {
       var m = /^(\d{1,2}):(\d{2})$/.exec(sched[i].time || "");
       if (!m) continue;
@@ -311,6 +317,16 @@
         return;
       }
     }
+    el.style.display = "none";
+  }
+
+  /* יום המסחר שהנתונים החיים מתייחסים אליו: היום אם הסשן כבר נפתח, אחרת יום המסחר הקודם */
+  function lastSessionDate() {
+    var d = new Date();
+    if (!(tradingDay(d) && d >= atTime(d, OPEN_T))) {
+      do { d.setDate(d.getDate() - 1); } while (!tradingDay(d));
+    }
+    return d.getDate() + "." + (d.getMonth() + 1) + "." + String(d.getFullYear()).slice(2);
   }
 
   /* compact news in the middle of the pulse row — displayed in original English */
@@ -344,7 +360,7 @@
       }).join("");
       html += '<section class="card split-card">' +
         '<div class="split-head"><span class="split-title">🔥 הבולטות של היום</span>' +
-          '<span class="split-sub">' + esc(((MOVERS._meta || {}).updatedAt ? "עודכן " + MOVERS._meta.updatedAt : "")) + "</span></div>" +
+          '<span class="split-sub">נכון ליום המסחר <span dir="ltr">' + lastSessionDate() + "</span></span></div>" +
         '<div class="mv-tabs">' + tabs.map(function (t) {
           return '<button class="mv-tab' + (t[0] === MV_CUR ? " on" : "") + '" data-g="' + t[0] + '">' + t[1] + "</button>";
         }).join("") + "</div>" +
