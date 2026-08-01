@@ -344,7 +344,7 @@ main { padding: 26px 0 70px; }
 
 /* ---- "בזק מהרשת" — full-width X pulse strip ---- */
 .x-card { padding: 14px 18px; margin: 0 0 14px; }
-.x-cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 26px; direction: rtl; } /* ילד ראשון = עמודה ימנית */
+.x-cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 26px; direction: ltr; } /* ילד ראשון = עמודה שמאלית (החדש ביותר) */
 .x-list { list-style: none; margin: 0; padding: 0; direction: ltr; min-width: 0; }
 @media (max-width: 760px) { .x-cols { grid-template-columns: 1fr; } }
 .x-list li { border-bottom: 1px solid var(--border-soft); min-width: 0; overflow: hidden; }

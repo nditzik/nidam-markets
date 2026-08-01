@@ -302,8 +302,9 @@
     var slot = (BRIEF.afternoon && BRIEF.afternoon.schedule && BRIEF.afternoon) ||
                (BRIEF.morning && BRIEF.morning.schedule && BRIEF.morning) || null;
     if (!slot) return;
-    // הלוז רלוונטי רק אם התדריך הוא מהיום — אחרת מציגים אירועים של אתמול
+    // "האירוע הבא היום" רק כשבאמת יש יום מסחר היום, והתדריך הוא מהיום
     var now = new Date();
+    if (!tradingDay(now)) { el.style.display = "none"; return; }
     var todayLabel = ("0" + now.getDate()).slice(-2) + "/" + ("0" + (now.getMonth() + 1)).slice(-2) + "/" + now.getFullYear();
     if (slot.dateLabel !== todayLabel) { el.style.display = "none"; return; }
     var sched = slot.schedule || [];
@@ -341,17 +342,17 @@
         '<span class="x-src">' + esc(it.source) + "</span>" +
         '<span class="x-txt">' + esc(it.text) + "</span></a></li>";
     }
-    // מילוי אנכי: העמודה הימנית = החדשים ביותר מלמעלה למטה, השמאלית ממשיכה
+    // מילוי אנכי: העמודה השמאלית = החדשים ביותר מלמעלה למטה, הימנית ממשיכה
     var items = PULSE_X.items;
     var half = Math.ceil(items.length / 2);
-    var colRight = items.slice(0, half), colLeft = items.slice(half);
+    var colA = items.slice(0, half), colB = items.slice(half);
     el.innerHTML =
       '<section class="card x-card">' +
         '<div class="split-head"><span class="split-title">⚡ בזק מהרשת</span>' +
           '<span class="split-sub">X · עדכוני זמן-אמת</span></div>' +
         '<div class="x-cols">' +
-          '<ul class="x-list">' + colRight.map(row).join("") + "</ul>" +
-          '<ul class="x-list">' + colLeft.map(row).join("") + "</ul>" +
+          '<ul class="x-list">' + colA.map(row).join("") + "</ul>" +
+          '<ul class="x-list">' + colB.map(row).join("") + "</ul>" +
         "</div></section>";
   }
 
@@ -454,8 +455,10 @@
       ? '<span class="brief-sent">' + h(sent.emoji || "") + " " + esc(sent.text) + "</span>" : "";
     var newsHtml = news.length
       ? '<ol class="brief-news">' + news.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ol>" : "";
+    // במייל של סופ"ש "מה נשאר ביומן" מתייחס ליום המסחר הבא — מציגים כותרת כנה
+    var lozTitle = tradingDay(new Date()) ? "🕐 לוז יומי צפוי" : "🕐 לוז ליום המסחר הבא";
     var schedHtml = sched.length
-      ? '<div class="brief-sched"><div class="bs-title">🕐 לוז יומי צפוי</div><ul>' +
+      ? '<div class="brief-sched"><div class="bs-title">' + lozTitle + "</div><ul>" +
         sched.map(function (x) {
           return '<li><span class="bs-time num" dir="ltr">' + esc(x.time) + "</span>" +
             '<span class="bs-ev">' + esc(x.text) + "</span></li>";
@@ -949,7 +952,23 @@
       fetchJSON("data/pulse.json")
         .then(function (d) { PULSE_X = d; renderPulseX(); })
         .catch(function () {});
+      // תדריך חדש (בוקר/צהריים) נכנס לבד לדף הבית ולטאב — רק כשבאמת השתנה
+      fetchJSON("data/briefing.json")
+        .then(function (d) {
+          var stampNow = (d._meta || {}).updatedAt || "";
+          if (stampNow && stampNow === lastBriefStamp) return;
+          lastBriefStamp = stampNow;
+          BRIEF = d;
+          renderHomeBriefing();
+          renderClockNext();
+          renderBriefing(document.getElementById("panel-briefing"), d);
+          noteSig("briefing", d);
+        })
+        .catch(function () {
+          if (!BRIEF) emptyPanel(document.getElementById("panel-briefing"), "📣", "תדרוך משקיעים — בקרוב", "");
+        });
     }
+    var lastBriefStamp = "";
     loadLiveContent();
     setInterval(loadLiveContent, 300000);
     fetchJSON("data/earnings.json")
@@ -979,9 +998,7 @@
       .then(function (d) { renderMomentum(document.getElementById("panel-momentum"), d); noteSig("momentum", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
-    fetchJSON("data/briefing.json")
-      .then(function (d) { BRIEF = d; renderBriefing(document.getElementById("panel-briefing"), d); renderHomeBriefing(); renderClockNext(); noteSig("briefing", d); })
-      .catch(function () { emptyPanel(document.getElementById("panel-briefing"), "📣", "תדרוך משקיעים — בקרוב", ""); });
+    // briefing.json נטען ומתרענן דרך loadLiveContent (עם שומר-שינוי)
 
     fetchJSON("data/morning.json")
       .then(function (d) { renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
