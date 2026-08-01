@@ -486,6 +486,28 @@ tr:last-child td { border-bottom: none; }
 tbody tr { transition: background .12s; }
 tbody tr:hover { background: var(--surface-3); }
 
+/* ---- "מניות במוקד" — confluence strip ---- */
+.focus-card { padding: 14px 18px; margin: 0 0 14px; }
+.fc-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.fc-item {
+  display: flex; flex-direction: column; gap: 7px; min-width: 150px;
+  background: var(--surface-2); border: 1px solid var(--border-soft);
+  border-radius: 12px; padding: 10px 13px;
+}
+.fc-sym { font-weight: 800; font-size: 1rem; color: var(--accent); text-decoration: none; letter-spacing: -.01em; }
+.fc-sym:hover { text-decoration: underline; }
+.fc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.fc-tag {
+  display: inline-block; background: var(--card-bg); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: 2px 7px; font-size: .7rem; font-weight: 600; color: var(--text-soft);
+  font-family: inherit;
+}
+.fc-tag.up { color: var(--up); }
+.fc-tag.down { color: var(--down); }
+.fc-tag.warn { color: var(--warn); background: var(--warn-soft); border-color: transparent; }
+.fc-tag.rep { color: var(--accent); cursor: pointer; }
+.fc-tag.rep:hover { background: var(--accent-soft); }
+
 /* earnings-proximity badge on momentum/candidates rows */
 .er-badge {
   display: inline-block; margin-inline-start: 6px; background: var(--warn-soft); color: var(--warn);

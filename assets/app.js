@@ -356,6 +356,66 @@
         "</div></section>";
   }
 
+  /* "מניות במוקד" — גלאי מפגשים: מניה שמופיעה ב-2+ מקורות פעילים (מומנטום/מועמדים/בולטות) */
+  function renderFocus() {
+    var el = document.getElementById("home-focus");
+    if (!el) return;
+    var hits = {};
+    function H(sym) { sym = (sym || "").toUpperCase(); if (!sym) return null; return (hits[sym] = hits[sym] || { sym: sym }); }
+
+    if (MOMD && MOMD.stocks) {
+      MOMD.stocks.forEach(function (s) {
+        if ((s.signal_count || 0) >= 2 && passesBase(s)) {
+          var h = H(s.symbol); if (h) h.mom = s.signal_count;
+        }
+      });
+    }
+    if (CANDD && CANDD.candidates) {
+      CANDD.candidates.forEach(function (c) { var h = H(c.symbol); if (h) h.cand = c.rank; });
+    }
+    if (MOVERS) {
+      ["gainers", "losers", "active"].forEach(function (g) {
+        (MOVERS[g] || []).forEach(function (x) {
+          var h = H(x.symbol); if (h && h.mv == null) h.mv = x.chg;
+        });
+      });
+    }
+
+    var focus = Object.keys(hits).map(function (k) { return hits[k]; }).filter(function (h) {
+      return [h.mom != null, h.cand != null, h.mv != null].filter(Boolean).length >= 2;
+    });
+    if (!focus.length) { el.innerHTML = ""; return; }
+    focus.sort(function (a, b) {
+      var na = [a.mom != null, a.cand != null, a.mv != null].filter(Boolean).length;
+      var nb = [b.mom != null, b.cand != null, b.mv != null].filter(Boolean).length;
+      return (nb - na) || ((b.mom || 0) - (a.mom || 0));
+    });
+    focus = focus.slice(0, 6);
+
+    var repSet = {};
+    if (REPD && REPD.reports) REPD.reports.forEach(function (r) { repSet[(r.ticker || "").toUpperCase()] = 1; });
+
+    el.innerHTML =
+      '<section class="card focus-card">' +
+        '<div class="split-head"><span class="split-title">🎯 מניות במוקד</span>' +
+          '<span class="split-sub">מופיעות בכמה מערכות במקביל</span></div>' +
+        '<div class="fc-grid">' +
+        focus.map(function (h) {
+          var tags = [];
+          if (h.mom != null) tags.push('<span class="fc-tag">🚀 מומנטום · ' + h.mom + " סיגנלים</span>");
+          if (h.cand != null) tags.push('<span class="fc-tag">🎯 מועמדת #' + h.cand + "</span>");
+          if (h.mv != null) tags.push('<span class="fc-tag ' + (h.mv >= 0 ? "up" : "down") + '">🔥 בולטת <span dir="ltr">' +
+            (h.mv > 0 ? "+" : "") + Number(h.mv).toFixed(1) + "%</span></span>");
+          var iso = EARNW[h.sym];
+          if (iso) { var m = /-(\d{2})-(\d{2})$/.exec(iso); if (m) tags.push('<span class="fc-tag warn">📅 מדווחת ' + (+m[2]) + "." + (+m[1]) + "</span>"); }
+          if (repSet[h.sym]) tags.push('<button class="fc-tag rep" onclick="__goTab(\'reports\')">📑 יש ניתוח</button>');
+          return '<div class="fc-item">' +
+            '<a class="fc-sym" href="https://www.tradingview.com/symbols/' + encodeURIComponent(h.sym) +
+              '/" target="_blank" rel="noopener">' + esc(h.sym) + " ↗</a>" +
+            '<div class="fc-tags">' + tags.join("") + "</div></div>";
+        }).join("") + "</div></section>";
+  }
+
   /* compact news in the middle of the pulse row — displayed in original English */
   function renderPulseNews() {
     var el = document.getElementById("pn-list");
@@ -369,6 +429,7 @@
 
   /* ---------- home split: top movers (right) + today's earnings (left) ---------- */
   var NEWS = null, EARN = null, MOVERS = null, MV_CUR = "gainers";
+  var MOMD = null, CANDD = null, REPD = null;   // מאגרי-על לחישוב "מניות במוקד"
   function renderHomeSplit() {
     var el = document.getElementById("home-split");
     if (!el) return;
@@ -960,7 +1021,7 @@
         .then(function (d) { NEWS = d; renderPulseNews(); })
         .catch(function () {});
       fetchJSON("data/movers.json")
-        .then(function (d) { MOVERS = d; renderHomeSplit(); })
+        .then(function (d) { MOVERS = d; renderHomeSplit(); renderFocus(); })
         .catch(function () {});
       fetchJSON("data/pulse.json")
         .then(function (d) { PULSE_X = d; renderPulseX(); })
@@ -991,9 +1052,9 @@
         // תגי "מדווחת בקרוב" על טבלאות שכבר רונדרו לפני שהמפה הגיעה
         if (MOMD) renderMomentum(document.getElementById("panel-momentum"), MOMD);
         if (CANDD) renderCandidates(document.getElementById("panel-candidates"), CANDD);
+        renderFocus();
       })
       .catch(function () {});
-    var MOMD = null, CANDD = null;
     // החלפת קבוצות בבולטות (delegation — שורד רינדור מחדש)
     var splitEl = document.getElementById("home-split");
     if (splitEl) splitEl.addEventListener("click", function (e) {
@@ -1015,7 +1076,7 @@
     });
 
     fetchJSON("data/momentum.json")
-      .then(function (d) { MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); noteSig("momentum", d); })
+      .then(function (d) { MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); noteSig("momentum", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
     // briefing.json נטען ומתרענן דרך loadLiveContent (עם שומר-שינוי)
@@ -1025,11 +1086,11 @@
       .catch(function () { emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
 
     fetchJSON("data/candidates.json")
-      .then(function (d) { CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); noteSig("candidates", d); })
+      .then(function (d) { CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); noteSig("candidates", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
 
     fetchJSON("data/reports.json")
-      .then(function (d) { renderReports(document.getElementById("panel-reports"), d); noteSig("reports", d); })
+      .then(function (d) { REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); noteSig("reports", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
 
     fetchJSON("data/_health.json")
