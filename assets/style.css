@@ -342,6 +342,21 @@ main { padding: 26px 0 70px; }
 .pn-list.en .pn-time { margin: 0 8px 0 0; }
 @media (max-width: 720px) { .home-pulse { justify-content: center; } .pulse-news { flex: 1 1 100%; } }
 
+/* ---- "בזק מהרשת" — full-width X pulse strip ---- */
+.x-card { padding: 14px 18px; margin: 0 0 14px; }
+.x-list { list-style: none; margin: 0; padding: 0; direction: ltr;
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 26px; }
+.x-list li { border-bottom: 1px solid var(--border-soft); min-width: 0; overflow: hidden; }
+.x-list a { display: flex; align-items: baseline; gap: 8px; padding: 6px 0;
+  text-decoration: none; min-width: 0; }
+.x-time { flex: none; color: var(--accent); font-weight: 700; font-size: .72rem; }
+.x-src { flex: none; background: var(--surface-2); color: var(--text-soft);
+  border-radius: 6px; padding: 1px 7px; font-size: .68rem; font-weight: 700; white-space: nowrap; }
+.x-txt { color: var(--text); font-size: .84rem; font-weight: 500;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.x-list a:hover .x-txt { color: var(--accent); }
+@media (max-width: 760px) { .x-list { grid-template-columns: 1fr; } }
+
 /* top movers card (home split) */
 .mv-tabs { display: flex; gap: 7px; margin-bottom: 10px; }
 .mv-tab { border: none; font-family: inherit; cursor: pointer; background: var(--surface-2);

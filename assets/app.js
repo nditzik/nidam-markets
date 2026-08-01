@@ -329,6 +329,25 @@
     return d.getDate() + "." + (d.getMonth() + 1) + "." + String(d.getFullYear()).slice(2);
   }
 
+  /* "בזק מהרשת" — כותרות-בזק מחשבונות X (דרך שיקופי טלגרם/Nitter), רצועה ברוחב מלא */
+  var PULSE_X = null;
+  function renderPulseX() {
+    var el = document.getElementById("home-x");
+    if (!el) return;
+    if (!PULSE_X || !(PULSE_X.items || []).length) { el.innerHTML = ""; return; }
+    el.innerHTML =
+      '<section class="card x-card">' +
+        '<div class="split-head"><span class="split-title">⚡ בזק מהרשת</span>' +
+          '<span class="split-sub">X · עדכוני זמן-אמת</span></div>' +
+        '<ul class="x-list">' +
+        PULSE_X.items.map(function (it) {
+          return '<li><a href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
+            '<span class="x-time num">' + esc(it.time) + "</span>" +
+            '<span class="x-src">' + esc(it.source) + "</span>" +
+            '<span class="x-txt">' + esc(it.text) + "</span></a></li>";
+        }).join("") + "</ul></section>";
+  }
+
   /* compact news in the middle of the pulse row — displayed in original English */
   function renderPulseNews() {
     var el = document.getElementById("pn-list");
@@ -919,6 +938,9 @@
         .catch(function () {});
       fetchJSON("data/movers.json")
         .then(function (d) { MOVERS = d; renderHomeSplit(); })
+        .catch(function () {});
+      fetchJSON("data/pulse.json")
+        .then(function (d) { PULSE_X = d; renderPulseX(); })
         .catch(function () {});
     }
     loadLiveContent();

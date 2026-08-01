@@ -122,6 +122,11 @@ jobs:
         run: python scripts/fetch_movers.py
         continue-on-error: true
 
+      # --- "בזק מהרשת": חשבונות X דרך שיקופי טלגרם + Nitter ---
+      - name: Fetch X pulse
+        run: python scripts/fetch_pulse.py
+        continue-on-error: true
+
       # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
       - name: Build health status
         run: python scripts/build_health.py
