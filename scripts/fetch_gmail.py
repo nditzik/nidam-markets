@@ -108,24 +108,37 @@ def _after_heading(html, *labels):
 
 
 def headlines_of(html):
-    """4 הידיעות הראשיות — לפי המהדורה: צהריים='חדש מאז הבוקר', בוקר=הידיעות המרכזיות.
-    תומך במבנה החדש (כותרות עבריות) ובישן (סמני DELTA UPDATE / KEY SIGNALS)."""
+    """4 הידיעות הראשיות. המיילים משנים מבנה בין ימים (h2/ul, divים מעוצבים, סמנים
+    באנגלית) — לכן החילוץ עמיד-מבנה: כותרת הסעיף בעברית + הרשימה/הכותרות הקרובות."""
     out = []
 
-    # --- מבנה חדש: <h2>🆕 חדש מאז בריף הבוקר</h2> + <ul class="bullets"> ---
-    delta_new = _after_heading(html, "חדש מאז בריף", "חדש מאז הבוקר")
-    if delta_new:
-        for li in re.findall(r"<li[^>]*>(.*?)</li>", delta_new, re.S):
-            t = _clean(li)
-            if t:
-                out.append(t)
-    # --- מבנה חדש: <h2>📰 הידיעות המרכזיות</h2> + <div class="story"><h3>כותרת</h3> ---
+    # --- "חדש מאז ..." (כל ניסוח) → תבליטי ה-<ul> הראשון שאחרי הכותרת ---
+    i = html.find("חדש מאז")
+    if i >= 0:
+        m = re.search(r"<ul[^>]*>(.*?)</ul>", html[i:], re.S)
+        if m:
+            for li in re.findall(r"<li[^>]*>(.*?)</li>", m.group(1), re.S):
+                t = _clean(li)
+                if t:
+                    out.append(t)
+    # --- "הידיעות המרכזיות" → <h3> או divים מודגשים-ממוספרים ("1. כותרת") ---
     if not out:
-        stories = _after_heading(html, "הידיעות המרכזיות")
-        for m in re.findall(r"<h3[^>]*>(.*?)</h3>", stories, re.S):
-            t = _clean(m)
-            if t:
-                out.append(t)
+        i = html.find("הידיעות המרכזיות")
+        if i >= 0:
+            tail = html[i:]
+            for m in re.finditer(r"<h3[^>]*>(.*?)</h3>", tail, re.S):
+                t = _clean(m.group(1))
+                if t:
+                    out.append(t)
+                if len(out) >= 6:
+                    break
+            if not out:
+                for m in re.finditer(r"<div[^>]*font-weight:\s*800[^>]*>\s*(\d+\s*[.):|]\s*.*?)</div>", tail, re.S):
+                    t = re.sub(r"^\d+\s*[.):|]\s*", "", _clean(m.group(1)))
+                    if t:
+                        out.append(t)
+                    if len(out) >= 6:
+                        break
     if out:
         return out[:4]
 
@@ -147,19 +160,38 @@ def headlines_of(html):
 
 
 def schedule_of(html):
-    """הלוז היומי — זוגות (שעה, אירוע). מבנה חדש: כותרת 📅 + <table>; ישן: מקטע TIMELINE."""
-    sec = _after_heading(html, "מה נשאר ביומן", "יומן השוק")
-    if not sec:
-        sec = _section(html, "TIMELINE", ["WATCHLIST", "BOTTOM LINE"])
+    """הלוז היומי — זוגות (שעה/תווית, אירוע). עמיד-מבנה: הטבלה הראשונה שאחרי כותרת
+    היומן; תומך גם בשתי עמודות (שעה|אירוע) וגם בתא בודד (<b>תווית</b><br>טקסט)."""
     out = []
-    for tr in re.findall(r"<tr>(.*?)</tr>", sec, re.S):
-        tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
-        if len(tds) < 2:
+    for lab in ("מה נשאר ביומן", "יומן השוק", "TIMELINE"):
+        i = html.find(lab)
+        if i < 0:
             continue
-        tm = re.search(r"\d{1,2}:\d{2}", _clean(tds[0]))
-        ev = _clean(tds[1])
-        if tm and ev:
-            out.append({"time": tm.group(0), "text": ev})
+        m = re.search(r"<table[^>]*>(.*?)</table>", html[i:], re.S)
+        if not m:
+            continue
+        for tr in re.findall(r"<tr>(.*?)</tr>", m.group(1), re.S):
+            tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
+            if not tds:
+                continue
+            if len(tds) >= 2:
+                tm = re.search(r"\d{1,2}:\d{2}", _clean(tds[0]))
+                ev = _clean(tds[1])
+                if tm and ev:
+                    out.append({"time": tm.group(0), "text": ev})
+            else:
+                b = re.search(r"<b[^>]*>(.*?)</b>", tds[0], re.S)
+                label = _clean(b.group(1)) if b else ""
+                ev = _clean(re.sub(r"<b[^>]*>.*?</b>", "", tds[0], flags=re.S))
+                if not ev:
+                    continue
+                tm = re.search(r"\d{1,2}:\d{2}", label)
+                if tm:
+                    out.append({"time": tm.group(0), "text": ev})
+                elif label:   # שורה בלי שעה ("היום, ראשון") — תווית קצרה במקום שעה
+                    out.append({"time": label.split(",")[0].split("—")[0].strip()[:6], "text": ev})
+        if out:
+            return out
     return out
 
 
