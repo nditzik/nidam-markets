@@ -190,17 +190,29 @@ def main():
     today_rows = sorted(by_date.get(key, []), key=lambda r: rank_key(r, capk))
     today_items = [row_to_item(r, with_logo=True) for r in today_rows[:MAX_TODAY]]
 
+    # "מדווחות השבוע" — שבוע המסחר (ב'–ו'): באמצע השבוע רק הימים שנותרו,
+    # ובשבת/ראשון — השבוע הקרוב המלא (מתרענן עם ה-CSV שאיציק שומר בשבת)
+    wd = today.weekday()          # שני=0 … ראשון=6
+    if wd >= 5:                   # שבת/ראשון → שני–שישי הבאים
+        start = today + timedelta(days=7 - wd)
+        end = start + timedelta(days=4)
+    else:                         # באמצע השבוע → ממחר עד שישי הנוכחי
+        start = today + timedelta(days=1)
+        end = today + timedelta(days=4 - wd)
+
     upcoming = []
-    for i in range(1, UPCOMING_DAYS + 1):
-        d = (today + timedelta(days=i))
-        k = d.isoformat()
+    cur = start
+    while cur <= end:
+        k = cur.isoformat()
         rs = by_date.get(k)
+        day = cur
+        cur = cur + timedelta(days=1)
         if not rs:
             continue
         upcoming.append({
             "date": k,
-            "label": "%d/%d" % (d.day, d.month),
-            "dow": ["ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳", "א׳"][d.weekday()],
+            "label": "%d/%d" % (day.day, day.month),
+            "dow": ["ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳", "א׳"][day.weekday()],
             "count": len(rs),
             "tickers": [(r.get("Symbol") or "").strip().upper()
                         for r in sorted(rs, key=lambda r: rank_key(r, capk))][:6],

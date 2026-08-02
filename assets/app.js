@@ -541,7 +541,7 @@
         body = '<p class="earn-empty">אין דיווחים מתוכננים להיום.</p>';
       }
       var upHtml = up.length
-        ? '<div class="earn-up"><div class="earn-up-t">מדווחות שבוע הבא</div>' +
+        ? '<div class="earn-up"><div class="earn-up-t">מדווחות השבוע</div>' +
           up.map(function (u) {
             return '<div class="earn-up-row"><span class="earn-up-day">' + esc(u.dow) + " " +
               '<span dir="ltr">' + esc(u.label) + "</span></span>" +
