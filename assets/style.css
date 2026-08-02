@@ -494,24 +494,24 @@ tbody tr:hover { background: var(--surface-3); }
 
 /* ---- "מניות במוקד" — confluence strip (symmetric grid) ---- */
 .focus-card { padding: 14px 18px; margin: 0 0 14px; }
-.fc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-@media (max-width: 900px) { .fc-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .fc-grid { grid-template-columns: 1fr; } }
+.fc-grid { display: grid; grid-template-columns: repeat(3, 248px); justify-content: center; gap: 10px; }
+@media (max-width: 900px) { .fc-grid { grid-template-columns: repeat(2, minmax(0, 248px)); } }
+@media (max-width: 560px) { .fc-grid { grid-template-columns: minmax(0, 1fr); } }
 .fc-item {
-  display: flex; flex-direction: column; gap: 4px; min-width: 0;
+  display: flex; flex-direction: column; gap: 3px; min-width: 0;
   background: var(--surface-2); border: 1px solid var(--border-soft);
-  border-radius: 12px; padding: 11px 14px;
+  border-radius: 11px; padding: 9px 12px;
 }
-.fc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.fc-id { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
-.fc-logo { width: 22px; height: 22px; border-radius: 6px; object-fit: contain; background: #fff; flex: none;
+.fc-head { display: flex; align-items: center; justify-content: flex-start; gap: 8px; } /* הכל צמוד ימינה */
+.fc-id { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.fc-logo { width: 19px; height: 19px; border-radius: 5px; object-fit: contain; background: #fff; flex: none;
   box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-.fc-sym { font-weight: 800; font-size: 1.02rem; color: var(--accent); text-decoration: none; letter-spacing: -.01em; }
+.fc-sym { font-weight: 800; font-size: .94rem; color: var(--accent); text-decoration: none; letter-spacing: -.01em; }
 .fc-sym:hover { text-decoration: underline; }
-.fc-px { font-size: .84rem; font-weight: 600; color: var(--text); white-space: nowrap; }
+.fc-px { font-size: .78rem; font-weight: 600; color: var(--text); white-space: nowrap; }
 .fc-px b { font-weight: 700; }
-.fc-name { font-size: .76rem; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
-.fc-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 3px; font-size: .74rem; color: var(--text-soft); }
+.fc-name { font-size: .72rem; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
+.fc-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 2px; font-size: .7rem; color: var(--text-soft); }
 .fc-t { white-space: nowrap; background: none; border: none; padding: 0; font-family: inherit; font-size: inherit; color: inherit; }
 .fc-t b { color: var(--text); font-weight: 700; }
 .fc-t b.up { color: var(--up); }
