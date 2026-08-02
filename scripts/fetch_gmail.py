@@ -170,6 +170,7 @@ def schedule_of(html):
         m = re.search(r"<table[^>]*>(.*?)</table>", html[i:], re.S)
         if not m:
             continue
+        day_ctx = ""   # שורות שאחרי תווית "מחר" שייכות למחר — מסמנים אותן במפורש
         for tr in re.findall(r"<tr>(.*?)</tr>", m.group(1), re.S):
             tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
             if not tds:
@@ -185,9 +186,14 @@ def schedule_of(html):
                 ev = _clean(re.sub(r"<b[^>]*>.*?</b>", "", tds[0], flags=re.S))
                 if not ev:
                     continue
+                if "מחר" in label:
+                    day_ctx = "מחר"
+                elif "היום" in label:
+                    day_ctx = ""
                 tm = re.search(r"\d{1,2}:\d{2}", label)
                 if tm:
-                    out.append({"time": tm.group(0), "text": ev})
+                    out.append({"time": tm.group(0),
+                                "text": ("מחר · " if day_ctx else "") + ev})
                 elif label:   # שורה בלי שעה ("היום, ראשון") — תווית קצרה במקום שעה
                     out.append({"time": label.split(",")[0].split("—")[0].strip()[:6], "text": ev})
         if out:
