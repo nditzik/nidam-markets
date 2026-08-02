@@ -201,6 +201,7 @@ def main():
             "translated": bool(he) and he != en,
             "source": it["source"],
             "time": il_time(it["dt"]),
+            "dt": it["dt"].astimezone(timezone.utc).isoformat(),   # למיון כרונולוגי בתצוגה
             "link": it["link"],
         })
 

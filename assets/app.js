@@ -449,7 +449,11 @@
     var el = document.getElementById("pn-list");
     if (!el || !NEWS || !NEWS.news) return;
     el.classList.add("en");
-    el.innerHTML = NEWS.news.slice(0, 4).map(function (n) {
+    // החדשה ביותר למעלה (המיקס בצינור מסודר לפי מקורות, לא לפי זמן)
+    var items = NEWS.news.slice().sort(function (a, b) {
+      return (b.dt || "") < (a.dt || "") ? -1 : 1;
+    });
+    el.innerHTML = items.slice(0, 5).map(function (n) {
       return '<li><a href="' + esc(n.link) + '" target="_blank" rel="noopener">' +
         '<span class="pn-time num">' + esc(n.time) + "</span>" + esc(n.titleEn || n.title) + "</a></li>";
     }).join("");
