@@ -982,6 +982,42 @@
     });
   }
 
+  /* טאב "דיווחים" — לוח דוחות שבועי (ב'–ו') בסגנון Earnings Whispers */
+  function renderWeekCal(el, d) {
+    var week = (d && d.week) || [];
+    if (!week.length) {
+      emptyPanel(el, "📅", "לוח דיווחים — בקרוב", "");
+      return;
+    }
+    var first = week[0], last = week[week.length - 1];
+    var year = (first.date || "").slice(0, 4);
+    var todayIso = (function () {
+      var n = new Date();
+      return n.getFullYear() + "-" + ("0" + (n.getMonth() + 1)).slice(-2) + "-" + ("0" + n.getDate()).slice(-2);
+    })();
+    var cols = week.map(function (day) {
+      var tiles = day.companies.map(function (c) {
+        return '<a class="wk-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(c.ticker) +
+          '/" target="_blank" rel="noopener" title="' + esc(c.name) + '">' +
+          '<img src="https://financialmodelingprep.com/image-stock/' + encodeURIComponent(c.ticker) +
+            '.png" alt="" loading="lazy" onerror="this.remove()">' +
+          '<span dir="ltr">' + esc(c.ticker) + "</span></a>";
+      }).join("");
+      var more = day.total > day.companies.length
+        ? '<div class="wk-more">+' + (day.total - day.companies.length) + " נוספות</div>" : "";
+      var empty = !day.total ? '<div class="wk-more">אין דיווחים</div>' : "";
+      return '<div class="wk-day' + (day.date === todayIso ? " today" : "") + '">' +
+        '<div class="wk-head"><b>' + esc(day.dow) + '</b><span class="num" dir="ltr">' + esc(day.label) + "</span>" +
+          (day.total ? '<span class="wk-n">' + day.total + "</span>" : "") + "</div>" +
+        '<div class="wk-list">' + tiles + empty + "</div>" + more + "</div>";
+    }).join("");
+    el.innerHTML = stamp(d._meta) +
+      '<div class="section-title" style="margin-top:0">📅 לוח דיווחים שבועי</div>' +
+      '<p class="stamp" style="margin-top:-6px">שבוע המסחר <span dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) +
+      "</span> · מובילות לפי שווי שוק · לחיצה פותחת ב-TradingView · מתעדכן בכל שבת</p>" +
+      '<div class="wk-grid">' + cols + "</div>";
+  }
+
   /* טאב סקטורים — הדוח השבועי האחרון + ארכיון שבועות קודמים */
   var SECT = null;
   function secDate(iso) {
@@ -1173,12 +1209,13 @@
       .then(function (d) {
         EARN = d; EARNW = d.window || {};
         renderHomeSplit();
+        renderWeekCal(document.getElementById("panel-weekcal"), d);
         // תגי "מדווחת בקרוב" על טבלאות שכבר רונדרו לפני שהמפה הגיעה
         if (MOMD) renderMomentum(document.getElementById("panel-momentum"), MOMD);
         if (CANDD) renderCandidates(document.getElementById("panel-candidates"), CANDD);
         renderFocus();
       })
-      .catch(function () {});
+      .catch(function () { emptyPanel(document.getElementById("panel-weekcal"), "📅", "לוח דיווחים — בקרוב", ""); });
     // החלפת קבוצות בבולטות (delegation — שורד רינדור מחדש)
     var splitEl = document.getElementById("home-split");
     if (splitEl) splitEl.addEventListener("click", function (e) {

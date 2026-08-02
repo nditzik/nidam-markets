@@ -218,6 +218,23 @@ def main():
                         for r in sorted(rs, key=lambda r: rank_key(r, capk))][:6],
         })
 
+    # לוח השבוע המלא לטאב "דיווחים": ב'–ו' של השבוע הרלוונטי (שבת/ראשון → הבא),
+    # עד 12 מובילות-שווי ליום + מונה כולל
+    week_monday = today + timedelta(days=(7 - wd) if wd >= 5 else -wd)
+    week = []
+    for i in range(5):
+        wday = week_monday + timedelta(days=i)
+        k = wday.isoformat()
+        rs = sorted(by_date.get(k, []), key=lambda r: rank_key(r, capk))
+        week.append({
+            "date": k,
+            "dow": ["שני", "שלישי", "רביעי", "חמישי", "שישי"][i],
+            "label": "%d.%d" % (wday.day, wday.month),
+            "total": len(rs),
+            "companies": [{"ticker": (r.get("Symbol") or "").strip().upper(),
+                           "name": (r.get("Name") or "").strip()} for r in rs[:12]],
+        })
+
     # מפת חיפוש מלאה לתגי "מדווחת בקרוב": טיקר → תאריך דיווח (היום עד +7 ימים)
     window = {}
     for i in range(0, UPCOMING_DAYS + 1):
@@ -233,6 +250,7 @@ def main():
         "reporting": today_items,
         "more": max(0, len(today_rows) - len(today_items)),
         "upcoming": upcoming,
+        "week": week,
         "window": window,
         "_meta": {"updatedAt": israel_stamp(), "source": "earnings.csv"},
     }

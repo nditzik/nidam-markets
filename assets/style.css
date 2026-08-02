@@ -492,6 +492,29 @@ tr:last-child td { border-bottom: none; }
 tbody tr { transition: background .12s; }
 tbody tr:hover { background: var(--surface-3); }
 
+/* ---- לוח דיווחים שבועי (טאב "דיווחים") ---- */
+.wk-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items: start; }
+@media (max-width: 900px) { .wk-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .wk-grid { grid-template-columns: 1fr; } }
+.wk-day { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);
+  box-shadow: var(--card-shadow); padding: 12px; min-width: 0; }
+.wk-day.today { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--card-shadow); }
+.wk-head { display: flex; align-items: baseline; gap: 7px; padding-bottom: 9px; margin-bottom: 9px;
+  border-bottom: 1px solid var(--border-soft); }
+.wk-head b { font-size: .95rem; }
+.wk-head .num { color: var(--text-3); font-size: .8rem; font-weight: 600; }
+.wk-n { margin-inline-start: auto; background: var(--accent-soft); color: var(--accent);
+  border-radius: 999px; padding: 1px 8px; font-size: .72rem; font-weight: 700; }
+.wk-list { display: flex; flex-direction: column; gap: 4px; }
+.wk-tile { display: flex; align-items: center; gap: 8px; padding: 5px 7px; border-radius: 8px;
+  text-decoration: none; transition: background .12s; min-width: 0; }
+.wk-tile:hover { background: var(--surface-2); }
+.wk-tile img { width: 20px; height: 20px; border-radius: 5px; object-fit: contain; background: #fff; flex: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,.07); }
+.wk-tile span { font-weight: 700; font-size: .84rem; color: var(--text); letter-spacing: -.01em; }
+.wk-tile:hover span { color: var(--accent); }
+.wk-more { margin-top: 7px; font-size: .74rem; color: var(--text-3); text-align: center; }
+
 /* ---- "מניות במוקד" — confluence strip (symmetric grid) ---- */
 .focus-card { padding: 14px 18px; margin: 0 0 14px; }
 .fc-grid { display: grid; grid-template-columns: repeat(3, 248px); justify-content: center; gap: 10px; }
