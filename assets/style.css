@@ -506,8 +506,8 @@ tbody tr:hover { background: var(--surface-3); }
 .wk-n { margin-inline-start: auto; background: var(--accent-soft); color: var(--accent);
   border-radius: 999px; padding: 1px 8px; font-size: .72rem; font-weight: 700; }
 .wk-list { display: flex; flex-direction: column; gap: 4px; }
-.wk-tile { display: flex; align-items: center; gap: 8px; padding: 5px 7px; border-radius: 8px;
-  text-decoration: none; transition: background .12s; min-width: 0; }
+.wk-tile { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 5px 7px;
+  border-radius: 8px; text-decoration: none; transition: background .12s; min-width: 0; }
 .wk-tile:hover { background: var(--surface-2); }
 .wk-tile img { width: 20px; height: 20px; border-radius: 5px; object-fit: contain; background: #fff; flex: none;
   box-shadow: 0 1px 2px rgba(0,0,0,.07); }
