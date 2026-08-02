@@ -1,23 +1,70 @@
 {
-  "today": "2026-08-02",
-  "todayCount": 0,
-  "reporting": [],
-  "more": 0,
-  "upcoming": [
+  "today": "2026-08-03",
+  "todayCount": 14,
+  "reporting": [
     {
-      "date": "2026-08-03",
-      "label": "3/8",
-      "dow": "ב׳",
-      "count": 14,
-      "tickers": [
-        "PLTR",
-        "VRTX",
-        "MAR",
-        "MELI",
-        "WMB",
-        "FANG"
-      ]
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Cl A",
+      "logo": "data/earnings/logos/PLTR.png"
     },
+    {
+      "ticker": "VRTX",
+      "name": "Vertex Pharmaceutic",
+      "logo": "data/earnings/logos/VRTX.png"
+    },
+    {
+      "ticker": "MAR",
+      "name": "Marriot Int Cl A",
+      "logo": "data/earnings/logos/MAR.png"
+    },
+    {
+      "ticker": "MELI",
+      "name": "Mercadolibre Inc",
+      "logo": "data/earnings/logos/MELI.png"
+    },
+    {
+      "ticker": "WMB",
+      "name": "Williams Companies",
+      "logo": "data/earnings/logos/WMB.png"
+    },
+    {
+      "ticker": "FANG",
+      "name": "Diamondback Energy",
+      "logo": "data/earnings/logos/FANG.png"
+    },
+    {
+      "ticker": "OKE",
+      "name": "Oneok Inc",
+      "logo": "data/earnings/logos/OKE.png"
+    },
+    {
+      "ticker": "TKO",
+      "name": "Tko Group Holdings Cl A",
+      "logo": "data/earnings/logos/TKO.png"
+    },
+    {
+      "ticker": "ON",
+      "name": "On Semiconductor",
+      "logo": "data/earnings/logos/ON.png"
+    },
+    {
+      "ticker": "L",
+      "name": "Loews Corp",
+      "logo": "data/earnings/logos/L.png"
+    },
+    {
+      "ticker": "TSN",
+      "name": "Tyson Foods",
+      "logo": "data/earnings/logos/TSN.png"
+    },
+    {
+      "ticker": "SBAC",
+      "name": "SBA Communications",
+      "logo": "data/earnings/logos/SBAC.png"
+    }
+  ],
+  "more": 2,
+  "upcoming": [
     {
       "date": "2026-08-04",
       "label": "4/8",
@@ -475,10 +522,12 @@
     "ECHO": "2026-08-07",
     "PPL": "2026-08-07",
     "TTWO": "2026-08-07",
-    "VST": "2026-08-07"
+    "VST": "2026-08-07",
+    "RKLB": "2026-08-10",
+    "SPG": "2026-08-10"
   },
   "_meta": {
-    "updatedAt": "02/08/2026 23:45",
+    "updatedAt": "03/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
