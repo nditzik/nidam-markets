@@ -452,6 +452,7 @@ main { padding: 26px 0 70px; }
 .brief-sched ul { margin: 0; padding: 0; list-style: none; }
 .brief-sched li { display: flex; gap: 12px; align-items: baseline; padding: 4px 0; font-size: .9rem; }
 .bs-time { flex: none; min-width: 48px; color: var(--accent); font-weight: 700; }
+.bs-day { color: var(--accent); font-weight: 800; font-size: .84rem; padding: 7px 0 2px; }
 .bs-ev { color: var(--text-soft); }
 
 /* ---- Analysis list ---- */

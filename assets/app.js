@@ -590,6 +590,7 @@
     var schedHtml = sched.length
       ? '<div class="brief-sched"><div class="bs-title">' + lozTitle + "</div><ul>" +
         sched.map(function (x) {
+          if (x.day) return '<li class="bs-day">' + esc(x.day) + "</li>";   // מפריד-יום (כחול)
           return '<li><span class="bs-time num" dir="ltr">' + esc(x.time) + "</span>" +
             '<span class="bs-ev">' + esc(x.text) + "</span></li>";
         }).join("") + "</ul></div>" : "";

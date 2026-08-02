@@ -186,14 +186,14 @@ def schedule_of(html):
                 ev = _clean(re.sub(r"<b[^>]*>.*?</b>", "", tds[0], flags=re.S))
                 if not ev:
                     continue
-                if "מחר" in label:
+                if "מחר" in label and day_ctx != "מחר":
                     day_ctx = "מחר"
+                    out.append({"day": "מחר"})   # שורת-מפריד: כל מה שמתחתיה שייך למחר
                 elif "היום" in label:
                     day_ctx = ""
                 tm = re.search(r"\d{1,2}:\d{2}", label)
                 if tm:
-                    out.append({"time": tm.group(0),
-                                "text": ("מחר · " if day_ctx else "") + ev})
+                    out.append({"time": tm.group(0), "text": ev})
                 elif label:   # שורה בלי שעה ("היום, ראשון") — תווית קצרה במקום שעה
                     out.append({"time": label.split(",")[0].split("—")[0].strip()[:6], "text": ev})
         if out:
