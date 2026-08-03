@@ -154,6 +154,15 @@ def main():
         seen.add(k)
         uniq.append(it)
 
+    # חלון טריות: פיד שנרדם (סופ"ש/לילה) לא יתקע כותרות ישנות ברשימה
+    FRESH_H = 14
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=FRESH_H)
+    fresh = [it for it in uniq if it["dt"] >= cutoff]
+    if len(fresh) < 4:                       # יום שקט במיוחד — משלימים מהישנות
+        stale = [it for it in uniq if it["dt"] < cutoff]
+        fresh += stale[:4 - len(fresh)]
+    uniq = fresh
+
     # שילוב מקורות (round-robin לפי קבוצת-פיד, בסדר עדיפות קבוע) — שלא ישתלט
     # פיד אחד; כל כותרות GoogleNews נחשבות קבוצה אחת (Reuters/NYT/BBC וכו')
     PRIORITY = ["Bloomberg", "CNBC", "GoogleNews", "Investing"]
