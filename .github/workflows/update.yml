@@ -146,6 +146,14 @@ jobs:
         run: python scripts/fetch_pulse.py
         continue-on-error: true
 
+      # --- התראות חריגים לערוץ: מדד/VIX/תשואות, מד השוק, סיכום דוחות-הלילה (23:30) ---
+      - name: Market alerts to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/notify_alerts.py
+        continue-on-error: true
+
       # --- תקציר בוקר לערוץ (נשלח רק כשמדדים+מומנטום+מועמדים+תדרוך בוקר עודכנו היום) ---
       - name: Morning digest to Telegram
         env:

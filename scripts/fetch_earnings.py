@@ -244,9 +244,24 @@ def main():
             if sym:
                 window[sym] = k
 
+    # המדווחות הגדולות של היום (שווי שוק $20B+) — לסיכום-הלילה בטלגרם
+    today_big = []
+    if capk:
+        for r in today_rows:
+            c = parse_cap(r.get(capk))
+            if c is None:
+                continue
+            dollars = c if c > 1e8 else c * 1e6    # ערך גולמי בדולרים או במיליונים
+            if dollars >= 20e9:
+                today_big.append({"ticker": (r.get("Symbol") or "").strip().upper(),
+                                  "name": (r.get("Name") or "").strip(),
+                                  "capB": round(dollars / 1e9, 1)})
+    today_big = today_big[:8]
+
     payload = {
         "today": key,
         "todayCount": len(today_rows),
+        "todayBig": today_big,
         "reporting": today_items,
         "more": max(0, len(today_rows) - len(today_items)),
         "upcoming": upcoming,
