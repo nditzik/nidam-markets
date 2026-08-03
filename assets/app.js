@@ -527,7 +527,7 @@
       }).join("");
       html += '<section class="card split-card">' +
         '<div class="split-head"><span class="split-title">🔥 הבולטות של היום</span>' +
-          '<span class="split-sub">נכון ליום המסחר <span dir="ltr">' + lastSessionDate() + "</span></span></div>" +
+          '<span class="split-sub">' + esc((MOVERS._meta || {}).live || ("נכון ליום המסחר " + lastSessionDate())) + "</span></div>" +
         '<div class="mv-tabs">' + tabs.map(function (t) {
           return '<button class="mv-tab' + (t[0] === MV_CUR ? " on" : "") + '" data-g="' + t[0] + '">' + t[1] + "</button>";
         }).join("") + "</div>" +
