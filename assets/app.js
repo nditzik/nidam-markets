@@ -46,17 +46,23 @@
     var d = Math.abs(v) < 10 ? 3 : 2;
     return Number(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: d });
   }
+  var PIN_KEYS = { es: 1, nq: 1, usdils: 1 };   // בשורה הקבועה, לא ברצועה הנעה
+  function mtItem(it) {
+    var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
+    var chg = (c == null) ? "" :
+      ' <span class="mt-chg ' + cls + '">' + arr + " " + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>";
+    return '<span class="mt-item"><span class="mt-label">' + esc(it.label) + "</span>" +
+      '<span class="mt-price num">' + fmtQuote(it.price) + "</span>" + chg + "</span>";
+  }
   function renderMarketTicker(el, data) {
     if (!el || !data || !data.items || !data.items.length) return;
-    var one = data.items.map(function (it) {
-      var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
-      var chg = (c == null) ? "" :
-        ' <span class="mt-chg ' + cls + '">' + arr + " " + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>";
-      return '<span class="mt-item"><span class="mt-label">' + esc(it.label) + "</span>" +
-        '<span class="mt-price num">' + fmtQuote(it.price) + "</span>" + chg + "</span>";
-    }).join("");
+    var scroll = [], pinned = [];
+    data.items.forEach(function (it) { (PIN_KEYS[it.key] ? pinned : scroll).push(it); });
+    var one = scroll.map(mtItem).join("");
     // duplicate for a seamless scrolling loop
     el.innerHTML = '<div class="mt-track">' + one + one + "</div>";
+    var pinEl = document.getElementById("ticker-pin");
+    if (pinEl) pinEl.innerHTML = pinned.map(mtItem).join("");
   }
   function loadTicker() {
     var el = document.getElementById("ticker");

@@ -203,6 +203,14 @@ body {
 .mt-chg { font-weight: 700; font-variant-numeric: tabular-nums; font-size: .85rem; }
 .mt-chg.up { color: var(--up); }
 .mt-chg.down { color: var(--down); }
+/* שורה קבועה מתחת לרצועה: חוזים + דולר/שקל */
+.ticker-pin {
+  display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+  margin-top: 8px; background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: 12px; box-shadow: var(--card-shadow); padding: 6px 10px; min-height: 40px;
+}
+.ticker-pin:empty { display: none; }
+.ticker-pin .mt-item:last-child { border-inline-end: none; }
 
 /* ---- "What's new today" bar ---- */
 .today-bar {

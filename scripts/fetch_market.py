@@ -18,9 +18,11 @@ OUT = os.path.join(ROOT, "data", "market.json")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
 # key, תווית, סמל Yahoo, מספר ספרות אחרי הנקודה
+# es/nq/usdils מוצגים בשורה הקבועה מתחת לרצועה (לא בגלילה) — ראה renderMarketTicker
 SYMBOLS = [
     ("es", "חוזה S&P", "ES=F", 2),
     ("nq", "חוזה Nasdaq", "NQ=F", 2),
+    ("usdils", "דולר/שקל", "ILS=X", 3),
     ("spy", "SPY", "SPY", 2),
     ("qqq", "QQQ", "QQQ", 2),
     ("iwm", "IWM", "IWM", 2),
