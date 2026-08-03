@@ -365,7 +365,7 @@
   }
 
   /* ציטוטים חיים למניות במוקד — ישירות מהסורק של TradingView (CORS פתוח; body כ-text/plain) */
-  var FOCUSQ = {}, FOCUS_SYMS = "";
+  var FOCUSQ = {}, FOCUS_SYMS = "", FHIST = null;
   function jsSession() {
     var now = new Date();
     if (!tradingDay(now)) return "closed";
@@ -488,7 +488,45 @@
             "</div>" +
             (inf.name ? '<div class="fc-name" dir="ltr">' + esc(inf.name) + "</div>" : "") +
             '<div class="fc-tags">' + tags.join('<span class="fc-sep">·</span>') + "</div></div>";
-        }).join("") + "</div></section>";
+        }).join("") + "</div>" + focusStatsHtml() + "</section>";
+  }
+
+  /* "המוקד במבחן" — סטטיסטיקת ביצוע בתוך כרטיס המוקד */
+  function fmtPct(v) {
+    if (v == null || isNaN(v)) return "—";
+    return '<b class="' + (v >= 0 ? "up" : "down") + '" dir="ltr">' + (v > 0 ? "+" : "") + Number(v).toFixed(2) + "%</b>";
+  }
+  function focusStatsHtml() {
+    if (!FHIST || !(FHIST.entries || []).length) return "";
+    var entries = FHIST.entries;
+    var frozen = entries.filter(function (e) { return e.result; });
+    var html = '<div class="fc-stats"><span class="fc-stats-t">📊 המוקד במבחן</span>';
+    if (frozen.length) {
+      var last = frozen[frozen.length - 1], r = last.result;
+      var beat = (r.spx != null && r.avg > r.spx);
+      html += '<div class="fc-stats-line">המוקד של <span dir="ltr">' + esc(fmtTradeDate(last.date)) + "</span> (" + r.per.length + " מניות): ממוצע " +
+        fmtPct(r.avg) + (r.spx != null ? " מול S&P " + fmtPct(r.spx) + (beat ? " ✓" : "") : "") + "</div>";
+      html += '<div class="fc-stats-per">' + r.per.map(function (p) {
+        return '<span dir="ltr">' + esc(p.sym) + " " + (p.pct > 0 ? "+" : "") + p.pct.toFixed(1) + "%</span>";
+      }).join('<span class="fc-sep">·</span>') + "</div>";
+      if (frozen.length >= 5) {
+        var allPer = [], avgs = [], spxs = [];
+        frozen.forEach(function (e) {
+          e.result.per.forEach(function (p) { allPer.push(p.pct); });
+          avgs.push(e.result.avg);
+          if (e.result.spx != null) spxs.push(e.result.spx);
+        });
+        var winRate = Math.round(100 * allPer.filter(function (v) { return v > 0; }).length / allPer.length);
+        var cAvg = avgs.reduce(function (a, b) { return a + b; }, 0) / avgs.length;
+        var cSpx = spxs.length ? spxs.reduce(function (a, b) { return a + b; }, 0) / spxs.length : null;
+        html += '<div class="fc-stats-line fc-stats-cum">מצטבר (' + frozen.length + " ימים): " + winRate + "% מהמניות עלו · ממוצע " +
+          fmtPct(cAvg) + (cSpx != null ? " מול S&P " + fmtPct(cSpx) : "") + "</div>";
+      }
+    } else {
+      html += '<div class="fc-stats-line">🧪 המדידה החלה — תוצאת המוקד של <span dir="ltr">' +
+        esc(fmtTradeDate(entries[entries.length - 1].date)) + "</span> תוצג לאחר סגירת סשן המסחר הבא.</div>";
+    }
+    return html + "</div>";
   }
 
   /* compact news in the middle of the pulse row — displayed in original English */
@@ -1236,6 +1274,9 @@
         .catch(function () {});
       fetchJSON("data/movers.json")
         .then(function (d) { MOVERS = d; renderHomeSplit(); renderFocus(); })
+        .catch(function () {});
+      fetchJSON("data/focus_history.json")
+        .then(function (d) { FHIST = d; renderFocus(); })
         .catch(function () {});
       fetchJSON("data/pulse.json")
         .then(function (d) { PULSE_X = d; renderPulseX(); })

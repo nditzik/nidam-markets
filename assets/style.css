@@ -551,6 +551,14 @@ tbody tr:hover { background: var(--surface-3); }
 .fc-warn { color: var(--warn); font-weight: 600; }
 .fc-rep { color: var(--accent); cursor: pointer; font-weight: 600; }
 .fc-rep:hover { text-decoration: underline; }
+/* "המוקד במבחן" — פס סטטיסטיקה בתוך הכרטיס */
+.fc-stats { margin-top: 13px; padding-top: 11px; border-top: 1px solid var(--border-soft); text-align: center; }
+.fc-stats-t { display: block; font-weight: 700; font-size: .82rem; margin-bottom: 5px; }
+.fc-stats-line { font-size: .82rem; color: var(--text-soft); margin-top: 2px; }
+.fc-stats-line b { font-weight: 700; }
+.fc-stats-per { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 4px;
+  font-size: .72rem; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.fc-stats-cum { margin-top: 5px; font-weight: 600; }
 
 /* earnings-proximity badge on momentum/candidates rows */
 .er-badge {

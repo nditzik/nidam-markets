@@ -136,6 +136,11 @@ jobs:
         run: python scripts/fetch_movers.py
         continue-on-error: true
 
+      # --- "המוקד במבחן": ארכוב מניות-במוקד ומדידת ביצוע מול S&P ---
+      - name: Archive focus picks
+        run: python scripts/archive_focus.py
+        continue-on-error: true
+
       # --- "בזק מהרשת": חשבונות X דרך שיקופי טלגרם + Nitter ---
       - name: Fetch X pulse
         run: python scripts/fetch_pulse.py
