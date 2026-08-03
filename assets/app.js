@@ -364,6 +364,42 @@
         "</div></section>";
   }
 
+  /* ציטוטים חיים למניות במוקד — ישירות מהסורק של TradingView (CORS פתוח; body כ-text/plain) */
+  var FOCUSQ = {}, FOCUS_SYMS = "";
+  function jsSession() {
+    var now = new Date();
+    if (!tradingDay(now)) return "closed";
+    if (now < atTime(now, OPEN_T)) return (now.getHours() * 60 + now.getMinutes()) >= 660 ? "pre" : "closed";
+    if (now < atTime(now, CLOSE_T)) return "regular";
+    return "post";
+  }
+  function refreshFocusQuotes(syms, force) {
+    var key = syms.join(",");
+    if (!force && key === FOCUS_SYMS) return;
+    FOCUS_SYMS = key;
+    if (!syms.length) return;
+    fetch("https://scanner.tradingview.com/america/scan", {
+      method: "POST",
+      body: JSON.stringify({
+        filter: [
+          { left: "name", operation: "in_range", right: syms },
+          { left: "exchange", operation: "in_range", right: ["NASDAQ", "NYSE", "AMEX"] }
+        ],
+        columns: ["name", "close", "change", "premarket_close", "premarket_change", "postmarket_close", "postmarket_change"],
+        range: [0, 20]
+      })
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      var ses = jsSession();
+      (d.data || []).forEach(function (row) {
+        var v = row.d, px = v[1], chg = v[2];
+        if (ses === "pre" && v[4] != null) { px = (v[3] != null ? v[3] : px); chg = v[4]; }
+        else if (ses === "post" && v[6] != null) { px = (v[5] != null ? v[5] : px); chg = v[6]; }
+        FOCUSQ[v[0]] = { px: px, chg: chg };
+      });
+      renderFocus();
+    }).catch(function () {});
+  }
+
   /* "מניות במוקד" — גלאי מפגשים: מניה שמופיעה ב-2+ מקורות פעילים (מומנטום/מועמדים/בולטות) */
   function renderFocus() {
     var el = document.getElementById("home-focus");
@@ -399,6 +435,7 @@
       return (nb - na) || ((b.mom || 0) - (a.mom || 0));
     });
     focus = focus.slice(0, 6);
+    refreshFocusQuotes(focus.map(function (h) { return h.sym; }));
 
     var repSet = {};
     if (REPD && REPD.reports) REPD.reports.forEach(function (r) { repSet[(r.ticker || "").toUpperCase()] = 1; });
@@ -418,15 +455,17 @@
     el.innerHTML =
       '<section class="card focus-card">' +
         '<div class="split-head"><span class="split-title">🎯 מניות במוקד</span>' +
-          '<span class="split-sub">מופיעות בכמה מערכות במקביל' +
+          '<span class="split-sub">מחירים חיים · מופיעות בכמה מערכות במקביל' +
             (INDD && INDD.date ? ' · נכון ליום המסחר <span dir="ltr">' + fmtTradeDate(INDD.date) + "</span>" : "") +
           "</span></div>" +
         '<div class="fc-grid">' +
         focus.map(function (h) {
           var inf = info[h.sym] || {};
-          var chg = inf.chg;
-          var pxHtml = (inf.px != null && !isNaN(inf.px))
-            ? '<span class="fc-px num" dir="ltr">' + Number(inf.px).toLocaleString("en-US", { maximumFractionDigits: 2 }) +
+          var live = FOCUSQ[h.sym];
+          var pxv = (live && live.px != null) ? live.px : inf.px;
+          var chg = (live && live.chg != null) ? live.chg : inf.chg;
+          var pxHtml = (pxv != null && !isNaN(pxv))
+            ? '<span class="fc-px num" dir="ltr">' + Number(pxv).toLocaleString("en-US", { maximumFractionDigits: 2 }) +
               (chg != null && !isNaN(chg)
                 ? ' <b class="' + (chg >= 0 ? "up" : "down") + '">' + (chg > 0 ? "+" : "") + Number(chg).toFixed(2) + "%</b>" : "") +
               "</span>"
@@ -1173,6 +1212,9 @@
   function boot() {
     loadTicker();
     setInterval(loadTicker, 180000); // refresh the strip every 3 min
+    setInterval(function () {         // ציטוטים חיים למניות במוקד
+      if (FOCUS_SYMS) refreshFocusQuotes(FOCUS_SYMS.split(","), true);
+    }, 180000);
     initHomePulse();                 // מד השוק + שעון המסחר (מתמלאים כשנתונים מגיעים)
 
     // היסטוריית ציונים — גרף המגמה + חצי שינוי-יומי
