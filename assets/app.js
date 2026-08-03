@@ -418,7 +418,9 @@
     el.innerHTML =
       '<section class="card focus-card">' +
         '<div class="split-head"><span class="split-title">🎯 מניות במוקד</span>' +
-          '<span class="split-sub">מופיעות בכמה מערכות במקביל</span></div>' +
+          '<span class="split-sub">מופיעות בכמה מערכות במקביל' +
+            (INDD && INDD.date ? ' · נכון ליום המסחר <span dir="ltr">' + fmtTradeDate(INDD.date) + "</span>" : "") +
+          "</span></div>" +
         '<div class="fc-grid">' +
         focus.map(function (h) {
           var inf = info[h.sym] || {};
@@ -1240,6 +1242,7 @@
       renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
       renderIndicesDetail(document.getElementById("panel-indices"), d);
       renderMeter(d);
+      renderFocus();   // התאריך בכותרת "מניות במוקד" תלוי ב-INDD
       noteSig("indices", d);
     }).catch(function (err) {
       // כשל מדדים מפיל רק את תמונת-המצב — חדשות/מדווחות/תדריך ממשיכים לעבוד
