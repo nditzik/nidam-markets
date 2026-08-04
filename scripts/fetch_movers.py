@@ -51,9 +51,9 @@ def us_session():
 
 # session → (עמודת שינוי, עמודת מחיר, עמודת נפח, סף נפח, תווית)
 SESSIONS = {
-    "pre":     ("premarket_change",  "premarket_close",  "premarket_volume",  300_000,   "פרה-מרקט · חי"),
+    "pre":     ("premarket_change",  "premarket_close",  "premarket_volume",  100_000,   "פרה-מרקט · חי"),
     "regular": ("change",            "close",            "volume",            1_000_000, "מסחר רציף · חי"),
-    "post":    ("postmarket_change", "postmarket_close", "postmarket_volume", 300_000,   "אחרי הסגירה · חי"),
+    "post":    ("postmarket_change", "postmarket_close", "postmarket_volume", 100_000,   "אחרי הסגירה · חי"),
     "closed":  ("change",            "close",            "volume",            1_000_000, "סגירת יום המסחר האחרון"),
 }
 
@@ -86,25 +86,40 @@ def scan(chg_col, px_col, vol_col, vol_min, sort_by, ascending):
     return out
 
 
-def main():
-    ses = us_session()
+def fetch_groups(ses):
+    """שלוש הקבוצות לסשן נתון. מחזיר (payload-חלקי, מס' קבוצות שנמשכו)."""
     chg_col, px_col, vol_col, vol_min, label = SESSIONS[ses]
-    payload = {"_meta": {"updatedAt": israel_stamp(), "source": "TradingView",
-                         "session": ses, "live": label}}
-    got = 0
+    groups, got = {}, 0
     for key, sort_by, asc in (("gainers", chg_col, False),
                               ("losers", chg_col, True),
                               ("active", vol_col, False)):
         try:
-            payload[key] = scan(chg_col, px_col, vol_col, vol_min, sort_by, asc)
+            groups[key] = scan(chg_col, px_col, vol_col, vol_min, sort_by, asc)
             got += 1
         except Exception as e:
             print(f"[skip] {key}: {e}")
-            payload[key] = []
-    if not got:
-        print("[warn] אף קבוצה לא נמשכה.")
+            groups[key] = []
+    return groups, label, got
+
+
+def main():
+    ses = us_session()
+    groups, label, got = fetch_groups(ses)
+
+    # פרה-מרקט/אפטר דלילים מחזירים לעיתים 0 שורות — נפילה לדירוג הסשן האחרון,
+    # אחרת המלבן בדף הבית נעלם (רשימה ריקה = הכרטיס מוסתר)
+    if ses != "closed" and not (groups.get("gainers") or groups.get("losers")):
+        print(f"[info] סריקת {ses} ריקה — נופל לדירוג הסשן האחרון")
+        ses = "closed"
+        groups, label, got = fetch_groups(ses)
+
+    if not got or not (groups.get("gainers") or groups.get("losers")):
+        print("[warn] אין תוצאות — משאיר movers.json קיים.")
         return 0 if os.path.exists(OUT) else 1
 
+    payload = {"_meta": {"updatedAt": israel_stamp(), "source": "TradingView",
+                         "session": ses, "live": label}}
+    payload.update(groups)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"[done] movers ({ses}): {got}/3 קבוצות")

@@ -594,7 +594,8 @@
     var html = "";
 
     // ---- הבולטות של היום (עמודה ימנית ב-RTL = ראשונה ב-DOM) ----
-    if (MOVERS && (MOVERS.gainers || []).length + (MOVERS.losers || []).length) {
+    // הכרטיס מוצג תמיד כשהקובץ נטען — גם כשרשימה רגעית ריקה (שלא ייעלם המלבן)
+    if (MOVERS) {
       var tabs = [["gainers", "📈 עולות"], ["losers", "📉 יורדות"], ["active", "🔄 הכי נסחרות"]];
       var rows = (MOVERS[MV_CUR] || []).map(function (x) {
         var c = x.chg > 0 ? "up" : x.chg < 0 ? "down" : "";
