@@ -1,40 +1,40 @@
 {
-  "generatedAt": "04/08/2026 06:00",
+  "generatedAt": "04/08/2026 06:15",
   "today": [
     {
-      "label": "מדדים",
-      "tab": "indices",
-      "time": "06:00",
-      "arrived": true
-    },
-    {
-      "label": "מומנטום",
-      "tab": "momentum",
-      "time": "06:00",
+      "label": "סקירת בוקר",
+      "tab": "morning",
+      "time": "06:02",
       "arrived": true
     },
     {
       "label": "תדרוך בוקר",
       "tab": "briefing",
-      "time": "06:02",
-      "arrived": false
+      "time": "06:03",
+      "arrived": true
+    },
+    {
+      "label": "מועמדים",
+      "tab": "candidates",
+      "time": "06:04",
+      "arrived": true
+    },
+    {
+      "label": "מדדים",
+      "tab": "indices",
+      "time": "06:15",
+      "arrived": true
+    },
+    {
+      "label": "מומנטום",
+      "tab": "momentum",
+      "time": "06:15",
+      "arrived": true
     },
     {
       "label": "תדרוך אחה\"צ",
       "tab": "briefing",
       "time": "15:11",
-      "arrived": false
-    },
-    {
-      "label": "סקירת בוקר",
-      "tab": "morning",
-      "time": "06:00",
-      "arrived": false
-    },
-    {
-      "label": "מועמדים",
-      "tab": "candidates",
-      "time": "09:36",
       "arrived": false
     }
   ],
@@ -42,7 +42,7 @@
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "04/08/2026 06:00",
+      "updatedAt": "04/08/2026 06:15",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -50,7 +50,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "04/08/2026 06:00",
+      "updatedAt": "04/08/2026 06:15",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -58,25 +58,25 @@
     {
       "key": "morning",
       "label": "סקירת בוקר",
-      "updatedAt": "03/08/2026 06:15",
-      "ageHours": 23.8,
+      "updatedAt": "04/08/2026 06:15",
+      "ageHours": 0.0,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "briefing",
       "label": "תדרוך משקיעים",
-      "updatedAt": "03/08/2026 15:15",
-      "ageHours": 14.8,
+      "updatedAt": "04/08/2026 06:15",
+      "ageHours": 0.0,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "מועמדים",
-      "updatedAt": "01/08/2026 09:36",
-      "ageHours": 68.4,
-      "status": "stale",
+      "updatedAt": "04/08/2026 06:04",
+      "ageHours": 0.2,
+      "status": "ok",
       "detail": ""
     }
   ]
