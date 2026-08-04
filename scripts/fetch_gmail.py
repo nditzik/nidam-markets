@@ -181,9 +181,13 @@ def schedule_of(html):
                 if tm and ev:
                     out.append({"time": tm.group(0), "text": ev})
             else:
-                b = re.search(r"<b[^>]*>(.*?)</b>", tds[0], re.S)
+                # ⚠️ דווקא <b(?:\s|>)... — הדפוס <b[^>]*> תופס גם <br> ובולע את תחילת
+                # המשפט עד ה-</b> של טיקר מודגש ("Caterpillar (<b>CAT</b>)" → ") מפרסמת").
+                BOLD = r"<b(?:\s[^>]*)?>(.*?)</b>"
+                b = re.search(BOLD, tds[0], re.S)
                 label = _clean(b.group(1)) if b else ""
-                ev = _clean(re.sub(r"<b[^>]*>.*?</b>", "", tds[0], flags=re.S))
+                # מסירים רק את תווית-השעה (ה-<b> הראשון) — טיקרים מודגשים בטקסט נשארים
+                ev = _clean(re.sub(BOLD, "", tds[0], count=1, flags=re.S))
                 if not ev:
                     continue
                 if "מחר" in label and day_ctx != "מחר":
