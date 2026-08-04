@@ -58,14 +58,20 @@ SESSIONS = {
 }
 
 
-def scan(chg_col, px_col, vol_col, vol_min, sort_by, ascending):
+def scan(chg_col, px_col, vol_col, vol_min, sort_by, ascending, sign=None):
+    filters = [
+        {"left": "exchange", "operation": "in_range", "right": ["NASDAQ", "NYSE", "AMEX"]},
+        {"left": "close", "operation": "greater", "right": 3},
+        {"left": "market_cap_basic", "operation": "greater", "right": 200_000_000},
+        {"left": vol_col, "operation": "greater", "right": vol_min},
+    ]
+    # "יורדות" חייבות שינוי שלילי (ולהפך) — בסשן דליל מיון לבד ממלא את הרשימה בצד הלא-נכון
+    if sign == "up":
+        filters.append({"left": chg_col, "operation": "greater", "right": 0})
+    elif sign == "down":
+        filters.append({"left": chg_col, "operation": "less", "right": 0})
     body = {
-        "filter": [
-            {"left": "exchange", "operation": "in_range", "right": ["NASDAQ", "NYSE", "AMEX"]},
-            {"left": "close", "operation": "greater", "right": 3},
-            {"left": "market_cap_basic", "operation": "greater", "right": 200_000_000},
-            {"left": vol_col, "operation": "greater", "right": vol_min},
-        ],
+        "filter": filters,
         "columns": ["name", "description", px_col, chg_col, vol_col],
         "sort": {"sortBy": sort_by, "sortOrder": "asc" if ascending else "desc"},
         "range": [0, N],
@@ -90,11 +96,11 @@ def fetch_groups(ses):
     """שלוש הקבוצות לסשן נתון. מחזיר (payload-חלקי, מס' קבוצות שנמשכו)."""
     chg_col, px_col, vol_col, vol_min, label = SESSIONS[ses]
     groups, got = {}, 0
-    for key, sort_by, asc in (("gainers", chg_col, False),
-                              ("losers", chg_col, True),
-                              ("active", vol_col, False)):
+    for key, sort_by, asc, sign in (("gainers", chg_col, False, "up"),
+                                    ("losers", chg_col, True, "down"),
+                                    ("active", vol_col, False, None)):
         try:
-            groups[key] = scan(chg_col, px_col, vol_col, vol_min, sort_by, asc)
+            groups[key] = scan(chg_col, px_col, vol_col, vol_min, sort_by, asc, sign)
             got += 1
         except Exception as e:
             print(f"[skip] {key}: {e}")
