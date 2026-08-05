@@ -171,14 +171,18 @@ def schedule_of(html):
         if not m:
             continue
         day_ctx = ""   # שורות שאחרי תווית "מחר" שייכות למחר — מסמנים אותן במפורש
-        for tr in re.findall(r"<tr>(.*?)</tr>", m.group(1), re.S):
+        for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", m.group(1), re.S):   # גם <tr style=...>
+            if "<th" in tr:
+                continue   # שורת כותרות ("ישראל | ניו יורק | אירוע")
             tds = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
             if not tds:
                 continue
             if len(tds) >= 2:
+                # עמודה ראשונה = שעון ישראל; האירוע = העמודה האחרונה (בטבלת 3 עמודות
+                # העמודה האמצעית היא שעת ניו-יורק — לא מציגים אותה)
                 tm = re.search(r"\d{1,2}:\d{2}", _clean(tds[0]))
-                ev = _clean(tds[1])
-                if tm and ev:
+                ev = _clean(tds[-1])
+                if tm and ev and not re.fullmatch(r"[\d:.\-\s]+", ev):
                     out.append({"time": tm.group(0), "text": ev})
             else:
                 # ⚠️ דווקא <b(?:\s|>)... — הדפוס <b[^>]*> תופס גם <br> ובולע את תחילת
