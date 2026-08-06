@@ -73,7 +73,11 @@ def compose(today_str):
             if dv:
                 diff = " (%s%d)" % ("▲" if dv > 0 else "▼", abs(dv))
         lines.append("📊 <b>סיכום %s:</b> מד השוק %s · %s%s" % (prev, combined, word(combined), diff))
-    if v.get("headline"):
+    # הכותרת הראשית = סיכום-היום המתחלף (כמו באתר); משפט-המשטר הקבוע כגיבוי
+    c = ind.get("conclusion") or {}
+    if c.get("headline"):
+        lines.append("«%s»" % c["headline"])
+    elif v.get("headline"):
         lines.append("«%s»" % v["headline"])
     bits = []
     if e.get("spxPrice") is not None:
