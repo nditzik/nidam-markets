@@ -1207,7 +1207,7 @@
       tabIntro("candidates") +
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
       "<strong>הנתונים מיום <span dir=\"ltr\">" + esc(fmtTradeDate(d.date)) + "</span>" +
-      (prevTradingDate(d.date) ? " מיום המסחר של <span dir=\"ltr\">" + esc(fmtTradeDate(prevTradingDate(d.date))) + "</span>" : "") +
+      (prevTradingDate(d.date) ? " ותקפים ליום המסחר של <span dir=\"ltr\">" + esc(fmtTradeDate(prevTradingDate(d.date))) + "</span>" : "") +
       "</strong> · " + (d.count || 0) + " מועמדים" +
       (d.shown && d.shown < d.count ? " (מוצגים " + d.shown + " מובילים)" : "") +
       '<div class="stamp" style="margin:6px 0 0">Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב · לחיצה על טיקר פותחת ב-TradingView</div></div>' +
