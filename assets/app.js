@@ -505,7 +505,8 @@
       var last = frozen[frozen.length - 1], r = last.result;
       var beat = (r.spx != null && r.avg > r.spx);
       html += '<div class="fc-stats-line">המוקד של <span dir="ltr">' + esc(fmtTradeDate(last.date)) + "</span> (" + r.per.length + " מניות): ממוצע " +
-        fmtPct(r.avg) + (r.spx != null ? " מול S&P " + fmtPct(r.spx) + (beat ? " ✓" : "") : "") + "</div>";
+        fmtPct(r.avg) + (r.spx != null ? " מול S&P " + fmtPct(r.spx) + (beat ? " ✓" : "") : "") +
+        (r.date_next ? ' — ביום המסחר <span dir="ltr">' + esc(fmtTradeDate(r.date_next)) + "</span>" : "") + "</div>";
       html += '<div class="fc-stats-per">' + r.per.map(function (p) {
         return '<span dir="ltr">' + esc(p.sym) + " " + (p.pct > 0 ? "+" : "") + p.pct.toFixed(1) + "%</span>";
       }).join('<span class="fc-sep">·</span>') + "</div>";
