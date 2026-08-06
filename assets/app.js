@@ -151,6 +151,14 @@
     var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
     return m ? (+m[3]) + "." + (+m[2]) + "." + m[1].slice(2) : "";
   }
+  function prevTradingDate(iso) {
+    // יום המסחר שלפני התאריך (מדלג על סופ"ש) — סריקת בוקר מבוססת על סגירת אתמול
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
+    if (!m) return "";
+    var dt = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+    do { dt.setUTCDate(dt.getUTCDate() - 1); } while (dt.getUTCDay() === 0 || dt.getUTCDay() === 6);
+    return dt.toISOString().slice(0, 10);
+  }
   function fetchJSON(url) {
     return fetch(url, { cache: "no-store" }).then(function (r) {
       if (!r.ok) throw new Error(url + " → " + r.status);
@@ -1176,8 +1184,8 @@
     }
     if (!d.candidates.length) {
       el.innerHTML = stamp(d._meta) +
-        '<div class="panel-empty"><span class="emoji">🎯</span><strong>אין מועמדים ל-' +
-        esc(d.date || "") + "</strong><p style=\"margin:8px 0 0\">הסריקה לא מצאה איתותים היום.</p></div>";
+        '<div class="panel-empty"><span class="emoji">🎯</span><strong>אין מועמדים ל-<span dir="ltr">' +
+        esc(fmtTradeDate(d.date) || d.date || "") + "</span></strong><p style=\"margin:8px 0 0\">הסריקה לא מצאה איתותים היום.</p></div>";
       return;
     }
     function n(v, dgts) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(dgts); }
@@ -1198,7 +1206,9 @@
       '<div class="section-title" style="margin-top:0">🎯 מועמדים למסחר (IBKR)</div>' +
       tabIntro("candidates") +
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
-      "<strong>" + esc(d.date || "") + "</strong> · " + (d.count || 0) + " מועמדים" +
+      "<strong>הנתונים מיום <span dir=\"ltr\">" + esc(fmtTradeDate(d.date)) + "</span>" +
+      (prevTradingDate(d.date) ? " מיום המסחר של <span dir=\"ltr\">" + esc(fmtTradeDate(prevTradingDate(d.date))) + "</span>" : "") +
+      "</strong> · " + (d.count || 0) + " מועמדים" +
       (d.shown && d.shown < d.count ? " (מוצגים " + d.shown + " מובילים)" : "") +
       '<div class="stamp" style="margin:6px 0 0">Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב · לחיצה על טיקר פותחת ב-TradingView</div></div>' +
       '<div class="table-wrap"><table><thead><tr>' +
