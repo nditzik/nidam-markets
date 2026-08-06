@@ -740,7 +740,10 @@
           '<span class="emoji">' + h(v.emoji || "📊") + "</span>" +
           (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + "</span>" : "") +
         "</div>" +
-        "<h2>" + esc(v.headline || "סקירת שוק") + "</h2>" +
+        // הכותרת הראשית = סיכום היום המתחלף (conclusion.headline, למשל "יום ירידה מתון -0.2%");
+        // משפט-המשטר (verdict.headline) יורד לשורה מתחת — הוא נשאר זהה ימים ונראה "תקוע"
+        "<h2>" + esc(c.headline || v.headline || "סקירת שוק") + "</h2>" +
+        (c.headline && v.headline ? '<p class="v-regime">' + esc(v.headline) + "</p>" : "") +
         "<p>" + esc(v.subline || "") + "</p>" + narr + lights +
       "</div>";
 
