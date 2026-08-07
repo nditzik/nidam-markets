@@ -60,13 +60,22 @@
   }
   function renderMarketTicker(el, data) {
     if (!el || !data || !data.items || !data.items.length) return;
-    var scroll = [], pinned = [];
-    data.items.forEach(function (it) { (PIN_KEYS[it.key] ? pinned : scroll).push(it); });
-    var one = scroll.map(mtItem).join("");
-    // duplicate for a seamless scrolling loop
-    el.innerHTML = '<div class="mt-track">' + one + one + "</div>";
+    var rest = [], pinned = [];
+    data.items.forEach(function (it) { (PIN_KEYS[it.key] ? pinned : rest).push(it); });
+    // שורת הכותרת: סטטית ועטופה (לא מרקיזה) — סגנון עיתון
+    el.innerHTML = rest.map(function (it) {
+      var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : "");
+      return '<span class="np-tick"><b>' + esc(it.label) + "</b> " + fmtQuote(it.price) +
+        (c == null ? "" : ' <span class="' + cls + '">' + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>") + "</span>";
+    }).join("");
+    // שורת החוזים הקבועה — מספרים גדולים
     var pinEl = document.getElementById("ticker-pin");
-    if (pinEl) pinEl.innerHTML = pinned.map(mtItem).join("");
+    if (pinEl) pinEl.innerHTML = pinned.map(function (it) {
+      var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
+      return '<span class="np-fut"><span class="l">' + esc(it.label) + '</span>' +
+        '<span class="v num" dir="ltr">' + fmtQuote(it.price) + "</span>" +
+        (c == null ? "" : '<span class="c num ' + cls + '" dir="ltr">' + arr + " " + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>") + "</span>";
+    }).join("");
   }
   function loadTicker() {
     var el = document.getElementById("ticker");
@@ -353,27 +362,17 @@
   /* "בזק מהרשת" — כותרות-בזק מחשבונות X (דרך שיקופי טלגרם/Nitter), רצועה ברוחב מלא */
   var PULSE_X = null;
   function renderPulseX() {
-    var el = document.getElementById("home-x");
+    var el = document.getElementById("tri-x");
     if (!el) return;
     if (!PULSE_X || !(PULSE_X.items || []).length) { el.innerHTML = ""; return; }
-    function row(it) {
-      return '<li><a href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
-        '<span class="x-time num">' + esc(it.time) + "</span>" +
-        '<span class="x-src">' + esc(it.source) + "</span>" +
-        '<span class="x-txt">' + esc(it.text) + "</span></a></li>";
-    }
-    // מילוי אנכי: העמודה השמאלית = החדשים ביותר מלמעלה למטה, הימנית ממשיכה
-    var items = PULSE_X.items;
-    var half = Math.ceil(items.length / 2);
-    var colA = items.slice(0, half), colB = items.slice(half);
     el.innerHTML =
-      '<section class="card x-card">' +
-        '<div class="split-head"><span class="split-title">⚡ בזק מהרשת</span>' +
-          '<span class="split-sub">X · עדכוני זמן-אמת</span></div>' +
-        '<div class="x-cols">' +
-          '<ul class="x-list">' + colA.map(row).join("") + "</ul>" +
-          '<ul class="x-list">' + colB.map(row).join("") + "</ul>" +
-        "</div></section>";
+      '<h3 class="np-k">בזק מהרשת · X</h3>' +
+      PULSE_X.items.slice(0, 4).map(function (it) {
+        return '<a class="np-xit" href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
+          "<p>" + esc(it.text) + "</p>" +
+          '<span class="m">' + esc(it.source) + " · " + esc(it.time) + "</span></a>";
+      }).join("") +
+      '<a class="np-more" href="' + esc((PULSE_X.items[0] || {}).link || "#") + '" target="_blank" rel="noopener">כל העדכונים ←</a>';
   }
 
   /* ציטוטים חיים למניות במוקד — ישירות מהסורק של TradingView (CORS פתוח; body כ-text/plain) */
@@ -492,6 +491,7 @@
             (inf.name ? '<div class="fc-name" dir="ltr">' + esc(inf.name) + "</div>" : "") +
             '<div class="fc-tags">' + tags.join('<span class="fc-sep">·</span>') + "</div></div>";
         }).join("") + "</div>" + focusStatsHtml() + "</section>";
+    renderTriIndex();
   }
 
   /* 📊 נתוני מאקרו — צפי מול בפועל (data/econ.json, ליבה בלבד) */
@@ -526,6 +526,7 @@
           '<div class="ec-col"><div class="ec-t">🗓️ הבאים בתור</div>' +
             (upcoming.map(function (e) { return row(e, true); }).join("") || '<div class="ec-row">אין אירועים קרובים</div>') + "</div>" +
         "</div></section>";
+    renderTriIndex();
   }
 
   /* "המוקד במבחן" — סטטיסטיקת ביצוע בתוך כרטיס המוקד */
@@ -567,19 +568,20 @@
     return html + "</div>";
   }
 
-  /* compact news in the middle of the pulse row — displayed in original English */
+  /* חדשות השוק — רשימה נפתחת מתוך שורת "מפתח" (אנגלית מקורית) */
   function renderPulseNews() {
-    var el = document.getElementById("pn-list");
+    var el = document.getElementById("tri-news");
     if (!el || !NEWS || !NEWS.news) return;
-    el.classList.add("en");
-    // החדשה ביותר למעלה (המיקס בצינור מסודר לפי מקורות, לא לפי זמן)
     var items = NEWS.news.slice().sort(function (a, b) {
       return (b.dt || "") < (a.dt || "") ? -1 : 1;
     });
-    el.innerHTML = items.slice(0, 5).map(function (n) {
-      return '<li><a href="' + esc(n.link) + '" target="_blank" rel="noopener">' +
-        '<span class="pn-time num">' + esc(n.time) + "</span>" + esc(n.titleEn || n.title) + "</a></li>";
-    }).join("");
+    el.innerHTML = '<h3 class="np-k">חדשות השוק</h3>' +
+      items.slice(0, 5).map(function (n) {
+        return '<a class="np-xit" href="' + esc(n.link) + '" target="_blank" rel="noopener">' +
+          "<p>" + esc(n.titleEn || n.title) + "</p>" +
+          '<span class="m">' + esc(n.source || "") + " · " + esc(n.time) + "</span></a>";
+      }).join("");
+    renderTriIndex();
   }
 
   /* ---------- home split: top movers (right) + today's earnings (left) ---------- */
@@ -692,6 +694,7 @@
     }
 
     el.innerHTML = html;
+    renderTriIndex();
   }
 
   /* ---------- home briefing card (latest edition: sentiment + 4 headlines + schedule) ---------- */
@@ -704,7 +707,7 @@
     return (+m[3]) * 1e6 + (+m[2]) * 1e4 + (+m[1]) * 1e2 + (t ? (+t[1]) + (+t[2]) / 100 : 0);
   }
   function renderHomeBriefing() {
-    var el = document.getElementById("home-briefing");
+    var el = document.getElementById("tri-brief");
     if (!el || !BRIEF) return;
     var m = BRIEF.morning, a = BRIEF.afternoon, edition, s;
     if (m && a) { if (briefKey(a) >= briefKey(m)) { edition = "afternoon"; s = a; } else { edition = "morning"; s = m; } }
@@ -734,14 +737,103 @@
     var asOf = edition === "afternoon" ? "15:00" : "06:00";   // שעת המהדורה (משתנה בין בוקר/צהריים)
 
     el.innerHTML =
-      '<div class="card brief-card">' +
-        '<div class="brief-card-title">📋 תדרוך משקיעים</div>' +
-        '<div class="brief-head"><span class="brief-ed">' + esc(label) +
-          (s.dateLabel ? ' · <span class="brief-date" dir="ltr">' + esc(s.dateLabel) + "</span>" : "") +
-          ' · <span class="brief-asof">נכון לשעה <span dir="ltr">' + asOf + "</span></span>" +
-        "</span>" + sentHtml + "</div>" +
-        newsHtml + schedHtml +
-      "</div>";
+      '<h3 class="np-k">תדרוך משקיעים · ' + esc(label) + ' <span dir="ltr">' + asOf + "</span></h3>" +
+      (sentHtml ? '<div class="np-sent">' + sentHtml + "</div>" : "") +
+      newsHtml + schedHtml +
+      '<a class="np-more" href="#briefing" onclick="__goTab(\'briefing\');return false">התדרוך המלא ←</a>';
+  }
+
+  /* ---------- הידיעה המובילה + רייל המד (מהדורת עיתון) ---------- */
+  function renderLead() {
+    var el = document.getElementById("lead-main");
+    if (!el || !INDD) return;
+    var d = INDD, c = d.conclusion || {}, v = d.verdict || {};
+    var ai = (d.aiSummary && d.aiSummary.date === d.date) ? d.aiSummary : null;
+
+    // חותמת העדכון בשורת הכותרת
+    var hs = document.getElementById("head-stamp");
+    if (hs) hs.innerHTML = stamp(d._meta);
+
+    var paras = (ai && ai.paragraphs) || [];
+    var bottom = null, body = [];
+    paras.forEach(function (p) { (p.indexOf("שורה תחתונה") >= 0 ? (bottom = p) : body.push(p)); });
+    var dek = body.length ? body.slice(0, 2).join(" ") : (v.subline || "");
+
+    var lightsMap = { trend: "מגמה", breadth: "רוחב", volatility: "תנודתיות", rotation: "רוטציה" };
+    var lights = v.lights ? Object.keys(lightsMap).map(function (k) {
+      var st = v.lights[k] || "";
+      return '<span class="np-lt ' + esc(st) + '"><span class="np-dot"></span>' + lightsMap[k] + "</span>";
+    }).join("") : "";
+
+    el.innerHTML =
+      '<span class="np-k">יום המסחר · <b dir="ltr">' + esc(fmtTradeDate(d.date)) + "</b></span>" +
+      '<h2 class="np-h1">' + esc(c.headline || v.headline || "סקירת שוק") + "</h2>" +
+      (ai && ai.headline ? '<p class="np-reg">' + esc(ai.headline) + "</p>" : "") +
+      (dek ? '<p class="np-dek">' + esc(dek) + "</p>" : "") +
+      (bottom ? '<p class="np-bottom">' + esc(bottom).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
+      '<div class="np-leadfoot">' + lights +
+        '<a href="#indices" onclick="__goTab(\'indices\');return false">הסקירה המלאה ←</a></div>';
+
+    // ─ רייל המד ─
+    var rail = document.getElementById("lead-rail");
+    if (!rail) return;
+    var s = d.scores || {}, e = d.evidence || {};
+    var w = s.combined != null ? meterWord(s.combined) : ["", "var(--text)"];
+    function sub(label, key, val) {
+      return '<div class="np-sub"><span>' + label + "</span><span><b class=\"num\">" +
+        (val == null ? "—" : val) + "</b> " + diffTag(key) + "</span></div>";
+    }
+    rail.innerHTML =
+      '<span class="np-k">The Edge Meter · מד השוק היומי</span>' +
+      '<div class="np-score"><b class="num" style="color:' + w[1] + '">' + (s.combined != null ? s.combined : "—") + "</b>" +
+        '<span style="color:' + w[1] + '">' + w[0] + "</span></div>" +
+      '<svg class="meter-spark np-spark" id="meter-spark" viewBox="0 0 120 30" preserveAspectRatio="none"></svg>' +
+      '<div class="spark-label" id="spark-label"></div>' +
+      sub("טכני", "tech", s.tech) +
+      sub("רוחב", "breadth", s.breadth) +
+      sub("אופציות", "flow", s.flow) +
+      (e.nhCount != null ? '<div class="np-sub"><span>שיאים / שפלים 52ש׳</span><b class="num" dir="ltr">' +
+        e.nhCount + " / " + e.nlCount + "</b></div>" : "") +
+      '<a class="np-more" href="#indices" onclick="__goTab(\'indices\');return false">פירוט ←</a>';
+    renderSpark();
+  }
+
+  /* "מפתח" — רשימת קיצורים עם ספירות */
+  function renderTriIndex() {
+    var el = document.getElementById("tri-index");
+    if (!el) return;
+    var rows = [];
+    if (EARN) rows.push(["weekcal", "מדווחות היום", (EARN.todayCount || 0) + " חברות", ""]);
+    if (ECON && (ECON.events || []).length) {
+      var nxt = ECON.events.filter(function (x) { return x.actual == null; })[0];
+      if (nxt) rows.push(["#home-econ", "נתוני מאקרו", nxt.he.split(" ")[0] + " ב-" + nxt.ilDate, "hot"]);
+    }
+    if (FOCUS_SYMS) rows.push(["#home-focus", "מניות במוקד", FOCUS_SYMS.split(",").slice(0, 3).join(" · "), ""]);
+    if (MOVERS && (MOVERS.gainers || []).length) {
+      var g = MOVERS.gainers[0];
+      rows.push(["#home-split", "הבולטות של היום", g.symbol + " +" + Math.round(g.chg) + "%", ""]);
+    }
+    if (TRAD && (TRAD.reports || []).length) rows.push(["trades", "הצעות לטרייד", "דוח " + fmtTradeDate(TRAD.reports[0].date), ""]);
+    if (NEWS && (NEWS.news || []).length) rows.push(["news", "חדשות השוק", Math.min(NEWS.news.length, 5) + " כותרות", ""]);
+    if (!rows.length) { el.innerHTML = ""; return; }
+    el.innerHTML = '<h3 class="np-k">מפתח</h3>' + rows.map(function (r) {
+      return '<a href="#" data-act="' + r[0] + '"><span>' + r[1] + '</span><span class="c ' + r[3] + '" dir="ltr">' + esc(r[2]) + "</span></a>";
+    }).join("");
+    el.querySelectorAll("a[data-act]").forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        var act = a.dataset.act;
+        if (act === "news") {
+          var n = document.getElementById("tri-news");
+          if (n) n.style.display = n.style.display === "none" ? "block" : "none";
+        } else if (act.charAt(0) === "#") {
+          var t = document.querySelector(act);
+          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          __goTab(act);
+        }
+      });
+    });
   }
 
   /* ---------- renderers ---------- */
@@ -1276,6 +1368,7 @@
         showTrade(+b.dataset.trd);
       });
     });
+    renderTriIndex();
   }
   function showTrade(i) {
     var view = document.getElementById("trd-view");
@@ -1410,7 +1503,7 @@
     setInterval(function () {         // ציטוטים חיים למניות במוקד
       if (FOCUS_SYMS) refreshFocusQuotes(FOCUS_SYMS.split(","), true);
     }, 180000);
-    initHomePulse();                 // מד השוק + שעון המסחר (מתמלאים כשנתונים מגיעים)
+    startClock();                    // שעון המסחר בשורת הכותרת
 
     // היסטוריית ציונים — גרף המגמה + חצי שינוי-יומי
     // שומרי-שינוי לרענון התקופתי: מרנדרים מחדש רק כשהתוכן באמת השתנה,
@@ -1462,11 +1555,9 @@
       fetchJSON("data/history.json")
         .then(function (d) {
           if (!freshD("history", d)) return;
-          HIST = d; computeDiffs(); renderSpark();
-          if (INDD) {   // הוסף חצים לכרטיסים שכבר רונדרו
-            renderMarketOverview(document.getElementById("home-overview"), INDD, { home: true });
-            renderIndicesDetail(document.getElementById("panel-indices"), INDD);
-          }
+          HIST = d; computeDiffs();
+          renderLead();   // חצי השינוי-היומי ברייל + הספארקליין
+          if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD);
         })
         .catch(function () {});
       fetchJSON("data/earnings.json")
@@ -1485,15 +1576,14 @@
       fetchJSON("data/indices.json").then(function (d) {
         if (!freshD("indices", d)) return;
         INDD = d;
-        renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
+        renderLead();
         renderIndicesDetail(document.getElementById("panel-indices"), d);
-        renderMeter(d);
         renderFocus();   // התאריך בכותרת "מניות במוקד" תלוי ב-INDD
         noteSig("indices", d);
       }).catch(function (err) {
-        // כשל מדדים מפיל רק את תמונת-המצב — חדשות/מדווחות/תדריך ממשיכים לעבוד
+        // כשל מדדים מפיל רק את הידיעה המובילה — שאר הבית ממשיך לעבוד
         if (INDD) return;
-        emptyPanel(document.getElementById("home-overview"), "📡", "נתוני השוק לא נטענו", String(err.message || err));
+        emptyPanel(document.getElementById("lead-main"), "📡", "נתוני השוק לא נטענו", String(err.message || err));
         emptyPanel(document.getElementById("panel-indices"), "📡", "נתוני המדדים לא נטענו", "");
       });
       fetchJSON("data/momentum.json")

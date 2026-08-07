@@ -659,3 +659,125 @@ a.tv:hover { text-decoration: underline; }
 
 .disclaimer { font-size: .82rem; color: var(--text-3); margin: 0 0 6px; max-width: 70ch; }
 .credit { font-size: .8rem; color: var(--text-3); margin: 0; }
+
+/* =========== NEWSPAPER SKIN — "מהדורת עיתון" (2026-08-08) ===========
+   שכבת-על: דורסת את סגנון-אפל בקסקדה. הטוקנים נשארים — הדארק ממשיך לעבוד. */
+:root {
+  --bg: #fdfdfb; --paper-hair: rgba(0,0,0,.12);
+  --serif: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+}
+:root[data-theme="dark"] { --bg: #131417; --paper-hair: rgba(255,255,255,.16); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #131417; --paper-hair: rgba(255,255,255,.16); }
+}
+body { background-image: none; background-color: var(--bg); }
+
+/* כרטיסים: שטוחים, קו-שיער במקום צל */
+.card { box-shadow: none; border: 1px solid var(--paper-hair); border-radius: 10px; }
+
+/* ── כותרת עליונה ── */
+.topbar { position: static; box-shadow: none; background: var(--bg); border-bottom: 0; }
+.site-header { border-bottom: 2.5px solid var(--text); background: transparent; }
+.np-hd1 { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 0 10px; }
+.np-hd1 .brand-lockup { margin: 0; flex: none; }
+.np-hd1 .brand-logo-full { height: 40px; width: auto; }
+.np-hd-actions { display: flex; align-items: center; gap: 10px; flex: none; }
+.tabs { background: none; border: 0; box-shadow: none; padding: 0; display: flex; gap: 16px; flex-wrap: wrap; }
+.tabs .tab { background: none; border: 0; box-shadow: none; padding: 2px 0; border-radius: 0;
+  font-size: .9rem; font-weight: 500; color: var(--text); }
+.tabs .tab.is-active { background: none; box-shadow: none; font-weight: 700; border-bottom: 2px solid var(--text); }
+.np-hd2 { display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 7px 22px; border-bottom: 1px solid var(--paper-hair); font-size: .78rem; color: var(--text-soft); flex-wrap: wrap; }
+.np-ticks { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.np-tick b { font-weight: 600; color: var(--text-soft); }
+.np-tick .up { color: var(--up); font-weight: 700; } .np-tick .down { color: var(--down); font-weight: 700; }
+.np-clock { white-space: nowrap; }
+.np-hd2 .clock-badge { font-size: .74rem; font-weight: 700; padding: 0; background: none; }
+.np-hd2 .clock-badge.open { color: var(--up); } .np-hd2 .clock-badge.closed { color: var(--text-3); }
+.head-stamp .stamp { margin: 0; font-size: .78rem; }
+
+/* שורת החוזים הקבועה */
+#ticker-wrap { background: transparent; padding: 0; }
+.np-futs { display: flex; justify-content: center; gap: 46px; padding: 12px 0; border-bottom: 1px solid var(--paper-hair); flex-wrap: wrap; }
+.np-fut { display: flex; align-items: baseline; gap: 9px; }
+.np-fut .l { font-size: .8rem; color: var(--text-soft); }
+.np-fut .v { font-size: 1.35rem; font-weight: 700; }
+.np-fut .c { font-size: .85rem; font-weight: 700; }
+.np-fut .c.up { color: var(--up); } .np-fut .c.down { color: var(--down); }
+
+/* ── קיקר אחיד ── */
+.np-k { font-family: Heebo, sans-serif; font-size: .68rem; font-weight: 700; letter-spacing: .18em;
+  color: var(--text-3); margin: 0 0 12px; display: block; }
+
+/* ── הידיעה המובילה ── */
+.np-lead { display: grid; grid-template-columns: 1fr 300px; gap: 44px; padding: 30px 0 28px; border-bottom: 1px solid var(--paper-hair); }
+.np-lead .np-k b { color: var(--down); }
+.np-h1 { font-family: var(--serif); font-size: 2.9rem; font-weight: 900; line-height: 1.15; letter-spacing: -.01em; margin: 8px 0 14px; color: var(--text); }
+.np-reg { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; margin: 0 0 10px; }
+.np-dek { font-family: var(--serif); font-size: 1.04rem; color: var(--text-soft); max-width: 660px; margin: 0 0 12px; line-height: 1.6; }
+.np-bottom { font-family: var(--serif); font-size: 1rem; margin: 0 0 16px; line-height: 1.6; }
+.np-bottom b { background: linear-gradient(transparent 62%, rgba(220,180,60,.35) 62%); }
+.np-leadfoot { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: .78rem; }
+.np-leadfoot a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.np-lt { display: flex; align-items: center; gap: 5px; color: var(--text-soft); }
+.np-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-3); }
+.np-lt.pos .np-dot, .np-lt.good .np-dot { background: var(--up); }
+.np-lt.warn .np-dot { background: var(--warn); }
+.np-lt.neg .np-dot, .np-lt.bad .np-dot { background: var(--down); }
+.np-rail { border-inline-start: 1px solid var(--paper-hair); padding-inline-start: 34px; }
+.np-score { display: flex; align-items: baseline; gap: 10px; margin: 4px 0 2px; }
+.np-score b { font-size: 3rem; font-weight: 700; line-height: 1; }
+.np-score span { font-weight: 700; }
+.np-spark { width: 100%; height: 40px; margin: 8px 0 4px; }
+.np-rail .spark-label { font-size: .72rem; color: var(--text-3); margin-bottom: 10px; }
+.np-sub { display: flex; justify-content: space-between; align-items: baseline; font-size: .88rem; padding: 7px 0; border-bottom: 1px solid var(--paper-hair); }
+.np-sub .diff { font-size: .74rem; }
+.np-more { display: inline-block; margin-top: 10px; font-size: .78rem; color: var(--accent); font-weight: 600; text-decoration: none; }
+
+/* ── שלוש עמודות ── */
+.np-tri { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; padding: 24px 0; border-bottom: 1px solid var(--paper-hair); }
+.np-tri .brief-news li { font-size: .9rem; }
+.np-tri .brief-sched { margin-top: 10px; }
+.np-tri .bs-title { font-size: .8rem; font-weight: 700; color: var(--text-soft); margin-bottom: 4px; }
+.np-tri .brief-sched ul { margin: 0; padding: 0; list-style: none; }
+.np-tri .brief-sched li { display: flex; gap: 9px; padding: 3px 0; font-size: .85rem; }
+.np-tri .bs-time { color: var(--accent); font-weight: 700; flex: none; }
+.np-sent { font-size: .82rem; color: var(--text-soft); margin: -6px 0 8px; }
+.np-xit { display: block; padding: 8px 0; border-bottom: 1px solid var(--paper-hair); color: var(--text); text-decoration: none; }
+.np-xit:last-of-type { border-bottom: 0; }
+.np-xit p { margin: 0; font-size: .9rem; font-weight: 500; direction: ltr; text-align: left; line-height: 1.45; }
+.np-xit .m { font-size: .72rem; color: var(--text-3); direction: ltr; text-align: left; display: block; }
+.np-idx a { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 0;
+  border-bottom: 1px solid var(--paper-hair); color: var(--text); font-size: .95rem; font-weight: 500; text-decoration: none; }
+.np-idx a .c { font-size: .78rem; color: var(--text-3); }
+.np-idx a .c.hot { color: var(--down); font-weight: 700; }
+.np-news { padding: 18px 0; border-bottom: 1px solid var(--paper-hair); }
+
+/* מקטעי הבית הקיימים — עידון עיתונאי */
+#panel-home .card { border: 0; border-bottom: 1px solid var(--paper-hair); border-radius: 0; background: transparent; padding: 24px 0; margin: 0; box-shadow: none; }
+#panel-home .split-title { font-family: Heebo, sans-serif; font-size: .68rem; font-weight: 700; letter-spacing: .18em; color: var(--text-3); }
+#panel-home .split-sub { font-size: .74rem; }
+#panel-home .fc-item { background: var(--surface-2); }
+:root[data-theme="dark"] #panel-home .fc-item { background: var(--surface-3); }
+.home-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0 44px; border-bottom: 1px solid var(--paper-hair); }
+.home-split .split-card { border-bottom: 0; }
+
+/* פוטר */
+.site-footer { border-top: 2.5px solid var(--text); background: transparent; margin-top: 10px; }
+
+@media (max-width: 880px) {
+  .np-hd1 { flex-wrap: wrap; justify-content: center; }
+  .tabs { order: 3; width: 100%; justify-content: center; gap: 12px; }
+  .np-hd2 { justify-content: center; text-align: center; }
+  .np-futs { flex-direction: column; gap: 8px; padding-inline: 4px; }
+  .np-fut { justify-content: space-between; }
+  .np-lead { grid-template-columns: 1fr; gap: 22px; }
+  .np-rail { border-inline-start: 0; border-top: 1px solid var(--paper-hair); padding: 16px 0 0; }
+  .np-h1 { font-size: 1.85rem; }
+  .np-tri { grid-template-columns: 1fr; gap: 26px; }
+  .home-split { grid-template-columns: 1fr; }
+}
+
+/* עוגני הכותרת החדשה — ביטול המיקום המוחלט הישן */
+.np-hd-actions .tabs-tg { position: static; transform: none; }
+.np-hd-actions .theme-toggle { justify-self: auto; }

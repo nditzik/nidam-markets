@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" href="assets/favicon-180.png?v=2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
@@ -27,62 +27,59 @@
 
   <div class="topbar">
   <header class="site-header">
-    <div class="wrap header-inner">
-      <div id="head-stamp" class="head-stamp"></div>
-      <div class="brand-text">
-        <h1 class="brand-lockup">
-          <img class="brand-logo-full logo-light" src="assets/logo-full-light.png" alt="The Daily Edge by NIDAM" width="5040" height="1124" />
-          <img class="brand-logo-full logo-dark" src="assets/logo-full-dark.png" alt="" aria-hidden="true" width="5040" height="1124" />
-        </h1>
-      </div>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="החלף מצב תצוגה">🌙</button>
+    <div class="wrap np-hd1">
+      <h1 class="brand-lockup">
+        <img class="brand-logo-full logo-light" src="assets/logo-full-light.png" alt="The Daily Edge by NIDAM" width="5040" height="1124" />
+        <img class="brand-logo-full logo-dark" src="assets/logo-full-dark.png" alt="" aria-hidden="true" width="5040" height="1124" />
+      </h1>
+      <nav class="tabs" role="tablist" aria-label="ניווט ראשי">
+        <button class="tab is-active" role="tab" data-tab="home">בית</button>
+        <button class="tab" role="tab" data-tab="momentum">מומנטום</button>
+        <button class="tab" role="tab" data-tab="indices">מדדים</button>
+        <button class="tab" role="tab" data-tab="sectors">סקטורים</button>
+        <button class="tab" role="tab" data-tab="candidates">מועמדים</button>
+        <button class="tab" role="tab" data-tab="trades">הצעות לטרייד</button>
+        <button class="tab" role="tab" data-tab="morning">סקירת בוקר</button>
+        <button class="tab" role="tab" data-tab="briefing">תדרוך</button>
+        <button class="tab" role="tab" data-tab="weekcal">דיווחים</button>
+        <button class="tab" role="tab" data-tab="reports">דוחות</button>
+      </nav>
+      <span class="np-hd-actions">
+        <a class="tg-btn tabs-tg" href="https://t.me/nidam_markets" target="_blank" rel="noopener" aria-label="הצטרפו לערוץ הטלגרם">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          <span class="tg-txt">הצטרפו לטלגרם</span>
+        </a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="החלף מצב תצוגה">🌙</button>
+      </span>
     </div>
   </header>
-
-  <div class="wrap tabs-row">
-  <nav class="tabs" role="tablist" aria-label="ניווט ראשי">
-    <button class="tab is-active" role="tab" data-tab="home">בית</button>
-    <button class="tab" role="tab" data-tab="momentum">מומנטום</button>
-    <button class="tab" role="tab" data-tab="indices">מדדים</button>
-    <button class="tab" role="tab" data-tab="sectors">סקטורים</button>
-    <button class="tab" role="tab" data-tab="candidates">מועמדים</button>
-    <button class="tab" role="tab" data-tab="trades">הצעות לטרייד</button>
-    <button class="tab" role="tab" data-tab="morning">סקירת בוקר</button>
-    <button class="tab" role="tab" data-tab="briefing">תדרוך משקיעים</button>
-    <button class="tab" role="tab" data-tab="weekcal">דיווחים</button>
-    <button class="tab" role="tab" data-tab="reports">דוחות</button>
-  </nav>
-    <a class="tg-btn tabs-tg" href="https://t.me/nidam_markets" target="_blank" rel="noopener" aria-label="הצטרפו לערוץ הטלגרם">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-      <span class="tg-txt">הצטרפו לטלגרם</span>
-    </a>
+  <div class="wrap np-hd2">
+    <span id="head-stamp" class="head-stamp"></span>
+    <span id="ticker" class="np-ticks num" dir="ltr" aria-label="נתוני שוק בזמן אמת"></span>
+    <span class="np-clock"><span id="clock-badge" class="clock-badge closed">…</span> · <span id="clock-time" class="num" dir="ltr">--:--:--</span> <span id="clock-label"></span></span>
   </div>
   </div>
 
-  <div id="ticker-wrap" class="wrap">
-    <section class="hero">
-      <h2 class="hero-title">השוק, כל יום — בשפה של משקיעים.</h2>
-      <p class="hero-sub">סקירות, תדריכים והתראות בזמן אמת.</p>
-    </section>
-    <div id="ticker" class="ticker-tape" dir="ltr" aria-label="נתוני שוק בזמן אמת"></div>
-    <div id="ticker-pin" class="ticker-pin" dir="ltr" aria-label="חוזים ושער הדולר"></div>
+  <div id="ticker-wrap">
+    <div class="wrap"><div id="ticker-pin" class="np-futs" aria-label="חוזים ושער הדולר"></div></div>
   </div>
 
   <main id="main" class="wrap">
-    <div id="today-bar" class="today-bar" aria-label="מה חדש היום"></div>
-
-    <!-- Home / market overview. הקונטיינרים סטטיים כדי שכשל במקור אחד לא יפיל את השאר -->
+    <!-- Home — "מהדורת עיתון". הקונטיינרים סטטיים כדי שכשל במקור אחד לא יפיל את השאר -->
     <section class="panel is-active" id="panel-home" role="tabpanel">
-      <div id="home-pulse" class="home-pulse"></div>
-      <div id="home-x"></div>
+      <section id="home-lead" class="np-lead">
+        <article id="lead-main"><div class="panel-loading">טוען נתוני שוק…</div></article>
+        <aside id="lead-rail" class="np-rail"></aside>
+      </section>
+      <section id="home-tri" class="np-tri">
+        <div id="tri-brief"></div>
+        <div id="tri-x"></div>
+        <div id="tri-index" class="np-idx"></div>
+      </section>
+      <div id="tri-news" class="np-news" style="display:none"></div>
       <div id="home-econ"></div>
       <div id="home-focus"></div>
       <div id="home-split" class="home-split"></div>
-      <div class="home-duo">
-        <div id="home-briefing" class="duo-col"></div>
-        <div id="home-verdict" class="duo-col"></div>
-      </div>
-      <div id="home-overview"><div class="panel-loading">טוען נתוני שוק…</div></div>
     </section>
 
     <section class="panel" id="panel-momentum" role="tabpanel"></section>
