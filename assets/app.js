@@ -58,23 +58,36 @@
     return '<span class="mt-item"><span class="mt-label">' + esc(it.label) + "</span>" +
       '<span class="mt-price num">' + fmtQuote(it.price) + "</span>" + chg + "</span>";
   }
+  function tickSpark(sp, up) {
+    if (!sp || sp.length < 2) return "";
+    var min = Math.min.apply(null, sp), max = Math.max.apply(null, sp);
+    if (max === min) max = min + 1;
+    var W = 64, Hh = 26;
+    var pts = sp.map(function (v, i) {
+      return (i * (W / (sp.length - 1))).toFixed(1) + "," + (Hh - 3 - ((v - min) / (max - min)) * (Hh - 6)).toFixed(1);
+    });
+    var col = up ? "var(--up)" : "var(--down)";
+    return '<svg class="np-blk-spark" viewBox="0 0 64 26" preserveAspectRatio="none">' +
+      '<polygon points="0,' + Hh + " " + pts.join(" ") + " " + W + "," + Hh + '" fill="' + col + '" opacity=".12"/>' +
+      '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + col + '" stroke-width="1.6"/></svg>';
+  }
   function renderMarketTicker(el, data) {
     if (!el || !data || !data.items || !data.items.length) return;
-    var rest = [], pinned = [];
-    data.items.forEach(function (it) { (PIN_KEYS[it.key] ? pinned : rest).push(it); });
-    // שורת הכותרת: סטטית ועטופה (לא מרקיזה) — סגנון עיתון
-    el.innerHTML = rest.map(function (it) {
-      var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : "");
-      return '<span class="np-tick"><b>' + esc(it.label) + "</b> " + fmtQuote(it.price) +
-        (c == null ? "" : ' <span class="' + cls + '">' + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>") + "</span>";
-    }).join("");
-    // שורת החוזים הקבועה — מספרים גדולים
-    var pinEl = document.getElementById("ticker-pin");
-    if (pinEl) pinEl.innerHTML = pinned.map(function (it) {
-      var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
-      return '<span class="np-fut"><span class="l">' + esc(it.label) + '</span>' +
-        '<span class="v num" dir="ltr">' + fmtQuote(it.price) + "</span>" +
-        (c == null ? "" : '<span class="c num ' + cls + '" dir="ltr">' + arr + " " + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>") + "</span>";
+    // בלוקים בסגנון Yahoo: שם · מחיר · שינוי (נק' + %) · גרף-מיני תוך-יומי
+    el.innerHTML = data.items.map(function (it) {
+      var c = it.chg, up = c >= 0, cls = c > 0 ? "up" : (c < 0 ? "down" : "");
+      var prev = it.prev != null ? it.prev : (c != null ? it.price / (1 + c / 100) : null);
+      var delta = prev != null ? (it.price - prev) : null;
+      var chgLine = "";
+      if (c != null) {
+        chgLine = '<span class="c num ' + cls + '">' +
+          (delta != null ? (delta > 0 ? "+" : "") + Number(delta).toLocaleString("en-US", { maximumFractionDigits: 2 }) + " " : "") +
+          (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>";
+      }
+      return '<span class="np-blk">' +
+        '<span class="t"><span class="l">' + esc(it.label) + "</span>" +
+          '<span class="v num">' + fmtQuote(it.price) + "</span>" + chgLine + "</span>" +
+        tickSpark(it.spark, up) + "</span>";
     }).join("");
   }
   function loadTicker() {

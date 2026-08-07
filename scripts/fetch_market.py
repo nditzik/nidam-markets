@@ -39,29 +39,42 @@ def israel_stamp():
 
 
 def quote(sym):
+    # interval=15m נותן גם סדרה תוך-יומית לגרף-המיני שבכותרת
     url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
-           + urllib.parse.quote(sym) + "?interval=1d&range=1d")
+           + urllib.parse.quote(sym) + "?interval=15m&range=1d")
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=15) as r:
         d = json.loads(r.read().decode("utf-8"))
-    m = d["chart"]["result"][0]["meta"]
+    res = d["chart"]["result"][0]
+    m = res["meta"]
     price = m.get("regularMarketPrice")
     prev = m.get("chartPreviousClose") or m.get("previousClose")
     chg = (price / prev - 1) * 100 if price and prev else None
-    return price, chg
+    closes = []
+    try:
+        closes = [c for c in res["indicators"]["quote"][0]["close"] if c is not None]
+    except (KeyError, IndexError, TypeError):
+        pass
+    if len(closes) > 26:   # דילול ל-26 נקודות לכל היותר
+        step = len(closes) / 26.0
+        closes = [closes[int(i * step)] for i in range(26)]
+    spark = [round(c, 4) for c in closes]
+    return price, chg, prev, spark
 
 
 def main():
     items = []
     for key, label, sym, digits in SYMBOLS:
         try:
-            price, chg = quote(sym)
+            price, chg, prev, spark = quote(sym)
             if price is None:
                 raise ValueError("no price")
             items.append({
                 "key": key, "label": label,
                 "price": round(price, digits),
                 "chg": round(chg, 2) if chg is not None else None,
+                "prev": round(prev, digits) if prev else None,
+                "spark": spark,
             })
             print(f"[ok] {label}: {price} ({chg:+.2f}%)")
         except Exception as e:
