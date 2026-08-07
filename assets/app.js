@@ -37,7 +37,11 @@
     updateTodayBarVis();
     var tw = document.getElementById("ticker-wrap");
     if (tw) tw.style.display = name === "home" ? "block" : "none";
-    if (location.hash.slice(1) !== name) history.replaceState(null, "", "#" + name);
+    if (location.hash.slice(1) !== name) {
+      history.replaceState(null, "", "#" + name);
+      // GoatCounter: ספירת מעבר-טאב כצפיית-עמוד (הכניסה הראשונית נספרת אוטומטית)
+      if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "/" + name });
+    }
   }
 
   /* ---- live market ticker (our own strip, from data/market.json via Yahoo) ---- */
