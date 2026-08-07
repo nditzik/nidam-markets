@@ -217,13 +217,13 @@ def imap_since(days=4):
     return f"{d.day:02d}-{months[d.month - 1]}-{d.year}"
 
 
-def fetch_candidates(imap):
+def fetch_candidates(imap, days=4):
     """
     שולף את כל המיילים מהשולח מהימים האחרונים ומחזיר רשימת (subject, date_dt, msg)
     ממוינת מהחדש לישן. חיפוש ASCII בלבד (FROM+SINCE) — אין עברית בשאילתת IMAP
     (חיפוש כותרת בעברית ב-Gmail IMAP נכשל ללא charset ומחזיר ריק).
     """
-    typ, data = imap.search(None, 'FROM', SENDER, 'SINCE', imap_since())
+    typ, data = imap.search(None, 'FROM', SENDER, 'SINCE', imap_since(days))
     ids = data[0].split() if typ == "OK" and data and data[0] else []
     out = []
     for mid in ids:
@@ -277,10 +277,28 @@ def main():
         return 0 if os.path.exists(OUT_JSON) else 1
 
     try:
-        candidates = fetch_candidates(imap)
-        print(f"[info] נמצאו {len(candidates)} מיילים מהשולח בימים האחרונים.")
+        # ריצה ראשונה (אין עדיין ארכיון-תדריכים) → אכלוס-לאחור של 30 יום מהתיבה
+        import briefing_archive as ba
+        idx = ba.load_index()
+        backfill = not (ba.has_kind(idx, "morning") or ba.has_kind(idx, "afternoon"))
+        candidates = fetch_candidates(imap, days=ba.KEEP_DAYS + 2 if backfill else 4)
+        print(f"[info] נמצאו {len(candidates)} מיילים מהשולח" + (" (אכלוס ארכיון לאחור)" if backfill else ""))
         morning = build_slot(pick_latest(candidates, MORNING_MARK))
         afternoon = build_slot(pick_latest(candidates, AFTERNOON_MARK))
+
+        # ארכוב כל המהדורות שנמשכו (מהחדש לישן — עותק ראשון ליום/סוג מנצח)
+        arch_changed = False
+        for subject, date_dt, msg in candidates:
+            if subject.startswith("Fwd:") or subject.startswith("Fw:") or "תדרוך משקיעים" not in subject:
+                continue
+            kind = "morning" if MORNING_MARK in subject else ("afternoon" if AFTERNOON_MARK in subject else None)
+            if not kind:
+                continue
+            if ba.archive_email(idx, kind, subject, date_dt, html_of(msg)):
+                arch_changed = True
+        if arch_changed:
+            ba.prune_and_save(idx, israel_stamp())
+            print("[archive] אינדקס התדריכים עודכן")
     finally:
         try:
             imap.logout()

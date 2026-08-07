@@ -491,6 +491,9 @@ main { padding: 26px 0 70px; }
   padding: 6px 13px; font-size: .85rem; font-weight: 600;
 }
 .chip.lead { background: color-mix(in srgb, var(--up) 14%, var(--surface-2)); color: var(--up); }
+/* צ'יפים של ארכיון תאריכים (עד 30) — קומפקטיים יותר */
+.arch-chips { gap: 6px; }
+.arch-chips .chip { font-size: .78rem; padding: 4px 10px; }
 
 /* ---- Table ---- */
 .table-wrap { overflow-x: auto; border-radius: var(--radius); background: var(--surface-2); }

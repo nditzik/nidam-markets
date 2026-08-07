@@ -134,10 +134,16 @@ def run_imap():
         print(f"[warn] חיבור IMAP נכשל: {e}")
         return 0 if os.path.exists(OUT_JSON) else 1
     try:
+        # ריצה ראשונה (אין עדיין ארכיון-סקירות) → אכלוס-לאחור של 30 יום
+        import briefing_archive as ba
+        idx = ba.load_index()
+        backfill = not ba.has_kind(idx, "review")
+        since_days = ba.KEEP_DAYS + 2 if backfill else 3
         # חיפוש ASCII-בטוח (FROM + SINCE); סינון הכותרת בעברית ב-Python
-        typ, data = imap.search(None, "FROM", SENDER, "SINCE", imap_since())
+        typ, data = imap.search(None, "FROM", SENDER, "SINCE", imap_since(since_days))
         ids = data[0].split() if typ == "OK" and data and data[0] else []
         best = None
+        arch_changed = False
         for mid in reversed(ids):  # מהחדש לישן
             typ, md = imap.fetch(mid, "(RFC822)")
             if typ != "OK" or not md or not md[0]:
@@ -149,8 +155,16 @@ def run_imap():
             if SUBJECT_MARK not in subject:
                 continue
             date_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
-            best = (subject, date_dt, html_of(msg))
-            break
+            body = html_of(msg)
+            if ba.archive_email(idx, "review", subject, date_dt, body):
+                arch_changed = True
+            if best is None:
+                best = (subject, date_dt, body)
+                if not backfill:
+                    break   # בריצה רגילה מספיק המייל האחרון
+        if arch_changed:
+            ba.prune_and_save(idx, israel_stamp())
+            print("[archive] אינדקס הסקירות עודכן")
         if not best:
             print("[warn] לא נמצא 'סיכום Barchart יומי'.")
             return 0 if os.path.exists(OUT_JSON) else 1

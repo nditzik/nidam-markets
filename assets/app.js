@@ -1046,6 +1046,26 @@
     });
   }
 
+  /* ארכיון תדריכים/סקירות — data/briefing_archive.json (30 יום אחורה) */
+  var BARCHIVE = null, BRIEF_DAY = null, MORN_DAY = null, MORND = null;
+  function archDays(kinds, excludeIso) {
+    if (!BARCHIVE || !BARCHIVE.days) return [];
+    return Object.keys(BARCHIVE.days).filter(function (k) {
+      if (k === excludeIso) return false;
+      var e = BARCHIVE.days[k];
+      return kinds.some(function (kd) { return e[kd]; });
+    }).sort().reverse();
+  }
+  function archNavHtml(cls, days, sel, latestLabel) {
+    if (!days.length) return "";
+    return '<div class="chips arch-chips" style="margin-bottom:12px">' +
+      '<button class="chip ' + cls + (sel ? "" : " lead") + '" data-day="">' + esc(latestLabel) + "</button>" +
+      days.map(function (k) {
+        return '<button class="chip ' + cls + (sel === k ? " lead" : "") + '" data-day="' + k +
+          '"><span dir="ltr">' + esc(fmtTradeDate(k)) + "</span></button>";
+      }).join("") + "</div>";
+  }
+
   function renderBriefing(el, d) {
     var slots = [];
     if (d && d.morning) slots.push(["morning", "בוקר", d.morning]);
@@ -1053,6 +1073,20 @@
     if (!slots.length) {
       emptyPanel(el, "📣", "תדרוך משקיעים — בקרוב", "הטאב יתמלא ברגע שצינור הג'ימייל יופעל.");
       return;
+    }
+    // המהדורה החדשה ביותר → iso (כדי לא להציג אותה פעמיים בצ'יפים);
+    // בבוקר briefing.json מחזיק בוקר-של-היום + אחה"צ-של-אתמול — לוקחים את המאוחר
+    function isoOf(s) { var m = /^(\d{2})\/(\d{2})\/(\d{4})/.exec(s || ""); return m ? m[3] + "-" + m[2] + "-" + m[1] : ""; }
+    var aIso = isoOf(d.morning && d.morning.dateLabel), bIso = isoOf(d.afternoon && d.afternoon.dateLabel);
+    var latestIso = aIso > bIso ? aIso : bIso;
+    var days = archDays(["morning", "afternoon"], latestIso);
+    var sel = (BRIEF_DAY && days.indexOf(BRIEF_DAY) >= 0) ? BRIEF_DAY : null;
+    var archNav = archNavHtml("brief-day", days, sel, latestIso ? fmtTradeDate(latestIso) : "אחרון");
+    if (sel) {   // יום ארכיון נבחר — הצג את המהדורות השמורות שלו
+      var e = BARCHIVE.days[sel];
+      slots = [];
+      if (e.morning) slots.push(["morning", "בוקר", { subject: e.morning.subject, time: e.morning.time, file: e.morning.file, dateLabel: fmtTradeDate(sel) }]);
+      if (e.afternoon) slots.push(["afternoon", "אחר הצהריים", { subject: e.afternoon.subject, time: e.afternoon.time, file: e.afternoon.file, dateLabel: fmtTradeDate(sel) }]);
     }
     var nav = '<div class="chips" style="margin-bottom:12px">' +
       slots.map(function (s, i) {
@@ -1076,7 +1110,7 @@
     }).join("");
 
     el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">📣 תדרוך משקיעים</div>' + nav + frames;
+      '<div class="section-title" style="margin-top:0">📣 תדרוך משקיעים</div>' + archNav + nav + frames;
 
     el.querySelectorAll(".brief-tab").forEach(function (b) {
       b.addEventListener("click", function () {
@@ -1084,6 +1118,9 @@
         el.querySelectorAll(".brief-tab").forEach(function (x) { x.classList.toggle("lead", x.dataset.brief === k); });
         el.querySelectorAll(".brief-view").forEach(function (x) { x.style.display = x.dataset.brief === k ? "block" : "none"; });
       });
+    });
+    el.querySelectorAll(".brief-day").forEach(function (b) {
+      b.addEventListener("click", function () { BRIEF_DAY = b.dataset.day || null; renderBriefing(el, d); });
     });
   }
 
@@ -1171,16 +1208,30 @@
       emptyPanel(el, "🌅", "סקירת בוקר — בקרוב", "תחובר ברגע שצינור ה-Barchart יופעל.");
       return;
     }
+    // ארכיון: היום החדש ביותר באינדקס = הסקירה הנוכחית — הצ'יפ הראשון מייצג אותו
+    var revDays = archDays(["review"], "");
+    var latestRev = revDays.length ? revDays[0] : "";
+    var days = revDays.slice(1);
+    var sel = (MORN_DAY && days.indexOf(MORN_DAY) >= 0) ? MORN_DAY : null;
+    var archNav = archNavHtml("morn-day", days, sel, latestRev ? fmtTradeDate(latestRev) : "אחרון");
+    var subject = d.subject, dateLabel = d.dateLabel, time = d.time, file = d.file;
+    if (sel) {
+      var e = BARCHIVE.days[sel].review;
+      subject = e.subject; dateLabel = fmtTradeDate(sel); time = e.time; file = e.file;
+    }
     el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">🌅 סקירת בוקר</div>' +
+      '<div class="section-title" style="margin-top:0">🌅 סקירת בוקר</div>' + archNav +
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
-      "<strong>" + esc(d.subject || "סיכום Barchart יומי") + "</strong>" +
-      (d.dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(d.dateLabel) +
-        (d.time ? " · " + esc(d.time) : "") + "</div>" : "") +
+      "<strong>" + esc(subject || "סיכום Barchart יומי") + "</strong>" +
+      (dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(dateLabel) +
+        (time ? " · " + esc(time) : "") + "</div>" : "") +
       "</div>" +
-      '<iframe class="brief-frame" src="' + bust(d.file, d._meta) + '" title="' + esc(d.subject || "") +
+      '<iframe class="brief-frame" src="' + bust(file, d._meta) + '" title="' + esc(subject || "") +
       '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
       'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+    el.querySelectorAll(".morn-day").forEach(function (b) {
+      b.addEventListener("click", function () { MORN_DAY = b.dataset.day || null; renderMorning(el, d); });
+    });
   }
 
   function renderCandidates(el, d) {
@@ -1364,8 +1415,17 @@
         .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
         .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
       fetchJSON("data/morning.json")
-        .then(function (d) { if (!freshD("morning", d)) return; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
+        .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
+      // אינדקס הארכיון (תדריכים + סקירות, 30 יום) — מרענן את הצ'יפים בשני הטאבים
+      fetchJSON("data/briefing_archive.json")
+        .then(function (d) {
+          if (!freshD("barchive", d)) return;
+          BARCHIVE = d;
+          if (BRIEF) renderBriefing(document.getElementById("panel-briefing"), BRIEF);
+          if (MORND) renderMorning(document.getElementById("panel-morning"), MORND);
+        })
+        .catch(function () {});
       fetchJSON("data/candidates.json")
         .then(function (d) { if (!freshD("candidates", d)) return; CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); noteSig("candidates", d); })
         .catch(function () { if (!CANDD) emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
