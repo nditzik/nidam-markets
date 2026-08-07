@@ -74,7 +74,8 @@
   function renderMarketTicker(el, data) {
     if (!el || !data || !data.items || !data.items.length) return;
     // בלוקים בסגנון Yahoo: שם · מחיר · שינוי (נק' + %) · גרף-מיני תוך-יומי
-    el.innerHTML = data.items.map(function (it) {
+    // שורה עליונה: המדדים · שורה תחתונה: החוזים העתידיים + דולר/שקל
+    function blk(it) {
       var c = it.chg, up = c >= 0, cls = c > 0 ? "up" : (c < 0 ? "down" : "");
       var prev = it.prev != null ? it.prev : (c != null ? it.price / (1 + c / 100) : null);
       var delta = prev != null ? (it.price - prev) : null;
@@ -88,7 +89,12 @@
         '<span class="t"><span class="l">' + esc(it.label) + "</span>" +
           '<span class="v num">' + fmtQuote(it.price) + "</span>" + chgLine + "</span>" +
         tickSpark(it.spark, up) + "</span>";
-    }).join("");
+    }
+    var idx = [], futs = [];
+    data.items.forEach(function (it) { (PIN_KEYS[it.key] ? futs : idx).push(it); });
+    el.innerHTML =
+      '<div class="np-blk-row">' + idx.map(blk).join("") + "</div>" +
+      '<div class="np-blk-row">' + futs.map(blk).join("") + "</div>";
   }
   function loadTicker() {
     var el = document.getElementById("ticker");
