@@ -91,10 +91,10 @@ def passes_base(s):
 
 
 def compute_focus():
-    """שחזור חישוב-המפגשים של הדף: ≥2 מתוך {מומנטום, מועמדים, בולטות}."""
+    """שחזור חישוב-המפגשים של הדף: מומנטום ∩ מועמדים (הבולטות הוצאו — מתחלפות
+    כל רבע שעה וגרמו לרשימה להשתנות במהלך היום). חייב להישאר זהה ל-app.js!"""
     mom = load(os.path.join(DATA, "momentum.json")) or {}
     cand = load(os.path.join(DATA, "candidates.json")) or {}
-    mov = load(os.path.join(DATA, "movers.json")) or {}
     hits = {}
 
     def H(sym):
@@ -112,15 +112,9 @@ def compute_focus():
         h = H(c.get("symbol"))
         if h is not None:
             h["cand"] = c.get("rank")
-    for g in ("gainers", "losers", "active"):
-        for x in mov.get(g) or []:
-            h = H(x.get("symbol"))
-            if h is not None and "mv" not in h:
-                h["mv"] = x.get("chg")
 
-    focus = [h for h in hits.values()
-             if sum(k in h for k in ("mom", "cand", "mv")) >= 2]
-    focus.sort(key=lambda h: (-sum(k in h for k in ("mom", "cand", "mv")), -(h.get("mom") or 0), h["sym"]))
+    focus = [h for h in hits.values() if "mom" in h and "cand" in h]
+    focus.sort(key=lambda h: (-(h.get("mom") or 0), h.get("cand") or 99, h["sym"]))
     return [h["sym"] for h in focus[:6]]
 
 

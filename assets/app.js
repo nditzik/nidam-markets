@@ -425,22 +425,14 @@
     if (CANDD && CANDD.candidates) {
       CANDD.candidates.forEach(function (c) { var h = H(c.symbol); if (h) h.cand = c.rank; });
     }
-    if (MOVERS) {
-      ["gainers", "losers", "active"].forEach(function (g) {
-        (MOVERS[g] || []).forEach(function (x) {
-          var h = H(x.symbol); if (h && h.mv == null) h.mv = x.chg;
-        });
-      });
-    }
-
+    // הבולטות הוצאו מהחישוב (מתחלפות כל רבע שעה וגרמו לרשימה "לנשום" במהלך היום);
+    // המוקד = חיתוך יציב של מומנטום ∩ מועמדים בלבד
     var focus = Object.keys(hits).map(function (k) { return hits[k]; }).filter(function (h) {
-      return [h.mom != null, h.cand != null, h.mv != null].filter(Boolean).length >= 2;
+      return h.mom != null && h.cand != null;
     });
     if (!focus.length) { el.innerHTML = ""; return; }
     focus.sort(function (a, b) {
-      var na = [a.mom != null, a.cand != null, a.mv != null].filter(Boolean).length;
-      var nb = [b.mom != null, b.cand != null, b.mv != null].filter(Boolean).length;
-      return (nb - na) || ((b.mom || 0) - (a.mom || 0));
+      return ((b.mom || 0) - (a.mom || 0)) || ((a.cand || 99) - (b.cand || 99));
     });
     focus = focus.slice(0, 6);
     refreshFocusQuotes(focus.map(function (h) { return h.sym; }));
@@ -463,7 +455,7 @@
     el.innerHTML =
       '<section class="card focus-card">' +
         '<div class="split-head"><span class="split-title">🎯 מניות במוקד</span>' +
-          '<span class="split-sub">מחירים חיים · מופיעות בכמה מערכות במקביל' +
+          '<span class="split-sub">מחירים חיים · מומנטום ומועמדות במקביל' +
             (INDD && INDD.date ? ' · נכון ליום המסחר <span dir="ltr">' + fmtTradeDate(INDD.date) + "</span>" : "") +
           "</span></div>" +
         '<div class="fc-grid">' +
@@ -481,7 +473,6 @@
           var tags = [];
           if (h.mom != null) tags.push('<span class="fc-t">מומנטום · <b>' + h.mom + " סיגנלים</b></span>");
           if (h.cand != null) tags.push('<span class="fc-t">מועמדת <b>#' + h.cand + "</b></span>");
-          if (h.mv != null) tags.push('<span class="fc-t"><b class="' + (h.mv >= 0 ? "up" : "down") + '">בולטת היום</b></span>');
           var iso = EARNW[h.sym];
           if (iso) { var m = /-(\d{2})-(\d{2})$/.exec(iso); if (m) tags.push('<span class="fc-t fc-warn">📅 מדווחת ' + (+m[2]) + "." + (+m[1]) + "</span>"); }
           if (repSet[h.sym]) tags.push('<button class="fc-t fc-rep" onclick="__goTab(\'reports\')">📑 ניתוח</button>');
@@ -605,12 +596,20 @@
     // ---- הבולטות של היום (עמודה ימנית ב-RTL = ראשונה ב-DOM) ----
     // הכרטיס מוצג תמיד כשהקובץ נטען — גם כשרשימה רגעית ריקה (שלא ייעלם המלבן)
     if (MOVERS) {
+      // מניה בולטת שמופיעה גם במערכות שלנו מקבלת תג בין שם החברה למחיר
+      var momSet = {}, candSet = {};
+      if (MOMD && MOMD.stocks) MOMD.stocks.forEach(function (s) { momSet[(s.symbol || "").toUpperCase()] = 1; });
+      if (CANDD && CANDD.candidates) CANDD.candidates.forEach(function (c) { candSet[(c.symbol || "").toUpperCase()] = 1; });
       var tabs = [["gainers", "📈 עולות"], ["losers", "📉 יורדות"], ["active", "🔄 הכי נסחרות"]];
       var rows = (MOVERS[MV_CUR] || []).map(function (x) {
         var c = x.chg > 0 ? "up" : x.chg < 0 ? "down" : "";
+        var sym = (x.symbol || "").toUpperCase(), sys = [];
+        if (momSet[sym]) sys.push("מומנטום");
+        if (candSet[sym]) sys.push("מועמדת");
+        var sysTag = sys.length ? '<span class="mv-in">' + sys.join(" · ") + "</span>" : "";
         return '<li><a class="mv-sym" target="_blank" rel="noopener" href="https://www.tradingview.com/symbols/' +
           encodeURIComponent(x.symbol) + '/" title="פתח ב-TradingView">' + esc(x.symbol) + "</a>" +
-          '<span class="mv-name">' + esc(x.name) + "</span>" +
+          '<span class="mv-name">' + esc(x.name) + "</span>" + sysTag +
           '<span class="mv-px num" dir="ltr">' + (x.price == null ? "—" : Number(x.price).toLocaleString("en-US", { maximumFractionDigits: 2 })) + "</span>" +
           '<span class="mv-chg ' + c + '" dir="ltr">' + (x.chg > 0 ? "+" : "") + Number(x.chg).toFixed(2) + "%</span></li>";
       }).join("");
@@ -1349,7 +1348,7 @@
     });
 
     fetchJSON("data/momentum.json")
-      .then(function (d) { MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); noteSig("momentum", d); })
+      .then(function (d) { MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); noteSig("momentum", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
 
     // briefing.json נטען ומתרענן דרך loadLiveContent (עם שומר-שינוי)
@@ -1363,7 +1362,7 @@
       .catch(function () { emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
 
     fetchJSON("data/candidates.json")
-      .then(function (d) { CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); noteSig("candidates", d); })
+      .then(function (d) { CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); noteSig("candidates", d); })
       .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
 
     fetchJSON("data/reports.json")

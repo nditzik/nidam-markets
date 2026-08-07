@@ -383,6 +383,7 @@ main { padding: 26px 0 70px; }
 .mv-sym { font-weight: 700; color: var(--accent); min-width: 52px; text-decoration: none; font-size: .86rem; }
 .mv-sym:hover { text-decoration: underline; }
 .mv-name { flex: 1; color: var(--text-soft); font-size: .83rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: ltr; text-align: right; }
+.mv-in { flex: none; font-size: .68rem; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
 .mv-px { font-variant-numeric: tabular-nums; font-weight: 600; font-size: .85rem; }
 .mv-chg { font-variant-numeric: tabular-nums; font-weight: 700; font-size: .85rem; min-width: 66px; text-align: left; }
 
