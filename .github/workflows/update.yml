@@ -108,6 +108,11 @@ jobs:
         run: python scripts/fetch_sectors.py
         continue-on-error: true
 
+      # --- דוחות "הצעות לטרייד" (nidam-reports/trades) ---
+      - name: Fetch trade ideas
+        run: python scripts/fetch_trades.py
+        continue-on-error: true
+
       # --- מחירי שוק חיים (Yahoo Finance) לסרט בדף הבית ---
       - name: Fetch market quotes
         run: python scripts/fetch_market.py

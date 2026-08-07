@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דוח ארבעת העמודים — 07/08/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#051C2C;--blue:#2251FF;--cyan:#00A9F4;--ink:#1a1a2e;--gray:#5f6b7a;--line:#DDE3EA;--bg:#F7F9FB;--green:#0E8A5F;--red:#C0392B;--amber:#B7791F}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Heebo","Arial Hebrew",sans-serif;direction:rtl;color:var(--ink);background:#fff;line-height:1.7;font-size:15.5px}
+  .num{direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 26px}
+  header{background:var(--navy);color:#fff;padding:52px 0 44px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--cyan);font-weight:600;margin-bottom:14px}
+  h1{font-size:34px;font-weight:800;line-height:1.25}
+  .subtitle{margin-top:12px;font-size:16.5px;color:#B9C6D2;font-weight:300}
+  .header-rule{width:64px;height:4px;background:var(--blue);margin-top:22px}
+  .keymsg{background:var(--blue);color:#fff;padding:18px 0}
+  .keymsg p{font-size:16px;font-weight:500}
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .stepnum{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.16em;margin-bottom:4px}
+  h2{font-size:23px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .lede{color:var(--gray);font-size:15px;max-width:820px;margin-bottom:20px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:18px 0 6px}
+  .kpi{background:var(--bg);border-top:3px solid var(--blue);padding:14px 16px}
+  .kpi .v{font-size:24px;font-weight:800;color:var(--navy);line-height:1.2}
+  .kpi .l{font-size:12.5px;color:var(--gray);margin-top:2px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:13.8px}
+  thead th{background:var(--navy);color:#fff;font-weight:600;padding:9px 11px;text-align:start;font-size:12.8px;white-space:nowrap}
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--bg)}
+  td.sym{font-weight:700;color:var(--navy);direction:ltr;text-align:right;white-space:nowrap}
+  td.score{font-weight:800;color:var(--blue);white-space:nowrap}
+  .badge{display:inline-block;padding:1px 9px;border-radius:3px;font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap}
+  .b-green{background:var(--green)}.b-red{background:var(--red)}.b-amber{background:var(--amber)}.b-gray{background:var(--gray)}
+  .tbl-note{font-size:12.8px;color:var(--gray);margin-bottom:8px}
+  .cond-head{display:flex;align-items:baseline;gap:12px;margin:8px 0 12px}
+  .cond-letter{width:34px;height:34px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;border-radius:2px}
+  .cond-head h3{font-size:18px;font-weight:700;color:var(--navy)}
+  .cond-head .tag{font-size:12.5px;color:var(--gray)}
+  .deep{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+  .dcard{border:1px solid var(--line);padding:16px 18px;border-top:3px solid var(--green)}
+  .dcard.warn{border-top-color:var(--amber)}
+  .dcard.bad{border-top-color:var(--red)}
+  .dcard h4{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .dcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--blue)}
+  .dcard p{font-size:13.5px;margin-bottom:6px}
+  .dcard .lbl{font-weight:700;color:var(--navy)}
+  .dcard .trigger{background:var(--bg);padding:8px 12px;font-size:13px;margin-top:8px;border-inline-start:3px solid var(--blue)}
+  .flag{background:#FBEDEB;border-inline-start:4px solid var(--red);padding:12px 16px;margin:10px 0;font-size:14px}
+  .flag strong{color:var(--red)}
+  .warnbox{background:#FDF6E9;border-inline-start:4px solid var(--amber);padding:12px 16px;margin:10px 0;font-size:14px}
+  .warnbox strong{color:var(--amber)}
+  .bottom{background:var(--navy);color:#fff;padding:40px 0}
+  .bottom h2{color:#fff}
+  .bl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+  .bcard{background:rgba(255,255,255,.06);border-top:3px solid var(--cyan);padding:16px 18px}
+  .bcard h4{font-size:15px;font-weight:800;margin-bottom:6px}
+  .bcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--cyan)}
+  .bcard p{font-size:13.5px;color:#C9D5DF}
+  footer{background:#031320;color:#8FA3B3;padding:24px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:640px){h1{font-size:26px}section{padding:34px 0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Four Pillars Scanner · דוח סריקה</div>
+    <h1>דוח ארבעת העמודים — שלוש הקטגוריות</h1>
+    <p class="subtitle">נתוני Barchart מ-<span class="num">07/08/2026</span> (07:12 CDT) · <span class="num">36</span> מניות נסרקו · <span class="num">31</span> עברו אימות מלא</p>
+    <div class="header-rule"></div>
+  </div>
+</header>
+
+<div class="keymsg">
+  <div class="wrap">
+    <p><strong>מצב שוק: שורי.</strong> ה-S&amp;P 500 בשיאים כל הזמנים (~<span class="num">7,525–7,580</span>), מעל ממוצע 50 יום (<span class="num">7,478</span>) — בטא גבוה מקבל בונוס בדירוג; הסביבה תומכת בעסקאות מומנטום ופריצה.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="stepnum">תמונת מצב</div>
+    <h2>סיכום מנהלים</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="v"><span class="num">12</span></div><div class="l">מומנטום גבוה — כולן עברו אימות קריטריונים</div></div>
+      <div class="kpi"><div class="v"><span class="num">21</span></div><div class="l">מועמדות לפריצה — 5 נכשלו באימות Alpha</div></div>
+      <div class="kpi"><div class="v"><span class="num">3</span></div><div class="l">עוף החול — כולן ממתינות לטריגר 100 יום</div></div>
+      <div class="kpi"><div class="v"><span class="num">1</span></div><div class="l">פסילת Short Interest (URGN)</div></div>
+    </div>
+    <p class="lede">שלוש המסקנות המרכזיות: (1) <strong>AVAH היא ה-Setup הנקי ביותר בדוח</strong> — עומדת בכל קריטריון כמעט בצורה מושלמת, עם אימות פונדמנטלי חזק; (2) <strong>VSXY מובילה את קטגוריית המומנטום</strong> עם 12 שיאים חודשיים וקטליזטור עסקי אמיתי; (3) בקטגוריית הפריצה — <strong>5 מניות לא עומדות בקריטריון ה-Alpha</strong> (מתחת ל-<span class="num">-5</span>), כנראה הסריקה רצה עם טווח רחב מההגדרה — כדאי לבדוק את ההגדרות ב-Barchart.</p>
+  </div>
+</section>
+
+<!-- Category A -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה א</div>
+    <div class="cond-head">
+      <div class="cond-letter">א</div>
+      <h3>מומנטום גבוה — <span class="num">12</span> מניות</h3>
+      <span class="tag">כולן Opinion <span class="num">100%</span> Buy, Alpha > <span class="num">50</span> ✓</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>סטטוס</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">VSXY</td><td class="score">92</td><td><span class="num">+282.7</span></td><td><span class="num">12</span></td><td><span class="num">69.8</span></td><td><span class="num">-0.9%</span></td><td><span class="badge b-green">מצוין</span></td><td>המובילה — RSI מעט מעל האידיאל</td></tr>
+        <tr><td>2</td><td class="sym">TWST</td><td class="score">85</td><td><span class="num">+337.0</span></td><td><span class="num">4</span></td><td><span class="num">63.9</span></td><td><span class="num">-5.6%</span></td><td><span class="badge b-green">חזק</span></td><td>ה-Alpha הגבוה בדוח, RSI אידיאלי</td></tr>
+        <tr><td>3</td><td class="sym">PTGX</td><td class="score">83</td><td><span class="num">+160.0</span></td><td><span class="num">4</span></td><td><span class="num">65.3</span></td><td><span class="num">-1.2%</span></td><td><span class="badge b-green">חזק</span></td><td>צמוד לשיא, מבחן פריצה קרוב</td></tr>
+        <tr><td>4</td><td class="sym">SEPN</td><td class="score">82</td><td><span class="num">+202.1</span></td><td><span class="num">4</span></td><td><span class="num">66.1</span></td><td><span class="num">-2.7%</span></td><td><span class="badge b-green">חזק</span></td><td>ביומד חם, תנודתי</td></tr>
+        <tr><td>5</td><td class="sym">SEZL</td><td class="score">80</td><td><span class="num">+115.8</span></td><td><span class="num">4</span></td><td><span class="num">59.3</span></td><td><span class="num">-8.8%</span></td><td><span class="badge b-green">חזק</span></td><td>RSI הכי בריא בקבוצה, מקום לרוץ</td></tr>
+        <tr><td>6</td><td class="sym">DFTX</td><td class="score">79</td><td><span class="num">+217.5</span></td><td><span class="num">4</span></td><td><span class="num">61.9</span></td><td><span class="num">-6.2%</span></td><td><span class="badge b-green">תקין</span></td><td>RSI אידיאלי</td></tr>
+        <tr><td>7</td><td class="sym">BLFS</td><td class="score">74</td><td><span class="num">+65.4</span></td><td><span class="num">11</span></td><td><span class="num">72.2</span></td><td><span class="num">-1.2%</span></td><td><span class="badge b-amber">Overbought</span></td><td>11 שיאים אך RSI מתוח</td></tr>
+        <tr><td>8</td><td class="sym">ROKU</td><td class="score">73</td><td><span class="num">+85.5</span></td><td><span class="num">9</span></td><td><span class="num">73.1</span></td><td><span class="num">-0.4%</span></td><td><span class="badge b-amber">Overbought</span></td><td>על סף השיא — להמתין להפוגה</td></tr>
+        <tr><td>9</td><td class="sym">PLSE</td><td class="score">71</td><td><span class="num">+109.6</span></td><td><span class="num">9</span></td><td><span class="num">72.8</span></td><td><span class="num">-2.3%</span></td><td><span class="badge b-amber">Overbought</span></td><td>רחוק מדי מהר מדי</td></tr>
+        <tr><td>10</td><td class="sym">OSPN</td><td class="score">70</td><td><span class="num">+51.1</span></td><td><span class="num">7</span></td><td><span class="num">66.8</span></td><td><span class="num">-12.1%</span></td><td><span class="badge b-gray">תקין</span></td><td>הכי רחוק מהשיא בקבוצה</td></tr>
+        <tr><td>11</td><td class="sym">TBI</td><td class="score">68</td><td><span class="num">+58.3</span></td><td><span class="num">6</span></td><td><span class="num">73.4</span></td><td><span class="num">-3.0%</span></td><td><span class="badge b-amber">Overbought</span></td><td>RSI הגבוה בקבוצה</td></tr>
+        <tr><td>—</td><td class="sym">URGN</td><td class="score">⛔</td><td><span class="num">+175.8</span></td><td><span class="num">11</span></td><td><span class="num">67.1</span></td><td><span class="num">-5.1%</span></td><td><span class="badge b-red">פסילה</span></td><td>Short Interest מעל <span class="num">12%</span></td></tr>
+      </tbody>
+    </table>
+    <div class="flag"><strong>פסילת URGN:</strong> טכנית מהחזקות בדוח (<span class="num">11</span> שיאים חודשיים, Opinion <span class="num">100%</span>), אבל ה-Short Interest עומד על כ-<span class="num">12.8%–17%</span> מה-Float לפי הדיווחים האחרונים — מעל סף הפסילה של <span class="num">12%</span>. החברה עדיין לא רווחית, והכסף המתוחכם מהמר נגד. כלל ברזל = כלל ברזל.</div>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">VSXY</span> · Victoria's Secret · ציון 92</h4>
+        <p><span class="lbl">מה חזק:</span> <span class="num">12</span> שיאים חודשיים (המוביל בדוח), <span class="num">-0.9%</span> בלבד מהשיא, Alpha <span class="num">+283</span>. Trust &amp; Verify מצוין: מכירות Q1 עלו כ-<span class="num">15%</span> שנתית עם צמיחת חנויות זהות של <span class="num">13%</span>, אנליסטים בולטים תומכים (Morgan Stanley Overweight, דיוויד איינהורן הציג אותה ככוכבת turnaround), בטא <span class="num">1.51</span> — בונוס בשוק שורי.</p>
+        <p><span class="lbl">מה מדאיג:</span> RSI <span class="num">69.8</span> על סף Overbought אחרי ראלי של <span class="num">+81%</span> בשלושה חודשים; קמעונאות רגישה לצרכן.</p>
+        <div class="trigger">טריגר כניסה: פריצת שיא כל הזמנים (<span class="num">~$94.5</span>) בנפח, או הפוגה לאזור <span class="num">$85–87</span> עם RSI מתקרר. סטופ: תחתית Turtle Channel / ממוצע 20 יום.</div>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">TWST</span> · Twist Bioscience · ציון 85</h4>
+        <p><span class="lbl">מה חזק:</span> ה-Weighted Alpha הגבוה בדוח (<span class="num">+337</span>), RSI <span class="num">63.9</span> באזור האידיאלי, <span class="num">+17.75</span> בחמישה ימים — האצה טרייה, מרחק בריא של <span class="num">-5.6%</span> מהשיא שמותיר מקום.</p>
+        <p><span class="lbl">מה מדאיג:</span> רק <span class="num">4</span> שיאים חודשיים — עקביות נמוכה מהמובילות; ביומד = תלות בקטליזטורים קליניים; <span class="num">+83%</span> בשלושה חודשים כבר מאחוריה.</p>
+        <div class="trigger">טריגר כניסה: שיא חדש בנפח, או ריטסט מוצלח של ממוצע 20 יום. סטופ: מתחת לממוצע 50 יום.</div>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">PTGX</span> · Protagonist Therapeutics · ציון 83</h4>
+        <p><span class="lbl">מה חזק:</span> <span class="num">-1.2%</span> מהשיא — מבחן פריצה מיידי, RSI <span class="num">65.3</span> עדיין בטווח, מחיר עמוק מעל ממוצע 100 יום (<span class="num">112</span> מול <span class="num">146</span>).</p>
+        <p><span class="lbl">מה מדאיג:</span> <span class="num">4</span> שיאים בלבד; ביומד עם סיכון בינארי סביב פייפליין.</p>
+        <div class="trigger">טריגר כניסה: פריצת שיא 52 שבועות בנפח מעל הממוצע. סטופ צמוד: תחתית התעלה.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category C -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ג</div>
+    <div class="cond-head">
+      <div class="cond-letter">ג</div>
+      <h3>מועמדות לפריצה — <span class="num">21</span> מניות</h3>
+      <span class="tag"><span class="num">16</span> עברו אימות · <span class="num">5</span> נכשלו בקריטריון Alpha</span>
+    </div>
+    <div class="warnbox"><strong>הערת אימות:</strong> BAM (<span class="num">-5.73</span>), VRTS (<span class="num">-6.64</span>), TOST (<span class="num">-7.03</span>), GSHD (<span class="num">-7.31</span>) ו-VOYG (<span class="num">-9.17</span>) — כולן מתחת לרצפת ה-Alpha של <span class="num">-5</span> שבהגדרת הקטגוריה. כנראה הסריקה הוגדרה עם טווח רחב יותר. בנוסף, עמודת Beta חסרה בייצוא — הדירוג אינו כולל את אימות ה-Beta > <span class="num">1.2</span>; מומלץ להוסיף אותה בסריקה הבאה.</div>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>Opinion</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">AVAH</td><td class="score">90</td><td><span class="num">+48.2</span></td><td><span class="num">72%</span></td><td><span class="num">5</span></td><td><span class="num">51.3</span></td><td><span class="num">-9.8%</span></td><td>Setup ספר-לימוד — ראה ניתוח</td></tr>
+        <tr><td>2</td><td class="sym">JLL</td><td class="score">84</td><td><span class="num">+32.1</span></td><td><span class="num">56%</span></td><td><span class="num">8</span></td><td><span class="num">65.3</span></td><td><span class="num">-2.6%</span></td><td>הקרובה ביותר לפריצה בקטגוריה</td></tr>
+        <tr><td>3</td><td class="sym">W</td><td class="score">80</td><td><span class="num">+38.1</span></td><td><span class="num">72%</span></td><td><span class="num">4</span></td><td><span class="num">60.0</span></td><td><span class="num">-13.3%</span></td><td>מומנטום טרי (<span class="num">+14.3</span> בשבוע), RSI בריא</td></tr>
+        <tr><td>4</td><td class="sym">SYF</td><td class="score">77</td><td><span class="num">+13.5</span></td><td><span class="num">72%</span></td><td><span class="num">4</span></td><td><span class="num">59.7</span></td><td><span class="num">-11.4%</span></td><td>פיננסים יציבים, RSI אידיאלי</td></tr>
+        <tr><td>5</td><td class="sym">OMF</td><td class="score">75</td><td><span class="num">+19.1</span></td><td><span class="num">72%</span></td><td><span class="num">9</span></td><td><span class="num">67.5</span></td><td><span class="num">-9.6%</span></td><td>עקביות גבוהה, RSI מתקרב לתקרה</td></tr>
+        <tr><td>6</td><td class="sym">PAY</td><td class="score">74</td><td><span class="num">+32.3</span></td><td><span class="num">72%</span></td><td><span class="num">9</span></td><td><span class="num">68.6</span></td><td><span class="num">-11.5%</span></td><td><span class="num">+42.5%</span> בחודש — חם מדי, להמתין להפוגה</td></tr>
+        <tr><td>7</td><td class="sym">MTD</td><td class="score">72</td><td><span class="num">+15.5</span></td><td><span class="num">56%</span></td><td><span class="num">8</span></td><td><span class="num">67.6</span></td><td><span class="num">-6.8%</span></td><td>איכות דפנסיבית, תנועה איטית</td></tr>
+        <tr><td>8</td><td class="sym">ATRC</td><td class="score">71</td><td><span class="num">+21.9</span></td><td><span class="num">56%</span></td><td><span class="num">10</span></td><td><span class="num">66.1</span></td><td><span class="num">-8.6%</span></td><td><span class="num">10</span> שיאים — עקביות מרשימה</td></tr>
+        <tr><td>9</td><td class="sym">KAI</td><td class="score">69</td><td><span class="num">+7.3</span></td><td><span class="num">72%</span></td><td><span class="num">8</span></td><td><span class="num">64.4</span></td><td><span class="num">-6.4%</span></td><td>קפיצה שבועית חדה (<span class="num">+26.9</span>)</td></tr>
+        <tr><td>10</td><td class="sym">BLK</td><td class="score">67</td><td><span class="num">+4.5</span></td><td><span class="num">56%</span></td><td><span class="num">7</span></td><td><span class="num">64.4</span></td><td><span class="num">-7.4%</span></td><td>עוגן איכות, Alpha נמוך</td></tr>
+        <tr><td>11</td><td class="sym">CARS</td><td class="score">61</td><td><span class="num">+8.6</span></td><td><span class="num">72%</span></td><td><span class="num">6</span></td><td><span class="num">52.4</span></td><td><span class="num">-16.0%</span></td><td>בסדר, בלי ניצוץ</td></tr>
+        <tr><td>12</td><td class="sym">WEAV</td><td class="score">58</td><td><span class="num">-4.6</span></td><td><span class="num">72%</span></td><td><span class="num">4</span></td><td><span class="num">51.6</span></td><td><span class="num">-17.9%</span></td><td>גבולית ב-Alpha, מוקדם</td></tr>
+        <tr><td>13</td><td class="sym">QTWO</td><td class="score">56</td><td><span class="num">-3.9</span></td><td><span class="num">56%</span></td><td><span class="num">9</span></td><td><span class="num">71.9</span></td><td><span class="num">-25.6%</span></td><td>Overbought + רחוקה מהשיא</td></tr>
+        <tr><td>14</td><td class="sym">APAM</td><td class="score">55</td><td><span class="num">+0.1</span></td><td><span class="num">40%</span></td><td><span class="num">9</span></td><td><span class="num">72.0</span></td><td><span class="num">-11.2%</span></td><td>Overbought, Opinion בקצה התחתון</td></tr>
+        <tr><td>15</td><td class="sym">BXC</td><td class="score">52</td><td><span class="num">-4.8</span></td><td><span class="num">40%</span></td><td><span class="num">6</span></td><td><span class="num">77.5</span></td><td><span class="num">-2.8%</span></td><td>RSI <span class="num">77.5</span> — הקיצוני בדוח, <span class="num">+51%</span> בחודש</td></tr>
+        <tr><td>16</td><td class="sym">KLC</td><td class="score">45</td><td><span class="num">+16.7</span></td><td><span class="num">72%</span></td><td><span class="num">8</span></td><td><span class="num">52.9</span></td><td><span class="num">-48.5%</span></td><td>רחוקה מדי מהשיא — אין אישור מגמה</td></tr>
+        <tr><td colspan="9" style="color:var(--red);font-weight:600">❌ נכשלו באימות Alpha (מתחת ל-<span class="num">-5</span>): BAM · VRTS · TOST · GSHD · VOYG — מחוץ לדירוג</td></tr>
+      </tbody>
+    </table>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">AVAH</span> · Aveanna Healthcare · ציון 90</h4>
+        <p><span class="lbl">מה חזק:</span> ה-Setup הנקי בדוח: Alpha <span class="num">+48.2</span> בקצה העליון של הטווח, Opinion <span class="num">72%</span> באזור האידיאלי, ו-RSI <span class="num">51.3</span> — בדיוק חוצה את קו ה-50 כלפי מעלה, התבנית המושלמת לפי המתודולוגיה. Trust &amp; Verify חזק: Short Interest נמוך (~<span class="num">2.5%</span>), <span class="num">6</span> אנליסטים — <span class="num">5</span> Buy ו-<span class="num">1</span> Hold, העלאת תחזית הכנסות ל-2026 לטווח <span class="num">$2.63–2.65B</span> בעקבות רכישת Family First, ושדרוג RBC ל-Outperform. קטליזטור אמיתי + מומנטום פונדמנטלי.</p>
+        <p><span class="lbl">מה מדאיג:</span> מניה של <span class="num">$9.31</span> — תנודתית; <span class="num">5D</span> שלילי קל (<span class="num">-0.38</span>); דוח Q2 קרוב = אירוע סיכון.</p>
+        <div class="trigger">טריגר כניסה: פריצה מעל ההתנגדות האחרונה (<span class="num">~$10.3</span>, אזור השיא) בנפח, אחרי הדוח. סטופ: מתחת לממוצע 50 יום.</div>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">JLL</span> · Jones Lang LaSalle · ציון 84</h4>
+        <p><span class="lbl">מה חזק:</span> <span class="num">-2.6%</span> בלבד מהשיא — מבחן הפריצה הקרוב ביותר בקטגוריה, <span class="num">8</span> שיאים חודשיים, נדל"ן מסחרי בהתאוששות.</p>
+        <p><span class="lbl">מה מדאיג:</span> Opinion <span class="num">56%</span> בינוני; RSI <span class="num">65.3</span> בקצה האידיאל; מניה "כבדה" (<span class="num">$364</span>) — תנועות איטיות.</p>
+        <div class="trigger">טריגר כניסה: סגירה מעל שיא 52 שבועות (<span class="num">~$373</span>) בנפח. סטופ: ממוצע 20 יום.</div>
+      </div>
+      <div class="dcard warn">
+        <h4><span class="tk">W</span> · Wayfair · ציון 80</h4>
+        <p><span class="lbl">מה חזק:</span> <span class="num">+14.3</span> בחמישה ימים — מומנטום טרי (כנראה דוח), Alpha <span class="num">+38</span> בטווח האידיאלי, RSI <span class="num">60</span> בריא, <span class="num">-13.3%</span> מהשיא = מקום לרוץ.</p>
+        <p><span class="lbl">מה מדאיג:</span> הקפיצה החדה השבוע מעלה סיכון להפוגה מיידית; צריכה מחזורית תלוית-צרכן; רק <span class="num">4</span> שיאים חודשיים.</p>
+        <div class="trigger">טריגר כניסה: הפוגה של <span class="num">2–3</span> ימים שמחזיקה מעל אזור הפריצה (<span class="num">~$95–98</span>), ואז המשך. לא לרדוף אחרי הנר.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category B -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ב</div>
+    <div class="cond-head">
+      <div class="cond-letter">ב</div>
+      <h3>עוף החול — <span class="num">3</span> מניות</h3>
+      <span class="tag">Trend Seeker = Buy ✓ · אך אף אחת לא כבשה את ממוצע 100 יום באופן מובהק</span>
+    </div>
+    <table>
+      <thead><tr><th>סימול</th><th>מחיר</th><th>ממוצע 100 יום</th><th>פער</th><th>Alpha</th><th>RSI</th><th>שיאים/חודש</th><th>סטטוס</th></tr></thead>
+      <tbody>
+        <tr><td class="sym">INTU</td><td><span class="num">321.91</span></td><td><span class="num">345.66</span></td><td><span class="num">-6.9%</span></td><td><span class="num">-56.1</span></td><td><span class="num">59.7</span></td><td><span class="num">7</span></td><td><span class="badge b-amber">ממתינה לטריגר</span></td></tr>
+        <tr><td class="sym">NLOP</td><td><span class="num">11.67</span></td><td><span class="num">12.13</span></td><td><span class="num">-3.8%</span></td><td><span class="num">-56.8</span></td><td><span class="num">50.3</span></td><td><span class="num">9</span></td><td><span class="badge b-amber">ממתינה לטריגר</span></td></tr>
+        <tr><td class="sym">LCID</td><td><span class="num">6.98</span></td><td><span class="num">6.94</span></td><td><span class="num">+0.6%</span></td><td><span class="num">-67.9</span></td><td><span class="num">51.8</span></td><td><span class="num">6</span></td><td><span class="badge b-gray">גבולית — צריך אישור</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note">כלל הברזל של הקטגוריה: אין המלצה חיובית מתחת לממוצע 100 יום — התנאי הוא כיבוש מובהק שלו.</p>
+    <div class="deep">
+      <div class="dcard warn">
+        <h4><span class="tk">INTU</span> · Intuit — המועמדת המעניינת בקטגוריה</h4>
+        <p><span class="lbl">התמונה:</span> חברת איכות שנחתכה ~<span class="num">59%</span> מהשיא, ועכשיו מראה סימני חיים אמיתיים: <span class="num">+18.3%</span> בחודש, <span class="num">7</span> שיאים חודשיים, RSI <span class="num">59.7</span> בריא, Trend Seeker התהפך ל-Buy. תבנית עוף החול הקלאסית — אבל המחיר עדיין <span class="num">-6.9%</span> מתחת לממוצע 100 יום.</p>
+        <div class="trigger">טריגר: סגירה שבועית מעל <span class="num">$345</span> (ממוצע 100 יום). עד אז — צפייה בלבד. שווה לבדוק לפני כן מה גרם לצניחה ואם הקטליזטור השלילי מאחוריה.</div>
+      </div>
+      <div class="dcard bad">
+        <h4><span class="tk">LCID</span> · Lucid — טכנית מעל, מהותית חלשה</h4>
+        <p><span class="lbl">התמונה:</span> היחידה שנמצאת מעל ממוצע 100 יום — אבל בפער זניח של <span class="num">0.6%</span> שיכול להימחק ביום מסחר אחד. Alpha <span class="num">-68</span>, מניית EV מפסידה עם היסטוריית דילולים. גם כשעוף החול ממריא — לא חייבים לטוס על כל אחד.</p>
+        <div class="trigger">אם בכלל: רק אחרי התבססות של שבועיים מעל הממוצע + קטליזטור עסקי. עדיפות נמוכה.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bottom line -->
+<div class="bottom">
+  <div class="wrap">
+    <div class="stepnum" style="color:var(--cyan)">שורה תחתונה</div>
+    <h2>Watchlist מומלץ — <span class="num">3</span> מובילות + טריגרים</h2>
+    <div class="bl">
+      <div class="bcard">
+        <h4><span class="tk">AVAH</span> · הבחירה המובהקת</h4>
+        <p>ה-Setup הטכני הנקי ביותר + האימות הפונדמנטלי החזק ביותר. כניסה: פריצת <span class="num">$10.3</span> בנפח (אחרי הדוח הקרוב). ציון <span class="num">90</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4><span class="tk">VSXY</span> · מלכת המומנטום</h4>
+        <p><span class="num">12</span> שיאים חודשיים וקטליזטור turnaround אמיתי. כניסה: שיא חדש מעל <span class="num">$94.5</span> או הפוגה ל-<span class="num">$85–87</span>. ציון <span class="num">92</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4><span class="tk">JLL</span> · מבחן הפריצה הקרוב</h4>
+        <p><span class="num">-2.6%</span> מהשיא עם <span class="num">8</span> שיאים חודשיים. כניסה: סגירה מעל <span class="num">$373</span>. ציון <span class="num">84</span>.</p>
+      </div>
+    </div>
+    <p style="margin-top:22px;font-size:14px;color:#C9D5DF">להשלמת התמונה בסריקה הבאה: הוסף עמודות <strong>Beta</strong> ו-<strong>Short Interest</strong> לייצוא, ותקן את רצפת ה-Weighted Alpha בסריקת הפריצה ל-<span class="num">-5</span>. מומלץ לבדוק את AVAH ו-VSXY גם בניתוח TTM Squeeze לפני כניסה.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Four Pillars Scanner · נתונים: Barchart <span class="num">07/08/2026</span> · אימות: מקורות ציבוריים אמריקאיים</span>
+    <span>ניתוח טכני לצורכי לימוד — אינו המלצת השקעה</span>
+  </div>
+</footer>
+
+</body>
+</html>

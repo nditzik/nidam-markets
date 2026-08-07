@@ -1250,6 +1250,47 @@
       'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
   }
 
+  /* טאב "הצעות לטרייד" — דוחות Four Pillars וכד', כמו סקטורים (יומי במקום שבועי) */
+  var TRAD = null;
+  function renderTrades(el, d) {
+    TRAD = d;
+    var reps = (d && d.reports) || [];
+    if (!reps.length) {
+      emptyPanel(el, "💡", "הצעות לטרייד — בקרוב", "הדוח הראשון בדרך.");
+      return;
+    }
+    var nav = reps.length > 1
+      ? '<div class="chips arch-chips" style="margin-bottom:12px">' + reps.map(function (r, i) {
+          return '<button class="chip trd-tab' + (i === 0 ? " lead" : "") + '" data-trd="' + i +
+            '"><span dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span></button>";
+        }).join("") + "</div>"
+      : "";
+    el.innerHTML = stamp(d._meta) +
+      '<div class="section-title" style="margin-top:0">💡 הצעות לטרייד</div>' +
+      tabIntro("trades") +
+      nav + '<div id="trd-view"></div>';
+    showTrade(0);
+    el.querySelectorAll(".trd-tab").forEach(function (b) {
+      b.addEventListener("click", function () {
+        el.querySelectorAll(".trd-tab").forEach(function (x) { x.classList.toggle("lead", x === b); });
+        showTrade(+b.dataset.trd);
+      });
+    });
+  }
+  function showTrade(i) {
+    var view = document.getElementById("trd-view");
+    if (!view || !TRAD) return;
+    var r = (TRAD.reports || [])[i];
+    if (!r) return;
+    view.innerHTML =
+      '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
+        "<strong>" + esc(r.title) + "</strong>" +
+        '<div class="stamp" style="margin:4px 0 0">נכון ל-<span dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span></div></div>" +
+      '<iframe class="brief-frame" src="' + bust(r.file, TRAD._meta) + '" title="' + esc(r.title) +
+      '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
+      'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+  }
+
   function renderMorning(el, d) {
     if (!d || d._status === "pending" || !d.file) {
       emptyPanel(el, "🌅", "סקירת בוקר — בקרוב", "תחובר ברגע שצינור ה-Barchart יופעל.");
@@ -1479,6 +1520,9 @@
       fetchJSON("data/candidates.json")
         .then(function (d) { if (!freshD("candidates", d)) return; CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); noteSig("candidates", d); })
         .catch(function () { if (!CANDD) emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
+      fetchJSON("data/trades.json")
+        .then(function (d) { if (!freshD("trades", d)) return; renderTrades(document.getElementById("panel-trades"), d); noteSig("trades", d); })
+        .catch(function () { if (!("trades" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-trades"), "💡", "הצעות לטרייד — בקרוב", ""); });
       fetchJSON("data/reports.json")
         .then(function (d) { if (!freshD("reports", d)) return; REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); noteSig("reports", d); })
         .catch(function () { if (!REPD) emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
