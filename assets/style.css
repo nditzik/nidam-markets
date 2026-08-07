@@ -495,6 +495,19 @@ main { padding: 26px 0 70px; }
 .arch-chips { gap: 6px; }
 .arch-chips .chip { font-size: .78rem; padding: 4px 10px; }
 
+/* ---- נתוני מאקרו: צפי מול בפועל ---- */
+.econ-card { margin-top: 16px; }
+.ec-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
+.ec-t { font-size: .82rem; font-weight: 700; color: var(--text-soft); margin-bottom: 8px; }
+.ec-row { display: flex; align-items: baseline; gap: 9px; padding: 5px 0; border-bottom: 1px solid var(--border-soft); font-size: .86rem; }
+.ec-col .ec-row:last-child { border-bottom: 0; }
+.ec-when { flex: none; color: var(--text-3); font-size: .8rem; min-width: 64px; }
+.ec-name { flex: 1; font-weight: 600; }
+.ec-val { flex: none; color: var(--text-soft); }
+.ec-val b.up { color: var(--up); }
+.ec-val b.down { color: var(--down); }
+@media (max-width: 760px) { .ec-cols { grid-template-columns: 1fr; } }
+
 /* ---- Table ---- */
 .table-wrap { overflow-x: auto; border-radius: var(--radius); background: var(--surface-2); }
 table { width: 100%; border-collapse: collapse; }

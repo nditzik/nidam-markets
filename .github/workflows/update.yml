@@ -126,6 +126,11 @@ jobs:
         run: python scripts/notify_earnings_age.py
         continue-on-error: true
 
+      # --- נתוני מאקרו: צפי מול בפועל (יומן TradingView) ---
+      - name: Fetch econ calendar
+        run: python scripts/fetch_econ.py
+        continue-on-error: true
+
       # --- כותרות שוק מ-RSS, מתורגמות לעברית (עם מטמון) ---
       - name: Fetch market news
         run: python scripts/fetch_news.py

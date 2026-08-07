@@ -494,6 +494,38 @@
         }).join("") + "</div>" + focusStatsHtml() + "</section>";
   }
 
+  /* 📊 נתוני מאקרו — צפי מול בפועל (data/econ.json, ליבה בלבד) */
+  var ECON = null;
+  function renderEcon() {
+    var el = document.getElementById("home-econ");
+    if (!el || !ECON || !(ECON.events || []).length) return;
+    var released = ECON.events.filter(function (e) { return e.actual != null; }).slice(-5).reverse();
+    var upcoming = ECON.events.filter(function (e) { return e.actual == null; }).slice(0, 5);
+    function row(e, isUp) {
+      var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : "";
+      var val = isUp
+        ? (e.forecast ? 'צפי <b class="num" dir="ltr">' + esc(e.forecast) + "</b>" : "צפי —") +
+          (e.previous ? ' · קודם <span class="num" dir="ltr">' + esc(e.previous) + "</span>" : "")
+        : 'בפועל <b class="num ' + cls + '" dir="ltr">' + esc(e.actual) + "</b>" +
+          (e.forecast ? ' מול צפי <span class="num" dir="ltr">' + esc(e.forecast) + "</span>" : "") +
+          (e.surprise === "good" ? " ✓" : e.surprise === "bad" ? " ✗" : "");
+      return '<div class="ec-row' + (isUp ? "" : " " + cls) + '">' +
+        '<span class="ec-when num" dir="ltr">' + esc(e.ilDate) + (isUp && e.ilTime ? " · " + esc(e.ilTime) : "") + "</span>" +
+        '<span class="ec-name">' + esc(e.he) + "</span>" +
+        '<span class="ec-val">' + val + "</span></div>";
+    }
+    el.innerHTML =
+      '<section class="card econ-card">' +
+        '<div class="split-head"><span class="split-title">📊 נתוני מאקרו — צפי מול בפועל</span>' +
+          '<span class="split-sub">מתעדכן אוטומטית עם הפרסום</span></div>' +
+        '<div class="ec-cols">' +
+          '<div class="ec-col"><div class="ec-t">🔔 פורסמו לאחרונה</div>' +
+            (released.map(function (e) { return row(e, false); }).join("") || '<div class="ec-row">אין פרסומים אחרונים</div>') + "</div>" +
+          '<div class="ec-col"><div class="ec-t">🗓️ הבאים בתור</div>' +
+            (upcoming.map(function (e) { return row(e, true); }).join("") || '<div class="ec-row">אין אירועים קרובים</div>') + "</div>" +
+        "</div></section>";
+  }
+
   /* "המוקד במבחן" — סטטיסטיקת ביצוע בתוך כרטיס המוקד */
   function fmtPct(v) {
     if (v == null || isNaN(v)) return "—";
@@ -1430,6 +1462,9 @@
       fetchJSON("data/morning.json")
         .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
+      fetchJSON("data/econ.json")
+        .then(function (d) { if (!freshD("econ", d)) return; ECON = d; renderEcon(); })
+        .catch(function () {});
       // אינדקס הארכיון (תדריכים + סקירות, 30 יום) — מרענן את הצ'יפים בשני הטאבים
       fetchJSON("data/briefing_archive.json")
         .then(function (d) {
