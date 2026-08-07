@@ -728,26 +728,39 @@
     }
 
     var tradeDate = fmtTradeDate(d.date);
-    // משפטי רקע (היום/השבוע/לעקוב) — בבית בלבד (בטאב מדדים הם מופיעים כבר במקטע "רקע")
-    var nrt = d.narrative || {};
-    var narr = (opts.home && (nrt.today || nrt.week || nrt.watchFor))
-      ? '<div class="verdict-narr">' +
-          (nrt.today ? "<p><b>היום:</b> " + esc(nrt.today) + "</p>" : "") +
-          (nrt.week ? "<p><b>השבוע:</b> " + esc(nrt.week) + "</p>" : "") +
-          (nrt.watchFor ? "<p><b>לעקוב:</b> " + esc(nrt.watchFor) + "</p>" : "") +
-        "</div>"
-      : "";
+    // הסיכום היומי החדש (ai_analysis) — מוצג רק כשתאריכו תואם את יום המסחר של הנתונים
+    var ai = (d.aiSummary && d.aiSummary.date === d.date) ? d.aiSummary : null;
+    var mid;
+    if (opts.home && ai) {
+      // בבית: הסיכום היומי מחליף את משפטי-הרקע הישנים; הנוריות נשארות
+      mid =
+        (ai.headline ? '<p class="v-regime">' + esc(ai.headline) + "</p>" : "") +
+        '<div class="verdict-narr">' +
+          (ai.paragraphs || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
+          (ai.watchFor ? "<p><b>לעקוב:</b> " + esc(ai.watchFor) + "</p>" : "") +
+        "</div>";
+    } else {
+      // נפילה חזרה (אין סיכום יומי / טאב מדדים): המבנה הקודם
+      var nrt = d.narrative || {};
+      var narr = (opts.home && (nrt.today || nrt.week || nrt.watchFor))
+        ? '<div class="verdict-narr">' +
+            (nrt.today ? "<p><b>היום:</b> " + esc(nrt.today) + "</p>" : "") +
+            (nrt.week ? "<p><b>השבוע:</b> " + esc(nrt.week) + "</p>" : "") +
+            (nrt.watchFor ? "<p><b>לעקוב:</b> " + esc(nrt.watchFor) + "</p>" : "") +
+          "</div>"
+        : "";
+      mid = (c.headline && v.headline ? '<p class="v-regime">' + esc(v.headline) + "</p>" : "") +
+        "<p>" + esc(v.subline || "") + "</p>" + narr;
+    }
     var verdictCard =
       '<div class="card verdict tone-' + esc(v.tone || "") + '">' +
         '<div class="v-top">' +
           '<span class="emoji">' + h(v.emoji || "📊") + "</span>" +
           (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + "</span>" : "") +
         "</div>" +
-        // הכותרת הראשית = סיכום היום המתחלף (conclusion.headline, למשל "יום ירידה מתון -0.2%");
-        // משפט-המשטר (verdict.headline) יורד לשורה מתחת — הוא נשאר זהה ימים ונראה "תקוע"
+        // הכותרת הראשית = סיכום היום המתחלף (conclusion.headline, למשל "יום ירידה מתון -0.2%")
         "<h2>" + esc(c.headline || v.headline || "סקירת שוק") + "</h2>" +
-        (c.headline && v.headline ? '<p class="v-regime">' + esc(v.headline) + "</p>" : "") +
-        "<p>" + esc(v.subline || "") + "</p>" + narr + lights +
+        mid + lights +
       "</div>";
 
     var fl = d.flow || {};
