@@ -79,6 +79,11 @@ def compose(today_str):
         lines.append("«%s»" % c["headline"])
     elif v.get("headline"):
         lines.append("«%s»" % v["headline"])
+    # הסיכום היומי (ai_analysis) — כותרת אנליטית, רק כשתאריכו תואם את יום המסחר
+    ai = ind.get("aiSummary") or {}
+    ai_ok = ai.get("date") == ind.get("date")
+    if ai_ok and ai.get("headline"):
+        lines.append(ai["headline"])
     bits = []
     if e.get("spxPrice") is not None:
         bits.append("S&P %s" % format(int(round(e["spxPrice"])), ","))
@@ -97,6 +102,12 @@ def compose(today_str):
         if l:
             parts.append("%s %+.0f%%" % (l[0]["symbol"], l[0]["chg"]))
         lines.append("🔥 בלטו: " + " · ".join(parts))
+    # השורה התחתונה האופרטיבית מהסיכום היומי ("שורה תחתונה: להחזיק קיים · ...")
+    if ai_ok:
+        bottom = next((p for p in (ai.get("paragraphs") or []) if "שורה תחתונה" in p), None)
+        if bottom:
+            lines.append("")
+            lines.append("💡 " + bottom.replace("שורה תחתונה:", "<b>שורה תחתונה:</b>", 1))
     lines.append("")
 
     # צפי קדימה
