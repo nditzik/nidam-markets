@@ -1,322 +1,145 @@
 {
-  "today": "2026-08-07",
-  "todayCount": 5,
-  "todayBig": [
-    {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Cl B",
-      "capB": 1099.3
-    },
-    {
-      "ticker": "VST",
-      "name": "Vistra Energy Corp",
-      "capB": 50.1
-    },
-    {
-      "ticker": "TTWO",
-      "name": "Take-Two Interactive",
-      "capB": 46.3
-    },
-    {
-      "ticker": "PPL",
-      "name": "PPL Corp",
-      "capB": 26.8
-    },
-    {
-      "ticker": "ECHO",
-      "name": "Echostar Corp",
-      "capB": 25.0
-    }
-  ],
-  "reporting": [
-    {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Cl B",
-      "logo": "data/earnings/logos/BRK.B.png"
-    },
-    {
-      "ticker": "VST",
-      "name": "Vistra Energy Corp",
-      "logo": "data/earnings/logos/VST.png"
-    },
-    {
-      "ticker": "TTWO",
-      "name": "Take-Two Interactive",
-      "logo": "data/earnings/logos/TTWO.png"
-    },
-    {
-      "ticker": "PPL",
-      "name": "PPL Corp",
-      "logo": "data/earnings/logos/PPL.png"
-    },
-    {
-      "ticker": "ECHO",
-      "name": "Echostar Corp",
-      "logo": "data/earnings/logos/ECHO.png"
-    }
-  ],
+  "today": "2026-08-08",
+  "todayCount": 0,
+  "todayBig": [],
+  "reporting": [],
   "more": 0,
-  "upcoming": [],
+  "upcoming": [
+    {
+      "date": "2026-08-10",
+      "label": "10/8",
+      "dow": "ב׳",
+      "count": 2,
+      "tickers": [
+        "SPG",
+        "RKLB"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "label": "11/8",
+      "dow": "ג׳",
+      "count": 4,
+      "tickers": [
+        "LITE",
+        "CAH",
+        "CRWV",
+        "SMCI"
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "label": "12/8",
+      "dow": "ד׳",
+      "count": 4,
+      "tickers": [
+        "CSCO",
+        "COHR",
+        "NBIS",
+        "AMCR"
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "label": "13/8",
+      "dow": "ה׳",
+      "count": 2,
+      "tickers": [
+        "AMAT",
+        "TPR"
+      ]
+    }
+  ],
   "week": [
     {
-      "date": "2026-08-03",
+      "date": "2026-08-10",
       "dow": "שני",
-      "label": "3.8",
-      "total": 14,
+      "label": "10.8",
+      "total": 2,
       "companies": [
         {
-          "ticker": "PLTR",
-          "name": "Palantir Technologies Cl A"
+          "ticker": "SPG",
+          "name": "Simon Property Group"
         },
         {
-          "ticker": "VRTX",
-          "name": "Vertex Pharmaceutic"
-        },
-        {
-          "ticker": "MAR",
-          "name": "Marriot Int Cl A"
-        },
-        {
-          "ticker": "MELI",
-          "name": "Mercadolibre Inc"
-        },
-        {
-          "ticker": "WMB",
-          "name": "Williams Companies"
-        },
-        {
-          "ticker": "FANG",
-          "name": "Diamondback Energy"
-        },
-        {
-          "ticker": "OKE",
-          "name": "Oneok Inc"
-        },
-        {
-          "ticker": "TKO",
-          "name": "Tko Group Holdings Cl A"
-        },
-        {
-          "ticker": "ON",
-          "name": "On Semiconductor"
-        },
-        {
-          "ticker": "L",
-          "name": "Loews Corp"
-        },
-        {
-          "ticker": "TSN",
-          "name": "Tyson Foods"
-        },
-        {
-          "ticker": "SBAC",
-          "name": "SBA Communications"
+          "ticker": "RKLB",
+          "name": "Rocket Lab Corp"
         }
       ]
     },
     {
-      "date": "2026-08-04",
+      "date": "2026-08-11",
       "dow": "שלישי",
-      "label": "4.8",
-      "total": 54,
+      "label": "11.8",
+      "total": 4,
       "companies": [
         {
-          "ticker": "SPCX",
-          "name": "SpaceX Corp"
+          "ticker": "LITE",
+          "name": "Lumentum Holdings"
         },
         {
-          "ticker": "AMD",
-          "name": "Adv Micro Devices"
+          "ticker": "CAH",
+          "name": "Cardinal Health"
         },
         {
-          "ticker": "CAT",
-          "name": "Caterpillar Inc"
+          "ticker": "CRWV",
+          "name": "Coreweave Cl A"
         },
         {
-          "ticker": "MRK",
-          "name": "Merck & Company"
-        },
-        {
-          "ticker": "ANET",
-          "name": "Arista Networks Inc"
-        },
-        {
-          "ticker": "AMGN",
-          "name": "Amgen Inc"
-        },
-        {
-          "ticker": "MCD",
-          "name": "McDonald's Corp"
-        },
-        {
-          "ticker": "GILD",
-          "name": "Gilead Sciences Inc"
-        },
-        {
-          "ticker": "BKNG",
-          "name": "Booking Holdings"
-        },
-        {
-          "ticker": "PFE",
-          "name": "Pfizer Inc"
-        },
-        {
-          "ticker": "DUK",
-          "name": "Duke Energy Corp"
-        },
-        {
-          "ticker": "MPC",
-          "name": "Marathon Petroleum Corp"
+          "ticker": "SMCI",
+          "name": "Super Micro Computer"
         }
       ]
     },
     {
-      "date": "2026-08-05",
+      "date": "2026-08-12",
       "dow": "רביעי",
-      "label": "5.8",
-      "total": 44,
+      "label": "12.8",
+      "total": 4,
       "companies": [
         {
-          "ticker": "LLY",
-          "name": "Eli Lilly and Company"
+          "ticker": "CSCO",
+          "name": "Cisco Systems Inc"
         },
         {
-          "ticker": "SNDK",
-          "name": "Sandisk Corp"
+          "ticker": "COHR",
+          "name": "Coherent Corp"
         },
         {
-          "ticker": "WDC",
-          "name": "Western Digital Corp"
+          "ticker": "NBIS",
+          "name": "Nebius Group N.V. Cl A"
         },
         {
-          "ticker": "DIS",
-          "name": "Walt Disney Company"
-        },
-        {
-          "ticker": "SHOP",
-          "name": "Shopify Inc"
-        },
-        {
-          "ticker": "UBER",
-          "name": "UBER Technologies Inc"
-        },
-        {
-          "ticker": "APP",
-          "name": "Applovin Corp Cl A"
-        },
-        {
-          "ticker": "CVS",
-          "name": "CVS Corp"
-        },
-        {
-          "ticker": "MCK",
-          "name": "Mckesson Corp"
-        },
-        {
-          "ticker": "DASH",
-          "name": "Doordash Cl A"
-        },
-        {
-          "ticker": "PSX",
-          "name": "Phillips 66"
-        },
-        {
-          "ticker": "MSI",
-          "name": "Motorola Solutions"
+          "ticker": "AMCR",
+          "name": "Amcor Plc"
         }
       ]
     },
     {
-      "date": "2026-08-06",
+      "date": "2026-08-13",
       "dow": "חמישי",
-      "label": "6.8",
-      "total": 30,
+      "label": "13.8",
+      "total": 2,
       "companies": [
         {
-          "ticker": "COP",
-          "name": "Conocophillips"
+          "ticker": "AMAT",
+          "name": "Applied Materials"
         },
         {
-          "ticker": "PH",
-          "name": "Parker-Hannifin Corp"
-        },
-        {
-          "ticker": "HWM",
-          "name": "Howmet Aerospace Inc"
-        },
-        {
-          "ticker": "DDOG",
-          "name": "Datadog Cl A"
-        },
-        {
-          "ticker": "MNST",
-          "name": "Monster Beverage Corp"
-        },
-        {
-          "ticker": "CEG",
-          "name": "Constellation Energy Corp"
-        },
-        {
-          "ticker": "ABNB",
-          "name": "Airbnb Inc Cl A"
-        },
-        {
-          "ticker": "RSG",
-          "name": "Republic Services"
-        },
-        {
-          "ticker": "AFL",
-          "name": "Aflac Inc"
-        },
-        {
-          "ticker": "WBD",
-          "name": "Discovery Inc Series A"
-        },
-        {
-          "ticker": "SRE",
-          "name": "Sempra"
-        },
-        {
-          "ticker": "TRGP",
-          "name": "Targa Resources"
+          "ticker": "TPR",
+          "name": "Tapestry Inc"
         }
       ]
     },
     {
-      "date": "2026-08-07",
+      "date": "2026-08-14",
       "dow": "שישי",
-      "label": "7.8",
-      "total": 5,
-      "companies": [
-        {
-          "ticker": "BRK.B",
-          "name": "Berkshire Hathaway Cl B"
-        },
-        {
-          "ticker": "VST",
-          "name": "Vistra Energy Corp"
-        },
-        {
-          "ticker": "TTWO",
-          "name": "Take-Two Interactive"
-        },
-        {
-          "ticker": "PPL",
-          "name": "PPL Corp"
-        },
-        {
-          "ticker": "ECHO",
-          "name": "Echostar Corp"
-        }
-      ]
+      "label": "14.8",
+      "total": 0,
+      "companies": []
     }
   ],
   "window": {
-    "BRK.B": "2026-08-07",
-    "ECHO": "2026-08-07",
-    "PPL": "2026-08-07",
-    "TTWO": "2026-08-07",
-    "VST": "2026-08-07",
     "RKLB": "2026-08-10",
     "SPG": "2026-08-10",
     "CAH": "2026-08-11",
@@ -331,7 +154,7 @@
     "TPR": "2026-08-13"
   },
   "_meta": {
-    "updatedAt": "07/08/2026 23:45",
+    "updatedAt": "08/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
