@@ -1270,15 +1270,15 @@
     initHomePulse();                 // מד השוק + שעון המסחר (מתמלאים כשנתונים מגיעים)
 
     // היסטוריית ציונים — גרף המגמה + חצי שינוי-יומי
-    fetchJSON("data/history.json")
-      .then(function (d) {
-        HIST = d; computeDiffs(); renderSpark();
-        if (INDD) {   // הוסף חצים לכרטיסים שכבר רונדרו
-          renderMarketOverview(document.getElementById("home-overview"), INDD, { home: true });
-          renderIndicesDetail(document.getElementById("panel-indices"), INDD);
-        }
-      })
-      .catch(function () {});
+    // שומרי-שינוי לרענון התקופתי: מרנדרים מחדש רק כשהתוכן באמת השתנה,
+    // כדי לא להפריע לקורא (גלילה/iframe פתוח) על כל מחזור
+    var DAILY_SIGS = {};
+    function freshD(key, d) {
+      var sig = contentSig(d);
+      if (DAILY_SIGS[key] === sig) return false;
+      DAILY_SIGS[key] = sig;
+      return true;
+    }
 
     // home content — news (pulse middle), movers + earnings (split row); each renders as it lands.
     // חדשות + בולטות מתרעננות לבד כל 5 דק' כשהדף פתוח (כמו סרט המדדים)
@@ -1312,19 +1312,85 @@
         });
     }
     var lastBriefStamp = "";
+
+    // תוכן "יומי" (מדדים/מומנטום/מועמדים/דוחות/סקטורים/…): נטען בכניסה
+    // ומתרענן כל 5 דק' — כך עדכון של אחד הדשבורדים נכנס לדף הפתוח בלי F5
+    function loadDaily() {
+      fetchJSON("data/history.json")
+        .then(function (d) {
+          if (!freshD("history", d)) return;
+          HIST = d; computeDiffs(); renderSpark();
+          if (INDD) {   // הוסף חצים לכרטיסים שכבר רונדרו
+            renderMarketOverview(document.getElementById("home-overview"), INDD, { home: true });
+            renderIndicesDetail(document.getElementById("panel-indices"), INDD);
+          }
+        })
+        .catch(function () {});
+      fetchJSON("data/earnings.json")
+        .then(function (d) {
+          if (!freshD("earnings", d)) return;
+          EARN = d; EARNW = d.window || {};
+          renderHomeSplit();
+          renderWeekCal(document.getElementById("panel-weekcal"), d);
+          // תגי "מדווחת בקרוב" על טבלאות שכבר רונדרו לפני שהמפה הגיעה
+          if (MOMD) renderMomentum(document.getElementById("panel-momentum"), MOMD);
+          if (CANDD) renderCandidates(document.getElementById("panel-candidates"), CANDD);
+          renderFocus();
+        })
+        .catch(function () { if (!EARN) emptyPanel(document.getElementById("panel-weekcal"), "📅", "לוח דיווחים — בקרוב", ""); });
+      // Home + indices share the indices dataset
+      fetchJSON("data/indices.json").then(function (d) {
+        if (!freshD("indices", d)) return;
+        INDD = d;
+        renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
+        renderIndicesDetail(document.getElementById("panel-indices"), d);
+        renderMeter(d);
+        renderFocus();   // התאריך בכותרת "מניות במוקד" תלוי ב-INDD
+        noteSig("indices", d);
+      }).catch(function (err) {
+        // כשל מדדים מפיל רק את תמונת-המצב — חדשות/מדווחות/תדריך ממשיכים לעבוד
+        if (INDD) return;
+        emptyPanel(document.getElementById("home-overview"), "📡", "נתוני השוק לא נטענו", String(err.message || err));
+        emptyPanel(document.getElementById("panel-indices"), "📡", "נתוני המדדים לא נטענו", "");
+      });
+      fetchJSON("data/momentum.json")
+        .then(function (d) { if (!freshD("momentum", d)) return; MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); noteSig("momentum", d); })
+        .catch(function () { if (!MOMD) emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
+      fetchJSON("data/sectors.json")
+        .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
+        .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
+      fetchJSON("data/morning.json")
+        .then(function (d) { if (!freshD("morning", d)) return; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
+        .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
+      fetchJSON("data/candidates.json")
+        .then(function (d) { if (!freshD("candidates", d)) return; CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); noteSig("candidates", d); })
+        .catch(function () { if (!CANDD) emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
+      fetchJSON("data/reports.json")
+        .then(function (d) { if (!freshD("reports", d)) return; REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); noteSig("reports", d); })
+        .catch(function () { if (!REPD) emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
+      fetchJSON("data/_health.json")
+        .then(function (d) {
+          if (!freshD("health", d)) return;
+          renderHealth(document.getElementById("health"), d);
+          renderTodayBar(document.getElementById("today-bar"), d);
+        })
+        .catch(function () {});
+    }
+
     loadLiveContent();
     setInterval(loadLiveContent, 300000);
-    fetchJSON("data/earnings.json")
-      .then(function (d) {
-        EARN = d; EARNW = d.window || {};
-        renderHomeSplit();
-        renderWeekCal(document.getElementById("panel-weekcal"), d);
-        // תגי "מדווחת בקרוב" על טבלאות שכבר רונדרו לפני שהמפה הגיעה
-        if (MOMD) renderMomentum(document.getElementById("panel-momentum"), MOMD);
-        if (CANDD) renderCandidates(document.getElementById("panel-candidates"), CANDD);
-        renderFocus();
-      })
-      .catch(function () { emptyPanel(document.getElementById("panel-weekcal"), "📅", "לוח דיווחים — בקרוב", ""); });
+    loadDaily();
+    setInterval(loadDaily, 300000);
+
+    // סלולר/טאב ברקע: דפדפנים מקפיאים טיימרים — כשחוזרים לדף, רענון מיידי
+    var lastWake = Date.now();
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState !== "visible") return;
+      if (Date.now() - lastWake < 120000) return;
+      lastWake = Date.now();
+      loadTicker(); loadLiveContent(); loadDaily();
+    });
+
     // החלפת קבוצות בבולטות (delegation — שורד רינדור מחדש)
     var splitEl = document.getElementById("home-split");
     if (splitEl) splitEl.addEventListener("click", function (e) {
@@ -1333,48 +1399,6 @@
       MV_CUR = b.dataset.g;
       renderHomeSplit();
     });
-    // Home + indices share the indices dataset
-    fetchJSON("data/indices.json").then(function (d) {
-      INDD = d;
-      renderMarketOverview(document.getElementById("home-overview"), d, { home: true });
-      renderIndicesDetail(document.getElementById("panel-indices"), d);
-      renderMeter(d);
-      renderFocus();   // התאריך בכותרת "מניות במוקד" תלוי ב-INDD
-      noteSig("indices", d);
-    }).catch(function (err) {
-      // כשל מדדים מפיל רק את תמונת-המצב — חדשות/מדווחות/תדריך ממשיכים לעבוד
-      emptyPanel(document.getElementById("home-overview"), "📡", "נתוני השוק לא נטענו", String(err.message || err));
-      emptyPanel(document.getElementById("panel-indices"), "📡", "נתוני המדדים לא נטענו", "");
-    });
-
-    fetchJSON("data/momentum.json")
-      .then(function (d) { MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); noteSig("momentum", d); })
-      .catch(function () { emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
-
-    // briefing.json נטען ומתרענן דרך loadLiveContent (עם שומר-שינוי)
-
-    fetchJSON("data/sectors.json")
-      .then(function (d) { renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
-      .catch(function () { emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
-
-    fetchJSON("data/morning.json")
-      .then(function (d) { renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
-      .catch(function () { emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
-
-    fetchJSON("data/candidates.json")
-      .then(function (d) { CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); noteSig("candidates", d); })
-      .catch(function () { emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
-
-    fetchJSON("data/reports.json")
-      .then(function (d) { REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); noteSig("reports", d); })
-      .catch(function () { emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
-
-    fetchJSON("data/_health.json")
-      .then(function (d) {
-        renderHealth(document.getElementById("health"), d);
-        renderTodayBar(document.getElementById("today-bar"), d);
-      })
-      .catch(function () {});
 
     // deep-link
     var start = location.hash.slice(1);
