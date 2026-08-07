@@ -96,12 +96,53 @@
       '<div class="np-blk-row">' + idx.map(blk).join("") + "</div>" +
       '<div class="np-blk-row">' + futs.map(blk).join("") + "</div>";
   }
+  var TICKD = null;
   function loadTicker() {
     var el = document.getElementById("ticker");
     if (!el) return;
     fetchJSON("data/market.json")
-      .then(function (d) { renderMarketTicker(el, d); })
+      .then(function (d) { TICKD = d; renderMarketTicker(el, d); refreshTickerLive(); })
       .catch(function () {});
+  }
+  /* עדכון חי מהסורק של TradingView (CORS פתוח כ-simple request) — מחירים כל דקה;
+     הגרפים-המיניים נשארים מהשרת (15 דק'). tnx לא זמין בסורק ונשאר בקצב השרת. */
+  function refreshTickerLive() {
+    if (!TICKD) return;
+    var reqs = [
+      ["https://scanner.tradingview.com/america/scan",
+       { symbols: { tickers: ["AMEX:SPY", "NASDAQ:QQQ", "AMEX:IWM", "TVC:VIX", "TVC:DXY"] },
+         columns: ["name", "close", "change", "premarket_close", "premarket_change", "postmarket_close", "postmarket_change"] },
+       { SPY: "spy", QQQ: "qqq", IWM: "iwm", VIX: "vix", DXY: "dxy" }],
+      ["https://scanner.tradingview.com/futures/scan",
+       { symbols: { tickers: ["CME_MINI:ES1!", "CME_MINI:NQ1!"] }, columns: ["name", "close", "change"] },
+       { "ES1!": "es", "NQ1!": "nq" }],
+      ["https://scanner.tradingview.com/forex/scan",
+       { symbols: { tickers: ["FX_IDC:USDILS"] }, columns: ["name", "close", "change"] },
+       { USDILS: "usdils" }]
+    ];
+    var byKey = {};
+    TICKD.items.forEach(function (it) { byKey[it.key] = it; });
+    var ses = jsSession();
+    reqs.forEach(function (r) {
+      fetch(r[0], { method: "POST", body: JSON.stringify(r[1]) })
+        .then(function (x) { return x.json(); })
+        .then(function (d) {
+          (d.data || []).forEach(function (row) {
+            var v = row.d, key = r[2][v[0]], it = key && byKey[key];
+            if (!it) return;
+            var px = v[1], chg = v[2];
+            // מניות/קרנות מחוץ לשעות המסחר — מחיר פרה/אפטר אם קיים
+            if (v.length > 3) {
+              if (ses === "pre" && v[4] != null) { px = v[3] != null ? v[3] : px; chg = v[4]; }
+              else if (ses === "post" && v[6] != null) { px = v[5] != null ? v[5] : px; chg = v[6]; }
+            }
+            if (px != null) it.price = px;
+            if (chg != null) it.chg = Math.round(chg * 100) / 100;
+          });
+          renderMarketTicker(document.getElementById("ticker"), TICKD);
+        })
+        .catch(function () {});
+    });
   }
 
   /* ---- tab badge: green dot only when a category's CONTENT actually changed since you viewed it ---- */
@@ -1518,7 +1559,8 @@
   /* ---------- boot ---------- */
   function boot() {
     loadTicker();
-    setInterval(loadTicker, 180000); // refresh the strip every 3 min
+    setInterval(loadTicker, 180000);        // הקובץ מהשרת (ספארקים + tnx) כל 3 דק'
+    setInterval(refreshTickerLive, 60000);  // מחירים חיים מהסורק כל דקה
     setInterval(function () {         // ציטוטים חיים למניות במוקד
       if (FOCUS_SYMS) refreshFocusQuotes(FOCUS_SYMS.split(","), true);
     }, 180000);
