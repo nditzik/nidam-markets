@@ -509,8 +509,10 @@
         : 'בפועל <b class="num ' + cls + '" dir="ltr">' + esc(e.actual) + "</b>" +
           (e.forecast ? ' מול צפי <span class="num" dir="ltr">' + esc(e.forecast) + "</span>" : "") +
           (e.surprise === "good" ? " ✓" : e.surprise === "bad" ? " ✗" : "");
+      // התאריך מימין והשעה משמאל (סדר RTL טבעי) — כל מספר LTR בפני עצמו
       return '<div class="ec-row' + (isUp ? "" : " " + cls) + '">' +
-        '<span class="ec-when num" dir="ltr">' + esc(e.ilDate) + (isUp && e.ilTime ? " · " + esc(e.ilTime) : "") + "</span>" +
+        '<span class="ec-when num"><span dir="ltr">' + esc(e.ilDate) + "</span>" +
+          (isUp && e.ilTime ? ' · <span dir="ltr">' + esc(e.ilTime) + "</span>" : "") + "</span>" +
         '<span class="ec-name">' + esc(e.he) + "</span>" +
         '<span class="ec-val">' + val + "</span></div>";
     }
