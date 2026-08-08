@@ -35,6 +35,13 @@
     });
     markSeen(name);
     updateTodayBarVis();
+    // דוח שנטען כשהפאנל היה מוסתר לא הותאם (המדידה נעצרת על clientWidth=0 וה-retries
+    // מתפוגגים) — מריצים fit מחדש ברגע שהטאב נפתח והמידות אמיתיות
+    requestAnimationFrame(function () {
+      document.querySelectorAll("#panel-" + name + " iframe.trd-frame").forEach(function (f) {
+        if (window.__fitFrame) window.__fitFrame(f);
+      });
+    });
     var tw = document.getElementById("ticker-wrap");
     if (tw) tw.style.display = name === "home" ? "block" : "none";
     if (location.hash.slice(1) !== name) {
@@ -199,8 +206,12 @@
   // expose for CTA buttons
   window.__goTab = activate;
   // התאמת iframe של דוחות רחבים: אם התוכן רחב מהמסך (טבלאות/גרפים) — מכווצים
-  // בסקייל כך שהדוח כולו נכנס ברוחב המסך (ומשם פינץ'-זום מגדיל); הגובה נמדד שוב
-  // כמה פעמים כי פונטים שנטענים באיחור מאריכים את הדף (מדידה אחת חתכה את התחתית)
+  // כך שהדוח כולו נכנס ברוחב המסך (ומשם פינץ'-זום מגדיל).
+  // הכיווץ הוא transform:scale על מעטפת בתוך המסמך, לא zoom: ב-WebKit ה-zoom משנה
+  // layout (פונטים זעירים מעוגלים כלפי מעלה) כך שהמסמך המכווץ נשאר רחב ~30% מהמדידה
+  // — ב-iOS ה-iframe התנפח לרוחב הזה, חתך את צד ימין וריצד בגלילה. transform לא
+  // נוגע ב-layout, אז המדידה נכונה תמיד; קיבוע html/body לגודל הוויזואלי מונע
+  // מ-iOS לנפח את ה-iframe לגודל התוכן (הניפוח נגזר מגודל הגלילה של המסמך).
   window.__fitFrame = function (f) {
     function fit() {
       try {
@@ -208,35 +219,62 @@
         var wrap = f.parentElement;
         if (!doc || !doc.body || !wrap) return;
         var root = doc.documentElement;
-        // iOS מנפח פונטים בדפים רחבים ("עזרה" של WebKit) — האותיות הענקיות
-        // שנדחסות לטור צר. ביטול מפורש בתוך מסמך הדוח:
+        // iOS מנפח פונטים בדפים רחבים ("עזרה" של WebKit) — ביטול מפורש בתוך המסמך:
         if (!doc.getElementById("np-fit-style") && doc.head) {
           var st = doc.createElement("style");
           st.id = "np-fit-style";
           st.textContent = "html,body{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}";
           doc.head.appendChild(st);
         }
-        // הכיווץ נעשה בתוך מסמך הדוח (zoom על ה-html) — ספארי בנייד מתעלם ממידות
-        // iframe חיצוניות ומרחיב אותו לגודל התוכן, אז transform מבחוץ לא עובד שם
-        // פאנל מוסתר (מעבר טאב באמצע ה-retries) — clientWidth=0 היה מייצר zoom:0
+        // פאנל מוסתר (מעבר טאב באמצע ה-retries) — מדידה על clientWidth=0 מקולקלת
         if (!wrap.clientWidth) return;
-        root.style.zoom = "";
-        var natural = Math.max(doc.body.scrollWidth, root.scrollWidth);
-        // מעטפות שממרכזות קופסה ברוחב קבוע (Bundled Page) מסתירות את הגלישה
-        // מ-scrollWidth — מודדים גם את הילדים והנכדים ולוקחים את הרחב ביותר
-        var kids = doc.body.children;
+        // עטיפה חד-פעמית של תוכן המסמך במיכל שה-scale מוחל עליו
+        var sc = doc.getElementById("np-fit-scaler");
+        if (!sc) {
+          sc = doc.createElement("div");
+          sc.id = "np-fit-scaler";
+          while (doc.body.firstChild) sc.appendChild(doc.body.firstChild);
+          doc.body.appendChild(sc);
+        }
+        var avail = wrap.clientWidth;
+        var prevScale = f.__scale || 1;
+        // רוחב התוכן: scrollWidth לא מושפע מ-transform; מידות rect כן — מנרמלים בסקייל.
+        // מעטפות שממרכזות קופסה ברוחב קבוע (Bundled Page) מסתירות גלישה מ-scrollWidth,
+        // לכן נמדדים גם ילדים ונכדים. natural רק גדל (פונטים מאוחרים) — לעולם לא מתכווץ.
+        var natural = f.__nat || 0;
+        if (!sc.style.width) natural = Math.max(natural, sc.scrollWidth);
+        var kids = sc.children;
         for (var i = 0; i < kids.length && i < 20; i++) {
-          natural = Math.max(natural, kids[i].scrollWidth, kids[i].getBoundingClientRect().width);
+          natural = Math.max(natural, kids[i].scrollWidth, kids[i].getBoundingClientRect().width / prevScale);
           var g = kids[i].children;
           for (var j = 0; j < g.length && j < 30; j++)
-            natural = Math.max(natural, g[j].scrollWidth, g[j].getBoundingClientRect().width);
+            natural = Math.max(natural, g[j].scrollWidth, g[j].getBoundingClientRect().width / prevScale);
         }
         natural = Math.ceil(natural);
-        var avail = wrap.clientWidth;
-        if (natural > avail + 12) root.style.zoom = String(avail / natural);
-        var h = Math.max(root.getBoundingClientRect().height, doc.body.getBoundingClientRect().height * (parseFloat(root.style.zoom) || 1));
+        f.__nat = natural;
+        var s = natural > avail + 12 ? avail / natural : 1;
+        f.__scale = s;
+        var h;
+        if (s < 1) {
+          sc.style.width = natural + "px";
+          // העוגן לפי כיוון המסמך: דוח RTL צמוד ימינה (מקבעים את הקצה הימני),
+          // דוח LTR צמוד שמאלה — origin שגוי מזיז את כל התוכן אל מחוץ למסך
+          var dir = f.contentWindow.getComputedStyle(doc.body).direction;
+          sc.style.transformOrigin = "top " + (dir === "ltr" ? "left" : "right");
+          sc.style.transform = "scale(" + s + ")";
+          h = Math.ceil(sc.getBoundingClientRect().height); // גובה ויזואלי (אחרי scale)
+          root.style.width = doc.body.style.width = avail + "px";
+          root.style.height = doc.body.style.height = h + "px";
+          root.style.overflow = doc.body.style.overflow = "hidden";
+        } else {
+          sc.style.transform = sc.style.width = "";
+          root.style.width = doc.body.style.width = "";
+          root.style.height = doc.body.style.height = "";
+          root.style.overflow = doc.body.style.overflow = "";
+          h = Math.ceil(sc.getBoundingClientRect().height);
+        }
         f.style.width = "100%";
-        f.style.height = Math.ceil(h + 24) + "px";
+        f.style.height = (h + 24) + "px";
       } catch (e) {}
     }
     fit();
