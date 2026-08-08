@@ -212,6 +212,16 @@
         // iframe חיצוניות ומרחיב אותו לגודל התוכן, אז transform מבחוץ לא עובד שם
         root.style.zoom = "";
         var natural = Math.max(doc.body.scrollWidth, root.scrollWidth);
+        // מעטפות שממרכזות קופסה ברוחב קבוע (Bundled Page) מסתירות את הגלישה
+        // מ-scrollWidth — מודדים גם את הילדים והנכדים ולוקחים את הרחב ביותר
+        var kids = doc.body.children;
+        for (var i = 0; i < kids.length && i < 20; i++) {
+          natural = Math.max(natural, kids[i].scrollWidth, kids[i].getBoundingClientRect().width);
+          var g = kids[i].children;
+          for (var j = 0; j < g.length && j < 30; j++)
+            natural = Math.max(natural, g[j].scrollWidth, g[j].getBoundingClientRect().width);
+        }
+        natural = Math.ceil(natural);
         var avail = wrap.clientWidth;
         if (natural > avail + 12) root.style.zoom = String(avail / natural);
         var h = Math.max(root.getBoundingClientRect().height, doc.body.getBoundingClientRect().height * (parseFloat(root.style.zoom) || 1));
