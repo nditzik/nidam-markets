@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
@@ -25,7 +26,19 @@ OUT_DIR = os.path.join(ROOT, "data", "sectors")
 OUT_JSON = os.path.join(ROOT, "data", "sectors.json")
 
 DATE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
+DATE_RE2 = re.compile(r"(\d{1,2})\.(\d{1,2})\.(\d{4})")   # גם "8.8.2026" (איציק שומר כך)
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
+
+
+def date_of(name):
+    """תאריך ISO משם הקובץ — תומך גם YYYY-MM-DD וגם D.M.YYYY (שם עברי חופשי)."""
+    m = DATE_RE.search(name)
+    if m:
+        return m.group(1)
+    m = DATE_RE2.search(name)
+    if m:
+        return "%s-%02d-%02d" % (m.group(3), int(m.group(2)), int(m.group(1)))
+    return None
 
 
 def israel_stamp():
@@ -51,16 +64,18 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     reports = []
     for name in files:
-        m = DATE_RE.search(name)
-        if not m:
-            print(f"[skip] {name}: אין תאריך בשם הקובץ")
+        iso = date_of(name)
+        if not iso:
+            print(f"[skip] {name}: אין תאריך בשם הקובץ (YYYY-MM-DD או D.M.YYYY)")
             continue
         try:
-            content = _get(RAW + name)
+            content = _get(RAW + urllib.parse.quote(name))
         except Exception as e:
             print(f"[skip] {name}: {e}")
             continue
-        path = os.path.join(OUT_DIR, name)
+        # שם מאוחסן בטוח-ל-URL: תאריך + סיומת (שם עברי בקישור נשבר בחלק מהדפדפנים)
+        stored = "sectors-" + iso + ".html"
+        path = os.path.join(OUT_DIR, stored)
         old = None
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
@@ -69,9 +84,13 @@ def main():
             with open(path, "w", encoding="utf-8") as f:
                 f.write(content)
         t = TITLE_RE.search(content)
-        title = (t.group(1).strip() if t else "") or ("דוח סקטורים · " + m.group(1))
-        reports.append({"file": "data/sectors/" + name, "date": m.group(1), "title": title})
-        print(f"[ok] {m.group(1)} — {title[:50]}")
+        title = (t.group(1).strip() if t else "")
+        # כותרת גנרית של כלי-ייצוא ("Bundled Page" וכד' — בלי עברית) → כותרת ברירת-מחדל
+        if not title or not re.search(r"[֐-׿]", title):
+            d_parts = iso.split("-")
+            title = "דוח רוטציה סקטוריאלית · %d.%d.%s" % (int(d_parts[2]), int(d_parts[1]), d_parts[0])
+        reports.append({"file": "data/sectors/" + stored, "date": iso, "title": title})
+        print(f"[ok] {iso} — {title[:50]}")
 
     reports.sort(key=lambda r: r["date"], reverse=True)
     payload = {"reports": reports,
