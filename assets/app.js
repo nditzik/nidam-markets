@@ -207,21 +207,16 @@
         var doc = f.contentWindow.document;
         var wrap = f.parentElement;
         if (!doc || !doc.body || !wrap) return;
-        var natural = Math.max(doc.body.scrollWidth, doc.documentElement.scrollWidth);
+        var root = doc.documentElement;
+        // הכיווץ נעשה בתוך מסמך הדוח (zoom על ה-html) — ספארי בנייד מתעלם ממידות
+        // iframe חיצוניות ומרחיב אותו לגודל התוכן, אז transform מבחוץ לא עובד שם
+        root.style.zoom = "";
+        var natural = Math.max(doc.body.scrollWidth, root.scrollWidth);
         var avail = wrap.clientWidth;
-        var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight) + 30;
-        if (natural > avail + 12) {
-          var k = avail / natural;
-          f.style.width = natural + "px";
-          f.style.height = h + "px";
-          f.style.transform = "scale(" + k + ")";
-          f.style.transformOrigin = "top right";
-          wrap.style.height = Math.ceil(h * k) + "px";
-          wrap.style.overflow = "hidden";
-        } else {
-          f.style.transform = ""; f.style.width = "100%"; f.style.height = h + "px";
-          wrap.style.height = ""; wrap.style.overflow = "";
-        }
+        if (natural > avail + 12) root.style.zoom = String(avail / natural);
+        var h = Math.max(root.getBoundingClientRect().height, doc.body.getBoundingClientRect().height * (parseFloat(root.style.zoom) || 1));
+        f.style.width = "100%";
+        f.style.height = Math.ceil(h + 24) + "px";
       } catch (e) {}
     }
     fit();
