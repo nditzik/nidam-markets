@@ -208,6 +208,14 @@
         var wrap = f.parentElement;
         if (!doc || !doc.body || !wrap) return;
         var root = doc.documentElement;
+        // iOS מנפח פונטים בדפים רחבים ("עזרה" של WebKit) — האותיות הענקיות
+        // שנדחסות לטור צר. ביטול מפורש בתוך מסמך הדוח:
+        if (!doc.getElementById("np-fit-style") && doc.head) {
+          var st = doc.createElement("style");
+          st.id = "np-fit-style";
+          st.textContent = "html,body{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}";
+          doc.head.appendChild(st);
+        }
         // הכיווץ נעשה בתוך מסמך הדוח (zoom על ה-html) — ספארי בנייד מתעלם ממידות
         // iframe חיצוניות ומרחיב אותו לגודל התוכן, אז transform מבחוץ לא עובד שם
         root.style.zoom = "";
