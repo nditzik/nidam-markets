@@ -432,7 +432,14 @@
           "<p>" + esc(it.text) + "</p>" +
           '<span class="m">' + esc(it.source) + " · " + esc(it.time) + "</span></a>";
       }).join("") +
-      '<a class="np-more" href="' + esc((PULSE_X.items[0] || {}).link || "#") + '" target="_blank" rel="noopener">כל העדכונים ←</a>';
+      '<a class="np-more" href="' + esc((PULSE_X.items[0] || {}).link || "#") + '" target="_blank" rel="noopener">כל העדכונים ←</a>' +
+      ' · <a class="np-more" href="#" id="news-toggle">📰 חדשות השוק ⌄</a>';
+    var nt = document.getElementById("news-toggle");
+    if (nt) nt.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      var n = document.getElementById("tri-news");
+      if (n) n.style.display = n.style.display === "none" ? "block" : "none";
+    });
   }
 
   /* ציטוטים חיים למניות במוקד — ישירות מהסורק של TradingView (CORS פתוח; body כ-text/plain) */
@@ -722,37 +729,7 @@
         '<ul class="mv-list">' + (rows || '<li style="color:var(--text-3)">אין נתונים כרגע.</li>') + "</ul></section>";
     }
 
-    // ---- מדווחות היום (עמודה שמאלית) ----
-    if (EARN) {
-      var rep = EARN.reporting || [], up = EARN.upcoming || [];
-      var body;
-      if (rep.length) {
-        body = '<div class="earn-grid">' + rep.map(function (r) {
-          return '<a class="earn-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) +
-            '/" target="_blank" rel="noopener" title="' + esc(r.name) + " — פתח ב-TradingView\">" +
-            (r.logo ? '<img src="' + esc(r.logo) + '" alt="" onerror="this.remove()">'
-                    : '<span class="earn-ph"></span>') +
-            "<span>" + esc(r.ticker) + "</span></a>";
-        }).join("") + "</div>" +
-        (EARN.more ? '<p class="earn-more">ועוד ' + EARN.more + " חברות מדווחות היום</p>" : "");
-      } else {
-        body = '<p class="earn-empty">אין דיווחים מתוכננים להיום.</p>';
-      }
-      var upHtml = up.length
-        ? '<div class="earn-up"><div class="earn-up-t">מדווחות השבוע</div>' +
-          up.map(function (u) {
-            return '<div class="earn-up-row"><span class="earn-up-day">' + esc(u.dow) + " " +
-              '<span dir="ltr">' + esc(u.label) + "</span></span>" +
-              '<span class="earn-up-n">' + u.count + "</span>" +
-              '<span class="earn-up-tk">' + esc((u.tickers || []).slice(0, 4).join(" · ")) + "</span></div>";
-          }).join("") + "</div>"
-        : "";
-      html += '<section class="card split-card">' +
-        '<div class="split-head"><span class="split-title">📊 מדווחות היום</span>' +
-          '<span class="split-sub">' + (EARN.todayCount || 0) + " חברות</span></div>" +
-        body + upHtml + "</section>";
-    }
-
+    // מדווחות היום עברו לעמודת ה-tri (renderTriIndex) — כאן נשארו רק הבולטות
     el.innerHTML = html;
     renderTriIndex();
   }
@@ -858,42 +835,32 @@
     renderSpark();
   }
 
-  /* "מפתח" — רשימת קיצורים עם ספירות */
-  function renderTriIndex() {
-    var el = document.getElementById("tri-index");
-    if (!el) return;
-    var rows = [];
-    if (EARN) rows.push(["weekcal", "מדווחות היום", (EARN.todayCount || 0) + " חברות", ""]);
-    if (ECON && (ECON.events || []).length) {
-      var nxt = ECON.events.filter(function (x) { return x.actual == null; })[0];
-      if (nxt) rows.push(["#home-econ", "נתוני מאקרו", nxt.he.split(" ")[0] + " ב-" + nxt.ilDate, "hot"]);
-    }
-    if (FOCUS_SYMS) rows.push(["#home-focus", "מניות במוקד", FOCUS_SYMS.split(",").slice(0, 3).join(" · "), ""]);
-    if (MOVERS && (MOVERS.gainers || []).length) {
-      var g = MOVERS.gainers[0];
-      rows.push(["#home-split", "הבולטות של היום", g.symbol + " +" + Math.round(g.chg) + "%", ""]);
-    }
-    if (TRAD && (TRAD.reports || []).length) rows.push(["trades", "הצעות לטרייד", "דוח " + fmtTradeDate(TRAD.reports[0].date), ""]);
-    if (NEWS && (NEWS.news || []).length) rows.push(["news", "חדשות השוק", Math.min(NEWS.news.length, 5) + " כותרות", ""]);
-    if (!rows.length) { el.innerHTML = ""; return; }
-    el.innerHTML = '<h3 class="np-k">מפתח</h3>' + rows.map(function (r) {
-      return '<a href="#" data-act="' + r[0] + '"><span>' + r[1] + '</span><span class="c ' + r[3] + '" dir="ltr">' + esc(r[2]) + "</span></a>";
-    }).join("");
-    el.querySelectorAll("a[data-act]").forEach(function (a) {
-      a.addEventListener("click", function (ev) {
-        ev.preventDefault();
-        var act = a.dataset.act;
-        if (act === "news") {
-          var n = document.getElementById("tri-news");
-          if (n) n.style.display = n.style.display === "none" ? "block" : "none";
-        } else if (act.charAt(0) === "#") {
-          var t = document.querySelector(act);
-          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          __goTab(act);
-        }
-      });
-    });
+  /* עמודת "מדווחות היום והשבוע" — לוגו+טיקר להיום, שורות ימים לשבוע */
+  function renderTriIndex() {   // השם נשמר — כל נקודות-הקריאה הקיימות ממשיכות לעבוד
+    var el = document.getElementById("tri-earn");
+    if (!el || !EARN) return;
+    var rep = EARN.reporting || [], up = EARN.upcoming || [];
+    var today = rep.length
+      ? '<div class="earn-grid">' + rep.slice(0, 8).map(function (r) {
+          return '<a class="earn-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) +
+            '/" target="_blank" rel="noopener" title="' + esc(r.name) + '">' +
+            (r.logo ? '<img src="' + esc(r.logo) + '" alt="" loading="lazy" onerror="this.remove()">' : "") +
+            '<span dir="ltr">' + esc(r.ticker) + "</span></a>";
+        }).join("") + "</div>" +
+        (EARN.todayCount > 8 ? '<div class="np-earn-more">ועוד ' + (EARN.todayCount - 8) + " חברות היום</div>" : "")
+      : '<div class="np-earn-more">אין דיווחים היום.</div>';
+    var week = up.length
+      ? '<div class="earn-up"><div class="earn-up-t">מדווחות השבוע</div>' +
+        up.map(function (u) {
+          return '<div class="earn-up-row"><span class="earn-up-day">' + esc(u.dow) + " " +
+            '<span dir="ltr">' + esc(u.label) + "</span></span>" +
+            '<span class="earn-up-n">' + u.count + "</span>" +
+            '<span class="earn-up-tk" dir="ltr">' + esc((u.tickers || []).slice(0, 4).join(" · ")) + "</span></div>";
+        }).join("") + "</div>"
+      : "";
+    el.innerHTML =
+      '<h3 class="np-k">מדווחות היום והשבוע</h3>' + today + week +
+      '<a class="np-more" href="#weekcal" onclick="__goTab(\'weekcal\');return false">לוח הדיווחים המלא ←</a>';
   }
 
   /* ---------- renderers ---------- */

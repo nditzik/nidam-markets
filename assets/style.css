@@ -801,3 +801,19 @@ body { background-image: none; background-color: var(--bg); }
 .np-blk-spark { width: 64px; height: 26px; flex: none; }
 .foot-stamp { text-align: center; margin-bottom: 8px; }
 .foot-stamp .stamp { margin: 0; font-size: .78rem; }
+
+/* עמודת מדווחות ב-tri + בולטות ברוחב מלא (2026-08-08) */
+.home-split { grid-template-columns: 1fr; }
+#tri-earn .earn-grid { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
+#tri-earn .earn-tile { display: inline-flex; align-items: center; gap: 7px; background: var(--surface-2);
+  border: 1px solid var(--paper-hair); border-radius: 8px; padding: 5px 11px; font-weight: 700; font-size: .82rem;
+  color: var(--text); text-decoration: none; }
+#tri-earn .earn-tile img { width: 18px; height: 18px; border-radius: 4px; object-fit: contain; }
+.np-earn-more { font-size: .78rem; color: var(--text-3); margin-bottom: 8px; }
+#tri-earn .earn-up-t { font-size: .8rem; font-weight: 700; color: var(--text-soft); margin: 6px 0 4px; }
+#tri-earn .earn-up-row { display: flex; align-items: baseline; gap: 8px; padding: 4px 0;
+  border-bottom: 1px solid var(--paper-hair); font-size: .84rem; }
+#tri-earn .earn-up-row:last-child { border-bottom: 0; }
+#tri-earn .earn-up-day { font-weight: 700; min-width: 54px; }
+#tri-earn .earn-up-n { color: var(--accent); font-weight: 700; }
+#tri-earn .earn-up-tk { color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
