@@ -198,14 +198,35 @@
   }
   // expose for CTA buttons
   window.__goTab = activate;
-  // התאמת גובה iframe עם מדידות חוזרות — פונטים/תמונות שנטענים באיחור מאריכים את הדף,
-  // ומדידה חד-פעמית ב-onload חותכת את התחתית (קרה בדוחות הצעות-לטרייד בנייד)
+  // התאמת iframe של דוחות רחבים: אם התוכן רחב מהמסך (טבלאות/גרפים) — מכווצים
+  // בסקייל כך שהדוח כולו נכנס ברוחב המסך (ומשם פינץ'-זום מגדיל); הגובה נמדד שוב
+  // כמה פעמים כי פונטים שנטענים באיחור מאריכים את הדף (מדידה אחת חתכה את התחתית)
   window.__fitFrame = function (f) {
     function fit() {
-      try { f.style.height = (f.contentWindow.document.body.scrollHeight + 30) + "px"; } catch (e) {}
+      try {
+        var doc = f.contentWindow.document;
+        var wrap = f.parentElement;
+        if (!doc || !doc.body || !wrap) return;
+        var natural = Math.max(doc.body.scrollWidth, doc.documentElement.scrollWidth);
+        var avail = wrap.clientWidth;
+        var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight) + 30;
+        if (natural > avail + 12) {
+          var k = avail / natural;
+          f.style.width = natural + "px";
+          f.style.height = h + "px";
+          f.style.transform = "scale(" + k + ")";
+          f.style.transformOrigin = "top right";
+          wrap.style.height = Math.ceil(h * k) + "px";
+          wrap.style.overflow = "hidden";
+        } else {
+          f.style.transform = ""; f.style.width = "100%"; f.style.height = h + "px";
+          wrap.style.height = ""; wrap.style.overflow = "";
+        }
+      } catch (e) {}
     }
     fit();
     [400, 1200, 2500, 5000].forEach(function (ms) { setTimeout(fit, ms); });
+    if (!f.__fitBound) { f.__fitBound = true; window.addEventListener("resize", fit); }
   };
 
   /* ---------- helpers ---------- */
@@ -1395,9 +1416,10 @@
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
         "<strong>" + esc(r.title) + "</strong>" +
         '<div class="stamp" style="margin:4px 0 0">שבוע שהסתיים ב-' + esc(secDate(r.date)) + "</div></div>" +
-      '<iframe class="brief-frame" src="' + bust(r.file, SECT._meta) + '" title="' + esc(r.title) +
+      // תוכן רחב (גרפים/טבלאות) — בנייד גלילה אופקית + מדידת-גובה חוזרת
+      '<div class="frame-scroll"><iframe class="brief-frame trd-frame" src="' + bust(r.file, SECT._meta) + '" title="' + esc(r.title) +
       '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
-      'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+      'onload="__fitFrame(this)"></iframe></div>';
   }
 
   /* טאב "הצעות לטרייד" — דוחות Four Pillars וכד', כמו סקטורים (יומי במקום שבועי) */

@@ -838,8 +838,6 @@ body { background-image: none; background-color: var(--bg); }
 .np-ca-bottom { background: color-mix(in srgb, var(--warn) 9%, transparent); border-radius: 8px; padding: 10px 14px; }
 .np-ca-conf { font-family: Heebo, sans-serif; font-size: .78rem; color: var(--text-3); margin-bottom: 0 !important; }
 
-/* דוחות הצעות-לטרייד בנייד: טבלאות רחבות — גלילה אופקית פנימית במקום מחיצה (2026-08-08) */
-.frame-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-@media (max-width: 760px) {
-  .frame-scroll .trd-frame { min-width: 740px; }
-}
+/* דוחות רחבים (הצעות-לטרייד/סקטורים): מכווצים בסקייל להתאמה מלאה לרוחב המסך (2026-08-08) */
+.frame-scroll { position: relative; }
+.frame-scroll .trd-frame { display: block; }
