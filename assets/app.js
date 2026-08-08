@@ -218,6 +218,8 @@
         }
         // הכיווץ נעשה בתוך מסמך הדוח (zoom על ה-html) — ספארי בנייד מתעלם ממידות
         // iframe חיצוניות ומרחיב אותו לגודל התוכן, אז transform מבחוץ לא עובד שם
+        // פאנל מוסתר (מעבר טאב באמצע ה-retries) — clientWidth=0 היה מייצר zoom:0
+        if (!wrap.clientWidth) return;
         root.style.zoom = "";
         var natural = Math.max(doc.body.scrollWidth, root.scrollWidth);
         // מעטפות שממרכזות קופסה ברוחב קבוע (Bundled Page) מסתירות את הגלישה
@@ -239,7 +241,18 @@
     }
     fit();
     [400, 1200, 2500, 5000].forEach(function (ms) { setTimeout(fit, ms); });
-    if (!f.__fitBound) { f.__fitBound = true; window.addEventListener("resize", fit); }
+    if (!f.__fitBound) {
+      f.__fitBound = true;
+      // ספארי iOS יורה resize על כיווץ שורת הכתובת תוך כדי גלילה; ה-fit היה
+      // מאפס את ה-zoom באמצע גלילה והדוח נשאר רחב וחתוך — מגיבים רק לשינוי רוחב אמיתי
+      var lastW = window.innerWidth, deb = null;
+      window.addEventListener("resize", function () {
+        if (window.innerWidth === lastW) return;
+        lastW = window.innerWidth;
+        clearTimeout(deb);
+        deb = setTimeout(fit, 150);
+      });
+    }
   };
 
   /* ---------- helpers ---------- */
@@ -464,8 +477,8 @@
       '<h3 class="np-k">בזק מהרשת · X</h3>' +
       PULSE_X.items.slice(0, 4).map(function (it) {
         return '<a class="np-xit" href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
-          "<p>" + esc(it.text) + "</p>" +
-          '<span class="m">' + esc(it.source) + " · " + esc(it.time) + "</span></a>";
+          '<span class="m">' + esc(it.source) + " · " + esc(it.time) + "</span>" +
+          "<p>" + esc(it.text) + "</p></a>";
       }).join("") +
       '<a class="np-more" href="' + esc((PULSE_X.items[0] || {}).link || "#") + '" target="_blank" rel="noopener">כל העדכונים ←</a>' +
       ' · <a class="np-more" href="#" id="news-toggle">📰 חדשות השוק ⌄</a>';
