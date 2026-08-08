@@ -73,14 +73,20 @@
   }
   function renderMarketTicker(el, data) {
     if (!el || !data || !data.items || !data.items.length) return;
-    // שורה רזה אחת: שם · מחיר · אחוז יומי (בלי גרפים ונקודות — לפי משוב הקוראים)
-    el.innerHTML = data.items.map(function (it) {
+    // שתי שורות רזות: עליונה = המדדים (SPY→DXY מימין), תחתונה = חוזים + דולר/שקל
+    function tick(it) {
       var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
       return '<span class="np-tick"><b>' + esc(it.label) + "</b> " +
         '<span class="v num">' + fmtQuote(it.price) + "</span>" +
         (c == null ? "" : ' <span class="c num ' + cls + '" dir="ltr">' + arr + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>") +
         "</span>";
-    }).join('<span class="np-sep">·</span>');
+    }
+    var idx = [], futs = [];
+    data.items.forEach(function (it) { (PIN_KEYS[it.key] ? futs : idx).push(it); });
+    var sep = '<span class="np-sep">·</span>';
+    el.innerHTML =
+      '<div class="np-line">' + idx.map(tick).join(sep) + "</div>" +
+      '<div class="np-line">' + futs.map(tick).join(sep) + "</div>";
   }
   var TICKD = null;
   function loadTicker() {
