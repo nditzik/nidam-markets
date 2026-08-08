@@ -773,35 +773,51 @@
   }
 
   /* ---------- הידיעה המובילה + רייל המד (מהדורת עיתון) ---------- */
+  var CA = null;   // data/claude_analysis.json — הניתוח היומי (נכתב ע"י המשימה המתוזמנת)
   function renderLead() {
     var el = document.getElementById("lead-main");
     if (!el || !INDD) return;
     var d = INDD, c = d.conclusion || {}, v = d.verdict || {};
     var ai = (d.aiSummary && d.aiSummary.date === d.date) ? d.aiSummary : null;
+    var ca = (CA && CA.date === d.date) ? CA : null;   // ניתוח Claude היומי — עדיפות ראשונה
 
-    // חותמת העדכון בשורת הכותרת
+    // חותמת העדכון עברה לפוטר
     var hs = document.getElementById("head-stamp");
     if (hs) hs.innerHTML = stamp(d._meta);
-
-    var paras = (ai && ai.paragraphs) || [];
-    var bottom = null, body = [];
-    paras.forEach(function (p) { (p.indexOf("שורה תחתונה") >= 0 ? (bottom = p) : body.push(p)); });
-    var dek = body.length ? body.slice(0, 2).join(" ") : (v.subline || "");
 
     var lightsMap = { trend: "מגמה", breadth: "רוחב", volatility: "תנודתיות", rotation: "רוטציה" };
     var lights = v.lights ? Object.keys(lightsMap).map(function (k) {
       var st = v.lights[k] || "";
       return '<span class="np-lt ' + esc(st) + '"><span class="np-dot"></span>' + lightsMap[k] + "</span>";
     }).join("") : "";
+    var foot = '<div class="np-leadfoot">' + lights +
+      '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a></div>';
 
+    if (ca) {
+      // מבנה רזה: קיקר עם התאריך + האחוז · כותרת אנליטית · משפט-מהות · שורה תחתונה
+      var pm = /([+−-]\d+(?:\.\d+)?%)/.exec(c.headline || "");
+      el.innerHTML =
+        '<span class="np-k">יום המסחר · <b dir="ltr">' + esc(fmtTradeDate(d.date)) + "</b>" +
+          (pm ? ' · <b class="num" dir="ltr">' + esc(pm[1]) + "</b>" : "") + "</span>" +
+        '<h2 class="np-h1">' + esc(ca.headline) + "</h2>" +
+        (ca.tldr ? '<p class="np-dek">' + esc(ca.tldr) + "</p>" : "") +
+        (ca.bottomline ? '<p class="np-bottom">💡 ' + esc(ca.bottomline).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
+        foot;
+      return;
+    }
+
+    // נפילה-חזרה: המבנה הקודם (מנוע הכללים / בלי ניתוח)
+    var paras = (ai && ai.paragraphs) || [];
+    var bottom = null, body = [];
+    paras.forEach(function (p) { (p.indexOf("שורה תחתונה") >= 0 ? (bottom = p) : body.push(p)); });
+    var dek = body.length ? body.slice(0, 2).join(" ") : (v.subline || "");
     el.innerHTML =
       '<span class="np-k">יום המסחר · <b dir="ltr">' + esc(fmtTradeDate(d.date)) + "</b></span>" +
       '<h2 class="np-h1">' + esc(c.headline || v.headline || "סקירת שוק") + "</h2>" +
       (ai && ai.headline ? '<p class="np-reg">' + esc(ai.headline) + "</p>" : "") +
       (dek ? '<p class="np-dek">' + esc(dek) + "</p>" : "") +
       (bottom ? '<p class="np-bottom">' + esc(bottom).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
-      '<div class="np-leadfoot">' + lights +
-        '<a href="#indices" onclick="__goTab(\'indices\');return false">הסקירה המלאה ←</a></div>';
+      foot;
 
     // ─ רייל המד ─
     var rail = document.getElementById("lead-rail");
@@ -970,6 +986,20 @@
     }
   }
 
+  /* כרטיס "הניתוח היומי" המלא — בראש טאב מדדים */
+  function claudeCardHtml(d) {
+    var ca = (CA && CA.date === d.date) ? CA : null;
+    if (!ca) return "";
+    return '<div class="section-title" style="margin-top:0">🧠 הניתוח היומי</div>' +
+      '<div class="card np-ca">' +
+        '<h3 class="np-ca-h">' + esc(ca.headline) + "</h3>" +
+        (ca.paragraphs || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
+        (ca.bottomline ? '<p class="np-ca-bottom">💡 ' + esc(ca.bottomline).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
+        (ca.watchFor ? "<p><b>לעקוב:</b> " + esc(ca.watchFor) + "</p>" : "") +
+        (ca.confidence ? '<p class="np-ca-conf">רמת ביטחון: ' + esc(ca.confidence) + "</p>" : "") +
+      "</div>";
+  }
+
   function renderIndicesDetail(el, d) {
     var c = d.conclusion || {};
     var rot = d.rotation || {};
@@ -1027,7 +1057,7 @@
     renderMarketOverview(overview, d, { detail: true });
 
     el.innerHTML = "";
-    el.insertAdjacentHTML("beforeend", head + INDICES_EXPLAINER);   // ההסבר מיד מתחת לכותרת, מעל תמונת המצב
+    el.insertAdjacentHTML("beforeend", head + claudeCardHtml(d) + INDICES_EXPLAINER);   // הניתוח היומי בראש, ואז ההסבר ותמונת המצב
     el.appendChild(overview);
     el.insertAdjacentHTML("beforeend", analysis + sectors + selling + narr);
     var link = document.createElement("p");
@@ -1617,6 +1647,15 @@
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
       fetchJSON("data/econ.json")
         .then(function (d) { if (!freshD("econ", d)) return; ECON = d; renderEcon(); })
+        .catch(function () {});
+      // הניתוח היומי של Claude — מוצג בבית (תקציר) ובטאב מדדים (מלא)
+      fetchJSON("data/claude_analysis.json")
+        .then(function (d) {
+          if (!freshD("claude", d)) return;
+          CA = d;
+          renderLead();
+          if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD);
+        })
         .catch(function () {});
       // אינדקס הארכיון (תדריכים + סקירות, 30 יום) — מרענן את הצ'יפים בשני הטאבים
       fetchJSON("data/briefing_archive.json")
