@@ -1450,9 +1450,17 @@
             '"><span dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span></button>";
         }).join("") + "</div>"
       : "";
+    // קטגוריית-משנה קבועה: מצגת הלימוד של השיטה (PDF, נפתח בכרטיסייה חדשה)
+    var method = d.method
+      ? '<a class="card trd-method" href="' + esc(d.method.url) + '" target="_blank" rel="noopener">' +
+          '<span class="trd-method-icon">📚</span>' +
+          '<span><b>' + esc(d.method.title) + '</b><span class="trd-method-sub">קובץ PDF · מומלץ לקרוא לפני הסריקות · נפתח בחלון חדש</span></span>' +
+        "</a>"
+      : "";
     el.innerHTML = stamp(d._meta) +
       '<div class="section-title" style="margin-top:0">💡 הצעות לטרייד</div>' +
-      tabIntro("trades") +
+      tabIntro("trades") + method +
+      '<div class="section-title" style="font-size:.95rem">🔎 סריקות יומיות</div>' +
       nav + '<div id="trd-view"></div>';
     showTrade(0);
     el.querySelectorAll(".trd-tab").forEach(function (b) {

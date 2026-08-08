@@ -841,3 +841,9 @@ body { background-image: none; background-color: var(--bg); }
 /* דוחות רחבים (הצעות-לטרייד/סקטורים): מכווצים בסקייל להתאמה מלאה לרוחב המסך (2026-08-08) */
 .frame-scroll { position: relative; }
 .frame-scroll .trd-frame { display: block; }
+
+/* מצגת הלימוד — קטגוריית משנה קבועה בטאב הצעות לטרייד (2026-08-08) */
+.trd-method { display: flex; align-items: center; gap: 14px; padding: 14px 18px; margin-bottom: 14px;
+  text-decoration: none; color: var(--text); }
+.trd-method-icon { font-size: 1.6rem; flex: none; }
+.trd-method-sub { display: block; font-size: .78rem; color: var(--text-3); margin-top: 2px; }

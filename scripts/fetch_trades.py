@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
@@ -25,8 +26,20 @@ OUT_DIR = os.path.join(ROOT, "data", "trades")
 OUT_JSON = os.path.join(ROOT, "data", "trades.json")
 
 DATE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
+DATE_RE2 = re.compile(r"(\d{1,2})\.(\d{1,2})\.(\d{4})")   # גם "8.8.2026"
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 MAX_KEEP = 20   # מציגים עד 20 דוחות אחרונים
+
+
+def date_of(name):
+    """תאריך ISO משם הקובץ — YYYY-MM-DD או D.M.YYYY (שם עברי חופשי נתמך)."""
+    m = DATE_RE.search(name)
+    if m:
+        return m.group(1)
+    m = DATE_RE2.search(name)
+    if m:
+        return "%s-%02d-%02d" % (m.group(3), int(m.group(2)), int(m.group(1)))
+    return None
 
 
 def israel_stamp():
@@ -43,25 +56,34 @@ def _get(url):
 
 def main():
     try:
-        files = [f["name"] for f in json.loads(_get(API))
-                 if f.get("type") == "file" and f["name"].lower().endswith(".html")]
+        listing = [f["name"] for f in json.loads(_get(API)) if f.get("type") == "file"]
     except Exception as e:
         print(f"[warn] רשימת דוחות טריידים נכשלה: {e}")
         return 0 if os.path.exists(OUT_JSON) else 1
 
+    files = [n for n in listing if n.lower().endswith(".html")]
+    # מצגת/מסמך השיטה — PDF קבוע; מקושר ישירות ל-raw (14MB — לא מעתיקים לריפו האתר)
+    pdfs = [n for n in listing if n.lower().endswith(".pdf")]
+    method = None
+    if pdfs:
+        method = {"url": RAW + urllib.parse.quote(pdfs[0]),
+                  "title": "שיטת ארבעת העמודים — מצגת הלימוד"}
+        print(f"[ok] מסמך השיטה: {pdfs[0]}")
+
     os.makedirs(OUT_DIR, exist_ok=True)
     reports = []
     for name in files:
-        m = DATE_RE.search(name)
-        if not m:
+        iso = date_of(name)
+        if not iso:
             print(f"[skip] {name}: אין תאריך בשם הקובץ")
             continue
         try:
-            content = _get(RAW + name)
+            content = _get(RAW + urllib.parse.quote(name))
         except Exception as e:
             print(f"[skip] {name}: {e}")
             continue
-        path = os.path.join(OUT_DIR, name)
+        stored = "trades-" + iso + ".html"   # שם בטוח-ל-URL גם כשהמקור בעברית
+        path = os.path.join(OUT_DIR, stored)
         old = None
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
@@ -70,13 +92,16 @@ def main():
             with open(path, "w", encoding="utf-8") as f:
                 f.write(content)
         t = TITLE_RE.search(content)
-        title = (t.group(1).strip() if t else "") or ("הצעות לטרייד · " + m.group(1))
-        reports.append({"file": "data/trades/" + name, "date": m.group(1), "title": title})
-        print(f"[ok] {m.group(1)} — {title[:50]}")
+        title = (t.group(1).strip() if t else "")
+        if not title or not re.search(r"[֐-׿]", title):
+            d = iso.split("-")
+            title = title or ("דוח סריקה · %d.%d.%s" % (int(d[2]), int(d[1]), d[0]))
+        reports.append({"file": "data/trades/" + stored, "date": iso, "title": title})
+        print(f"[ok] {iso} — {title[:50]}")
 
     reports.sort(key=lambda r: r["date"], reverse=True)
     reports = reports[:MAX_KEEP]
-    payload = {"reports": reports,
+    payload = {"reports": reports, "method": method,
                "_meta": {"updatedAt": israel_stamp(), "source": "nidam-reports/trades"}}
     with open(OUT_JSON, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
