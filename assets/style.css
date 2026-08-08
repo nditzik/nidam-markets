@@ -817,3 +817,16 @@ body { background-image: none; background-color: var(--bg); }
 #tri-earn .earn-up-day { font-weight: 700; min-width: 54px; }
 #tri-earn .earn-up-n { color: var(--accent); font-weight: 700; }
 #tri-earn .earn-up-tk { color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* שורת מחירים רזה אחת במקום הבלוקים (משוב קוראים, 2026-08-08) */
+.np-blocks { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline;
+  gap: 6px 12px; padding: 10px 0; border-bottom: 1px solid var(--paper-hair); font-size: .84rem; }
+.np-tick { white-space: nowrap; }
+.np-tick b { font-weight: 600; color: var(--text-soft); }
+.np-tick .v { font-weight: 700; color: var(--text); }
+.np-tick .c { font-weight: 700; font-size: .78rem; }
+.np-sep { color: var(--text-3); }
+@media (max-width: 880px) {
+  .np-blocks { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+  .np-blocks::-webkit-scrollbar { display: none; }
+}
