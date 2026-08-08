@@ -198,6 +198,15 @@
   }
   // expose for CTA buttons
   window.__goTab = activate;
+  // התאמת גובה iframe עם מדידות חוזרות — פונטים/תמונות שנטענים באיחור מאריכים את הדף,
+  // ומדידה חד-פעמית ב-onload חותכת את התחתית (קרה בדוחות הצעות-לטרייד בנייד)
+  window.__fitFrame = function (f) {
+    function fit() {
+      try { f.style.height = (f.contentWindow.document.body.scrollHeight + 30) + "px"; } catch (e) {}
+    }
+    fit();
+    [400, 1200, 2500, 5000].forEach(function (ms) { setTimeout(fit, ms); });
+  };
 
   /* ---------- helpers ---------- */
   function h(html) { return String(html == null ? "" : html); }
@@ -1428,9 +1437,10 @@
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
         "<strong>" + esc(r.title) + "</strong>" +
         '<div class="stamp" style="margin:4px 0 0">נכון ל-<span dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span></div></div>" +
-      '<iframe class="brief-frame" src="' + bust(r.file, TRAD._meta) + '" title="' + esc(r.title) +
+      // עטיפת גלילה-אופקית: הטבלאות בדוח רחבות — בנייד גוללים אופקית במקום להימחץ
+      '<div class="frame-scroll"><iframe class="brief-frame trd-frame" src="' + bust(r.file, TRAD._meta) + '" title="' + esc(r.title) +
       '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
-      'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+      'onload="__fitFrame(this)"></iframe></div>';
   }
 
   function renderMorning(el, d) {
