@@ -832,6 +832,24 @@ body { background-image: none; background-color: var(--bg); }
   .np-line::-webkit-scrollbar { display: none; }
 }
 
+/* ניתוח לפי תחום — 4 הבלוקים של מנוע-הכללים (2026-08-10) */
+.ai-blocks .ai-blk { padding: 4px 0 10px; }
+.ai-blocks .ai-blk + .ai-blk { border-top: 1px solid var(--border-soft); padding-top: 12px; }
+.ai-blk-t { font-weight: 700; font-size: .92rem; margin-bottom: 5px; }
+.ai-blk p { margin: 0 0 7px; font-size: .92rem; line-height: 1.62; }
+.ai-blk p:last-child { margin-bottom: 0; }
+.ai-blk.integ { background: var(--surface-2); border-radius: 10px; padding: 12px 15px; margin-top: 8px; }
+.ai-blk.integ + .ai-blk { border-top: 0; }
+.ai-blk-watch { margin: 12px 0 0; font-size: .86rem; color: var(--text-soft); }
+/* רבעי האופציות (הימור נטו) */
+.fq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
+.fq-cell { display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+  background: var(--surface-2); border-radius: 9px; padding: 9px 13px; font-size: .88rem; }
+.fq-cell .fq-l { color: var(--text-soft); }
+.fq-cell .up, .ai-blocks .up, .stat .sub .up { color: var(--up); }
+.fq-cell .down, .ai-blocks .down, .stat .sub .down { color: var(--down); }
+@media (max-width: 480px) { .fq-grid { grid-template-columns: 1fr; } }
+
 /* הניתוח היומי של Claude (2026-08-08) */
 .np-ca p { font-family: var(--serif); font-size: .98rem; line-height: 1.65; margin: 0 0 12px; }
 .np-ca-h { font-family: var(--serif); font-size: 1.3rem; font-weight: 800; margin: 0 0 12px; }

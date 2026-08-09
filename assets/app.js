@@ -1025,9 +1025,17 @@
         .map(function (p) {
           var val = s[p[0]];
           var sub = "", tip = "";
-          if (p[0] === "flow" && fl.directionLabel) {
-            sub = '<div class="sub">' + esc(fl.directionLabel) + "</div>";
-            if (fl.directionReason) tip = ' title="' + esc(fl.directionReason) + '"';
+          if (p[0] === "flow" && (fl.deltaLabel || fl.directionLabel)) {
+            // ההימור נטו משוקלל-הדלתא (הכסף הגדול) — לא ציון-הכיוון הישן, שסתר את הדלתא
+            if (fl.deltaLabel) {
+              var dc = fl.deltaLabel === "דובי" ? "down" : (fl.deltaLabel === "שורי" ? "up" : "");
+              sub = '<div class="sub">הכסף הגדול: <b class="' + dc + '">' + esc(fl.deltaLabel) + "</b></div>";
+              tip = ' title="' + esc("קניית Calls $" + Math.round((fl.callBuyP || 0) / 1e6) + "M · מכירת Calls $" + Math.round((fl.callSellP || 0) / 1e6) +
+                "M · קניית Puts $" + Math.round((fl.putBuyP || 0) / 1e6) + "M · מכירת Puts $" + Math.round((fl.putSellP || 0) / 1e6) + "M") + '"';
+            } else {
+              sub = '<div class="sub">' + esc(fl.directionLabel) + "</div>";
+              if (fl.directionReason) tip = ' title="' + esc(fl.directionReason) + '"';
+            }
           }
           return '<div class="card stat"' + tip + '><div class="label">' + p[1] + "</div>" +
             '<div class="value num ' + scoreBand(val) + '">' + (val == null ? "—" : val) + diffTag(p[0]) + "</div>" + sub + "</div>";
@@ -1080,6 +1088,50 @@
     }
   }
 
+  // טקסט מהמנוע מכיל הדגשות <b> בלבד — משחררים רק אותן אחרי escape
+  function escB(s) {
+    return esc(s).replace(/&lt;(\/?b)&gt;/g, "<$1>");
+  }
+  /* 4 הבלוקים של הערת-האנליסט (מנוע הכללים) — טאב מדדים */
+  function aiBlocksHtml(d) {
+    var ai = (d.aiSummary && d.aiSummary.date === d.date) ? d.aiSummary : null;
+    if (!ai || !(ai.blocks || []).length) return "";
+    return '<div class="section-title">🔬 ניתוח לפי תחום</div>' +
+      '<div class="card ai-blocks">' +
+      ai.blocks.map(function (b) {
+        var integ = (b.title || "").indexOf("המשולבת") >= 0;
+        return '<div class="ai-blk' + (integ ? " integ" : "") + '">' +
+          '<div class="ai-blk-t">' + esc(b.title || "") + "</div>" +
+          (b.lines || []).map(function (l) { return "<p>" + escB(l) + "</p>"; }).join("") +
+        "</div>";
+      }).join("") +
+      (ai.watchFor ? '<p class="ai-blk-watch"><b>לעקוב:</b> ' + escB(ai.watchFor) + "</p>" : "") +
+      "</div>";
+  }
+
+  /* ההימור נטו באופציות — 4 הרבעים משוקללי-הדלתא (טאב מדדים) */
+  function flowQuadHtml(d) {
+    var f = d.flow || {};
+    if (f.callBuyP == null && f.putBuyP == null) return "";
+    function m(v) { return v == null ? "—" : "$" + Math.round(v / 1e6) + "M"; }
+    var tiltCls = f.deltaLabel === "דובי" ? "down" : (f.deltaLabel === "שורי" ? "up" : "");
+    var cells = [
+      ["קניית Calls", f.callBuyP, "up"], ["מכירת Calls", f.callSellP, "down"],
+      ["קניית Puts", f.putBuyP, "down"], ["מכירת Puts", f.putSellP, "up"]
+    ];
+    return '<div class="section-title">🎯 ההימור נטו באופציות</div>' +
+      '<div class="card">' +
+      (f.deltaLabel ? '<p style="margin-top:0">הכסף הגדול נטו: <b class="' + tiltCls + '">' + esc(f.deltaLabel) + "</b>" +
+        " (משוקלל-דלתא)" +
+        (f.openingLean ? ' · פוזיציות חדשות: <b>' + esc(f.openingLean) + "</b>" : "") + "</p>" : "") +
+      '<div class="fq-grid">' +
+      cells.map(function (q) {
+        return '<div class="fq-cell"><span class="fq-l">' + q[0] + '</span><b class="num ' + q[2] + '">' + m(q[1]) + "</b></div>";
+      }).join("") + "</div>" +
+      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" מודד עוצמת זרימה ואינו כיוון.</p>' +
+      "</div>";
+  }
+
   /* כרטיס "הניתוח היומי" המלא — בראש טאב מדדים */
   function claudeCardHtml(d) {
     var ca = (CA && CA.date === d.date) ? CA : null;
@@ -1099,14 +1151,17 @@
     var rot = d.rotation || {};
     var ro = d.riskOff || {};
 
-    var analysis = "";
-    if (c.analysis && c.analysis.length) {
+    // ניתוח לפי תחום: 4 הבלוקים של מנוע-הכללים (מניות/סקטורים/אופציות/התמונה המשולבת);
+    // הרשימה הישנה של מנוע-המסקנות נשארת רק כנפילה-חזרה כשאין בלוקים (כפילות אחרת)
+    var analysis = aiBlocksHtml(d);
+    if (!analysis && c.analysis && c.analysis.length) {
       analysis = '<div class="section-title">🔬 ניתוח לפי תחום</div><div class="card"><ul class="analysis">' +
         c.analysis.map(function (a) {
           return '<li class="tone-' + esc(a.tone || "") + '"><span class="tone-dot"></span>' +
             '<span class="domain">' + esc(a.domain) + "</span><span>" + esc(a.text) + "</span></li>";
         }).join("") + "</ul></div>";
     }
+    analysis += flowQuadHtml(d);
 
     var sectors = "";
     if (rot.sectorRs) {
