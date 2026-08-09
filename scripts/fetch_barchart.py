@@ -29,6 +29,9 @@ HTML_REL = "data/briefings/morning-review.html"
 MAILBOX = '"[Gmail]/All Mail"'
 SENDER = "nditzik@gmail.com"
 SUBJECT_MARK = "סיכום Barchart יומי"
+# בסופ"ש/חג הצינור של איציק שולח "עדכון Barchart יומי | אין הודעות חדשות | DD.MM.YYYY"
+# במקום סיכום — נקלט כחיווי סטטוס בלבד (notice), הסקירה המוצגת נשארת האחרונה שהתקבלה
+NOTICE_MARK = "אין הודעות חדשות"
 
 
 def israel_stamp():
@@ -72,7 +75,7 @@ def date_label(subject, date_dt):
     return date_dt.strftime("%d/%m/%Y") if date_dt else ""
 
 
-def write_if_changed(subject, date_dt, html_body):
+def write_if_changed(subject, date_dt, html_body, notice=None):
     changed = False
     old_html = None
     if os.path.exists(OUT_HTML):
@@ -91,6 +94,10 @@ def write_if_changed(subject, date_dt, html_body):
         "time": date_dt.astimezone(ist).strftime("%H:%M") if date_dt else "",
         "file": HTML_REL,
     }
+    # חיווי "אין הודעות חדשות" — רק כשהוא חדש מהסקירה המוצגת (אחרת הוא היסטוריה)
+    if notice and date_dt and notice[0] and notice[0] > date_dt:
+        nd = notice[0].astimezone(ist)
+        meta["notice"] = {"date": nd.strftime("%Y-%m-%d"), "time": nd.strftime("%H:%M")}
     existing = {}
     if os.path.exists(OUT_JSON):
         try:
@@ -143,6 +150,7 @@ def run_imap():
         typ, data = imap.search(None, "FROM", SENDER, "SINCE", imap_since(since_days))
         ids = data[0].split() if typ == "OK" and data and data[0] else []
         best = None
+        notice = None
         arch_changed = False
         for mid in reversed(ids):  # מהחדש לישן
             typ, md = imap.fetch(mid, "(RFC822)")
@@ -151,6 +159,12 @@ def run_imap():
             msg = email.message_from_bytes(md[0][1])
             subject = dec(msg.get("Subject"))
             if subject.startswith("Fwd:") or subject.startswith("Fw:"):
+                continue
+            if notice is None and "Barchart" in subject and NOTICE_MARK in subject:
+                try:
+                    notice = (email.utils.parsedate_to_datetime(msg.get("Date")),)
+                except Exception:
+                    pass
                 continue
             if SUBJECT_MARK not in subject:
                 continue
@@ -168,8 +182,8 @@ def run_imap():
         if not best:
             print("[warn] לא נמצא 'סיכום Barchart יומי'.")
             return 0 if os.path.exists(OUT_JSON) else 1
-        write_if_changed(*best)
-        print(f"[ok] {best[0]}")
+        write_if_changed(*best, notice=notice)
+        print(f"[ok] {best[0]}" + (" (+notice)" if notice else ""))
         return 0
     finally:
         try:

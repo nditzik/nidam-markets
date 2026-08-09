@@ -1553,8 +1553,15 @@
       var e = BARCHIVE.days[sel].review;
       subject = e.subject; dateLabel = fmtTradeDate(sel); time = e.time; file = e.file;
     }
+    // חיווי סופ"ש/חג: הצינור רץ אבל ל-Barchart לא היו ניוזלטרים — שקיפות שהכול חי
+    var noticeBar = (d.notice && !sel)
+      ? '<div class="card" style="padding:10px 16px;margin-bottom:12px;font-size:.86rem">🔕 <b><span dir="ltr">' +
+        esc(fmtTradeDate(d.notice.date) || d.notice.date) + "</span></b> — אין ניוזלטרים חדשים מ-Barchart" +
+        (d.notice.time ? ' (נבדק ב-<span dir="ltr">' + esc(d.notice.time) + "</span>)" : "") +
+        " · מוצגת הסקירה האחרונה שהתקבלה</div>"
+      : "";
     el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">🌅 סקירת בוקר</div>' + archNav +
+      '<div class="section-title" style="margin-top:0">🌅 סקירת בוקר</div>' + archNav + noticeBar +
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
       "<strong>" + esc(subject || "סיכום Barchart יומי") + "</strong>" +
       (dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(dateLabel) +
