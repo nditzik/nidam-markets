@@ -832,6 +832,12 @@ body { background-image: none; background-color: var(--bg); }
   .np-line::-webkit-scrollbar { display: none; }
 }
 
+/* צ'יפי הסכמת התחומים בכתבה המובילה + שורת הכסף הגדול ברייל (2026-08-10) */
+.np-doms { display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding-inline-end: 14px; border-inline-end: 1px solid var(--paper-hair); }
+@media (max-width: 560px) { .np-doms { border-inline-end: 0; padding-inline-end: 0; width: 100%; } }
+.np-sub b.up { color: var(--up); } .np-sub b.down { color: var(--down); }
+
 /* ניתוח לפי תחום — 4 הבלוקים של מנוע-הכללים (2026-08-10) */
 .ai-blocks .ai-blk { padding: 4px 0 10px; }
 .ai-blocks .ai-blk + .ai-blk { border-top: 1px solid var(--border-soft); padding-top: 12px; }

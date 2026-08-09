@@ -884,9 +884,22 @@
       var st = v.lights[k] || "";
       return '<span class="np-lt ' + esc(st) + '"><span class="np-dot"></span>' + lightsMap[k] + "</span>";
     }).join("") : "";
-    var foot = '<div class="np-leadfoot">' + lights +
+    // צ'יפי הסכמת התחומים (מהבלוק המשולב של מנוע-הכללים) — קבוצה נפרדת לפני הנוריות
+    var domChips = "";
+    if (ai && ai.domains) {
+      var domHe = { bull: "חיובי", bear: "שלילי", mixed: "מעורב" };
+      var domCls = { bull: "good", bear: "bad", mixed: "warn" };
+      domChips = '<span class="np-doms">' +
+        [["stocks", "מניות"], ["sectors", "סקטורים"], ["options", "אופציות"]].map(function (p) {
+          var sig = ai.domains[p[0]];
+          if (!domHe[sig]) return "";
+          return '<span class="np-lt ' + domCls[sig] + '"><span class="np-dot"></span>' + p[1] + ": " + domHe[sig] + "</span>";
+        }).join("") + "</span>";
+    }
+    var foot = '<div class="np-leadfoot">' + domChips + lights +
       '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a></div>';
 
+    renderLeadRail(d);
     if (ca) {
       // מבנה רזה: קיקר עם התאריך + האחוז · כותרת אנליטית · משפט-מהות · שורה תחתונה
       var pm = /([+−-]\d+(?:\.\d+)?%)/.exec(c.headline || "");
@@ -912,8 +925,21 @@
       (dek ? '<p class="np-dek">' + esc(dek) + "</p>" : "") +
       (bottom ? '<p class="np-bottom">' + esc(bottom).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
       foot;
+  }
 
-    // ─ רייל המד ─
+  // ההימור נטו של הכסף הגדול (משוקלל-דלתא) — שורה ברייל, נפרדת מציון-העוצמה
+  function bigMoneyRow(fl) {
+    fl = fl || {};
+    if (!fl.deltaLabel) return "";
+    var dc = fl.deltaLabel === "דובי" ? "down" : (fl.deltaLabel === "שורי" ? "up" : "");
+    var tip = "קניית Calls $" + Math.round((fl.callBuyP || 0) / 1e6) + "M · מכירת Calls $" + Math.round((fl.callSellP || 0) / 1e6) +
+      "M · קניית Puts $" + Math.round((fl.putBuyP || 0) / 1e6) + "M · מכירת Puts $" + Math.round((fl.putSellP || 0) / 1e6) + "M";
+    return '<div class="np-sub" title="' + esc(tip) + '"><span>הכסף הגדול</span><b class="' + dc + '">' + esc(fl.deltaLabel) + "</b></div>";
+  }
+
+  // ─ רייל המד ─ (פונקציה נפרדת: קודם רץ רק בענף-הנפילה, והרייל נעלם אם ניתוח
+  // Claude נטען לפני indices — עכשיו מרונדר תמיד, מכל קריאת renderLead)
+  function renderLeadRail(d) {
     var rail = document.getElementById("lead-rail");
     if (!rail) return;
     var s = d.scores || {}, e = d.evidence || {};
@@ -931,6 +957,7 @@
       sub("טכני", "tech", s.tech) +
       sub("רוחב", "breadth", s.breadth) +
       sub("אופציות", "flow", s.flow) +
+      bigMoneyRow(d.flow) +
       (e.nhCount != null ? '<div class="np-sub"><span>שיאים / שפלים 52ש׳</span><b class="num" dir="ltr">' +
         e.nhCount + " / " + e.nlCount + "</b></div>" : "") +
       '<a class="np-more" href="#indices" onclick="__goTab(\'indices\');return false">פירוט ←</a>';
