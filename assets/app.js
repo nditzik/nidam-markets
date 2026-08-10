@@ -144,6 +144,80 @@
     });
   }
 
+  /* מפת חום סקטוריאלית חיה — 11 תעודות סקטור SPDR, ברייל מתחת למד (עדכון כל דקה) */
+  var SECTOR_ETFS = [
+    ["XLK", "טכנולוגיה"], ["XLF", "פיננסים"], ["XLV", "בריאות"], ["XLY", "צריכה מחזורית"],
+    ["XLC", "תקשורת"], ["XLI", "תעשייה"], ["XLP", "צריכה בסיסית"], ["XLE", "אנרגיה"],
+    ["XLB", "חומרים"], ["XLU", "תשתיות"], ["XLRE", "נדל\"ן"]
+  ];
+  var HEAT = {};
+  function refreshHeat() {
+    if (!document.getElementById("np-heat")) return;
+    var ses = jsSession();
+    fetch("https://scanner.tradingview.com/america/scan", {
+      method: "POST",
+      body: JSON.stringify({
+        symbols: { tickers: SECTOR_ETFS.map(function (s) { return "AMEX:" + s[0]; }) },
+        columns: ["name", "close", "change", "premarket_close", "premarket_change", "postmarket_close", "postmarket_change"]
+      })
+    })
+      .then(function (x) { return x.json(); })
+      .then(function (d) {
+        (d.data || []).forEach(function (row) {
+          var v = row.d, chg = v[2];
+          if (ses === "pre" && v[4] != null) chg = v[4];
+          else if (ses === "post" && v[6] != null) chg = v[6];
+          if (chg != null) HEAT[v[0]] = Math.round(chg * 100) / 100;
+        });
+        renderHeat();
+      })
+      .catch(function () {});
+  }
+  function renderHeat() {
+    var el = document.getElementById("np-heat");
+    if (!el) return;
+    var ses = jsSession();
+    var rows = SECTOR_ETFS
+      .filter(function (s) { return HEAT[s[0]] != null; })
+      .sort(function (a, b) { return HEAT[b[0]] - HEAT[a[0]]; });
+    if (!rows.length) { el.innerHTML = ""; return; }
+    var tiles = rows.map(function (s) {
+      var c = HEAT[s[0]];
+      var mag = Math.min(Math.abs(c) / 2, 1);   // רוויה מלאה בתנועה של 2%
+      var base = c >= 0 ? "var(--up)" : "var(--down)";
+      var mix = Math.round(8 + mag * 26);
+      return '<button class="ht-tile" style="background:color-mix(in srgb, ' + base + " " + mix + '%, var(--bg))" ' +
+        "onclick=\"__goTab('indices')\" title=\"" + s[0] + '">' +
+        '<span class="ht-name">' + esc(s[1]) + "</span>" +
+        '<b class="ht-chg num ' + (c >= 0 ? "up" : "down") + '" dir="ltr">' + (c > 0 ? "+" : "") + c.toFixed(2) + "%</b></button>";
+    }).join("");
+    var lbl = ses === "regular" ? "עדכון חי" : ses === "pre" ? "פרה-מרקט" : ses === "post" ? "אפטר-מרקט" : "סגירה אחרונה";
+    el.innerHTML = '<span class="np-k" style="margin:14px 0 0">מפת הסקטורים · ' + lbl + "</span>" +
+      '<div class="ht-grid">' + tiles + "</div>";
+  }
+
+  /* "מה השווקים מהמרים" — הסתברויות משוקי חיזוי (data/bets.json, Polymarket) */
+  function renderBets(d) {
+    var el = document.getElementById("home-bets");
+    if (!el) return;
+    if (!d || !(d.rows || []).length) { el.innerHTML = ""; return; }
+    el.innerHTML =
+      '<div class="card"><span class="np-k" style="margin-bottom:6px">🎲 מה השווקים מהמרים</span>' +
+      d.rows.map(function (r) {
+        var chg = "";
+        if (r.chg != null && Math.abs(r.chg) >= 0.5) {
+          chg = '<span class="bt-chg ' + (r.chg > 0 ? "up" : "down") + '"><span class="num" dir="ltr">' +
+            (r.chg > 0 ? "▲+" : "▼-") + Math.abs(r.chg).toFixed(0) + "</span> נק׳ היום</span>";
+        }
+        return '<div class="bt-row">' +
+          '<div class="bt-txt"><b>' + esc(r.label) + '</b><span class="bt-sub">' + esc(r.sub) + "</span></div>" +
+          '<div class="bt-val"><b class="num">' + r.pct + "%</b>" + chg + "</div>" +
+          '<div class="bt-bar"><i style="width:' + Math.max(2, Math.min(100, r.pct)) + '%"></i></div>' +
+          "</div>";
+      }).join("") +
+      '<p class="stamp" style="margin:10px 0 0">מחירי שוקי חיזוי (Polymarket) = ההסתברות שהשוק מתמחר · מתעדכן כל רבע שעה</p></div>';
+  }
+
   /* ---- tab badge: green dot only when a category's CONTENT actually changed since you viewed it ---- */
   var SIGS = {};
   function contentSig(d) {
@@ -1013,8 +1087,11 @@
       bigMoneyRow(d.flow) +
       (e.nhCount != null ? '<div class="np-sub"><span>שיאים / שפלים 52ש׳</span><b class="num" dir="ltr">' +
         e.nhCount + " / " + e.nlCount + "</b></div>" : "") +
+      '<div id="np-heat"></div>' +
       '<a class="np-more" href="#indices" onclick="__goTab(\'indices\');return false">פירוט ←</a>';
     renderSpark();
+    renderHeat();               // מילוי מחדש אחרי בנייה-מחדש של הרייל
+    if (!Object.keys(HEAT).length) refreshHeat();
   }
 
   /* עמודת "מדווחות היום והשבוע" — לוגו+טיקר להיום, שורות ימים לשבוע */
@@ -1796,6 +1873,7 @@
     loadTicker();
     setInterval(loadTicker, 180000);        // הקובץ מהשרת (ספארקים + tnx) כל 3 דק'
     setInterval(refreshTickerLive, 60000);  // מחירים חיים מהסורק כל דקה
+    setInterval(refreshHeat, 60000);        // מפת החום הסקטוריאלית ברייל
     setInterval(function () {         // ציטוטים חיים למניות במוקד
       if (FOCUS_SYMS) refreshFocusQuotes(FOCUS_SYMS.split(","), true);
     }, 180000);
@@ -1931,6 +2009,10 @@
       // מבזק שוק — תנועה חדה תוך-יומית (מוצג בכל הטאבים, רק כשהמבזק טרי)
       fetchJSON("data/flash.json")
         .then(renderFlash)
+        .catch(function () {});
+      // הסתברויות שוקי חיזוי
+      fetchJSON("data/bets.json")
+        .then(function (d) { if (!freshD("bets", d)) return; renderBets(d); })
         .catch(function () {});
     }
 

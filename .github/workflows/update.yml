@@ -136,6 +136,11 @@ jobs:
         run: python scripts/fetch_econ.py
         continue-on-error: true
 
+      # --- "מה השווקים מהמרים": הסתברויות משוקי חיזוי (Polymarket, ציבורי) ---
+      - name: Fetch prediction markets
+        run: python scripts/fetch_bets.py
+        continue-on-error: true
+
       # --- כותרות שוק מ-RSS, מתורגמות לעברית (עם מטמון) ---
       - name: Fetch market news
         run: python scripts/fetch_news.py
