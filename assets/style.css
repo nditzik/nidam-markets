@@ -866,15 +866,22 @@ body { background-image: none; background-color: var(--bg); }
 .bt-bar { grid-column: 1 / -1; height: 4px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
 .bt-bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
 
-/* מפת חום סקטוריאלית ברייל (2026-08-10) */
-.ht-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
-.ht-tile { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; border: 0;
-  border-radius: 8px; padding: 7px 10px; cursor: pointer; font-family: inherit; text-align: start;
+/* מפת חום סקטוריאלית — רצועה רוחבית דקה מתחת לטיקר (2026-08-10) */
+#np-heat { display: flex; align-items: center; gap: 14px; padding: 7px 0 9px;
+  border-bottom: 1px solid var(--paper-hair); }
+#np-heat:empty { display: none; }
+#np-heat .np-k { margin: 0; flex: none; line-height: 1.5; }
+.ht-grid { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; min-width: 0; }
+.ht-tile { flex: 1 1 72px; max-width: 165px; display: flex; flex-direction: column; align-items: center; gap: 0;
+  border: 0; border-radius: 7px; padding: 4px 5px; cursor: pointer; font-family: inherit;
   transition: filter .12s; }
 .ht-tile:hover { filter: brightness(.96); }
-.ht-name { font-size: .76rem; font-weight: 600; color: var(--text); }
-.ht-chg { font-size: .82rem; }
+.ht-name { font-size: .7rem; font-weight: 600; color: var(--text); white-space: nowrap; }
+.ht-chg { font-size: .74rem; }
 .ht-chg.up { color: var(--up); } .ht-chg.down { color: var(--down); }
+@media (max-width: 880px) { #np-heat { flex-direction: column; align-items: stretch; gap: 6px; }
+  #np-heat .np-k br { display: none; } .ht-ses::before { content: " · "; }
+  .ht-tile { flex: 1 1 76px; max-width: none; } }
 
 /* צ'יפי הסכמת התחומים בכתבה המובילה + שורת הכסף הגדול ברייל (2026-08-10) */
 .np-doms { display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap;

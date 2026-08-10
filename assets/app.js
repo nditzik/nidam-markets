@@ -192,7 +192,7 @@
         '<b class="ht-chg num ' + (c >= 0 ? "up" : "down") + '" dir="ltr">' + (c > 0 ? "+" : "") + c.toFixed(2) + "%</b></button>";
     }).join("");
     var lbl = ses === "regular" ? "עדכון חי" : ses === "pre" ? "פרה-מרקט" : ses === "post" ? "אפטר-מרקט" : "סגירה אחרונה";
-    el.innerHTML = '<span class="np-k" style="margin:14px 0 0">מפת הסקטורים · ' + lbl + "</span>" +
+    el.innerHTML = '<span class="np-k">מפת הסקטורים<br><span class="ht-ses">' + lbl + "</span></span>" +
       '<div class="ht-grid">' + tiles + "</div>";
   }
 
@@ -1087,11 +1087,8 @@
       bigMoneyRow(d.flow) +
       (e.nhCount != null ? '<div class="np-sub"><span>שיאים / שפלים 52ש׳</span><b class="num" dir="ltr">' +
         e.nhCount + " / " + e.nlCount + "</b></div>" : "") +
-      '<div id="np-heat"></div>' +
       '<a class="np-more" href="#indices" onclick="__goTab(\'indices\');return false">פירוט ←</a>';
     renderSpark();
-    renderHeat();               // מילוי מחדש אחרי בנייה-מחדש של הרייל
-    if (!Object.keys(HEAT).length) refreshHeat();
   }
 
   /* עמודת "מדווחות היום והשבוע" — לוגו+טיקר להיום, שורות ימים לשבוע */
@@ -1873,7 +1870,8 @@
     loadTicker();
     setInterval(loadTicker, 180000);        // הקובץ מהשרת (ספארקים + tnx) כל 3 דק'
     setInterval(refreshTickerLive, 60000);  // מחירים חיים מהסורק כל דקה
-    setInterval(refreshHeat, 60000);        // מפת החום הסקטוריאלית ברייל
+    refreshHeat();
+    setInterval(refreshHeat, 60000);        // מפת החום הסקטוריאלית (רצועה מתחת לטיקר)
     setInterval(function () {         // ציטוטים חיים למניות במוקד
       if (FOCUS_SYMS) refreshFocusQuotes(FOCUS_SYMS.split(","), true);
     }, 180000);
