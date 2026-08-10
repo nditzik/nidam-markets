@@ -34,6 +34,10 @@ SOURCES = [
     ("@wallstengine", "nitter", "wallstengine"),
     ("@LiveSquawk", "nitter", "LiveSquawk"),
     ("@StockMKTNewz", "nitter", "StockMKTNewz"),
+    ("@AIStockSavvy", "nitter", "AIStockSavvy"),      # נוספו 10/08 — אין שיקוף TG
+    ("@MikeZaccardi", "nitter", "MikeZaccardi"),
+    ("@LizAnnSonders", "nitter", "LizAnnSonders"),    # שיקוף ה-TG שלה נטוש (09/2023)
+    ("@Kalshi", "nitter", "Kalshi"),
 ]
 NITTER_HOSTS = ["nitter.net", "xcancel.com"]
 
