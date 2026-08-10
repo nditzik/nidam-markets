@@ -903,9 +903,10 @@
     if (ca) {
       // מבנה רזה: קיקר עם התאריך + האחוז · כותרת אנליטית · משפט-מהות · שורה תחתונה
       var pm = /([+−-]\d+(?:\.\d+)?%)/.exec(c.headline || "");
+      var pmCls = pm ? (pm[1].charAt(0) === "+" ? "up" : "down") : "";
       el.innerHTML =
         '<span class="np-k">יום המסחר · <b dir="ltr">' + esc(fmtTradeDate(d.date)) + "</b>" +
-          (pm ? ' · <b class="num" dir="ltr">' + esc(pm[1]) + "</b>" : "") + "</span>" +
+          (pm ? ' · <b class="num ' + pmCls + '" dir="ltr">' + esc(pm[1]) + "</b>" : "") + "</span>" +
         '<h2 class="np-h1">' + esc(ca.headline) + "</h2>" +
         (ca.tldr ? '<p class="np-dek">' + esc(ca.tldr) + "</p>" : "") +
         (ca.bottomline ? '<p class="np-bottom">💡 ' + esc(ca.bottomline).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
