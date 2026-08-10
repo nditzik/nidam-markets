@@ -549,19 +549,29 @@
     });
   }
 
+  var PULSE_X_ALL = false;   // "כל העדכונים" — הרחבה במקום (4 ↔ כל הרשימה)
   function renderPulseX() {
     var el = document.getElementById("tri-x");
     if (!el) return;
     if (!PULSE_X || !(PULSE_X.items || []).length) { el.innerHTML = ""; return; }
+    var items = PULSE_X.items;
+    var shown = PULSE_X_ALL ? items : items.slice(0, 4);
+    var moreLbl = PULSE_X_ALL ? "צמצם ⌃" : "כל העדכונים (" + items.length + ") ⌄";
     el.innerHTML =
       '<h3 class="np-k">בזק מהרשת · X</h3>' +
-      PULSE_X.items.slice(0, 4).map(function (it) {
+      shown.map(function (it) {
         return '<a class="np-xit" href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
           '<span class="m">' + esc(it.source) + " · " + esc(it.time) + "</span>" +
           "<p>" + esc(it.text) + "</p></a>";
       }).join("") +
-      '<a class="np-more" href="' + esc((PULSE_X.items[0] || {}).link || "#") + '" target="_blank" rel="noopener">כל העדכונים ←</a>' +
-      ' · <a class="np-more" href="#" id="news-toggle">📰 חדשות השוק ⌄</a>';
+      (items.length > 4 ? '<a class="np-more" href="#" id="pulse-more">' + moreLbl + "</a> · " : "") +
+      '<a class="np-more" href="#" id="news-toggle">📰 חדשות השוק ⌄</a>';
+    var pm = document.getElementById("pulse-more");
+    if (pm) pm.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      PULSE_X_ALL = !PULSE_X_ALL;
+      renderPulseX();
+    });
     var nt = document.getElementById("news-toggle");
     if (nt) nt.addEventListener("click", function (ev) {
       ev.preventDefault();
