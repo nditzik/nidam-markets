@@ -865,6 +865,10 @@ body { background-image: none; background-color: var(--bg); }
 .bt-chg.up .num { color: var(--up); } .bt-chg.down .num { color: var(--down); }
 .bt-bar { grid-column: 1 / -1; height: 4px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
 .bt-bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.bt-dist { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 8px; margin-top: 5px;
+  font-size: .78rem; color: var(--text-soft); }
+.bt-d b { color: var(--text); }
+.bt-d-sep { color: var(--text-3); }
 
 /* מפת חום סקטוריאלית — רצועה רוחבית דקה מתחת לטיקר (2026-08-10) */
 #np-heat { display: flex; align-items: center; gap: 14px; padding: 7px 0 9px;

@@ -85,10 +85,18 @@ def main():
         if best:
             m, p = best
             title = m.get("groupItemTitle") or ""
+            # התפלגות מלאה: כל התוצאות עם 1%+ (ממוינות), כדי שרואים על מה ההימור
+            dist = []
+            for mk in ev.get("markets") or []:
+                mp = yes_price(mk)
+                if mp is not None and mp >= 0.01:
+                    t = mk.get("groupItemTitle") or ""
+                    dist.append({"label": OUTCOME_HE.get(t, t), "pct": round(mp * 100), "chg": chg_pp(mk)})
+            dist.sort(key=lambda x: -x["pct"])
             rows.append({
                 "key": "fed_next", "label": "החלטת הפד בספטמבר",
                 "sub": "ההימור המוביל: " + OUTCOME_HE.get(title, title),
-                "pct": round(p * 100), "chg": chg_pp(m),
+                "pct": round(p * 100), "chg": chg_pp(m), "dist": dist,
             })
     except Exception as e:
         print(f"[warn] sept: {e}")

@@ -209,10 +209,18 @@
           chg = '<span class="bt-chg ' + (r.chg > 0 ? "up" : "down") + '"><span class="num" dir="ltr">' +
             (r.chg > 0 ? "▲+" : "▼-") + Math.abs(r.chg).toFixed(0) + "</span> נק׳ היום</span>";
         }
+        // התפלגות מלאה (כשקיימת): כל התוצאות האפשריות של ההימור עם ההסתברות שלהן
+        var dist = "";
+        if ((r.dist || []).length > 1) {
+          dist = '<div class="bt-dist">' + r.dist.map(function (o) {
+            return '<span class="bt-d">' + esc(o.label) + ' <b class="num">' + o.pct + "%</b></span>";
+          }).join('<span class="bt-d-sep">·</span>') + "</div>";
+        }
         return '<div class="bt-row">' +
           '<div class="bt-txt"><b>' + esc(r.label) + '</b><span class="bt-sub">' + esc(r.sub) + "</span></div>" +
           '<div class="bt-val"><b class="num">' + r.pct + "%</b>" + chg + "</div>" +
           '<div class="bt-bar"><i style="width:' + Math.max(2, Math.min(100, r.pct)) + '%"></i></div>' +
+          dist +
           "</div>";
       }).join("") +
       '<p class="stamp" style="margin:10px 0 0">מחירי שוקי חיזוי (Polymarket) = ההסתברות שהשוק מתמחר · מתעדכן כל רבע שעה</p></div>';
