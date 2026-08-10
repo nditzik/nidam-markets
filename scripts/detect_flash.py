@@ -34,7 +34,7 @@ SITE = "https://nditzik.github.io/nidam-markets/"
 UA = {"User-Agent": "Mozilla/5.0 (compatible; nidam-markets-bot)"}
 
 WINDOW_MIN = 30                 # חלון המדידה בדקות
-LADDER = [0.75, 1.25, 2.0]      # % תנועה בתוך החלון
+LADDER = [0.5, 1.25, 2.0]       # % תנועה בתוך החלון (0.75→0.5 לניסיון, 10.8)
 MAX_PER_DAY = 4
 ECON_WIN_MIN = 75               # מאקרו שפורסם עד 75 דק' לפני הזיהוי
 PULSE_WIN_MIN = 100
