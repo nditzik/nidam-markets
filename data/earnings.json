@@ -1,44 +1,47 @@
 {
-  "today": "2026-08-10",
-  "todayCount": 2,
+  "today": "2026-08-11",
+  "todayCount": 4,
   "todayBig": [
     {
-      "ticker": "SPG",
-      "name": "Simon Property Group",
-      "capB": 74.7
+      "ticker": "LITE",
+      "name": "Lumentum Holdings",
+      "capB": 53.9
     },
     {
-      "ticker": "RKLB",
-      "name": "Rocket Lab Corp",
-      "capB": 37.4
+      "ticker": "CAH",
+      "name": "Cardinal Health",
+      "capB": 53.2
+    },
+    {
+      "ticker": "CRWV",
+      "name": "Coreweave Cl A",
+      "capB": 33.1
     }
   ],
   "reporting": [
     {
-      "ticker": "SPG",
-      "name": "Simon Property Group",
-      "logo": "data/earnings/logos/SPG.png"
+      "ticker": "LITE",
+      "name": "Lumentum Holdings",
+      "logo": "data/earnings/logos/LITE.png"
     },
     {
-      "ticker": "RKLB",
-      "name": "Rocket Lab Corp",
-      "logo": "data/earnings/logos/RKLB.png"
+      "ticker": "CAH",
+      "name": "Cardinal Health",
+      "logo": "data/earnings/logos/CAH.png"
+    },
+    {
+      "ticker": "CRWV",
+      "name": "Coreweave Cl A",
+      "logo": "data/earnings/logos/CRWV.png"
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Super Micro Computer",
+      "logo": "data/earnings/logos/SMCI.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-08-11",
-      "label": "11/8",
-      "dow": "ג׳",
-      "count": 4,
-      "tickers": [
-        "LITE",
-        "CAH",
-        "CRWV",
-        "SMCI"
-      ]
-    },
     {
       "date": "2026-08-12",
       "label": "12/8",
@@ -152,8 +155,6 @@
     }
   ],
   "window": {
-    "RKLB": "2026-08-10",
-    "SPG": "2026-08-10",
     "CAH": "2026-08-11",
     "CRWV": "2026-08-11",
     "LITE": "2026-08-11",
@@ -164,10 +165,13 @@
     "NBIS": "2026-08-12",
     "AMAT": "2026-08-13",
     "TPR": "2026-08-13",
-    "PANW": "2026-08-17"
+    "PANW": "2026-08-17",
+    "HD": "2026-08-18",
+    "JKHY": "2026-08-18",
+    "KEYS": "2026-08-18"
   },
   "_meta": {
-    "updatedAt": "10/08/2026 23:45",
+    "updatedAt": "11/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
