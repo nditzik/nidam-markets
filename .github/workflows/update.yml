@@ -156,6 +156,14 @@ jobs:
         run: python scripts/fetch_pulse.py
         continue-on-error: true
 
+      # --- מבזק שוק: תנועה חדה תוך-יומית (ספייק 30 דק') + ראיות "מה קרה" ---
+      - name: Detect market flash
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/detect_flash.py
+        continue-on-error: true
+
       # --- התראות חריגים לערוץ: מדד/VIX/תשואות, מד השוק, סיכום דוחות-הלילה (23:30) ---
       - name: Market alerts to Telegram
         env:

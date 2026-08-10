@@ -507,6 +507,48 @@
 
   /* "בזק מהרשת" — כותרות-בזק מחשבונות X (דרך שיקופי טלגרם/Nitter), רצועה ברוחב מלא */
   var PULSE_X = null;
+  /* פס מבזק שוק — תנועה חדה תוך-יומית (data/flash.json), מוצג עד 3 שעות מהאירוע */
+  var FLASH_TTL_MS = 3 * 60 * 60 * 1000;
+  function renderFlash(d) {
+    var wrap = document.getElementById("flash-wrap");
+    var el = document.getElementById("flash-bar");
+    if (!wrap || !el) return;
+    var ts = d && d.ts ? Date.parse(d.ts) : NaN;
+    if (!d || isNaN(ts) || Date.now() - ts > FLASH_TTL_MS) { wrap.hidden = true; return; }
+    var down = d.pct < 0;
+    wrap.className = down ? "fl-down" : "fl-up";
+    var ev = d.evidence || {};
+    var bits = [];
+    (ev.econ || []).forEach(function (e) {
+      bits.push('<span class="fl-ev">📊 ' + esc(e.he) + ": בפועל " + esc(e.actual) +
+        " מול צפי " + esc(e.forecast) + " (" + esc(e.ilTime) + ")</span>");
+    });
+    (ev.pulse || []).slice(0, 3).forEach(function (p) {
+      bits.push('<span class="fl-ev" dir="ltr">💬 ' + esc(String(p.text).slice(0, 110)) +
+        " · " + esc(p.source) + "</span>");
+    });
+    if (!bits.length) (ev.news || []).slice(0, 2).forEach(function (n) {
+      bits.push('<span class="fl-ev" dir="ltr">📰 ' + esc(n.title) + " · " + esc(n.source) + "</span>");
+    });
+    var detail = bits.length
+      ? '<div class="fl-detail" id="fl-detail" hidden>' + bits.join("") +
+        '<span class="fl-note">מה שהתפרסם סביב אותן דקות — לא בהכרח הסיבה.</span></div>'
+      : "";
+    el.innerHTML =
+      '<span class="fl-head">⚡ <b>תנועה חדה:</b> ' + (down ? "ירידה" : "עלייה") + " של " +
+      Math.abs(d.pct).toFixed(1) + "% ב-" + (d.windowMin || 30) + " דק' (" + esc(d.label || "") +
+      ') · <span class="num" dir="ltr">' + esc(d.time || "") + "</span>" +
+      (bits.length ? ' · <button class="fl-toggle" id="fl-toggle" type="button">מה קרה? ⌄</button>' : "") +
+      "</span>" + detail;
+    wrap.hidden = false;
+    var t = document.getElementById("fl-toggle");
+    if (t) t.addEventListener("click", function () {
+      var dt = document.getElementById("fl-detail");
+      if (dt) dt.hidden = !dt.hidden;
+      t.textContent = dt && dt.hidden ? "מה קרה? ⌄" : "סגור ⌃";
+    });
+  }
+
   function renderPulseX() {
     var el = document.getElementById("tri-x");
     if (!el) return;
@@ -1875,6 +1917,10 @@
           renderHealth(document.getElementById("health"), d);
           renderTodayBar(document.getElementById("today-bar"), d);
         })
+        .catch(function () {});
+      // מבזק שוק — תנועה חדה תוך-יומית (מוצג בכל הטאבים, רק כשהמבזק טרי)
+      fetchJSON("data/flash.json")
+        .then(renderFlash)
         .catch(function () {});
     }
 
