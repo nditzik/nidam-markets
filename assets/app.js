@@ -226,6 +226,146 @@
       '<p class="stamp" style="margin:10px 0 0">מחירי שוקי חיזוי (Polymarket / Kalshi) = ההסתברות שהשוק מתמחר · מתעדכן כל רבע שעה</p></div>';
   }
 
+  /* ---- חיפוש כלל-אתרי: סורק את כל הנתונים שכבר בזיכרון הדפדפן (בלי שרת) ---- */
+  function tickerCard(sym) {
+    var hits = [];
+    var st = null;
+    ((MOMD && MOMD.stocks) || []).forEach(function (s) { if (s.symbol === sym) st = s; });
+    if (st) hits.push(["momentum", "מומנטום · " + st.signal_count + " סיגנלים · " + (st.change_pct > 0 ? "+" : "") + st.change_pct + "%"]);
+    ((CANDD && CANDD.candidates) || []).forEach(function (c) {
+      if (c.symbol === sym) hits.push(["candidates", "מועמדת #" + c.rank + " · כניסה " + c.entry + " · יעד " + Math.round(c.target * 100) / 100]);
+    });
+    var MVL = { gainers: "עולות", losers: "יורדות", active: "פעילות" };
+    Object.keys(MVL).forEach(function (g) {
+      ((MOVERS && MOVERS[g]) || []).forEach(function (x) {
+        if (x.symbol === sym) hits.push(["home", "בולטת היום (" + MVL[g] + ") · " + (x.chg > 0 ? "+" : "") + x.chg + "%"]);
+      });
+    });
+    var w = EARN && EARN.window && EARN.window[sym];
+    if (w) hits.push(["weekcal", "📅 מדווחת ב-" + fmtTradeDate(w)]);
+    else ((EARN && EARN.week) || []).forEach(function (d) {
+      (d.companies || []).forEach(function (c) { if (c.ticker === sym) hits.push(["weekcal", "📅 בלוח הדיווחים · " + d.label]); });
+    });
+    ((REPD && REPD.reports) || []).forEach(function (r) { if (r.ticker === sym) hits.push(["reports", "📑 " + r.title]); });
+    var mentions = 0;
+    ((PULSE_X && PULSE_X.items) || []).forEach(function (it) {
+      if (new RegExp("(^|[^A-Za-z])\\$?" + sym + "([^A-Za-z]|$)").test(it.text || "")) mentions++;
+    });
+    if (mentions) hits.push(["home", "💬 מוזכרת ב-" + mentions + " ציוצים בבזק מהרשת"]);
+    return hits;
+  }
+  function searchSite(q) {
+    var rows = [];
+    var ql = q.toLowerCase();
+    function push(group, tab, text) {
+      if (text && String(text).toLowerCase().indexOf(ql) >= 0 && rows.length < 22) {
+        var cnt = 0;
+        rows.forEach(function (r) { if (r[0] === group) cnt++; });
+        if (cnt < 4) rows.push([group, tab, String(text).slice(0, 105)]);
+      }
+    }
+    ((MOMD && MOMD.stocks) || []).forEach(function (s) { push("מומנטום", "momentum", s.name + " (" + s.symbol + ")"); });
+    ["gainers", "losers", "active"].forEach(function (g) {
+      ((MOVERS && MOVERS[g]) || []).forEach(function (x) { push("בולטות", "home", x.name + " (" + x.symbol + ")"); });
+    });
+    ((EARN && EARN.week) || []).forEach(function (d) {
+      (d.companies || []).forEach(function (c) { push("דיווחים", "weekcal", c.name + " (" + c.ticker + ") · " + d.label); });
+    });
+    ((REPD && REPD.reports) || []).forEach(function (r) { push("דוחות", "reports", r.title + " (" + r.ticker + ")"); });
+    ((TRAD && TRAD.reports) || []).forEach(function (r) { push("הצעות לטרייד", "trades", r.title); });
+    if (BRIEF) ["morning", "afternoon"].forEach(function (k) {
+      var s = BRIEF[k] || {};
+      (s.headlines || []).forEach(function (h) { push("תדרוך", "briefing", h); });
+      (s.schedule || []).forEach(function (it) { if (it.text) push("תדרוך", "briefing", (it.time ? it.time + " · " : "") + it.text); });
+    });
+    ((NEWS && NEWS.news) || []).forEach(function (n) { push("חדשות", "home", n.titleEn || n.title); });
+    ((PULSE_X && PULSE_X.items) || []).forEach(function (it) { push("בזק מהרשת", "home", it.text + " · " + it.source); });
+    ((ECON && ECON.events) || []).forEach(function (e) {
+      push("מאקרו", "home", e.he + " (" + e.ilDate + ") · צפי " + (e.forecast || "—") + (e.actual ? " · בפועל " + e.actual : ""));
+    });
+    if (CA) {
+      push("הניתוח היומי", "indices", CA.headline);
+      (CA.paragraphs || []).forEach(function (p) { push("הניתוח היומי", "indices", p); });
+    }
+    return rows;
+  }
+  function srQuote(sym) {
+    fetch("https://scanner.tradingview.com/america/scan", {
+      method: "POST",
+      body: JSON.stringify({
+        filter: [{ left: "name", operation: "in_range", right: [sym] },
+                 { left: "exchange", operation: "in_range", right: ["NASDAQ", "NYSE", "AMEX"] }],
+        columns: ["name", "close", "change"], range: [0, 3]
+      })
+    }).then(function (x) { return x.json(); }).then(function (d) {
+      var row = (d.data || [])[0];
+      var el = document.getElementById("sr-quote");
+      if (!row || !el) return;
+      var px = row.d[1], chg = row.d[2];
+      el.innerHTML = '<b class="num">' + fmtQuote(px) + "</b> " +
+        '<span class="num ' + (chg >= 0 ? "up" : "down") + '" dir="ltr">' + (chg > 0 ? "+" : "") + Number(chg).toFixed(2) + "%</span>";
+    }).catch(function () {});
+  }
+  function renderSearch(q) {
+    var panel = document.getElementById("search-results");
+    if (!panel) return;
+    q = (q || "").trim();
+    if (q.length < 2) { panel.hidden = true; return; }
+    var html = "";
+    var isTicker = /^[A-Za-z][A-Za-z.\-]{0,5}$/.test(q);
+    if (isTicker) {
+      var sym = q.toUpperCase();
+      var hits = tickerCard(sym);
+      html += '<div class="sr-tick"><div class="sr-tick-h"><b dir="ltr">' + esc(sym) + '</b><span id="sr-quote" class="sr-q"></span>' +
+        '<a href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) + '/" target="_blank" rel="noopener">גרף ↗</a></div>' +
+        (hits.length
+          ? hits.map(function (h) {
+              return '<button class="sr-item" data-tab="' + h[0] + '">' + esc(h[1]) + "</button>";
+            }).join("")
+          : '<div class="sr-none">לא נמצאת כרגע באף לוח באתר</div>') +
+        "</div>";
+    }
+    var rows = searchSite(q);
+    var lastG = "";
+    rows.forEach(function (r) {
+      if (r[0] !== lastG) { html += '<div class="sr-group">' + esc(r[0]) + "</div>"; lastG = r[0]; }
+      html += '<button class="sr-item" data-tab="' + r[1] + '">' + esc(r[2]) + "</button>";
+    });
+    if (!html) html = '<div class="sr-none">לא נמצאו תוצאות ל-"' + esc(q) + '"</div>';
+    panel.innerHTML = html;
+    panel.hidden = false;
+    if (isTicker) srQuote(q.toUpperCase());
+    panel.querySelectorAll(".sr-item").forEach(function (b) {
+      b.addEventListener("click", function () {
+        panel.hidden = true;
+        var inp = document.getElementById("site-search");
+        if (inp) inp.blur();
+        activate(b.dataset.tab);
+      });
+    });
+  }
+  function initSearch() {
+    var inp = document.getElementById("site-search");
+    var panel = document.getElementById("search-results");
+    if (!inp || !panel) return;
+    var deb = null;
+    inp.addEventListener("input", function () {
+      clearTimeout(deb);
+      deb = setTimeout(function () { renderSearch(inp.value); }, 180);
+    });
+    inp.addEventListener("focus", function () { if (inp.value.trim().length >= 2) renderSearch(inp.value); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "/" && document.activeElement !== inp &&
+          !/INPUT|TEXTAREA/.test((document.activeElement || {}).tagName || "")) {
+        e.preventDefault(); inp.focus();
+      }
+      if (e.key === "Escape") { panel.hidden = true; inp.blur(); }
+    });
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".np-search")) panel.hidden = true;
+    });
+  }
+
   /* ---- tab badge: green dot only when a category's CONTENT actually changed since you viewed it ---- */
   var SIGS = {};
   function contentSig(d) {
@@ -1905,6 +2045,7 @@
   /* ---------- boot ---------- */
   function boot() {
     loadTicker();
+    initSearch();
     setInterval(loadTicker, 180000);        // הקובץ מהשרת (ספארקים + tnx) כל 3 דק'
     setInterval(refreshTickerLive, 60000);  // מחירים חיים מהסורק כל דקה
     refreshHeat();
