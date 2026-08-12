@@ -1,63 +1,32 @@
 {
-  "today": "2026-08-12",
-  "todayCount": 4,
+  "today": "2026-08-13",
+  "todayCount": 2,
   "todayBig": [
     {
-      "ticker": "CSCO",
-      "name": "Cisco Systems Inc",
-      "capB": 447.6
+      "ticker": "AMAT",
+      "name": "Applied Materials",
+      "capB": 398.4
     },
     {
-      "ticker": "COHR",
-      "name": "Coherent Corp",
-      "capB": 48.7
-    },
-    {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Cl A",
-      "capB": 47.7
-    },
-    {
-      "ticker": "AMCR",
-      "name": "Amcor Plc",
-      "capB": 20.9
+      "ticker": "TPR",
+      "name": "Tapestry Inc",
+      "capB": 30.8
     }
   ],
   "reporting": [
     {
-      "ticker": "CSCO",
-      "name": "Cisco Systems Inc",
-      "logo": "data/earnings/logos/CSCO.png"
+      "ticker": "AMAT",
+      "name": "Applied Materials",
+      "logo": "data/earnings/logos/AMAT.png"
     },
     {
-      "ticker": "COHR",
-      "name": "Coherent Corp",
-      "logo": "data/earnings/logos/COHR.png"
-    },
-    {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Cl A",
-      "logo": "data/earnings/logos/NBIS.png"
-    },
-    {
-      "ticker": "AMCR",
-      "name": "Amcor Plc",
-      "logo": "data/earnings/logos/AMCR.png"
+      "ticker": "TPR",
+      "name": "Tapestry Inc",
+      "logo": "data/earnings/logos/TPR.png"
     }
   ],
   "more": 0,
-  "upcoming": [
-    {
-      "date": "2026-08-13",
-      "label": "13/8",
-      "dow": "ה׳",
-      "count": 2,
-      "tickers": [
-        "AMAT",
-        "TPR"
-      ]
-    }
-  ],
+  "upcoming": [],
   "week": [
     {
       "date": "2026-08-10",
@@ -148,10 +117,6 @@
     }
   ],
   "window": {
-    "AMCR": "2026-08-12",
-    "COHR": "2026-08-12",
-    "CSCO": "2026-08-12",
-    "NBIS": "2026-08-12",
     "AMAT": "2026-08-13",
     "TPR": "2026-08-13",
     "PANW": "2026-08-17",
@@ -163,10 +128,15 @@
     "LOW": "2026-08-19",
     "NDSN": "2026-08-19",
     "TGT": "2026-08-19",
-    "TJX": "2026-08-19"
+    "TJX": "2026-08-19",
+    "DE": "2026-08-20",
+    "INTU": "2026-08-20",
+    "ROST": "2026-08-20",
+    "WDAY": "2026-08-20",
+    "WMT": "2026-08-20"
   },
   "_meta": {
-    "updatedAt": "12/08/2026 23:45",
+    "updatedAt": "13/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
