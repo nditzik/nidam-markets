@@ -121,6 +121,16 @@ def headlines_of(html):
                 t = _clean(li)
                 if t:
                     out.append(t)
+        if not out:
+            # מבנה 2026-08-12: בלוק div שטוח — תבליטי • מופרדי <br> (בלי ul/li)
+            blk = html[i:]
+            j = blk.find("</div>")
+            if j > 0:
+                blk = blk[:j]
+            for part in blk.split("•")[1:]:
+                t = _clean(part)
+                if len(t) > 15:
+                    out.append(t)
     # --- "הידיעות המרכזיות" → <h3> או divים מודגשים-ממוספרים ("1. כותרת") ---
     if not out:
         i = html.find("הידיעות המרכזיות")
@@ -137,6 +147,19 @@ def headlines_of(html):
                     t = re.sub(r"^\d+\s*[.):|]\s*", "", _clean(m.group(1)))
                     if t:
                         out.append(t)
+                    if len(out) >= 6:
+                        break
+            if not out:
+                # מבנה 2026-08-12: שורות ממוספרות "1. כותרת" מופרדות <br> בתוך div שטוח
+                blk = tail
+                j = blk.find("</div>")
+                if j > 0:
+                    blk = blk[:j]
+                for raw in re.split(r"<br\s*/?>", blk):
+                    t = _clean(raw)
+                    mnum = re.match(r"^(\d+)[.)]\s*(.+)$", t)
+                    if mnum and len(mnum.group(2)) > 8:
+                        out.append(mnum.group(2))
                     if len(out) >= 6:
                         break
     if out:
@@ -169,6 +192,24 @@ def schedule_of(html):
             continue
         m = re.search(r"<table[^>]*>(.*?)</table>", html[i:], re.S)
         if not m:
+            # מבנה 2026-08-12: בלוק div שטוח — "15:30 ישראל / 08:30 ניו יורק — אירוע"
+            # שורה-שורה מופרדת <br>, בלי טבלה; שורות "מקורות"/קישורים מסוננות
+            blk = html[i:]
+            j = blk.find("</div>")
+            if j > 0:
+                blk = blk[:j]
+            for raw in re.split(r"<br\s*/?>", blk):
+                t = _clean(raw)
+                if not t or t.startswith(("מקור", "יומן", "📅")):
+                    continue
+                mt = re.match(r"^(\d{1,2}:\d{2}).*?(?:—|–|\s-\s)\s*(.+)$", t)
+                if mt and not re.fullmatch(r"[\d:.\-\s/]+", mt.group(2)):
+                    out.append({"time": mt.group(1), "text": mt.group(2).strip()})
+                elif t.startswith(("לאחר הסגירה", "אחרי הסגירה")):
+                    parts = t.split("—", 1)
+                    out.append({"time": "אחה\"ס", "text": parts[1].strip() if len(parts) > 1 else t})
+            if out:
+                return out
             continue
         day_ctx = ""   # שורות שאחרי תווית "מחר" שייכות למחר — מסמנים אותן במפורש
         for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", m.group(1), re.S):   # גם <tr style=...>
