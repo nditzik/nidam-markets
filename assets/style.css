@@ -853,6 +853,13 @@ body { background-image: none; background-color: var(--bg); }
 .fl-ev[dir="ltr"] { text-align: left; }
 .fl-note { font-size: .74rem; color: var(--text-3); margin-top: 2px; }
 
+/* עדכון-אירוע בכותרת הראשית (2026-08-12) */
+.np-k.np-evt { color: var(--down); font-weight: 800; }
+.np-evt b { color: inherit; }
+p.np-evt { font-size: .88rem; color: var(--down); }
+.np-odds { font-size: .92rem; margin: 0 0 14px; color: var(--text-soft); }
+.np-odds, .np-bottom { font-family: var(--serif); }
+
 /* מה השווקים מהמרים (2026-08-10) */
 .bt-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 10px 0 12px; border-bottom: 1px solid var(--paper-hair); align-items: center; }
 .bt-row:last-of-type { border-bottom: 0; }

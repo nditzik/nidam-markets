@@ -1034,6 +1034,20 @@
       '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a></div>';
 
     renderLeadRail(d);
+    // עדכון-אירוע (CPI/NFP/פד): מחליף את הכותרת עד הניתוח המלא של מחר בבוקר.
+    // במכוון על CA הגולמי ולא על ca מוגן-התאריך — לעדכון יש שעון-טריות משלו
+    var eu = freshEventUpdate(CA);
+    if (eu) {
+      el.innerHTML =
+        '<span class="np-k np-evt">🔴 עדכון ' + esc(eu.event || "אירוע") + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
+        '<h2 class="np-h1">' + esc(eu.headline) + "</h2>" +
+        (eu.tldr ? '<p class="np-dek">' + esc(eu.tldr) + "</p>" : "") +
+        (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
+        (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
+        foot;
+      return;
+    }
+
     if (ca) {
       // מבנה רזה: קיקר עם התאריך + האחוז · כותרת אנליטית · משפט-מהות · שורה תחתונה
       var pm = /([+−-]\d+(?:\.\d+)?%)/.exec(c.headline || "");
@@ -1294,12 +1308,27 @@
       "</div>";
   }
 
+  /* עדכון-אירוע טרי (עד 18 שעות מהפרסום) — או null */
+  function freshEventUpdate(ca) {
+    var eu = ca && ca.eventUpdate;
+    if (!eu || !eu.date || !eu.time || !eu.headline) return null;
+    var ts = Date.parse(eu.date + "T" + eu.time + ":00");
+    if (isNaN(ts)) return null;
+    var age = Date.now() - ts;
+    return (age > -3600e3 && age < 18 * 3600e3) ? eu : null;
+  }
+
   /* כרטיס "הניתוח היומי" המלא — בראש טאב מדדים */
   function claudeCardHtml(d) {
     var ca = (CA && CA.date === d.date) ? CA : null;
     if (!ca) return "";
+    var eu = freshEventUpdate(CA);
+    var euLine = eu
+      ? '<p class="np-evt" style="margin:0 0 10px">🔴 <b>עדכון ' + esc(eu.event || "") + " · " + esc(eu.time || "") + ":</b> " + esc(eu.headline) + "</p>"
+      : "";
     return '<div class="section-title" style="margin-top:0">🧠 הניתוח היומי</div>' +
       '<div class="card np-ca">' +
+        euLine +
         '<h3 class="np-ca-h">' + esc(ca.headline) + "</h3>" +
         (ca.paragraphs || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
         (ca.bottomline ? '<p class="np-ca-bottom">💡 ' + esc(ca.bottomline).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
