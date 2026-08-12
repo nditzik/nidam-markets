@@ -26,7 +26,7 @@ MAILBOX = '"[Gmail]/All Mail"'
 SENDER = "nditzik@gmail.com"
 MORNING_MARK = "בוקר"
 AFTERNOON_MARK = "אחר הצהריים"
-SENTIMENT_RE = re.compile(r"([🟢🟡🔴])\s*([^;<\n—–]{0,40})")
+SENTIMENT_RE = re.compile(r"([🟢🟡🔴])\s*(.{0,300}?)</(?:div|td|h1|h2|h3|p|li)>", re.S)
 
 
 def israel_stamp():
@@ -60,12 +60,21 @@ def html_of(msg):
 
 
 def sentiment_of(html):
-    # מחפש את אימוג'י הסנטימנט הראשון + המילה שאחריו (מתוך תגית ה-pill בכותרת)
+    """אימוג'י הסנטימנט + הטקסט שאחריו (ה-pill בכותרת המייל).
+    שומר גם לטינית/ספרות/סימנים ("דוחות AI מול CPI ונפט קרוב ל־$90") —
+    הגרסה הישנה מחקה כל תו לא-עברי והציגה טקסט קטוע ומרוסק."""
     m = SENTIMENT_RE.search(html)
     if not m:
         return {"emoji": "", "text": ""}
-    word = re.sub(r"[^֐-׿ \-–]", "", m.group(2)).strip()
-    return {"emoji": m.group(1), "text": word}
+    t = re.sub(r"<[^>]+>", " ", m.group(2))                      # תגיות פנימיות (span.ltr וכו')
+    t = re.sub(r"&[a-z#0-9]+;", " ", t)                          # ישויות HTML
+    t = t.splitlines()[0] if "\n" in t and len(t.splitlines()[0]) > 8 else t
+    t = re.split(r"\s[—–]\s", t)[0]                              # מפריד " — " = סוף ה-pill
+    t = re.sub(r"[^0-9A-Za-z֐-׿ \-–—־|$%+.,:/'\"()]", "", t)    # אימוג'י/זבל החוצה
+    t = re.sub(r"\s+", " ", t).replace("־ ", "־").strip(" -–—|")
+    if len(t) > 90:                                              # תקרה — חיתוך במילה שלמה
+        t = t[:90].rsplit(" ", 1)[0] + "…"
+    return {"emoji": m.group(1), "text": t}
 
 
 def _clean(s):
