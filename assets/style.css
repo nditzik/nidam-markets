@@ -746,6 +746,9 @@ body { background-image: none; background-color: var(--bg); }
 .np-tri .brief-sched li { display: flex; gap: 9px; padding: 3px 0; font-size: .85rem; }
 .np-tri .bs-time { color: var(--accent); font-weight: 700; flex: none; }
 .np-sent { font-size: .82rem; color: var(--text-soft); margin: -6px 0 8px; }
+/* בכרטיס התדרוך שבבית הטקסט המלא ארוך — עוטפים לשתי שורות בתוך המסגרת */
+.np-sent .brief-sent { white-space: normal; display: inline-block; max-width: 100%;
+  line-height: 1.55; border-radius: 14px; padding: 5px 13px; }
 .np-xit { display: block; padding: 8px 0; border-bottom: 1px solid var(--paper-hair); color: var(--text); text-decoration: none; }
 .np-xit:last-of-type { border-bottom: 0; }
 .np-xit p { margin: 0; font-size: .9rem; font-weight: 500; direction: ltr; text-align: left; line-height: 1.45; }
