@@ -223,7 +223,7 @@
           dist +
           "</div>";
       }).join("") +
-      '<p class="stamp" style="margin:10px 0 0">מחירי שוקי חיזוי (Polymarket) = ההסתברות שהשוק מתמחר · מתעדכן כל רבע שעה</p></div>';
+      '<p class="stamp" style="margin:10px 0 0">מחירי שוקי חיזוי (Polymarket / Kalshi) = ההסתברות שהשוק מתמחר · מתעדכן כל רבע שעה</p></div>';
   }
 
   /* ---- tab badge: green dot only when a category's CONTENT actually changed since you viewed it ---- */

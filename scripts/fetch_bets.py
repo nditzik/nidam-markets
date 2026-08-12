@@ -14,6 +14,7 @@ fetch_bets.py — "מה השווקים מהמרים": הסתברויות משו�
 """
 import json
 import os
+import re
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
@@ -21,7 +22,11 @@ from datetime import datetime, timezone, timedelta
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "bets.json")
 API = "https://gamma-api.polymarket.com/events?slug="
+KALSHI = "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker="
 UA = {"User-Agent": "Mozilla/5.0 (compatible; nidam-markets-bot)", "Accept": "application/json"}
+
+MONTH_EN = ["january", "february", "march", "april", "may", "june", "july",
+            "august", "september", "october", "november", "december"]
 
 OUTCOME_HE = {
     "50+ bps decrease": "הורדה של 50+ נ\"ב",
@@ -65,6 +70,75 @@ def leading(markets):
 def chg_pp(m):
     c = m.get("oneDayPriceChange")
     return round(c * 100, 1) if c is not None else None
+
+
+def kalshi_prob(m):
+    """הסתברות YES משוק Kalshi: מחיר אחרון, או אמצע קנייה/מכירה (סנטים→0..1)."""
+    lp = m.get("last_price")
+    if lp:
+        return lp / 100.0
+    yb, ya = m.get("yes_bid"), m.get("yes_ask")
+    if yb and ya and 0 < yb <= 100 and 0 < ya <= 100:
+        return (yb + ya) / 200.0
+    return None
+
+
+def cpi_row():
+    """אינפלציה שנתית (Kalshi KXCPIYOY): הרף הגבוה ביותר שהשוק נותן לו 50%+.
+    בלי נזילות → אין שורה."""
+    req = urllib.request.Request(KALSHI + "KXCPIYOY&status=open&limit=100", headers=UA)
+    with urllib.request.urlopen(req, timeout=20) as r:
+        markets = json.loads(r.read().decode("utf-8")).get("markets", [])
+    events = {}
+    for m in markets:
+        events.setdefault(m.get("event_ticker") or m.get("ticker", "")[:14], []).append(m)
+    if not events:
+        return None
+    # האירוע הקרוב ביותר לסגירה = ההדפסה הקרובה
+    ev = min(events.values(), key=lambda ms: min(m.get("close_time") or "9999" for m in ms))
+    best = None
+    for m in ev:
+        mt = re.search(r"T(\d+(?:\.\d+)?)$", m.get("ticker") or "")
+        p = kalshi_prob(m)
+        if not mt or p is None:
+            continue
+        thr = float(mt.group(1))
+        if p >= 0.5 and (best is None or thr > best[0]):
+            best = (thr, p, m)
+    if not best:
+        return None
+    month = ""
+    mm = re.search(r"-26([A-Z]{3})-", best[2].get("ticker") or "")
+    heb = {"JAN": "ינואר", "FEB": "פברואר", "MAR": "מרץ", "APR": "אפריל", "MAY": "מאי", "JUN": "יוני",
+           "JUL": "יולי", "AUG": "אוגוסט", "SEP": "ספטמבר", "OCT": "אוקטובר", "NOV": "נובמבר", "DEC": "דצמבר"}
+    if mm:
+        month = heb.get(mm.group(1), "")
+    return {"key": "cpi_next", "label": "אינפלציה שנתית — נתון " + (month or "הבא"),
+            "sub": f"ההימור: תישאר מעל {best[0]}%", "pct": round(best[1] * 100), "chg": None,
+            "src": "Kalshi"}
+
+
+def spy_row():
+    """יעד SPY חודשי (Polymarket): רף ה-'יגע ב-' הגבוה ביותר עם 50%+ (או המוביל)."""
+    now = datetime.now(timezone.utc) + timedelta(hours=3)
+    slug = f"what-price-will-spy-hit-in-{MONTH_EN[now.month - 1]}-{now.year}"
+    ev = get_event(slug)
+    if not ev:
+        return None
+    ups = []
+    for m in ev.get("markets") or []:
+        t = m.get("groupItemTitle") or ""
+        p = yes_price(m)
+        mt = re.search(r"[↑⬆]\s*\$?(\d+)", t)
+        if mt and p is not None and p < 0.995:   # רפים שכבר נגעו (p=1) לא מעניינים
+            ups.append((int(mt.group(1)), p, m))
+    if not ups:
+        return None
+    over = [u for u in ups if u[1] >= 0.5]
+    best = max(over, key=lambda u: u[0]) if over else max(ups, key=lambda u: u[1])
+    return {"key": "spy_hit", "label": "יעד S&P החודש (SPY)",
+            "sub": f"ההימור: יגע ב-${best[0]}", "pct": round(best[1] * 100),
+            "chg": chg_pp(best[2])}
 
 
 def cuts_label(title):
@@ -124,6 +198,27 @@ def main():
             })
     except Exception as e:
         print(f"[warn] hike: {e}")
+    try:
+        r = cpi_row()
+        if r:
+            rows.append(r)
+    except Exception as e:
+        print(f"[warn] cpi: {e}")
+    try:
+        ev = get_event("us-recession-by-end-of-2026")
+        m = (ev.get("markets") or [None])[0] if ev else None
+        p = yes_price(m) if m else None
+        if p is not None:
+            rows.append({"key": "recession", "label": "מיתון בארה\"ב עד סוף 2026",
+                         "sub": "הסתברות ל-YES", "pct": round(p * 100), "chg": chg_pp(m)})
+    except Exception as e:
+        print(f"[warn] recession: {e}")
+    try:
+        r = spy_row()
+        if r:
+            rows.append(r)
+    except Exception as e:
+        print(f"[warn] spy: {e}")
 
     if not rows:
         print("[keep] אין נתונים — משאיר bets.json קיים." if os.path.exists(OUT) else "[fail] אין נתונים.")
