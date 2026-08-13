@@ -8,53 +8,71 @@
 
 **עדכון אוטומטי:** `.github/workflows/update.yml` מופעל כל 15 דק' ע"י cron-job.org (ה-cron של GitHub לא אמין; ה-schedule הפנימי נשאר כגיבוי). כל צעד `continue-on-error`. הקומיט בסוף עמיד-מרוצים (rebase+retry×5).
 
-**רענון בדפדפן:** `loadDaily()` + `loadLiveContent()` כל 5 דק' עם שומרי-שינוי (`contentSig` — האש בלי `_meta`; רינדור רק כשתוכן באמת השתנה), `visibilitychange` מרענן בחזרה-לטאב (נייד), וציטוטים חיים כל דקה ישירות מהסורק של TradingView.
+**רענון בדפדפן:** `loadDaily()` + `loadLiveContent()` כל 5 דק' עם שומרי-שינוי (`contentSig`), `visibilitychange` מרענן בחזרה-לטאב, ציטוטים חיים כל דקה מהסורק של TradingView (טיקר + מפת חום סקטוריאלית).
+
+**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות). נכון לעכשיו: np21.
 
 ## עיצוב "מהדורת עיתון" (2026-08-08)
 
-הבית בנוי כעיתון: כותרת 3 שורות (לוגו+ניווט / שעון מסחר / שתי שורות טיקר רזות) → ידיעה מובילה (H1 סריף Frank Ruhl Libre) + רייל The Edge Meter → שלוש עמודות (תדרוך | מדווחות היום והשבוע | בזק מהרשת) → מאקרו צפי-מול-בפועל → מניות במוקד → בולטות. סגנון: קווי-שיער (`--paper-hair`) במקום צללים, שכבת NEWSPAPER SKIN בסוף `style.css` דורסת את סגנון-אפל הישן בקסקדה. דארק מלא דרך אותם טוקנים.
+הבית כעיתון: כותרת (לוגו+ניווט / חיפוש+שעון+חג-קרוב / שתי שורות טיקר + מפת חום סקטוריאלית) → ידיעה מובילה (תאריך היום → קיקר "יום המסחר" → H1 סריף) + רייל The Edge Meter (ציונים, "הכסף הגדול", שיאים/שפלים) → שלוש עמודות (תדרוך | מדווחות | בזק מהרשת) → מאקרו צפי-מול-בפועל → 🎲 מה השווקים מהמרים → מניות במוקד → בולטות. קווי-שיער במקום צללים; NEWSPAPER SKIN בסוף style.css דורס בקסקדה; דארק דרך טוקנים.
 
-## הניתוח היומי של Claude
+**פיצ'רים חיים בבית:** חיפוש כלל-אתרי (`initSearch` — כרטיס-טיקר עם ציטוט חי + טקסט חופשי, הכל על נתונים שבזיכרון, `/` פותח) · פס מבזק ⚡ (data/flash.json, כל הטאבים, TTL 3 שעות) · מפת חום 11 סקטורים (עדכון דקה, session-aware) · צ'יפי הסכמת-תחומים (aiSummary.domains) · שורת חג NYSE (לוח סטטי 2026-27 ב-app.js — מחווט גם לשעון: חגים ומסחר מקוצר 20:00; ⏰ לרענן ל-2028 בסוף 2027).
 
-- `data/claude_analysis.json` — נכתב ע"י **routine בענן** (claude.ai/code/routines): ראשי 06:30 + גיבוי 08:00, ג'–שבת (cron UTC ‎`30 3 * * 2-6`‎ + ‎`0 5 * * 2-6`‎; ⚠️ חורף: להזיז שעה). שער-טריות: כותב רק כש-`daily_state.date` חדש.
-- הבית מציג headline+tldr+bottomline; טאב מדדים את הניתוח המלא (`claudeCardHtml`). הגנת-תאריך + נפילה למנוע-הכללים (`aiSummary` בתוך indices.json).
+## רוטינות הענן (claude.ai/code/routines) — קרא לפני שנוגעים!
+
+| רוטינה | trigger id | cron (UTC, קיץ) | תפקיד |
+|---|---|---|---|
+| nidam-daily-market-analysis | trig_01QxCeHkMGrGcXk4Uhk4mCBv | 30 3 * * 2-6 | ניתוח יומי 06:30 → claude_analysis.json |
+| ...-retry | trig_01W8FY5Nu76pEBUvBnAePBNr | 0 5 * * 2-6 | גיבוי 08:00 (no-op אם הראשי הצליח) |
+| nidam-event-update-1545 | trig_01BZNrS3UZbLQMEeQh2pUDVT | 50 12 * * 1-5 | עדכון-אירוע 15:50 אחרי מאקרו 15:30 |
+| nidam-event-update-1700 | trig_018imBgiWmzyXYKppZvnKWyA | 5 14 * * 1-5 | גרסת שוק-פתוח 17:05 |
+
+**חוקי ברזל (נלמדו בדם, 11-13.8):**
+1. **אין רשת:** ה-proxy של סביבת הענן חוסם כל API חיצוני (Yahoo/Polymarket/TradingView) ב-403 — מותר רק GitHub. כל פרומפט חייב לעבוד **מקבצי הריפו בלבד** (ה-Action מרענן אותם כל רבע שעה). "לפני" היסטורי — `git rev-list -1 --before=<ts> origin/main` + `git show SHA:file`.
+2. **דחיפה עם PAT ייעודי** (`nidam-routine-push`, \u200FContents בלבד לריפו הזה, בתוך הפרומפטים): `git push https://x-access-token:<PAT>@github.com/nditzik/nidam-markets.git HEAD:main`. ⏰ תוקף עד ~08/2027. לאפליקציית GitHub אין הרשאה — אל תנסה push רגיל.
+3. **הרצה ידנית (`action: run`) מתה בשקט** — באג פלטפורמה. להרצה מחדש: לעדכן `run_once_at` לעוד כמה דקות.
+4. **ג'יטר מתזמן:** ריצות נורות 2–7 דק' אחרי ה-cron. ריצת 15:50 נוחתת בכותרת ~15:57–16:05 — לא לבהל לפני +10 דק'.
+5. **אבחון:** אין גישה ליומני הענן מכאן — הטלמטריה היא `data/_routine_heartbeat.log` (הרוטינות רושמות שורת HB); במקרה חירום — פרומפט run_once שדוחף HEARTBEAT בכל שלב.
+6. **כללי סגנון בפרומפטים:** בלי ז'רגון ("קצה היצרן" אסור), מונח נחוץ מוסבר בקצרה; מדד ייחוס אחד — לפני פתיחה חוזה S&P, אחרי פתיחה "S&P 500" (לא "SPY"); מספרים מקבצים בלבד.
+7. עריכת פרומפט: RemoteTrigger update עם job_config מלא (החלפה שלמה). כל שינוי מהותי — לעדכן גם כאן.
+
+**מחזור הכותרת:** ניתוח 06:30 (date=סשן אתמול) ← eventUpdate נכתב באירועי מאקרו (15:50/17:05, TTL רנדרר 18ש') ← הניתוח של מחר כותב את הקובץ בלי eventUpdate = איפוס אוטומטי. הרנדרר קורא eventUpdate מ-CA הגולמי (לא מוגן-תאריך) בכוונה.
 
 ## צינורות (scripts/)
 
 | סקריפט | פלט | מקור |
 |---|---|---|
-| fetch_dashboards | indices.json (+aiSummary) | indexes-status repo |
-| fetch_momentum | momentum.json | stocks-momentum repo |
-| fetch_ibkr | candidates.json | nidam-candidates repo |
-| fetch_gmail / fetch_barchart | briefing.json / morning.json + ארכיון 30 יום (`briefing_archive.py`) | Gmail IMAP (מיילים עצמיים) |
+| fetch_dashboards | indices.json (+aiSummary+domains) | indexes-status repo |
+| fetch_momentum / fetch_ibkr | momentum.json / candidates.json | ריפו-אחים |
+| fetch_gmail / fetch_barchart | briefing.json / morning.json (+notice סופ"ש) + ארכיון 30 יום | Gmail IMAP |
 | fetch_market | market.json (+spark) | Yahoo v8 chart |
 | fetch_econ | econ.json (צפי/בפועל) | TradingView economic calendar |
-| fetch_earnings | earnings.json (+todayBig) | earnings.csv ב-nidam-reports |
-| fetch_news / fetch_pulse | news.json / pulse.json | RSS פרימיום / שיקופי טלגרם+Nitter |
-| fetch_movers | movers.json (סשן-מודע) | TradingView scanner |
-| fetch_sectors / fetch_trades | sectors.json / trades.json (+method PDF) | nidam-reports (תיקיות sectors/, trades/) |
-| archive_scores / archive_focus | history.json / focus_history.json | "המוקד במבחן" — צילום לפני פתיחה, הקפאה למחרת |
-| notify_telegram / notify_digest / notify_alerts / notify_earnings_age | — | ערוץ טלגרם (תקציר בוקר ג'–שבת, התראות חריגים, סיכום דוחות 23:30) |
+| fetch_bets | bets.json (פד, מיתון, יעד SPY; CPI כשיש נזילות) | Polymarket Gamma + Kalshi (ציבוריים, בלי מפתח) |
+| fetch_earnings / fetch_news / fetch_pulse / fetch_movers | earnings/news/pulse/movers | csv / RSS / טלגרם+Nitter (11 מקורות; xcancel מת) / TV scanner |
+| fetch_sectors / fetch_trades | sectors.json / trades.json | nidam-reports |
+| detect_flash | flash.json + טלגרם | ספייק 0.5%+/30 דק' (Yahoo 1m) + ראיות econ/pulse/news |
+| archive_scores / archive_focus | history / focus_history | "המוקד במבחן" |
+| notify_* | טלגרם | תדרוך, תקציר, חריגים, דוחות-לילה 23:30 |
 
-## תהליכי עבודה של איציק (קבצים → אתר)
+## תהליכי עבודה של איציק
 
-שומרים ל-`C:\challenge\reports\...‎` — משימה מתוזמנת דוחפת ל-nidam-reports כל 5 דק', האתר מושך תוך 15 דק':
-- `sectors/` ו-`trades/` — דוחות HTML; **שם עברי חופשי + תאריך `D.M.YYYY` או ISO בשם**. חדש עולה ראשון, קודמים הופכים לצ'יפי-ארכיון אוטומטית. PDF ב-trades/ = מסמך השיטה (קטגוריה קבועה, קישור raw — לא מועתק).
-- שורש — ניתוחי דוחות `TICKER__YYYY-MM-DD.html` + `earnings.csv` שבועי.
+שומרים ל-`C:\challenge\reports\...` — משימה מתוזמנת דוחפת כל 5 דק', האתר מושך תוך 15 דק': `sectors/`+`trades/` (HTML בשם עברי חופשי + תאריך), שורש — `TICKER__YYYY-MM-DD.html` + `earnings.csv`. בבוקר: דחיפת נתוני מדדים+מומנטום לפני 06:30.
 
 ## מלכודות שנלמדו בדם
 
-1. **סדר push:** commit קודם, ואז `git pull --rebase`, ואז push. לעולם לא autostash לפני commit — קונפליקט נכתב לתוך data/*.json ומתקמט. קונפליקטים ב-data: ‎`git checkout --theirs`‎ (הכל רגנרטיבי).
-2. **iframe בנייד (iOS):** מידות מבחוץ לא נאכפות — הכיווץ נעשה בתוך המסמך (`__fitFrame`: zoom על html + ביטול font-boosting עם `text-size-adjust:100%` + מדידת ילדים/נכדים כי מעטפות ממורכזות מסתירות גלישה מ-scrollWidth).
-3. **צילומי-מסך headless ברוחב נייד:** ל-Chrome יש רוחב-חלון מינימלי (~489) — "גלישה" בצילום 390 היא ארטיפקט. לבדוק scrollWidth אמיתי לפני שמתקנים.
-4. **CORS של הסורק TradingView:** עובד מהאתר רק כ-simple request — body כ-text/plain, בלי content-type.
-5. **פרסר המיילים נשבר כשהמבנה משתנה** — לעגן בכותרות עברית + הטבלה/רשימה הקרובה, לא במבנה. `<b[^>]*>` תופס גם `<br>`.
-6. **שעון חורף (~סוף אוקטובר):** להזיז את כל ה-crons — update.yml, cron-job.org, ושתי ה-routines של הניתוח.
-7. עריכת קבצים עם אימוג'י — Write tool + כתיבה אטומית, לא heredoc עם escapes.
+1. **סדר push:** commit → `git pull --rebase` → push. קונפליקט ב-data: `git checkout --theirs` (הכל רגנרטיבי). מסר-קומיט עם גרשיים ב-PowerShell נשבר — `git commit -F msgfile`.
+2. **iframe דוחות בנייד:** הכיווץ ב-`__fitFrame` הוא **transform:scale על מעטפת `#np-fit-scaler`** — לא zoom! (zoom ב-WebKit משנה layout ולא מתכנס; היה חיתוך+ריצוד). origin לפי כיוון המסמך (RTL ימין / LTR שמאל); html/body מקובעים לגודל הוויזואלי; refit בפתיחת טאב (iframe שנטען בפאנל מוסתר נמדד על clientWidth=0).
+3. **WebKit + גריד:** `1fr` = minmax(auto,1fr), ו-WebKit מחשב min-content של flex בלי shrink — תוכן nowrap ארוך מנפח עמודות ושובר מובייל. תרופה: `min-width:0` על פריטי גריד. כרום מסתיר את זה — בדיקות מובייל רק ב-Playwright WebKit (viewport 390; chrome headless לא יורד מ-~500 רוחב — "גלישה" בצילום 390 היא ארטיפקט).
+4. **CORS של סורק TradingView:** simple request בלבד — body כ-text/plain בלי content-type.
+5. **פרסרי מיילים נשברים כשהמבנה משתנה** (קורה כל כמה ימים): לעגן בכותרות עברית; פורמט 2026-08-12 = div שטוחים עם `<br>`+בולטים; סנטימנט לוכד מעבר לתגיות פנימיות (`<span class="ltr">`) ושומר לטינית/ספרות.
+6. **שעון חורף (~סוף אוקטובר):** להזיז את כל ה-crons — update.yml, cron-job.org, ו-4 רוטינות הענן.
+7. עריכת קבצים עם אימוג'י/עברית — Write tool, לא heredoc.
+8. **שינוי ויזואלי = צילום-עין לפני push** (Playwright screenshot) — לא רק בדיקה טכנית.
 
 ## החלטות מוצר מרכזיות
 
-- מניות במוקד = מומנטום ∩ מועמדים בלבד (בלי בולטות — מתחלפות כל רבע שעה); הארכיון (`archive_focus.py`) חייב להישאר זהה ל-`passesBase` ב-app.js.
-- טיקר: מחיר + אחוז בלבד (בלי גרפים-מיני — משוב קוראים). המדדים למעלה, חוזים+דולר/שקל בשורה התחתונה.
-- חדשות באנגלית (תרגום-מכונה אכזב); בזק מהרשת עדיף כי עדכני יותר.
-- GoatCounter (`nidam.goatcounter.com`) — אנליטיקס; מעברי-טאב נספרים כצפיות.
+- מניות במוקד = מומנטום ∩ מועמדים בלבד; הארכיון חייב להישאר זהה ל-passesBase.
+- טיקר: מחיר+אחוז בלבד. חדשות באנגלית. בזק מהרשת עדיף (עדכני).
+- הימורים: הסתברות + שינוי יומי בנקודות; התפלגות מלאה לפד-ספטמבר; אירועי-סיכון נקודתיים נדחו במכוון.
+- מבזק ⚡: מציג "מה שהתפרסם באותן דקות" — לא טוען סיבתיות. סף 0.5%/30 דק' (בניסיון כיול).
+- GoatCounter — אנליטיקס; מעברי-טאב נספרים כצפיות.
