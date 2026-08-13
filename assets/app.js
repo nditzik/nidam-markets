@@ -698,19 +698,23 @@
     while (!tradingDay(d)) d.setDate(d.getDate() + 1);
     return { t: atTime(d, OPEN_T), label: "לפתיחת המסחר הבאה", open: false };
   }
-  /* יום/תאריך + החג הקרוב בבורסה — משמאל לשעון */
+  /* היום בלוח: "יום חמישי · 13.8.2026" — מוצג מעל קיקר יום-המסחר בכתבה הראשית */
+  function todayLine() {
+    var now = new Date();
+    var days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+    return "יום " + days[now.getDay()] + ' · <b class="num" dir="ltr">' +
+      now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear() + "</b>";
+  }
+  /* החג הקרוב בבורסה — משמאל לשעון (במובייל: מתחת לחיפוש) */
   function renderDayMeta() {
     var el = document.getElementById("np-daymeta");
     if (!el) return;
     var now = new Date();
-    var days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
-    var dateStr = "יום " + days[now.getDay()] + ' · <b class="num" dir="ltr">' +
-      now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear() + "</b>";
-    var k = dayKey(now), extra = "";
+    var k = dayKey(now), txt = "";
     if (NYSE_HOLIDAYS[k]) {
-      extra = '<span class="dm-hol">🏖 הבורסה סגורה היום — ' + NYSE_HOLIDAYS[k] + "</span>";
+      txt = "🏖 הבורסה סגורה היום — " + NYSE_HOLIDAYS[k];
     } else if (NYSE_HALF_DAYS[k]) {
-      extra = '<span class="dm-hol">🕐 מסחר מקוצר היום · סגירה 20:00</span>';
+      txt = "🕐 מסחר מקוצר היום · סגירה 20:00";
     } else {
       var d = new Date(now), best = null;
       for (var i = 1; i <= 400 && !best; i++) {
@@ -719,11 +723,11 @@
       }
       if (best) {
         var when = best.n === 1 ? "מחר" : "בעוד " + best.n + " ימים";
-        extra = '<span class="dm-hol">🏖 החג הבא: ' + best.name +
-          ' · <span class="num" dir="ltr">' + best.d.getDate() + "." + (best.d.getMonth() + 1) + "</span> · " + when + "</span>";
+        txt = "🏖 החג הבא: " + best.name + ' · <span class="num" dir="ltr">' +
+          best.d.getDate() + "." + (best.d.getMonth() + 1) + "</span> · " + when;
       }
     }
-    el.innerHTML = dateStr + extra;
+    el.innerHTML = txt ? '<span class="dm-hol">' + txt + "</span>" : "";
   }
   function startClock() {
     var timeEl = document.getElementById("clock-time");
@@ -1225,6 +1229,7 @@
     var eu = freshEventUpdate(CA);
     if (eu) {
       el.innerHTML =
+        '<span class="np-today">' + todayLine() + "</span>" +
         '<span class="np-k np-evt">🔴 עדכון ' + esc(eu.event || "אירוע") + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
         '<h2 class="np-h1">' + esc(eu.headline) + "</h2>" +
         (eu.tldr ? '<p class="np-dek">' + esc(eu.tldr) + "</p>" : "") +
@@ -1239,6 +1244,7 @@
       var pm = /([+−-]\d+(?:\.\d+)?%)/.exec(c.headline || "");
       var pmCls = pm ? (pm[1].charAt(0) === "+" ? "up" : "down") : "";
       el.innerHTML =
+        '<span class="np-today">' + todayLine() + "</span>" +
         '<span class="np-k">יום המסחר · <b dir="ltr">' + esc(fmtTradeDate(d.date)) + "</b>" +
           (pm ? ' · <b class="num ' + pmCls + '" dir="ltr">' + esc(pm[1]) + "</b>" : "") + "</span>" +
         '<h2 class="np-h1">' + esc(ca.headline) + "</h2>" +
@@ -1254,6 +1260,7 @@
     paras.forEach(function (p) { (p.indexOf("שורה תחתונה") >= 0 ? (bottom = p) : body.push(p)); });
     var dek = body.length ? body.slice(0, 2).join(" ") : (v.subline || "");
     el.innerHTML =
+      '<span class="np-today">' + todayLine() + "</span>" +
       '<span class="np-k">יום המסחר · <b dir="ltr">' + esc(fmtTradeDate(d.date)) + "</b></span>" +
       '<h2 class="np-h1">' + esc(c.headline || v.headline || "סקירת שוק") + "</h2>" +
       (ai && ai.headline ? '<p class="np-reg">' + esc(ai.headline) + "</p>" : "") +
