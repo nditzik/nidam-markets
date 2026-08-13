@@ -4,23 +4,23 @@
       "key": "fed_next",
       "label": "החלטת הפד בספטמבר",
       "sub": "ההימור המוביל: ללא שינוי",
-      "pct": 66,
-      "chg": null,
+      "pct": 70,
+      "chg": 5.0,
       "dist": [
         {
           "label": "ללא שינוי",
-          "pct": 66,
-          "chg": null
+          "pct": 70,
+          "chg": 5.0
         },
         {
           "label": "העלאה של 25 נ\"ב",
-          "pct": 32,
-          "chg": null
+          "pct": 28,
+          "chg": -5.5
         },
         {
           "label": "הורדה של 25 נ\"ב",
           "pct": 1,
-          "chg": -0.1
+          "chg": 0.1
         }
       ]
     },
@@ -36,26 +36,26 @@
       "label": "העלאת ריבית עד סוף 2026",
       "sub": "הסתברות ל-YES",
       "pct": 55,
-      "chg": -2.0
+      "chg": -1.0
     },
     {
       "key": "recession",
       "label": "מיתון בארה\"ב עד סוף 2026",
       "sub": "הסתברות ל-YES",
       "pct": 8,
-      "chg": -1.0
+      "chg": -0.5
     },
     {
       "key": "spy_hit",
       "label": "יעד S&P החודש (SPY)",
       "sub": "ההימור: יגע ב-$780",
       "pct": 75,
-      "chg": 3.5
+      "chg": null
     }
   ],
   "source": "Polymarket",
   "_meta": {
-    "updatedAt": "13/08/2026 15:30",
+    "updatedAt": "13/08/2026 15:45",
     "source": "polymarket"
   }
 }
