@@ -669,15 +669,61 @@
 
   /* שעון המסחר — שעון ישראל מקומי; פתיחה 16:30, סגירה 23:00, ב'-ו' */
   var OPEN_T = { h: 16, m: 30 }, CLOSE_T = { h: 23, m: 0 };
+  /* לוח חופשות NYSE — סטטי (מתפרסם שנים מראש); לרענן בתחילת כל שנה.
+     שים לב: לוח הבורסה ≠ חגים פדרליים (Good Friday סגור, Columbus/Veterans פתוח) */
+  var NYSE_HOLIDAYS = {
+    "2026-01-01": "השנה החדשה", "2026-01-19": "יום מרטין לותר קינג",
+    "2026-02-16": "יום הנשיאים", "2026-04-03": "יום שישי הטוב",
+    "2026-05-25": "יום הזיכרון האמריקאי", "2026-06-19": "Juneteenth",
+    "2026-07-03": "יום העצמאות האמריקאי", "2026-09-07": "יום העבודה",
+    "2026-11-26": "חג ההודיה", "2026-12-25": "חג המולד",
+    "2027-01-01": "השנה החדשה", "2027-01-18": "יום מרטין לותר קינג",
+    "2027-02-15": "יום הנשיאים", "2027-03-26": "יום שישי הטוב",
+    "2027-05-31": "יום הזיכרון האמריקאי", "2027-06-18": "Juneteenth",
+    "2027-07-05": "יום העצמאות האמריקאי", "2027-09-06": "יום העבודה",
+    "2027-11-25": "חג ההודיה", "2027-12-24": "חג המולד"
+  };
+  var NYSE_HALF_DAYS = { "2026-11-27": 1, "2026-12-24": 1, "2027-11-26": 1 };   // סגירה מוקדמת 20:00 IL
+  function dayKey(d) {
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  }
+  function closeT(d) { return NYSE_HALF_DAYS[dayKey(d)] ? { h: 20, m: 0 } : CLOSE_T; }
   function atTime(base, t) { var d = new Date(base); d.setHours(t.h, t.m, 0, 0); return d; }
-  function tradingDay(d) { var w = d.getDay(); return w >= 1 && w <= 5; }
+  function tradingDay(d) { var w = d.getDay(); return w >= 1 && w <= 5 && !NYSE_HOLIDAYS[dayKey(d)]; }
   function clockTarget() {
     var now = new Date();
     if (tradingDay(now) && now < atTime(now, OPEN_T)) return { t: atTime(now, OPEN_T), label: "לפתיחת המסחר בוול-סטריט", open: false };
-    if (tradingDay(now) && now < atTime(now, CLOSE_T)) return { t: atTime(now, CLOSE_T), label: "לסגירת המסחר", open: true };
+    if (tradingDay(now) && now < atTime(now, closeT(now))) return { t: atTime(now, closeT(now)), label: "לסגירת המסחר", open: true };
     var d = new Date(now); d.setDate(d.getDate() + 1);
     while (!tradingDay(d)) d.setDate(d.getDate() + 1);
     return { t: atTime(d, OPEN_T), label: "לפתיחת המסחר הבאה", open: false };
+  }
+  /* יום/תאריך + החג הקרוב בבורסה — משמאל לשעון */
+  function renderDayMeta() {
+    var el = document.getElementById("np-daymeta");
+    if (!el) return;
+    var now = new Date();
+    var days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+    var dateStr = "יום " + days[now.getDay()] + ' · <b class="num" dir="ltr">' +
+      now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear() + "</b>";
+    var k = dayKey(now), extra = "";
+    if (NYSE_HOLIDAYS[k]) {
+      extra = '<span class="dm-hol">🏖 הבורסה סגורה היום — ' + NYSE_HOLIDAYS[k] + "</span>";
+    } else if (NYSE_HALF_DAYS[k]) {
+      extra = '<span class="dm-hol">🕐 מסחר מקוצר היום · סגירה 20:00</span>';
+    } else {
+      var d = new Date(now), best = null;
+      for (var i = 1; i <= 400 && !best; i++) {
+        d.setDate(d.getDate() + 1);
+        if (NYSE_HOLIDAYS[dayKey(d)]) best = { name: NYSE_HOLIDAYS[dayKey(d)], d: new Date(d), n: i };
+      }
+      if (best) {
+        var when = best.n === 1 ? "מחר" : "בעוד " + best.n + " ימים";
+        extra = '<span class="dm-hol">🏖 החג הבא: ' + best.name +
+          ' · <span class="num" dir="ltr">' + best.d.getDate() + "." + (best.d.getMonth() + 1) + "</span> · " + when + "</span>";
+      }
+    }
+    el.innerHTML = dateStr + extra;
   }
   function startClock() {
     var timeEl = document.getElementById("clock-time");
@@ -808,7 +854,7 @@
     var now = new Date();
     if (!tradingDay(now)) return "closed";
     if (now < atTime(now, OPEN_T)) return (now.getHours() * 60 + now.getMinutes()) >= 660 ? "pre" : "closed";
-    if (now < atTime(now, CLOSE_T)) return "regular";
+    if (now < atTime(now, closeT(now))) return "regular";
     return "post";
   }
   function refreshFocusQuotes(syms, force) {
@@ -2046,6 +2092,8 @@
   function boot() {
     loadTicker();
     initSearch();
+    renderDayMeta();
+    setInterval(renderDayMeta, 3600000);   // מתרענן שעה-שעה (חוצה-חצות)
     setInterval(loadTicker, 180000);        // הקובץ מהשרת (ספארקים + tnx) כל 3 דק'
     setInterval(refreshTickerLive, 60000);  // מחירים חיים מהסורק כל דקה
     refreshHeat();
