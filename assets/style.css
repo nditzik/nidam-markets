@@ -858,7 +858,8 @@ body { background-image: none; background-color: var(--bg); }
 
 /* החג הקרוב בבורסה (2026-08-13) + תאריך היום מעל קיקר יום-המסחר */
 #np-daymeta { justify-self: end; min-width: 0; font-size: .76rem; color: var(--text-3); text-align: start; }
-.np-today { display: block; font-size: .72rem; color: var(--text-3); margin-bottom: 3px; }
+.np-today { display: block; font-size: .86rem; font-weight: 600; color: var(--text-soft);
+  margin-bottom: 12px; letter-spacing: .02em; }
 @media (max-width: 880px) {
   #np-daymeta { text-align: center; order: 2; }   /* מתחת לחיפוש, מעל השעון */
   .np-search { order: 1; }
