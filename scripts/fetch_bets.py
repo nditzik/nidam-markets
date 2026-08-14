@@ -130,7 +130,14 @@ def cpi_row():
            "JUL": "יולי", "AUG": "אוגוסט", "SEP": "ספטמבר", "OCT": "אוקטובר", "NOV": "נובמבר", "DEC": "דצמבר"}
     if mm:
         month = heb.get(mm.group(1), "")
-    return {"key": "cpi_next", "label": "אינפלציה שנתית — נתון " + (month or "הבא"),
+    # מועד הפרסום = סגירת החוזה (נתוני CPI מתפרסמים בפיגור חודש — בלי התאריך
+    # הקורא חושב בטעות שמדובר בנתון שכבר פורסם)
+    rel = ""
+    closes = [m.get("close_time") for m in ev if m.get("close_time")]
+    md = re.match(r"(\d{4})-(\d{2})-(\d{2})", min(closes)) if closes else None
+    if md:
+        rel = f" · יתפרסם {int(md.group(3))}.{int(md.group(2))}"
+    return {"key": "cpi_next", "label": "אינפלציה שנתית — נתון " + (month or "הבא") + rel,
             "sub": f"ההימור המוביל: תישאר מעל {best[0]}%", "pct": round(best[1] * 100), "chg": None,
             "src": "Kalshi"}
 
