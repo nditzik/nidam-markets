@@ -457,6 +457,80 @@
   }
   // expose for CTA buttons
   window.__goTab = activate;
+
+  /* ---- גרף בלחיצה: מודאל TradingView (SMA 20/50/200 + ווליום) לכל טיקר באתר ----
+     כל טיקר באתר כבר מקושר ל-tradingview.com/symbols/SYM — מיירטים את הקליק
+     ופותחים חלונית במקום לנווט החוצה. tv.js נטען פעם אחת, רק בלחיצה הראשונה. */
+  var TV_SYM_RE = /tradingview\.com\/symbols\/([^/?#]+)/;
+  function ensureTvLib(cb) {
+    if (window.TradingView && window.TradingView.widget) { cb(); return; }
+    var s = document.createElement("script");
+    s.src = "https://s3.tradingview.com/tv.js";
+    s.onload = cb;
+    s.onerror = function () {
+      var b = document.querySelector("#tvm-wrap .tvm-body");
+      if (b) b.innerHTML = '<div class="tvm-err">טעינת הגרף נכשלה — בדקו חיבור לאינטרנט</div>';
+    };
+    document.head.appendChild(s);
+  }
+  function closeChart() {
+    var w = document.getElementById("tvm-wrap");
+    if (w) w.remove();
+    document.body.style.overflow = "";
+    document.removeEventListener("keydown", escChart);
+  }
+  function escChart(e) { if (e.key === "Escape") closeChart(); }
+  function openChart(sym) {
+    closeChart();
+    var wrap = document.createElement("div");
+    wrap.id = "tvm-wrap";
+    wrap.innerHTML =
+      '<div class="tvm-box" role="dialog" aria-modal="true" aria-label="גרף ' + esc(sym) + '">' +
+        '<div class="tvm-head">' +
+          '<b class="tvm-sym" dir="ltr">' + esc(sym) + "</b>" +
+          '<span class="tvm-note">ממוצעים נעים 20 · 50 · 200 + ווליום</span>' +
+          '<a class="tvm-full" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
+            '/" target="_blank" rel="noopener">פתיחה מלאה ↗</a>' +
+          '<button class="tvm-x" type="button" aria-label="סגירה">✕</button>' +
+        "</div>" +
+        '<div class="tvm-body"><div class="tvm-load">טוען גרף…</div><div id="tvm-chart"></div></div>' +
+      "</div>";
+    document.body.appendChild(wrap);
+    document.body.style.overflow = "hidden";
+    wrap.addEventListener("click", function (e) { if (e.target === wrap) closeChart(); });
+    wrap.querySelector(".tvm-x").addEventListener("click", closeChart);
+    document.addEventListener("keydown", escChart);
+    ensureTvLib(function () {
+      if (!document.getElementById("tvm-chart")) return; // המודאל נסגר בזמן הטעינה
+      new window.TradingView.widget({
+        container_id: "tvm-chart",
+        symbol: sym,
+        interval: "D",
+        autosize: true,
+        timezone: "Asia/Jerusalem",
+        theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light",
+        style: "1",
+        locale: "en",
+        hide_side_toolbar: true,
+        allow_symbol_change: false,
+        withdateranges: true,
+        studies: [
+          { id: "MASimple@tv-basicstudies", inputs: { length: 20 } },
+          { id: "MASimple@tv-basicstudies", inputs: { length: 50 } },
+          { id: "MASimple@tv-basicstudies", inputs: { length: 200 } },
+        ],
+      });
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target;
+    var a = t && t.closest ? t.closest('a[href*="tradingview.com/symbols/"]') : null;
+    if (!a || a.classList.contains("tvm-full")) return;
+    var m = TV_SYM_RE.exec(a.getAttribute("href") || "");
+    if (!m) return;
+    e.preventDefault();
+    openChart(decodeURIComponent(m[1]));
+  });
   // התאמת iframe של דוחות רחבים: אם התוכן רחב מהמסך (טבלאות/גרפים) — מכווצים
   // כך שהדוח כולו נכנס ברוחב המסך (ומשם פינץ'-זום מגדיל).
   // הכיווץ הוא transform:scale על מעטפת בתוך המסמך, לא zoom: ב-WebKit ה-zoom משנה
