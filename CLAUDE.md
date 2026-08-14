@@ -26,6 +26,7 @@
 | ...-retry | trig_01W8FY5Nu76pEBUvBnAePBNr | 0 5 * * 2-6 | גיבוי 08:00 (no-op אם הראשי הצליח) |
 | nidam-event-update-1545 | trig_01BZNrS3UZbLQMEeQh2pUDVT | 50 12 * * 1-5 | עדכון-אירוע 15:50 אחרי מאקרו 15:30 |
 | nidam-event-update-1700 | trig_018imBgiWmzyXYKppZvnKWyA | 5 14 * * 1-5 | גרסת שוק-פתוח 17:05 |
+| nidam-midday-1900 | trig_012hxPwq27eeJyr6ForerGjf | 0 16 * * 1-5 | מהדורת אמצע-יום 19:00 → eventUpdate עם kind:"midday" (קיקר כחול 🕑; אדום שמור למאקרו). כלל ההימורים: השוואה רק כש-key+sub זהים |
 
 **חוקי ברזל (נלמדו בדם, 11-13.8):**
 1. **אין רשת:** ה-proxy של סביבת הענן חוסם כל API חיצוני (Yahoo/Polymarket/TradingView) ב-403 — מותר רק GitHub. כל פרומפט חייב לעבוד **מקבצי הריפו בלבד** (ה-Action מרענן אותם כל רבע שעה). "לפני" היסטורי — `git rev-list -1 --before=<ts> origin/main` + `git show SHA:file`.
@@ -65,7 +66,7 @@
 3. **WebKit + גריד:** `1fr` = minmax(auto,1fr), ו-WebKit מחשב min-content של flex בלי shrink — תוכן nowrap ארוך מנפח עמודות ושובר מובייל. תרופה: `min-width:0` על פריטי גריד. כרום מסתיר את זה — בדיקות מובייל רק ב-Playwright WebKit (viewport 390; chrome headless לא יורד מ-~500 רוחב — "גלישה" בצילום 390 היא ארטיפקט).
 4. **CORS של סורק TradingView:** simple request בלבד — body כ-text/plain בלי content-type.
 5. **פרסרי מיילים נשברים כשהמבנה משתנה** (קורה כל כמה ימים): לעגן בכותרות עברית; פורמט 2026-08-12 = div שטוחים עם `<br>`+בולטים; סנטימנט לוכד מעבר לתגיות פנימיות (`<span class="ltr">`) ושומר לטינית/ספרות.
-6. **שעון חורף (~סוף אוקטובר):** להזיז את כל ה-crons — update.yml, cron-job.org, ו-4 רוטינות הענן.
+6. **שעון חורף (~סוף אוקטובר):** להזיז את כל ה-crons — update.yml, cron-job.org, ו-5 רוטינות הענן.
 7. עריכת קבצים עם אימוג'י/עברית — Write tool, לא heredoc.
 8. **שינוי ויזואלי = צילום-עין לפני push** (Playwright screenshot) — לא רק בדיקה טכנית.
 
