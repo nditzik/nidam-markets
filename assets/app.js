@@ -230,10 +230,7 @@
         chg = '<span class="bt2-chg ' + (r.chg > 0 ? "up" : "down") + '"><span class="num" dir="ltr">' +
           (r.chg > 0 ? "▲+" : "▼−") + Math.abs(r.chg).toFixed(0) + "</span> היום</span>";
       }
-      // הפד: ההתפלגות המלאה כתת-שורה — אותו פורמט כרטיס כמו כולם
-      var sub = (r.key === "fed_next" && (r.dist || []).length > 1)
-        ? r.dist.map(function (o) { return esc(o.label) + " " + o.pct + "%"; }).join(" · ")
-        : esc(r.sub);
+      var sub = esc(r.sub);
       var journey = "", chart = "";
       var h = (hist[r.key] || []).map(function (e) { return e.pct; });
       if (h.length >= 2) {

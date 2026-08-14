@@ -918,8 +918,8 @@ p.np-evt { font-size: .88rem; color: var(--down); }
 .bt2-chg.up { color: var(--up); background: color-mix(in srgb, var(--up) 12%, transparent); }
 .bt2-chg.down { color: var(--down); background: color-mix(in srgb, var(--down) 10%, transparent); }
 .bt2-chg.flat { color: var(--text-3); background: color-mix(in srgb, var(--text-3) 12%, transparent); }
-.bt2-sub { font-size: .72rem; color: var(--text-soft); margin: 4px 0 5px; line-height: 1.4; }
-.bt2-journey { font-size: .74rem; color: var(--text-soft); margin-bottom: 3px; }
+.bt2-sub { font-size: .72rem; color: var(--text-soft); margin: 4px 0 5px; line-height: 1.4; text-align: center; }
+.bt2-journey { font-size: .74rem; color: var(--text-soft); margin-bottom: 3px; text-align: center; }
 .bt2-journey .arr { font-weight: 800; }
 .bt2-journey .arr.up { color: var(--up); }
 .bt2-journey .arr.down { color: var(--down); }

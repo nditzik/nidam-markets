@@ -114,7 +114,7 @@ def cpi_row():
     if mm:
         month = heb.get(mm.group(1), "")
     return {"key": "cpi_next", "label": "אינפלציה שנתית — נתון " + (month or "הבא"),
-            "sub": f"ההימור: תישאר מעל {best[0]}%", "pct": round(best[1] * 100), "chg": None,
+            "sub": f"ההימור המוביל: תישאר מעל {best[0]}%", "pct": round(best[1] * 100), "chg": None,
             "src": "Kalshi"}
 
 
@@ -137,8 +137,17 @@ def spy_row():
     over = [u for u in ups if u[1] >= 0.5]
     best = max(over, key=lambda u: u[0]) if over else max(ups, key=lambda u: u[1])
     return {"key": "spy_hit", "label": "יעד S&P החודש (SPY)",
-            "sub": f"ההימור: יגע ב-${best[0]}", "pct": round(best[1] * 100),
+            "sub": f"ההימור המוביל: יגע ב-${best[0]}", "pct": round(best[1] * 100),
             "chg": chg_pp(best[2])}
+
+
+def yesno_row(key, label, yes_he, no_he, p, chg):
+    """שוק כן/לא: מציגים תמיד את הצד המוביל — האחוז, הכיוון והשינוי היומי שלו."""
+    if p >= 0.5:
+        return {"key": key, "label": label, "sub": "ההימור המוביל: " + yes_he,
+                "pct": round(p * 100), "chg": chg}
+    return {"key": key, "label": label, "sub": "ההימור המוביל: " + no_he,
+            "pct": round((1 - p) * 100), "chg": (-chg if chg is not None else None)}
 
 
 def cuts_label(title):
@@ -191,11 +200,8 @@ def main():
         m = (ev.get("markets") or [None])[0] if ev else None
         p = yes_price(m) if m else None
         if p is not None:
-            rows.append({
-                "key": "hike_2026", "label": "העלאת ריבית עד סוף 2026",
-                "sub": "הסתברות ל-YES",
-                "pct": round(p * 100), "chg": chg_pp(m),
-            })
+            rows.append(yesno_row("hike_2026", "העלאת ריבית עד סוף 2026",
+                                  "תהיה העלאה", "לא תהיה העלאה", p, chg_pp(m)))
     except Exception as e:
         print(f"[warn] hike: {e}")
     try:
@@ -209,8 +215,8 @@ def main():
         m = (ev.get("markets") or [None])[0] if ev else None
         p = yes_price(m) if m else None
         if p is not None:
-            rows.append({"key": "recession", "label": "מיתון בארה\"ב עד סוף 2026",
-                         "sub": "הסתברות ל-YES", "pct": round(p * 100), "chg": chg_pp(m)})
+            rows.append(yesno_row("recession", "מיתון בארה\"ב עד סוף 2026",
+                                  "יהיה מיתון", "לא יהיה מיתון", p, chg_pp(m)))
     except Exception as e:
         print(f"[warn] recession: {e}")
     try:
