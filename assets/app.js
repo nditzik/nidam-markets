@@ -531,6 +531,76 @@
     e.preventDefault();
     openChart(decodeURIComponent(m[1]));
   });
+
+  /* טיקרים בתוך דוחות ה-iframe (הצעות לטרייד / סקטורים): הדוחות מגיעים כ-HTML
+     חיצוני בלי לינקים — סורקים את הטקסט אחרי טעינה (same-origin), עוטפים טיקרים
+     ב-span לחיץ שפותח את מודאל הגרף. יקום מוכר → לחיץ תמיד; אחרת היוריסטיקה:
+     2-5 אותיות גדולות שאינן מונח מסחר/מאקרו מוכר. כשל בסריקה משאיר את הדוח כרגיל. */
+  var TK_STOP = {};
+  ("RSI EMA SMA ATR MACD VWAP ADX OBV CCI MFI HOD LOD EOD ATH ATL PT TP SL RR BUY SELL HOLD STOP ENTRY EXIT SETUP SWING RISK GAP AVG MAX MIN MID VOL PE EPS PEG ROE ROI YOY QOQ YTD TTM GDP CPI PPI PCE NFP PMI ISM FED FOMC ECB BOJ USD EUR ILS GBP JPY CEO CFO CTO IPO ETF ETN ADR AI IT US USA UK EU NY NYSE AMEX OTC LLC INC CORP LTD PLC AM PM ET EST EDT GMT UTC OK NA TBD HTML CSS URL API PDF CSV JSON HTTP WWW II III IV DATE TIME NAME PRICE LONG SHORT NEW ALL LOW HIGH OPEN BRIEF DAILY WATCH CHART TREND NOTE NOTES PLAN")
+    .split(" ").forEach(function (w) { TK_STOP[w] = 1; });
+  function tickerUniverse() {
+    var set = {};
+    function add(s) { if (s) set[String(s).toUpperCase()] = 1; }
+    ((MOMD && MOMD.stocks) || []).forEach(function (s) { add(s.symbol); });
+    ((CANDD && CANDD.candidates) || []).forEach(function (c) { add(c.symbol); });
+    if (MOVERS) ["gainers", "losers", "active"].forEach(function (g) {
+      (MOVERS[g] || []).forEach(function (x) { add(x.symbol); });
+    });
+    Object.keys(EARNW || {}).forEach(add);
+    Object.keys(FOCUSQ || {}).forEach(add);
+    (typeof SECTOR_ETFS !== "undefined" ? SECTOR_ETFS : []).forEach(function (s) { add(s[0]); });
+    return set;
+  }
+  var TK_RE = /\b[A-Z]{2,5}(?:\.[A-Z])?\b/g;
+  window.__linkTickers = function (f) {
+    try {
+      var doc = f.contentWindow.document;
+      if (!doc || !doc.body || doc.getElementById("np-tk-style")) return;
+      var st = doc.createElement("style");
+      st.id = "np-tk-style";
+      st.textContent = ".np-tk{cursor:pointer;text-decoration:underline dotted;text-underline-offset:2px}" +
+        ".np-tk:hover{opacity:.72}";
+      (doc.head || doc.body).appendChild(st);
+      var known = tickerUniverse();
+      var walker = doc.createTreeWalker(doc.body, 4 /* SHOW_TEXT */, null);
+      var nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(function (n) {
+        var p = n.parentNode;
+        if (!p || !p.nodeName) return;
+        var tag = p.nodeName.toLowerCase();
+        if (tag === "script" || tag === "style" || tag === "a" || tag === "title") return;
+        if (p.className && String(p.className).indexOf("np-tk") >= 0) return;
+        var txt = n.nodeValue;
+        if (!txt || !/[A-Z]/.test(txt)) return;
+        var frag = null, last = 0, m;
+        TK_RE.lastIndex = 0;
+        while ((m = TK_RE.exec(txt))) {
+          var w = m[0], core = w.replace(/\.[A-Z]$/, "");
+          if (!(known[w] || known[core] || !TK_STOP[core])) continue;
+          if (!frag) frag = doc.createDocumentFragment();
+          if (m.index > last) frag.appendChild(doc.createTextNode(txt.slice(last, m.index)));
+          var s = doc.createElement("span");
+          s.className = "np-tk";
+          s.setAttribute("data-sym", w);
+          s.textContent = w;
+          frag.appendChild(s);
+          last = m.index + w.length;
+        }
+        if (frag) {
+          if (last < txt.length) frag.appendChild(doc.createTextNode(txt.slice(last)));
+          p.replaceChild(frag, n);
+        }
+      });
+      doc.body.addEventListener("click", function (e) {
+        var t = e.target;
+        while (t && t !== doc.body && !(t.getAttribute && t.getAttribute("data-sym"))) t = t.parentNode;
+        var sym = t && t.getAttribute && t.getAttribute("data-sym");
+        if (sym) { e.preventDefault(); openChart(sym); }
+      });
+    } catch (err) { /* דוח בפורמט חריג — נשאר בלי לינקים */ }
+  };
   // התאמת iframe של דוחות רחבים: אם התוכן רחב מהמסך (טבלאות/גרפים) — מכווצים
   // כך שהדוח כולו נכנס ברוחב המסך (ומשם פינץ'-זום מגדיל).
   // הכיווץ הוא transform:scale על מעטפת בתוך המסמך, לא zoom: ב-WebKit ה-zoom משנה
@@ -539,6 +609,7 @@
   // נוגע ב-layout, אז המדידה נכונה תמיד; קיבוע html/body לגודל הוויזואלי מונע
   // מ-iOS לנפח את ה-iframe לגודל התוכן (הניפוח נגזר מגודל הגלילה של המסמך).
   window.__fitFrame = function (f) {
+    window.__linkTickers(f);
     function fit() {
       try {
         var doc = f.contentWindow.document;
