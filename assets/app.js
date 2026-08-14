@@ -1403,9 +1403,12 @@
     // במכוון על CA הגולמי ולא על ca מוגן-התאריך — לעדכון יש שעון-טריות משלו
     var eu = freshEventUpdate(CA);
     if (eu) {
+      // אירוע מאקרו = אדום/דחוף; עדכון אמצע-יום מתוזמן = ניטרלי
+      var euMid = eu.kind === "midday";
       el.innerHTML =
         '<span class="np-today">' + todayLine() + "</span>" +
-        '<span class="np-k np-evt">🔴 עדכון ' + esc(eu.event || "אירוע") + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
+        '<span class="np-k ' + (euMid ? "np-evt-mid" : "np-evt") + '">' + (euMid ? "🕑" : "🔴") +
+          " עדכון " + esc(eu.event || "אירוע") + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
         '<h2 class="np-h1">' + esc(eu.headline) + "</h2>" +
         (eu.tldr ? '<p class="np-dek">' + esc(eu.tldr) + "</p>" : "") +
         (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
@@ -1692,7 +1695,8 @@
     if (!ca) return "";
     var eu = freshEventUpdate(CA);
     var euLine = eu
-      ? '<p class="np-evt" style="margin:0 0 10px">🔴 <b>עדכון ' + esc(eu.event || "") + " · " + esc(eu.time || "") + ":</b> " + esc(eu.headline) + "</p>"
+      ? '<p class="' + (eu.kind === "midday" ? "np-evt-mid" : "np-evt") + '" style="margin:0 0 10px">' +
+        (eu.kind === "midday" ? "🕑" : "🔴") + ' <b>עדכון ' + esc(eu.event || "") + " · " + esc(eu.time || "") + ":</b> " + esc(eu.headline) + "</p>"
       : "";
     return '<div class="section-title" style="margin-top:0">🧠 הניתוח היומי</div>' +
       '<div class="card np-ca">' +

@@ -900,6 +900,10 @@ body { background-image: none; background-color: var(--bg); }
 .np-k.np-evt { color: var(--down); font-weight: 800; }
 .np-evt b { color: inherit; }
 p.np-evt { font-size: .88rem; color: var(--down); }
+/* עדכון אמצע-יום מתוזמן (2026-08-14) — ניטרלי, לא אדום */
+.np-k.np-evt-mid { color: var(--accent); font-weight: 800; }
+.np-evt-mid b { color: inherit; }
+p.np-evt-mid { font-size: .88rem; color: var(--accent); }
 .np-odds { font-size: .92rem; margin: 0 0 14px; color: var(--text-soft); }
 .np-odds, .np-bottom { font-family: var(--serif); }
 
