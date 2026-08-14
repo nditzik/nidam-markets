@@ -903,22 +903,31 @@ p.np-evt { font-size: .88rem; color: var(--down); }
 .np-odds { font-size: .92rem; margin: 0 0 14px; color: var(--text-soft); }
 .np-odds, .np-bottom { font-family: var(--serif); }
 
-/* מה השווקים מהמרים (2026-08-10) */
-.bt-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 10px 0 12px; border-bottom: 1px solid var(--paper-hair); align-items: center; }
-.bt-row:last-of-type { border-bottom: 0; }
-.bt-txt { display: flex; flex-direction: column; gap: 1px; }
-.bt-txt b { font-size: .95rem; }
-.bt-sub { font-size: .78rem; color: var(--text-soft); }
-.bt-val { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2; }
-.bt-val > b { font-size: 1.35rem; }
-.bt-chg { font-size: .72rem; color: var(--text-3); white-space: nowrap; }
-.bt-chg.up .num { color: var(--up); } .bt-chg.down .num { color: var(--down); }
-.bt-bar { grid-column: 1 / -1; height: 4px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
-.bt-bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
-.bt-dist { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 8px; margin-top: 5px;
-  font-size: .78rem; color: var(--text-soft); }
-.bt-d b { color: var(--text); }
-.bt-d-sep { color: var(--text-3); }
+/* מה השווקים מהמרים — כרטיסי מגמה אחידים (2026-08-14) */
+.bt2-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.bt2-card { border: 1px solid var(--paper-hair); border-radius: 13px; background: var(--surface-2);
+  position: relative; overflow: hidden; padding: 12px 13px 0; display: flex; flex-direction: column;
+  min-width: 0; }
+.bt2-card.hot { border-color: var(--warn); box-shadow: 0 0 0 1px var(--warn); padding-top: 26px; }
+.bt2-hot { position: absolute; top: 0; inset-inline-end: 0; background: var(--warn); color: #fff;
+  font-size: .62rem; font-weight: 800; border-radius: 0 11px 0 10px; padding: 3px 9px; }
+.bt2-label { font-size: .78rem; font-weight: 700; min-height: 2.3em; line-height: 1.25; }
+.bt2-now { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; margin-top: 2px; }
+.bt2-now > b { font-size: 1.55rem; font-weight: 800; line-height: 1; }
+.bt2-chg { font-size: .68rem; font-weight: 700; border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+.bt2-chg.up { color: var(--up); background: color-mix(in srgb, var(--up) 12%, transparent); }
+.bt2-chg.down { color: var(--down); background: color-mix(in srgb, var(--down) 10%, transparent); }
+.bt2-chg.flat { color: var(--text-3); background: color-mix(in srgb, var(--text-3) 12%, transparent); }
+.bt2-sub { font-size: .72rem; color: var(--text-soft); margin: 4px 0 5px; line-height: 1.4; }
+.bt2-journey { font-size: .74rem; color: var(--text-soft); margin-bottom: 3px; }
+.bt2-journey .arr { font-weight: 800; }
+.bt2-journey .arr.up { color: var(--up); }
+.bt2-journey .arr.down { color: var(--down); }
+.bt2-journey .arr.flat { color: var(--text-3); }
+.bt2-chart { height: 50px; margin: auto -13px 0; }
+.bt2-chart svg { width: 100%; height: 100%; display: block; }
+@media (max-width: 1000px) { .bt2-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .bt2-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* מפת חום סקטוריאלית — רצועה רוחבית דקה מתחת לטיקר (2026-08-10) */
 #np-heat { display: flex; align-items: center; gap: 14px; padding: 7px 0 9px;

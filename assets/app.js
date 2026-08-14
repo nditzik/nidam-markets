@@ -196,34 +196,67 @@
       '<div class="ht-grid">' + tiles + "</div>";
   }
 
-  /* "מה השווקים מהמרים" — הסתברויות משוקי חיזוי (data/bets.json, Polymarket) */
+  /* "מה השווקים מהמרים" — כרטיסי מגמה אחידים (data/bets.json + history) */
+  function betSpark(h, dir) {
+    var W = 160, H = 56;
+    var min = Math.min.apply(null, h), max = Math.max.apply(null, h);
+    if (max - min < 4) { var mid = (max + min) / 2; min = mid - 2; max = mid + 2; }
+    var pts = h.map(function (v, i) {
+      return [(i * (W / (h.length - 1))).toFixed(1), ((H - 8) - ((v - min) / (max - min)) * (H - 20)).toFixed(1)];
+    });
+    var line = pts.map(function (p) { return p[0] + "," + p[1]; }).join(" ");
+    var col = dir === "up" ? "var(--up)" : dir === "down" ? "var(--down)" : "var(--accent)";
+    var last = pts[pts.length - 1];
+    return '<div class="bt2-chart"><svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none">' +
+      '<polygon points="0,' + H + " " + line + " " + W + "," + H + '" fill="' + col + '" fill-opacity=".13"/>' +
+      '<polyline points="' + line + '" fill="none" stroke="' + col + '" stroke-width="2"/>' +
+      '<circle cx="' + last[0] + '" cy="' + last[1] + '" r="3" fill="' + col + '"/></svg></div>';
+  }
   function renderBets(d) {
     var el = document.getElementById("home-bets");
     if (!el) return;
     if (!d || !(d.rows || []).length) { el.innerHTML = ""; return; }
+    var hist = d.history || {};
+    // "המהלך של היום" — התזוזה היומית הגדולה ביותר (5 נק'+ לפחות)
+    var hotKey = null, hotAbs = 5;
+    d.rows.forEach(function (r) {
+      if (r.chg != null && Math.abs(r.chg) >= hotAbs) { hotAbs = Math.abs(r.chg); hotKey = r.key; }
+    });
+    var cards = d.rows.map(function (r) {
+      var chg;
+      if (r.chg == null || Math.abs(r.chg) < 0.5) {
+        chg = '<span class="bt2-chg flat">0 היום</span>';
+      } else {
+        chg = '<span class="bt2-chg ' + (r.chg > 0 ? "up" : "down") + '"><span class="num" dir="ltr">' +
+          (r.chg > 0 ? "▲+" : "▼−") + Math.abs(r.chg).toFixed(0) + "</span> היום</span>";
+      }
+      // הפד: ההתפלגות המלאה כתת-שורה — אותו פורמט כרטיס כמו כולם
+      var sub = (r.key === "fed_next" && (r.dist || []).length > 1)
+        ? r.dist.map(function (o) { return esc(o.label) + " " + o.pct + "%"; }).join(" · ")
+        : esc(r.sub);
+      var journey = "", chart = "";
+      var h = (hist[r.key] || []).map(function (e) { return e.pct; });
+      if (h.length >= 2) {
+        var diff = h[h.length - 1] - h[0];
+        var dir = diff > 1.5 ? "up" : diff < -1.5 ? "down" : "flat";
+        var arr = { up: "↗", down: "↘", flat: "→" }[dir];
+        journey = '<span class="bt2-journey">' + h.length + ' ימים: <span class="num" dir="ltr">' + h[0] +
+          '%</span> <span class="arr ' + dir + '">' + arr + '</span> <span class="num" dir="ltr">' + h[h.length - 1] + "%</span></span>";
+        chart = betSpark(h, dir);
+      }
+      var hot = r.key === hotKey;
+      return '<div class="bt2-card' + (hot ? " hot" : "") + '">' +
+        (hot ? '<span class="bt2-hot">🔥 המהלך של היום</span>' : "") +
+        '<span class="bt2-label">' + esc(r.label) + "</span>" +
+        '<div class="bt2-now"><b class="num">' + r.pct + "%</b>" + chg + "</div>" +
+        '<span class="bt2-sub">' + sub + "</span>" +
+        journey + chart +
+        "</div>";
+    }).join("");
     el.innerHTML =
-      '<div class="card"><span class="np-k" style="margin-bottom:6px">🎲 מה השווקים מהמרים</span>' +
-      d.rows.map(function (r) {
-        var chg = "";
-        if (r.chg != null && Math.abs(r.chg) >= 0.5) {
-          chg = '<span class="bt-chg ' + (r.chg > 0 ? "up" : "down") + '"><span class="num" dir="ltr">' +
-            (r.chg > 0 ? "▲+" : "▼-") + Math.abs(r.chg).toFixed(0) + "</span> נק׳ היום</span>";
-        }
-        // התפלגות מלאה (כשקיימת): כל התוצאות האפשריות של ההימור עם ההסתברות שלהן
-        var dist = "";
-        if ((r.dist || []).length > 1) {
-          dist = '<div class="bt-dist">' + r.dist.map(function (o) {
-            return '<span class="bt-d">' + esc(o.label) + ' <b class="num">' + o.pct + "%</b></span>";
-          }).join('<span class="bt-d-sep">·</span>') + "</div>";
-        }
-        return '<div class="bt-row">' +
-          '<div class="bt-txt"><b>' + esc(r.label) + '</b><span class="bt-sub">' + esc(r.sub) + "</span></div>" +
-          '<div class="bt-val"><b class="num">' + r.pct + "%</b>" + chg + "</div>" +
-          '<div class="bt-bar"><i style="width:' + Math.max(2, Math.min(100, r.pct)) + '%"></i></div>' +
-          dist +
-          "</div>";
-      }).join("") +
-      '<p class="stamp" style="margin:10px 0 0">מחירי שוקי חיזוי (Polymarket / Kalshi) = ההסתברות שהשוק מתמחר · מתעדכן כל רבע שעה</p></div>';
+      '<div class="card"><span class="np-k" style="margin-bottom:10px">🎲 מה השווקים מהמרים</span>' +
+      '<div class="bt2-grid">' + cards + "</div>" +
+      '<p class="stamp" style="margin:12px 0 0">מחירי שוקי חיזוי (Polymarket / Kalshi) = ההסתברות שהשוק מתמחר · מתעדכן כל רבע שעה · הגרף: הימים האחרונים</p></div>';
   }
 
   /* ---- חיפוש כלל-אתרי: סורק את כל הנתונים שכבר בזיכרון הדפדפן (בלי שרת) ---- */

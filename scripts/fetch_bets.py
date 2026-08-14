@@ -232,6 +232,16 @@ def main():
                 existing = json.load(f)
         except Exception:
             pass
+    # היסטוריה יומית להסתברויות (מזין את גרפי המגמה בכרטיסים): רשומה אחת ליום,
+    # מתעדכנת תוך-יומית, נשמרים 8 ימים אחרונים
+    now_il = datetime.now(timezone.utc) + timedelta(hours=3)
+    today = now_il.strftime("%Y-%m-%d")
+    hist = dict((existing or {}).get("history") or {})
+    for r in rows:
+        h = [e for e in hist.get(r["key"], []) if e.get("d") != today][-7:]
+        h.append({"d": today, "pct": r["pct"]})
+        hist[r["key"]] = h
+    out["history"] = hist
     if {k: v for k, v in existing.items() if k != "_meta"} == out:
         print("[nochange] ההסתברויות לא השתנו.")
         return 0
