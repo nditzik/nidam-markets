@@ -72,23 +72,38 @@ def chg_pp(m):
     return round(c * 100, 1) if c is not None else None
 
 
-def kalshi_prob(m):
-    """הסתברות YES משוק Kalshi: מחיר אחרון, או אמצע קנייה/מכירה (סנטים→0..1)."""
-    lp = m.get("last_price")
-    if lp:
-        return lp / 100.0
-    yb, ya = m.get("yes_bid"), m.get("yes_ask")
-    if yb and ya and 0 < yb <= 100 and 0 < ya <= 100:
-        return (yb + ya) / 200.0
+def kalshi_markets(series):
+    req = urllib.request.Request(KALSHI + series + "&status=open&limit=100", headers=UA)
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.loads(r.read().decode("utf-8")).get("markets", [])
+
+
+def kalshi_ob_prob(ticker):
+    """הסתברות YES מספר-הפקודות הציבורי: אמצע בין הצעת ה-YES הטובה למשלים של
+    הצעת ה-NO. (מ-08/2026 ה-API הציבורי כבר לא חושף last_price/bid/ask ישירות.)"""
+    url = "https://api.elections.kalshi.com/trade-api/v2/markets/" + ticker + "/orderbook"
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=20) as r:
+        ob = json.loads(r.read().decode("utf-8")).get("orderbook_fp") or {}
+
+    def best(side):
+        ps = [float(p) for p, _ in (ob.get(side) or [])]
+        return max(ps) if ps else None
+
+    yb, nb = best("yes_dollars"), best("no_dollars")
+    if yb is not None and nb is not None:
+        return (yb + (1 - nb)) / 2
+    if yb is not None:
+        return yb
+    if nb is not None:
+        return 1 - nb
     return None
 
 
 def cpi_row():
     """אינפלציה שנתית (Kalshi KXCPIYOY): הרף הגבוה ביותר שהשוק נותן לו 50%+.
     בלי נזילות → אין שורה."""
-    req = urllib.request.Request(KALSHI + "KXCPIYOY&status=open&limit=100", headers=UA)
-    with urllib.request.urlopen(req, timeout=20) as r:
-        markets = json.loads(r.read().decode("utf-8")).get("markets", [])
+    markets = kalshi_markets("KXCPIYOY")
     events = {}
     for m in markets:
         events.setdefault(m.get("event_ticker") or m.get("ticker", "")[:14], []).append(m)
@@ -99,8 +114,10 @@ def cpi_row():
     best = None
     for m in ev:
         mt = re.search(r"T(\d+(?:\.\d+)?)$", m.get("ticker") or "")
-        p = kalshi_prob(m)
-        if not mt or p is None:
+        if not mt:
+            continue
+        p = kalshi_ob_prob(m.get("ticker"))
+        if p is None:
             continue
         thr = float(mt.group(1))
         if p >= 0.5 and (best is None or thr > best[0]):
@@ -118,27 +135,47 @@ def cpi_row():
             "src": "Kalshi"}
 
 
-def spy_row():
-    """יעד SPY חודשי (Polymarket): רף ה-'יגע ב-' הגבוה ביותר עם 50%+ (או המוביל)."""
-    now = datetime.now(timezone.utc) + timedelta(hours=3)
-    slug = f"what-price-will-spy-hit-in-{MONTH_EN[now.month - 1]}-{now.year}"
-    ev = get_event(slug)
-    if not ev:
+def spx_row():
+    """יעד S&P 500 לסוף השנה (Kalshi KXINXY, סולם טווחי סגירה): הרצפה הגבוהה
+    ביותר שהשוק נותן לה 50%+ לסגירה מעליה (הסתברות מצטברת מנורמלת על הסולם)."""
+    markets = kalshi_markets("KXINXY")
+    if not markets:
         return None
-    ups = []
-    for m in ev.get("markets") or []:
-        t = m.get("groupItemTitle") or ""
-        p = yes_price(m)
-        mt = re.search(r"[↑⬆]\s*\$?(\d+)", t)
-        if mt and p is not None and p < 0.995:   # רפים שכבר נגעו (p=1) לא מעניינים
-            ups.append((int(mt.group(1)), p, m))
-    if not ups:
+    events = {}
+    for m in markets:
+        events.setdefault(m.get("event_ticker") or "", []).append(m)
+    # אירוע הסגירה הקרוב = סוף השנה הנוכחית (בדצמבר עשויה להיפתח גם שנה קדימה)
+    ev = min(events.values(), key=lambda ms: min(m.get("close_time") or "9999" for m in ms))
+    year = ""
+    ym = re.search(r"-(\d{2})DEC", ev[0].get("ticker") or "")
+    if ym:
+        year = " 20" + ym.group(1)
+    buckets = []   # (רצפת הטווח בנקודות, הסתברות)
+    for m in ev:
+        sub = m.get("subtitle") or ""
+        nums = re.findall(r"[\d,]+(?:\.\d+)?", sub)
+        if not nums:
+            continue
+        p = kalshi_ob_prob(m.get("ticker"))
+        if p is None:
+            continue
+        floor = 0 if "below" in sub else int(round(float(nums[0].replace(",", ""))))
+        buckets.append((floor, p))
+    total = sum(p for _, p in buckets)
+    if total < 0.5:   # ספר דליל מדי בשביל מספר אמין
         return None
-    over = [u for u in ups if u[1] >= 0.5]
-    best = max(over, key=lambda u: u[0]) if over else max(ups, key=lambda u: u[1])
-    return {"key": "spy_hit", "label": "יעד S&P החודש (SPY)",
-            "sub": f"ההימור המוביל: יגע ב-${best[0]}", "pct": round(best[1] * 100),
-            "chg": chg_pp(best[2])}
+    best = None
+    for floor, _ in buckets:
+        if floor <= 0:
+            continue
+        cum = sum(p for f2, p in buckets if f2 >= floor) / total
+        if cum >= 0.5 and (best is None or floor > best[0]):
+            best = (floor, cum)
+    if not best:
+        return None
+    return {"key": "spx_eoy", "label": "יעד S&P 500 לסוף" + (year or " השנה"),
+            "sub": f"ההימור המוביל: ייסגר מעל {best[0]:,}", "pct": round(best[1] * 100),
+            "chg": None, "src": "Kalshi"}
 
 
 def yesno_row(key, label, yes_he, no_he, p, chg):
@@ -220,11 +257,11 @@ def main():
     except Exception as e:
         print(f"[warn] recession: {e}")
     try:
-        r = spy_row()
+        r = spx_row()
         if r:
             rows.append(r)
     except Exception as e:
-        print(f"[warn] spy: {e}")
+        print(f"[warn] spx: {e}")
 
     if not rows:
         print("[keep] אין נתונים — משאיר bets.json קיים." if os.path.exists(OUT) else "[fail] אין נתונים.")
@@ -247,7 +284,13 @@ def main():
         h = [e for e in hist.get(r["key"], []) if e.get("d") != today][-7:]
         h.append({"d": today, "pct": r["pct"]})
         hist[r["key"]] = h
+    # מפתחות של שורות שהוסרו (למשל spy_hit הישן) לא נגררים לנצח
+    hist = {r["key"]: hist[r["key"]] for r in rows}
     out["history"] = hist
+    # לשורות Kalshi אין שינוי-יומי מה-API — נגזר מההיסטוריה שלנו (אתמול מול היום)
+    for r in rows:
+        if r.get("chg") is None and len(hist.get(r["key"]) or []) >= 2:
+            r["chg"] = round(r["pct"] - hist[r["key"]][-2]["pct"], 1)
     if {k: v for k, v in existing.items() if k != "_meta"} == out:
         print("[nochange] ההסתברויות לא השתנו.")
         return 0

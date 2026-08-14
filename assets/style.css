@@ -904,7 +904,7 @@ p.np-evt { font-size: .88rem; color: var(--down); }
 .np-odds, .np-bottom { font-family: var(--serif); }
 
 /* מה השווקים מהמרים — כרטיסי מגמה אחידים (2026-08-14) */
-.bt2-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.bt2-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
 .bt2-card { border: 1px solid var(--paper-hair); border-radius: 13px; background: var(--surface-2);
   position: relative; overflow: hidden; padding: 12px 13px 0; display: flex; flex-direction: column;
   min-width: 0; }
