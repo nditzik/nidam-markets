@@ -488,7 +488,7 @@
       '<div class="tvm-box" role="dialog" aria-modal="true" aria-label="גרף ' + esc(sym) + '">' +
         '<div class="tvm-head">' +
           '<b class="tvm-sym" dir="ltr">' + esc(sym) + "</b>" +
-          '<span class="tvm-note">ממוצעים נעים 20 · 50 · 200 + ווליום</span>' +
+          '<span class="tvm-note">ממוצעים <b style="color:#43a047">20</b> · <b style="color:#1e88e5">50</b> · <b style="color:#e53935">200</b> + ווליום</span>' +
           '<a class="tvm-full" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
             '/" target="_blank" rel="noopener">פתיחה מלאה ↗</a>' +
           '<button class="tvm-x" type="button" aria-label="סגירה">✕</button>' +
@@ -514,11 +514,22 @@
         hide_side_toolbar: true,
         allow_symbol_change: false,
         withdateranges: true,
+        // שלושה סוגי-ממוצע שונים בכוונה: צביעת overrides היא פר-סוג אינדיקטור
+        // (כל מופעי אותו סוג חולקים צבע), אז צבע נפרד לכל קו מחייב EMA/WMA/SMA.
+        // שם ה-plot של הממוצעים הוא "ma" — "plot" לא נתפס (נבדק אמפירית).
         studies: [
-          { id: "MASimple@tv-basicstudies", inputs: { length: 20 } },
-          { id: "MASimple@tv-basicstudies", inputs: { length: 50 } },
+          { id: "MAExp@tv-basicstudies", inputs: { length: 20 } },
+          { id: "MAWeighted@tv-basicstudies", inputs: { length: 50 } },
           { id: "MASimple@tv-basicstudies", inputs: { length: 200 } },
         ],
+        studies_overrides: {
+          "moving average exponential.ma.color": "#43a047",
+          "moving average exponential.ma.linewidth": 2,
+          "moving average weighted.ma.color": "#1e88e5",
+          "moving average weighted.ma.linewidth": 2,
+          "moving average.ma.color": "#e53935",
+          "moving average.ma.linewidth": 2,
+        },
       });
     });
   }
