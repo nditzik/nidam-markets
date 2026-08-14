@@ -1,95 +1,155 @@
 {
-  "today": "2026-08-14",
+  "today": "2026-08-15",
   "todayCount": 0,
   "todayBig": [],
   "reporting": [],
   "more": 0,
-  "upcoming": [],
+  "upcoming": [
+    {
+      "date": "2026-08-17",
+      "label": "17/8",
+      "dow": "ב׳",
+      "count": 1,
+      "tickers": [
+        "PANW"
+      ]
+    },
+    {
+      "date": "2026-08-18",
+      "label": "18/8",
+      "dow": "ג׳",
+      "count": 3,
+      "tickers": [
+        "HD",
+        "KEYS",
+        "JKHY"
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "label": "19/8",
+      "dow": "ד׳",
+      "count": 6,
+      "tickers": [
+        "ADI",
+        "TJX",
+        "LOW",
+        "TGT",
+        "EL",
+        "NDSN"
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "label": "20/8",
+      "dow": "ה׳",
+      "count": 5,
+      "tickers": [
+        "WMT",
+        "DE",
+        "INTU",
+        "ROST",
+        "WDAY"
+      ]
+    }
+  ],
   "week": [
     {
-      "date": "2026-08-10",
+      "date": "2026-08-17",
       "dow": "שני",
-      "label": "10.8",
-      "total": 2,
+      "label": "17.8",
+      "total": 1,
       "companies": [
         {
-          "ticker": "SPG",
-          "name": "Simon Property Group"
-        },
-        {
-          "ticker": "RKLB",
-          "name": "Rocket Lab Corp"
+          "ticker": "PANW",
+          "name": "Palo Alto Networks"
         }
       ]
     },
     {
-      "date": "2026-08-11",
+      "date": "2026-08-18",
       "dow": "שלישי",
-      "label": "11.8",
-      "total": 4,
+      "label": "18.8",
+      "total": 3,
       "companies": [
         {
-          "ticker": "LITE",
-          "name": "Lumentum Holdings"
+          "ticker": "HD",
+          "name": "Home Depot"
         },
         {
-          "ticker": "CAH",
-          "name": "Cardinal Health"
+          "ticker": "KEYS",
+          "name": "Keysight Technologies"
         },
         {
-          "ticker": "CRWV",
-          "name": "Coreweave Cl A"
-        },
-        {
-          "ticker": "SMCI",
-          "name": "Super Micro Computer"
+          "ticker": "JKHY",
+          "name": "Jack Henry & Assoc"
         }
       ]
     },
     {
-      "date": "2026-08-12",
+      "date": "2026-08-19",
       "dow": "רביעי",
-      "label": "12.8",
-      "total": 4,
+      "label": "19.8",
+      "total": 6,
       "companies": [
         {
-          "ticker": "CSCO",
-          "name": "Cisco Systems Inc"
+          "ticker": "ADI",
+          "name": "Analog Devices"
         },
         {
-          "ticker": "COHR",
-          "name": "Coherent Corp"
+          "ticker": "TJX",
+          "name": "TJX Companies"
         },
         {
-          "ticker": "NBIS",
-          "name": "Nebius Group N.V. Cl A"
+          "ticker": "LOW",
+          "name": "Lowe's Companies"
         },
         {
-          "ticker": "AMCR",
-          "name": "Amcor Plc"
+          "ticker": "TGT",
+          "name": "Target Corp"
+        },
+        {
+          "ticker": "EL",
+          "name": "Estee Lauder Companies"
+        },
+        {
+          "ticker": "NDSN",
+          "name": "Nordson Corp"
         }
       ]
     },
     {
-      "date": "2026-08-13",
+      "date": "2026-08-20",
       "dow": "חמישי",
-      "label": "13.8",
-      "total": 2,
+      "label": "20.8",
+      "total": 5,
       "companies": [
         {
-          "ticker": "AMAT",
-          "name": "Applied Materials"
+          "ticker": "WMT",
+          "name": "Walmart Inc"
         },
         {
-          "ticker": "TPR",
-          "name": "Tapestry Inc"
+          "ticker": "DE",
+          "name": "Deere & Company"
+        },
+        {
+          "ticker": "INTU",
+          "name": "Intuit Inc"
+        },
+        {
+          "ticker": "ROST",
+          "name": "Ross Stores Inc"
+        },
+        {
+          "ticker": "WDAY",
+          "name": "Workday Inc"
         }
       ]
     },
     {
-      "date": "2026-08-14",
+      "date": "2026-08-21",
       "dow": "שישי",
-      "label": "14.8",
+      "label": "21.8",
       "total": 0,
       "companies": []
     }
@@ -112,7 +172,7 @@
     "WMT": "2026-08-20"
   },
   "_meta": {
-    "updatedAt": "14/08/2026 23:48",
+    "updatedAt": "15/08/2026 00:01",
     "source": "earnings.csv"
   }
 }
