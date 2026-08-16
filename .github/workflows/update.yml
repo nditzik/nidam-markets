@@ -132,6 +132,14 @@ jobs:
         run: python scripts/fetch_trades.py
         continue-on-error: true
 
+      # --- שידור אוטומטי: כל תמונה חדשה תחת C:\challenge\reports (nidam-reports) → הערוץ ---
+      - name: Broadcast new report images to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/notify_telegram_broadcast.py
+        continue-on-error: true
+
       # --- מחירי שוק חיים (Yahoo Finance) לסרט בדף הבית ---
       - name: Fetch market quotes
         run: python scripts/fetch_market.py
