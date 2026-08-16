@@ -42,11 +42,6 @@ def load(path):
         return None
 
 
-def label_of(path):
-    name = os.path.splitext(path.rsplit("/", 1)[-1])[0]
-    return name.replace("_", " ").replace("-", " ").strip()
-
-
 def send_photo(token, chat, image_url, caption):
     url = "https://api.telegram.org/bot%s/sendPhoto" % token
     data = json.dumps({
@@ -99,9 +94,9 @@ def main():
         if sent_count >= MAX_PER_RUN:
             pending.append(path)
             continue
+        # בלי שם-קובץ בהודעה — רק שורת הקישור הסטנדרטית (כמו בתדרוך המשקיעים)
         image_url = RAW_BASE + urllib.parse.quote(path, safe="/")
-        caption = ("🖼 <b>%s</b>\n\n🔗 <a href=\"%s\">האתר המלא</a>"
-                   % (label_of(path), SITE))
+        caption = "🔗 <a href=\"%s\">לאתר המלא</a>" % SITE
         try:
             send_photo(token, chat, image_url, caption)
             sent[path] = sha
