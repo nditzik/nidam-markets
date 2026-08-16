@@ -22,6 +22,14 @@ on:
         description: "שלח תקציר בוקר לניסיון (לערוץ)"
         type: boolean
         default: false
+      broadcast_image:
+        description: "שליחת תמונה חד-פעמית לערוץ: נתיב יחסי לריפו (חייב להיות כבר ב-commit). ריק = דילוג"
+        type: string
+        default: ""
+      broadcast_caption:
+        description: "כיתוב אופציונלי לתמונה שנשלחת"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -76,6 +84,17 @@ jobs:
       # --- משיכת מועמדי IBKR מהריפו הציבורי nidam-candidates (נדחף מהמערכת המקומית) ---
       - name: Fetch IBKR candidates
         run: python scripts/fetch_ibkr.py
+        continue-on-error: true
+
+      # --- שליחת תמונה חד-פעמית לערוץ (ידני, workflow_dispatch עם broadcast_image) ---
+      - name: Broadcast image to Telegram
+        if: ${{ inputs.broadcast_image != '' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          BROADCAST_IMAGE: ${{ inputs.broadcast_image }}
+          BROADCAST_CAPTION: ${{ inputs.broadcast_caption }}
+        run: python scripts/notify_telegram_image.py
         continue-on-error: true
 
       # --- בדיקת חיבור טלגרם (רק כשמריצים ידנית עם הסימון) ---
