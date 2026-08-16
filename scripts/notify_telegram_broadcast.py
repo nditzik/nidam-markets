@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 r"""
-notify_telegram_broadcast.py — שידור אוטומטי לערוץ: כל תמונה חדשה שאיציק שומר
-תחת C:\challenge\reports\ (בכל תת-תיקייה) נשלחת אוטומטית לערוץ הטלגרם, כולל
-שורת ה-footer הסטנדרטית (קישור לאתר).
+notify_telegram_broadcast.py — שידור אוטומטי לערוץ: כל תמונה שאיציק שומר תחת
+C:\challenge\reports\טלגרם\ נשלחת אוטומטית לערוץ הטלגרם, כולל שורת ה-footer
+הסטנדרטית (קישור לאתר).
 
-מקור: עץ הקבצים המלא של הריפו הציבורי nidam-reports (המשימה המתוזמנת המקומית
-נדים-reports-sync דוחפת את C:\challenge\reports לשם כל 5 דק' — לא נוגעים בה,
-רק קוראים ממנה). סורק רק קבצי תמונה (png/jpg/jpeg/webp/gif) — קבצי HTML/CSV
-כבר זורמים לאתר דרך fetch_reports/fetch_sectors/fetch_trades/fetch_earnings
-ולא משודרים כאן (sendPhoto ממילא לא היה מקבל אותם).
+מקור: תת-התיקייה "טלגרם" בעץ הריפו הציבורי nidam-reports (המשימה המתוזמנת
+המקומית nidam-reports-sync דוחפת את C:\challenge\reports לשם כל 5 דק' — לא
+נוגעים בה, רק קוראים ממנה). תיקייה ייעודית בכוונה — לא כל C:\challenge\reports —
+כדי שתמונה שנשמרת שם לצורך אחר (לא לשידור) לא תישלח לערוץ הציבורי בטעות.
+סורק רק קבצי תמונה (png/jpg/jpeg/webp/gif).
 
 דה-דופ: data/_telegram_broadcast_state.json {sent: {path: sha}} — sha משתנה
 כשהתוכן משתנה (למשל תיקון קובץ עם אותו שם), כך שגרסה מתוקנת נשלחת מחדש בכוונה.
@@ -28,6 +28,7 @@ TREE_API = "https://api.github.com/repos/nditzik/nidam-reports/git/trees/main?re
 RAW_BASE = "https://raw.githubusercontent.com/nditzik/nidam-reports/main/"
 SITE = "https://nditzik.github.io/nidam-markets/"
 IMAGE_EXT = (".png", ".jpg", ".jpeg", ".webp", ".gif")
+WATCH_DIR = "טלגרם/"   # רק תיקייה ייעודית זו משודרת — לא כל nidam-reports
 MAX_PER_RUN = 4   # רשת בטיחות מפני הצפה אם נוספו הרבה תמונות בבת אחת
 
 
@@ -75,6 +76,7 @@ def main():
         return 0
 
     images = [t for t in tree if t.get("type") == "blob"
+              and t.get("path", "").startswith(WATCH_DIR)
               and t.get("path", "").lower().endswith(IMAGE_EXT)]
 
     state = load(STATE)
