@@ -1,19 +1,22 @@
 {
-  "today": "2026-08-16",
-  "todayCount": 0,
-  "todayBig": [],
-  "reporting": [],
+  "today": "2026-08-17",
+  "todayCount": 1,
+  "todayBig": [
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "capB": 265.4
+    }
+  ],
+  "reporting": [
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "logo": "data/earnings/logos/PANW.png"
+    }
+  ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-08-17",
-      "label": "17/8",
-      "dow": "ב׳",
-      "count": 1,
-      "tickers": [
-        "PANW"
-      ]
-    },
     {
       "date": "2026-08-18",
       "label": "18/8",
@@ -169,10 +172,11 @@
     "INTU": "2026-08-20",
     "ROST": "2026-08-20",
     "WDAY": "2026-08-20",
-    "WMT": "2026-08-20"
+    "WMT": "2026-08-20",
+    "PDD": "2026-08-24"
   },
   "_meta": {
-    "updatedAt": "16/08/2026 23:45",
+    "updatedAt": "17/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
