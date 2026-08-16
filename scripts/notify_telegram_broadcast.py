@@ -14,6 +14,11 @@ C:\challenge\reports\טלגרם\ נשלחת אוטומטית לערוץ הטלג
 כשהתוכן משתנה (למשל תיקון קובץ עם אותו שם), כך שגרסה מתוקנת נשלחת מחדש בכוונה.
 הרצה ראשונה (בלי state) קובעת בסיס בלי לשלוח — לא משדר תמונות ישנות.
 
+כרטיס-האתר (לוגו+תיאור, כמו בהודעות התדרוך): מגבלת טלגרם — תצוגה-מקדימה
+אוטומטית לקישור מופיעה רק בהודעת טקסט (sendMessage), לעולם לא ב-caption של
+sendPhoto. לכן כל תמונה נשלחת בשתי הודעות רצופות: (1) התמונה עצמה בלי טקסט,
+(2) הודעת טקסט "🔗 לאתר המלא" מיד אחריה — שטלגרם מתפיח לבד לכרטיס המלא.
+
 סודות: TELEGRAM_BOT_TOKEN + TELEGRAM_CHANNEL.
 """
 import json
@@ -42,11 +47,21 @@ def load(path):
         return None
 
 
-def send_photo(token, chat, image_url, caption):
+def send_photo(token, chat, image_url):
     url = "https://api.telegram.org/bot%s/sendPhoto" % token
+    data = json.dumps({"chat_id": chat, "photo": image_url}).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def send_link_card(token, chat, text):
+    """הודעת טקסט נפרדת — טלגרם מתפיח קישור בטקסט לכרטיס-אתר (לוגו+תיאור)
+    אוטומטית; זה לא קורה ב-caption של sendPhoto (מגבלת פלטפורמה)."""
+    url = "https://api.telegram.org/bot%s/sendMessage" % token
     data = json.dumps({
-        "chat_id": chat, "photo": image_url, "caption": caption,
-        "parse_mode": "HTML",
+        "chat_id": chat, "text": text,
+        "parse_mode": "HTML", "disable_web_page_preview": False,
     }).encode("utf-8")
     req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=20) as r:
@@ -94,17 +109,21 @@ def main():
         if sent_count >= MAX_PER_RUN:
             pending.append(path)
             continue
-        # בלי שם-קובץ בהודעה — רק שורת הקישור הסטנדרטית (כמו בתדרוך המשקיעים)
+        # בלי שם-קובץ בהודעה: התמונה לבדה, ואז הודעת-קישור נפרדת עם כרטיס-האתר
         image_url = RAW_BASE + urllib.parse.quote(path, safe="/")
-        caption = "🔗 <a href=\"%s\">לאתר המלא</a>" % SITE
         try:
-            send_photo(token, chat, image_url, caption)
+            send_photo(token, chat, image_url)
             sent[path] = sha
             changed = True
             sent_count += 1
             print(f"[ok] נשלח: {path}")
         except Exception as e:
             print(f"[warn] שליחת {path} נכשלה: {e}")
+            continue
+        try:
+            send_link_card(token, chat, "🔗 <a href=\"%s\">לאתר המלא</a>" % SITE)
+        except Exception as e:
+            print(f"[warn] כרטיס-הקישור אחרי {path} נכשל: {e}")
 
     if first_run:
         print(f"[baseline] הרצה ראשונה — {len(sent)} תמונות קיימות נקבעו כבסיס, לא נשלחו.")
