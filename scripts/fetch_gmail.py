@@ -85,7 +85,7 @@ def _clean(s):
         s = s.replace(a, b)
     s = re.sub(r"\s+", " ", s).strip()
     s = re.sub(r"\s+([,.;:%])", r"\1", s)
-    return s.lstrip("◆").strip()
+    return s.lstrip("◆•").strip()
 
 
 def _section(html, start, ends):
@@ -124,19 +124,25 @@ def headlines_of(html):
     # --- "חדש מאז ..." (כל ניסוח) → תבליטי ה-<ul> הראשון שאחרי הכותרת ---
     i = html.find("חדש מאז")
     if i >= 0:
-        m = re.search(r"<ul[^>]*>(.*?)</ul>", html[i:], re.S)
+        # גבול הסעיף = הכותרת הבאה (h2) — לא "ה-</div> הראשון", שסוגר רק את
+        # התבליט הראשון כשכל תבליט עטוף ב-div נפרד (מבנה 2026-08-17)
+        sec_end = html.find("<h2", i)
+        section = html[i: sec_end if sec_end > 0 else len(html)]
+        m = re.search(r"<ul[^>]*>(.*?)</ul>", section, re.S)
         if m:
             for li in re.findall(r"<li[^>]*>(.*?)</li>", m.group(1), re.S):
                 t = _clean(li)
                 if t:
                     out.append(t)
         if not out:
-            # מבנה 2026-08-12: בלוק div שטוח — תבליטי • מופרדי <br> (בלי ul/li)
-            blk = html[i:]
-            j = blk.find("</div>")
-            if j > 0:
-                blk = blk[:j]
-            for part in blk.split("•")[1:]:
+            # מבנה 2026-08-17: כל תבליט ב-<div class="bullet">…</div> נפרד
+            for bm in re.finditer(r'<div[^>]*class="[^"]*\bbullet\b[^"]*"[^>]*>(.*?)</div>', section, re.S):
+                t = _clean(bm.group(1))
+                if t:
+                    out.append(t)
+        if not out:
+            # מבנה 2026-08-12: בלוק div שטוח — תבליטי • מופרדי <br> (בלי ul/li/בליט-div)
+            for part in section.split("•")[1:]:
                 t = _clean(part)
                 if len(t) > 15:
                     out.append(t)
