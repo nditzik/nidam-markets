@@ -59,11 +59,14 @@ PAGE_TMPL = """<!DOCTYPE html>
 <meta property="og:image" content="{image}">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="{site}">
-<meta http-equiv="refresh" content="0;url={site}">
+<script>location.replace("{site}");</script>
 </head>
 <body><a href="{site}">{title}</a></body>
 </html>
 """
+# חשוב: ההפניה לאתר היא ב-JS ולא ב-meta refresh — סורק התצוגה-המקדימה של
+# טלגרם עוקב אחרי meta refresh וקורא את תגיות ה-OG של דף הבית (לוגו) במקום
+# את של הדף הזה (התמונה המשודרת). JS לא רץ בסורק, כן רץ בדפדפן של הקורא.
 
 
 def load(path):
@@ -86,12 +89,14 @@ def tg_api(token, method, payload):
 
 def send_card(token, chat, page_url):
     """הודעת טקסט שהקישור בה מצביע לדף-הנחיתה — טלגרם בונה ממנו את הכרטיס
-    (שם+תיאור+התמונה בגדול). הקליק מגיע לאתר דרך ה-redirect של הדף."""
+    (שם+תיאור+התמונה בגדול). הקליק מגיע לאתר דרך ה-redirect של הדף.
+    פרמטר t עוקף את מטמון התצוגות-המקדימות של טלגרם (נשמר פר-URL)."""
+    busted = "%s?t=%d" % (page_url, int(time.time()))
     return tg_api(token, "sendMessage", {
         "chat_id": chat,
-        "text": "🔗 <a href=\"%s\">לאתר המלא</a>" % page_url,
+        "text": "🔗 <a href=\"%s\">לאתר המלא</a>" % busted,
         "parse_mode": "HTML",
-        "link_preview_options": {"url": page_url, "prefer_large_media": True},
+        "link_preview_options": {"url": busted, "prefer_large_media": True},
     })
 
 
