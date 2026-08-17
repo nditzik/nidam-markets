@@ -1414,12 +1414,15 @@
     // במכוון על CA הגולמי ולא על ca מוגן-התאריך — לעדכון יש שעון-טריות משלו
     var eu = freshEventUpdate(CA);
     if (eu) {
-      // אירוע מאקרו = אדום/דחוף; עדכון אמצע-יום מתוזמן = ניטרלי
-      var euMid = eu.kind === "midday";
+      // אירוע מאקרו = אדום/דחוף; אמצע-יום ולקראת-מסחר = ניטרלי
+      var euCalm = eu.kind === "midday" || eu.kind === "preview";
+      var euIco = eu.kind === "midday" ? "🕑" : eu.kind === "preview" ? "🗓" : "🔴";
+      // preview: ה-event הוא כבר כותרת שלמה ("לקראת שבוע המסחר") — בלי "עדכון"
+      var euLbl = (eu.kind === "preview" ? "" : "עדכון ") + esc(eu.event || "אירוע");
       el.innerHTML =
         '<span class="np-today">' + todayLine() + "</span>" +
-        '<span class="np-k ' + (euMid ? "np-evt-mid" : "np-evt") + '">' + (euMid ? "🕑" : "🔴") +
-          " עדכון " + esc(eu.event || "אירוע") + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
+        '<span class="np-k ' + (euCalm ? "np-evt-mid" : "np-evt") + '">' + euIco +
+          " " + euLbl + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
         '<h2 class="np-h1">' + esc(eu.headline) + "</h2>" +
         (eu.tldr ? '<p class="np-dek">' + esc(eu.tldr) + "</p>" : "") +
         (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
@@ -1690,14 +1693,16 @@
       "</div>";
   }
 
-  /* עדכון-אירוע טרי (עד 18 שעות מהפרסום) — או null */
+  /* עדכון-אירוע טרי — או null. תוקף: 18ש'; "לקראת המסחר" (preview) מחזיק 26ש'
+     כדי לגשר מבוקר ראשון עד כתיבת שני, ומשני עד ניתוח שלישי 06:30 */
   function freshEventUpdate(ca) {
     var eu = ca && ca.eventUpdate;
     if (!eu || !eu.date || !eu.time || !eu.headline) return null;
     var ts = Date.parse(eu.date + "T" + eu.time + ":00");
     if (isNaN(ts)) return null;
     var age = Date.now() - ts;
-    return (age > -3600e3 && age < 18 * 3600e3) ? eu : null;
+    var ttl = (eu.kind === "preview" ? 26 : 18) * 3600e3;
+    return (age > -3600e3 && age < ttl) ? eu : null;
   }
 
   /* כרטיס "הניתוח היומי" המלא — בראש טאב מדדים */
@@ -1705,9 +1710,11 @@
     var ca = (CA && CA.date === d.date) ? CA : null;
     if (!ca) return "";
     var eu = freshEventUpdate(CA);
+    var euCalm2 = eu && (eu.kind === "midday" || eu.kind === "preview");
     var euLine = eu
-      ? '<p class="' + (eu.kind === "midday" ? "np-evt-mid" : "np-evt") + '" style="margin:0 0 10px">' +
-        (eu.kind === "midday" ? "🕑" : "🔴") + ' <b>עדכון ' + esc(eu.event || "") + " · " + esc(eu.time || "") + ":</b> " + esc(eu.headline) + "</p>"
+      ? '<p class="' + (euCalm2 ? "np-evt-mid" : "np-evt") + '" style="margin:0 0 10px">' +
+        (eu.kind === "midday" ? "🕑" : eu.kind === "preview" ? "🗓" : "🔴") +
+        " <b>" + (eu.kind === "preview" ? "" : "עדכון ") + esc(eu.event || "") + " · " + esc(eu.time || "") + ":</b> " + esc(eu.headline) + "</p>"
       : "";
     return '<div class="section-title" style="margin-top:0">🧠 הניתוח היומי</div>' +
       '<div class="card np-ca">' +
