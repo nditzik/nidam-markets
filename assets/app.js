@@ -1414,11 +1414,11 @@
     // במכוון על CA הגולמי ולא על ca מוגן-התאריך — לעדכון יש שעון-טריות משלו
     var eu = freshEventUpdate(CA);
     if (eu) {
-      // אירוע מאקרו = אדום/דחוף; אמצע-יום ולקראת-מסחר = ניטרלי
-      var euCalm = eu.kind === "midday" || eu.kind === "preview";
-      var euIco = eu.kind === "midday" ? "🕑" : eu.kind === "preview" ? "🗓" : "🔴";
-      // preview: ה-event הוא כבר כותרת שלמה ("לקראת שבוע המסחר") — בלי "עדכון"
-      var euLbl = (eu.kind === "preview" ? "" : "עדכון ") + esc(eu.event || "אירוע");
+      // אירוע מאקרו = אדום/דחוף; אמצע-יום/לקראת-מסחר/לקראת-פתיחה = ניטרלי
+      var euCalm = eu.kind === "midday" || eu.kind === "preview" || eu.kind === "preopen";
+      var euIco = eu.kind === "midday" ? "🕑" : eu.kind === "preview" ? "🗓" : eu.kind === "preopen" ? "🔔" : "🔴";
+      // preview/preopen: ה-event הוא כבר כותרת שלמה ("לקראת פתיחת המסחר") — בלי "עדכון"
+      var euLbl = (eu.kind === "preview" || eu.kind === "preopen" ? "" : "עדכון ") + esc(eu.event || "אירוע");
       el.innerHTML =
         '<span class="np-today">' + todayLine() + "</span>" +
         '<span class="np-k ' + (euCalm ? "np-evt-mid" : "np-evt") + '">' + euIco +
@@ -1710,11 +1710,11 @@
     var ca = (CA && CA.date === d.date) ? CA : null;
     if (!ca) return "";
     var eu = freshEventUpdate(CA);
-    var euCalm2 = eu && (eu.kind === "midday" || eu.kind === "preview");
+    var euCalm2 = eu && (eu.kind === "midday" || eu.kind === "preview" || eu.kind === "preopen");
     var euLine = eu
       ? '<p class="' + (euCalm2 ? "np-evt-mid" : "np-evt") + '" style="margin:0 0 10px">' +
-        (eu.kind === "midday" ? "🕑" : eu.kind === "preview" ? "🗓" : "🔴") +
-        " <b>" + (eu.kind === "preview" ? "" : "עדכון ") + esc(eu.event || "") + " · " + esc(eu.time || "") + ":</b> " + esc(eu.headline) + "</p>"
+        (eu.kind === "midday" ? "🕑" : eu.kind === "preview" ? "🗓" : eu.kind === "preopen" ? "🔔" : "🔴") +
+        " <b>" + (eu.kind === "preview" || eu.kind === "preopen" ? "" : "עדכון ") + esc(eu.event || "") + " · " + esc(eu.time || "") + ":</b> " + esc(eu.headline) + "</p>"
       : "";
     return '<div class="section-title" style="margin-top:0">🧠 הניתוח היומי</div>' +
       '<div class="card np-ca">' +
