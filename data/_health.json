@@ -1,34 +1,34 @@
 {
-  "generatedAt": "18/08/2026 06:01",
+  "generatedAt": "18/08/2026 06:16",
   "today": [
+    {
+      "label": "תדרוך בוקר",
+      "tab": "briefing",
+      "time": "06:04",
+      "arrived": true
+    },
+    {
+      "label": "סקירת בוקר",
+      "tab": "morning",
+      "time": "06:05",
+      "arrived": true
+    },
     {
       "label": "מדדים",
       "tab": "indices",
-      "time": "06:00",
+      "time": "06:15",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "06:00",
+      "time": "06:15",
       "arrived": true
-    },
-    {
-      "label": "תדרוך בוקר",
-      "tab": "briefing",
-      "time": "06:05",
-      "arrived": false
     },
     {
       "label": "תדרוך אחה\"צ",
       "tab": "briefing",
       "time": "15:19",
-      "arrived": false
-    },
-    {
-      "label": "סקירת בוקר",
-      "tab": "morning",
-      "time": "06:40",
       "arrived": false
     },
     {
@@ -42,7 +42,7 @@
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "18/08/2026 06:00",
+      "updatedAt": "18/08/2026 06:15",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -50,7 +50,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "18/08/2026 06:00",
+      "updatedAt": "18/08/2026 06:15",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -58,16 +58,16 @@
     {
       "key": "morning",
       "label": "סקירת בוקר",
-      "updatedAt": "17/08/2026 06:45",
-      "ageHours": 23.3,
+      "updatedAt": "18/08/2026 06:15",
+      "ageHours": 0.0,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "briefing",
       "label": "תדרוך משקיעים",
-      "updatedAt": "17/08/2026 15:30",
-      "ageHours": 14.5,
+      "updatedAt": "18/08/2026 06:15",
+      "ageHours": 0.0,
       "status": "ok",
       "detail": ""
     },
@@ -75,7 +75,7 @@
       "key": "candidates",
       "label": "מועמדים",
       "updatedAt": "15/08/2026 06:11",
-      "ageHours": 71.8,
+      "ageHours": 72.1,
       "status": "stale",
       "detail": ""
     }
