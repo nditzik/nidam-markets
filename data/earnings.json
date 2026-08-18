@@ -1,51 +1,67 @@
 {
-  "today": "2026-08-18",
-  "todayCount": 3,
+  "today": "2026-08-19",
+  "todayCount": 6,
   "todayBig": [
     {
-      "ticker": "HD",
-      "name": "Home Depot",
-      "capB": 332.4
+      "ticker": "ADI",
+      "name": "Analog Devices",
+      "capB": 178.6
     },
     {
-      "ticker": "KEYS",
-      "name": "Keysight Technologies",
-      "capB": 53.4
+      "ticker": "TJX",
+      "name": "TJX Companies",
+      "capB": 175.9
+    },
+    {
+      "ticker": "LOW",
+      "name": "Lowe's Companies",
+      "capB": 117.8
+    },
+    {
+      "ticker": "TGT",
+      "name": "Target Corp",
+      "capB": 65.6
+    },
+    {
+      "ticker": "EL",
+      "name": "Estee Lauder Companies",
+      "capB": 30.7
     }
   ],
   "reporting": [
     {
-      "ticker": "HD",
-      "name": "Home Depot",
-      "logo": "data/earnings/logos/HD.png"
+      "ticker": "ADI",
+      "name": "Analog Devices",
+      "logo": "data/earnings/logos/ADI.png"
     },
     {
-      "ticker": "KEYS",
-      "name": "Keysight Technologies",
-      "logo": "data/earnings/logos/KEYS.png"
+      "ticker": "TJX",
+      "name": "TJX Companies",
+      "logo": "data/earnings/logos/TJX.png"
     },
     {
-      "ticker": "JKHY",
-      "name": "Jack Henry & Assoc",
-      "logo": "data/earnings/logos/JKHY.png"
+      "ticker": "LOW",
+      "name": "Lowe's Companies",
+      "logo": "data/earnings/logos/LOW.png"
+    },
+    {
+      "ticker": "TGT",
+      "name": "Target Corp",
+      "logo": "data/earnings/logos/TGT.png"
+    },
+    {
+      "ticker": "EL",
+      "name": "Estee Lauder Companies",
+      "logo": "data/earnings/logos/EL.png"
+    },
+    {
+      "ticker": "NDSN",
+      "name": "Nordson Corp",
+      "logo": "data/earnings/logos/NDSN.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-08-19",
-      "label": "19/8",
-      "dow": "ד׳",
-      "count": 6,
-      "tickers": [
-        "ADI",
-        "TJX",
-        "LOW",
-        "TGT",
-        "EL",
-        "NDSN"
-      ]
-    },
     {
       "date": "2026-08-20",
       "label": "20/8",
@@ -162,9 +178,6 @@
     }
   ],
   "window": {
-    "HD": "2026-08-18",
-    "JKHY": "2026-08-18",
-    "KEYS": "2026-08-18",
     "ADI": "2026-08-19",
     "EL": "2026-08-19",
     "LOW": "2026-08-19",
@@ -176,10 +189,20 @@
     "ROST": "2026-08-20",
     "WDAY": "2026-08-20",
     "WMT": "2026-08-20",
-    "PDD": "2026-08-24"
+    "PDD": "2026-08-24",
+    "A": "2026-08-26",
+    "COO": "2026-08-26",
+    "CRWD": "2026-08-26",
+    "HPQ": "2026-08-26",
+    "NTAP": "2026-08-26",
+    "NVDA": "2026-08-26",
+    "SJM": "2026-08-26",
+    "SNPS": "2026-08-26",
+    "VEEV": "2026-08-26",
+    "WSM": "2026-08-26"
   },
   "_meta": {
-    "updatedAt": "18/08/2026 23:45",
+    "updatedAt": "19/08/2026 00:02",
     "source": "earnings.csv"
   }
 }
