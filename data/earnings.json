@@ -1,81 +1,62 @@
 {
-  "today": "2026-08-19",
-  "todayCount": 6,
+  "today": "2026-08-20",
+  "todayCount": 5,
   "todayBig": [
     {
-      "ticker": "ADI",
-      "name": "Analog Devices",
-      "capB": 178.6
+      "ticker": "WMT",
+      "name": "Walmart Inc",
+      "capB": 884.1
     },
     {
-      "ticker": "TJX",
-      "name": "TJX Companies",
-      "capB": 175.9
+      "ticker": "DE",
+      "name": "Deere & Company",
+      "capB": 161.8
     },
     {
-      "ticker": "LOW",
-      "name": "Lowe's Companies",
-      "capB": 117.8
+      "ticker": "INTU",
+      "name": "Intuit Inc",
+      "capB": 86.3
     },
     {
-      "ticker": "TGT",
-      "name": "Target Corp",
-      "capB": 65.6
+      "ticker": "ROST",
+      "name": "Ross Stores Inc",
+      "capB": 81.0
     },
     {
-      "ticker": "EL",
-      "name": "Estee Lauder Companies",
-      "capB": 30.7
+      "ticker": "WDAY",
+      "name": "Workday Inc",
+      "capB": 39.1
     }
   ],
   "reporting": [
     {
-      "ticker": "ADI",
-      "name": "Analog Devices",
-      "logo": "data/earnings/logos/ADI.png"
+      "ticker": "WMT",
+      "name": "Walmart Inc",
+      "logo": "data/earnings/logos/WMT.png"
     },
     {
-      "ticker": "TJX",
-      "name": "TJX Companies",
-      "logo": "data/earnings/logos/TJX.png"
+      "ticker": "DE",
+      "name": "Deere & Company",
+      "logo": "data/earnings/logos/DE.png"
     },
     {
-      "ticker": "LOW",
-      "name": "Lowe's Companies",
-      "logo": "data/earnings/logos/LOW.png"
+      "ticker": "INTU",
+      "name": "Intuit Inc",
+      "logo": "data/earnings/logos/INTU.png"
     },
     {
-      "ticker": "TGT",
-      "name": "Target Corp",
-      "logo": "data/earnings/logos/TGT.png"
+      "ticker": "ROST",
+      "name": "Ross Stores Inc",
+      "logo": "data/earnings/logos/ROST.png"
     },
     {
-      "ticker": "EL",
-      "name": "Estee Lauder Companies",
-      "logo": "data/earnings/logos/EL.png"
-    },
-    {
-      "ticker": "NDSN",
-      "name": "Nordson Corp",
-      "logo": "data/earnings/logos/NDSN.png"
+      "ticker": "WDAY",
+      "name": "Workday Inc",
+      "logo": "data/earnings/logos/WDAY.png"
     }
   ],
   "more": 0,
-  "upcoming": [
-    {
-      "date": "2026-08-20",
-      "label": "20/8",
-      "dow": "ה׳",
-      "count": 5,
-      "tickers": [
-        "WMT",
-        "DE",
-        "INTU",
-        "ROST",
-        "WDAY"
-      ]
-    }
-  ],
+  "upcoming": [],
   "week": [
     {
       "date": "2026-08-17",
@@ -178,12 +159,6 @@
     }
   ],
   "window": {
-    "ADI": "2026-08-19",
-    "EL": "2026-08-19",
-    "LOW": "2026-08-19",
-    "NDSN": "2026-08-19",
-    "TGT": "2026-08-19",
-    "TJX": "2026-08-19",
     "DE": "2026-08-20",
     "INTU": "2026-08-20",
     "ROST": "2026-08-20",
@@ -199,10 +174,18 @@
     "SJM": "2026-08-26",
     "SNPS": "2026-08-26",
     "VEEV": "2026-08-26",
-    "WSM": "2026-08-26"
+    "WSM": "2026-08-26",
+    "ADSK": "2026-08-27",
+    "BBY": "2026-08-27",
+    "BF.B": "2026-08-27",
+    "DELL": "2026-08-27",
+    "DG": "2026-08-27",
+    "HRL": "2026-08-27",
+    "MRVL": "2026-08-27",
+    "ULTA": "2026-08-27"
   },
   "_meta": {
-    "updatedAt": "19/08/2026 23:45",
+    "updatedAt": "20/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
