@@ -1,107 +1,160 @@
 {
-  "today": "2026-08-21",
+  "today": "2026-08-22",
   "todayCount": 0,
   "todayBig": [],
   "reporting": [],
   "more": 0,
-  "upcoming": [],
+  "upcoming": [
+    {
+      "date": "2026-08-24",
+      "label": "24/8",
+      "dow": "ב׳",
+      "count": 1,
+      "tickers": [
+        "PDD"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "label": "26/8",
+      "dow": "ד׳",
+      "count": 10,
+      "tickers": [
+        "NVDA",
+        "CRWD",
+        "SNPS",
+        "A",
+        "NTAP",
+        "VEEV"
+      ]
+    },
+    {
+      "date": "2026-08-27",
+      "label": "27/8",
+      "dow": "ה׳",
+      "count": 8,
+      "tickers": [
+        "DELL",
+        "MRVL",
+        "ADSK",
+        "DG",
+        "ULTA",
+        "BBY"
+      ]
+    }
+  ],
   "week": [
     {
-      "date": "2026-08-17",
+      "date": "2026-08-24",
       "dow": "שני",
-      "label": "17.8",
+      "label": "24.8",
       "total": 1,
       "companies": [
         {
-          "ticker": "PANW",
-          "name": "Palo Alto Networks"
+          "ticker": "PDD",
+          "name": "Pdd Holdings Inc"
         }
       ]
     },
     {
-      "date": "2026-08-18",
+      "date": "2026-08-25",
       "dow": "שלישי",
-      "label": "18.8",
-      "total": 3,
-      "companies": [
-        {
-          "ticker": "HD",
-          "name": "Home Depot"
-        },
-        {
-          "ticker": "KEYS",
-          "name": "Keysight Technologies"
-        },
-        {
-          "ticker": "JKHY",
-          "name": "Jack Henry & Assoc"
-        }
-      ]
+      "label": "25.8",
+      "total": 0,
+      "companies": []
     },
     {
-      "date": "2026-08-19",
+      "date": "2026-08-26",
       "dow": "רביעי",
-      "label": "19.8",
-      "total": 6,
+      "label": "26.8",
+      "total": 10,
       "companies": [
         {
-          "ticker": "ADI",
-          "name": "Analog Devices"
+          "ticker": "NVDA",
+          "name": "Nvidia Corp"
         },
         {
-          "ticker": "TJX",
-          "name": "TJX Companies"
+          "ticker": "CRWD",
+          "name": "Crowdstrike Holdings"
         },
         {
-          "ticker": "LOW",
-          "name": "Lowe's Companies"
+          "ticker": "SNPS",
+          "name": "Synopsys Inc"
         },
         {
-          "ticker": "TGT",
-          "name": "Target Corp"
+          "ticker": "A",
+          "name": "Agilent Technologies"
         },
         {
-          "ticker": "EL",
-          "name": "Estee Lauder Companies"
+          "ticker": "NTAP",
+          "name": "Netapp Inc"
         },
         {
-          "ticker": "NDSN",
-          "name": "Nordson Corp"
+          "ticker": "VEEV",
+          "name": "Veeva Systems Inc"
+        },
+        {
+          "ticker": "WSM",
+          "name": "Williams-Sonoma"
+        },
+        {
+          "ticker": "HPQ",
+          "name": "HP Inc"
+        },
+        {
+          "ticker": "COO",
+          "name": "Cooper Companies"
+        },
+        {
+          "ticker": "SJM",
+          "name": "J.M. Smucker Company"
         }
       ]
     },
     {
-      "date": "2026-08-20",
+      "date": "2026-08-27",
       "dow": "חמישי",
-      "label": "20.8",
-      "total": 5,
+      "label": "27.8",
+      "total": 8,
       "companies": [
         {
-          "ticker": "WMT",
-          "name": "Walmart Inc"
+          "ticker": "DELL",
+          "name": "Dell Technologies Inc"
         },
         {
-          "ticker": "DE",
-          "name": "Deere & Company"
+          "ticker": "MRVL",
+          "name": "Marvell Technology Inc"
         },
         {
-          "ticker": "INTU",
-          "name": "Intuit Inc"
+          "ticker": "ADSK",
+          "name": "Autodesk Inc"
         },
         {
-          "ticker": "ROST",
-          "name": "Ross Stores Inc"
+          "ticker": "DG",
+          "name": "Dollar General Corp"
         },
         {
-          "ticker": "WDAY",
-          "name": "Workday Inc"
+          "ticker": "ULTA",
+          "name": "Ulta Beauty Inc"
+        },
+        {
+          "ticker": "BBY",
+          "name": "Best Buy Company"
+        },
+        {
+          "ticker": "HRL",
+          "name": "Hormel Foods Corp"
+        },
+        {
+          "ticker": "BF.B",
+          "name": "Brown Forman Cl B"
         }
       ]
     },
     {
-      "date": "2026-08-21",
+      "date": "2026-08-28",
       "dow": "שישי",
-      "label": "21.8",
+      "label": "28.8",
       "total": 0,
       "companies": []
     }
@@ -128,7 +181,7 @@
     "ULTA": "2026-08-27"
   },
   "_meta": {
-    "updatedAt": "21/08/2026 23:45",
+    "updatedAt": "22/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
