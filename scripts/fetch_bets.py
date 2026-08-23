@@ -139,7 +139,7 @@ def cpi_row():
         rel = f" · יתפרסם {int(md.group(3))}.{int(md.group(2))}"
     return {"key": "cpi_next", "label": "אינפלציה שנתית — נתון " + (month or "הבא") + rel,
             "sub": f"ההימור המוביל: תישאר מעל {best[0]}%", "pct": round(best[1] * 100), "chg": None,
-            "src": "Kalshi"}
+            "src": "Kalshi", "url": "https://kalshi.com/markets/kxcpiyoy"}
 
 
 def spx_row():
@@ -182,16 +182,16 @@ def spx_row():
         return None
     return {"key": "spx_eoy", "label": "יעד S&P 500 לסוף" + (year or " השנה"),
             "sub": f"ההימור המוביל: ייסגר מעל {best[0]:,}", "pct": round(best[1] * 100),
-            "chg": None, "src": "Kalshi"}
+            "chg": None, "src": "Kalshi", "url": "https://kalshi.com/markets/kxinxy"}
 
 
-def yesno_row(key, label, yes_he, no_he, p, chg):
+def yesno_row(key, label, yes_he, no_he, p, chg, url):
     """שוק כן/לא: מציגים תמיד את הצד המוביל — האחוז, הכיוון והשינוי היומי שלו."""
     if p >= 0.5:
         return {"key": key, "label": label, "sub": "ההימור המוביל: " + yes_he,
-                "pct": round(p * 100), "chg": chg}
+                "pct": round(p * 100), "chg": chg, "url": url}
     return {"key": key, "label": label, "sub": "ההימור המוביל: " + no_he,
-            "pct": round((1 - p) * 100), "chg": (-chg if chg is not None else None)}
+            "pct": round((1 - p) * 100), "chg": (-chg if chg is not None else None), "url": url}
 
 
 def cuts_label(title):
@@ -224,6 +224,7 @@ def main():
                 "key": "fed_next", "label": "החלטת הפד בספטמבר",
                 "sub": "ההימור המוביל: " + OUTCOME_HE.get(title, title),
                 "pct": round(p * 100), "chg": chg_pp(m), "dist": dist,
+                "url": "https://polymarket.com/event/fed-decision-in-september-762",
             })
     except Exception as e:
         print(f"[warn] sept: {e}")
@@ -236,6 +237,7 @@ def main():
                 "key": "cuts_2026", "label": "הורדות ריבית עד סוף 2026",
                 "sub": "ההימור המוביל: " + cuts_label(m.get("groupItemTitle") or ""),
                 "pct": round(p * 100), "chg": chg_pp(m),
+                "url": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026",
             })
     except Exception as e:
         print(f"[warn] cuts: {e}")
@@ -245,7 +247,8 @@ def main():
         p = yes_price(m) if m else None
         if p is not None:
             rows.append(yesno_row("hike_2026", "העלאת ריבית עד סוף 2026",
-                                  "תהיה העלאה", "לא תהיה העלאה", p, chg_pp(m)))
+                                  "תהיה העלאה", "לא תהיה העלאה", p, chg_pp(m),
+                                  "https://polymarket.com/event/fed-rate-hike-in-2026"))
     except Exception as e:
         print(f"[warn] hike: {e}")
     try:
@@ -260,7 +263,8 @@ def main():
         p = yes_price(m) if m else None
         if p is not None:
             rows.append(yesno_row("recession", "מיתון בארה\"ב עד סוף 2026",
-                                  "יהיה מיתון", "לא יהיה מיתון", p, chg_pp(m)))
+                                  "יהיה מיתון", "לא יהיה מיתון", p, chg_pp(m),
+                                  "https://polymarket.com/event/us-recession-by-end-of-2026"))
     except Exception as e:
         print(f"[warn] recession: {e}")
     try:
@@ -273,6 +277,8 @@ def main():
     if not rows:
         print("[keep] אין נתונים — משאיר bets.json קיים." if os.path.exists(OUT) else "[fail] אין נתונים.")
         return 0 if os.path.exists(OUT) else 1
+    for r in rows:
+        r.setdefault("src", "Polymarket")  # שורות Kalshi כבר קובעות src משלהן
 
     out = {"rows": rows, "source": "Polymarket"}
     existing = {}

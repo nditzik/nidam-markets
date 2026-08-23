@@ -911,8 +911,11 @@ p.np-evt-mid { font-size: .88rem; color: var(--accent); }
 .bt2-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
 .bt2-card { border: 1px solid var(--paper-hair); border-radius: 13px; background: var(--surface-2);
   position: relative; overflow: hidden; padding: 12px 13px 0; display: flex; flex-direction: column;
-  min-width: 0; }
+  min-width: 0; color: inherit; text-decoration: none; transition: border-color .12s, transform .12s; }
+a.bt2-card { cursor: pointer; }
+a.bt2-card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .bt2-card.hot { border-color: var(--warn); box-shadow: 0 0 0 1px var(--warn); padding-top: 26px; }
+a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--warn); }
 .bt2-hot { position: absolute; top: 0; inset-inline-end: 0; background: var(--warn); color: #fff;
   font-size: .62rem; font-weight: 800; border-radius: 0 11px 0 10px; padding: 3px 9px; }
 .bt2-label { font-size: .78rem; font-weight: 700; min-height: 2.3em; line-height: 1.25; }

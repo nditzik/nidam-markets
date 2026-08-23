@@ -242,13 +242,19 @@
         chart = betSpark(h, dir);
       }
       var hot = r.key === hotKey;
-      return '<div class="bt2-card' + (hot ? " hot" : "") + '">' +
+      // כרטיס לחיץ כשיש קישור למקור (Polymarket/Kalshi) — אחרת div רגיל (עמידות
+      // לנתוני bets.json ישנים שנוצרו לפני שהוספנו את השדה)
+      var tag = r.url ? "a" : "div";
+      var open = r.url
+        ? '<a class="bt2-card' + (hot ? " hot" : "") + '" href="' + esc(r.url) + '" target="_blank" rel="noopener" title="פתיחה ב' + esc(r.src || "מקור ההימור") + '">'
+        : '<div class="bt2-card' + (hot ? " hot" : "") + '">';
+      return open +
         (hot ? '<span class="bt2-hot">🔥 המהלך של היום</span>' : "") +
         '<span class="bt2-label">' + esc(r.label) + "</span>" +
         '<div class="bt2-now"><b class="num">' + r.pct + "%</b>" + chg + "</div>" +
         '<span class="bt2-sub">' + sub + "</span>" +
         journey + chart +
-        "</div>";
+        "</" + tag + ">";
     }).join("");
     el.innerHTML =
       '<div class="card"><span class="np-k" style="margin-bottom:10px">🎲 מה השווקים מהמרים</span>' +
