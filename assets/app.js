@@ -1704,7 +1704,13 @@
   function freshEventUpdate(ca) {
     var eu = ca && ca.eventUpdate;
     if (!eu || !eu.date || !eu.time || !eu.headline) return null;
-    var ts = Date.parse(eu.date + "T" + eu.time + ":00");
+    // הגנה: רוטינות אמורות לכתוב date בפורמט ISO (YYYY-MM-DD), אבל מדי פעם
+    // חומק פורמט "D.M.YYYY" — במקום שהכותרת תיעלם בשקט (Date.parse מחזיר NaN
+    // על כך), מנרמלים אותו ל-ISO כאן.
+    var isoDate = /^\d{1,2}\.\d{1,2}\.\d{4}$/.test(eu.date)
+      ? (function (p) { return p[2] + "-" + p[1].padStart(2, "0") + "-" + p[0].padStart(2, "0"); })(eu.date.split("."))
+      : eu.date;
+    var ts = Date.parse(isoDate + "T" + eu.time + ":00");
     if (isNaN(ts)) return null;
     var age = Date.now() - ts;
     var ttl = (eu.kind === "preview" ? 26 : 18) * 3600e3;
