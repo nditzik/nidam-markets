@@ -897,7 +897,9 @@
     return "יום " + days[now.getDay()] + ' · <b class="num" dir="ltr">' +
       now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear() + "</b>";
   }
-  /* החג הקרוב בבורסה — משמאל לשעון (במובייל: מתחת לחיפוש) */
+  /* יום ללא מסחר הקרוב בבורסה — משמאל לשעון (במובייל: מתחת לחיפוש).
+     "חג" הוחלף ל"יום ללא מסחר" (2026-08-24, בקשת המשתמש) — חלק מהימים
+     (Presidents' Day וכד') לא נחווים כ"חג" לקורא ישראלי, וזה מטעה. */
   function renderDayMeta() {
     var el = document.getElementById("np-daymeta");
     if (!el) return;
@@ -915,7 +917,7 @@
       }
       if (best) {
         var when = best.n === 1 ? "מחר" : "בעוד " + best.n + " ימים";
-        txt = "🏖 החג הבא: " + best.name + ' · <span class="num" dir="ltr">' +
+        txt = "🗓 יום ללא מסחר הבא: " + best.name + ' · <span class="num" dir="ltr">' +
           best.d.getDate() + "." + (best.d.getMonth() + 1) + "</span> · " + when;
       }
     }
