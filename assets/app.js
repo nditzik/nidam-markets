@@ -1477,7 +1477,17 @@
     var tip = "קניית Calls $" + Math.round((fl.callBuyP || 0) / 1e6) + "M · מכירת Calls $" + Math.round((fl.callSellP || 0) / 1e6) +
       "M · קניית Puts $" + Math.round((fl.putBuyP || 0) / 1e6) + "M · מכירת Puts $" + Math.round((fl.putSellP || 0) / 1e6) + "M" +
       " · מבוסס על עסקאות בולטות/גדולות בלבד — לא כל נפח האופציות של היום (לכן עשוי להיות שונה ממדדי \"דלתא\" של כלים אחרים)";
-    return '<div class="np-sub" title="' + esc(tip) + '"><span>הכסף הגדול</span><b class="' + dc + '">' + esc(fl.deltaLabel) + "</b></div>";
+    // אזהרת מולטי-לג (symmetric — מבוססת % ולא על כיוון ה-label, ולכן
+    // מופיעה זהה לשורי/דובי/מאוזן): מדד legTier/legNote בלבד קובע הצגה.
+    var legBadge = "";
+    if (fl.legNote && (fl.legTier === "low" || fl.legTier === "limited" || fl.legTier === "mid")) {
+      var legIcon = fl.legTier === "low" ? "⛔" : "⚠";
+      var legPct = fl.legMultiPct != null ? Math.round(fl.legMultiPct) + "% " : "";
+      legBadge = '<span class="er-badge" title="' + esc(fl.legNote +
+        " — עסקאות מולטי-לג הן רגליים בודדות מתוך אסטרטגיות משולבות (כמו ספרד), לא בהכרח הימור כיווני עצמאי; אין בנתון דרך לשייך אותן לרגליים המשלימות") +
+        '">' + legIcon + " " + legPct + "מולטי-לג</span>";
+    }
+    return '<div class="np-sub" title="' + esc(tip) + '"><span>הכסף הגדול</span><span><b class="' + dc + '">' + esc(fl.deltaLabel) + "</b>" + legBadge + "</span></div>";
   }
 
   // ─ רייל המד ─ (פונקציה נפרדת: קודם רץ רק בענף-הנפילה, והרייל נעלם אם ניתוח
