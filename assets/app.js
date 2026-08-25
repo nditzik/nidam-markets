@@ -1475,7 +1475,8 @@
     if (!fl.deltaLabel) return "";
     var dc = fl.deltaLabel === "דובי" ? "down" : (fl.deltaLabel === "שורי" ? "up" : "");
     var tip = "קניית Calls $" + Math.round((fl.callBuyP || 0) / 1e6) + "M · מכירת Calls $" + Math.round((fl.callSellP || 0) / 1e6) +
-      "M · קניית Puts $" + Math.round((fl.putBuyP || 0) / 1e6) + "M · מכירת Puts $" + Math.round((fl.putSellP || 0) / 1e6) + "M";
+      "M · קניית Puts $" + Math.round((fl.putBuyP || 0) / 1e6) + "M · מכירת Puts $" + Math.round((fl.putSellP || 0) / 1e6) + "M" +
+      " · מבוסס על עסקאות בולטות/גדולות בלבד — לא כל נפח האופציות של היום (לכן עשוי להיות שונה ממדדי \"דלתא\" של כלים אחרים)";
     return '<div class="np-sub" title="' + esc(tip) + '"><span>הכסף הגדול</span><b class="' + dc + '">' + esc(fl.deltaLabel) + "</b></div>";
   }
 
@@ -1697,7 +1698,8 @@
       cells.map(function (q) {
         return '<div class="fq-cell"><span class="fq-l">' + q[0] + '</span><b class="num ' + q[2] + '">' + m(q[1]) + "</b></div>";
       }).join("") + "</div>" +
-      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" מודד עוצמת זרימה ואינו כיוון.</p>' +
+      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" מודד עוצמת זרימה ואינו כיוון. ' +
+        'הנתון מבוסס על עסקאות אופציות בולטות/גדולות בלבד (לא כל נפח המסחר היומי) — לכן עשוי להיות שונה ממדדי "דלתא" כוללי-שוק בכלים אחרים (כמו Barchart).</p>' +
       "</div>";
   }
 
