@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דוח ארבעת העמודים — 25/08/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#051C2C;--blue:#2251FF;--cyan:#00A9F4;--ink:#1a1a2e;--gray:#5f6b7a;--line:#DDE3EA;--bg:#F7F9FB;--green:#0E8A5F;--red:#C0392B;--amber:#B7791F}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Heebo","Arial Hebrew",sans-serif;direction:rtl;color:var(--ink);background:#fff;line-height:1.7;font-size:15.5px}
+  .num{direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 26px}
+  header{background:var(--navy);color:#fff;padding:52px 0 44px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--cyan);font-weight:600;margin-bottom:14px}
+  h1{font-size:34px;font-weight:800;line-height:1.25}
+  .subtitle{margin-top:12px;font-size:16.5px;color:#B9C6D2;font-weight:300}
+  .header-rule{width:64px;height:4px;background:var(--blue);margin-top:22px}
+  .keymsg{background:var(--blue);color:#fff;padding:18px 0}
+  .keymsg p{font-size:16px;font-weight:500}
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .stepnum{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.16em;margin-bottom:4px}
+  h2{font-size:23px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .lede{color:var(--gray);font-size:15px;max-width:860px;margin-bottom:20px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:13.8px}
+  thead th{background:var(--navy);color:#fff;font-weight:600;padding:9px 11px;text-align:start;font-size:12.8px;white-space:nowrap}
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--bg)}
+  td.sym{font-weight:700;color:var(--navy);direction:ltr;text-align:right;white-space:nowrap}
+  td.score{font-weight:800;color:var(--blue);white-space:nowrap}
+  .badge{display:inline-block;padding:1px 9px;border-radius:3px;font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap}
+  .b-green{background:var(--green)}.b-red{background:var(--red)}.b-amber{background:var(--amber)}.b-gray{background:var(--gray)}.b-blue{background:var(--blue)}
+  .tbl-note{font-size:12.8px;color:var(--gray);margin-bottom:8px}
+  .cond-head{display:flex;align-items:baseline;gap:12px;margin:8px 0 12px}
+  .cond-letter{width:34px;height:34px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;border-radius:2px}
+  .cond-head h3{font-size:18px;font-weight:700;color:var(--navy)}
+  .cond-head .tag{font-size:12.5px;color:var(--gray)}
+  .method{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:14px}
+  .mcard{background:var(--bg);border-top:3px solid var(--blue);padding:16px 18px}
+  .mcard h4{font-size:14.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .mcard p{font-size:13.5px;color:var(--ink)}
+  .mrule{border:1px solid var(--line);border-inline-start:4px solid var(--cyan);padding:12px 16px;margin-top:10px;font-size:14px}
+  .deep{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+  .dcard{border:1px solid var(--line);padding:16px 18px;border-top:3px solid var(--green)}
+  .dcard.warn{border-top-color:var(--amber)}
+  .dcard.bad{border-top-color:var(--red)}
+  .dcard h4{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .dcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--blue)}
+  .dcard p{font-size:13.5px;margin-bottom:6px}
+  .dcard .lbl{font-weight:700;color:var(--navy)}
+  .dcard .trigger{background:var(--bg);padding:8px 12px;font-size:13px;margin-top:8px;border-inline-start:3px solid var(--blue)}
+  .flag{background:#FBEDEB;border-inline-start:4px solid var(--red);padding:12px 16px;margin:10px 0;font-size:14px}
+  .flag strong{color:var(--red)}
+  .delta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .dl{border:1px solid var(--line);padding:14px 16px;border-inline-start:4px solid var(--cyan)}
+  .dl h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .dl h4 .tk{direction:ltr;unicode-bidi:isolate}
+  .dl p{font-size:13px;color:var(--gray)}
+  .bottom{background:var(--navy);color:#fff;padding:40px 0}
+  .bottom h2{color:#fff}
+  .bl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+  .bcard{background:rgba(255,255,255,.06);border-top:3px solid var(--cyan);padding:16px 18px}
+  .bcard h4{font-size:15px;font-weight:800;margin-bottom:6px}
+  .bcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--cyan)}
+  .bcard p{font-size:13.5px;color:#C9D5DF}
+  footer{background:#031320;color:#8FA3B3;padding:24px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:640px){h1{font-size:26px}section{padding:34px 0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Four Pillars Scanner · דוח סריקה #14</div>
+    <h1>דוח ארבעת העמודים — <span class="num">25/08/2026</span></h1>
+    <p class="subtitle">נתוני Barchart (סגירת יום שלישי) + אימות רשת · <span class="num">44</span> מניות נסרקו</p>
+    <div class="header-rule"></div>
+  </div>
+</header>
+
+<div class="keymsg">
+  <div class="wrap">
+    <p><strong>הפוזיציות עובדות: TWST ב-<span class="num">+31%</span> מהטריגר עם שיא Alpha חדש (<span class="num">463</span>), NTRA נוגעת בשיא, KYMR החזיקה את הריטסט וחזרה, ו-ACHV שרדה את מבחן הסטופ.</strong> פסילה חדשה: RLAY — שורט <span class="num">22%</span>, השישית ברצף. שש מתוך שש מלכות Alpha במעקב היו מניות שורט-סקוויז.</p>
+  </div>
+</div>
+
+<!-- Methodology explainer -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">רגע של רקע</div>
+    <h2>איך השיטה עובדת — בפשטות</h2>
+    <p class="lede">אתה מריץ ב-Barchart שלוש סריקות שמבוססות על "ארבעת העמודים" של Rowland ו-Van Meerten — ארבעה מדדים שכל מניה חייבת לעבור. אני מקבל את התוצאות, מאמת שאין טעויות, מדרג, בודק ברשת מה שחשוד — ובונה את הדוח. הנה כל המערכת בארבע נקודות:</p>
+    <div class="method">
+      <div class="mcard">
+        <h4>ארבעת העמודים — תעודת הכושר של המניה</h4>
+        <p><strong>1. Weighted Alpha</strong> — כמה המניה הכתה את השוק בשנה האחרונה, עם משקל לחודשים האחרונים. <strong>2. Barchart Opinion</strong> — ממוצע של 13 איתותים טכניים ("<span class="num">100%</span> Buy" = כולם ירוקים). <strong>3. Trend Seeker</strong> — איתות מגמה ממוחשב. <strong>4. Beta</strong> — מדד תנודתיות. מניה שעוברת את הארבעה = מניה שהשוק כבר הצביע עליה בכסף.</p>
+      </div>
+      <div class="mcard">
+        <h4>שלוש הסריקות — שלושה סיפורים שונים</h4>
+        <p><strong>א' מומנטום גבוה</strong> = רכבות שכבר דוהרות (הכול ירוק, השאלה רק מחיר הכרטיס). <strong>ב' עוף החול</strong> = מניות שקרסו <span class="num">50%+</span> ומתחילות לקום — אנחנו תופסים אותן רגע לפני שהן חוצות את ממוצע 100 הימים. <strong>ג' מועמדות לפריצה</strong> = קפיצים שנדרכים: מניות טובות שמתכנסות מתחת לשיא, לפני שהקהל שם לב.</p>
+      </div>
+      <div class="mcard">
+        <h4>הפילטרים שלנו מעל הסריקה</h4>
+        <p><strong>RSI</strong> — מד החום: <span class="num">50–65</span> אידיאלי; מעל <span class="num">70</span> חם מדי לכניסה; מתחת ל-<span class="num">50</span> אין אישור מגמה. <strong>שיאים חודשיים</strong> — כמה פעמים בחודש עשתה שיא חדש (עקביות). <strong>מרחק מהשיא</strong> — עד <span class="num">8%</span> זה "טווח פריצה". <strong>שורט מעל <span class="num">12%</span> מה-Float</strong> = פסילה: העלייה מונעת מלחץ על שורטיסטים, לא מקונים אמיתיים — וזה נגמר רע.</p>
+      </div>
+      <div class="mcard">
+        <h4>איך נכנסים (הלקח של השבועיים)</h4>
+        <p>אף פעם לא "קונים עכשיו". לכל מניה מוגדר <strong>טריגר</strong> (מחיר שמוכיח שהפריצה אמיתית) ו<strong>סטופ</strong> (מחיר שמוכיח שטעינו). ואחרי שחמש פריצות נסוגו בשבועיים — הכלל: <strong>כניסה מדורגת</strong> (שליש בטריגר, השלמה אחרי יומיים מעל הקו), רווח חלקי ב-<span class="num">+8–10%</span>, וחצייה שולית של טריגר אינה פריצה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What changed -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">מה השתנה מאז 24/08</div>
+    <h2>שש ההתפתחויות המרכזיות</h2>
+    <div class="delta">
+      <div class="dl"><h4><span class="tk">TWST</span> — <span class="num">+31%</span> והשיא של המעקב</h4><p>Twist מייצרת DNA סינתטי למעבדות. סגרה <span class="num">$151.42</span> עם Alpha <span class="num">463</span> — הגבוה שנמדד אצלנו אי-פעם. מהטריגר (<span class="num">$115.6</span>) — <span class="num">+31%</span>. מה עושים: כלום. סטופ נגרר עולה ל-<span class="num">$138</span>, נותנים לרווח לרוץ.</p></div>
+      <div class="dl"><h4><span class="tk">RLAY</span> — הפסילה השישית ⛔</h4><p>Relay מפתחת תרופות סרטן מדויקות, ועלתה <span class="num">+486%</span> בשנה. נשמע חלום? השורט עליה הוא <span class="num">22%</span> מהמניות הסחירות ו-<span class="num">13</span> ימי כיסוי — כלומר חלק גדול מהעלייה הוא שורטיסטים שנלחצים לקנות. שש מלכות Alpha בדקנו — שש נפסלו. זו כבר חוקיות, לא צירוף מקרים.</p></div>
+      <div class="dl"><h4><span class="tk">KYMR</span> — הריטסט שעבד בדיוק לפי הספר</h4><p>Kymera (פירוק חלבונים) נסוגה בחמישי בדיוק לאזור שהגדרנו (<span class="num">$120–122</span>), החזיקה — ועכשיו חזרה ל-<span class="num">$126.64</span> עם RSI שהתקרר ל-<span class="num">67</span>. מי שנכנס על הנר ההיפוך — <span class="num">+4%</span> וסטופ עולה ל-<span class="num">$118</span>.</p></div>
+      <div class="dl"><h4><span class="tk">NTRA</span> — הפוזיציה הטרייה נושקת לשיא</h4><p>Natera (בדיקות גנטיות מדם) סגרה <span class="num">$336.71</span> — <span class="num">0.12%</span> מהשיא. הפוזיציה שהושלמה אתמול כבר <span class="num">+3%</span>. סטופ נשאר <span class="num">$315</span>.</p></div>
+      <div class="dl"><h4><span class="tk">NEO</span> — החצייה השולית קרסה, שוב</h4><p>שלשום חצתה את <span class="num">$16.9</span> ב-<span class="num">8</span> סנט; היום <span class="num">$16.79</span> — מתחת. זו הפעם השישית במעקב שחצייה שולית מתפוגגת. בגלל זה הכלל דורש סגירה מעל <span class="num">$17.3</span> — והוא שוב חסך כניסת שווא.</p></div>
+      <div class="dl"><h4><span class="tk">CSGP</span> — יום שני מעל הקו, אבל בלי הכרעה</h4><p>CoStar (נתוני נדל"ן מסחרי) מחזיקה יומיים מעל ממוצע 100 יום — אבל רק ב-<span class="num">0.5%</span>, ומתחת ל-<span class="num">$33</span> שהגדרנו כאישור. פוזיציה חלקית נשארת חלקית; השלמה רק בסגירה מעל <span class="num">$33</span>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Category A -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה א</div>
+    <div class="cond-head">
+      <div class="cond-letter">א</div>
+      <h3>מומנטום גבוה — <span class="num">21</span> מניות</h3>
+      <span class="tag">רכבות שדוהרות: השאלה היא רק מחיר הכרטיס · <span class="num">2</span> פסילות שורט</span>
+    </div>
+    <p class="lede">מה רואים בטבלה: <strong>ציון</strong> = שקלול איכות הסטאפ (עמודים + RSI + עקביות + מרחק מהשיא). <strong>סטטוס</strong> = מה עושים עכשיו. הכלל: קונים רכבת רק בתחנה (ריטסט/טריגר) — לא באמצע הדהירה.</p>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>סטטוס</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">KYMR</td><td class="score">82</td><td><span class="num">+166.3</span></td><td><span class="num">6</span></td><td><span class="num">67.2</span></td><td><span class="num">-2.62%</span></td><td><span class="badge b-blue">פוזיציה</span></td><td>הריטסט החזיק — סטופ עולה ל-<span class="num">$118</span></td></tr>
+        <tr><td>2</td><td class="sym">TWST</td><td class="score">81</td><td><span class="num">+463.1</span></td><td><span class="num">11</span></td><td><span class="num">69.6</span></td><td><span class="num">-2.28%</span></td><td><span class="badge b-blue">פוזיציה 💪</span></td><td><span class="num">+31%</span> — סטופ נגרר <span class="num">$138</span></td></tr>
+        <tr><td>3</td><td class="sym">NTRA</td><td class="score">80</td><td><span class="num">+112.9</span></td><td><span class="num">9</span></td><td><span class="num">71.7</span></td><td><span class="num">-0.12%</span></td><td><span class="badge b-blue">פוזיציה</span></td><td>על השיא — סטופ <span class="num">$315</span></td></tr>
+        <tr><td>4</td><td class="sym">JHX</td><td class="score">79</td><td><span class="num">+62.9</span></td><td><span class="num">11</span></td><td><span class="num">62.0</span></td><td><span class="num">-3.24%</span></td><td><span class="badge b-green">חזרה — סטאפ קר</span></td><td>חומרי בנייה, טריגר <span class="num">$31.35</span></td></tr>
+        <tr><td>5</td><td class="sym">IVZ</td><td class="score">78</td><td><span class="num">+52.9</span></td><td><span class="num">9</span></td><td><span class="num">63.2</span></td><td><span class="num">-0.83%</span></td><td><span class="badge b-green">על סף טריגר</span></td><td>מנהלת נכסים — סנטימטר מ-<span class="num">$33</span></td></tr>
+        <tr><td>6</td><td class="sym">ADPT</td><td class="score">77</td><td><span class="num">+115.0</span></td><td><span class="num">9</span></td><td><span class="num">65.0</span></td><td><span class="num">-0.91%</span></td><td><span class="badge b-amber">מעל <span class="num">$26</span>, בלי אישור</span></td><td>האישור: סגירה מעל <span class="num">$26.5</span></td></tr>
+        <tr><td>7</td><td class="sym">RLAY</td><td class="score">⛔</td><td><span class="num">+374.1</span></td><td><span class="num">8</span></td><td><span class="num">60.0</span></td><td><span class="num">-3.29%</span></td><td><span class="badge b-red">פסילה</span></td><td>שורט <span class="num">22%</span> מה-Float — פסילה שישית</td></tr>
+        <tr><td>8</td><td class="sym">NEO</td><td class="score">74</td><td><span class="num">+95.0</span></td><td><span class="num">8</span></td><td><span class="num">60.6</span></td><td><span class="num">-1.67%</span></td><td><span class="badge b-gray">נסוגה מהקו</span></td><td>החצייה השולית קרסה — ממתינים ל-<span class="num">$17.3</span></td></tr>
+        <tr><td>9</td><td class="sym">ACHV</td><td class="score">72</td><td><span class="num">+159.6</span></td><td><span class="num">13</span></td><td><span class="num">69.8</span></td><td><span class="num">-5.11%</span></td><td><span class="badge b-blue">פוזיציה</span></td><td>שרדה את מבחן ה-<span class="num">$7.8</span> — סטופ במקום</td></tr>
+        <tr><td>10</td><td class="sym">SEPN</td><td class="score">70</td><td><span class="num">+199.5</span></td><td><span class="num">8</span></td><td><span class="num">54.8</span></td><td><span class="num">-19.2%</span></td><td><span class="badge b-gray">ריטסט עמוק</span></td><td>ה-RSI הקר ברשימה — מוקדם, במעקב</td></tr>
+        <tr><td>11</td><td class="sym">BFLY</td><td class="score">69</td><td><span class="num">+209.5</span></td><td><span class="num">6</span></td><td><span class="num">56.4</span></td><td><span class="num">-10.1%</span></td><td><span class="badge b-gray">מחזיקה <span class="num">$9</span></span></td><td>הבסיס נבנה</td></tr>
+        <tr><td>12</td><td class="sym">NGNE</td><td class="score">68</td><td><span class="num">+72.1</span></td><td><span class="num">10</span></td><td><span class="num">65.0</span></td><td><span class="num">-6.46%</span></td><td><span class="badge b-gray">חדשה</span></td><td>Neurogene — ריפוי גנטי, ספקולטיבית</td></tr>
+        <tr><td>13</td><td class="sym">CDNA</td><td class="score">67</td><td><span class="num">+222.4</span></td><td><span class="num">5</span></td><td><span class="num">72.9</span></td><td><span class="num">-0.64%</span></td><td><span class="badge b-amber">גבולית</span></td><td>על סף שיא אך RSI <span class="num">73</span></td></tr>
+        <tr><td>14</td><td class="sym">TBI</td><td class="score">66</td><td><span class="num">+65.6</span></td><td><span class="num">7</span></td><td><span class="num">67.0</span></td><td><span class="num">-2.63%</span></td><td><span class="badge b-gray">יציבה</span></td><td>מתקרבת בשקט</td></tr>
+        <tr><td>15</td><td class="sym">TILE</td><td class="score">65</td><td><span class="num">+54.7</span></td><td><span class="num">5</span></td><td><span class="num">64.7</span></td><td><span class="num">-3.83%</span></td><td><span class="badge b-gray">חזרה</span></td><td>יציבה</td></tr>
+        <tr><td>16</td><td class="sym">PSNL</td><td class="score">63</td><td><span class="num">+158.3</span></td><td><span class="num">12</span></td><td><span class="num">66.8</span></td><td><span class="num">-8.68%</span></td><td><span class="badge b-gray">מעכלת</span></td><td>אחרי שבוע של <span class="num">+31%</span></td></tr>
+        <tr><td>17</td><td class="sym">PUBM</td><td class="score">60</td><td><span class="num">+66.7</span></td><td><span class="num">6</span></td><td><span class="num">62.2</span></td><td><span class="num">-10.3%</span></td><td><span class="badge b-gray">חזרה</span></td><td>רחוקה</td></tr>
+        <tr><td>18</td><td class="sym">AVAH</td><td class="score">58</td><td><span class="num">+81.8</span></td><td><span class="num">11</span></td><td><span class="num">79.0</span></td><td><span class="num">-2.79%</span></td><td><span class="badge b-red">חמה</span></td><td>עדיין Chase — ממתינים לבסיס</td></tr>
+        <tr><td>19</td><td class="sym">ROKU</td><td class="score">58</td><td><span class="num">+78.6</span></td><td><span class="num">13</span></td><td><span class="num">77.2</span></td><td><span class="num">-0.08%</span></td><td><span class="badge b-amber">Overbought</span></td><td>על השיא, שבוע שישי</td></tr>
+        <tr><td>—</td><td class="sym">TXG</td><td class="score">⛔</td><td><span class="num">+447.0</span></td><td><span class="num">12</span></td><td><span class="num">71.5</span></td><td><span class="num">-3.32%</span></td><td><span class="badge b-red">פסילה</span></td><td>שורט <span class="num">17.4%</span></td></tr>
+      </tbody>
+    </table>
+    <div class="flag"><strong>הדפוס הושלם — שש מתוך שש:</strong> TXG, AEHR, URGN, SYRE, SLS ועכשיו RLAY — כל מניה שהגיעה לצמרת ה-Alpha של הסריקה התגלתה כמניית שורט-סקוויז. המסקנה הפשוטה: בשוק הזה, Alpha מעל <span class="num">~350</span> הוא כמעט תמיד דלק של שורטים שנלחצים — לא ביקוש אמיתי. הכלל "שורט מעל <span class="num">12%</span> = פסילה" הוא ההגנה הכי חשובה של המערכת.</div>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">JHX</span> · James Hardie — הסטאפ הקר של הדוח</h4>
+        <p><span class="lbl">מה החברה:</span> יצרנית חיפויי בתים מפייבר-צמנט — ברזל של שוק הבנייה האמריקאי. <span class="lbl">למה עכשיו:</span> חזרה לסריקה עם RSI <span class="num">62</span> קר, <span class="num">11</span> שיאים חודשיים, ורוח גבית מציפיות להורדת ריבית (בנייה = הסקטור הרגיש ביותר לריבית). <span class="lbl">בפשטות:</span> מניה יציבה שמטפסת מדרגה-מדרגה, לא רקטה.</p>
+        <div class="trigger">טריגר: סגירה מעל <span class="num">$31.35</span> (השיא). סטופ: <span class="num">$28.5</span>. כניסה מדורגת.</div>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">IVZ</span> · Invesco — סנטימטר מהטריגר</h4>
+        <p><span class="lbl">מה החברה:</span> מנהלת השקעות ענקית (קרנות QQQ ועוד) — כשהשווקים עולים, הנכסים שלה תופחים והרווח איתם. <span class="lbl">למה עכשיו:</span> חמישה דוחות שהיא מטפסת בעקביות (<span class="num">6→8→9</span> שיאים חודשיים), RSI <span class="num">63</span> בריא, ועכשיו <span class="num">$32.72</span> — פחות מאחוז מהטריגר. <span class="lbl">בפשטות:</span> אם השוק ממשיך למעלה אחרי ג'קסון הול — היא פורצת מעצם האינרציה.</p>
+        <div class="trigger">טריגר: סגירה מעל <span class="num">$33</span>. סטופ: <span class="num">$30.5</span>.</div>
+      </div>
+      <div class="dcard warn">
+        <h4><span class="tk">ADPT</span> · Adaptive — הסאגה נמשכת</h4>
+        <p><span class="lbl">מה החברה:</span> מיפוי מערכת החיסון לאבחון סרטן. <span class="lbl">הסיפור:</span> זה הניסיון הרביעי-חמישי שלה לפרוץ את אזור ה-<span class="num">$26</span> בחודש. היום סגרה <span class="num">$26.25</span> — מעל, אבל שוב בלי הסגירה המובהקת (<span class="num">$26.5</span>) שהכלל דורש. <span class="lbl">בפשטות:</span> כמו קפיץ שנלחץ שוב ושוב — כשזה ישתחרר זה יהיה חד, לשני הכיוונים. בלי אישור אין כניסה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category C -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ג</div>
+    <div class="cond-head">
+      <div class="cond-letter">ג</div>
+      <h3>מועמדות לפריצה — <span class="num">19</span> מניות, <span class="num">9</span> כשירות</h3>
+      <span class="tag">קפיצים שנדרכים · HOOD ו-LYFT חדשות · גל שבבים בלי אישור RSI</span>
+    </div>
+    <p class="lede">להזכיר: כאן יושבות מניות עם Opinion חלקי (<span class="num">30–80%</span>) ו-Alpha מתון — כלומר "עוד לא כולן ירוקות". זה החדר שבו מוצאים את הפריצה הבאה לפני שהיא בכותרות. המחיר: חלקן לא יפרצו לעולם.</p>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>Opinion</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">CRGY</td><td class="score">76</td><td><span class="num">+49.0</span></td><td><span class="num">72%</span></td><td><span class="num">13</span></td><td><span class="num">65.9</span></td><td><span class="num">-5.88%</span></td><td>חזרה (לא "בגרה") — <span class="num">13</span> שיאים, על תקרת ה-Alpha</td></tr>
+        <tr><td>2</td><td class="sym">JOE</td><td class="score">72</td><td><span class="num">+34.2</span></td><td><span class="num">56%</span></td><td><span class="num">10</span></td><td><span class="num">64.2</span></td><td><span class="num">-5.48%</span></td><td>נדל"ן פלורידה — יציבה</td></tr>
+        <tr><td>3</td><td class="sym">CVCO</td><td class="score">70</td><td><span class="num">+20.4</span></td><td><span class="num">72%</span></td><td><span class="num">6</span></td><td><span class="num">51.9</span></td><td><span class="num">-17.6%</span></td><td>חזרה חמישית — ההתכנסות חיה, RSI קר</td></tr>
+        <tr><td>4</td><td class="sym">FRPT</td><td class="score">67</td><td><span class="num">+43.2</span></td><td><span class="num">56%</span></td><td><span class="num">8</span></td><td><span class="num">69.6</span></td><td><span class="num">-12.3%</span></td><td>מזון טרי לכלבים — קרובה ל-OB</td></tr>
+        <tr><td>5</td><td class="sym">AMZN</td><td class="score">66</td><td><span class="num">+16.4</span></td><td><span class="num">72%</span></td><td><span class="num">4</span></td><td><span class="num">51.6</span></td><td><span class="num">-9.10%</span></td><td>מחזיקה את אישור ה-RSI — בנייה איטית</td></tr>
+        <tr><td>6</td><td class="sym">HOOD</td><td class="score">65</td><td><span class="num">-4.1</span></td><td><span class="num">56%</span></td><td><span class="num">5</span></td><td><span class="num">63.5</span></td><td><span class="num">-27.2%</span></td><td>חדשה — Robinhood: <span class="num">+20.6</span> בשבוע, מתאוששת</td></tr>
+        <tr><td>7</td><td class="sym">RDNT</td><td class="score">64</td><td><span class="num">+15.6</span></td><td><span class="num">72%</span></td><td><span class="num">8</span></td><td><span class="num">64.2</span></td><td><span class="num">-10.5%</span></td><td>יציבה</td></tr>
+        <tr><td>8</td><td class="sym">LYFT</td><td class="score">63</td><td><span class="num">+12.0</span></td><td><span class="num">72%</span></td><td><span class="num">12</span></td><td><span class="num">62.4</span></td><td><span class="num">-30.9%</span></td><td>חדשה — <span class="num">12</span> שיאים חודשיים, תפנית רווחיות</td></tr>
+        <tr><td>9</td><td class="sym">MTD</td><td class="score">62</td><td><span class="num">+10.4</span></td><td><span class="num">72%</span></td><td><span class="num">5</span></td><td><span class="num">55.3</span></td><td><span class="num">-8.06%</span></td><td>יציבה</td></tr>
+        <tr><td colspan="9" style="color:var(--amber);font-weight:600">⚠️ ללא אישור מגמה (RSI &lt; 50): WCC (<span class="num">45.3</span>) · CRDO (<span class="num">46.8</span>) · FLR (<span class="num">48.4</span>) · ITT (<span class="num">49.2</span>) — שימו לב: גל תעשייה/שבבים שלם בנסיגה</td></tr>
+        <tr><td colspan="9" style="color:var(--red);font-weight:600">❌ נכשלו באימות Alpha: SAIL · PLTR (יצאה שוב) · QTWO · BX · VRTS · BWMN</td></tr>
+      </tbody>
+    </table>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">HOOD</span> · Robinhood — האורחת המסקרנת</h4>
+        <p><span class="lbl">מה החברה:</span> פלטפורמת המסחר של דור הריטייל — מניות, אופציות וקריפטו. <span class="lbl">למה עכשיו:</span> קפצה <span class="num">+20.6</span> בשבוע (<span class="num">+22%</span>!) וחזרה לטווח הסריקה. עדיין <span class="num">-27%</span> מהשיא — כלומר יש מקום. <span class="lbl">בפשטות:</span> מניה שמרוויחה מכל עלייה בפעילות המסחר; אם השוק חוזר לראלי — היא ממונפת עליו. אבל אחרי שבוע כזה, נותנים לה להתקרר לפני מעשה.</p>
+        <div class="trigger">Watchlist: התבססות מעל <span class="num">$110</span> ואז <span class="num">$120</span>. לא רודפים את הקפיצה.</div>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">LYFT</span> — <span class="num">12</span> שיאים בשקט מוחלט</h4>
+        <p><span class="lbl">מה החברה:</span> אפליקציית הנסיעות מספר 2 בארה"ב, שהפכה השנה רווחית באמת. <span class="lbl">למה עכשיו:</span> <span class="num">12</span> שיאים חודשיים — עקביות של מניה חזקה, בזמן שכולם מסתכלים על אובר. RSI <span class="num">62</span> תקין. <span class="lbl">בפשטות:</span> תפנית שקטה שהסריקה תפסה מוקדם. עדיין <span class="num">-31%</span> מהשיא — מוקדם לכניסה, מושלם ל-Watchlist.</p>
+      </div>
+      <div class="dcard warn">
+        <h4>גל השבבים/תעשייה בלי אישור — <span class="tk">WCC</span> · <span class="tk">CRDO</span> · <span class="tk">FLR</span> · <span class="tk">ITT</span></h4>
+        <p><span class="lbl">התופעה:</span> ארבע מניות תשתית/שבבים איכותיות נכנסו לסריקה — וכולן עם RSI מתחת ל-<span class="num">50</span>, כלומר באמצע נסיגה פעילה. <span class="lbl">בפשטות:</span> הסריקה אומרת "המניות האלו טובות", ה-RSI אומר "אבל הסכין עוד נופלת". לא תופסים סכינים; אם יתייצבו מעל <span class="num">50</span> — נדבר.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category B -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ב</div>
+    <div class="cond-head">
+      <div class="cond-letter">ב</div>
+      <h3>עוף החול — <span class="num">4</span> מניות</h3>
+      <span class="tag">מניות שקרסו <span class="num">50%+</span> ולומדות לעוף מחדש</span>
+    </div>
+    <table>
+      <thead><tr><th>סימול</th><th>מחיר</th><th>ממוצע 100 יום</th><th>פער</th><th>RSI</th><th>שיאים/חודש</th><th>Opinion</th><th>סטטוס</th></tr></thead>
+      <tbody>
+        <tr><td class="sym">CSGP</td><td><span class="num">32.81</span></td><td><span class="num">32.66</span></td><td><span class="num">+0.5%</span></td><td><span class="num">57.9</span></td><td><span class="num">6</span></td><td><span class="num">24%</span> Sell</td><td><span class="badge b-blue">יום שני מעל הקו</span></td></tr>
+        <tr><td class="sym">BSX</td><td><span class="num">49.86</span></td><td><span class="num">51.37</span></td><td><span class="num">-2.9%</span></td><td><span class="num">54.1</span></td><td><span class="num">11</span></td><td><span class="num">40%</span> Sell</td><td><span class="badge b-gray">מדשדשת מתחת</span></td></tr>
+        <tr><td class="sym">GTM</td><td><span class="num">3.86</span></td><td><span class="num">4.07</span></td><td><span class="num">-5.2%</span></td><td><span class="num">54.8</span></td><td><span class="num">9</span></td><td><span class="num">40%</span> Sell</td><td><span class="badge b-gray">תצפית</span></td></tr>
+        <tr><td class="sym">NLOP</td><td><span class="num">11.61</span></td><td><span class="num">11.85</span></td><td><span class="num">-2.0%</span></td><td><span class="num">50.7</span></td><td><span class="num">3</span></td><td><span class="num">56%</span> Sell</td><td><span class="badge b-gray">רדומה</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note"><strong>בפשטות:</strong> הקטגוריה הזו מחפשת את רגע ה"INTU" — היום שבו מניה שקרסה חוצה סופית את ממוצע 100 הימים ומתחילה מהלך גדול (INTU עשתה <span class="num">+7%</span> ביום החצייה). CSGP היא המועמדת הפעילה: יומיים מעל הקו, ה-Opinion הכי משופר בקטגוריה (<span class="num">24%</span> Sell בלבד) — אבל החצייה עדיין רזה. ההשלמה: סגירה מעל <span class="num">$33</span>. BSX ממשיכה לדשדש מתחת לקו — <span class="num">11</span> שיאים אבל בלי כוח פריצה; ממתינים.</p>
+  </div>
+</section>
+
+<!-- Bottom line -->
+<div class="bottom">
+  <div class="wrap">
+    <div class="stepnum" style="color:var(--cyan)">שורה תחתונה</div>
+    <h2>לוח פעולה</h2>
+    <div class="bl">
+      <div class="bcard">
+        <h4>פוזיציות (<span class="num">5</span>) — כולן ירוקות</h4>
+        <p><span class="tk">TWST</span> <span class="num">+31%</span> (סטופ <span class="num">$138</span>) · <span class="tk">NTRA</span> <span class="num">+3%</span> (סטופ <span class="num">$315</span>) · <span class="tk">KYMR</span> <span class="num">+4%</span> (סטופ <span class="num">$118</span>) · <span class="tk">PTGX</span> שליש (סטופ <span class="num">$147</span>) · <span class="tk">ACHV</span> (סטופ <span class="num">$7.8</span>).</p>
+      </div>
+      <div class="bcard">
+        <h4>טריגרים במרחק נגיעה</h4>
+        <p><span class="tk">IVZ</span> <span class="num">$33</span> (<span class="num">0.8%</span> משם) · <span class="tk">ADPT</span> אישור <span class="num">$26.5</span> · <span class="tk">JHX</span> <span class="num">$31.35</span> · <span class="tk">NEO</span> <span class="num">$17.3</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4><span class="tk">CSGP</span> · ההשלמה</h4>
+        <p>יומיים מעל הקו ✓ — אבל ההשלמה רק בסגירה מעל <span class="num">$33</span>. סטופ לפוזיציה החלקית: <span class="num">$30</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4>Watchlist חדש</h4>
+        <p><span class="tk">HOOD</span> (אחרי התקררות) · <span class="tk">LYFT</span> (<span class="num">12</span> שיאים) · <span class="tk">CRGY</span> (<span class="num">13</span> שיאים, אנרגיה) · <span class="tk">CVCO</span> (ההתכנסות החמישית).</p>
+      </div>
+      <div class="bcard">
+        <h4>לא נוגעים</h4>
+        <p><span class="tk">RLAY</span>/<span class="tk">TXG</span> (שורט) · <span class="tk">AVAH</span>/<span class="tk">ROKU</span>/<span class="tk">CDNA</span> (RSI <span class="num">73+</span>) · סכיני השבבים (<span class="tk">WCC</span>, <span class="tk">CRDO</span>, <span class="tk">FLR</span>, <span class="tk">ITT</span>).</p>
+      </div>
+      <div class="bcard">
+        <h4>המספר של היום</h4>
+        <p><span class="num">6/6</span> — כל מלכות ה-Alpha שנבדקו במעקב נפסלו על שורט. הפילטר הזה הוא ההבדל בין מערכת לבין רשימת מניות חמות.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Four Pillars Scanner · נתונים: Barchart <span class="num">25/08/2026</span> (סגירת יום שלישי) + אימות רשת · דוח #14</span>
+    <span>ניתוח טכני לצורכי לימוד — אינו המלצת השקעה</span>
+  </div>
+</footer>
+
+</body>
+</html>
