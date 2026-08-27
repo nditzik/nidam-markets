@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דוח ארבעת העמודים — 26/08/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#051C2C;--blue:#2251FF;--cyan:#00A9F4;--ink:#1a1a2e;--gray:#5f6b7a;--line:#DDE3EA;--bg:#F7F9FB;--green:#0E8A5F;--red:#C0392B;--amber:#B7791F}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Heebo","Arial Hebrew",sans-serif;direction:rtl;color:var(--ink);background:#fff;line-height:1.7;font-size:15.5px}
+  .num{direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 26px}
+  header{background:var(--navy);color:#fff;padding:52px 0 44px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--cyan);font-weight:600;margin-bottom:14px}
+  h1{font-size:34px;font-weight:800;line-height:1.25}
+  .subtitle{margin-top:12px;font-size:16.5px;color:#B9C6D2;font-weight:300}
+  .header-rule{width:64px;height:4px;background:var(--blue);margin-top:22px}
+  .keymsg{background:var(--blue);color:#fff;padding:18px 0}
+  .keymsg p{font-size:16px;font-weight:500}
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .stepnum{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.16em;margin-bottom:4px}
+  h2{font-size:23px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .lede{color:var(--gray);font-size:15px;max-width:860px;margin-bottom:20px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:13.8px}
+  thead th{background:var(--navy);color:#fff;font-weight:600;padding:9px 11px;text-align:start;font-size:12.8px;white-space:nowrap}
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--bg)}
+  td.sym{font-weight:700;color:var(--navy);direction:ltr;text-align:right;white-space:nowrap}
+  td.score{font-weight:800;color:var(--blue);white-space:nowrap}
+  .badge{display:inline-block;padding:1px 9px;border-radius:3px;font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap}
+  .b-green{background:var(--green)}.b-red{background:var(--red)}.b-amber{background:var(--amber)}.b-gray{background:var(--gray)}.b-blue{background:var(--blue)}
+  .tbl-note{font-size:12.8px;color:var(--gray);margin-bottom:8px}
+  .cond-head{display:flex;align-items:baseline;gap:12px;margin:8px 0 12px}
+  .cond-letter{width:34px;height:34px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;border-radius:2px}
+  .cond-head h3{font-size:18px;font-weight:700;color:var(--navy)}
+  .cond-head .tag{font-size:12.5px;color:var(--gray)}
+  .deep{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+  .dcard{border:1px solid var(--line);padding:16px 18px;border-top:3px solid var(--green)}
+  .dcard.warn{border-top-color:var(--amber)}
+  .dcard.bad{border-top-color:var(--red)}
+  .dcard h4{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .dcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--blue)}
+  .dcard p{font-size:13.5px;margin-bottom:6px}
+  .dcard .lbl{font-weight:700;color:var(--navy)}
+  .dcard .trigger{background:var(--bg);padding:8px 12px;font-size:13px;margin-top:8px;border-inline-start:3px solid var(--blue)}
+  .delta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .dl{border:1px solid var(--line);padding:14px 16px;border-inline-start:4px solid var(--cyan)}
+  .dl h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .dl h4 .tk{direction:ltr;unicode-bidi:isolate}
+  .dl p{font-size:13px;color:var(--gray)}
+  .bottom{background:var(--navy);color:#fff;padding:40px 0}
+  .bottom h2{color:#fff}
+  .bl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+  .bcard{background:rgba(255,255,255,.06);border-top:3px solid var(--cyan);padding:16px 18px}
+  .bcard h4{font-size:15px;font-weight:800;margin-bottom:6px}
+  .bcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--cyan)}
+  .bcard p{font-size:13.5px;color:#C9D5DF}
+  footer{background:#031320;color:#8FA3B3;padding:24px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:640px){h1{font-size:26px}section{padding:34px 0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Four Pillars Scanner · דוח סריקה #15</div>
+    <h1>דוח ארבעת העמודים — <span class="num">26/08/2026</span></h1>
+    <p class="subtitle">נתוני Barchart (סגירת יום רביעי) · <span class="num">37</span> מניות נסרקו</p>
+    <div class="header-rule"></div>
+  </div>
+</header>
+
+<div class="keymsg">
+  <div class="wrap">
+    <p><strong>🎯 NEO נתנה את הסגירה המובהקת שדרשנו — <span class="num">$17.37</span> מעל קו ה-<span class="num">$17.3</span> — הטריגר התשיעי של המעקב. IVZ במרחק שני סנט מהטריגר שלה.</strong> ומנגד: PTGX נסוגה שוב מתחת ל-<span class="num">$152</span> יום אחרי הכניסה המחודשת, ו-CSGP נפלה מהממוצע בפעם השלישית. יום של אישור אחד אמיתי ושני שיעורים בסבלנות.</p>
+  </div>
+</div>
+
+<!-- What changed -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">מה השתנה מאז 25/08</div>
+    <h2>שש ההתפתחויות המרכזיות</h2>
+    <div class="delta">
+      <div class="dl"><h4><span class="tk">NEO</span> — הסגירה המובהקת הגיעה 🎯</h4><p>אחרי שהחצייה השולית קרסה שש פעמים — Neogenomics (אבחון סרטן מעבדתי) סגרה <span class="num">$17.37</span>, מעל קו האישור <span class="num">$17.3</span>, עם <span class="num">9</span> שיאים חודשיים ו-RSI <span class="num">64.6</span> תקין. לפי הדוקטרינה: שליש ראשון, סטופ <span class="num">$16</span>, השלמה אחרי יומיים מעל הקו.</p></div>
+      <div class="dl"><h4><span class="tk">IVZ</span> — שני סנט מהטריגר</h4><p>Invesco סגרה <span class="num">$32.98</span> — הטריגר <span class="num">$33</span>. עשרה שיאים חודשיים, RSI <span class="num">64.8</span>, פחות מאחוז מהשיא. מחר זה קורה או לא קורה — אם נפרץ בנפח, שליש ראשון עם סטופ <span class="num">$30.5</span>.</p></div>
+      <div class="dl"><h4><span class="tk">PTGX</span> — הכניסה המחודשת נבחנת מיד</h4><p>נסוגה ל-<span class="num">$151.5</span> — שוב מתחת לקו ה-<span class="num">$152</span>, יום אחרי שחצתה אותו. השליש שנכנס: מחזיקים, הסטופ <span class="num">$147</span> קובע, ואין השלמה בלי סגירה מחודשת מעל הקו. RSI ירד ל-<span class="num">58</span> — לא שבור, אבל הפריצות של המניה הזו ממשיכות להיות עצבניות.</p></div>
+      <div class="dl"><h4><span class="tk">CSGP</span> — נפילה שלישית מהקו</h4><p>CoStar נסוגה ל-<span class="num">$32.14</span> — <span class="num">1.4%</span> מתחת לממוצע 100 יום, וה-Opinion הורע חזרה (<span class="num">24%→40%</span> Sell). שלוש חציות, שלוש נסיגות. הפוזיציה החלקית נשארת עם סטופ <span class="num">$30</span> — אבל ההשוואה ל-INTU הולכת ונחלשת: INTU חצתה ולא הביטה לאחור.</p></div>
+      <div class="dl"><h4><span class="tk">ANET</span> — התוספת האיכותית של היום</h4><p>Arista Networks — תשתיות הרשת של מהפכת ה-AI (הלקוחות: Microsoft, Meta) — נכנסה לסריקה עם <span class="num">+15.8</span> בשבוע, RSI <span class="num">60.2</span> קר ו-<span class="num">-5.9%</span> מהשיא. חברת <span class="num">$250B+</span> — הגדולה ביותר שנכנסה לקטגוריה א' מאז תחילת המעקב.</p></div>
+      <div class="dl"><h4><span class="tk">GH</span> — חזרה בדיוק בזמן</h4><p>Guardant Health חזרה לסריקה ב-<span class="num">$170.92</span> (<span class="num">+7.6</span> בשבוע) עם RSI <span class="num">60.4</span> — והטריגר <span class="num">$176.5</span> שהגדרנו לפני שבוע חוזר להיות רלוונטי. הסטאפ הקר האיכותי של הביומד.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Category A -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה א</div>
+    <div class="cond-head">
+      <div class="cond-letter">א</div>
+      <h3>מומנטום גבוה — <span class="num">13</span> מניות, אפס פסילות</h3>
+      <span class="tag">RLAY ו-TXG (פסולות השורט) יצאו · ANET חדשה · GH חזרה</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>סטטוס</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">NEO</td><td class="score">83</td><td><span class="num">+104.4</span></td><td><span class="num">9</span></td><td><span class="num">64.6</span></td><td><span class="num">-0.49%</span></td><td><span class="badge b-blue">טריגר נורה 🎯</span></td><td>סגירה מובהקת מעל <span class="num">$17.3</span> — שליש, סטופ <span class="num">$16</span></td></tr>
+        <tr><td>2</td><td class="sym">GH</td><td class="score">82</td><td><span class="num">+136.1</span></td><td><span class="num">3</span></td><td><span class="num">60.4</span></td><td><span class="num">-3.21%</span></td><td><span class="badge b-green">חזרה — סטאפ קר</span></td><td>טריגר <span class="num">$176.5</span> בתוקף</td></tr>
+        <tr><td>3</td><td class="sym">ANET</td><td class="score">81</td><td><span class="num">+60.5</span></td><td><span class="num">5</span></td><td><span class="num">60.2</span></td><td><span class="num">-5.88%</span></td><td><span class="badge b-green">חדשה — מצוין</span></td><td>Arista — ענקית AI עם RSI קר</td></tr>
+        <tr><td>4</td><td class="sym">IVZ</td><td class="score">80</td><td><span class="num">+54.6</span></td><td><span class="num">10</span></td><td><span class="num">64.8</span></td><td><span class="num">-0.99%</span></td><td><span class="badge b-amber">שני סנט מהטריגר</span></td><td><span class="num">$32.98</span> מול <span class="num">$33</span> — מחר מכריע</td></tr>
+        <tr><td>5</td><td class="sym">KYMR</td><td class="score">79</td><td><span class="num">+163.2</span></td><td><span class="num">6</span></td><td><span class="num">65.3</span></td><td><span class="num">-3.46%</span></td><td><span class="badge b-blue">פוזיציה</span></td><td>מחזיקה מעל <span class="num">$125</span> — סטופ <span class="num">$118</span></td></tr>
+        <tr><td>6</td><td class="sym">TWST</td><td class="score">78</td><td><span class="num">+456.2</span></td><td><span class="num">11</span></td><td><span class="num">68.5</span></td><td><span class="num">-3.16%</span></td><td><span class="badge b-blue">פוזיציה 💪</span></td><td><span class="num">+30%</span> — סטופ נגרר <span class="num">$138</span></td></tr>
+        <tr><td>7</td><td class="sym">NTRA</td><td class="score">77</td><td><span class="num">+114.4</span></td><td><span class="num">10</span></td><td><span class="num">72.3</span></td><td><span class="num">-0.74%</span></td><td><span class="badge b-blue">פוזיציה</span></td><td>שיא נוסף — סטופ <span class="num">$315</span></td></tr>
+        <tr><td>8</td><td class="sym">ADPT</td><td class="score">76</td><td><span class="num">+114.0</span></td><td><span class="num">10</span></td><td><span class="num">64.2</span></td><td><span class="num">-1.32%</span></td><td><span class="badge b-amber">ממתינה</span></td><td>עדיין בלי סגירת <span class="num">$26.5</span></td></tr>
+        <tr><td>9</td><td class="sym">PTGX</td><td class="score">73</td><td><span class="num">+138.3</span></td><td><span class="num">10</span></td><td><span class="num">58.0</span></td><td><span class="num">-5.79%</span></td><td><span class="badge b-amber">מתחת לקו</span></td><td>שליש מוחזק — סטופ <span class="num">$147</span>, בלי השלמה</td></tr>
+        <tr><td>10</td><td class="sym">ACHV</td><td class="score">72</td><td><span class="num">+163.9</span></td><td><span class="num">13</span></td><td><span class="num">70.9</span></td><td><span class="num">-3.95%</span></td><td><span class="badge b-blue">פוזיציה</span></td><td><span class="num">13</span> שיאים — סטופ <span class="num">$7.8</span></td></tr>
+        <tr><td>11</td><td class="sym">CDNA</td><td class="score">68</td><td><span class="num">+223.7</span></td><td><span class="num">5</span></td><td><span class="num">73.1</span></td><td><span class="num">-0.32%</span></td><td><span class="badge b-amber">Overbought</span></td><td>על סף שיא, חמה</td></tr>
+        <tr><td>12</td><td class="sym">TILE</td><td class="score">66</td><td><span class="num">+53.3</span></td><td><span class="num">5</span></td><td><span class="num">62.7</span></td><td><span class="num">-4.44%</span></td><td><span class="badge b-gray">יציבה</span></td><td>ללא שינוי</td></tr>
+        <tr><td>13</td><td class="sym">AVAH</td><td class="score">58</td><td><span class="num">+82.3</span></td><td><span class="num">11</span></td><td><span class="num">79.1</span></td><td><span class="num">-2.58%</span></td><td><span class="badge b-red">חמה</span></td><td>עדיין Chase — שבוע שני ב-RSI <span class="num">79+</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note">הרוחב ירד <span class="num">21→13</span> — אבל רוב היציאות הן ניקוי: פסולות השורט (RLAY, TXG) והחמות (ROKU, PSNL) יצאו. JHX ו-LTH יצאו גם הן — הטריגרים (<span class="num">$31.35</span> / <span class="num">$47.2</span>) עוברים למעקב ידני עם אימות לפני החלטה.</p>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">NEO</span> · Neogenomics — אנטומיה של אישור</h4>
+        <p><span class="lbl">מה החברה:</span> רשת מעבדות לאבחון סרטן — בדיקות גנטיות לגידולים עבור בתי חולים ואונקולוגים. <span class="lbl">הסיפור:</span> שלשום חצתה את <span class="num">$16.9</span> ב-<span class="num">8</span> סנט ונסוגה — בדיוק כמו חמש חציות שוליות לפניה. היום עשתה את מה שהכלל דורש: סגירה מובהקת מעל <span class="num">$17.3</span>, שיא חדש, ו-RSI שעדיין לא חם. <span class="lbl">בפשטות:</span> ההבדל בין "נגעה בקו" ל"עברה את הקו" הוא ההבדל בין רעש לאיתות.</p>
+        <div class="trigger">שליש ראשון על הסגירה. השלמה: יומיים מעל <span class="num">$17.3</span>. סטופ: <span class="num">$16</span>. רווח חלקי: <span class="num">$19</span>.</div>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">ANET</span> · Arista Networks · ציון 81</h4>
+        <p><span class="lbl">מה החברה:</span> מתגי הרשת שמחברים בין השרתים בחוות ה-AI — הצנרת של הענן. הלקוחות הגדולים: Microsoft ו-Meta. <span class="lbl">למה עכשיו:</span> קפצה <span class="num">+15.8</span> בשבוע (תוצאות + הנחיות חזקות) ועדיין RSI <span class="num">60</span> בלבד ו-<span class="num">-5.9%</span> מהשיא — ענקית שמתנהגת כמו סטאפ צעיר. <span class="lbl">בפשטות:</span> דרך סולידית להיחשף למומנטום ה-AI בלי לקנות מניה חמה.</p>
+        <div class="trigger">טריגר: פריצת <span class="num">~$215</span> (השיא). סטופ: <span class="num">$188</span>. מדורג. לבדוק שורט (Short Float) לפני — צפוי נמוך בחברה כזו.</div>
+      </div>
+      <div class="dcard warn">
+        <h4><span class="tk">PTGX</span> + <span class="tk">CSGP</span> — שני השיעורים של היום</h4>
+        <p><span class="lbl">התמונה:</span> שתיהן חצו קו חשוב השבוע, ושתיהן נסוגו ממנו תוך יום. זו כבר לא תקלה — זה אופי השוק הנוכחי: קווים נחצים ונמכרים. <span class="lbl">מה זה אומר בפועל:</span> הדירוג (שליש ראשון בלבד) עשה בדיוק את העבודה — החשיפה לנסיגות האלו קטנה. סטופים: PTGX <span class="num">$147</span>, CSGP <span class="num">$30</span>. בלי השלמות עד סגירות מובהקות.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category C -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ג</div>
+    <div class="cond-head">
+      <div class="cond-letter">ג</div>
+      <h3>מועמדות לפריצה — <span class="num">20</span> מניות, <span class="num">11</span> כשירות</h3>
+      <span class="tag">MDB חדשה · HOOD נפלה מטווח ה-Alpha · PLTR חזרה</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>Opinion</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">CRGY</td><td class="score">75</td><td><span class="num">+47.8</span></td><td><span class="num">72%</span></td><td><span class="num">13</span></td><td><span class="num">64.6</span></td><td><span class="num">-6.44%</span></td><td>מובילה שבוע שני — <span class="num">13</span> שיאים, אנרגיה</td></tr>
+        <tr><td>2</td><td class="sym">MDB</td><td class="score">68</td><td><span class="num">+31.5</span></td><td><span class="num">72%</span></td><td><span class="num">12</span></td><td><span class="num">53.5</span></td><td><span class="num">-14.2%</span></td><td>חדשה — MongoDB: <span class="num">12</span> שיאים, נסיגה חדה השבוע (<span class="num">-34</span>)</td></tr>
+        <tr><td>3</td><td class="sym">FRPT</td><td class="score">67</td><td><span class="num">+41.8</span></td><td><span class="num">56%</span></td><td><span class="num">8</span></td><td><span class="num">67.8</span></td><td><span class="num">-12.9%</span></td><td>יציבה</td></tr>
+        <tr><td>4</td><td class="sym">PLTR</td><td class="score">65</td><td><span class="num">-1.7</span></td><td><span class="num">56%</span></td><td><span class="num">8</span></td><td><span class="num">64.7</span></td><td><span class="num">-14.5%</span></td><td>חזרה לטווח — הפעם עם Opinion משופר (<span class="num">56%</span>)</td></tr>
+        <tr><td>5</td><td class="sym">AMZN</td><td class="score">64</td><td><span class="num">+16.0</span></td><td><span class="num">72%</span></td><td><span class="num">4</span></td><td><span class="num">50.9</span></td><td><span class="num">-9.37%</span></td><td>מחזיקה את קו ה-<span class="num">50</span> בקושי</td></tr>
+        <tr><td>6</td><td class="sym">LYFT</td><td class="score">63</td><td><span class="num">+9.7</span></td><td><span class="num">72%</span></td><td><span class="num">12</span></td><td><span class="num">58.7</span></td><td><span class="num">-31.9%</span></td><td><span class="num">12</span> שיאים — ממשיכה לבנות בשקט</td></tr>
+        <tr><td>7</td><td class="sym">EDIT</td><td class="score">61</td><td><span class="num">+10.8</span></td><td><span class="num">64%</span></td><td><span class="num">7</span></td><td><span class="num">57.0</span></td><td><span class="num">-29.9%</span></td><td>חדשה — Editas: עריכה גנטית, ספקולטיבית מאוד</td></tr>
+        <tr><td>8</td><td class="sym">APAM</td><td class="score">61</td><td><span class="num">+0.9</span></td><td><span class="num">72%</span></td><td><span class="num">6</span></td><td><span class="num">63.3</span></td><td><span class="num">-8.49%</span></td><td>Alpha חצה לחיובי</td></tr>
+        <tr><td>9</td><td class="sym">MTD</td><td class="score">61</td><td><span class="num">+10.0</span></td><td><span class="num">72%</span></td><td><span class="num">5</span></td><td><span class="num">54.1</span></td><td><span class="num">-8.31%</span></td><td>יציבה</td></tr>
+        <tr><td>10</td><td class="sym">CCS</td><td class="score">60</td><td><span class="num">+10.9</span></td><td><span class="num">72%</span></td><td><span class="num">3</span></td><td><span class="num">50.8</span></td><td><span class="num">-8.79%</span></td><td>על קו ה-<span class="num">50</span></td></tr>
+        <tr><td>11</td><td class="sym">SAIL</td><td class="score">59</td><td><span class="num">-2.7</span></td><td><span class="num">72%</span></td><td><span class="num">10</span></td><td><span class="num">54.4</span></td><td><span class="num">-24.1%</span></td><td>חזרה לטווח</td></tr>
+        <tr><td colspan="9" style="color:var(--amber);font-weight:600">⚠️ ללא אישור מגמה (RSI &lt; 50): CRDO (<span class="num">46.8</span>) · TSHA (<span class="num">48.1</span>) · BLZE (<span class="num">43.9</span>) · CARS (<span class="num">49.9</span>, Opinion <span class="num">80%</span>) · PI (<span class="num">49.3</span>)</td></tr>
+        <tr><td colspan="9" style="color:var(--red);font-weight:600">❌ נכשלו באימות Alpha: BAM · BX · HOOD (<span class="num">-8.2</span> — נפלה מהטווח) · BWMN</td></tr>
+      </tbody>
+    </table>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">MDB</span> · MongoDB — ה"נפילה המעניינת" של השבוע</h4>
+        <p><span class="lbl">מה החברה:</span> בסיס הנתונים המוביל לאפליקציות מודרניות — תשתית תוכנה שכל סטארטאפ AI משתמש בה. <span class="lbl">מה קרה:</span> אחרי ראלי של <span class="num">+36%</span> בחודש — נפלה <span class="num">$34</span> השבוע (תגובת דוחות) ונחתה בסריקה עם <span class="num">12</span> שיאים ו-RSI <span class="num">53.5</span> מקורר. <span class="lbl">בפשטות:</span> מניה חזקה שקיבלה מקלחת קרה — בדיוק הפרופיל שקטגוריה ג' אוהבת. נותנים לה להתייצב לפני שנוגעים.</p>
+        <div class="trigger">Watchlist: התייצבות מעל <span class="num">$400</span> ואז בסיס. מוקדם לטריגר.</div>
+      </div>
+      <div class="dcard warn">
+        <h4><span class="tk">HOOD</span> — ההתקררות שחיכינו לה באה מהר מדי</h4>
+        <p><span class="lbl">התמונה:</span> אתמול אמרנו "לתת לה להתקרר" — היום ירדה <span class="num">-3.2%</span> וה-Alpha שלה נפל אל מתחת לרצפת הטווח (<span class="num">-8.2</span>). כלומר: היא כרגע לא כשירה טכנית בכלל. <span class="lbl">בפשטות:</span> הקפיצה של <span class="num">+22%</span> בשבוע שעבר הייתה חדה מכדי להחזיק. נשארת ב-Watchlist רחוק — רק התבססות מעל <span class="num">$110</span> תחזיר אותה לשולחן.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category B -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ב</div>
+    <div class="cond-head">
+      <div class="cond-letter">ב</div>
+      <h3>עוף החול — <span class="num">4</span> מניות · יום קשה לקטגוריה</h3>
+      <span class="tag">CSGP נפלה מהקו בפעם השלישית · BSX איבדה את אישור ה-RSI</span>
+    </div>
+    <table>
+      <thead><tr><th>סימול</th><th>מחיר</th><th>ממוצע 100 יום</th><th>פער</th><th>פער קודם</th><th>RSI</th><th>Opinion</th><th>סטטוס</th></tr></thead>
+      <tbody>
+        <tr><td class="sym">CSGP</td><td><span class="num">32.14</span></td><td><span class="num">32.58</span></td><td><span class="num">-1.4%</span></td><td><span class="num">+0.5%</span></td><td><span class="num">54.4</span></td><td><span class="num">40%</span> Sell</td><td><span class="badge b-amber">נפילה שלישית</span></td></tr>
+        <tr><td class="sym">BSX</td><td><span class="num">48.17</span></td><td><span class="num">51.23</span></td><td><span class="num">-6.0%</span></td><td><span class="num">-2.9%</span></td><td><span class="num">47.3</span></td><td><span class="num">56%</span> Sell</td><td><span class="badge b-red">נחלשת</span></td></tr>
+        <tr><td class="sym">GTM</td><td><span class="num">3.80</span></td><td><span class="num">4.05</span></td><td><span class="num">-6.2%</span></td><td><span class="num">-5.2%</span></td><td><span class="num">52.9</span></td><td><span class="num">56%</span> Sell</td><td><span class="badge b-gray">תצפית</span></td></tr>
+        <tr><td class="sym">NLOP</td><td><span class="num">11.53</span></td><td><span class="num">11.85</span></td><td><span class="num">-2.7%</span></td><td><span class="num">-2.0%</span></td><td><span class="num">48.1</span></td><td><span class="num">56%</span> Sell</td><td><span class="badge b-gray">רדומה</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note"><strong>בפשטות:</strong> הפניקסים צריכים שוק עולה כדי לעוף — והשבוע הזה לא נותן להם אותו. CSGP חצתה שלוש פעמים ונמכרה שלוש פעמים; ההבדל בינה לבין INTU (שחצתה פעם אחת ולא חזרה) הולך ומתחדד. הפוזיציה החלקית מוגנת בסטופ <span class="num">$30</span>. BSX הידרדרה: הפער חזר ל-<span class="num">6%</span> וה-RSI ירד מתחת ל-<span class="num">50</span> — הדפיקה הרביעית מתרחקת.</p>
+  </div>
+</section>
+
+<!-- Bottom line -->
+<div class="bottom">
+  <div class="wrap">
+    <div class="stepnum" style="color:var(--cyan)">שורה תחתונה</div>
+    <h2>לוח פעולה</h2>
+    <div class="bl">
+      <div class="bcard">
+        <h4>הפעולה של היום: <span class="tk">NEO</span></h4>
+        <p>שליש ראשון על האישור (<span class="num">$17.37</span>). סטופ <span class="num">$16</span>. השלמה: יומיים מעל <span class="num">$17.3</span>. רווח חלקי: <span class="num">$19</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4>מחר על הכוונת: <span class="tk">IVZ</span></h4>
+        <p>סגירה מעל <span class="num">$33</span> בנפח = שליש ראשון, סטופ <span class="num">$30.5</span>. שני סנט מההכרעה.</p>
+      </div>
+      <div class="bcard">
+        <h4>פוזיציות (<span class="num">6</span>)</h4>
+        <p><span class="tk">TWST</span> <span class="num">+30%</span> ($138) · <span class="tk">NTRA</span> שיא ($315) · <span class="tk">KYMR</span> ($118) · <span class="tk">ACHV</span> ($7.8) · <span class="tk">PTGX</span> שליש ($147, בלי השלמה) · <span class="tk">CSGP</span> חלקית ($30).</p>
+      </div>
+      <div class="bcard">
+        <h4>סטאפים קרים</h4>
+        <p><span class="tk">GH</span> <span class="num">$176.5</span> · <span class="tk">ANET</span> <span class="num">$215</span> · <span class="tk">ADPT</span> אישור <span class="num">$26.5</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4>מעקב ידני (מחוץ לסריקה)</h4>
+        <p><span class="tk">JHX</span> <span class="num">$31.35</span> · <span class="tk">LTH</span> <span class="num">$47.2</span> · <span class="tk">ETSY</span> <span class="num">$88</span> · <span class="tk">NET</span> כיבוש <span class="num">$325</span> — אימות לפני החלטה.</p>
+      </div>
+      <div class="bcard">
+        <h4>לא נוגעים</h4>
+        <p><span class="tk">AVAH</span> (RSI <span class="num">79</span>, שבוע שני) · <span class="tk">CDNA</span> (<span class="num">73</span>) · <span class="tk">HOOD</span> (נפלה מהטווח) · <span class="tk">BSX</span> (RSI מתחת ל-<span class="num">50</span>) · חמש ה-RSI הנמוכות בקטגוריה ג'.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Four Pillars Scanner · נתונים: Barchart <span class="num">26/08/2026</span> (סגירת יום רביעי) · דוח #15</span>
+    <span>ניתוח טכני לצורכי לימוד — אינו המלצת השקעה</span>
+  </div>
+</footer>
+
+</body>
+</html>
