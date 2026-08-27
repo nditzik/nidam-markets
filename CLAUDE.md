@@ -22,7 +22,7 @@
 
 | רוטינה | trigger id | cron (UTC, קיץ) | תפקיד |
 |---|---|---|---|
-| nidam-daily-market-analysis | trig_01QxCeHkMGrGcXk4Uhk4mCBv | 30 3 * * 2-6 | ניתוח יומי 06:30 → claude_analysis.json |
+| nidam-daily-market-analysis | trig_01QxCeHkMGrGcXk4Uhk4mCBv | 30 3 * * 2-6 | ניתוח יומי 06:30 → claude_analysis.json. קורא גם data/market.json (חוזים ברגע הכתיבה) + data/earnings.json.week (דיווחי יום-יומיים אחרונים) כדי לתפוס תזוזת-סנטימנט לילית (27.8.2026: NVDA/CRWD/CRM) שהסגירה ב-daily_state עוד לא משקפת |
 | ...-retry | trig_01W8FY5Nu76pEBUvBnAePBNr | 0 5 * * 2-6 | גיבוי 08:00 (no-op אם הראשי הצליח) |
 | nidam-event-update-1545 | trig_01BZNrS3UZbLQMEeQh2pUDVT | 50 12 * * 1-5 | עדכון-אירוע 15:50 אחרי מאקרו 15:30 |
 | nidam-event-update-1700 | trig_018imBgiWmzyXYKppZvnKWyA | 5 14 * * 1-5 | גרסת שוק-פתוח 17:05 |
