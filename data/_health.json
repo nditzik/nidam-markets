@@ -1,9 +1,15 @@
 {
-  "generatedAt": "28/08/2026 15:01",
+  "generatedAt": "28/08/2026 15:15",
   "today": [
     {
       "label": "תדרוך בוקר",
       "tab": "briefing",
+      "time": "06:05",
+      "arrived": true
+    },
+    {
+      "label": "סקירת בוקר",
+      "tab": "morning",
       "time": "06:05",
       "arrived": true
     },
@@ -14,35 +20,29 @@
       "arrived": true
     },
     {
+      "label": "מועמדים",
+      "tab": "candidates",
+      "time": "15:12",
+      "arrived": true
+    },
+    {
       "label": "מדדים",
       "tab": "indices",
-      "time": "15:00",
+      "time": "15:15",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "15:00",
+      "time": "15:15",
       "arrived": true
-    },
-    {
-      "label": "סקירת בוקר",
-      "tab": "morning",
-      "time": "06:08",
-      "arrived": false
-    },
-    {
-      "label": "מועמדים",
-      "tab": "candidates",
-      "time": "05:39",
-      "arrived": false
     }
   ],
   "sources": [
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "28/08/2026 15:00",
+      "updatedAt": "28/08/2026 15:15",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -50,7 +50,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "28/08/2026 15:00",
+      "updatedAt": "28/08/2026 15:15",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -58,25 +58,25 @@
     {
       "key": "morning",
       "label": "סקירת בוקר",
-      "updatedAt": "26/08/2026 06:15",
-      "ageHours": 56.8,
-      "status": "stale",
+      "updatedAt": "28/08/2026 15:15",
+      "ageHours": 0.0,
+      "status": "ok",
       "detail": ""
     },
     {
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "28/08/2026 14:45",
-      "ageHours": 0.3,
+      "ageHours": 0.5,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "מועמדים",
-      "updatedAt": "27/08/2026 05:39",
-      "ageHours": 33.4,
-      "status": "stale",
+      "updatedAt": "28/08/2026 15:12",
+      "ageHours": 0.1,
+      "status": "ok",
       "detail": ""
     }
   ]
