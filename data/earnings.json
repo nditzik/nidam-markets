@@ -1,21 +1,26 @@
 {
-  "today": "2026-08-30",
-  "todayCount": 0,
+  "today": "2026-08-31",
+  "todayCount": 3,
   "todayBig": [],
-  "reporting": [],
+  "reporting": [
+    {
+      "ticker": "SAIC",
+      "name": "Science Applications International",
+      "logo": "data/earnings/logos/SAIC.png"
+    },
+    {
+      "ticker": "SY",
+      "name": "So-Young International Inc ADR",
+      "logo": "data/earnings/logos/SY.png"
+    },
+    {
+      "ticker": "LX",
+      "name": "Lexinfintech Holdings Ltd ADR",
+      "logo": "data/earnings/logos/LX.png"
+    }
+  ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-08-31",
-      "label": "31/8",
-      "dow": "ב׳",
-      "count": 3,
-      "tickers": [
-        "SAIC",
-        "SY",
-        "LX"
-      ]
-    },
     {
       "date": "2026-09-01",
       "label": "1/9",
@@ -465,7 +470,7 @@
     "YZCAY": "2026-09-04"
   },
   "_meta": {
-    "updatedAt": "30/08/2026 23:45",
+    "updatedAt": "31/08/2026 00:00",
     "source": "earnings.csv"
   }
 }
