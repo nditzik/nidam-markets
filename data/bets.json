@@ -4,18 +4,23 @@
       "key": "fed_next",
       "label": "החלטת הפד בספטמבר",
       "sub": "ההימור המוביל: ללא שינוי",
-      "pct": 50,
-      "chg": -6.0,
+      "pct": 52,
+      "chg": -5.0,
       "dist": [
         {
           "label": "ללא שינוי",
-          "pct": 50,
-          "chg": -6.0
+          "pct": 52,
+          "chg": -5.0
         },
         {
           "label": "העלאה של 25 נ\"ב",
-          "pct": 46,
-          "chg": 4.0
+          "pct": 48,
+          "chg": 5.0
+        },
+        {
+          "label": "הורדה של 25 נ\"ב",
+          "pct": 1,
+          "chg": 0.4
         }
       ],
       "url": "https://polymarket.com/event/fed-decision-in-september-762",
@@ -100,7 +105,7 @@
       },
       {
         "d": "2026-08-30",
-        "pct": 50
+        "pct": 52
       }
     ],
     "cuts_2026": [
@@ -243,7 +248,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "30/08/2026 11:01",
+    "updatedAt": "30/08/2026 11:15",
     "source": "polymarket"
   }
 }
