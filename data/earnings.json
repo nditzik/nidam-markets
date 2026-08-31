@@ -1,40 +1,112 @@
 {
-  "today": "2026-08-31",
-  "todayCount": 3,
-  "todayBig": [],
-  "reporting": [
+  "today": "2026-09-01",
+  "todayCount": 24,
+  "todayBig": [
     {
-      "ticker": "SAIC",
-      "name": "Science Applications International",
-      "logo": "data/earnings/logos/SAIC.png"
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "capB": 291.7
     },
     {
-      "ticker": "SY",
-      "name": "So-Young International Inc ADR",
-      "logo": "data/earnings/logos/SY.png"
+      "ticker": "DELL",
+      "name": "Dell Technologies",
+      "capB": 286.5
     },
     {
-      "ticker": "LX",
-      "name": "Lexinfintech Holdings Ltd ADR",
-      "logo": "data/earnings/logos/LX.png"
+      "ticker": "MDT",
+      "name": "Medtronic Inc",
+      "capB": 119.5
+    },
+    {
+      "ticker": "CRDO",
+      "name": "Credo Technology Group Holding",
+      "capB": 43.0
+    },
+    {
+      "ticker": "MDB",
+      "name": "Mongodb Inc Cl A",
+      "capB": 34.7
+    },
+    {
+      "ticker": "NOBH",
+      "name": "Nobility Homes Inc",
+      "capB": 91457.0
+    },
+    {
+      "ticker": "ZEPP",
+      "name": "Zepp Health Corp ADR",
+      "capB": 75602.0
+    },
+    {
+      "ticker": "GEG",
+      "name": "Great Elm Group Inc",
+      "capB": 67418.0
     }
   ],
-  "more": 0,
-  "upcoming": [
+  "reporting": [
     {
-      "date": "2026-09-01",
-      "label": "1/9",
-      "dow": "ג׳",
-      "count": 24,
-      "tickers": [
-        "PANW",
-        "DELL",
-        "MDT",
-        "CRDO",
-        "MDB",
-        "NIO"
-      ]
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "logo": "data/earnings/logos/PANW.png"
     },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies",
+      "logo": "data/earnings/logos/DELL.png"
+    },
+    {
+      "ticker": "MDT",
+      "name": "Medtronic Inc",
+      "logo": "data/earnings/logos/MDT.png"
+    },
+    {
+      "ticker": "CRDO",
+      "name": "Credo Technology Group Holding",
+      "logo": "data/earnings/logos/CRDO.png"
+    },
+    {
+      "ticker": "MDB",
+      "name": "Mongodb Inc Cl A",
+      "logo": "data/earnings/logos/MDB.png"
+    },
+    {
+      "ticker": "NIO",
+      "name": "Nio Inc ADR",
+      "logo": "data/earnings/logos/NIO.png"
+    },
+    {
+      "ticker": "GTLB",
+      "name": "Gitlab Inc Cl A",
+      "logo": "data/earnings/logos/GTLB.png"
+    },
+    {
+      "ticker": "MMED",
+      "name": "Minimed Group Inc",
+      "logo": "data/earnings/logos/MMED.png"
+    },
+    {
+      "ticker": "ASO",
+      "name": "Academy Sports and Outdoors Inc",
+      "logo": "data/earnings/logos/ASO.png"
+    },
+    {
+      "ticker": "IRS",
+      "name": "Irsa Inversiones Y Representaciones S.A. ADR",
+      "logo": "data/earnings/logos/IRS.png"
+    },
+    {
+      "ticker": "RZLV",
+      "name": "Rezolve AI Plc",
+      "logo": "data/earnings/logos/RZLV.png"
+    },
+    {
+      "ticker": "YEXT",
+      "name": "Yext Inc",
+      "logo": "data/earnings/logos/YEXT.png"
+    }
+  ],
+  "more": 12,
+  "upcoming": [
     {
       "date": "2026-09-02",
       "label": "2/9",
@@ -325,9 +397,6 @@
     }
   ],
   "window": {
-    "LX": "2026-08-31",
-    "SAIC": "2026-08-31",
-    "SY": "2026-08-31",
     "ANCTF": "2026-09-01",
     "ASO": "2026-09-01",
     "CISS": "2026-09-01",
@@ -467,10 +536,36 @@
     "SWISF": "2026-09-04",
     "VIRC": "2026-09-04",
     "VSQTF": "2026-09-04",
-    "YZCAY": "2026-09-04"
+    "YZCAY": "2026-09-04",
+    "ALOT": "2026-09-08",
+    "AVAV": "2026-09-08",
+    "AXR": "2026-09-08",
+    "BIOX": "2026-09-08",
+    "BRZE": "2026-09-08",
+    "CASY": "2026-09-08",
+    "CGNT": "2026-09-08",
+    "CNM": "2026-09-08",
+    "FCEL": "2026-09-08",
+    "GME": "2026-09-08",
+    "GME.W": "2026-09-08",
+    "GMHS": "2026-09-08",
+    "INNV": "2026-09-08",
+    "KFY": "2026-09-08",
+    "LAKE": "2026-09-08",
+    "LITB": "2026-09-08",
+    "LMNR": "2026-09-08",
+    "MEI": "2026-09-08",
+    "MIND": "2026-09-08",
+    "NTRB": "2026-09-08",
+    "NTRBW": "2026-09-08",
+    "ORCL": "2026-09-08",
+    "OXINF": "2026-09-08",
+    "SKIL": "2026-09-08",
+    "TTAN": "2026-09-08",
+    "UNFI": "2026-09-08"
   },
   "_meta": {
-    "updatedAt": "31/08/2026 23:45",
+    "updatedAt": "01/09/2026 00:01",
     "source": "earnings.csv"
   }
 }
