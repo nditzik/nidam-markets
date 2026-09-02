@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דוח ארבעת העמודים — 02/09/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#051C2C;--blue:#2251FF;--cyan:#00A9F4;--ink:#1a1a2e;--gray:#5f6b7a;--line:#DDE3EA;--bg:#F7F9FB;--green:#0E8A5F;--red:#C0392B;--amber:#B7791F}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Heebo","Arial Hebrew",sans-serif;direction:rtl;color:var(--ink);background:#fff;line-height:1.7;font-size:15.5px}
+  .num{direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 26px}
+  header{background:var(--navy);color:#fff;padding:52px 0 44px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--cyan);font-weight:600;margin-bottom:14px}
+  h1{font-size:34px;font-weight:800;line-height:1.25}
+  .subtitle{margin-top:12px;font-size:16.5px;color:#B9C6D2;font-weight:300}
+  .header-rule{width:64px;height:4px;background:var(--blue);margin-top:22px}
+  .keymsg{background:var(--amber);color:#fff;padding:18px 0}
+  .keymsg p{font-size:16px;font-weight:500}
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .stepnum{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.16em;margin-bottom:4px}
+  h2{font-size:23px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .lede{color:var(--gray);font-size:15px;max-width:860px;margin-bottom:20px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:13.8px}
+  thead th{background:var(--navy);color:#fff;font-weight:600;padding:9px 11px;text-align:start;font-size:12.8px;white-space:nowrap}
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--bg)}
+  td.sym{font-weight:700;color:var(--navy);direction:ltr;text-align:right;white-space:nowrap}
+  td.score{font-weight:800;color:var(--blue);white-space:nowrap}
+  .badge{display:inline-block;padding:1px 9px;border-radius:3px;font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap}
+  .b-green{background:var(--green)}.b-red{background:var(--red)}.b-amber{background:var(--amber)}.b-gray{background:var(--gray)}.b-blue{background:var(--blue)}
+  .tbl-note{font-size:12.8px;color:var(--gray);margin-bottom:8px}
+  .cond-head{display:flex;align-items:baseline;gap:12px;margin:8px 0 12px}
+  .cond-letter{width:34px;height:34px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;border-radius:2px}
+  .cond-head h3{font-size:18px;font-weight:700;color:var(--navy)}
+  .cond-head .tag{font-size:12.5px;color:var(--gray)}
+  .deep{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+  .dcard{border:1px solid var(--line);padding:16px 18px;border-top:3px solid var(--green)}
+  .dcard.warn{border-top-color:var(--amber)}
+  .dcard.bad{border-top-color:var(--red)}
+  .dcard h4{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .dcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--blue)}
+  .dcard p{font-size:13.5px;margin-bottom:6px}
+  .dcard .lbl{font-weight:700;color:var(--navy)}
+  .dcard .trigger{background:var(--bg);padding:8px 12px;font-size:13px;margin-top:8px;border-inline-start:3px solid var(--blue)}
+  .flag{background:#FFF8EC;border-inline-start:4px solid var(--amber);padding:12px 16px;margin:10px 0;font-size:14px}
+  .flag strong{color:var(--amber)}
+  .delta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .dl{border:1px solid var(--line);padding:14px 16px;border-inline-start:4px solid var(--cyan)}
+  .dl h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .dl h4 .tk{direction:ltr;unicode-bidi:isolate}
+  .dl p{font-size:13px;color:var(--gray)}
+  .bottom{background:var(--navy);color:#fff;padding:40px 0}
+  .bottom h2{color:#fff}
+  .bl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+  .bcard{background:rgba(255,255,255,.06);border-top:3px solid var(--cyan);padding:16px 18px}
+  .bcard h4{font-size:15px;font-weight:800;margin-bottom:6px}
+  .bcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--cyan)}
+  .bcard p{font-size:13.5px;color:#C9D5DF}
+  footer{background:#031320;color:#8FA3B3;padding:24px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:640px){h1{font-size:26px}section{padding:34px 0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Four Pillars Scanner · דוח סריקה #18</div>
+    <h1>דוח ארבעת העמודים — <span class="num">02/09/2026</span></h1>
+    <p class="subtitle">נתוני Barchart (סגירת יום שלישי) · <span class="num">20</span> מניות נסרקו — שפל המעקב</p>
+    <div class="header-rule"></div>
+  </div>
+</header>
+
+<div class="keymsg">
+  <div class="wrap">
+    <p><strong>⚠️ אישור הרוחב הגיע: קטגוריה א' התכווצה בפעם השלישית ברצף — <span class="num">14→8→6</span> — וסך הנסרקות ירד ל-<span class="num">20</span>, שפל המעקב.</strong> לפי הכלל שקבענו: שלושה דוחות של הידרדרות = איתות, לא רעש. המערכת עוברת למשטר הגנה. ובתוך זה — RDVT זוהרת: <span class="num">$75.56</span>, פחות מאחוז מהשיא.</p>
+  </div>
+</div>
+
+<!-- What changed -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">מה השתנה מאז 28/08 (יומיים מסחר: שני + שלישי)</div>
+    <h2>שש ההתפתחויות המרכזיות</h2>
+    <div class="delta">
+      <div class="dl"><h4>הרוחב — האיתות אושר</h4><p>שלושה דוחות רצופים של התכווצות בקטגוריה א' (<span class="num">14→8→6</span>), קטגוריה ג' ירדה ל-<span class="num">5</span> כשירות בלבד, והפניקס נותר עם מניה אחת. ספטמבר נפתח אדום (AMZN <span class="num">-6</span>, IBKR <span class="num">-7.8</span> בשבוע). <strong>משטר הגנה:</strong> אפס כניסות חדשות, רווחים חלקיים בפוזיציות המורווחות, סטופים נגררים על הכול.</p></div>
+      <div class="dl"><h4><span class="tk">RDVT</span> — הכוכבת של המשטר החדש</h4><p>בזמן שהשוק נחלש — סגרה <span class="num">$75.56</span> (<span class="num">+6.2</span> בשבוע), <span class="num">0.8%</span> מהשיא, RSI <span class="num">65.7</span>. <span class="num">+5%</span> מהכיבוש, ואזור הרווח החלקי (<span class="num">$78–79</span>) במרחק נגיעה. פריצת שיא (<span class="num">$76.2</span>) על רקע שוק חלש = חוזק יחסי אמיתי.</p></div>
+      <div class="dl"><h4><span class="tk">NEO</span> — יצאה מהסריקה, הפוזיציה מוגנת</h4><p>אחרי העיכול — נעלמה מהרשימה. לפי הכלל: לא מסיקים מנתונים ישנים; הסטופ <span class="num">$17.3</span> (קו הפריצה) הופך את זה לעסקה בסיכון אפס. בדיקת גרף לפני כל מהלך.</p></div>
+      <div class="dl"><h4><span class="tk">AMZN</span> — הבנייה נכשלה</h4><p>איבדה גם את רמת ה-<span class="num">$265</span> וגם את אישור ה-RSI (<span class="num">46.3</span>), עם <span class="num">-6.1</span> בשבוע. עדכון ישר: התוכנית (<span class="num">265→275→287</span>) מבוטלת; חוזרים לנקודת ההתחלה — צפייה בלבד עד כיבוש מחודש של <span class="num">$265</span> עם RSI מעל <span class="num">50</span>.</p></div>
+      <div class="dl"><h4><span class="tk">PLTR</span> — מתחזקת נגד הזרם</h4><p>היחידה שעלתה משמעותית בשבוע (<span class="num">+7.2</span>): Alpha חצה לחיובי, RSI <span class="num">61.9</span>, <span class="num">10</span> שיאים חודשיים. אחרי חודשיים של כניסות ויציאות מהסריקה — היא מתייצבת בדיוק כשהשוק נחלש. מועמדת מובילה ליום שהרוחב יחזור.</p></div>
+      <div class="dl"><h4><span class="tk">AVAH</span> — מתקררת סוף-סוף</h4><p>RSI ירד מ-<span class="num">80+</span> ל-<span class="num">72.1</span> אחרי שבועיים קיצוניים. עדיין לא בטווח (צריך מתחת ל-<span class="num">70</span> + בסיס), אבל ההתקררות שחיכית לה החלה. ההחלטה שלך לא לרדוף ממשיכה להוכיח את עצמה.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Category A -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה א</div>
+    <div class="cond-head">
+      <div class="cond-letter">א</div>
+      <h3>מומנטום גבוה — <span class="num">6</span> מניות בלבד</h3>
+      <span class="tag">שפל המעקב · NEO, TBI, MTW, PUBM, TILE יצאו</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>סטטוס</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">RDVT</td><td class="score">84</td><td><span class="num">+61.8</span></td><td><span class="num">7</span></td><td><span class="num">65.7</span></td><td><span class="num">-0.81%</span></td><td><span class="badge b-blue">פוזיציה 💪</span></td><td>על סף שיא — רווח חלקי ב-<span class="num">$78–79</span></td></tr>
+        <tr><td>2</td><td class="sym">MEI</td><td class="score">75</td><td><span class="num">+144.9</span></td><td><span class="num">7</span></td><td><span class="num">61.7</span></td><td><span class="num">-10.1%</span></td><td><span class="badge b-green">מבססת</span></td><td>מחזיקה את קפיצת הדוחות — בסיס מעל <span class="num">$17.5</span> ✓</td></tr>
+        <tr><td>3</td><td class="sym">PSNL</td><td class="score">70</td><td><span class="num">+140.5</span></td><td><span class="num">8</span></td><td><span class="num">63.4</span></td><td><span class="num">-9.69%</span></td><td><span class="badge b-gray">התייצבה</span></td><td>הבסיס ב-<span class="num">$16.5–17</span> מחזיק</td></tr>
+        <tr><td>4</td><td class="sym">ACHV</td><td class="score">69</td><td><span class="num">+170.1</span></td><td><span class="num">11</span></td><td><span class="num">66.6</span></td><td><span class="num">-4.18%</span></td><td><span class="badge b-blue">פוזיציה</span></td><td>יציבה — סטופ <span class="num">$7.8</span></td></tr>
+        <tr><td>5</td><td class="sym">PLSE</td><td class="score">62</td><td><span class="num">+197.4</span></td><td><span class="num">11</span></td><td><span class="num">74.6</span></td><td><span class="num">-4.23%</span></td><td><span class="badge b-amber">Overbought</span></td><td>חמה — לא לגעת</td></tr>
+        <tr><td>6</td><td class="sym">AVAH</td><td class="score">61</td><td><span class="num">+75.0</span></td><td><span class="num">10</span></td><td><span class="num">72.1</span></td><td><span class="num">-3.86%</span></td><td><span class="badge b-amber">מתקררת</span></td><td>RSI <span class="num">80→72</span> — עוד לא בטווח</td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note">מחוץ לסריקה אך בפוזיציה (סטופים קובעים, בדיקת גרף): TWST <span class="num">$140</span> (אחרי מימוש חלקי) · NTRA <span class="num">$315</span> · NEO <span class="num">$17.3</span> · IVZ <span class="num">$30.5</span> · KYMR <span class="num">$118</span> · PTGX <span class="num">$147</span> · CSGP <span class="num">$30</span>.</p>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">RDVT</span> — ניהול ההצלחה</h4>
+        <p><span class="lbl">התמונה:</span> העסקה שנבנתה הכי נכון במעקב מתקרבת לנקודת המימוש הראשונה שלה: <span class="num">$75.56</span> מול יעד רווח חלקי <span class="num">$78–79</span>. פריצת השיא (<span class="num">$76.2</span>) בדרך לשם. <span class="lbl">התוכנית:</span> מימוש שליש ב-<span class="num">$78–79</span>, סטופ עולה ל-<span class="num">$70</span> (מעל הכיבוש), והיתרה רצה. בשוק שנחלש — נועלים את מה שהשוק נותן.</p>
+      </div>
+      <div class="dcard warn">
+        <h4>משטר ההגנה — שלושת הכללים</h4>
+        <p><span class="lbl">כשהרוחב מאשר חולשה:</span> (1) <strong>אפס כניסות חדשות</strong> — גם על טריגרים; טריגר בשוק חלש הוא מלכודת סבירה. (2) <strong>רווחים חלקיים</strong> בכל פוזיציה מעל <span class="num">+8%</span> — RDVT ראשונה בתור. (3) <strong>סטופים נגררים בלבד</strong> — לא מזיזים סטופ למטה לעולם, לא "נותנים עוד יום". החוזק היחסי (RDVT, PLTR, MEI) הוא רשימת הקניות של היום שאחרי.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category C -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ג</div>
+    <div class="cond-head">
+      <div class="cond-letter">ג</div>
+      <h3>מועמדות לפריצה — <span class="num">13</span> מניות, רק <span class="num">5</span> כשירות</h3>
+      <span class="tag">IBKR ו-A חדשות · U ו-AMZN איבדו את קו ה-50 · ASST — עקומה מכל כיוון</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>סימול</th><th>ציון</th><th>Alpha</th><th>Opinion</th><th>שיאים/חודש</th><th>RSI</th><th>מהשיא</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">PLTR</td><td class="score">70</td><td><span class="num">+1.9</span></td><td><span class="num">72%</span></td><td><span class="num">10</span></td><td><span class="num">61.9</span></td><td><span class="num">-13.3%</span></td><td>החזקה של השבוע — Alpha חצה לחיובי</td></tr>
+        <tr><td>2</td><td class="sym">NVDA</td><td class="score">68</td><td><span class="num">+29.0</span></td><td><span class="num">72%</span></td><td><span class="num">10</span></td><td><span class="num">51.9</span></td><td><span class="num">-8.07%</span></td><td>מחזיקה מעל <span class="num">$210</span> — איתות ההקשר תקין</td></tr>
+        <tr><td>3</td><td class="sym">A</td><td class="score">64</td><td><span class="num">+21.3</span></td><td><span class="num">72%</span></td><td><span class="num">11</span></td><td><span class="num">52.8</span></td><td><span class="num">-8.44%</span></td><td>חדשה — Agilent: מכשור מעבדות, <span class="num">11</span> שיאים</td></tr>
+        <tr><td>4</td><td class="sym">FRPT</td><td class="score">61</td><td><span class="num">+30.6</span></td><td><span class="num">40%</span></td><td><span class="num">6</span></td><td><span class="num">53.5</span></td><td><span class="num">-18.2%</span></td><td>מדשדשת מתחת ל-<span class="num">$72</span></td></tr>
+        <tr><td>5</td><td class="sym">WNC</td><td class="score">56</td><td><span class="num">+7.7</span></td><td><span class="num">72%</span></td><td><span class="num">4</span></td><td><span class="num">52.3</span></td><td><span class="num">-10.8%</span></td><td>חדשה — Wabash: משאיות, קטנה</td></tr>
+        <tr><td colspan="9" style="color:var(--amber);font-weight:600">⚠️ ללא אישור מגמה (RSI &lt; 50): IBKR (<span class="num">45.8</span>, <span class="num">-7.8</span> בשבוע) · AMZN (<span class="num">46.3</span>) · U (<span class="num">49.4</span>) · PDM (<span class="num">48.1</span>) · APAM (<span class="num">49.5</span>)</td></tr>
+        <tr><td colspan="9" style="color:var(--red);font-weight:600">❌ נכשלו באימות Alpha: ASST (<span class="num">-5.7</span>, וגם RSI <span class="num">78.7</span> וגם <span class="num">-90%</span> מהשיא — לא לגעת מכל כיוון) · QTWO · BWMN</td></tr>
+      </tbody>
+    </table>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">PLTR</span> · Palantir — החוזק היחסי של הקטגוריה</h4>
+        <p><span class="lbl">התמונה:</span> חודשיים של כניסות ויציאות מהסריקה — ובשבוע שבו הכול ירד, היא עלתה <span class="num">+7.2</span> וה-Alpha שלה חצה סוף-סוף לחיובי. RSI <span class="num">61.9</span>, <span class="num">10</span> שיאים. <span class="lbl">בפשטות:</span> כסף מוסדי מסתתר בה בזמן שהשוק חלש — בדיוק מה שקטגוריה ג' אמורה למצוא. עדיין <span class="num">-13%</span> מהשיא: Watchlist ראשי, כניסה רק כשמשטר ההגנה יוסר.</p>
+      </div>
+      <div class="dcard warn">
+        <h4><span class="tk">IBKR</span> — למה מניה טובה עם RSI <span class="num">46</span> היא לא הזדמנות</h4>
+        <p><span class="lbl">התמונה:</span> Interactive Brokers — ברוקר מצוין — נכנסה לסריקה אחרי נפילה של <span class="num">-7.8</span> בשבוע. הסריקה רואה Alpha <span class="num">47</span>; ה-RSI רואה סכין נופלת. <span class="lbl">בפשטות:</span> זה בדיוק ההבדל בין "חברה טובה" ל"עסקה טובה" — בלי אישור מגמה (RSI מעל <span class="num">50</span> ומחיר מתייצב), איכות היא לא סיבה לתפוס.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category B -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ב</div>
+    <div class="cond-head">
+      <div class="cond-letter">ב</div>
+      <h3>עוף החול — מניה אחת</h3>
+      <span class="tag">CSGP לבדה — הריקוד סביב הקו נמשך</span>
+    </div>
+    <table>
+      <thead><tr><th>סימול</th><th>מחיר</th><th>ממוצע 100 יום</th><th>פער</th><th>פער קודם</th><th>RSI</th><th>Opinion</th><th>סטטוס</th></tr></thead>
+      <tbody>
+        <tr><td class="sym">CSGP</td><td><span class="num">31.98</span></td><td><span class="num">32.29</span></td><td><span class="num">-1.0%</span></td><td><span class="num">-0.6%</span></td><td><span class="num">53.1</span></td><td><span class="num">40%</span> Sell</td><td><span class="badge b-gray">מרקדת סביב הקו</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note"><strong>בפשטות:</strong> שלושה שבועות ש-CSGP רוקדת סביב ממוצע 100 הימים בלי הכרעה — שלוש חציות, שלוש נסיגות, ועכשיו אחוז מתחת. הפוזיציה החלקית שורדת (סטופ <span class="num">$30</span> לא נפגע), אבל בשוק שנחלש הסבירות לחצייה רביעית מוצלחת יורדת. אם הסטופ ייפגע — יוצאים עם הפסד קטן על חלק קטן, וזה בסדר גמור: ככה נראית עסקת פניקס שלא עבדה.</p>
+  </div>
+</section>
+
+<!-- Bottom line -->
+<div class="bottom">
+  <div class="wrap">
+    <div class="stepnum" style="color:var(--cyan)">שורה תחתונה</div>
+    <h2>לוח פעולה — משטר הגנה</h2>
+    <div class="bl">
+      <div class="bcard">
+        <h4>הכלל המרכזי השבוע</h4>
+        <p>אפס כניסות חדשות עד שהרוחב מתייצב (שני דוחות של התרחבות). טריגר בשוק חלש = מלכודת סבירה.</p>
+      </div>
+      <div class="bcard">
+        <h4><span class="tk">RDVT</span> · המימוש הקרוב</h4>
+        <p>שליש ב-<span class="num">$78–79</span>, סטופ עולה ל-<span class="num">$70</span>. החוזק היחסי הבולט של המעקב.</p>
+      </div>
+      <div class="bcard">
+        <h4>פוזיציות — סטופים בלבד</h4>
+        <p><span class="tk">TWST</span> <span class="num">$140</span> · <span class="tk">NTRA</span> <span class="num">$315</span> · <span class="tk">NEO</span> <span class="num">$17.3</span> · <span class="tk">IVZ</span> <span class="num">$30.5</span> · <span class="tk">KYMR</span> <span class="num">$118</span> · <span class="tk">PTGX</span> <span class="num">$147</span> · <span class="tk">ACHV</span> <span class="num">$7.8</span> · <span class="tk">CSGP</span> <span class="num">$30</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4>רשימת היום שאחרי</h4>
+        <p>החזקות בשוק חלש = המובילות של השוק הבא: <span class="tk">RDVT</span> · <span class="tk">PLTR</span> · <span class="tk">MEI</span> · <span class="tk">NVDA</span> (מעל <span class="num">$210</span>) · <span class="tk">A</span>.</p>
+      </div>
+      <div class="bcard">
+        <h4>עדכונים ישרים</h4>
+        <p><span class="tk">AMZN</span> — הבנייה בוטלה (איבדה <span class="num">$265</span> + RSI). <span class="tk">U</span> — איבדה את קו ה-<span class="num">50</span> תוך יומיים. <span class="tk">AVAH</span> — מתקררת (<span class="num">80→72</span>), עדיין לא בטווח.</p>
+      </div>
+      <div class="bcard">
+        <h4>לא נוגעים</h4>
+        <p><span class="tk">ASST</span> (נכשלת בכל פילטר קיים) · <span class="tk">PLSE</span> (<span class="num">74.6</span>) · <span class="tk">BWMN</span> (<span class="num">84.8</span>) · <span class="tk">IBKR</span> וכל קבוצת ה-RSI מתחת ל-<span class="num">50</span>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Four Pillars Scanner · נתונים: Barchart <span class="num">02/09/2026</span> (סגירת יום שלישי) · דוח #18</span>
+    <span>ניתוח טכני לצורכי לימוד — אינו המלצת השקעה</span>
+  </div>
+</footer>
+
+</body>
+</html>
