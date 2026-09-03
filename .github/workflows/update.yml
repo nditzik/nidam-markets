@@ -50,15 +50,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      # --- משיכת מדדים מריפו indexes-status ---
+      # --- משיכת מדדים מריפו indexes-status (מריץ בתוכו גם archive_scores.py,
+      #     כדי ש-history.json לעולם לא ייפרד מ-indices.json — 2.9.2026) ---
       - name: Fetch indices
         run: python scripts/fetch_dashboards.py
         continue-on-error: true   # עמידות: כשל מקור אחד לא מפיל את כל הריצה
-
-      # --- ארכיון ציונים יומי (מזין את גרף המגמה של המד) ---
-      - name: Archive daily scores
-        run: python scripts/archive_scores.py
-        continue-on-error: true
 
       # --- משיכת מומנטום מריפו stocks-momentum ---
       - name: Fetch momentum

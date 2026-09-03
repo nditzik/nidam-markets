@@ -6,12 +6,23 @@ fetch_dashboards.py — מושך את נתוני המדדים מריפו indexes
 מקור ראשי: raw.githubusercontent (הריפו הציבורי).
 נפילת גיבוי: קובץ מקומי של הריפו השכן (לפיתוח מקומי).
 עמידות: אם המשיכה נכשלת אבל כבר יש indices.json — משאיר אותו כמו שהוא (לא מפיל את ה-Action).
+
+2.9.2026: archive_scores.py (שמזין את history.json, ומשם חצי ה-▲/▼ ליד כל
+ציון) רץ בעבר כשלב נפרד בעבודת ה-Action — כשה-CSV הגיע אחרי שהשלב הזה כבר
+רץ באותו יום, indices.json התעדכן אבל history.json נשאר יום אחורה, וה-diff
+באתר השווה שני ימים ישנים במקום אתמול↔היום. עכשיו archive_scores רץ תמיד
+כאן, מיד אחרי שנכתב indices.json — כך ששני הקבצים לא יכולים להיפרד יותר,
+גם בריצה ידנית חלקית (python fetch_dashboards.py בלבד, בלי לזכור להריץ גם
+את archive_scores.py בנפרד).
 """
 import json
 import os
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import archive_scores
 
 RAW_URL = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/daily_state.json"
 AI_URL = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/ai_analysis.json"
@@ -92,6 +103,11 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     print(f"[done] נכתב {OUT}")
+
+    try:
+        archive_scores.main()
+    except Exception as e:
+        print(f"[warn] archive_scores נכשל (history.json יישאר כמו שהוא): {e}")
     return 0
 
 
