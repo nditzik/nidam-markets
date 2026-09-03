@@ -39,7 +39,7 @@
    "ilTime": "15:30",
    "he": "תעסוקה NFP",
    "period": "Aug",
-   "forecast": "58K",
+   "forecast": "56K",
    "previous": "-23K",
    "actual": null,
    "surprise": null
@@ -61,7 +61,7 @@
    "ilTime": "15:30",
    "he": "PPI ליבה חודשי",
    "period": "Aug",
-   "forecast": null,
+   "forecast": "0.3%",
    "previous": "0.2%",
    "actual": null,
    "surprise": null
@@ -72,7 +72,7 @@
    "ilTime": "15:30",
    "he": "PPI חודשי",
    "period": "Aug",
-   "forecast": null,
+   "forecast": "0.3%",
    "previous": "0%",
    "actual": null,
    "surprise": null
@@ -83,8 +83,19 @@
    "ilTime": "15:30",
    "he": "CPI ליבה חודשי",
    "period": "Aug",
-   "forecast": null,
+   "forecast": "0.2%",
    "previous": "0.2%",
+   "actual": null,
+   "surprise": null
+  },
+  {
+   "date": "2026-09-11T12:30",
+   "ilDate": "11.9",
+   "ilTime": "15:30",
+   "he": "CPI חודשי",
+   "period": "Aug",
+   "forecast": "0.4%",
+   "previous": "0.1%",
    "actual": null,
    "surprise": null
   },
@@ -96,17 +107,6 @@
    "period": "Aug",
    "forecast": null,
    "previous": "3.4%",
-   "actual": null,
-   "surprise": null
-  },
-  {
-   "date": "2026-09-11T12:30",
-   "ilDate": "11.9",
-   "ilTime": "15:30",
-   "he": "CPI חודשי",
-   "period": "Aug",
-   "forecast": null,
-   "previous": "0.1%",
    "actual": null,
    "surprise": null
   },
@@ -189,7 +189,7 @@
   }
  ],
  "_meta": {
-  "updatedAt": "03/09/2026 17:45",
+  "updatedAt": "03/09/2026 18:00",
   "source": "TradingView econ calendar"
  }
 }
