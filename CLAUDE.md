@@ -56,7 +56,7 @@
 | fetch_earnings / fetch_news / fetch_pulse / fetch_movers | earnings/news/pulse/movers | csv / RSS / טלגרם+Nitter (11 מקורות; xcancel מת) / TV scanner |
 | fetch_sectors / fetch_trades | sectors.json / trades.json | nidam-reports |
 | detect_flash | flash.json + טלגרם | ספייק 0.5%+/30 דק' (Yahoo 1m) + ראיות econ/pulse/news |
-| archive_scores / archive_focus | history / focus_history | "המוקד במבחן" |
+| archive_scores / archive_focus | history / focus_history | "המוקד במבחן" · archive_scores רץ תמיד *בתוך* fetch_dashboards.py (2.9.2026, כדי ש-history.json לא ייפרד מ-indices.json) — לא עוד שלב נפרד ב-update.yml |
 | notify_* | טלגרם | תדרוך, תקציר, חריגים, דוחות-לילה 23:30 |
 
 ## תהליכי עבודה של איציק
