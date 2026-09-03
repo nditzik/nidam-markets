@@ -3,19 +3,19 @@
     {
       "key": "fed_next",
       "label": "החלטת הפד בספטמבר",
-      "sub": "ההימור המוביל: ללא שינוי",
+      "sub": "ההימור המוביל: העלאה של 25 נ\"ב",
       "pct": 50,
-      "chg": 10.0,
+      "chg": -8.0,
       "dist": [
-        {
-          "label": "ללא שינוי",
-          "pct": 50,
-          "chg": 10.0
-        },
         {
           "label": "העלאה של 25 נ\"ב",
           "pct": 50,
-          "chg": -9.0
+          "chg": -8.0
+        },
+        {
+          "label": "ללא שינוי",
+          "pct": 48,
+          "chg": 8.0
         }
       ],
       "url": "https://polymarket.com/event/fed-decision-in-september-762",
@@ -42,9 +42,9 @@
     {
       "key": "cpi_next",
       "label": "אינפלציה שנתית — נתון אוגוסט · יתפרסם 11.9",
-      "sub": "ההימור המוביל: תישאר מעל 3.3%",
-      "pct": 50,
-      "chg": -5,
+      "sub": "ההימור המוביל: תישאר מעל 3.2%",
+      "pct": 74,
+      "chg": 19,
       "src": "Kalshi",
       "url": "https://kalshi.com/markets/kxcpiyoy"
     },
@@ -178,7 +178,7 @@
       },
       {
         "d": "2026-09-03",
-        "pct": 50
+        "pct": 74
       }
     ],
     "recession": [
@@ -227,7 +227,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "03/09/2026 14:30",
+    "updatedAt": "03/09/2026 14:45",
     "source": "polymarket"
   }
 }
