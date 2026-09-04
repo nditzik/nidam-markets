@@ -4,18 +4,23 @@
       "key": "fed_next",
       "label": "החלטת הפד בספטמבר",
       "sub": "ההימור המוביל: העלאה של 25 נ\"ב",
-      "pct": 54,
-      "chg": 9.0,
+      "pct": 52,
+      "chg": 8.0,
       "dist": [
         {
           "label": "העלאה של 25 נ\"ב",
-          "pct": 54,
-          "chg": 9.0
+          "pct": 52,
+          "chg": 8.0
         },
         {
           "label": "ללא שינוי",
-          "pct": 44,
-          "chg": -10.0
+          "pct": 46,
+          "chg": -8.0
+        },
+        {
+          "label": "העלאה של 50+ נ\"ב",
+          "pct": 1,
+          "chg": 0.4
         }
       ],
       "url": "https://polymarket.com/event/fed-decision-in-september-762",
@@ -25,8 +30,8 @@
       "key": "cuts_2026",
       "label": "הורדות ריבית עד סוף 2026",
       "sub": "ההימור המוביל: 0 הורדות",
-      "pct": 92,
-      "chg": 3.5,
+      "pct": 93,
+      "chg": 4.0,
       "url": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026",
       "src": "Polymarket"
     },
@@ -34,8 +39,8 @@
       "key": "hike_2026",
       "label": "העלאת ריבית עד סוף 2026",
       "sub": "ההימור המוביל: תהיה העלאה",
-      "pct": 74,
-      "chg": 5.0,
+      "pct": 72,
+      "chg": 3.0,
       "url": "https://polymarket.com/event/fed-rate-hike-in-2026",
       "src": "Polymarket"
     },
@@ -61,7 +66,7 @@
       "key": "spx_eoy",
       "label": "יעד S&P 500 לסוף 2026",
       "sub": "ההימור המוביל: ייסגר מעל 7,800",
-      "pct": 52,
+      "pct": 51,
       "chg": null,
       "src": "Kalshi",
       "url": "https://kalshi.com/markets/kxinxy"
@@ -100,7 +105,7 @@
       },
       {
         "d": "2026-09-04",
-        "pct": 54
+        "pct": 52
       }
     ],
     "cuts_2026": [
@@ -134,7 +139,7 @@
       },
       {
         "d": "2026-09-04",
-        "pct": 92
+        "pct": 93
       }
     ],
     "hike_2026": [
@@ -168,7 +173,7 @@
       },
       {
         "d": "2026-09-04",
-        "pct": 74
+        "pct": 72
       }
     ],
     "cpi_next": [
@@ -214,12 +219,12 @@
     "spx_eoy": [
       {
         "d": "2026-09-04",
-        "pct": 52
+        "pct": 51
       }
     ]
   },
   "_meta": {
-    "updatedAt": "04/09/2026 15:45",
+    "updatedAt": "04/09/2026 16:00",
     "source": "polymarket"
   }
 }
