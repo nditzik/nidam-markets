@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דוח ארבעת העמודים — 05/09/2026 · מהדורת סוף שבוע</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#051C2C;--blue:#2251FF;--cyan:#00A9F4;--ink:#1a1a2e;--gray:#5f6b7a;--line:#DDE3EA;--bg:#F7F9FB;--green:#0E8A5F;--red:#C0392B;--amber:#B7791F}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Heebo","Arial Hebrew",sans-serif;direction:rtl;color:var(--ink);background:#fff;line-height:1.75;font-size:15.5px}
+  .num{direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 26px}
+  header{background:var(--navy);color:#fff;padding:52px 0 44px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--cyan);font-weight:600;margin-bottom:14px}
+  h1{font-size:34px;font-weight:800;line-height:1.25}
+  .subtitle{margin-top:12px;font-size:16.5px;color:#B9C6D2;font-weight:300}
+  .header-rule{width:64px;height:4px;background:var(--blue);margin-top:22px}
+  .keymsg{background:var(--amber);color:#fff;padding:18px 0}
+  .keymsg p{font-size:16px;font-weight:500}
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .stepnum{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.16em;margin-bottom:4px}
+  h2{font-size:23px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .lede{color:var(--gray);font-size:15px;max-width:860px;margin-bottom:20px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:13.8px}
+  thead th{background:var(--navy);color:#fff;font-weight:600;padding:9px 11px;text-align:start;font-size:12.8px;white-space:nowrap}
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--bg)}
+  td.sym{font-weight:700;color:var(--navy);direction:ltr;text-align:right;white-space:nowrap}
+  .badge{display:inline-block;padding:1px 9px;border-radius:3px;font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap}
+  .b-green{background:var(--green)}.b-red{background:var(--red)}.b-amber{background:var(--amber)}.b-gray{background:var(--gray)}.b-blue{background:var(--blue)}
+  .tbl-note{font-size:13px;color:var(--gray);margin-bottom:8px}
+  .cond-head{display:flex;align-items:baseline;gap:12px;margin:8px 0 12px}
+  .cond-letter{width:34px;height:34px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;border-radius:2px}
+  .cond-head h3{font-size:18px;font-weight:700;color:var(--navy)}
+  .cond-head .tag{font-size:12.5px;color:var(--gray)}
+  .gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+  .g{background:var(--bg);border-inline-start:4px solid var(--blue);padding:12px 15px;font-size:13.5px}
+  .g b{color:var(--navy)}
+  .deep{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+  .dcard{border:1px solid var(--line);padding:16px 18px;border-top:3px solid var(--green)}
+  .dcard.warn{border-top-color:var(--amber)}
+  .dcard.bad{border-top-color:var(--red)}
+  .dcard h4{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .dcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--blue)}
+  .dcard p{font-size:13.5px;margin-bottom:6px}
+  .dcard .lbl{font-weight:700;color:var(--navy)}
+  .dcard .trigger{background:var(--bg);padding:8px 12px;font-size:13px;margin-top:8px;border-inline-start:3px solid var(--blue)}
+  .delta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .dl{border:1px solid var(--line);padding:14px 16px;border-inline-start:4px solid var(--cyan)}
+  .dl h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .dl h4 .tk{direction:ltr;unicode-bidi:isolate}
+  .dl p{font-size:13px;color:var(--gray)}
+  .scorebox{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:16px 0}
+  .sb{background:var(--bg);border-top:3px solid var(--green);padding:14px 16px}
+  .sb.amber{border-top-color:var(--amber)}
+  .sb .v{font-size:23px;font-weight:800;color:var(--navy)}
+  .sb .l{font-size:12.5px;color:var(--gray)}
+  .bottom{background:var(--navy);color:#fff;padding:40px 0}
+  .bottom h2{color:#fff}
+  .bl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+  .bcard{background:rgba(255,255,255,.06);border-top:3px solid var(--cyan);padding:16px 18px}
+  .bcard h4{font-size:15px;font-weight:800;margin-bottom:6px}
+  .bcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--cyan)}
+  .bcard p{font-size:13.5px;color:#C9D5DF}
+  footer{background:#031320;color:#8FA3B3;padding:24px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:640px){h1{font-size:26px}section{padding:34px 0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Four Pillars Scanner · דוח סריקה #21 · מהדורת סוף שבוע · שפה פשוטה</div>
+    <h1>דוח ארבעת העמודים — <span class="num">05/09/2026</span></h1>
+    <p class="subtitle">נתוני Barchart מסגירת יום שישי + אימות רשת · <span class="num">25</span> מניות נסרקו · סיכום שבוע 4</p>
+    <div class="header-rule"></div>
+  </div>
+</header>
+
+<div class="keymsg">
+  <div class="wrap">
+    <p><strong>🛑 גילוי השבוע: בדיקת הרשת חשפה שפוקס (Fox) רוכשת את ROKU — והעסקה שעמדנו להיכנס אליה מבוטלת.</strong> מניה בתהליך רכישה נצמדת למחיר העסקה ומפסיקה להגיב לגרף — ה"קפיץ הנדרך" שראינו היה בעצם מניה כבולה. זו הדגמה מושלמת של הכלל שלנו: לא נכנסים לשום מניה בלי בדיקה עדכנית. ובשאר החזית — שבוע טוב: NTRA ו-IVZ כבשו בחזרה את הקווים שלהן, ו-RDVT נושקת לאזור המימוש.</p>
+  </div>
+</div>
+
+<!-- Glossary -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">תזכורת</div>
+    <h2>שמונה מושגים בשתי שורות</h2>
+    <div class="gloss">
+      <div class="g"><b>ציון עוצמה (Alpha)</b> — בכמה המניה הכתה את השוק בשנה האחרונה. מעל <span class="num">~350</span>? בדרך כלל חשוד (ראו "שורט").</div>
+      <div class="g"><b>מד חום (RSI)</b> — <span class="num">50–65</span> = בריא לקנייה · מעל <span class="num">70</span> = חם מדי, קונים ביוקר · מתחת ל-<span class="num">50</span> = המגמה לא מאושרת.</div>
+      <div class="g"><b>שיאים בחודש</b> — כמה שיאים חדשים המניה קבעה החודש. הרבה = עלייה עקבית, לא מזל.</div>
+      <div class="g"><b>מחיר ההוכחה (טריגר)</b> — שער שנקבע מראש: סגירה מעליו מוכיחה את הפריצה ומתירה כניסה.</div>
+      <div class="g"><b>מחיר היציאה (סטופ)</b> — שער יציאה שנקבע מראש ומגביל כל טעות להפסד קטן. לא מזיזים למטה, לעולם.</div>
+      <div class="g"><b>כניסה בשלישים</b> — שליש בהוכחה, השאר רק אחרי יומיים של החזקה. טעות עולה מעט.</div>
+      <div class="g"><b>שורט (Short Float)</b> — אחוז המניה בידי מהמרים על ירידה. מעל <span class="num">12%</span> = העלייה חשודה כסחיטת נלחצים — פסילה.</div>
+      <div class="g"><b>קו 100 הימים</b> — המחיר הממוצע ב-<span class="num">100</span> הימים האחרונים. מעליו = מגמה חיובית.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Week 4 summary -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">סיכום שבוע 4</div>
+    <h2>המאזן אחרי <span class="num">21</span> דוחות — שבוע של ניהול, לא של קניות</h2>
+    <div class="scorebox">
+      <div class="sb"><div class="v"><span class="num">12</span> 🎯</div><div class="l">כניסות מאושרות מאז ההתחלה (אפס חדשות השבוע — בכוונה)</div></div>
+      <div class="sb"><div class="v"><span class="num">6</span> ⛔</div><div class="l">פסילות בגלל שורט גבוה — כל שש "מלכות העוצמה"</div></div>
+      <div class="sb"><div class="v"><span class="num">3</span> 💰</div><div class="l">מימושי רווח שבוצעו: TWST חצי (<span class="num">+30%</span>) · NEO שליש · ACHV שליש (<span class="num">+11.6%</span>)</div></div>
+      <div class="sb"><div class="v"><span class="num">2</span> ✓</div><div class="l">מבחני החזקה שעברו השבוע: NTRA ו-IVZ חזרו מעל הקווים</div></div>
+      <div class="sb amber"><div class="v"><span class="num">1</span> 🛑</div><div class="l">עסקה שבוטלה באימות: ROKU (רכישה של פוקס)</div></div>
+    </div>
+    <div class="delta">
+      <div class="dl"><h4><span class="tk">ROKU</span> — סיפור השבוע: הבדיקה שחסכה עסקה רעה</h4><p>המניה יצאה מהסריקה בדיוק כשהייתה אחוז ממחיר ההוכחה — אז הפעלנו את הכלל: אימות רשת לפני כניסה. הממצא: פוקס רוכשת את ROKU (הצבעת בעלי מניות באוקטובר, סגירה בתחילת <span class="num">2027</span>). <strong>למה זה מבטל את העסקה:</strong> מניה נרכשת נצמדת למחיר העסקה — היא מפסיקה "לנשום" עם השוק. גם אם תסגור מעל <span class="num">$160</span>, אין לאן לרוץ; ואם העסקה תיפול (יש כבר רעשים פוליטיים) — הנפילה חדה. ה"התקררות בלי ירידה" שהרשימה אותנו הייתה פשוט מניה קשורה לעוגן.</p></div>
+      <div class="dl"><h4><span class="tk">NTRA</span> + <span class="tk">IVZ</span> — שני המבחנים שעברו</h4><p>NTRA: יום שני ברציפות מעל קו הפריצה (<span class="num">$328.18</span>) — ההתאוששות אושרה, הלחץ מאחוריה. IVZ: כבשה בחזרה את קו ה-<span class="num">$33</span> (<span class="num">$33.07</span>) אחרי שבוע מתחתיו — יום ראשון; יום שני מעל הקו יתיר השלמת קנייה. <strong>בפשטות:</strong> שתי פריצות שדעכו וחזרו — בדיוק בשביל זה לא בורחים בירידה הראשונה כשמחיר היציאה לא נפגע.</p></div>
+      <div class="dl"><h4><span class="tk">RDVT</span> — נושקת לאזור המימוש</h4><p>סגרה <span class="num">$76.14</span>, אחוז וחצי מהשיא. תוכנית המימוש ללא שינוי: ב-<span class="num">$78–79</span> מוכרים שליש ומעלים את מחיר היציאה ל-<span class="num">$70</span> — ומאותו רגע העסקה מסתיימת ברווח בכל תרחיש.</p></div>
+      <div class="dl"><h4><span class="tk">CSGP</span> — ההתאוששות נכשלה, הסוף קרוב</h4><p>הקפיצה של יום חמישי לא החזיקה: סגרה <span class="num">$30.91</span>, מד החום נפל שוב מתחת ל-<span class="num">50</span>, והמרחק ממחיר היציאה (<span class="num">$30</span>) — <span class="num">3%</span> בלבד. <strong>בפשטות:</strong> ההחזקה הקטנה הזו כנראה תיסגר בהפסד קטן בשבוע הקרוב — וזה בסדר גמור. עוף חול אחד (INTU) המריא, אחד לא. בגלל זה נכנסים קטן.</p></div>
+      <div class="dl"><h4><span class="tk">AVAH</span> — ירדה מתחת ל-<span class="num">70</span> לראשונה זה שלושה שבועות</h4><p>מד החום: <span class="num">69.8</span> — פעם ראשונה בטווח מאז אמצע אוגוסט, עם <span class="num">13</span> שיאים בחודש. עדיין לא קנייה (צריך שתבנה בסיס במקום לרקוד סביב השיא), אבל המניה שעליה הרווחת <span class="num">+40%</span> ויצאת — סוף-סוף מתקרבת לטווח שבו מותר לדבר עליה שוב.</p></div>
+      <div class="dl"><h4><span class="tk">MTW</span> — עברה לצד החם</h4><p>Manitowoc (מנופים) טיפסה שבועיים ברצף — <span class="num">$21.41</span>, חצי אחוז מהשיא — אבל מד החום קפץ ל-<span class="num">72.4</span>. מי שבפנים נהנה; מי שבחוץ מאחר. ממתינים להתקררות כמו שחיכינו ב-AVAH.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Category A -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה א</div>
+    <div class="cond-head">
+      <div class="cond-letter">א</div>
+      <h3>הרכבות הדוהרות — <span class="num">11</span> מניות</h3>
+      <span class="tag">רוחב <span class="num">13→11</span> — תנודה של יום, לא איתות · PSNL חזרה · ROKU, OSCR, PUBM יצאו</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>מניה</th><th>עוצמה</th><th>שיאים בחודש</th><th>מד חום</th><th>מרחק מהשיא</th><th>מה עושים</th><th>בשתי מילים</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">RDVT</td><td><span class="num">+63</span></td><td><span class="num">8</span></td><td><span class="num">62.0</span> ✓</td><td><span class="num">-1.6%</span></td><td><span class="badge b-blue">מחזיקים 💪</span></td><td>מימוש שליש ב-<span class="num">$78–79</span> — קרוב</td></tr>
+        <tr><td>2</td><td class="sym">CDNA</td><td><span class="num">+216</span></td><td><span class="num">6</span></td><td><span class="num">65.5</span> ✓</td><td><span class="num">-5.2%</span></td><td><span class="badge b-green">מתקרבת לבשלות</span></td><td>התקררה ומטפסת — מגדירים מחיר הוכחה: <span class="num">$53.7</span> (השיא)</td></tr>
+        <tr><td>3</td><td class="sym">NTRA</td><td><span class="num">+104</span></td><td><span class="num">7</span></td><td><span class="num">62.1</span> ✓</td><td><span class="num">-4.4%</span></td><td><span class="badge b-blue">מחזיקים</span></td><td>יום שני מעל הקו — המבחן הושלם ✓</td></tr>
+        <tr><td>4</td><td class="sym">IVZ</td><td><span class="num">+54</span></td><td><span class="num">9</span></td><td><span class="num">60.5</span> ✓</td><td><span class="num">-1.8%</span></td><td><span class="badge b-blue">מחזיקים</span></td><td>כבשה את <span class="num">$33</span> — יום שני מעליו יתיר השלמה</td></tr>
+        <tr><td>5</td><td class="sym">ACHV</td><td><span class="num">+181</span></td><td><span class="num">10</span></td><td><span class="num">67.4</span> ✓</td><td><span class="num">-1.7%</span></td><td><span class="badge b-blue">מחזיקים</span></td><td>לוחצת על השיא — יציאה ב-<span class="num">$8</span></td></tr>
+        <tr><td>6</td><td class="sym">PSNL</td><td><span class="num">+143</span></td><td><span class="num">6</span></td><td><span class="num">63.2</span> ✓</td><td><span class="num">-9.0%</span></td><td><span class="badge b-gray">חזרה</span></td><td>הבסיס סביב <span class="num">$17</span> מחזיק</td></tr>
+        <tr><td>7</td><td class="sym">SGMT</td><td><span class="num">+50</span></td><td><span class="num">8</span></td><td><span class="num">68.1</span> ✓</td><td><span class="num">-2.7%</span></td><td><span class="badge b-gray">עוקבים</span></td><td>ביוטק קליני — מסוכנת מטבעה</td></tr>
+        <tr><td>8</td><td class="sym">AVAH</td><td><span class="num">+77</span></td><td><span class="num">13</span></td><td><span class="num">69.8</span> ⚠️</td><td><span class="num">-3.0%</span></td><td><span class="badge b-amber">כמעט</span></td><td>ירדה מתחת ל-<span class="num">70</span> — ממתינים לבסיס</td></tr>
+        <tr><td>9</td><td class="sym">MTW</td><td><span class="num">+98</span></td><td><span class="num">7</span></td><td><span class="num">72.4</span> ⚠️</td><td><span class="num">-0.42%</span></td><td><span class="badge b-amber">התחממה</span></td><td>שבועיים חזקים — עכשיו יקרה</td></tr>
+        <tr><td>10</td><td class="sym">PLSE</td><td><span class="num">+206</span></td><td><span class="num">11</span></td><td><span class="num">72.0</span> ⚠️</td><td><span class="num">-3.9%</span></td><td><span class="badge b-amber">חמה</span></td><td>שבוע רביעי מעל <span class="num">70</span></td></tr>
+        <tr><td>—</td><td class="sym">TXG</td><td><span class="num">+414</span></td><td><span class="num">8</span></td><td><span class="num">60.9</span></td><td><span class="num">-6.4%</span></td><td><span class="badge b-red">פסולה ⛔</span></td><td>שורט <span class="num">17.4%</span> — לא נוגעים גם כשהיא קרה</td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note">החזקות שמחוץ לסריקה (מחירי היציאה מחליטים): TWST <span class="num">$140</span> · NEO <span class="num">$17.3</span> · KYMR <span class="num">$118</span> · PTGX <span class="num">$147</span> · GTM <span class="num">$3.7</span> (ספקולטיבית). ברשימת ההמתנה שמחוץ לסריקה — כולן מחייבות בדיקה עדכנית לפני כניסה: EL (ייצוב <span class="num">$98–100</span>) · DASH · OSCR · AMZN (כיבוש <span class="num">$265</span>).</p>
+
+    <div class="deep">
+      <div class="dcard bad">
+        <h4><span class="tk">ROKU</span> — למה מניה נרכשת היא לא עסקת פריצה</h4>
+        <p><span class="lbl">מה גילינו:</span> פוקס רוכשת את ROKU בעסקת מזומן+מניות; ההצבעה באוקטובר, הסגירה בתחילת <span class="num">2027</span>. <span class="lbl">מה זה עושה למניה:</span> מרגע ההכרזה המחיר נקשר לתנאי העסקה — כמו סירה שנקשרה למזח. הגלים (הגרף) כבר לא מזיזים אותה באמת. <span class="lbl">שלוש הסיבות לביטול:</span> (1) התקרה קבועה — אין לאן לפרוץ; (2) הסיכון חד-צדדי — אם העסקה נופלת, המניה צונחת; (3) הכלים שלנו (מומנטום, שיאים, מד חום) פשוט לא רלוונטיים למניה כבולה. <span class="lbl">הלקח:</span> הבדיקה לפני כניסה היא לא בירוקרטיה — היא זו שתפסה את זה.</p>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">CDNA</span> · CareDx — המועמדת שהבשילה בסבלנות</h4>
+        <p><span class="lbl">מה החברה:</span> בדיקות דם למושתלי איברים — מזהה דחיית שתל לפני שהיא מסוכנת. עסק חיוני עם לקוחות קבועים. <span class="lbl">הדרך שעשתה:</span> לפני שבועיים הייתה חמה מדי (<span class="num">75</span>); ירדה, התקררה, ועכשיו מטפסת שוב עם מד חום <span class="num">65.5</span> ועוצמה <span class="num">216</span>. <span class="lbl">בפשטות:</span> זה התהליך שחיכינו לו — התקררות בלי שבירה. עכשיו אפשר לקבוע מחיר הוכחה.</p>
+        <div class="trigger">התוכנית: סגירה מעל <span class="num">$53.7</span> (השיא) = שליש ראשון. יציאה: <span class="num">$48</span>. לפני כניסה — לוודא שהשורט שלה נמוך (חברה מהסוג הזה בדרך כלל נקייה, אבל בודקים).</div>
+      </div>
+      <div class="dcard warn">
+        <h4>מאזן ה"מלכות" — תופעה שחוזרת על עצמה</h4>
+        <p><span class="lbl">שימו לב לצמרת הטבלה:</span> ארבע מתוך חמש בעלות העוצמה הגבוהה ביותר (TXG <span class="num">414</span>, CDNA <span class="num">216</span>, PLSE <span class="num">206</span>, ACHV <span class="num">181</span>) הן או פסולות-שורט או חמות מדי. רק CDNA עברה תהליך קירור מסודר. <span class="lbl">בפשטות:</span> עוצמה קיצונית היא כמעט תמיד סימן אזהרה, לא הזמנה — הכסף הגדול נמצא במניות ה"משעממות" של אמצע הטבלה: RDVT, NTRA, IVZ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category C -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ג</div>
+    <div class="cond-head">
+      <div class="cond-letter">ג</div>
+      <h3>הקפיצים הנדרכים — <span class="num">12</span> מועמדות, <span class="num">9</span> כשירות</h3>
+      <span class="tag">AMPL חדשה · EL, DASH, TITN, LYFT יצאו · AMZN עדיין על הגדר</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>מניה</th><th>עוצמה</th><th>שיאים בחודש</th><th>מד חום</th><th>מרחק מהשיא</th><th>בשתי מילים</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">AMPL</td><td><span class="num">+27</span></td><td><span class="num">9</span></td><td><span class="num">57.0</span> ✓</td><td><span class="num">-11.8%</span></td><td>חדשה — Amplitude: תוכנת ניתוח מוצר, <span class="num">9</span> שיאים בשקט</td></tr>
+        <tr><td>2</td><td class="sym">U</td><td><span class="num">+22</span></td><td><span class="num">10</span></td><td><span class="num">52.2</span> ✓</td><td><span class="num">-20.1%</span></td><td>Unity — מחזיקה את האישור, בונה</td></tr>
+        <tr><td>3</td><td class="sym">FRPT</td><td><span class="num">+30</span></td><td><span class="num">4</span></td><td><span class="num">52.9</span> ✓</td><td><span class="num">-18.3%</span></td><td>מאבדת עקביות (<span class="num">4</span> שיאים בלבד)</td></tr>
+        <tr><td>4</td><td class="sym">RDNT</td><td><span class="num">+9.4</span></td><td><span class="num">3</span></td><td><span class="num">52.5</span> ✓</td><td><span class="num">-14.1%</span></td><td>יציבה, איטית</td></tr>
+        <tr><td>5</td><td class="sym">TPG</td><td><span class="num">-2.5</span></td><td><span class="num">6</span></td><td><span class="num">58.3</span> ✓</td><td><span class="num">-25.2%</span></td><td>פרייבט אקוויטי — חזרה לרשימה</td></tr>
+        <tr><td>6</td><td class="sym">SAIL</td><td><span class="num">-2.5</span></td><td><span class="num">6</span></td><td><span class="num">52.4</span> ✓</td><td><span class="num">-21.6%</span></td><td>אבטחת זהויות — משתפרת לאט</td></tr>
+        <tr><td>7</td><td class="sym">PLTR</td><td><span class="num">-2.5</span></td><td><span class="num">8</span></td><td><span class="num">54.2</span> ✓</td><td><span class="num">-16.0%</span></td><td>שבוע חלש (<span class="num">-12</span>) — הנדנדה נמשכת, לא סומכים עליה</td></tr>
+        <tr><td>8</td><td class="sym">NVAX</td><td><span class="num">+28</span></td><td><span class="num">11</span></td><td><span class="num">70.7</span> ⚠️</td><td><span class="num">-14.6%</span></td><td>על גבול החום</td></tr>
+        <tr><td>9</td><td class="sym">AQST</td><td><span class="num">+24</span></td><td><span class="num">11</span></td><td><span class="num">69.7</span> ✓</td><td><span class="num">-29.3%</span></td><td>גבולית</td></tr>
+        <tr><td colspan="7" style="color:var(--amber);font-weight:600">⚠️ בלי אישור מגמה: AMZN (<span class="num">49.55</span> — עדיין על קו ה-<span class="num">50</span> בדיוק; מחזיקה מעל קו 100 הימים) · CRM (<span class="num">76.6</span> — חמה מדי מהכיוון השני)</td></tr>
+        <tr><td colspan="7" style="color:var(--red);font-weight:600">❌ נפסלה בעוצמה: BWMN (<span class="num">-9.5</span>, וגם מד חום <span class="num">82</span> — שילוב בלתי אפשרי)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="deep">
+      <div class="dcard">
+        <h4><span class="tk">AMPL</span> · Amplitude — המצטרפת השקטה של השבוע</h4>
+        <p><span class="lbl">מה החברה:</span> תוכנה שמראה לחברות איך משתמשים מתנהגים בתוך המוצר שלהן — מי לוחץ איפה, מי נוטש ולמה. כל אפליקציה רצינית צריכה כלי כזה. <span class="lbl">למה מעניין:</span> <span class="num">9</span> שיאים בחודש עם מד חום <span class="num">57</span> — אותו פרופיל שקט שראינו ב-LYFT וב-U לפני שבועיים. <span class="lbl">בפשטות:</span> למעקב; אם תמשיך לצבור שיאים — נגדיר מחיר הוכחה.</p>
+      </div>
+      <div class="dcard warn">
+        <h4><span class="tk">AMZN</span> — שבוע שלם על הגדר</h4>
+        <p><span class="lbl">התמונה:</span> יושבת צמוד לקו 100 הימים ומד החום תקוע על <span class="num">49.55</span> — לא מאשרת ולא נשברת, כבר שבוע. <span class="lbl">בפשטות:</span> שוק שלם מחכה שהמניה הכבדה הזו תבחר כיוון. אין מה לעשות חוץ מלחכות: כיבוש <span class="num">$265</span> עם מד חום מעל <span class="num">50</span> = חזרה לתוכנית; שבירת הקו = מדף.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category B -->
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ב</div>
+    <div class="cond-head">
+      <div class="cond-letter">ב</div>
+      <h3>עופות החול — <span class="num">2</span> מניות</h3>
+      <span class="tag">CSGP על סף הסוף · LENZ עדיין רחוקה</span>
+    </div>
+    <table>
+      <thead><tr><th>מניה</th><th>מחיר</th><th>קו 100 הימים</th><th>מרחק מהקו</th><th>מד חום</th><th>בשתי מילים</th></tr></thead>
+      <tbody>
+        <tr><td class="sym">CSGP</td><td><span class="num">30.91</span></td><td><span class="num">32.12</span></td><td><span class="num">-3.8%</span></td><td><span class="num">47.4</span> ⚠️</td><td><span class="num">3%</span> ממחיר היציאה — מתכוננים לפרידה</td></tr>
+        <tr><td class="sym">LENZ</td><td><span class="num">5.96</span></td><td><span class="num">6.61</span></td><td><span class="num">-9.8%</span></td><td><span class="num">67.3</span></td><td>מתקרבת לקו אבל <span class="num">-88%</span> מהשיא — מסוכנת מדי</td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note"><strong>בפשטות:</strong> סיפור ה-CSGP מתקרב לסופו: ארבעה ניסיונות לחצות את קו 100 הימים, אף אחד לא החזיק, ועכשיו גם מד החום נשבר. אם תיגע ב-<span class="num">$30</span> — יוצאים אוטומטית, בהפסד של כ-<span class="num">9%</span> על החזקה קטנה (בערך <span class="num">3%</span> מהסכום שתוכנן לעסקה מלאה). מול זה עומדת INTU, עוף החול שהצליח ועשה את המהלך. אחת מתוך שתיים, בסיכון קטן — זו בדיוק הסטטיסטיקה שהקטגוריה הזו בנויה עליה.</p>
+  </div>
+</section>
+
+<!-- Bottom line -->
+<div class="bottom">
+  <div class="wrap">
+    <div class="stepnum" style="color:var(--cyan)">שורה תחתונה</div>
+    <h2>לוח פעולה לשבוע 5</h2>
+    <div class="bl">
+      <div class="bcard">
+        <h4>בוטל: <span class="tk">ROKU</span></h4>
+        <p>נרכשת על ידי פוקס — יורדת מרשימת הכניסות לצמיתות. הכלים שלנו לא עובדים על מניה כבולה לעסקה.</p>
+      </div>
+      <div class="bcard">
+        <h4>הכניסה המתגבשת: <span class="tk">CDNA</span></h4>
+        <p>סגירה מעל <span class="num">$53.7</span> = שליש ראשון, יציאה ב-<span class="num">$48</span>. לפני כן — בדיקת שורט.</p>
+      </div>
+      <div class="bcard">
+        <h4>מימושים קרובים</h4>
+        <p><span class="tk">RDVT</span> — שליש ב-<span class="num">$78–79</span>, יציאה עולה ל-<span class="num">$70</span>. <span class="tk">IVZ</span> — יום שני מעל <span class="num">$33</span> יתיר השלמה.</p>
+      </div>
+      <div class="bcard">
+        <h4>ההחזקות — מחירי היציאה</h4>
+        <p><span class="tk">TWST</span> <span class="num">$140</span> · <span class="tk">NTRA</span> <span class="num">$315</span> · <span class="tk">NEO</span> <span class="num">$17.3</span> · <span class="tk">ACHV</span> <span class="num">$8</span> · <span class="tk">IVZ</span> <span class="num">$30.5</span> · <span class="tk">KYMR</span> <span class="num">$118</span> · <span class="tk">PTGX</span> <span class="num">$147</span> · <span class="tk">CSGP</span> <span class="num">$30</span> (קרוב).</p>
+      </div>
+      <div class="bcard">
+        <h4>ברשימת ההמתנה</h4>
+        <p><span class="tk">AVAH</span> (ירדה מ-<span class="num">70</span> — בסיס) · <span class="tk">EL</span> (<span class="num">$98–100</span>) · <span class="tk">AMZN</span> (<span class="num">$265</span>) · <span class="tk">AMPL</span>/<span class="tk">U</span> (צבירת שיאים) · <span class="tk">MTW</span> (התקררות).</p>
+      </div>
+      <div class="bcard">
+        <h4>לא נוגעים</h4>
+        <p><span class="tk">TXG</span> (שורט) · <span class="tk">PLSE</span>/<span class="tk">MTW</span>/<span class="tk">CRM</span>/<span class="tk">NVAX</span> (חמות) · <span class="tk">LENZ</span> (<span class="num">-88%</span>) · <span class="tk">BWMN</span> · <span class="tk">PLTR</span> (נדנדה).</p>
+      </div>
+    </div>
+    <p style="margin-top:22px;font-size:14px;color:#C9D5DF">ארבעה שבועות למערכת: <span class="num">12</span> כניסות, שלושה מימושי רווח, שני מבחני החזקה שעברו השבוע, ועסקה אחת שבוטלה בזכות בדיקה של שתי דקות. השבוע החמישי נפתח עם CDNA על הכוונת ו-RDVT ליד קו המימוש. התזכורת הקבועה: Short Float ו-Beta בייצוא 🙂 שבת שלום!</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Four Pillars Scanner · נתונים: Barchart <span class="num">05/09/2026</span> (סגירת יום שישי) + אימות רשת · דוח #21 · מהדורת סוף שבוע</span>
+    <span>ניתוח טכני לצורכי לימוד — אינו המלצת השקעה</span>
+  </div>
+</footer>
+
+</body>
+</html>
