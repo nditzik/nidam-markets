@@ -50,6 +50,10 @@ jobs:
         with:
           python-version: "3.11"
 
+      # --- תלויות ל-write_daily_analysis.py (Claude API + structured output) ---
+      - name: Install Python deps
+        run: pip install anthropic pydantic
+
       # --- משיכת מדדים מריפו indexes-status (מריץ בתוכו גם archive_scores.py,
       #     כדי ש-history.json לעולם לא ייפרד מ-indices.json — 2.9.2026) ---
       - name: Fetch indices
@@ -157,6 +161,18 @@ jobs:
       # --- נתוני מאקרו: צפי מול בפועל (יומן TradingView) ---
       - name: Fetch econ calendar
         run: python scripts/fetch_econ.py
+        continue-on-error: true
+
+      # --- כתיבת הכותרת/ניתוח היומי אוטומטית ברגע שיש סגירה חדשה שלא נותחה
+      #     (indices.json מתקדם על claude_analysis.json) — 5.9.2026, ראו
+      #     docstring של write_daily_analysis.py. no-op שקט אם אין חדש או
+      #     אם ANTHROPIC_API_KEY לא מוגדר ב-Secrets. ---
+      - name: Write daily analysis (auto)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/write_daily_analysis.py
         continue-on-error: true
 
       # --- "מה השווקים מהמרים": הסתברויות משוקי חיזוי (Polymarket, ציבורי) ---

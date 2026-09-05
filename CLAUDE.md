@@ -43,6 +43,8 @@
 
 **מחזור הכותרת:** ניתוח 06:30 (date=סשן אתמול) ← eventUpdate נכתב באירועי מאקרו (15:50/17:05, TTL רנדרר 18ש') ← הניתוח של מחר כותב את הקובץ בלי eventUpdate = איפוס אוטומטי. הרנדרר קורא eventUpdate מ-CA הגולמי (לא מוגן-תאריך) בכוונה.
 
+**כתיבת כותרת אוטומטית — גיבוי מהיר (5.9.2026):** `nidam-daily-market-analysis`+retry רצות בשעון UTC קבוע (03:30/05:00) — אבל איציק דוחף CSV בשעות משתנות (לפעמים אחרי 10:00 IL), אז הרוטינות כמעט תמיד רצות *לפני* שהנתונים מוכנים ופספסו שבוע שלם ברציפות (עודכן ידנית כל בוקר). נוסף `scripts/write_daily_analysis.py`: רץ בתוך אותה ריצת 15-דק' של `update.yml` (אחרי fetch_dashboards/market/earnings/econ), בודק אם `indices.json["date"]` מתקדם על `claude_analysis.json["date"]`, ואם כן כותב ניתוח מלא בעצמו (Claude API `claude-opus-5`, `messages.parse` + Pydantic structured output — לא CCR routine). דורש secret `ANTHROPIC_API_KEY` (עוד לא הוגדר — עד אז מדלג בשקט וממשיכים ידנית). כתיבה מתויגת `_meta.source: "claude-daily-analysis-auto"` (להבדיל מכתיבה ידנית `"claude-daily-analysis"`). כללי הסגנון (איסור ז'רגון, אזהרת מולטי-לג, בדיקת חוזים/דוחות-לילה) מקודדים בפרומפט של הסקריפט עצמו — **לא** ב-RemoteTrigger prompt. שתי הרוטינות הישנות נשארות פעילות כרגע כגיבוי-גיבוי (no-op אם הסקריפט כבר כתב); לשקול הסרתן רק אחרי שרואים שהאוטומציה החדשה יציבה כמה ימים.
+
 ## צינורות (scripts/)
 
 | סקריפט | פלט | מקור |
