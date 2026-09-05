@@ -2,9 +2,16 @@
 """
 fetch_pulse.py — "בזק מהרשת": כותרות-בזק מחשבונות X פיננסיים אל data/pulse.json.
 
-צינור פעיל (נבדק 05/09/2026): שיקופי טלגרם רשמיים בלבד
-(t.me/s/<slug> — HTML ציבורי, בלי API):
-    @KobeissiLetter, Walter Bloomberg, FinancialJuice, @Barchart
+שני צינורות בלתי-תלויים (נבדק 05/09/2026), שמתמזגים לאותה רצועה:
+  1. שיקופי טלגרם רשמיים (t.me/s/<slug> — HTML ציבורי, בלי API, בחינם):
+     @KobeissiLetter, Walter Bloomberg, FinancialJuice, @Barchart
+  2. דיג'סט X במייל (IMAP, אותם סודות GMAIL_* של שאר צינורות המייל בריפו):
+     בוט של איציק סורק כל 15 דק' 8 חשבונות ושולח מייל בפורמט קבוע.
+
+החפיפה בין השניים **מכוונת**: 3 מ-8 חשבונות הדיג'סט כבר מגיעים בטלגרם, כך
+שנפילה של אחד הצינורות לא מרוקנת את הרצועה — הבוט נופל, הטלגרם מחזיק; הטלגרם
+נופל, הבוט מכסה הכל. זה בדיוק הלקח מ-05/09/2026, כשכל 7 מקורות ה-Nitter מתו
+בבת אחת מפני שחלקו מנגנון יחיד (ראו למטה).
 
 סינון: בלי ריטוויטים/תגובות, בלי הודעות-מדיה ריקות, בלי כפילויות, חלון 48 שעות.
 עמידות: מקור שנפל משתמש בפריטים האחרונים שנתפסו ממנו (מ-pulse.json הקודם).
@@ -32,11 +39,16 @@ spectatorindex נטוש; markettwits פעיל אך ברוסית; disclotv גיא
 לבדו הוא שירות squawk מלא). `fetch_nitter()` נשמרה בקוד — אם יקום מופע Nitter
 עובד, מספיק להחזיר שורות ל-SOURCES ולהוסיף את המארח ל-NITTER_HOSTS.
 """
+import email
+import email.header
+import email.utils
 import html as htmllib
+import imaplib
 import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
@@ -55,6 +67,24 @@ SOURCES = [
     # 7 מקורות Nitter הוסרו 05/09/2026 — ראו הסבר מלא ב-docstring למעלה.
 ]
 NITTER_HOSTS = []   # אין מופע Nitter עובד; להוסיף כאן אם יקום אחד
+
+# ── דיג'סט X במייל (05/09/2026) ──────────────────────────────────────────────
+# בוט של איציק סורק חשבונות X כל 15 דק' ושולח מייל בפורמט קבוע:
+#   YYYY-MM-DD ||| HH:MM ||| @handle ||| טקסט ||| קישור
+# (או שורה אחת "NO-ITEMS" כשאין חדש — כך אפשר להבדיל בין שקט לבין בוט מת.)
+# העוגן בנושא הוא באנגלית **בכוונה**: הנושא המקורי היה "דיג׳סט X" עם גרש עברי
+# (U+05F3), תו שנראה כמו אפוסטרוף אבל שונה ממנו — בדיוק סוג ההתאמה-בשקט
+# שהפילה כאן פעמיים את briefing.json ואת fetch_barchart.py.
+XD_SUBJECT_MARK = "X-PULSE"
+XD_SENDER = "nditzik@gmail.com"
+XD_NO_ITEMS = "NO-ITEMS"
+XD_SINCE_DAYS = 2          # חלון חיפוש IMAP; סינון 48ש' נעשה ממילא בהמשך
+XD_SEP = "|||"
+
+# אותו חשבון, שם אחר בכל ערוץ: @DeItaone הוא Walter Bloomberg (אומת 05/09/2026
+# מול 3 התאמות מדויקות בהפרש דקה). בלי המיפוי, MAX_PER_SOURCE היה נותן לו
+# 3 מקומות מהטלגרם + 3 מהדיג'סט = 6, והוא היה משתלט על הרצועה.
+XD_ALIASES = {"@deitaone": "Walter Bloomberg"}
 
 WINDOW_H = 48       # חלון תצוגה (שעות)
 MAX_ITEMS = 10      # תקרת פריטים בפלט
@@ -172,6 +202,138 @@ def fetch_nitter(label, handle):
     raise RuntimeError(f"כל מופעי Nitter נכשלו: {last_err}")
 
 
+def _unwrap_link(url):
+    """Gmail עוטף לינקים ב-google.com/url?q=... — מחזיר את היעד האמיתי."""
+    url = (url or "").strip()
+    if "google.com/url" not in url:
+        return url
+    try:
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(url).query).get("q")
+        return urllib.parse.unquote(q[0]) if q else url
+    except Exception:
+        return url
+
+
+def _mail_body(msg):
+    """גוף המייל כטקסט — מעדיף text/plain, ונופל ל-HTML מנוקה."""
+    plain = html = ""
+    parts = msg.walk() if msg.is_multipart() else [msg]
+    for part in parts:
+        if part.get_content_maintype() == "multipart":
+            continue
+        payload = part.get_payload(decode=True)
+        if not payload:
+            continue
+        text = payload.decode(part.get_content_charset() or "utf-8", "ignore")
+        if part.get_content_type() == "text/plain" and not plain:
+            plain = text
+        elif part.get_content_type() == "text/html" and not html:
+            html = text
+    if plain:
+        return plain
+    # HTML → טקסט: <br>/<p> לשורות, ואז הסרת תגיות (בלי clean_text — הוא
+    # מקצר וחותך לינקים, וכאן צריך את השורה השלמה לפיצול)
+    h = re.sub(r"<br\s*/?>|</p>|</div>|</tr>", "\n", html, flags=re.I)
+    h = re.sub(r"<[^>]+>", "", h)
+    return htmllib.unescape(h)
+
+
+def parse_xdigest(body, il_off):
+    """שורות הדיג'סט → פריטים. שורה פגומה מדולגת ולא מפילה את השאר."""
+    out = []
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or XD_SEP not in line:
+            continue
+        # שלושת השדות הראשונים קבועים, והקישור — אם קיים — תמיד אחרון. כל מה
+        # שביניהם הוא הטקסט, גם אם המפריד מופיע בתוך הציוץ עצמו (קרה בבדיקה).
+        # השדה האחרון נחשב קישור רק אם הוא באמת נראה כמו URL; אחרת הוא טקסט,
+        # כדי שציוץ עם ||| ובלי לינק לא יאבד את סופו.
+        parts = [p.strip() for p in line.split(XD_SEP)]
+        if len(parts) < 4:
+            continue
+        d, t, handle = parts[0], parts[1], parts[2]
+        rest = parts[3:]
+        if len(rest) > 1 and re.match(r"^https?://", rest[-1]):
+            link = _unwrap_link(rest[-1])
+            text = (" " + XD_SEP + " ").join(rest[:-1])
+        else:
+            link = _unwrap_link(rest[-1]) if re.match(r"^https?://", rest[-1]) else ""
+            text = (" " + XD_SEP + " ").join(rest if not link else rest[:-1])
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", d) or not re.match(r"^\d{1,2}:\d{2}$", t):
+            continue
+        if not handle.startswith("@"):
+            continue
+        try:
+            naive = datetime.strptime(f"{d} {t}", "%Y-%m-%d %H:%M")
+        except ValueError:
+            continue
+        dt = naive.replace(tzinfo=timezone(timedelta(hours=il_off)))
+        text = clean_text(re.sub(r"^\*+\s*", "", text))   # DeItaone מקדים * לכותרות
+        if not keep(text):
+            continue
+        label = XD_ALIASES.get(handle.lower(), handle)
+        out.append({"source": label, "text": text,
+                    "dt": dt.astimezone(timezone.utc).isoformat(), "link": link})
+    return out
+
+
+def fetch_xdigest():
+    """הדיג'סט האחרון מהמייל. כל כשל → רשימה ריקה (הטלגרם ממשיך לבדו)."""
+    pw = os.environ.get("GMAIL_APP_PASSWORD")
+    if not pw:
+        print("[skip] דיג'סט X: חסר GMAIL_APP_PASSWORD.")
+        return []
+    user = os.environ.get("GMAIL_USER") or XD_SENDER
+    il_off = 3 if 4 <= datetime.now(timezone.utc).month <= 10 else 2
+    imap = None
+    try:
+        imap = imaplib.IMAP4_SSL("imap.gmail.com")
+        imap.login(user, pw)
+        imap.select('"[Gmail]/All Mail"', readonly=True)
+        since = datetime.now(timezone.utc) - timedelta(days=XD_SINCE_DAYS)
+        mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][since.month - 1]
+        typ, data = imap.search(None, "FROM", XD_SENDER,
+                                "SINCE", f"{since.day:02d}-{mon}-{since.year}")
+        ids = data[0].split() if typ == "OK" and data and data[0] else []
+        items, scanned = [], 0
+        for mid in reversed(ids):            # מהחדש לישן
+            if scanned >= 40:                # תקרת בטיחות
+                break
+            typ, md = imap.fetch(mid, "(RFC822)")
+            if typ != "OK" or not md or not md[0]:
+                continue
+            msg = email.message_from_bytes(md[0][1])
+            subject = str(email.header.make_header(
+                email.header.decode_header(msg.get("Subject") or "")))
+            if XD_SUBJECT_MARK not in subject:
+                continue
+            scanned += 1
+            body = _mail_body(msg)
+            if XD_NO_ITEMS in body and XD_SEP not in body:
+                print(f"[ok] דיג'סט X: {subject[:40]} — NO-ITEMS")
+                continue
+            got = parse_xdigest(body, il_off)
+            items += got
+            print(f"[ok] דיג'סט X: {subject[:40]} — {len(got)} פריטים")
+            if len(items) >= MAX_ITEMS * 4:
+                break
+        if not scanned:
+            print(f"[warn] דיג'סט X: לא נמצא מייל עם '{XD_SUBJECT_MARK}' ב-"
+                  f"{XD_SINCE_DAYS} הימים האחרונים.")
+        return items
+    except Exception as e:
+        print(f"[warn] דיג'סט X נכשל: {e}")
+        return []
+    finally:
+        try:
+            if imap:
+                imap.logout()
+        except Exception:
+            pass
+
+
 def main():
     # פריטים קודמים — גיבוי לכל מקור שנופל הפעם
     prev = {}
@@ -194,6 +356,14 @@ def main():
             old = prev.get(label, [])
             collected += old
             print(f"[fallback] {label}: {e} — משתמש ב-{len(old)} פריטים קודמים")
+
+    # דיג'סט X מהמייל — מצטרף לאותו מאגר, כך שהמיון/הדה-דופ/תקרת-המקור
+    # פועלים עליו בדיוק כמו על הטלגרם. חפיפה מכוונת: אם הבוט נופל, 4 ערוצי
+    # הטלגרם ממשיכים להחזיק את הרצועה, ולהפך.
+    xd = fetch_xdigest()
+    if xd:
+        collected += xd
+        ok += 1
 
     if not ok and not collected:
         print("[warn] אף מקור לא נמשך.")
