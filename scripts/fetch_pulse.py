@@ -2,14 +2,35 @@
 """
 fetch_pulse.py — "בזק מהרשת": כותרות-בזק מחשבונות X פיננסיים אל data/pulse.json.
 
-צינורות (נבדקו 01/08/2026):
-  • שיקופי טלגרם רשמיים (t.me/s/<slug> — HTML ציבורי, בלי API):
-      The Kobeissi Letter, Walter Bloomberg, FinancialJuice
-  • Nitter RSS (nitter.net, גיבוי xcancel.com) לחשבונות בלי שיקוף:
-      @wallstengine, @LiveSquawk
+צינור פעיל (נבדק 05/09/2026): שיקופי טלגרם רשמיים בלבד
+(t.me/s/<slug> — HTML ציבורי, בלי API):
+    @KobeissiLetter, Walter Bloomberg, FinancialJuice, @Barchart
 
 סינון: בלי ריטוויטים/תגובות, בלי הודעות-מדיה ריקות, בלי כפילויות, חלון 48 שעות.
 עמידות: מקור שנפל משתמש בפריטים האחרונים שנתפסו ממנו (מ-pulse.json הקודם).
+
+═══ Nitter מת — 7 מקורות הוסרו (05/09/2026) ═══
+עד לתאריך הזה היו כאן עוד 7 חשבונות דרך Nitter (@wallstengine, @LiveSquawk,
+@StockMKTNewz, @AIStockSavvy, @MikeZaccardi, @LizAnnSonders, @Kalshi).
+בבדיקה התברר ש**שני מופעי ה-Nitter מתו**:
+  • nitter.net  → HTTP 410 Gone (הושבת לצמיתות)
+  • xcancel.com → עונה, אבל מחזיר פיד-דמה: כותרת ופריט יחיד בנוסח
+    "RSS reader not yet whitelisted!" עם בקשה לשלוח מייל ל-rss@xcancel.com
+    כדי לקבל whitelist.
+זה היה גרוע יותר מ"מקור מת" בשקט: המחרוזת "RSS reader not yet whitelisted!"
+היא באורך 31 תווים, כלומר **עברה את סף `keep()` של 25 תווים והתקבלה כפריט
+חדשות תקין**. היא לא הופיעה באתר רק במקרה — 4 ערוצי הטלגרם מציפים את
+10 המקומות בפיד. בשעה שקטה (סופ"ש/לילה) היא הייתה מתפרסמת באתר ככותרת שוק.
+לכן נוסף גם `BAD_PATTERNS` למטה — הגנה כללית, לא רק לתקלה הזו.
+
+חיפוש תחליפים נכשל (נבדק בפועל, 05/09/2026): לאף אחד מ-7 החשבונות אין ערוץ
+טלגרם רשמי פעיל. `LizAnnSonders` ו-`KalshiNews` קיימים אבל נטושים (1098 ו-53
+ימים) ומכילים ספאם/תוכן לא-קשור — אין להשתמש בהם. גם ערוצי-חלופה כלליים
+נבדקו: DeItaone/FirstSquawk/zerohedge/unusual_whales — אין להם שיקוף ציבורי;
+spectatorindex נטוש; markettwits פעיל אך ברוסית; disclotv גיאופוליטי ואיטי.
+המסקנה: 4 ערוצי הטלגרם שנשארו הם מה שזמין בחינם, והם מכסים היטב (FinancialJuice
+לבדו הוא שירות squawk מלא). `fetch_nitter()` נשמרה בקוד — אם יקום מופע Nitter
+עובד, מספיק להחזיר שורות ל-SOURCES ולהוסיף את המארח ל-NITTER_HOSTS.
 """
 import html as htmllib
 import json
@@ -31,15 +52,9 @@ SOURCES = [
     ("Walter Bloomberg", "tg", "walter_bloomberg"),
     ("FinancialJuice", "tg", "financialjuice"),
     ("@Barchart", "tg", "barchartx"),          # טלגרם רשמי (התגלה בציוץ שלהם)
-    ("@wallstengine", "nitter", "wallstengine"),
-    ("@LiveSquawk", "nitter", "LiveSquawk"),
-    ("@StockMKTNewz", "nitter", "StockMKTNewz"),
-    ("@AIStockSavvy", "nitter", "AIStockSavvy"),      # נוספו 10/08 — אין שיקוף TG
-    ("@MikeZaccardi", "nitter", "MikeZaccardi"),
-    ("@LizAnnSonders", "nitter", "LizAnnSonders"),    # שיקוף ה-TG שלה נטוש (09/2023)
-    ("@Kalshi", "nitter", "Kalshi"),
+    # 7 מקורות Nitter הוסרו 05/09/2026 — ראו הסבר מלא ב-docstring למעלה.
 ]
-NITTER_HOSTS = ["nitter.net", "xcancel.com"]
+NITTER_HOSTS = []   # אין מופע Nitter עובד; להוסיף כאן אם יקום אחד
 
 WINDOW_H = 48       # חלון תצוגה (שעות)
 MAX_ITEMS = 10      # תקרת פריטים בפלט
@@ -76,12 +91,27 @@ def clean_text(s):
     return s
 
 
+# הודעות-שירות של הצינור עצמו שהתחזו לפריט חדשות (05/09/2026 — xcancel החזיר
+# "RSS reader not yet whitelisted!", 31 תווים, שעבר את סף האורך והתקבל ככותרת).
+# כל דפוס כאן נבדק מול טקסט הפריט; ההגנה כללית ולא קשורה למקור ספציפי, כי
+# אותה תקלה יכולה לחזור מכל שירות-מראה עתידי בנוסח אחר.
+BAD_PATTERNS = re.compile(
+    r"(not\s+yet\s+whitelist|whitelist(ed)?\s*!|rss\s+reader|rate.?limit"
+    r"|instance\s+(is\s+)?(down|blocked)|tweets?\s+are\s+not\s+available"
+    r"|please\s+send\s+an\s+email|try\s+again\s+later|service\s+unavailable"
+    r"|error\s*\d{3}|^\s*(error|forbidden|not\s+found)\s*$)",
+    re.I,
+)
+
+
 def keep(text):
     if not text or len(text) < 25:
         return False
     if text.startswith(("RT by", "R to")):       # ריטוויטים/תגובות (Nitter)
         return False
     if re.match(r"^(Live stream|Pinned|Forwarded)", text, re.I):
+        return False
+    if BAD_PATTERNS.search(text):                # הודעת-שירות, לא חדשות
         return False
     return True
 
