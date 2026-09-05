@@ -204,8 +204,14 @@ jobs:
         run: python scripts/archive_focus.py
         continue-on-error: true
 
-      # --- "בזק מהרשת": חשבונות X דרך שיקופי טלגרם + Nitter ---
+      # --- "בזק מהרשת": חשבונות X — שיקופי טלגרם + דיג'סט X מהמייל ---
+      #     ⚠️ סודות ה-GMAIL חובה כאן: בלעדיהם fetch_pulse.py מדלג על הדיג'סט
+      #     **בשקט** (שורת [skip] בלוג בלבד) והרצועה נשארת אנגלית לנצח בלי
+      #     שום סימן באתר. התווסף 05/09/2026 יחד עם צינור הדיג'סט.
       - name: Fetch X pulse
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python scripts/fetch_pulse.py
         continue-on-error: true
 
