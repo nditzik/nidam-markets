@@ -254,12 +254,26 @@ def parse_xdigest(body, il_off):
             continue
         d, t, handle = parts[0], parts[1], parts[2]
         rest = parts[3:]
-        if len(rest) > 1 and re.match(r"^https?://", rest[-1]):
+        if re.match(r"^https?://", rest[-1]):
             link = _unwrap_link(rest[-1])
-            text = (" " + XD_SEP + " ").join(rest[:-1])
+            rest = rest[:-1]
         else:
-            link = _unwrap_link(rest[-1]) if re.match(r"^https?://", rest[-1]) else ""
-            text = (" " + XD_SEP + " ").join(rest if not link else rest[:-1])
+            link = ""
+        if not rest:
+            continue
+        # שני פורמטים נתמכים במקביל, כדי שהחלפת הפקודה בבוט לא תיצור חלון שבור:
+        #   5 שדות (ישן): ... ||| טקסט ||| קישור
+        #   6 שדות (חדש): ... ||| אנגלית ||| עברית ||| קישור
+        # ההבחנה לפי תוכן ולא לפי ספירה בלבד — שדה עברית ריק הוא תקין (כך
+        # ביקשנו מהבוט כשאין תרגום טוב), ומצד שני המפריד ||| יכול להופיע בתוך
+        # הציוץ עצמו. לכן: השדה האחרון נחשב "עברית" רק אם הוא ריק או מכיל
+        # אותיות עבריות; אחרת הוא המשך של הטקסט האנגלי.
+        if len(rest) >= 2 and (not rest[-1] or re.search(r"[֐-׿]", rest[-1])):
+            text = (" " + XD_SEP + " ").join(rest[:-1])
+            he = rest[-1]
+        else:
+            text = (" " + XD_SEP + " ").join(rest)
+            he = ""
         if not re.match(r"^\d{4}-\d{2}-\d{2}$", d) or not re.match(r"^\d{1,2}:\d{2}$", t):
             continue
         if not handle.startswith("@"):
@@ -270,10 +284,16 @@ def parse_xdigest(body, il_off):
             continue
         dt = naive.replace(tzinfo=timezone(timedelta(hours=il_off)))
         text = clean_text(re.sub(r"^\*+\s*", "", text))   # DeItaone מקדים * לכותרות
+        # הסינון תמיד על האנגלית — היא המקור, והיא שנבדקת מול BAD_PATTERNS
         if not keep(text):
             continue
+        he = clean_text(he)
         label = XD_ALIASES.get(handle.lower(), handle)
-        out.append({"source": label, "text": text,
+        # מוצג עברית כשיש, ונופל לאנגלית כשאין (שדה ריק = הבוט לא היה בטוח).
+        # `_key` נושא תמיד את האנגלית, כי עליה נעשית השוואת-הכפילויות מול
+        # הטלגרם — בלי זה תרגום היה שובר את הדה-דופ ואותה ידיעה הייתה מופיעה
+        # פעמיים. `_key` נשאר פנימי ולא נכתב לפלט.
+        out.append({"source": label, "text": he or text, "_key": text,
                     "dt": dt.astimezone(timezone.utc).isoformat(), "link": link})
     return out
 
@@ -391,7 +411,9 @@ def main():
         # (נבדק גם מול 6 פריטים חדשים-באמת וגם מול כל 78 הפריטים החיים בפיד —
         # הפלט נשאר זהה). קריטי לקראת חיבור הדיג'סט של X, שחופף במכוון
         # ל-4 ערוצי הטלגרם כשכבת גיבוי.
-        key = re.sub(r"\W+", "", it["text"].lower())[:40]
+        # `_key` (האנגלית המקורית) כשקיים — כך פריט מתורגם מהדיג'סט עדיין
+        # מזוהה ככפילות של אותה ידיעה שהגיעה באנגלית מהטלגרם.
+        key = re.sub(r"\W+", "", (it.get("_key") or it["text"]).lower())[:40]
         if key in seen:
             continue
         if per_src.get(it["source"], 0) >= MAX_PER_SOURCE:
