@@ -61,7 +61,7 @@
 | fetch_market | market.json (+spark) | Yahoo v8 chart |
 | fetch_econ | econ.json (צפי/בפועל) | TradingView economic calendar |
 | fetch_bets | bets.json (פד, מיתון, יעד SPY; CPI כשיש נזילות) | Polymarket Gamma + Kalshi (ציבוריים, בלי מפתח) |
-| fetch_earnings / fetch_news / fetch_pulse / fetch_movers | earnings/news/pulse/movers | csv / RSS / טלגרם+Nitter (11 מקורות; xcancel מת) / TV scanner |
+| fetch_earnings / fetch_news / fetch_pulse / fetch_movers | earnings/news/pulse/movers | csv / RSS / **טלגרם + דיג'סט X במייל** (ראו למטה) / TV scanner |
 | fetch_sectors / fetch_trades | sectors.json / trades.json | nidam-reports |
 | detect_flash | flash.json + טלגרם | ספייק 0.5%+/30 דק' (Yahoo 1m) + ראיות econ/pulse/news |
 | archive_scores / archive_focus | history / focus_history | "המוקד במבחן" · archive_scores רץ תמיד *בתוך* fetch_dashboards.py (2.9.2026, כדי ש-history.json לא ייפרד מ-indices.json) — לא עוד שלב נפרד ב-update.yml |
@@ -86,6 +86,7 @@
 
 - מניות במוקד = מומנטום ∩ מועמדים בלבד; הארכיון חייב להישאר זהה ל-passesBase.
 - טיקר: מחיר+אחוז בלבד. חדשות באנגלית. בזק מהרשת עדיף (עדכני).
+- **בזק מהרשת — שני צינורות מכוונים (5.9.2026):** (1) 4 שיקופי טלגרם, חינם; (2) דיג'סט X במייל — בוט Grok של איציק סורק 9 חשבונות כל 15 דק' ושולח מייל בפורמט `תאריך ||| שעה ||| @handle ||| אנגלית ||| עברית ||| קישור`, נקלט ב-IMAP (סודות `GMAIL_*`, **חייבים להיות על שלב `Fetch X pulse` ב-update.yml** — בלעדיהם דילוג שקט). החפיפה בין הצינורות מכוונת כרזרביות; נפילת אחד לא מרוקנת את הרצועה. **התרגום נעשה ע"י הבוט ולא ע"י `translate()` של fetch_news** — המתרגם הגנרי נמדד עם 3 שגיאות משמעות פיננסיות מתוך 6 (strikes→שביתה, Treasury→משרד האוצר, terminal rate→תעריפים), וכותרת שוק שגויה גרועה מאנגלית. הצגה בעברית, **השוואת-כפילויות תמיד על האנגלית** (`_key`) — אחרת אותה ידיעה מופיעה פעמיים. מעבר-מקדים מעדיף את הגרסה המתורגמת בהתנגשות (בלעדיו התרגום בלתי-נראה: הטלגרם מתייג מאוחר יותר, ממוין ראשון, וחוסם את העברית — נמדד 0/10). `XD_ALIASES` ממפה @DeItaone→Walter Bloomberg ו-@FinancialJuice→FinancialJuice, אחרת תקרת MAX_PER_SOURCE נפתחת ל-6. עוגן הנושא `X-PULSE` באנגלית בכוונה (הנושא המקורי הכיל גרש עברי U+05F3 — תאום-למראה של אפוסטרוף). **פתוח:** אין התראה כשהדיג'סט מפסיק להגיע (קרה 5.9 — תקוע שעה בלי סימן באתר).
 - הימורים: הסתברות + שינוי יומי בנקודות; התפלגות מלאה לפד-ספטמבר; אירועי-סיכון נקודתיים נדחו במכוון.
 - מבזק ⚡: מציג "מה שהתפרסם באותן דקות" — לא טוען סיבתיות. סף 0.5%/30 דק' (בניסיון כיול).
 - GoatCounter — אנליטיקס; מעברי-טאב נספרים כצפיות.
