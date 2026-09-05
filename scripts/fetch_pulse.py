@@ -84,7 +84,13 @@ XD_SEP = "|||"
 # אותו חשבון, שם אחר בכל ערוץ: @DeItaone הוא Walter Bloomberg (אומת 05/09/2026
 # מול 3 התאמות מדויקות בהפרש דקה). בלי המיפוי, MAX_PER_SOURCE היה נותן לו
 # 3 מקומות מהטלגרם + 3 מהדיג'סט = 6, והוא היה משתלט על הרצועה.
-XD_ALIASES = {"@deitaone": "Walter Bloomberg"}
+# ‎@FinancialJuice בדיג'סט מול "FinancialJuice" (בלי @) בטלגרם — בלי המיפוי
+# הם נספרים כשני מקורות נפרדים ותקרת MAX_PER_SOURCE נפתחת ל-6 במקום 3.
+# ‎@KobeissiLetter ו-@Barchart תואמים כבר ככתבם ולא נדרש להם מיפוי.
+XD_ALIASES = {
+    "@deitaone": "Walter Bloomberg",
+    "@financialjuice": "FinancialJuice",
+}
 
 WINDOW_H = 48       # חלון תצוגה (שעות)
 MAX_ITEMS = 10      # תקרת פריטים בפלט
@@ -287,7 +293,7 @@ def parse_xdigest(body, il_off):
         # הסינון תמיד על האנגלית — היא המקור, והיא שנבדקת מול BAD_PATTERNS
         if not keep(text):
             continue
-        he = clean_text(he)
+        he = clean_text(re.sub(r"^\*+\s*", "", he))   # הכוכבית עוברת גם לתרגום
         label = XD_ALIASES.get(handle.lower(), handle)
         # מוצג עברית כשיש, ונופל לאנגלית כשאין (שדה ריק = הבוט לא היה בטוח).
         # `_key` נושא תמיד את האנגלית, כי עליה נעשית השוואת-הכפילויות מול
@@ -401,6 +407,33 @@ def main():
             it["_dt"] = dt
             fresh.append(it)
     fresh.sort(key=lambda x: x["_dt"], reverse=True)
+
+    # מעבר-מקדים: מבין שתי גרסאות של אותה ידיעה — לבחור את המתורגמת.
+    # בלי זה התרגום היה בלתי-נראה לגמרי (נמדד: 0/10 פריטים בעברית): הטלגרם
+    # מתייג לפי שעת הפרסום במראה, והדיג'סט לפי שעת הציוץ המקורי — כלומר
+    # הגרסה האנגלית תמיד ממוינת ראשונה, תופסת את המקום, והעברית נחסמת
+    # ככפילות. כאן נשמר המיקום/הזמן של הראשון (המיון לא זז), ורק הטקסט
+    # והקישור מוחלפים בגרסה העברית + הקישור הישיר ל-x.com.
+    def _dkey(it):
+        return re.sub(r"\W+", "", (it.get("_key") or it["text"]).lower())[:40]
+
+    def _translated(it):
+        return bool(it.get("_key")) and it["text"] != it["_key"]
+
+    upgraded = 0
+    first_of = {}
+    for it in fresh:
+        k = _dkey(it)
+        keep_it = first_of.get(k)
+        if keep_it is None:
+            first_of[k] = it
+        elif _translated(it) and not _translated(keep_it):
+            keep_it["text"] = it["text"]
+            keep_it["link"] = it["link"] or keep_it["link"]
+            keep_it["_key"] = it["_key"]
+            upgraded += 1
+    if upgraded:
+        print(f"[tr] {upgraded} פריטים הוחלפו בגרסה העברית מהדיג'סט")
 
     seen, items, per_src = set(), [], {}
     for it in fresh:
