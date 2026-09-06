@@ -990,7 +990,7 @@
         " מול צפי " + esc(e.forecast) + " (" + esc(e.ilTime) + ")</span>");
     });
     (ev.pulse || []).slice(0, 3).forEach(function (p) {
-      bits.push('<span class="fl-ev" dir="ltr">💬 ' + esc(String(p.text).slice(0, 110)) +
+      bits.push('<span class="fl-ev" dir="auto">💬 ' + esc(String(p.text).slice(0, 110)) +
         " · " + esc(p.source) + "</span>");
     });
     if (!bits.length) (ev.news || []).slice(0, 2).forEach(function (n) {
@@ -1028,7 +1028,9 @@
       shown.map(function (it) {
         return '<a class="np-xit" href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
           '<span class="m">' + esc(it.source) + " · " + esc(it.time) + "</span>" +
-          "<p>" + esc(it.text) + "</p></a>";
+          // dir="auto": הפריטים מעורבים — עברית מהדיג'סט ואנגלית מהטלגרם —
+          // והדפדפן קובע כיוון לכל פריט לפי התו החזק הראשון שבו (6.9.2026)
+          '<p dir="auto">' + esc(it.text) + "</p></a>";
       }).join("") +
       (items.length > 4 ? '<a class="np-more" href="#" id="pulse-more">' + moreLbl + "</a> · " : "") +
       '<a class="np-more" href="#" id="news-toggle">📰 חדשות השוק ⌄</a>';
@@ -1249,7 +1251,7 @@
     el.innerHTML = '<h3 class="np-k">חדשות השוק</h3>' +
       items.slice(0, 5).map(function (n) {
         return '<a class="np-xit" href="' + esc(n.link) + '" target="_blank" rel="noopener">' +
-          "<p>" + esc(n.titleEn || n.title) + "</p>" +
+          '<p dir="auto">' + esc(n.titleEn || n.title) + "</p>" +
           '<span class="m">' + esc(n.source || "") + " · " + esc(n.time) + "</span></a>";
       }).join("");
     renderTriIndex();

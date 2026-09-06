@@ -751,7 +751,13 @@ body { background-image: none; background-color: var(--bg); }
   line-height: 1.55; border-radius: 14px; padding: 5px 13px; }
 .np-xit { display: block; padding: 8px 0; border-bottom: 1px solid var(--paper-hair); color: var(--text); text-decoration: none; }
 .np-xit:last-of-type { border-bottom: 0; }
-.np-xit p { margin: 0; font-size: .9rem; font-weight: 500; direction: ltr; text-align: left; line-height: 1.45; }
+/* 6.9.2026: היה direction:ltr קשיח — נכון כשכל התוכן היה אנגלית, אבל מרגע
+   שהדיג'סט מביא עברית זה דחס משפט עברי לפסקה שמאל-לימין, וכל מילה לועזית
+   או מספר בתוכו קפצו למקום הלא-נכון (הטקסט עצמו תקין ב-pulse.json — רק
+   התצוגה נשברה). אין ברירת-מחדל אחת נכונה: אותו כלל משרת גם את "בזק מהרשת"
+   (עברית) וגם את כרטיס החדשות שמוצג באנגלית במכוון. לכן הכיוון נקבע פר-פריט
+   ע"י dir="auto" ב-app.js, וכאן רק text-align:start שנגרר אחרי הכיוון שנקבע. */
+.np-xit p { margin: 0; font-size: .9rem; font-weight: 500; text-align: start; line-height: 1.45; }
 .np-xit .m { font-size: .72rem; color: var(--text-3); direction: ltr; text-align: left; display: block; margin-bottom: 2px; }
 .np-idx a { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 0;
   border-bottom: 1px solid var(--paper-hair); color: var(--text); font-size: .95rem; font-weight: 500; text-decoration: none; }
@@ -852,8 +858,7 @@ body { background-image: none; background-color: var(--bg); }
 .fl-toggle { border: 0; background: none; color: var(--accent); font-weight: 700;
   font-size: .82rem; cursor: pointer; padding: 0; font-family: inherit; }
 .fl-detail { display: flex; flex-direction: column; gap: 4px; padding: 8px 2px 2px; }
-.fl-ev { font-size: .82rem; color: var(--text-soft); }
-.fl-ev[dir="ltr"] { text-align: left; }
+.fl-ev { font-size: .82rem; color: var(--text-soft); text-align: start; }
 .fl-note { font-size: .74rem; color: var(--text-3); margin-top: 2px; }
 
 /* החג הקרוב בבורסה (2026-08-13) + תאריך היום מעל קיקר יום-המסחר */
