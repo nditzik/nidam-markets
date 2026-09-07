@@ -31,6 +31,10 @@ on:
         description: "שלח תקציר בוקר לניסיון (לערוץ)"
         type: boolean
         default: false
+      test_watch:
+        description: "שלח התראת WATCH-ALERT לדוגמה — לצ'אט הפרטי, לא לערוץ"
+        type: boolean
+        default: false
       broadcast_image:
         description: "שליחת תמונה חד-פעמית לערוץ: נתיב יחסי לריפו (חייב להיות כבר ב-commit). ריק = דילוג"
         type: string
@@ -116,6 +120,17 @@ jobs:
         run: |
           python scripts/notify_telegram.py --test
           python scripts/notify_earnings_age.py --test
+        continue-on-error: true
+
+      # --- התראות "חברות בתיק" (WATCH-ALERT) — כרגע **מצב בדיקה בלבד**:
+      #     רץ רק בהרצה ידנית עם הסימון, ושולח לצ'אט הפרטי ולא לערוץ. השלב
+      #     האוטומטי יתווסף רק אחרי שאיציק יאשר את מראה ההודעה (7.9.2026). ---
+      - name: Watch alerts test (private)
+        if: ${{ inputs.test_watch }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT: ${{ secrets.TELEGRAM_ADMIN_CHAT }}
+        run: python scripts/notify_watch.py --test
         continue-on-error: true
 
       # --- תזכורת טלגרם על תדרוך חדש (דורש TELEGRAM_BOT_TOKEN + TELEGRAM_CHANNEL) ---
