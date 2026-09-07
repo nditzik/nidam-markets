@@ -1,24 +1,112 @@
 {
-  "today": "2026-09-07",
-  "todayCount": 0,
-  "todayBig": [],
-  "reporting": [],
-  "more": 0,
-  "upcoming": [
+  "today": "2026-09-08",
+  "todayCount": 26,
+  "todayBig": [
     {
-      "date": "2026-09-08",
-      "label": "8/9",
-      "dow": "ג׳",
-      "count": 26,
-      "tickers": [
-        "ORCL",
-        "CASY",
-        "TTAN",
-        "CNM",
-        "GME",
-        "AVAV"
-      ]
+      "ticker": "ORCL",
+      "name": "Oracle Corp",
+      "capB": 421.9
     },
+    {
+      "ticker": "CASY",
+      "name": "Casey's General Stor",
+      "capB": 30.9
+    },
+    {
+      "ticker": "SKIL",
+      "name": "Skillsoft Corp",
+      "capB": 74251.0
+    },
+    {
+      "ticker": "NTRB",
+      "name": "Nutriband Inc",
+      "capB": 56725.0
+    },
+    {
+      "ticker": "LITB",
+      "name": "Lightinthebox Holding Ltd ADR",
+      "capB": 54385.0
+    },
+    {
+      "ticker": "MIND",
+      "name": "Mitcham Industries Inc",
+      "capB": 41174.0
+    },
+    {
+      "ticker": "GMHS",
+      "name": "Gamehaus Holdings Inc Cl A",
+      "capB": 38564.0
+    },
+    {
+      "ticker": "BIOX",
+      "name": "Bioceres Crop Solutions Corp",
+      "capB": 27877.0
+    }
+  ],
+  "reporting": [
+    {
+      "ticker": "ORCL",
+      "name": "Oracle Corp",
+      "logo": "data/earnings/logos/ORCL.png"
+    },
+    {
+      "ticker": "CASY",
+      "name": "Casey's General Stor",
+      "logo": "data/earnings/logos/CASY.png"
+    },
+    {
+      "ticker": "TTAN",
+      "name": "Servicetitan Inc Cl A",
+      "logo": "data/earnings/logos/TTAN.png"
+    },
+    {
+      "ticker": "CNM",
+      "name": "Core & Main Inc Cl A",
+      "logo": "data/earnings/logos/CNM.png"
+    },
+    {
+      "ticker": "GME",
+      "name": "Gamestop Corp",
+      "logo": "data/earnings/logos/GME.png"
+    },
+    {
+      "ticker": "AVAV",
+      "name": "Aerovironment Inc",
+      "logo": "data/earnings/logos/AVAV.png"
+    },
+    {
+      "ticker": "KFY",
+      "name": "Korn/Ferry International",
+      "logo": "data/earnings/logos/KFY.png"
+    },
+    {
+      "ticker": "BRZE",
+      "name": "Braze Inc Cl A",
+      "logo": "data/earnings/logos/BRZE.png"
+    },
+    {
+      "ticker": "UNFI",
+      "name": "United Nat Foods",
+      "logo": "data/earnings/logos/UNFI.png"
+    },
+    {
+      "ticker": "OXINF",
+      "name": "Oxford Instruments",
+      "logo": "data/earnings/logos/OXINF.png"
+    },
+    {
+      "ticker": "FCEL",
+      "name": "Fuelcell Energy Inc",
+      "logo": "data/earnings/logos/FCEL.png"
+    },
+    {
+      "ticker": "INNV",
+      "name": "Innovage Holding Corp",
+      "logo": "data/earnings/logos/INNV.png"
+    }
+  ],
+  "more": 14,
+  "upcoming": [
     {
       "date": "2026-09-09",
       "label": "9/9",
@@ -359,10 +447,14 @@
     "DLNG": "2026-09-14",
     "GROW": "2026-09-14",
     "HAIN": "2026-09-14",
-    "VZLA": "2026-09-14"
+    "VZLA": "2026-09-14",
+    "DTEAF": "2026-09-15",
+    "EPM": "2026-09-15",
+    "ESP": "2026-09-15",
+    "PBMLF": "2026-09-15"
   },
   "_meta": {
-    "updatedAt": "07/09/2026 23:46",
+    "updatedAt": "08/09/2026 00:01",
     "source": "earnings.csv"
   }
 }
