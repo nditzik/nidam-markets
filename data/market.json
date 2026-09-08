@@ -3,7 +3,7 @@
     {
       "key": "es",
       "label": "חוזה S&P",
-      "price": 7711.75,
+      "price": 7712.25,
       "chg": -0.13,
       "prev": 7722.0,
       "spark": []
@@ -11,18 +11,22 @@
     {
       "key": "nq",
       "label": "חוזה Nasdaq",
-      "price": 29589.5,
-      "chg": 0.08,
+      "price": 29591.5,
+      "chg": 0.09,
       "prev": 29565.25,
       "spark": []
     },
     {
       "key": "usdils",
       "label": "דולר/שקל",
-      "price": 3.014,
-      "chg": 0.0,
+      "price": 3.01,
+      "chg": -0.13,
       "prev": 3.014,
-      "spark": []
+      "spark": [
+        3.0083,
+        3.009,
+        3.0103
+      ]
     },
     {
       "key": "spy",
@@ -234,7 +238,7 @@
     }
   ],
   "_meta": {
-    "updatedAt": "08/09/2026 03:01",
+    "updatedAt": "08/09/2026 03:16",
     "source": "yahoo"
   }
 }
