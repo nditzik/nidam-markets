@@ -1053,3 +1053,7 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
   .wm-row { grid-template-columns: 1fr auto auto; row-gap: 2px; }
   .wm-s { grid-column: 1 / -1; order: 3; }
 }
+/* נתון מיושן (מדד מוקפא/נמחק) — מסומן חזק יותר מ"סגור", כי כאן המספר עצמו
+   כבר לא אמין ולא רק "לא נסחר כרגע" */
+.wm-stale .wm-p, .wm-stale .wm-c { opacity: .45; text-decoration: line-through; }
+.wm-stale .wm-s { color: var(--down); }

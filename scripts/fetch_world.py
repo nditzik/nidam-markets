@@ -53,6 +53,13 @@ MARKETS = [
     ("tadef",  "ת\"א ביטחוניות", "🇮🇱", "207.TA",     TA_SECT, (9.9, 17.25), IL_WEEK),
     ("tare",   "ת\"א נדל\"ן מניב", "🇮🇱", "56.TA",    TA_SECT, (9.9, 17.25), IL_WEEK),
     ("tabld",  "ת\"א בנייה",    "🇮🇱", "55.TA",       TA_SECT, (9.9, 17.25), IL_WEEK),
+    ("taind",  "ת\"א תעשייה",   "🇮🇱", "51.TA",       TA_SECT, (9.9, 17.25), IL_WEEK),
+    ("taeng",  "ת\"א אנרגיה",   "🇮🇱", "54.TA",       TA_SECT, (9.9, 17.25), IL_WEEK),
+    ("taret",  "ת\"א קמעונאות", "🇮🇱", "188.TA",      TA_SECT, (9.9, 17.25), IL_WEEK),
+    ("tadual", "ת\"א דואליות",  "🇮🇱", "187.TA",      TA_SECT, (9.9, 17.25), IL_WEEK),
+    # ת"א-קנאביס (186.TA) לא נכלל במכוון — ראו הערת STALE_DAYS: Yahoo מחזיר
+    # לו מחיר תקין-למראה מ-4.8.2022 עם אפס נתוני מסחר מאז. אם המדד יחזור
+    # להיסחר, הוספתו כאן תעבוד מיד; מצב "נתון מיושן" יגן עליה בינתיים.
     ("n225",   "ניקיי 225",     "🇯🇵", "^N225",      "אסיה",   (3.0, 9.0),   WEST_WEEK),
     ("ks11",   "קוספי",          "🇰🇷", "^KS11",      "אסיה",   (3.0, 9.5),   WEST_WEEK),
     ("twii",   "טאיוון",         "🇹🇼", "^TWII",      "אסיה",   (4.0, 8.5),   WEST_WEEK),
@@ -68,6 +75,15 @@ MARKETS = [
 
 FRESH_MIN = 45      # ציטוט עדכני עד כדי כך → נחשב מסחר חי
 PRE_MIN = 90        # עד שעה וחצי לפני הפתיחה → "לפני פתיחה"
+STALE_DAYS = 5      # מעבר לכך המדד כנראה מוקפא/נמחק, ולא "סגור"
+
+# ⚠️ למה יש בכלל מצב "מיושן" (9.9.2026): בבדיקת ת"א-קנאביס (186.TA) התברר
+# ש-Yahoo מחזיר לו מחיר שנראה תקין לחלוטין — אבל חותמת הזמן היא 4.8.2022,
+# לפני ארבע שנים, עם אפס נקודות מסחר. מדד מוקפא נראה בדיוק כמו מדד סגור.
+# בנוסף, תצוגת התאריך שלנו הייתה "DD/MM HH:MM" בלי שנה — כך שציטוט בן
+# ארבע שנים היה מוצג כ-"04/08 17:31" ונקרא כאילו הוא מהחודש שעבר. שתי
+# התקלות יחד היו שמות על האתר מספר בן ארבע שנים בלי שום סימן. מכאן:
+# מצב נפרד + שנה בתצוגה בכל פעם שהציטוט אינו מהשנה הנוכחית.
 
 
 def il_offset():
@@ -93,6 +109,9 @@ def session_state(quote_ts, hours, days):
     trading_day = now.weekday() in days
     # ציטוט טרי בתוך חלון המסחר = נסחר עכשיו. זהו האות האמין ביותר, כי הוא
     # מגיע מהבורסה עצמה ולא מהנחה שלנו על לוח שעות/חגים.
+    # מוקפא/נמחק — נבדק ראשון, לפני כל השאר: מדד כזה נראה כמו "סגור" רגיל
+    if age_min is not None and age_min > STALE_DAYS * 24 * 60:
+        return "stale", "נתון מיושן"
     if trading_day and open_h <= cur_h <= close_h and age_min is not None and age_min <= FRESH_MIN:
         return "live", "נסחר"
     if trading_day and 0 < (open_h - cur_h) * 60 <= PRE_MIN:
@@ -132,8 +151,10 @@ def main():
             state, state_he = session_state(ts, hours, days)
             at = ""
             if ts:
-                at = (datetime.fromtimestamp(ts, timezone.utc)
-                      + timedelta(hours=il_offset())).strftime("%d/%m %H:%M")
+                qt = datetime.fromtimestamp(ts, timezone.utc) + timedelta(hours=il_offset())
+                # השנה מוצגת רק כשהציטוט אינו מהשנה הנוכחית — אחרת התאריך
+                # קצר וקריא, אבל ציטוט ישן לא יכול להתחזות לטרי (ראו למעלה)
+                at = qt.strftime("%d/%m %H:%M" if qt.year == il_now().year else "%d/%m/%Y")
             items.append({
                 "key": key, "label": label, "flag": flag, "region": region,
                 "price": round(price, 2),

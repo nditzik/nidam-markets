@@ -2123,7 +2123,7 @@
     if (!items.length) { emptyPanel(el, "🌍", "שווקים בינלאומיים — בקרוב", ""); return; }
     var order = ["ישראל — מדדים ראשיים", "ישראל — סקטורים", "אסיה", "אירופה", "ארה\"ב"], groups = {};
     items.forEach(function (i) { (groups[i.region] = groups[i.region] || []).push(i); });
-    var dot = { live: "🟢", pre: "🟡", closed: "⚪" };
+    var dot = { live: "🟢", pre: "🟡", closed: "⚪", stale: "⚠️" };
     var html = '<div class="wm-head"><h2>שווקים בינלאומיים</h2>' +
       '<span class="wm-note">🟢 נסחר · 🟡 לפני פתיחה · ⚪ סגור — השעה שלצד כל מדד היא מועד העדכון בפועל</span></div>';
     order.forEach(function (region) {
