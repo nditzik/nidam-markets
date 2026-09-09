@@ -1057,3 +1057,9 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
    כבר לא אמין ולא רק "לא נסחר כרגע" */
 .wm-stale .wm-p, .wm-stale .wm-c { opacity: .45; text-decoration: line-through; }
 .wm-stale .wm-s { color: var(--down); }
+
+/* "שווקים בינלאומיים" הוא הטאב הארוך ביותר, והוספתו דחפה את "דיווחים"/"דוחות"
+   לשורה שנייה. במקום לקצר את השם — מפריד ברוחב מלא מאלץ אותו לשורה משלו,
+   ו-margin אוטומטי ממרכז אותו שם. שאר הטאבים חוזרים לשורה אחת כמקודם. */
+.tabs-break { flex: 0 0 100%; height: 0; margin: 0; }
+.tabs .tab[data-tab="world"] { margin-inline: auto; margin-block-start: 6px; }
