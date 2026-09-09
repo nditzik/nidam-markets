@@ -40,6 +40,15 @@
       "src": "Polymarket"
     },
     {
+      "key": "cpi_next",
+      "label": "אינפלציה שנתית — נתון אוגוסט · יתפרסם 11.9",
+      "sub": "ההימור המוביל: תישאר מעל 3.3%",
+      "pct": 59,
+      "chg": null,
+      "src": "Kalshi",
+      "url": "https://kalshi.com/markets/kxcpiyoy"
+    },
+    {
       "key": "recession",
       "label": "מיתון בארה\"ב עד סוף 2026",
       "sub": "ההימור המוביל: לא יהיה מיתון",
@@ -162,6 +171,12 @@
         "pct": 70
       }
     ],
+    "cpi_next": [
+      {
+        "d": "2026-09-09",
+        "pct": 59
+      }
+    ],
     "recession": [
       {
         "d": "2026-09-02",
@@ -208,7 +223,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "09/09/2026 13:01",
+    "updatedAt": "09/09/2026 13:16",
     "source": "polymarket"
   }
 }
