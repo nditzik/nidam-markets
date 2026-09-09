@@ -2112,6 +2112,40 @@
     var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
     return m ? (+m[3]) + "." + (+m[2]) + "." + m[1].slice(2) : iso;
   }
+  /* שווקים בינלאומיים — מדדי בורסה מרחבי העולם, מקובצים לפי אזור.
+     המספר לבדו מטעה כאן: ברוב שעות היממה רוב הבורסות סגורות, ו"DAX 0.00%"
+     בבוקר הוא נעילת אתמול ולא שוק ששקט. לכן כל שורה נושאת חיווי מצב ואת
+     שעת העדכון בפועל — שניהם מגיעים מ-fetch_world.py, שמחשב אותם מחותמת
+     הזמן של הציטוט עצמו ולא מהנחה על לוח שעות. */
+  function renderWorld(el, d) {
+    if (!el) return;
+    var items = (d && d.items) || [];
+    if (!items.length) { emptyPanel(el, "🌍", "שווקים בינלאומיים — בקרוב", ""); return; }
+    var order = ["ישראל", "אסיה", "אירופה", "ארה\"ב"], groups = {};
+    items.forEach(function (i) { (groups[i.region] = groups[i.region] || []).push(i); });
+    var dot = { live: "🟢", pre: "🟡", closed: "⚪" };
+    var html = '<div class="wm-head"><h2>שווקים בינלאומיים</h2>' +
+      '<span class="wm-note">🟢 נסחר · 🟡 לפני פתיחה · ⚪ סגור — השעה שלצד כל מדד היא מועד העדכון בפועל</span></div>';
+    order.forEach(function (region) {
+      var rows = groups[region];
+      if (!rows || !rows.length) return;
+      html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(region) + "</h3>" +
+        rows.map(function (i) {
+          var c = i.chg > 0 ? "up" : i.chg < 0 ? "down" : "";
+          var sign = i.chg == null ? "—" : (i.chg > 0 ? "+" : "") + i.chg.toFixed(2) + "%";
+          return '<div class="wm-row wm-' + esc(i.state) + '">' +
+            '<span class="wm-n"><span class="wm-fl">' + esc(i.flag) + "</span>" + esc(i.label) + "</span>" +
+            '<span class="wm-s">' + (dot[i.state] || "") + " " + esc(i.stateHe) +
+              (i.at ? ' <span class="wm-at" dir="ltr">' + esc(i.at) + "</span>" : "") + "</span>" +
+            '<span class="wm-p num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—") + "</span>" +
+            '<span class="wm-c num ' + c + '" dir="ltr">' + sign + "</span></div>";
+        }).join("") + "</section>";
+    });
+    html += '<p class="wm-foot">נתוני המדדים מ-Yahoo Finance, מושהים בכ-15-20 דקות · עודכן ' +
+      esc((d._meta || {}).updatedAt || "") + "</p>";
+    el.innerHTML = html;
+  }
+
   function renderSectors(el, d) {
     SECT = d;
     var reps = (d && d.reports) || [];
@@ -2422,6 +2456,9 @@
       fetchJSON("data/sectors.json")
         .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
         .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
+      fetchJSON("data/world.json")
+        .then(function (d) { renderWorld(document.getElementById("panel-world"), d); })
+        .catch(function () { emptyPanel(document.getElementById("panel-world"), "🌍", "שווקים בינלאומיים — בקרוב", ""); });
       fetchJSON("data/morning.json")
         .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });

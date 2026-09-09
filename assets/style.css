@@ -1023,3 +1023,33 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
   .tvm-box { width: 100%; height: 100%; border-radius: 0; border: 0; }
   .tvm-note { display: none; }
 }
+
+/* ── שווקים בינלאומיים ─────────────────────────────────────────────────── */
+.wm-head { margin: 0 0 18px; }
+.wm-head h2 { margin: 0 0 6px; font-size: 1.35rem; }
+.wm-note { font-size: .78rem; color: var(--text-3); }
+.wm-grp { margin: 0 0 22px; }
+.wm-rg { margin: 0 0 6px; font-family: Heebo, sans-serif; font-size: .7rem; font-weight: 700;
+  letter-spacing: .16em; color: var(--text-3); }
+.wm-row { display: grid; grid-template-columns: 1.5fr 1.25fr auto auto; align-items: baseline;
+  gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--paper-hair); }
+.wm-row:last-child { border-bottom: 0; }
+/* flex+gap ולא margin: המרווח חייב להיראות זהה בשורה עברית ובשורה לטינית,
+   ו-margin-inline נפתר לפי כיוון הריצה ולכן נעלם ב-"S&P 500" (9.9.2026) */
+.wm-n { font-weight: 600; font-size: .95rem; display: flex; align-items: baseline; gap: 8px; }
+/* "Noto Color Emoji" חייב להיות ראשון: ווינדוס מרנדר דגלים כאותיות ("IL")
+   בלי גופן ייעודי, ומשפחות הברירת-מחדל שלו לא יעזרו כאן. */
+.wm-fl { font-size: 1.05rem; flex: none;
+  font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
+.wm-s { font-size: .76rem; color: var(--text-3); }
+.wm-at { color: var(--text-3); opacity: .8; }
+.wm-p { font-size: .95rem; font-weight: 600; text-align: end; }
+.wm-c { font-size: .9rem; font-weight: 700; text-align: end; min-width: 68px; }
+/* שוק סגור — המספר נשאר קריא אך מודגש פחות, כדי שלא ייקרא כמסחר חי */
+.wm-closed .wm-p, .wm-closed .wm-c { opacity: .62; }
+.wm-live .wm-n { color: var(--text); }
+.wm-foot { margin: 18px 0 0; font-size: .74rem; color: var(--text-3); }
+@media (max-width: 560px) {
+  .wm-row { grid-template-columns: 1fr auto auto; row-gap: 2px; }
+  .wm-s { grid-column: 1 / -1; order: 3; }
+}

@@ -20,7 +20,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=np36" />
+  <!-- דגלי מדינות (טאב שווקים בינלאומיים): ווינדוס לא מכיל גופן דגלים בכלל
+       ומרנדר 🇮🇱 כאותיות "IL". Noto Color Emoji מספק אותם בכל מערכת;
+       הפרמטר text= מצמצם את הגופן לתווי הדגלים שבשימוש בלבד (9.9.2026). -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%87%AE%F0%9F%87%B1%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%B0%F0%9F%87%B7%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%BA%F0%9F%87%B8&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css?v=np38" />
 </head>
 <body>
   <a class="skip-link" href="#main">דלג לתוכן</a>
@@ -36,6 +40,7 @@
         <button class="tab is-active" role="tab" data-tab="home">בית</button>
         <button class="tab" role="tab" data-tab="momentum">מומנטום</button>
         <button class="tab" role="tab" data-tab="indices">מדדים</button>
+        <button class="tab" role="tab" data-tab="world">שווקים בינלאומיים</button>
         <button class="tab" role="tab" data-tab="sectors">סקטורים</button>
         <button class="tab" role="tab" data-tab="candidates">מועמדים</button>
         <button class="tab" role="tab" data-tab="trades">הצעות לטרייד</button>
@@ -92,6 +97,7 @@
 
     <section class="panel" id="panel-momentum" role="tabpanel"></section>
     <section class="panel" id="panel-indices" role="tabpanel"></section>
+    <section class="panel" id="panel-world" role="tabpanel"></section>
     <section class="panel" id="panel-sectors" role="tabpanel"></section>
     <section class="panel" id="panel-weekcal" role="tabpanel"></section>
     <section class="panel" id="panel-candidates" role="tabpanel"></section>
@@ -110,7 +116,7 @@
     </div>
   </footer>
 
-  <script src="assets/app.js?v=np36"></script>
+  <script src="assets/app.js?v=np38"></script>
   <!-- GoatCounter — סטטיסטיקת מבקרים (פרטי, ללא עוגיות); דשבורד: nidam.goatcounter.com -->
   <script data-goatcounter="https://nidam.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>

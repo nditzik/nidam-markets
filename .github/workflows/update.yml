@@ -169,6 +169,11 @@ jobs:
         run: python scripts/fetch_market.py
         continue-on-error: true
 
+      # --- מדדי בורסה בינלאומיים (טאב "שווקים בינלאומיים") ---
+      - name: Fetch world indices
+        run: python scripts/fetch_world.py
+        continue-on-error: true
+
       # --- מי מדווחת היום (מתוך earnings.csv שאיציק מעדכן שבועית) ---
       - name: Fetch earnings calendar
         run: python scripts/fetch_earnings.py
