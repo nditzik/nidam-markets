@@ -2121,7 +2121,7 @@
     if (!el) return;
     var items = (d && d.items) || [];
     if (!items.length) { emptyPanel(el, "🌍", "שווקים בינלאומיים — בקרוב", ""); return; }
-    var order = ["ישראל", "אסיה", "אירופה", "ארה\"ב"], groups = {};
+    var order = ["ישראל — מדדים ראשיים", "ישראל — סקטורים", "אסיה", "אירופה", "ארה\"ב"], groups = {};
     items.forEach(function (i) { (groups[i.region] = groups[i.region] || []).push(i); });
     var dot = { live: "🟢", pre: "🟡", closed: "⚪" };
     var html = '<div class="wm-head"><h2>שווקים בינלאומיים</h2>' +
