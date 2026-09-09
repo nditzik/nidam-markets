@@ -1062,4 +1062,8 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
    לשורה שנייה. במקום לקצר את השם — מפריד ברוחב מלא מאלץ אותו לשורה משלו,
    ו-margin אוטומטי ממרכז אותו שם. שאר הטאבים חוזרים לשורה אחת כמקודם. */
 .tabs-break { flex: 0 0 100%; height: 0; margin: 0; }
-.tabs .tab[data-tab="world"] { margin-inline: auto; margin-block-start: 6px; }
+/* המפריד יוצר "שורה" משלו ולכן סופג את מרווח-השורות פעמיים (16+16). המרווח
+   האופקי בין הטאבים נשאר 16 — רק מרווח-השורות מוקטן, כדי שהטאב ייצמד לשורה
+   שמעליו במקום לרחף 38px מתחתיה. */
+.tabs { row-gap: 2px; }
+.tabs .tab[data-tab="world"] { margin-inline: auto; margin-block-start: 2px; }
