@@ -2345,37 +2345,91 @@
     if (!el) return;
     var items = (d && d.items) || [];
     if (!items.length) { emptyPanel(el, "🌍", "שווקים בינלאומיים — בקרוב", ""); return; }
-    var order = ["ישראל — מדדים ראשיים", "ישראל — סקטורים", "אסיה", "אירופה", "ארה\"ב"], groups = {};
-    items.forEach(function (i) { (groups[i.region] = groups[i.region] || []).push(i); });
+    /* שכבות התצוגה (11.9.2026, אחרי "כל נתון על שורה זה בזבוז"):
+       1. שורת סיכום עולמי — ממוצע שינוי לכל אזור, במשפט אחד.
+       2. שעון עולמי — הבורסות לפי סדר הפתיחה ביממה; מה שפתוח עכשיו מואר.
+       3. שתי עמודות במחשב: ישראל (כרטיסי המדדים הראשיים + מפת חום של הסקטורים)
+          מול העולם (כרטיסים לפי אזור). בנייד כל קבוצת כרטיסים היא רצועת גלילה אופקית.
+       הסקטורים כמפת חום ולא ככרטיסים: שם הם עניין של השוואה (מי מוביל/מפגר),
+       לא של ערך מוחלט — צבע ממוין אומר את זה בשנייה. */
+    var byKey = {}; items.forEach(function (i) { byKey[i.key] = i; });
+    var IL_MAIN = "ישראל — מדדים ראשיים", IL_SECT = "ישראל — סקטורים";
+    var groups = {}; items.forEach(function (i) { (groups[i.region] = groups[i.region] || []).push(i); });
     var dot = { live: "🟢", pre: "🟡", closed: "⚪", stale: "⚠️" };
+    function pc(v, d2) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(d2 == null ? 2 : d2) + "%"; }
+    function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
+    function avg(rows) {
+      var xs = rows.filter(function (i) { return i.chg != null && i.state !== "stale"; }).map(function (i) { return i.chg; });
+      return xs.length ? xs.reduce(function (a, b) { return a + b; }, 0) / xs.length : null;
+    }
+    function spark(i) {
+      var arr = i.spark || [], c = cls(i.chg);
+      if (arr.length < 3) return "";
+      var mn = Math.min.apply(null, arr), mx = Math.max.apply(null, arr), rg = (mx - mn) || 1;
+      var pts = arr.map(function (v, k) { return (k * (100 / (arr.length - 1))).toFixed(1) + "," + (26 - ((v - mn) / rg) * 22 + 2).toFixed(1); });
+      var lp = pts[pts.length - 1].split(",");
+      return '<svg class="wc-sp" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="' + pts.join(" ") + '" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>' +
+        '<circle cx="' + lp[0] + '" cy="' + lp[1] + '" r="2.6" class="' + c + '"/></svg>';
+    }
+    function card(i) {
+      var c = cls(i.chg);
+      return '<div class="wc wc-' + esc(i.state) + '" title="' + esc(i.stateHe) + (i.at ? " · " + esc(i.at) : "") + '">' +
+        '<div class="wc-h"><span class="wm-fl">' + esc(i.flag) + '</span><span class="wc-n">' + esc(i.label) + "</span></div>" +
+          '<div class="wc-s">' + (dot[i.state] || "") + " " + esc(i.stateHe) + (i.at ? ' · <span dir="ltr">' + esc(i.at) + "</span>" : "") + "</div>" +
+        '<div class="wc-row"><span class="wc-p num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—") + "</span>" +
+          '<b class="wc-c num ' + c + '" dir="ltr">' + pc(i.chg) + "</b></div>" +
+        spark(i) +
+        '<div class="wc-f"><span>5 ימים <b class="num ' + cls(i.chg5d) + '" dir="ltr">' + pc(i.chg5d, 1) + "</b></span>" +
+          (i.chgYtd != null ? '<span>מתחילת השנה <b class="num ' + cls(i.chgYtd) + '" dir="ltr">' + pc(i.chgYtd, 1) + "</b></span>" : "") + "</div></div>";
+    }
+    function cards(rows) { return '<div class="wm-cards">' + rows.map(card).join("") + "</div>"; }
+    function heat(rows) {
+      var sorted = rows.slice().sort(function (a, b) { return (b.chg == null ? -99 : b.chg) - (a.chg == null ? -99 : a.chg); });
+      return '<div class="wm-heat">' + sorted.map(function (i) {
+        var v = i.chg, a = v == null ? 0 : Math.min(1, Math.abs(v) / 2.5);
+        var bg = v > 0 ? "rgba(26,157,87," + (0.12 + 0.62 * a).toFixed(2) + ")" : v < 0 ? "rgba(224,52,42," + (0.12 + 0.62 * a).toFixed(2) + ")" : "var(--surface-2)";
+        return '<div class="wh wh-' + esc(i.state) + '" style="background:' + bg + '" title="' + esc(i.label) + " · " + (i.price != null ? i.price.toLocaleString("en-US") : "") + " · " + esc(i.stateHe) + (i.at ? " " + esc(i.at) : "") + '">' +
+          '<span class="wh-n">' + esc(i.label.replace(/^ת"א /, "")) + "</span>" +
+          '<b class="wh-c num" dir="ltr">' + pc(v, 1) + "</b>" +
+          (i.chg5d != null ? '<span class="wh-5 num" dir="ltr">5d ' + pc(i.chg5d, 1) + "</span>" : "") + "</div>";
+      }).join("") + "</div>";
+    }
+    // 1. שורת סיכום עולמי
+    var fut = null;
+    if (TICKD) (TICKD.items || []).forEach(function (t) { if (t.key === "es") fut = t; });
+    var usLive = (groups["ארה\"ב"] || []).some(function (i) { return i.state === "live"; });
+    var segs = [];
+    var asia = avg(groups["אסיה"] || []), eu = avg(groups["אירופה"] || []), il = byKey.ta125 || byKey.ta35;
+    function segWord(v, live) { return v == null ? "" : (live ? (v > 0 ? "עולה" : v < 0 ? "יורדת" : "ללא שינוי") : (v > 0 ? "נסגרה בעלייה" : v < 0 ? "נסגרה בירידה" : "נסגרה ללא שינוי")); }
+    if (asia != null) segs.push("אסיה " + segWord(asia, (groups["אסיה"] || []).some(function (i) { return i.state === "live"; })) + ' <b class="num ' + cls(asia) + '" dir="ltr">' + pc(asia) + "</b>");
+    if (eu != null) segs.push("אירופה " + segWord(eu, (groups["אירופה"] || []).some(function (i) { return i.state === "live"; })) + ' <b class="num ' + cls(eu) + '" dir="ltr">' + pc(eu) + "</b>");
+    if (il && il.chg != null) segs.push("תל אביב " + segWord(il.chg, il.state === "live") + ' <b class="num ' + cls(il.chg) + '" dir="ltr">' + pc(il.chg) + "</b>");
+    if (usLive && byKey.spx) segs.push('ארה"ב ' + segWord(byKey.spx.chg, true) + ' <b class="num ' + cls(byKey.spx.chg) + '" dir="ltr">' + pc(byKey.spx.chg) + "</b>");
+    else if (fut && fut.chg != null) segs.push('חוזי ארה"ב <b class="num ' + cls(fut.chg) + '" dir="ltr">' + pc(fut.chg) + "</b>");
+    // 2. שעון עולמי — לפי שעת הפתיחה בשעון ישראל (hours מגיע מ-fetch_world.py)
+    var CITIES = [["n225", "טוקיו"], ["ks11", "סיאול"], ["twii", "טאיפיי"], ["sse", "שנגחאי"], ["hsi", "הונג קונג"], ["nsei", "מומבאי"], ["ta125", "תל אביב"], ["ftse", "לונדון"], ["dax", "פרנקפורט"], ["spx", "ניו יורק"], ["tsx", "טורונטו"]];
+    function hm(h) { var H = Math.floor(h), M = Math.round((h - H) * 60); return ("0" + H).slice(-2) + ":" + ("0" + M).slice(-2); }
+    var clock = CITIES.map(function (c) { return byKey[c[0]] ? { i: byKey[c[0]], city: c[1] } : null; }).filter(Boolean)
+      .sort(function (a, b) { return (a.i.hours || [0])[0] - (b.i.hours || [0])[0]; })
+      .map(function (x) {
+        var h = x.i.hours || [];
+        return '<span class="wm-ck wm-ck-' + esc(x.i.state) + '"><span class="wm-fl">' + esc(x.i.flag) + "</span>" + esc(x.city) +
+          (h.length === 2 ? ' <span class="wm-ckh" dir="ltr">' + hm(h[0]) + "–" + hm(h[1]) + "</span>" : "") + "</span>";
+      }).join("");
     var html = '<div class="wm-head"><h2>שווקים בינלאומיים</h2>' +
-      '<span class="wm-note">🟢 נסחר · 🟡 לפני פתיחה · ⚪ סגור — השעה שלצד כל מדד היא מועד העדכון בפועל</span></div>';
-    order.forEach(function (region) {
-      var rows = groups[region];
-      if (!rows || !rows.length) return;
-      html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(region) + "</h3>" +
-        rows.map(function (i) {
-          var c = i.chg > 0 ? "up" : i.chg < 0 ? "down" : "";
-          var sign = i.chg == null ? "—" : (i.chg > 0 ? "+" : "") + i.chg.toFixed(2) + "%";
-          // גרף-מיני של היום (11.9.2026): הקו בגוון-טקסט שקט, רק נקודת-הסיום צבועה לפי הכיוון
-          var sp = "", arr = i.spark || [];
-          if (arr.length > 2) {
-            var mn = Math.min.apply(null, arr), mx = Math.max.apply(null, arr), rg = (mx - mn) || 1;
-            var pts = arr.map(function (v, k) { return (k * (80 / (arr.length - 1))).toFixed(1) + "," + (20 - ((v - mn) / rg) * 18 + 1).toFixed(1); });
-            var lp = pts[pts.length - 1].split(",");
-            sp = '<svg class="wm-sp" viewBox="0 0 80 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="' + pts.join(" ") + '" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>' +
-              '<circle cx="' + lp[0] + '" cy="' + lp[1] + '" r="2.4" class="' + c + '"/></svg>';
-          }
-          return '<div class="wm-row wm-' + esc(i.state) + '">' +
-            '<span class="wm-n"><span class="wm-fl">' + esc(i.flag) + "</span>" + esc(i.label) + "</span>" +
-            '<span class="wm-s">' + (dot[i.state] || "") + " " + esc(i.stateHe) +
-              (i.at ? ' <span class="wm-at" dir="ltr">' + esc(i.at) + "</span>" : "") + "</span>" +
-            '<span class="wm-spk">' + sp + "</span>" +
-            '<span class="wm-p num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—") + "</span>" +
-            '<span class="wm-c num ' + c + '" dir="ltr">' + sign + "</span></div>";
-        }).join("") + "</section>";
+      (segs.length ? '<p class="wm-sum">' + segs.join(' <span class="wm-sep">·</span> ') + "</p>" : "") +
+      '<div class="wm-clock" aria-label="שעון עולמי">' + clock + "</div>" +
+      '<span class="wm-note">🟢 נסחר · 🟡 לפני פתיחה · ⚪ סגור (השינוי = יום המסחר האחרון) · שעון ישראל</span></div>';
+    // 3. שתי עמודות
+    html += '<div class="wm-cols"><div class="wm-col">';
+    if (groups[IL_MAIN]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_MAIN) + "</h3>" + cards(groups[IL_MAIN]) + "</section>";
+    if (groups[IL_SECT]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_SECT) + ' <span class="wm-rg-s">ממוין מהעולה החזק ליורד</span></h3>' + heat(groups[IL_SECT]) + "</section>";
+    html += '</div><div class="wm-col">';
+    ["אסיה", "אירופה", "ארה\"ב"].forEach(function (region) {
+      if (groups[region]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(region) + "</h3>" + cards(groups[region]) + "</section>";
     });
-    html += '<p class="wm-foot">נתוני המדדים מ-Yahoo Finance, מושהים בכ-15-20 דקות · עודכן ' +
+    html += "</div></div>";
+    html += '<p class="wm-foot">נתוני המדדים מ-Yahoo Finance, מושהים בכ-15-20 דקות · 5 ימים ומתחילת השנה מסגירה לסגירה · עודכן ' +
       esc((d._meta || {}).updatedAt || "") + "</p>";
     el.innerHTML = html;
   }

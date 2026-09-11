@@ -138,17 +138,85 @@ def quote(sym):
     if len(closes) > 26:
         step = len(closes) / 26.0
         closes = [closes[int(i * step)] for i in range(26)]
-    return price, chg, prev, [round(c, 2) for c in closes], m.get("regularMarketTime")
+    return price, chg, prev, [round(c, 2) for c in closes], m.get("regularMarketTime"), (m.get("gmtoffset") or 0)
+
+
+def daily(sym):
+    """נרות יומיים מתחילת השנה: ([(date_iso, close)...], סגירת סוף השנה הקודמת).
+    range=ytd — meta.chartPreviousClose הוא בדיוק הסגירה האחרונה של השנה הקודמת."""
+    url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
+           + urllib.parse.quote(sym) + "?interval=1d&range=ytd")
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        res = json.loads(r.read().decode("utf-8"))["chart"]["result"][0]
+    m = res.get("meta") or {}
+    off = m.get("gmtoffset") or 0
+    bars = []
+    for t, c in zip(res.get("timestamp") or [], ((res.get("indicators") or {}).get("quote") or [{}])[0].get("close") or []):
+        if c is not None:
+            bars.append((datetime.fromtimestamp(t + off, timezone.utc).date().isoformat(), float(c)))
+    if len(bars) < 3:
+        # סקטורי ת"א (TA-BANKS.TA, 209.TA…): Yahoo לא מחזיק להם היסטוריה יומית בכלל —
+        # רק נרות 15 דק' עד חודש אחורה. בונים מהם "סגירות יומיות" (הנר האחרון של כל
+        # תאריך). אין YTD (prev_year=None); 5 ימים כן.
+        url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
+               + urllib.parse.quote(sym) + "?interval=15m&range=1mo")
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            res = json.loads(r.read().decode("utf-8"))["chart"]["result"][0]
+        off = (res.get("meta") or {}).get("gmtoffset") or 0
+        by_day = {}
+        for t, c in zip(res.get("timestamp") or [], ((res.get("indicators") or {}).get("quote") or [{}])[0].get("close") or []):
+            if c is not None:
+                by_day[datetime.fromtimestamp(t + off, timezone.utc).date().isoformat()] = float(c)
+        bars = sorted(by_day.items())
+        return bars, None
+    return bars, m.get("chartPreviousClose")
+
+
+def changes(price, chg_1d, state, qdate, bars, prev_year):
+    """(chg, chg5d, chgYtd) — ראו הערת "0.00% ביום ללא מסחר" למטה."""
+    i = None
+    for k, (d, _) in enumerate(bars):
+        if d == qdate:
+            i = k
+    if state in ("live", "pre") or i is None:
+        chg = chg_1d
+        ref = price
+        j = len(bars) if (i is None or bars[i][0] != qdate) else i
+        if i is not None and state in ("live", "pre"):
+            j = i          # הנר של היום הוא חלקי — הבסיס ל-5 ימים הוא 5 נרות לפניו
+    else:
+        # שוק סגור: השינוי של סשן המסחר האחרון (הנר של תאריך הציטוט מול הנר שלפניו)
+        chg = (bars[i][1] / bars[i - 1][1] - 1) * 100 if i >= 1 and bars[i - 1][1] else chg_1d
+        ref = bars[i][1]
+        j = i
+    chg5 = (ref / bars[j - 5][1] - 1) * 100 if j >= 5 and bars[j - 5][1] else None
+    ytd = (ref / prev_year - 1) * 100 if prev_year else None
+    return chg, chg5, ytd
+
+
+# ⚠️ "0.00% ביום ללא מסחר" (11.9.2026): ביום שישי כל מדדי ת"א הראו 0.00% — הבורסה
+# סגורה, ו-range=1d של Yahoo מחזיר יום ריק שבו "הסגירה הקודמת" שווה למחיר. לכן
+# כשהשוק סגור השינוי נלקח מהנרות היומיים: הנר של תאריך הציטוט מול הנר שלפניו
+# (= השינוי של יום המסחר האחרון, וזה מה שהתאריך שליד המדד ממילא אומר).
 
 
 def main():
     items = []
     for key, label, flag, sym, region, hours, days in MARKETS:
         try:
-            price, chg, prev, spark, ts = quote(sym)
+            price, chg, prev, spark, ts, goff = quote(sym)
             if price is None:
                 raise ValueError("no price")
             state, state_he = session_state(ts, hours, days)
+            chg5 = ytd = None
+            try:
+                bars, prev_year = daily(sym)
+                qdate = datetime.fromtimestamp((ts or 0) + goff, timezone.utc).date().isoformat() if ts else ""
+                chg, chg5, ytd = changes(price, chg, state, qdate, bars, prev_year)
+            except Exception as e:
+                print(f"[warn] {label}: נרות יומיים נכשלו — {e}")
             at = ""
             if ts:
                 qt = datetime.fromtimestamp(ts, timezone.utc) + timedelta(hours=il_offset())
@@ -160,9 +228,12 @@ def main():
                 "price": round(price, 2),
                 "chg": round(chg, 2) if chg is not None else None,
                 "prev": round(prev, 2) if prev else None,
+                "chg5d": round(chg5, 2) if chg5 is not None else None,
+                "chgYtd": round(ytd, 2) if ytd is not None else None,
+                "hours": list(hours), "days": list(days),
                 "spark": spark, "state": state, "stateHe": state_he, "at": at,
             })
-            print(f"[ok] {label}: {price:,.2f} ({chg:+.2f}%) · {state_he} · {at}")
+            print(f"[ok] {label}: {price:,.2f} ({(chg or 0):+.2f}%) · 5d {chg5} · ytd {ytd} · {state_he} · {at}")
         except Exception as e:
             print(f"[skip] {label} ({sym}): {e}")
 

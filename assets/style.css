@@ -1031,33 +1031,13 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .wm-grp { margin: 0 0 22px; }
 .wm-rg { margin: 0 0 6px; font-family: Heebo, sans-serif; font-size: .7rem; font-weight: 700;
   letter-spacing: .16em; color: var(--text-3); }
-.wm-row { display: grid; grid-template-columns: 1.5fr 1.25fr auto auto; align-items: baseline;
-  gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--paper-hair); }
-.wm-row:last-child { border-bottom: 0; }
 /* flex+gap ולא margin: המרווח חייב להיראות זהה בשורה עברית ובשורה לטינית,
    ו-margin-inline נפתר לפי כיוון הריצה ולכן נעלם ב-"S&P 500" (9.9.2026) */
-.wm-n { font-weight: 600; font-size: .95rem; display: flex; align-items: baseline; gap: 8px; }
 /* "Noto Color Emoji" חייב להיות ראשון: ווינדוס מרנדר דגלים כאותיות ("IL")
    בלי גופן ייעודי, ומשפחות הברירת-מחדל שלו לא יעזרו כאן. */
 .wm-fl { font-size: 1.05rem; flex: none;
   font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
-.wm-s { font-size: .76rem; color: var(--text-3); }
-.wm-at { color: var(--text-3); opacity: .8; }
-.wm-p { font-size: .95rem; font-weight: 600; text-align: end; }
-.wm-c { font-size: .9rem; font-weight: 700; text-align: end; min-width: 68px; }
-/* שוק סגור — המספר נשאר קריא אך מודגש פחות, כדי שלא ייקרא כמסחר חי */
-.wm-closed .wm-p, .wm-closed .wm-c { opacity: .62; }
-.wm-live .wm-n { color: var(--text); }
 .wm-foot { margin: 18px 0 0; font-size: .74rem; color: var(--text-3); }
-@media (max-width: 560px) {
-  .wm-row { grid-template-columns: 1fr auto auto; row-gap: 2px; }
-  .wm-s { grid-column: 1 / -1; order: 3; }
-}
-/* נתון מיושן (מדד מוקפא/נמחק) — מסומן חזק יותר מ"סגור", כי כאן המספר עצמו
-   כבר לא אמין ולא רק "לא נסחר כרגע" */
-.wm-stale .wm-p, .wm-stale .wm-c { opacity: .45; text-decoration: line-through; }
-.wm-stale .wm-s { color: var(--down); }
-
 /* "שווקים בינלאומיים" הוא הטאב הארוך ביותר, והוספתו דחפה את "דיווחים"/"דוחות"
    לשורה שנייה. במקום לקצר את השם — מפריד ברוחב מלא מאלץ אותו לשורה משלו,
    ו-margin אוטומטי ממרכז אותו שם. שאר הטאבים חוזרים לשורה אחת כמקודם. */
@@ -1109,13 +1089,6 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .mt-tbl td.n { text-align: left; direction: ltr; }
 
 /* גרף-מיני בשווקים בינלאומיים (11.9.2026) */
-.wm-row { grid-template-columns: 1.5fr 1.25fr 92px auto auto; }
-.wm-spk { color: var(--text-soft); display: flex; align-items: center; }
-.wm-sp { width: 84px; height: 22px; overflow: visible; }
-.wm-sp circle { fill: var(--text-soft); } .wm-sp circle.up { fill: var(--up); } .wm-sp circle.down { fill: var(--down); }
-.wm-closed .wm-spk, .wm-stale .wm-spk { opacity: .5; }
-@media (max-width: 560px) { .wm-row { grid-template-columns: 1fr auto auto; } .wm-spk { display: none; } }
-
 /* איך הגיבו המדווחות של אתמול (בית, עמודת הדיווחים — 11.9.2026) */
 /* טבלת "איך הגיבו המדווחות" — טאב דיווחים (11.9.2026) */
 .rx-wrap th, .rx-wrap td { padding: 9px 12px; font-size: .86rem; }
@@ -1157,3 +1130,45 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .wk-p { font-size: .82rem; font-weight: 700; margin-top: 2px; } .wk-p.up { color: var(--up); } .wk-p.down { color: var(--down); }
 .wk-h { font-size: .76rem; color: var(--text-soft); line-height: 1.35; margin-top: 6px; }
 @media (max-width: 760px) { .wk-days { grid-template-columns: repeat(2, 1fr); } .wk-h { display: none; } }
+
+/* ---- שווקים בינלאומיים: כרטיסים, מפת חום, שעון עולמי (11.9.2026) ---- */
+.wm-sum { margin: 4px 0 10px; font-size: .95rem; color: var(--text-soft); line-height: 1.6; }
+.wm-sum b { color: var(--text); } .wm-sum b.up { color: var(--up); } .wm-sum b.down { color: var(--down); }
+.wm-sep { color: var(--text-3); margin: 0 2px; }
+.wm-clock { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+.wm-ck { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; font-size: .74rem; font-weight: 600;
+  border: 1px solid var(--border-soft); color: var(--text-3); background: var(--surface-2); }
+.wm-ck .wm-fl { font-size: .9rem; }
+.wm-ckh { font-weight: 500; opacity: .75; }
+.wm-ck-live { color: var(--text); border-color: var(--up); box-shadow: inset 0 0 0 1px var(--up); background: var(--surface); }
+.wm-ck-pre { color: var(--text); border-color: #d9a400; }
+.wm-rg-s { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text-3); margin-inline-start: 6px; }
+.wm-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; align-items: start; min-width: 0; }
+.wm-col { min-width: 0; }
+.wm-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.wc { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px 12px 9px; min-width: 0;
+  display: flex; flex-direction: column; gap: 4px; box-shadow: var(--card-shadow); }
+.wc-h { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.wc-n { font-weight: 700; font-size: .86rem; line-height: 1.25; flex: 1; min-width: 0; }
+.wc-s { font-size: .66rem; color: var(--text-3); white-space: nowrap; margin-top: -2px; }
+.wc-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.wc-p { font-size: 1.02rem; font-weight: 700; letter-spacing: -.01em; }
+.wc-c { font-size: .92rem; font-weight: 800; } .wc-c.up { color: var(--up); } .wc-c.down { color: var(--down); }
+.wc-sp { width: 100%; height: 30px; color: var(--text-soft); overflow: visible; }
+.wc-sp circle { fill: var(--text-soft); } .wc-sp circle.up { fill: var(--up); } .wc-sp circle.down { fill: var(--down); }
+.wc-f { display: flex; justify-content: space-between; gap: 6px; font-size: .68rem; color: var(--text-3); flex-wrap: wrap; }
+.wc-f b { color: var(--text-soft); font-weight: 600; } .wc-f b.up { color: var(--up); } .wc-f b.down { color: var(--down); }
+.wc-closed .wc-p, .wc-closed .wc-c, .wc-closed .wc-sp { opacity: .72; }
+.wc-stale .wc-p, .wc-stale .wc-c { opacity: .45; text-decoration: line-through; }
+.wm-heat { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 6px; }
+.wh { border-radius: 9px; padding: 8px 9px 7px; min-width: 0; color: var(--text); display: flex; flex-direction: column; gap: 1px; }
+.wh-n { font-size: .74rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wh-c { font-size: .98rem; font-weight: 800; letter-spacing: -.01em; }
+.wh-5 { font-size: .64rem; opacity: .75; }
+@media (max-width: 1000px) { .wm-cols { grid-template-columns: 1fr; } }
+@media (max-width: 760px) {
+  .wm-cards { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 6px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .wm-cards .wc { flex: 0 0 152px; scroll-snap-align: start; }
+  .wm-heat { grid-template-columns: repeat(3, 1fr); }
+  .wm-sum { font-size: .88rem; }
+}
