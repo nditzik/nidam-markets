@@ -2373,7 +2373,7 @@
     }
     function card(i) {
       var c = cls(i.chg);
-      return '<div class="wc wc-' + esc(i.state) + '" title="' + esc(i.stateHe) + (i.at ? " · " + esc(i.at) : "") + '">' +
+      return '<div class="wc wc-' + esc(i.state) + '" id="wc-' + esc(i.key) + '" title="' + esc(i.stateHe) + (i.at ? " · " + esc(i.at) : "") + '">' +
         '<div class="wc-h"><span class="wm-fl">' + esc(i.flag) + '</span><span class="wc-n">' + esc(i.label) + "</span></div>" +
           '<div class="wc-s">' + (dot[i.state] || "") + " " + esc(i.stateHe) + (i.at ? ' · <span dir="ltr">' + esc(i.at) + "</span>" : "") + "</div>" +
         '<div class="wc-row"><span class="wc-p num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—") + "</span>" +
@@ -2424,6 +2424,7 @@
     html += '<div class="wm-cols"><div class="wm-col">';
     if (groups[IL_MAIN]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_MAIN) + "</h3>" + cards(groups[IL_MAIN]) + "</section>";
     if (groups[IL_SECT]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_SECT) + ' <span class="wm-rg-s">ממוין מהעולה החזק ליורד</span></h3>' + heat(groups[IL_SECT]) + "</section>";
+    html += '<section class="wm-grp"><h3 class="wm-rg">מפת העולם <span class="wm-rg-s">צבע = השינוי היומי · נקודה פועמת = נסחר עכשיו · האזור המוצלל בלילה</span></h3><div id="wm-map" class="wm-map"></div></section>';
     html += '</div><div class="wm-col">';
     ["אסיה", "אירופה", "ארה\"ב"].forEach(function (region) {
       if (groups[region]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(region) + "</h3>" + cards(groups[region]) + "</section>";
@@ -2432,6 +2433,70 @@
     html += '<p class="wm-foot">נתוני המדדים מ-Yahoo Finance, מושהים בכ-15-20 דקות · 5 ימים ומתחילת השנה מסגירה לסגירה · עודכן ' +
       esc((d._meta || {}).updatedAt || "") + "</p>";
     el.innerHTML = html;
+    renderWorldMap(items);
+  }
+
+  /* מפת העולם (11.9.2026) — מתחת לסקטורי ישראל. הגבולות מגיעים מ-assets/worldmap.json
+     (נבנה פעם אחת ע"י scripts/tools/build_worldmap.py, היטל שטוח 1000×440); כאן רק
+     צובעים מדינות לפי world.json, מציירים נקודת בורסה לכל עיר (פועמת כשנסחר) וקו
+     יום/לילה שמחושב מהשעה. בלי ספרייה: המפה סטטית, הצבע הוא כל מה שמשתנה. */
+  var WMAP = null, WMAP_LOADING = false;
+  var WMAP_COUNTRY = { "392": "n225", "410": "ks11", "158": "twii", "156": "sse", "356": "nsei", "826": "ftse", "276": "dax", "840": "spx", "124": "tsx", "376": "ta125" };
+  var WMAP_CITIES = [["n225", "טוקיו", 139.69, 35.69], ["ks11", "סיאול", 126.98, 37.57], ["twii", "טאיפיי", 121.56, 25.03], ["sse", "שנגחאי", 121.47, 31.23],
+    ["hsi", "הונג קונג", 114.17, 22.32], ["nsei", "מומבאי", 72.88, 19.08], ["ta125", "תל אביב", 34.78, 32.08], ["ftse", "לונדון", -0.13, 51.51],
+    ["dax", "פרנקפורט", 8.68, 50.11], ["spx", "ניו יורק", -74.01, 40.71], ["tsx", "טורונטו", -79.38, 43.65]];
+  function renderWorldMap(items) {
+    var host = document.getElementById("wm-map");
+    if (!host) return;
+    if (!WMAP) {
+      if (!WMAP_LOADING) {
+        WMAP_LOADING = true;
+        fetchJSON("assets/worldmap.json").then(function (m) { WMAP = m; renderWorldMap(items); }).catch(function () { host.innerHTML = ""; });
+      }
+      return;
+    }
+    var W = WMAP.w, H = WMAP.h, top = WMAP.latTop, bot = WMAP.latBottom;
+    function px(lon, lat) { return [(lon + 180) / 360 * W, (top - lat) / (top - bot) * H]; }
+    var byKey = {}; items.forEach(function (i) { byKey[i.key] = i; });
+    function fill(i) {
+      if (!i || i.chg == null || i.state === "stale") return "";
+      var a = Math.min(1, Math.abs(i.chg) / 2.5);
+      return i.chg > 0 ? "rgba(26,157,87," + (0.25 + 0.6 * a).toFixed(2) + ")" : i.chg < 0 ? "rgba(224,52,42," + (0.25 + 0.6 * a).toFixed(2) + ")" : "";
+    }
+    var land = Object.keys(WMAP.countries).map(function (id) {
+      var i = byKey[WMAP_COUNTRY[id]], f = fill(i);
+      var t = i ? i.label + " · " + (i.chg == null ? "—" : (i.chg > 0 ? "+" : "") + i.chg.toFixed(2) + "%") + " · " + i.stateHe : "";
+      return '<path class="wmc' + (i ? " wmc-on" : "") + '" d="' + WMAP.countries[id] + '"' + (f ? ' style="fill:' + f + '"' : "") +
+        (i ? ' data-k="' + esc(i.key) + '"><title>' + esc(t) + "</title></path>" : "/>");
+    }).join("");
+    // קו יום/לילה: נקודת השמש מהשעה (נטייה + משוואת הזמן בקירוב), והלילה כפוליגון
+    var now = new Date(), doy = Math.floor((now - new Date(now.getUTCFullYear(), 0, 0)) / 864e5);
+    var decl = -23.44 * Math.cos(2 * Math.PI / 365 * (doy + 10));
+    var b = 2 * Math.PI * (doy - 81) / 365, eot = 9.87 * Math.sin(2 * b) - 7.53 * Math.cos(b) - 1.5 * Math.sin(b);
+    var utcH = now.getUTCHours() + now.getUTCMinutes() / 60 + eot / 60;
+    var sunLon = (12 - utcH) * 15;
+    var d2r = Math.PI / 180, r2d = 180 / Math.PI, pts = [];
+    for (var lon = -180; lon <= 180; lon += 3) {
+      var lat = Math.atan(-Math.cos((lon - sunLon) * d2r) / Math.tan(decl * d2r)) * r2d;
+      pts.push(px(lon, lat));
+    }
+    var poleY = decl > 0 ? H + 20 : -20;      // הלילה בקוטב הנגדי לנטיית השמש
+    var night = "M" + pts.map(function (p) { return p[0].toFixed(0) + "," + p[1].toFixed(0); }).join("L") + "L" + W + "," + poleY + "L0," + poleY + "Z";
+    var pins = WMAP_CITIES.map(function (c) {
+      var i = byKey[c[0]]; if (!i) return "";
+      var p = px(c[2], c[3]), st = i.state;
+      return '<g class="wmp wmp-' + esc(st) + '" data-k="' + esc(c[0]) + '" transform="translate(' + p[0].toFixed(1) + "," + p[1].toFixed(1) + ')">' +
+        (st === "live" ? '<circle class="wmp-ring" r="5"/>' : "") + '<circle class="wmp-dot" r="' + (c[0] === "ta125" ? 4.2 : 3.4) + '"/>' +
+        "<title>" + esc(c[1] + " · " + i.label + " · " + i.stateHe + (i.at ? " " + i.at : "")) + "</title></g>";
+    }).join("");
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="מפת העולם — שינוי יומי לפי מדינה ובורסות פתוחות">' +
+      '<g class="wm-land">' + land + "</g>" + '<path class="wm-night" d="' + night + '"/>' + '<g class="wm-pins">' + pins + "</g></svg>";
+    host.querySelectorAll("[data-k]").forEach(function (n) {
+      n.addEventListener("click", function () {
+        var c = document.getElementById("wc-" + n.getAttribute("data-k"));
+        if (c) { c.scrollIntoView({ behavior: "smooth", block: "center" }); c.classList.add("wc-flash"); setTimeout(function () { c.classList.remove("wc-flash"); }, 1600); }
+      });
+    });
   }
 
   function renderSectors(el, d) {

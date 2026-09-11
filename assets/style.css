@@ -1176,3 +1176,21 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
   .wm-heat { grid-template-columns: repeat(3, 1fr); }
   .wm-sum { font-size: .88rem; }
 }
+
+/* ---- מפת העולם (11.9.2026) ---- */
+.wm-map { margin-top: 4px; }
+.wm-map svg { width: 100%; height: auto; display: block; border-radius: 12px; background: var(--surface-2); }
+.wmc { fill: var(--border); stroke: var(--surface-2); stroke-width: .6; }
+.wmc-on { cursor: pointer; }
+.wmc-on:hover { stroke: var(--text); stroke-width: 1; }
+.wm-night { fill: rgba(10, 20, 40, .16); pointer-events: none; }
+:root[data-theme="dark"] .wm-night { fill: rgba(0, 0, 0, .42); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wm-night { fill: rgba(0, 0, 0, .42); } }
+.wmp { cursor: pointer; }
+.wmp-dot { fill: var(--text-3); stroke: var(--surface); stroke-width: 1.2; }
+.wmp-pre .wmp-dot { fill: #d9a400; }
+.wmp-live .wmp-dot { fill: var(--up); }
+.wmp-ring { fill: none; stroke: var(--up); stroke-width: 1.5; opacity: .8; transform-origin: center; animation: wmp-pulse 1.8s ease-out infinite; }
+@keyframes wmp-pulse { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .wmp-ring { animation: none; opacity: .5; } }
+.wc-flash { box-shadow: 0 0 0 2px var(--accent), var(--card-shadow); transition: box-shadow .3s; }
