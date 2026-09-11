@@ -1143,8 +1143,12 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .wm-ck-live { color: var(--text); border-color: var(--up); box-shadow: inset 0 0 0 1px var(--up); background: var(--surface); }
 .wm-ck-pre { color: var(--text); border-color: #d9a400; }
 .wm-rg-s { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text-3); margin-inline-start: 6px; }
-.wm-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; align-items: start; min-width: 0; }
+.wm-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; align-items: start; min-width: 0; }
 .wm-col { min-width: 0; }
+/* קווי הפרדה "חוצים את הדף" (11.9.2026): קו אנכי בין ישראל לעולם, קו אופקי בין אזורים */
+.wm-col + .wm-col { border-inline-end: 1px solid var(--border); padding-inline-end: 36px; }
+.wm-col .wm-grp + .wm-grp { border-top: 1px solid var(--border); padding-top: 16px; }
+@media (max-width: 1000px) { .wm-col + .wm-col { border-inline-end: 0; padding-inline-end: 0; border-top: 1px solid var(--border); padding-top: 16px; } }
 .wm-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
 .wc { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px 12px 9px; min-width: 0;
   display: flex; flex-direction: column; gap: 4px; box-shadow: var(--card-shadow); }
