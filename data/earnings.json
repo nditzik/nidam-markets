@@ -23,71 +23,197 @@
       "capB": 9163.0
     }
   ],
-  "yesterday": {
-    "date": "2026-09-10",
-    "label": "10.9",
-    "items": [
+  "reactions": {
+    "days": [
       {
-        "ticker": "ADBE",
-        "name": "Adobe Systems Inc",
-        "when": "after",
-        "chg": null,
-        "pending": true
+        "date": "2026-09-10",
+        "label": "10.9",
+        "items": [
+          {
+            "ticker": "ADBE",
+            "name": "Adobe Systems Inc",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "HLMAF",
+            "name": "Halma Plc",
+            "when": "",
+            "status": "final",
+            "chg": -2.12,
+            "price": 47.74,
+            "reactDate": "2026-09-10",
+            "baseDate": "2026-09-09"
+          },
+          {
+            "ticker": "DSGX",
+            "name": "Descartes Sys Group",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "M",
+            "name": "Macy's Inc",
+            "when": "before",
+            "status": "final",
+            "chg": -4.7,
+            "price": 20.5,
+            "reactDate": "2026-09-10",
+            "baseDate": "2026-09-09"
+          },
+          {
+            "ticker": "FIZZ",
+            "name": "Natl Beverage Corp",
+            "when": "",
+            "status": "final",
+            "chg": 1.21,
+            "price": 30.91,
+            "reactDate": "2026-09-10",
+            "baseDate": "2026-09-09"
+          },
+          {
+            "ticker": "RH",
+            "name": "Rh Common Stock",
+            "when": "",
+            "status": "final",
+            "chg": -3.84,
+            "price": 134.02,
+            "reactDate": "2026-09-10",
+            "baseDate": "2026-09-09"
+          }
+        ]
       },
       {
-        "ticker": "HLMAF",
-        "name": "Halma Plc",
-        "when": "",
-        "chg": -0.95,
-        "pending": false,
-        "price": 47.74
+        "date": "2026-09-09",
+        "label": "9.9",
+        "items": [
+          {
+            "ticker": "IDEXY",
+            "name": "Industria Dsno ADR",
+            "when": "",
+            "status": "final",
+            "chg": -2.82,
+            "price": 15.83,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "SUNB",
+            "name": "Sunbelt Rentals Holdings Inc",
+            "when": "before",
+            "status": "final",
+            "chg": 5.91,
+            "price": 73.42,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "COO",
+            "name": "Cooper Companies",
+            "when": "after",
+            "status": "final",
+            "chg": -14.67,
+            "price": 54.17,
+            "reactDate": "2026-09-10",
+            "baseDate": "2026-09-09"
+          },
+          {
+            "ticker": "SAIL",
+            "name": "Sailpoint Inc",
+            "when": "before",
+            "status": "final",
+            "chg": -1.18,
+            "price": 17.58,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "CHWY",
+            "name": "Chewy Inc",
+            "when": "before",
+            "status": "final",
+            "chg": -10.83,
+            "price": 20.75,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "SIG",
+            "name": "Signet Jewelers Ltd",
+            "when": "before",
+            "status": "final",
+            "chg": 23.96,
+            "price": 102.48,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          }
+        ]
       },
       {
-        "ticker": "DSGX",
-        "name": "Descartes Sys Group",
-        "when": "after",
-        "chg": null,
-        "pending": true
-      },
-      {
-        "ticker": "M",
-        "name": "Macy's Inc",
-        "when": "before",
-        "chg": -8.56,
-        "pending": false,
-        "price": 20.5
-      },
-      {
-        "ticker": "FIZZ",
-        "name": "Natl Beverage Corp",
-        "when": "",
-        "chg": -3.68,
-        "pending": false,
-        "price": 30.91
-      },
-      {
-        "ticker": "RH",
-        "name": "Rh Common Stock",
-        "when": "",
-        "chg": -9.25,
-        "pending": false,
-        "price": 134.02
-      },
-      {
-        "ticker": "UROY",
-        "name": "Uranium Royalty Corp",
-        "when": "",
-        "chg": 4.9,
-        "pending": false,
-        "price": 4.5
-      },
-      {
-        "ticker": "KMTS",
-        "name": "Kestra Medical Technologies Ltd",
-        "when": "",
-        "chg": -8.39,
-        "pending": false,
-        "price": 23.57
+        "date": "2026-09-08",
+        "label": "8.9",
+        "items": [
+          {
+            "ticker": "ORCL",
+            "name": "Oracle Corp",
+            "when": "",
+            "status": "final",
+            "chg": 2.36,
+            "price": 162.52,
+            "reactDate": "2026-09-08",
+            "baseDate": "2026-09-04"
+          },
+          {
+            "ticker": "CASY",
+            "name": "Casey's General Stor",
+            "when": "after",
+            "status": "final",
+            "chg": -14.24,
+            "price": 629.03,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "TTAN",
+            "name": "Servicetitan Inc Cl A",
+            "when": "after",
+            "status": "final",
+            "chg": -29.98,
+            "price": 57.12,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "CNM",
+            "name": "Core & Main Inc Cl A",
+            "when": "",
+            "status": "final",
+            "chg": -0.59,
+            "price": 44.06,
+            "reactDate": "2026-09-08",
+            "baseDate": "2026-09-04"
+          },
+          {
+            "ticker": "GME",
+            "name": "Gamestop Corp",
+            "when": "",
+            "status": "final",
+            "chg": -1.41,
+            "price": 18.89,
+            "reactDate": "2026-09-08",
+            "baseDate": "2026-09-04"
+          },
+          {
+            "ticker": "AVAV",
+            "name": "Aerovironment Inc",
+            "when": "",
+            "status": "final",
+            "chg": 2.86,
+            "price": 148.78,
+            "reactDate": "2026-09-08",
+            "baseDate": "2026-09-04"
+          }
+        ]
       }
     ]
   },
@@ -371,7 +497,7 @@
     "TRT": "2026-09-18"
   },
   "_meta": {
-    "updatedAt": "11/09/2026 12:16",
+    "updatedAt": "11/09/2026 12:29",
     "source": "earnings.csv"
   }
 }

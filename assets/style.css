@@ -1117,13 +1117,24 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 @media (max-width: 560px) { .wm-row { grid-template-columns: 1fr auto auto; } .wm-spk { display: none; } }
 
 /* איך הגיבו המדווחות של אתמול (בית, עמודת הדיווחים — 11.9.2026) */
-.earn-rx { margin-top: 14px; }
-.earn-rx-row { display: grid; grid-template-columns: 64px 1fr auto; align-items: baseline; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--paper-hair); color: var(--text); text-decoration: none; font-size: .84rem; }
-.earn-rx-row:last-child { border-bottom: 0; }
-.earn-rx-t { font-weight: 700; }
-.earn-rx-w { color: var(--text-3); font-size: .74rem; }
-.earn-rx-row b.up { color: var(--up); } .earn-rx-row b.down { color: var(--down); }
-.earn-rx-wait { color: var(--text-3); font-size: .74rem; }
+/* טבלת "איך הגיבו המדווחות" — טאב דיווחים (11.9.2026) */
+.rx-wrap th, .rx-wrap td { padding: 9px 12px; font-size: .86rem; }
+.rx-wrap tr.rx-first td { border-top: 2px solid var(--border); }
+.rx-wrap tbody tr:first-child td { border-top: 0; }
+.rx-co { display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; }
+.rx-co img { width: 20px; height: 20px; border-radius: 5px; object-fit: contain; background: #fff; flex: none; }
+.rx-tk { font-weight: 700; } .rx-nm { color: var(--text-3); font-size: .78rem; }
+.rx-when { color: var(--text-soft); font-size: .8rem; white-space: nowrap; } .rx-unk { color: var(--text-3); }
+.rx-wrap b.up { color: var(--up); } .rx-wrap b.down { color: var(--down); }
+.rx-wrap b.rx-live { opacity: .7; font-weight: 600; }
+.rx-wait { color: var(--text-3); }
+.rx-tag { font-size: .74rem; color: var(--text-3); white-space: nowrap; }
+.rx-tag-live { color: var(--accent); font-weight: 600; }
+.rx-mob { display: none; font-size: .68rem; color: var(--text-3); margin-inline-start: 4px; }
+@media (max-width: 640px) {
+  .rx-nm, .rx-wrap th:nth-child(5), .rx-wrap td:nth-child(5), .rx-wrap th:nth-child(6), .rx-wrap td:nth-child(6) { display: none; }
+  .rx-mob { display: block; margin: 0; }
+}
 
 /* סיכום השבוע (בית, 11.9.2026) */
 .wk { padding: 18px 0 22px; margin: 0 0 26px; border-top: 1px solid var(--paper-hair); border-bottom: 1px solid var(--paper-hair); }

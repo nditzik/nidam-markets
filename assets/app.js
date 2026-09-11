@@ -1542,24 +1542,9 @@
             '<span class="earn-up-tk" dir="ltr">' + esc((u.tickers || []).slice(0, 4).join(" · ")) + "</span></div>";
         }).join("") + "</div>"
       : "";
-    // "איך הגיבו המדווחות של אתמול" (11.9.2026) — ה-%Change שב-CSV הוא מיום הייצוא
-    // (שבועי), ולכן התגובה נמשכת חיה מ-Yahoo ב-fetch_earnings.py. מדווחת אחרי-הסגירה
-    // מגיבה רק במסחר הבא — עד אז מוצג "מגיבה במסחר הבא" במקום מספר מטעה.
-    var yd = EARN.yesterday, rx = "";
-    if (yd && (yd.items || []).length) {
-      rx = '<div class="earn-rx"><div class="earn-up-t">המדווחות של ' + esc(yd.label || "") + ' — איך הגיבו</div>' +
-        yd.items.map(function (r) {
-          var when = r.when === "after" ? "אחרי הסגירה" : r.when === "before" ? "לפני הפתיחה" : "";
-          var val = r.pending ? '<span class="earn-rx-wait">מגיבה במסחר הבא</span>'
-                  : r.chg == null ? '<span class="earn-rx-wait">—</span>'
-                  : '<b class="num ' + (r.chg > 0 ? "up" : r.chg < 0 ? "down" : "") + '" dir="ltr">' + (r.chg > 0 ? "+" : "") + r.chg.toFixed(1) + "%</b>";
-          return '<a class="earn-rx-row" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) + '/" target="_blank" rel="noopener" title="' + esc(r.name || "") + '">' +
-            '<span class="earn-rx-t" dir="ltr">' + esc(r.ticker) + "</span>" +
-            '<span class="earn-rx-w">' + when + "</span>" + val + "</a>";
-        }).join("") + "</div>";
-    }
+    // תגובות המדווחות עברו לטאב דיווחים (11.9.2026 אחה"צ, בקשת איציק) — הבית: היום והשבוע בלבד
     el.innerHTML =
-      '<h3 class="np-k">מדווחות היום והשבוע</h3>' + today + rx + week +
+      '<h3 class="np-k">מדווחות היום והשבוע</h3>' + today + week +
       '<a class="np-more" href="#weekcal" onclick="__goTab(\'weekcal\');return false">לוח הדיווחים המלא ←</a>';
   }
 
@@ -2303,7 +2288,46 @@
       '<div class="section-title" style="margin-top:0">📅 לוח דיווחים שבועי</div>' +
       '<p class="stamp" style="margin-top:-6px">שבוע המסחר <span dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) +
       "</span> · מובילות לפי שווי שוק · לחיצה פותחת ב-TradingView · מתעדכן בכל שבת</p>" +
-      '<div class="wk-grid">' + cols + "</div>";
+      '<div class="wk-grid">' + cols + "</div>" + reactionsTable(d.reactions);
+  }
+  /* "איך הגיבו המדווחות" (11.9.2026) — טבלה בטאב דיווחים. המספרים מ-fetch_earnings.py:
+     סגירה-מול-סגירה מנרות יומיים (לא %Change של ה-CSV, שהוא מיום הייצוא). מדווחת
+     אחרי-הסגירה נמדדת ביום המסחר הבא; מספר של סשן שעדיין פתוח מסומן "ביניים" ולא
+     מוצג כסופי; בלי נר תגובה — "מגיבה במסחר הבא". */
+  function reactionsTable(rx) {
+    var days = (rx && rx.days) || [];
+    if (!days.length) return "";
+    function d2(iso) { var m = /^\d{4}-(\d{2})-(\d{2})/.exec(iso || ""); return m ? (+m[2]) + "." + (+m[1]) : ""; }
+    var rows = [];
+    days.forEach(function (day) {
+      (day.items || []).forEach(function (r, i) {
+        var when = r.when === "after" ? "אחרי הסגירה" : r.when === "before" ? "לפני הפתיחה" : '<span class="rx-unk">לא צוין</span>';
+        var val, note;
+        if (r.status === "final" || r.status === "live") {
+          val = '<b class="num ' + (r.chg > 0 ? "up" : r.chg < 0 ? "down" : "") + (r.status === "live" ? " rx-live" : "") + '" dir="ltr">' + (r.chg > 0 ? "+" : "") + r.chg.toFixed(1) + "%</b>";
+          if (r.status === "live") val += '<span class="rx-mob">ביניים</span>';
+          note = r.status === "live" ? '<span class="rx-tag rx-tag-live">ביניים · המסחר פתוח</span>'
+               : '<span class="rx-tag">סגירת <span dir="ltr">' + d2(r.reactDate) + "</span></span>";
+        } else if (r.status === "pending") {
+          val = '<span class="rx-wait">—</span><span class="rx-mob">במסחר הבא</span>'; note = '<span class="rx-tag">מגיבה במסחר הבא</span>';
+        } else {
+          val = '<span class="rx-wait">—</span>'; note = '<span class="rx-tag">אין נתון</span>';
+        }
+        rows.push('<tr' + (i === 0 ? ' class="rx-first"' : "") + ">" +
+          "<td>" + (i === 0 ? '<b>' + esc(day.label) + "</b>" : "") + "</td>" +
+          '<td><a class="rx-co" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) + '/" target="_blank" rel="noopener">' +
+            '<img src="https://financialmodelingprep.com/image-stock/' + encodeURIComponent(r.ticker) + '.png" alt="" loading="lazy" onerror="this.remove()">' +
+            '<span class="rx-tk" dir="ltr">' + esc(r.ticker) + '</span><span class="rx-nm">' + esc(r.name || "") + "</span></a></td>" +
+          '<td class="rx-when">' + when + "</td>" +
+          '<td class="num">' + val + "</td>" +
+          '<td class="num">' + (r.price != null ? '<span dir="ltr">' + r.price.toFixed(2) + "</span>" : "") + "</td>" +
+          "<td>" + note + "</td></tr>");
+      });
+    });
+    return '<div class="section-title" style="margin-top:26px">📈 איך הגיבו המדווחות</div>' +
+      '<p class="stamp" style="margin-top:-6px">שינוי סגירה-מול-סגירה ביום התגובה (מדווחת אחרי הסגירה — ביום המסחר הבא) · מקור: Yahoo Finance · הגדולות לפי שווי שוק</p>' +
+      '<div class="table-wrap rx-wrap"><table><thead><tr><th>דיווח</th><th>חברה</th><th>מועד</th><th class="num">תגובה</th><th class="num">סגירה</th><th>סטטוס</th></tr></thead><tbody>' +
+      rows.join("") + "</tbody></table></div>";
   }
 
   /* טאב סקטורים — הדוח השבועי האחרון + ארכיון שבועות קודמים */

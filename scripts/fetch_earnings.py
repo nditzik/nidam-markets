@@ -140,63 +140,99 @@ def row_to_item(r, with_logo=False):
     return item
 
 
-# ── "איך הגיבו המדווחות של אתמול" (11.9.2026) ─────────────────────────────
+# ── "איך הגיבו המדווחות" (11.9.2026; תוקן אחה"צ) ─────────────────────────────
 # ה-CSV נשמר פעם בשבוע, אז עמודות Latest/Change/%Change שבו הן מיום הייצוא — לא
-# התגובה לדוח. לכן התגובה נמשכת חיה מ-Yahoo לכל מדווחת. עמודת "Released" מכילה
-# את מועד הדיווח (Before Open / After Close): מדווחת אחרי-הסגירה מגיבה רק במסחר
-# *הבא*, ואם הציטוט האחרון עדיין מיום הדיווח — מסמנים pending במקום להציג
-# מספר שנראה כתגובה ואינו.
-MAX_REACT = 8
+# התגובה לדוח. לכן התגובה מחושבת מנרות יומיים של Yahoo, סגירה-מול-סגירה:
+#   * "Before Open" (או לא ידוע): סגירת יום הדיווח מול סגירת היום שלפניו.
+#   * "After Close": סגירת יום המסחר *הבא* מול סגירת יום הדיווח.
+# הגרסה הראשונה השתמשה ב-meta.chartPreviousClose — וזו הסגירה שלפני *תחילת הטווח*
+# (5 ימים אחורה), לא של אתמול: מייסיז הוצגה 8.6%- כשהיום בפועל היה 4.7%-. לכן עכשיו
+# רק נרות. עד שסשן התגובה נסגר המספר מסומן live (ביניים) — ובאתר מוצג כביניים,
+# לא כמספר סופי; בלי נר תגובה בכלל — pending ("מגיבה במסחר הבא").
+REACT_DAYS = 3      # כמה ימי-דיווח אחרונים (עד שבוע אחורה)
+REACT_PER_DAY = 6   # כמה מדווחות ליום, לפי שווי שוק
 
 
-def yahoo_react(sym):
-    """(chg%, price, תאריך-הציטוט בזמן הבורסה) מ-Yahoo; None בכשל."""
+def yahoo_bars(sym):
+    """נרות יומיים: ([(date_iso, close)...], final_last) — final_last=True אם הנר
+    האחרון הוא של סשן שכבר נסגר. None בכשל."""
     url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
-           + urllib.parse.quote(sym) + "?interval=1d&range=5d")
+           + urllib.parse.quote(sym) + "?interval=1d&range=1mo")
     req = urllib.request.Request(url, headers={"User-Agent": "nidam-markets-bot"})
     with urllib.request.urlopen(req, timeout=15) as r:
-        m = json.loads(r.read().decode("utf-8"))["chart"]["result"][0]["meta"]
-    price, prev = m.get("regularMarketPrice"), m.get("chartPreviousClose") or m.get("previousClose")
-    if not price or not prev:
+        res = json.loads(r.read().decode("utf-8"))["chart"]["result"][0]
+    m = res.get("meta") or {}
+    off = m.get("gmtoffset") or 0
+    ts = res.get("timestamp") or []
+    closes = ((res.get("indicators") or {}).get("quote") or [{}])[0].get("close") or []
+    bars = []
+    for t, c in zip(ts, closes):
+        if c is None:
+            continue
+        bars.append((datetime.fromtimestamp(t + off, timezone.utc).date().isoformat(), float(c)))
+    if not bars:
         return None
-    qd = datetime.fromtimestamp(m.get("regularMarketTime", 0) + (m.get("gmtoffset") or 0), timezone.utc).date().isoformat()
-    return round((price / prev - 1) * 100, 2), round(price, 2), qd
+    reg = ((m.get("currentTradingPeriod") or {}).get("regular") or {})
+    reg_end = reg.get("end") or 0
+    reg_day = datetime.fromtimestamp(reg_end + off, timezone.utc).date().isoformat() if reg_end else ""
+    mkt_t = m.get("regularMarketTime") or 0
+    final_last = (bars[-1][0] < reg_day) or (reg_end and mkt_t >= reg_end)
+    return bars, bool(final_last)
 
 
-def prev_report_day(by_date, today):
-    """יום הדיווח האחרון שקדם להיום (מדלג על ימים בלי דיווחים, עד שבוע אחורה)."""
+def react_one(bars, final_last, k, when):
+    """תגובה סגירה-מול-סגירה למדווחת ביום k. מחזיר dict חלקי."""
+    if when == "after":
+        base = [b for b in bars if b[0] <= k]
+        react = [b for b in bars if b[0] > k]
+    else:
+        react = [b for b in bars if b[0] >= k]
+        base = None
+    if not react:
+        return {"status": "pending"}
+    rb = react[0]
+    if base is None:
+        base = [b for b in bars if b[0] < rb[0]]
+    if not base:
+        return {"status": "pending"}
+    bb = base[-1]
+    live = (rb[0] == bars[-1][0]) and not final_last
+    return {"status": "live" if live else "final", "chg": round((rb[1] / bb[1] - 1) * 100, 2),
+            "price": round(rb[1], 2), "reactDate": rb[0], "baseDate": bb[0]}
+
+
+def past_report_days(by_date, today):
+    """ימי-הדיווח האחרונים שקדמו להיום (עד שבוע אחורה), החדש ראשון."""
+    out = []
     for i in range(1, 8):
         k = (today - timedelta(days=i)).isoformat()
         if by_date.get(k):
-            return k
-    return None
+            out.append(k)
+        if len(out) >= REACT_DAYS:
+            break
+    return out
 
 
 def reactions(by_date, today, capk):
-    k = prev_report_day(by_date, today)
-    if not k:
-        return None
-    rows = sorted(by_date[k], key=lambda r: rank_key(r, capk))[:MAX_REACT]
-    items = []
-    for r in rows:
-        sym = (r.get("Symbol") or "").strip().upper()
-        rel = (r.get("Released") or "").strip().lower()
-        when = "after" if "after" in rel else "before" if "before" in rel else ""
-        it = {"ticker": sym, "name": (r.get("Name") or "").strip(), "when": when, "chg": None, "pending": False}
-        try:
-            got = yahoo_react(sym)
-            if got:
-                chg, price, qd = got
-                # אחרי-סגירה: התגובה במסחר הבא — אם הציטוט עדיין מיום הדיווח, אין עדיין תגובה
-                if when == "after" and qd <= k:
-                    it["pending"] = True
-                else:
-                    it["chg"], it["price"] = chg, price
-        except Exception as e:
-            print(f"[react skip] {sym}: {e}")
-        items.append(it)
-    d = datetime.strptime(k, "%Y-%m-%d")
-    return {"date": k, "label": f"{d.day}.{d.month}", "items": items}
+    days = []
+    for k in past_report_days(by_date, today):
+        rows = sorted(by_date[k], key=lambda r: rank_key(r, capk))[:REACT_PER_DAY]
+        items = []
+        for r in rows:
+            sym = (r.get("Symbol") or "").strip().upper()
+            rel = (r.get("Released") or "").strip().lower()
+            when = "after" if "after" in rel else "before" if "before" in rel else ""
+            it = {"ticker": sym, "name": (r.get("Name") or "").strip(), "when": when, "status": "na"}
+            try:
+                got = yahoo_bars(sym)
+                if got:
+                    it.update(react_one(got[0], got[1], k, when))
+            except Exception as e:
+                print(f"[react skip] {sym}: {e}")
+            items.append(it)
+        d = datetime.strptime(k, "%Y-%m-%d")
+        days.append({"date": k, "label": f"{d.day}.{d.month}", "items": items})
+    return {"days": days} if days else None
 
 
 def load_rows():
@@ -317,9 +353,9 @@ def main():
                                   "capB": round(dollars / 1e9, 1)})
     today_big = today_big[:8]
 
-    yesterday = None
+    react = None
     try:
-        yesterday = reactions(by_date, today, capk)
+        react = reactions(by_date, today, capk)
     except Exception as e:
         print(f"[warn] תגובות המדווחות נכשלו: {e}")
 
@@ -327,7 +363,7 @@ def main():
         "today": key,
         "todayCount": len(today_rows),
         "todayBig": today_big,
-        "yesterday": yesterday,
+        "reactions": react,
         "reporting": today_items,
         "more": max(0, len(today_rows) - len(today_items)),
         "upcoming": upcoming,
