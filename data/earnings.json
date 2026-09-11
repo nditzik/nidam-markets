@@ -1,15 +1,25 @@
 {
-  "today": "2026-09-11",
-  "todayCount": 5,
-  "todayBig": [
-    {
-      "ticker": "KR",
-      "name": "Kroger Company",
-      "capB": 35.5
-    }
-  ],
+  "today": "2026-09-12",
+  "todayCount": 0,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-09-11",
+        "label": "11.9",
+        "items": [
+          {
+            "ticker": "KR",
+            "name": "Kroger Company",
+            "when": "before",
+            "status": "final",
+            "chg": 2.7,
+            "price": 58.49,
+            "reactDate": "2026-09-11",
+            "baseDate": "2026-09-10"
+          }
+        ]
+      },
       {
         "date": "2026-09-10",
         "label": "10.9",
@@ -141,320 +151,275 @@
             "baseDate": "2026-09-09"
           }
         ]
-      },
-      {
-        "date": "2026-09-08",
-        "label": "8.9",
-        "items": [
-          {
-            "ticker": "CASY",
-            "name": "Casey's General Stor",
-            "when": "after",
-            "status": "final",
-            "chg": -14.24,
-            "price": 629.03,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
-          {
-            "ticker": "TTAN",
-            "name": "Servicetitan Inc Cl A",
-            "when": "after",
-            "status": "final",
-            "chg": -29.98,
-            "price": 57.12,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
-          {
-            "ticker": "BRZE",
-            "name": "Braze Inc Cl A",
-            "when": "after",
-            "status": "final",
-            "chg": -21.73,
-            "price": 23.73,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
-          {
-            "ticker": "UNFI",
-            "name": "United Nat Foods",
-            "when": "before",
-            "status": "final",
-            "chg": 2.28,
-            "price": 44.93,
-            "reactDate": "2026-09-08",
-            "baseDate": "2026-09-04"
-          },
-          {
-            "ticker": "LITB",
-            "name": "Lightinthebox Holding Ltd ADR",
-            "when": "before",
-            "status": "final",
-            "chg": -2.17,
-            "price": 3.15,
-            "reactDate": "2026-09-08",
-            "baseDate": "2026-09-04"
-          },
-          {
-            "ticker": "GMHS",
-            "name": "Gamehaus Holdings Inc Cl A",
-            "when": "before",
-            "status": "final",
-            "chg": -1.6,
-            "price": 0.8,
-            "reactDate": "2026-09-08",
-            "baseDate": "2026-09-04"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
+  "reporting": [],
+  "more": 0,
+  "upcoming": [
     {
-      "ticker": "KR",
-      "name": "Kroger Company",
-      "when": "before",
-      "logo": "data/earnings/logos/KR.png"
+      "date": "2026-09-14",
+      "label": "14/9",
+      "dow": "ב׳",
+      "count": 7,
+      "tickers": [
+        "ABVX",
+        "VZLA",
+        "AVO",
+        "DLNG",
+        "BNR",
+        "HAIN"
+      ]
     },
     {
-      "ticker": "JVA",
-      "name": "Coffee Holding Company",
-      "when": "",
-      "logo": "data/earnings/logos/JVA.png"
+      "date": "2026-09-15",
+      "label": "15/9",
+      "dow": "ג׳",
+      "count": 4,
+      "tickers": [
+        "ESP",
+        "EPM",
+        "PBMLF",
+        "DTEAF"
+      ]
     },
     {
-      "ticker": "IHT",
-      "name": "Innsuites Hospitality Trust",
-      "when": "",
-      "logo": "data/earnings/logos/IHT.png"
+      "date": "2026-09-16",
+      "label": "16/9",
+      "dow": "ד׳",
+      "count": 12,
+      "tickers": [
+        "DLMAF",
+        "GIS",
+        "BTDPY",
+        "MANU",
+        "CBRL",
+        "RZLT"
+      ]
     },
     {
-      "ticker": "TPET",
-      "name": "Trio Petroleum Corp",
-      "when": "",
-      "logo": "data/earnings/logos/TPET.png"
+      "date": "2026-09-17",
+      "label": "17/9",
+      "dow": "ה׳",
+      "count": 10,
+      "tickers": [
+        "DRI",
+        "LEN",
+        "LEN.B",
+        "FDS",
+        "RNSHF",
+        "AJMPF"
+      ]
     },
     {
-      "ticker": "CGAC",
-      "name": "Code Green Apparel Corp",
-      "when": "",
-      "logo": "data/earnings/logos/CGAC.png"
+      "date": "2026-09-18",
+      "label": "18/9",
+      "dow": "ו׳",
+      "count": 5,
+      "tickers": [
+        "AIRYY",
+        "TRT",
+        "MNY",
+        "SRCO",
+        "GWOX"
+      ]
     }
   ],
-  "more": 0,
-  "upcoming": [],
   "week": [
     {
-      "date": "2026-09-07",
+      "date": "2026-09-14",
       "dow": "שני",
-      "label": "7.9",
-      "total": 0,
-      "companies": []
+      "label": "14.9",
+      "total": 7,
+      "companies": [
+        {
+          "ticker": "ABVX",
+          "name": "Abivax Sa ADR"
+        },
+        {
+          "ticker": "VZLA",
+          "name": "Vizsla Silver Corp"
+        },
+        {
+          "ticker": "AVO",
+          "name": "Mission Produce Inc"
+        },
+        {
+          "ticker": "DLNG",
+          "name": "Dynagas Lng Partners LP"
+        },
+        {
+          "ticker": "BNR",
+          "name": "Burning Rock Biotech Ltd ADR"
+        },
+        {
+          "ticker": "HAIN",
+          "name": "Hain Celestial Group"
+        },
+        {
+          "ticker": "GROW",
+          "name": "U S Global Inv Inc"
+        }
+      ]
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-15",
       "dow": "שלישי",
-      "label": "8.9",
-      "total": 26,
+      "label": "15.9",
+      "total": 4,
       "companies": [
         {
-          "ticker": "ORCL",
-          "name": "Oracle Corp"
+          "ticker": "ESP",
+          "name": "Espey Mfg. & Electronics"
         },
         {
-          "ticker": "CASY",
-          "name": "Casey's General Stor"
+          "ticker": "EPM",
+          "name": "Evolution Petroleum Corp"
         },
         {
-          "ticker": "TTAN",
-          "name": "Servicetitan Inc Cl A"
+          "ticker": "PBMLF",
+          "name": "Pacific Booker Minerals"
         },
         {
-          "ticker": "CNM",
-          "name": "Core & Main Inc Cl A"
-        },
-        {
-          "ticker": "GME",
-          "name": "Gamestop Corp"
-        },
-        {
-          "ticker": "AVAV",
-          "name": "Aerovironment Inc"
-        },
-        {
-          "ticker": "KFY",
-          "name": "Korn/Ferry International"
-        },
-        {
-          "ticker": "BRZE",
-          "name": "Braze Inc Cl A"
-        },
-        {
-          "ticker": "UNFI",
-          "name": "United Nat Foods"
-        },
-        {
-          "ticker": "OXINF",
-          "name": "Oxford Instruments"
-        },
-        {
-          "ticker": "FCEL",
-          "name": "Fuelcell Energy Inc"
-        },
-        {
-          "ticker": "INNV",
-          "name": "Innovage Holding Corp"
+          "ticker": "DTEAF",
+          "name": "Davidstea Inc"
         }
       ]
     },
     {
-      "date": "2026-09-09",
+      "date": "2026-09-16",
       "dow": "רביעי",
-      "label": "9.9",
-      "total": 24,
+      "label": "16.9",
+      "total": 12,
       "companies": [
         {
-          "ticker": "IDEXY",
-          "name": "Industria Dsno ADR"
+          "ticker": "DLMAF",
+          "name": "Dollarama Inc Ord"
         },
         {
-          "ticker": "SUNB",
-          "name": "Sunbelt Rentals Holdings Inc"
+          "ticker": "GIS",
+          "name": "General Mills"
         },
         {
-          "ticker": "COO",
-          "name": "Cooper Companies"
+          "ticker": "BTDPY",
+          "name": "Barratt Redrow Plc ADR"
         },
         {
-          "ticker": "SAIL",
-          "name": "Sailpoint Inc"
+          "ticker": "MANU",
+          "name": "Manchester United Ltd"
         },
         {
-          "ticker": "CHWY",
-          "name": "Chewy Inc"
+          "ticker": "CBRL",
+          "name": "Cracker Barrel"
         },
         {
-          "ticker": "SIG",
-          "name": "Signet Jewelers Ltd"
+          "ticker": "RZLT",
+          "name": "Rezolute Inc"
         },
         {
-          "ticker": "WLTH",
-          "name": "Wealthfront Corp"
+          "ticker": "SANG",
+          "name": "Sangoma Technologies Corp"
         },
         {
-          "ticker": "TEN",
-          "name": "Tsakos Energy Navigation Ltd"
+          "ticker": "HERE",
+          "name": "Here Group Ltd ADR"
         },
         {
-          "ticker": "DAKT",
-          "name": "Daktronics Inc"
+          "ticker": "DSWL",
+          "name": "Deswell Inds Inc"
         },
         {
-          "ticker": "ODD",
-          "name": "Oddity Tech Ltd Cl A"
+          "ticker": "YI",
+          "name": "111 Inc ADR"
         },
         {
-          "ticker": "OXM",
-          "name": "Oxford Industries"
+          "ticker": "PLUR",
+          "name": "Pluri Inc"
         },
         {
-          "ticker": "LSAK",
-          "name": "Lesaka Technologies Inc"
+          "ticker": "STAI",
+          "name": "Scantech AI Systems Inc"
         }
       ]
     },
     {
-      "date": "2026-09-10",
+      "date": "2026-09-17",
       "dow": "חמישי",
-      "label": "10.9",
-      "total": 31,
+      "label": "17.9",
+      "total": 10,
       "companies": [
         {
-          "ticker": "ADBE",
-          "name": "Adobe Systems Inc"
+          "ticker": "DRI",
+          "name": "Darden Restaurants"
         },
         {
-          "ticker": "HLMAF",
-          "name": "Halma Plc"
+          "ticker": "LEN",
+          "name": "Lennar Corp"
         },
         {
-          "ticker": "DSGX",
-          "name": "Descartes Sys Group"
+          "ticker": "LEN.B",
+          "name": "Lennar Corp Cl B"
         },
         {
-          "ticker": "M",
-          "name": "Macy's Inc"
+          "ticker": "FDS",
+          "name": "Factset Research Systems"
         },
         {
-          "ticker": "FIZZ",
-          "name": "Natl Beverage Corp"
+          "ticker": "RNSHF",
+          "name": "Renishaw Plc"
         },
         {
-          "ticker": "RH",
-          "name": "Rh Common Stock"
+          "ticker": "AJMPF",
+          "name": "Ashmore Group Plc Ord"
         },
         {
-          "ticker": "UROY",
-          "name": "Uranium Royalty Corp"
+          "ticker": "SCHL",
+          "name": "Scholastic Corp"
         },
         {
-          "ticker": "KMTS",
-          "name": "Kestra Medical Technologies Ltd"
+          "ticker": "ABAT",
+          "name": "American Battery Technology Co."
         },
         {
-          "ticker": "FEIM",
-          "name": "Frequency Elcts Inc"
+          "ticker": "RSSS",
+          "name": "Research Solutions Inc"
         },
         {
-          "ticker": "IBEX",
-          "name": "Ibex Ltd"
-        },
-        {
-          "ticker": "CAL",
-          "name": "Caleres Inc"
-        },
-        {
-          "ticker": "DBI",
-          "name": "Designer Brands Inc"
+          "ticker": "IH",
+          "name": "Ihuman Inc ADR"
         }
       ]
     },
     {
-      "date": "2026-09-11",
+      "date": "2026-09-18",
       "dow": "שישי",
-      "label": "11.9",
+      "label": "18.9",
       "total": 5,
       "companies": [
         {
-          "ticker": "KR",
-          "name": "Kroger Company"
+          "ticker": "AIRYY",
+          "name": "Air China Ltd ADR"
         },
         {
-          "ticker": "JVA",
-          "name": "Coffee Holding Company"
+          "ticker": "TRT",
+          "name": "Trio-Tech International"
         },
         {
-          "ticker": "IHT",
-          "name": "Innsuites Hospitality Trust"
+          "ticker": "MNY",
+          "name": "Moneyhero Limited Cl A"
         },
         {
-          "ticker": "TPET",
-          "name": "Trio Petroleum Corp"
+          "ticker": "SRCO",
+          "name": "Sparta Comml Svcs Inc"
         },
         {
-          "ticker": "CGAC",
-          "name": "Code Green Apparel Corp"
+          "ticker": "GWOX",
+          "name": "Goodheart-Willcox CO Inc"
         }
       ]
     }
   ],
   "window": {
-    "CGAC": "2026-09-11",
-    "IHT": "2026-09-11",
-    "JVA": "2026-09-11",
-    "KR": "2026-09-11",
-    "TPET": "2026-09-11",
     "ABVX": "2026-09-14",
     "AVO": "2026-09-14",
     "BNR": "2026-09-14",
@@ -495,7 +460,7 @@
     "TRT": "2026-09-18"
   },
   "_meta": {
-    "updatedAt": "11/09/2026 23:46",
+    "updatedAt": "12/09/2026 00:01",
     "source": "earnings.csv"
   }
 }
