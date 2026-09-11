@@ -1507,7 +1507,7 @@
       '<span class="np-k">The Edge Meter · מד השוק היומי</span>' +
       '<div class="np-score"><b class="num" style="color:' + w[1] + '">' + (s.combined != null ? s.combined : "—") + "</b>" +
         '<span style="color:' + w[1] + '">' + w[0] + "</span></div>" +
-      '<svg class="meter-spark np-spark" id="meter-spark" viewBox="0 0 120 30" preserveAspectRatio="none"></svg>' +
+      '<svg class="meter-spark np-spark" id="meter-spark" viewBox="0 0 120 30" preserveAspectRatio="none" style="cursor:pointer" role="link" aria-label="לגרף המלא בטאב מדדים" onclick="__goTab(\'indices\');var m=document.getElementById(\'meter-timeline\');if(m)m.scrollIntoView({behavior:\'smooth\',block:\'start\'});"></svg>' +
       '<div class="spark-label" id="spark-label"></div>' +
       sub("טכני", "tech", s.tech) +
       sub("רוחב", "breadth", s.breadth) +
@@ -1542,9 +1542,52 @@
             '<span class="earn-up-tk" dir="ltr">' + esc((u.tickers || []).slice(0, 4).join(" · ")) + "</span></div>";
         }).join("") + "</div>"
       : "";
+    // "איך הגיבו המדווחות של אתמול" (11.9.2026) — ה-%Change שב-CSV הוא מיום הייצוא
+    // (שבועי), ולכן התגובה נמשכת חיה מ-Yahoo ב-fetch_earnings.py. מדווחת אחרי-הסגירה
+    // מגיבה רק במסחר הבא — עד אז מוצג "מגיבה במסחר הבא" במקום מספר מטעה.
+    var yd = EARN.yesterday, rx = "";
+    if (yd && (yd.items || []).length) {
+      rx = '<div class="earn-rx"><div class="earn-up-t">המדווחות של ' + esc(yd.label || "") + ' — איך הגיבו</div>' +
+        yd.items.map(function (r) {
+          var when = r.when === "after" ? "אחרי הסגירה" : r.when === "before" ? "לפני הפתיחה" : "";
+          var val = r.pending ? '<span class="earn-rx-wait">מגיבה במסחר הבא</span>'
+                  : r.chg == null ? '<span class="earn-rx-wait">—</span>'
+                  : '<b class="num ' + (r.chg > 0 ? "up" : r.chg < 0 ? "down" : "") + '" dir="ltr">' + (r.chg > 0 ? "+" : "") + r.chg.toFixed(1) + "%</b>";
+          return '<a class="earn-rx-row" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) + '/" target="_blank" rel="noopener" title="' + esc(r.name || "") + '">' +
+            '<span class="earn-rx-t" dir="ltr">' + esc(r.ticker) + "</span>" +
+            '<span class="earn-rx-w">' + when + "</span>" + val + "</a>";
+        }).join("") + "</div>";
+    }
     el.innerHTML =
-      '<h3 class="np-k">מדווחות היום והשבוע</h3>' + today + week +
+      '<h3 class="np-k">מדווחות היום והשבוע</h3>' + today + rx + week +
       '<a class="np-more" href="#weekcal" onclick="__goTab(\'weekcal\');return false">לוח הדיווחים המלא ←</a>';
+  }
+
+  /* סיכום השבוע — כרטיס בבית, מופיע מרגע שסגירת שישי נקלטה ועד יום שני בבוקר */
+  function renderWeekly(d) {
+    var el = document.getElementById("home-weekly");
+    if (!el) return;
+    var days = (d && d.days) || [], s = (d && d.summary) || {};
+    if (!days.length || !d.weekOf) { el.innerHTML = ""; return; }
+    var age = (Date.now() - new Date(d.weekOf + "T23:00:00").getTime()) / 864e5;
+    if (age < -0.5 || age > 3.4) { el.innerHTML = ""; return; }          // שישי בערב → שני בבוקר
+    function pct(v) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(2) + "%"; }
+    function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
+    var w0 = meterWord(s.combStart || 0), w1 = meterWord(s.combEnd || 0);
+    el.innerHTML =
+      '<section class="wk"><div class="wk-head"><span class="np-k">🗓 סיכום השבוע · ' + esc(d.label || "") + "</span>" +
+        '<span class="wk-stat">S&amp;P 500 <b class="num ' + cls(s.spxPct) + '" dir="ltr">' + pct(s.spxPct) + "</b></span>" +
+        '<span class="wk-stat">מד השוק <b class="num" dir="ltr">' + (s.combStart != null ? s.combStart : "—") + " → " + (s.combEnd != null ? s.combEnd : "—") + "</b>" +
+          ' <span style="color:' + w1[1] + '">' + w1[0] + "</span></span>" +
+        (s.sellDays ? '<span class="wk-stat">' + (s.sellDays === 1 ? '<b class="down">יום מכירה רחבה אחד</b>' : '<b class="num down" dir="ltr">' + s.sellDays + "</b> ימי מכירה רחבה") + "</span>" : "") +
+      "</div>" +
+      '<div class="wk-days">' + days.map(function (x) {
+        var w = meterWord(x.combined || 0);
+        return '<div class="wk-day' + (x.sell ? " sell" : "") + '"><div class="wk-dow">' + esc(x.dow) + ' <span dir="ltr">' + esc(x.label) + "</span></div>" +
+          '<div class="wk-c" style="color:' + w[1] + '">' + (x.combined != null ? x.combined : "—") + "</div>" +
+          '<div class="wk-p num ' + cls(x.chg) + '" dir="ltr">' + pct(x.chg) + "</div>" +
+          (x.headline ? '<div class="wk-h">' + esc(x.headline) + "</div>" : "") + "</div>";
+      }).join("") + "</div></section>";
   }
 
   /* ---------- renderers ---------- */
@@ -1755,6 +1798,150 @@
       "</div>";
   }
 
+  /* ציר הזמן של The Edge Meter — בראש טאב מדדים (11.9.2026).
+     history.json (עד 120 יום) + ימי-המכירה מ-indices.json. הציון המשולב על רקע
+     שלוש רצועות-המצב של המד (66+/45+/מתחת), ▲ בימי מכירה רחבה, ומתחת פס S&P 500
+     על אותו ציר זמן *בפאנל משלו* — לא ציר-Y כפול (שני סולמות על גרף אחד מטעים).
+     הרכיבים (טכני/רוחב/אופציות) כבויים כברירת מחדל כדי שהגרף לא יהפוך לספגטי.
+     המצב (טווח/רכיבים) חי ב-MT כי הטאב נבנה מחדש בכל רענון נתונים. */
+  var MT = { range: 30, show: { tech: false, breadth: false, flow: false }, hover: -1 };
+  var MT_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  function mtCss(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function mtD(s) { var p = s.split("-"); return (+p[2]) + "/" + (+p[1]); }
+  function mtEl(t, a) { var e = document.createElementNS("http://www.w3.org/2000/svg", t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  function meterTimelineHtml() {
+    return '<section class="mt" id="meter-timeline">' +
+      '<div class="mt-head"><h3 class="section-title" style="margin:0">📈 The Edge Meter <small id="mt-sub"></small></h3>' +
+        '<div class="mt-seg" role="group" aria-label="טווח">' + [30, 60, 90].map(function (r) {
+          return '<button type="button" data-r="' + r + '" aria-pressed="' + (MT.range === r) + '">' + r + "</button>";
+        }).join("") + "</div></div>" +
+      '<div class="mt-lg" role="group" aria-label="רכיבים"><span class="k">רכיבים:</span>' +
+        [["tech", "טכני"], ["breadth", "רוחב"], ["flow", "אופציות"]].map(function (p) {
+          return '<button type="button" data-s="' + p[0] + '" aria-pressed="' + MT.show[p[0]] + '" style="--c:var(--mt-' + p[0] + ')"><i></i>' + p[1] + "</button>";
+        }).join("") + "</div>" +
+      '<figure class="mt-fig" id="mt-fig" tabindex="0" aria-label="ציר הזמן של ציון בריאות השוק ו-S&P 500. חצים ימינה ושמאלה לנוע בין ימים.">' +
+        '<svg id="mt-svg" aria-hidden="true"></svg><div class="mt-tip" id="mt-tip"></div>' +
+        "<figcaption>הציון המשולב (0–100) על רקע שלושת המצבים של המד — חיובי מ-66, זהיר 45–66, הגנתי מתחת. ▲ = יום מכירה רחבה. מתחת: S&amp;P 500 על אותו ציר זמן. ריחוף או חצי מקלדת מציגים את כל הערכים של אותו יום, כולל הכותרת שפורסמה בו.</figcaption>" +
+      "</figure>" +
+      '<details class="mt-tbl"><summary>הנתונים בטבלה</summary><table id="mt-table"></table></details></section>';
+  }
+  function renderMeterTimeline() {
+    var fig = document.getElementById("mt-fig"), svg = document.getElementById("mt-svg"), tip = document.getElementById("mt-tip");
+    if (!fig || !svg || !HIST || !(HIST.days || []).length) return;
+    var rows = HIST.days.slice(-MT.range);
+    var sell = {};
+    (((INDD || {}).riskOff || {}).sellDaysMap || []).forEach(function (s) { if (s.isSell) sell[s.date] = 1; });
+    var sub = document.getElementById("mt-sub");
+    if (sub) sub.textContent = rows.length < MT.range ? "כל " + rows.length + " ימי המסחר במאגר" : MT.range + " ימי מסחר אחרונים";
+    // הטאב עשוי להיות מוסתר בזמן הבנייה (רוחב 0) — ResizeObserver למטה מצייר שוב כשהוא נפתח
+    var W = fig.clientWidth || 900, narrow = W < 560;
+    var ML = narrow ? 34 : 44, MR = narrow ? 46 : 60, T = 10, HA = narrow ? 190 : 240, GAP = 44, HB = narrow ? 72 : 96, AX = 26;
+    var H = T + HA + GAP + HB + AX;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("width", W); svg.setAttribute("height", H);
+    svg.innerHTML = "";
+    var n = rows.length;
+    function x(i) { return ML + (n < 2 ? 0 : (W - ML - MR) * i / (n - 1)); }
+    function yA(v) { return T + HA - HA * v / 100; }
+    var spx = rows.map(function (r) { return r.spx; }).filter(function (v) { return v != null; });
+    var lo = Math.min.apply(null, spx), hi = Math.max.apply(null, spx), pad = (hi - lo) * 0.12 || 50; lo -= pad; hi += pad;
+    function yB(v) { return T + HA + GAP + HB - HB * (v - lo) / (hi - lo); }
+    var gb = svg.appendChild(mtEl("g", {}));
+    var bands = [[66, 100, "--up", "חיובי"], [45, 66, "--warn", "זהיר"], [0, 45, "--down", "הגנתי"]];
+    bands.forEach(function (b) {
+      gb.appendChild(mtEl("rect", { x: ML, y: yA(b[1]), width: W - ML - MR, height: yA(b[0]) - yA(b[1]), fill: mtCss(b[2]), opacity: .07 }));
+      var t = mtEl("text", { x: ML + 6, y: yA(b[1]) + 13, "font-size": 11, fill: mtCss("--text-3") }); t.textContent = b[3]; gb.appendChild(t);
+    });
+    [45, 66].forEach(function (v) { gb.appendChild(mtEl("line", { x1: ML, x2: W - MR, y1: yA(v), y2: yA(v), stroke: mtCss("--paper-hair"), "stroke-width": 1 })); });
+    [0, 25, 50, 75, 100].forEach(function (v) {
+      if (v !== 0 && v !== 100) gb.appendChild(mtEl("line", { x1: ML, x2: W - MR, y1: yA(v), y2: yA(v), stroke: mtCss("--paper-hair"), "stroke-width": 1, opacity: .55 }));
+      var t = mtEl("text", { x: ML - 6, y: yA(v) + 4, "font-size": 11, "text-anchor": "end", fill: mtCss("--text-3") }); t.textContent = v; gb.appendChild(t);
+    });
+    var step = (hi - lo) > 400 ? 200 : 100, first = Math.ceil(lo / step) * step;
+    for (var v = first; v < hi; v += step) {
+      gb.appendChild(mtEl("line", { x1: ML, x2: W - MR, y1: yB(v), y2: yB(v), stroke: mtCss("--paper-hair"), "stroke-width": 1, opacity: .55 }));
+      var tv = mtEl("text", { x: ML - 6, y: yB(v) + 4, "font-size": 11, "text-anchor": "end", fill: mtCss("--text-3") }); tv.textContent = v.toLocaleString("en-US"); gb.appendChild(tv);
+    }
+    var lb = mtEl("text", { x: ML, y: T + HA + GAP - 8, "font-size": 11, "font-weight": 600, fill: mtCss("--text-3") }); lb.textContent = "S&P 500"; gb.appendChild(lb);
+    gb.appendChild(mtEl("line", { x1: ML, x2: W - MR, y1: T + HA + GAP + HB, y2: T + HA + GAP + HB, stroke: mtCss("--paper-hair") }));
+    var every = Math.max(1, Math.round(n / (narrow ? 5 : 8)));
+    rows.forEach(function (r, i) {
+      if (i % every === 0 || i === n - 1) {
+        var t = mtEl("text", { x: x(i), y: H - 8, "font-size": 11, "text-anchor": "middle", fill: mtCss("--text-3") }); t.textContent = mtD(r.date); gb.appendChild(t);
+      }
+      if (sell[r.date]) {
+        var cx = x(i), cy = T + HA + 10;
+        var p = mtEl("path", { d: "M" + (cx - 5) + "," + (cy + 8) + " L" + (cx + 5) + "," + (cy + 8) + " L" + cx + "," + cy + " Z", fill: mtCss("--down") });
+        var tt = mtEl("title", {}); tt.textContent = "יום מכירה רחבה " + mtD(r.date); p.appendChild(tt); gb.appendChild(p);
+      }
+    });
+    function line(key, yf, color, w) {
+      var d = rows.map(function (r, i) { return r[key] == null ? "" : ((i === 0 || rows[i - 1][key] == null ? "M" : "L") + x(i) + "," + yf(r[key])); }).join(" ");
+      svg.appendChild(mtEl("path", { d: d, fill: "none", stroke: color, "stroke-width": w, "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    }
+    ["tech", "breadth", "flow"].forEach(function (k) { if (MT.show[k]) line(k, yA, mtCss("--mt-" + k), 1.5); });
+    line("combined", yA, mtCss("--mt-comb"), 2);
+    line("spx", yB, mtCss("--text-soft"), 2);
+    var last = rows[n - 1], lx = x(n - 1);
+    svg.appendChild(mtEl("circle", { cx: lx, cy: yA(last.combined), r: 4.5, fill: mtCss("--mt-comb"), stroke: mtCss("--bg"), "stroke-width": 2 }));
+    var el1 = mtEl("text", { x: lx + 9, y: yA(last.combined) + 5, "font-size": 13, "font-weight": 700, fill: mtCss("--text") }); el1.textContent = last.combined; svg.appendChild(el1);
+    if (last.spx != null) {
+      svg.appendChild(mtEl("circle", { cx: lx, cy: yB(last.spx), r: 4, fill: mtCss("--text-soft"), stroke: mtCss("--bg"), "stroke-width": 2 }));
+      var el2 = mtEl("text", { x: lx + 9, y: yB(last.spx) + 4, "font-size": 11, "font-weight": 600, fill: mtCss("--text") }); el2.textContent = Math.round(last.spx).toLocaleString("en-US"); svg.appendChild(el2);
+    }
+    var cross = mtEl("line", { x1: 0, x2: 0, y1: T, y2: T + HA + GAP + HB, stroke: mtCss("--text-soft"), "stroke-width": 1, opacity: 0 }); svg.appendChild(cross);
+    var dot = mtEl("circle", { r: 5, fill: mtCss("--mt-comb"), stroke: mtCss("--bg"), "stroke-width": 2, opacity: 0 }); svg.appendChild(dot);
+    var dot2 = mtEl("circle", { r: 4, fill: mtCss("--text-soft"), stroke: mtCss("--bg"), "stroke-width": 2, opacity: 0 }); svg.appendChild(dot2);
+    var hit = mtEl("rect", { x: ML, y: T, width: W - ML - MR, height: HA + GAP + HB, fill: "transparent" }); svg.appendChild(hit);
+    function nearest(px) { return Math.max(0, Math.min(n - 1, Math.round((px - ML) / ((W - ML - MR) / Math.max(1, n - 1))))); }
+    function paint() {
+      if (MT.hover < 0 || MT.hover >= n) { cross.setAttribute("opacity", 0); dot.setAttribute("opacity", 0); dot2.setAttribute("opacity", 0); tip.style.display = "none"; return; }
+      var r = rows[MT.hover], cx = x(MT.hover);
+      cross.setAttribute("x1", cx); cross.setAttribute("x2", cx); cross.setAttribute("opacity", .6);
+      dot.setAttribute("cx", cx); dot.setAttribute("cy", yA(r.combined)); dot.setAttribute("opacity", 1);
+      if (r.spx != null) { dot2.setAttribute("cx", cx); dot2.setAttribute("cy", yB(r.spx)); dot2.setAttribute("opacity", 1); } else dot2.setAttribute("opacity", 0);
+      var w = meterWord(r.combined), dt = new Date(r.date + "T12:00:00");
+      function row(nm, val, cv) { return '<div class="row"><span class="n"><i style="--c:' + cv + '"></i>' + nm + "</span><b>" + esc(val) + "</b></div>"; }
+      tip.innerHTML = '<div class="d">יום ' + MT_DOW[dt.getDay()] + " · " + mtD(r.date) + "/" + r.date.slice(0, 4) + "</div>" +
+        '<div class="big"><b>' + r.combined + '</b><span style="color:' + w[1] + '">' + w[0] + "</span></div>" +
+        row("טכני", r.tech, "var(--mt-tech)") + row("רוחב", r.breadth, "var(--mt-breadth)") + row("אופציות", r.flow, "var(--mt-flow)") +
+        (r.spx != null ? '<div class="row"><span class="n">S&amp;P 500</span><b>' + Math.round(r.spx).toLocaleString("en-US") + "</b></div>" : "") +
+        (r.vix != null ? '<div class="row"><span class="n">VIX</span><b>' + esc(r.vix) + "</b></div>" : "") +
+        (sell[r.date] ? '<div class="sell">▲ יום מכירה רחבה</div>' : "") +
+        (r.headline ? '<div class="hl">' + esc(r.headline) + "</div>" : "");
+      tip.style.display = "block";
+      var fw = fig.clientWidth || W, tw = tip.offsetWidth, sx = cx * (fw / W);
+      tip.style.left = Math.max(0, Math.min(fw - tw, sx > fw / 2 ? sx - tw - 16 : sx + 16)) + "px"; tip.style.top = "6px";
+    }
+    hit.addEventListener("pointermove", function (e) { var b = svg.getBoundingClientRect(); MT.hover = nearest((e.clientX - b.left) * W / b.width); paint(); });
+    hit.addEventListener("pointerleave", function () { MT.hover = -1; paint(); });
+    fig.onkeydown = function (e) {
+      if (e.key === "ArrowLeft") { MT.hover = MT.hover < 0 ? n - 1 : Math.max(0, MT.hover - 1); paint(); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { MT.hover = MT.hover < 0 ? n - 1 : Math.min(n - 1, MT.hover + 1); paint(); e.preventDefault(); }
+      else if (e.key === "Escape") { MT.hover = -1; paint(); }
+    };
+    paint();
+    var tbl = document.getElementById("mt-table");
+    if (tbl) tbl.innerHTML = "<tr><th>תאריך</th><th>משולב</th><th>טכני</th><th>רוחב</th><th>אופציות</th><th>S&amp;P 500</th><th>VIX</th><th>מכירה</th></tr>" +
+      rows.slice().reverse().map(function (r) {
+        return "<tr><td>" + mtD(r.date) + "/" + r.date.slice(2, 4) + '</td><td class="n">' + r.combined + '</td><td class="n">' + r.tech + '</td><td class="n">' + r.breadth + '</td><td class="n">' + r.flow +
+          '</td><td class="n">' + (r.spx != null ? Math.round(r.spx).toLocaleString("en-US") : "—") + '</td><td class="n">' + (r.vix != null ? r.vix : "—") + "</td><td>" + (sell[r.date] ? "▲" : "") + "</td></tr>";
+      }).join("");
+  }
+  function bindMeterTimeline(root) {
+    root.querySelectorAll(".mt-seg button").forEach(function (b) {
+      b.addEventListener("click", function () { MT.range = +b.dataset.r; MT.hover = -1;
+        root.querySelectorAll(".mt-seg button").forEach(function (o) { o.setAttribute("aria-pressed", String(+o.dataset.r === MT.range)); }); renderMeterTimeline(); });
+    });
+    root.querySelectorAll(".mt-lg button").forEach(function (b) {
+      b.addEventListener("click", function () { var k = b.dataset.s; MT.show[k] = !MT.show[k]; b.setAttribute("aria-pressed", String(MT.show[k])); renderMeterTimeline(); });
+    });
+    var fig = root.querySelector("#mt-fig");
+    if (fig && window.ResizeObserver) {
+      var lastW = 0;
+      new ResizeObserver(function () { var w = fig.clientWidth; if (w && w !== lastW) { lastW = w; renderMeterTimeline(); } }).observe(fig);
+    }
+  }
+
   function renderIndicesDetail(el, d) {
     var c = d.conclusion || {};
     var rot = d.rotation || {};
@@ -1815,7 +2002,9 @@
     renderMarketOverview(overview, d, { detail: true });
 
     el.innerHTML = "";
-    el.insertAdjacentHTML("beforeend", head + claudeCardHtml(d) + INDICES_EXPLAINER);   // הניתוח היומי בראש, ואז ההסבר ותמונת המצב
+    el.insertAdjacentHTML("beforeend", meterTimelineHtml());   // ציר הזמן של המד — ראשון (11.9.2026)
+    bindMeterTimeline(el); renderMeterTimeline();
+    el.insertAdjacentHTML("beforeend", head + claudeCardHtml(d) + INDICES_EXPLAINER);   // הניתוח היומי, ואז ההסבר ותמונת המצב
     el.appendChild(overview);
     el.insertAdjacentHTML("beforeend", analysis + sectors + selling + narr);
     var link = document.createElement("p");
@@ -2133,10 +2322,20 @@
         rows.map(function (i) {
           var c = i.chg > 0 ? "up" : i.chg < 0 ? "down" : "";
           var sign = i.chg == null ? "—" : (i.chg > 0 ? "+" : "") + i.chg.toFixed(2) + "%";
+          // גרף-מיני של היום (11.9.2026): הקו בגוון-טקסט שקט, רק נקודת-הסיום צבועה לפי הכיוון
+          var sp = "", arr = i.spark || [];
+          if (arr.length > 2) {
+            var mn = Math.min.apply(null, arr), mx = Math.max.apply(null, arr), rg = (mx - mn) || 1;
+            var pts = arr.map(function (v, k) { return (k * (80 / (arr.length - 1))).toFixed(1) + "," + (20 - ((v - mn) / rg) * 18 + 1).toFixed(1); });
+            var lp = pts[pts.length - 1].split(",");
+            sp = '<svg class="wm-sp" viewBox="0 0 80 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="' + pts.join(" ") + '" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>' +
+              '<circle cx="' + lp[0] + '" cy="' + lp[1] + '" r="2.4" class="' + c + '"/></svg>';
+          }
           return '<div class="wm-row wm-' + esc(i.state) + '">' +
             '<span class="wm-n"><span class="wm-fl">' + esc(i.flag) + "</span>" + esc(i.label) + "</span>" +
             '<span class="wm-s">' + (dot[i.state] || "") + " " + esc(i.stateHe) +
               (i.at ? ' <span class="wm-at" dir="ltr">' + esc(i.at) + "</span>" : "") + "</span>" +
+            '<span class="wm-spk">' + sp + "</span>" +
             '<span class="wm-p num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—") + "</span>" +
             '<span class="wm-c num ' + c + '" dir="ltr">' + sign + "</span></div>";
         }).join("") + "</section>";
@@ -2423,6 +2622,11 @@
           renderLead();   // חצי השינוי-היומי ברייל + הספארקליין
           if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD);
         })
+        .catch(function () {});
+      // סיכום השבוע (11.9.2026): נבנה ע"י build_weekly.py כשסגירת שישי נקלטת,
+      // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
+      fetchJSON("data/weekly.json")
+        .then(function (d) { if (!freshD("weekly", d)) return; renderWeekly(d); })
         .catch(function () {});
       fetchJSON("data/earnings.json")
         .then(function (d) {

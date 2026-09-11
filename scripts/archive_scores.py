@@ -47,7 +47,7 @@ def entry_from(d):
     e = d.get("evidence") or {}
     if not d.get("date") or s.get("combined") is None:
         return None
-    return {
+    entry = {
         "date": d["date"],
         "combined": s.get("combined"),
         "tech": s.get("tech"),
@@ -56,6 +56,17 @@ def entry_from(d):
         "spx": e.get("spxPrice"),
         "vix": e.get("vix"),
     }
+    # 11.9.2026: גם הכותרת של אותו יום — כדי שגרף ציר-הזמן במדדים יראה בריחוף
+    # "מה אמרנו באותו יום". נלקחת מ-claude_analysis.json רק כשה-date שלו זהה
+    # (הרוטינה כותבת אותו אחרי הסגירה; עד אז השדה פשוט חסר ומתמלא בריצה הבאה).
+    try:
+        with open(os.path.join(ROOT, "data", "claude_analysis.json"), "r", encoding="utf-8") as f:
+            ca = json.load(f)
+        if ca.get("date") == d["date"] and ca.get("headline"):
+            entry["headline"] = ca["headline"]
+    except Exception:
+        pass
+    return entry
 
 
 def load_history():
@@ -109,6 +120,10 @@ def main():
         print("[warn] אין נתונים לרישום.")
         return 0
     by_date = load_history()
+    # לא לאבד כותרת שכבר נשמרה ליום הזה אם בריצה הזו היא לא זמינה
+    old = by_date.get(e["date"]) or {}
+    if not e.get("headline") and old.get("headline"):
+        e["headline"] = old["headline"]
     by_date[e["date"]] = e
     n = save_history(by_date)
     print(f"[done] {e['date']} נרשם · {n} ימים בארכיון")

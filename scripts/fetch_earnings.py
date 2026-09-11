@@ -140,6 +140,65 @@ def row_to_item(r, with_logo=False):
     return item
 
 
+# ── "איך הגיבו המדווחות של אתמול" (11.9.2026) ─────────────────────────────
+# ה-CSV נשמר פעם בשבוע, אז עמודות Latest/Change/%Change שבו הן מיום הייצוא — לא
+# התגובה לדוח. לכן התגובה נמשכת חיה מ-Yahoo לכל מדווחת. עמודת "Released" מכילה
+# את מועד הדיווח (Before Open / After Close): מדווחת אחרי-הסגירה מגיבה רק במסחר
+# *הבא*, ואם הציטוט האחרון עדיין מיום הדיווח — מסמנים pending במקום להציג
+# מספר שנראה כתגובה ואינו.
+MAX_REACT = 8
+
+
+def yahoo_react(sym):
+    """(chg%, price, תאריך-הציטוט בזמן הבורסה) מ-Yahoo; None בכשל."""
+    url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
+           + urllib.parse.quote(sym) + "?interval=1d&range=5d")
+    req = urllib.request.Request(url, headers={"User-Agent": "nidam-markets-bot"})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        m = json.loads(r.read().decode("utf-8"))["chart"]["result"][0]["meta"]
+    price, prev = m.get("regularMarketPrice"), m.get("chartPreviousClose") or m.get("previousClose")
+    if not price or not prev:
+        return None
+    qd = datetime.fromtimestamp(m.get("regularMarketTime", 0) + (m.get("gmtoffset") or 0), timezone.utc).date().isoformat()
+    return round((price / prev - 1) * 100, 2), round(price, 2), qd
+
+
+def prev_report_day(by_date, today):
+    """יום הדיווח האחרון שקדם להיום (מדלג על ימים בלי דיווחים, עד שבוע אחורה)."""
+    for i in range(1, 8):
+        k = (today - timedelta(days=i)).isoformat()
+        if by_date.get(k):
+            return k
+    return None
+
+
+def reactions(by_date, today, capk):
+    k = prev_report_day(by_date, today)
+    if not k:
+        return None
+    rows = sorted(by_date[k], key=lambda r: rank_key(r, capk))[:MAX_REACT]
+    items = []
+    for r in rows:
+        sym = (r.get("Symbol") or "").strip().upper()
+        rel = (r.get("Released") or "").strip().lower()
+        when = "after" if "after" in rel else "before" if "before" in rel else ""
+        it = {"ticker": sym, "name": (r.get("Name") or "").strip(), "when": when, "chg": None, "pending": False}
+        try:
+            got = yahoo_react(sym)
+            if got:
+                chg, price, qd = got
+                # אחרי-סגירה: התגובה במסחר הבא — אם הציטוט עדיין מיום הדיווח, אין עדיין תגובה
+                if when == "after" and qd <= k:
+                    it["pending"] = True
+                else:
+                    it["chg"], it["price"] = chg, price
+        except Exception as e:
+            print(f"[react skip] {sym}: {e}")
+        items.append(it)
+    d = datetime.strptime(k, "%Y-%m-%d")
+    return {"date": k, "label": f"{d.day}.{d.month}", "items": items}
+
+
 def load_rows():
     """שורות ה-CSV: קודם מ-nidam-reports (המקור שאיציק מעדכן), אחרת עותק מקומי."""
     import io
@@ -258,10 +317,17 @@ def main():
                                   "capB": round(dollars / 1e9, 1)})
     today_big = today_big[:8]
 
+    yesterday = None
+    try:
+        yesterday = reactions(by_date, today, capk)
+    except Exception as e:
+        print(f"[warn] תגובות המדווחות נכשלו: {e}")
+
     payload = {
         "today": key,
         "todayCount": len(today_rows),
         "todayBig": today_big,
+        "yesterday": yesterday,
         "reporting": today_items,
         "more": max(0, len(today_rows) - len(today_items)),
         "upcoming": upcoming,

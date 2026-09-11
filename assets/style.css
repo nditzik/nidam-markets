@@ -1067,3 +1067,74 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
    שמעליו במקום לרחף 38px מתחתיה. */
 .tabs { row-gap: 2px; }
 .tabs .tab[data-tab="world"] { margin-inline: auto; margin-block-start: 2px; }
+
+/* ── ציר הזמן של The Edge Meter (טאב מדדים, 11.9.2026) ─────────────────────
+   צבעי הסדרות עברו את בודק-הפלטה (הפרדה לעיוורי-צבעים, ניגודיות) בשני המצבים;
+   רצועות-המצב משתמשות בצבעי הסטטוס הקיימים (up/warn/down) כשטיפה עדינה. */
+:root { --mt-comb:#0071e3; --mt-tech:#d1580f; --mt-breadth:#7c3aed; --mt-flow:#0f8a6d; --mt-tip:#ffffff; --mt-seg:#f2f2f5; --mt-seg-on:#1d1d1f; --mt-seg-on-text:#ffffff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --mt-comb:#4a90e2; --mt-tech:#d2702a; --mt-breadth:#9468e6; --mt-flow:#25977c; --mt-tip:#232326; --mt-seg:#26262a; --mt-seg-on:#f5f5f7; --mt-seg-on-text:#131417; } }
+:root[data-theme="dark"] { --mt-comb:#4a90e2; --mt-tech:#d2702a; --mt-breadth:#9468e6; --mt-flow:#25977c; --mt-tip:#232326; --mt-seg:#26262a; --mt-seg-on:#f5f5f7; --mt-seg-on-text:#131417; }
+.mt { margin: 0 0 26px; }
+.mt-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.mt-head small { font-weight: 500; font-size: .8rem; color: var(--text-soft); margin-inline-start: 8px; unicode-bidi: isolate; direction: rtl; }
+.mt-seg { display: inline-flex; background: var(--mt-seg); border-radius: 9px; padding: 3px; gap: 2px; }
+.mt-seg button { border: 0; background: transparent; color: var(--text-soft); font: inherit; font-size: .82rem; font-weight: 600; padding: 4px 11px; border-radius: 7px; cursor: pointer; }
+.mt-seg button[aria-pressed="true"] { background: var(--mt-seg-on); color: var(--mt-seg-on-text); }
+.mt-lg { display: flex; gap: 6px 12px; flex-wrap: wrap; align-items: center; margin: 10px 0 12px; font-size: .8rem; }
+.mt-lg .k { color: var(--text-3); }
+.mt-lg button { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--paper-hair); background: transparent; color: var(--text-soft); font: inherit; font-size: .78rem; padding: 3px 10px; border-radius: 999px; cursor: pointer; }
+.mt-lg button[aria-pressed="true"] { color: var(--text); border-color: var(--text-soft); }
+.mt-lg i { display: inline-block; width: 16px; height: 0; border-top: 2px solid var(--c); border-radius: 2px; }
+.mt-lg button:not([aria-pressed="true"]) i { opacity: .35; }
+.mt-seg button:focus-visible, .mt-lg button:focus-visible, .mt-fig:focus-visible { outline: 2px solid var(--mt-comb); outline-offset: 2px; }
+.mt-fig { margin: 0; position: relative; border-top: 1px solid var(--paper-hair); border-bottom: 1px solid var(--paper-hair); padding: 12px 0 6px; }
+.mt-fig svg { display: block; width: 100%; height: auto; direction: ltr; font-family: Heebo, sans-serif; font-variant-numeric: tabular-nums; }
+.mt-fig figcaption { font-size: .74rem; color: var(--text-3); margin-top: 10px; line-height: 1.5; }
+.mt-tip { position: absolute; pointer-events: none; background: var(--mt-tip); box-shadow: 0 6px 24px rgba(16,32,64,.16); border: 1px solid var(--paper-hair); border-radius: 10px; padding: 10px 12px; min-width: 196px; max-width: 280px; font-size: .8rem; direction: rtl; display: none; z-index: 2; }
+.mt-tip .d { color: var(--text-3); font-size: .72rem; margin-bottom: 6px; }
+.mt-tip .big { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.mt-tip .big b { font-size: 1.45rem; font-weight: 700; line-height: 1; }
+.mt-tip .big span { font-weight: 600; }
+.mt-tip .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 2px 0; }
+.mt-tip .row .n { color: var(--text-soft); display: flex; align-items: center; gap: 7px; }
+.mt-tip .row i { width: 14px; height: 0; border-top: 2px solid var(--c); border-radius: 2px; display: inline-block; }
+.mt-tip .row b { font-weight: 600; }
+.mt-tip .sell { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--paper-hair); color: var(--down); font-weight: 600; font-size: .76rem; }
+.mt-tip .hl { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--paper-hair); color: var(--text-soft); font-size: .74rem; line-height: 1.35; }
+.mt-tbl { margin-top: 10px; font-size: .8rem; }
+.mt-tbl summary { cursor: pointer; color: var(--text-soft); }
+.mt-tbl table { border-collapse: collapse; width: 100%; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.mt-tbl th, .mt-tbl td { text-align: right; padding: 5px 8px; border-bottom: 1px solid var(--paper-hair); }
+.mt-tbl th { color: var(--text-3); font-weight: 600; font-size: .72rem; letter-spacing: .06em; }
+.mt-tbl td.n { text-align: left; direction: ltr; }
+
+/* גרף-מיני בשווקים בינלאומיים (11.9.2026) */
+.wm-row { grid-template-columns: 1.5fr 1.25fr 92px auto auto; }
+.wm-spk { color: var(--text-soft); display: flex; align-items: center; }
+.wm-sp { width: 84px; height: 22px; overflow: visible; }
+.wm-sp circle { fill: var(--text-soft); } .wm-sp circle.up { fill: var(--up); } .wm-sp circle.down { fill: var(--down); }
+.wm-closed .wm-spk, .wm-stale .wm-spk { opacity: .5; }
+@media (max-width: 560px) { .wm-row { grid-template-columns: 1fr auto auto; } .wm-spk { display: none; } }
+
+/* איך הגיבו המדווחות של אתמול (בית, עמודת הדיווחים — 11.9.2026) */
+.earn-rx { margin-top: 14px; }
+.earn-rx-row { display: grid; grid-template-columns: 64px 1fr auto; align-items: baseline; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--paper-hair); color: var(--text); text-decoration: none; font-size: .84rem; }
+.earn-rx-row:last-child { border-bottom: 0; }
+.earn-rx-t { font-weight: 700; }
+.earn-rx-w { color: var(--text-3); font-size: .74rem; }
+.earn-rx-row b.up { color: var(--up); } .earn-rx-row b.down { color: var(--down); }
+.earn-rx-wait { color: var(--text-3); font-size: .74rem; }
+
+/* סיכום השבוע (בית, 11.9.2026) */
+.wk { padding: 22px 0; border-bottom: 1px solid var(--paper-hair); }
+.wk-head { display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; margin-bottom: 14px; }
+.wk-stat { font-size: .84rem; color: var(--text-soft); } .wk-stat b { color: var(--text); font-weight: 700; }
+.wk-stat b.up { color: var(--up); } .wk-stat b.down { color: var(--down); }
+.wk-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.wk-day { border-top: 2px solid var(--paper-hair); padding-top: 8px; min-width: 0; }
+.wk-day.sell { border-top-color: var(--down); }
+.wk-dow { font-size: .74rem; color: var(--text-3); }
+.wk-c { font-size: 1.5rem; font-weight: 800; line-height: 1.1; margin-top: 2px; }
+.wk-p { font-size: .82rem; font-weight: 700; margin-top: 2px; } .wk-p.up { color: var(--up); } .wk-p.down { color: var(--down); }
+.wk-h { font-size: .76rem; color: var(--text-soft); line-height: 1.35; margin-top: 6px; }
+@media (max-width: 760px) { .wk-days { grid-template-columns: repeat(2, 1fr); } .wk-h { display: none; } }

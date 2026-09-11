@@ -23,6 +23,74 @@
       "capB": 9163.0
     }
   ],
+  "yesterday": {
+    "date": "2026-09-10",
+    "label": "10.9",
+    "items": [
+      {
+        "ticker": "ADBE",
+        "name": "Adobe Systems Inc",
+        "when": "after",
+        "chg": null,
+        "pending": true
+      },
+      {
+        "ticker": "HLMAF",
+        "name": "Halma Plc",
+        "when": "",
+        "chg": -0.95,
+        "pending": false,
+        "price": 47.74
+      },
+      {
+        "ticker": "DSGX",
+        "name": "Descartes Sys Group",
+        "when": "after",
+        "chg": null,
+        "pending": true
+      },
+      {
+        "ticker": "M",
+        "name": "Macy's Inc",
+        "when": "before",
+        "chg": -8.56,
+        "pending": false,
+        "price": 20.5
+      },
+      {
+        "ticker": "FIZZ",
+        "name": "Natl Beverage Corp",
+        "when": "",
+        "chg": -3.68,
+        "pending": false,
+        "price": 30.91
+      },
+      {
+        "ticker": "RH",
+        "name": "Rh Common Stock",
+        "when": "",
+        "chg": -9.25,
+        "pending": false,
+        "price": 134.02
+      },
+      {
+        "ticker": "UROY",
+        "name": "Uranium Royalty Corp",
+        "when": "",
+        "chg": 4.9,
+        "pending": false,
+        "price": 4.5
+      },
+      {
+        "ticker": "KMTS",
+        "name": "Kestra Medical Technologies Ltd",
+        "when": "",
+        "chg": -8.39,
+        "pending": false,
+        "price": 23.57
+      }
+    ]
+  },
   "reporting": [
     {
       "ticker": "KR",
@@ -303,7 +371,7 @@
     "TRT": "2026-09-18"
   },
   "_meta": {
-    "updatedAt": "11/09/2026 11:01",
+    "updatedAt": "11/09/2026 11:11",
     "source": "earnings.csv"
   }
 }
