@@ -1126,7 +1126,13 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .earn-rx-wait { color: var(--text-3); font-size: .74rem; }
 
 /* סיכום השבוע (בית, 11.9.2026) */
-.wk { padding: 22px 0; border-bottom: 1px solid var(--paper-hair); }
+.wk { padding: 18px 0 22px; margin: 0 0 26px; border-top: 1px solid var(--paper-hair); border-bottom: 1px solid var(--paper-hair); }
+/* הסיכום המילולי של השבוע (נכתב ע"י רוטינת nidam-weekly-narrative בסופ"ש) */
+.wk-nar { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--paper-hair); max-width: 70ch; }
+.wk-lead { font-size: .98rem; line-height: 1.6; margin: 0 0 10px; }
+.wk-line { font-size: .9rem; line-height: 1.55; margin: 0 0 6px; color: var(--text-soft); }
+.wk-line b { color: var(--text); font-weight: 700; margin-inline-end: 6px; }
+.wk-wait { margin: 14px 0 0; font-size: .8rem; color: var(--text-3); }
 .wk-head { display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; margin-bottom: 14px; }
 .wk-stat { font-size: .84rem; color: var(--text-soft); } .wk-stat b { color: var(--text); font-weight: 700; }
 .wk-stat b.up { color: var(--up); } .wk-stat b.down { color: var(--down); }

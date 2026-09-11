@@ -1563,14 +1563,16 @@
       '<a class="np-more" href="#weekcal" onclick="__goTab(\'weekcal\');return false">לוח הדיווחים המלא ←</a>';
   }
 
-  /* סיכום השבוע — כרטיס בבית, מופיע מרגע שסגירת שישי נקלטה ועד יום שני בבוקר */
+  /* סיכום השבוע — בטאב מדדים, מתחת לציר הזמן (הועבר מהבית 11.9.2026 לבקשת איציק):
+     מציג תמיד את השבוע השלם האחרון, ומתחלף כשהבא נבנה. מתחת לאריחים — הסיכום
+     המילולי (`narrative`) שרוטינת nidam-weekly-narrative כותבת בסופ"ש; עד אז הוא חסר. */
+  var WEEKLY = null;
   function renderWeekly(d) {
-    var el = document.getElementById("home-weekly");
+    var el = document.getElementById("weekly-slot");
     if (!el) return;
     var days = (d && d.days) || [], s = (d && d.summary) || {};
     if (!days.length || !d.weekOf) { el.innerHTML = ""; return; }
-    var age = (Date.now() - new Date(d.weekOf + "T23:00:00").getTime()) / 864e5;
-    if (age < -0.5 || age > 3.4) { el.innerHTML = ""; return; }          // שישי בערב → שני בבוקר
+    var nar = d.narrative || null;
     function pct(v) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(2) + "%"; }
     function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
     var w0 = meterWord(s.combStart || 0), w1 = meterWord(s.combEnd || 0);
@@ -1587,7 +1589,15 @@
           '<div class="wk-c" style="color:' + w[1] + '">' + (x.combined != null ? x.combined : "—") + "</div>" +
           '<div class="wk-p num ' + cls(x.chg) + '" dir="ltr">' + pct(x.chg) + "</div>" +
           (x.headline ? '<div class="wk-h">' + esc(x.headline) + "</div>" : "") + "</div>";
-      }).join("") + "</div></section>";
+      }).join("") + "</div>" +
+      (nar ? '<div class="wk-nar">' +
+          (nar.lead ? "<p class=\"wk-lead\">" + esc(nar.lead) + "</p>" : "") +
+          [["חדשות", nar.news], ["דוחות", nar.earnings], ["מאקרו", nar.macro], ["השבוע הבא", nar.lookahead]].map(function (p) {
+            return p[1] ? '<p class="wk-line"><b>' + p[0] + "</b> " + esc(p[1]) + "</p>" : "";
+          }).join("") +
+          '<p class="stamp">סיכום מילולי · נכתב ' + esc(nar.writtenAt || "") + "</p></div>"
+        : '<p class="wk-wait">הסיכום המילולי של השבוע נכתב בסוף השבוע, אחרי שסגירת שישי נקלטת.</p>') +
+      "</section>";
   }
 
   /* ---------- renderers ---------- */
@@ -2002,8 +2012,9 @@
     renderMarketOverview(overview, d, { detail: true });
 
     el.innerHTML = "";
-    el.insertAdjacentHTML("beforeend", meterTimelineHtml());   // ציר הזמן של המד — ראשון (11.9.2026)
+    el.insertAdjacentHTML("beforeend", meterTimelineHtml() + '<div id="weekly-slot"></div>');   // ציר הזמן של המד, ומתחתיו סיכום השבוע (11.9.2026)
     bindMeterTimeline(el); renderMeterTimeline();
+    if (WEEKLY) renderWeekly(WEEKLY);
     el.insertAdjacentHTML("beforeend", head + claudeCardHtml(d) + INDICES_EXPLAINER);   // הניתוח היומי, ואז ההסבר ותמונת המצב
     el.appendChild(overview);
     el.insertAdjacentHTML("beforeend", analysis + sectors + selling + narr);
@@ -2626,7 +2637,7 @@
       // סיכום השבוע (11.9.2026): נבנה ע"י build_weekly.py כשסגירת שישי נקלטת,
       // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
       fetchJSON("data/weekly.json")
-        .then(function (d) { if (!freshD("weekly", d)) return; renderWeekly(d); })
+        .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); })
         .catch(function () {});
       fetchJSON("data/earnings.json")
         .then(function (d) {

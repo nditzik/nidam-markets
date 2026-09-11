@@ -129,6 +129,11 @@ def main():
     if not w:
         print("[skip] אין רשומות לשבוע הזה.")
         return 0
+    # הסיכום המילולי נכתב אחר-כך ע"י רוטינת nidam-weekly-narrative ישירות לתוך
+    # weekly.json — בנייה מחדש של אותו שבוע (למשל --force) לא תמחק אותו
+    prev_w = load(OUT) or {}
+    if prev_w.get("weekOf") == w["weekOf"] and prev_w.get("narrative"):
+        w["narrative"] = prev_w["narrative"]
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(w, f, ensure_ascii=False, indent=1)
     print(f"[done] סיכום השבוע {w['label']} נכתב · S&P {w['summary']['spxPct']}% · מד {w['summary']['combStart']}→{w['summary']['combEnd']}")
