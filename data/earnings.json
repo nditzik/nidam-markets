@@ -18,13 +18,21 @@
             "ticker": "ADBE",
             "name": "Adobe Systems Inc",
             "when": "after",
-            "status": "pending"
+            "status": "live",
+            "chg": -0.91,
+            "price": 246.57,
+            "reactDate": "2026-09-11",
+            "baseDate": "2026-09-10"
           },
           {
             "ticker": "DSGX",
             "name": "Descartes Sys Group",
             "when": "after",
-            "status": "pending"
+            "status": "live",
+            "chg": 4.32,
+            "price": 74.4,
+            "reactDate": "2026-09-11",
+            "baseDate": "2026-09-10"
           },
           {
             "ticker": "M",
@@ -487,7 +495,7 @@
     "TRT": "2026-09-18"
   },
   "_meta": {
-    "updatedAt": "11/09/2026 16:16",
+    "updatedAt": "11/09/2026 16:31",
     "source": "earnings.csv"
   }
 }
