@@ -1577,7 +1577,7 @@
     function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
     var w0 = meterWord(s.combStart || 0), w1 = meterWord(s.combEnd || 0);
     el.innerHTML =
-      '<section class="wk"><div class="wk-head"><span class="np-k">🗓 סיכום השבוע · ' + esc(d.label || "") + "</span>" +
+      '<section class="wk"><div class="wk-head"><span class="wk-ttl"><span class="np-k">🗓 סיכום השבוע שעבר</span><b class="wk-when num" dir="ltr">' + esc(d.label || "") + "</b></span>" +   // "שעבר" + תאריכים מובלטים (11.9.2026, בקשת איציק: שיהיה ברור שזה לא השבוע הנוכחי)
         '<span class="wk-stat">S&amp;P 500 <b class="num ' + cls(s.spxPct) + '" dir="ltr">' + pct(s.spxPct) + "</b></span>" +
         '<span class="wk-stat">מד השוק <b class="num" dir="ltr">' + (s.combStart != null ? s.combStart : "—") + " → " + (s.combEnd != null ? s.combEnd : "—") + "</b>" +
           ' <span style="color:' + w1[1] + '">' + w1[0] + "</span></span>" +

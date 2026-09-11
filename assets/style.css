@@ -1134,6 +1134,8 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .wk-line b { color: var(--text); font-weight: 700; margin-inline-end: 6px; }
 .wk-wait { margin: 14px 0 0; font-size: .8rem; color: var(--text-3); }
 .wk-head { display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; margin-bottom: 14px; }
+.wk-ttl { display: inline-flex; align-items: baseline; gap: 10px; }
+.wk-when { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -.01em; padding: 1px 8px; border-radius: 6px; background: var(--surface-2); }
 .wk-stat { font-size: .84rem; color: var(--text-soft); } .wk-stat b { color: var(--text); font-weight: 700; }
 .wk-stat b.up { color: var(--up); } .wk-stat b.down { color: var(--down); }
 .wk-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
