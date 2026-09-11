@@ -36,16 +36,6 @@
             "status": "pending"
           },
           {
-            "ticker": "HLMAF",
-            "name": "Halma Plc",
-            "when": "",
-            "status": "final",
-            "chg": -2.12,
-            "price": 47.74,
-            "reactDate": "2026-09-10",
-            "baseDate": "2026-09-09"
-          },
-          {
             "ticker": "DSGX",
             "name": "Descartes Sys Group",
             "when": "after",
@@ -62,22 +52,32 @@
             "baseDate": "2026-09-09"
           },
           {
-            "ticker": "FIZZ",
-            "name": "Natl Beverage Corp",
-            "when": "",
+            "ticker": "CAL",
+            "name": "Caleres Inc",
+            "when": "before",
             "status": "final",
-            "chg": 1.21,
-            "price": 30.91,
+            "chg": -2.22,
+            "price": 11.88,
             "reactDate": "2026-09-10",
             "baseDate": "2026-09-09"
           },
           {
-            "ticker": "RH",
-            "name": "Rh Common Stock",
-            "when": "",
+            "ticker": "DBI",
+            "name": "Designer Brands Inc",
+            "when": "before",
             "status": "final",
-            "chg": -3.84,
-            "price": 134.02,
+            "chg": 14.75,
+            "price": 5.99,
+            "reactDate": "2026-09-10",
+            "baseDate": "2026-09-09"
+          },
+          {
+            "ticker": "FLWS",
+            "name": "1-800-Flowers.com",
+            "when": "before",
+            "status": "final",
+            "chg": -12.89,
+            "price": 3.04,
             "reactDate": "2026-09-10",
             "baseDate": "2026-09-09"
           }
@@ -87,16 +87,6 @@
         "date": "2026-09-09",
         "label": "9.9",
         "items": [
-          {
-            "ticker": "IDEXY",
-            "name": "Industria Dsno ADR",
-            "when": "",
-            "status": "final",
-            "chg": -2.82,
-            "price": 15.83,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
           {
             "ticker": "SUNB",
             "name": "Sunbelt Rentals Holdings Inc",
@@ -146,6 +136,16 @@
             "price": 102.48,
             "reactDate": "2026-09-09",
             "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "WLTH",
+            "name": "Wealthfront Corp",
+            "when": "after",
+            "status": "final",
+            "chg": 15.01,
+            "price": 10.88,
+            "reactDate": "2026-09-10",
+            "baseDate": "2026-09-09"
           }
         ]
       },
@@ -153,16 +153,6 @@
         "date": "2026-09-08",
         "label": "8.9",
         "items": [
-          {
-            "ticker": "ORCL",
-            "name": "Oracle Corp",
-            "when": "",
-            "status": "final",
-            "chg": 2.36,
-            "price": 162.52,
-            "reactDate": "2026-09-08",
-            "baseDate": "2026-09-04"
-          },
           {
             "ticker": "CASY",
             "name": "Casey's General Stor",
@@ -184,32 +174,42 @@
             "baseDate": "2026-09-08"
           },
           {
-            "ticker": "CNM",
-            "name": "Core & Main Inc Cl A",
-            "when": "",
+            "ticker": "BRZE",
+            "name": "Braze Inc Cl A",
+            "when": "after",
             "status": "final",
-            "chg": -0.59,
-            "price": 44.06,
+            "chg": -21.73,
+            "price": 23.73,
+            "reactDate": "2026-09-09",
+            "baseDate": "2026-09-08"
+          },
+          {
+            "ticker": "UNFI",
+            "name": "United Nat Foods",
+            "when": "before",
+            "status": "final",
+            "chg": 2.28,
+            "price": 44.93,
             "reactDate": "2026-09-08",
             "baseDate": "2026-09-04"
           },
           {
-            "ticker": "GME",
-            "name": "Gamestop Corp",
-            "when": "",
+            "ticker": "LITB",
+            "name": "Lightinthebox Holding Ltd ADR",
+            "when": "before",
             "status": "final",
-            "chg": -1.41,
-            "price": 18.89,
+            "chg": -2.17,
+            "price": 3.15,
             "reactDate": "2026-09-08",
             "baseDate": "2026-09-04"
           },
           {
-            "ticker": "AVAV",
-            "name": "Aerovironment Inc",
-            "when": "",
+            "ticker": "GMHS",
+            "name": "Gamehaus Holdings Inc Cl A",
+            "when": "before",
             "status": "final",
-            "chg": 2.86,
-            "price": 148.78,
+            "chg": -1.6,
+            "price": 0.8,
             "reactDate": "2026-09-08",
             "baseDate": "2026-09-04"
           }
@@ -497,7 +497,7 @@
     "TRT": "2026-09-18"
   },
   "_meta": {
-    "updatedAt": "11/09/2026 12:29",
+    "updatedAt": "11/09/2026 12:34",
     "source": "earnings.csv"
   }
 }

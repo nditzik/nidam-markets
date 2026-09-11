@@ -216,12 +216,16 @@ def past_report_days(by_date, today):
 def reactions(by_date, today, capk):
     days = []
     for k in past_report_days(by_date, today):
-        rows = sorted(by_date[k], key=lambda r: rank_key(r, capk))[:REACT_PER_DAY]
+        # רק מדווחות עם מועד דיווח ידוע (Before Open / After Close) — בלי מועד אי-אפשר
+        # לדעת איזה יום הוא יום התגובה, ואיציק ביקש (11.9) לדלג עליהן במקום לנחש
+        def _when(r):
+            rel = (r.get("Released") or "").strip().lower()
+            return "after" if "after" in rel else "before" if "before" in rel else ""
+        rows = [r for r in sorted(by_date[k], key=lambda r: rank_key(r, capk)) if _when(r)][:REACT_PER_DAY]
         items = []
         for r in rows:
             sym = (r.get("Symbol") or "").strip().upper()
-            rel = (r.get("Released") or "").strip().lower()
-            when = "after" if "after" in rel else "before" if "before" in rel else ""
+            when = _when(r)
             it = {"ticker": sym, "name": (r.get("Name") or "").strip(), "when": when, "status": "na"}
             try:
                 got = yahoo_bars(sym)
@@ -230,6 +234,8 @@ def reactions(by_date, today, capk):
             except Exception as e:
                 print(f"[react skip] {sym}: {e}")
             items.append(it)
+        if not items:
+            continue
         d = datetime.strptime(k, "%Y-%m-%d")
         days.append({"date": k, "label": f"{d.day}.{d.month}", "items": items})
     return {"days": days} if days else None

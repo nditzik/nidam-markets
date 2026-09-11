@@ -2301,7 +2301,7 @@
     var rows = [];
     days.forEach(function (day) {
       (day.items || []).forEach(function (r, i) {
-        var when = r.when === "after" ? "אחרי הסגירה" : r.when === "before" ? "לפני הפתיחה" : '<span class="rx-unk">לא צוין</span>';
+        var when = r.when === "after" ? "אחרי הסגירה" : "לפני הפתיחה";   // בלי מועד ידוע — fetch_earnings מדלג על החברה
         var val, note;
         if (r.status === "final" || r.status === "live") {
           val = '<b class="num ' + (r.chg > 0 ? "up" : r.chg < 0 ? "down" : "") + (r.status === "live" ? " rx-live" : "") + '" dir="ltr">' + (r.chg > 0 ? "+" : "") + r.chg.toFixed(1) + "%</b>";
