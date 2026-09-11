@@ -6,21 +6,6 @@
       "ticker": "KR",
       "name": "Kroger Company",
       "capB": 35.5
-    },
-    {
-      "ticker": "JVA",
-      "name": "Coffee Holding Company",
-      "capB": 20151.0
-    },
-    {
-      "ticker": "IHT",
-      "name": "Innsuites Hospitality Trust",
-      "capB": 14198.0
-    },
-    {
-      "ticker": "TPET",
-      "name": "Trio Petroleum Corp",
-      "capB": 9163.0
     }
   ],
   "reactions": {
@@ -221,26 +206,31 @@
     {
       "ticker": "KR",
       "name": "Kroger Company",
+      "when": "before",
       "logo": "data/earnings/logos/KR.png"
     },
     {
       "ticker": "JVA",
       "name": "Coffee Holding Company",
+      "when": "",
       "logo": "data/earnings/logos/JVA.png"
     },
     {
       "ticker": "IHT",
       "name": "Innsuites Hospitality Trust",
+      "when": "",
       "logo": "data/earnings/logos/IHT.png"
     },
     {
       "ticker": "TPET",
       "name": "Trio Petroleum Corp",
+      "when": "",
       "logo": "data/earnings/logos/TPET.png"
     },
     {
       "ticker": "CGAC",
       "name": "Code Green Apparel Corp",
+      "when": "",
       "logo": "data/earnings/logos/CGAC.png"
     }
   ],
@@ -497,7 +487,7 @@
     "TRT": "2026-09-18"
   },
   "_meta": {
-    "updatedAt": "11/09/2026 12:46",
+    "updatedAt": "11/09/2026 13:00",
     "source": "earnings.csv"
   }
 }

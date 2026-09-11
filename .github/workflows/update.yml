@@ -35,6 +35,10 @@ on:
         description: "שלח התראת WATCH-ALERT לדוגמה — לצ'אט הפרטי, לא לערוץ"
         type: boolean
         default: false
+      test_channel:
+        description: "שלח לערוץ הודעת תוכן לדוגמה (עוקף שערים): preopen / close / macro / analysis. ריק = דילוג"
+        type: string
+        default: ""
       broadcast_image:
         description: "שליחת תמונה חד-פעמית לערוץ: נתיב יחסי לריפו (חייב להיות כבר ב-commit). ריק = דילוג"
         type: string
@@ -249,6 +253,24 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
         run: python scripts/notify_alerts.py
+        continue-on-error: true
+
+      # --- הודעות תוכן לערוץ (11.9.2026): 5 דקות לפתיחה (16:05–16:29) · סיכום סגירה
+      #     (23:05+) · נתון מאקרו כשמתפרסם 'בפועל' · הניתוח היומי כשה-date מתחלף.
+      #     state: data/_channel_state.json. ראו docstring של notify_channel.py. ---
+      - name: Channel posts to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/notify_channel.py
+        continue-on-error: true
+
+      - name: Channel post test
+        if: ${{ inputs.test_channel != '' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: python scripts/notify_channel.py --test "${{ inputs.test_channel }}"
         continue-on-error: true
 
       # --- תקציר בוקר לערוץ (נשלח רק כשמדדים+מומנטום+מועמדים+תדרוך בוקר עודכנו היום) ---

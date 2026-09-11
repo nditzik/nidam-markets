@@ -133,6 +133,8 @@ def fetch_logo(ticker):
 def row_to_item(r, with_logo=False):
     sym = (r.get("Symbol") or "").strip().upper()
     item = {"ticker": sym, "name": (r.get("Name") or "").strip()}
+    rel = (r.get("Released") or "").strip().lower()          # מועד הדיווח (11.9.2026): before/after/""
+    item["when"] = "after" if "after" in rel else "before" if "before" in rel else ""
     if with_logo and sym:
         logo = fetch_logo(sym)
         if logo:
@@ -352,7 +354,10 @@ def main():
             c = parse_cap(r.get(capk))
             if c is None:
                 continue
-            dollars = c if c > 1e8 else c * 1e6    # ערך גולמי בדולרים או במיליונים
+            raw = str(r.get(capk) or "").strip().upper()
+            # מספר גולמי (בלי סיומת T/B/M) הוא דולרים; עם סיומת parse_cap מחזיר מיליונים.
+            # (תוקן 11.9.2026: הסף הישן c>1e8 הפך שווי של $20M ל-$20T — JVA/IHT "ענקיות")
+            dollars = c if raw.replace(",", "").replace("$", "").replace(".", "").isdigit() else c * 1e6
             if dollars >= 20e9:
                 today_big.append({"ticker": (r.get("Symbol") or "").strip().upper(),
                                   "name": (r.get("Name") or "").strip(),
