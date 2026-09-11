@@ -1,6 +1,6 @@
 # רוטינה: nidam-weekly-narrative — הסיכום המילולי של השבוע
 
-**ליצירה ידנית ב-claude.ai/code/routines** (יצירה אוטומטית נחסמה כי הפרומפט מכיל את מפתח ה-push).
+**סטטוס 11.9.2026:** הרוטינה נוצרה (`trig_016VP2ucQCPd2y4e2jbkSUyT`) אך **מושבתת**, ובפרומפט שלה עדיין `<PUSH-COMMAND>` — היצירה עם המפתח נחסמה. נדרש: לפתוח את הרוטינה ב-claude.ai/code/routines, להחליף את `<PUSH-COMMAND>` בשורת ה-push מ-`nidam-daily-market-analysis`, ולהפעיל.
 הגדרות — זהות לרוטינות הקיימות: סביבה `env_01HuUSRgi26Njgf7bJ391qw9`, מודל `claude-sonnet-5`,
 ריפו `https://github.com/nditzik/nidam-markets`, כלים Bash/Read/Write/Edit/Glob/Grep.
 
