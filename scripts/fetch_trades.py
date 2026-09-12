@@ -42,6 +42,62 @@ def date_of(name):
     return None
 
 
+# ── המניות שבדוח (12.9.2026): לטאב מומנטום, קטגוריית "עסקאות" ─────────────────
+# כל דוח Four Pillars מכיל טבלאות עם עמודת "מניה"/"סימול"; הכותרת (h2/h3) שמעל
+# כל טבלה היא הקטגוריה בדוח (רכבות דוהרות / קפיצים נדרכים / עופות החול; בפורמט
+# הישן: מומנטום גבוה / מועמדות לפריצה / עוף החול). נשמר לכל מניה: קטגוריה,
+# "מה עושים"/"סטטוס" ו"בשתי מילים"/"הערה" — כדי שהמקור יהיה ברור בטאב מומנטום.
+TAG_RE = re.compile(r"<[^>]+>")
+HEAD_RE = re.compile(r"<h[23][^>]*>(.*?)</h[23]>|<table.*?</table>", re.IGNORECASE | re.DOTALL)
+TICKER_COLS = ("מניה", "סימול", "symbol", "ticker")
+ACTION_COLS = ("מה עושים", "סטטוס")
+NOTE_COLS = ("בשתי מילים", "הערה")
+CAT_MAP = [("דוהר", "רכבות דוהרות"), ("מומנטום", "רכבות דוהרות"), ("קפיצ", "קפיצים נדרכים"),
+           ("פריצה", "קפיצים נדרכים"), ("עוף", "עוף החול"), ("עופות", "עוף החול"), ("watchlist", "Watchlist")]
+
+
+def _txt(h):
+    return re.sub(r"\s+", " ", TAG_RE.sub(" ", h)).strip()
+
+
+def _cat(heading):
+    low = heading.lower()
+    for k, v in CAT_MAP:
+        if k in low:
+            return v
+    return heading[:40]
+
+
+def extract_picks(html):
+    picks, heading = [], ""
+    for m in HEAD_RE.finditer(html):
+        if m.group(1) is not None:
+            heading = _txt(m.group(1))
+            continue
+        table = m.group(0)
+        ths = [_txt(x) for x in re.findall(r"<th[^>]*>(.*?)</th>", table, flags=re.DOTALL)]
+        if not ths:
+            continue
+        low = [t.lower() for t in ths]
+        ti = next((i for i, t in enumerate(low) if t in TICKER_COLS), None)
+        if ti is None:
+            continue
+        ai = next((i for i, t in enumerate(ths) if t in ACTION_COLS), None)
+        ni = next((i for i, t in enumerate(ths) if t in NOTE_COLS), None)
+        cat = _cat(heading)
+        for row in re.findall(r"<tr[^>]*>(.*?)</tr>", table, flags=re.DOTALL):
+            tds = [_txt(c) for c in re.findall(r"<td[^>]*>(.*?)</td>", row, flags=re.DOTALL)]
+            if len(tds) <= ti:
+                continue
+            sym = tds[ti].strip().upper()
+            if not re.fullmatch(r"[A-Z]{1,5}(\.[A-Z])?", sym):
+                continue
+            picks.append({"ticker": sym, "cat": cat,
+                          "action": tds[ai] if ai is not None and ai < len(tds) else "",
+                          "note": (tds[ni] if ni is not None and ni < len(tds) else "")[:120]})
+    return picks
+
+
 def israel_stamp():
     now = datetime.now(timezone.utc)
     off = 3 if 4 <= now.month <= 10 else 2
@@ -96,8 +152,9 @@ def main():
         if not title or not re.search(r"[֐-׿]", title):
             d = iso.split("-")
             title = title or ("דוח סריקה · %d.%d.%s" % (int(d[2]), int(d[1]), d[0]))
-        reports.append({"file": "data/trades/" + stored, "date": iso, "title": title})
-        print(f"[ok] {iso} — {title[:50]}")
+        picks = extract_picks(content)
+        reports.append({"file": "data/trades/" + stored, "date": iso, "title": title, "picks": picks})
+        print(f"[ok] {iso} — {title[:50]} · {len(picks)} מניות")
 
     reports.sort(key=lambda r: r["date"], reverse=True)
     reports = reports[:MAX_KEEP]
