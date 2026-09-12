@@ -12,7 +12,11 @@
             "ticker": "KR",
             "name": "Kroger Company",
             "when": "before",
-            "status": "pending"
+            "status": "final",
+            "chg": 2.7,
+            "price": 58.49,
+            "reactDate": "2026-09-11",
+            "baseDate": "2026-09-10"
           }
         ]
       },
@@ -24,13 +28,21 @@
             "ticker": "ADBE",
             "name": "Adobe Systems Inc",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": 1.37,
+            "price": 252.23,
+            "reactDate": "2026-09-11",
+            "baseDate": "2026-09-10"
           },
           {
             "ticker": "DSGX",
             "name": "Descartes Sys Group",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": 6.62,
+            "price": 76.04,
+            "reactDate": "2026-09-11",
+            "baseDate": "2026-09-10"
           },
           {
             "ticker": "M",
@@ -448,7 +460,7 @@
     "TRT": "2026-09-18"
   },
   "_meta": {
-    "updatedAt": "12/09/2026 04:45",
+    "updatedAt": "12/09/2026 05:01",
     "source": "earnings.csv"
   }
 }
