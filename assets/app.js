@@ -2109,28 +2109,13 @@
     return '<span class="num ' + cls + '">' + (v > 0 ? "+" : "") + Number(v).toFixed(2) + "%</span>";
   }
 
-  /* המניות מדוחות הטריידים האחרונים (עד 14 יום), מאוחדות לפי טיקר; כל מקור נשמר */
-  function tradePicks() {
-    var reps = (TRAD && TRAD.reports) || [];
-    if (!reps.length) return [];
-    var newest = reps[0].date, cutoff = new Date(newest); cutoff.setDate(cutoff.getDate() - 14);
-    var out = {}, order = [];
-    reps.forEach(function (rp) {
-      if (new Date(rp.date) < cutoff) return;
-      (rp.picks || []).forEach(function (pk) {
-        var o = out[pk.ticker];
-        if (!o) { o = out[pk.ticker] = { ticker: pk.ticker, cat: pk.cat, action: pk.action, note: pk.note, sources: [] }; order.push(pk.ticker); }
-        if (o.sources.length < 4 && !o.sources.some(function (x) { return x.date === rp.date; })) o.sources.push({ date: rp.date, title: rp.title, file: rp.file });
-      });
-    });
-    return order.map(function (k) { return out[k]; });
-  }
   function renderMomentum(el, d) {
     if (!d || !d.stocks || !d.stocks.length) {
       emptyPanel(el, "🚀", "מומנטום — בקרוב", "");
       return;
     }
-    var base = d.stocks.filter(function (x) { return x.symbol && !/\s/.test(x.symbol) && passesBase(x); });   // שורת "Downloaded from Barchart" בקובץ אינה מניה
+    var pool = d.stocks.filter(function (x) { return x.symbol && !/\s/.test(x.symbol) && passesBase(x); });   // שורת "Downloaded from Barchart" בקובץ אינה מניה
+    var base = pool.filter(function (x) { return x.signal_count >= 2; });   // הקטגוריות הקיימות — 2+ סיגנלים; המועמדות — גם סיגנל אחד
     var byAlpha = function (a, b) { return (b.wtd_alpha || 0) - (a.wtd_alpha || 0); };
     var cats = [
       { key: "s4", emoji: "🔥", title: "4 סיגנלים", rows: base.filter(function (x) { return x.signal_count >= 4; }).sort(byAlpha) },
@@ -2139,9 +2124,11 @@
       { key: "dip", emoji: "📉", title: "כניסת דיפ", rows: base.filter(isDipEntry).sort(byAlpha) },
       { key: "brk", emoji: "🚀", title: "כניסת פריצה", rows: base.filter(isBreakoutEntry).sort(byAlpha) },
       { key: "rev", emoji: "🔄", title: "מניות בהיפוך", rows: base.filter(isReversalEntry).sort(byAlpha) },
-      // "עסקאות" (12.9.2026, בקשת איציק): המניות מדוחות "הצעות לטרייד" האחרונים, עם ציון
-      // הדוח שממנו כל מניה הגיעה. הנתונים ב-trades.json (picks לכל דוח, מ-fetch_trades.py).
-      { key: "trd", emoji: "💼", title: "עסקאות", rows: tradePicks(), trades: true }
+      // "מועמדים" (12.9.2026, בקשת איציק): כמו "מועמדות לטרייד" בדשבורד המומנטום —
+      // Readiness ≥ 50 (מחושב ב-fetch_momentum.py, פורט של calcReadiness), עם ציון
+      // קבצי ה-CSV שמהם כל מניה הגיעה (d._meta.files).
+      { key: "cand", emoji: "🎯", title: "מועמדים", cand: true,
+        rows: pool.filter(function (x) { return (x.readiness || 0) >= 50; }).sort(function (a, b) { return (b.readiness - a.readiness) || ((b.wtd_alpha || 0) - (a.wtd_alpha || 0)); }).slice(0, 12) }   // 12 המובילות — כמו בדשבורד
     ];
     var firstNon = 0;
     for (var i = 0; i < cats.length; i++) { if (cats[i].rows.length) { firstNon = i; break; } }
@@ -2154,24 +2141,34 @@
     var panels = cats.map(function (c, i) {
       var body;
       if (!c.rows.length) {
-        body = '<div class="panel-empty" style="padding:34px">' + (c.trades ? "אין דוחות טריידים עם מניות בשבועיים האחרונים." : "אין מניות בקטגוריה זו היום.") + "</div>";
-      } else if (c.trades) {
-        var bySym = {}; d.stocks.forEach(function (x) { if (x.symbol) bySym[x.symbol] = x; });
-        var trows = c.rows.map(function (r) {
-          var m = bySym[r.ticker];
-          var src = r.sources.map(function (sr) {
-            return '<a class="trd-src" href="' + esc(sr.file) + '" target="_blank" rel="noopener" title="' + esc(sr.title) + '"><span dir="ltr">' + esc(fmtTradeDate(sr.date)) + "</span></a>";
-          }).join(" ");
+        body = '<div class="panel-empty" style="padding:34px">אין מניות בקטגוריה זו היום.</div>';
+      } else if (c.cand) {
+        var files = (d._meta && d._meta.files) || {};
+        function srcChips(sigs) {
+          return (sigs || []).map(function (k) {
+            var fn = files[k] || "";
+            return '<span class="src-chip" title="' + esc(fn || SIG_LABEL[k] || k) + '">' + esc(SIG_LABEL[k] || k) + (fn ? ' <span class="src-file" dir="ltr">' + esc(fn.replace(/\.csv$/, "")) + "</span>" : "") + "</span>";
+          }).join("");
+        }
+        var crows = c.rows.map(function (r) {
+          var rd = r.readiness || 0, ma50 = +r.ma50 || 0, px = +r.price || 0;
+          var dist = (ma50 > 0 && px > 0) ? (px - ma50) / ma50 * 100 : null;
           return "<tr>" +
-            "<td>" + tvLink(r.ticker) + erBadge(r.ticker) + "</td>" +
-            '<td class="trd-cat">' + esc(r.cat) + "</td>" +
-            '<td class="trd-act">' + esc(r.action || "") + "</td>" +
-            '<td class="mom-name trd-note">' + esc(r.note || "") + "</td>" +
-            '<td class="trd-srcs">' + src + "</td>" +
-            '<td class="num">' + (m ? '<span class="sig-badge" title="בסורק המומנטום היום">' + m.signal_count + " סיגנלים</span>" : '<span class="stamp" style="margin:0">—</span>') + "</td></tr>";
+            '<td class="num"><span class="rdy ' + (rd >= 70 ? "rdy-hi" : "rdy-mid") + '" title="Readiness ' + rd + ' מתוך 90 (בלי רכיב ההיסטוריה של הדשבורד)">' + (rd >= 70 ? "🟢" : "🟡") + " " + rd + "</span></td>" +
+            "<td>" + tvLink(r.symbol) + erBadge(r.symbol) + "</td>" +
+            '<td class="mom-name">' + esc(r.name) + "</td>" +
+            '<td class="num">' + fmt(r.price) + "</td>" +
+            "<td>" + pct(r.change_pct) + "</td>" +
+            '<td class="num">' + fmt(r.rel_str, 0) + "</td>" +
+            '<td class="num">' + fmt(r.stoch, 0) + "</td>" +
+            '<td class="num">' + fmt(r.rvol) + "</td>" +
+            '<td class="num">' + (dist == null ? "—" : '<span dir="ltr">' + (dist >= 0 ? "+" : "") + dist.toFixed(1) + "%</span>") + "</td>" +
+            '<td class="sig-cell src-cell">' + srcChips(r.signals) + "</td></tr>";
         }).join("");
-        body = '<p class="stamp" style="margin:0 0 8px">המניות מדוחות "הצעות לטרייד" של השבועיים האחרונים · המקור = תאריך הדוח (לחיצה פותחת אותו) · העמודה האחרונה: האם המניה מופיעה גם בסורק המומנטום היום</p>' +
-          '<div class="table-wrap"><table><thead><tr><th>סימבול</th><th>קטגוריה בדוח</th><th>מה עושים</th><th>בשתי מילים</th><th>מקור</th><th class="num">מומנטום</th></tr></thead><tbody>' + trows + "</tbody></table></div>";
+        body = '<p class="stamp" style="margin:0 0 8px">כמו "מועמדות לטרייד" בדשבורד המומנטום: 12 המובילות עם Readiness ≥ 50 (RSI/Stoch בריאים, קרבה ל-MA50, נפח יחסי, סיגנלים, נר ירוק) · 🟢 70+ מוכנה · 🟡 50–69 מתקרבת · העמודה האחרונה: הסורקים (קבצי Barchart) שמהם המניה הגיעה</p>' +
+          '<div class="table-wrap"><table><thead><tr>' +
+          '<th class="num">Readiness</th><th>סימבול</th><th>שם</th><th class="num">מחיר</th><th class="num">שינוי</th><th class="num">RSI</th><th class="num">Stoch</th><th class="num">RVOL</th><th class="num">מ-MA50</th><th>מקור (קבצים)</th>' +
+          "</tr></thead><tbody>" + crows + "</tbody></table></div>";
       } else {
         var rows = c.rows.map(function (r) {
           var sigs = (r.signals || []).map(function (s) {
@@ -2577,7 +2574,6 @@
   var TRAD = null;
   function renderTrades(el, d) {
     TRAD = d;
-    if (MOMD) renderMomentum(document.getElementById("panel-momentum"), MOMD);   // קטגוריית "עסקאות" בטאב מומנטום נשענת על הדוחות
     var reps = (d && d.reports) || [];
     if (!reps.length) {
       emptyPanel(el, "💡", "הצעות לטרייד — בקרוב", "הדוח הראשון בדרך.");

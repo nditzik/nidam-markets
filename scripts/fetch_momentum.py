@@ -109,6 +109,34 @@ def row_fields(r):
     }
 
 
+# ── Readiness 0–100 (12.9.2026) — פורט מדויק של calcReadiness() מדשבורד המומנטום
+# (momentum_dashboard.html בריפו stocks-momentum), שם קטגוריית "מועמדות לטרייד" =
+# מניות שעברו את פילטר הבסיס עם Readiness ≥ 50. רכיב אחד לא ניתן לשחזור כאן:
+# "מגמת היסטוריה" (עד 10 נק') שמחושב שם מ-localStorage של הדפדפן — לכן הציון
+# אצלנו הוא מתוך 90, ומועמדת שאצלם 50–59 בזכות ההיסטוריה עשויה להיעדר אצלנו.
+def readiness(s):
+    def f(k):
+        try:
+            return float(s.get(k) or 0)
+        except (TypeError, ValueError):
+            return 0.0
+    rsi, stoch, price, ma50, rvol, chg = f("rel_str"), f("stoch"), f("price"), f("ma50"), f("rvol"), f("change_pct")
+    sc = len(s.get("signals") or [])
+    r = 0
+    if rsi > 0 and stoch > 0:
+        if rsi < 60 and stoch < 65:
+            r += 25
+        elif rsi < 65 or stoch < 72:
+            r += 12
+    if price > 0 and ma50 > 0 and price >= ma50:
+        dist = (price - ma50) / ma50 * 100
+        r += 20 if dist <= 8 else 10 if dist <= 15 else 0
+    r += 15 if rvol >= 2.0 else 10 if rvol >= 1.5 else 5 if rvol >= 1.0 else 0
+    r += 15 if sc >= 3 else 8 if sc == 2 else 4 if sc == 1 else 0
+    r += 15 if chg > 1.5 else 8 if chg > 0 else 0
+    return max(0, min(100, r))
+
+
 def main():
     files = list_remote()
     remote_ok = files is not None
@@ -123,10 +151,12 @@ def main():
         return 1
 
     merged = {}  # symbol -> fields + signals[]
+    src_files = {}   # מפתח סיגנל → שם קובץ ה-CSV (המקור, לתצוגה בטאב מומנטום)
     for prefix, key in SCANNERS:
         fname = latest_for(prefix, files)
         if not fname:
             continue
+        src_files[key] = fname
         text = load_text(fname, remote_ok, local_dir)
         if not text:
             continue
@@ -142,11 +172,21 @@ def main():
                 merged[sym]["signals"].append(key)
         print(f"[ok] {key}: {fname}")
 
-    # רק 2+ סיגנלים (כל הקטגוריות דורשות זאת) — מקטין מאוד את הקובץ
+    # 2+ סיגנלים (כל הקטגוריות דורשות זאת) — וגם מניות עם סיגנל אחד שהן "מועמדות"
+    # (Readiness ≥ 50, כמו בדשבורד שסורק את כל המניות) — אחרת הקטגוריה תחסר אותן
     stocks = []
     for s in merged.values():
         s["signal_count"] = len(s["signals"])
-        if s["signal_count"] >= 2:
+        s["readiness"] = readiness(s)
+        # מניית סיגנל-אחד נשמרת רק אם היא מועמדת *וגם* עוברת את פילטר הבסיס של הדשבורד
+        # (נפח 750K+, מחיר, אלפא חיובית, MA20, RSI) — אחרת הקובץ מתנפח פי 3 בלי תועלת
+        def _f(k):
+            try:
+                return float(s.get(k) or 0)
+            except (TypeError, ValueError):
+                return 0.0
+        base_ok = _f("vol") >= 750000 and _f("price") > 0 and _f("wtd_alpha") > 0 and _f("ma20") > 0 and _f("rel_str") > 0
+        if s["signal_count"] >= 2 or (s["readiness"] >= 50 and base_ok):
             stocks.append(s)
     stocks.sort(key=lambda s: (s["signal_count"], s.get("wtd_alpha") or 0), reverse=True)
 
@@ -160,11 +200,11 @@ def main():
     off = 3 if 4 <= now.month <= 10 else 2
     stamp = (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
     payload = {"stocks": stocks, "count": len(stocks),
-               "_meta": {"updatedAt": stamp, "source": "stocks-momentum"}}
+               "_meta": {"updatedAt": stamp, "source": "stocks-momentum", "files": src_files}}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
-    print(f"[done] נכתב {OUT} ({len(stocks)} מניות 2+ סיגנלים)")
+    print(f"[done] נכתב {OUT} ({len(stocks)} מניות: 2+ סיגנלים או Readiness≥50)")
     return 0
 
 

@@ -1195,10 +1195,9 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 @media (prefers-reduced-motion: reduce) { .wmp-ring { animation: none; opacity: .5; } }
 .wc-flash { box-shadow: 0 0 0 2px var(--accent), var(--card-shadow); transition: box-shadow .3s; }
 
-/* ---- מומנטום → קטגוריית "עסקאות" (12.9.2026) ---- */
-.trd-cat { white-space: nowrap; font-weight: 600; color: var(--text-soft); }
-.trd-act { white-space: nowrap; }
-.trd-note { max-width: 34ch; }
-.trd-srcs { white-space: nowrap; }
-.trd-src { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--surface-3); color: var(--accent); font-size: .76rem; font-weight: 600; text-decoration: none; margin-inline-end: 4px; }
-.trd-src:hover { background: var(--accent-soft, var(--surface-3)); }
+/* ---- מומנטום → קטגוריית "מועמדים" (12.9.2026) ---- */
+.rdy { font-weight: 800; white-space: nowrap; }
+.rdy-hi { color: var(--up); } .rdy-mid { color: #b8860b; }
+.src-cell { min-width: 220px; }
+.src-chip { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 3px 8px; margin: 2px 0 2px 4px; border-radius: 8px; background: var(--surface-3); font-size: .74rem; font-weight: 600; color: var(--text); }
+.src-file { font-family: "DM Mono", ui-monospace, Menlo, monospace; font-size: .62rem; font-weight: 500; color: var(--text-3); }
