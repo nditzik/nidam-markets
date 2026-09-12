@@ -1198,6 +1198,6 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 /* ---- מומנטום → קטגוריית "מועמדים" (12.9.2026) ---- */
 .rdy { font-weight: 800; white-space: nowrap; }
 .rdy-hi { color: var(--up); } .rdy-mid { color: #b8860b; }
-.src-cell { min-width: 220px; }
-.src-chip { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 3px 8px; margin: 2px 0 2px 4px; border-radius: 8px; background: var(--surface-3); font-size: .74rem; font-weight: 600; color: var(--text); }
+.src-cell { min-width: 200px; white-space: normal; }
+.src-chip { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 3px 8px; margin: 2px 0 2px 4px; vertical-align: top; border-radius: 8px; background: var(--surface-3); font-size: .74rem; font-weight: 600; color: var(--text); }
 .src-file { font-family: "DM Mono", ui-monospace, Menlo, monospace; font-size: .62rem; font-weight: 500; color: var(--text-3); }

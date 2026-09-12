@@ -2147,7 +2147,9 @@
         function srcChips(sigs) {
           return (sigs || []).map(function (k) {
             var fn = files[k] || "";
-            return '<span class="src-chip" title="' + esc(fn || SIG_LABEL[k] || k) + '">' + esc(SIG_LABEL[k] || k) + (fn ? ' <span class="src-file" dir="ltr">' + esc(fn.replace(/\.csv$/, "")) + "</span>" : "") + "</span>";
+            // שם הקובץ בלי התאריך (משותף לכולם — מופיע פעם אחת בכותרת) ובלי הסיומת
+            var stem = fn.replace(/-\d{2}-\d{2}-\d{4}\.csv$/, "");
+            return '<span class="src-chip" title="' + esc(fn || SIG_LABEL[k] || k) + '">' + esc(SIG_LABEL[k] || k) + (stem ? ' <span class="src-file" dir="ltr">' + esc(stem) + "</span>" : "") + "</span>";
           }).join("");
         }
         var crows = c.rows.map(function (r) {
@@ -2165,7 +2167,7 @@
             '<td class="num">' + (dist == null ? "—" : '<span dir="ltr">' + (dist >= 0 ? "+" : "") + dist.toFixed(1) + "%</span>") + "</td>" +
             '<td class="sig-cell src-cell">' + srcChips(r.signals) + "</td></tr>";
         }).join("");
-        body = '<p class="stamp" style="margin:0 0 8px">כמו "מועמדות לטרייד" בדשבורד המומנטום: 12 המובילות עם Readiness ≥ 50 (RSI/Stoch בריאים, קרבה ל-MA50, נפח יחסי, סיגנלים, נר ירוק) · 🟢 70+ מוכנה · 🟡 50–69 מתקרבת · העמודה האחרונה: הסורקים (קבצי Barchart) שמהם המניה הגיעה</p>' +
+        body = '<p class="stamp" style="margin:0 0 8px">כמו "מועמדות לטרייד" בדשבורד המומנטום: 12 המובילות עם Readiness ≥ 50 (RSI/Stoch בריאים, קרבה ל-MA50, נפח יחסי, סיגנלים, נר ירוק) · 🟢 70+ מוכנה · 🟡 50–69 מתקרבת · העמודה האחרונה: הסורקים (קבצי Barchart) שמהם המניה הגיעה' + (function () { var f = (d._meta && d._meta.files) || {}, k = Object.keys(f)[0], m = k && /(\d{2})-(\d{2})-(\d{4})\.csv$/.exec(f[k]); return m ? ' · קבצים מ-<span dir="ltr">' + (+m[2]) + "." + (+m[1]) + "." + m[3] + "</span>" : ""; })() + "</p>" +
           '<div class="table-wrap"><table><thead><tr>' +
           '<th class="num">Readiness</th><th>סימבול</th><th>שם</th><th class="num">מחיר</th><th class="num">שינוי</th><th class="num">RSI</th><th class="num">Stoch</th><th class="num">RVOL</th><th class="num">מ-MA50</th><th>מקור (קבצים)</th>' +
           "</tr></thead><tbody>" + crows + "</tbody></table></div>";
