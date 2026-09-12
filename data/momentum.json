@@ -195,7 +195,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 3,
-      "readiness": 78
+      "readiness": 73
     },
     {
       "name": "Genco Shipping & Trading Ltd",
@@ -390,7 +390,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 40
+      "readiness": 45
     },
     {
       "name": "Sifco Industries",
@@ -444,7 +444,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 58
+      "readiness": 53
     },
     {
       "name": "International Seaways Inc",
@@ -579,7 +579,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 73
+      "readiness": 68
     },
     {
       "name": "The Chefs Warehouse",
@@ -849,7 +849,7 @@
         "macd_buy"
       ],
       "signal_count": 2,
-      "readiness": 53
+      "readiness": 48
     },
     {
       "name": "Acme United Corp",
@@ -1173,7 +1173,7 @@
         "macd_buy"
       ],
       "signal_count": 2,
-      "readiness": 53
+      "readiness": 48
     },
     {
       "name": "Smartfinancial Inc",
@@ -1443,7 +1443,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 38
+      "readiness": 33
     },
     {
       "name": "Corpay Inc",
@@ -1767,7 +1767,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 66
+      "readiness": 71
     },
     {
       "name": "First Mid Ill Bncshr",
@@ -1929,7 +1929,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 68
+      "readiness": 73
     },
     {
       "name": "Civista Bncshrs",
@@ -2172,7 +2172,7 @@
         "macd_buy"
       ],
       "signal_count": 2,
-      "readiness": 53
+      "readiness": 58
     },
     {
       "name": "Metrocity Bankshares Inc",
@@ -2928,7 +2928,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 58
+      "readiness": 53
     },
     {
       "name": "Newsmax Inc Cl B",
@@ -3009,7 +3009,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 73
+      "readiness": 78
     },
     {
       "name": "FS Bancorp Inc",
@@ -3090,7 +3090,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 2,
-      "readiness": 63
+      "readiness": 68
     },
     {
       "name": "Sysco Corp",
@@ -3903,32 +3903,6 @@
       "readiness": 48
     },
     {
-      "name": "Hewlett Packard Enterprise",
-      "industry": "Computer - Integrated Systems",
-      "price": 62.09,
-      "change_pct": 12.44,
-      "vol": 21806900.0,
-      "wtd_alpha": 197.06,
-      "w52_chg": 149.76,
-      "ma20": 54.65,
-      "ma50": 51.11,
-      "ma100": 45.12,
-      "rel_str": 64.11,
-      "stoch": 90.5,
-      "rvol": 1.96,
-      "bb_pct": 117.0,
-      "strength": "Maximum",
-      "opinion": "100% Buy",
-      "direction": "Strongest",
-      "trend": "Buy",
-      "symbol": "HPE",
-      "signals": [
-        "hot_prospects"
-      ],
-      "signal_count": 1,
-      "readiness": 51
-    },
-    {
       "name": "Edgewise Therapeutics Inc",
       "industry": "Medical - Biomedical",
       "price": 44.4,
@@ -3953,6 +3927,58 @@
       ],
       "signal_count": 1,
       "readiness": 69
+    },
+    {
+      "name": "Replimune Group Inc",
+      "industry": "Medical - Biomedical",
+      "price": 12.92,
+      "change_pct": -2.42,
+      "vol": 4303288.0,
+      "wtd_alpha": 119.0,
+      "w52_chg": 114.98,
+      "ma20": 14.95,
+      "ma50": 12.57,
+      "ma100": 9.49,
+      "rel_str": 42.17,
+      "stoch": 13.2,
+      "rvol": 0.85,
+      "bb_pct": -13.0,
+      "strength": "Strong",
+      "opinion": "80% Buy",
+      "direction": "Weakening",
+      "trend": "Hold",
+      "symbol": "REPL",
+      "signals": [
+        "strength"
+      ],
+      "signal_count": 1,
+      "readiness": 54
+    },
+    {
+      "name": "Twilio",
+      "industry": "Internet - Software",
+      "price": 227.35,
+      "change_pct": -1.64,
+      "vol": 2376711.0,
+      "wtd_alpha": 103.58,
+      "w52_chg": 121.68,
+      "ma20": 229.81,
+      "ma50": 217.67,
+      "ma100": 203.81,
+      "rel_str": 50.73,
+      "stoch": 42.59,
+      "rvol": 0.61,
+      "bb_pct": 40.0,
+      "strength": "Strong",
+      "opinion": "88% Buy",
+      "direction": "Weakening",
+      "trend": "Buy",
+      "symbol": "TWLO",
+      "signals": [
+        "ttm_squeeze"
+      ],
+      "signal_count": 1,
+      "readiness": 54
     },
     {
       "name": "Achieve Life Sciences Inc",
@@ -4030,7 +4056,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 1,
-      "readiness": 51
+      "readiness": 56
     },
     {
       "name": "Nucor Corp",
@@ -4163,6 +4189,32 @@
       "readiness": 52
     },
     {
+      "name": "Tg Therapeutics",
+      "industry": "Medical - Biomedical",
+      "price": 53.89,
+      "change_pct": -2.71,
+      "vol": 2090579.0,
+      "wtd_alpha": 63.75,
+      "w52_chg": 66.02,
+      "ma20": 54.03,
+      "ma50": 53.59,
+      "ma100": 48.24,
+      "rel_str": 50.04,
+      "stoch": 49.35,
+      "rvol": 0.66,
+      "bb_pct": 49.0,
+      "strength": "Strong",
+      "opinion": "88% Buy",
+      "direction": "Weakening",
+      "trend": "Buy",
+      "symbol": "TGTX",
+      "signals": [
+        "strength"
+      ],
+      "signal_count": 1,
+      "readiness": 54
+    },
+    {
       "name": "Expeditors Intl",
       "industry": "Transportation - Services",
       "price": 192.6,
@@ -4290,7 +4342,7 @@
         "strength"
       ],
       "signal_count": 1,
-      "readiness": 64
+      "readiness": 69
     },
     {
       "name": "James Hardie Industries Se ADR",
@@ -4316,7 +4368,7 @@
         "strength"
       ],
       "signal_count": 1,
-      "readiness": 62
+      "readiness": 67
     },
     {
       "name": "First Advantage Corp",
@@ -4342,7 +4394,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 1,
-      "readiness": 64
+      "readiness": 69
     },
     {
       "name": "Biogen Inc",
@@ -4420,7 +4472,7 @@
         "strength"
       ],
       "signal_count": 1,
-      "readiness": 64
+      "readiness": 54
     },
     {
       "name": "VOYA Financial Inc",
@@ -4472,7 +4524,7 @@
         "strength"
       ],
       "signal_count": 1,
-      "readiness": 57
+      "readiness": 62
     },
     {
       "name": "The Travelers Companies",
@@ -4605,6 +4657,32 @@
       "readiness": 74
     },
     {
+      "name": "Elevance Health Inc",
+      "industry": "Medical Services",
+      "price": 418.72,
+      "change_pct": 0.52,
+      "vol": 1640993.0,
+      "wtd_alpha": 36.57,
+      "w52_chg": 32.97,
+      "ma20": 401.97,
+      "ma50": 397.25,
+      "ma100": 392.13,
+      "rel_str": 61.2,
+      "stoch": 61.63,
+      "rvol": 1.12,
+      "bb_pct": 107.0,
+      "strength": "Strong",
+      "opinion": "100% Buy",
+      "direction": "Strongest",
+      "trend": "Buy",
+      "symbol": "ELV",
+      "signals": [
+        "ttm_squeeze"
+      ],
+      "signal_count": 1,
+      "readiness": 54
+    },
+    {
       "name": "Manulife Financial Corp",
       "industry": "Insurance - Life",
       "price": 43.49,
@@ -4732,7 +4810,7 @@
         "strength"
       ],
       "signal_count": 1,
-      "readiness": 54
+      "readiness": 59
     },
     {
       "name": "Dropbox Inc",
@@ -4785,6 +4863,32 @@
       ],
       "signal_count": 1,
       "readiness": 62
+    },
+    {
+      "name": "Solventum Corporation",
+      "industry": "Medical Services",
+      "price": 87.45,
+      "change_pct": -0.23,
+      "vol": 1318176.0,
+      "wtd_alpha": 23.22,
+      "w52_chg": 18.51,
+      "ma20": 89.93,
+      "ma50": 84.85,
+      "ma100": 79.76,
+      "rel_str": 46.29,
+      "stoch": 17.88,
+      "rvol": 0.72,
+      "bb_pct": 14.0,
+      "strength": "Strong",
+      "opinion": "80% Buy",
+      "direction": "Average",
+      "trend": "Hold",
+      "symbol": "SOLV",
+      "signals": [
+        "strength"
+      ],
+      "signal_count": 1,
+      "readiness": 54
     },
     {
       "name": "Takeda Pharmaceutical Ltd ADR",
@@ -4862,7 +4966,7 @@
         "strength"
       ],
       "signal_count": 1,
-      "readiness": 62
+      "readiness": 57
     },
     {
       "name": "JP Morgan Chase & Company",
@@ -4888,7 +4992,7 @@
         "ttm_squeeze"
       ],
       "signal_count": 1,
-      "readiness": 62
+      "readiness": 57
     },
     {
       "name": "Genmab A/S ADR",
@@ -4966,7 +5070,7 @@
         "6m_high"
       ],
       "signal_count": 1,
-      "readiness": 67
+      "readiness": 57
     },
     {
       "name": "Sabre Corp",
@@ -5122,7 +5226,7 @@
         "strength"
       ],
       "signal_count": 1,
-      "readiness": 69
+      "readiness": 74
     },
     {
       "name": "Amazon.com Inc",
@@ -5437,9 +5541,9 @@
       "readiness": 57
     }
   ],
-  "count": 203,
+  "count": 207,
   "_meta": {
-    "updatedAt": "12/09/2026 16:30",
+    "updatedAt": "12/09/2026 16:31",
     "source": "stocks-momentum",
     "files": {
       "strength": "stocks-screener-strength-and-direction-09-11-2026.csv",

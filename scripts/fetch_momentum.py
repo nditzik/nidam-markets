@@ -101,7 +101,7 @@ def row_fields(r):
         "ma20": num(r.get("20D MA")),
         "ma50": num(r.get("50D MA")),
         "ma100": num(r.get("100D MA")),
-        "rel_str": num(r.get("14D RSI")),
+        "rel_str": num(r.get("14D RSI") if r.get("14D RSI") is not None else r.get("14D Rel Str")),   # עד יולי 2026 העמודה נקראה "14D Rel Str"
         "stoch": num(r.get("14D Stoch %K")),
         "rvol": num(r.get("50D RelVol")),
         "bb_pct": num(r.get("BB%")),
