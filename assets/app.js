@@ -1492,7 +1492,7 @@
     // 12.9.2026: קריאת הכיוון מגיעה עכשיו מייצוא SPY (ב-SPX ~99% מולטי-לג → תמיד "שורי");
     // dirSource/dirNote מ-daily_state. openLabel = ההטיה של פוזיציות חדשות (נפח > OI).
     var src = fl.dirSource ? '<span class="er-badge" title="' + esc(fl.dirNote || "") + '">' + esc(fl.dirSource) + "</span>" : "";
-    var opn = fl.openLabel ? ' <span class="np-open" title="הטיית הפוזיציות החדשות (עסקאות עם נפח מעל פוזיציות פתוחות, $' + Math.round((fl.openP || 0) / 1e6) + 'M)">חדשות: <b class="' +
+    var opn = fl.openLabel ? ' <span class="np-open" title="כסף חדש = לאן נטו הפוזיציות שנפתחו היום (עסקאות שהנפח בהן גדול מהפוזיציות הפתוחות, כלומר כניסה חדשה ולא סגירה), $' + Math.round((fl.openP || 0) / 1e6) + 'M)">כסף חדש: <b class="' +
       (fl.openLabel === "דובי" ? "down" : fl.openLabel === "שורי" ? "up" : "") + '">' + esc(fl.openLabel) + "</b></span>" : "";
     return '<div class="np-sub" title="' + esc(tip) + '"><span>הכסף הגדול</span><span><b class="' + dc + '">' + esc(fl.deltaLabel) + "</b>" + opn + legBadge + src + "</span></div>";
   }
@@ -1748,7 +1748,7 @@
       '<div class="card">' +
       (f.deltaLabel ? '<p style="margin-top:0">הכסף הגדול נטו: <b class="' + tiltCls + '">' + esc(f.deltaLabel) + "</b>" +
         " (משוקלל-דלתא)" +
-        (f.openLabel ? ' · פוזיציות חדשות (נפח מעל OI, $' + Math.round((f.openP || 0) / 1e6) + 'M): <b class="' + (f.openLabel === "דובי" ? "down" : f.openLabel === "שורי" ? "up" : "") + '">' + esc(f.openLabel) + "</b>"
+        (f.openLabel ? ' · כסף חדש היום (פוזיציות שנפתחו, $' + Math.round((f.openP || 0) / 1e6) + 'M): <b class="' + (f.openLabel === "דובי" ? "down" : f.openLabel === "שורי" ? "up" : "") + '">' + esc(f.openLabel) + "</b>"
           : (f.openingLean ? ' · פוזיציות חדשות: <b>' + esc(f.openingLean) + "</b>" : "")) + "</p>" : "") +
       (f.dirNote ? '<p class="stamp" style="margin:-4px 0 8px">' + esc(f.dirNote) + (f.legNote ? " · " + esc(f.legNote) : "") + "</p>" : "") +
       '<div class="fq-grid">' +
