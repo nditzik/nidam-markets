@@ -2156,7 +2156,7 @@
           var rd = r.readiness || 0, ma50 = +r.ma50 || 0, px = +r.price || 0;
           var dist = (ma50 > 0 && px > 0) ? (px - ma50) / ma50 * 100 : null;
           return "<tr>" +
-            '<td class="num"><span class="rdy ' + (rd >= 70 ? "rdy-hi" : "rdy-mid") + '" title="Readiness ' + rd + ' מתוך 90 (בלי רכיב ההיסטוריה של הדשבורד)">' + (rd >= 70 ? "🟢" : "🟡") + " " + rd + "</span></td>" +
+            '<td class="num"><span class="rdy ' + (rd >= 70 ? "rdy-hi" : "rdy-mid") + '" title="Readiness ' + rd + '/100 — כמו בדשבורד, כולל מגמת היסטוריה מ-' + ((d._meta && d._meta.histDays) || 0) + ' סנאפשוטים">' + (rd >= 70 ? "🟢" : "🟡") + " " + rd + "</span></td>" +
             "<td>" + tvLink(r.symbol) + erBadge(r.symbol) + "</td>" +
             '<td class="mom-name">' + esc(r.name) + "</td>" +
             '<td class="num">' + fmt(r.price) + "</td>" +
