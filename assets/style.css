@@ -1201,3 +1201,7 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .src-cell { min-width: 200px; white-space: normal; }
 .src-chip { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 3px 8px; margin: 2px 0 2px 4px; vertical-align: top; border-radius: 8px; background: var(--surface-3); font-size: .74rem; font-weight: 600; color: var(--text); }
 .src-file { font-family: "DM Mono", ui-monospace, Menlo, monospace; font-size: .62rem; font-weight: 500; color: var(--text-3); }
+
+/* הטיית הפוזיציות החדשות באופציות (12.9.2026) */
+.np-open { font-size: .78rem; color: var(--text-soft); margin-inline-start: 6px; }
+.np-open b.up { color: var(--up); } .np-open b.down { color: var(--down); }
