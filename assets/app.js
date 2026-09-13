@@ -2446,10 +2446,9 @@
     var wk = w.mode === "weekend";
     function pc(v, d2) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(d2 == null ? 2 : d2) + "%"; }
     function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
-    var rows = w.items.filter(function (i) { return wk || i.kind === "crypto"; });
-    if (!wk && TICKD) (TICKD.items || []).forEach(function (t) {
-      if (t.key === "es" || t.key === "nq") rows.unshift({ key: t.key, label: t.label, kind: "future", price: t.price, chg: t.chg, refLabel: "מסגירה קודמת", thin: false, source: "cme" });
-    });
+    // הקריפטו עבר לכרטיסים משלו מתחת למפה (13.9.2026 ערב); הרצועה = חוזי xyz, ורק בסוף השבוע
+    if (!wk) return "";
+    var rows = w.items.filter(function (i) { return i.kind !== "crypto"; });
     if (!rows.length) return "";
     var tiles = rows.map(function (i) {
       var v = i.chg, a = v == null ? 0 : Math.min(1, Math.abs(v) / 2.5);
@@ -2464,9 +2463,8 @@
         '<span class="wh-5 num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { maximumFractionDigits: i.price > 1000 ? 0 : 2 }) : "—") + "</span>" +
         (i.chg24 != null ? '<span class="wh-5 num" dir="ltr">24h ' + pc(i.chg24, 1) + "</span>" : "") + "</div>";
     }).join("");
-    var title = wk ? "🌙 השוק סגור — כך נסחר סוף השבוע" : "🌙 מחוץ לשעות המסחר";
-    var sub = wk ? "חוזים תמידיים של xyz על Hyperliquid + קריפטו · הפער מסגירת שישי · אינדיקציה, מחזור דק"
-               : "חוזי שיקגו + קריפטו (24/7) · הפער מהסגירה האחרונה";
+    var title = "🌙 השוק סגור — כך נסחר סוף השבוע";
+    var sub = "חוזים תמידיים של xyz על Hyperliquid · הפער מסגירת שישי · אינדיקציה, מחזור דק";
     return '<section class="wm-grp wk-grp"><h3 class="wm-rg">' + title + ' <span class="wm-rg-s">' + sub + "</span></h3>" +
       '<div class="wm-heat wk-heat">' + tiles + "</div>" +
       (wk ? '<p class="wk-note">המחירים כאן הם חוזים על מחיר, לא מניות, במחזורים של מיליונים בודדים — מספיק לכיוון ולריכוז (מדד מול מניות ה-AI), לא לגודל התנועה. פערי סוף שבוע נסגרים לא פעם עד פתיחת החוזים בשיקגו (שני 01:00). עודכן ' + esc((w._meta || {}).updatedAt || "") + "</p>" : "") +
@@ -2559,6 +2557,8 @@
     if (groups[IL_MAIN]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_MAIN) + "</h3>" + cards(groups[IL_MAIN]) + "</section>";
     if (groups[IL_SECT]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_SECT) + ' <span class="wm-rg-s">ממוין מהעולה החזק ליורד</span></h3>' + heat(groups[IL_SECT]) + "</section>";
     html += '<section class="wm-grp"><h3 class="wm-rg">מפת העולם <span class="wm-rg-s">צבע = השינוי היומי · נקודה פועמת = נסחר עכשיו · האזור המוצלל בלילה</span></h3><div id="wm-map" class="wm-map"></div></section>';
+    // קריפטו (13.9.2026) — כרטיסים כמו המדדים, מתחת למפה; נסחר 24/7, השינוי היומי מ-00:00 UTC
+    if (groups["קריפטו"]) html += '<section class="wm-grp"><h3 class="wm-rg">קריפטו <span class="wm-rg-s">נסחר 24/7 · השינוי היומי מ-00:00 UTC</span></h3>' + cards(groups["קריפטו"]) + "</section>";
     html += '</div><div class="wm-col">';
     ["אסיה", "אירופה", "ארה\"ב"].forEach(function (region) {
       if (groups[region]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(region) + "</h3>" + cards(groups[region]) + "</section>";
