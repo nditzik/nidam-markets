@@ -35,7 +35,7 @@
       "label": "העלאת ריבית עד סוף 2026",
       "sub": "ההימור המוביל: תהיה העלאה",
       "pct": 86,
-      "chg": -1.0,
+      "chg": -1.5,
       "url": "https://polymarket.com/event/fed-rate-hike-in-2026",
       "src": "Polymarket"
     },
@@ -43,8 +43,8 @@
       "key": "cpi_next",
       "label": "אינפלציה שנתית — נתון ספטמבר · יתפרסם 14.10",
       "sub": "ההימור המוביל: תישאר מעל 3.5%",
-      "pct": 53,
-      "chg": -5,
+      "pct": 52,
+      "chg": -6,
       "src": "Kalshi",
       "url": "https://kalshi.com/markets/kxcpiyoy"
     },
@@ -56,6 +56,15 @@
       "chg": 0.5,
       "url": "https://polymarket.com/event/us-recession-by-end-of-2026",
       "src": "Polymarket"
+    },
+    {
+      "key": "spx_eoy",
+      "label": "יעד S&P 500 לסוף 2026",
+      "sub": "ההימור המוביל: ייסגר מעל 7,600",
+      "pct": 60,
+      "chg": null,
+      "src": "Kalshi",
+      "url": "https://kalshi.com/markets/kxinxy"
     }
   ],
   "source": "Polymarket",
@@ -177,7 +186,7 @@
       },
       {
         "d": "2026-09-13",
-        "pct": 53
+        "pct": 52
       }
     ],
     "recession": [
@@ -213,10 +222,16 @@
         "d": "2026-09-13",
         "pct": 94
       }
+    ],
+    "spx_eoy": [
+      {
+        "d": "2026-09-13",
+        "pct": 60
+      }
     ]
   },
   "_meta": {
-    "updatedAt": "13/09/2026 07:01",
+    "updatedAt": "13/09/2026 07:49",
     "source": "polymarket"
   }
 }
