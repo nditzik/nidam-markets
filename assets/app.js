@@ -1752,9 +1752,11 @@
       return '<div class="fs-line tone-' + esc(l.tone || "neutral") + '"><span class="fs-dot"></span>' +
         '<span class="fs-lbl">' + esc(l.label) + '</span><span class="fs-txt">' + esc(l.text) + "</span></div>";
     }).join("") + "</div>" : "";
+    var noteHtml = f.scoreNote ? '<p class="stamp" style="margin:0 0 10px">🧮 ' + esc(f.scoreNote) +
+      (f.spxScore != null ? ' לשם השוואה, הציון הישן מ-SPX בלבד (v4): ' + esc(String(f.spxScore)) + '.' : '') + "</p>" : "";
     return '<div class="section-title">🎯 ההימור נטו באופציות</div>' +
       '<div class="card">' +
-      linesHtml +
+      linesHtml + noteHtml +
       (f.deltaLabel ? '<p style="margin-top:0">הכסף הגדול נטו: <b class="' + tiltCls + '">' + esc(f.deltaLabel) + "</b>" +
         " (משוקלל-דלתא)" +
         (f.openLabel ? ' · כסף חדש היום (פוזיציות שנפתחו, $' + Math.round((f.openP || 0) / 1e6) + 'M): <b class="' + (f.openLabel === "דובי" ? "down" : f.openLabel === "שורי" ? "up" : "") + '">' + esc(f.openLabel) + "</b>"
@@ -1764,7 +1766,7 @@
       cells.map(function (q) {
         return '<div class="fq-cell"><span class="fq-l">' + q[0] + '</span><b class="num ' + q[2] + '">' + m(q[1]) + "</b></div>";
       }).join("") + "</div>" +
-      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" מודד עוצמת זרימה ואינו כיוון. ' +
+      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" (v5, מ-13.9.2026) משלב סנטימנט מניות, ביטוח ב-SPX וכיוון SPY — כל רכיב מול ההיסטוריה של עצמו; הריבועים כאן הם הזרימה הגולמית ב-SPX ואינם הציון. ' +
         'הנתון מבוסס על עסקאות אופציות בולטות/גדולות בלבד (לא כל נפח המסחר היומי) — לכן עשוי להיות שונה ממדדי "דלתא" כוללי-שוק בכלים אחרים (כמו Barchart).</p>' +
       "</div>";
   }
@@ -1832,7 +1834,7 @@
         }).join("") + "</div>" +
       '<figure class="mt-fig" id="mt-fig" tabindex="0" aria-label="ציר הזמן של ציון בריאות השוק ו-S&P 500. חצים ימינה ושמאלה לנוע בין ימים.">' +
         '<svg id="mt-svg" aria-hidden="true"></svg><div class="mt-tip" id="mt-tip"></div>' +
-        "<figcaption>הציון המשולב (0–100) על רקע שלושת המצבים של המד — חיובי מ-66, זהיר 45–66, הגנתי מתחת. ▲ = יום מכירה רחבה. מתחת: S&amp;P 500 על אותו ציר זמן. ריחוף או חצי מקלדת מציגים את כל הערכים של אותו יום, כולל הכותרת שפורסמה בו.</figcaption>" +
+        "<figcaption>הציון המשולב (0–100) על רקע שלושת המצבים של המד — חיובי מ-66, זהיר 45–66, הגנתי מתחת. ▲ = יום מכירה רחבה. קו מקווקו = שינוי בנוסחת ציון האופציות (13.9.2026, v5): ערכים משני צדיו אינם ברי-השוואה ישירה. מתחת: S&amp;P 500 על אותו ציר זמן. ריחוף או חצי מקלדת מציגים את כל הערכים של אותו יום, כולל הכותרת שפורסמה בו.</figcaption>" +
       "</figure>" +
       '<details class="mt-tbl"><summary>הנתונים בטבלה</summary><table id="mt-table"></table></details></section>';
   }
@@ -1885,6 +1887,16 @@
         var tt = mtEl("title", {}); tt.textContent = "יום מכירה רחבה " + mtD(r.date); p.appendChild(tt); gb.appendChild(p);
       }
     });
+    // 13.9.2026: קו "שינוי נוסחה" — היום הראשון שבו formulaVersion שונה מהיום שלפניו.
+    // ההיסטוריה לא מחושבת מחדש (כלל הדשבורד), אז הקפיצה מסומנת במקום להיות מוסתרת.
+    rows.forEach(function (r, i) {
+      if (i === 0 || !r.formulaVersion || rows[i - 1].formulaVersion === r.formulaVersion) return;
+      var mx = x(i);
+      gb.appendChild(mtEl("line", { x1: mx, x2: mx, y1: T, y2: T + HA + GAP + HB, stroke: mtCss("--text-3"), "stroke-width": 1, "stroke-dasharray": "4 3", opacity: .8 }));
+      var ml = mtEl("text", { x: mx - 5, y: T + 12, "font-size": 10, "text-anchor": "end", fill: mtCss("--text-3") });
+      ml.textContent = "שינוי נוסחה " + r.formulaVersion; gb.appendChild(ml);
+      var mt = mtEl("title", {}); mt.textContent = "מ-" + mtD(r.date) + " ציון האופציות מחושב לפי נוסחה " + r.formulaVersion + " (קודם " + (rows[i - 1].formulaVersion || "v4") + "). ערכים משני צדי הקו אינם ברי-השוואה ישירה."; ml.appendChild(mt);
+    });
     function line(key, yf, color, w) {
       var d = rows.map(function (r, i) { return r[key] == null ? "" : ((i === 0 || rows[i - 1][key] == null ? "M" : "L") + x(i) + "," + yf(r[key])); }).join(" ");
       svg.appendChild(mtEl("path", { d: d, fill: "none", stroke: color, "stroke-width": w, "stroke-linejoin": "round", "stroke-linecap": "round" }));
@@ -1918,6 +1930,7 @@
         (r.spx != null ? '<div class="row"><span class="n">S&amp;P 500</span><b>' + Math.round(r.spx).toLocaleString("en-US") + "</b></div>" : "") +
         (r.vix != null ? '<div class="row"><span class="n">VIX</span><b>' + esc(r.vix) + "</b></div>" : "") +
         (sell[r.date] ? '<div class="sell">▲ יום מכירה רחבה</div>' : "") +
+        (r.formulaVersion && i > 0 && rows[i - 1].formulaVersion !== r.formulaVersion ? '<div class="sell" style="color:var(--text-soft)">┊ מכאן נוסחה ' + esc(r.formulaVersion) + "</div>" : "") +
         (r.headline ? '<div class="hl">' + esc(r.headline) + "</div>" : "");
       tip.style.display = "block";
       var fw = fig.clientWidth || W, tw = tip.offsetWidth, sx = cx * (fw / W);
