@@ -31,6 +31,24 @@
       "src": "Polymarket"
     },
     {
+      "key": "hike_2026",
+      "label": "העלאת ריבית עד סוף 2026",
+      "sub": "ההימור המוביל: תהיה העלאה",
+      "pct": 86,
+      "chg": null,
+      "url": "https://polymarket.com/event/fed-rate-hike-in-2026",
+      "src": "Polymarket"
+    },
+    {
+      "key": "cpi_next",
+      "label": "אינפלציה שנתית — נתון ספטמבר · יתפרסם 14.10",
+      "sub": "ההימור המוביל: תישאר מעל 3.5%",
+      "pct": 52,
+      "chg": null,
+      "src": "Kalshi",
+      "url": "https://kalshi.com/markets/kxcpiyoy"
+    },
+    {
       "key": "recession",
       "label": "מיתון בארה\"ב עד סוף 2026",
       "sub": "ההימור המוביל: לא יהיה מיתון",
@@ -119,6 +137,18 @@
         "pct": 93
       }
     ],
+    "hike_2026": [
+      {
+        "d": "2026-09-13",
+        "pct": 86
+      }
+    ],
+    "cpi_next": [
+      {
+        "d": "2026-09-13",
+        "pct": 52
+      }
+    ],
     "recession": [
       {
         "d": "2026-09-06",
@@ -161,7 +191,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "13/09/2026 10:31",
+    "updatedAt": "13/09/2026 10:46",
     "source": "polymarket"
   }
 }
