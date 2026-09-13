@@ -1944,6 +1944,36 @@
     }
   }
 
+  // "הכסף הגדול היום במניות" (13.9.2026) — d.bigTrades מ-indexes-status/data/big_trades.json:
+  // 5 הפוזיציות הגדולות במניות בודדות מתוך 500 העסקאות הגדולות של היום, אחרי איחוד
+  // הדפסות, השמטת 0DTE וסימון תחליפי-מניה (דלתא ~1) כ"לא כיווני". תיאור, לא ציון.
+  function bigTradesHtml(d) {
+    var b = d.bigTrades;
+    if (!b || !b.items || !b.items.length) return "";
+    var KIND_CLS = { "new": "bt-new", "roll": "bt-roll", "synthetic": "bt-syn", "combo": "bt-combo", "flow": "bt-flow" };
+    function dirHtml(it) {
+      if (it.direction === "up") return '<span class="bt-dir up">▲ למעלה</span>';
+      if (it.direction === "down") return '<span class="bt-dir down">▼ למטה</span>';
+      if (it.direction === "flat") return '<span class="bt-dir">◆ מאוזן</span>';
+      return '<span class="bt-dir soft">◇ לא כיווני</span>';
+    }
+    function money(v) { return v >= 1e9 ? (v / 1e9).toFixed(1) + "B" : Math.round(v / 1e6) + "M"; }
+    return '<div class="section-title">💰 הכסף הגדול היום במניות <span class="np-k num" dir="ltr">' + esc(b.label || "") + "</span></div>" +
+      '<div class="card bt-card">' +
+      '<div class="bt-list">' + b.items.map(function (it) {
+        return '<div class="bt-row">' +
+          '<div class="bt-head"><b class="bt-tk num" dir="ltr">' + esc(it.ticker) + "</b>" +
+          '<span class="bt-pm num" dir="ltr">$' + money(it.premium) + "</span>" +
+          '<span class="bt-kind ' + (KIND_CLS[it.kind] || "") + '">' + esc(it.kindHe || "") + "</span>" +
+          dirHtml(it) + "</div>" +
+          '<div class="bt-txt">' + esc(it.text || "") + "</div>" +
+          "</div>";
+      }).join("") + "</div>" +
+      '<p class="stamp" style="margin-bottom:0">' + esc(b.note || "") + ' · "תחליף מניה" = אופציות עמוקות בכסף (דלתא ~1) שמתנהגות כמו המניה — קרן שמחליפה מניות באופציות, לא הימור. ' +
+      'סה"כ ' + esc(String(b.symbols || "")) + ' מניות בקובץ · מקור: Barchart Options Flow.</p>' +
+      "</div>";
+  }
+
   function renderIndicesDetail(el, d) {
     var c = d.conclusion || {};
     var rot = d.rotation || {};
@@ -1960,6 +1990,7 @@
         }).join("") + "</ul></div>";
     }
     analysis += flowQuadHtml(d);
+    analysis += bigTradesHtml(d);
 
     var sectors = "";
     if (rot.sectorRs) {

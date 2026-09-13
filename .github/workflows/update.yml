@@ -36,7 +36,7 @@ on:
         type: boolean
         default: false
       test_channel:
-        description: "שלח לערוץ הודעת תוכן לדוגמה (עוקף שערים): preopen / close / macro / analysis. ריק = דילוג"
+        description: "שלח לערוץ הודעת תוכן לדוגמה (עוקף שערים): preopen / close / macro / analysis / bigmoney. ריק = דילוג"
         type: string
         default: ""
       broadcast_image:

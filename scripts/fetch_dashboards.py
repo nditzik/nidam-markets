@@ -28,6 +28,10 @@ RAW_URL = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/da
 AI_URL = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/ai_analysis.json"
 LOCAL_FALLBACK = os.path.join("..", "indexes status", "data", "daily_state.json")
 AI_LOCAL = os.path.join("..", "indexes status", "data", "ai_analysis.json")
+# "הכסף הגדול היום" (13.9.2026): scripts/build_big_trades.py ברפו הדשבורד — 5 פוזיציות
+# אופציות בולטות במניות בודדות, מנוקות מהדפסות כפולות/0DTE/תחליפי-מניה.
+BIG_URL = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/big_trades.json"
+BIG_LOCAL = os.path.join("..", "indexes status", "data", "big_trades.json")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "indices.json")
@@ -81,6 +85,24 @@ def load_ai_summary():
     return None
 
 
+def load_big_trades():
+    """הכסף הגדול היום — אופציונלי; כשל לא מפיל את המשיכה."""
+    try:
+        req = urllib.request.Request(BIG_URL, headers={"User-Agent": "nidam-markets-bot"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except Exception as e:
+        print(f"[info] אין big_trades מה-URL ({e})")
+    local = os.path.normpath(os.path.join(ROOT, BIG_LOCAL))
+    if os.path.exists(local):
+        try:
+            with open(local, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return None
+
+
 def main():
     data = load_source()
     if data is None:
@@ -94,6 +116,11 @@ def main():
     if ai and ai.get("headline"):
         data["aiSummary"] = ai
         print(f"[ok] סיכום יומי צורף ({ai.get('date')})")
+
+    big = load_big_trades()
+    if big and big.get("items"):
+        data["bigTrades"] = big
+        print(f"[ok] הכסף הגדול צורף ({big.get('date')}, {len(big['items'])} מניות)")
 
     data["_meta"] = {
         "updatedAt": israel_now_str(),

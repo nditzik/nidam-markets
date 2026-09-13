@@ -982,6 +982,21 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fq-cell .down, .ai-blocks .down, .stat .sub .down { color: var(--down); }
 @media (max-width: 480px) { .fq-grid { grid-template-columns: 1fr; } }
 
+/* הכסף הגדול היום במניות (13.9.2026) */
+.bt-list { display: flex; flex-direction: column; gap: 10px; }
+.bt-row { padding: 10px 12px; border-radius: 10px; background: rgba(127,127,127,.07); }
+.bt-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 4px; }
+.bt-tk { font-size: 1.05em; letter-spacing: .02em; }
+.bt-pm { color: var(--text-soft); font-weight: 600; }
+.bt-kind { font-size: .78em; padding: 2px 8px; border-radius: 999px; border: 1px solid rgba(127,127,127,.35); color: var(--text-soft); }
+.bt-kind.bt-new { border-color: var(--up); color: var(--up); }
+.bt-kind.bt-roll { border-color: #c98a1a; color: #c98a1a; }
+.bt-kind.bt-syn { opacity: .75; }
+.bt-dir { font-size: .85em; font-weight: 600; margin-inline-start: auto; }
+.bt-dir.up { color: var(--up); } .bt-dir.down { color: var(--down); } .bt-dir.soft { color: var(--text-soft); font-weight: 400; }
+.bt-txt { font-size: .93em; line-height: 1.5; }
+@media (max-width: 480px) { .bt-dir { margin-inline-start: 0; } }
+
 /* הניתוח היומי של Claude (2026-08-08) */
 .np-ca p { font-family: var(--serif); font-size: .98rem; line-height: 1.65; margin: 0 0 12px; }
 .np-ca-h { font-family: var(--serif); font-size: 1.3rem; font-weight: 800; margin: 0 0 12px; }

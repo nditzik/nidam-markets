@@ -179,6 +179,29 @@ def compose_close(now):
     return "\n".join(lines)
 
 
+# ── 2ב. הכסף הגדול היום במניות (13.9.2026) ─────────────────────────────────
+# מקור: indices.json → bigTrades (מ-indexes-status/data/big_trades.json). נשלח פעם אחת
+# לכל תאריך קובץ — כשהתאריך מתחלף (הקובץ מגיע כשאיציק מוריד אותו, לא בשעה קבועה).
+def load_big_trades():
+    ix = load(os.path.join(DATA, "indices.json")) or {}
+    b = ix.get("bigTrades") or {}
+    return b if b.get("items") else None
+
+
+def compose_bigmoney(b):
+    if not b:
+        return None
+    lines = ["💰 <b>הכסף הגדול היום במניות</b> · %s" % esc(b.get("label") or fmt_d(b.get("date"))), ""]
+    for it in b["items"][:5]:
+        d = {"up": "🟢", "down": "🔴", "flat": "⚪"}.get(it.get("direction"), "⚪")
+        lines.append("%s <code>%s</code> · %s" % (d, esc(it["ticker"]), esc(it.get("kindHe") or "")))
+        lines.append("   " + esc(it.get("text") or ""))
+    lines += ["", "ℹ️ 5 הפוזיציות הגדולות מתוך 500 העסקאות הגדולות של היום, אחרי איחוד הדפסות והשמטת 0DTE. "
+                  "\"תחליף מניה\" = אופציות עמוקות בכסף שמתנהגות כמו המניה, לא הימור.",
+              "", "🔗 <a href=\"%s#indices\">הפירוט בטאב מדדים</a>" % SITE]
+    return "\n".join(lines)
+
+
 # ── 3. נתון מאקרו ──────────────────────────────────────────────────────────
 def surprise_word(s):
     return {"good": "✅ טוב מהצפוי", "bad": "❌ גרוע מהצפוי", "inline": "➖ בהתאם לצפי"}.get(s or "", "")
@@ -253,6 +276,7 @@ def main():
             "close": compose_close(now),
             "macro": compose_macro(fresh_macro(econ, now) or [e for e in econ.get("events", []) if e.get("actual")][-3:]),
             "analysis": compose_analysis(ca),
+            "bigmoney": compose_bigmoney(load_big_trades()),
         }
         for k, m in msgs.items():
             if test and k != test:
@@ -291,6 +315,15 @@ def main():
         if m:
             send(token, chat, m); print("[sent] close")
         state["close"] = today; changed = True
+
+    # 2ב. הכסף הגדול — כשתאריך הקובץ מתחלף; בריצה הראשונה רק בסיס
+    big = load_big_trades()
+    if big and big.get("date") and state.get("bigmoney") != big["date"]:
+        if not first_run:
+            m = compose_bigmoney(big)
+            if m:
+                send(token, chat, m); print("[sent] bigmoney", big["date"])
+        state["bigmoney"] = big["date"]; changed = True
 
     # 3. מאקרו — כל אירוע פעם אחת; בריצה הראשונה רק בסיס
     sent_keys = set(state.get("macro") or [])
