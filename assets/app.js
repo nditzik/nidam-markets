@@ -1744,8 +1744,17 @@
       ["קניית Calls", f.callBuyP, "up"], ["מכירת Calls", f.callSellP, "down"],
       ["קניית Puts", f.putBuyP, "down"], ["מכירת Puts", f.putSellP, "up"]
     ];
+    // שלוש שורות סנטימנט תיאוריות (13.9.2026) — research.lines מ-send_report.sentiment_lines:
+    // מניות (UOA כלל-שוקי מול ההיסטוריה שלו) · SPY (כיוון + פוזיציות חדשות) · SPX (ביטוח נמכר/נקנה + IV/RV).
+    // טקסט בלבד, לא ציון — המד לא נוגע בזה.
+    var lines = (f.research && f.research.lines) || [];
+    var linesHtml = lines.length ? '<div class="fs-lines">' + lines.map(function (l) {
+      return '<div class="fs-line tone-' + esc(l.tone || "neutral") + '"><span class="fs-dot"></span>' +
+        '<span class="fs-lbl">' + esc(l.label) + '</span><span class="fs-txt">' + esc(l.text) + "</span></div>";
+    }).join("") + "</div>" : "";
     return '<div class="section-title">🎯 ההימור נטו באופציות</div>' +
       '<div class="card">' +
+      linesHtml +
       (f.deltaLabel ? '<p style="margin-top:0">הכסף הגדול נטו: <b class="' + tiltCls + '">' + esc(f.deltaLabel) + "</b>" +
         " (משוקלל-דלתא)" +
         (f.openLabel ? ' · כסף חדש היום (פוזיציות שנפתחו, $' + Math.round((f.openP || 0) / 1e6) + 'M): <b class="' + (f.openLabel === "דובי" ? "down" : f.openLabel === "שורי" ? "up" : "") + '">' + esc(f.openLabel) + "</b>"

@@ -982,6 +982,16 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fq-cell .down, .ai-blocks .down, .stat .sub .down { color: var(--down); }
 @media (max-width: 480px) { .fq-grid { grid-template-columns: 1fr; } }
 
+/* שלוש שורות סנטימנט באופציות (13.9.2026) */
+.fs-lines { display: flex; flex-direction: column; gap: 8px; margin: 0 0 12px; padding: 10px 12px; border-radius: 10px; background: rgba(127,127,127,.07); }
+.fs-line { display: grid; grid-template-columns: 10px 44px 1fr; gap: 8px; align-items: start; line-height: 1.5; font-size: .95em; }
+.fs-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-soft); margin-top: .5em; }
+.fs-line.tone-up .fs-dot { background: var(--up); }
+.fs-line.tone-down .fs-dot { background: var(--down); }
+.fs-line.tone-warn .fs-dot { background: #c98a1a; }
+.fs-lbl { font-weight: 700; color: var(--text-soft); }
+@media (max-width: 480px) { .fs-line { grid-template-columns: 10px 1fr; } .fs-lbl::after { content: " · "; } .fs-lbl { grid-column: 2; } .fs-txt { grid-column: 2; } }
+
 /* הכסף הגדול היום במניות (13.9.2026) */
 .bt-list { display: flex; flex-direction: column; gap: 10px; }
 .bt-row { padding: 10px 12px; border-radius: 10px; background: rgba(127,127,127,.07); }
