@@ -178,6 +178,11 @@ jobs:
         run: python scripts/fetch_world.py
         continue-on-error: true
 
+      # --- השוק סגור: חוזי xyz (Hyperliquid) + קריפטו לרצועת סוף השבוע בטאב שווקים ---
+      - name: Fetch weekend / after-hours prices
+        run: python scripts/fetch_weekend.py
+        continue-on-error: true
+
       # --- מי מדווחת היום (מתוך earnings.csv שאיציק מעדכן שבועית) ---
       - name: Fetch earnings calendar
         run: python scripts/fetch_earnings.py

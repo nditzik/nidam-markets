@@ -1194,6 +1194,12 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .wh-n { font-size: .74rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .wh-c { font-size: .98rem; font-weight: 800; letter-spacing: -.01em; }
 .wh-5 { font-size: .64rem; opacity: .75; }
+/* השוק סגור — כך נסחר סוף השבוע (13.9.2026) */
+.wk-heat { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+.wk-t .wh-n { display: flex; align-items: center; gap: 4px; }
+.wk-k { font-size: .58rem; font-weight: 700; letter-spacing: .04em; padding: 0 5px; border-radius: 999px; background: rgba(127,127,127,.18); color: var(--text-soft); }
+.wk-thin .wh-c { opacity: .55; }
+.wk-note { margin: 8px 0 0; font-size: .7rem; color: var(--text-3); line-height: 1.5; }
 @media (max-width: 1000px) { .wm-cols { grid-template-columns: 1fr; } }
 @media (max-width: 760px) {
   .wm-cards { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 6px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }

@@ -2436,6 +2436,43 @@
      בבוקר הוא נעילת אתמול ולא שוק ששקט. לכן כל שורה נושאת חיווי מצב ואת
      שעת העדכון בפועל — שניהם מגיעים מ-fetch_world.py, שמחשב אותם מחותמת
      הזמן של הציטוט עצמו ולא מהנחה על לוח שעות. */
+  /* "השוק סגור, כך נסחר סוף השבוע" (13.9.2026) — data/weekend.json מ-fetch_weekend.py:
+     בסוף השבוע (חוזי שיקגו סגורים) חוזי xyz על Hyperliquid ל-S&P 500 ולשבע מניות
+     שאיציק בחר + ביטקוין/את'ריום; בימי חול רק הקריפטו (24/7) לצד חוזי שיקגו. הפער
+     מול הסגירה הרשמית האחרונה; "מחזור דק" מסומן. אינדיקציה לכיוון, לא תחזית לפתיחה. */
+  var WKND = null;
+  function weekendStrip() {
+    var w = WKND; if (!w || !w.items || !w.items.length) return "";
+    var wk = w.mode === "weekend";
+    function pc(v, d2) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(d2 == null ? 2 : d2) + "%"; }
+    function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
+    var rows = w.items.filter(function (i) { return wk || i.kind === "crypto"; });
+    if (!wk && TICKD) (TICKD.items || []).forEach(function (t) {
+      if (t.key === "es" || t.key === "nq") rows.unshift({ key: t.key, label: t.label, kind: "future", price: t.price, chg: t.chg, refLabel: "מסגירה קודמת", thin: false, source: "cme" });
+    });
+    if (!rows.length) return "";
+    var tiles = rows.map(function (i) {
+      var v = i.chg, a = v == null ? 0 : Math.min(1, Math.abs(v) / 2.5);
+      var bg = i.thin ? "var(--surface-2)" : v > 0 ? "rgba(26,157,87," + (0.12 + 0.62 * a).toFixed(2) + ")" : v < 0 ? "rgba(224,52,42," + (0.12 + 0.62 * a).toFixed(2) + ")" : "var(--surface-2)";
+      var tip = esc(i.label) + " · " + (i.price != null ? i.price.toLocaleString("en-US", { maximumFractionDigits: 2 }) : "—") +
+        (i.refLabel && i.ref != null ? " · " + esc(i.refLabel) + " " + i.ref.toLocaleString("en-US", { maximumFractionDigits: 2 }) : "") +
+        (i.chg24 != null ? " · 24 שעות " + pc(i.chg24) : "") +
+        (i.vol24 ? " · מחזור 24 שעות $" + Math.round(i.vol24 / 1e6) + "M" : "") + (i.thin ? " · מחזור דק" : "");
+      return '<div class="wh wk-t' + (i.thin ? " wk-thin" : "") + '" style="background:' + bg + '" title="' + tip + '">' +
+        '<span class="wh-n">' + esc(i.label) + (i.kind === "crypto" ? ' <span class="wk-k">24/7</span>' : i.source === "xyz" ? ' <span class="wk-k">xyz</span>' : "") + "</span>" +
+        '<b class="wh-c num ' + cls(v) + '" dir="ltr">' + pc(v) + "</b>" +
+        '<span class="wh-5 num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { maximumFractionDigits: i.price > 1000 ? 0 : 2 }) : "—") + "</span>" +
+        (i.chg24 != null ? '<span class="wh-5 num" dir="ltr">24h ' + pc(i.chg24, 1) + "</span>" : "") + "</div>";
+    }).join("");
+    var title = wk ? "🌙 השוק סגור — כך נסחר סוף השבוע" : "🌙 מחוץ לשעות המסחר";
+    var sub = wk ? "חוזים תמידיים של xyz על Hyperliquid + קריפטו · הפער מסגירת שישי · אינדיקציה, מחזור דק"
+               : "חוזי שיקגו + קריפטו (24/7) · הפער מהסגירה האחרונה";
+    return '<section class="wm-grp wk-grp"><h3 class="wm-rg">' + title + ' <span class="wm-rg-s">' + sub + "</span></h3>" +
+      '<div class="wm-heat wk-heat">' + tiles + "</div>" +
+      (wk ? '<p class="wk-note">המחירים כאן הם חוזים על מחיר, לא מניות, במחזורים של מיליונים בודדים — מספיק לכיוון ולריכוז (מדד מול מניות ה-AI), לא לגודל התנועה. פערי סוף שבוע נסגרים לא פעם עד פתיחת החוזים בשיקגו (שני 01:00). עודכן ' + esc((w._meta || {}).updatedAt || "") + "</p>" : "") +
+      "</section>";
+  }
+
   function renderWorld(el, d) {
     if (!el) return;
     var items = (d && d.items) || [];
@@ -2500,6 +2537,8 @@
     if (eu != null) segs.push("אירופה " + segWord(eu, (groups["אירופה"] || []).some(function (i) { return i.state === "live"; })) + ' <b class="num ' + cls(eu) + '" dir="ltr">' + pc(eu) + "</b>");
     if (il && il.chg != null) segs.push("תל אביב " + segWord(il.chg, il.state === "live") + ' <b class="num ' + cls(il.chg) + '" dir="ltr">' + pc(il.chg) + "</b>");
     if (usLive && byKey.spx) segs.push('ארה"ב ' + segWord(byKey.spx.chg, true) + ' <b class="num ' + cls(byKey.spx.chg) + '" dir="ltr">' + pc(byKey.spx.chg) + "</b>");
+    else if (WKND && WKND.mode === "weekend" && (WKND.items || []).some(function (i) { return i.key === "sp500" && i.chg != null; }))
+      (WKND.items || []).forEach(function (i) { if (i.key === "sp500") segs.push('ארה"ב בסוף השבוע (xyz) <b class="num ' + cls(i.chg) + '" dir="ltr">' + pc(i.chg) + "</b>"); });
     else if (fut && fut.chg != null) segs.push('חוזי ארה"ב <b class="num ' + cls(fut.chg) + '" dir="ltr">' + pc(fut.chg) + "</b>");
     // 2. שעון עולמי — לפי שעת הפתיחה בשעון ישראל (hours מגיע מ-fetch_world.py)
     var CITIES = [["n225", "טוקיו"], ["ks11", "סיאול"], ["twii", "טאיפיי"], ["sse", "שנגחאי"], ["hsi", "הונג קונג"], ["nsei", "מומבאי"], ["ta125", "תל אביב"], ["ftse", "לונדון"], ["dax", "פרנקפורט"], ["spx", "ניו יורק"], ["tsx", "טורונטו"]];
@@ -2523,6 +2562,7 @@
     html += '</div><div class="wm-col">';
     ["אסיה", "אירופה", "ארה\"ב"].forEach(function (region) {
       if (groups[region]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(region) + "</h3>" + cards(groups[region]) + "</section>";
+      if (region === "ארה\"ב") html += weekendStrip();
     });
     html += "</div></div>";
     html += '<p class="wm-foot">נתוני המדדים מ-Yahoo Finance, מושהים בכ-15-20 דקות · 5 ימים ומתחילת השנה מסגירה לסגירה · עודכן ' +
@@ -2909,8 +2949,8 @@
       fetchJSON("data/sectors.json")
         .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
         .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
-      fetchJSON("data/world.json")
-        .then(function (d) { renderWorld(document.getElementById("panel-world"), d); })
+      Promise.all([fetchJSON("data/world.json"), fetchJSON("data/weekend.json").catch(function () { return null; })])
+        .then(function (r) { WKND = r[1]; renderWorld(document.getElementById("panel-world"), r[0]); })
         .catch(function () { emptyPanel(document.getElementById("panel-world"), "🌍", "שווקים בינלאומיים — בקרוב", ""); });
       fetchJSON("data/morning.json")
         .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
