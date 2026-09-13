@@ -42,6 +42,7 @@ XYZ = [
     ("googl", "Alphabet", "GOOGL", "GOOGL"),
     ("meta", "Meta", "META", "META"),
     ("amzn", "Amazon", "AMZN", "AMZN"),
+    ("pltr", "Palantir", "PLTR", "PLTR"),   # 13.9.2026 ערב — "כדי שיהיה סימטרי" (9 אריחים, 3×3)
 ]
 CRYPTO = [("btc", "ביטקוין", "BTC", "BTC-USD"), ("eth", "את'ריום", "ETH", "ETH-USD")]
 THIN_USDC = 1_000_000          # מתחת לזה האריח מסומן "מחזור דק"
