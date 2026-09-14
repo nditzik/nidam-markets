@@ -1,9 +1,25 @@
 {
-  "today": "2026-09-14",
-  "todayCount": 7,
+  "today": "2026-09-15",
+  "todayCount": 4,
   "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-09-14",
+        "label": "14.9",
+        "items": [
+          {
+            "ticker": "HAIN",
+            "name": "Hain Celestial Group",
+            "when": "before",
+            "status": "final",
+            "chg": -3.21,
+            "price": 0.6,
+            "reactDate": "2026-09-14",
+            "baseDate": "2026-09-11"
+          }
+        ]
+      },
       {
         "date": "2026-09-11",
         "label": "11.9",
@@ -85,133 +101,37 @@
             "baseDate": "2026-09-09"
           }
         ]
-      },
-      {
-        "date": "2026-09-09",
-        "label": "9.9",
-        "items": [
-          {
-            "ticker": "SUNB",
-            "name": "Sunbelt Rentals Holdings Inc",
-            "when": "before",
-            "status": "final",
-            "chg": 5.91,
-            "price": 73.42,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
-          {
-            "ticker": "COO",
-            "name": "Cooper Companies",
-            "when": "after",
-            "status": "final",
-            "chg": -14.67,
-            "price": 54.17,
-            "reactDate": "2026-09-10",
-            "baseDate": "2026-09-09"
-          },
-          {
-            "ticker": "SAIL",
-            "name": "Sailpoint Inc",
-            "when": "before",
-            "status": "final",
-            "chg": -1.18,
-            "price": 17.58,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
-          {
-            "ticker": "CHWY",
-            "name": "Chewy Inc",
-            "when": "before",
-            "status": "final",
-            "chg": -10.83,
-            "price": 20.75,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
-          {
-            "ticker": "SIG",
-            "name": "Signet Jewelers Ltd",
-            "when": "before",
-            "status": "final",
-            "chg": 23.96,
-            "price": 102.48,
-            "reactDate": "2026-09-09",
-            "baseDate": "2026-09-08"
-          },
-          {
-            "ticker": "WLTH",
-            "name": "Wealthfront Corp",
-            "when": "after",
-            "status": "final",
-            "chg": 15.01,
-            "price": 10.88,
-            "reactDate": "2026-09-10",
-            "baseDate": "2026-09-09"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "ABVX",
-      "name": "Abivax Sa ADR",
+      "ticker": "ESP",
+      "name": "Espey Mfg. & Electronics",
       "when": "",
-      "logo": "data/earnings/logos/ABVX.png"
+      "logo": "data/earnings/logos/ESP.png"
     },
     {
-      "ticker": "VZLA",
-      "name": "Vizsla Silver Corp",
+      "ticker": "EPM",
+      "name": "Evolution Petroleum Corp",
       "when": "",
-      "logo": "data/earnings/logos/VZLA.png"
+      "logo": "data/earnings/logos/EPM.png"
     },
     {
-      "ticker": "AVO",
-      "name": "Mission Produce Inc",
+      "ticker": "PBMLF",
+      "name": "Pacific Booker Minerals",
       "when": "",
-      "logo": "data/earnings/logos/AVO.png"
+      "logo": "data/earnings/logos/PBMLF.png"
     },
     {
-      "ticker": "DLNG",
-      "name": "Dynagas Lng Partners LP",
+      "ticker": "DTEAF",
+      "name": "Davidstea Inc",
       "when": "",
-      "logo": "data/earnings/logos/DLNG.png"
-    },
-    {
-      "ticker": "BNR",
-      "name": "Burning Rock Biotech Ltd ADR",
-      "when": "",
-      "logo": "data/earnings/logos/BNR.png"
-    },
-    {
-      "ticker": "HAIN",
-      "name": "Hain Celestial Group",
-      "when": "before",
-      "logo": "data/earnings/logos/HAIN.png"
-    },
-    {
-      "ticker": "GROW",
-      "name": "U S Global Inv Inc",
-      "when": "",
-      "logo": "data/earnings/logos/GROW.png"
+      "logo": "data/earnings/logos/DTEAF.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-09-15",
-      "label": "15/9",
-      "dow": "ג׳",
-      "count": 4,
-      "tickers": [
-        "ESP",
-        "EPM",
-        "PBMLF",
-        "DTEAF"
-      ]
-    },
     {
       "date": "2026-09-16",
       "label": "16/9",
@@ -449,13 +369,6 @@
     }
   ],
   "window": {
-    "ABVX": "2026-09-14",
-    "AVO": "2026-09-14",
-    "BNR": "2026-09-14",
-    "DLNG": "2026-09-14",
-    "GROW": "2026-09-14",
-    "HAIN": "2026-09-14",
-    "VZLA": "2026-09-14",
     "DTEAF": "2026-09-15",
     "EPM": "2026-09-15",
     "ESP": "2026-09-15",
@@ -508,10 +421,21 @@
     "SEOVF": "2026-09-21",
     "USAU": "2026-09-21",
     "VALU": "2026-09-21",
-    "YYAI": "2026-09-21"
+    "YYAI": "2026-09-21",
+    "AIR": "2026-09-22",
+    "AYTU": "2026-09-22",
+    "AZO": "2026-09-22",
+    "BLOZF": "2026-09-22",
+    "INBP": "2026-09-22",
+    "MLKN": "2026-09-22",
+    "MU": "2026-09-22",
+    "NAII": "2026-09-22",
+    "NMTLF": "2026-09-22",
+    "SMGZY": "2026-09-22",
+    "WOR": "2026-09-22"
   },
   "_meta": {
-    "updatedAt": "14/09/2026 23:46",
+    "updatedAt": "15/09/2026 00:01",
     "source": "earnings.csv"
   }
 }
