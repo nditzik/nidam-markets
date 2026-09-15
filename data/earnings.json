@@ -1,7 +1,18 @@
 {
-  "today": "2026-09-15",
-  "todayCount": 4,
-  "todayBig": [],
+  "today": "2026-09-16",
+  "todayCount": 12,
+  "todayBig": [
+    {
+      "ticker": "DLMAF",
+      "name": "Dollarama Inc Ord",
+      "capB": 36.4
+    },
+    {
+      "ticker": "GIS",
+      "name": "General Mills",
+      "capB": 21.4
+    }
+  ],
   "reactions": {
     "days": [
       {
@@ -35,117 +46,85 @@
             "baseDate": "2026-09-10"
           }
         ]
-      },
-      {
-        "date": "2026-09-10",
-        "label": "10.9",
-        "items": [
-          {
-            "ticker": "ADBE",
-            "name": "Adobe Systems Inc",
-            "when": "after",
-            "status": "final",
-            "chg": 1.37,
-            "price": 252.23,
-            "reactDate": "2026-09-11",
-            "baseDate": "2026-09-10"
-          },
-          {
-            "ticker": "DSGX",
-            "name": "Descartes Sys Group",
-            "when": "after",
-            "status": "final",
-            "chg": 6.62,
-            "price": 76.04,
-            "reactDate": "2026-09-11",
-            "baseDate": "2026-09-10"
-          },
-          {
-            "ticker": "M",
-            "name": "Macy's Inc",
-            "when": "before",
-            "status": "final",
-            "chg": -4.7,
-            "price": 20.5,
-            "reactDate": "2026-09-10",
-            "baseDate": "2026-09-09"
-          },
-          {
-            "ticker": "CAL",
-            "name": "Caleres Inc",
-            "when": "before",
-            "status": "final",
-            "chg": -2.22,
-            "price": 11.88,
-            "reactDate": "2026-09-10",
-            "baseDate": "2026-09-09"
-          },
-          {
-            "ticker": "DBI",
-            "name": "Designer Brands Inc",
-            "when": "before",
-            "status": "final",
-            "chg": 14.75,
-            "price": 5.99,
-            "reactDate": "2026-09-10",
-            "baseDate": "2026-09-09"
-          },
-          {
-            "ticker": "FLWS",
-            "name": "1-800-Flowers.com",
-            "when": "before",
-            "status": "final",
-            "chg": -12.89,
-            "price": 3.04,
-            "reactDate": "2026-09-10",
-            "baseDate": "2026-09-09"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "ESP",
-      "name": "Espey Mfg. & Electronics",
-      "when": "",
-      "logo": "data/earnings/logos/ESP.png"
+      "ticker": "DLMAF",
+      "name": "Dollarama Inc Ord",
+      "when": "before",
+      "logo": "data/earnings/logos/DLMAF.png"
     },
     {
-      "ticker": "EPM",
-      "name": "Evolution Petroleum Corp",
+      "ticker": "GIS",
+      "name": "General Mills",
       "when": "",
-      "logo": "data/earnings/logos/EPM.png"
+      "logo": "data/earnings/logos/GIS.png"
     },
     {
-      "ticker": "PBMLF",
-      "name": "Pacific Booker Minerals",
+      "ticker": "BTDPY",
+      "name": "Barratt Redrow Plc ADR",
       "when": "",
-      "logo": "data/earnings/logos/PBMLF.png"
+      "logo": "data/earnings/logos/BTDPY.png"
     },
     {
-      "ticker": "DTEAF",
-      "name": "Davidstea Inc",
+      "ticker": "MANU",
+      "name": "Manchester United Ltd",
       "when": "",
-      "logo": "data/earnings/logos/DTEAF.png"
+      "logo": "data/earnings/logos/MANU.png"
+    },
+    {
+      "ticker": "CBRL",
+      "name": "Cracker Barrel",
+      "when": "",
+      "logo": "data/earnings/logos/CBRL.png"
+    },
+    {
+      "ticker": "RZLT",
+      "name": "Rezolute Inc",
+      "when": "",
+      "logo": "data/earnings/logos/RZLT.png"
+    },
+    {
+      "ticker": "SANG",
+      "name": "Sangoma Technologies Corp",
+      "when": "",
+      "logo": "data/earnings/logos/SANG.png"
+    },
+    {
+      "ticker": "HERE",
+      "name": "Here Group Ltd ADR",
+      "when": "",
+      "logo": "data/earnings/logos/HERE.png"
+    },
+    {
+      "ticker": "DSWL",
+      "name": "Deswell Inds Inc",
+      "when": "",
+      "logo": "data/earnings/logos/DSWL.png"
+    },
+    {
+      "ticker": "YI",
+      "name": "111 Inc ADR",
+      "when": "",
+      "logo": "data/earnings/logos/YI.png"
+    },
+    {
+      "ticker": "PLUR",
+      "name": "Pluri Inc",
+      "when": "",
+      "logo": "data/earnings/logos/PLUR.png"
+    },
+    {
+      "ticker": "STAI",
+      "name": "Scantech AI Systems Inc",
+      "when": "",
+      "logo": "data/earnings/logos/STAI.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-09-16",
-      "label": "16/9",
-      "dow": "ד׳",
-      "count": 12,
-      "tickers": [
-        "DLMAF",
-        "GIS",
-        "BTDPY",
-        "MANU",
-        "CBRL",
-        "RZLT"
-      ]
-    },
     {
       "date": "2026-09-17",
       "label": "17/9",
@@ -369,10 +348,6 @@
     }
   ],
   "window": {
-    "DTEAF": "2026-09-15",
-    "EPM": "2026-09-15",
-    "ESP": "2026-09-15",
-    "PBMLF": "2026-09-15",
     "BTDPY": "2026-09-16",
     "CBRL": "2026-09-16",
     "DLMAF": "2026-09-16",
@@ -432,10 +407,18 @@
     "NAII": "2026-09-22",
     "NMTLF": "2026-09-22",
     "SMGZY": "2026-09-22",
-    "WOR": "2026-09-22"
+    "WOR": "2026-09-22",
+    "CTAS": "2026-09-23",
+    "FUL": "2026-09-23",
+    "KBH": "2026-09-23",
+    "RWWI": "2026-09-23",
+    "SFIX": "2026-09-23",
+    "THO": "2026-09-23",
+    "UEC": "2026-09-23",
+    "WS": "2026-09-23"
   },
   "_meta": {
-    "updatedAt": "15/09/2026 23:46",
+    "updatedAt": "16/09/2026 00:01",
     "source": "earnings.csv"
   }
 }
