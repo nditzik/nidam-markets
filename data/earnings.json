@@ -1,20 +1,41 @@
 {
-  "today": "2026-09-16",
-  "todayCount": 12,
+  "today": "2026-09-17",
+  "todayCount": 10,
   "todayBig": [
     {
-      "ticker": "DLMAF",
-      "name": "Dollarama Inc Ord",
-      "capB": 36.4
+      "ticker": "DRI",
+      "name": "Darden Restaurants",
+      "capB": 25.3
     },
     {
-      "ticker": "GIS",
-      "name": "General Mills",
-      "capB": 21.4
+      "ticker": "LEN",
+      "name": "Lennar Corp",
+      "capB": 21.0
+    },
+    {
+      "ticker": "LEN.B",
+      "name": "Lennar Corp Cl B",
+      "capB": 20.6
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-09-16",
+        "label": "16.9",
+        "items": [
+          {
+            "ticker": "DLMAF",
+            "name": "Dollarama Inc Ord",
+            "when": "before",
+            "status": "live",
+            "chg": 4.73,
+            "price": 124.54,
+            "reactDate": "2026-09-16",
+            "baseDate": "2026-09-15"
+          }
+        ]
+      },
       {
         "date": "2026-09-14",
         "label": "14.9",
@@ -30,115 +51,73 @@
             "baseDate": "2026-09-11"
           }
         ]
-      },
-      {
-        "date": "2026-09-11",
-        "label": "11.9",
-        "items": [
-          {
-            "ticker": "KR",
-            "name": "Kroger Company",
-            "when": "before",
-            "status": "final",
-            "chg": 2.7,
-            "price": 58.49,
-            "reactDate": "2026-09-11",
-            "baseDate": "2026-09-10"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "DLMAF",
-      "name": "Dollarama Inc Ord",
-      "when": "before",
-      "logo": "data/earnings/logos/DLMAF.png"
+      "ticker": "DRI",
+      "name": "Darden Restaurants",
+      "when": "",
+      "logo": "data/earnings/logos/DRI.png"
     },
     {
-      "ticker": "GIS",
-      "name": "General Mills",
+      "ticker": "LEN",
+      "name": "Lennar Corp",
       "when": "",
-      "logo": "data/earnings/logos/GIS.png"
+      "logo": "data/earnings/logos/LEN.png"
     },
     {
-      "ticker": "BTDPY",
-      "name": "Barratt Redrow Plc ADR",
+      "ticker": "LEN.B",
+      "name": "Lennar Corp Cl B",
       "when": "",
-      "logo": "data/earnings/logos/BTDPY.png"
+      "logo": "data/earnings/logos/LEN.B.png"
     },
     {
-      "ticker": "MANU",
-      "name": "Manchester United Ltd",
+      "ticker": "FDS",
+      "name": "Factset Research Systems",
       "when": "",
-      "logo": "data/earnings/logos/MANU.png"
+      "logo": "data/earnings/logos/FDS.png"
     },
     {
-      "ticker": "CBRL",
-      "name": "Cracker Barrel",
+      "ticker": "RNSHF",
+      "name": "Renishaw Plc",
       "when": "",
-      "logo": "data/earnings/logos/CBRL.png"
+      "logo": "data/earnings/logos/RNSHF.png"
     },
     {
-      "ticker": "RZLT",
-      "name": "Rezolute Inc",
+      "ticker": "AJMPF",
+      "name": "Ashmore Group Plc Ord",
       "when": "",
-      "logo": "data/earnings/logos/RZLT.png"
+      "logo": "data/earnings/logos/AJMPF.png"
     },
     {
-      "ticker": "SANG",
-      "name": "Sangoma Technologies Corp",
+      "ticker": "SCHL",
+      "name": "Scholastic Corp",
       "when": "",
-      "logo": "data/earnings/logos/SANG.png"
+      "logo": "data/earnings/logos/SCHL.png"
     },
     {
-      "ticker": "HERE",
-      "name": "Here Group Ltd ADR",
+      "ticker": "ABAT",
+      "name": "American Battery Technology Co.",
       "when": "",
-      "logo": "data/earnings/logos/HERE.png"
+      "logo": "data/earnings/logos/ABAT.png"
     },
     {
-      "ticker": "DSWL",
-      "name": "Deswell Inds Inc",
+      "ticker": "RSSS",
+      "name": "Research Solutions Inc",
       "when": "",
-      "logo": "data/earnings/logos/DSWL.png"
+      "logo": "data/earnings/logos/RSSS.png"
     },
     {
-      "ticker": "YI",
-      "name": "111 Inc ADR",
+      "ticker": "IH",
+      "name": "Ihuman Inc ADR",
       "when": "",
-      "logo": "data/earnings/logos/YI.png"
-    },
-    {
-      "ticker": "PLUR",
-      "name": "Pluri Inc",
-      "when": "",
-      "logo": "data/earnings/logos/PLUR.png"
-    },
-    {
-      "ticker": "STAI",
-      "name": "Scantech AI Systems Inc",
-      "when": "",
-      "logo": "data/earnings/logos/STAI.png"
+      "logo": "data/earnings/logos/IH.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-09-17",
-      "label": "17/9",
-      "dow": "ה׳",
-      "count": 10,
-      "tickers": [
-        "DRI",
-        "LEN",
-        "LEN.B",
-        "FDS",
-        "RNSHF",
-        "AJMPF"
-      ]
-    },
     {
       "date": "2026-09-18",
       "label": "18/9",
@@ -348,18 +327,6 @@
     }
   ],
   "window": {
-    "BTDPY": "2026-09-16",
-    "CBRL": "2026-09-16",
-    "DLMAF": "2026-09-16",
-    "DSWL": "2026-09-16",
-    "GIS": "2026-09-16",
-    "HERE": "2026-09-16",
-    "MANU": "2026-09-16",
-    "PLUR": "2026-09-16",
-    "RZLT": "2026-09-16",
-    "SANG": "2026-09-16",
-    "STAI": "2026-09-16",
-    "YI": "2026-09-16",
     "ABAT": "2026-09-17",
     "AJMPF": "2026-09-17",
     "DRI": "2026-09-17",
@@ -415,10 +382,25 @@
     "SFIX": "2026-09-23",
     "THO": "2026-09-23",
     "UEC": "2026-09-23",
-    "WS": "2026-09-23"
+    "WS": "2026-09-23",
+    "ASTC": "2026-09-24",
+    "BB": "2026-09-24",
+    "BTOC": "2026-09-24",
+    "CNXC": "2026-09-24",
+    "COST": "2026-09-24",
+    "HNNMY": "2026-09-24",
+    "JBL": "2026-09-24",
+    "KMX": "2026-09-24",
+    "LGCY": "2026-09-24",
+    "LPTH": "2026-09-24",
+    "LUXE": "2026-09-24",
+    "PZG": "2026-09-24",
+    "RAVE": "2026-09-24",
+    "SNX": "2026-09-24",
+    "TBN": "2026-09-24"
   },
   "_meta": {
-    "updatedAt": "16/09/2026 23:46",
+    "updatedAt": "17/09/2026 00:01",
     "source": "earnings.csv"
   }
 }
