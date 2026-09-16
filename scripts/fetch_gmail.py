@@ -135,6 +135,15 @@ def headlines_of(html):
                 if t:
                     out.append(t)
         if not out:
+            # מבנה 2026-09-16: טבלה — כל תבליט הוא <tr><td style="…border-right:4px solid…">
+            # (בלי ul/li ובלי div.bullet). לוקחים את תאי הטבלה הראשונה שאחרי הכותרת.
+            tm = re.search(r"<table[^>]*>(.*?)</table>", section, re.S)
+            if tm:
+                for td in re.findall(r"<td[^>]*>(.*?)</td>", tm.group(1), re.S):
+                    t = _clean(td)
+                    if len(t) > 15:
+                        out.append(t)
+        if not out:
             # מבנה 2026-08-17: כל תבליט ב-<div class="bullet">…</div> נפרד
             for bm in re.finditer(r'<div[^>]*class="[^"]*\bbullet\b[^"]*"[^>]*>(.*?)</div>', section, re.S):
                 t = _clean(bm.group(1))

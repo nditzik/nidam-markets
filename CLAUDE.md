@@ -76,6 +76,7 @@
 שומרים ל-`C:\challenge\reports\...` — משימה מתוזמנת דוחפת כל 5 דק', האתר מושך תוך 15 דק': `sectors/`+`trades/` (HTML בשם עברי חופשי + תאריך), שורש — `TICKER__YYYY-MM-DD.html` + `earnings.csv`. בבוקר: דחיפת נתוני מדדים+מומנטום לפני 06:30.
 
 ## מלכודות שנלמדו בדם
+- **התדריך מגרוק משנה מבנה HTML בלי הודעה** (16.9.2026: תבליטי "חדש מאז" הפכו לשורות `<tr><td>` בטבלה, בלי ul/li — הבית הציג 2 מתוך 4 כי הפרסר נפל לסעיף "הידיעות המרכזיות"). `headlines_of` ב-fetch_gmail.py מנסה לפי הסדר: ul/li → תאי הטבלה הראשונה → div.bullet → פיצול •. כשמספר הידיעות בבית לא 4, לבדוק את `data/briefings/morning.html` ולהוסיף אסטרטגיה, ולבדוק רגרסיה על `data/briefings/archive/*.html`.
 
 1. **סדר push:** commit → `git pull --rebase` → push. קונפליקט ב-data: `git checkout --theirs` (הכל רגנרטיבי). מסר-קומיט עם גרשיים ב-PowerShell נשבר — `git commit -F msgfile`.
 2. **iframe דוחות בנייד:** הכיווץ ב-`__fitFrame` הוא **transform:scale על מעטפת `#np-fit-scaler`** — לא zoom! (zoom ב-WebKit משנה layout ולא מתכנס; היה חיתוך+ריצוד). origin לפי כיוון המסמך (RTL ימין / LTR שמאל); html/body מקובעים לגודל הוויזואלי; refit בפתיחת טאב (iframe שנטען בפאנל מוסתר נמדד על clientWidth=0).
