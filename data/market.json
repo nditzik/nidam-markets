@@ -11,7 +11,7 @@
     {
       "key": "nq",
       "label": "חוזה Nasdaq",
-      "price": 29328.0,
+      "price": 29329.75,
       "chg": 0.28,
       "prev": 29246.75,
       "spark": []
@@ -225,14 +225,17 @@
     {
       "key": "dxy",
       "label": "DXY",
-      "price": 99.67,
-      "chg": 0.05,
+      "price": 99.65,
+      "chg": 0.04,
       "prev": 99.61,
-      "spark": []
+      "spark": [
+        99.651,
+        99.65
+      ]
     }
   ],
   "_meta": {
-    "updatedAt": "16/09/2026 07:01",
+    "updatedAt": "16/09/2026 07:15",
     "source": "yahoo"
   }
 }
