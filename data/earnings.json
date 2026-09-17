@@ -28,7 +28,11 @@
             "ticker": "DLMAF",
             "name": "Dollarama Inc Ord",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": 4.73,
+            "price": 124.54,
+            "reactDate": "2026-09-16",
+            "baseDate": "2026-09-15"
           }
         ]
       },
@@ -40,7 +44,11 @@
             "ticker": "HAIN",
             "name": "Hain Celestial Group",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": -3.23,
+            "price": 0.6,
+            "reactDate": "2026-09-14",
+            "baseDate": "2026-09-11"
           }
         ]
       }
@@ -392,7 +400,7 @@
     "TBN": "2026-09-24"
   },
   "_meta": {
-    "updatedAt": "17/09/2026 21:46",
+    "updatedAt": "17/09/2026 22:01",
     "source": "earnings.csv"
   }
 }
