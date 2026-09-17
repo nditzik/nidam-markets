@@ -1,23 +1,7 @@
 {
-  "today": "2026-09-17",
-  "todayCount": 10,
-  "todayBig": [
-    {
-      "ticker": "DRI",
-      "name": "Darden Restaurants",
-      "capB": 25.3
-    },
-    {
-      "ticker": "LEN",
-      "name": "Lennar Corp",
-      "capB": 21.0
-    },
-    {
-      "ticker": "LEN.B",
-      "name": "Lennar Corp Cl B",
-      "capB": 20.6
-    }
-  ],
+  "today": "2026-09-18",
+  "todayCount": 5,
+  "todayBig": [],
   "reactions": {
     "days": [
       {
@@ -35,103 +19,43 @@
             "baseDate": "2026-09-15"
           }
         ]
-      },
-      {
-        "date": "2026-09-14",
-        "label": "14.9",
-        "items": [
-          {
-            "ticker": "HAIN",
-            "name": "Hain Celestial Group",
-            "when": "before",
-            "status": "final",
-            "chg": -3.23,
-            "price": 0.6,
-            "reactDate": "2026-09-14",
-            "baseDate": "2026-09-11"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "DRI",
-      "name": "Darden Restaurants",
+      "ticker": "AIRYY",
+      "name": "Air China Ltd ADR",
       "when": "",
-      "logo": "data/earnings/logos/DRI.png"
+      "logo": "data/earnings/logos/AIRYY.png"
     },
     {
-      "ticker": "LEN",
-      "name": "Lennar Corp",
+      "ticker": "TRT",
+      "name": "Trio-Tech International",
       "when": "",
-      "logo": "data/earnings/logos/LEN.png"
+      "logo": "data/earnings/logos/TRT.png"
     },
     {
-      "ticker": "LEN.B",
-      "name": "Lennar Corp Cl B",
+      "ticker": "MNY",
+      "name": "Moneyhero Limited Cl A",
       "when": "",
-      "logo": "data/earnings/logos/LEN.B.png"
+      "logo": "data/earnings/logos/MNY.png"
     },
     {
-      "ticker": "FDS",
-      "name": "Factset Research Systems",
+      "ticker": "SRCO",
+      "name": "Sparta Comml Svcs Inc",
       "when": "",
-      "logo": "data/earnings/logos/FDS.png"
+      "logo": "data/earnings/logos/SRCO.png"
     },
     {
-      "ticker": "RNSHF",
-      "name": "Renishaw Plc",
+      "ticker": "GWOX",
+      "name": "Goodheart-Willcox CO Inc",
       "when": "",
-      "logo": "data/earnings/logos/RNSHF.png"
-    },
-    {
-      "ticker": "AJMPF",
-      "name": "Ashmore Group Plc Ord",
-      "when": "",
-      "logo": "data/earnings/logos/AJMPF.png"
-    },
-    {
-      "ticker": "SCHL",
-      "name": "Scholastic Corp",
-      "when": "",
-      "logo": "data/earnings/logos/SCHL.png"
-    },
-    {
-      "ticker": "ABAT",
-      "name": "American Battery Technology Co.",
-      "when": "",
-      "logo": "data/earnings/logos/ABAT.png"
-    },
-    {
-      "ticker": "RSSS",
-      "name": "Research Solutions Inc",
-      "when": "",
-      "logo": "data/earnings/logos/RSSS.png"
-    },
-    {
-      "ticker": "IH",
-      "name": "Ihuman Inc ADR",
-      "when": "",
-      "logo": "data/earnings/logos/IH.png"
+      "logo": "data/earnings/logos/GWOX.png"
     }
   ],
   "more": 0,
-  "upcoming": [
-    {
-      "date": "2026-09-18",
-      "label": "18/9",
-      "dow": "ו׳",
-      "count": 5,
-      "tickers": [
-        "AIRYY",
-        "TRT",
-        "MNY",
-        "SRCO",
-        "GWOX"
-      ]
-    }
-  ],
+  "upcoming": [],
   "week": [
     {
       "date": "2026-09-14",
@@ -327,16 +251,6 @@
     }
   ],
   "window": {
-    "ABAT": "2026-09-17",
-    "AJMPF": "2026-09-17",
-    "DRI": "2026-09-17",
-    "FDS": "2026-09-17",
-    "IH": "2026-09-17",
-    "LEN": "2026-09-17",
-    "LEN.B": "2026-09-17",
-    "RNSHF": "2026-09-17",
-    "RSSS": "2026-09-17",
-    "SCHL": "2026-09-17",
     "GWOX": "2026-09-18",
     "AIRYY": "2026-09-18",
     "MNY": "2026-09-18",
@@ -397,10 +311,22 @@
     "PZG": "2026-09-24",
     "RAVE": "2026-09-24",
     "SNX": "2026-09-24",
-    "TBN": "2026-09-24"
+    "TBN": "2026-09-24",
+    "AMTY": "2026-09-25",
+    "BETRF": "2026-09-25",
+    "BKRRF": "2026-09-25",
+    "BLSTF": "2026-09-25",
+    "DTSS": "2026-09-25",
+    "DYLLF": "2026-09-25",
+    "FCLIF": "2026-09-25",
+    "LITS": "2026-09-25",
+    "MITQ": "2026-09-25",
+    "MVCO": "2026-09-25",
+    "NDVLY": "2026-09-25",
+    "SKHHY": "2026-09-25"
   },
   "_meta": {
-    "updatedAt": "17/09/2026 23:46",
+    "updatedAt": "18/09/2026 00:01",
     "source": "earnings.csv"
   }
 }
