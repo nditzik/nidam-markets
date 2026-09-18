@@ -1,5 +1,5 @@
 {
-  "today": "2026-09-18",
+  "today": "2026-09-19",
   "todayCount": 1,
   "todayBig": [],
   "reactions": {
@@ -55,116 +55,192 @@
             "baseDate": "2026-09-14"
           }
         ]
-      },
-      {
-        "date": "2026-09-14",
-        "label": "14.9",
-        "items": [
-          {
-            "ticker": "UROY",
-            "name": "Uranium Royalty Corporation",
-            "when": "after",
-            "status": "final",
-            "chg": 0.94,
-            "price": 4.28,
-            "reactDate": "2026-09-15",
-            "baseDate": "2026-09-14"
-          },
-          {
-            "ticker": "KMTS",
-            "name": "Kestra Medical Technologies Ltd.",
-            "when": "after",
-            "status": "final",
-            "chg": 4.66,
-            "price": 25.18,
-            "reactDate": "2026-09-15",
-            "baseDate": "2026-09-14"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "VFS",
-      "name": "VinFast Auto Ltd.",
-      "when": "",
-      "logo": "data/earnings/logos/VFS.png"
+      "ticker": "IOND",
+      "name": "Ionic Digital Inc. Class A",
+      "when": ""
     }
   ],
   "more": 0,
-  "upcoming": [],
+  "upcoming": [
+    {
+      "date": "2026-09-21",
+      "label": "21/9",
+      "dow": "ב׳",
+      "count": 1,
+      "tickers": [
+        "ABVX"
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "label": "22/9",
+      "dow": "ג׳",
+      "count": 5,
+      "tickers": [
+        "AZO",
+        "THO",
+        "KBH",
+        "WOR",
+        "MLKN"
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "label": "23/9",
+      "dow": "ד׳",
+      "count": 6,
+      "tickers": [
+        "CTAS",
+        "PAYX",
+        "GIS",
+        "MANU",
+        "FUL",
+        "CBRL"
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "label": "24/9",
+      "dow": "ה׳",
+      "count": 5,
+      "tickers": [
+        "COST",
+        "DRI",
+        "SNX",
+        "BB",
+        "TBN"
+      ]
+    },
+    {
+      "date": "2026-09-25",
+      "label": "25/9",
+      "dow": "ו׳",
+      "count": 1,
+      "tickers": [
+        "UEC"
+      ]
+    }
+  ],
   "week": [
     {
-      "date": "2026-09-14",
+      "date": "2026-09-21",
       "dow": "שני",
-      "label": "14.9",
-      "total": 2,
-      "companies": [
-        {
-          "ticker": "UROY",
-          "name": "Uranium Royalty Corporation"
-        },
-        {
-          "ticker": "KMTS",
-          "name": "Kestra Medical Technologies Ltd."
-        }
-      ]
-    },
-    {
-      "date": "2026-09-15",
-      "dow": "שלישי",
-      "label": "15.9",
-      "total": 2,
-      "companies": [
-        {
-          "ticker": "TCOM",
-          "name": "Trip.com Group Ltd. Sponsored ADR"
-        },
-        {
-          "ticker": "FPS",
-          "name": "Forgent Power Solutions, Inc. Class A"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-16",
-      "dow": "רביעי",
-      "label": "16.9",
-      "total": 2,
-      "companies": [
-        {
-          "ticker": "LEN",
-          "name": "Lennar Corporation Class A"
-        },
-        {
-          "ticker": "LUXE",
-          "name": "LuxExperience B.V. Sponsored ADR"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-17",
-      "dow": "חמישי",
-      "label": "17.9",
-      "total": 0,
-      "companies": []
-    },
-    {
-      "date": "2026-09-18",
-      "dow": "שישי",
-      "label": "18.9",
+      "label": "21.9",
       "total": 1,
       "companies": [
         {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd."
+          "ticker": "ABVX",
+          "name": "Abivax SA Sponsored ADR"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "dow": "שלישי",
+      "label": "22.9",
+      "total": 5,
+      "companies": [
+        {
+          "ticker": "AZO",
+          "name": "AutoZone, Inc."
+        },
+        {
+          "ticker": "THO",
+          "name": "Thor Industries, Inc."
+        },
+        {
+          "ticker": "KBH",
+          "name": "KB Home"
+        },
+        {
+          "ticker": "WOR",
+          "name": "Worthington Enterprises, Inc."
+        },
+        {
+          "ticker": "MLKN",
+          "name": "MillerKnoll, Inc."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "dow": "רביעי",
+      "label": "23.9",
+      "total": 6,
+      "companies": [
+        {
+          "ticker": "CTAS",
+          "name": "Cintas Corporation"
+        },
+        {
+          "ticker": "PAYX",
+          "name": "Paychex, Inc."
+        },
+        {
+          "ticker": "GIS",
+          "name": "General Mills, Inc."
+        },
+        {
+          "ticker": "MANU",
+          "name": "Manchester United Plc Class A"
+        },
+        {
+          "ticker": "FUL",
+          "name": "H.B. Fuller Company"
+        },
+        {
+          "ticker": "CBRL",
+          "name": "Cracker Barrel Old Country Store, Inc."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "dow": "חמישי",
+      "label": "24.9",
+      "total": 5,
+      "companies": [
+        {
+          "ticker": "COST",
+          "name": "Costco Wholesale Corporation"
+        },
+        {
+          "ticker": "DRI",
+          "name": "Darden Restaurants, Inc."
+        },
+        {
+          "ticker": "SNX",
+          "name": "TD SYNNEX Corporation"
+        },
+        {
+          "ticker": "BB",
+          "name": "BlackBerry Limited"
+        },
+        {
+          "ticker": "TBN",
+          "name": "Tamboran Resources Corporation"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-25",
+      "dow": "שישי",
+      "label": "25.9",
+      "total": 1,
+      "companies": [
+        {
+          "ticker": "UEC",
+          "name": "Uranium Energy Corp."
         }
       ]
     }
   ],
   "window": {
-    "VFS": "2026-09-18",
     "IOND": "2026-09-19",
     "ABVX": "2026-09-21",
     "AZO": "2026-09-22",
@@ -186,7 +262,7 @@
     "UEC": "2026-09-25"
   },
   "_meta": {
-    "updatedAt": "18/09/2026 23:46",
+    "updatedAt": "19/09/2026 00:02",
     "source": "tradingview"
   }
 }
