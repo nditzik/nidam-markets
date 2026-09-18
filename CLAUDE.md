@@ -62,7 +62,7 @@
 | fetch_market | market.json (+spark) | Yahoo v8 chart |
 | fetch_econ | econ.json (צפי/בפועל) | TradingView economic calendar |
 | fetch_bets | bets.json (פד, מיתון, יעד SPY; CPI כשיש נזילות) | Polymarket Gamma + Kalshi (ציבוריים, בלי מפתח) |
-| fetch_earnings / fetch_news / fetch_pulse / fetch_movers | earnings/news/pulse/movers | csv / RSS / **טלגרם + דיג'סט X במייל** (ראו למטה) / TV scanner |
+| fetch_earnings / fetch_news / fetch_pulse / fetch_movers | earnings/news/pulse/movers | **סורק TradingView** (CSV = גיבוי) / RSS / **טלגרם + דיג'סט X במייל** (ראו למטה) / TV scanner |
 | fetch_world | world.json → טאב "שווקים בינלאומיים" | Yahoo, 26 מדדים + spark לכל שורה (ראו למטה) |
 | fetch_weekend | weekend.json → רצועת "השוק סגור" בטאב שווקים | Hyperliquid info API (חוזי xyz + BTC/ETH) + Yahoo לסגירות (ראו למטה) |
 | build_weekly | weekly.json + טלגרם → כרטיס "סיכום השבוע" בבית | history.json + indices.json; **אירוע, לא שעון** — רץ כשסגירת שישי נקלטת (ראו למטה) |
@@ -76,6 +76,7 @@
 שומרים ל-`C:\challenge\reports\...` — משימה מתוזמנת דוחפת כל 5 דק', האתר מושך תוך 15 דק': `sectors/`+`trades/` (HTML בשם עברי חופשי + תאריך), שורש — `TICKER__YYYY-MM-DD.html` + `earnings.csv`. בבוקר: דחיפת נתוני מדדים+מומנטום לפני 06:30.
 
 ## מלכודות שנלמדו בדם
+- **לוח הדיווחים: לא לסמוך על CSV ידני** (18.9.2026). earnings.csv ב-nidam-reports היה בן 4 שבועות, 70% מהשורות בלי מועד מאושר ("--" = הערכה של Barchart) ועם מניות OTC — לנר הוצגה ב-17.9 (דיווחה 16.9), דארדן ב-17.9 (בפועל 24.9); התראת "קובץ ישן" הלכה לטלגרם הפרטי שלא מגיע. מאז `fetch_earnings.py` בונה את הלוח מ**סורק TradingView** (`load_rows_tv`: `earnings_release_date`/`_next_date` + דגל שעה 1=אחרי סגירה, ‎-1=לפני פתיחה, 0=לא ידוע; שווי מעל $1B, NASDAQ/NYSE/AMEX, stock+dr; חלון 8 ימים אחורה עד 21 קדימה; התאריך מומר לשעון ניו יורק). השורות מומרות למבנה ה-CSV כך שהיום/השבוע/window/תגובות לא השתנו. ה-CSV נשאר גיבוי בלבד (`_meta.source` אומר מי פעיל), ו-notify_earnings_age שותק כשהמקור הוא הסורק.
 - **התדריך מגרוק משנה מבנה HTML בלי הודעה** (16.9.2026: תבליטי "חדש מאז" הפכו לשורות `<tr><td>` בטבלה, בלי ul/li — הבית הציג 2 מתוך 4 כי הפרסר נפל לסעיף "הידיעות המרכזיות"). `headlines_of` ב-fetch_gmail.py מנסה לפי הסדר: ul/li → תאי הטבלה הראשונה → div.bullet → פיצול •. כשמספר הידיעות בבית לא 4, לבדוק את `data/briefings/morning.html` ולהוסיף אסטרטגיה, ולבדוק רגרסיה על `data/briefings/archive/*.html`.
 
 1. **סדר push:** commit → `git pull --rebase` → push. קונפליקט ב-data: `git checkout --theirs` (הכל רגנרטיבי). מסר-קומיט עם גרשיים ב-PowerShell נשבר — `git commit -F msgfile`.

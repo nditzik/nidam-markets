@@ -65,6 +65,18 @@ def main():
             print("[fail] %s" % e)
             return 1
 
+    # 18.9.2026: לוח הדיווחים נבנה מסורק TradingView; ה-CSV הידני הוא גיבוי בלבד.
+    # כשהמקור הפעיל הוא הסורק אין טעם להתריע על גיל הקובץ.
+    try:
+        import json
+        ej = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "earnings.json")
+        with open(ej, "r", encoding="utf-8") as f:
+            if (json.load(f).get("_meta") or {}).get("source") == "tradingview":
+                print("[skip] לוח הדיווחים מ-TradingView — אין צורך בהתראת גיל ה-CSV.")
+                return 0
+    except Exception:
+        pass
+
     data = csv_bytes()
     if data is None:
         print("[skip] אין earnings.csv לבדיקה.")

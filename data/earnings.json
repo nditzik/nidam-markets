@@ -1,6 +1,6 @@
 {
   "today": "2026-09-18",
-  "todayCount": 5,
+  "todayCount": 1,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -9,14 +9,76 @@
         "label": "16.9",
         "items": [
           {
-            "ticker": "DLMAF",
-            "name": "Dollarama Inc Ord",
+            "ticker": "LEN",
+            "name": "Lennar Corporation Class A",
+            "when": "after",
+            "status": "final",
+            "chg": 1.71,
+            "price": 79.7,
+            "reactDate": "2026-09-17",
+            "baseDate": "2026-09-16"
+          },
+          {
+            "ticker": "LUXE",
+            "name": "LuxExperience B.V. Sponsored ADR",
             "when": "before",
             "status": "final",
-            "chg": 4.73,
-            "price": 124.54,
+            "chg": 23.22,
+            "price": 8.81,
             "reactDate": "2026-09-16",
             "baseDate": "2026-09-15"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-15",
+        "label": "15.9",
+        "items": [
+          {
+            "ticker": "TCOM",
+            "name": "Trip.com Group Ltd. Sponsored ADR",
+            "when": "after",
+            "status": "final",
+            "chg": 3.01,
+            "price": 40.43,
+            "reactDate": "2026-09-16",
+            "baseDate": "2026-09-15"
+          },
+          {
+            "ticker": "FPS",
+            "name": "Forgent Power Solutions, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "chg": 9.5,
+            "price": 31.36,
+            "reactDate": "2026-09-15",
+            "baseDate": "2026-09-14"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-14",
+        "label": "14.9",
+        "items": [
+          {
+            "ticker": "UROY",
+            "name": "Uranium Royalty Corporation",
+            "when": "after",
+            "status": "final",
+            "chg": 0.94,
+            "price": 4.28,
+            "reactDate": "2026-09-15",
+            "baseDate": "2026-09-14"
+          },
+          {
+            "ticker": "KMTS",
+            "name": "Kestra Medical Technologies Ltd.",
+            "when": "after",
+            "status": "final",
+            "chg": 4.66,
+            "price": 25.18,
+            "reactDate": "2026-09-15",
+            "baseDate": "2026-09-14"
           }
         ]
       }
@@ -24,34 +86,10 @@
   },
   "reporting": [
     {
-      "ticker": "AIRYY",
-      "name": "Air China Ltd ADR",
+      "ticker": "VFS",
+      "name": "VinFast Auto Ltd.",
       "when": "",
-      "logo": "data/earnings/logos/AIRYY.png"
-    },
-    {
-      "ticker": "TRT",
-      "name": "Trio-Tech International",
-      "when": "",
-      "logo": "data/earnings/logos/TRT.png"
-    },
-    {
-      "ticker": "MNY",
-      "name": "Moneyhero Limited Cl A",
-      "when": "",
-      "logo": "data/earnings/logos/MNY.png"
-    },
-    {
-      "ticker": "SRCO",
-      "name": "Sparta Comml Svcs Inc",
-      "when": "",
-      "logo": "data/earnings/logos/SRCO.png"
-    },
-    {
-      "ticker": "GWOX",
-      "name": "Goodheart-Willcox CO Inc",
-      "when": "",
-      "logo": "data/earnings/logos/GWOX.png"
+      "logo": "data/earnings/logos/VFS.png"
     }
   ],
   "more": 0,
@@ -61,35 +99,15 @@
       "date": "2026-09-14",
       "dow": "שני",
       "label": "14.9",
-      "total": 7,
+      "total": 2,
       "companies": [
         {
-          "ticker": "ABVX",
-          "name": "Abivax Sa ADR"
+          "ticker": "UROY",
+          "name": "Uranium Royalty Corporation"
         },
         {
-          "ticker": "VZLA",
-          "name": "Vizsla Silver Corp"
-        },
-        {
-          "ticker": "AVO",
-          "name": "Mission Produce Inc"
-        },
-        {
-          "ticker": "DLNG",
-          "name": "Dynagas Lng Partners LP"
-        },
-        {
-          "ticker": "BNR",
-          "name": "Burning Rock Biotech Ltd ADR"
-        },
-        {
-          "ticker": "HAIN",
-          "name": "Hain Celestial Group"
-        },
-        {
-          "ticker": "GROW",
-          "name": "U S Global Inv Inc"
+          "ticker": "KMTS",
+          "name": "Kestra Medical Technologies Ltd."
         }
       ]
     },
@@ -97,23 +115,15 @@
       "date": "2026-09-15",
       "dow": "שלישי",
       "label": "15.9",
-      "total": 4,
+      "total": 2,
       "companies": [
         {
-          "ticker": "ESP",
-          "name": "Espey Mfg. & Electronics"
+          "ticker": "TCOM",
+          "name": "Trip.com Group Ltd. Sponsored ADR"
         },
         {
-          "ticker": "EPM",
-          "name": "Evolution Petroleum Corp"
-        },
-        {
-          "ticker": "PBMLF",
-          "name": "Pacific Booker Minerals"
-        },
-        {
-          "ticker": "DTEAF",
-          "name": "Davidstea Inc"
+          "ticker": "FPS",
+          "name": "Forgent Power Solutions, Inc. Class A"
         }
       ]
     },
@@ -121,55 +131,15 @@
       "date": "2026-09-16",
       "dow": "רביעי",
       "label": "16.9",
-      "total": 12,
+      "total": 2,
       "companies": [
         {
-          "ticker": "DLMAF",
-          "name": "Dollarama Inc Ord"
+          "ticker": "LEN",
+          "name": "Lennar Corporation Class A"
         },
         {
-          "ticker": "GIS",
-          "name": "General Mills"
-        },
-        {
-          "ticker": "BTDPY",
-          "name": "Barratt Redrow Plc ADR"
-        },
-        {
-          "ticker": "MANU",
-          "name": "Manchester United Ltd"
-        },
-        {
-          "ticker": "CBRL",
-          "name": "Cracker Barrel"
-        },
-        {
-          "ticker": "RZLT",
-          "name": "Rezolute Inc"
-        },
-        {
-          "ticker": "SANG",
-          "name": "Sangoma Technologies Corp"
-        },
-        {
-          "ticker": "HERE",
-          "name": "Here Group Ltd ADR"
-        },
-        {
-          "ticker": "DSWL",
-          "name": "Deswell Inds Inc"
-        },
-        {
-          "ticker": "YI",
-          "name": "111 Inc ADR"
-        },
-        {
-          "ticker": "PLUR",
-          "name": "Pluri Inc"
-        },
-        {
-          "ticker": "STAI",
-          "name": "Scantech AI Systems Inc"
+          "ticker": "LUXE",
+          "name": "LuxExperience B.V. Sponsored ADR"
         }
       ]
     },
@@ -177,156 +147,44 @@
       "date": "2026-09-17",
       "dow": "חמישי",
       "label": "17.9",
-      "total": 10,
-      "companies": [
-        {
-          "ticker": "DRI",
-          "name": "Darden Restaurants"
-        },
-        {
-          "ticker": "LEN",
-          "name": "Lennar Corp"
-        },
-        {
-          "ticker": "LEN.B",
-          "name": "Lennar Corp Cl B"
-        },
-        {
-          "ticker": "FDS",
-          "name": "Factset Research Systems"
-        },
-        {
-          "ticker": "RNSHF",
-          "name": "Renishaw Plc"
-        },
-        {
-          "ticker": "AJMPF",
-          "name": "Ashmore Group Plc Ord"
-        },
-        {
-          "ticker": "SCHL",
-          "name": "Scholastic Corp"
-        },
-        {
-          "ticker": "ABAT",
-          "name": "American Battery Technology Co."
-        },
-        {
-          "ticker": "RSSS",
-          "name": "Research Solutions Inc"
-        },
-        {
-          "ticker": "IH",
-          "name": "Ihuman Inc ADR"
-        }
-      ]
+      "total": 0,
+      "companies": []
     },
     {
       "date": "2026-09-18",
       "dow": "שישי",
       "label": "18.9",
-      "total": 5,
+      "total": 1,
       "companies": [
         {
-          "ticker": "AIRYY",
-          "name": "Air China Ltd ADR"
-        },
-        {
-          "ticker": "TRT",
-          "name": "Trio-Tech International"
-        },
-        {
-          "ticker": "MNY",
-          "name": "Moneyhero Limited Cl A"
-        },
-        {
-          "ticker": "SRCO",
-          "name": "Sparta Comml Svcs Inc"
-        },
-        {
-          "ticker": "GWOX",
-          "name": "Goodheart-Willcox CO Inc"
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd."
         }
       ]
     }
   ],
   "window": {
-    "GWOX": "2026-09-18",
-    "AIRYY": "2026-09-18",
-    "MNY": "2026-09-18",
-    "SRCO": "2026-09-18",
-    "TRT": "2026-09-18",
-    "AMEN": "2026-09-21",
-    "BRRE": "2026-09-21",
-    "CODA": "2026-09-21",
-    "CSBR": "2026-09-21",
-    "DDDX": "2026-09-21",
-    "HCBC": "2026-09-21",
-    "HITI": "2026-09-21",
-    "HYFT": "2026-09-21",
-    "ISPR": "2026-09-21",
-    "IVDN": "2026-09-21",
-    "KEP": "2026-09-21",
-    "MSB": "2026-09-21",
-    "OPTT": "2026-09-21",
-    "PBSV": "2026-09-21",
-    "PLAY": "2026-09-21",
-    "PMCB": "2026-09-21",
-    "PPIH": "2026-09-21",
-    "RLGT": "2026-09-21",
-    "SEOVF": "2026-09-21",
-    "USAU": "2026-09-21",
-    "VALU": "2026-09-21",
-    "YYAI": "2026-09-21",
-    "AIR": "2026-09-22",
-    "AYTU": "2026-09-22",
+    "VFS": "2026-09-18",
+    "ABVX": "2026-09-21",
     "AZO": "2026-09-22",
-    "BLOZF": "2026-09-22",
-    "INBP": "2026-09-22",
-    "MLKN": "2026-09-22",
-    "MU": "2026-09-22",
-    "NAII": "2026-09-22",
-    "NMTLF": "2026-09-22",
-    "SMGZY": "2026-09-22",
+    "THO": "2026-09-22",
+    "KBH": "2026-09-22",
     "WOR": "2026-09-22",
+    "MLKN": "2026-09-22",
     "CTAS": "2026-09-23",
+    "PAYX": "2026-09-23",
+    "GIS": "2026-09-23",
+    "MANU": "2026-09-23",
     "FUL": "2026-09-23",
-    "KBH": "2026-09-23",
-    "RWWI": "2026-09-23",
-    "SFIX": "2026-09-23",
-    "THO": "2026-09-23",
-    "UEC": "2026-09-23",
-    "WS": "2026-09-23",
-    "ASTC": "2026-09-24",
-    "BB": "2026-09-24",
-    "BTOC": "2026-09-24",
-    "CNXC": "2026-09-24",
     "COST": "2026-09-24",
-    "HNNMY": "2026-09-24",
-    "JBL": "2026-09-24",
-    "KMX": "2026-09-24",
-    "LGCY": "2026-09-24",
-    "LPTH": "2026-09-24",
-    "LUXE": "2026-09-24",
-    "PZG": "2026-09-24",
-    "RAVE": "2026-09-24",
+    "DRI": "2026-09-24",
     "SNX": "2026-09-24",
+    "BB": "2026-09-24",
     "TBN": "2026-09-24",
-    "AMTY": "2026-09-25",
-    "BETRF": "2026-09-25",
-    "BKRRF": "2026-09-25",
-    "BLSTF": "2026-09-25",
-    "DTSS": "2026-09-25",
-    "DYLLF": "2026-09-25",
-    "FCLIF": "2026-09-25",
-    "LITS": "2026-09-25",
-    "MITQ": "2026-09-25",
-    "MVCO": "2026-09-25",
-    "NDVLY": "2026-09-25",
-    "SKHHY": "2026-09-25"
+    "UEC": "2026-09-25"
   },
   "_meta": {
-    "updatedAt": "18/09/2026 12:16",
-    "source": "earnings.csv"
+    "updatedAt": "18/09/2026 12:19",
+    "source": "tradingview"
   }
 }

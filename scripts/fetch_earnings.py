@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 r"""
-fetch_earnings.py — קורא את קובץ הדיווחים (earnings.csv) שאיציק מעדכן שבועית
-ובונה את data/earnings.json: מי מדווחת היום + מי בהמשך השבוע.
+fetch_earnings.py — בונה את data/earnings.json: מי מדווחת היום + מי בהמשך השבוע.
+
+מ-18.9.2026 המקור הראשי הוא סורק TradingView (load_rows_tv — מועדים מאושרים עם שעה,
+שווי מעל $1B, בורסות ראשיות, מתעדכן בכל מחזור). ה-CSV הידני שמתואר למטה הוא גיבוי בלבד.
 
 מקור ראשי: earnings.csv בריפו nidam-reports — איציק שומר את הקובץ ל-
 C:\challenge\reports (המשימה המתוזמנת דוחפת אותו לבד תוך ~5 דק').
@@ -36,6 +38,7 @@ CSV_CANDIDATES = [
     os.path.join(ROOT, "earnings.csv"),
 ]
 
+SOURCE = "earnings.csv"   # מתעדכן ב-load_rows: "tradingview" כשהסורק עבד
 UPCOMING_DAYS = 7      # כמה ימים קדימה להציג ב"בהמשך"
 MAX_TODAY = 12         # תקרת כרטיסים ליום (השאר נספרים ב-more)
 
@@ -243,9 +246,77 @@ def reactions(by_date, today, capk):
     return {"days": days} if days else None
 
 
+# ── מקור ראשי מ-18.9.2026: סורק TradingView ─────────────────────────────────
+# ה-CSV הידני התגלה כלא אמין: הקובץ ב-nidam-reports היה בן 4 שבועות, 70% מהשורות
+# בלי מועד מאושר ("--" = תאריך משוער של Barchart), וכלל מניות OTC זעירות. דוגמאות
+# מ-17.9: לנר הוצגה ב-17.9 (דיווחה 16.9 אחרי הסגירה), דארדן ב-17.9 (בפועל 24.9).
+# הסורק של TradingView (אותו אחד של fetch_movers — חינמי, בלי מפתח, עובד מה-Action)
+# מחזיר לכל מניה את מועד הדיווח האחרון והבא עם דגל שעה: 1 = אחרי הסגירה,
+# ‎-1 = לפני הפתיחה, 0 = לא ידוע. השורות מומרות למבנה של ה-CSV, כך שכל השאר
+# (היום/השבוע/חלון/תגובות) עובד בלי שינוי. סף שווי: $1B (איציק, 18.9).
+TV_SCAN = "https://scanner.tradingview.com/america/scan"
+TV_MIN_CAP = 1e9
+TV_BACK_DAYS, TV_FWD_DAYS = 8, 21
+
+
+def load_rows_tv():
+    from zoneinfo import ZoneInfo
+    ny = ZoneInfo("America/New_York")
+    now = datetime.now(timezone.utc)
+    lo, hi = now - timedelta(days=TV_BACK_DAYS), now + timedelta(days=TV_FWD_DAYS)
+    body = {
+        "filter": [
+            {"left": "exchange", "operation": "in_range", "right": ["NASDAQ", "NYSE", "AMEX"]},
+            {"left": "type", "operation": "in_range", "right": ["stock", "dr"]},
+            {"left": "market_cap_basic", "operation": "greater", "right": TV_MIN_CAP},
+            {"left": "earnings_release_date,earnings_release_next_date", "operation": "in_range",
+             "right": [int(lo.timestamp()), int(hi.timestamp())]},
+        ],
+        "columns": ["name", "description", "market_cap_basic", "earnings_release_date", "earnings_release_time",
+                    "earnings_release_next_date", "earnings_release_next_time"],
+        "sort": {"sortBy": "market_cap_basic", "sortOrder": "desc"},
+        "range": [0, 600],
+    }
+    req = urllib.request.Request(TV_SCAN, data=json.dumps(body).encode(),
+                                 headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        data = json.loads(r.read().decode("utf-8")).get("data") or []
+    flag = {1: "After Close", -1: "Before Open"}
+    rows, seen = [], set()
+    symbols = {row["d"][0] for row in data}
+    for row in data:
+        sym, desc, cap, last_ts, last_t, next_ts, next_t = row["d"]
+        if not sym or cap is None:
+            continue
+        if "." in sym and sym.split(".")[0] in symbols:      # LEN.B כשיש LEN — סדרת מניות שנייה
+            continue
+        for ts, tflag in ((last_ts, last_t), (next_ts, next_t)):
+            if not ts or not (lo.timestamp() <= ts <= hi.timestamp()):
+                continue
+            d = datetime.fromtimestamp(ts, timezone.utc).astimezone(ny).date().isoformat()
+            if (sym, d) in seen:
+                continue
+            seen.add((sym, d))
+            rows.append({"Symbol": sym, "Name": desc or "", "Earnings Date": d,
+                         "Released": flag.get(tflag, "--"), "Market Cap": str(int(cap))})
+    return rows
+
+
 def load_rows():
-    """שורות ה-CSV: קודם מ-nidam-reports (המקור שאיציק מעדכן), אחרת עותק מקומי."""
+    """שורות הדיווחים: קודם סורק TradingView (אוטומטי, מועדים מאושרים); אם נכשל —
+    ה-CSV מ-nidam-reports, ואחריו עותק מקומי."""
     import io
+    global SOURCE
+    try:
+        tv = load_rows_tv()
+        if len(tv) >= 5:
+            SOURCE = "tradingview"
+            print(f"[info] לוח הדיווחים מ-TradingView: {len(tv)} שורות (שווי מעל $1B)")
+            return tv
+        print(f"[warn] TradingView החזיר רק {len(tv)} שורות — עובר ל-CSV")
+    except Exception as e:
+        print(f"[warn] TradingView נכשל ({e}) — עובר ל-CSV")
+    SOURCE = "earnings.csv"
     try:
         req = urllib.request.Request(REMOTE_CSV, headers={"User-Agent": "nidam-markets-bot"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -380,7 +451,7 @@ def main():
         "upcoming": upcoming,
         "week": week,
         "window": window,
-        "_meta": {"updatedAt": israel_stamp(), "source": "earnings.csv"},
+        "_meta": {"updatedAt": israel_stamp(), "source": SOURCE},
     }
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
     with open(OUT_JSON, "w", encoding="utf-8") as f:
