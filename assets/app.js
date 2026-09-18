@@ -1518,8 +1518,10 @@
       sub("רוחב", "breadth", s.breadth) +
       sub("אופציות", "flow", s.flow) +
       bigMoneyRow(d.flow) +
-      (e.nhCount != null ? '<div class="np-sub"><span>שיאים / שפלים 52ש׳</span><b class="num" dir="ltr">' +
-        e.nhCount + " / " + e.nlCount + "</b></div>" : "") +
+      // 18.9.2026 (איציק): "46 / 101" ב-RTL נקרא הפוך — כל מספר צמוד לתווית שלו ובצבע שלו
+      (e.nhCount != null ? '<div class="np-sub"><span>שיאים ושפלים 52ש׳</span><b class="np-nhnl">' +
+        '<span class="up"><span class="num" dir="ltr">' + e.nhCount + '</span> שיאים</span><span class="np-sep">·</span>' +
+        '<span class="down"><span class="num" dir="ltr">' + e.nlCount + '</span> שפלים</span></b></div>' : "") +
       '<a class="np-more" href="#indices" onclick="__goTab(\'indices\');return false">פירוט ←</a>';
     renderSpark();
   }
@@ -1671,11 +1673,11 @@
       [
         ['S&P 500', fmtNum(e.spxPrice, 2), (e.pctMa200 != null ? e.pctMa200 + "% מעל MA200" : "")],
         ['VIX', fmtNum(e.vix, 1), (e.vix != null && e.vix < 20 ? "רגוע" : "מוגבר")],
-        ['שיאים / שפלים', fmtNum(e.nhCount) + " / " + fmtNum(e.nlCount), "52 שבועות"],
+        ['שיאים ושפלים', '<span class="up">' + fmtNum(e.nhCount) + '</span> <small>שיאים</small> <span class="soft">·</span> <span class="down">' + fmtNum(e.nlCount) + '</span> <small>שפלים</small>', "52 שבועות", "nhnl"],
         ['EQ vs SPX 20י', (e.eqSpx20 != null ? (e.eqSpx20 > 0 ? "+" : "") + e.eqSpx20 + "%" : "—"), "רוחב פנימי"]
       ].map(function (p) {
         return '<div class="card stat"><div class="label">' + p[0] + "</div>" +
-          '<div class="value num">' + p[1] + "</div>" +
+          '<div class="value num' + (p[3] ? " " + p[3] : "") + '"' + (p[3] ? "" : ' dir="ltr"') + '>' + p[1] + "</div>" +   // dir=ltr: "-3.04%" הוצג כ-"3.04%-" ב-RTL
           '<div class="sub">' + esc(p[2]) + "</div></div>";
       }).join("") + "</div>";
 

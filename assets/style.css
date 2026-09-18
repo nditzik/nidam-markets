@@ -982,6 +982,14 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fq-cell .down, .ai-blocks .down, .stat .sub .down { color: var(--down); }
 @media (max-width: 480px) { .fq-grid { grid-template-columns: 1fr; } }
 
+/* שיאים ושפלים בכרטיס המד (18.9.2026) — כל מספר צמוד לתווית שלו */
+.np-nhnl { display: inline-flex; gap: 6px; align-items: baseline; font-weight: 600; }
+.np-nhnl .up { color: var(--up); } .np-nhnl .down { color: var(--down); }
+.np-nhnl .np-sep { color: var(--text-3); font-weight: 400; }
+.card.stat .value.nhnl { font-size: 1.25rem; white-space: nowrap; }
+.card.stat .value.nhnl small { font-size: .7rem; font-weight: 500; color: var(--text-soft); }
+.card.stat .value.nhnl .up { color: var(--up); } .card.stat .value.nhnl .down { color: var(--down); } .card.stat .value.nhnl .soft { color: var(--text-3); }
+
 /* שלוש שורות סנטימנט באופציות (13.9.2026) */
 .fs-lines { display: flex; flex-direction: column; gap: 8px; margin: 0 0 12px; padding: 10px 12px; border-radius: 10px; background: rgba(127,127,127,.07); }
 .fs-line { display: grid; grid-template-columns: 10px 44px 1fr; gap: 8px; align-items: start; line-height: 1.5; font-size: .95em; }
