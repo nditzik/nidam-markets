@@ -35,6 +35,15 @@
       "src": "Polymarket"
     },
     {
+      "key": "cpi_next",
+      "label": "אינפלציה שנתית — נתון ספטמבר · יתפרסם 14.10",
+      "sub": "ההימור המוביל: תישאר מעל 3.5%",
+      "pct": 83,
+      "chg": null,
+      "src": "Kalshi",
+      "url": "https://kalshi.com/markets/kxcpiyoy"
+    },
+    {
       "key": "recession",
       "label": "מיתון בארה\"ב עד סוף 2026",
       "sub": "ההימור המוביל: לא יהיה מיתון",
@@ -133,6 +142,12 @@
         "pct": 100
       }
     ],
+    "cpi_next": [
+      {
+        "d": "2026-09-18",
+        "pct": 83
+      }
+    ],
     "recession": [
       {
         "d": "2026-09-13",
@@ -171,7 +186,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "18/09/2026 15:31",
+    "updatedAt": "18/09/2026 15:46",
     "source": "polymarket"
   }
 }
