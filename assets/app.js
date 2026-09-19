@@ -1393,6 +1393,17 @@
     var o = {}; f.forEach(function (p) { o[p.type] = p.value; });
     return { dow: o.weekday, hour: parseInt(o.hour, 10) % 24, iso: o.year + "-" + o.month + "-" + o.day };
   }
+  // הצד שהחזיק מעמד / שאליו נכנס הכסף (19.9.2026) + הסבר מפורש מה האחוז אומר
+  function heldHtml(sc) {
+    if (!sc || !sc.held || !sc.held.length) return "";
+    return ' · <b>' + (sc.heldIn ? "לכאן נכנס:" : "החזיקו מעמד:") + "</b> " + sc.held.map(function (o) {
+      var isBest = sc.best && sc.best.name === o.name;
+      var v = o.from != null ? "<bdi>" + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi>" : "<bdi>" + o.to + "%</bdi>" + (o.stable ? " יציב" : "");
+      return esc(o.name) + ' <span class="num ' + (o.from != null && o.to > o.from ? "up" : "") + '">' + v + "</span>" +
+        (isBest ? ' <span class="soft">(הסקטור הטוב של השבוע, <bdi>' + (sc.best.pct > 0 ? "+" : "") + sc.best.pct + "%</bdi>)</span>" : "");
+    }).join(" · ");
+  }
+  var SEC_EXPLAIN = "האחוז = כמה מהמניות בסקטור נסחרות מעל הממוצע ל-50 יום שלהן, כלומר במגמת עלייה. ירידה מ-81% ל-57% אומרת שבתוך שבוע כרבע ממניות הסקטור איבדו את מגמת העלייה — סימן שכסף יוצא ממנו, גם אם המדד של הסקטור עוד לא ירד בהתאם.";
   function weekendLeadHtml(ca, foot) {
     var w = WEEKLY, nar = w && w.narrative;
     if (!w || !w.weekOf || !nar || !nar.lead) return "";
@@ -1420,8 +1431,8 @@
       secLine = '<p class="np-wk-sec">💸 <b>לאן זרם הכסף:</b> ' + sec.out.map(function (o) {
         // כיוון קריאה עברי, כמו בדוח עצמו: "81% ← 57%" (מימין: לפני, משמאל: אחרי)
         return esc(o.name) + ' <span class="num down"><bdi>' + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi></span>";
-      }).join(" · ") + ' <span class="soft">(אחוז המניות במגמת עלייה בסקטור, שבוע מול שבוע)</span> · ' +
-        '<a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא ←</a></p>';
+      }).join(" · ") + heldHtml(sec) + ' · <a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא ←</a></p>' +
+        '<p class="np-wk-exp">' + SEC_EXPLAIN + "</p>";
     }
     return '<span class="np-today">' + todayLine() + "</span>" +
       '<span class="np-k np-evt-mid">🗓 סיכום השבוע · <b dir="ltr">' + esc(w.label || "") + "</b>" +
@@ -1645,8 +1656,8 @@
           }).join("") +
           (d.sectors && (d.sectors.lead || (d.sectors.out || []).length) ? '<p class="wk-line"><b>לאן זרם הכסף</b> ' +
             (d.sectors.lead ? esc(d.sectors.lead) + " " : "") +
-            ((d.sectors.out || []).length ? "הרוחב ירד ב: " + d.sectors.out.map(function (o) { return esc(o.name) + ' <span class="num"><bdi>' + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi></span>"; }).join(" · ") + ". " : "") +
-            '<a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא ←</a></p>' : "") +
+            ((d.sectors.out || []).length ? "הרוחב ירד ב: " + d.sectors.out.map(function (o) { return esc(o.name) + ' <span class="num"><bdi>' + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi></span>"; }).join(" · ") : "") + heldHtml(d.sectors) + " · " +
+            '<a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא ←</a></p>' + '<p class="np-wk-exp">' + SEC_EXPLAIN + "</p>" : "") +
           '<p class="stamp">סיכום מילולי · נכתב ' + esc(nar.writtenAt || "") + "</p></div>"
         : '<p class="wk-wait">הסיכום המילולי של השבוע נכתב בסוף השבוע, אחרי שסגירת שישי נקלטת.</p>') +
       "</section>";

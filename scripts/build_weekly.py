@@ -143,7 +143,8 @@ def sectors_block(week_of):
                     out["lead"] = first
         j = h.find("מכאן הכסף יצא")
         if j >= 0:
-            k = h.find("לאן הוא הלך", j)
+            ends = [x for x in (h.find("לאן הוא הלך", j), h.find("לכאן הכסף נכנס", j)) if x > j]
+            k = min(ends) if ends else -1
             seg = h[j: k if k > j else j + 3000]
             texts = [_txt(t) for t in _re.findall(r"<text[^>]*>([^<]+)</text>", seg)]
             pairs, name = [], None
@@ -156,6 +157,46 @@ def sectors_block(week_of):
                     name = t
             if pairs:
                 out["out"] = pairs[:5]
+        # הצד השני של התרשים (19.9.2026, איציק: "הורדת את הבריאות שהיה הכי חזק"): הקופסה
+        # השנייה משתנה משבוע לשבוע — "🟢 לכאן הכסף נכנס" עם זוגות, "X% יציב", או טקסט חופשי
+        # ("רק ירדו פחות: בריאות 56% יציב, טכנולוגיה 58%"). אוספים כל "שם + אחוז" עד שורת "רקע:".
+        if j >= 0:
+            k2 = h.find("</svg>", j)
+            seg_all = h[j: k2 if k2 > j else j + 6000]
+            m2 = _re.search(r"(לכאן הכסף נכנס[^<]*|לאן הוא הלך[^<]*)", seg_all)
+            if m2:
+                texts2 = [_txt(t) for t in _re.findall(r"<text[^>]*>([^<]+)</text>", seg_all[m2.start():])]
+                held, name2 = [], None
+                for t in texts2:
+                    if t.startswith("רקע"):
+                        break
+                    mv = _re.match(r"^(\d+)%\s*←\s*(\d+)%$", t)
+                    ms = _re.match(r"^(\d+)%\s*יציב$", t)
+                    if mv and name2:
+                        held.append({"name": _re.sub(r"\s*\(.*?\)", "", name2).strip(), "from": int(mv.group(1)), "to": int(mv.group(2))}); name2 = None
+                    elif ms and name2:
+                        held.append({"name": _re.sub(r"\s*\(.*?\)", "", name2).strip(), "to": int(ms.group(1)), "stable": True}); name2 = None
+                    else:
+                        inline = _re.findall(r"([א-ת][א-ת\"׳' ]{2,18}?)\s(\d{1,3})%(\s*יציב)?", t)
+                        if inline:
+                            for nm, pc, stb in inline:
+                                nm = _re.sub(r"^.*[:\"]\s*", "", nm).strip()
+                                if nm and not nm.startswith("רק"):
+                                    held.append({"name": nm, "to": int(pc), "stable": bool(stb.strip())})
+                            name2 = None
+                        elif "%" not in t and len(t) <= 28:
+                            name2 = t
+                out_names = {o["name"] for o in out.get("out", [])}
+                held = [x for x in held if x["name"] not in out_names][:4]
+                if held:
+                    out["held"] = held
+                    out["heldIn"] = "נכנס" in m2.group(1)
+        mbest = _re.search(r"<tr><td><strong>([^<]+)</strong>[^\n]*?הטוב[הא]? בשוק השבוע\s*\(([+−-]?[\d.]+)\)", h)
+        if mbest:
+            try:
+                out["best"] = {"name": mbest.group(1).strip(), "pct": float(mbest.group(2).replace("−", "-"))}
+            except ValueError:
+                pass
         mb = _re.search(r"שוק:\s*(\d+)%\s*רוחב", _txt(h))
         if mb:
             out["marketBreadth"] = int(mb.group(1))
