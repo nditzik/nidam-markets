@@ -1584,7 +1584,10 @@
       sub("טכני", "tech", s.tech) +
       sub("רוחב", "breadth", s.breadth) +
       sub("אופציות", "flow", s.flow) +
+      // v6 (19.9.2026): המספר למעלה = הקריאה של היום; במד נכנס ממוצע יומיים (מאחורי הקלעים)
+      ((d.flow && d.flow.meterScore != null && d.flow.meterScore !== s.flow) ? '<div class="np-sub-note">במד נכנס ממוצע יומיים: <b class="num">' + d.flow.meterScore + "</b></div>" : "") +
       bigMoneyRow(d.flow) +
+      ((d.flow && d.flow.spxWarning && d.flow.spxWarning.active) ? '<div class="np-sub np-spxw" title="' + esc(d.flow.spxWarning.text || "") + '"><span>⚠ מכירת ביטוח חריגה ב-SPX</span><b class="num">אחוזון ' + esc(String(d.flow.spxWarning.pct)) + "</b></div>" : "") +
       // 18.9.2026 (איציק): "46 / 101" ב-RTL נקרא הפוך — כל מספר צמוד לתווית שלו ובצבע שלו
       (e.nhCount != null ? '<div class="np-sub"><span>שיאים ושפלים 52ש׳</span><b class="np-nhnl">' +
         '<span class="up"><span class="num" dir="ltr">' + e.nhCount + '</span> שיאים</span><span class="np-sep">·</span>' +
@@ -1727,7 +1730,8 @@
             // ההימור נטו משוקלל-הדלתא (הכסף הגדול) — לא ציון-הכיוון הישן, שסתר את הדלתא
             if (fl.deltaLabel) {
               var dc = fl.deltaLabel === "דובי" ? "down" : (fl.deltaLabel === "שורי" ? "up" : "");
-              sub = '<div class="sub">הכסף הגדול: <b class="' + dc + '">' + esc(fl.deltaLabel) + "</b></div>";
+              sub = '<div class="sub">הכסף הגדול: <b class="' + dc + '">' + esc(fl.deltaLabel) + "</b>" +
+                (fl.meterScore != null ? ' · במד: <b class="num">' + fl.meterScore + "</b> (ממוצע יומיים)" : "") + "</div>";
               tip = ' title="' + esc("קניית Calls $" + Math.round((fl.callBuyP || 0) / 1e6) + "M · מכירת Calls $" + Math.round((fl.callSellP || 0) / 1e6) +
                 "M · קניית Puts $" + Math.round((fl.putBuyP || 0) / 1e6) + "M · מכירת Puts $" + Math.round((fl.putSellP || 0) / 1e6) + "M") + '"';
             } else {
@@ -1820,7 +1824,8 @@
     // שלוש שורות סנטימנט תיאוריות (13.9.2026) — research.lines מ-send_report.sentiment_lines:
     // מניות (UOA כלל-שוקי מול ההיסטוריה שלו) · SPY (כיוון + פוזיציות חדשות) · SPX (ביטוח נמכר/נקנה + IV/RV).
     // טקסט בלבד, לא ציון — המד לא נוגע בזה.
-    var lines = (f.research && f.research.lines) || [];
+    var lines = ((f.research && f.research.lines) || []).filter(function (l) { return l.display !== "bigtrades"; });
+    if (f.spxWarning && f.spxWarning.active) lines = lines.map(function (l) { return l.key === "spx" ? { key: "spx", label: "SPX", tone: "warn", text: "⚠ " + f.spxWarning.text } : l; });
     var linesHtml = lines.length ? '<div class="fs-lines">' + lines.map(function (l) {
       return '<div class="fs-line tone-' + esc(l.tone || "neutral") + '"><span class="fs-dot"></span>' +
         '<span class="fs-lbl">' + esc(l.label) + '</span><span class="fs-txt">' + esc(l.text) + "</span></div>";
@@ -1839,7 +1844,7 @@
       cells.map(function (q) {
         return '<div class="fq-cell"><span class="fq-l">' + q[0] + '</span><b class="num ' + q[2] + '">' + m(q[1]) + "</b></div>";
       }).join("") + "</div>" +
-      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" (v5, מ-13.9.2026) משלב סנטימנט מניות, ביטוח ב-SPX וכיוון SPY — כל רכיב מול ההיסטוריה של עצמו; הריבועים כאן הם הזרימה הגולמית ב-SPX ואינם הציון. ' +
+      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" (v6, מ-19.9.2026) נבנה מכיוון הכסף הגדול ב-SPY בלבד, מול ההיסטוריה של עצמו; SPX משמש נורת אזהרה ומניות בודדות מוצגות בנפרד למטה. הריבועים כאן הם קניות ומכירות של הכסף הגדול ב-SPY. ' +
         'הנתון מבוסס על עסקאות אופציות בולטות/גדולות בלבד (לא כל נפח המסחר היומי) — לכן עשוי להיות שונה ממדדי "דלתא" כוללי-שוק בכלים אחרים (כמו Barchart).</p>' +
       "</div>";
   }
@@ -1907,7 +1912,7 @@
         }).join("") + "</div>" +
       '<figure class="mt-fig" id="mt-fig" tabindex="0" aria-label="ציר הזמן של ציון בריאות השוק ו-S&P 500. חצים ימינה ושמאלה לנוע בין ימים.">' +
         '<svg id="mt-svg" aria-hidden="true"></svg><div class="mt-tip" id="mt-tip"></div>' +
-        "<figcaption>הציון המשולב (0–100) על רקע שלושת המצבים של המד — חיובי מ-66, זהיר 45–66, הגנתי מתחת. ▲ = יום מכירה רחבה. קו מקווקו = שינוי בנוסחת ציון האופציות (13.9.2026, v5): ערכים משני צדיו אינם ברי-השוואה ישירה. מתחת: S&amp;P 500 על אותו ציר זמן. ריחוף או חצי מקלדת מציגים את כל הערכים של אותו יום, כולל הכותרת שפורסמה בו.</figcaption>" +
+        "<figcaption>הציון המשולב (0–100) על רקע שלושת המצבים של המד — חיובי מ-66, זהיר 45–66, הגנתי מתחת. ▲ = יום מכירה רחבה. קו מקווקו = שינוי בנוסחת ציון האופציות (v5 ב-13.9.2026, v6 ב-18.9.2026): ערכים משני צדיו אינם ברי-השוואה ישירה. מתחת: S&amp;P 500 על אותו ציר זמן. ריחוף או חצי מקלדת מציגים את כל הערכים של אותו יום, כולל הכותרת שפורסמה בו.</figcaption>" +
       "</figure>" +
       '<details class="mt-tbl"><summary>הנתונים בטבלה</summary><table id="mt-table"></table></details></section>';
   }
@@ -2039,6 +2044,86 @@
     }
   }
 
+  /* ---------- ציון האופציות (v6) מול המחיר (19.9.2026, בקשת איציק: "נראה אם יש הלימה") ----------
+     שני פאנלים על ציר זמן משותף (לא ציר-Y כפול): למעלה הציון היומי מ-SPY (0–100, קו 50) והממוצע
+     הדו-יומי שנכנס למד; למטה S&P 500. מתחת: סיכום ההלימה — מה עשה S&P ביום שאחרי ציון נמוך/גבוה,
+     מחושב מהסדרה עצמה (d.flow.v6Series מ-send_report). ריחוף מציג את היום ואת מה שקרה למחרת. */
+  function optVsPriceHtml(d) {
+    var ser = ((d.flow || {}).v6Series || []).filter(function (r) { return r.score != null && r.spx != null; });
+    if (ser.length < 8) return "";
+    var lo = [], hi = [];
+    for (var i = 0; i < ser.length - 1; i++) {
+      var nx = (ser[i + 1].spx / ser[i].spx - 1) * 100;
+      if (ser[i].score <= 33) lo.push(nx); else if (ser[i].score >= 67) hi.push(nx);
+    }
+    function avg(a) { return a.length ? a.reduce(function (x, y) { return x + y; }, 0) / a.length : null; }
+    function ups(a) { return a.length ? Math.round(a.filter(function (v) { return v > 0; }).length / a.length * 100) : null; }
+    function pc(v) { return (v > 0 ? "+" : "") + v.toFixed(2) + "%"; }
+    var fit = (lo.length >= 3 && hi.length >= 3)
+      ? "ביום שאחרי ציון נמוך (עד 33): S&P 500 <b class=\"num " + (avg(lo) < 0 ? "down" : "up") + "\" dir=\"ltr\">" + pc(avg(lo)) + "</b> בממוצע, עלה ב-" + ups(lo) + "% מהימים (" + lo.length + " ימים). " +
+        "ביום שאחרי ציון גבוה (67 ומעלה): <b class=\"num " + (avg(hi) < 0 ? "down" : "up") + "\" dir=\"ltr\">" + pc(avg(hi)) + "</b>, עלה ב-" + ups(hi) + "% (" + hi.length + " ימים)."
+      : "עדיין מעט מדי ימים בקצוות כדי לסכם הלימה.";
+    return '<div class="section-title">📐 ציון האופציות מול המחיר <span class="np-k num" dir="ltr">' + ser.length + " ימים</span></div>" +
+      '<div class="card"><figure class="mt-fig ovp-fig" id="ovp-fig"><svg id="ovp-svg" aria-hidden="true"></svg><div class="mt-tip" id="ovp-tip"></div>' +
+      "<figcaption>למעלה: ציון האופציות היומי (v6, כיוון הכסף הגדול ב-SPY) והקו הדק = הממוצע הדו-יומי שנכנס למד. למטה: S&amp;P 500 על אותו ציר זמן. " + fit +
+      " מדגם קטן — כיוון, לא הבטחה.</figcaption></figure></div>";
+  }
+  function renderOptVsPrice() {
+    var fig = document.getElementById("ovp-fig"), svg = document.getElementById("ovp-svg"), tip = document.getElementById("ovp-tip");
+    if (!fig || !svg || !INDD) return;
+    var rows = ((INDD.flow || {}).v6Series || []).filter(function (r) { return r.score != null && r.spx != null; });
+    if (rows.length < 8) return;
+    var W = fig.clientWidth || 900, narrow = W < 560;
+    var ML = narrow ? 30 : 40, MR = narrow ? 44 : 58, T = 10, HA = narrow ? 130 : 160, GAP = 40, HB = narrow ? 80 : 100, AX = 24;
+    var H = T + HA + GAP + HB + AX, n = rows.length;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("width", W); svg.setAttribute("height", H); svg.innerHTML = "";
+    function x(i) { return ML + (W - ML - MR) * i / (n - 1); }
+    function yA(v) { return T + HA - HA * v / 100; }
+    var px = rows.map(function (r) { return r.spx; }), lo = Math.min.apply(null, px), hi = Math.max.apply(null, px), pad = (hi - lo) * 0.12 || 40; lo -= pad; hi += pad;
+    function yB(v) { return T + HA + GAP + HB - HB * (v - lo) / (hi - lo); }
+    var g = svg.appendChild(mtEl("g", {}));
+    g.appendChild(mtEl("rect", { x: ML, y: yA(100), width: W - ML - MR, height: yA(67) - yA(100), fill: mtCss("--up"), opacity: .06 }));
+    g.appendChild(mtEl("rect", { x: ML, y: yA(33), width: W - ML - MR, height: yA(0) - yA(33), fill: mtCss("--down"), opacity: .06 }));
+    [0, 33, 50, 67, 100].forEach(function (v) {
+      g.appendChild(mtEl("line", { x1: ML, x2: W - MR, y1: yA(v), y2: yA(v), stroke: mtCss("--paper-hair"), "stroke-width": 1, "stroke-dasharray": v === 50 ? "4 3" : "", opacity: v === 50 ? 1 : .6 }));
+      var t = mtEl("text", { x: ML - 6, y: yA(v) + 4, "font-size": 11, "text-anchor": "end", fill: mtCss("--text-3") }); t.textContent = v; g.appendChild(t);
+    });
+    var la = mtEl("text", { x: ML, y: T + 12, "font-size": 11, "font-weight": 600, fill: mtCss("--text-3") }); la.textContent = "ציון אופציות"; g.appendChild(la);
+    var step = (hi - lo) > 400 ? 200 : 100, first = Math.ceil(lo / step) * step;
+    for (var v = first; v < hi; v += step) {
+      g.appendChild(mtEl("line", { x1: ML, x2: W - MR, y1: yB(v), y2: yB(v), stroke: mtCss("--paper-hair"), "stroke-width": 1, opacity: .6 }));
+      var tv = mtEl("text", { x: ML - 6, y: yB(v) + 4, "font-size": 11, "text-anchor": "end", fill: mtCss("--text-3") }); tv.textContent = v.toLocaleString("en-US"); g.appendChild(tv);
+    }
+    var lb = mtEl("text", { x: ML, y: T + HA + GAP - 8, "font-size": 11, "font-weight": 600, fill: mtCss("--text-3") }); lb.textContent = "S&P 500"; g.appendChild(lb);
+    var every = Math.max(1, Math.round(n / (narrow ? 5 : 8)));
+    rows.forEach(function (r, i) { if (i % every === 0 || i === n - 1) { var t = mtEl("text", { x: x(i), y: H - 6, "font-size": 11, "text-anchor": "middle", fill: mtCss("--text-3") }); t.textContent = mtD(r.date); g.appendChild(t); } });
+    function path(key, yf) { return rows.map(function (r, i) { return (i ? "L" : "M") + x(i) + "," + yf(r[key]); }).join(" "); }
+    svg.appendChild(mtEl("path", { d: path("meter", yA), fill: "none", stroke: mtCss("--text-3"), "stroke-width": 1.2, "stroke-linejoin": "round" }));
+    svg.appendChild(mtEl("path", { d: path("score", yA), fill: "none", stroke: mtCss("--mt-flow"), "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    rows.forEach(function (r, i) { svg.appendChild(mtEl("circle", { cx: x(i), cy: yA(r.score), r: narrow ? 2 : 2.6, fill: mtCss("--mt-flow"), stroke: mtCss("--bg"), "stroke-width": 1 })); });
+    svg.appendChild(mtEl("path", { d: path("spx", yB), fill: "none", stroke: mtCss("--text-soft"), "stroke-width": 2, "stroke-linejoin": "round" }));
+    var last = rows[n - 1];
+    var e1 = mtEl("text", { x: x(n - 1) + 8, y: yA(last.score) + 4, "font-size": 12, "font-weight": 700, fill: mtCss("--text") }); e1.textContent = last.score; svg.appendChild(e1);
+    var e2 = mtEl("text", { x: x(n - 1) + 8, y: yB(last.spx) + 4, "font-size": 11, "font-weight": 600, fill: mtCss("--text") }); e2.textContent = Math.round(last.spx).toLocaleString("en-US"); svg.appendChild(e2);
+    var cross = mtEl("line", { y1: T, y2: T + HA + GAP + HB, stroke: mtCss("--text-3"), "stroke-width": 1, opacity: 0 }); svg.appendChild(cross);
+    function show(i) {
+      var r = rows[i], nx = i < n - 1 ? (rows[i + 1].spx / r.spx - 1) * 100 : null;
+      cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.setAttribute("opacity", .7);
+      tip.innerHTML = '<div class="d">' + mtD(r.date) + "</div>" +
+        '<div>ציון אופציות: <b class="num">' + r.score + "</b>" + (r.meter != null ? ' · במד: <b class="num">' + r.meter + "</b>" : "") + "</div>" +
+        '<div>S&amp;P 500: <b class="num" dir="ltr">' + Math.round(r.spx).toLocaleString("en-US") + "</b></div>" +
+        (nx != null ? '<div>ביום שאחרי: <b class="num ' + (nx < 0 ? "down" : "up") + '" dir="ltr">' + (nx > 0 ? "+" : "") + nx.toFixed(2) + "%</b></div>" : '<div class="soft">היום שאחרי עוד לא נסחר</div>');
+      tip.style.display = "block";
+      var tx = x(i) + 12; if (tx + 210 > W) tx = x(i) - 210; tip.style.left = Math.max(4, tx) + "px"; tip.style.top = "14px";
+    }
+    function hide() { tip.style.display = "none"; cross.setAttribute("opacity", 0); }
+    var hit = mtEl("rect", { x: ML, y: T, width: W - ML - MR, height: HA + GAP + HB, fill: "transparent" }); svg.appendChild(hit);
+    function at(ev) { var b = svg.getBoundingClientRect(), cx = ((ev.touches ? ev.touches[0].clientX : ev.clientX) - b.left) * (W / b.width); return Math.max(0, Math.min(n - 1, Math.round((cx - ML) / ((W - ML - MR) / (n - 1))))); }
+    hit.addEventListener("mousemove", function (ev) { show(at(ev)); }); hit.addEventListener("mouseleave", hide);
+    hit.addEventListener("touchstart", function (ev) { show(at(ev)); }, { passive: true }); hit.addEventListener("touchmove", function (ev) { show(at(ev)); }, { passive: true });
+    if (window.ResizeObserver && !fig.__ro) { fig.__ro = true; var lw = W; new ResizeObserver(function () { var w = fig.clientWidth; if (w && w !== lw) { lw = w; renderOptVsPrice(); } }).observe(fig); }
+  }
+
   // "הכסף הגדול היום במניות" (13.9.2026) — d.bigTrades מ-indexes-status/data/big_trades.json:
   // 5 הפוזיציות הגדולות במניות בודדות מתוך 500 העסקאות הגדולות של היום, אחרי איחוד
   // הדפסות, השמטת 0DTE וסימון תחליפי-מניה (דלתא ~1) כ"לא כיווני". תיאור, לא ציון.
@@ -2055,6 +2140,10 @@
     function money(v) { return v >= 1e9 ? (v / 1e9).toFixed(1) + "B" : Math.round(v / 1e6) + "M"; }
     return '<div class="section-title">💰 הכסף הגדול היום במניות <span class="np-k num" dir="ltr">' + esc(b.label || "") + "</span></div>" +
       '<div class="card bt-card">' +
+      (function () {   // שורת הסנטימנט של המניות (UOA) — תצוגה בלבד, לא נכנסת לציון (v6)
+        var sl = (((d.flow || {}).research || {}).lines || []).filter(function (l) { return l.display === "bigtrades"; })[0];
+        return sl ? '<p class="bt-sent"><b>סנטימנט במניות:</b> ' + esc(sl.text) + ' <span class="soft">לתצוגה בלבד, לא נכנס לציון האופציות.</span></p>' : "";
+      })() +
       '<div class="bt-list">' + b.items.map(function (it) {
         return '<div class="bt-row">' +
           '<div class="bt-head"><b class="bt-tk num" dir="ltr">' + esc(it.ticker) + "</b>" +
@@ -2085,6 +2174,7 @@
         }).join("") + "</ul></div>";
     }
     analysis += flowQuadHtml(d);
+    analysis += optVsPriceHtml(d);
     analysis += bigTradesHtml(d);
 
     var sectors = "";
@@ -2132,6 +2222,7 @@
     el.innerHTML = "";
     el.insertAdjacentHTML("beforeend", meterTimelineHtml() + '<div id="weekly-slot"></div>');   // ציר הזמן של המד, ומתחתיו סיכום השבוע (11.9.2026)
     bindMeterTimeline(el); renderMeterTimeline();
+    setTimeout(renderOptVsPrice, 0);   // ה-figure של הגרף נכנס ל-DOM רק בהמשך הפונקציה
     if (WEEKLY) renderWeekly(WEEKLY);
     el.insertAdjacentHTML("beforeend", head + claudeCardHtml(d) + INDICES_EXPLAINER);   // הניתוח היומי, ואז ההסבר ותמונת המצב
     el.appendChild(overview);

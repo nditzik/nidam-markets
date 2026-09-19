@@ -982,6 +982,15 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fq-cell .down, .ai-blocks .down, .stat .sub .down { color: var(--down); }
 @media (max-width: 480px) { .fq-grid { grid-template-columns: 1fr; } }
 
+/* ציון האופציות v6 (19.9.2026) */
+.np-sub-note { font-size: .76rem; color: var(--text-3); padding: 0 0 7px; margin-top: -3px; border-bottom: 1px solid var(--paper-hair); }
+.np-sub:has(+ .np-sub-note) { border-bottom: 0; }
+.np-sub-note b { font-weight: 600; color: var(--text-soft); }
+.np-spxw { color: #b26a00; font-size: .82rem; } .np-spxw b { font-weight: 600; }
+.bt-sent { margin: 0 0 10px; font-size: .9rem; line-height: 1.55; } .bt-sent .soft { color: var(--text-3); font-size: .8rem; }
+.ovp-fig { border-top: 0; padding-top: 4px; }
+.mt-tip .soft { color: var(--text-3); }
+
 /* כותרת סוף-השבוע בבית (19.9.2026) */
 .np-wk-sec { margin: 8px 0 0; font-size: .92rem; line-height: 1.6; }
 .np-wk-sec .down { color: var(--down); font-weight: 600; } .np-wk-sec .soft { color: var(--text-3); font-size: .8rem; }
