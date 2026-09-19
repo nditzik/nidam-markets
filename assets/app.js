@@ -1403,7 +1403,7 @@
         (isBest ? ' <span class="soft">(הסקטור הטוב של השבוע, <bdi>' + (sc.best.pct > 0 ? "+" : "") + sc.best.pct + "%</bdi>)</span>" : "");
     }).join(" · ");
   }
-  var SEC_EXPLAIN = "האחוז = כמה מהמניות בסקטור נסחרות מעל הממוצע ל-50 יום שלהן, כלומר במגמת עלייה. ירידה מ-81% ל-57% אומרת שבתוך שבוע כרבע ממניות הסקטור איבדו את מגמת העלייה — סימן שכסף יוצא ממנו, גם אם המדד של הסקטור עוד לא ירד בהתאם.";
+  var SEC_EXPLAIN = "האחוז = כמה מהמניות בסקטור נסחרות מעל ממוצע 50 יום שלהן.";
   function weekendLeadHtml(ca, foot) {
     var w = WEEKLY, nar = w && w.narrative;
     if (!w || !w.weekOf || !nar || !nar.lead) return "";
