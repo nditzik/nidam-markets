@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דוח ארבעת העמודים — 19/09/2026 · מהדורת סוף שבוע</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#051C2C;--blue:#2251FF;--cyan:#00A9F4;--ink:#1a1a2e;--gray:#5f6b7a;--line:#DDE3EA;--bg:#F7F9FB;--green:#0E8A5F;--red:#C0392B;--amber:#B7791F}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Heebo","Arial Hebrew",sans-serif;direction:rtl;color:var(--ink);background:#fff;line-height:1.75;font-size:15.5px}
+  .num{direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 26px}
+  header{background:var(--navy);color:#fff;padding:52px 0 44px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--cyan);font-weight:600;margin-bottom:14px}
+  h1{font-size:34px;font-weight:800;line-height:1.25}
+  .subtitle{margin-top:12px;font-size:16.5px;color:#B9C6D2;font-weight:300}
+  .header-rule{width:64px;height:4px;background:var(--blue);margin-top:22px}
+  .keymsg{background:var(--amber);color:#fff;padding:18px 0}
+  .keymsg p{font-size:16px;font-weight:500}
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .stepnum{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.16em;margin-bottom:4px}
+  h2{font-size:23px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:13.8px}
+  thead th{background:var(--navy);color:#fff;font-weight:600;padding:9px 11px;text-align:start;font-size:12.8px;white-space:nowrap}
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--bg)}
+  td.sym{font-weight:700;color:var(--navy);direction:ltr;text-align:right;white-space:nowrap}
+  .badge{display:inline-block;padding:1px 9px;border-radius:3px;font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap}
+  .b-green{background:var(--green)}.b-red{background:var(--red)}.b-amber{background:var(--amber)}.b-gray{background:var(--gray)}.b-blue{background:var(--blue)}
+  .tbl-note{font-size:13px;color:var(--gray);margin-bottom:8px}
+  .cond-head{display:flex;align-items:baseline;gap:12px;margin:8px 0 12px}
+  .cond-letter{width:34px;height:34px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;border-radius:2px}
+  .cond-head h3{font-size:18px;font-weight:700;color:var(--navy)}
+  .cond-head .tag{font-size:12.5px;color:var(--gray)}
+  .gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+  .g{background:var(--bg);border-inline-start:4px solid var(--blue);padding:12px 15px;font-size:13.5px}
+  .g b{color:var(--navy)}
+  .scorebox{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:16px 0}
+  .sb{background:var(--bg);border-top:3px solid var(--green);padding:14px 16px}
+  .sb.amber{border-top-color:var(--amber)}.sb.red{border-top-color:var(--red)}
+  .sb .v{font-size:23px;font-weight:800;color:var(--navy)}
+  .sb .l{font-size:12.5px;color:var(--gray)}
+  .breadth{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin:14px 0 6px}
+  .bb{background:var(--bg);padding:10px;text-align:center;border-top:3px solid var(--gray)}
+  .bb.hi{border-top-color:var(--green)}.bb.lo{border-top-color:var(--red)}
+  .bb .v{font-size:20px;font-weight:800;color:var(--navy)}
+  .bb .l{font-size:11px;color:var(--gray)}
+  .deep{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+  .dcard{border:1px solid var(--line);padding:16px 18px;border-top:3px solid var(--green)}
+  .dcard.warn{border-top-color:var(--amber)}
+  .dcard.bad{border-top-color:var(--red)}
+  .dcard h4{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:6px}
+  .dcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--blue)}
+  .dcard p{font-size:13.5px;margin-bottom:6px}
+  .dcard .lbl{font-weight:700;color:var(--navy)}
+  .delta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .dl{border:1px solid var(--line);padding:14px 16px;border-inline-start:4px solid var(--cyan)}
+  .dl h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .dl h4 .tk{direction:ltr;unicode-bidi:isolate}
+  .dl p{font-size:13px;color:var(--gray)}
+  .bottom{background:var(--navy);color:#fff;padding:40px 0}
+  .bottom h2{color:#fff}
+  .bl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+  .bcard{background:rgba(255,255,255,.06);border-top:3px solid var(--cyan);padding:16px 18px}
+  .bcard h4{font-size:15px;font-weight:800;margin-bottom:6px}
+  .bcard h4 .tk{direction:ltr;unicode-bidi:isolate;color:var(--cyan)}
+  .bcard p{font-size:13.5px;color:#C9D5DF}
+  footer{background:#031320;color:#8FA3B3;padding:24px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:640px){h1{font-size:26px}section{padding:34px 0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Four Pillars Scanner · דוח סריקה #29 · מהדורת סוף שבוע · שפה פשוטה</div>
+    <h1>דוח ארבעת העמודים — <span class="num">19/09/2026</span></h1>
+    <p class="subtitle">נתוני Barchart מסגירת יום שישי · <span class="num">17</span> מניות נסרקו · סיכום שבוע 6</p>
+    <div class="header-rule"></div>
+  </div>
+</header>
+
+<div class="keymsg">
+  <div class="wrap">
+    <p><strong>שבוע של שיאים בתיק ושל כאב מחוצה לו.</strong> NTRA ו-NEO סגרו את השבוע על שיאים עם רשתות ביטחון מוגבהות. TWST — שיצאנו ממנה ב-<span class="num">$140</span> — סגרה <span class="num">$167</span>, שיא כל הזמנים. ההתרחבות נשברה שוב ביום השני (<span class="num">8→12→9</span>), אבל בפעם הראשונה זה שבועות קטגוריה ג' מראה חיים מחוץ לביו-רפואה: eBay, RIOT, CRM. מצב הגנה נשאר; הפתח נפתח סדק.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="stepnum">תזכורת</div>
+    <h2>שמונה מושגים בשתי שורות</h2>
+    <div class="gloss">
+      <div class="g"><b>ציון עוצמה (Alpha)</b> — בכמה המניה הכתה את השוק בשנה האחרונה. מעל <span class="num">~350</span>? חשוד (ראו "שורט").</div>
+      <div class="g"><b>מד חום (RSI)</b> — <span class="num">50–65</span> = בריא · מעל <span class="num">70</span> = חם מדי · מתחת ל-<span class="num">50</span> = מגמה לא מאושרת.</div>
+      <div class="g"><b>שיאים בחודש</b> — כמה שיאים חדשים החודש. הרבה = עלייה עקבית.</div>
+      <div class="g"><b>מחיר ההוכחה (טריגר)</b> — שער שסגירה מעליו מוכיחה פריצה ומתירה כניסה.</div>
+      <div class="g"><b>מחיר היציאה (סטופ)</b> — שער יציאה שנקבע מראש ומוזן בברוקר, מתחת לרמה מבנית. מזיזים רק למעלה.</div>
+      <div class="g"><b>כניסה בשלישים</b> — שליש בהוכחה, השאר אחרי יומיים של החזקה.</div>
+      <div class="g"><b>שורט (Short Float)</b> — אחוז המניה בידי מהמרים על ירידה. מעל <span class="num">12%</span> = פסילה.</div>
+      <div class="g"><b>ריטסט</b> — חזרה של המניה אל הקו שפרצה, מלמעלה. אם הקו מחזיק — הוכחה שנייה, טובה מהראשונה.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stepnum">סיכום שבוע 6</div>
+    <h2>המאזן אחרי <span class="num">29</span> דוחות</h2>
+    <div class="scorebox">
+      <div class="sb"><div class="v"><span class="num">12</span> 🎯</div><div class="l">כניסות מאושרות מאז ההתחלה (אפס השבוע — הגנה)</div></div>
+      <div class="sb"><div class="v"><span class="num">5</span> 💰</div><div class="l">מימושי רווח חלקיים: TWST, NEO, ACHV, NTRA, RDVT</div></div>
+      <div class="sb amber"><div class="v"><span class="num">2</span> 🏁</div><div class="l">עסקאות שנסגרו: TWST (<span class="num">+25%</span> ממוצע) · NET (הפסד קטן)</div></div>
+      <div class="sb"><div class="v"><span class="num">2</span> ⛰️</div><div class="l">החזקות על שיא: NTRA, NEO — עם קווי יציאה מוגבהים</div></div>
+      <div class="sb red"><div class="v"><span class="num">6</span> ⛔</div><div class="l">פסילות שורט — TXG ב-<span class="num">579</span>, TWST/NET שיצאנו מהן על שיאים</div></div>
+    </div>
+    <div class="breadth">
+      <div class="bb lo"><div class="v"><span class="num">3</span></div><div class="l">12/09</div></div>
+      <div class="bb"><div class="v"><span class="num">9</span></div><div class="l">14/09</div></div>
+      <div class="bb hi"><div class="v"><span class="num">13</span></div><div class="l">15/09</div></div>
+      <div class="bb"><div class="v"><span class="num">8</span></div><div class="l">16/09</div></div>
+      <div class="bb hi"><div class="v"><span class="num">12</span></div><div class="l">17/09</div></div>
+      <div class="bb"><div class="v"><span class="num">9</span></div><div class="l">18/09</div></div>
+    </div>
+    <p class="tbl-note"><strong>בפשטות:</strong> השוק מנסה להתרחב ונסוג, מנסה ונסוג — ארבע פעמים בשבועיים. זו לא מגמה, זו התלבטות. הכלל של שלושת הדוחות מנע מאיתנו שתי כניסות מוקדמות מדי — ועלה לנו שלוש פריצות (GH, CDNA, ADPT) שהצליחו. זה החשבון האמיתי, ואנחנו עומדים מאחוריו: בהתלבטות, ההגנה עדיפה על הניחוש.</p>
+    <div class="delta">
+      <div class="dl"><h4><span class="tk">TWST</span> — הכאב של השבוע, במספרים</h4><p>יצאנו מהחצי השני ב-<span class="num">$140</span>. סגירת שישי: <span class="num">$166.99</span>, שיא כל הזמנים, <span class="num">+44%</span> בחודש. ההפרש: <span class="num">19%</span> על חצי פוזיציה. <strong>בפשטות:</strong> העסקה כולה עדיין <span class="num">+25%</span> — אבל מחיר יציאה במקום הלא נכון (<span class="num">$140</span> היה "שפל אחרון", לא רמה מבנית) עלה כסף אמיתי. הכלל החדש (יציאה מתחת לרמה מבנית, או לא נכנסים) נולד מזה ומ-NET. לא רודפים: מד חום <span class="num">73</span>, שורט לא נבדק, ומניה שזזה <span class="num">11%</span> בשבוע — לא בשבילנו.</p></div>
+      <div class="dl"><h4><span class="tk">NTRA</span> + <span class="tk">NEO</span> — סוגרות שבוע על שיא</h4><p>NTRA <span class="num">$369.39</span> (<span class="num">+40</span> בשבוע), NEO <span class="num">$19.91</span>. שתיהן במד חום <span class="num">74</span>. <strong>מה עושים:</strong> כלום מעבר למה שכבר עשינו — קווי היציאה <span class="num">$340</span> ו-<span class="num">$18.4</span> בברוקר, שליש מומש בכל אחת. <strong>בפשטות:</strong> ככה נראית עסקה שמנוהלת נכון: רווח נעול, יתרה רצה, ורשת שעולה עם המניה.</p></div>
+      <div class="dl"><h4>קטגוריה ג' — סוף-סוף מישהו מחוץ לבריאות</h4><p>eBay (<span class="num">8</span> שיאים, מד חום <span class="num">60</span>, <span class="num">6%</span> מהשיא), RIOT (כריית ביטקוין), CRM — לצד GeneDx החדשה (חמה). <span class="num">6</span> כשירות — תנאי ג' להסרה מתקיים בפעם הראשונה זה שלושה שבועות. <strong>מה עושים:</strong> עדיין הגנה (קטגוריה א' נשברה). אבל זה הסימן שחיכינו לו: הכסף מתחיל לחפש גם מחוץ לסקטור אחד.</p></div>
+      <div class="dl"><h4><span class="tk">MTW</span> — חצתה את <span class="num">$22</span> והתחממה</h4><p>Manitowoc סגרה <span class="num">$22.35</span> — מעל מחיר ההוכחה — עם <span class="num">9</span> שיאים בחודש, אבל מד חום <span class="num">70.85</span>. <strong>מה עושים:</strong> ריטסט בלבד, כמו השאר. הלא-ביומד היחידה בקטגוריה א' — ומועמדת הריטסט העדיפה בגלל כלל הריכוז.</p></div>
+      <div class="dl"><h4><span class="tk">GTM</span> — מתקרבת למחיר היציאה</h4><p>עוף החול הספקולטיבי: <span class="num">$3.82</span>, מד חום <span class="num">46.9</span>, הדירוג הורע חזרה ל-<span class="num">24%</span> Sell. <span class="num">3%</span> מקו היציאה (<span class="num">$3.7</span>). <strong>בפשטות:</strong> שלושה שבועות בלי התקדמות ועכשיו נחלשת. אם הקו ייפגע — יוצאים בהפסד של <span class="num">9%</span> על החזקה קטנה. עופות חול: <span class="num">1</span> מ-<span class="num">3</span> המריא (INTU).</p></div>
+      <div class="dl"><h4><span class="tk">PLSE</span> — הקרה היחידה בין החמות</h4><p>חזרה ב-<span class="num">$53.87</span> עם מד חום <span class="num">59.7</span> — הנמוך בקטגוריה — ו-<span class="num">8.5%</span> מתחת לשיא. בשבוע שבו הכול רותח, היא מתקררת בשקט. <strong>מה עושים:</strong> בראש רשימת ההמתנה של הביומד (במקום, לא בנוסף). בדיקת שורט לפני.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה א</div>
+    <div class="cond-head">
+      <div class="cond-letter">א</div>
+      <h3>הרכבות הדוהרות — <span class="num">9</span> מניות</h3>
+      <span class="tag">GH, CDNA, NET, BLFS יצאו · PLSE חזרה</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>מניה</th><th>עוצמה</th><th>שיאים בחודש</th><th>מד חום</th><th>מרחק מהשיא</th><th>מה עושים</th><th>בשתי מילים</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">NTRA</td><td><span class="num">+124</span></td><td><span class="num">9</span></td><td><span class="num">74.2</span> ⚠️</td><td><span class="num">-0.08%</span></td><td><span class="badge b-blue">מחזיקים 💪</span></td><td>יציאה <span class="num">$340</span></td></tr>
+        <tr><td>2</td><td class="sym">NEO</td><td><span class="num">+144</span></td><td><span class="num">7</span></td><td><span class="num">73.9</span> ⚠️</td><td><span class="num">-0.57%</span></td><td><span class="badge b-blue">מחזיקים 💪</span></td><td>יציאה <span class="num">$18.4</span></td></tr>
+        <tr><td>3</td><td class="sym">PLSE</td><td><span class="num">+175</span></td><td><span class="num">6</span></td><td><span class="num">59.7</span> ✓</td><td><span class="num">-8.5%</span></td><td><span class="badge b-green">קרה</span></td><td>ראש רשימת ההמתנה — בדיקת שורט</td></tr>
+        <tr><td>4</td><td class="sym">MTW</td><td><span class="num">+109</span></td><td><span class="num">9</span></td><td><span class="num">70.9</span> ⚠️</td><td><span class="num">-0.13%</span></td><td><span class="badge b-amber">פרצה — חמה</span></td><td>ריטסט <span class="num">$22</span></td></tr>
+        <tr><td>5</td><td class="sym">PUBM</td><td><span class="num">+78</span></td><td><span class="num">4</span></td><td><span class="num">65.1</span> ✓</td><td><span class="num">-8.6%</span></td><td><span class="badge b-gray">עוקבים</span></td><td>יציבה</td></tr>
+        <tr><td>6</td><td class="sym">SGMT</td><td><span class="num">+61</span></td><td><span class="num">5</span></td><td><span class="num">62.7</span> ✓</td><td><span class="num">-3.1%</span></td><td><span class="badge b-gray">עוקבים</span></td><td>ביוטק קליני</td></tr>
+        <tr><td>7</td><td class="sym">ADPT</td><td><span class="num">+133</span></td><td><span class="num">7</span></td><td><span class="num">73.9</span> ⚠️</td><td><span class="num">-0.38%</span></td><td><span class="badge b-amber">חמה</span></td><td>ריטסט <span class="num">$26.5</span></td></tr>
+        <tr><td>8</td><td class="sym">TWST</td><td><span class="num">+421</span></td><td><span class="num">7</span></td><td><span class="num">73.0</span> ⚠️</td><td><span class="num">-0.04%</span></td><td><span class="badge b-gray">יצאנו</span></td><td>שיא כל הזמנים — לא רודפים</td></tr>
+        <tr><td>—</td><td class="sym">TXG</td><td><span class="num">+579</span></td><td><span class="num">11</span></td><td><span class="num">73.7</span></td><td><span class="num">-4.2%</span></td><td><span class="badge b-red">פסולה ⛔</span></td><td>שורט <span class="num">17.4%</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note">החזקות שמחוץ לסריקה (Stop בברוקר): RDVT <span class="num">$70</span> · ACHV <span class="num">$8</span> · IVZ <span class="num">$30.5</span> · KYMR <span class="num">$118</span> · PTGX <span class="num">$147</span> · CSGP <span class="num">$30</span>. ריטסטים מחוץ לסריקה (לאמת לפני): GH <span class="num">$176.5</span> · CDNA <span class="num">$53.7</span>.</p>
+
+    <div class="deep">
+      <div class="dcard warn">
+        <h4>חמש מניות במד חום <span class="num">73–74</span> — מה זה אומר</h4>
+        <p><span class="lbl">התמונה:</span> NTRA, NEO, ADPT, TWST, TXG — כולן באותה טמפרטורה, כולן על שיא או צמוד אליו, כולן מאותו סקטור. <span class="lbl">בפשטות:</span> כשקבוצה שלמה מתחממת יחד, היא גם מתקררת יחד — וזה קורה בבת אחת, בדרך כלל על חדשה אחת (ריבית, רגולציה, דוח של אחת מהן). <span class="lbl">מה זה משנה לנו:</span> כלום בתיק — הקווים כבר מוגבהים. הרבה לרשימת הקניות — אף כניסה חדשה לביומד עד שהקבוצה תתקרר ותיתן ריטסט.</p>
+      </div>
+      <div class="dcard">
+        <h4><span class="tk">EBAY</span> — המועמדת הלא-ביומדית הראשונה זה שבועות</h4>
+        <p><span class="lbl">מה החברה:</span> אין צורך להסביר — אבל כן צריך להסביר למה עכשיו: <span class="num">8</span> שיאים בחודש, מד חום <span class="num">60</span> בריא, <span class="num">6%</span> מהשיא, וקפיצה של <span class="num">+4</span> בשבוע. חברה ענקית ורווחית שנעה כמו סטאפ. <span class="lbl">בפשטות:</span> אם קטגוריה ג' מתחילה לבנות דור המשך, זה נראה ככה — מניה משעממת שמתחילה לצבור שיאים בשקט. מחיר הוכחה: <span class="num">$119</span> (השיא). יציאה: <span class="num">$104</span>. אחרי ההגנה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stepnum">קטגוריה ג + ב</div>
+    <div class="cond-head">
+      <div class="cond-letter">ג</div>
+      <h3>הקפיצים הנדרכים — <span class="num">7</span> מועמדות, <span class="num">6</span> כשירות</h3>
+      <span class="tag">WGS, EBAY, RIOT חדשות · הפעם הראשונה זה שלושה שבועות שהתנאי מתקיים</span>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>מניה</th><th>עוצמה</th><th>שיאים בחודש</th><th>מד חום</th><th>מרחק מהשיא</th><th>בשתי מילים</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="sym">EBAY</td><td><span class="num">+26</span></td><td><span class="num">8</span></td><td><span class="num">59.7</span> ✓</td><td><span class="num">-6.3%</span></td><td>הפרופיל הטוב בקטגוריה — לא ביומד</td></tr>
+        <tr><td>2</td><td class="sym">RIOT</td><td><span class="num">+14</span></td><td><span class="num">5</span></td><td><span class="num">61.0</span> ✓</td><td><span class="num">-21.7%</span></td><td>חדשה — כריית ביטקוין; נעה עם הקריפטו, לא עם עצמה</td></tr>
+        <tr><td>3</td><td class="sym">NVAX</td><td><span class="num">+17</span></td><td><span class="num">7</span></td><td><span class="num">62.0</span> ✓</td><td><span class="num">-15.5%</span></td><td>יציבה, ספקולטיבית</td></tr>
+        <tr><td>4</td><td class="sym">CRM</td><td><span class="num">+5</span></td><td><span class="num">7</span></td><td><span class="num">53.2</span> ✓</td><td><span class="num">-11.6%</span></td><td>Salesforce — עוד שבוע של החזרה (<span class="num">-9.8</span>)</td></tr>
+        <tr><td>5</td><td class="sym">WGS</td><td><span class="num">+26</span></td><td><span class="num">9</span></td><td><span class="num">70.4</span> ⚠️</td><td><span class="num">-40.8%</span></td><td>חדשה — GeneDx: <span class="num">+16</span> בשבוע, חמה, <span class="num">41%</span> מתחת לשיא</td></tr>
+        <tr><td>6</td><td class="sym">KOPN</td><td><span class="num">+29</span></td><td><span class="num">1</span></td><td><span class="num">55.8</span> ✓</td><td><span class="num">-28.3%</span></td><td>שיא אחד — לא רלוונטית</td></tr>
+        <tr><td colspan="7" style="color:var(--amber);font-weight:600">⚠️ בלי אישור מגמה: UMAC (<span class="num">47.5</span>)</td></tr>
+      </tbody>
+    </table>
+    <div class="cond-head" style="margin-top:22px">
+      <div class="cond-letter">ב</div>
+      <h3>עופות החול — GTM נחלשת</h3>
+    </div>
+    <table>
+      <thead><tr><th>מניה</th><th>מחיר</th><th>קו 100 הימים</th><th>מרחק מהקו</th><th>מד חום</th><th>דירוג</th><th>בשתי מילים</th></tr></thead>
+      <tbody>
+        <tr><td class="sym">GTM</td><td><span class="num">3.82</span></td><td><span class="num">3.75</span></td><td><span class="num">+1.9%</span></td><td><span class="num">46.9</span> ⚠️</td><td><span class="num">24%</span> Sell</td><td><span class="num">3%</span> מקו היציאה <span class="num">$3.7</span> — מתכוננים</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="bottom">
+  <div class="wrap">
+    <div class="stepnum" style="color:var(--cyan)">שורה תחתונה</div>
+    <h2>לוח פעולה לשבוע 7</h2>
+    <div class="bl">
+      <div class="bcard"><h4>הכלל</h4><p>הגנה נמשכת — קטגוריה א' נשברה ביום 2. תנאי ג' (<span class="num">6+</span>) התקיים לראשונה. ההסרה: שלושה דוחות של <span class="num">8+</span> חזקות + ג' ב-<span class="num">6+</span>.</p></div>
+      <div class="bcard"><h4>ההחזקות — מחירי היציאה (בברוקר)</h4><p><span class="tk">NTRA</span> <span class="num">$340</span> · <span class="tk">NEO</span> <span class="num">$18.4</span> · <span class="tk">RDVT</span> <span class="num">$70</span> · <span class="tk">ACHV</span> <span class="num">$8</span> · <span class="tk">KYMR</span> <span class="num">$118</span> · <span class="tk">PTGX</span> <span class="num">$147</span> · <span class="tk">IVZ</span> <span class="num">$30.5</span> · <span class="tk">CSGP</span> <span class="num">$30</span> · <span class="tk">GTM</span> <span class="num">$3.7</span> (קרוב).</p></div>
+      <div class="bcard"><h4>רשימת הקניות — כשההגנה תוסר</h4><p><strong>לא-ביומד (עדיפות):</strong> <span class="tk">MTW</span> ריטסט <span class="num">$22</span> · <span class="tk">EBAY</span> <span class="num">$119</span>. <strong>ביומד (במקום, לא בנוסף):</strong> <span class="tk">PLSE</span> · <span class="tk">GH</span>/<span class="tk">CDNA</span>/<span class="tk">ADPT</span> ריטסטים.</p></div>
+      <div class="bcard"><h4>מה לא עושים</h4><p>לא רודפים <span class="tk">TWST</span> ב-<span class="num">$167</span>. לא נכנסים למד חום <span class="num">70+</span>. לא מזיזים קווים למטה.</p></div>
+      <div class="bcard"><h4>לא נוגעים</h4><p><span class="tk">TXG</span> (<span class="num">579</span>) · <span class="tk">WGS</span> (חמה, <span class="num">-41%</span>) · <span class="tk">RIOT</span> (קריפטו) · <span class="tk">KOPN</span>/<span class="tk">UMAC</span>.</p></div>
+    </div>
+    <p style="margin-top:22px;font-size:14px;color:#C9D5DF">שישה שבועות למערכת: <span class="num">12</span> כניסות, <span class="num">5</span> מימושים חלקיים, שתי עסקאות סגורות (אחת מצוינת, אחת קטנה בהפסד), שתי החזקות על שיא עם רשתות מוגבהות — ושיעור יקר על איפה שמים מחיר יציאה. השבוע השביעי נפתח עם ביומד רותח, קטגוריה ג' שמתעוררת, ורשימת קניות מוכנה ליום שהרוחב יאשר. התזכורת הקבועה: Short Float ו-Beta בייצוא 🙂 שבת שלום!</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Four Pillars Scanner · נתונים: Barchart <span class="num">19/09/2026</span> (סגירת יום שישי) · דוח #29 · מהדורת סוף שבוע</span>
+    <span>ניתוח טכני לצורכי לימוד — אינו המלצת השקעה</span>
+  </div>
+</footer>
+
+</body>
+</html>
