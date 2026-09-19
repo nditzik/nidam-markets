@@ -99,6 +99,90 @@ def compose_tg(w):
     return "\n".join(lines)
 
 
+# ── "לאן זרם הכסף" (19.9.2026, איציק): שכבת הסקטורים של הסיכום השבועי ────────────
+# דוח הרוטציה השבועי (טאב סקטורים, data/sectors/sectors-YYYY-MM-DD.html) מגיע בדרך כלל
+# בשבת בערב — אחרי שהסיכום כבר נבנה. לכן הצירוף רץ בכל מחזור, גם כשהשבוע "כבר סוכם":
+# אם יש דוח מ-0–3 ימים אחרי יום שישי של השבוע ואין עדיין בלוק sectors — מוסיפים.
+# חילוץ דטרמיניסטי (מבנה הדוח יציב מ-5.9.2026): המשפט הראשון של "בחמישה משפטים" +
+# זוגות "סקטור · X% ← Y%" מתרשים "מכאן הכסף יצא". החלטות-מסחר אישיות (יצאנו/סטופ…)
+# לא נכנסות — הן נשארות בטאב סקטורים. כל כשל → בלי בלוק, לא מפיל כלום.
+import re as _re
+_PERSONAL = ("יצאנו", "נכנסנו", "הסטופ", "מכרנו", "קנינו", "הפוזיציה שלנו")
+
+
+def _txt(h):
+    import html as _h
+    return _re.sub(r"\s+", " ", _h.unescape(_re.sub(r"<[^>]+>", " ", h))).strip()
+
+
+def sectors_block(week_of):
+    idx = load(os.path.join(DATA, "sectors.json")) or {}
+    fri = datetime.strptime(week_of, "%Y-%m-%d").date()
+    for rep in idx.get("reports", []):
+        try:
+            rd = datetime.strptime(rep["date"], "%Y-%m-%d").date()
+        except Exception:
+            continue
+        if not (0 <= (rd - fri).days <= 3):
+            continue
+        path = os.path.join(ROOT, rep["file"].replace("/", os.sep))
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                h = f.read()
+        except Exception:
+            continue
+        out = {"date": rep["date"], "file": rep["file"], "title": rep.get("title") or ""}
+        i = h.find("בחמישה משפטים")
+        if i >= 0:
+            m = _re.search(r"<p[^>]*>(.*?)</p>", h[i:], _re.S)
+            if m:
+                first = _re.split(r"(?<=[^\d])\.\s", _txt(m.group(1)), maxsplit=1)[0].strip()
+                if first and not first.endswith("."):
+                    first += "."
+                if 30 <= len(first) <= 260 and not any(w in first for w in _PERSONAL):
+                    out["lead"] = first
+        j = h.find("מכאן הכסף יצא")
+        if j >= 0:
+            k = h.find("לאן הוא הלך", j)
+            seg = h[j: k if k > j else j + 3000]
+            texts = [_txt(t) for t in _re.findall(r"<text[^>]*>([^<]+)</text>", seg)]
+            pairs, name = [], None
+            for t in texts:
+                mv = _re.match(r"^(\d+)%\s*←\s*(\d+)%$", t)
+                if mv and name:
+                    pairs.append({"name": _re.sub(r"\s*\(.*?\)", "", name).strip(), "from": int(mv.group(1)), "to": int(mv.group(2))})
+                    name = None
+                elif not mv:
+                    name = t
+            if pairs:
+                out["out"] = pairs[:5]
+        mb = _re.search(r"שוק:\s*(\d+)%\s*רוחב", _txt(h))
+        if mb:
+            out["marketBreadth"] = int(mb.group(1))
+        if out.get("lead") or out.get("out"):
+            return out
+    return None
+
+
+def attach_sectors():
+    """מוסיף/מרענן את בלוק sectors ב-weekly.json הקיים. מחזיר True אם נכתב שינוי."""
+    w = load(OUT) or {}
+    if not w.get("weekOf"):
+        return False
+    try:
+        blk = sectors_block(w["weekOf"])
+    except Exception as e:
+        print(f"[warn] sectors_block נכשל: {e}")
+        return False
+    if not blk or blk == w.get("sectors"):
+        return False
+    w["sectors"] = blk
+    with open(OUT, "w", encoding="utf-8") as f:
+        json.dump(w, f, ensure_ascii=False, indent=1)
+    print(f"[ok] 'לאן זרם הכסף' צורף לסיכום השבועי מדוח {blk['date']} ({len(blk.get('out') or [])} סקטורים)")
+    return True
+
+
 def main():
     force = "--force" in sys.argv
     hist = load(os.path.join(DATA, "history.json")) or {}
@@ -121,6 +205,7 @@ def main():
     st = load(STATE) or {}
     if st.get("weekOf") == last and not force:
         print(f"[ok] השבוע שמסתיים ב-{last} כבר סוכם.")
+        attach_sectors()      # דוח הסקטורים מגיע אחרי הסיכום — מצרפים כשהוא נוחת
         return 0
 
     idx = load(os.path.join(DATA, "indices.json")) or {}
@@ -134,6 +219,14 @@ def main():
     prev_w = load(OUT) or {}
     if prev_w.get("weekOf") == w["weekOf"] and prev_w.get("narrative"):
         w["narrative"] = prev_w["narrative"]
+    if prev_w.get("weekOf") == w["weekOf"] and prev_w.get("sectors"):
+        w["sectors"] = prev_w["sectors"]
+    try:
+        _sb = sectors_block(w["weekOf"])
+        if _sb:
+            w["sectors"] = _sb
+    except Exception as e:
+        print(f"[warn] sectors_block נכשל: {e}")
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(w, f, ensure_ascii=False, indent=1)
     print(f"[done] סיכום השבוע {w['label']} נכתב · S&P {w['summary']['spxPct']}% · מד {w['summary']['combStart']}→{w['summary']['combEnd']}")

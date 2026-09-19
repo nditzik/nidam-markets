@@ -1386,6 +1386,56 @@
       '<a class="np-more" href="#briefing" onclick="__goTab(\'briefing\');return false">התדרוך המלא ←</a>';
   }
 
+  /* ---------- כותרת סוף-השבוע: סיכום שבועי בבית (שבת → ראשון 15:00) ---------- */
+  function ilNowParts() {
+    // שעון ישראל בלי תלות באזור הזמן של הדפדפן
+    var f = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Jerusalem", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+    var o = {}; f.forEach(function (p) { o[p.type] = p.value; });
+    return { dow: o.weekday, hour: parseInt(o.hour, 10) % 24, iso: o.year + "-" + o.month + "-" + o.day };
+  }
+  function weekendLeadHtml(ca, foot) {
+    var w = WEEKLY, nar = w && w.narrative;
+    if (!w || !w.weekOf || !nar || !nar.lead) return "";
+    var t = ilNowParts();
+    var inWindow = t.dow === "Sat" || (t.dow === "Sun" && t.hour < 15);
+    if (!inWindow) return "";
+    // הסיכום חייב להיות של יום שישי האחרון (עד 3 ימים אחורה)
+    var ageDays = (Date.parse(t.iso) - Date.parse(w.weekOf)) / 864e5;
+    if (!(ageDays >= 0 && ageDays <= 3)) return "";
+    // עדכון-אירוע שאינו preview ושתאריכו אחרי יום שישי (ידני/דחוף) גובר על הסיכום
+    var eu = freshEventUpdate(CA);
+    if (eu && eu.kind !== "preview" && eu.date > w.weekOf) return "";
+    var s = w.summary || {}, sec = w.sectors || null;
+    function pct(v) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(2) + "%"; }
+    function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
+    // H1 = המשפט הראשון של ה-lead; ארוך מדי → עד הנקודתיים/המקף הראשון
+    // התאריכים כבר בקיקר; בסוגריים בתוך הטקסט הם מתהפכים ב-RTL — מסירים לפני החיתוך
+    var leadClean = String(nar.lead).replace(/\s*\(\d{1,2}[–-]\d{1,2}\.\d{1,2}\)/, "");
+    var first = leadClean.split(/(?<=[^\d])\.\s/)[0].replace(/\.$/, "");
+    if (first.length > 95) { var cut = first.search(/[:—]/); if (cut > 25) first = first.slice(0, cut).trim(); }
+    var rest = leadClean.slice(first.length).replace(/^[\s:—.]+/, "");
+    var w1 = meterWord(s.combEnd || 0);
+    var secLine = "";
+    if (sec && sec.out && sec.out.length) {
+      secLine = '<p class="np-wk-sec">💸 <b>לאן זרם הכסף:</b> ' + sec.out.map(function (o) {
+        // כיוון קריאה עברי, כמו בדוח עצמו: "81% ← 57%" (מימין: לפני, משמאל: אחרי)
+        return esc(o.name) + ' <span class="num down"><bdi>' + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi></span>";
+      }).join(" · ") + ' <span class="soft">(אחוז המניות במגמת עלייה בסקטור, שבוע מול שבוע)</span> · ' +
+        '<a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא ←</a></p>';
+    }
+    return '<span class="np-today">' + todayLine() + "</span>" +
+      '<span class="np-k np-evt-mid">🗓 סיכום השבוע · <b dir="ltr">' + esc(w.label || "") + "</b>" +
+        ' · S&amp;P 500 <b class="num ' + cls(s.spxPct) + '" dir="ltr">' + pct(s.spxPct) + "</b>" +
+        ' · מד השוק <b class="num" dir="ltr">' + (s.combStart != null ? s.combStart : "—") + " → " + (s.combEnd != null ? s.combEnd : "—") + "</b>" +
+        ' <span style="color:' + w1[1] + '">' + w1[0] + "</span></span>" +
+      '<h2 class="np-h1">' + esc(first) + "</h2>" +
+      '<p class="np-dek">' + (rest ? esc(rest) + " " : "") + (sec && sec.lead ? esc(sec.lead) : "") + "</p>" +
+      secLine +
+      (nar.lookahead ? '<p class="np-bottom">🔭 <b>השבוע הבא:</b> ' + esc(nar.lookahead) + "</p>" : "") +
+      (ca ? '<p class="np-wk-last"><span class="np-k">יום המסחר האחרון · <b dir="ltr">' + esc(fmtTradeDate(ca.date)) + "</b></span> " + esc(ca.headline) + "</p>" : "") +
+      foot;
+  }
+
   /* ---------- הידיעה המובילה + רייל המד (מהדורת עיתון) ---------- */
   var CA = null;   // data/claude_analysis.json — הניתוח היומי (נכתב ע"י המשימה המתוזמנת)
   function renderLead() {
@@ -1420,6 +1470,12 @@
       '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a></div>';
 
     renderLeadRail(d);
+    // כותרת סוף-השבוע (19.9.2026, איציק): משבת ועד ראשון 15:00 הכותרת בבית היא סיכום השבוע
+    // (משפט-הפתיחה של הסיכום המילולי + "לאן זרם הכסף" מדוח הסקטורים); הניתוח של יום שישי
+    // יורד שורה למטה. מראשון 15:00 חוזרת הלוגיקה הרגילה — סקירת "לקראת שבוע המסחר"
+    // (eventUpdate preview, נכתבת 14:45). עדכון-אירוע ידני/דחוף שתאריכו אחרי יום שישי גובר.
+    var wkHtml = weekendLeadHtml(ca, foot);
+    if (wkHtml) { el.innerHTML = wkHtml; return; }
     // עדכון-אירוע (CPI/NFP/פד): מחליף את הכותרת עד הניתוח המלא של מחר בבוקר.
     // במכוון על CA הגולמי ולא על ca מוגן-התאריך — לעדכון יש שעון-טריות משלו
     var eu = freshEventUpdate(CA);
@@ -1587,6 +1643,10 @@
           [["חדשות", nar.news], ["דוחות", nar.earnings], ["מאקרו", nar.macro], ["השבוע הבא", nar.lookahead]].map(function (p) {
             return p[1] ? '<p class="wk-line"><b>' + p[0] + "</b> " + esc(p[1]) + "</p>" : "";
           }).join("") +
+          (d.sectors && (d.sectors.lead || (d.sectors.out || []).length) ? '<p class="wk-line"><b>לאן זרם הכסף</b> ' +
+            (d.sectors.lead ? esc(d.sectors.lead) + " " : "") +
+            ((d.sectors.out || []).length ? "הרוחב ירד ב: " + d.sectors.out.map(function (o) { return esc(o.name) + ' <span class="num"><bdi>' + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi></span>"; }).join(" · ") + ". " : "") +
+            '<a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא ←</a></p>' : "") +
           '<p class="stamp">סיכום מילולי · נכתב ' + esc(nar.writtenAt || "") + "</p></div>"
         : '<p class="wk-wait">הסיכום המילולי של השבוע נכתב בסוף השבוע, אחרי שסגירת שישי נקלטת.</p>') +
       "</section>";
@@ -2917,7 +2977,7 @@
       // סיכום השבוע (11.9.2026): נבנה ע"י build_weekly.py כשסגירת שישי נקלטת,
       // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
       fetchJSON("data/weekly.json")
-        .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); })
+        .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); renderLead(); })
         .catch(function () {});
       fetchJSON("data/earnings.json")
         .then(function (d) {

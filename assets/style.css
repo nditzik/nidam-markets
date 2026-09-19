@@ -982,6 +982,12 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fq-cell .down, .ai-blocks .down, .stat .sub .down { color: var(--down); }
 @media (max-width: 480px) { .fq-grid { grid-template-columns: 1fr; } }
 
+/* כותרת סוף-השבוע בבית (19.9.2026) */
+.np-wk-sec { margin: 8px 0 0; font-size: .92rem; line-height: 1.6; }
+.np-wk-sec .down { color: var(--down); font-weight: 600; } .np-wk-sec .soft { color: var(--text-3); font-size: .8rem; }
+.np-wk-last { margin: 12px 0 0; padding-top: 10px; border-top: 1px solid var(--paper-hair); font-size: .92rem; color: var(--text-soft); line-height: 1.55; }
+.np-wk-last .np-k { margin-inline-end: 6px; }
+
 /* שיאים ושפלים בכרטיס המד (18.9.2026) — כל מספר צמוד לתווית שלו */
 .np-nhnl { display: inline-flex; gap: 6px; align-items: baseline; font-weight: 600; }
 .np-nhnl .up { color: var(--up); } .np-nhnl .down { color: var(--down); }
