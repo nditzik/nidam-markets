@@ -1261,3 +1261,55 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 /* הטיית הפוזיציות החדשות באופציות (12.9.2026) */
 .np-open { font-size: .78rem; color: var(--text-soft); margin-inline-start: 6px; }
 .np-open b.up { color: var(--up); } .np-open b.down { color: var(--down); }
+
+/* ── עיצוב הכותרת 20.9.2026: שורת נתונים · אריחים · יומן ברייל ── */
+.np-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--paper-hair); margin: 0 0 16px; }
+.np-stat { padding: 10px 14px 9px; border-inline-start: 1px solid var(--paper-hair); min-width: 0; }
+.np-stat:first-child { border-inline-start: 0; padding-inline-start: 0; }
+.np-stat .l { font-size: .68rem; color: var(--text-3); font-weight: 600; letter-spacing: .04em; }
+.np-stat .v { font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.25; text-align: right; }
+.np-stat .v.up { color: var(--up); } .np-stat .v.down { color: var(--down); }
+.np-stat .s { font-size: .72rem; color: var(--text-soft); }
+.np-sech { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; flex-wrap: wrap; }
+.np-sech b { font-size: .82rem; font-weight: 700; }
+.np-sech span { font-size: .72rem; color: var(--text-3); }
+.np-sech a { margin-inline-start: auto; font-size: .76rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+.np-flow { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin: 0 0 16px; }
+.np-flow.one { grid-template-columns: 1fr; }
+.np-grp { font-size: .68rem; font-weight: 700; letter-spacing: .06em; margin: 0 0 6px; }
+.np-grp.up { color: var(--up); } .np-grp.down { color: var(--down); }
+.np-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.np-tiles.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.np-tiles.five { grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0 0 16px; }
+.np-tile { border-radius: 10px; padding: 8px 10px 9px; min-width: 0; }
+.np-tile.out { background: color-mix(in srgb, var(--down) 10%, transparent); }
+.np-tile.in { background: color-mix(in srgb, var(--up) 11%, transparent); }
+.np-tile.flat { background: rgba(127,127,127,.07); border: 1px solid var(--paper-hair); }
+.np-tile .n { font-size: .78rem; font-weight: 600; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.np-tile .p { font-size: 1rem; font-weight: 800; margin-top: 1px; }
+.np-tile .p small { font-weight: 600; font-size: .74rem; opacity: .75; }
+.np-tiles.five .np-tile .p { text-align: right; }
+.np-tile.in .p { color: var(--up); } .np-tile.out .p { color: var(--down); }
+.np-tile .d { font-size: .68rem; color: var(--text-soft); margin-top: 1px; line-height: 1.35; }
+.np-track { height: 4px; border-radius: 2px; background: rgba(127,127,127,.18); margin-top: 7px; position: relative; overflow: hidden; }
+.np-track i { position: absolute; inset-block: 0; right: 0; border-radius: 2px; }
+.np-track .was { background: rgba(127,127,127,.38); } .np-track .now { background: var(--down); }
+.np-tile.in .np-track .now { background: var(--up); }
+.np-tag { display: inline-block; font-size: .6rem; font-weight: 700; padding: 1px 6px; border-radius: 999px; background: var(--up); color: #fff; }
+.np-tag.dn { background: var(--down); }
+.np-grp-n { font-weight: 600; letter-spacing: 0; color: var(--text-3); margin-inline-start: 6px; }
+.np-agenda { margin-top: 18px; border-top: 1px solid var(--paper-hair); padding-top: 12px; }
+.np-ag { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--paper-hair); align-items: baseline; }
+.np-ag .dw { font-size: .7rem; font-weight: 700; color: var(--text-3); }
+.np-ag .co { font-size: .84rem; font-weight: 600; line-height: 1.4; }
+.np-ag .co small { font-weight: 500; color: var(--text-3); }
+.np-ag.macro .co { color: var(--warn); }
+.np-ag .co .up { color: var(--up); } .np-ag .co .down { color: var(--down); }
+.np-ag-note { font-size: .8rem; color: var(--text-soft); margin: 0; line-height: 1.55; }
+@media (max-width: 880px) {
+  .np-stat { padding: 8px 8px 7px; } .np-stat .v { font-size: 1.12rem; }
+  .np-flow { grid-template-columns: 1fr; }
+  .np-tiles, .np-tiles.five { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .np-sech span { display: none; }
+  .np-tiles.five .np-tile:nth-child(n+5) { display: none; }
+}
