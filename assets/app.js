@@ -309,6 +309,7 @@
     });
     ((REPD && REPD.reports) || []).forEach(function (r) { push("דוחות", "reports", r.title + " (" + r.ticker + ")"); });
     ((TRAD && TRAD.reports) || []).forEach(function (r) { push("הצעות לטרייד", "trades", r.title); });
+    ((INSD && INSD.reports) || []).forEach(function (r) { push("Insider", "insider", r.title + " " + (r.tickers || []).join(" ")); });
     if (BRIEF) ["morning", "afternoon"].forEach(function (k) {
       var s = BRIEF[k] || {};
       (s.headlines || []).forEach(function (h) { push("תדרוך", "briefing", h); });
@@ -749,6 +750,7 @@
   }
   /* per-tab explanation text (uniform style via .tab-intro) */
   var TAB_INTROS = {
+    insider: "כשמנכ\"ל, סמנכ\"ל כספים או דירקטור קונים את המניה של החברה שלהם בכסף פרטי, זה אחד האיתותים הנקיים בשוק: למכור יש הרבה סיבות, לקנות יש רק אחת. הדוח סורק את כל קניות בעלי העניין בארה\"ב, מסנן את המשמעותיות ובודק כל מועמדת מול ההיסטוריה של אותם קונים ומול הגרף. זה מידע להתרשמות, לא המלצה.",
     candidates: "כל בוקר אנחנו סורקים מאות מניות מומנטום ומחפשים מניות שעשו תיקון קטן חזרה לממוצע ועכשיו חוזרות לעלות — קונים את התיקון, לא את השיא. המערכת מדרגת ומציגה את הטובות ביותר, עם מחיר כניסה, סטופ ויעד. לצורכי לימוד בלבד, לא המלצה.",
     momentum: "בכל בוקר אנחנו סורקים את שוק המניות האמריקאי ומאתרים את המניות עם המומנטום הכי חזק — אלה שמופיעות במקביל בכמה סורקים טכניים (חוזק מגמה, שיא 6 חודשים, TTM Squeeze, MACD Buy). ככל שיש יותר סיגנלים למניה — הסיכוי להמשך תנועה חזקה גבוה יותר. הרשימה היא כלי סינון בלבד ולא המלצת השקעה."
   };
@@ -2944,6 +2946,51 @@
       'onload="__fitFrame(this)"></iframe></div>';
   }
 
+  /* טאב "Insider" (20.9.2026) — דוחות קניות של בעלי עניין מ-nidam-reports/insider.
+     כמו סקטורים: הדוח האחרון מוצג, הקודמים נשמרים כצ'יפים (scripts/fetch_insider.py ממזג היסטוריה). */
+  var INSD = null;
+  function renderInsider(el, d) {
+    INSD = d;
+    var reps = (d && d.reports) || [];
+    if (!reps.length) {
+      emptyPanel(el, "🕵️", "Insider — בקרוב", "הדוח הראשון בדרך.");
+      return;
+    }
+    var nav = reps.length > 1
+      ? '<div class="chips arch-chips" style="margin-bottom:12px">' + reps.map(function (r, i) {
+          return '<button class="chip ins-tab' + (i === 0 ? " lead" : "") + '" data-ins="' + i +
+            '"><span dir="ltr">' + esc(secDate(r.date)) + "</span></button>";
+        }).join("") + "</div>"
+      : "";
+    el.innerHTML = stamp(d._meta) +
+      '<div class="section-title" style="margin-top:0">🕵️ Insider · קניות של בעלי עניין</div>' +
+      tabIntro("insider") + nav + '<div id="ins-view"></div>';
+    showInsider(0);
+    el.querySelectorAll(".ins-tab").forEach(function (b) {
+      b.addEventListener("click", function () {
+        el.querySelectorAll(".ins-tab").forEach(function (x) { x.classList.toggle("lead", x === b); });
+        showInsider(+b.dataset.ins);
+      });
+    });
+  }
+  function showInsider(i) {
+    var view = document.getElementById("ins-view");
+    if (!view || !INSD) return;
+    var r = (INSD.reports || [])[i];
+    if (!r) return;
+    var tks = (r.tickers || []).map(function (t) {
+      return '<a class="chip" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(t) + '/" target="_blank" rel="noopener">' + esc(t) + "</a>";
+    }).join("");
+    view.innerHTML =
+      '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
+        "<strong>" + esc(r.title) + "</strong>" +
+        '<div class="stamp" style="margin:4px 0 0">' + (r.range ? esc(r.range) + " · " : "") + 'הופק ב-<span dir="ltr">' + esc(secDate(r.date)) + "</span></div>" +
+        (tks ? '<div class="chips" style="margin-top:10px">' + tks + "</div>" : "") + "</div>" +
+      '<div class="frame-scroll"><iframe class="brief-frame trd-frame" src="' + bust(r.file, INSD._meta) + '" title="' + esc(r.title) +
+      '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
+      'onload="__fitFrame(this)"></iframe></div>';
+  }
+
   /* טאב "הצעות לטרייד" — דוחות Four Pillars וכד', כמו סקטורים (יומי במקום שבועי) */
   var TRAD = null;
   function renderTrades(el, d) {
@@ -3218,6 +3265,9 @@
       fetchJSON("data/momentum.json")
         .then(function (d) { if (!freshD("momentum", d)) return; MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); noteSig("momentum", d); })
         .catch(function () { if (!MOMD) emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
+      fetchJSON("data/insider.json")
+        .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); noteSig("insider", d); })
+        .catch(function () { if (!("insider" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
       fetchJSON("data/sectors.json")
         .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
         .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });

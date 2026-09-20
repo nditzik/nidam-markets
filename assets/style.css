@@ -1313,3 +1313,7 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
   .np-sech span { display: none; }
   .np-tiles.five .np-tile:nth-child(n+5) { display: none; }
 }
+
+/* טאב Insider (20.9.2026): 11 טאבים בשורה — רווח מעט צפוף יותר כדי ש"דוחות" לא ירד לבד לשורה שנייה */
+@media (min-width: 881px) { .tabs { gap: 11px; } }
+#ins-view a.chip { text-decoration: none; color: inherit; }

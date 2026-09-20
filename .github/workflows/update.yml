@@ -160,6 +160,11 @@ jobs:
         run: python scripts/fetch_trades.py
         continue-on-error: true
 
+      # --- דוחות קניות של בעלי עניין (nidam-reports/insider) → טאב Insider ---
+      - name: Fetch insider reports
+        run: python scripts/fetch_insider.py
+        continue-on-error: true
+
       # --- שידור אוטומטי: כל תמונה חדשה תחת C:\challenge\reports (nidam-reports) → הערוץ ---
       - name: Broadcast new report images to Telegram
         env:
