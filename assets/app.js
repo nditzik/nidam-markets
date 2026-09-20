@@ -1970,6 +1970,11 @@
     var isoDate = /^\d{1,2}\.\d{1,2}\.\d{4}$/.test(eu.date)
       ? (function (p) { return p[2] + "-" + p[1].padStart(2, "0") + "-" + p[0].padStart(2, "0"); })(eu.date.split("."))
       : eu.date;
+    // 20.9.2026: הרוטינה כתבה time="14:46 IL" → Date.parse החזיר NaN והכותרת נפלה בשקט
+    // לניתוח של יום שישי. לוקחים רק את ה-HH:MM מתוך השדה, מה שלא יהיה סביבו.
+    var hm = /(\d{1,2}):(\d{2})/.exec(String(eu.time));
+    if (!hm) return null;
+    eu.time = hm[1].padStart(2, "0") + ":" + hm[2];   // גם לתצוגה: "14:46" נקי
     var ts = Date.parse(isoDate + "T" + eu.time + ":00");
     if (isNaN(ts)) return null;
     var age = Date.now() - ts;
