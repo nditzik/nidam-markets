@@ -100,7 +100,7 @@
     var el = document.getElementById("ticker");
     if (!el) return;
     fetchJSON("data/market.json")
-      .then(function (d) { TICKD = d; renderMarketTicker(el, d); refreshTickerLive(); })
+      .then(function (d) { TICKD = d; renderMarketTicker(el, d); refreshTickerLive(); if (INDD) renderLead(); })
       .catch(function () {});
   }
   /* עדכון חי מהסורק של TradingView (CORS פתוח כ-simple request) — מחירים כל דקה;
@@ -1416,6 +1416,22 @@
         '</div><div class="s">' + (x.s || "") + "</div></div>";
     }).join("") + "</div>";
   }
+  // שורת נתונים לכותרות העדכון (לקראת שבוע / לקראת פתיחה / אמצע יום) — מהטיקר החי (TICKD)
+  function marketStats(keys) {
+    var by = {};
+    ((TICKD && TICKD.items) || []).forEach(function (it) { by[it.key] = it; });
+    var L = { es: "חוזה S&amp;P 500", nq: "חוזה נאסד\"ק", vix: "VIX · מדד הפחד", tnx: "תשואת אג\"ח 10 שנים", spy: "S&amp;P 500 (SPY)" };
+    return leadStats(keys.map(function (k) {
+      var it = by[k];
+      if (!it || it.price == null) return null;
+      var chg = it.chg == null ? "" : (it.chg > 0 ? "+" : "") + Number(it.chg).toFixed(2) + "%";
+      var cls = it.chg > 0 ? "up" : it.chg < 0 ? "down" : "";
+      var px = Number(it.price).toLocaleString("en-US", { maximumFractionDigits: 2 });
+      if (k === "vix") return { l: L[k], v: Number(it.price).toFixed(2), cls: it.price >= 20 ? "down" : "", s: '<span class="num" dir="ltr">' + chg + "</span>" };
+      if (k === "tnx") return { l: L[k], v: Number(it.price).toFixed(2) + "%", s: Math.abs(it.price - 5) < 0.03 ? "סביב רף ה-5%" : it.price > 5 ? "מעל רף ה-5%" : "מתחת לרף ה-5%" };
+      return { l: L[k] || esc(it.label), v: chg || px, cls: cls, s: '<span class="num" dir="ltr">' + px + "</span>" };
+    }));
+  }
   function firstSentence(t) {
     var f = String(t || "").split(/(?<=[^\d])\.\s/)[0];
     return f ? f.replace(/\.$/, "") + "." : "";
@@ -1596,7 +1612,10 @@
         '<span class="np-k ' + (euCalm ? "np-evt-mid" : "np-evt") + '">' + euIco +
           " " + euLbl + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
         '<h2 class="np-h1">' + esc(eu.headline) + "</h2>" +
-        (eu.tldr ? '<p class="np-dek">' + esc(eu.tldr) + "</p>" : "") +
+        // 20.9.2026: כותרות רגועות באותו שלד של שאר הכותרות — 3 נתונים חיים + משפט אחד;
+        // עדכון מאקרו אדום (CPI/פד) נשאר עם הטקסט המלא, שם הפירוט הוא העיקר
+        (euCalm ? marketStats(eu.kind === "preview" ? ["es", "tnx", "vix"] : ["es", "nq", "vix"]) : "") +
+        (eu.tldr ? '<p class="np-dek">' + esc(euCalm ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
         (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
         (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
         foot;
