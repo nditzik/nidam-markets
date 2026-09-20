@@ -6,7 +6,7 @@ fetch_bets.py — "מה השווקים מהמרים": הסתברויות משו�
 שהשוק מתמחר; oneDayPriceChange = השינוי היומי בנקודות הסתברות.
 
 שלושה שווקים (נבדקו 10/08/2026):
-  • fed-decision-in-september-762 — החלטת הפד הקרובה (התוצאה המובילה)
+  • ישיבת הפד הקרובה — מאותרת אוטומטית (next_fed_event), מתגלגלת לבד אחרי כל ישיבה
   • how-many-fed-rate-cuts-in-2026 — מספר הורדות עד סוף השנה (ההימור המוביל)
   • fed-rate-hike-in-2026 — הסתברות להעלאת ריבית השנה
 
@@ -48,6 +48,33 @@ def get_event(slug):
     with urllib.request.urlopen(req, timeout=20) as r:
         evs = json.loads(r.read().decode("utf-8"))
     return evs[0] if evs else None
+
+
+MONTH_HE = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"]
+FED_FALLBACK = "fed-decision-in-october-20260617190323537"
+
+
+def next_fed_event():
+    """ישיבת הפד הקרובה (20.9.2026): במקום slug קבוע שמתיישן אחרי כל ישיבה (ספטמבר נשאר תקוע על 100%),
+    מאתרים את אירוע "Fed Decision in <Month>?" הפתוח עם תאריך הסיום הקרוב ביותר. כשל → ה-slug האחרון הידוע."""
+    import re
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    try:
+        req = urllib.request.Request("https://gamma-api.polymarket.com/events?closed=false&limit=100&tag_slug=fed-rates", headers=UA)
+        with urllib.request.urlopen(req, timeout=20) as r:
+            evs = json.loads(r.read().decode("utf-8"))
+        cands = []
+        for e in evs:
+            m = re.match(r"fed decision in (\w+)\?", (e.get("title") or "").strip().lower())
+            end = (e.get("endDate") or "")[:10]
+            if m and m.group(1) in MONTH_EN and end >= today:
+                cands.append((end, e["slug"], MONTH_EN.index(m.group(1))))
+        if cands:
+            end, slug, mi = min(cands)
+            return slug, MONTH_HE[mi], end
+    except Exception as e:
+        print(f"[warn] next fed lookup: {e}")
+    return FED_FALLBACK, "אוקטובר", "2026-10-28"
 
 
 def yes_price(m):
@@ -207,7 +234,8 @@ def cuts_label(title):
 def main():
     rows = []
     try:
-        ev = get_event("fed-decision-in-september-762")
+        fed_slug, fed_month, fed_end = next_fed_event()
+        ev = get_event(fed_slug)
         best = leading(ev.get("markets")) if ev else None
         if best:
             m, p = best
@@ -221,10 +249,11 @@ def main():
                     dist.append({"label": OUTCOME_HE.get(t, t), "pct": round(mp * 100), "chg": chg_pp(mk)})
             dist.sort(key=lambda x: -x["pct"])
             rows.append({
-                "key": "fed_next", "label": "החלטת הפד בספטמבר",
+                "key": "fed_next", "slug": fed_slug,
+                "label": "החלטת הפד ב%s · %d.%d" % (fed_month, int(fed_end[8:10]), int(fed_end[5:7])),
                 "sub": "ההימור המוביל: " + OUTCOME_HE.get(title, title),
                 "pct": round(p * 100), "chg": chg_pp(m), "dist": dist,
-                "url": "https://polymarket.com/event/fed-decision-in-september-762",
+                "url": "https://polymarket.com/event/" + fed_slug,
             })
     except Exception as e:
         print(f"[warn] sept: {e}")
@@ -242,13 +271,13 @@ def main():
     except Exception as e:
         print(f"[warn] cuts: {e}")
     try:
-        ev = get_event("fed-rate-hike-in-2026")
+        ev = get_event("another-fed-rate-hike-in-2026")   # "fed-rate-hike-in-2026" הוכרע בהעלאת ספטמבר
         m = (ev.get("markets") or [None])[0] if ev else None
         p = yes_price(m) if m else None
         if p is not None:
-            rows.append(yesno_row("hike_2026", "העלאת ריבית עד סוף 2026",
-                                  "תהיה העלאה", "לא תהיה העלאה", p, chg_pp(m),
-                                  "https://polymarket.com/event/fed-rate-hike-in-2026"))
+            rows.append(yesno_row("hike_again_2026", "העלאת ריבית נוספת עד סוף 2026",
+                                  "תהיה העלאה נוספת", "לא תהיה העלאה נוספת", p, chg_pp(m),
+                                  "https://polymarket.com/event/another-fed-rate-hike-in-2026"))
     except Exception as e:
         print(f"[warn] hike: {e}")
     try:
@@ -293,6 +322,10 @@ def main():
     now_il = datetime.now(timezone.utc) + timedelta(hours=3)
     today = now_il.strftime("%Y-%m-%d")
     hist = dict((existing or {}).get("history") or {})
+    old_fed = next((r for r in (existing or {}).get("rows", []) if r.get("key") == "fed_next"), {})
+    new_fed = next((r for r in rows if r.get("key") == "fed_next"), {})
+    if new_fed and old_fed.get("slug") != new_fed.get("slug"):
+        hist.pop("fed_next", None)   # ישיבה חדשה = סדרה חדשה
     for r in rows:
         h = [e for e in hist.get(r["key"], []) if e.get("d") != today][-7:]
         h.append({"d": today, "pct": r["pct"]})

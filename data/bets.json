@@ -2,18 +2,24 @@
   "rows": [
     {
       "key": "fed_next",
-      "label": "החלטת הפד בספטמבר",
+      "slug": "fed-decision-in-october-20260617190323537",
+      "label": "החלטת הפד באוקטובר · 28.10",
       "sub": "ההימור המוביל: העלאה של 25 נ\"ב",
-      "pct": 100,
-      "chg": 12.4,
+      "pct": 56,
+      "chg": null,
       "dist": [
         {
           "label": "העלאה של 25 נ\"ב",
-          "pct": 100,
-          "chg": 12.4
+          "pct": 56,
+          "chg": null
+        },
+        {
+          "label": "ללא שינוי",
+          "pct": 44,
+          "chg": null
         }
       ],
-      "url": "https://polymarket.com/event/fed-decision-in-september-762",
+      "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
       "src": "Polymarket"
     },
     {
@@ -26,12 +32,12 @@
       "src": "Polymarket"
     },
     {
-      "key": "hike_2026",
-      "label": "העלאת ריבית עד סוף 2026",
-      "sub": "ההימור המוביל: תהיה העלאה",
-      "pct": 100,
-      "chg": 4.5,
-      "url": "https://polymarket.com/event/fed-rate-hike-in-2026",
+      "key": "hike_again_2026",
+      "label": "העלאת ריבית נוספת עד סוף 2026",
+      "sub": "ההימור המוביל: תהיה העלאה נוספת",
+      "pct": 86,
+      "chg": 3.0,
+      "url": "https://polymarket.com/event/another-fed-rate-hike-in-2026",
       "src": "Polymarket"
     },
     {
@@ -66,36 +72,8 @@
   "history": {
     "fed_next": [
       {
-        "d": "2026-09-13",
-        "pct": 78
-      },
-      {
-        "d": "2026-09-14",
-        "pct": 86
-      },
-      {
-        "d": "2026-09-15",
-        "pct": 88
-      },
-      {
-        "d": "2026-09-16",
-        "pct": 100
-      },
-      {
-        "d": "2026-09-17",
-        "pct": 100
-      },
-      {
-        "d": "2026-09-18",
-        "pct": 100
-      },
-      {
-        "d": "2026-09-19",
-        "pct": 100
-      },
-      {
         "d": "2026-09-20",
-        "pct": 100
+        "pct": 56
       }
     ],
     "cuts_2026": [
@@ -104,38 +82,10 @@
         "pct": 96
       }
     ],
-    "hike_2026": [
-      {
-        "d": "2026-09-13",
-        "pct": 86
-      },
-      {
-        "d": "2026-09-14",
-        "pct": 92
-      },
-      {
-        "d": "2026-09-15",
-        "pct": 96
-      },
-      {
-        "d": "2026-09-16",
-        "pct": 100
-      },
-      {
-        "d": "2026-09-17",
-        "pct": 100
-      },
-      {
-        "d": "2026-09-18",
-        "pct": 100
-      },
-      {
-        "d": "2026-09-19",
-        "pct": 100
-      },
+    "hike_again_2026": [
       {
         "d": "2026-09-20",
-        "pct": 100
+        "pct": 86
       }
     ],
     "cpi_next": [
@@ -198,7 +148,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "20/09/2026 16:15",
+    "updatedAt": "20/09/2026 18:20",
     "source": "polymarket"
   }
 }
