@@ -1432,6 +1432,35 @@
       return { l: L[k] || esc(it.label), v: chg || px, cls: cls, s: '<span class="num" dir="ltr">' + px + "</span>" };
     }));
   }
+  /* הצפי השבועי (20.9.2026): eventUpdate.forecast שהרוטינה של יום ראשון כותבת מתוך חבילת הראיות
+     (data/week_ahead.json). המאזן המצטבר מגיע מ-data/forecasts.json (scripts/score_forecast.py). */
+  var FCAST = null;
+  function forecastHtml(f) {
+    if (!f || !f.label) return "";
+    function li(arr) { return (arr || []).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join(""); }
+    var dirCls = f.direction === "up" ? "up" : f.direction === "down" ? "down" : "warn";
+    var lo = f.rangeLow, hi = f.rangeHigh, bar = "";
+    if (lo != null && hi != null && hi > lo) {
+      // סרגל -3%…+3%: הטווח הצפוי כפס, האפס כקו
+      var X = function (v) { return Math.max(0, Math.min(100, (v + 3) / 6 * 100)); };
+      bar = '<div class="fc-bar" dir="ltr"><i class="fc-zero"></i><i class="fc-rng ' + dirCls + '" style="left:' + X(lo) + "%;width:" + (X(hi) - X(lo)) + '%"></i>' +
+        '<span class="fc-t" style="left:' + X(lo) + '%">' + (lo > 0 ? "+" : "") + lo + '%</span><span class="fc-t" style="left:' + X(hi) + '%">' + (hi > 0 ? "+" : "") + hi + "%</span></div>";
+    }
+    var rec;
+    if (FCAST && FCAST.record && FCAST.record.scored) {
+      rec = '<p class="fc-rec">המאזן עד כה: צדקנו ב-<b class="num">' + FCAST.record.hits + '</b> מתוך <b class="num">' + FCAST.record.scored + "</b> שבועות" +
+        (FCAST.last ? " · שבוע שעבר: " + (FCAST.last.hit ? "✓ פגענו" : "✗ החטאנו") + ' (<span class="num" dir="ltr">' + (FCAST.last.actual > 0 ? "+" : "") + FCAST.last.actual + "%</span>)" : "") + "</p>";
+    } else rec = '<p class="fc-rec">זה הצפי הראשון. בשבת נבדוק אותו מול מה שקרה ונציג כאן מאזן מצטבר.</p>';
+    return '<section class="fc"><div class="fc-head"><span class="np-k">🎯 הצפי שלנו לשבוע</span>' +
+        '<b class="fc-lbl ' + dirCls + '">' + esc(f.label) + "</b></div>" +
+      '<div class="fc-main"><div class="fc-prob"><b class="num ' + dirCls + '">' + esc(String(f.prob)) + "%</b><span>" + esc(f.claim || "") + "</span></div>" +
+        (bar ? '<div class="fc-range"><span class="fc-cap">טווח סביר לשבוע (S&amp;P 500)</span>' + bar + "</div>" : "") + "</div>" +
+      (f.summary ? '<p class="fc-sum">' + esc(f.summary) + "</p>" : "") +
+      '<div class="fc-cols"><div><h4 class="down">מה מושך למטה</h4><ul>' + li(f.bear) + '</ul></div><div><h4 class="up">מה מושך למעלה</h4><ul>' + li(f.bull) + "</ul></div></div>" +
+      (f.pivot ? '<p class="fc-piv"><b>האירוע שיכריע:</b> ' + esc(f.pivot) + "</p>" : "") +
+      (f.invalidation ? '<p class="fc-piv"><b>מה יפריך את הצפי:</b> ' + esc(f.invalidation) + "</p>" : "") +
+      rec + '<p class="fc-disc">הערכה הסתברותית על סמך נתונים היסטוריים ומצב השוק, לא המלצה ולא הבטחה.</p></section>';
+  }
   function firstSentence(t) {
     var f = String(t || "").split(/(?<=[^\d])\.\s/)[0];
     return f ? f.replace(/\.$/, "") + "." : "";
@@ -1588,7 +1617,8 @@
           return '<span class="np-lt ' + domCls[sig] + '"><span class="np-dot"></span>' + p[1] + ": " + domHe[sig] + "</span>";
         }).join("") + "</span>";
     }
-    var foot = '<div class="np-leadfoot">' + domChips + lights +
+    // 20.9.2026 (איציק): שורת המכוונים (מניות/סקטורים/אופציות + 4 הנוריות) ירדה מהבית — נשאר רק הקישור
+    var foot = '<div class="np-leadfoot">' +
       '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a></div>';
 
     renderLeadRail(d);
@@ -1616,6 +1646,7 @@
         // עדכון מאקרו אדום (CPI/פד) נשאר עם הטקסט המלא, שם הפירוט הוא העיקר
         (euCalm ? marketStats(eu.kind === "preview" ? ["es", "tnx", "vix"] : ["es", "nq", "vix"]) : "") +
         (eu.tldr ? '<p class="np-dek">' + esc(euCalm ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
+        (eu.kind === "preview" ? forecastHtml(eu.forecast) : "") +
         (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
         (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
         foot;
@@ -3289,6 +3320,9 @@
       fetchJSON("data/momentum.json")
         .then(function (d) { if (!freshD("momentum", d)) return; MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); noteSig("momentum", d); })
         .catch(function () { if (!MOMD) emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
+      fetchJSON("data/forecasts.json")
+        .then(function (d) { if (!freshD("forecasts", d)) return; FCAST = d; if (INDD) renderLead(); })
+        .catch(function () {});
       fetchJSON("data/insider.json")
         .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); noteSig("insider", d); })
         .catch(function () { if (!("insider" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });

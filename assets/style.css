@@ -1317,3 +1317,29 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 /* טאב Insider (20.9.2026): 11 טאבים בשורה — רווח מעט צפוף יותר כדי ש"דוחות" לא ירד לבד לשורה שנייה */
 @media (min-width: 881px) { .tabs { gap: 11px; } }
 #ins-view a.chip { text-decoration: none; color: inherit; }
+
+/* ── הצפי השבועי בכותרת (20.9.2026) ── */
+.fc { border-top: 1px solid var(--paper-hair); margin: 4px 0 16px; padding-top: 14px; }
+.fc-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.fc-lbl { font-family: var(--serif); font-size: 1.35rem; font-weight: 900; }
+.fc .up { color: var(--up); } .fc .down { color: var(--down); } .fc .warn { color: var(--warn); }
+.fc-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: center; margin-bottom: 12px; }
+.fc-prob { display: flex; align-items: center; gap: 12px; }
+.fc-prob b { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+.fc-prob span { font-size: .92rem; line-height: 1.45; font-weight: 600; }
+.fc-cap { display: block; font-size: .68rem; font-weight: 600; color: var(--text-3); letter-spacing: .04em; margin-bottom: 6px; }
+.fc-bar { position: relative; height: 34px; }
+.fc-bar::before { content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 8px; border-radius: 4px; background: rgba(127,127,127,.16); }
+.fc-bar .fc-rng { position: absolute; top: 4px; height: 8px; border-radius: 4px; background: var(--warn); }
+.fc-bar .fc-rng.down { background: var(--down); } .fc-bar .fc-rng.up { background: var(--up); }
+.fc-bar .fc-zero { position: absolute; left: 50%; top: 0; width: 2px; height: 16px; background: var(--text); opacity: .55; }
+.fc-bar .fc-t { position: absolute; top: 18px; transform: translateX(-50%); font-size: .72rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text-soft); }
+.fc-sum { font-family: var(--serif); font-size: 1rem; line-height: 1.62; color: var(--text-soft); margin: 0 0 12px; }
+.fc-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 10px; }
+.fc-cols h4 { font-size: .74rem; font-weight: 700; letter-spacing: .05em; margin: 0 0 5px; }
+.fc-cols ul { margin: 0; padding-inline-start: 16px; font-size: .86rem; line-height: 1.55; color: var(--text); }
+.fc-cols li { margin-bottom: 3px; }
+.fc-piv { font-size: .9rem; line-height: 1.55; margin: 0 0 6px; }
+.fc-rec { font-size: .8rem; color: var(--text-soft); margin: 10px 0 2px; }
+.fc-disc { font-size: .72rem; color: var(--text-3); margin: 0 0 12px; }
+@media (max-width: 880px) { .fc-main, .fc-cols { grid-template-columns: 1fr; gap: 12px; } .fc-prob b { font-size: 2rem; } }
