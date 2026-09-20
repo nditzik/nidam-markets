@@ -116,7 +116,7 @@
 - מצב עדכון-אירוע (eventUpdate) לא שונה.
 
 ## טאב Insider (20.9.2026, np69)
-דוחות "קניות של בעלי עניין". איציק שומר HTML ל-`C:\challengeeports\insider` → הסנכרון האוטומטי דוחף ל-nidam-reports/insider → `scripts/fetch_insider.py` (צעד ב-update.yml אחרי trades) → `data/insider.json` + `data/insider/insider-<iso>.html` → `renderInsider`/`showInsider` (כמו סקטורים: אחרון מוצג, קודמים בצ'יפים).
+דוחות "קניות של בעלי עניין". איציק שומר HTML ל-`C:\challenge\reports\insider` → הסנכרון האוטומטי דוחף ל-nidam-reports/insider → `scripts/fetch_insider.py` (צעד ב-update.yml אחרי trades) → `data/insider.json` + `data/insider/insider-<iso>.html` → `renderInsider`/`showInsider` (כמו סקטורים: אחרון מוצג, קודמים בצ'יפים).
 - תאריך: משם הקובץ (YYYY-MM-DD / D.M.YYYY) → "הופק ב-D.M.YYYY" בתוך הדוח → YYYY-MM בשם (ה-1 בחודש). השם הנוכחי חודשי (`insider-buying-report-2026-09.html`).
 - **זיכרון:** הסקריפט ממזג את הרשימה הקודמת — דוח שנדרס/נמחק במקור נשאר באתר כל עוד העתק ה-HTML קיים. (שונה מ-sectors/trades שנבנים רק מהמקור.)
 - נשלפים גם `range` ("עסקאות מ-…") ו-`tickers` (השורות הממוספרות בטבלת הדירוג) → צ'יפים + חיפוש.
