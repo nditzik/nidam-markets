@@ -1456,10 +1456,12 @@
       '<div class="fc-main"><div class="fc-prob"><b class="num ' + dirCls + '">' + esc(String(f.prob)) + "%</b><span>" + esc(f.claim || "") + "</span></div>" +
         (bar ? '<div class="fc-range"><span class="fc-cap">טווח סביר לשבוע (S&amp;P 500)</span>' + bar + "</div>" : "") + "</div>" +
       (f.summary ? '<p class="fc-sum">' + esc(f.summary) + "</p>" : "") +
+      // 20.9.2026 (איציק): הנימוקים סגורים כברירת מחדל — מי שרוצה מרחיב
+      '<details class="fc-more"><summary><span class="fc-open">הנימוקים המלאים: מה מושך למטה, מה מושך למעלה ומה יכריע</span><span class="fc-close">סגור את הנימוקים</span></summary>' +
       '<div class="fc-cols"><div><h4 class="down">מה מושך למטה</h4><ul>' + li(f.bear) + '</ul></div><div><h4 class="up">מה מושך למעלה</h4><ul>' + li(f.bull) + "</ul></div></div>" +
       (f.pivot ? '<p class="fc-piv"><b>האירוע שיכריע:</b> ' + esc(f.pivot) + "</p>" : "") +
       (f.invalidation ? '<p class="fc-piv"><b>מה יפריך את הצפי:</b> ' + esc(f.invalidation) + "</p>" : "") +
-      rec + '<p class="fc-disc">הערכה הסתברותית על סמך נתונים היסטוריים ומצב השוק, לא המלצה ולא הבטחה.</p></section>';
+      rec + '<p class="fc-disc">הערכה הסתברותית על סמך נתונים היסטוריים ומצב השוק, לא המלצה ולא הבטחה.</p></details></section>';
   }
   function firstSentence(t) {
     var f = String(t || "").split(/(?<=[^\d])\.\s/)[0];

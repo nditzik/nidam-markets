@@ -1343,3 +1343,14 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fc-rec { font-size: .8rem; color: var(--text-soft); margin: 10px 0 2px; }
 .fc-disc { font-size: .72rem; color: var(--text-3); margin: 0 0 12px; }
 @media (max-width: 880px) { .fc-main, .fc-cols { grid-template-columns: 1fr; gap: 12px; } .fc-prob b { font-size: 2rem; } }
+
+.fc-more { margin: 0 0 4px; }
+.fc-more > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: .84rem; font-weight: 600; color: var(--accent); padding: 4px 0; }
+.fc-more > summary::-webkit-details-marker { display: none; }
+.fc-more > summary::before { content: "＋"; font-weight: 700; }
+.fc-more[open] > summary::before { content: "－"; }
+.fc-more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.fc-more .fc-close, .fc-more[open] .fc-open { display: none; }
+.fc-more[open] .fc-close { display: inline; }
+.fc-more[open] > summary { margin-bottom: 10px; }
+.fc-sum { margin-bottom: 8px; }
