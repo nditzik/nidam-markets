@@ -1646,7 +1646,8 @@
         // עדכון מאקרו אדום (CPI/פד) נשאר עם הטקסט המלא, שם הפירוט הוא העיקר
         (euCalm ? marketStats(eu.kind === "preview" ? ["es", "tnx", "vix"] : ["es", "nq", "vix"]) : "") +
         (eu.tldr ? '<p class="np-dek">' + esc(euCalm ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
-        (eu.kind === "preview" ? forecastHtml(eu.forecast) : "") +
+        // הרוטינה של שני 07:45 דורסת את eventUpdate — הצפי הנעול נשמר ב-forecasts.json (current)
+        (eu.kind === "preview" ? forecastHtml(eu.forecast || (FCAST && FCAST.current)) : "") +
         (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
         (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
         foot;

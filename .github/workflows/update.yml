@@ -160,6 +160,14 @@ jobs:
         run: python scripts/fetch_trades.py
         continue-on-error: true
 
+      # --- הצפי השבועי: חבילת הראיות לרוטינה של יום ראשון + ארכוב/ציון הצפיות ---
+      - name: Build week-ahead evidence pack
+        run: python scripts/build_week_ahead.py
+        continue-on-error: true
+      - name: Archive and score weekly forecasts
+        run: python scripts/score_forecast.py
+        continue-on-error: true
+
       # --- דוחות קניות של בעלי עניין (nidam-reports/insider) → טאב Insider ---
       - name: Fetch insider reports
         run: python scripts/fetch_insider.py
