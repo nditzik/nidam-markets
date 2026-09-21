@@ -750,6 +750,7 @@
   }
   /* per-tab explanation text (uniform style via .tab-intro) */
   var TAB_INTROS = {
+    morning: "שתי מהדורות Barchart שאיציק מקבל: דוח יומי ב-06:00 (סיכום המסחר האחרון וההקשר שמסביבו), ועדכון טרום-מסחר ב-14:00 (חוזי המדדים, מוקדי השוק ותנועות בולטות לפני הפתיחה).",
     insider: "כשמנכ\"ל, סמנכ\"ל כספים או דירקטור קונים את המניה של החברה שלהם בכסף פרטי, זה אחד האיתותים הנקיים בשוק: למכור יש הרבה סיבות, לקנות יש רק אחת. הדוח סורק את כל קניות בעלי העניין בארה\"ב, מסנן את המשמעותיות ובודק כל מועמדת מול ההיסטוריה של אותם קונים ומול הגרף. זה מידע להתרשמות, לא המלצה.",
     candidates: "כל בוקר אנחנו סורקים מאות מניות מומנטום ומחפשים מניות שעשו תיקון קטן חזרה לממוצע ועכשיו חוזרות לעלות — קונים את התיקון, לא את השיא. המערכת מדרגת ומציגה את הטובות ביותר, עם מחיר כניסה, סטופ ויעד. לצורכי לימוד בלבד, לא המלצה.",
     momentum: "בכל בוקר אנחנו סורקים את שוק המניות האמריקאי ומאתרים את המניות עם המומנטום הכי חזק — אלה שמופיעות במקביל בכמה סורקים טכניים (חוזק מגמה, שיא 6 חודשים, TTM Squeeze, MACD Buy). ככל שיש יותר סיגנלים למניה — הסיכוי להמשך תנועה חזקה גבוה יותר. הרשימה היא כלי סינון בלבד ולא המלצת השקעה."
@@ -3100,21 +3101,30 @@
       'onload="__fitFrame(this)"></iframe></div>';
   }
 
+  /* טאב "Barchart" — שתי מהדורות (21.9.2026, בקשת איציק): "review" ב-06:00
+     (בשורש d, תאימות-לאחור) ו-"premkt" (טרום מסחר) ב-14:00, מקונן ב-d.premkt.
+     מבנה זהה ל-renderBriefing (בוקר/אחה"צ): צ'יפ-טאב לכל מהדורה + היסטוריה לפי יום. */
   function renderMorning(el, d) {
-    if (!d || d._status === "pending" || !d.file) {
-      emptyPanel(el, "🌅", "סקירת בוקר — בקרוב", "תחובר ברגע שצינור ה-Barchart יופעל.");
+    var hasReview = d && d.file, hasPremkt = d && d.premkt && d.premkt.file;
+    if (!d || d._status === "pending" || (!hasReview && !hasPremkt)) {
+      emptyPanel(el, "📊", "Barchart — בקרוב", "יתחבר ברגע שצינור ה-Barchart יופעל.");
       return;
     }
-    // ארכיון: היום החדש ביותר באינדקס = הסקירה הנוכחית — הצ'יפ הראשון מייצג אותו
-    var revDays = archDays(["review"], "");
+    var slots = [];
+    // טרום-מסחר קודם (מאוחר יותר ביום, יותר עדכני) ואז הדוח היומי
+    if (hasPremkt) slots.push(["premkt", "טרום מסחר · 14:00", d.premkt]);
+    if (hasReview) slots.push(["review", "דוח יומי · 06:00", { subject: d.subject, dateLabel: d.dateLabel, time: d.time, file: d.file }]);
+
+    var revDays = archDays(["review", "premkt"], "");
     var latestRev = revDays.length ? revDays[0] : "";
     var days = revDays.slice(1);
     var sel = (MORN_DAY && days.indexOf(MORN_DAY) >= 0) ? MORN_DAY : null;
     var archNav = archNavHtml("morn-day", days, sel, latestRev ? fmtTradeDate(latestRev) : "אחרון");
-    var subject = d.subject, dateLabel = d.dateLabel, time = d.time, file = d.file;
-    if (sel) {
-      var e = BARCHIVE.days[sel].review;
-      subject = e.subject; dateLabel = fmtTradeDate(sel); time = e.time; file = e.file;
+    if (sel) {   // יום ארכיון נבחר — הצג את המהדורות השמורות שלו בלבד
+      var e = BARCHIVE.days[sel];
+      slots = [];
+      if (e.premkt) slots.push(["premkt", "טרום מסחר · 14:00", { subject: e.premkt.subject, time: e.premkt.time, file: e.premkt.file, dateLabel: fmtTradeDate(sel) }]);
+      if (e.review) slots.push(["review", "דוח יומי · 06:00", { subject: e.review.subject, time: e.review.time, file: e.review.file, dateLabel: fmtTradeDate(sel) }]);
     }
     // חיווי סופ"ש/חג: הצינור רץ אבל ל-Barchart לא היו ניוזלטרים — שקיפות שהכול חי
     var noticeBar = (d.notice && !sel)
@@ -3123,16 +3133,34 @@
         (d.notice.time ? ' (נבדק ב-<span dir="ltr">' + esc(d.notice.time) + "</span>)" : "") +
         " · מוצגת הסקירה האחרונה שהתקבלה</div>"
       : "";
+
+    var nav = slots.length > 1
+      ? '<div class="chips" style="margin-bottom:12px">' + slots.map(function (s, i) {
+          return '<button class="chip morn-tab' + (i === 0 ? " lead" : "") + '" data-morn="' + s[0] + '">' + esc(s[1]) + "</button>";
+        }).join("") + "</div>"
+      : "";
+    var frames = slots.map(function (s, i) {
+      var sl = s[2];
+      return '<div class="morn-view" data-morn="' + s[0] + '" style="display:' + (i === 0 ? "block" : "none") + '">' +
+        '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
+        "<strong>" + esc(sl.subject || "") + "</strong>" +
+        (sl.dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(sl.dateLabel) + (sl.time ? " · " + esc(sl.time) : "") + "</div>" : "") +
+        "</div>" +
+        '<iframe class="brief-frame" src="' + bust(sl.file, d._meta) + '" title="' + esc(sl.subject || "") +
+        '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
+        'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe></div>';
+    }).join("");
+
     el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">🌅 סקירת בוקר</div>' + archNav + noticeBar +
-      '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
-      "<strong>" + esc(subject || "סיכום Barchart יומי") + "</strong>" +
-      (dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(dateLabel) +
-        (time ? " · " + esc(time) : "") + "</div>" : "") +
-      "</div>" +
-      '<iframe class="brief-frame" src="' + bust(file, d._meta) + '" title="' + esc(subject || "") +
-      '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
-      'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+      '<div class="section-title" style="margin-top:0">📊 Barchart</div>' + tabIntro("morning") + archNav + noticeBar + nav + frames;
+
+    el.querySelectorAll(".morn-tab").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var k = b.dataset.morn;
+        el.querySelectorAll(".morn-tab").forEach(function (x) { x.classList.toggle("lead", x.dataset.morn === k); });
+        el.querySelectorAll(".morn-view").forEach(function (x) { x.style.display = x.dataset.morn === k ? "block" : "none"; });
+      });
+    });
     el.querySelectorAll(".morn-day").forEach(function (b) {
       b.addEventListener("click", function () { MORN_DAY = b.dataset.day || null; renderMorning(el, d); });
     });
@@ -3337,7 +3365,7 @@
         .catch(function () { emptyPanel(document.getElementById("panel-world"), "🌍", "שווקים בינלאומיים — בקרוב", ""); });
       fetchJSON("data/morning.json")
         .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
-        .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "🌅", "סקירת בוקר — בקרוב", ""); });
+        .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "📊", "Barchart — בקרוב", ""); });
       fetchJSON("data/econ.json")
         .then(function (d) { if (!freshD("econ", d)) return; ECON = d; renderEcon(); refreshLeadAgenda(); })
         .catch(function () {});

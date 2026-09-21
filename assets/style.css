@@ -594,9 +594,9 @@ a.tv:hover { text-decoration: underline; }
   display: inline-block; margin-inline-end: 3px; background: var(--accent-soft); color: var(--accent);
   border-radius: 6px; padding: 1px 6px; font-size: .66rem; font-weight: 700;
 }
-/* momentum category pills (mom-tab) + brief tabs reuse .chip */
-.mom-tab, .brief-tab { cursor: pointer; border: none; font-family: inherit; }
-.mom-tab.lead, .brief-tab.lead { background: var(--accent); color: #fff; }
+/* momentum category pills (mom-tab) + brief/Barchart edition tabs reuse .chip */
+.mom-tab, .brief-tab, .morn-tab { cursor: pointer; border: none; font-family: inherit; }
+.mom-tab.lead, .brief-tab.lead, .morn-tab.lead { background: var(--accent); color: #fff; }
 
 /* ---- Briefing iframe ---- */
 .brief-frame { box-shadow: var(--shadow); }

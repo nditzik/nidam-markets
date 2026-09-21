@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """
-fetch_barchart.py — מושך את "סיכום Barchart יומי" מג'ימייל (IMAP) → data/morning.json
-+ data/briefings/morning-review.html (טאב "סקירת בוקר").
+fetch_barchart.py — מושך שתי מהדורות Barchart מג'ימייל (IMAP) → data/morning.json
++ data/briefings/morning-review.html + morning-premkt.html (טאב "Barchart").
 
-זהו מייל HTML עברי מעוצב שאיציק שולח לעצמו בבוקר (~06:00), נושא:
-"📊 סיכום Barchart יומי — DD ביולי YYYY", מ-nditzik@gmail.com. נשמר כקובץ HTML
-ומוצג ב-iframe (כמו טאב תדרוך משקיעים) — לא חילוץ טקסט.
+שתי מהדורות, אותו שולח (nditzik@gmail.com), אותה ריצה:
+  • "review"  — "דוח Barchart יומי" ~06:00, נושא "דוח Barchart יומי | ..."
+  • "premkt"  — "טרום מסחר בוול סטריט" ~14:00 (21.9.2026, בקשת איציק), נושא
+                "טרום מסחר בוול סטריט | <כותרת היום> (DD.MM.YYYY)"
+כל אחת נשמרת כקובץ HTML ומוצגת ב-iframe (כמו טאב תדרוך משקיעים) — לא חילוץ טקסט.
+
+צורת morning.json: review בשורש (תאימות-לאחור — routine prompts קוראים ישירות
+d.subject/d.file/d.dateLabel), premkt מקונן תחת מפתח "premkt" באותה צורה.
 
 דורש סודות: GMAIL_USER + GMAIL_APP_PASSWORD.
-מצב בדיקה מקומי:  python fetch_barchart.py --file <saved_message.json>
-עמידות: כשל/היעדר מקור → משאיר morning.json קיים.
+מצב בדיקה מקומי:  python fetch_barchart.py --file <saved_message.json>  (review בלבד)
+עמידות: כשל/היעדר מקור → משאיר morning.json קיים; מהדורה אחת חסרה לא מפילה את השנייה.
 """
 import email
 import email.header
@@ -25,6 +30,8 @@ OUT_JSON = os.path.join(ROOT, "data", "morning.json")
 OUT_DIR = os.path.join(ROOT, "data", "briefings")
 OUT_HTML = os.path.join(OUT_DIR, "morning-review.html")
 HTML_REL = "data/briefings/morning-review.html"
+OUT_HTML_PREMKT = os.path.join(OUT_DIR, "morning-premkt.html")
+HTML_REL_PREMKT = "data/briefings/morning-premkt.html"
 
 MAILBOX = '"[Gmail]/All Mail"'
 SENDER = "nditzik@gmail.com"
@@ -39,6 +46,10 @@ SUBJECT_MARK = "Barchart יומי"
 # בסופ"ש/חג הצינור של איציק שולח "עדכון Barchart יומי | אין הודעות חדשות | DD.MM.YYYY"
 # במקום סיכום — נקלט כחיווי סטטוס בלבד (notice), הסקירה המוצגת נשארת האחרונה שהתקבלה
 NOTICE_MARK = "אין הודעות חדשות"
+# מהדורת טרום-המסחר (21.9.2026): הכותרת דינמית ("טרום מסחר בוול סטריט | <כותרת
+# היום>") — אין קידומת קבועה ארוכה, רק המקטע הראשון היציב. עדיין אין תצפית
+# מספיקה על ימי סופ"ש/חג — אם יתברר שיש חיווי "אין הודעות" מקביל, להוסיף כאן.
+PREMKT_MARK = "טרום מסחר בוול סטריט"
 
 
 def israel_stamp():
@@ -82,29 +93,30 @@ def date_label(subject, date_dt):
     return date_dt.strftime("%d/%m/%Y") if date_dt else ""
 
 
-def write_if_changed(subject, date_dt, html_body, notice=None):
-    changed = False
+def entry_of(subject, date_dt, html_body, out_html_path, html_rel):
+    """(entry-dict, html-changed?) עבור מהדורה אחת — בלי לגעת בקובץ אם לא השתנה."""
     old_html = None
-    if os.path.exists(OUT_HTML):
-        with open(OUT_HTML, "r", encoding="utf-8") as f:
+    if os.path.exists(out_html_path):
+        with open(out_html_path, "r", encoding="utf-8") as f:
             old_html = f.read()
-    if html_body != old_html:
+    changed = html_body != old_html
+    if changed:
         os.makedirs(OUT_DIR, exist_ok=True)
-        with open(OUT_HTML, "w", encoding="utf-8") as f:
+        with open(out_html_path, "w", encoding="utf-8") as f:
             f.write(html_body)
-        changed = True
-
     ist = timezone(timedelta(hours=3))
-    meta = {
+    entry = {
         "subject": subject,
         "dateLabel": date_label(subject, date_dt),
         "time": date_dt.astimezone(ist).strftime("%H:%M") if date_dt else "",
-        "file": HTML_REL,
+        "file": html_rel,
     }
-    # חיווי "אין הודעות חדשות" — רק כשהוא חדש מהסקירה המוצגת (אחרת הוא היסטוריה)
-    if notice and date_dt and notice[0] and notice[0] > date_dt:
-        nd = notice[0].astimezone(ist)
-        meta["notice"] = {"date": nd.strftime("%Y-%m-%d"), "time": nd.strftime("%H:%M")}
+    return entry, changed
+
+
+def write_if_changed(review=None, premkt=None, notice=None):
+    """review/premkt: (subject, date_dt, html_body) או None. review בשורש (תאימות-לאחור),
+    premkt מקונן. מהדורה חסרה משאירה את הקיימת (לא נמחקת)."""
     existing = {}
     if os.path.exists(OUT_JSON):
         try:
@@ -112,15 +124,36 @@ def write_if_changed(subject, date_dt, html_body, notice=None):
                 existing = json.load(f)
         except Exception:
             existing = {}
-    if {k: v for k, v in existing.items() if k != "_meta"} != meta:
-        changed = True
-    if not changed and os.path.exists(OUT_JSON):
+    out = {k: v for k, v in existing.items() if k not in ("_meta",)}
+    changed = False
+
+    if review:
+        entry, html_changed = entry_of(*review, OUT_HTML, HTML_REL)
+        ist = timezone(timedelta(hours=3))
+        if notice and notice[0] and notice[0] > review[1]:
+            nd = notice[0].astimezone(ist)
+            entry["notice"] = {"date": nd.strftime("%Y-%m-%d"), "time": nd.strftime("%H:%M")}
+        prev_review = {k: v for k, v in out.items() if k != "premkt"}
+        if html_changed or prev_review != entry:
+            changed = True
+        for k in list(out.keys()):
+            if k != "premkt":
+                del out[k]
+        out.update(entry)
+
+    if premkt:
+        entry, html_changed = entry_of(*premkt, OUT_HTML_PREMKT, HTML_REL_PREMKT)
+        if html_changed or out.get("premkt") != entry:
+            changed = True
+        out["premkt"] = entry
+
+    if not changed:
         print("[nochange] אין סיכום חדש — morning.json נשאר כפי שהוא.")
         return
-    meta["_meta"] = {"updatedAt": israel_stamp(), "source": "gmail"}
+    out["_meta"] = {"updatedAt": israel_stamp(), "source": "gmail"}
     with open(OUT_JSON, "w", encoding="utf-8") as f:
-        json.dump(meta, f, ensure_ascii=False, indent=2)
-    print(f"[done] נכתב {OUT_JSON}")
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    print(f"[done] נכתב {OUT_JSON}" + (" (review)" if review else "") + (" (premkt)" if premkt else ""))
 
 
 def run_offline(path):
@@ -130,7 +163,7 @@ def run_offline(path):
         date_dt = datetime.fromisoformat(d["date"].replace("Z", "+00:00"))
     except ValueError:
         date_dt = email.utils.parsedate_to_datetime(d["date"])
-    write_if_changed(d["subject"], date_dt, d["htmlBody"])
+    write_if_changed(review=(d["subject"], date_dt, d["htmlBody"]))
     return 0
 
 
@@ -148,15 +181,16 @@ def run_imap():
         print(f"[warn] חיבור IMAP נכשל: {e}")
         return 0 if os.path.exists(OUT_JSON) else 1
     try:
-        # ריצה ראשונה (אין עדיין ארכיון-סקירות) → אכלוס-לאחור של 30 יום
         import briefing_archive as ba
         idx = ba.load_index()
-        backfill = not ba.has_kind(idx, "review")
-        since_days = ba.KEEP_DAYS + 2 if backfill else 3
+        # ריצה ראשונה של מהדורה חדשה (אין עדיין ארכיון שלה) → אכלוס-לאחור של 30 יום
+        backfill_review = not ba.has_kind(idx, "review")
+        backfill_premkt = not ba.has_kind(idx, "premkt")
+        since_days = ba.KEEP_DAYS + 2 if (backfill_review or backfill_premkt) else 3
         # חיפוש ASCII-בטוח (FROM + SINCE); סינון הכותרת בעברית ב-Python
         typ, data = imap.search(None, "FROM", SENDER, "SINCE", imap_since(since_days))
         ids = data[0].split() if typ == "OK" and data and data[0] else []
-        best = None
+        best_review = best_premkt = None
         notice = None
         arch_changed = False
         for mid in reversed(ids):  # מהחדש לישן
@@ -173,24 +207,34 @@ def run_imap():
                 except Exception:
                     pass
                 continue
-            if SUBJECT_MARK not in subject:
+            is_review = SUBJECT_MARK in subject
+            is_premkt = PREMKT_MARK in subject
+            if not (is_review or is_premkt):
                 continue
             date_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
             body = html_of(msg)
-            if ba.archive_email(idx, "review", subject, date_dt, body):
+            kind = "review" if is_review else "premkt"
+            if ba.archive_email(idx, kind, subject, date_dt, body):
                 arch_changed = True
-            if best is None:
-                best = (subject, date_dt, body)
-                if not backfill:
-                    break   # בריצה רגילה מספיק המייל האחרון
+            if is_review and best_review is None:
+                best_review = (subject, date_dt, body)
+            if is_premkt and best_premkt is None:
+                best_premkt = (subject, date_dt, body)
+            done_review = best_review is not None and not backfill_review
+            done_premkt = best_premkt is not None and not backfill_premkt
+            if done_review and done_premkt:
+                break   # בריצה רגילה מספיק המייל האחרון של כל מהדורה
         if arch_changed:
             ba.prune_and_save(idx, israel_stamp())
             print("[archive] אינדקס הסקירות עודכן")
-        if not best:
-            print("[warn] לא נמצא 'סיכום Barchart יומי'.")
+        if not best_review and not best_premkt:
+            print("[warn] לא נמצאה אף מהדורת Barchart.")
             return 0 if os.path.exists(OUT_JSON) else 1
-        write_if_changed(*best, notice=notice)
-        print(f"[ok] {best[0]}" + (" (+notice)" if notice else ""))
+        if not best_review:
+            print("[warn] לא נמצא 'דוח Barchart יומי' — נשמר premkt בלבד.")
+        if not best_premkt:
+            print("[warn] לא נמצא 'טרום מסחר בוול סטריט' — נשמר review בלבד.")
+        write_if_changed(review=best_review, premkt=best_premkt, notice=notice)
         return 0
     finally:
         try:

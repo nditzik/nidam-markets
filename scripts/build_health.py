@@ -18,7 +18,7 @@ OUT = os.path.join(DATA, "_health.json")
 SOURCES = [
     ("indices", "indices.json", "מדדים"),
     ("momentum", "momentum.json", "מומנטום"),
-    ("morning", "morning.json", "סקירת בוקר"),
+    ("morning", "morning.json", "Barchart"),
     ("briefing", "briefing.json", "תדרוך משקיעים"),
     ("candidates", "candidates.json", "מועמדים"),
 ]
@@ -77,7 +77,7 @@ def today_updates(today_str):
     m = _load("morning.json")
     if isinstance(m, dict) and m.get("_status") != "pending":
         arrived, _ = _meta_today(m, today_str)
-        items.append({"label": "סקירת בוקר", "tab": "morning",
+        items.append({"label": "Barchart", "tab": "morning",
                       "time": m.get("time"), "arrived": arrived})
 
     for fname, label, tab in (("indices.json", "מדדים", "indices"),
