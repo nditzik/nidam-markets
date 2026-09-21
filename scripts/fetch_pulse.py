@@ -2,13 +2,16 @@
 """
 fetch_pulse.py — "בזק מהרשת": כותרות-בזק מחשבונות X פיננסיים אל data/pulse.json.
 
-שני צינורות בלתי-תלויים (נבדק 05/09/2026), שמתמזגים לאותה רצועה:
+שני צינורות בלתי-תלויים (נבדק 05/09/2026, פורמט X Scan עודכן 21/09/2026), שמתמזגים לאותה רצועה:
   1. שיקופי טלגרם רשמיים (t.me/s/<slug> — HTML ציבורי, בלי API, בחינם):
      @KobeissiLetter, Walter Bloomberg, FinancialJuice, @Barchart
-  2. דיג'סט X במייל (IMAP, אותם סודות GMAIL_* של שאר צינורות המייל בריפו):
-     בוט של איציק סורק כל 15 דק' 8 חשבונות ושולח מייל בפורמט קבוע.
+  2. "X Scan" במייל (IMAP, אותם סודות GMAIL_* של שאר צינורות המייל בריפו):
+     בוט של איציק (x.ai) סורק ~8 חשבונות בערך כל 3.5 שעות ושולח מייל HTML
+     בעברית, נושא "X Scan HH:MM – DD.MM.YYYY", מקובץ לפי חשבון
+     (`<h2>@handle</h2><ul><li>HH:MM — טקסט</li>…</ul>`), "רק חדש מאז המייל
+     הקודם". אין קישור לכל פריט (רק אזכור-מקור מוטבע לפעמים בטקסט עצמו).
 
-החפיפה בין השניים **מכוונת**: 3 מ-8 חשבונות הדיג'סט כבר מגיעים בטלגרם, כך
+החפיפה בין השניים **מכוונת**: 3 מ-8 חשבונות ה-X Scan כבר מגיעים בטלגרם, כך
 שנפילה של אחד הצינורות לא מרוקנת את הרצועה — הבוט נופל, הטלגרם מחזיק; הטלגרם
 נופל, הבוט מכסה הכל. זה בדיוק הלקח מ-05/09/2026, כשכל 7 מקורות ה-Nitter מתו
 בבת אחת מפני שחלקו מנגנון יחיד (ראו למטה).
@@ -68,23 +71,20 @@ SOURCES = [
 ]
 NITTER_HOSTS = []   # אין מופע Nitter עובד; להוסיף כאן אם יקום אחד
 
-# ── דיג'סט X במייל (05/09/2026) ──────────────────────────────────────────────
-# בוט של איציק סורק חשבונות X כל 15 דק' ושולח מייל בפורמט קבוע:
-#   YYYY-MM-DD ||| HH:MM ||| @handle ||| טקסט ||| קישור
-# (או שורה אחת "NO-ITEMS" כשאין חדש — כך אפשר להבדיל בין שקט לבין בוט מת.)
-# העוגן בנושא הוא באנגלית **בכוונה**: הנושא המקורי היה "דיג׳סט X" עם גרש עברי
-# (U+05F3), תו שנראה כמו אפוסטרוף אבל שונה ממנו — בדיוק סוג ההתאמה-בשקט
-# שהפילה כאן פעמיים את briefing.json ואת fetch_barchart.py.
-XD_SUBJECT_MARK = "X-PULSE"
+# ── X Scan במייל (21/09/2026, מחליף עיצוב "דיג'סט X" מ-05/09/2026 שאף פעם לא
+# הגיע בפועל בפורמט הזה — איציק בנה אוטומציה אחרת. ראו CLAUDE.md.) ──────────
 XD_SENDER = "nditzik@gmail.com"
-XD_NO_ITEMS = "NO-ITEMS"
+# כותרת דינמית ("X Scan HH:MM – DD.MM.YYYY") — עוגן על "X Scan " + regex
+# ל-HH:MM, כדי לא לתפוס מיילים ניסיוניים ("X Scan דוגמה/TEST" שאיציק שלח
+# בזמן כיוונון הפורמט, 20/09/2026) שאין בהם השעה בנושא.
+XSCAN_MARK = "X Scan "
+XSCAN_TIME_RE = re.compile(r"X Scan\s+(\d{1,2}):(\d{2})")
 XD_SINCE_DAYS = 2          # חלון חיפוש IMAP; סינון 48ש' נעשה ממילא בהמשך
-XD_SEP = "|||"
 
 # אותו חשבון, שם אחר בכל ערוץ: @DeItaone הוא Walter Bloomberg (אומת 05/09/2026
 # מול 3 התאמות מדויקות בהפרש דקה). בלי המיפוי, MAX_PER_SOURCE היה נותן לו
-# 3 מקומות מהטלגרם + 3 מהדיג'סט = 6, והוא היה משתלט על הרצועה.
-# ‎@FinancialJuice בדיג'סט מול "FinancialJuice" (בלי @) בטלגרם — בלי המיפוי
+# 3 מקומות מהטלגרם + 3 מ-X Scan = 6, והוא היה משתלט על הרצועה.
+# ‎@FinancialJuice ב-X Scan מול "FinancialJuice" (בלי @) בטלגרם — בלי המיפוי
 # הם נספרים כשני מקורות נפרדים ותקרת MAX_PER_SOURCE נפתחת ל-6 במקום 3.
 # ‎@KobeissiLetter ו-@Barchart תואמים כבר ככתבם ולא נדרש להם מיפוי.
 XD_ALIASES = {
@@ -208,107 +208,62 @@ def fetch_nitter(label, handle):
     raise RuntimeError(f"כל מופעי Nitter נכשלו: {last_err}")
 
 
-def _unwrap_link(url):
-    """Gmail עוטף לינקים ב-google.com/url?q=... — מחזיר את היעד האמיתי."""
-    url = (url or "").strip()
-    if "google.com/url" not in url:
-        return url
-    try:
-        q = urllib.parse.parse_qs(urllib.parse.urlparse(url).query).get("q")
-        return urllib.parse.unquote(q[0]) if q else url
-    except Exception:
-        return url
+def _html_part(msg):
+    """גוף ה-HTML הגולמי של המייל — X Scan הוא HTML-בלבד (הטקסט-רגיל ריק/גנרי,
+    "See HTML version."), ולכן בניגוד לשאר הצינורות כאן *אסור* לשטח ל-text:
+    המבנה (h2 לכל חשבון, ul/li לפריטים) הוא מה שמפריד ידיעה מידיעה."""
+    if msg.is_multipart():
+        for part in msg.walk():
+            if part.get_content_type() == "text/html":
+                p = part.get_payload(decode=True)
+                if p:
+                    return p.decode(part.get_content_charset() or "utf-8", "ignore")
+    elif msg.get_content_type() == "text/html":
+        p = msg.get_payload(decode=True)
+        if p:
+            return p.decode(msg.get_content_charset() or "utf-8", "ignore")
+    return ""
 
 
-def _mail_body(msg):
-    """גוף המייל כטקסט — מעדיף text/plain, ונופל ל-HTML מנוקה."""
-    plain = html = ""
-    parts = msg.walk() if msg.is_multipart() else [msg]
-    for part in parts:
-        if part.get_content_maintype() == "multipart":
-            continue
-        payload = part.get_payload(decode=True)
-        if not payload:
-            continue
-        text = payload.decode(part.get_content_charset() or "utf-8", "ignore")
-        if part.get_content_type() == "text/plain" and not plain:
-            plain = text
-        elif part.get_content_type() == "text/html" and not html:
-            html = text
-    if plain:
-        return plain
-    # HTML → טקסט: <br>/<p> לשורות, ואז הסרת תגיות (בלי clean_text — הוא
-    # מקצר וחותך לינקים, וכאן צריך את השורה השלמה לפיצול)
-    h = re.sub(r"<br\s*/?>|</p>|</div>|</tr>", "\n", html, flags=re.I)
-    h = re.sub(r"<[^>]+>", "", h)
-    return htmllib.unescape(h)
+# regex, לא פרסר HTML אמיתי — תואם את שני המיילים האמיתיים שנבדקו (48/35
+# פריטים, 8 חשבונות) במדויק. מגבלה ידועה: אם `<li>` בודד אי-פעם ייפתח בלי
+# `</li>` (לא נצפה בפועל), הוא יבלע את התוכן עד ה-`</li>` הבא — כמו כל שורה
+# פגומה במקום אחר בקובץ הזה, לא מפיל את הריצה, רק מאבד/מעוות פריט אחד.
+XSCAN_BLOCK_RE = re.compile(r"<h2[^>]*>\s*(@\w+)\s*</h2>\s*<ul[^>]*>(.*?)</ul>", re.I | re.S)
+XSCAN_LI_RE = re.compile(r"<li[^>]*>\s*(\d{1,2}):(\d{2})\s*[—–\-]\s*(.*?)</li>", re.S)
 
 
-def parse_xdigest(body, il_off):
-    """שורות הדיג'סט → פריטים. שורה פגומה מדולגת ולא מפילה את השאר."""
+def parse_xscan(html_body, sent_dt, il_off):
+    """HTML של X Scan (חשבונות כ-h2, פריטים כ-li "HH:MM — טקסט") → פריטים.
+    חסימת-חשבון שנשברת לא מפילה את האחרות — regex.finditer ממשיך הלאה."""
+    sent_il = sent_dt.astimezone(timezone(timedelta(hours=il_off)))
     out = []
-    for raw in body.splitlines():
-        line = raw.strip()
-        if not line or XD_SEP not in line:
-            continue
-        # שלושת השדות הראשונים קבועים, והקישור — אם קיים — תמיד אחרון. כל מה
-        # שביניהם הוא הטקסט, גם אם המפריד מופיע בתוך הציוץ עצמו (קרה בבדיקה).
-        # השדה האחרון נחשב קישור רק אם הוא באמת נראה כמו URL; אחרת הוא טקסט,
-        # כדי שציוץ עם ||| ובלי לינק לא יאבד את סופו.
-        parts = [p.strip() for p in line.split(XD_SEP)]
-        if len(parts) < 4:
-            continue
-        d, t, handle = parts[0], parts[1], parts[2]
-        rest = parts[3:]
-        if re.match(r"^https?://", rest[-1]):
-            link = _unwrap_link(rest[-1])
-            rest = rest[:-1]
-        else:
-            link = ""
-        if not rest:
-            continue
-        # שני פורמטים נתמכים במקביל, כדי שהחלפת הפקודה בבוט לא תיצור חלון שבור:
-        #   5 שדות (ישן): ... ||| טקסט ||| קישור
-        #   6 שדות (חדש): ... ||| אנגלית ||| עברית ||| קישור
-        # ההבחנה לפי תוכן ולא לפי ספירה בלבד — שדה עברית ריק הוא תקין (כך
-        # ביקשנו מהבוט כשאין תרגום טוב), ומצד שני המפריד ||| יכול להופיע בתוך
-        # הציוץ עצמו. לכן: השדה האחרון נחשב "עברית" רק אם הוא ריק או מכיל
-        # אותיות עבריות; אחרת הוא המשך של הטקסט האנגלי.
-        if len(rest) >= 2 and (not rest[-1] or re.search(r"[֐-׿]", rest[-1])):
-            text = (" " + XD_SEP + " ").join(rest[:-1])
-            he = rest[-1]
-        else:
-            text = (" " + XD_SEP + " ").join(rest)
-            he = ""
-        if not re.match(r"^\d{4}-\d{2}-\d{2}$", d) or not re.match(r"^\d{1,2}:\d{2}$", t):
-            continue
-        if not handle.startswith("@"):
-            continue
-        try:
-            naive = datetime.strptime(f"{d} {t}", "%Y-%m-%d %H:%M")
-        except ValueError:
-            continue
-        dt = naive.replace(tzinfo=timezone(timedelta(hours=il_off)))
-        text = clean_text(re.sub(r"^\*+\s*", "", text))   # DeItaone מקדים * לכותרות
-        # הסינון תמיד על האנגלית — היא המקור, והיא שנבדקת מול BAD_PATTERNS
-        if not keep(text):
-            continue
-        he = clean_text(re.sub(r"^\*+\s*", "", he))   # הכוכבית עוברת גם לתרגום
+    for m in XSCAN_BLOCK_RE.finditer(html_body):
+        handle = m.group(1)
         label = XD_ALIASES.get(handle.lower(), handle)
-        # מוצג עברית כשיש, ונופל לאנגלית כשאין (שדה ריק = הבוט לא היה בטוח).
-        # `_key` נושא תמיד את האנגלית, כי עליה נעשית השוואת-הכפילויות מול
-        # הטלגרם — בלי זה תרגום היה שובר את הדה-דופ ואותה ידיעה הייתה מופיעה
-        # פעמיים. `_key` נשאר פנימי ולא נכתב לפלט.
-        out.append({"source": label, "text": he or text, "_key": text,
-                    "dt": dt.astimezone(timezone.utc).isoformat(), "link": link})
+        for li in XSCAN_LI_RE.finditer(m.group(2)):
+            hh, mm, raw = int(li.group(1)), int(li.group(2)), li.group(3)
+            text = clean_text(htmllib.unescape(re.sub(r"<[^>]+>", " ", raw)))
+            if not keep(text):
+                continue
+            # אין תאריך לכל פריט, רק שעה — נגזר מרגע השליחה: אם היא "מאוחרת"
+            # מרגע השליחה (חלון שחוצה חצות, למשל "23:30 עד 07:00") הפריט אתמול.
+            cand = sent_il.replace(hour=hh, minute=mm, second=0, microsecond=0)
+            if cand > sent_il + timedelta(minutes=2):
+                cand -= timedelta(days=1)
+            # אין קישור לכל פריט בפורמט הזה — פרופיל החשבון הוא ברירת-מחדל סבירה
+            out.append({"source": label, "text": text,
+                        "dt": cand.astimezone(timezone.utc).isoformat(),
+                        "link": "https://x.com/" + handle.lstrip("@")})
     return out
 
 
-def fetch_xdigest():
-    """הדיג'סט האחרון מהמייל. כל כשל → רשימה ריקה (הטלגרם ממשיך לבדו)."""
+def fetch_xscan():
+    """כל מיילי X Scan מהחלון האחרון (כל אחד "רק חדש מאז הקודם" — נדרשים כמה
+    כדי לכסות 48ש'). כל כשל/היעדר → רשימה ריקה (הטלגרם ממשיך לבדו)."""
     pw = os.environ.get("GMAIL_APP_PASSWORD")
     if not pw:
-        print("[skip] דיג'סט X: חסר GMAIL_APP_PASSWORD.")
+        print("[skip] X Scan: חסר GMAIL_APP_PASSWORD.")
         return []
     user = os.environ.get("GMAIL_USER") or XD_SENDER
     il_off = 3 if 4 <= datetime.now(timezone.utc).month <= 10 else 2
@@ -325,7 +280,7 @@ def fetch_xdigest():
         ids = data[0].split() if typ == "OK" and data and data[0] else []
         items, scanned = [], 0
         for mid in reversed(ids):            # מהחדש לישן
-            if scanned >= 40:                # תקרת בטיחות
+            if scanned >= 15:                # תקרת בטיחות — מיילי X Scan אפשריים ב-48ש'
                 break
             typ, md = imap.fetch(mid, "(RFC822)")
             if typ != "OK" or not md or not md[0]:
@@ -333,24 +288,25 @@ def fetch_xdigest():
             msg = email.message_from_bytes(md[0][1])
             subject = str(email.header.make_header(
                 email.header.decode_header(msg.get("Subject") or "")))
-            if XD_SUBJECT_MARK not in subject:
+            # דורש שעה בנושא — מדלג על "X Scan דוגמה/TEST" (ניסויי-פורמט של איציק, 20/09/2026)
+            if not (XSCAN_MARK in subject and XSCAN_TIME_RE.search(subject)):
                 continue
             scanned += 1
-            body = _mail_body(msg)
-            if XD_NO_ITEMS in body and XD_SEP not in body:
-                print(f"[ok] דיג'סט X: {subject[:40]} — NO-ITEMS")
+            body = _html_part(msg)
+            if not body:
                 continue
-            got = parse_xdigest(body, il_off)
+            try:
+                sent_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
+            except Exception:
+                continue
+            got = parse_xscan(body, sent_dt, il_off)
             items += got
-            print(f"[ok] דיג'סט X: {subject[:40]} — {len(got)} פריטים")
-            if len(items) >= MAX_ITEMS * 4:
-                break
+            print(f"[ok] X Scan: {subject[:40]} — {len(got)} פריטים")
         if not scanned:
-            print(f"[warn] דיג'סט X: לא נמצא מייל עם '{XD_SUBJECT_MARK}' ב-"
-                  f"{XD_SINCE_DAYS} הימים האחרונים.")
+            print(f"[warn] X Scan: לא נמצא מייל עם שעה בנושא ב-{XD_SINCE_DAYS} הימים האחרונים.")
         return items
     except Exception as e:
-        print(f"[warn] דיג'סט X נכשל: {e}")
+        print(f"[warn] X Scan נכשל: {e}")
         return []
     finally:
         try:
@@ -383,10 +339,10 @@ def main():
             collected += old
             print(f"[fallback] {label}: {e} — משתמש ב-{len(old)} פריטים קודמים")
 
-    # דיג'סט X מהמייל — מצטרף לאותו מאגר, כך שהמיון/הדה-דופ/תקרת-המקור
+    # X Scan מהמייל — מצטרף לאותו מאגר, כך שהמיון/הדה-דופ/תקרת-המקור
     # פועלים עליו בדיוק כמו על הטלגרם. חפיפה מכוונת: אם הבוט נופל, 4 ערוצי
     # הטלגרם ממשיכים להחזיק את הרצועה, ולהפך.
-    xd = fetch_xdigest()
+    xd = fetch_xscan()
     if xd:
         collected += xd
         ok += 1
@@ -408,12 +364,11 @@ def main():
             fresh.append(it)
     fresh.sort(key=lambda x: x["_dt"], reverse=True)
 
-    # מעבר-מקדים: מבין שתי גרסאות של אותה ידיעה — לבחור את המתורגמת.
-    # בלי זה התרגום היה בלתי-נראה לגמרי (נמדד: 0/10 פריטים בעברית): הטלגרם
-    # מתייג לפי שעת הפרסום במראה, והדיג'סט לפי שעת הציוץ המקורי — כלומר
-    # הגרסה האנגלית תמיד ממוינת ראשונה, תופסת את המקום, והעברית נחסמת
-    # ככפילות. כאן נשמר המיקום/הזמן של הראשון (המיון לא זז), ורק הטקסט
-    # והקישור מוחלפים בגרסה העברית + הקישור הישיר ל-x.com.
+    # מעבר-מקדים: מבין שתי גרסאות של אותה ידיעה — לבחור את המתורגמת. תוכנן
+    # לצינור ישן שהיה שולח English+Hebrew לכל פריט (`_key`=אנגלית); X Scan
+    # (21/09/2026) מגיע כבר בעברית בלבד בלי `_key`, אז `_translated()` תמיד
+    # False עליו והלולאה למטה היא כרגע no-op בפועל — נשאר בקוד בלי נזק,
+    # למקרה שמקור עתידי כן ישלח זוג שפות (למשל אם X Scan יתחיל לצרף אנגלית).
     def _dkey(it):
         return re.sub(r"\W+", "", (it.get("_key") or it["text"]).lower())[:40]
 
