@@ -1,60 +1,48 @@
 {
-  "today": "2026-09-21",
-  "todayCount": 1,
-  "todayBig": [],
-  "reactions": {
-    "days": [
-      {
-        "date": "2026-09-16",
-        "label": "16.9",
-        "items": [
-          {
-            "ticker": "LEN",
-            "name": "Lennar Corporation Class A",
-            "when": "after",
-            "status": "final",
-            "chg": 1.71,
-            "price": 79.7,
-            "reactDate": "2026-09-17",
-            "baseDate": "2026-09-16"
-          },
-          {
-            "ticker": "LUXE",
-            "name": "LuxExperience B.V. Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "chg": 23.22,
-            "price": 8.81,
-            "reactDate": "2026-09-16",
-            "baseDate": "2026-09-15"
-          }
-        ]
-      }
-    ]
-  },
+  "today": "2026-09-22",
+  "todayCount": 5,
+  "todayBig": [
+    {
+      "ticker": "AZO",
+      "name": "AutoZone, Inc.",
+      "capB": 45.8
+    }
+  ],
+  "reactions": null,
   "reporting": [
     {
-      "ticker": "ABVX",
-      "name": "Abivax SA Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/ABVX.png"
+      "ticker": "AZO",
+      "name": "AutoZone, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/AZO.png"
+    },
+    {
+      "ticker": "THO",
+      "name": "Thor Industries, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/THO.png"
+    },
+    {
+      "ticker": "KBH",
+      "name": "KB Home",
+      "when": "after",
+      "logo": "data/earnings/logos/KBH.png"
+    },
+    {
+      "ticker": "WOR",
+      "name": "Worthington Enterprises, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/WOR.png"
+    },
+    {
+      "ticker": "MLKN",
+      "name": "MillerKnoll, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/MLKN.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-09-22",
-      "label": "22/9",
-      "dow": "ג׳",
-      "count": 5,
-      "tickers": [
-        "AZO",
-        "THO",
-        "KBH",
-        "WOR",
-        "MLKN"
-      ]
-    },
     {
       "date": "2026-09-23",
       "label": "23/9",
@@ -207,7 +195,6 @@
     }
   ],
   "window": {
-    "ABVX": "2026-09-21",
     "AZO": "2026-09-22",
     "THO": "2026-09-22",
     "KBH": "2026-09-22",
@@ -226,10 +213,14 @@
     "TBN": "2026-09-24",
     "UEC": "2026-09-25",
     "MTN": "2026-09-28",
-    "IDT": "2026-09-28"
+    "IDT": "2026-09-28",
+    "CCL": "2026-09-29",
+    "KMX": "2026-09-29",
+    "AIR": "2026-09-29",
+    "CNXC": "2026-09-29"
   },
   "_meta": {
-    "updatedAt": "21/09/2026 23:45",
+    "updatedAt": "22/09/2026 00:01",
     "source": "tradingview"
   }
 }
