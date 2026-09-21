@@ -59,13 +59,14 @@
       "date": "2026-09-23",
       "label": "23/9",
       "dow": "ד׳",
-      "count": 5,
+      "count": 6,
       "tickers": [
         "CTAS",
         "PAYX",
         "GIS",
         "MANU",
-        "FUL"
+        "FUL",
+        "CBRL"
       ]
     },
     {
@@ -136,7 +137,7 @@
       "date": "2026-09-23",
       "dow": "רביעי",
       "label": "23.9",
-      "total": 5,
+      "total": 6,
       "companies": [
         {
           "ticker": "CTAS",
@@ -157,6 +158,10 @@
         {
           "ticker": "FUL",
           "name": "H.B. Fuller Company"
+        },
+        {
+          "ticker": "CBRL",
+          "name": "Cracker Barrel Old Country Store, Inc."
         }
       ]
     },
@@ -213,6 +218,7 @@
     "GIS": "2026-09-23",
     "MANU": "2026-09-23",
     "FUL": "2026-09-23",
+    "CBRL": "2026-09-23",
     "COST": "2026-09-24",
     "DRI": "2026-09-24",
     "SNX": "2026-09-24",
@@ -223,7 +229,7 @@
     "IDT": "2026-09-28"
   },
   "_meta": {
-    "updatedAt": "21/09/2026 21:45",
+    "updatedAt": "21/09/2026 22:01",
     "source": "tradingview"
   }
 }
