@@ -27,6 +27,32 @@
             "status": "pending"
           }
         ]
+      },
+      {
+        "date": "2026-09-16",
+        "label": "16.9",
+        "items": [
+          {
+            "ticker": "LEN",
+            "name": "Lennar Corporation Class A",
+            "when": "after",
+            "status": "final",
+            "chg": 1.71,
+            "price": 79.7,
+            "reactDate": "2026-09-17",
+            "baseDate": "2026-09-16"
+          },
+          {
+            "ticker": "LUXE",
+            "name": "LuxExperience B.V. Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "chg": 23.22,
+            "price": 8.81,
+            "reactDate": "2026-09-16",
+            "baseDate": "2026-09-15"
+          }
+        ]
       }
     ]
   },
@@ -245,7 +271,7 @@
     "CNXC": "2026-09-29"
   },
   "_meta": {
-    "updatedAt": "22/09/2026 07:01",
+    "updatedAt": "22/09/2026 07:16",
     "source": "tradingview"
   }
 }
