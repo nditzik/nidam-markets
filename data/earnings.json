@@ -15,6 +15,12 @@
         "label": "21.9",
         "items": [
           {
+            "ticker": "ABVX",
+            "name": "Abivax SA Sponsored ADR",
+            "when": "after",
+            "status": "pending"
+          },
+          {
             "ticker": "ANAB",
             "name": "AnaptysBio, Inc.",
             "when": "after",
@@ -100,8 +106,12 @@
       "date": "2026-09-21",
       "dow": "שני",
       "label": "21.9",
-      "total": 1,
+      "total": 2,
       "companies": [
+        {
+          "ticker": "ABVX",
+          "name": "Abivax SA Sponsored ADR"
+        },
         {
           "ticker": "ANAB",
           "name": "AnaptysBio, Inc."
@@ -235,7 +245,7 @@
     "CNXC": "2026-09-29"
   },
   "_meta": {
-    "updatedAt": "22/09/2026 05:16",
+    "updatedAt": "22/09/2026 05:31",
     "source": "tradingview"
   }
 }
