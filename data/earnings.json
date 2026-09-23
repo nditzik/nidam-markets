@@ -5,12 +5,12 @@
     {
       "ticker": "CTAS",
       "name": "Cintas Corporation",
-      "capB": 78.5
+      "capB": 78.8
     },
     {
       "ticker": "PAYX",
       "name": "Paychex, Inc.",
-      "capB": 39.1
+      "capB": 38.6
     }
   ],
   "reactions": {
@@ -24,8 +24,8 @@
             "name": "AutoZone, Inc.",
             "when": "before",
             "status": "live",
-            "chg": 0.2,
-            "price": 2808.8,
+            "chg": -0.52,
+            "price": 2788.79,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           },
@@ -34,18 +34,8 @@
             "name": "Thor Industries, Inc.",
             "when": "before",
             "status": "live",
-            "chg": 1.92,
-            "price": 71.29,
-            "reactDate": "2026-09-23",
-            "baseDate": "2026-09-21"
-          },
-          {
-            "ticker": "WOR",
-            "name": "Worthington Enterprises, Inc.",
-            "when": "after",
-            "status": "live",
-            "chg": -1.26,
-            "price": 57.42,
+            "chg": 1.59,
+            "price": 71.05,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           },
@@ -54,8 +44,18 @@
             "name": "KB Home",
             "when": "after",
             "status": "live",
-            "chg": -0.69,
-            "price": 47.53,
+            "chg": -0.01,
+            "price": 47.85,
+            "reactDate": "2026-09-23",
+            "baseDate": "2026-09-21"
+          },
+          {
+            "ticker": "WOR",
+            "name": "Worthington Enterprises, Inc.",
+            "when": "after",
+            "status": "live",
+            "chg": 4.18,
+            "price": 60.58,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           },
@@ -64,8 +64,8 @@
             "name": "MillerKnoll, Inc.",
             "when": "before",
             "status": "live",
-            "chg": -3.54,
-            "price": 19.6,
+            "chg": -3.03,
+            "price": 19.7,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           }
@@ -80,8 +80,8 @@
             "name": "Abivax SA Sponsored ADR",
             "when": "after",
             "status": "live",
-            "chg": -5.58,
-            "price": 97.68,
+            "chg": -6.13,
+            "price": 97.11,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           }
@@ -171,12 +171,12 @@
           "name": "Thor Industries, Inc."
         },
         {
-          "ticker": "WOR",
-          "name": "Worthington Enterprises, Inc."
-        },
-        {
           "ticker": "KBH",
           "name": "KB Home"
+        },
+        {
+          "ticker": "WOR",
+          "name": "Worthington Enterprises, Inc."
         },
         {
           "ticker": "MLKN",
@@ -281,7 +281,7 @@
     "PRGS": "2026-09-30"
   },
   "_meta": {
-    "updatedAt": "23/09/2026 16:47",
+    "updatedAt": "23/09/2026 17:01",
     "source": "tradingview"
   }
 }
