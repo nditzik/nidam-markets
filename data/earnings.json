@@ -23,31 +23,51 @@
             "ticker": "AZO",
             "name": "AutoZone, Inc.",
             "when": "before",
-            "status": "pending"
+            "status": "live",
+            "chg": 3.81,
+            "price": 2910.0,
+            "reactDate": "2026-09-23",
+            "baseDate": "2026-09-21"
           },
           {
             "ticker": "THO",
             "name": "Thor Industries, Inc.",
             "when": "before",
-            "status": "pending"
+            "status": "live",
+            "chg": 3.52,
+            "price": 72.4,
+            "reactDate": "2026-09-23",
+            "baseDate": "2026-09-21"
           },
           {
             "ticker": "KBH",
             "name": "KB Home",
             "when": "after",
-            "status": "pending"
+            "status": "live",
+            "chg": -0.59,
+            "price": 47.58,
+            "reactDate": "2026-09-23",
+            "baseDate": "2026-09-21"
           },
           {
             "ticker": "WOR",
             "name": "Worthington Enterprises, Inc.",
             "when": "after",
-            "status": "pending"
+            "status": "live",
+            "chg": 11.26,
+            "price": 64.7,
+            "reactDate": "2026-09-23",
+            "baseDate": "2026-09-21"
           },
           {
             "ticker": "MLKN",
             "name": "MillerKnoll, Inc.",
             "when": "before",
-            "status": "pending"
+            "status": "live",
+            "chg": -4.33,
+            "price": 19.44,
+            "reactDate": "2026-09-23",
+            "baseDate": "2026-09-21"
           }
         ]
       },
@@ -59,7 +79,11 @@
             "ticker": "ABVX",
             "name": "Abivax SA Sponsored ADR",
             "when": "after",
-            "status": "pending"
+            "status": "live",
+            "chg": -5.04,
+            "price": 98.24,
+            "reactDate": "2026-09-23",
+            "baseDate": "2026-09-21"
           }
         ]
       }
@@ -257,7 +281,7 @@
     "PRGS": "2026-09-30"
   },
   "_meta": {
-    "updatedAt": "23/09/2026 16:16",
+    "updatedAt": "23/09/2026 16:31",
     "source": "tradingview"
   }
 }
