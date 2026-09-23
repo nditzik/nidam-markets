@@ -5,12 +5,12 @@
     {
       "ticker": "CTAS",
       "name": "Cintas Corporation",
-      "capB": 76.9
+      "capB": 77.2
     },
     {
       "ticker": "PAYX",
       "name": "Paychex, Inc.",
-      "capB": 37.8
+      "capB": 37.6
     }
   ],
   "reactions": {
@@ -24,8 +24,8 @@
             "name": "AutoZone, Inc.",
             "when": "before",
             "status": "live",
-            "chg": 1.9,
-            "price": 2856.49,
+            "chg": 1.47,
+            "price": 2844.58,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           },
@@ -34,8 +34,8 @@
             "name": "Thor Industries, Inc.",
             "when": "before",
             "status": "live",
-            "chg": 2.74,
-            "price": 71.86,
+            "chg": 3.37,
+            "price": 72.3,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           },
@@ -44,8 +44,8 @@
             "name": "Worthington Enterprises, Inc.",
             "when": "after",
             "status": "live",
-            "chg": 1.86,
-            "price": 60.03,
+            "chg": 1.41,
+            "price": 59.77,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-22"
           },
@@ -54,8 +54,8 @@
             "name": "KB Home",
             "when": "after",
             "status": "live",
-            "chg": -2.06,
-            "price": 47.59,
+            "chg": -2.94,
+            "price": 47.16,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-22"
           },
@@ -63,9 +63,9 @@
             "ticker": "MLKN",
             "name": "MillerKnoll, Inc.",
             "when": "before",
-            "status": "live",
-            "chg": -1.5,
-            "price": 20.01,
+            "status": "final",
+            "chg": -1.38,
+            "price": 20.04,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           }
@@ -79,9 +79,9 @@
             "ticker": "ABVX",
             "name": "Abivax SA Sponsored ADR",
             "when": "after",
-            "status": "live",
-            "chg": -8.1,
-            "price": 95.07,
+            "status": "final",
+            "chg": -9.01,
+            "price": 94.13,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           }
@@ -281,7 +281,7 @@
     "PRGS": "2026-09-30"
   },
   "_meta": {
-    "updatedAt": "23/09/2026 22:46",
+    "updatedAt": "23/09/2026 23:01",
     "source": "tradingview"
   }
 }
