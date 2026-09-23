@@ -5,12 +5,12 @@
     {
       "ticker": "CTAS",
       "name": "Cintas Corporation",
-      "capB": 77.2
+      "capB": 76.9
     },
     {
       "ticker": "PAYX",
       "name": "Paychex, Inc.",
-      "capB": 37.6
+      "capB": 37.2
     }
   ],
   "reactions": {
@@ -23,9 +23,9 @@
             "ticker": "AZO",
             "name": "AutoZone, Inc.",
             "when": "before",
-            "status": "live",
-            "chg": 1.47,
-            "price": 2844.58,
+            "status": "final",
+            "chg": 1.43,
+            "price": 2843.34,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           },
@@ -33,9 +33,9 @@
             "ticker": "THO",
             "name": "Thor Industries, Inc.",
             "when": "before",
-            "status": "live",
-            "chg": 3.37,
-            "price": 72.3,
+            "status": "final",
+            "chg": 3.39,
+            "price": 72.31,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-21"
           },
@@ -43,9 +43,9 @@
             "ticker": "WOR",
             "name": "Worthington Enterprises, Inc.",
             "when": "after",
-            "status": "live",
-            "chg": 1.41,
-            "price": 59.77,
+            "status": "final",
+            "chg": 1.29,
+            "price": 59.7,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-22"
           },
@@ -54,8 +54,8 @@
             "name": "KB Home",
             "when": "after",
             "status": "live",
-            "chg": -2.94,
-            "price": 47.16,
+            "chg": -2.96,
+            "price": 47.15,
             "reactDate": "2026-09-23",
             "baseDate": "2026-09-22"
           },
@@ -281,7 +281,7 @@
     "PRGS": "2026-09-30"
   },
   "_meta": {
-    "updatedAt": "23/09/2026 23:01",
+    "updatedAt": "23/09/2026 23:16",
     "source": "tradingview"
   }
 }
