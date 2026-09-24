@@ -1,25 +1,57 @@
 {
-  "today": "2026-09-24",
-  "todayCount": 5,
-  "todayBig": [
-    {
-      "ticker": "COST",
-      "name": "Costco Wholesale Corporation",
-      "capB": 397.6
-    },
-    {
-      "ticker": "DRI",
-      "name": "Darden Restaurants, Inc.",
-      "capB": 23.5
-    },
-    {
-      "ticker": "SNX",
-      "name": "TD SYNNEX Corporation",
-      "capB": 20.7
-    }
-  ],
+  "today": "2026-09-25",
+  "todayCount": 0,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-09-24",
+        "label": "24.9",
+        "items": [
+          {
+            "ticker": "COST",
+            "name": "Costco Wholesale Corporation",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "DRI",
+            "name": "Darden Restaurants, Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": -3.02,
+            "price": 207.24,
+            "reactDate": "2026-09-24",
+            "baseDate": "2026-09-23"
+          },
+          {
+            "ticker": "SNX",
+            "name": "TD SYNNEX Corporation",
+            "when": "before",
+            "status": "final",
+            "chg": -9.87,
+            "price": 259.47,
+            "reactDate": "2026-09-24",
+            "baseDate": "2026-09-23"
+          },
+          {
+            "ticker": "BB",
+            "name": "BlackBerry Limited",
+            "when": "before",
+            "status": "final",
+            "chg": 4.18,
+            "price": 8.73,
+            "reactDate": "2026-09-24",
+            "baseDate": "2026-09-23"
+          },
+          {
+            "ticker": "TBN",
+            "name": "Tamboran Resources Corporation",
+            "when": "after",
+            "status": "pending"
+          }
+        ]
+      },
       {
         "date": "2026-09-23",
         "label": "23.9",
@@ -141,57 +173,10 @@
             "baseDate": "2026-09-21"
           }
         ]
-      },
-      {
-        "date": "2026-09-21",
-        "label": "21.9",
-        "items": [
-          {
-            "ticker": "ABVX",
-            "name": "Abivax SA Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "chg": -9.01,
-            "price": 94.13,
-            "reactDate": "2026-09-23",
-            "baseDate": "2026-09-21"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
-    {
-      "ticker": "COST",
-      "name": "Costco Wholesale Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/COST.png"
-    },
-    {
-      "ticker": "DRI",
-      "name": "Darden Restaurants, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/DRI.png"
-    },
-    {
-      "ticker": "SNX",
-      "name": "TD SYNNEX Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/SNX.png"
-    },
-    {
-      "ticker": "BB",
-      "name": "BlackBerry Limited",
-      "when": "before",
-      "logo": "data/earnings/logos/BB.png"
-    },
-    {
-      "ticker": "TBN",
-      "name": "Tamboran Resources Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/TBN.png"
-    }
-  ],
+  "reporting": [],
   "more": 0,
   "upcoming": [],
   "week": [
@@ -304,11 +289,6 @@
     }
   ],
   "window": {
-    "COST": "2026-09-24",
-    "DRI": "2026-09-24",
-    "SNX": "2026-09-24",
-    "BB": "2026-09-24",
-    "TBN": "2026-09-24",
     "MTN": "2026-09-28",
     "IDT": "2026-09-28",
     "CCL": "2026-09-29",
@@ -331,7 +311,7 @@
     "VFS": "2026-10-01"
   },
   "_meta": {
-    "updatedAt": "24/09/2026 23:45",
+    "updatedAt": "25/09/2026 00:01",
     "source": "tradingview"
   }
 }
