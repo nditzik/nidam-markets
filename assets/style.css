@@ -1354,3 +1354,28 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fc-more[open] .fc-close { display: inline; }
 .fc-more[open] > summary { margin-bottom: 10px; }
 .fc-sum { margin-bottom: 8px; }
+
+/* ── מעקב הצפי השבועי (24.9.2026) ── */
+.np-fc { display: inline-flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.np-fc-k { font-weight: 700; color: var(--text); }
+.np-fc-i { white-space: nowrap; }
+.np-fc-i.st-hit { color: var(--up); font-weight: 600; }
+.np-fc-i.st-miss { color: var(--down); font-weight: 600; }
+.np-fc-i.st-open { color: var(--text-soft); }
+.np-fc-i.st-risk { color: var(--warn); font-weight: 600; }
+.np-fc a { margin-inline-start: 0; }
+.fc-track { margin: 14px 0 18px; padding: 14px 18px 10px; border: 1px solid var(--paper-hair); border-radius: 14px; }
+.fc-track .fc-head { margin-bottom: 6px; }
+.fc-days { margin-inline-start: auto; font-size: .78rem; letter-spacing: .12em; color: var(--text-3); }
+.fc-claim { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--paper-hair); font-size: .92rem; }
+.fc-claim .st { font-weight: 800; }
+.fc-claim.st-hit .st { color: var(--up); } .fc-claim.st-miss .st { color: var(--down); } .fc-claim.st-risk .st { color: var(--warn); } .fc-claim.st-open .st { color: var(--text-3); }
+.fc-claim .tx small { color: var(--text-3); }
+.fc-claim .val { color: var(--text-soft); font-size: .84rem; text-align: left; }
+.fc-bar-track { height: 40px; margin: 2px 10px 6px; }
+.fc-bar-track .fc-t { top: 20px; }
+.fc-bar-track .fc-ref { top: 20px; color: var(--text-3); font-weight: 600; }
+.fc-bar .fc-pt { position: absolute; top: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--text-3); transform: translateX(-50%); }
+.fc-bar .fc-pt.now { width: 14px; height: 14px; top: 1px; background: var(--accent); box-shadow: 0 0 0 2px rgba(255,255,255,.9); }
+.fc-bar .fc-t.now { top: -16px; color: var(--accent); }
+@media (max-width: 880px) { .fc-claim { grid-template-columns: 22px minmax(0, 1fr); } .fc-claim .val { grid-column: 2; text-align: right; } .fc-days { display: none; } }

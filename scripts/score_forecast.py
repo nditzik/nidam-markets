@@ -34,6 +34,33 @@ def load(name, default=None):
         return default
 
 
+def score_claims(it, mon, fri):
+    """הטענות המשניות של הצפי (24.9.2026) — נבדקות מול הנתונים של סוף השבוע:
+    sellDay: ימי מכירה רחבה בתוך השבוע (indices.riskOff.sellingDays);
+    breadth (metric/op/value): הערך של יום שישי — evidence.pctMa50 (מהדשבורד, מ-24.9) ונפילה
+    ל-weekly.sectors.marketBreadth (השבועי מדוח הסקטורים). טענה בלי נתון → hit=None (לא נספרת)."""
+    out = {}
+    ind = load("indices.json") or {}
+    wk = load("weekly.json") or {}
+    for c in it.get("claims") or []:
+        k = c.get("key")
+        if k == "sellDay":
+            days = [d for d in ((ind.get("riskOff") or {}).get("sellingDays") or []) if mon <= str(d.get("date", "")) <= fri]
+            out[k] = {"hit": bool(days), "days": [{"date": d["date"], "chg": d.get("chg")} for d in days]}
+        elif c.get("metric"):
+            v = (ind.get("evidence") or {}).get(c["metric"])
+            src = "pctMa50"
+            if v is None and c["metric"] == "pctMa50":
+                v = (wk.get("sectors") or {}).get("marketBreadth"); src = "weekly"
+            if v is None:
+                out[k] = {"hit": None, "value": None}
+                continue
+            op, val = c.get("op", "<"), float(c.get("value", 0))
+            hit = v < val if op == "<" else v > val if op == ">" else v <= val if op == "<=" else v >= val
+            out[k] = {"hit": bool(hit), "value": v, "source": src}
+    return out
+
+
 def main():
     now = il_now()
     db = load("forecasts.json") or {"items": []}
@@ -70,6 +97,7 @@ def main():
             lo, hi = it.get("rangeLow"), it.get("rangeHigh")
             it["result"] = {"close": close, "actual": actual, "hit": bool(hit),
                             "inRange": (lo is not None and hi is not None and lo <= actual <= hi),
+                            "claims": score_claims(it, mon, wkly.get("weekOf")),
                             "scoredAt": now.strftime("%d/%m/%Y %H:%M")}
 
     out_items = sorted(items.values(), key=lambda x: x["weekOf"])

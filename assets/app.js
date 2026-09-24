@@ -1436,6 +1436,106 @@
   /* הצפי השבועי (20.9.2026): eventUpdate.forecast שהרוטינה של יום ראשון כותבת מתוך חבילת הראיות
      (data/week_ahead.json). המאזן המצטבר מגיע מ-data/forecasts.json (scripts/score_forecast.py). */
   var FCAST = null;
+
+  /* מעקב הצפי השבועי (24.9.2026, איציק): שלוש טענות — הסגירה מול הקו (הנמדדת), יום מכירה
+     רחבה, רוחב — כל אחת ○ פתוח / ✓ / ✗. בבית: שורה אחת בתחתית הכותרת (במקום המכוונים שירדו
+     ב-20.9, בלי שינוי גובה). בטאב מדדים: הפס עם נקודה לכל סגירה. שבת–ראשון: התוצאה. */
+  var DOW_HE = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"];
+  function isoAdd(iso, n) { var d = new Date(iso + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+  function mondayOf(iso) { var wd = new Date(iso + "T00:00:00Z").getUTCDay(); return isoAdd(iso, -(wd === 0 ? 6 : wd - 1)); }
+  function fcWeek() {
+    if (!FCAST || !(FCAST.items || []).length || !HIST) return null;
+    var t = ilNowParts(), mon = mondayOf(t.iso), fri = isoAdd(mon, 4);
+    var f = null;
+    (FCAST.items || []).forEach(function (x) { if (x.weekOf === mon) f = x; });
+    if (!f || f.ref == null) return null;
+    var closes = (HIST.days || []).filter(function (d) { return d.date >= mon && d.date <= fri && d.spx != null; });
+    var lastDate = closes.length ? closes[closes.length - 1].date : "";
+    // הסגירה של היום כבר ב-indices אבל עוד לא ב-history → משלימים
+    if (INDD && INDD.date > lastDate && INDD.date >= mon && INDD.date <= fri && INDD.evidence && INDD.evidence.spxPrice) {
+      closes.push({ date: INDD.date, spx: INDD.evidence.spxPrice }); lastDate = INDD.date;
+    }
+    var r = f.result || null;
+    var pct = closes.length ? (closes[closes.length - 1].spx / f.ref - 1) * 100 : null;
+    var below = f.test !== "above";
+    var price = r ? { st: r.hit ? "hit" : "miss", pct: r.actual }
+                  : { st: "open", pct: pct };
+    var claims = [];
+    (f.claims || []).forEach(function (c) {
+      var rc = r && r.claims && r.claims[c.key];
+      if (c.key === "sellDay") {
+        var days = r ? (rc && rc.days) || [] : ((INDD && INDD.riskOff && INDD.riskOff.sellingDays) || []).filter(function (d) { return d.date >= mon && d.date <= fri; });
+        var st = r ? (rc && rc.hit ? "hit" : "miss") : (days.length ? "hit" : "open");
+        claims.push({ key: c.key, text: c.text, prob: c.prob, st: st,
+          val: days.length ? days.map(function (d) { return DOW_HE[new Date(d.date + "T00:00:00Z").getUTCDay()] + (d.chg != null ? ' <span class="num" dir="ltr">' + d.chg.toFixed(2) + "%</span>" : ""); }).join(", ") : (r ? "לא היה" : "עוד לא") });
+      } else if (c.metric) {
+        var v = r ? (rc ? rc.value : null) : ((INDD && INDD.evidence && INDD.evidence[c.metric] != null) ? INDD.evidence[c.metric] : (c.metric === "pctMa50" && WEEKLY && WEEKLY.sectors ? WEEKLY.sectors.marketBreadth : null));
+        if (v == null) return;
+        var ok = r ? (rc && rc.hit) : (c.op === ">" ? v > c.value : c.op === ">=" ? v >= c.value : c.op === "<=" ? v <= c.value : v < c.value);
+        claims.push({ key: c.key, text: c.text, st: ok ? "hit" : (r ? "miss" : "risk"), val: '<span class="num" dir="ltr">' + Math.round(v) + "%</span>" + (r ? "" : " כרגע") });
+      }
+    });
+    var hits = (price.st === "hit" ? 1 : 0) + claims.filter(function (c) { return c.st === "hit"; }).length;
+    var total = 1 + claims.length;
+    var m = mon.split("-"), fr = fri.split("-");
+    return { f: f, r: r, mon: mon, fri: fri, label: (+m[2]) + "–" + (+fr[2]) + "." + (+fr[1]), closes: closes, n: closes.length,
+             price: price, below: below, claims: claims, hits: hits, total: total, weekend: t.dow === "Sat" || t.dow === "Sun" };
+  }
+  function fcSym(st) { return st === "hit" ? "✓" : st === "miss" ? "✗" : "○"; }
+  function fcPct(v, signed) { return v == null ? "—" : '<span class="num" dir="ltr">' + (signed && v > 0 ? "+" : "") + v.toFixed(1) + "%</span>"; }
+  function fcPriceText(w, long) {
+    var p = w.price;
+    if (p.st !== "open") return (long ? "השבוע " : "") + fcPct(p.pct, true);
+    if (p.pct == null) return "ממתין לסגירה ראשונה";
+    var above = p.pct >= 0, need = w.below ? -p.pct : -p.pct;
+    return fcPct(Math.abs(p.pct), false) + (above ? " מעל הקו" : " מתחת לקו") +
+      (long ? ((w.below === above) ? " · צריך " + fcPct(Math.abs(need), false) + (w.below ? " ירידה" : " עלייה") + " עד שישי" : " · בכיוון הצפי") : "");
+  }
+  // שורת התחתית בבית
+  function fcTrackLine() {
+    var w = fcWeek();
+    if (!w) return "";
+    var link = '<a href="#indices" onclick="__goTab(\'indices\');var m=document.getElementById(\'fc-track\');if(m)setTimeout(function(){m.scrollIntoView({behavior:\'smooth\',block:\'start\'})},50);return false">מעקב ←</a>';
+    if (w.r) {
+      return '<span class="np-fc"><span class="np-fc-k">🎯 הצפי לשבוע ' + esc(w.label) + "</span>" +
+        '<span class="np-fc-i st-' + (w.hits >= Math.ceil(w.total / 2) ? "hit" : "miss") + '">' + fcSym(w.hits >= Math.ceil(w.total / 2) ? "hit" : "miss") + " " + w.hits + " מתוך " + w.total + "</span>" +
+        '<span class="np-fc-i st-open">S&amp;P ' + fcPct(w.price.pct, true) + "</span>" + link + "</span>";
+    }
+    var items = ['<span class="np-fc-i st-' + w.price.st + '">' + fcSym(w.price.st) + " סגירה " + (w.below ? "מתחת ל-" : "מעל ") + '<span class="num" dir="ltr">' + Number(w.f.ref).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "</span> · " + fcPriceText(w, false) + "</span>"];
+    w.claims.forEach(function (c) {
+      items.push('<span class="np-fc-i st-' + c.st + '">' + fcSym(c.st) + " " + (c.key === "sellDay" ? "יום מכירה" : "רוחב") + " · " + c.val + "</span>");
+    });
+    return '<span class="np-fc"><span class="np-fc-k">🎯 הצפי · יום ' + '<span class="num" dir="ltr">' + w.n + "/5</span></span>" + items.join("") + link + "</span>";
+  }
+  // הבלוק בטאב מדדים
+  function fcTrackHtml() {
+    var w = fcWeek();
+    if (!w) return "";
+    var f = w.f, X = function (v) { return Math.max(0, Math.min(100, (v + 3) / 6 * 100)); };
+    var lo = f.rangeLow, hi = f.rangeHigh, dirCls = f.direction === "up" ? "up" : f.direction === "down" ? "down" : "warn";
+    var bar = '<div class="fc-bar fc-bar-track" dir="ltr"><i class="fc-zero"></i>' +
+      ((lo != null && hi != null && hi > lo) ? '<i class="fc-rng ' + dirCls + '" style="left:' + X(lo) + "%;width:" + (X(hi) - X(lo)) + '%"></i>' +
+        '<span class="fc-t" style="left:' + X(lo) + '%">' + (lo > 0 ? "+" : "") + lo + '%</span><span class="fc-t" style="left:' + X(hi) + '%">' + (hi > 0 ? "+" : "") + hi + "%</span>" : "") +
+      '<span class="fc-t fc-ref" style="left:50%">' + Number(f.ref).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "</span>" +
+      w.closes.map(function (c, i) {
+        var pct = (c.spx / f.ref - 1) * 100, last = i === w.closes.length - 1;
+        return '<i class="fc-pt' + (last ? " now" : "") + '" style="left:' + X(pct) + '%" title="' + esc(fmtTradeDate(c.date)) + " · " + (pct > 0 ? "+" : "") + pct.toFixed(2) + '%"></i>' +
+          (last ? '<span class="fc-t now" style="left:' + X(pct) + '%">' + (pct > 0 ? "+" : "") + pct.toFixed(1) + "%</span>" : "");
+      }).join("") + "</div>";
+    var dots = [0, 1, 2, 3, 4].map(function (i) { return i < w.n ? "●" : "○"; }).join(" ");
+    function row(st, text, val) { return '<div class="fc-claim st-' + st + '"><span class="st">' + fcSym(st) + '</span><span class="tx">' + text + '</span><span class="val">' + val + "</span></div>"; }
+    var rows = row(w.price.st, esc(f.claim || "") + (f.prob ? ' <small>(' + f.prob + "%)</small>" : ""), fcPriceText(w, true)) + bar;
+    w.claims.forEach(function (c) { rows += row(c.st, esc(c.text) + (c.prob ? ' <small>(~' + c.prob + "%)</small>" : ""), c.val); });
+    var rec = w.r
+      ? '<p class="fc-rec">התוצאה: <b>' + w.hits + " מתוך " + w.total + '</b> · S&amp;P בשבוע ' + fcPct(w.price.pct, true) + (w.r.inRange ? " · בתוך הטווח" : " · מחוץ לטווח") + "</p>"
+      : '<p class="fc-rec">' + (w.weekend ? "השבוע נסגר — הציון ייכתב עם קליטת סגירת שישי." : "○ פתוח עד סגירת יום שישי · ✓/✗ נקבעים אוטומטית בשבת.") +
+        (FCAST.record && FCAST.record.scored ? " המאזן עד כה: " + FCAST.record.hits + " מתוך " + FCAST.record.scored + " שבועות." : "") + "</p>";
+    return '<section class="fc-track" id="fc-track"><div class="fc-head"><span class="np-k">🎯 מעקב הצפי השבועי</span>' +
+      '<b class="num" dir="ltr">' + esc(w.label) + '</b><span class="fc-days" title="ימי מסחר שנסגרו">' + dots + "</span></div>" +
+      '<p class="fc-sum" style="margin-bottom:8px">' + esc(f.label || "") + (f.headline ? " — " + esc(f.headline) : "") + "</p>" + rows + rec + "</section>";
+  }
+  function renderFcTrack() { var el = document.getElementById("fc-track-slot"); if (el) el.innerHTML = fcTrackHtml(); }
+
   function forecastHtml(f) {
     if (!f || !f.label) return "";
     function li(arr) { return (arr || []).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join(""); }
@@ -1621,8 +1721,10 @@
         }).join("") + "</span>";
     }
     // 20.9.2026 (איציק): שורת המכוונים (מניות/סקטורים/אופציות + 4 הנוריות) ירדה מהבית — נשאר רק הקישור
-    var foot = '<div class="np-leadfoot">' +
-      '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a></div>';
+    var fullLink = '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a>';
+    // 24.9.2026: שורת מעקב הצפי במקום המכוונים; בכותרת "לקראת שבוע המסחר" בלוק הצפי כבר מוצג → בלי השורה
+    var footPlain = '<div class="np-leadfoot">' + fullLink + "</div>";
+    var foot = '<div class="np-leadfoot">' + fcTrackLine() + fullLink + "</div>";
 
     renderLeadRail(d);
     // כותרת סוף-השבוע (19.9.2026, איציק): משבת ועד ראשון 15:00 הכותרת בבית היא סיכום השבוע
@@ -1653,7 +1755,7 @@
         (eu.kind === "preview" ? forecastHtml(eu.forecast || (FCAST && FCAST.current)) : "") +
         (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
         (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
-        foot;
+        ((eu.kind === "preview" && (eu.forecast || (FCAST && FCAST.current))) ? footPlain : foot);
       return;
     }
 
@@ -2389,10 +2491,11 @@
     renderMarketOverview(overview, d, { detail: true });
 
     el.innerHTML = "";
-    el.insertAdjacentHTML("beforeend", meterTimelineHtml() + '<div id="weekly-slot"></div>');   // ציר הזמן של המד, ומתחתיו סיכום השבוע (11.9.2026)
+    el.insertAdjacentHTML("beforeend", meterTimelineHtml() + '<div id="weekly-slot"></div><div id="fc-track-slot"></div>');   // ציר הזמן של המד, ומתחתיו סיכום השבוע (11.9.2026)
     bindMeterTimeline(el); renderMeterTimeline();
     setTimeout(renderOptVsPrice, 0);   // ה-figure של הגרף נכנס ל-DOM רק בהמשך הפונקציה
     if (WEEKLY) renderWeekly(WEEKLY);
+    renderFcTrack();
     el.insertAdjacentHTML("beforeend", head + claudeCardHtml(d) + INDICES_EXPLAINER);   // הניתוח היומי, ואז ההסבר ותמונת המצב
     el.appendChild(overview);
     el.insertAdjacentHTML("beforeend", analysis + sectors + selling + narr);
@@ -3352,7 +3455,7 @@
         .then(function (d) { if (!freshD("momentum", d)) return; MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); noteSig("momentum", d); })
         .catch(function () { if (!MOMD) emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
       fetchJSON("data/forecasts.json")
-        .then(function (d) { if (!freshD("forecasts", d)) return; FCAST = d; if (INDD) renderLead(); })
+        .then(function (d) { if (!freshD("forecasts", d)) return; FCAST = d; if (INDD) renderLead(); renderFcTrack(); })
         .catch(function () {});
       fetchJSON("data/insider.json")
         .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); noteSig("insider", d); })
