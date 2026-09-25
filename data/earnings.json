@@ -1,5 +1,5 @@
 {
-  "today": "2026-09-25",
+  "today": "2026-09-26",
   "todayCount": 0,
   "todayBig": [],
   "reactions": {
@@ -196,116 +196,171 @@
   },
   "reporting": [],
   "more": 0,
-  "upcoming": [],
+  "upcoming": [
+    {
+      "date": "2026-09-28",
+      "label": "28/9",
+      "dow": "ב׳",
+      "count": 2,
+      "tickers": [
+        "MTN",
+        "IDT"
+      ]
+    },
+    {
+      "date": "2026-09-29",
+      "label": "29/9",
+      "dow": "ג׳",
+      "count": 5,
+      "tickers": [
+        "CCL",
+        "KMX",
+        "AIR",
+        "UEC",
+        "CNXC"
+      ]
+    },
+    {
+      "date": "2026-09-30",
+      "label": "30/9",
+      "dow": "ד׳",
+      "count": 7,
+      "tickers": [
+        "MU",
+        "JBL",
+        "JEF",
+        "FDS",
+        "CAG",
+        "CALM"
+      ]
+    },
+    {
+      "date": "2026-10-01",
+      "label": "1/10",
+      "dow": "ה׳",
+      "count": 5,
+      "tickers": [
+        "ACN",
+        "NKE",
+        "MKC",
+        "AYI",
+        "VFS"
+      ]
+    }
+  ],
   "week": [
     {
-      "date": "2026-09-21",
+      "date": "2026-09-28",
       "dow": "שני",
-      "label": "21.9",
-      "total": 1,
+      "label": "28.9",
+      "total": 2,
       "companies": [
         {
-          "ticker": "ABVX",
-          "name": "Abivax SA Sponsored ADR"
+          "ticker": "MTN",
+          "name": "Vail Resorts, Inc."
+        },
+        {
+          "ticker": "IDT",
+          "name": "IDT Corporation Class B"
         }
       ]
     },
     {
-      "date": "2026-09-22",
+      "date": "2026-09-29",
       "dow": "שלישי",
-      "label": "22.9",
+      "label": "29.9",
       "total": 5,
       "companies": [
         {
-          "ticker": "AZO",
-          "name": "AutoZone, Inc."
+          "ticker": "CCL",
+          "name": "Carnival Corporation Ltd."
         },
         {
-          "ticker": "THO",
-          "name": "Thor Industries, Inc."
+          "ticker": "KMX",
+          "name": "CarMax, Inc."
         },
         {
-          "ticker": "WOR",
-          "name": "Worthington Enterprises, Inc."
+          "ticker": "AIR",
+          "name": "AAR CORP."
         },
         {
-          "ticker": "KBH",
-          "name": "KB Home"
+          "ticker": "UEC",
+          "name": "Uranium Energy Corp."
         },
         {
-          "ticker": "MLKN",
-          "name": "MillerKnoll, Inc."
+          "ticker": "CNXC",
+          "name": "Concentrix Corporation"
         }
       ]
     },
     {
-      "date": "2026-09-23",
+      "date": "2026-09-30",
       "dow": "רביעי",
-      "label": "23.9",
-      "total": 6,
+      "label": "30.9",
+      "total": 7,
       "companies": [
         {
-          "ticker": "CTAS",
-          "name": "Cintas Corporation"
+          "ticker": "MU",
+          "name": "Micron Technology, Inc."
         },
         {
-          "ticker": "PAYX",
-          "name": "Paychex, Inc."
+          "ticker": "JBL",
+          "name": "Jabil Inc."
         },
         {
-          "ticker": "GIS",
-          "name": "General Mills, Inc."
+          "ticker": "JEF",
+          "name": "Jefferies Financial Group Inc."
         },
         {
-          "ticker": "MANU",
-          "name": "Manchester United Plc Class A"
+          "ticker": "FDS",
+          "name": "FactSet Research Systems Inc."
         },
         {
-          "ticker": "FUL",
-          "name": "H.B. Fuller Company"
+          "ticker": "CAG",
+          "name": "Conagra Brands, Inc."
         },
         {
-          "ticker": "CBRL",
-          "name": "Cracker Barrel Old Country Store, Inc."
+          "ticker": "CALM",
+          "name": "Cal-Maine Foods, Inc."
+        },
+        {
+          "ticker": "PRGS",
+          "name": "Progress Software Corporation"
         }
       ]
     },
     {
-      "date": "2026-09-24",
+      "date": "2026-10-01",
       "dow": "חמישי",
-      "label": "24.9",
-      "total": 6,
+      "label": "1.10",
+      "total": 5,
       "companies": [
         {
-          "ticker": "COST",
-          "name": "Costco Wholesale Corporation"
+          "ticker": "ACN",
+          "name": "Accenture Plc Class A"
         },
         {
-          "ticker": "DRI",
-          "name": "Darden Restaurants, Inc."
+          "ticker": "NKE",
+          "name": "NIKE, Inc. Class B"
         },
         {
-          "ticker": "SNX",
-          "name": "TD SYNNEX Corporation"
+          "ticker": "MKC",
+          "name": "McCormick & Company, Incorporated"
         },
         {
-          "ticker": "BB",
-          "name": "BlackBerry Limited"
+          "ticker": "AYI",
+          "name": "Acuity Inc."
         },
         {
-          "ticker": "NBTX",
-          "name": "Nanobiotix SA Sponsored ADR"
-        },
-        {
-          "ticker": "TBN",
-          "name": "Tamboran Resources Corporation"
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd."
         }
       ]
     },
     {
-      "date": "2026-09-25",
+      "date": "2026-10-02",
       "dow": "שישי",
-      "label": "25.9",
+      "label": "2.10",
       "total": 0,
       "companies": []
     }
@@ -332,7 +387,7 @@
     "VFS": "2026-10-01"
   },
   "_meta": {
-    "updatedAt": "25/09/2026 23:45",
+    "updatedAt": "26/09/2026 00:01",
     "source": "tradingview"
   }
 }
