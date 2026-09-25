@@ -86,7 +86,28 @@ def main():
             return 0
         return 1
 
-    payload = {"items": items, "_meta": {"updatedAt": israel_stamp(), "source": "yahoo"}}
+    # 25.9.2026: הרוטינה היומית השוותה את מחיר חוזה דצמבר (7,764) לסגירת המדד (7,704) וכתבה
+    # "החוזים +0.7%" ביום שבו chg היה -0.04%. ההפרש הוא בסיס החוזה (עלות נשיאה עד הפקיעה), לא
+    # תנועה. מכיוון שאת פרומפט הרוטינה אי-אפשר לערוך מכאן (מפתח), ההגנה יושבת בנתונים שהיא קוראת:
+    # לחוזה S&P נוסף indexEquiv = רמת המדד שהחוזה מגלם (סגירה אחרונה × (1+chg)), וההערה למטה.
+    try:
+        hist = json.load(open(os.path.join(os.path.dirname(OUT), "history.json"), encoding="utf-8"))
+        last = [d for d in hist.get("days", []) if d.get("spx")][-1]
+        for it in items:
+            if it["key"] == "es" and it.get("chg") is not None:
+                it["indexClose"] = last["spx"]
+                it["indexCloseDate"] = last["date"]
+                it["indexEquiv"] = round(last["spx"] * (1 + it["chg"] / 100), 2)
+                it["basis"] = round(it["price"] - it["indexEquiv"], 2)
+                it["note"] = ("מחיר החוזה כולל בסיס של כ-%d נק' מעל המדד (עלות נשיאה) — אל תשווה אותו לסגירת המדד. "
+                              "השינוי לפני הפתיחה = chg (מול הסטלמנט הקודם); רמת המדד שהחוזה מגלם = indexEquiv." % round(it["basis"]))
+            if it["key"] == "nq":
+                it["note"] = "מחיר החוזה כולל בסיס מעל המדד — השינוי לפני הפתיחה = chg בלבד, לא השוואה לסגירה."
+    except Exception as e:
+        print(f"[warn] indexEquiv: {e}")
+
+    payload = {"items": items, "_meta": {"updatedAt": israel_stamp(), "source": "yahoo",
+               "note": "es/nq הם חוזים (ES=F/NQ=F, דצמבר) — מחירם גבוה מהמדד בבסיס של עשרות נקודות. תנועת הלילה = chg; רמת המדד המגולמת = es.indexEquiv."}}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
