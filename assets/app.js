@@ -1776,7 +1776,10 @@
       el.innerHTML =
         '<span class="np-today">' + todayLine() + "</span>" +
         '<span class="np-k">יום המסחר · <b dir="ltr">' + esc(fmtTradeDate(d.date)) + "</b>" +
-          (pm ? ' · <b class="num ' + pmCls + '" dir="ltr">' + esc(pm[1]) + "</b>" : "") + "</span>" +
+          (pm ? ' · <b class="num ' + pmCls + '" dir="ltr">' + esc(pm[1]) + "</b>" : "") +
+          // 25.9.2026 (איציק): שעת הכתיבה של הניתוח — כדי שיהיה ברור מתי "הבוקר" של הכותרת
+          ((ca._meta && ca._meta.updatedAt && /\d{1,2}:\d{2}/.test(ca._meta.updatedAt))
+            ? ' · <span class="np-upd">עודכן <b dir="ltr">' + esc(/(\d{1,2}:\d{2})/.exec(ca._meta.updatedAt)[1]) + "</b></span>" : "") + "</span>" +
         '<h2 class="np-h1">' + esc(ca.headline) + "</h2>" +
         dayStats +
         // בבית רק המשפט הראשון של ה-tldr; המלא בטאב מדדים ("הניתוח המלא ←")
