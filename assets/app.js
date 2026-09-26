@@ -792,6 +792,13 @@
       " A" + r + "," + r + " 0 0 1 " + p2[0].toFixed(1) + "," + p2[1].toFixed(1);
   }
   function mDeg(score) { return -90 + score * 1.8; }
+  // 26.9.2026: המסלול בתוך השבוע — "שפל 49" כשהשפל נמוך משתי הקצוות (או "שיא" כשגבוה משתיהן)
+  function meterLowHi(s) {
+    var a = s.combStart, b = s.combEnd, lo = s.combLow, hi = s.combHigh, out = "";
+    if (lo != null && a != null && b != null && lo < Math.min(a, b)) out += ' · שפל <span class="num">' + lo + "</span>";
+    if (hi != null && a != null && b != null && hi > Math.max(a, b)) out += ' · שיא <span class="num">' + hi + "</span>";
+    return out;
+  }
   function meterWord(v) { return v >= 66 ? ["חיובי", "var(--up)"] : v >= 45 ? ["זהיר", "var(--warn)"] : ["הגנתי", "var(--down)"]; }
 
   function initHomePulse() {
@@ -1685,7 +1692,7 @@
     }
     var rest = leadClean.slice(first.length).replace(/^[\s:—.,;]+/, "");   // גם פסיק — אחרי החיתוך בפסיק (26.9)
     var stats = leadStats([
-      { l: "S&amp;P 500 · שבועי", v: pct(s.spxPct), cls: cls(s.spxPct), s: "מד השוק " + (s.combStart != null ? s.combStart : "—") + " ← " + (s.combEnd != null ? s.combEnd : "—") },
+      { l: "S&amp;P 500 · שבועי", v: pct(s.spxPct), cls: cls(s.spxPct), s: '<span title="מסגירת שישי הקודם ועד סגירת שישי, כמו S&amp;P ו-VIX">מד השוק ' + (s.combStart != null ? s.combStart : "—") + " ← " + (s.combEnd != null ? s.combEnd : "—") + meterLowHi(s) + "</span>" },
       (s.vixStart != null && s.vixEnd != null) ? { l: "VIX · מדד הפחד", v: s.vixStart.toFixed(2) + " → " + s.vixEnd.toFixed(2), s: s.vixEnd < s.vixStart ? "ירד במהלך השבוע" : s.vixEnd > s.vixStart ? "עלה במהלך השבוע" : "ללא שינוי" } : null,
       (sec && sec.marketBreadth != null) ? { l: "מניות במגמת עלייה", v: sec.marketBreadth + "%", cls: sec.marketBreadth < 40 ? "down" : sec.marketBreadth > 60 ? "up" : "", s: "מעל ממוצע 50 יום" } : null
     ]);
@@ -1922,7 +1929,7 @@
     el.innerHTML =
       '<section class="wk"><div class="wk-head"><span class="wk-ttl"><span class="np-k">🗓 סיכום השבוע שעבר</span><b class="wk-when num" dir="ltr">' + esc(d.label || "") + "</b></span>" +   // "שעבר" + תאריכים מובלטים (11.9.2026, בקשת איציק: שיהיה ברור שזה לא השבוע הנוכחי)
         '<span class="wk-stat">S&amp;P 500 <b class="num ' + cls(s.spxPct) + '" dir="ltr">' + pct(s.spxPct) + "</b></span>" +
-        '<span class="wk-stat">מד השוק <b class="num" dir="ltr">' + (s.combStart != null ? s.combStart : "—") + " → " + (s.combEnd != null ? s.combEnd : "—") + "</b>" +
+        '<span class="wk-stat" title="מסגירת שישי הקודם ועד סגירת שישי, כמו S&amp;P ו-VIX">מד השוק <b class="num" dir="ltr">' + (s.combStart != null ? s.combStart : "—") + " → " + (s.combEnd != null ? s.combEnd : "—") + "</b>" + meterLowHi(s) +
           ' <span style="color:' + w1[1] + '">' + w1[0] + "</span></span>" +
         (s.sellDays ? '<span class="wk-stat">' + (s.sellDays === 1 ? '<b class="down">יום מכירה רחבה אחד</b>' : '<b class="num down" dir="ltr">' + s.sellDays + "</b> ימי מכירה רחבה") + "</span>" : "") +
       "</div>" +

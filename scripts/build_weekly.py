@@ -75,6 +75,11 @@ def build(days, sell_dates, friday):
         "combStart": (prev or first).get("combined"), "combEnd": last.get("combined"),
         "spxPct": spx_pct, "vixStart": (prev or first).get("vix"), "vixEnd": last.get("vix"),
         "sellDays": sum(1 for d in out_days if d["sell"]),
+        # 26.9.2026 (איציק): combStart הוא בכוונה סגירת שישי הקודם (שישי-לשישי, כמו S&P ו-VIX) —
+        # הקריאה של יום שני היא כבר תוצאה של השבוע. כדי שהמסלול בתוך השבוע לא ייעלם בין
+        # שני מספרים דומים ("60 → 60"), נשמרים גם השפל והשיא של חמשת הימים.
+        "combLow": min((d.get("combined") for d in week if d.get("combined") is not None), default=None),
+        "combHigh": max((d.get("combined") for d in week if d.get("combined") is not None), default=None),
     }
     return {
         "weekOf": friday, "from": mon.isoformat(), "to": friday,
