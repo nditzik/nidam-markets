@@ -1497,9 +1497,13 @@
     if (!w) return "";
     var link = '<a href="#indices" onclick="__goTab(\'indices\');var m=document.getElementById(\'fc-track\');if(m)setTimeout(function(){m.scrollIntoView({behavior:\'smooth\',block:\'start\'})},50);return false">מעקב ←</a>';
     if (w.r) {
-      return '<span class="np-fc"><span class="np-fc-k">🎯 הצפי לשבוע ' + esc(w.label) + "</span>" +
-        '<span class="np-fc-i st-' + (w.hits >= Math.ceil(w.total / 2) ? "hit" : "miss") + '">' + fcSym(w.hits >= Math.ceil(w.total / 2) ? "hit" : "miss") + " " + w.hits + " מתוך " + w.total + "</span>" +
-        '<span class="np-fc-i st-open">S&amp;P ' + fcPct(w.price.pct, true) + "</span>" + link + "</span>";
+      // 26.9.2026 (איציק): שלושת הסימנים במפורש, בלי ספירה מסכמת — הטענה הנמדדת ראשונה
+      var res = ['<span class="np-fc-i st-' + w.price.st + '">' + fcSym(w.price.st) + " סגירה " + (w.below ? "מתחת ל-" : "מעל ") +
+        '<span class="num" dir="ltr">' + Number(w.f.ref).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "</span> · S&amp;P " + fcPct(w.price.pct, true) + "</span>"];
+      w.claims.forEach(function (c) {
+        res.push('<span class="np-fc-i st-' + c.st + '">' + fcSym(c.st) + " " + (c.key === "sellDay" ? "יום מכירה" : "רוחב") + " · " + c.val + "</span>");
+      });
+      return '<span class="np-fc"><span class="np-fc-k">🎯 הצפי לשבוע ' + esc(w.label) + "</span>" + res.join("") + link + "</span>";
     }
     var items = ['<span class="np-fc-i st-' + w.price.st + '">' + fcSym(w.price.st) + " סגירה " + (w.below ? "מתחת ל-" : "מעל ") + '<span class="num" dir="ltr">' + Number(w.f.ref).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "</span> · " + fcPriceText(w, false) + "</span>"];
     w.claims.forEach(function (c) {
@@ -1672,7 +1676,13 @@
     // התאריכים כבר בקיקר; בסוגריים בתוך הטקסט הם מתהפכים ב-RTL — מסירים לפני החיתוך
     var leadClean = String(nar.lead).replace(/\s*\(\d{1,2}[–-]\d{1,2}\.\d{1,2}\)/, "");
     var first = leadClean.split(/(?<=[^\d])\.\s/)[0].replace(/\.$/, "");
-    if (first.length > 95) { var cut = first.search(/[:—]/); if (cut > 25) first = first.slice(0, cut).trim(); }
+    if (first.length > 95) {
+      // 26.9.2026: משפט ראשון ארוך (הסיכום של 21–25.9 היה 150 תווים, 5 שורות) — חותכים בפסיק/מקף/נקודתיים
+      // הראשונים שאחרי תו 40; אם אין, בנקודתיים/מקף אחרי תו 25 (הכלל הישן). השאר יורד לטקסט שמתחת.
+      var m40 = /[,—:;]/.exec(first.slice(40)), cut = m40 ? 40 + m40.index : -1;
+      if (cut < 0) { cut = first.search(/[:—]/); if (cut <= 25) cut = -1; }
+      if (cut > 0) first = first.slice(0, cut).trim();
+    }
     var rest = leadClean.slice(first.length).replace(/^[\s:—.]+/, "");
     var stats = leadStats([
       { l: "S&amp;P 500 · שבועי", v: pct(s.spxPct), cls: cls(s.spxPct), s: "מד השוק " + (s.combStart != null ? s.combStart : "—") + " ← " + (s.combEnd != null ? s.combEnd : "—") },
