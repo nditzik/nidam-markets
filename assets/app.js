@@ -1683,7 +1683,7 @@
       if (cut < 0) { cut = first.search(/[:—]/); if (cut <= 25) cut = -1; }
       if (cut > 0) first = first.slice(0, cut).trim();
     }
-    var rest = leadClean.slice(first.length).replace(/^[\s:—.]+/, "");
+    var rest = leadClean.slice(first.length).replace(/^[\s:—.,;]+/, "");   // גם פסיק — אחרי החיתוך בפסיק (26.9)
     var stats = leadStats([
       { l: "S&amp;P 500 · שבועי", v: pct(s.spxPct), cls: cls(s.spxPct), s: "מד השוק " + (s.combStart != null ? s.combStart : "—") + " ← " + (s.combEnd != null ? s.combEnd : "—") },
       (s.vixStart != null && s.vixEnd != null) ? { l: "VIX · מדד הפחד", v: s.vixStart.toFixed(2) + " → " + s.vixEnd.toFixed(2), s: s.vixEnd < s.vixStart ? "ירד במהלך השבוע" : s.vixEnd > s.vixStart ? "עלה במהלך השבוע" : "ללא שינוי" } : null,
