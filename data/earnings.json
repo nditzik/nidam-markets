@@ -5,6 +5,22 @@
   "reactions": {
     "days": [
       {
+        "date": "2026-09-25",
+        "label": "25.9",
+        "items": [
+          {
+            "ticker": "TBN",
+            "name": "Tamboran Resources Corporation",
+            "when": "before",
+            "status": "final",
+            "chg": -3.14,
+            "price": 35.11,
+            "reactDate": "2026-09-25",
+            "baseDate": "2026-09-24"
+          }
+        ]
+      },
+      {
         "date": "2026-09-24",
         "label": "24.9",
         "items": [
@@ -321,7 +337,7 @@
     "VFS": "2026-10-01"
   },
   "_meta": {
-    "updatedAt": "26/09/2026 22:46",
+    "updatedAt": "26/09/2026 23:01",
     "source": "tradingview"
   }
 }
