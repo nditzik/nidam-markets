@@ -12,7 +12,11 @@
             "ticker": "COST",
             "name": "Costco Wholesale Corporation",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": 2.93,
+            "price": 922.77,
+            "reactDate": "2026-09-25",
+            "baseDate": "2026-09-24"
           },
           {
             "ticker": "DRI",
@@ -48,7 +52,11 @@
             "ticker": "NBTX",
             "name": "Nanobiotix SA Sponsored ADR",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": -0.45,
+            "price": 33.31,
+            "reactDate": "2026-09-25",
+            "baseDate": "2026-09-24"
           }
         ]
       },
@@ -369,7 +377,7 @@
     "VFS": "2026-10-01"
   },
   "_meta": {
-    "updatedAt": "26/09/2026 04:30",
+    "updatedAt": "26/09/2026 04:45",
     "source": "tradingview"
   }
 }
