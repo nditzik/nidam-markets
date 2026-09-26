@@ -1680,7 +1680,9 @@
       (sec && sec.marketBreadth != null) ? { l: "מניות במגמת עלייה", v: sec.marketBreadth + "%", cls: sec.marketBreadth < 40 ? "down" : sec.marketBreadth > 60 ? "up" : "", s: "מעל ממוצע 50 יום" } : null
     ]);
     return '<span class="np-today">' + todayLine() + "</span>" +
-      '<span class="np-k np-evt-mid">🗓 סיכום השבוע · <b dir="ltr">' + esc(w.label || "") + "</b></span>" +
+      // 26.9.2026 (איציק): שעת הכתיבה של הסיכום — כדי שיהיה ברור מתי הכותרת התחלפה משישי לשבועי
+      '<span class="np-k np-evt-mid">🗓 סיכום השבוע · <b dir="ltr">' + esc(w.label || "") + "</b>" +
+        ((nar.writtenAt && /\d{1,2}:\d{2}/.test(nar.writtenAt)) ? ' · <span class="np-upd">נכתב <b dir="ltr">' + esc(/(\d{1,2}:\d{2})/.exec(nar.writtenAt)[1]) + "</b></span>" : "") + "</span>" +
       '<h2 class="np-h1">' + esc(first) + "</h2>" +
       stats +
       // טקסט קצר: משפט אחד מהסיכום + משפט אחד מדוח הסקטורים; המלא בטאב מדדים ובדוח
