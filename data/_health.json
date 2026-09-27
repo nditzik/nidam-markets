@@ -1,5 +1,5 @@
 {
-  "generatedAt": "27/09/2026 15:31",
+  "generatedAt": "27/09/2026 15:46",
   "today": [
     {
       "label": "Barchart",
@@ -20,29 +20,29 @@
       "arrived": true
     },
     {
+      "label": "מועמדים",
+      "tab": "candidates",
+      "time": "15:31",
+      "arrived": true
+    },
+    {
       "label": "מדדים",
       "tab": "indices",
-      "time": "15:30",
+      "time": "15:45",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "15:30",
+      "time": "15:45",
       "arrived": true
-    },
-    {
-      "label": "מועמדים",
-      "tab": "candidates",
-      "time": "23:42",
-      "arrived": false
     }
   ],
   "sources": [
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "27/09/2026 15:30",
+      "updatedAt": "27/09/2026 15:45",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -50,7 +50,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "27/09/2026 15:30",
+      "updatedAt": "27/09/2026 15:45",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -58,7 +58,7 @@
     {
       "key": "morning",
       "label": "Barchart",
-      "updatedAt": "27/09/2026 15:30",
+      "updatedAt": "27/09/2026 15:45",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -67,16 +67,16 @@
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "27/09/2026 15:15",
-      "ageHours": 0.3,
+      "ageHours": 0.5,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "מועמדים",
-      "updatedAt": "25/09/2026 23:42",
-      "ageHours": 39.8,
-      "status": "stale",
+      "updatedAt": "27/09/2026 15:31",
+      "ageHours": 0.3,
+      "status": "ok",
       "detail": ""
     }
   ]
