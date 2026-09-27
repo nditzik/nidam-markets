@@ -202,7 +202,8 @@ def sectors_block(week_of):
                 out["best"] = {"name": mbest.group(1).strip(), "pct": float(mbest.group(2).replace("−", "-"))}
             except ValueError:
                 pass
-        mb = _re.search(r"שוק:\s*(\d+)%\s*רוחב", _txt(h))
+        # 27.9.2026: הדוח משנה ניסוח משבוע לשבוע — "שוק: 28% רוחב" (19.9) / "רק 26% מהמניות במגמת עלייה" (26.9)
+        mb = _re.search(r"שוק:\s*(\d+)%\s*רוחב", _txt(h)) or _re.search(r"(\d+)%\s*מהמניות\s+במגמת\s+עלייה", _txt(h))
         if mb:
             out["marketBreadth"] = int(mb.group(1))
         if out.get("lead") or out.get("out"):
