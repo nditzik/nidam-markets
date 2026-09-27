@@ -1,6 +1,6 @@
 {
-  "today": "2026-09-27",
-  "todayCount": 0,
+  "today": "2026-09-28",
+  "todayCount": 2,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -144,19 +144,22 @@
       }
     ]
   },
-  "reporting": [],
+  "reporting": [
+    {
+      "ticker": "MTN",
+      "name": "Vail Resorts, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/MTN.png"
+    },
+    {
+      "ticker": "IDT",
+      "name": "IDT Corporation Class B",
+      "when": "after",
+      "logo": "data/earnings/logos/IDT.png"
+    }
+  ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-09-28",
-      "label": "28/9",
-      "dow": "ב׳",
-      "count": 2,
-      "tickers": [
-        "MTN",
-        "IDT"
-      ]
-    },
     {
       "date": "2026-09-29",
       "label": "29/9",
@@ -337,7 +340,7 @@
     "VFS": "2026-10-01"
   },
   "_meta": {
-    "updatedAt": "27/09/2026 23:46",
+    "updatedAt": "28/09/2026 00:01",
     "source": "tradingview"
   }
 }
