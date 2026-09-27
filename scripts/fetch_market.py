@@ -62,6 +62,41 @@ def quote(sym):
     return price, chg, prev, spark
 
 
+def _daily(sym, rng):
+    url = ("https://query1.finance.yahoo.com/v8/finance/chart/" + urllib.parse.quote(sym) + "?interval=1d&range=" + rng)
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        res = json.loads(r.read().decode("utf-8"))["chart"]["result"][0]
+    return [c for c in res["indicators"]["quote"][0]["close"] if c is not None]
+
+
+def vix_light(prev):
+    """רמזור VIX (27.9.2026, איציק). מחקר 2005–2026 (scratchpad/research_vix.py, נשמר בזיכרון):
+    הסימן היחיד שעבד בכל תקופה = VIX שעולה ביחס לממוצע 50 שלו כשהמדד ליד השיא (10%+ מעל: 18% מהמקרים →
+    תיקון 5% תוך 20 יום, מול 11% בסיס). VIX נמוך = *פחות* תיקונים. לכן:
+      green  — VIX מתחת לממוצע 50            (או בין 0% ל-10% מעל, אם לא היה צהוב לפני — היסטרזיס)
+      yellow — VIX ≥10% מעל ממוצע 50; נכבה רק כשה-VIX חוזר מתחת לממוצע
+      red    — S&P 500 ≥3% מתחת לשיא 52 השבועות (הירידה בפועל)
+    spike  — דיברגנס: S&P +1% ו-VIX +10% ב-10 ימים (נדיר: 37% → תיקון; מוצג כ-"!" על הצהוב)."""
+    v = _daily("^VIX", "4mo"); c = _daily("^GSPC", "1y")
+    if len(v) < 51 or len(c) < 30:
+        raise ValueError("not enough history")
+    vix, ma50 = v[-1], sum(v[-50:]) / 50.0
+    ratio = vix / ma50
+    hi = max(c); off = (c[-1] / hi - 1) * 100
+    spx10 = (c[-1] / c[-11] - 1) * 100; vix10 = (v[-1] / v[-11] - 1) * 100
+    spike = spx10 >= 1.0 and vix10 >= 10.0
+    was_yellow = (prev or {}).get("state") == "yellow"
+    if off <= -3.0:
+        state = "red"
+    elif ratio >= 1.10 or (was_yellow and ratio >= 1.0):
+        state = "yellow"
+    else:
+        state = "green"
+    return {"state": state, "spike": bool(spike), "vix": round(vix, 2), "ma50": round(ma50, 2),
+            "ratio": round(ratio, 3), "spxOffHigh": round(off, 2), "spx10d": round(spx10, 2), "vix10d": round(vix10, 1)}
+
+
 def main():
     items = []
     for key, label, sym, digits in SYMBOLS:
@@ -106,7 +141,20 @@ def main():
     except Exception as e:
         print(f"[warn] indexEquiv: {e}")
 
-    payload = {"items": items, "_meta": {"updatedAt": israel_stamp(), "source": "yahoo",
+    prev_light = None
+    try:
+        with open(OUT, "r", encoding="utf-8") as f:
+            prev_light = json.load(f).get("vixLight")
+    except Exception:
+        pass
+    try:
+        light = vix_light(prev_light)
+        print(f"[ok] רמזור VIX: {light['state']} (VIX {light['vix']} / ממוצע50 {light['ma50']} · S&P {light['spxOffHigh']:+.2f}% מהשיא)")
+    except Exception as e:
+        light = prev_light
+        print(f"[warn] רמזור VIX נכשל — נשאר הקודם: {e}")
+
+    payload = {"items": items, "vixLight": light, "_meta": {"updatedAt": israel_stamp(), "source": "yahoo",
                "note": "es/nq הם חוזים (ES=F/NQ=F, דצמבר) — מחירם גבוה מהמדד בבסיס של עשרות נקודות. תנועת הלילה = chg; רמת המדד המגולמת = es.indexEquiv."}}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:

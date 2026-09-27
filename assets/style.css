@@ -1379,3 +1379,10 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .fc-bar .fc-pt.now { width: 14px; height: 14px; top: 1px; background: var(--accent); box-shadow: 0 0 0 2px rgba(255,255,255,.9); }
 .fc-bar .fc-t.now { top: -16px; color: var(--accent); }
 @media (max-width: 880px) { .fc-claim { grid-template-columns: 22px minmax(0, 1fr); } .fc-claim .val { grid-column: 2; text-align: right; } .fc-days { display: none; } }
+
+/* ── רמזור VIX (27.9.2026) ── */
+.vl-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; margin-inline-start: 3px; background: var(--text-3); }
+.vl-dot.green { background: var(--up); } .vl-dot.yellow { background: var(--warn); } .vl-dot.red { background: var(--down); }
+.np-vixl b.green { color: var(--up); } .np-vixl b.yellow { color: var(--warn); } .np-vixl b.red { color: var(--down); }
+.np-vixl small { color: var(--text-soft); font-size: .78rem; margin-inline-start: 4px; }
+.vl-spike { color: var(--down); font-weight: 900; margin-inline-start: 2px; }

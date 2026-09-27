@@ -83,7 +83,7 @@
     // שתי שורות רזות: עליונה = המדדים (SPY→DXY מימין), תחתונה = חוזים + דולר/שקל
     function tick(it) {
       var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
-      return '<span class="np-tick"><b>' + esc(it.label) + "</b> " +
+      return '<span class="np-tick"><b>' + esc(it.label) + "</b> " + (it.key === "vix" ? vlDot(data && data.vixLight) : "") +
         '<span class="v num">' + fmtQuote(it.price) + "</span>" +
         (c == null ? "" : ' <span class="c num ' + cls + '" dir="ltr">' + arr + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>") +
         "</span>";
@@ -1850,6 +1850,23 @@
     return '<div class="np-sub" title="' + esc(tip) + '"><span>הכסף הגדול</span><span><b class="' + dc + '">' + esc(fl.deltaLabel) + "</b>" + opn + legBadge + src + "</span></div>";
   }
 
+  /* רמזור VIX (27.9.2026, איציק) — מצב, לא תחזית. המספרים ההיסטוריים בריחוף בלבד. */
+  var VL_HE = { green: "ירוק", yellow: "צהוב", red: "אדום" };
+  var VL_TIP = {
+    green: "ירוק: VIX מתחת לממוצע שלו ל-50 יום — שוק רגוע. בבדיקה על 2005–2026, כשה-VIX נמוך תיקון של 5% תוך 20 יום נדיר יותר מהרגיל.",
+    yellow: "צהוב: VIX לפחות 10% מעל הממוצע ל-50 יום — פחד מזדחל. בבדיקה על 2005–2026: ב-18% מהמקרים הדומים הגיע תיקון של 5% תוך 20 ימי מסחר, מול 11% בימים רגילים. 4 מתוך 5 אזעקות הן שווא. נכבה כשה-VIX חוזר מתחת לממוצע.",
+    red: "אדום: S&P 500 לפחות 3% מתחת לשיא 52 השבועות — הירידה בפועל התחילה."
+  };
+  var VL_SPIKE = " ‼ דיברגנס: המדד עלה 1%+ ב-10 ימים בזמן שה-VIX עלה 10%+ — הסימן הנדיר והחד ביותר בבדיקה (37% מהמקרים → תיקון של 5% תוך 20 יום, פעם בשנה בערך).";
+  function vlDot(l, big) { return l ? '<span class="vl-dot ' + esc(l.state) + (big ? " big" : "") + '" title="' + esc(VL_TIP[l.state] || "") + (l.spike ? esc(VL_SPIKE) : "") + '"></span>' : ""; }
+  function vixLightRow() {
+    var l = TICKD && TICKD.vixLight;
+    if (!l || !l.state) return "";
+    return '<div class="np-sub np-vixl" title="' + esc((VL_TIP[l.state] || "") + (l.spike ? VL_SPIKE : "")) + '"><span>VIX ' + vlDot(l) + (l.spike ? '<b class="vl-spike">!</b>' : "") + "</span>" +
+      '<span><b class="num ' + esc(l.state) + '">' + esc(VL_HE[l.state] || "") + "</b> <small>" + '<span class="num" dir="ltr">' + Number(l.vix).toFixed(1) + "</span> · ממוצע 50: " + '<span class="num" dir="ltr">' + Number(l.ma50).toFixed(1) + "</span>" +
+      (l.state === "red" ? ' · <span class="num" dir="ltr">' + Number(l.spxOffHigh).toFixed(1) + "%</span> מהשיא" : "") + "</small></span></div>";
+  }
+
   // ─ רייל המד ─ (פונקציה נפרדת: קודם רץ רק בענף-הנפילה, והרייל נעלם אם ניתוח
   // Claude נטען לפני indices — עכשיו מרונדר תמיד, מכל קריאת renderLead)
   function renderLeadRail(d) {
@@ -1872,6 +1889,7 @@
       sub("אופציות", "flow", s.flow) +
       // v6 (19.9.2026): המספר למעלה = הקריאה של היום; במד נכנס ממוצע יומיים (מאחורי הקלעים)
       ((d.flow && d.flow.meterScore != null && d.flow.meterScore !== s.flow) ? '<div class="np-sub-note">במד נכנס ממוצע יומיים: <b class="num">' + d.flow.meterScore + "</b></div>" : "") +
+      vixLightRow() +
       bigMoneyRow(d.flow) +
       ((d.flow && d.flow.spxWarning && d.flow.spxWarning.active) ? '<div class="np-sub np-spxw" title="' + esc(d.flow.spxWarning.text || "") + '"><span>⚠ מכירת ביטוח חריגה ב-SPX</span><b class="num">אחוזון ' + esc(String(d.flow.spxWarning.pct)) + "</b></div>" : "") +
       // 18.9.2026 (איציק): "46 / 101" ב-RTL נקרא הפוך — כל מספר צמוד לתווית שלו ובצבע שלו
