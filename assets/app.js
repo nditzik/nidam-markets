@@ -1453,8 +1453,12 @@
   function fcWeek() {
     if (!FCAST || !(FCAST.items || []).length || !HIST) return null;
     var t = ilNowParts(), mon = mondayOf(t.iso), fri = isoAdd(mon, 4);
-    var f = null;
-    (FCAST.items || []).forEach(function (x) { if (x.weekOf === mon) f = x; });
+    var f = null, fnext = null, monNext = isoAdd(mon, 7);
+    (FCAST.items || []).forEach(function (x) { if (x.weekOf === mon) f = x; if (x.weekOf === monNext) fnext = x; });
+    // 27.9.2026: מראשון 15:00, כשהצפי לשבוע הבא כבר נכתב והשבוע הנוכחי כבר צוין — עוברים לשבוע הבא
+    // (כמו הכותרת). עד אז (שבת–ראשון בבוקר) מוצגת התוצאה של השבוע שנגמר.
+    var isNext = false;
+    if ((!f || f.result) && fnext) { f = fnext; mon = monNext; fri = isoAdd(mon, 4); isNext = true; }
     if (!f || f.ref == null) return null;
     var closes = (HIST.days || []).filter(function (d) { return d.date >= mon && d.date <= fri && d.spx != null; });
     var lastDate = closes.length ? closes[closes.length - 1].date : "";
@@ -1485,8 +1489,9 @@
     var hits = (price.st === "hit" ? 1 : 0) + claims.filter(function (c) { return c.st === "hit"; }).length;
     var total = 1 + claims.length;
     var m = mon.split("-"), fr = fri.split("-");
-    return { f: f, r: r, mon: mon, fri: fri, label: (+m[2]) + "–" + (+fr[2]) + "." + (+fr[1]), closes: closes, n: closes.length,
-             price: price, below: below, claims: claims, hits: hits, total: total, weekend: t.dow === "Sat" || t.dow === "Sun" };
+    var label = (m[1] === fr[1]) ? (+m[2]) + "–" + (+fr[2]) + "." + (+fr[1]) : (+m[2]) + "." + (+m[1]) + "–" + (+fr[2]) + "." + (+fr[1]);
+    return { f: f, r: r, mon: mon, fri: fri, label: label, closes: closes, n: closes.length,
+             price: price, below: below, claims: claims, hits: hits, total: total, weekend: (t.dow === "Sat" || t.dow === "Sun") && !isNext };
   }
   function fcSym(st) { return st === "hit" ? "✓" : st === "miss" ? "✗" : "○"; }
   function fcPct(v, signed) { return v == null ? "—" : '<span class="num" dir="ltr">' + (signed && v > 0 ? "+" : "") + v.toFixed(1) + "%</span>"; }
