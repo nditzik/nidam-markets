@@ -1,62 +1,30 @@
 {
-  "today": "2026-09-28",
-  "todayCount": 2,
-  "todayBig": [],
+  "today": "2026-09-29",
+  "todayCount": 5,
+  "todayBig": [
+    {
+      "ticker": "CCL",
+      "name": "Carnival Corporation Ltd.",
+      "capB": 30.3
+    }
+  ],
   "reactions": {
     "days": [
       {
-        "date": "2026-09-24",
-        "label": "24.9",
+        "date": "2026-09-28",
+        "label": "28.9",
         "items": [
           {
-            "ticker": "COST",
-            "name": "Costco Wholesale Corporation",
+            "ticker": "MTN",
+            "name": "Vail Resorts, Inc.",
             "when": "after",
-            "status": "final",
-            "chg": 2.93,
-            "price": 922.77,
-            "reactDate": "2026-09-25",
-            "baseDate": "2026-09-24"
+            "status": "pending"
           },
           {
-            "ticker": "DRI",
-            "name": "Darden Restaurants, Inc.",
-            "when": "before",
-            "status": "final",
-            "chg": -3.02,
-            "price": 207.24,
-            "reactDate": "2026-09-24",
-            "baseDate": "2026-09-23"
-          },
-          {
-            "ticker": "SNX",
-            "name": "TD SYNNEX Corporation",
-            "when": "before",
-            "status": "final",
-            "chg": -9.87,
-            "price": 259.47,
-            "reactDate": "2026-09-24",
-            "baseDate": "2026-09-23"
-          },
-          {
-            "ticker": "BB",
-            "name": "BlackBerry Limited",
-            "when": "before",
-            "status": "final",
-            "chg": 4.18,
-            "price": 8.73,
-            "reactDate": "2026-09-24",
-            "baseDate": "2026-09-23"
-          },
-          {
-            "ticker": "NBTX",
-            "name": "Nanobiotix SA Sponsored ADR",
+            "ticker": "IDT",
+            "name": "IDT Corporation Class B",
             "when": "after",
-            "status": "final",
-            "chg": -0.45,
-            "price": 33.31,
-            "reactDate": "2026-09-25",
-            "baseDate": "2026-09-24"
+            "status": "pending"
           }
         ]
       }
@@ -64,33 +32,38 @@
   },
   "reporting": [
     {
-      "ticker": "MTN",
-      "name": "Vail Resorts, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/MTN.png"
+      "ticker": "CCL",
+      "name": "Carnival Corporation Ltd.",
+      "when": "before",
+      "logo": "data/earnings/logos/CCL.png"
     },
     {
-      "ticker": "IDT",
-      "name": "IDT Corporation Class B",
+      "ticker": "KMX",
+      "name": "CarMax, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/KMX.png"
+    },
+    {
+      "ticker": "AIR",
+      "name": "AAR CORP.",
       "when": "after",
-      "logo": "data/earnings/logos/IDT.png"
+      "logo": "data/earnings/logos/AIR.png"
+    },
+    {
+      "ticker": "UEC",
+      "name": "Uranium Energy Corp.",
+      "when": "before",
+      "logo": "data/earnings/logos/UEC.png"
+    },
+    {
+      "ticker": "CNXC",
+      "name": "Concentrix Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/CNXC.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-09-29",
-      "label": "29/9",
-      "dow": "ג׳",
-      "count": 5,
-      "tickers": [
-        "CCL",
-        "KMX",
-        "AIR",
-        "UEC",
-        "CNXC"
-      ]
-    },
     {
       "date": "2026-09-30",
       "label": "30/9",
@@ -237,8 +210,6 @@
     }
   ],
   "window": {
-    "MTN": "2026-09-28",
-    "IDT": "2026-09-28",
     "CCL": "2026-09-29",
     "KMX": "2026-09-29",
     "AIR": "2026-09-29",
@@ -255,10 +226,18 @@
     "NKE": "2026-10-01",
     "MKC": "2026-10-01",
     "AYI": "2026-10-01",
-    "VFS": "2026-10-01"
+    "VFS": "2026-10-01",
+    "STZ": "2026-10-06",
+    "RPM": "2026-10-06",
+    "LW": "2026-10-06",
+    "AEHR": "2026-10-06",
+    "NEOG": "2026-10-06",
+    "CHRN": "2026-10-06",
+    "PENG": "2026-10-06",
+    "WS": "2026-10-06"
   },
   "_meta": {
-    "updatedAt": "28/09/2026 23:46",
+    "updatedAt": "29/09/2026 00:01",
     "source": "tradingview"
   }
 }
