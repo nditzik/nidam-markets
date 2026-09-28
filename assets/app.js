@@ -23,31 +23,64 @@
       : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.2a8.3 8.3 0 0 1-10.7-10.7 1 1 0 0 0-1.3-1.2 9.7 9.7 0 1 0 13.2 13.2 1 1 0 0 0-1.2-1.3z"/></svg>';
   }
 
-  /* ---------- tabs ---------- */
+  /* ---------- tabs ----------
+     28.9.2026 (איציק): 12 → 9 טאבים. שלושה טאבים "מאוחדים" מכילים שני פאנלים קיימים כל אחד,
+     עם לחצני-משנה (#subtabs) מעל הפאנל. הפאנלים, פונקציות הרינדור, ה-hash וה-GoatCounter
+     נשארו ברמת הפאנל (candidates/morning/reports…) — קישורים ישנים והסטטיסטיקה ממשיכים לעבוד.
+     לחיצה על טאב מאוחד פותחת את החלק האחרון שנבחר בו (או ברירת המחדל def); קישור #sub פותח את sub. */
+  var GROUPS = {
+    trades:   { subs: [["candidates", "מועמדים"], ["trades", "הצעות לטרייד"]], def: "trades" },
+    briefing: { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" },
+    weekcal:  { subs: [["weekcal", "לוח הדיווחים"], ["reports", "ניתוח דוחות"]], def: "reports" }
+  };
+  var SUB2TOP = {}, LAST_SUB = {};
+  Object.keys(GROUPS).forEach(function (g) { GROUPS[g].subs.forEach(function (s) { SUB2TOP[s[0]] = g; }); });
+  function topOf(name) { return SUB2TOP[name] || name; }
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
   tabs.forEach(function (btn) {
-    btn.addEventListener("click", function () { activate(btn.dataset.tab); });
+    btn.addEventListener("click", function () { activate(btn.dataset.tab, true); });
   });
-  function activate(name) {
-    tabs.forEach(function (b) { b.classList.toggle("is-active", b.dataset.tab === name); });
-    document.querySelectorAll(".panel").forEach(function (p) {
-      p.classList.toggle("is-active", p.id === "panel-" + name);
+  function renderSubtabs(top, sub) {
+    var bar = document.getElementById("subtabs");
+    if (!bar) return;
+    var g = GROUPS[top];
+    if (!g) { bar.hidden = true; bar.innerHTML = ""; return; }
+    bar.innerHTML = g.subs.map(function (s) {
+      return '<button class="subtab' + (s[0] === sub ? " is-active" : "") + '" role="tab" data-sub="' + s[0] + '"' +
+        (s[0] === sub ? ' aria-selected="true"' : "") + ">" + esc(s[1]) + "</button>";
+    }).join("");
+    bar.hidden = false;
+    bar.querySelectorAll(".subtab").forEach(function (b) {
+      b.addEventListener("click", function () { activate(b.dataset.sub); });
     });
-    markSeen(name);
+  }
+  // name = טאב עליון או פאנל-משנה. fromTab = לחיצה על הטאב העליון (פותח את החלק האחרון/ברירת המחדל);
+  // בלי fromTab (קישור #, חיפוש, __goTab) — שם של פאנל-משנה פותח בדיוק אותו.
+  function activate(name, fromTab) {
+    var top = topOf(name), g = GROUPS[top];
+    var sub = g ? ((fromTab || !SUB2TOP[name]) ? (LAST_SUB[top] || g.def) : name) : null;
+    var panelName = sub || top;
+    if (sub) LAST_SUB[top] = sub;
+    tabs.forEach(function (b) { b.classList.toggle("is-active", b.dataset.tab === top); });
+    document.querySelectorAll(".panel").forEach(function (p) {
+      p.classList.toggle("is-active", p.id === "panel-" + panelName);
+    });
+    renderSubtabs(top, sub);
+    markSeen(panelName);
     updateTodayBarVis();
     // דוח שנטען כשהפאנל היה מוסתר לא הותאם (המדידה נעצרת על clientWidth=0 וה-retries
     // מתפוגגים) — מריצים fit מחדש ברגע שהטאב נפתח והמידות אמיתיות
     requestAnimationFrame(function () {
-      document.querySelectorAll("#panel-" + name + " iframe.trd-frame").forEach(function (f) {
+      document.querySelectorAll("#panel-" + panelName + " iframe.trd-frame").forEach(function (f) {
         if (window.__fitFrame) window.__fitFrame(f);
       });
     });
     var tw = document.getElementById("ticker-wrap");
-    if (tw) tw.style.display = name === "home" ? "block" : "none";
-    if (location.hash.slice(1) !== name) {
-      history.replaceState(null, "", "#" + name);
+    if (tw) tw.style.display = panelName === "home" ? "block" : "none";
+    if (location.hash.slice(1) !== panelName) {
+      history.replaceState(null, "", "#" + panelName);
       // GoatCounter: ספירת מעבר-טאב כצפיית-עמוד (הכניסה הראשונית נספרת אוטומטית)
-      if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "/" + name });
+      if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "/" + panelName });
     }
   }
 
@@ -423,8 +456,8 @@
     var seen = localStorage.getItem(key);
     if (seen === null) { localStorage.setItem(key, sig); return; } // first visit = baseline, no dot
     if (seen !== sig) {
-      var btn = document.querySelector('.tab[data-tab="' + tab + '"]');
-      var active = btn && btn.classList.contains("is-active");
+      var btn = document.querySelector('.tab[data-tab="' + topOf(tab) + '"]');
+      var active = btn && btn.classList.contains("is-active") && (!SUB2TOP[tab] || LAST_SUB[topOf(tab)] === tab);
       if (btn && !btn.querySelector(".tab-badge") && !active) {
         var dot = document.createElement("span");
         dot.className = "tab-badge";
@@ -434,7 +467,7 @@
   }
   function markSeen(tab) {
     if (SIGS[tab]) localStorage.setItem("cseen-" + tab, SIGS[tab]);
-    var btn = document.querySelector('.tab[data-tab="' + tab + '"]');
+    var btn = document.querySelector('.tab[data-tab="' + topOf(tab) + '"]');
     var b = btn && btn.querySelector(".tab-badge");
     if (b) b.remove();
   }

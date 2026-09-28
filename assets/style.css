@@ -1088,15 +1088,6 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .wm-fl { font-size: 1.05rem; flex: none;
   font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
 .wm-foot { margin: 18px 0 0; font-size: .74rem; color: var(--text-3); }
-/* "שווקים בינלאומיים" הוא הטאב הארוך ביותר, והוספתו דחפה את "דיווחים"/"דוחות"
-   לשורה שנייה. במקום לקצר את השם — מפריד ברוחב מלא מאלץ אותו לשורה משלו,
-   ו-margin אוטומטי ממרכז אותו שם. שאר הטאבים חוזרים לשורה אחת כמקודם. */
-.tabs-break { flex: 0 0 100%; height: 0; margin: 0; }
-/* המפריד יוצר "שורה" משלו ולכן סופג את מרווח-השורות פעמיים (16+16). המרווח
-   האופקי בין הטאבים נשאר 16 — רק מרווח-השורות מוקטן, כדי שהטאב ייצמד לשורה
-   שמעליו במקום לרחף 38px מתחתיה. */
-.tabs { row-gap: 2px; }
-.tabs .tab[data-tab="world"] { margin-inline: auto; margin-block-start: 2px; }
 
 /* ── ציר הזמן של The Edge Meter (טאב מדדים, 11.9.2026) ─────────────────────
    צבעי הסדרות עברו את בודק-הפלטה (הפרדה לעיוורי-צבעים, ניגודיות) בשני המצבים;
@@ -1314,8 +1305,6 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
   .np-tiles.five .np-tile:nth-child(n+5) { display: none; }
 }
 
-/* טאב Insider (20.9.2026): 11 טאבים בשורה — רווח מעט צפוף יותר כדי ש"דוחות" לא ירד לבד לשורה שנייה */
-@media (min-width: 881px) { .tabs { gap: 11px; } }
 #ins-view a.chip { text-decoration: none; color: inherit; }
 
 /* ── הצפי השבועי בכותרת (20.9.2026) ── */
@@ -1386,3 +1375,28 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .np-vixl b.green { color: var(--up); } .np-vixl b.yellow { color: var(--warn); } .np-vixl b.red { color: var(--down); }
 .np-vixl small { color: var(--text-soft); font-size: .78rem; margin-inline-start: 4px; }
 .vl-spike { color: var(--down); font-weight: 900; margin-inline-start: 2px; }
+
+/* ── טאבים כלחצנים, שורה אחת (28.9.2026, איציק) ──────────────────────────────
+   9 טאבים (3 מאוחדים). דורס את סקין העיתון שהפך אותם לטקסט-עם-קו-תחתון.
+   במחשב כולם בשורה אחת; בטלפון השורה נגללת אופקית (בלי פס גלילה) במקום להישבר. */
+.tabs { flex-wrap: nowrap; gap: 6px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 3px 0; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs .tab {
+  background: transparent; border: 1px solid var(--border); border-radius: 999px; box-shadow: none;
+  padding: 6px 13px; font-size: .86rem; font-weight: 600; color: var(--text-soft); line-height: 1.2;
+}
+.tabs .tab:not(.is-active):hover { color: var(--text); border-color: var(--text-soft); }
+.tabs .tab.is-active { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 700; }
+.tab-badge { top: -2px; inset-inline-start: -2px; box-shadow: 0 0 0 2px var(--bg); }
+.tabs .tab.is-active .tab-badge { box-shadow: 0 0 0 2px var(--bg); }
+@media (max-width: 880px) { .tabs { justify-content: flex-start; gap: 6px; } }
+
+/* לחצני-משנה בתוך טאב מאוחד — מעל הפאנל, מיושרים לימין (תחילת השורה ב-RTL) */
+.subtabs { display: flex; gap: 6px; margin: -8px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--paper-hair); }
+.subtabs[hidden] { display: none; }
+.subtab {
+  border: 1px solid var(--border); background: transparent; color: var(--text-soft); border-radius: 8px;
+  padding: 5px 12px; font-family: inherit; font-size: .84rem; font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.subtab:hover { color: var(--text); }
+.subtab.is-active { background: var(--surface-3); color: var(--text); border-color: var(--text-soft); font-weight: 700; }
