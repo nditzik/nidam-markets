@@ -3151,6 +3151,145 @@
     });
   }
 
+  /* ── גלגל הרוטציה (28.9.2026, איציק) ─────────────────────────────────────────
+     11 סקטורים על שני צירים מול S&P 500: ימינה = חוזק ב-20 יום (rs20), למעלה = חוזק ב-5 ימים (rs5).
+     הנתון היומי מהדשבורד (indices.rotation.sectorRs) נשמר ב-history.json.days[].rs (archive_scores),
+     וממנו השביל: "השבוע" = 5 ימי מסחר יום-יום (ברירת מחדל), "החודש" = קפיצות של שבוע.
+     צבע אחד לכל הנקודות — הרבע (רקע ירקרק/אדמדם) הוא המידע. ריחוף/נגיעה: השביל של הסקטור מודגש,
+     חלונית עם המספרים, מול אתמול, מול לפני שבוע, ומשפט מדוח הסקטורים השבועי כשיש. */
+  var RW = { mode: "week", all: false };
+  var RW_LAY = { X0: -11, X1: 7, Y0: -9.5, Y1: 4.5 };
+  function rwDays() {
+    var days = ((HIST && HIST.days) || []).filter(function (d) { return d.rs && Object.keys(d.rs).length; });
+    // היום של indices עשוי להיות טרי יותר מ-history (עד ריצת הארכיון הבאה) — משלימים
+    if (INDD && INDD.rotation && INDD.rotation.sectorRs && INDD.date && (!days.length || days[days.length - 1].date < INDD.date)) {
+      var rs = {}; Object.keys(INDD.rotation.sectorRs).forEach(function (k) { rs[k] = [INDD.rotation.sectorRs[k].rs5, INDD.rotation.sectorRs[k].rs20]; });
+      days.push({ date: INDD.date, rs: rs });
+    }
+    return days;
+  }
+  function rwQuad(rs5, rs20) { return rs20 >= 0 ? (rs5 >= 0 ? ["מוביל", "up"] : ["נחלש", "down"]) : (rs5 >= 0 ? ["מתאושש", "up"] : ["מפגר", "down"]); }
+  function rwFmt(v) { return v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(1) + "%"; }
+  function rwWeeklyNote(name) {
+    var sec = WEEKLY && WEEKLY.sectors; if (!sec) return "";
+    var o = (sec.out || []).filter(function (x) { return x.name === name; })[0];
+    if (o) return "בדוח השבועי: הרוחב ירד מ-" + o.from + "% ל-" + o.to + "%";
+    var h = (sec.held || []).filter(function (x) { return x.name === name; })[0];
+    if (h) return "בדוח השבועי: החזיק, " + h.from + "% ← " + h.to + "%";
+    return "";
+  }
+  function rotationWheelHtml() {
+    if (!rwDays().length) return "";
+    return '<div class="section-title" style="margin-top:0">🧭 גלגל הרוטציה: לאן הכסף זז</div>' +
+      '<div class="card rw-card">' +
+        '<p class="rw-dek">כל סקטור נמדד מול S&P 500: ימינה = חזק יותר מהמדד ב-20 הימים האחרונים, למעלה = חזק יותר ב-5 הימים האחרונים. ' +
+        'השביל מראה מאיפה הוא הגיע. סקטור שנע למטה-שמאלה מאבד כסף; למעלה-ימינה מקבל.</p>' +
+        '<div class="rw-row"><span class="rw-cap">שביל:</span>' +
+          '<button class="chip rw-chip' + (RW.mode === "week" ? " on" : "") + '" data-rw="week">השבוע · יום-יום</button>' +
+          '<button class="chip rw-chip' + (RW.mode === "month" ? " on" : "") + '" data-rw="month">החודש · שבוע-שבוע</button>' +
+          '<button class="chip rw-chip' + (RW.all ? " on" : "") + '" data-rw="all">כל השבילים</button>' +
+          '<span class="rw-legend"><span><i class="d"></i>היום</span><span><i class="t"></i>הדרך לכאן</span></span></div>' +
+        '<div class="rw-wrap"><svg id="rw-svg" role="img" aria-label="גלגל הרוטציה של 11 הסקטורים"></svg><div class="rw-tip" id="rw-tip"></div></div>' +
+        '<p class="rw-foot" id="rw-foot"></p>' +
+      "</div>";
+  }
+  function renderRotationWheel() {
+    var svg = document.getElementById("rw-svg"), tip = document.getElementById("rw-tip");
+    if (!svg) return;
+    var days = rwDays(); if (!days.length) return;
+    var mobile = window.innerWidth < 600;
+    var W = mobile ? 520 : 960, H = mobile ? 560 : 540, P = mobile ? { l: 44, r: 14, t: 30, b: 40 } : { l: 56, r: 24, t: 34, b: 44 };
+    var L = RW_LAY;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.classList.toggle("all", RW.all);
+    function sx(v) { return P.l + (v - L.X0) / (L.X1 - L.X0) * (W - P.l - P.r); }
+    function sy(v) { return H - P.b - (v - L.Y0) / (L.Y1 - L.Y0) * (H - P.t - P.b); }
+    function cl(v, a, b) { return Math.max(a, Math.min(b, v)); }
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var g = mtEl("g", {}); svg.appendChild(g);
+    g.appendChild(mtEl("rect", { x: sx(0), y: P.t, width: sx(L.X1) - sx(0), height: sy(0) - P.t, class: "rw-q up" }));
+    g.appendChild(mtEl("rect", { x: sx(L.X0), y: sy(0), width: sx(0) - sx(L.X0), height: sy(L.Y0) - sy(0), class: "rw-q down" }));
+    var xs = mobile ? 4 : 2, t;
+    for (var x = -8; x <= 6; x += xs) { g.appendChild(mtEl("line", { x1: sx(x), x2: sx(x), y1: P.t, y2: H - P.b, class: "rw-ax" })); t = mtEl("text", { x: sx(x), y: H - P.b + 16, class: "rw-axl", "text-anchor": "middle" }); t.textContent = (x > 0 ? "+" : "") + x + "%"; g.appendChild(t); }
+    for (var y = -8; y <= 4; y += 2) { g.appendChild(mtEl("line", { y1: sy(y), y2: sy(y), x1: P.l, x2: W - P.r, class: "rw-ax" })); t = mtEl("text", { x: P.l - 8, y: sy(y) + 4, class: "rw-axl", "text-anchor": "end" }); t.textContent = (y > 0 ? "+" : "") + y + "%"; g.appendChild(t); }
+    g.appendChild(mtEl("line", { x1: sx(0), x2: sx(0), y1: P.t, y2: H - P.b, class: "rw-zero" }));
+    g.appendChild(mtEl("line", { y1: sy(0), y2: sy(0), x1: P.l, x2: W - P.r, class: "rw-zero" }));
+    t = mtEl("text", { x: W - P.r, y: H - 6, class: "rw-axt", "text-anchor": "start", style: "direction:rtl" }); t.textContent = "← חוזק מול S&P 500 ב-20 יום"; g.appendChild(t);
+    t = mtEl("text", { x: P.l - 40, y: P.t - 12, class: "rw-axt", "text-anchor": "end", style: "direction:rtl" }); t.textContent = "↑ חוזק מול S&P 500 ב-5 ימים"; g.appendChild(t);
+    [[sx(L.X1) - 8, P.t + 16, "end", "מובילים"], [sx(L.X1) - 8, sy(L.Y0) - 10, "end", "נחלשים"], [sx(L.X0) + 8, sy(L.Y0) - 10, "start", "מפגרים"], [sx(L.X0) + 8, P.t + 16, "start", "מתאוששים"]]
+      .forEach(function (q) { t = mtEl("text", { x: q[0], y: q[1], class: "rw-qt", "text-anchor": q[2] }); t.textContent = q[3]; g.appendChild(t); });
+    var n = days.length, last = days[n - 1], pts = [];
+    var step = RW.mode === "week" ? 1 : 5, cnt = RW.mode === "week" ? 4 : 4;
+    Object.keys(last.rs).forEach(function (k) {
+      var cur = last.rs[k]; if (cur[0] == null || cur[1] == null) return;
+      var tr = [];
+      for (var i = cnt; i >= 0; i--) { var j = n - 1 - i * step; if (j >= 0 && days[j].rs[k] && days[j].rs[k][0] != null) tr.push(days[j]); }
+      var tg = mtEl("g", { class: "rw-tg", "data-k": k });
+      if (tr.length > 1) {
+        tg.appendChild(mtEl("path", { class: "rw-trail", "data-k": k, d: tr.map(function (d, i) { return (i ? "L" : "M") + sx(cl(d.rs[k][1], L.X0, L.X1)) + "," + sy(cl(d.rs[k][0], L.Y0, L.Y1)); }).join(" ") }));
+        tr.slice(0, -1).forEach(function (d) { tg.appendChild(mtEl("circle", { class: "rw-tdot", "data-k": k, cx: sx(cl(d.rs[k][1], L.X0, L.X1)), cy: sy(cl(d.rs[k][0], L.Y0, L.Y1)), r: 3.5 })); });
+      }
+      g.appendChild(tg);
+      var prev1 = n >= 2 && days[n - 2].rs[k], prev5 = n >= 6 && days[n - 6].rs[k];
+      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1],
+                 d1: prev1 ? [cur[0] - prev1[0], cur[1] - prev1[1]] : null, d5: prev5 ? [cur[0] - prev5[0], cur[1] - prev5[1]] : null });
+    });
+    // תוויות: מעל הנקודה; בהתנגשות — לצדדים/מתחת
+    var placed = []; pts.sort(function (a, b) { return a.x - b.x; });
+    pts.forEach(function (p) {
+      var name = SECTOR_HE[p.k] || p.k, w = name.length * (mobile ? 6.5 : 7) + 6;
+      var cands = [[p.x, p.y - 12, "middle"], [p.x + 10, p.y + 4, "start"], [p.x - 10, p.y + 4, "end"], [p.x, p.y + 18, "middle"], [p.x + 10, p.y - 9, "start"], [p.x - 10, p.y - 9, "end"]];
+      for (var c = 0; c < cands.length; c++) {
+        var cx = cands[c][0], cy = cands[c][1], an = cands[c][2], x0 = an === "middle" ? cx - w / 2 : an === "start" ? cx : cx - w, x1 = x0 + w, ok = true;
+        for (var q = 0; q < placed.length; q++) { var r = placed[q]; if (x0 < r.x1 + 4 && x1 > r.x0 - 4 && Math.abs(cy - r.y) < 13) { ok = false; break; } }
+        if (ok) { p.lx = cx; p.ly = cy; p.la = an; placed.push({ x0: x0, x1: x1, y: cy }); break; }
+      }
+      if (p.lx == null) { p.lx = p.x; p.ly = p.y - 12; p.la = "middle"; }
+    });
+    pts.forEach(function (p) { g.appendChild(mtEl("circle", { class: "rw-dot", cx: p.x, cy: p.y, r: mobile ? 5.5 : 6 })); t = mtEl("text", { class: "rw-lbl", x: p.lx, y: p.ly, "text-anchor": p.la }); t.textContent = SECTOR_HE[p.k] || p.k; g.appendChild(t); });
+    function show(p) {
+      var q = rwQuad(p.rs5, p.rs20), name = SECTOR_HE[p.k] || p.k;
+      tip.innerHTML = "";
+      var b = document.createElement("b"); b.textContent = name; tip.appendChild(b);
+      var qd = document.createElement("div"); qd.className = "rw-qd " + q[1]; qd.textContent = q[0]; tip.appendChild(qd);
+      [["5 ימים מול המדד", p.rs5, p.d1 && p.d1[0], p.d5 && p.d5[0]], ["20 יום מול המדד", p.rs20, p.d1 && p.d1[1], p.d5 && p.d5[1]]].forEach(function (r) {
+        var d = document.createElement("div"); d.textContent = r[0] + ": ";
+        var nn = document.createElement("span"); nn.className = "num"; nn.textContent = rwFmt(r[1]); d.appendChild(nn); tip.appendChild(d);
+        var sub = document.createElement("div"); sub.className = "rw-sub";
+        sub.textContent = "מול אתמול " + (r[2] == null ? "—" : rwFmt(r[2])) + " · מול לפני שבוע " + (r[3] == null ? "—" : rwFmt(r[3])); tip.appendChild(sub);
+      });
+      var wn = rwWeeklyNote(name); if (wn) { var w = document.createElement("div"); w.className = "rw-sub rw-wn"; w.textContent = wn; tip.appendChild(w); }
+      tip.style.display = "block";
+      var r = svg.getBoundingClientRect(), cx = p.x / W * r.width, cy = p.y / H * r.height;
+      tip.style.left = Math.min(r.width - 200, Math.max(0, cx - 95)) + "px"; tip.style.top = (cy + 14) + "px";
+      svg.querySelectorAll("[data-k]").forEach(function (x) { x.classList.toggle("hl", x.dataset.k === p.k); });
+    }
+    function hide() { tip.style.display = "none"; svg.querySelectorAll(".hl").forEach(function (x) { x.classList.remove("hl"); }); }
+    pts.forEach(function (p) {
+      var h = mtEl("circle", { class: "rw-hit", cx: p.x, cy: p.y, r: 18, tabindex: 0 });
+      h.addEventListener("pointerenter", function () { show(p); }); h.addEventListener("pointerleave", hide);
+      h.addEventListener("focus", function () { show(p); }); h.addEventListener("blur", hide);
+      g.appendChild(h);
+    });
+    svg.addEventListener("pointerleave", hide);
+    var f = document.getElementById("rw-foot"), ld = last.date.split("-");
+    if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד, מהדשבורד, עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
+      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע.";
+    document.querySelectorAll(".rw-chip").forEach(function (c) {
+      c.onclick = function () {
+        if (c.dataset.rw === "all") { RW.all = !RW.all; c.classList.toggle("on", RW.all); svg.classList.toggle("all", RW.all); return; }
+        RW.mode = c.dataset.rw; document.querySelectorAll('.rw-chip[data-rw="week"],.rw-chip[data-rw="month"]').forEach(function (x) { x.classList.toggle("on", x.dataset.rw === RW.mode); });
+        renderRotationWheel();
+      };
+    });
+  }
+  function refreshRotationWheel() {
+    var slot = document.getElementById("rw-slot");
+    if (!slot) return;
+    if (!document.getElementById("rw-svg")) slot.innerHTML = rotationWheelHtml();
+    renderRotationWheel();
+  }
+
   function renderSectors(el, d) {
     SECT = d;
     var reps = (d && d.reports) || [];
@@ -3164,8 +3303,10 @@
         }).join("") + "</div>"
       : "";
     el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">🔄 דוח סקטורים שבועי</div>' +
+      '<div id="rw-slot">' + rotationWheelHtml() + "</div>" +
+      '<div class="section-title">🔄 דוח סקטורים שבועי</div>' +
       nav + '<div id="sec-view"></div>';
+    renderRotationWheel();
     showSector(0);
     el.querySelectorAll(".sec-tab").forEach(function (b) {
       b.addEventListener("click", function () {
@@ -3499,12 +3640,13 @@
           HIST = d; computeDiffs();
           renderLead();   // חצי השינוי-היומי ברייל + הספארקליין
           if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD);
+          refreshRotationWheel();
         })
         .catch(function () {});
       // סיכום השבוע (11.9.2026): נבנה ע"י build_weekly.py כשסגירת שישי נקלטת,
       // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
       fetchJSON("data/weekly.json")
-        .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); renderLead(); })
+        .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); renderLead(); refreshRotationWheel(); })
         .catch(function () {});
       fetchJSON("data/earnings.json")
         .then(function (d) {
@@ -3525,6 +3667,7 @@
         renderLead();
         renderIndicesDetail(document.getElementById("panel-indices"), d);
         renderFocus();   // התאריך בכותרת "מניות במוקד" תלוי ב-INDD
+        refreshRotationWheel();
         noteSig("indices", d);
       }).catch(function (err) {
         // כשל מדדים מפיל רק את הידיעה המובילה — שאר הבית ממשיך לעבוד

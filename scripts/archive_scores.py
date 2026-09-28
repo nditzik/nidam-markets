@@ -61,6 +61,12 @@ def entry_from(d):
     # במקום שבו היא מתחלפת. שורות עבר לא מחושבות מחדש (כלל הריפו של הדשבורד).
     if d.get("formulaVersion"):
         entry["formulaVersion"] = d["formulaVersion"]
+    # 28.9.2026: חוזק יחסי של 11 הסקטורים מול S&P (rs5/rs20 מהדשבורד) — מזין את "גלגל הרוטציה"
+    # בטאב סקטורים (השביל היומי/השבועי). קומפקטי: {IT: [rs5, rs20], …}. 20 הימים הראשונים מולאו
+    # לאחור מגרסאות indices.json ב-git.
+    rs = (d.get("rotation") or {}).get("sectorRs")
+    if isinstance(rs, dict) and rs:
+        entry["rs"] = {k: [v.get("rs5"), v.get("rs20")] for k, v in rs.items() if isinstance(v, dict)}
     # 11.9.2026: גם הכותרת של אותו יום — כדי שגרף ציר-הזמן במדדים יראה בריחוף
     # "מה אמרנו באותו יום". נלקחת מ-claude_analysis.json רק כשה-date שלו זהה
     # (הרוטינה כותבת אותו אחרי הסגירה; עד אז השדה פשוט חסר ומתמלא בריצה הבאה).
@@ -129,6 +135,8 @@ def main():
     old = by_date.get(e["date"]) or {}
     if not e.get("headline") and old.get("headline"):
         e["headline"] = old["headline"]
+    if not e.get("rs") and old.get("rs"):
+        e["rs"] = old["rs"]
     by_date[e["date"]] = e
     n = save_history(by_date)
     print(f"[done] {e['date']} נרשם · {n} ימים בארכיון")
