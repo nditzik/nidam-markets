@@ -16,12 +16,18 @@ notify_channel.py — ארבע הודעות תוכן לערוץ הטלגרם (ח
   4. analysis — "הניתוח היומי": כשה-date של claude_analysis.json מתחלף —
                 כותרת, משפט-מהות ושורה תחתונה, עם קישור לטאב מדדים.
 
+  5. bigmoney — "הכסף הגדול היום במניות" (13.9.2026): כשתאריך big_trades מתחלף.
+  6. vix      — "רמזור VIX" (28.9.2026, איציק): רק במעבר צבע (ירוק↔צהוב↔אדום) או כשנדלק
+                דיברגנס. לא כל יום — ~8 הודעות בשנה. המצב הקודם נשמר ב-state["vix"];
+                בפעם הראשונה (אין מפתח) נקבע בסיס בלי לשלוח. הנתונים: market.json.vixLight
+                (fetch_market.vix_light, רץ באותו מחזור לפני הצעד הזה).
+
 בהרצה הראשונה (בלי state) — macro ו-analysis רק קובעים בסיס בלי לשלוח, כדי לא
 להציף את הערוץ בנתונים ישנים. state: data/_channel_state.json.
 
 סודות: TELEGRAM_BOT_TOKEN + TELEGRAM_CHANNEL.
-בדיקה: python notify_channel.py --dry-run             → מדפיס את כל הארבע, בלי לשלוח
-       python notify_channel.py --test preopen|close|macro|analysis → שולח אחת לערוץ, עוקף שערים
+בדיקה: python notify_channel.py --dry-run             → מדפיס את כולן, בלי לשלוח
+       python notify_channel.py --test preopen|close|macro|analysis|bigmoney|vix → שולח אחת לערוץ, עוקף שערים
 """
 import html
 import json
@@ -259,6 +265,41 @@ def compose_analysis(ca):
     return "\n".join(lines)
 
 
+# ── 6. רמזור VIX — במעבר צבע בלבד ─────────────────────────────────────────
+VIX_HE = {"green": "ירוק", "yellow": "צהוב", "red": "אדום"}
+VIX_ICON = {"green": "🟢", "yellow": "🟡", "red": "🔴"}
+VIX_MEANING = {
+    "green": "VIX מתחת לממוצע שלו ל-50 יום (או סביבו) — שוק רגוע. בבדיקה על 2005–2026, כשה-VIX נמוך תיקון של 5% נדיר יותר מהרגיל.",
+    "yellow": "VIX לפחות 10% מעל הממוצע ל-50 יום בזמן שהמדד ליד השיא — פחד מזדחל. בבדיקה על 2005–2026: ב-18% מהמקרים הדומים "
+              "הגיע תיקון של 5% תוך 20 ימי מסחר, מול 11% בימים רגילים. 4 מתוך 5 אזעקות הן שווא — תשומת לב מוגברת, לא תחזית.",
+    "red": "S&P 500 לפחות 3% מתחת לשיא 52 השבועות — הירידה כבר בפועל.",
+}
+
+
+def vix_key(l):
+    """מזהה המצב לצורך השוואה: צבע + דגל דיברגנס. הדלקת דיברגנס = שינוי; כיבויו לא (בלי רעש)."""
+    return (l or {}).get("state"), bool((l or {}).get("spike"))
+
+
+def compose_vix(l, prev_state=None):
+    if not l or not l.get("state"):
+        return None
+    st = l["state"]
+    head = "%s <b>רמזור VIX: %s</b>" % (VIX_ICON.get(st, "⚪"), VIX_HE.get(st, st))
+    if prev_state and prev_state != st:
+        head += " <i>(היה %s)</i>" % VIX_HE.get(prev_state, prev_state)
+    lines = [head, ""]
+    lines.append("VIX <b>%.1f</b> · ממוצע 50 יום <b>%.1f</b> (%s)" % (l["vix"], l["ma50"], pct((l["ratio"] - 1) * 100, 0)))
+    if st == "red" or l.get("spxOffHigh", 0) <= -1.0:
+        lines.append("S&P 500 <b>%s</b> מהשיא" % pct(l.get("spxOffHigh")))
+    lines += ["", VIX_MEANING.get(st, "")]
+    if l.get("spike"):
+        lines += ["", "‼ <b>דיברגנס</b>: המדד עלה %s ב-10 ימים בזמן שה-VIX עלה %s — הסימן הנדיר והחד ביותר בבדיקה "
+                      "(37%% מהמקרים הדומים → תיקון של 5%% תוך 20 ימי מסחר, בערך פעם בשנה)." % (pct(l.get("spx10d")), pct(l.get("vix10d"), 0))]
+    lines += ["", "🔗 <a href=\"%s\">הרמזור ברייל המד, בבית</a>" % SITE]
+    return "\n".join(lines)
+
+
 # ── ריצה ───────────────────────────────────────────────────────────────────
 def main():
     dry = "--dry-run" in sys.argv
@@ -277,6 +318,7 @@ def main():
             "macro": compose_macro(fresh_macro(econ, now) or [e for e in econ.get("events", []) if e.get("actual")][-3:]),
             "analysis": compose_analysis(ca),
             "bigmoney": compose_bigmoney(load_big_trades()),
+            "vix": compose_vix((load(os.path.join(DATA, "market.json")) or {}).get("vixLight"), "green"),
         }
         for k, m in msgs.items():
             if test and k != test:
@@ -324,6 +366,23 @@ def main():
             if m:
                 send(token, chat, m); print("[sent] bigmoney", big["date"])
         state["bigmoney"] = big["date"]; changed = True
+
+    # 6. רמזור VIX — רק במעבר צבע או הדלקת דיברגנס; מפתח חסר = בסיס בלי לשלוח (גם אם ה-state לא ריק)
+    light = (load(os.path.join(DATA, "market.json")) or {}).get("vixLight")
+    if light and light.get("state"):
+        cur = vix_key(light)
+        prev = state.get("vix")
+        if prev is None:
+            state["vix"] = {"state": cur[0], "spike": cur[1]}; changed = True
+            print("[init] vix baseline", cur)
+        else:
+            prev_k = (prev.get("state"), bool(prev.get("spike")))
+            if prev_k[0] != cur[0] or (cur[1] and not prev_k[1]):
+                m = compose_vix(light, prev_k[0] if prev_k[0] != cur[0] else None)
+                if m:
+                    send(token, chat, m); print("[sent] vix", prev_k, "->", cur)
+            if prev_k != cur:
+                state["vix"] = {"state": cur[0], "spike": cur[1]}; changed = True
 
     # 3. מאקרו — כל אירוע פעם אחת; בריצה הראשונה רק בסיס
     sent_keys = set(state.get("macro") or [])

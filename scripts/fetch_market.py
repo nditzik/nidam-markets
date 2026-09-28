@@ -93,8 +93,28 @@ def vix_light(prev):
         state = "yellow"
     else:
         state = "green"
-    return {"state": state, "spike": bool(spike), "vix": round(vix, 2), "ma50": round(ma50, 2),
-            "ratio": round(ratio, 3), "spxOffHigh": round(off, 2), "spx10d": round(spx10, 2), "vix10d": round(vix10, 1)}
+    out = {"state": state, "spike": bool(spike), "vix": round(vix, 2), "ma50": round(ma50, 2),
+           "ratio": round(ratio, 3), "spxOffHigh": round(off, 2), "spx10d": round(spx10, 2), "vix10d": round(vix10, 1)}
+    out["note"] = vix_note(out)
+    return out
+
+
+def vix_note(l):
+    """28.9.2026 (איציק, חלק 3 של 'הרמזור לתוך הרוטינות'): משפט מוכן בעברית לניתוח היומי. הרוטינה קוראת את
+    market.json אבל את הפרומפט שלה אי-אפשר לערוך מכאן (מפתח) — לכן ההנחיה יושבת בנתונים, כמו es.note.
+    לפי *מצב* ולא לפי שינוי: כל עוד צהוב/אדום — מוזכר; ירוק — שקט."""
+    v, m = l["vix"], l["ma50"]
+    sp = (" בנוסף דיברגנס: המדד עלה %+.1f%% ב-10 ימים בזמן שה-VIX עלה %+.0f%% — הסימן הנדיר והחד ביותר בבדיקה "
+          "(37%% מהמקרים הדומים → תיקון של 5%% תוך 20 ימי מסחר)." % (l["spx10d"], l["vix10d"])) if l["spike"] else ""
+    if l["state"] == "yellow":
+        return ("לניתוח: רמזור ה-VIX צהוב — VIX %.1f, %.0f%% מעל הממוצע ל-50 יום (%.1f). ציין זאת במשפט אחד: "
+                "פחד מזדחל בזמן שהמדד ליד השיא; בבדיקה על 2005–2026 ב-18%% מהמקרים הדומים הגיע תיקון של 5%% תוך 20 ימי מסחר, "
+                "מול 11%% בימים רגילים — כלומר תשומת לב מוגברת, לא תחזית (4 מתוך 5 אזעקות הן שווא).%s"
+                % (v, (l["ratio"] - 1) * 100, m, sp))
+    if l["state"] == "red":
+        return ("לניתוח: רמזור ה-VIX אדום — S&P 500 %.1f%% מתחת לשיא 52 השבועות, VIX %.1f מול ממוצע 50 של %.1f. "
+                "ציין שהתיקון כבר בפועל; זה מצב, לא תחזית להמשך.%s" % (abs(l["spxOffHigh"]), v, m, sp))
+    return ("רמזור ה-VIX ירוק (VIX %.1f מתחת/סביב הממוצע ל-50 יום %.1f) — אין צורך להזכיר בניתוח.%s" % (v, m, sp))
 
 
 def main():

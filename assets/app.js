@@ -1480,7 +1480,10 @@
         claims.push({ key: c.key, text: c.text, prob: c.prob, st: st,
           val: days.length ? days.map(function (d) { return DOW_HE[new Date(d.date + "T00:00:00Z").getUTCDay()] + (d.chg != null ? ' <span class="num" dir="ltr">' + d.chg.toFixed(2) + "%</span>" : ""); }).join(", ") : (r ? "לא היה" : "עוד לא") });
       } else if (c.metric) {
-        var v = r ? (rc ? rc.value : null) : ((INDD && INDD.evidence && INDD.evidence[c.metric] != null) ? INDD.evidence[c.metric] : (c.metric === "pctMa50" && WEEKLY && WEEKLY.sectors ? WEEKLY.sectors.marketBreadth : null));
+        // 28.9.2026: vixOverMa50 = אחוז ה-VIX מעל הממוצע ל-50 יום, חי מ-market.json.vixLight (רמזור ה-VIX)
+        var v = r ? (rc ? rc.value : null)
+              : c.metric === "vixOverMa50" ? ((TICKD && TICKD.vixLight && TICKD.vixLight.ratio) ? (TICKD.vixLight.ratio - 1) * 100 : null)
+              : ((INDD && INDD.evidence && INDD.evidence[c.metric] != null) ? INDD.evidence[c.metric] : (c.metric === "pctMa50" && WEEKLY && WEEKLY.sectors ? WEEKLY.sectors.marketBreadth : null));
         if (v == null) return;
         var ok = r ? (rc && rc.hit) : (c.op === ">" ? v > c.value : c.op === ">=" ? v >= c.value : c.op === "<=" ? v <= c.value : v < c.value);
         claims.push({ key: c.key, text: c.text, st: ok ? "hit" : (r ? "miss" : "risk"), val: '<span class="num" dir="ltr">' + Math.round(v) + "%</span>" + (r ? "" : " כרגע") });

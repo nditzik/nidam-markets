@@ -172,6 +172,8 @@ def main():
         "options": {"dailyScore": (ind.get("scores") or {}).get("flow"), "meterScore": fl.get("meterScore"),
                     "bigMoney": fl.get("deltaLabel"), "newMoney": fl.get("openLabel"), "spxWarning": fl.get("spxWarning")},
         "rotation": ind.get("rotation"),
+        # 28.9.2026: רמזור ה-VIX (fetch_market.vix_light) — כדי שהצפי השבועי יתחשב במצב הפחד (ראו week_forecast.md §1)
+        "vixLight": (load("market.json") or {}).get("vixLight"),
         "lastWeek": {"label": wk.get("label"), "summary": wk.get("summary"), "sectors": wk.get("sectors")},
     }
     try:

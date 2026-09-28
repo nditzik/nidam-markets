@@ -38,10 +38,13 @@ def score_claims(it, mon, fri):
     """הטענות המשניות של הצפי (24.9.2026) — נבדקות מול הנתונים של סוף השבוע:
     sellDay: ימי מכירה רחבה בתוך השבוע (indices.riskOff.sellingDays);
     breadth (metric/op/value): הערך של יום שישי — evidence.pctMa50 (מהדשבורד, מ-24.9) ונפילה
-    ל-weekly.sectors.marketBreadth (השבועי מדוח הסקטורים). טענה בלי נתון → hit=None (לא נספרת)."""
+    ל-weekly.sectors.marketBreadth (השבועי מדוח הסקטורים). טענה בלי נתון → hit=None (לא נספרת).
+    vix (28.9.2026): metric "vixOverMa50" = כמה אחוזים ה-VIX מעל/מתחת לממוצע 50 שלו, מ-market.json.vixLight
+    (בשבת הערך משקף את סגירת שישי). 'op:"<", value:10' = "הרמזור לא יהיה צהוב בסוף השבוע"."""
     out = {}
     ind = load("indices.json") or {}
     wk = load("weekly.json") or {}
+    vl = (load("market.json") or {}).get("vixLight") or {}
     for c in it.get("claims") or []:
         k = c.get("key")
         if k == "sellDay":
@@ -50,6 +53,8 @@ def score_claims(it, mon, fri):
         elif c.get("metric"):
             v = (ind.get("evidence") or {}).get(c["metric"])
             src = "pctMa50"
+            if c["metric"] == "vixOverMa50":
+                v = round((vl["ratio"] - 1) * 100, 1) if vl.get("ratio") else None; src = "vixLight"
             if v is None and c["metric"] == "pctMa50":
                 v = (wk.get("sectors") or {}).get("marketBreadth"); src = "weekly"
             if v is None:
