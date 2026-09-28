@@ -3,10 +3,10 @@
 **סטטוס 28.9.2026:** גוף ההוראות עבר לריפו — `scripts/prompts/daily_analysis.md` (כבר ב-main). שני הפרומפטים ברוטינות **טרם הוחלפו** בעטיפה שלמטה: הכלי מכאן לא מורשה לערוך רוטינות שנוצרו ידנית, אז ההדבקה היא של איציק.
 עד ההדבקה: הראשי עובד עם הפרומפט המלא מ-19.9 (v6, תקין), הגיבוי עם פרומפט מ-5.9 (נוסחת אופציות ישנה). אף אחת מהן לא קוראת את רמזור ה-VIX.
 
-**מה עושים (פעם אחת, ~5 דקות):**
+**מה עושים (פעם אחת, ~5 דקות):** ⚠️ להעתיק מהתצוגה הגולמית (כפתור Raw, או הקישור `https://raw.githubusercontent.com/nditzik/nidam-markets/main/docs/routine-daily-analysis.md`) — התצוגה הרגילה של GitHub מסתירה טקסט בסוגריים משולשים כמו `<date>`.
 1. פותחים את הרוטינה ב-claude.ai/code/routines (הראשית: `trig_01QxCeHkMGrGcXk4Uhk4mCBv`, הגיבוי: `trig_01W8FY5Nu76pEBUvBnAePBNr`).
 2. **מעתיקים מהפרומפט הקיים את שורת ה-`git push https://x-access-token:...`** (עם המפתח) לפני שמוחקים.
-3. מחליפים את כל הפרומפט בטקסט המתאים למטה, ומדביקים את שורת ה-push במקום `<PUSH-COMMAND>`.
+3. מחליפים את כל הפרומפט בטקסט המתאים למטה, ומדביקים את שורת ה-push במקום `[[PUSH-COMMAND]]`.
 4. לא נוגעים ב-cron, במודל ובסביבה.
 
 בדיקה למחרת: ב-`data/_routine_heartbeat.log` צריכה להופיע שורת `daily-analysis written` (או `daily-analysis-retry written`), והניתוח ב-`data/claude_analysis.json` נכתב כרגיל.
@@ -30,8 +30,8 @@
 echo "HB $(date -u +%H:%M) daily-analysis written (date=<date>)" >> data/_routine_heartbeat.log
 git add data/claude_analysis.json data/_routine_heartbeat.log && git commit -m "analysis: <date> daily Claude analysis"
 ואז דחוף כך (המפתח מוגבל לריפו הזה בלבד, Contents בלבד):
-<PUSH-COMMAND>
-אם השורה שמעל היא עדיין הטקסט <PUSH-COMMAND> — אל תדחוף: שמור את הקובץ, בצע commit, וסיים עם הודעה ברורה שהדחיפה ממתינה להדבקת הפקודה.
+[[PUSH-COMMAND]]
+אם השורה שמעל היא עדיין הטקסט [[PUSH-COMMAND]] — אל תדחוף: שמור את הקובץ, בצע commit, וסיים עם הודעה ברורה שהדחיפה ממתינה להדבקת הפקודה.
 אם הדחיפה נכשלת (ה-Action של האתר דוחף כל רבע שעה) — git pull --rebase origin main ונסה שוב עד 3 פעמים. אם יש קונפליקט בקבצי data אחרים — git checkout --theirs עליהם, את data/claude_analysis.json השאר בגרסה שלך. אל תדפיס את המפתח מעבר לפקודה עצמה.
 
 ---
@@ -52,6 +52,6 @@ git add data/claude_analysis.json data/_routine_heartbeat.log && git commit -m "
 ## שלב 3 — דחיפה (מפתח ייעודי — אין לסביבה הרשאת push רגילה)
 echo "HB $(date -u +%H:%M) daily-analysis-retry written (date=<date>)" >> data/_routine_heartbeat.log
 git add data/claude_analysis.json data/_routine_heartbeat.log && git commit -m "analysis: <date> daily Claude analysis"
-<PUSH-COMMAND>
-אם השורה שמעל היא עדיין הטקסט <PUSH-COMMAND> — אל תדחוף: שמור את הקובץ, בצע commit, וסיים עם הודעה ברורה שהדחיפה ממתינה להדבקת הפקודה.
+[[PUSH-COMMAND]]
+אם השורה שמעל היא עדיין הטקסט [[PUSH-COMMAND]] — אל תדחוף: שמור את הקובץ, בצע commit, וסיים עם הודעה ברורה שהדחיפה ממתינה להדבקת הפקודה.
 נכשל — git pull --rebase origin main ונסה שוב עד 3 פעמים; קונפליקט בקבצי data אחרים — git checkout --theirs עליהם, את data/claude_analysis.json השאר בגרסה שלך. אל תדפיס את המפתח מעבר לפקודה עצמה.
