@@ -11,6 +11,7 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "market.json")
@@ -34,7 +35,7 @@ SYMBOLS = [
 
 def israel_stamp():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 

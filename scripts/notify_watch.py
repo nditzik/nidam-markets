@@ -33,6 +33,7 @@ import os
 import re
 import sys
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import load, send
@@ -49,7 +50,7 @@ KEEP_KEYS = 400                   # גודל זיכרון הדה-דופ
 
 def il_now():
     now = datetime.now(timezone.utc)
-    return now + timedelta(hours=3 if 4 <= now.month <= 10 else 2)
+    return now + timedelta(hours=il_off(now))
 
 
 def parse_watch(body):

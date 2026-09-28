@@ -27,6 +27,7 @@ import json
 import os
 import sys
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import load, send  # loader/שולח גנריים, כבר קיימים בריפו
@@ -39,7 +40,7 @@ MODEL = "claude-opus-5"
 
 def israel_now():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return now + timedelta(hours=off)
 
 

@@ -4,11 +4,11 @@ notify_channel.py — ארבע הודעות תוכן לערוץ הטלגרם (ח
 
   1. preopen  — "5 דקות לפתיחה": חוזים, VIX, אג"ח 10Y, המאקרו של היום (צפי, או
                 בפועל אם כבר פורסם ב-15:30), מדווחות לפני הפתיחה ואחרי הסגירה.
-                חלון: ב'–ו' 16:05–16:29 שעון ישראל, פעם ביום.
+                חלון: ב'–ו' 09:05–09:29 שעון ניו יורק (16:05–16:29 IL ברגיל), פעם ביום.
   2. close    — "סיכום סגירה": SPY/QQQ/IWM, VIX, 10Y, 3 העולות ו-3 היורדות של
                 יום המסחר (סריקת TradingView עם שינוי *יומי* — לא movers.json,
                 שאחרי 23:00 מחזיק שינויי אפטר-מרקט), ומי מדווחת הערב.
-                חלון: ב'–ו' 23:05–23:59, פעם ביום.
+                חלון: ב'–ו' 16:05–16:59 שעון ניו יורק (23:05–23:59 IL ברגיל), פעם ביום.
   3. macro    — "נתון מאקרו": ברגע ש-econ.json מקבל 'בפועל' לאירוע — צפי מול
                 בפועל עם כיוון ההפתעה. מקובץ לפי מועד פרסום (CPI חודשי+ליבה+שנתי
                 בהודעה אחת). כל אירוע פעם אחת (state), רק אירועים מ-36 השעות
@@ -35,6 +35,7 @@ import os
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off, NY   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import send, load
@@ -47,15 +48,17 @@ SCAN = "https://scanner.tradingview.com/america/scan"
 UA = {"User-Agent": "Mozilla/5.0 (compatible; nidam-markets-bot)", "Content-Type": "application/json"}
 
 DOW_HE = ["ב'", "ג'", "ד'", "ה'", "ו'", "שבת", "א'"]   # weekday() של פייתון
-PREOPEN_WIN = (16 * 60 + 5, 16 * 60 + 29)
-CLOSE_WIN = (23 * 60 + 5, 23 * 60 + 59)
+# 28.9.2026: החלונות של "לפני הפתיחה"/"סיכום סגירה" מוגדרים בשעון ניו יורק (הבורסה), לא בשעון ישראל —
+# בשבוע שבין מעבר השעון בישראל (25.10) לזה שבארה"ב (1.11) הבורסה נפתחת 15:30 IL ולא 16:30.
+PREOPEN_WIN = (9 * 60 + 5, 9 * 60 + 29)     # 09:05–09:29 ניו יורק (= 16:05–16:29 IL ברגיל)
+CLOSE_WIN = (16 * 60 + 5, 16 * 60 + 59)     # 16:05–16:59 ניו יורק (= 23:05–23:59 IL ברגיל)
 MACRO_MAX_AGE_H = 36
 MAX_TICKERS = 5
 
 
 def il_now():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return now + timedelta(hours=off)
 
 
@@ -341,8 +344,9 @@ def main():
     state = load(STATE) or {}
     first_run = not state
     changed = False
-    t = now.hour * 60 + now.minute
-    weekday = now.weekday() <= 4
+    ny = datetime.now(NY)
+    t = ny.hour * 60 + ny.minute
+    weekday = ny.weekday() <= 4
 
     # 1. לפני הפתיחה
     if weekday and PREOPEN_WIN[0] <= t <= PREOPEN_WIN[1] and state.get("preopen") != today:

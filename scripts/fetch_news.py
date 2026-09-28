@@ -18,6 +18,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 from email.utils import parsedate_to_datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,12 +49,12 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; nidam-markets-bot)"}
 
 def israel_stamp():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 
 def il_time(dt):
-    off = 3 if 4 <= datetime.now(timezone.utc).month <= 10 else 2
+    off = il_off()
     return dt.astimezone(timezone(timedelta(hours=off))).strftime("%H:%M")
 
 

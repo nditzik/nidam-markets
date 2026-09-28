@@ -17,6 +17,7 @@ import os
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "econ.json")
@@ -48,7 +49,7 @@ TRACK = {
 
 def israel_stamp():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 
@@ -58,7 +59,7 @@ def il_of(iso_utc):
         dt = datetime.fromisoformat(iso_utc.replace("Z", "+00:00"))
     except ValueError:
         return "", ""
-    off = 3 if 4 <= dt.month <= 10 else 2
+    off = il_off(dt)
     il = dt.astimezone(timezone(timedelta(hours=off)))
     return "%d.%d" % (il.day, il.month), il.strftime("%H:%M")
 

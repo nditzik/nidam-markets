@@ -25,6 +25,7 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 from zoneinfo import ZoneInfo
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,7 +57,7 @@ def num(v):
 
 
 def israel_stamp():
-    off = 3 if 4 <= datetime.now(timezone.utc).month <= 10 else 2
+    off = il_off()
     return (datetime.now(timezone.utc) + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 

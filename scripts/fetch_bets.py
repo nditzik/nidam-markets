@@ -18,6 +18,7 @@ import re
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "bets.json")
@@ -39,7 +40,7 @@ OUTCOME_HE = {
 
 def israel_stamp():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 
@@ -319,7 +320,7 @@ def main():
             pass
     # היסטוריה יומית להסתברויות (מזין את גרפי המגמה בכרטיסים): רשומה אחת ליום,
     # מתעדכנת תוך-יומית, נשמרים 8 ימים אחרונים
-    now_il = datetime.now(timezone.utc) + timedelta(hours=3)
+    now_il = datetime.now(timezone.utc) + timedelta(hours=il_off())
     today = now_il.strftime("%Y-%m-%d")
     hist = dict((existing or {}).get("history") or {})
     old_fed = next((r for r in (existing or {}).get("rows", []) if r.get("key") == "fed_next"), {})

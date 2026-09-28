@@ -18,6 +18,7 @@ import re
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -31,7 +32,7 @@ MAX_KEEP = 60
 
 def il_now():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return now + timedelta(hours=off)
 
 

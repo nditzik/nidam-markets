@@ -16,6 +16,7 @@ import os
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import send  # שימוש חוזר בשליחת הטלגרם הקיימת
@@ -31,7 +32,7 @@ REMIND_DAYS = 7   # תדירות תזכורת חוזרת כל עוד לא רוע
 
 def israel_date():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).date()
 
 

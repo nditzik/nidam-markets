@@ -15,6 +15,7 @@ import re
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 API = "https://api.github.com/repos/nditzik/stocks-momentum/contents/data"
 RAW = "https://raw.githubusercontent.com/nditzik/stocks-momentum/main/data/"
@@ -273,7 +274,7 @@ def main():
         return 1
 
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     stamp = (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
     payload = {"stocks": stocks, "count": len(stocks),
                "_meta": {"updatedAt": stamp, "source": "stocks-momentum", "files": src_files,

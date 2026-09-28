@@ -16,6 +16,7 @@ import os
 import re
 import sys
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 from email.header import decode_header
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,7 +32,7 @@ SENTIMENT_RE = re.compile(r"([🟢🟡🔴])\s*(.{0,300}?)</(?:div|td|h1|h2|h3|p
 
 def israel_stamp():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 
@@ -403,7 +404,7 @@ def main():
         d = slot["date_dt"]
         # גם התאריך וגם השעה בשעון ישראל — אחרת מייל שנשלח לפי אזור-זמן זר
         # (למשל -0400) נותן תאריך גולמי של אתמול ומבלבל את בחירת המהדורה בבית.
-        off = 3 if 4 <= datetime.now(timezone.utc).month <= 10 else 2
+        off = il_off()
         il = d.astimezone(timezone(timedelta(hours=off))) if d else None
         meta = {
             "subject": slot["subject"],

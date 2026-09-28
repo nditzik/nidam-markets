@@ -24,6 +24,7 @@ import json
 import os
 import sys
 from datetime import datetime, timezone, timedelta
+from iltime import il_off, IL   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_JSON = os.path.join(ROOT, "data", "morning.json")
@@ -54,7 +55,7 @@ PREMKT_MARK = "טרום מסחר בוול סטריט"
 
 def israel_stamp():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 
@@ -92,7 +93,7 @@ def date_label(subject, date_dt):
             return tail
     # 28.9.2026: בשעון ישראל — כותרת ה-Date של Barchart היא בשעון ניו יורק, ומייל של 06:02 IL
     # קיבל dateLabel של אתמול (27/09 במקום 28/09), אז "הגיע היום" בדף הבריאות לא התאים.
-    return date_dt.astimezone(timezone(timedelta(hours=3))).strftime("%d/%m/%Y") if date_dt else ""
+    return date_dt.astimezone(IL).strftime("%d/%m/%Y") if date_dt else ""
 
 
 def entry_of(subject, date_dt, html_body, out_html_path, html_rel):
@@ -106,7 +107,7 @@ def entry_of(subject, date_dt, html_body, out_html_path, html_rel):
         os.makedirs(OUT_DIR, exist_ok=True)
         with open(out_html_path, "w", encoding="utf-8") as f:
             f.write(html_body)
-    ist = timezone(timedelta(hours=3))
+    ist = IL
     entry = {
         "subject": subject,
         "dateLabel": date_label(subject, date_dt),
@@ -131,7 +132,7 @@ def write_if_changed(review=None, premkt=None, notice=None):
 
     if review:
         entry, html_changed = entry_of(*review, OUT_HTML, HTML_REL)
-        ist = timezone(timedelta(hours=3))
+        ist = IL
         if notice and notice[0] and notice[0] > review[1]:
             nd = notice[0].astimezone(ist)
             entry["notice"] = {"date": nd.strftime("%Y-%m-%d"), "time": nd.strftime("%H:%M")}

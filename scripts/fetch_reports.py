@@ -15,6 +15,7 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 API = "https://api.github.com/repos/nditzik/nidam-reports/contents"
 RAW = "https://raw.githubusercontent.com/nditzik/nidam-reports/main/"
@@ -38,7 +39,7 @@ TITLE_RE = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 
 def israel_stamp():
     now = datetime.now(timezone.utc)
-    off = 3 if 4 <= now.month <= 10 else 2
+    off = il_off(now)
     return (now + timedelta(hours=off)).strftime("%d/%m/%Y %H:%M")
 
 

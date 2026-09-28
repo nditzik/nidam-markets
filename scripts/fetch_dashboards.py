@@ -20,6 +20,7 @@ import os
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import archive_scores
@@ -41,7 +42,7 @@ def israel_now_str():
     """שעון ישראל (IST/IDT) — קירוב: קיץ +3, חורף +2 לפי חודש."""
     now_utc = datetime.now(timezone.utc)
     # אפריל–אוקטובר ≈ שעון קיץ (+3), אחרת (+2). קירוב מספק לחותמת תצוגה.
-    offset = 3 if 4 <= now_utc.month <= 10 else 2
+    offset = il_off(now_utc)
     local = now_utc + timedelta(hours=offset)
     return local.strftime("%d/%m/%Y %H:%M")
 

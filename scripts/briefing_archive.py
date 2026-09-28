@@ -13,6 +13,7 @@ briefing_archive.py — ארכיון יומי לתדריכים ולסקירות 
 import json
 import os
 from datetime import timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARCH_DIR = os.path.join(ROOT, "data", "briefings", "archive")
@@ -39,7 +40,7 @@ def il_parts(date_dt):
     """(iso-date, 'HH:MM') בשעון ישראל עבור תאריך המייל."""
     if not date_dt:
         return None, ""
-    off = 3 if 4 <= date_dt.astimezone(timezone.utc).month <= 10 else 2
+    off = il_off(date_dt)
     il = date_dt.astimezone(timezone(timedelta(hours=off)))
     return il.strftime("%Y-%m-%d"), il.strftime("%H:%M")
 

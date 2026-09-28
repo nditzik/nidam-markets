@@ -15,6 +15,7 @@ import json
 import os
 import sys
 from datetime import date, datetime, timedelta, timezone
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -23,7 +24,7 @@ OUT = os.path.join(DATA, "forecasts.json")
 
 def il_now():
     now = datetime.now(timezone.utc)
-    return now + timedelta(hours=3 if 4 <= now.month <= 10 else 2)
+    return now + timedelta(hours=il_off(now))
 
 
 def load(name, default=None):

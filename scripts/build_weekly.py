@@ -23,6 +23,7 @@ import json
 import os
 import sys
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import load, send
@@ -37,7 +38,7 @@ DOW = ["שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת",
 
 def il_stamp():
     now = datetime.now(timezone.utc)
-    return (now + timedelta(hours=3 if 4 <= now.month <= 10 else 2)).strftime("%d/%m/%Y %H:%M")
+    return (now + timedelta(hours=il_off(now))).strftime("%d/%m/%Y %H:%M")
 
 
 def word(v):

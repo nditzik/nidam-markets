@@ -26,6 +26,7 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "world.json")
@@ -93,7 +94,7 @@ STALE_DAYS = 5      # מעבר לכך המדד כנראה מוקפא/נמחק, �
 
 
 def il_offset():
-    return 3 if 4 <= datetime.now(timezone.utc).month <= 10 else 2
+    return il_off()
 
 
 def il_now():

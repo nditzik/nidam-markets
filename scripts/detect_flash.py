@@ -22,6 +22,7 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import send, load
@@ -43,7 +44,7 @@ NEWS_WIN_MIN = 150
 
 def il_offset():
     now = datetime.now(timezone.utc)
-    return 3 if 4 <= now.month <= 10 else 2
+    return il_off(now)
 
 
 def il_now():
