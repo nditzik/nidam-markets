@@ -1400,3 +1400,17 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 }
 .subtab:hover { color: var(--text); }
 .subtab.is-active { background: var(--surface-3); color: var(--text); border-color: var(--text-soft); font-weight: 700; }
+
+/* טלגרם בכותרת = לחצן עגול כחול עם הסמל בלבד (28.9.2026, איציק) — באותו גודל כמו לחצן מצב-כהה,
+   כדי ששורת הטאבים תקבל את כל הרוחב ו"העולם" לא יידחק מתחת לכפתור ברוחבי-ביניים. */
+.np-hd-actions .tabs-tg { width: 40px; height: 40px; padding: 0; border-radius: 50%; display: grid; place-items: center; gap: 0; }
+.np-hd-actions .tabs-tg .tg-txt { display: none; }
+.np-hd-actions .tabs-tg svg { width: 19px; height: 19px; margin-inline-end: 2px; }
+.np-hd1 .tabs { flex: 1 1 auto; min-width: 0; }
+/* מתחת ל-1080px תשעת הלחצנים (~740px) לא נכנסים ליד הלוגו והלחצנים — שורת הטאבים יורדת לשורה משלה
+   ברוחב מלא (במקום גלילה אופקית סמויה במחשב). בטלפון (≤880) הכלל הקיים ממילא עושה זאת. */
+@media (max-width: 1080px) {
+  .np-hd1 { flex-wrap: wrap; justify-content: center; }
+  .np-hd1 .tabs { order: 3; flex-basis: 100%; width: 100%; justify-content: center; }
+}
+@media (max-width: 880px) { .np-hd1 .tabs { justify-content: flex-start; } }   /* בטלפון: גלילה מתחילה מ"בית" (מרכוז + גלישה חותך את ההתחלה) */
