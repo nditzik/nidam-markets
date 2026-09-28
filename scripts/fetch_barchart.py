@@ -90,7 +90,9 @@ def date_label(subject, date_dt):
         tail = subject.split("—", 1)[1].strip()
         if tail:
             return tail
-    return date_dt.strftime("%d/%m/%Y") if date_dt else ""
+    # 28.9.2026: בשעון ישראל — כותרת ה-Date של Barchart היא בשעון ניו יורק, ומייל של 06:02 IL
+    # קיבל dateLabel של אתמול (27/09 במקום 28/09), אז "הגיע היום" בדף הבריאות לא התאים.
+    return date_dt.astimezone(timezone(timedelta(hours=3))).strftime("%d/%m/%Y") if date_dt else ""
 
 
 def entry_of(subject, date_dt, html_body, out_html_path, html_rel):

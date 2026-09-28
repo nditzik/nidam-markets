@@ -13,11 +13,12 @@
   - ✅ איציק הדביק את שני הפרומפטים (28.9 ערב, אומת ב-get_trigger). **לעקוב מחר בבוקר (29.9):** ב-`_routine_heartbeat.log` שורת `daily-analysis written` / `daily-analysis-retry written`, והניתוח ב-claude_analysis.json נכתב כרגיל ומזכיר את רמזור ה-VIX רק אם הוא לא ירוק.
   - **לעקוב:** בריצה הראשונה ב-Action נקבע בסיס `vix` ב-_channel_state.json בלי לשלוח. הצפי הבא (ראשון 4.10, 14:45) אמור לכלול claim `vix`. אם הניתוח היומי מתעלם מ-`vixLight.note` — להוסיף שורה בפרומפט (איציק).
 
+- **Barchart:** קצב premkt אומת מהארכיון (כל יום מסחר מ-31.8, 14:02–14:49) — לא צריך שבוע תצפית. נוסף לדף הבריאות (סרגל "היום" + מקור), תוקן "הגיע" של Barchart שהיה תמיד true, ו-dateLabel עבר לשעון ישראל (השורה "Barchart בוקר · ממתין" תיעלם בריצת ה-IMAP הבאה כשה-dateLabel יתעדכן ל-28/09).
+
 **פתוח (מהמלצות הסקירה, לפי דחיפות):**
 - שעון חורף (~סוף אוקטובר): להזיז 7 רוטינות ענן + update.yml + cron-job.org. להכין רשימת-ביקורת.
 - להעביר גם את 5 הרוטינות האחרות (event-1545/1700, midday, preopen, weekly-narrative) לעטיפה + קובץ ב-`scripts/prompts/` (הבוקר והצפי כבר שם).
 - אין התראה כשה-X Scan מפסיק להגיע (להעתיק את מנגנון notify_earnings_age).
-- premkt של Barchart — להוסיף ל-`_health.json` ולעקוב אחרי יציבות הקצב.
 - מאזן הצפי השבועי: להציג "עוד מוקדם" עד 8–10 שבועות; שורת צפי בסיכום השבועי.
 - קוד מת לשקול הסרה: write_daily_analysis.py, extract_picks, parse_xdigest, btc/eth ב-weekend.json.
 - בדיקות רגרסיה לפרסרי המיילים על `data/briefings/archive`.

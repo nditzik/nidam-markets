@@ -18,7 +18,8 @@ OUT = os.path.join(DATA, "_health.json")
 SOURCES = [
     ("indices", "indices.json", "מדדים"),
     ("momentum", "momentum.json", "מומנטום"),
-    ("morning", "morning.json", "Barchart"),
+    ("morning", "morning.json:.", "Barchart בוקר"),          # ":." = החותמת מ-dateLabel+time של המהדורה עצמה (לא _meta, שמתרענן בכל ריצת IMAP)
+    ("premkt", "morning.json:premkt", "Barchart טרום מסחר"),   # מקונן: אותו דבר על d.premkt
     ("briefing", "briefing.json", "תדרוך משקיעים"),
     ("candidates", "candidates.json", "מועמדים"),
 ]
@@ -74,11 +75,17 @@ def today_updates(today_str):
                               "time": s.get("time"),
                               "arrived": s.get("dateLabel") == today_str})
 
+    # 28.9.2026: "הגיע" לפי dateLabel של המהדורה (כמו התדרוך), לא לפי _meta.updatedAt —
+    # החותמת מתרעננת בכל ריצת IMAP (גם בלי מייל חדש), אז Barchart הוצג תמיד כ"הגיע".
+    # premkt ("טרום מסחר", ~14:00–14:50) נוסף כפריט משלו כדי לראות בבית אם הגיע היום.
     m = _load("morning.json")
     if isinstance(m, dict) and m.get("_status") != "pending":
-        arrived, _ = _meta_today(m, today_str)
-        items.append({"label": "Barchart", "tab": "morning",
-                      "time": m.get("time"), "arrived": arrived})
+        items.append({"label": "Barchart בוקר", "tab": "morning",
+                      "time": m.get("time"), "arrived": m.get("dateLabel") == today_str})
+        pk = m.get("premkt")
+        if isinstance(pk, dict):
+            items.append({"label": "Barchart טרום מסחר", "tab": "morning",
+                          "time": pk.get("time"), "arrived": pk.get("dateLabel") == today_str})
 
     for fname, label, tab in (("indices.json", "מדדים", "indices"),
                               ("momentum.json", "מומנטום", "momentum"),
@@ -100,6 +107,7 @@ def main():
            "today": today_updates(today_str), "sources": []}
 
     for key, fname, label in SOURCES:
+        fname, _, nested = fname.partition(":")
         path = os.path.join(DATA, fname)
         entry = {"key": key, "label": label, "updatedAt": None,
                  "ageHours": None, "status": "down", "detail": ""}
@@ -121,7 +129,11 @@ def main():
             out["sources"].append(entry)
             continue
 
-        stamp = (d.get("_meta") or {}).get("updatedAt") if isinstance(d, dict) else None
+        if nested:   # מהדורת Barchart: החותמת היא מועד המייל עצמו, לא ריצת ה-IMAP
+            sub = (d if nested == "." else d.get(nested)) if isinstance(d, dict) else None
+            stamp = ("%s %s" % (sub.get("dateLabel"), sub.get("time"))) if isinstance(sub, dict) and sub.get("dateLabel") else None
+        else:
+            stamp = (d.get("_meta") or {}).get("updatedAt") if isinstance(d, dict) else None
         entry["updatedAt"] = stamp
         dt = parse_stamp(stamp)
         if dt is None:
