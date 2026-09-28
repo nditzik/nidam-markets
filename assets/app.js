@@ -3242,7 +3242,11 @@
       }
       g.appendChild(tg);
       var prev1 = n >= 2 && days[n - 2].rs[k], prev5 = n >= 6 && days[n - 6].rs[k];
-      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1],
+      // כיוון השביל לאורך התקופה (29.9, איציק): תחילת השביל מול סופו על שני הצירים יחד (rs5+rs20) — ירוק השתפר, אדום נחלש
+      var first = tr.length > 1 ? tr[0].rs[k] : null, tdf = first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null;
+      var dir = tdf == null ? "" : tdf > 0.05 ? "up" : tdf < -0.05 ? "down" : "";   // |שינוי| ≤ 0.05 = ללא שינוי (נשאר כחול)
+      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], dir: dir,
+                 tdiff: first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null, tdays: tr.length - 1,
                  d1: prev1 ? [cur[0] - prev1[0], cur[1] - prev1[1]] : null, d5: prev5 ? [cur[0] - prev5[0], cur[1] - prev5[1]] : null });
     });
     // תוויות: מעל הנקודה; בהתנגשות — לצדדים/מתחת
@@ -3266,8 +3270,8 @@
         g.appendChild(mtEl("line", { class: "rw-now-ln", "data-k": p.k, x1: p.x, y1: p.y, x2: nx, y2: ny }));
         g.appendChild(mtEl("circle", { class: "rw-now", "data-k": p.k, cx: nx, cy: ny, r: mobile ? 5 : 5.5 }));
       }
-      g.appendChild(mtEl("circle", { class: "rw-dot", cx: p.x, cy: p.y, r: mobile ? 5.5 : 6 }));
-      t = mtEl("text", { class: "rw-lbl", x: p.lx, y: p.ly, "text-anchor": p.la }); t.textContent = SECTOR_HE[p.k] || p.k; g.appendChild(t);
+      g.appendChild(mtEl("circle", { class: "rw-dot", "data-k": p.k, cx: p.x, cy: p.y, r: mobile ? 5.5 : 6 }));
+      t = mtEl("text", { class: "rw-lbl", "data-k": p.k, x: p.lx, y: p.ly, "text-anchor": p.la }); t.textContent = SECTOR_HE[p.k] || p.k; g.appendChild(t);
     });
     function show(p) {
       var q = rwQuad(p.rs5, p.rs20), name = SECTOR_HE[p.k] || p.k;
@@ -3282,12 +3286,18 @@
       });
       if (p.now) { var nw = document.createElement("div"); nw.className = "rw-now-t"; nw.textContent = "עכשיו (אומדן חי): " + rwFmt(p.dnow) + " מול המדד היום → " + rwQuad(p.now[0], p.now[1])[0]; tip.appendChild(nw); }
       var wn = rwWeeklyNote(name); if (wn) { var w = document.createElement("div"); w.className = "rw-sub rw-wn"; w.textContent = wn; tip.appendChild(w); }
+      if (p.tdiff != null) { var td = document.createElement("div"); td.className = "rw-sub rw-td " + p.dir; td.textContent = "לאורך השביל (" + p.tdays + " ימים): " + (p.dir === "up" ? "השתפר " + rwFmt(p.tdiff) : p.dir === "down" ? "נחלש " + rwFmt(p.tdiff) : "ללא שינוי") + " (שני הצירים יחד)"; tip.appendChild(td); }
       tip.style.display = "block";
-      var r = svg.getBoundingClientRect(), cx = p.x / W * r.width, cy = p.y / H * r.height;
-      tip.style.left = Math.min(r.width - 200, Math.max(0, cx - 95)) + "px"; tip.style.top = (cy + 14) + "px";
-      svg.querySelectorAll("[data-k]").forEach(function (x) { x.classList.toggle("hl", x.dataset.k === p.k); });
+      // 29.9 (איציק): ההסבר בפינה הריקה שממול לסקטור, לא על השביל שלו
+      var r = svg.getBoundingClientRect(), sc = r.width / W;
+      var plotL = P.l * sc, plotR = (W - P.r) * sc, plotT = P.t * sc, plotB = (H - P.b) * sc, midX = (plotL + plotR) / 2, midY = (plotT + plotB) / 2;
+      var tw = Math.min(230, r.width - 20), th = tip.offsetHeight || 150;
+      tip.style.left = (p.x * sc < midX ? plotR - tw - 8 : plotL + 8) + "px";
+      tip.style.top = (p.y * sc < midY ? plotB - th - 8 : plotT + 8) + "px";
+      svg.classList.add("focus");
+      svg.querySelectorAll("[data-k]").forEach(function (x) { var on = x.dataset.k === p.k; x.classList.toggle("hl", on); x.classList.toggle("up", on && p.dir === "up"); x.classList.toggle("down", on && p.dir === "down"); });
     }
-    function hide() { tip.style.display = "none"; svg.querySelectorAll(".hl").forEach(function (x) { x.classList.remove("hl"); }); }
+    function hide() { tip.style.display = "none"; svg.classList.remove("focus"); svg.querySelectorAll(".hl").forEach(function (x) { x.classList.remove("hl"); x.classList.remove("up"); x.classList.remove("down"); }); }
     pts.forEach(function (p) {
       var h = mtEl("circle", { class: "rw-hit", cx: p.x, cy: p.y, r: 18, tabindex: 0 });
       h.addEventListener("pointerenter", function () { show(p); }); h.addEventListener("pointerleave", hide);

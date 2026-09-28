@@ -1438,6 +1438,15 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .rw-tdot { fill: var(--accent); opacity: .18; transition: opacity .15s; }
 #rw-svg.all .rw-trail, #rw-svg.all .rw-tdot { opacity: .5; }
 #rw-svg .rw-trail.hl { opacity: .9; stroke-width: 2.5; } #rw-svg .rw-tdot.hl { opacity: .9; }
+/* 29.9 (איציק): בריחוף — השביל של הסקטור בירוק (השתפר) / אדום (נחלש) לאורך התקופה, והשאר כמעט שקופים */
+#rw-svg .rw-trail.hl.up, #rw-svg .rw-now-ln.hl.up { stroke: var(--up); } #rw-svg .rw-tdot.hl.up { fill: var(--up); }
+#rw-svg .rw-trail.hl.down, #rw-svg .rw-now-ln.hl.down { stroke: var(--down); } #rw-svg .rw-tdot.hl.down { fill: var(--down); }
+#rw-svg .rw-dot.hl.up, #rw-svg .rw-now.hl.up { fill: var(--up); } #rw-svg .rw-now.hl.up { fill: var(--bg); stroke: var(--up); }
+#rw-svg .rw-dot.hl.down { fill: var(--down); } #rw-svg .rw-now.hl.down { fill: var(--bg); stroke: var(--down); }
+#rw-svg.focus .rw-dot:not(.hl), #rw-svg.focus .rw-lbl:not(.hl), #rw-svg.focus .rw-now:not(.hl), #rw-svg.focus .rw-now-ln:not(.hl) { opacity: .1; }
+#rw-svg.focus .rw-trail:not(.hl), #rw-svg.focus .rw-tdot:not(.hl) { opacity: .04; }
+#rw-svg .rw-lbl.hl { font-weight: 800; }
+.rw-td.up { color: var(--up); } .rw-td.down { color: var(--down); }
 .rw-dot { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
 .rw-now { fill: var(--bg); stroke: var(--accent); stroke-width: 2; }
 .rw-now-ln { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 2 3; opacity: .7; }
