@@ -190,7 +190,8 @@
     fetch("https://scanner.tradingview.com/america/scan", {
       method: "POST",
       body: JSON.stringify({
-        symbols: { tickers: SECTOR_ETFS.map(function (s) { return "AMEX:" + s[0]; }) },
+        // 28.9.2026: גם SPY — נקודת "עכשיו" בגלגל הרוטציה (חוזק תוך-יומי של סקטור = השינוי שלו פחות השינוי של המדד)
+        symbols: { tickers: SECTOR_ETFS.map(function (s) { return "AMEX:" + s[0]; }).concat(["AMEX:SPY"]) },
         columns: ["name", "close", "change", "premarket_close", "premarket_change", "postmarket_close", "postmarket_change"]
       })
     })
@@ -203,6 +204,7 @@
           if (chg != null) HEAT[v[0]] = Math.round(chg * 100) / 100;
         });
         renderHeat();
+        if (typeof renderRotationWheel === "function" && document.getElementById("rw-svg")) renderRotationWheel();
       })
       .catch(function () {});
   }
@@ -3159,6 +3161,15 @@
      חלונית עם המספרים, מול אתמול, מול לפני שבוע, ומשפט מדוח הסקטורים השבועי כשיש. */
   var RW = { mode: "week", all: false };
   var RW_LAY = { X0: -11, X1: 7, Y0: -9.5, Y1: 4.5 };
+  var RW_ETF = { XLK: "IT", XLF: "FIN", XLV: "HC", XLY: "CD", XLC: "COM", XLI: "IND", XLP: "CS", XLE: "ENE", XLB: "MAT", XLU: "UTL", XLRE: "RE" };
+  // נקודת "עכשיו" (אומדן תוך-יומי): לכל סקטור, השינוי היומי החי שלו פחות השינוי של SPY (ממפת החום, כל דקה)
+  // מתווסף ל-rs5/rs20 של הסגירה האחרונה. אומדן — החלון המתגלגל לא מעודכן, רק היום נוסף. רק כשהבורסה לא סגורה.
+  function rwLive() {
+    if (typeof HEAT === "undefined" || HEAT.SPY == null || jsSession() === "closed") return null;
+    var out = {}, n = 0;
+    Object.keys(RW_ETF).forEach(function (etf) { if (HEAT[etf] != null) { out[RW_ETF[etf]] = Math.round((HEAT[etf] - HEAT.SPY) * 100) / 100; n++; } });
+    return n ? out : null;
+  }
   function rwDays() {
     var days = ((HIST && HIST.days) || []).filter(function (d) { return d.rs && Object.keys(d.rs).length; });
     // היום של indices עשוי להיות טרי יותר מ-history (עד ריצת הארכיון הבאה) — משלימים
@@ -3188,7 +3199,7 @@
           '<button class="chip rw-chip' + (RW.mode === "week" ? " on" : "") + '" data-rw="week">השבוע · יום-יום</button>' +
           '<button class="chip rw-chip' + (RW.mode === "month" ? " on" : "") + '" data-rw="month">החודש · שבוע-שבוע</button>' +
           '<button class="chip rw-chip' + (RW.all ? " on" : "") + '" data-rw="all">כל השבילים</button>' +
-          '<span class="rw-legend"><span><i class="d"></i>היום</span><span><i class="t"></i>הדרך לכאן</span></span></div>' +
+          '<span class="rw-legend"><span><i class="d"></i>סגירה אחרונה</span><span><i class="t"></i>הדרך לכאן</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
         '<div class="rw-wrap"><svg id="rw-svg" role="img" aria-label="גלגל הרוטציה של 11 הסקטורים"></svg><div class="rw-tip" id="rw-tip"></div></div>' +
         '<p class="rw-foot" id="rw-foot"></p>' +
       "</div>";
@@ -3246,7 +3257,18 @@
       }
       if (p.lx == null) { p.lx = p.x; p.ly = p.y - 12; p.la = "middle"; }
     });
-    pts.forEach(function (p) { g.appendChild(mtEl("circle", { class: "rw-dot", cx: p.x, cy: p.y, r: mobile ? 5.5 : 6 })); t = mtEl("text", { class: "rw-lbl", x: p.lx, y: p.ly, "text-anchor": p.la }); t.textContent = SECTOR_HE[p.k] || p.k; g.appendChild(t); });
+    var live = rwLive(), lg = document.getElementById("rw-lg-now");
+    if (lg) lg.hidden = !live;
+    pts.forEach(function (p) {
+      if (live && live[p.k] != null) {
+        p.now = [p.rs5 + live[p.k], p.rs20 + live[p.k]]; p.dnow = live[p.k];
+        var nx = sx(cl(p.now[1], L.X0, L.X1)), ny = sy(cl(p.now[0], L.Y0, L.Y1));
+        g.appendChild(mtEl("line", { class: "rw-now-ln", "data-k": p.k, x1: p.x, y1: p.y, x2: nx, y2: ny }));
+        g.appendChild(mtEl("circle", { class: "rw-now", "data-k": p.k, cx: nx, cy: ny, r: mobile ? 5 : 5.5 }));
+      }
+      g.appendChild(mtEl("circle", { class: "rw-dot", cx: p.x, cy: p.y, r: mobile ? 5.5 : 6 }));
+      t = mtEl("text", { class: "rw-lbl", x: p.lx, y: p.ly, "text-anchor": p.la }); t.textContent = SECTOR_HE[p.k] || p.k; g.appendChild(t);
+    });
     function show(p) {
       var q = rwQuad(p.rs5, p.rs20), name = SECTOR_HE[p.k] || p.k;
       tip.innerHTML = "";
@@ -3258,6 +3280,7 @@
         var sub = document.createElement("div"); sub.className = "rw-sub";
         sub.textContent = "מול אתמול " + (r[2] == null ? "—" : rwFmt(r[2])) + " · מול לפני שבוע " + (r[3] == null ? "—" : rwFmt(r[3])); tip.appendChild(sub);
       });
+      if (p.now) { var nw = document.createElement("div"); nw.className = "rw-now-t"; nw.textContent = "עכשיו (אומדן חי): " + rwFmt(p.dnow) + " מול המדד היום → " + rwQuad(p.now[0], p.now[1])[0]; tip.appendChild(nw); }
       var wn = rwWeeklyNote(name); if (wn) { var w = document.createElement("div"); w.className = "rw-sub rw-wn"; w.textContent = wn; tip.appendChild(w); }
       tip.style.display = "block";
       var r = svg.getBoundingClientRect(), cx = p.x / W * r.width, cy = p.y / H * r.height;
@@ -3274,7 +3297,7 @@
     svg.addEventListener("pointerleave", hide);
     var f = document.getElementById("rw-foot"), ld = last.date.split("-");
     if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד, מהדשבורד, עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
-      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע.";
+      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
     document.querySelectorAll(".rw-chip").forEach(function (c) {
       c.onclick = function () {
         if (c.dataset.rw === "all") { RW.all = !RW.all; c.classList.toggle("on", RW.all); svg.classList.toggle("all", RW.all); return; }
