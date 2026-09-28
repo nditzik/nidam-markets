@@ -15,6 +15,12 @@
         "label": "28.9",
         "items": [
           {
+            "ticker": "JEF",
+            "name": "Jefferies Financial Group Inc.",
+            "when": "after",
+            "status": "pending"
+          },
+          {
             "ticker": "MTN",
             "name": "Vail Resorts, Inc.",
             "when": "after",
@@ -68,14 +74,14 @@
       "date": "2026-09-30",
       "label": "30/9",
       "dow": "ד׳",
-      "count": 7,
+      "count": 6,
       "tickers": [
         "MU",
         "JBL",
-        "JEF",
         "FDS",
         "CAG",
-        "CALM"
+        "CALM",
+        "PRGS"
       ]
     },
     {
@@ -97,8 +103,12 @@
       "date": "2026-09-28",
       "dow": "שני",
       "label": "28.9",
-      "total": 2,
+      "total": 3,
       "companies": [
+        {
+          "ticker": "JEF",
+          "name": "Jefferies Financial Group Inc."
+        },
         {
           "ticker": "MTN",
           "name": "Vail Resorts, Inc."
@@ -141,7 +151,7 @@
       "date": "2026-09-30",
       "dow": "רביעי",
       "label": "30.9",
-      "total": 7,
+      "total": 6,
       "companies": [
         {
           "ticker": "MU",
@@ -150,10 +160,6 @@
         {
           "ticker": "JBL",
           "name": "Jabil Inc."
-        },
-        {
-          "ticker": "JEF",
-          "name": "Jefferies Financial Group Inc."
         },
         {
           "ticker": "FDS",
@@ -217,7 +223,6 @@
     "CNXC": "2026-09-29",
     "MU": "2026-09-30",
     "JBL": "2026-09-30",
-    "JEF": "2026-09-30",
     "FDS": "2026-09-30",
     "CAG": "2026-09-30",
     "CALM": "2026-09-30",
@@ -237,7 +242,7 @@
     "WS": "2026-10-06"
   },
   "_meta": {
-    "updatedAt": "29/09/2026 02:01",
+    "updatedAt": "29/09/2026 02:16",
     "source": "tradingview"
   }
 }
