@@ -1,15 +1,62 @@
 {
-  "today": "2026-09-29",
-  "todayCount": 4,
+  "today": "2026-09-30",
+  "todayCount": 6,
   "todayBig": [
     {
-      "ticker": "CCL",
-      "name": "Carnival Corporation Ltd.",
-      "capB": 34.4
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "capB": 1202.9
+    },
+    {
+      "ticker": "JBL",
+      "name": "Jabil Inc.",
+      "capB": 33.4
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-09-29",
+        "label": "29.9",
+        "items": [
+          {
+            "ticker": "CCL",
+            "name": "Carnival Corporation Ltd.",
+            "when": "before",
+            "status": "final",
+            "chg": 13.41,
+            "price": 25.11,
+            "reactDate": "2026-09-29",
+            "baseDate": "2026-09-28"
+          },
+          {
+            "ticker": "KMX",
+            "name": "CarMax, Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": 4.74,
+            "price": 59.23,
+            "reactDate": "2026-09-29",
+            "baseDate": "2026-09-28"
+          },
+          {
+            "ticker": "UEC",
+            "name": "Uranium Energy Corp.",
+            "when": "before",
+            "status": "final",
+            "chg": 0.87,
+            "price": 9.29,
+            "reactDate": "2026-09-29",
+            "baseDate": "2026-09-28"
+          },
+          {
+            "ticker": "CNXC",
+            "name": "Concentrix Corporation",
+            "when": "after",
+            "status": "pending"
+          }
+        ]
+      },
       {
         "date": "2026-09-28",
         "label": "28.9",
@@ -60,46 +107,44 @@
   },
   "reporting": [
     {
-      "ticker": "CCL",
-      "name": "Carnival Corporation Ltd.",
-      "when": "before",
-      "logo": "data/earnings/logos/CCL.png"
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/MU.png"
     },
     {
-      "ticker": "KMX",
-      "name": "CarMax, Inc.",
+      "ticker": "JBL",
+      "name": "Jabil Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/KMX.png"
+      "logo": "data/earnings/logos/JBL.png"
     },
     {
-      "ticker": "UEC",
-      "name": "Uranium Energy Corp.",
+      "ticker": "FDS",
+      "name": "FactSet Research Systems Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/UEC.png"
+      "logo": "data/earnings/logos/FDS.png"
     },
     {
-      "ticker": "CNXC",
-      "name": "Concentrix Corporation",
+      "ticker": "CAG",
+      "name": "Conagra Brands, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/CAG.png"
+    },
+    {
+      "ticker": "CALM",
+      "name": "Cal-Maine Foods, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/CALM.png"
+    },
+    {
+      "ticker": "PRGS",
+      "name": "Progress Software Corporation",
       "when": "after",
-      "logo": "data/earnings/logos/CNXC.png"
+      "logo": "data/earnings/logos/PRGS.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-09-30",
-      "label": "30/9",
-      "dow": "ד׳",
-      "count": 6,
-      "tickers": [
-        "MU",
-        "JBL",
-        "FDS",
-        "CAG",
-        "CALM",
-        "PRGS"
-      ]
-    },
     {
       "date": "2026-10-01",
       "label": "1/10",
@@ -232,10 +277,6 @@
     }
   ],
   "window": {
-    "CCL": "2026-09-29",
-    "KMX": "2026-09-29",
-    "UEC": "2026-09-29",
-    "CNXC": "2026-09-29",
     "MU": "2026-09-30",
     "JBL": "2026-09-30",
     "FDS": "2026-09-30",
@@ -254,10 +295,12 @@
     "CHRN": "2026-10-06",
     "PENG": "2026-10-06",
     "NEOG": "2026-10-06",
-    "WS": "2026-10-06"
+    "WS": "2026-10-06",
+    "LEVI": "2026-10-07",
+    "APLD": "2026-10-07"
   },
   "_meta": {
-    "updatedAt": "29/09/2026 23:46",
+    "updatedAt": "30/09/2026 00:01",
     "source": "tradingview"
   }
 }
