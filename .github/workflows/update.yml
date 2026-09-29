@@ -261,6 +261,16 @@ jobs:
         run: python scripts/fetch_pulse.py
         continue-on-error: true
 
+      # --- קובצי Barchart מהמייל של בוט גרוק (05:00 IL) → ריפו הדשבורד indexes-status,
+      #     בלי המחשב של איציק. no-op שקט בלי INDEXES_STATUS_PAT. ראו relay_barchart_mail.py ---
+      - name: Relay Barchart CSVs from mail to indexes-status
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          INDEXES_STATUS_PAT: ${{ secrets.INDEXES_STATUS_PAT }}
+        run: python scripts/relay_barchart_mail.py
+        continue-on-error: true
+
       # --- מבזק שוק: תנועה חדה תוך-יומית (ספייק 30 דק') + ראיות "מה קרה" ---
       - name: Detect market flash
         env:
