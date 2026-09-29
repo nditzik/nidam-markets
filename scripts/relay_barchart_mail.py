@@ -39,7 +39,7 @@ from iltime import NY  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "data", "_barchart_relay_state.json")
-SUBJECT_MARK = "options flow spy + spx"
+SUBJECT_MARKS = ("options flow spy + spx", "watchlist s&p 500")   # המייל הרגיל + מייל נפרד של ה-watchlist (29.9)
 SENDER = "nditzik@gmail.com"
 REPO = "nditzik/indexes-status"
 CLOSE_MIN = 16 * 60 + 15      # 16:15 ניו יורק — אחרי זה יום המסחר נחשב סגור
@@ -116,6 +116,8 @@ def extract(msg):
     if sent.tzinfo is None:
         sent = sent.replace(tzinfo=timezone.utc)
     closed = last_closed_day(sent)
+    ny = sent.astimezone(NY)
+    in_session = ny.weekday() < 5 and 9 * 60 + 30 <= ny.hour * 60 + ny.minute < CLOSE_MIN
     files, skipped = [], []
     for part in msg.walk():
         fn = part.get_filename()
@@ -138,6 +140,10 @@ def extract(msg):
             continue
         td = flow_trade_date(rows) if kind in ("flow", "spyflow", "allflow") else uoa_trade_date(rows) if kind == "uoa" else None
         if td is None:
+            if in_session:
+                # קובץ בלי תאריך בתוכן (watchlist) שנשלח בזמן המסחר = תמונת ביניים של היום — לא נר סגור
+                skipped.append("%s: נשלח בזמן המסחר (יום חלקי)" % fn)
+                continue
             td = closed
         if td > closed:
             # הקובץ מכיל עסקאות של יום שעוד לא נסגר בזמן השליחה — יום חלקי
@@ -173,7 +179,7 @@ def fetch_messages(days=3):
     imap.login(user, pw)
     imap.select('"[Gmail]/All Mail"', readonly=True)
     since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
-    typ, data = imap.search(None, "SUBJECT", '"Options Flow SPY"', "SINCE", since)
+    typ, data = imap.search(None, "OR", "SUBJECT", '"Options Flow SPY"', "SUBJECT", '"Watchlist S&P 500"', "SINCE", since)
     out = []
     for mid in (data[0].split() if typ == "OK" and data and data[0] else []):
         typ, md = imap.fetch(mid, "(RFC822)")
@@ -227,7 +233,7 @@ def main(messages=None, repo_dir=None, now=None, dry_run=False):
     for m in msgs:
         subj = str(email.header.make_header(email.header.decode_header(m.get("Subject") or "")))
         mid = (m.get("Message-ID") or subj + (m.get("Date") or "")).strip()
-        if SUBJECT_MARK not in subj.lower() or mid in st["done"]:
+        if not any(k in subj.lower() for k in SUBJECT_MARKS) or mid in st["done"]:
             continue
         todo.append((mid, subj, m))
     if not todo:
