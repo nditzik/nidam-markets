@@ -16,7 +16,7 @@
 
 **רענון בדפדפן:** `loadDaily()` + `loadLiveContent()` כל 5 דק' עם שומרי-שינוי (`contentSig`), `visibilitychange` מרענן בחזרה-לטאב, ציטוטים חיים כל דקה מהסורק של TradingView (טיקר + מפת חום סקטוריאלית).
 
-**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np90.
+**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np91.
 
 ## עיצוב "מהדורת עיתון" (2026-08-08)
 

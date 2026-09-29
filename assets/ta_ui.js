@@ -21,8 +21,9 @@
   /* ───── נתונים ───── */
   function loadIndex(cb) {
     var now = Date.now();
-    if (IDX && now - IDX_AT < 10 * 60 * 1000) { cb(IDX); return; }
-    fetch("data/bars/_index.json?v=" + Math.floor(now / 600000)).then(function (r) { return r.ok ? r.json() : null; })
+    // אינדקס טרי לכל דקה (ולא 10 דק'): הבוט מוסיף סמלים בכל ריצה, ו-404 של CDN לא יישמר
+    if (IDX && now - IDX_AT < 60 * 1000) { cb(IDX); return; }
+    fetch("data/bars/_index.json?v=" + Math.floor(now / 60000), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) { IDX = d || { symbols: {} }; IDX_AT = now; cb(IDX); })
       .catch(function () { cb(IDX || { symbols: {} }); });
   }
