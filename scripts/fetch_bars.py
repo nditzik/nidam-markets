@@ -114,8 +114,9 @@ def universe():
 
 def yahoo_bars(sym, rng, fetch=None):
     """נרות יומיים סגורים בלבד: [[date,o,h,l,c,v],…]. הנר האחרון נשמט אם הסשן שלו עוד פתוח."""
+    # Yahoo כותב סדרות מניות עם מקף (GEF-B), הסורקים עם נקודה (GEF.B) — 404 בלי ההמרה (29.9)
     url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
-           + urllib.parse.quote(sym) + "?interval=1d&range=" + rng)
+           + urllib.parse.quote(sym.replace(".", "-")) + "?interval=1d&range=" + rng)
     if fetch is None:
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         with urllib.request.urlopen(req, timeout=20) as r:

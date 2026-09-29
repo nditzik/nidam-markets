@@ -234,10 +234,10 @@ XSCAN_BLOCK_RE = re.compile(r"<h2[^>]*>\s*(@\w+)\s*</h2>\s*<ul[^>]*>(.*?)</ul>",
 XSCAN_LI_RE = re.compile(r"<li[^>]*>\s*(\d{1,2}):(\d{2})\s*[—–\-]\s*(.*?)</li>", re.S)
 
 
-def parse_xscan(html_body, sent_dt, il_off):
+def parse_xscan(html_body, sent_dt, il_hours):
     """HTML של X Scan (חשבונות כ-h2, פריטים כ-li "HH:MM — טקסט") → פריטים.
     חסימת-חשבון שנשברת לא מפילה את האחרות — regex.finditer ממשיך הלאה."""
-    sent_il = sent_dt.astimezone(timezone(timedelta(hours=il_off)))
+    sent_il = sent_dt.astimezone(timezone(timedelta(hours=il_hours)))
     out = []
     for m in XSCAN_BLOCK_RE.finditer(html_body):
         handle = m.group(1)
@@ -267,7 +267,7 @@ def fetch_xscan():
         print("[skip] X Scan: חסר GMAIL_APP_PASSWORD.")
         return []
     user = os.environ.get("GMAIL_USER") or XD_SENDER
-    il_off = il_off()
+    il_hours = il_off()   # לא לקרוא למשתנה il_off — מצל על הפונקציה המיובאת (UnboundLocalError, 29.9)
     imap = None
     try:
         imap = imaplib.IMAP4_SSL("imap.gmail.com")
@@ -300,7 +300,7 @@ def fetch_xscan():
                 sent_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
             except Exception:
                 continue
-            got = parse_xscan(body, sent_dt, il_off)
+            got = parse_xscan(body, sent_dt, il_hours)
             items += got
             print(f"[ok] X Scan: {subject[:40]} — {len(got)} פריטים")
         if not scanned:

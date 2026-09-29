@@ -179,7 +179,8 @@ def fetch_messages(days=3):
     imap.login(user, pw)
     imap.select('"[Gmail]/All Mail"', readonly=True)
     since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
-    typ, data = imap.search(None, "OR", "SUBJECT", '"Options Flow SPY"', "SUBJECT", '"Watchlist S&P 500"', "SINCE", since)
+    # "S&P" בחיפוש IMAP לא נמצא (29.9) — מחפשים מילה אחת ומסננים לפי הנושא המלא בפייתון
+    typ, data = imap.search(None, "OR", "SUBJECT", "Options", "SUBJECT", "Watchlist", "SINCE", since)
     out = []
     for mid in (data[0].split() if typ == "OK" and data and data[0] else []):
         typ, md = imap.fetch(mid, "(RFC822)")
