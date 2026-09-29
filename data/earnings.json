@@ -1,6 +1,6 @@
 {
   "today": "2026-09-29",
-  "todayCount": 5,
+  "todayCount": 4,
   "todayBig": [
     {
       "ticker": "CCL",
@@ -27,6 +27,12 @@
             "status": "pending"
           },
           {
+            "ticker": "AIR",
+            "name": "AAR CORP.",
+            "when": "after",
+            "status": "pending"
+          },
+          {
             "ticker": "IDT",
             "name": "IDT Corporation Class B",
             "when": "after",
@@ -48,12 +54,6 @@
       "name": "CarMax, Inc.",
       "when": "before",
       "logo": "data/earnings/logos/KMX.png"
-    },
-    {
-      "ticker": "AIR",
-      "name": "AAR CORP.",
-      "when": "after",
-      "logo": "data/earnings/logos/AIR.png"
     },
     {
       "ticker": "UEC",
@@ -103,7 +103,7 @@
       "date": "2026-09-28",
       "dow": "שני",
       "label": "28.9",
-      "total": 3,
+      "total": 4,
       "companies": [
         {
           "ticker": "JEF",
@@ -112,6 +112,10 @@
         {
           "ticker": "MTN",
           "name": "Vail Resorts, Inc."
+        },
+        {
+          "ticker": "AIR",
+          "name": "AAR CORP."
         },
         {
           "ticker": "IDT",
@@ -123,7 +127,7 @@
       "date": "2026-09-29",
       "dow": "שלישי",
       "label": "29.9",
-      "total": 5,
+      "total": 4,
       "companies": [
         {
           "ticker": "CCL",
@@ -132,10 +136,6 @@
         {
           "ticker": "KMX",
           "name": "CarMax, Inc."
-        },
-        {
-          "ticker": "AIR",
-          "name": "AAR CORP."
         },
         {
           "ticker": "UEC",
@@ -218,7 +218,6 @@
   "window": {
     "CCL": "2026-09-29",
     "KMX": "2026-09-29",
-    "AIR": "2026-09-29",
     "UEC": "2026-09-29",
     "CNXC": "2026-09-29",
     "MU": "2026-09-30",
@@ -242,7 +241,7 @@
     "WS": "2026-10-06"
   },
   "_meta": {
-    "updatedAt": "29/09/2026 03:31",
+    "updatedAt": "29/09/2026 03:46",
     "source": "tradingview"
   }
 }
