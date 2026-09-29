@@ -6,6 +6,7 @@ fetch_bars.py — נרות יומיים (OHLCV) ליקום המניות של ה�
 500 נרות יומיים. לדפדפן אין גישה ל-Yahoo (CORS), אז הבוט אוסף ושומר בריפו.
 
 יקום: מומנטום + מועמדים + לוח הדיווחים (היום/השבוע/הקרובים) + "הכסף הגדול" + Insider
++ הצעות לטרייד (6 דוחות אחרונים) + ניתוח דוחות
 + 11 תעודות הסקטורים + SPY/QQQ/IWM + data/ta_watchlist.txt (רשימה חופשית של איציק,
 טיקר בכל שורה, # = הערה). סמל שלא נראה ביקום 45 יום נמחק (למעט watchlist).
 
@@ -90,6 +91,12 @@ def universe():
     for r in (load(os.path.join(DATA, "insider.json"), {}).get("reports") or []):
         for t in (r.get("tickers") or []):
             add(t)
+    # הצעות לטרייד: הטיקרים מטבלאות 6 הדוחות האחרונים; ניתוח דוחות: הטיקר של כל דוח
+    for r in (load(os.path.join(DATA, "trades.json"), {}).get("reports") or [])[:6]:
+        for p in (r.get("picks") or []):
+            add(p.get("ticker"))
+    for r in (load(os.path.join(DATA, "reports.json"), {}).get("reports") or []):
+        add(r.get("ticker"))
     watch = set()
     try:
         with open(WATCHLIST, encoding="utf-8") as f:
