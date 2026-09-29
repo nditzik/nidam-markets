@@ -218,6 +218,10 @@ jobs:
       #     (indices.json מתקדם על claude_analysis.json) — 5.9.2026, ראו
       #     docstring של write_daily_analysis.py. no-op שקט אם אין חדש או
       #     אם ANTHROPIC_API_KEY לא מוגדר ב-Secrets. ---
+      - name: Fetch daily bars for technical analysis
+        continue-on-error: true
+        run: python scripts/fetch_bars.py
+
       - name: Write daily analysis (auto)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

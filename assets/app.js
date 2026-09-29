@@ -510,7 +510,7 @@
     s.src = "https://s3.tradingview.com/tv.js";
     s.onload = cb;
     s.onerror = function () {
-      var b = document.querySelector("#tvm-wrap .tvm-body");
+      var b = document.getElementById("tvm-chart");
       if (b) b.innerHTML = '<div class="tvm-err">טעינת הגרף נכשלה — בדקו חיבור לאינטרנט</div>';
     };
     document.head.appendChild(s);
@@ -522,28 +522,22 @@
     document.removeEventListener("keydown", escChart);
   }
   function escChart(e) { if (e.key === "Escape") closeChart(); }
-  function openChart(sym) {
-    closeChart();
-    var wrap = document.createElement("div");
-    wrap.id = "tvm-wrap";
-    wrap.innerHTML =
-      '<div class="tvm-box" role="dialog" aria-modal="true" aria-label="גרף ' + esc(sym) + '">' +
-        '<div class="tvm-head">' +
-          '<b class="tvm-sym" dir="ltr">' + esc(sym) + "</b>" +
-          '<span class="tvm-note">ממוצעים <b style="color:#43a047">20</b> · <b style="color:#1e88e5">50</b> · <b style="color:#e53935">200</b> + ווליום</span>' +
-          '<a class="tvm-full" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
-            '/" target="_blank" rel="noopener">פתיחה מלאה ↗</a>' +
-          '<button class="tvm-x" type="button" aria-label="סגירה">✕</button>' +
-        "</div>" +
-        '<div class="tvm-body"><div class="tvm-load">טוען גרף…</div><div id="tvm-chart"></div></div>' +
-      "</div>";
-    document.body.appendChild(wrap);
-    document.body.style.overflow = "hidden";
-    wrap.addEventListener("click", function (e) { if (e.target === wrap) closeChart(); });
-    wrap.querySelector(".tvm-x").addEventListener("click", closeChart);
-    document.addEventListener("keydown", escChart);
+  /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
+     על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
+  var TA_VER = "np90";
+  window.__npVer = TA_VER;
+  window.__jsSession = function () { return jsSession(); };
+  function ensureTaUi(cb) {
+    if (window.__taRender) { cb(); return; }
+    var s = document.createElement("script");
+    s.src = "assets/ta_ui.js?v=" + TA_VER; s.onload = function () { cb(); }; s.onerror = function () { cb(new Error("load")); };
+    document.head.appendChild(s);
+  }
+  function mountTvWidget(sym) {
     ensureTvLib(function () {
-      if (!document.getElementById("tvm-chart")) return; // המודאל נסגר בזמן הטעינה
+      var box = document.getElementById("tvm-chart");
+      if (!box || box.dataset.ready) return; // המודאל נסגר בזמן הטעינה / כבר נבנה
+      box.dataset.ready = "1";
       new window.TradingView.widget({
         container_id: "tvm-chart",
         symbol: sym,
@@ -574,6 +568,51 @@
         },
       });
     });
+  }
+  function showChartView(sym, view) {
+    var wrap = document.getElementById("tvm-wrap");
+    if (!wrap) return;
+    wrap.querySelectorAll(".tvm-tab").forEach(function (b) { b.classList.toggle("is-on", b.dataset.view === view); });
+    var ta = wrap.querySelector("#tvm-ta"), tv = wrap.querySelector("#tvm-chart"), note = wrap.querySelector(".tvm-note");
+    ta.hidden = view !== "ta"; tv.hidden = view !== "tv"; if (note) note.hidden = view !== "tv";
+    if (view === "tv") mountTvWidget(sym);
+    else if (!ta.dataset.ready) {
+      ta.dataset.ready = "1";
+      ensureTaUi(function (err) {
+        var box = document.getElementById("tvm-ta");
+        if (!box) return;
+        if (err || !window.__taRender) { box.innerHTML = '<div class="ta-msg">טעינת הניתוח נכשלה</div>'; return; }
+        window.__taRender(sym, box);
+      });
+    }
+  }
+  function openChart(sym) {
+    closeChart();
+    var wrap = document.createElement("div");
+    wrap.id = "tvm-wrap";
+    wrap.innerHTML =
+      '<div class="tvm-box" role="dialog" aria-modal="true" aria-label="גרף ' + esc(sym) + '">' +
+        '<div class="tvm-head">' +
+          '<b class="tvm-sym" dir="ltr">' + esc(sym) + "</b>" +
+          '<div class="tvm-tabs" role="tablist"><button type="button" class="tvm-tab" data-view="ta">ניתוח טכני</button><button type="button" class="tvm-tab" data-view="tv">גרף TradingView</button></div>' +
+          '<span class="tvm-note" hidden>ממוצעים <b style="color:#43a047">20</b> · <b style="color:#1e88e5">50</b> · <b style="color:#e53935">200</b> + ווליום</span>' +
+          '<a class="tvm-full" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
+            '/" target="_blank" rel="noopener">פתיחה מלאה ↗</a>' +
+          '<button class="tvm-x" type="button" aria-label="סגירה">✕</button>' +
+        "</div>" +
+        '<div class="tvm-body"><div id="tvm-ta" class="tvm-ta" hidden></div><div id="tvm-chart" hidden><div class="tvm-load">טוען גרף…</div></div></div>' +
+      "</div>";
+    document.body.appendChild(wrap);
+    document.body.style.overflow = "hidden";
+    wrap.addEventListener("click", function (e) { if (e.target === wrap) closeChart(); });
+    wrap.querySelector(".tvm-x").addEventListener("click", closeChart);
+    wrap.querySelectorAll(".tvm-tab").forEach(function (b) { b.addEventListener("click", function () { showChartView(sym, b.dataset.view); }); });
+    document.addEventListener("keydown", escChart);
+    // ברירת מחדל: ניתוח טכני כשיש נרות שמורים לסמל, אחרת גרף TradingView
+    var decided = false;
+    function decide(has) { if (decided || !document.getElementById("tvm-wrap")) return; decided = true; showChartView(sym, has ? "ta" : "tv"); }
+    ensureTaUi(function (err) { if (err || !window.__taHas) { decide(false); return; } window.__taHas(sym, decide); });
+    setTimeout(function () { decide(false); }, 4000);
   }
   document.addEventListener("click", function (e) {
     var t = e.target;
