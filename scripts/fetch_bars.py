@@ -15,7 +15,7 @@ fetch_bars.py — נרות יומיים (OHLCV) ליקום המניות של ה�
 שמוצאת אותו (עד NEW_PER_RUN לריצה). כשל משיכה משאיר את הקובץ הקיים.
 
 פורמט הקובץ (קומפקטי, ~18KB לסמל): {"symbol","updated","last","n","bars":[[date,o,h,l,c,v],…]}
-אינדקס: data/bars/_index.json → {"updated","symbols":{SYM:{"last","n","seen"}}} — הדפדפן
+אינדקס: data/bars/index.json → {"updated","symbols":{SYM:{"last","n","seen"}}} — הדפדפן
 קורא אותו כדי לדעת לאילו טיקרים יש ניתוח.
 """
 import json
@@ -33,7 +33,7 @@ from iltime import NY  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 OUT_DIR = os.path.join(DATA, "bars")
-INDEX = os.path.join(OUT_DIR, "_index.json")
+INDEX = os.path.join(OUT_DIR, "index.json")   # לא "_index": Jekyll של GitHub Pages משמיט קבצים שמתחילים בקו תחתון
 WATCHLIST = os.path.join(DATA, "ta_watchlist.txt")
 UA = "nidam-markets-bot"
 KEEP_BARS = 520          # ≥500 למנוע + מרווח

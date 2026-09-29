@@ -23,7 +23,7 @@
     var now = Date.now();
     // אינדקס טרי לכל דקה (ולא 10 דק'): הבוט מוסיף סמלים בכל ריצה, ו-404 של CDN לא יישמר
     if (IDX && now - IDX_AT < 60 * 1000) { cb(IDX); return; }
-    fetch("data/bars/_index.json?v=" + Math.floor(now / 60000), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
+    fetch("data/bars/index.json?v=" + Math.floor(now / 60000), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) { IDX = d || { symbols: {} }; IDX_AT = now; cb(IDX); })
       .catch(function () { cb(IDX || { symbols: {} }); });
   }
