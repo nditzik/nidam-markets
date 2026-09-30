@@ -524,7 +524,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np92";
+  var TA_VER = "np93";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3404,6 +3404,132 @@
 
   /* טאב "Insider" (20.9.2026) — דוחות קניות של בעלי עניין מ-nidam-reports/insider.
      כמו סקטורים: הדוח האחרון מוצג, הקודמים נשמרים כצ'יפים (scripts/fetch_insider.py ממזג היסטוריה). */
+  /* ---------- הנבחרות (30.9.2026, np93) ----------
+     data/picks.json = המהדורה של היום מ-scripts/build_picks.js: המועמדים+המומנטום
+     שקיבלו "אישור מחיר לקנייה" מהמנוע הטכני על הסגירה האחרונה. data/picks_ledger.json =
+     יומן הכנות (5/10/20 ימי מסחר אחרי, באחוזים ומול SPY). קלף לכל מניה: פס הענף,
+     חותמת האישור, גרף 60 יום עם תמיכה/התנגדות, יציאה/כניסה/יעד, מי באתר מצביע, והרקורד
+     ההיסטורי של המניה עצמה (במשפט אחד + ריבועים). הטיקר פותח את מודאל הניתוח הטכני. */
+  var PICKD = null, PICKL = null;
+  var PK_GRP = { tech: "טכנולוגיה", health: "בריאות", other: "אחר" };
+  var PK_BO = { CONFIRMED: "פריצה מאושרת", RETEST: "בדיקה חוזרת של הפריצה", UNRESOLVED: "פריצה לא הוכרעה", PULLBACK: "תיקון אחרי פריצה",
+    IN_PROGRESS: "פריצה בתהליך", GAP_PARTIAL_FILL: "מילוי חלקי של פער", GAP_BREAKOUT: "פריצה בפער", FAILED: "פריצה שנכשלה", NONE: "ללא פריצה" };
+  function pkPct(v, d) { return v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(d == null ? 1 : d) + "%"; }
+  function pkSpark(p) {
+    var c = p.closes || [];
+    if (c.length < 2) return "";
+    var W = 360, H = 96, pad = 8;
+    var vals = c.slice(); if (p.sup) vals.push(p.sup); if (p.res) vals.push(p.res);
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), rng = (hi - lo) || 1;
+    var X = function (i) { return pad + i * (W - 2 * pad) / (c.length - 1); };
+    var Y = function (v) { return H - pad - (v - lo) / rng * (H - 2 * pad); };
+    var pts = c.map(function (v, i) { return X(i).toFixed(1) + "," + Y(v).toFixed(1); });
+    var area = "M" + X(0).toFixed(1) + "," + (H - pad) + " L" + pts.join(" L") + " L" + X(c.length - 1).toFixed(1) + "," + (H - pad) + " Z";
+    var lines = "";
+    if (p.sup) { var ys = Y(p.sup); lines += '<line class="lv" x1="' + pad + '" x2="' + (W - pad) + '" y1="' + ys.toFixed(1) + '" y2="' + ys.toFixed(1) + '"/><text class="lvt" x="' + (pad + 2) + '" y="' + (ys + 12).toFixed(1) + '">תמיכה ' + fmtNum(p.sup, 2) + "</text>"; }
+    if (p.res) { var yr = Y(p.res); lines += '<line class="lv" x1="' + pad + '" x2="' + (W - pad) + '" y1="' + yr.toFixed(1) + '" y2="' + yr.toFixed(1) + '"/><text class="lvt" x="' + (pad + 2) + '" y="' + (yr - 4).toFixed(1) + '">התנגדות ' + fmtNum(p.res, 2) + "</text>"; }
+    return '<svg class="pk-sp" viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="60 ימי מסחר אחרונים">' +
+      '<path class="area" d="' + area + '"/>' + lines + '<polyline class="line" points="' + pts.join(" ") + '"/>' +
+      '<circle class="end" cx="' + X(c.length - 1).toFixed(1) + '" cy="' + Y(c[c.length - 1]).toFixed(1) + '" r="3.5"/></svg>';
+  }
+  function pkLevels(p) {
+    var col = function (cls, k, v, sub) { return '<div class="pk-lv ' + cls + '"><span class="k">' + k + "</span><b>" + (v == null ? "—" : fmtNum(v, 2)) + "</b><i>" + sub + "</i></div>"; };
+    if (p.entry != null && p.stop != null && p.target != null) {
+      var pos = (p.entry - p.stop) / ((p.target - p.stop) || 1) * 100;
+      return '<div class="pk-lvs">' + col("bad", "יציאה", p.stop, pkPct((p.stop / p.entry - 1) * 100)) + col("", "כניסה", p.entry, "מחיר סגירה") + col("good", "יעד", p.target, pkPct((p.target / p.entry - 1) * 100)) + "</div>" +
+        '<div class="pk-range"><span class="rt"></span><span class="rp" style="right:' + Math.max(0, Math.min(100, pos)).toFixed(0) + '%"></span></div>';
+    }
+    var sup = p.sup, res = p.res, pr = p.price;
+    var pos2 = sup ? (pr - sup) / (((res || pr * 1.08) - sup) || 1) * 100 : 50;
+    return '<div class="pk-lvs">' + col("bad", "תמיכה", sup, sup ? pkPct((sup / pr - 1) * 100) : "") + col("", "מחיר", pr, "סגירה") + col("good", "התנגדות", res, res ? pkPct((res / pr - 1) * 100) : "אין מעל") + "</div>" +
+      '<div class="pk-range dim"><span class="rt"></span><span class="rp" style="right:' + Math.max(0, Math.min(100, pos2)).toFixed(0) + '%"></span></div>';
+  }
+  function pkRecord(p) {
+    var r = p.rec;
+    if (!r || !r.n) return '<div class="pk-rec first"><span class="rk">בעבר</span><span>אישור ראשון למניה הזו. אין עבר להשוות אליו.</span></div>';
+    var ok = Math.round(r.n * r.win10 / 100), tone = r.win10 >= 60 ? "good" : r.win10 >= 40 ? "warn" : "bad";
+    var dots = (r.dots || []).map(function (d) { return '<i class="' + (d ? "w" : "l") + '"></i>'; }).join("");
+    return '<div class="pk-rec ' + tone + '" title="ממוצע 10 ימים אחרי אישור: ' + pkPct(r.avg10) + ' · 20 ימים: ' + pkPct(r.avg20) + ' · ירידה ממוצעת בדרך: ' + pkPct(r.mae) + '">' +
+      '<span class="rk">בעבר</span><span class="rv">' + r.n + " אישורים בשנה, <b>" + ok + "</b> הצליחו תוך 10 ימים</span>" +
+      '<span class="rd" aria-hidden="true">' + dots + "</span></div>";
+  }
+  function pkCard(p, i) {
+    var src = (p.sources || []).map(function (s) { return '<span class="pk-chip ' + esc(s.k) + '"><b>' + esc(s.t) + "</b> " + esc(s.sub || "") + "</span>"; }).join("");
+    var tags = '<span class="ind">' + esc(PK_GRP[p.grp] || "אחר") + (p.industry ? " · " + esc(p.industry) : "") + "</span>" +
+      '<span>' + esc(PK_BO[p.bo] || p.boLabel || "") + "</span>" + (p.pbLabel ? "<span>" + esc(p.pbLabel) + "</span>" : "") +
+      (p.since ? '<span class="since">ברשימה מ-<span dir="ltr">' + esc(secDate(p.since)) + "</span></span>" : "");
+    return '<article class="pk-card ' + esc(p.grp || "other") + '" style="--d:' + (i * 50) + 'ms">' +
+      '<header class="pk-ch"><div class="pk-tk">' +
+        '<a class="pk-sym" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(p.sym) + '/" target="_blank" rel="noopener">' + esc(p.sym) + "</a>" +
+        (p.name ? '<span class="pk-nm">' + esc(p.name) + "</span>" : "") +
+        '<span class="pk-pr"><span dir="ltr">$' + fmtNum(p.price, 2) + '</span> <span class="chg ' + (p.chg >= 0 ? "up" : "dn") + '">' + pkPct(p.chg, 2) + "</span></span></div>" +
+        '<div class="pk-stamp" aria-label="אישור מחיר לקנייה"><span>אישור מחיר</span><small>המנוע הטכני · ' + esc(p.score) + "</small></div></header>" +
+      '<div class="pk-tags">' + tags + "</div>" + pkSpark(p) + pkLevels(p) +
+      (src ? '<div class="pk-src">' + src + "</div>" : "") + pkRecord(p) +
+      '<a class="pk-more" dir="rtl" href="https://www.tradingview.com/symbols/' + encodeURIComponent(p.sym) + '/" target="_blank" rel="noopener">הניתוח הטכני המלא ←</a></article>';
+  }
+  function pkLedger() {
+    var eds = (PICKL && PICKL.editions) || [];
+    if (!eds.length) return "";
+    var H = [5, 10, 20];
+    var cell = function (r) {
+      if (!r) return '<td class="pend">—</td>';
+      var tone = r.excess > 0 ? "good" : r.excess < 0 ? "bad" : "";
+      return '<td class="' + tone + '"><b>' + pkPct(r.ret) + "</b><small>" + pkPct(r.excess) + " מול השוק</small></td>";
+    };
+    var rows = eds.slice().reverse().map(function (e, i) {
+      var syms = (e.symbols || []).map(function (s) { return s.sym; });
+      var main = '<tr class="pk-ed" data-ed="' + i + '"><td><span dir="ltr">' + esc(secDate(e.date)) + "</span></td><td>" + syms.length + '<small class="pk-syms" dir="ltr">' + esc(syms.join(" ")) + "</small></td><td>" + esc(e.gateLabel || "") + "</td>" +
+        H.map(function (h) { return cell(e.avg && e.avg[h]); }).join("") + "</tr>";
+      var det = (e.symbols || []).map(function (s) {
+        var rs = e.results && e.results[s.sym] || {};
+        var stopped = H.some(function (h) { return rs[h] && rs[h].stopped; });
+        return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + '</a></td><td><span dir="ltr">$' + fmtNum(s.entry, 2) + "</span>" + (stopped ? ' <small class="pk-stopped">נגעה בסטופ</small>' : "") + "</td>" +
+          H.map(function (h) { return cell(rs[h]); }).join("") + "</tr>";
+      }).join("");
+      return main + det;
+    }).join("");
+    return '<section class="pk-ledger card"><div class="section-title" style="margin-top:0">📒 יומן הכנות</div>' +
+      '<p class="pk-sub">כל מהדורה נרשמת עם מחיר הסגירה של אותו יום, ומה שקרה לה נמדד אוטומטית 5, 10 ו-20 ימי מסחר אחרי: התשואה באחוזים, ולידה ההפרש מ-S&P 500 באותם ימים. הצבע לפי ההפרש מהשוק. לחיצה על מהדורה פותחת מניה-מניה. מניה שחוזרת יום אחרי יום נספרת פעם אחת, מהמהדורה הראשונה שלה.</p>' +
+      '<div class="table-wrap"><table class="pk-table"><thead><tr><th>מהדורה</th><th>מניות</th><th>מצב השוק</th><th>אחרי 5 ימים</th><th>אחרי 10</th><th>אחרי 20</th></tr></thead><tbody>' + rows + "</tbody></table></div></section>";
+  }
+  function renderPicks(el) {
+    if (!el) return;
+    var d = PICKD;
+    if (!d || !d.picks) { emptyPanel(el, "✦", "הנבחרות — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); return; }
+    var g = d.gate || {}, r = d.record;
+    var gateCls = { defense: "warn", neutral: "mid", green: "good" }[g.state] || "mid";
+    var rule = { defense: "עד 3 פוזיציות · חצי גודל · כניסה בשלישים · אופק 10 עד 20 יום", neutral: "עד 4 פוזיציות · שני שליש גודל · כניסה בשלישים · אופק 10 עד 20 יום", green: "עד 5 פוזיציות · גודל מלא · כניסה בשלישים · אופק 10 עד 20 יום" }[g.state] || "";
+    var facts = [g.combined != null ? "ציון משולב <b>" + esc(g.combined) + "</b>" : "", g.breadth != null ? "רוחב <b>" + Math.round(g.breadth) + "%</b> מעל ממוצע 50" : "",
+      g.sellDays != null ? "<b>" + esc(g.sellDays) + "</b> ימי מכירה בחודש" : "", g.flow != null ? "אופציות <b>" + esc(g.flow) + "</b>" : "",
+      g.vix != null ? "VIX <b>" + Math.round(g.vix) + "</b> " + ({ green: "ירוק", yellow: "צהוב", red: "אדום" }[g.vixState] || "") : ""].filter(Boolean);
+    var byGrp = {}; d.picks.forEach(function (p) { byGrp[p.grp] = (byGrp[p.grp] || 0) + 1; });
+    var mix = Object.keys(byGrp).map(function (k) { return byGrp[k] + " " + (PK_GRP[k] || k); }).join(" · ");
+    var html = stamp(d._meta) +
+      '<header class="pk-mast"><div><div class="pk-kick">אישור המנוע הטכני · מתעדכן כל בוקר</div><h2 class="pk-h1">הנבחרות</h2>' +
+        '<p class="pk-dek">' + d.picks.length + ' מניות מתוך המועמדים והמומנטום של האתר שקיבלו בסגירה האחרונה "אישור מחיר לקנייה" מהמנוע הטכני. לא המלצה, רשימת עבודה לעשרת הימים הבאים.</p></div>' +
+        '<div class="pk-date">על סגירת<b dir="ltr">' + esc(secDate(d.date)) + "</b>נסרקו " + esc(d.scanned) + " מניות</div></header>" +
+      '<section class="pk-gate ' + gateCls + '"><div class="st"><i></i>מצב השוק: ' + esc(g.label || "") + '</div><div class="facts">' + facts.map(function (f) { return "<span>" + f + "</span>"; }).join("") + '</div><div class="rule">' + esc(rule) + "</div></section>" +
+      (r ? '<section class="pk-stats"><div class="pk-tile"><span class="v hero">' + esc(r.win10) + '%</span><span class="k">מהאישורים הקודמים עלו תוך 10 ימים</span><span class="s">' + esc(r.n) + " אישורים ב-" + esc(r.symbols) + " המניות שנבחרו עד היום, שנה אחורה</span></div>" +
+        '<div class="pk-tile"><span class="v">' + pkPct(r.avg10) + '</span><span class="k">תשואה ממוצעת 10 ימים אחרי אישור</span><span class="s">' + (r.excess10 != null ? "מול S&P 500 באותם ימים: " + pkPct(r.excess10) : "") + "</span></div>" +
+        '<div class="pk-tile"><span class="v">' + pkPct(r.avg20) + '</span><span class="k">ממוצע 20 ימים אחרי אישור</span><span class="s">בדרך: ירידה ממוצעת של ' + Math.abs(r.mae || 0).toFixed(0) + "% מהכניסה. הסטופ לא צמוד.</span></div></section>" : "") +
+      '<div class="section-title">הקלפים של היום</div><p class="pk-sub">' + esc(mix) + ". הצבע בראש הקלף הוא הענף. הסדר: כמה מקורות באתר מסכימים, ואז הציון הטכני. לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>" +
+      (d.picks.length ? '<section class="pk-deck">' + d.picks.map(pkCard).join("") + "</section>" : '<p class="pk-sub">אף מניה לא קיבלה היום אישור מחיר. זה קורה, ולא מחפשים תחליף.</p>') +
+      ((d.excluded || []).length ? '<p class="pk-sub">נפסלו: ' + d.excluded.map(function (x) { return '<span dir="ltr">' + esc(x.sym) + "</span> (" + esc(x.reason) + ")"; }).join(" · ") + "</p>" : "") +
+      pkLedger() +
+      '<section class="pk-how"><div><b>1. המאגר</b>המועמדים של IBKR וסריקות המומנטום. רק מה שכבר באתר.</div>' +
+        '<div><b>2. השופט</b>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות עם "אישור מחיר לקנייה". "כניסה אפשרית" לא מספיק (נבדק לאחור: לא מנצח יום רגיל).</div>' +
+        '<div><b>3. הסינון</b>מדווחת בשבוע הקרוב יוצאת. מניה ששלושת האישורים הקודמים שלה נכשלו יוצאת.</div>' +
+        '<div><b>4. השער</b>מד השוק קובע כמה מותר: הגנה = עד 3 וחצי גודל. ירוק = עד 5.</div></section>' +
+      '<p class="pk-foot">תיאור טכני של מצב המניות על פי נרות יומיים, לא ייעוץ השקעות. המספרים ההיסטוריים מבוססים על שנה אחת ועל מניות שנבחרו כשהן במגמת עלייה, ולכן מוטים לטובה.</p>';
+    el.innerHTML = html;
+    el.querySelectorAll(".pk-ed").forEach(function (tr) {
+      tr.addEventListener("click", function () {
+        var open = tr.classList.toggle("open");
+        el.querySelectorAll('.pk-det[data-ed="' + tr.dataset.ed + '"]').forEach(function (x) { x.hidden = !open; });
+      });
+    });
+  }
   var INSD = null;
   function renderInsider(el, d) {
     INSD = d;
@@ -3756,6 +3882,10 @@
       fetchJSON("data/insider.json")
         .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); noteSig("insider", d); })
         .catch(function () { if (!("insider" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
+      // הנבחרות (30.9.2026): המהדורה + יומן הכנות; היומן לא חוסם את הקלפים
+      Promise.all([fetchJSON("data/picks.json"), fetchJSON("data/picks_ledger.json").catch(function () { return null; })])
+        .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); noteSig("picks", r[0]); })
+        .catch(function () { if (!PICKD) emptyPanel(document.getElementById("panel-picks"), "✦", "הנבחרות — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); });
       fetchJSON("data/sectors.json")
         .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
         .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });

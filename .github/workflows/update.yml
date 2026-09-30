@@ -222,6 +222,13 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_bars.py
 
+      # --- הנבחרות (30.9.2026): המועמדים+המומנטום שקיבלו "אישור מחיר לקנייה"
+      #     מהמנוע הטכני (assets/ta_engine.js) על הנר הסגור האחרון → data/picks.json,
+      #     ויומן הכנות 5/10/20 יום → data/picks_ledger.json. node קיים ב-runner. ---
+      - name: Build picks (הנבחרות)
+        continue-on-error: true
+        run: node scripts/build_picks.js
+
       - name: Write daily analysis (auto)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
