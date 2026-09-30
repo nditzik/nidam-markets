@@ -278,6 +278,18 @@ jobs:
         run: python scripts/relay_barchart_mail.py
         continue-on-error: true
 
+      # --- סורקי המומנטום מהמייל (30.9.2026): גרוק שולח את 5 הסורקים אחרי הסגירה בנושא
+      #     "momentum – DD.MM.YYYY" → nditzik/stocks-momentum/data בשמות הקנוניים.
+      #     המפתח: MOMENTUM_PAT, או INDEXES_STATUS_PAT אם הורחב לריפו stocks-momentum. ---
+      - name: Relay momentum scans from mail to stocks-momentum
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          INDEXES_STATUS_PAT: ${{ secrets.INDEXES_STATUS_PAT }}
+          MOMENTUM_PAT: ${{ secrets.MOMENTUM_PAT }}
+        run: python scripts/relay_momentum_mail.py
+        continue-on-error: true
+
       # --- מבזק שוק: תנועה חדה תוך-יומית (ספייק 30 דק') + ראיות "מה קרה" ---
       - name: Detect market flash
         env:
