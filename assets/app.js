@@ -29,7 +29,8 @@
      נשארו ברמת הפאנל (candidates/morning/reports…) — קישורים ישנים והסטטיסטיקה ממשיכים לעבוד.
      לחיצה על טאב מאוחד פותחת את החלק האחרון שנבחר בו (או ברירת המחדל def); קישור #sub פותח את sub. */
   var GROUPS = {
-    trades:   { subs: [["candidates", "מועמדים"], ["trades", "הצעות לטרייד"]], def: "trades" },
+    // 30.9.2026 (איציק, אחרי שנוסף "הנבחרות"): מומנטום התאחד לכאן — טאב "מועמדים" = מומנטום | מועמדים | הצעות לטרייד
+    candidates: { subs: [["momentum", "מומנטום"], ["candidates", "מועמדים"], ["trades", "הצעות לטרייד"]], def: "candidates" },
     briefing: { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" },
     weekcal:  { subs: [["weekcal", "לוח הדיווחים"], ["reports", "ניתוח דוחות"]], def: "reports" }
   };
@@ -524,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np93";
+  var TA_VER = "np94";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
