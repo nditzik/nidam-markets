@@ -94,16 +94,27 @@ function main() {
   const ledger = readJSON(LEDGER, { editions: [], hist: {} });
   ledger.hist = ledger.hist || {}; ledger.editions = ledger.editions || [];
 
-  const rebuild = !prev || prev.date !== asOf;
-  if (rebuild) buildEdition(asOf, spy, ledger, idx);
-  else console.log(`[nochange] picks: המהדורה של ${asOf} כבר קיימת`);
+  // המהדורה נבנית מחדש כשהנר מתקדם (23:20+ ניו יורק) **וגם** כשהמאגר מתחלף: המומנטום
+  // והמועמדים של איציק נדחפים בבוקר (06:30–10:00 IL) על סגירת אתמול, אחרי שהנרות כבר
+  // נכנסו בלילה — בלי זה המהדורה הייתה נבנית מהרשימות של שלשום. (30.9.2026)
+  const poolSig = poolSignature();
+  const rebuild = !prev || prev.date !== asOf || prev.poolSig !== poolSig;
+  if (rebuild) buildEdition(asOf, spy, ledger, idx, poolSig);
+  else console.log(`[nochange] picks: המהדורה של ${asOf} כבר קיימת (המאגר לא השתנה)`);
   updateLedger(ledger, spy);
   ledger._meta = { updatedAt: ilStamp(), source: "build_picks" };
   fs.writeFileSync(LEDGER, JSON.stringify(ledger, null, 1), "utf8");
   return 0;
 }
 
-function buildEdition(asOf, spy, ledger, idx) {
+function poolSignature() {
+  const mom = readJSON(path.join(ROOT, "data", "momentum.json"), {});
+  const cand = readJSON(path.join(ROOT, "data", "candidates.json"), {});
+  const files = (mom._meta && mom._meta.files) ? Object.values(mom._meta.files).sort().join(",") : "";
+  return files + "|" + (cand.date || "") + "|" + (cand.candidates ? cand.candidates.length : 0);
+}
+
+function buildEdition(asOf, spy, ledger, idx, poolSig) {
   const mom = readJSON(path.join(ROOT, "data", "momentum.json"), { stocks: [] });
   const cand = readJSON(path.join(ROOT, "data", "candidates.json"), { candidates: [] });
   const earn = readJSON(path.join(ROOT, "data", "earnings.json"), {});
@@ -165,10 +176,14 @@ function buildEdition(asOf, spy, ledger, idx) {
   // דה-דופ ביומן: מניה שכבר בפוזיציה פתוחה (מהדורה ב-20 ימי המסחר האחרונים) לא נרשמת שוב
   const cutIdx = Math.max(0, spy.length - 1 - 20);
   const open = {};
-  ledger.editions.forEach(e => { if ((spyIdx[e.date] != null ? spyIdx[e.date] : -1) >= cutIdx) e.symbols.forEach(s => { open[s.sym] = open[s.sym] || e.date; }); });
+  ledger.editions.forEach(e => { if (e.date !== asOf && (spyIdx[e.date] != null ? spyIdx[e.date] : -1) >= cutIdx) e.symbols.forEach(s => { open[s.sym] = open[s.sym] || e.date; }); });
   const fresh = [];
   picks.forEach(p => { if (open[p.sym]) p.since = open[p.sym]; else fresh.push({ sym: p.sym, entry: p.price, stop: p.stop, atr: p.atr }); });
-  if (!ledger.editions.some(e => e.date === asOf)) {
+  // מהדורה של אותו יום שנבנית מחדש (המאגר התחלף בבוקר) מחליפה את רשימת המניות — עוד לא
+  // נמדד עליה כלום, ומחיר הכניסה (סגירת אותו יום) זהה ממילא
+  const ex = ledger.editions.find(e => e.date === asOf);
+  if (ex) { ex.symbols = fresh; ex.gate = gate.state; ex.gateLabel = gate.label; ex.results = {}; ex.avg = {}; }
+  else {
     ledger.editions.push({ date: asOf, gate: gate.state, gateLabel: gate.label, symbols: fresh, results: {}, avg: {} });
     if (ledger.editions.length > 120) ledger.editions = ledger.editions.slice(-120);
   }
@@ -185,7 +200,7 @@ function buildEdition(asOf, spy, ledger, idx) {
     excess10: (() => { const v = all.filter(e => e.spy10 != null); return v.length ? +(v.reduce((s, e) => s + e.r10 - e.spy10, 0) / v.length).toFixed(1) : null; })()
   } : null;
 
-  const out = { date: asOf, gate, record, picks, excluded, poolSize: pool.length, scanned,
+  const out = { date: asOf, poolSig, gate, record, picks, excluded, poolSize: pool.length, scanned,
     _meta: { updatedAt: ilStamp(), source: "ta_engine · candidates+momentum", note: "אישור מחיר לקנייה מהמנוע הטכני על סגירת " + asOf } };
   fs.writeFileSync(OUT, JSON.stringify(out), "utf8");
   console.log(`[done] picks ${asOf}: ${picks.length} נבחרות מתוך ${scanned} (מאגר ${pool.length}) · שער ${gate.label} · נפסלו ${excluded.length}` +
