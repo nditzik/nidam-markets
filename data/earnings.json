@@ -32,6 +32,12 @@
             "status": "pending"
           },
           {
+            "ticker": "UEC",
+            "name": "Uranium Energy Corp.",
+            "when": "before",
+            "status": "pending"
+          },
+          {
             "ticker": "CNXC",
             "name": "Concentrix Corporation",
             "when": "after",
@@ -154,7 +160,7 @@
       "date": "2026-09-29",
       "dow": "שלישי",
       "label": "29.9",
-      "total": 3,
+      "total": 4,
       "companies": [
         {
           "ticker": "CCL",
@@ -163,6 +169,10 @@
         {
           "ticker": "KMX",
           "name": "CarMax, Inc."
+        },
+        {
+          "ticker": "UEC",
+          "name": "Uranium Energy Corp."
         },
         {
           "ticker": "CNXC",
@@ -262,7 +272,7 @@
     "APLD": "2026-10-07"
   },
   "_meta": {
-    "updatedAt": "30/09/2026 03:16",
+    "updatedAt": "30/09/2026 03:51",
     "source": "tradingview"
   }
 }
