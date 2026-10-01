@@ -5,12 +5,12 @@
     {
       "ticker": "ACN",
       "name": "Accenture Plc Class A",
-      "capB": 132.4
+      "capB": 132.3
     },
     {
       "ticker": "NKE",
       "name": "NIKE, Inc. Class B",
-      "capB": 53.3
+      "capB": 53.4
     }
   ],
   "reactions": {
@@ -24,8 +24,8 @@
             "name": "Micron Technology, Inc.",
             "when": "after",
             "status": "live",
-            "chg": -0.44,
-            "price": 1060.45,
+            "chg": 0.01,
+            "price": 1065.24,
             "reactDate": "2026-10-01",
             "baseDate": "2026-09-30"
           },
@@ -74,8 +74,8 @@
             "name": "Progress Software Corporation",
             "when": "after",
             "status": "live",
-            "chg": -5.93,
-            "price": 37.6,
+            "chg": -5.13,
+            "price": 37.92,
             "reactDate": "2026-10-01",
             "baseDate": "2026-09-30"
           }
@@ -349,7 +349,7 @@
     "ODC": "2026-10-08"
   },
   "_meta": {
-    "updatedAt": "01/10/2026 20:01",
+    "updatedAt": "01/10/2026 20:15",
     "source": "tradingview"
   }
 }
