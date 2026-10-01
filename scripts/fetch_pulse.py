@@ -47,6 +47,7 @@ import email.header
 import email.utils
 import html as htmllib
 import imaplib
+import imap_util
 import json
 import os
 import re
@@ -280,17 +281,16 @@ def fetch_xscan():
                                 "SINCE", f"{since.day:02d}-{mon}-{since.year}")
         ids = data[0].split() if typ == "OK" and data and data[0] else []
         items, scanned = [], 0
-        for mid in reversed(ids):            # מהחדש לישן
+        # כותרות קודם, גוף מלא רק ל-X Scan (1.10.2026 — מיילי ה-CSV של גרוק מאותו שולח האטו את הריצה)
+        for h in imap_util.headers(imap, ids):   # מהחדש לישן
             if scanned >= 15:                # תקרת בטיחות — מיילי X Scan אפשריים ב-48ש'
                 break
-            typ, md = imap.fetch(mid, "(RFC822)")
-            if typ != "OK" or not md or not md[0]:
-                continue
-            msg = email.message_from_bytes(md[0][1])
-            subject = str(email.header.make_header(
-                email.header.decode_header(msg.get("Subject") or "")))
+            subject = h["subject"]
             # דורש שעה בנושא — מדלג על "X Scan דוגמה/TEST" (ניסויי-פורמט של איציק, 20/09/2026)
             if not (XSCAN_MARK in subject and XSCAN_TIME_RE.search(subject)):
+                continue
+            msg = imap_util.full(imap, h["id"])
+            if msg is None:
                 continue
             scanned += 1
             body = _html_part(msg)

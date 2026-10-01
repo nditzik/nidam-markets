@@ -25,6 +25,7 @@ import os
 import sys
 from datetime import datetime, timezone, timedelta
 from iltime import il_off, IL   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
+import imap_util
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_JSON = os.path.join(ROOT, "data", "morning.json")
@@ -196,25 +197,23 @@ def run_imap():
         best_review = best_premkt = None
         notice = None
         arch_changed = False
-        for mid in reversed(ids):  # מהחדש לישן
-            typ, md = imap.fetch(mid, "(RFC822)")
-            if typ != "OK" or not md or not md[0]:
-                continue
-            msg = email.message_from_bytes(md[0][1])
-            subject = dec(msg.get("Subject"))
+        # כותרות קודם, גוף מלא רק למהדורות Barchart (1.10.2026 — מיילי ה-CSV של גרוק מאותו שולח)
+        for h in imap_util.headers(imap, ids):  # מהחדש לישן
+            subject = h["subject"]
             if subject.startswith("Fwd:") or subject.startswith("Fw:"):
                 continue
             if notice is None and "Barchart" in subject and NOTICE_MARK in subject:
-                try:
-                    notice = (email.utils.parsedate_to_datetime(msg.get("Date")),)
-                except Exception:
-                    pass
+                if h["date"]:
+                    notice = (h["date"],)
                 continue
             is_review = SUBJECT_MARK in subject
             is_premkt = PREMKT_MARK in subject
             if not (is_review or is_premkt):
                 continue
-            date_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
+            msg = imap_util.full(imap, h["id"])
+            if msg is None:
+                continue
+            date_dt = h["date"] or email.utils.parsedate_to_datetime(msg.get("Date"))
             body = html_of(msg)
             kind = "review" if is_review else "premkt"
             if ba.archive_email(idx, kind, subject, date_dt, body):

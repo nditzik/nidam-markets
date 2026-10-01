@@ -18,6 +18,7 @@ import sys
 from datetime import datetime, timezone, timedelta
 from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 from email.header import decode_header
+import imap_util
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_JSON = os.path.join(ROOT, "data", "briefing.json")
@@ -292,14 +293,14 @@ def fetch_candidates(imap, days=4):
     typ, data = imap.search(None, 'FROM', SENDER, 'SINCE', imap_since(days))
     ids = data[0].split() if typ == "OK" and data and data[0] else []
     out = []
-    for mid in ids:
-        typ, msg_data = imap.fetch(mid, "(RFC822)")
-        if typ != "OK" or not msg_data or not msg_data[0]:
+    # כותרות קודם, גוף מלא רק לתדריכים (1.10.2026 — מיילי ה-CSV של גרוק מאותו שולח האטו את הריצה ל-13 דק')
+    for h in imap_util.headers(imap, ids):
+        if "תדרוך משקיעים" not in h["subject"]:
             continue
-        msg = email.message_from_bytes(msg_data[0][1])
-        subject = dec(msg.get("Subject"))
-        date_dt = email.utils.parsedate_to_datetime(msg.get("Date"))
-        out.append((subject, date_dt, msg))
+        msg = imap_util.full(imap, h["id"])
+        if msg is None:
+            continue
+        out.append((h["subject"], h["date"], msg))
     out.sort(key=lambda t: (t[1] or datetime(1970, 1, 1, tzinfo=timezone.utc)), reverse=True)
     return out
 

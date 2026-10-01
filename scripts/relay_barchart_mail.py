@@ -36,6 +36,7 @@ from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from iltime import NY  # noqa: E402
+import imap_util  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "data", "_barchart_relay_state.json")
@@ -169,7 +170,7 @@ def save_state(st):
         json.dump(st, f, ensure_ascii=False, indent=1)
 
 
-def fetch_messages(days=3):
+def fetch_messages(days=3, skip=()):
     user = os.environ.get("GMAIL_USER") or SENDER
     pw = os.environ.get("GMAIL_APP_PASSWORD")
     if not pw:
@@ -182,10 +183,14 @@ def fetch_messages(days=3):
     # "S&P" בחיפוש IMAP לא נמצא (29.9) — מחפשים מילה אחת ומסננים לפי הנושא המלא בפייתון
     typ, data = imap.search(None, "OR", "SUBJECT", "Options", "SUBJECT", "Watchlist", "SINCE", since)
     out = []
-    for mid in (data[0].split() if typ == "OK" and data and data[0] else []):
-        typ, md = imap.fetch(mid, "(RFC822)")
-        if typ == "OK" and md and md[0]:
-            out.append(email.message_from_bytes(md[0][1]))
+    # כותרות קודם: מייל שכבר טופל (Message-ID ב-state) או בנושא אחר לא יורד שוב (1.10.2026 — כל מייל ~500KB)
+    skip = set(skip)
+    for h in imap_util.headers(imap, data[0].split() if typ == "OK" and data and data[0] else []):
+        if h["message_id"] in skip or not any(k in h["subject"].lower() for k in SUBJECT_MARKS):
+            continue
+        m = imap_util.full(imap, h["id"])
+        if m is not None:
+            out.append(m)
     imap.logout()
     return out
 
@@ -227,7 +232,7 @@ def push_files(repo_dir, files, label, dry_run=False):
 
 def main(messages=None, repo_dir=None, now=None, dry_run=False):
     st = load_state()
-    msgs = messages if messages is not None else fetch_messages()
+    msgs = messages if messages is not None else fetch_messages(skip=st["done"])
     if msgs is None:
         return 0
     todo = []

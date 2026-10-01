@@ -40,6 +40,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from iltime import NY  # noqa: E402
 from relay_barchart_mail import CLOSE_MIN, git, last_closed_day, rows_of  # noqa: E402
+import imap_util  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "data", "_momentum_relay_state.json")
@@ -188,7 +189,7 @@ def is_ours(m):
     return SENDER in frm and subject_of(m).strip().lower().startswith("momentum")
 
 
-def fetch_messages(days=3):
+def fetch_messages(days=3, skip=()):
     pw = os.environ.get("GMAIL_APP_PASSWORD")
     if not pw:
         print("relay_momentum: אין GMAIL_APP_PASSWORD — דילוג")
@@ -199,10 +200,14 @@ def fetch_messages(days=3):
     since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
     typ, data = imap.search(None, "SUBJECT", "momentum", "FROM", SENDER, "SINCE", since)
     out = []
-    for mid in (data[0].split() if typ == "OK" and data and data[0] else []):
-        typ, md = imap.fetch(mid, "(RFC822)")
-        if typ == "OK" and md and md[0]:
-            out.append(email.message_from_bytes(md[0][1]))
+    # כותרות קודם: מייל שכבר טופל לא יורד שוב (כל מייל ~300KB, כמה ביום)
+    skip = set(skip)
+    for h in imap_util.headers(imap, data[0].split() if typ == "OK" and data and data[0] else []):
+        if h["message_id"] in skip or not h["subject"].strip().lower().startswith("momentum"):
+            continue
+        m = imap_util.full(imap, h["id"])
+        if m is not None:
+            out.append(m)
     imap.logout()
     return out
 
@@ -242,7 +247,7 @@ def push_files(repo_dir, files, label, dry_run=False):
 
 def main(messages=None, repo_dir=None, now=None, dry_run=False):
     st = load_state()
-    msgs = messages if messages is not None else fetch_messages()
+    msgs = messages if messages is not None else fetch_messages(skip=st["done"])
     if msgs is None:
         return 0
     todo = []
