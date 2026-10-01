@@ -82,6 +82,9 @@ XD_SENDER = "nditzik@gmail.com"
 XSCAN_MARK = "X Scan "
 XSCAN_TIME_RE = re.compile(r"X Scan\s+(\d{1,2}):(\d{2})")
 XD_SINCE_DAYS = 2          # חלון חיפוש IMAP; סינון 48ש' נעשה ממילא בהמשך
+# מטמון פריטים לפי Message-ID (1.10.2026): כל ריצה הורידה מחדש את כל ~11 מיילי
+# X Scan של 48 השעות — 10 דקות בריצה, והריצות נערמו. מייל שכבר פוענח לא יורד שוב.
+XSCAN_CACHE = os.path.join(ROOT, "data", "_xscan_cache.json")
 
 # אותו חשבון, שם אחר בכל ערוץ: @DeItaone הוא Walter Bloomberg (אומת 05/09/2026
 # מול 3 התאמות מדויקות בהפרש דקה). בלי המיפוי, MAX_PER_SOURCE היה נותן לו
@@ -281,6 +284,12 @@ def fetch_xscan():
                                 "SINCE", f"{since.day:02d}-{mon}-{since.year}")
         ids = data[0].split() if typ == "OK" and data and data[0] else []
         items, scanned = [], 0
+        try:
+            with open(XSCAN_CACHE, encoding="utf-8") as f:
+                cache = json.load(f)
+        except Exception:
+            cache = {}
+        keep_cache, downloaded = {}, 0
         # כותרות קודם, גוף מלא רק ל-X Scan (1.10.2026 — מיילי ה-CSV של גרוק מאותו שולח האטו את הריצה)
         for h in imap_util.headers(imap, ids):   # מהחדש לישן
             if scanned >= 15:                # תקרת בטיחות — מיילי X Scan אפשריים ב-48ש'
@@ -289,7 +298,14 @@ def fetch_xscan():
             # דורש שעה בנושא — מדלג על "X Scan דוגמה/TEST" (ניסויי-פורמט של איציק, 20/09/2026)
             if not (XSCAN_MARK in subject and XSCAN_TIME_RE.search(subject)):
                 continue
+            key = h["message_id"] or subject
+            if key in cache:
+                scanned += 1
+                keep_cache[key] = cache[key]
+                items += cache[key]
+                continue
             msg = imap_util.full(imap, h["id"])
+            downloaded += 1
             if msg is None:
                 continue
             scanned += 1
@@ -302,9 +318,15 @@ def fetch_xscan():
                 continue
             got = parse_xscan(body, sent_dt, il_hours)
             items += got
+            keep_cache[key] = got
             print(f"[ok] X Scan: {subject[:40]} — {len(got)} פריטים")
         if not scanned:
             print(f"[warn] X Scan: לא נמצא מייל עם שעה בנושא ב-{XD_SINCE_DAYS} הימים האחרונים.")
+        else:
+            print(f"[ok] X Scan: {scanned} מיילים ({downloaded} הורדו, השאר מהמטמון)")
+        if keep_cache != cache:
+            with open(XSCAN_CACHE, "w", encoding="utf-8") as f:
+                json.dump(keep_cache, f, ensure_ascii=False)
         return items
     except Exception as e:
         print(f"[warn] X Scan נכשל: {e}")
