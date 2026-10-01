@@ -1,20 +1,51 @@
 {
-  "today": "2026-10-01",
-  "todayCount": 5,
-  "todayBig": [
-    {
-      "ticker": "ACN",
-      "name": "Accenture Plc Class A",
-      "capB": 129.9
-    },
-    {
-      "ticker": "NKE",
-      "name": "NIKE, Inc. Class B",
-      "capB": 52.1
-    }
-  ],
+  "today": "2026-10-02",
+  "todayCount": 0,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-01",
+        "label": "1.10",
+        "items": [
+          {
+            "ticker": "ACN",
+            "name": "Accenture Plc Class A",
+            "when": "before",
+            "status": "final",
+            "chg": 15.78,
+            "price": 212.3,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
+          },
+          {
+            "ticker": "NKE",
+            "name": "NIKE, Inc. Class B",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "MKC",
+            "name": "McCormick & Company, Incorporated",
+            "when": "before",
+            "status": "final",
+            "chg": -4.87,
+            "price": 44.14,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
+          },
+          {
+            "ticker": "AYI",
+            "name": "Acuity Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": -3.4,
+            "price": 299.28,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
+          }
+        ]
+      },
       {
         "date": "2026-09-30",
         "label": "30.9",
@@ -126,87 +157,10 @@
             "baseDate": "2026-09-29"
           }
         ]
-      },
-      {
-        "date": "2026-09-28",
-        "label": "28.9",
-        "items": [
-          {
-            "ticker": "JEF",
-            "name": "Jefferies Financial Group Inc.",
-            "when": "after",
-            "status": "final",
-            "chg": -1.29,
-            "price": 46.52,
-            "reactDate": "2026-09-29",
-            "baseDate": "2026-09-28"
-          },
-          {
-            "ticker": "MTN",
-            "name": "Vail Resorts, Inc.",
-            "when": "after",
-            "status": "final",
-            "chg": 2.32,
-            "price": 141.29,
-            "reactDate": "2026-09-29",
-            "baseDate": "2026-09-28"
-          },
-          {
-            "ticker": "AIR",
-            "name": "AAR CORP.",
-            "when": "after",
-            "status": "final",
-            "chg": -7.25,
-            "price": 106.75,
-            "reactDate": "2026-09-29",
-            "baseDate": "2026-09-28"
-          },
-          {
-            "ticker": "IDT",
-            "name": "IDT Corporation Class B",
-            "when": "after",
-            "status": "final",
-            "chg": 8.63,
-            "price": 75.56,
-            "reactDate": "2026-09-29",
-            "baseDate": "2026-09-28"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
-    {
-      "ticker": "ACN",
-      "name": "Accenture Plc Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/ACN.png"
-    },
-    {
-      "ticker": "NKE",
-      "name": "NIKE, Inc. Class B",
-      "when": "after",
-      "logo": "data/earnings/logos/NKE.png"
-    },
-    {
-      "ticker": "MKC",
-      "name": "McCormick & Company, Incorporated",
-      "when": "before",
-      "logo": "data/earnings/logos/MKC.png"
-    },
-    {
-      "ticker": "AYI",
-      "name": "Acuity Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/AYI.png"
-    },
-    {
-      "ticker": "VFS",
-      "name": "VinFast Auto Ltd.",
-      "when": "",
-      "logo": "data/earnings/logos/VFS.png"
-    }
-  ],
+  "reporting": [],
   "more": 0,
   "upcoming": [],
   "week": [
@@ -327,11 +281,6 @@
     }
   ],
   "window": {
-    "ACN": "2026-10-01",
-    "NKE": "2026-10-01",
-    "MKC": "2026-10-01",
-    "AYI": "2026-10-01",
-    "VFS": "2026-10-01",
     "STZ": "2026-10-06",
     "RPM": "2026-10-06",
     "LW": "2026-10-06",
@@ -346,10 +295,12 @@
     "PGR": "2026-10-08",
     "NG": "2026-10-08",
     "KARO": "2026-10-08",
-    "ODC": "2026-10-08"
+    "ODC": "2026-10-08",
+    "DAL": "2026-10-09",
+    "NRIX": "2026-10-09"
   },
   "_meta": {
-    "updatedAt": "01/10/2026 23:45",
+    "updatedAt": "02/10/2026 00:01",
     "source": "tradingview"
   }
 }
