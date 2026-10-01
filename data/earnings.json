@@ -20,49 +20,39 @@
         "label": "30.9",
         "items": [
           {
+            "ticker": "MU",
+            "name": "Micron Technology, Inc.",
+            "when": "after",
+            "status": "pending"
+          },
+          {
             "ticker": "JBL",
             "name": "Jabil Inc.",
             "when": "before",
-            "status": "final",
-            "chg": -10.03,
-            "price": 286.86,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
+            "status": "pending"
           },
           {
             "ticker": "FDS",
             "name": "FactSet Research Systems Inc.",
             "when": "before",
-            "status": "final",
-            "chg": 3.84,
-            "price": 269.95,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
+            "status": "pending"
           },
           {
             "ticker": "CAG",
             "name": "Conagra Brands, Inc.",
             "when": "before",
-            "status": "final",
-            "chg": -4.88,
-            "price": 13.44,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
+            "status": "pending"
           },
           {
             "ticker": "CALM",
             "name": "Cal-Maine Foods, Inc.",
             "when": "before",
-            "status": "final",
-            "chg": -0.71,
-            "price": 68.06,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
+            "status": "pending"
           },
           {
             "ticker": "PRGS",
             "name": "Progress Software Corporation",
-            "when": "after",
+            "when": "before",
             "status": "pending"
           }
         ]
@@ -105,11 +95,7 @@
             "ticker": "CNXC",
             "name": "Concentrix Corporation",
             "when": "after",
-            "status": "final",
-            "chg": 0.28,
-            "price": 24.95,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
+            "status": "pending"
           }
         ]
       },
@@ -335,7 +321,7 @@
     "ODC": "2026-10-08"
   },
   "_meta": {
-    "updatedAt": "01/10/2026 01:58",
+    "updatedAt": "01/10/2026 03:07",
     "source": "tradingview"
   }
 }
