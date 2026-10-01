@@ -14,6 +14,7 @@ import os
 import re
 import sys
 import urllib.request
+from gh_api import gh_headers
 from datetime import datetime, timezone, timedelta
 from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
 
@@ -54,7 +55,7 @@ def num(v):
 
 
 def _get(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "nidam-markets-bot"})
+    req = urllib.request.Request(url, headers=gh_headers(url))
     with urllib.request.urlopen(req, timeout=25) as r:
         return r.read()
 

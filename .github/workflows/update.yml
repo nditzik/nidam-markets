@@ -58,6 +58,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 1.10.2026: קריאות ה-API של GitHub (רשימות קבצים ב-stocks-momentum / nidam-reports / indexes-status)
+    # רצו בלי טוקן — 60 בשעה לכתובת IP משותפת של ה-runner, ונגמרו בבוקר שבו ריצות נערמו (momentum
+    # נשאר על 29.9). הטוקן המובנה של ה-Action נותן 1,000+ בשעה; הסקריפטים שולחים אותו רק ל-api.github.com.
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

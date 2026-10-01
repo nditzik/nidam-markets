@@ -24,6 +24,7 @@ import os
 import sys
 import urllib.parse
 import urllib.request
+from gh_api import gh_headers
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "data", "_telegram_broadcast_state.json")
@@ -64,9 +65,7 @@ def main():
         return 0
 
     try:
-        req = urllib.request.Request(TREE_API, headers={
-            "User-Agent": "nidam-markets-bot", "Accept": "application/vnd.github+json",
-        })
+        req = urllib.request.Request(TREE_API, headers=dict(gh_headers(TREE_API), Accept="application/vnd.github+json"))
         with urllib.request.urlopen(req, timeout=25) as r:
             tree = json.loads(r.read().decode("utf-8")).get("tree", [])
     except Exception as e:
