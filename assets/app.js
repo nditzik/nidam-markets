@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np96";
+  var TA_VER = "np97";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -807,6 +807,26 @@
     var dt = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
     do { dt.setUTCDate(dt.getUTCDate() - 1); } while (dt.getUTCDay() === 0 || dt.getUTCDay() === 6);
     return dt.toISOString().slice(0, 10);
+  }
+  function candTradeDay(d) {
+    // על איזו סגירה מבוססת רשימת המועמדים (1.10.2026): ריצת הבוקר נושאת את תאריך היום על
+    // סגירת אתמול, אבל ריצת הערב (23:41) נושאת אותו תאריך על סגירת היום עצמו — "תקפים ל-29.9"
+    // הוצג על רשימה שמחיריה הם סגירות 30.9. נגזר משעת הריצה בשעון ניו יורק: אחרי 16:00 ביום
+    // מסחר = אותו יום, אחרת יום המסחר הקודם.
+    var m = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/.exec((d && d._meta && d._meta.updatedAt) || "");
+    if (!m) return prevTradingDate(d && d.date);
+    var wall = Date.UTC(+m[3], +m[2] - 1, +m[1], +m[4], +m[5]);
+    var parts = function (t, tz) {
+      var o = {};
+      new Intl.DateTimeFormat("en-GB", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false, weekday: "short" })
+        .formatToParts(new Date(t)).forEach(function (x) { o[x.type] = x.value; });
+      return o;
+    };
+    var il = parts(wall, "Asia/Jerusalem");   // היסט ישראל ברגע הזה (DST)
+    var t = wall - (Date.UTC(+il.year, +il.month - 1, +il.day, +il.hour % 24, +il.minute) - wall);
+    var ny = parts(t, "America/New_York"), day = ny.year + "-" + ny.month + "-" + ny.day;
+    var after = (+ny.hour % 24) * 60 + (+ny.minute) >= 16 * 60 && ny.weekday !== "Sat" && ny.weekday !== "Sun";
+    return after ? day : prevTradingDate(day);
   }
   function fetchJSON(url) {
     return fetch(url, { cache: "no-store" }).then(function (r) {
@@ -3740,7 +3760,7 @@
       tabIntro("candidates") +
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
       "<strong>הנתונים מיום <span dir=\"ltr\">" + esc(fmtTradeDate(d.date)) + "</span>" +
-      (prevTradingDate(d.date) ? " ותקפים ליום המסחר של <span dir=\"ltr\">" + esc(fmtTradeDate(prevTradingDate(d.date))) + "</span>" : "") +
+      (candTradeDay(d) ? " · מבוססים על סגירת <span dir=\"ltr\">" + esc(fmtTradeDate(candTradeDay(d))) + "</span>" : "") +
       "</strong> · " + (d.count || 0) + " מועמדים" +
       (d.shown && d.shown < d.count ? " (מוצגים " + d.shown + " מובילים)" : "") +
       '<div class="stamp" style="margin:6px 0 0">Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב · לחיצה על טיקר פותחת ב-TradingView</div></div>' +

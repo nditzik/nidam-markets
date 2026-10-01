@@ -148,7 +148,9 @@ function poolSignature() {
   const mom = readJSON(path.join(ROOT, "data", "momentum.json"), {});
   const cand = readJSON(path.join(ROOT, "data", "candidates.json"), {});
   const files = (mom._meta && mom._meta.files) ? Object.values(mom._meta.files).sort().join(",") : "";
-  return files + "|" + (cand.date || "") + "|" + (cand.candidates ? cand.candidates.length : 0);
+  // גם הטיקרים עצמם: סריקת בוקר שמחליפה את רשימת הערב יכולה לשמור על אותו תאריך ואותו מספר
+  const syms = (cand.candidates || []).map(c => c.symbol).join(",");
+  return files + "|" + (cand.date || "") + "|" + syms;
 }
 
 function buildEdition(asOf, spy, ledger, idx, poolSig) {
