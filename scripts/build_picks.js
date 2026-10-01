@@ -254,9 +254,23 @@ function updateLedger(ledger, spy) {
     e.symbols.forEach(s => {
       const res = e.results[s.sym] = e.results[s.sym] || {};
       const need = HORIZONS.filter(h => !res[h]);
-      if (!need.length) return;
+      if (!need.length && res.path && res.path.length >= 20) return;
       const bars = loadBars(s.sym); if (!bars) return;
       const bi = bars.findIndex(b => b.date === e.date); if (bi < 0) return;
+      // מהלך יומי מצטבר (1.10.2026, איציק): לכל יום מסחר 1..20 מאז המהדורה — [תשואה, מול השוק],
+      // ו-cur = היום האחרון שנמדד. העמודה הפעילה (5 / 10 / 20) מתעדכנת ממנו כל יום עד שהיא ננעלת.
+      const maxD = Math.min(20, bars.length - 1 - bi, spy.length - 1 - si);
+      if (maxD >= 1) {
+        res.path = [];
+        let lo = Infinity;
+        for (let d = 1; d <= maxD; d++) {
+          lo = Math.min(lo, bars[bi + d].low);
+          const r = (bars[bi + d].close / s.entry - 1) * 100, m = (spy[si + d].close / spy[si].close - 1) * 100;
+          res.path.push([+r.toFixed(2), +(r - m).toFixed(2)]);
+          if (d === maxD) res.cur = { day: d, ret: +r.toFixed(2), spy: +m.toFixed(2), excess: +(r - m).toFixed(2), mae: +((lo / s.entry - 1) * 100).toFixed(1),
+            stopped: s.stop != null ? lo < s.stop : (s.atr ? (s.entry - lo) / s.atr >= 1.5 : false), date: bars[bi + d].date };
+        }
+      }
       need.forEach(h => {
         if (bi + h >= bars.length || si + h >= spy.length) return;
         let lo = Infinity; for (let k = 1; k <= h; k++) lo = Math.min(lo, bars[bi + k].low);
@@ -267,6 +281,15 @@ function updateLedger(ledger, spy) {
         filled++;
       });
     });
+    // מהלך המהדורה: ממוצע המניות לכל יום שכולן נמדדו בו, ו-cur = היום האחרון כזה
+    const paths = e.symbols.map(s => (e.results[s.sym] || {}).path || []);
+    const days = paths.length ? Math.min.apply(null, paths.map(p => p.length)) : 0;
+    if (days >= 1) {
+      e.path = [];
+      for (let d = 0; d < days; d++) e.path.push([+(paths.reduce((a, p) => a + p[d][0], 0) / paths.length).toFixed(2), +(paths.reduce((a, p) => a + p[d][1], 0) / paths.length).toFixed(2)]);
+      const last = e.path[days - 1];
+      e.cur = { day: days, ret: last[0], excess: last[1], win: Math.round(paths.filter(p => p[days - 1][0] > 0).length / paths.length * 100), n: paths.length };
+    }
     // ממוצע המהדורה לכל אופק — רק כשכל המניות שלה מדודות
     e.avg = e.avg || {};
     HORIZONS.forEach(h => {

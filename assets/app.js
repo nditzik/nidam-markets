@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np95";
+  var TA_VER = "np96";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3472,27 +3472,45 @@
   function pkLedger() {
     var eds = (PICKL && PICKL.editions) || [];
     if (!eds.length) return "";
-    var H = [5, 10, 20];
-    var cell = function (r) {
-      if (!r) return '<td class="pend">—</td>';
-      var tone = r.excess > 0 ? "good" : r.excess < 0 ? "bad" : "";
-      return '<td class="' + tone + '"><b>' + pkPct(r.ret) + "</b><small>" + pkPct(r.excess) + " מול השוק</small></td>";
+    var H = [5, 10, 20], LO = { 5: 0, 10: 5, 20: 10 };
+    // עמודה נעולה = התוצאה של יום 5/10/20. העמודה הפעילה מתעדכנת כל יום מ-cur ("יום 3"),
+    // עד שהיא ננעלת ומתחילה הבאה (1.10.2026, איציק). הצבע תמיד לפי ההפרש מהשוק.
+    var cell = function (r, cur, h) {
+      var live = !r && cur && cur.day > LO[h] && cur.day < h;
+      var v = r || (live ? cur : null);
+      if (!v) return '<td class="pend">—</td>';
+      var tone = v.excess > 0 ? "good" : v.excess < 0 ? "bad" : "";
+      return '<td class="' + tone + (live ? " live" : "") + '"><b>' + pkPct(v.ret) + "</b><small>" + (live ? '<span class="dd">יום ' + cur.day + " · </span>" : "") + pkPct(v.excess) + '<span class="vm"> מול השוק</span></small></td>';
+    };
+    // מהלך יומי: קו התשואה המצטברת יום-יום (עד 20), קו אפס, נקודה בסוף בצבע הכיוון
+    var spark = function (path) {
+      if (!path || !path.length) return '<td class="pk-path"></td>';
+      var W = 84, Hh = 24, n = 20, ys = path.map(function (p) { return p[0]; }).concat([0]);
+      var lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys), rg = (hi - lo) || 1;
+      var X = function (i) { return 2 + i * (W - 4) / (n - 1); }, Y = function (v) { return Hh - 3 - (v - lo) / rg * (Hh - 6); };
+      var pts = [[X(0), Y(0)]].concat(path.map(function (p, i) { return [X(i + 1 > n - 1 ? n - 1 : i + 1), Y(p[0])]; }));
+      var last = path[path.length - 1][0], tone = last > 0 ? "up" : last < 0 ? "dn" : "";
+      return '<td class="pk-path"><svg viewBox="0 0 ' + W + " " + Hh + '" width="' + W + '" height="' + Hh + '" role="img" aria-label="מהלך ' + path.length + ' ימים">' +
+        '<line class="z" x1="2" x2="' + (W - 2) + '" y1="' + Y(0).toFixed(1) + '" y2="' + Y(0).toFixed(1) + '"/>' +
+        '<polyline class="l ' + tone + '" points="' + pts.map(function (q) { return q[0].toFixed(1) + "," + q[1].toFixed(1); }).join(" ") + '"/>' +
+        '<circle class="e ' + tone + '" cx="' + pts[pts.length - 1][0].toFixed(1) + '" cy="' + pts[pts.length - 1][1].toFixed(1) + '" r="2.2"/></svg>' +
+        '<small>יום ' + path.length + "/20</small></td>";
     };
     var rows = eds.slice().reverse().map(function (e, i) {
       var syms = (e.symbols || []).map(function (s) { return s.sym; });
       var main = '<tr class="pk-ed" data-ed="' + i + '"><td><span dir="ltr">' + esc(secDate(e.date)) + "</span></td><td>" + syms.length + '<small class="pk-syms" dir="ltr">' + esc(syms.join(" ")) + "</small></td><td>" + esc(e.gateLabel || "") + "</td>" +
-        H.map(function (h) { return cell(e.avg && e.avg[h]); }).join("") + "</tr>";
+        spark(e.path) + H.map(function (h) { return cell(e.avg && e.avg[h], e.cur, h); }).join("") + "</tr>";
       var det = (e.symbols || []).map(function (s) {
         var rs = e.results && e.results[s.sym] || {};
-        var stopped = H.some(function (h) { return rs[h] && rs[h].stopped; });
-        return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + '</a></td><td><span dir="ltr">$' + fmtNum(s.entry, 2) + "</span>" + (stopped ? ' <small class="pk-stopped">נגעה בסטופ</small>' : "") + "</td>" +
-          H.map(function (h) { return cell(rs[h]); }).join("") + "</tr>";
+        var stopped = H.some(function (h) { return rs[h] && rs[h].stopped; }) || (rs.cur && rs.cur.stopped);
+        return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + "</a>" + (stopped ? '<small class="pk-stopped">נגעה בסטופ</small>' : "") + '</td><td><span dir="ltr">$' + fmtNum(s.entry, 2) + "</span></td>" +
+          spark(rs.path) + H.map(function (h) { return cell(rs[h], rs.cur, h); }).join("") + "</tr>";
       }).join("");
       return main + det;
     }).join("");
     return '<section class="pk-ledger card"><div class="section-title" style="margin-top:0">📒 יומן הכנות</div>' +
-      '<p class="pk-sub">כל מהדורה נרשמת עם מחיר הסגירה של אותו יום, ומה שקרה לה נמדד אוטומטית 5, 10 ו-20 ימי מסחר אחרי: התשואה באחוזים, ולידה ההפרש מ-S&P 500 באותם ימים. הצבע לפי ההפרש מהשוק. לחיצה על מהדורה פותחת מניה-מניה. מניה שחוזרת יום אחרי יום נספרת פעם אחת, מהמהדורה הראשונה שלה.</p>' +
-      '<div class="table-wrap"><table class="pk-table"><thead><tr><th>מהדורה</th><th>מניות</th><th>מצב השוק</th><th>אחרי 5 ימים</th><th>אחרי 10</th><th>אחרי 20</th></tr></thead><tbody>' + rows + "</tbody></table></div></section>";
+      '<p class="pk-sub">כל מהדורה נרשמת עם מחיר הסגירה של אותו יום ונמדדת כל יום מסחר: התשואה המצטברת באחוזים, ולידה ההפרש מ-S&P 500 באותם ימים. ימים 1–5 מתעדכנים בעמודת "5" ("יום 3"), ביום 5 היא ננעלת, ואז ימים 6–10 בעמודת "10", וכך עד 20. הקו מראה את המהלך היומי. הצבע לפי ההפרש מהשוק. לחיצה על מהדורה פותחת מניה-מניה. מניה שחוזרת יום אחרי יום נספרת פעם אחת, מהמהדורה הראשונה שלה.</p>' +
+      '<div class="table-wrap"><table class="pk-table"><thead><tr><th>מהדורה</th><th>מניות</th><th>מצב השוק</th><th>מהלך יומי</th><th>אחרי 5 ימים</th><th>אחרי 10</th><th>אחרי 20</th></tr></thead><tbody>' + rows + "</tbody></table></div></section>";
   }
   function renderPicks(el) {
     if (!el) return;
