@@ -5,7 +5,7 @@
     {
       "ticker": "ACN",
       "name": "Accenture Plc Class A",
-      "capB": 131.3
+      "capB": 131.4
     },
     {
       "ticker": "NKE",
@@ -24,8 +24,8 @@
             "name": "Micron Technology, Inc.",
             "when": "after",
             "status": "live",
-            "chg": 1.62,
-            "price": 1082.32,
+            "chg": 2.2,
+            "price": 1088.5,
             "reactDate": "2026-10-01",
             "baseDate": "2026-09-30"
           },
@@ -33,7 +33,11 @@
             "ticker": "JBL",
             "name": "Jabil Inc.",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": -10.03,
+            "price": 286.86,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
           },
           {
             "ticker": "FDS",
@@ -70,8 +74,8 @@
             "name": "Progress Software Corporation",
             "when": "after",
             "status": "live",
-            "chg": -6.48,
-            "price": 37.38,
+            "chg": -7.13,
+            "price": 37.12,
             "reactDate": "2026-10-01",
             "baseDate": "2026-09-30"
           }
@@ -345,7 +349,7 @@
     "ODC": "2026-10-08"
   },
   "_meta": {
-    "updatedAt": "01/10/2026 21:46",
+    "updatedAt": "01/10/2026 22:01",
     "source": "tradingview"
   }
 }
