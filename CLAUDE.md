@@ -63,7 +63,7 @@
 | סקריפט | פלט | מקור |
 |---|---|---|
 | fetch_dashboards | indices.json (+aiSummary+domains) | indexes-status repo |
-| fetch_momentum / fetch_ibkr | momentum.json / candidates.json | ריפו-אחים |
+| fetch_momentum / fetch_ibkr | momentum.json / candidates.json (רשימה ריקה לא דורסת מלאה — 1.10.2026, סריקה שנחסמה ע"י חיבור כפול ל-IBKR ייצאה 0) | ריפו-אחים |
 | fetch_gmail / fetch_barchart | briefing.json / morning.json (+notice סופ"ש) + ארכיון 30 יום | Gmail IMAP |
 | fetch_market | market.json (+spark) | Yahoo v8 chart |
 | fetch_econ | econ.json (צפי/בפועל) | TradingView economic calendar |

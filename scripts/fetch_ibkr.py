@@ -52,6 +52,15 @@ def main():
                 existing = json.load(f)
         except Exception:
             existing = {}
+    # רשימה ריקה לא דורסת רשימה מלאה (1.10.2026): סריקת בוקר שלא קיבלה נתונים מ-IBKR
+    # (חיבור כפול לחשבון חסם את המשיכה) ייצאה 0 מועמדים ומחקה את רשימת הערב התקינה.
+    # יום אמיתי בלי איתותים נראה אותו דבר — עדיף להשאיר את הרשימה הקודמת עד הסריקה הבאה.
+    if not payload.get("candidates") and existing.get("candidates"):
+        print(f"[keep] התקבלה רשימה ריקה ({payload.get('date')}, "
+              f"{(payload.get('_meta') or {}).get('updatedAt')}) — נשארת הרשימה של "
+              f"{existing.get('date')} ({len(existing['candidates'])} מועמדים).")
+        return 0
+
     if {k: v for k, v in existing.items() if k != "_meta"} == \
        {k: v for k, v in payload.items() if k != "_meta"}:
         print("[nochange] אין מועמדים חדשים.")
