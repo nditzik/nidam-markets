@@ -94,17 +94,54 @@ function main() {
   const ledger = readJSON(LEDGER, { editions: [], hist: {} });
   ledger.hist = ledger.hist || {}; ledger.editions = ledger.editions || [];
 
-  // המהדורה נבנית מחדש כשהנר מתקדם (23:20+ ניו יורק) **וגם** כשהמאגר מתחלף: המומנטום
-  // והמועמדים של איציק נדחפים בבוקר (06:30–10:00 IL) על סגירת אתמול, אחרי שהנרות כבר
-  // נכנסו בלילה — בלי זה המהדורה הייתה נבנית מהרשימות של שלשום. (30.9.2026)
+  // המהדורה של יום מסחר X נבנית רק כשגם המומנטום וגם המועמדים מבוססים על סגירת X (איציק,
+  // 1.10.2026: "צריך את שני הקבצים ביחד"). עד אז נשארת המהדורה הקודמת, ו-picks.json מקבל
+  // pending = מה עוד חסר (מוצג באתר). אחרי ששניהם הגיעו — בנייה מחדש כשהמאגר מתחלף (poolSig).
+  const momDay = momentumDay(), candDay = candidatesDay();
+  const waiting = [];
+  if (momDay !== asOf) waiting.push("מומנטום");
+  if (candDay !== asOf) waiting.push("מועמדים");
   const poolSig = poolSignature();
-  const rebuild = !prev || prev.date !== asOf || prev.poolSig !== poolSig;
-  if (rebuild) buildEdition(asOf, spy, ledger, idx, poolSig);
-  else console.log(`[nochange] picks: המהדורה של ${asOf} כבר קיימת (המאגר לא השתנה)`);
+  if (waiting.length) {
+    console.log(`[wait] picks: מהדורת ${asOf} ממתינה ל-${waiting.join(" + ")} (מומנטום ${momDay || "?"}, מועמדים ${candDay || "?"})`);
+    if (prev) {
+      const pend = { asOf, waiting };
+      if (JSON.stringify(prev.pending || null) !== JSON.stringify(pend)) { prev.pending = pend; fs.writeFileSync(OUT, JSON.stringify(prev), "utf8"); }
+    }
+  } else if (!prev || prev.date !== asOf || prev.poolSig !== poolSig) {
+    buildEdition(asOf, spy, ledger, idx, poolSig);
+  } else {
+    if (prev.pending) { delete prev.pending; fs.writeFileSync(OUT, JSON.stringify(prev), "utf8"); }
+    console.log(`[nochange] picks: המהדורה של ${asOf} כבר קיימת (המאגר לא השתנה)`);
+  }
   updateLedger(ledger, spy);
   ledger._meta = { updatedAt: ilStamp(), source: "build_picks" };
   fs.writeFileSync(LEDGER, JSON.stringify(ledger, null, 1), "utf8");
   return 0;
+}
+
+/* יום המסחר שעליו מבוססים קבצי המומנטום (התאריך בשם הקובץ, MM-DD-YYYY) — הישן מבין החמישה */
+function momentumDay() {
+  const mom = readJSON(path.join(ROOT, "data", "momentum.json"), {});
+  const ds = Object.values((mom._meta && mom._meta.files) || {}).map(f => {
+    const m = /(\d{2})-(\d{2})-(\d{4})\.csv$/.exec(f); return m ? `${m[3]}-${m[1]}-${m[2]}` : null;
+  }).filter(Boolean).sort();
+  return ds.length ? ds[0] : null;
+}
+
+/* יום המסחר שעליו מבוססים המועמדים — מהתוכן, לא מהשדה date (הריצה של הבוקר והריצה של 23:41
+   שתיהן נושאות את תאריך היום, אבל מבוססות על סגירות שונות). מחיר הכניסה של מועמד = סגירת היום
+   שעליו הוא נסרק → הצבעה: לאיזה תאריך בנרות סגירה זהה למחיר הכניסה של רוב המועמדים. */
+function candidatesDay() {
+  const cand = readJSON(path.join(ROOT, "data", "candidates.json"), {});
+  const votes = {};
+  for (const c of (cand.candidates || []).slice(0, 25)) {
+    const bars = loadBars(c.symbol);
+    if (!bars || c.entry == null) continue;
+    for (const b of bars.slice(-6)) if (Math.abs(b.close - c.entry) <= Math.max(0.005, c.entry * 0.0005)) { votes[b.date] = (votes[b.date] || 0) + 1; break; }
+  }
+  const best = Object.entries(votes).sort((a, b) => b[1] - a[1])[0];
+  return best ? best[0] : null;
 }
 
 function poolSignature() {
@@ -200,7 +237,7 @@ function buildEdition(asOf, spy, ledger, idx, poolSig) {
     excess10: (() => { const v = all.filter(e => e.spy10 != null); return v.length ? +(v.reduce((s, e) => s + e.r10 - e.spy10, 0) / v.length).toFixed(1) : null; })()
   } : null;
 
-  const out = { date: asOf, poolSig, gate, record, picks, excluded, poolSize: pool.length, scanned,
+  const out = { date: asOf, poolSig, momDay: momentumDay(), candDay: candidatesDay(), gate, record, picks, excluded, poolSize: pool.length, scanned,
     _meta: { updatedAt: ilStamp(), source: "ta_engine · candidates+momentum", note: "אישור מחיר לקנייה מהמנוע הטכני על סגירת " + asOf } };
   fs.writeFileSync(OUT, JSON.stringify(out), "utf8");
   console.log(`[done] picks ${asOf}: ${picks.length} נבחרות מתוך ${scanned} (מאגר ${pool.length}) · שער ${gate.label} · נפסלו ${excluded.length}` +

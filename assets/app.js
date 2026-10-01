@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np94";
+  var TA_VER = "np95";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3509,7 +3509,9 @@
     var html = stamp(d._meta) +
       '<header class="pk-mast"><div><div class="pk-kick">אישור המנוע הטכני · מתעדכן כל בוקר</div><h2 class="pk-h1">הנבחרות</h2>' +
         '<p class="pk-dek">' + d.picks.length + ' מניות מתוך המועמדים והמומנטום של האתר שקיבלו בסגירה האחרונה "אישור מחיר לקנייה" מהמנוע הטכני. לא המלצה, רשימת עבודה לעשרת הימים הבאים.</p></div>' +
-        '<div class="pk-date">על סגירת<b dir="ltr">' + esc(secDate(d.date)) + "</b>נסרקו " + esc(d.scanned) + " מניות</div></header>" +
+        '<div class="pk-date">על סגירת<b dir="ltr">' + esc(secDate(d.date)) + "</b>נסרקו " + esc(d.scanned) + " מניות" +
+          (d.pending && d.pending.asOf > d.date ? '<span class="pk-pend">מהדורת <span dir="ltr">' + esc(secDate(d.pending.asOf)) + "</span> ממתינה ל" + esc((d.pending.waiting || []).join(" ו")) + "</span>" : "") +
+        "</div></header>" +
       '<section class="pk-gate ' + gateCls + '"><div class="st"><i></i>מצב השוק: ' + esc(g.label || "") + '</div><div class="facts">' + facts.map(function (f) { return "<span>" + f + "</span>"; }).join("") + '</div><div class="rule">' + esc(rule) + "</div></section>" +
       (r ? '<section class="pk-stats"><div class="pk-tile"><span class="v hero">' + esc(r.win10) + '%</span><span class="k">מהאישורים הקודמים עלו תוך 10 ימים</span><span class="s">' + esc(r.n) + " אישורים ב-" + esc(r.symbols) + " המניות שנבחרו עד היום, שנה אחורה</span></div>" +
         '<div class="pk-tile"><span class="v">' + pkPct(r.avg10) + '</span><span class="k">תשואה ממוצעת 10 ימים אחרי אישור</span><span class="s">' + (r.excess10 != null ? "מול S&P 500 באותם ימים: " + pkPct(r.excess10) : "") + "</span></div>" +

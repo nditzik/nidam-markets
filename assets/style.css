@@ -1616,3 +1616,4 @@ b.ta-good, .ta-good > b { color: #1b7f76; } b.ta-bad { color: #c62828; } b.ta-mi
 @media (max-width: 900px) { .pk-deck { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pk-how { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .pk-deck, .pk-stats, .pk-how { grid-template-columns: 1fr; } .pk-mast { grid-template-columns: 1fr; } .pk-date { text-align: right; }
   .pk-gate { grid-template-columns: 1fr; } .pk-gate .rule { border: 0; padding: 0; border-top: 1px solid var(--pk-dot); padding-top: 8px; } .pk-sym { font-size: 2rem; } }
+.pk-pend { display: block; margin-top: 4px; font-size: .74rem; color: var(--pk-gold); }
