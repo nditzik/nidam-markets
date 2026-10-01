@@ -39,6 +39,27 @@ const HORIZONS = [5, 10, 20];
 const SKIP = new Set(["SPY", "QQQ", "IWM", "XLK", "XLV", "XLF", "XLE", "XLI", "XLY", "XLP", "XLU", "XLB", "XLRE", "XLC"]);
 const HIST_TTL_DAYS = 7;
 
+// פורט של passesBase (app.js) / passes_base (fetch_momentum.py) / passesBaseFilter בדשבורד המומנטום.
+// momentum.json מחזיק גם מניות שנכשלו בסינון (2+ סיגנלים נשמרים תמיד), והמאגר של הנבחרות לקח
+// את כולן — PUSA (‏Weak, ‏24% Sell, אלפא שלילית) ו-SCSC (מחזור 237K) נכנסו ב-30.9 (1.10.2026, איציק).
+function passesBase(d) {
+  const num = v => { const x = parseFloat(v); return isNaN(x) ? 0 : x; };
+  const vol = num(d.vol), px = num(d.price), ma20 = num(d.ma20), rsi = num(d.rel_str);
+  const a = d.wtd_alpha == null ? NaN : parseFloat(d.wtd_alpha);
+  if (vol <= 0 || px <= 0 || isNaN(a) || a <= 0 || ma20 <= 0 || rsi <= 0) return false;
+  if (vol < 750000) return false;
+  if (d.w52_chg != null && d.w52_chg !== "") {
+    const w = parseFloat(d.w52_chg), st = (d.strength || "").toLowerCase();
+    if (!isNaN(w) && a < w && !(st.includes("top") || st.includes("max") || st.includes("strong"))) return false;
+  }
+  const stoch = num(d.stoch), ma50 = num(d.ma50), ma100 = num(d.ma100);
+  if (rsi > 72 && stoch > 82) return false;
+  if (ma50 > 0 && ma100 > 0 && px < ma50 && px < ma100) return false;
+  if (/weak/i.test(d.strength || "")) return false;
+  if (/\bsell\b/i.test(d.opinion || "")) return false;
+  return true;
+}
+
 function readJSON(p, dflt) {
   try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { return dflt; }
 }
@@ -150,7 +171,7 @@ function poolSignature() {
   const files = (mom._meta && mom._meta.files) ? Object.values(mom._meta.files).sort().join(",") : "";
   // גם הטיקרים עצמם: סריקת בוקר שמחליפה את רשימת הערב יכולה לשמור על אותו תאריך ואותו מספר
   const syms = (cand.candidates || []).map(c => c.symbol).join(",");
-  return files + "|" + (cand.date || "") + "|" + syms;
+  return "base1|" + files + "|" + (cand.date || "") + "|" + syms;
 }
 
 function buildEdition(asOf, spy, ledger, idx, poolSig) {
@@ -159,7 +180,7 @@ function buildEdition(asOf, spy, ledger, idx, poolSig) {
   const earn = readJSON(path.join(ROOT, "data", "earnings.json"), {});
   const ind = readJSON(path.join(ROOT, "data", "indices.json"), {});
   const mk = readJSON(path.join(ROOT, "data", "market.json"), {});
-  const momBy = {}; (mom.stocks || []).forEach(s => { momBy[s.symbol] = s; });
+  const momBy = {}; (mom.stocks || []).forEach(s => { if (passesBase(s)) momBy[s.symbol] = s; });
   const candBy = {}; (cand.candidates || []).forEach(c => { candBy[c.symbol] = c; });
   const pool = Array.from(new Set(Object.keys(momBy).concat(Object.keys(candBy)))).filter(s => !SKIP.has(s)).sort();
   const earnWin = earn.window || {};
