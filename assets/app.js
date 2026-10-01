@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np97";
+  var TA_VER = "np98";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3546,8 +3546,9 @@
     var mix = Object.keys(byGrp).map(function (k) { return byGrp[k] + " " + (PK_GRP[k] || k); }).join(" · ");
     var html = stamp(d._meta) +
       '<header class="pk-mast"><div><div class="pk-kick">אישור המנוע הטכני · מתעדכן כל בוקר</div><h2 class="pk-h1">הנבחרות</h2>' +
-        '<p class="pk-dek">' + d.picks.length + ' מניות מתוך המועמדים והמומנטום של האתר שקיבלו בסגירה האחרונה "אישור מחיר לקנייה" מהמנוע הטכני. לא המלצה, רשימת עבודה לעשרת הימים הבאים.</p></div>' +
+        '<p class="pk-dek">' + d.picks.length + (d.momOnly ? ' מניות מתוך המומנטום של האתר' : ' מניות מתוך המועמדים והמומנטום של האתר') + ' שקיבלו בסגירה האחרונה "אישור מחיר לקנייה" מהמנוע הטכני. לא המלצה, רשימת עבודה לעשרת הימים הבאים.</p></div>' +
         '<div class="pk-date">על סגירת<b dir="ltr">' + esc(secDate(d.date)) + "</b>נסרקו " + esc(d.scanned) + " מניות" +
+          (d.momOnly ? '<span class="pk-pend">מהמומנטום בלבד: המועמדים לא הגיעו עד 08:00. כשיגיעו, המהדורה תיבנה מחדש משניהם</span>' : "") +
           (d.pending && d.pending.asOf > d.date ? '<span class="pk-pend">מהדורת <span dir="ltr">' + esc(secDate(d.pending.asOf)) + "</span> ממתינה ל" + esc((d.pending.waiting || []).join(" ו")) + "</span>" : "") +
         "</div></header>" +
       '<section class="pk-gate ' + gateCls + '"><div class="st"><i></i>מצב השוק: ' + esc(g.label || "") + '</div><div class="facts">' + facts.map(function (f) { return "<span>" + f + "</span>"; }).join("") + '</div><div class="rule">' + esc(rule) + "</div></section>" +

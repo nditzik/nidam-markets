@@ -81,6 +81,12 @@ function loadBars(sym) {
   if (!d || !Array.isArray(d.bars)) return null;
   return d.bars.map(b => ({ date: b[0], open: b[1], high: b[2], low: b[3], close: b[4], volume: b[5] }));
 }
+const MOM_ONLY_HOUR = 8;
+function ilParts(now) {
+  const p = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Jerusalem", day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", hour12: false }).formatToParts(now || new Date());
+  const g = t => p.find(x => x.type === t).value;
+  return { date: `${g("year")}-${g("month")}-${g("day")}`, hour: +g("hour") % 24 };
+}
 function ilStamp() {
   const p = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Jerusalem", day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
   const g = t => p.find(x => x.type === t).value;
@@ -136,14 +142,21 @@ function main() {
   if (momDay !== asOf) waiting.push("מומנטום");
   if (candDay !== asOf) waiting.push("מועמדים");
   const poolSig = poolSignature();
-  if (waiting.length) {
+  // איציק 1.10.2026: "אם המועמדים לא מגיעים עד 8:00 — תכניס רק על סמך המומנטום". אחרי 08:00
+  // שעון ישראל (ביום שאחרי הסגירה) עם מומנטום מעודכן ומועמדים ישנים: מהדורה מהמומנטום בלבד
+  // (momOnly, בלי המועמדים הישנים). כשהמועמדים מגיעים — poolSig בלי "momonly" → בנייה מחדש משניהם.
+  const il = ilParts(process.env.PICKS_NOW ? new Date(process.env.PICKS_NOW) : undefined);   // PICKS_NOW = בדיקה בלבד
+  const momOnly = momDay === asOf && candDay !== asOf && il.date > asOf && il.hour >= MOM_ONLY_HOUR;
+  const sig = momOnly ? "momonly|" + poolSig : poolSig;
+  if (waiting.length && !momOnly) {
     console.log(`[wait] picks: מהדורת ${asOf} ממתינה ל-${waiting.join(" + ")} (מומנטום ${momDay || "?"}, מועמדים ${candDay || "?"})`);
     if (prev) {
       const pend = { asOf, waiting };
       if (JSON.stringify(prev.pending || null) !== JSON.stringify(pend)) { prev.pending = pend; fs.writeFileSync(OUT, JSON.stringify(prev), "utf8"); }
     }
-  } else if (!prev || prev.date !== asOf || prev.poolSig !== poolSig) {
-    buildEdition(asOf, spy, ledger, idx, poolSig);
+  } else if (!prev || prev.date !== asOf || prev.poolSig !== sig) {
+    if (momOnly) console.log(`[momonly] picks: המועמדים לא הגיעו עד ${MOM_ONLY_HOUR}:00 (${candDay || "?"}) — מהדורת ${asOf} מהמומנטום בלבד`);
+    buildEdition(asOf, spy, ledger, idx, sig, momOnly);
   } else {
     if (prev.pending) { delete prev.pending; fs.writeFileSync(OUT, JSON.stringify(prev), "utf8"); }
     console.log(`[nochange] picks: המהדורה של ${asOf} כבר קיימת (המאגר לא השתנה)`);
@@ -187,14 +200,14 @@ function poolSignature() {
   return "cat1|" + files + "|" + (cand.date || "") + "|" + syms;
 }
 
-function buildEdition(asOf, spy, ledger, idx, poolSig) {
+function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   const mom = readJSON(path.join(ROOT, "data", "momentum.json"), { stocks: [] });
   const cand = readJSON(path.join(ROOT, "data", "candidates.json"), { candidates: [] });
   const earn = readJSON(path.join(ROOT, "data", "earnings.json"), {});
   const ind = readJSON(path.join(ROOT, "data", "indices.json"), {});
   const mk = readJSON(path.join(ROOT, "data", "market.json"), {});
   const momBy = {}; momentumTabStocks(mom).forEach(s => { momBy[s.symbol] = s; });
-  const candBy = {}; (cand.candidates || []).forEach(c => { candBy[c.symbol] = c; });
+  const candBy = {}; if (!momOnly) (cand.candidates || []).forEach(c => { candBy[c.symbol] = c; });
   const pool = Array.from(new Set(Object.keys(momBy).concat(Object.keys(candBy)))).filter(s => !SKIP.has(s)).sort();
   const earnWin = earn.window || {};
   const earnCut = addDays(asOf, 7);
@@ -273,7 +286,7 @@ function buildEdition(asOf, spy, ledger, idx, poolSig) {
     excess10: (() => { const v = all.filter(e => e.spy10 != null); return v.length ? +(v.reduce((s, e) => s + e.r10 - e.spy10, 0) / v.length).toFixed(1) : null; })()
   } : null;
 
-  const out = { date: asOf, poolSig, momDay: momentumDay(), candDay: candidatesDay(), gate, record, picks, excluded, poolSize: pool.length, scanned,
+  const out = { date: asOf, poolSig, momDay: momentumDay(), candDay: candidatesDay(), momOnly: !!momOnly, gate, record, picks, excluded, poolSize: pool.length, scanned,
     _meta: { updatedAt: ilStamp(), source: "ta_engine · candidates+momentum", note: "אישור מחיר לקנייה מהמנוע הטכני על סגירת " + asOf } };
   fs.writeFileSync(OUT, JSON.stringify(out), "utf8");
   console.log(`[done] picks ${asOf}: ${picks.length} נבחרות מתוך ${scanned} (מאגר ${pool.length}) · שער ${gate.label} · נפסלו ${excluded.length}` +
