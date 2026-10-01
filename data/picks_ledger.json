@@ -73,19 +73,208 @@
     }
    ],
    "results": {
-    "AMPL": {},
-    "AMN": {},
-    "AVAH": {},
-    "FRSH": {},
-    "ABSI": {},
-    "ESTC": {},
-    "LITE": {},
-    "NTNX": {},
-    "AMGN": {},
-    "BDL": {},
-    "CVU": {}
+    "AMPL": {
+     "path": [
+      [
+       1.54,
+       1.75
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 1.54,
+      "spy": -0.21,
+      "excess": 1.75,
+      "mae": 1,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "AMN": {
+     "path": [
+      [
+       2.63,
+       2.84
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 2.63,
+      "spy": -0.21,
+      "excess": 2.84,
+      "mae": 0.1,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "AVAH": {
+     "path": [
+      [
+       -2.9,
+       -2.69
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": -2.9,
+      "spy": -0.21,
+      "excess": -2.69,
+      "mae": -4.3,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "FRSH": {
+     "path": [
+      [
+       1.67,
+       1.87
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 1.67,
+      "spy": -0.21,
+      "excess": 1.87,
+      "mae": -0.5,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "ABSI": {
+     "path": [
+      [
+       6.21,
+       6.42
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 6.21,
+      "spy": -0.21,
+      "excess": 6.42,
+      "mae": -0.9,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "ESTC": {
+     "path": [
+      [
+       3.27,
+       3.47
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 3.27,
+      "spy": -0.21,
+      "excess": 3.47,
+      "mae": 0.1,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "LITE": {
+     "path": [
+      [
+       -0.23,
+       -0.02
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": -0.23,
+      "spy": -0.21,
+      "excess": -0.02,
+      "mae": -3.4,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "NTNX": {
+     "path": [
+      [
+       0.46,
+       0.66
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 0.46,
+      "spy": -0.21,
+      "excess": 0.66,
+      "mae": -0.3,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "AMGN": {
+     "path": [
+      [
+       -0.5,
+       -0.3
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": -0.5,
+      "spy": -0.21,
+      "excess": -0.3,
+      "mae": -0.7,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "BDL": {
+     "path": [
+      [
+       4.42,
+       4.62
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 4.42,
+      "spy": -0.21,
+      "excess": 4.62,
+      "mae": -1.8,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    },
+    "CVU": {
+     "path": [
+      [
+       0,
+       0.21
+      ]
+     ],
+     "cur": {
+      "day": 1,
+      "ret": 0,
+      "spy": -0.21,
+      "excess": 0.21,
+      "mae": -1.5,
+      "stopped": false,
+      "date": "2026-09-30"
+     }
+    }
    },
-   "avg": {}
+   "avg": {},
+   "path": [
+    [
+     1.51,
+     1.71
+    ]
+   ],
+   "cur": {
+    "day": 1,
+    "ret": 1.51,
+    "excess": 1.71,
+    "win": 64,
+    "n": 11
+   }
   },
   {
    "date": "2026-09-30",
@@ -728,7 +917,7 @@
   }
  },
  "_meta": {
-  "updatedAt": "01/10/2026 07:04",
+  "updatedAt": "01/10/2026 07:19",
   "source": "build_picks"
  }
 }
