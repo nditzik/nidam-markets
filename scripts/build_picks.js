@@ -60,6 +60,19 @@ function passesBase(d) {
   return true;
 }
 
+// בדיוק המניות שמוצגות בקטגוריות של טאב המומנטום (renderMomentum ב-app.js = הדשבורד):
+// 4/3/2 סיגנלים (כולל דיפ/פריצה/היפוך, שהן תת-קבוצות שלהן) + "מועמדות לטרייד" (Readiness ≥ 50,
+// 12 המובילות). בלי סינון משלנו — momentum.json מחזיק גם מניות שלא מוצגות בשום קטגוריה.
+function momentumTabStocks(mom) {
+  const pool = (mom.stocks || []).filter(x => x.symbol && !/\s/.test(x.symbol) && passesBase(x));
+  const out = new Map();
+  pool.filter(x => (x.signal_count || 0) >= 2).forEach(x => out.set(x.symbol, x));
+  pool.filter(x => (x.readiness || 0) >= 50)
+    .sort((a, b) => (b.readiness - a.readiness) || ((b.wtd_alpha || 0) - (a.wtd_alpha || 0)))
+    .slice(0, 12).forEach(x => out.set(x.symbol, x));
+  return Array.from(out.values());
+}
+
 function readJSON(p, dflt) {
   try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { return dflt; }
 }
@@ -171,7 +184,7 @@ function poolSignature() {
   const files = (mom._meta && mom._meta.files) ? Object.values(mom._meta.files).sort().join(",") : "";
   // גם הטיקרים עצמם: סריקת בוקר שמחליפה את רשימת הערב יכולה לשמור על אותו תאריך ואותו מספר
   const syms = (cand.candidates || []).map(c => c.symbol).join(",");
-  return "base1|" + files + "|" + (cand.date || "") + "|" + syms;
+  return "cat1|" + files + "|" + (cand.date || "") + "|" + syms;
 }
 
 function buildEdition(asOf, spy, ledger, idx, poolSig) {
@@ -180,7 +193,7 @@ function buildEdition(asOf, spy, ledger, idx, poolSig) {
   const earn = readJSON(path.join(ROOT, "data", "earnings.json"), {});
   const ind = readJSON(path.join(ROOT, "data", "indices.json"), {});
   const mk = readJSON(path.join(ROOT, "data", "market.json"), {});
-  const momBy = {}; (mom.stocks || []).forEach(s => { if (passesBase(s)) momBy[s.symbol] = s; });
+  const momBy = {}; momentumTabStocks(mom).forEach(s => { momBy[s.symbol] = s; });
   const candBy = {}; (cand.candidates || []).forEach(c => { candBy[c.symbol] = c; });
   const pool = Array.from(new Set(Object.keys(momBy).concat(Object.keys(candBy)))).filter(s => !SKIP.has(s)).sort();
   const earnWin = earn.window || {};
