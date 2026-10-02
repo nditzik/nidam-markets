@@ -17,7 +17,7 @@
 - **אייקון טאב לדשבורד המדדים (indexes-status, איציק):** הדשבורד השתמש ב-logo.png — אותו קו של האתר, ושני הטאבים בכרום נראו זהים. נוספו favicon-16/32/180 (ריבוע כהה, S&P ירוק) ב-index-v3.html וב-index.html שם (commit b00d634). איציק אישר: "הסתדר".
 - **np102 — הלוגו של נייקי לא נראה בניתוח דוחות (איציק):** FMP נותן לוגו לבן על רקע שקוף, והכרטיס שם אותו על ריבוע לבן. fetch_reports מזהה לוגו כזה (`logoBg:"dark"`) והכרטיס מציג ריבוע כהה. נתפסו NKE (שני הדוחות) ו-AMZN; AAPL/LEN (רקע לבן אטום) נשארו. נבדק בצילום לייט/דארק. נכנס לאתר עם ריצת ה-Action הבאה (reports.json נכתב מחדש).
 - **בדיקה: נתוני אופציות לפי מניה (לפיצ'ר "לקראת הדוח") — עובד.** workflow חד-פעמי (נמחק אחרי הריצה) הריץ את `scripts/tools/probe_options.py` על ה-runner: Yahoo v7 עם cookie+crumb ו-CBOE delayed quotes שניהם מחזירים שרשרת מלאה. JPM (דוח 13.10) → סטראדל לפקיעת 16.10 = ±4.8%. פרטים ב-CLAUDE.md "מלכודות". **פתוח:** איציק מחליט על הפיצ'ר (דוגמת MSFT הוצגה בצ'אט); גרוק יכול להיות גיבוי.
-- **בדיקה: נתוני אנליסטים ל-JPM (מוקאפ "לקראת הדוח")** — workflow חד-פעמי `probe-analysts.yml` + `scripts/tools/probe_analysts.py` (Yahoo quoteSummary, שדות TradingView, נרות שנתיים, סטראדל). לא כותב קבצים; יימחק אחרי הבדיקה.
+- **מוקאפ "לקראת הדוח" — JPM (13.10):** https://claude.ai/artifact/G9bVUTEAqeuXZNsDD8gwdb. נבנה מהניתוח של 14.7 שאיציק העלה + נתונים אמיתיים מה-runner (workflow חד-פעמי, נמחק): Yahoo quoteSummary עובד (צפי EPS/הכנסות, היסטוריית הפתעות, מחירי יעד, דירוגים, עדכוני אנליסטים), וגם בסורק TradingView יש `earnings_per_share_forecast_next_fq`/`revenue_forecast_next_fq`/`price_target_*`/`recommendation_mark`. **פתוח:** איציק מחליט על הפיצ'ר.
   - **פתוח:** ריצת 23:41 עצמה לא מזיקה עכשיו (פשוט לא נספרת). איציק יכול לבטל אותה ב-Task Scheduler אם לא צריך אותה.
 
 ## 2026-10-01
