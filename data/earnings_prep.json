@@ -1,8 +1,8 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 13:31",
+  "updatedAt": "02/10/2026 13:38",
   "aheadDays": 14,
-  "ver": 2,
+  "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
  },
  "items": [
@@ -60,8 +60,8 @@
      "actual": 2.29,
      "est": 2.27,
      "surprise": 0.9,
-     "day": "2025-10-10",
-     "move": 3.71
+     "day": "2025-10-09",
+     "move": 4.23
     },
     {
      "q": "2025-12-31",
@@ -148,7 +148,7 @@
     }
    ],
    "yahooDate": "2026-10-08",
-   "analystsAt": "2026-10-02T10:31+00:00",
+   "analystsAt": "2026-10-02T10:38+00:00",
    "price": {
     "close": 125.6,
     "date": "2026-10-01",
@@ -484,7 +484,7 @@
     }
    },
    "options": null,
-   "avgMove": 3.5,
+   "avgMove": 3.7,
    "hasNote": false
   },
   {
@@ -550,8 +550,8 @@
      "actual": 5.23,
      "est": 4.87,
      "surprise": 7.4,
-     "day": "2026-01-14",
-     "move": -0.97
+     "day": "2026-01-13",
+     "move": -4.19
     },
     {
      "q": "2026-03-31",
@@ -629,7 +629,7 @@
     }
    ],
    "yahooDate": "2026-10-13",
-   "analystsAt": "2026-10-02T10:31+00:00",
+   "analystsAt": "2026-10-02T10:38+00:00",
    "price": {
     "close": 333.18,
     "date": "2026-10-01",
@@ -965,7 +965,7 @@
     }
    },
    "options": null,
-   "avgMove": 1.5,
+   "avgMove": 2.4,
    "hasNote": true
   }
  ],
@@ -991,23 +991,13 @@
    "when": null
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
-   "when": null
-  },
-  {
    "sym": "BSX",
    "date": "2026-10-28",
    "when": "before"
   },
   {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AMZN",
-   "date": "2026-10-29",
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -1016,7 +1006,17 @@
    "when": "after"
   },
   {
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
    "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "AAPL",
    "date": "2026-10-29",
    "when": null
   },
