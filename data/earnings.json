@@ -1,6 +1,6 @@
 {
   "today": "2026-10-02",
-  "todayCount": 0,
+  "todayCount": 1,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -160,7 +160,14 @@
       }
     ]
   },
-  "reporting": [],
+  "reporting": [
+    {
+      "ticker": "VFS",
+      "name": "VinFast Auto Ltd.",
+      "when": "",
+      "logo": "data/earnings/logos/VFS.png"
+    }
+  ],
   "more": 0,
   "upcoming": [],
   "week": [
@@ -272,11 +279,17 @@
       "date": "2026-10-02",
       "dow": "שישי",
       "label": "2.10",
-      "total": 0,
-      "companies": []
+      "total": 1,
+      "companies": [
+        {
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd."
+        }
+      ]
     }
   ],
   "window": {
+    "VFS": "2026-10-02",
     "STZ": "2026-10-06",
     "RPM": "2026-10-06",
     "LW": "2026-10-06",
@@ -296,7 +309,7 @@
     "NRIX": "2026-10-09"
   },
   "_meta": {
-    "updatedAt": "02/10/2026 06:01",
+    "updatedAt": "02/10/2026 06:15",
     "source": "tradingview"
   }
 }
