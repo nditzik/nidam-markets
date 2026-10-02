@@ -97,6 +97,13 @@ def universe():
             add(p.get("ticker"))
     for r in (load(os.path.join(DATA, "reports.json"), {}).get("reports") or []):
         add(r.get("ticker"))
+    # יומן ההכנות של הנבחרות: מניה שנבחרה נמדדת 20 ימי מסחר גם אחרי שיצאה ממומנטום/מועמדים
+    # (2.10.2026: ABSI ו-AMGN נתקעו על נר 30.9 — מהדורת 29.9 נשארה "יום 1" במקום "יום 2")
+    cut = (datetime.now(timezone.utc) - timedelta(days=45)).strftime("%Y-%m-%d")
+    for e in (load(os.path.join(DATA, "picks_ledger.json"), {}).get("editions") or []):
+        if (e.get("date") or "") >= cut:
+            for s in (e.get("symbols") or []):
+                add(s.get("sym"))
     watch = set()
     try:
         with open(WATCHLIST, encoding="utf-8") as f:
