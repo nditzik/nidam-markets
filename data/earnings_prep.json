@@ -1,7 +1,8 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 13:16",
+  "updatedAt": "02/10/2026 13:31",
   "aheadDays": 14,
+  "ver": 2,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
  },
  "items": [
@@ -55,33 +56,37 @@
    "history": [
     {
      "q": "2025-09-30",
+     "reported": "2025-10-09",
      "actual": 2.29,
-     "est": 2.25996,
-     "surprise": 1.3,
+     "est": 2.27,
+     "surprise": 0.9,
      "day": "2025-10-10",
      "move": 3.71
     },
     {
      "q": "2025-12-31",
+     "reported": "2026-02-03",
      "actual": 2.26,
-     "est": 2.23709,
-     "surprise": 1.0,
+     "est": 2.24,
+     "surprise": 0.9,
      "day": "2026-02-03",
      "move": 4.93
     },
     {
      "q": "2026-03-31",
+     "reported": "2026-04-16",
      "actual": 1.61,
-     "est": 1.55188,
-     "surprise": 3.8,
+     "est": 1.55,
+     "surprise": 3.9,
      "day": "2026-04-16",
      "move": 2.28
     },
     {
      "q": "2026-06-30",
+     "reported": "2026-07-09",
      "actual": 2.2,
-     "est": 2.2082,
-     "surprise": -0.4,
+     "est": 2.19,
+     "surprise": 0.5,
      "day": "2026-07-09",
      "move": -3.26
     }
@@ -143,7 +148,7 @@
     }
    ],
    "yahooDate": "2026-10-08",
-   "analystsAt": "2026-10-02T10:16+00:00",
+   "analystsAt": "2026-10-02T10:31+00:00",
    "price": {
     "close": 125.6,
     "date": "2026-10-01",
@@ -532,35 +537,39 @@
    "history": [
     {
      "q": "2025-09-30",
+     "reported": "2025-10-14",
      "actual": 5.07,
-     "est": 4.87467,
-     "surprise": 4.0,
+     "est": 4.83,
+     "surprise": 5.0,
      "day": "2025-10-14",
      "move": -1.91
     },
     {
      "q": "2025-12-31",
-     "actual": 4.63,
-     "est": 4.81831,
-     "surprise": -3.9,
+     "reported": "2026-01-13",
+     "actual": 5.23,
+     "est": 4.87,
+     "surprise": 7.4,
      "day": "2026-01-14",
      "move": -0.97
     },
     {
      "q": "2026-03-31",
+     "reported": "2026-04-14",
      "actual": 5.94,
-     "est": 5.51098,
-     "surprise": 7.8,
+     "est": 5.49,
+     "surprise": 8.2,
      "day": "2026-04-14",
      "move": -0.82
     },
     {
      "q": "2026-06-30",
+     "reported": "2026-07-14",
      "actual": 6.14,
-     "est": 5.79998,
-     "surprise": 5.9,
-     "day": "2026-07-08",
-     "move": -2.54
+     "est": 5.59,
+     "surprise": 9.8,
+     "day": "2026-07-14",
+     "move": 2.5
     }
    ],
    "actions": [
@@ -620,7 +629,7 @@
     }
    ],
    "yahooDate": "2026-10-13",
-   "analystsAt": "2026-10-02T10:16+00:00",
+   "analystsAt": "2026-10-02T10:31+00:00",
    "price": {
     "close": 333.18,
     "date": "2026-10-01",
@@ -950,13 +959,13 @@
     ],
     "off52": -8.8,
     "since": {
-     "from": "2026-07-07",
-     "chg": -1.8,
-     "spy": 2.2
+     "from": "2026-07-13",
+     "chg": -0.4,
+     "spy": 2.0
     }
    },
    "options": null,
-   "avgMove": 1.6,
+   "avgMove": 1.5,
    "hasNote": true
   }
  ],
@@ -972,14 +981,19 @@
    "when": null
   },
   {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
+  },
+  {
    "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
   },
   {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
+   "sym": "META",
+   "date": "2026-10-28",
+   "when": null
   },
   {
    "sym": "BSX",
@@ -987,8 +1001,23 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
+   "sym": "AAPL",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
+   "sym": "CUBE",
+   "date": "2026-10-29",
    "when": null
   },
   {
@@ -1000,26 +1029,6 @@
    "sym": "MRK",
    "date": "2026-10-29",
    "when": "before"
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "CUBE",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
-   "sym": "AMZN",
-   "date": "2026-10-29",
-   "when": null
   }
  ]
 }
