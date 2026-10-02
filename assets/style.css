@@ -1632,7 +1632,9 @@ b.ta-good, .ta-good > b { color: #1b7f76; } b.ta-bad { color: #c62828; } b.ta-mi
   .pk-table th, .pk-table td { padding: 7px 4px; }
   .pk-table { font-size: .82rem; }
   .pk-path svg { width: 52px; height: 20px; }
-  .pk-table .vm, .pk-table .dd { display: none; }
+  .pk-table .vm, .pk-table .dd, .pk-table small.mk { display: none; }
+  .pk-table td small.pk-spy, .pk-table td small.pk-stopped { white-space: normal; font-size: .62rem; }
   .pk-table td small { white-space: nowrap; }
 }
-
+.pk-table td small.mk { color: var(--text-3); }
+.pk-table td small.pk-spy { color: var(--text-3); font-size: .7rem; }

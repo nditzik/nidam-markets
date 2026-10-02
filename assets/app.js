@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np98";
+  var TA_VER = "np99";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3495,12 +3495,14 @@
     var H = [5, 10, 20], LO = { 5: 0, 10: 5, 20: 10 };
     // עמודה נעולה = התוצאה של יום 5/10/20. העמודה הפעילה מתעדכנת כל יום מ-cur ("יום 3"),
     // עד שהיא ננעלת ומתחילה הבאה (1.10.2026, איציק). הצבע תמיד לפי ההפרש מהשוק.
-    var cell = function (r, cur, h) {
+    // mk = להציג גם את השוק עצמו (שורת המהדורה בלבד; במניות זה אותו מספר בכל שורה)
+    var cell = function (r, cur, h, mk) {
       var live = !r && cur && cur.day > LO[h] && cur.day < h;
       var v = r || (live ? cur : null);
       if (!v) return '<td class="pend">—</td>';
       var tone = v.excess > 0 ? "good" : v.excess < 0 ? "bad" : "";
-      return '<td class="' + tone + (live ? " live" : "") + '"><b>' + pkPct(v.ret) + "</b><small>" + (live ? '<span class="dd">יום ' + cur.day + " · </span>" : "") + pkPct(v.excess) + '<span class="vm"> מול השוק</span></small></td>';
+      return '<td class="' + tone + (live ? " live" : "") + '"><b>' + pkPct(v.ret) + "</b><small>" + (live ? '<span class="dd">יום ' + cur.day + " · </span>" : "") + pkPct(v.excess) + '<span class="vm"> מול השוק</span></small>' +
+        (mk && v.spy != null ? '<small class="mk">S&amp;P ' + pkPct(v.spy, 2) + "</small>" : "") + "</td>";
     };
     // מהלך יומי: קו התשואה המצטברת יום-יום (עד 20), קו אפס, נקודה בסוף בצבע הכיוון
     var spark = function (path) {
@@ -3518,8 +3520,9 @@
     };
     var rows = eds.slice().reverse().map(function (e, i) {
       var syms = (e.symbols || []).map(function (s) { return s.sym; });
-      var main = '<tr class="pk-ed" data-ed="' + i + '"><td><span dir="ltr">' + esc(secDate(e.date)) + "</span></td><td>" + syms.length + '<small class="pk-syms" dir="ltr">' + esc(syms.join(" ")) + "</small></td><td>" + esc(e.gateLabel || "") + "</td>" +
-        spark(e.path) + H.map(function (h) { return cell(e.avg && e.avg[h], e.cur, h); }).join("") + "</tr>";
+      var main = '<tr class="pk-ed" data-ed="' + i + '"><td><span dir="ltr">' + esc(secDate(e.date)) + "</span>" +
+        (e.spyEntry ? '<small class="pk-spy" dir="ltr" title="מחיר הכניסה של השוק — סגירת SPY ביום המהדורה">SPY ' + fmtNum(e.spyEntry, 2) + "</small>" : "") + "</td><td>" + syms.length + '<small class="pk-syms" dir="ltr">' + esc(syms.join(" ")) + "</small></td><td>" + esc(e.gateLabel || "") + "</td>" +
+        spark(e.path) + H.map(function (h) { return cell(e.avg && e.avg[h], e.cur, h, true); }).join("") + "</tr>";
       var det = (e.symbols || []).map(function (s) {
         var rs = e.results && e.results[s.sym] || {};
         var stopped = H.some(function (h) { return rs[h] && rs[h].stopped; }) || (rs.cur && rs.cur.stopped);

@@ -358,8 +358,11 @@ function updateLedger(ledger, spy) {
       e.path = [];
       for (let d = 0; d < days; d++) e.path.push([+(paths.reduce((a, p) => a + p[d][0], 0) / paths.length).toFixed(2), +(paths.reduce((a, p) => a + p[d][1], 0) / paths.length).toFixed(2)]);
       const last = e.path[days - 1];
-      e.cur = { day: days, ret: last[0], excess: last[1], win: Math.round(paths.filter(p => p[days - 1][0] > 0).length / paths.length * 100), n: paths.length };
+      e.cur = { day: days, ret: last[0], excess: last[1], win: Math.round(paths.filter(p => p[days - 1][0] > 0).length / paths.length * 100), n: paths.length,
+        spy: si + days < spy.length ? +((spy[si + days].close / spy[si].close - 1) * 100).toFixed(2) : null };
     }
+    // נקודת הכניסה של השוק (איציק 2.10.2026: "תשים את מחיר הספיי מתחת לתאריך כמחיר כניסה")
+    e.spyEntry = +spy[si].close.toFixed(2);
     // ממוצע המהדורה לכל אופק — רק כשכל המניות שלה מדודות
     e.avg = e.avg || {};
     HORIZONS.forEach(h => {
@@ -367,7 +370,8 @@ function updateLedger(ledger, spy) {
       if (rs.length && rs.length === e.symbols.length) e.avg[h] = {
         ret: +(rs.reduce((a, r) => a + r.ret, 0) / rs.length).toFixed(2),
         excess: +(rs.reduce((a, r) => a + r.excess, 0) / rs.length).toFixed(2),
-        win: Math.round(rs.filter(r => r.ret > 0).length / rs.length * 100), n: rs.length };
+        win: Math.round(rs.filter(r => r.ret > 0).length / rs.length * 100), n: rs.length,
+        spy: si + h < spy.length ? +((spy[si + h].close / spy[si].close - 1) * 100).toFixed(2) : null };
     });
   });
   if (filled) console.log(`[ledger] נמדדו ${filled} תוצאות חדשות`);
