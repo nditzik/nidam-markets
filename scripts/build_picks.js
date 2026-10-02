@@ -137,7 +137,15 @@ function main() {
   // המהדורה של יום מסחר X נבנית רק כשגם המומנטום וגם המועמדים מבוססים על סגירת X (איציק,
   // 1.10.2026: "צריך את שני הקבצים ביחד"). עד אז נשארת המהדורה הקודמת, ו-picks.json מקבל
   // pending = מה עוד חסר (מוצג באתר). אחרי ששניהם הגיעו — בנייה מחדש כשהמאגר מתחלף (poolSig).
-  const momDay = momentumDay(), candDay = candidatesDay();
+  const nowMs = process.env.PICKS_NOW ? Date.parse(process.env.PICKS_NOW) : Date.now();   // PICKS_NOW = בדיקה בלבד
+  const momDay = momentumDay();
+  // הסריקה של IBKR רצה על קובצי המומנטום (איציק 2.10.2026): ריצת 23:41 עובדת על המומנטום של
+  // אתמול עם מחירי הסגירה של היום — המחירים "נכונים" (candidatesDay = היום) אבל יקום המניות ישן.
+  // רשימת מועמדים נחשבת מעודכנת רק אם יצאה *אחרי* שקובצי המומנטום של היום הגיעו (momSeen).
+  if (momDay && (!ledger.momSeen || ledger.momSeen.day !== momDay)) ledger.momSeen = { day: momDay, at: new Date(nowMs).toISOString() };
+  const candAt = candidatesStampMs(), seenAt = ledger.momSeen ? Date.parse(ledger.momSeen.at) : NaN;
+  const candFresh = candAt != null && !isNaN(seenAt) && candAt >= seenAt - CAND_SLACK_MS;
+  const candDay = candFresh ? candidatesDay() : null;
   const waiting = [];
   if (momDay !== asOf) waiting.push("מומנטום");
   if (candDay !== asOf) waiting.push("מועמדים");
@@ -145,7 +153,7 @@ function main() {
   // איציק 1.10.2026: "אם המועמדים לא מגיעים עד 8:00 — תכניס רק על סמך המומנטום". אחרי 08:00
   // שעון ישראל (ביום שאחרי הסגירה) עם מומנטום מעודכן ומועמדים ישנים: מהדורה מהמומנטום בלבד
   // (momOnly, בלי המועמדים הישנים). כשהמועמדים מגיעים — poolSig בלי "momonly" → בנייה מחדש משניהם.
-  const il = ilParts(process.env.PICKS_NOW ? new Date(process.env.PICKS_NOW) : undefined);   // PICKS_NOW = בדיקה בלבד
+  const il = ilParts(new Date(nowMs));
   const momOnly = momDay === asOf && candDay !== asOf && il.date > asOf && il.hour >= MOM_ONLY_HOUR;
   const sig = momOnly ? "momonly|" + poolSig : poolSig;
   if (waiting.length && !momOnly) {
@@ -189,6 +197,19 @@ function candidatesDay() {
   }
   const best = Object.entries(votes).sort((a, b) => b[1] - a[1])[0];
   return best ? best[0] : null;
+}
+
+// מתי רשימת המועמדים יצאה (_meta.updatedAt בשעון ישראל, "DD/MM/YYYY HH:MM") → מילישניות UTC
+const CAND_SLACK_MS = 30 * 60e3;   // ה-Action מזהה את קובצי המומנטום עד ~20 דק' אחרי שהגיעו; הסריקה לוקחת ~15
+function candidatesStampMs() {
+  const cand = readJSON(path.join(ROOT, "data", "candidates.json"), {});
+  const m = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/.exec((cand._meta && cand._meta.updatedAt) || "");
+  if (!m) return null;
+  const wall = Date.UTC(+m[3], +m[2] - 1, +m[1], +m[4], +m[5]);
+  const p = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Jerusalem", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date(wall));
+  const g = t => +p.find(x => x.type === t).value;
+  const off = Date.UTC(g("year"), g("month") - 1, g("day"), g("hour") % 24, g("minute")) - wall;   // היסט ישראל ברגע הזה
+  return wall - off;
 }
 
 function poolSignature() {
