@@ -32,7 +32,8 @@
     // 30.9.2026 (איציק, אחרי שנוסף "הנבחרות"): מומנטום התאחד לכאן — טאב "מועמדים" = מומנטום | מועמדים | הצעות לטרייד
     candidates: { subs: [["momentum", "מומנטום"], ["candidates", "מועמדים"], ["trades", "הצעות לטרייד"]], def: "candidates" },
     briefing: { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" },
-    weekcal:  { subs: [["weekcal", "לוח הדיווחים"], ["reports", "ניתוח דוחות"]], def: "reports" }
+    // 2.10.2026 (np103): "לקראת הדוח" באמצע — הכנה לחברות שיש להן ניתוח קודם ומדווחות בשבועיים הקרובים
+    weekcal:  { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["reports", "ניתוח דוחות"]], def: "reports" }
   };
   var SUB2TOP = {}, LAST_SUB = {};
   Object.keys(GROUPS).forEach(function (g) { GROUPS[g].subs.forEach(function (s) { SUB2TOP[s[0]] = g; }); });
@@ -525,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np102";
+  var TA_VER = "np103";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3427,6 +3428,196 @@
 
   /* טאב "Insider" (20.9.2026) — דוחות קניות של בעלי עניין מ-nidam-reports/insider.
      כמו סקטורים: הדוח האחרון מוצג, הקודמים נשמרים כצ'יפים (scripts/fetch_insider.py ממזג היסטוריה). */
+  /* ---------- לקראת הדוח (2.10.2026, np103, איציק — אושר במוקאפ JPM) ----------
+     data/earnings_prep.json = המספרים (scripts/build_earnings_prep.py, כל רבע שעה): חברות שיש להן ניתוח
+     דוח קודם באתר ומדווחות בשבועיים הקרובים — צפי אנליסטים, היסטוריית הפתעות + תגובת המניה, מחירי יעד,
+     התזוזה שהאופציות מתמחרות, מחיר מאז הדוח הקודם. data/earnings_prep_notes.json = המילים (הרוטינה
+     היומית לפי scripts/prompts/earnings_prep.md): משפט מוביל, תחזית ההנהלה, 5 בדיקות, חולשות, תרחישים. */
+  var PREPD = null, PREPN = null;
+  var EP_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  function epDate(iso) { var p = iso.split("-"); return (+p[2]) + "." + (+p[1]); }
+  function epDow(iso) { return EP_DOW[new Date(iso + "T12:00:00Z").getUTCDay()]; }
+  function epWhen(it) {
+    return it.when === "before" ? "לפני הפתיחה" : it.when === "after" ? "אחרי הסגירה" : "שעה לא ידועה";
+  }
+  function epMoney(v) {
+    if (v == null) return "—";
+    var a = Math.abs(v);
+    return "$" + (a >= 1e12 ? (v / 1e12).toFixed(2) + "T" : a >= 1e9 ? (v / 1e9).toFixed(1) + "B" : a >= 1e6 ? (v / 1e6).toFixed(0) + "M" : Number(v).toFixed(2));
+  }
+  function epLogo(it, big) {
+    var r = it.report || {};
+    // הטיקר כטקסט מתחת ללוגו — אם התמונה לא נטענת היא נמחקת והטקסט נשאר
+    return '<span class="ep-logo' + (big ? " big" : "") + '">' + esc(it.sym) +
+      (r.logo ? '<img class="' + (r.logoBg === "dark" ? "dk" : "") + '" src="' + esc(r.logo) + '" alt="" onerror="this.remove()">' : "") + "</span>";
+  }
+  function epQuarter(q) { var p = q.split("-"); return ["", "ינו'", "פבר'", "מרץ", "אפר'", "מאי", "יוני", "יולי", "אוג'", "ספט'", "אוק'", "נוב'", "דצמ'"][+p[1]] + " " + p[0].slice(2); }
+  function epReactSvg(it) {
+    var h = (it.history || []).filter(function (x) { return x.move != null; });
+    if (!h.length) return "";
+    var band = it.options && it.options.earn, top = Math.max(band || 0, 1);
+    h.forEach(function (x) { top = Math.max(top, Math.abs(x.move)); });
+    var W = 400, H = 200, mid = 92, k = 70 / top, L = 40, R = 385, w = 56, gap = (R - L - 20 - w) / Math.max(h.length - 1, 1);
+    var Y = function (v) { return mid - v * k; };
+    var s = '<svg class="ep-chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="תגובת המניה בדוחות הקודמים">';
+    if (band) {
+      s += '<rect x="' + L + '" y="' + Y(band) + '" width="' + (R - L) + '" height="' + (Y(-band) - Y(band)) + '" style="fill:var(--ep-band)"/>' +
+        '<text x="' + (L + 2) + '" y="' + (Y(band) - 6) + '" font-size="10.5" text-anchor="start" style="fill:var(--accent)">±' + band.toFixed(1) + "% — מה שהאופציות מתמחרות לדוח הבא</text>";
+    }
+    s += '<line x1="' + L + '" x2="' + R + '" y1="' + mid + '" y2="' + mid + '" style="stroke:var(--border)"/>';
+    h.forEach(function (x, i) {
+      var cx = L + 20 + i * gap, v = x.move, col = v >= 0 ? "var(--up)" : "var(--down)";
+      s += '<rect x="' + cx + '" y="' + Math.min(Y(v), mid) + '" width="' + w + '" height="' + Math.max(Math.abs(Y(v) - mid), 1) + '" rx="3" style="fill:' + col + '"/>' +
+        '<text x="' + (cx + w / 2) + '" y="' + (v >= 0 ? Y(v) - 5 : Y(v) + 13) + '" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:' + col + '">' + (v > 0 ? "+" : "") + v.toFixed(1) + "%</text>" +
+        '<text x="' + (cx + w / 2) + '" y="194" font-size="11" text-anchor="middle" style="fill:var(--text-3)">' + esc(epDate(x.day || x.q)) + "</text>";
+    });
+    return s + "</svg>";
+  }
+  function epPriceSvg(it) {
+    var p = it.price || {}, ser = p.series || [];
+    if (ser.length < 2) return "";
+    var c = ser.map(function (x) { return x[1]; });
+    var lo = Math.min.apply(null, c), hi = Math.max.apply(null, c), padv = (hi - lo) * 0.08 || 1;
+    lo -= padv; hi += padv;
+    var W = 960, H = 220, L = 52, R = 900, T = 18, B = 190, n = c.length - 1;
+    var X = function (i) { return L + i / n * (R - L); }, Y = function (v) { return B - (v - lo) / (hi - lo) * (B - T); };
+    var d = c.map(function (v, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1); }).join("");
+    var s = '<svg class="ep-chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="מחיר המניה ב-80 ימי המסחר האחרונים">';
+    var step = Math.pow(10, Math.floor(Math.log10((hi - lo) / 3))), t0 = Math.ceil(lo / step) * step;
+    for (var t = t0; t < hi; t += step * Math.max(1, Math.round((hi - lo) / 3 / step))) {
+      s += '<line x1="' + L + '" x2="' + R + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--border-soft)"/>' +
+        '<text x="' + (L - 8) + '" y="' + (Y(t) + 4) + '" font-size="11" text-anchor="end" style="fill:var(--text-3)">$' + Math.round(t) + "</text>";
+    }
+    s += '<path d="' + d + "L" + X(n) + " " + B + "L" + X(0) + " " + B + 'Z" style="fill:var(--ep-band)"/>' +
+      '<path d="' + d + '" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round"/>';
+    var rd = p.since && p.since.from ? ser.findIndex(function (x) { return x[0] > p.since.from; }) : -1;
+    if (rd > 0) {
+      var lastH = (it.history || []).filter(function (x) { return x.move != null; }).slice(-1)[0];
+      s += '<line x1="' + X(rd) + '" x2="' + X(rd) + '" y1="' + T + '" y2="' + B + '" style="stroke:var(--pk-gold,#b7861c);stroke-width:1.5;stroke-dasharray:4 4"/>' +
+        '<text x="' + (X(rd) + 6) + '" y="' + (T + 10) + '" font-size="11.5" font-weight="700" text-anchor="start" style="fill:var(--pk-gold,#b7861c)">הדוח הקודם' +
+        (lastH ? " · " + (lastH.move > 0 ? "+" : "") + lastH.move.toFixed(1) + "%" : "") + "</text>";
+    }
+    s += '<circle cx="' + X(n) + '" cy="' + Y(c[n]) + '" r="4.5" style="fill:var(--accent)"/>' +
+      '<text x="' + (X(n) - 8) + '" y="' + (Y(c[n]) + 18) + '" font-size="12" font-weight="700" text-anchor="end" style="fill:var(--text)">' + c[n].toFixed(2) + "</text>";
+    [0, Math.round(n / 3), Math.round(2 * n / 3), n].forEach(function (i) {
+      s += '<text x="' + X(i) + '" y="' + (B + 18) + '" font-size="11" text-anchor="' + (i === 0 ? "start" : i === n ? "end" : "middle") + '" style="fill:var(--text-3)">' + esc(epDate(ser[i][0])) + "</text>";
+    });
+    return s + "</svg>";
+  }
+  function epTarget(it) {
+    var t = it.targets || {}, px = it.price && it.price.close;
+    if (!t.mean || !t.low || !t.high || !px) return "";
+    var lo = Math.min(t.low, px) * 0.98, hi = Math.max(t.high, px) * 1.02;
+    var X = function (v) { return 12 + (v - lo) / (hi - lo) * 376; };
+    return '<svg class="ep-tgt" viewBox="0 0 400 58" role="img" aria-label="מחיר יעד ממוצע ' + t.mean.toFixed(0) + " מול מחיר " + px.toFixed(0) + '">' +
+      '<line x1="' + X(t.low) + '" x2="' + X(t.high) + '" y1="26" y2="26" stroke-width="8" stroke-linecap="round" style="stroke:var(--surface-3)"/>' +
+      '<line x1="' + X(Math.min(px, t.mean)) + '" x2="' + X(Math.max(px, t.mean)) + '" y1="26" y2="26" stroke-width="8" style="stroke:' + (t.mean >= px ? "var(--up)" : "var(--down)") + ';opacity:.35"/>' +
+      '<circle cx="' + X(t.mean) + '" cy="26" r="6" style="fill:' + (t.mean >= px ? "var(--up)" : "var(--down)") + '"/>' +
+      '<rect x="' + (X(px) - 1.5) + '" y="14" width="3" height="24" style="fill:var(--text)"/>' +
+      '<text x="' + X(t.low) + '" y="52" font-size="11" text-anchor="start" style="fill:var(--text-3)">' + Math.round(t.low) + "</text>" +
+      '<text x="' + X(t.high) + '" y="52" font-size="11" text-anchor="end" style="fill:var(--text-3)">' + Math.round(t.high) + "</text>" +
+      '<text x="' + X(px) + '" y="10" font-size="11" font-weight="700" text-anchor="middle" style="fill:var(--text)">מחיר ' + Math.round(px) + "</text>" +
+      '<text x="' + X(t.mean) + '" y="52" font-size="11" font-weight="700" text-anchor="middle" style="fill:' + (t.mean >= px ? "var(--up)" : "var(--down)") + '">יעד ממוצע ' + Math.round(t.mean) + "</text></svg>";
+  }
+  function epCard(it) {
+    var n = (PREPN && PREPN[it.sym] && PREPN[it.sym].forDate === it.date) ? PREPN[it.sym] : null;
+    var c = it.consensus || {}, o = it.options || {}, p = it.price || {}, rec = it.recs || {}, rv = it.revisions || {}, tg = it.targets || {};
+    var rep = it.report || {};
+    var head = '<header class="ep-head">' + epLogo(it, true) +
+      '<div class="ep-who"><div class="ep-name">' + esc(it.name || it.sym) + ' <small dir="ltr">' + esc(it.sym) + "</small></div>" +
+      '<div class="ep-when"><span class="ep-pill hot">' + epDow(it.date) + " " + epDate(it.date) + " · " + epWhen(it) + "</span>" +
+      '<span class="ep-pill">' + (it.daysTo > 0 ? "עוד " + it.daysTo + " ימים" : it.daysTo === 0 ? "היום" : "התגובה היום") + "</span></div></div>" +
+      (rep.file ? '<button class="ep-rep" onclick="__goTab(\'reports\')">הניתוח של הדוח הקודם (' + esc(epDate(rep.date || "")) + ") ←</button>" : "") + "</header>";
+    var words = n
+      ? '<h3 class="ep-thesis">' + esc(n.thesis) + "</h3>" + (n.dek ? '<p class="ep-dek">' + esc(n.dek) + "</p>" : "")
+      : '<p class="ep-wait">ההכנה המילולית (מה ההנהלה הבטיחה, מה לבדוק, חולשות) תיכתב בבוקר שלפני שבוע הדוח. המספרים כבר כאן.</p>';
+    var epsG = c.eps != null && c.epsYearAgo ? (c.eps / c.epsYearAgo - 1) * 100 : null;
+    var revG = c.rev != null && c.revYearAgo ? (c.rev / c.revYearAgo - 1) * 100 : null;
+    var stats = '<div class="ep-stats">' +
+      '<div class="ep-stat"><span class="k">צפי רווח למניה</span><span class="v num" dir="ltr">' + (c.eps != null ? "$" + c.eps.toFixed(2) : "—") + "</span>" +
+        '<span class="s">' + (epsG != null ? '<span class="num" dir="ltr">' + pkPct(epsG, 0) + "</span> משנה שעברה" : "") + (c.epsN ? " · " + c.epsN + " אנליסטים" : "") + "</span></div>" +
+      '<div class="ep-stat"><span class="k">צפי הכנסות</span><span class="v num" dir="ltr">' + epMoney(c.rev) + "</span>" +
+        '<span class="s">' + (revG != null ? '<span class="num" dir="ltr">' + pkPct(revG, 1) + "</span> משנה שעברה" : "") + "</span></div>" +
+      '<div class="ep-stat"><span class="k">תזוזה שהאופציות מתמחרות</span><span class="v num" dir="ltr">' + (o.earn != null ? "±" + o.earn.toFixed(1) + "%" : "—") + "</span>" +
+        '<span class="s">' + (o.pct != null ? 'ליום הדוח · <span class="num" dir="ltr">±' + o.pct.toFixed(1) + "%</span> עד פקיעת " + esc(epDate(o.exp)) : "מתעדכן בשעות המסחר") + "</span></div>" +
+      '<div class="ep-stat"><span class="k">תזוזה ממוצעת בדוחות</span><span class="v num" dir="ltr">' + (it.avgMove != null ? it.avgMove.toFixed(1) + "%" : "—") + "</span>" +
+        '<span class="s">ממוצע ' + ((it.history || []).filter(function (x) { return x.move != null; }).length) + " הדוחות האחרונים</span></div></div>";
+    var sec = [];
+    if (n && ((n.guidance || []).length || n.guidanceNote)) {
+      sec.push('<section class="ep-sec"><h4>מה ההנהלה הבטיחה <small>מהדוח של ' + esc(epDate(rep.date || "")) + "</small></h4>" +
+        ((n.guidance || []).length ? '<table class="ep-tbl"><tr><th>מדד</th><th class="r">התחזית</th><th class="r">לפני כן</th></tr>' +
+          n.guidance.map(function (g) { return "<tr><td>" + esc(g.metric) + '</td><td class="r num" dir="ltr">' + esc(g.value) + '</td><td class="r num" dir="ltr">' + esc(g.prev || "—") + "</td></tr>"; }).join("") + "</table>" : "") +
+        (n.guidanceNote ? '<p class="ep-cap">' + esc(n.guidanceNote) + "</p>" : "") + "</section>");
+    }
+    if (n && (n.checks || []).length) {
+      sec.push('<section class="ep-sec"><h4>' + (n.checks.length === 5 ? "חמשת המספרים לבדוק" : "המספרים לבדוק") + '</h4><ol class="ep-check">' +
+        n.checks.map(function (x) { return "<li><span><b>" + esc(x.title) + '</b><span class="t">' + esc(x.text) + "</span></span></li>"; }).join("") + "</ol></section>");
+    }
+    var recTot = (rec.strongBuy || 0) + (rec.buy || 0) + (rec.hold || 0) + (rec.sell || 0) + (rec.strongSell || 0);
+    if (recTot || tg.mean) {
+      var acts = (it.actions || []).slice(0, 4);
+      sec.push('<section class="ep-sec"><h4>מה האנליסטים חושבים <small>' + (recTot ? recTot + " אנליסטים · " : "") + "Yahoo Finance</small></h4>" +
+        (recTot ? '<div class="ep-rbar" role="img" aria-label="' + (rec.strongBuy || 0) + " קנייה חזקה, " + (rec.buy || 0) + " קנייה, " + (rec.hold || 0) + " החזקה, " + ((rec.sell || 0) + (rec.strongSell || 0)) + ' מכירה">' +
+          '<i class="sb" style="flex:' + (rec.strongBuy || 0) + '"></i><i class="b" style="flex:' + (rec.buy || 0) + '"></i><i class="h" style="flex:' + (rec.hold || 0) + '"></i><i class="s" style="flex:' + ((rec.sell || 0) + (rec.strongSell || 0)) + '"></i></div>' +
+          '<div class="ep-rlab"><span class="sb">קנייה חזקה ' + (rec.strongBuy || 0) + '</span><span class="b">קנייה ' + (rec.buy || 0) + '</span><span class="h">החזקה ' + (rec.hold || 0) + '</span><span class="s">מכירה ' + ((rec.sell || 0) + (rec.strongSell || 0)) + "</span></div>" : "") +
+        epTarget(it) +
+        (rv.up30 != null ? '<p class="ep-cap">ב-30 הימים האחרונים ' + (rv.up30 || 0) + " אנליסטים העלו את צפי הרווח לרבעון ו-" + (rv.down30 || 0) + " הורידו.</p>" : "") +
+        (acts.length ? '<table class="ep-tbl sm"><tr><th>תאריך</th><th>בית השקעות</th><th class="r">מחיר יעד</th></tr>' + acts.map(function (a) {
+          return '<tr><td class="num">' + esc(epDate(a.date)) + "</td><td>" + esc(a.firm || "") + (a.grade ? " · " + esc(a.grade) : "") + '</td><td class="r num" dir="ltr">' +
+            (a.ptPrev ? Math.round(a.ptPrev) + " → " : "") + (a.pt ? Math.round(a.pt) : "—") + "</td></tr>";
+        }).join("") + "</table>" : "") + "</section>");
+    }
+    var hist = it.history || [];
+    if (hist.length) {
+      var beats = hist.filter(function (x) { return x.surprise > 0; }).length, ups = hist.filter(function (x) { return x.move > 0; }).length, nm = hist.filter(function (x) { return x.move != null; }).length;
+      sec.push('<section class="ep-sec"><h4>עמידה בציפיות ותגובת המניה <small>יום התגובה, סגירה מול סגירה</small></h4>' + epReactSvg(it) +
+        '<table class="ep-tbl"><tr><th>רבעון</th><th class="r">רווח בפועל / צפי</th><th class="r">הפתעה</th><th class="r">המניה</th></tr>' +
+        hist.map(function (x) {
+          return "<tr><td>" + esc(epQuarter(x.q)) + '</td><td class="r num" dir="ltr">' + (x.actual != null ? x.actual.toFixed(2) : "—") + " / " + (x.est != null ? x.est.toFixed(2) : "—") +
+            '</td><td class="r num ' + (x.surprise > 0 ? "up" : x.surprise < 0 ? "down" : "") + '" dir="ltr">' + pkPct(x.surprise, 1) +
+            '</td><td class="r num ' + (x.move > 0 ? "up" : x.move < 0 ? "down" : "") + '" dir="ltr">' + pkPct(x.move, 1) + "</td></tr>";
+        }).join("") + "</table>" +
+        '<p class="ep-cap">עקפה את הצפי ב-' + beats + " מתוך " + hist.length + "; המניה עלתה ב-" + ups + " מתוך " + nm + " ימי התגובה.</p></section>");
+    }
+    var grid = sec.length ? '<div class="ep-grid">' + sec.join("") + "</div>" : "";
+    var price = p.series ? '<section class="ep-sec ep-wide"><h4>איפה המניה עומדת <small>סגירה ' + esc(epDate(p.date)) + "</small></h4>" + epPriceSvg(it) +
+      '<p class="ep-cap"><span class="num" dir="ltr">$' + p.close.toFixed(2) + "</span>" +
+      (p.since ? ' · מאז ערב הדוח הקודם <span class="num ' + (p.since.chg >= 0 ? "up" : "down") + '" dir="ltr">' + pkPct(p.since.chg, 1) + "</span>" +
+        (p.since.spy != null ? ' (S&amp;P 500 <span class="num" dir="ltr">' + pkPct(p.since.spy, 1) + "</span>)" : "") : "") +
+      ' · <span class="num" dir="ltr">' + Math.abs(p.off52).toFixed(1) + "%</span> מתחת לשיא 52 שבועות" +
+      " · " + (p.close >= p.ma50 ? "מעל" : "מתחת ל") + 'ממוצע 50 יום (<span class="num" dir="ltr">$' + p.ma50.toFixed(1) + "</span>)" +
+      (tg.mean ? " · מחיר היעד הממוצע " + (tg.mean >= p.close ? "גבוה" : "נמוך") + ' ב-<span class="num" dir="ltr">' + Math.abs((tg.mean / p.close - 1) * 100).toFixed(1) + "%</span>" : "") + "</p></section>" : "";
+    var after = "";
+    if (n && ((n.weaknesses || []).length || n.bull || n.bear)) {
+      after = '<div class="ep-grid">' +
+        ((n.weaknesses || []).length ? '<section class="ep-sec"><h4>נקודות החולשה מהפעם הקודמת</h4><ul class="ep-dots">' + n.weaknesses.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul></section>" : "") +
+        (n.bull || n.bear ? '<section class="ep-sec"><h4>מה לחפש ביום הדוח</h4><div class="ep-scen">' +
+          (n.bull ? '<div class="g"><b>מה יחזק</b>' + esc(n.bull) + "</div>" : "") + (n.bear ? '<div class="r"><b>מה יחליש</b>' + esc(n.bear) + "</div>" : "") + "</div></section>" : "") + "</div>";
+    }
+    var foot = '<div class="ep-foot"><span>מקורות: ניתוח הדוח הקודם (האתר) · צפי ואנליסטים: Yahoo Finance · אופציות: Yahoo' +
+      (o.asOf ? ", " + esc(o.asOf) : "") + " · מחירים: נרות יומיים" + (n && n.writtenAt ? " · ההכנה נכתבה " + esc(n.writtenAt) : "") + ".</span>" +
+      "<span>התזוזה ליום הדוח = הסטראדל לפקיעה הראשונה אחרי הדוח, בניכוי התנודה הרגילה. יום התגובה בעבר = יום המחזור הגבוה אחרי סוף הרבעון. תיאור מבוסס נתונים, לא ייעוץ השקעות.</span></div>";
+    return '<article class="ep-card" id="ep-' + esc(it.sym) + '">' + head + words + stats + grid + price + after + foot + "</article>";
+  }
+  function renderPrep(el) {
+    if (!el) return;
+    var items = (PREPD && PREPD.items) || [], later = (PREPD && PREPD.later) || [];
+    var intro = '<section class="ep-intro"><div class="ep-kicker">לקראת הדוחות · השבועיים הקרובים</div>' +
+      '<h2>מי מדווח, ומה צריך לבדוק לפי הדוח הקודם</h2>' +
+      "<p>רק חברות שיש להן ניתוח דוח קודם באתר. המספרים מתעדכנים כל רבע שעה עד יום הדוח; ההכנה המילולית נכתבת בבוקר שלפני שבוע הדוח.</p>";
+    if (items.length) {
+      intro += '<div class="ep-chips">' + items.map(function (it) {
+        return '<a class="ep-chip" href="#ep-' + esc(it.sym) + '" onclick="document.getElementById(\'ep-' + esc(it.sym) + '\').scrollIntoView({behavior:\'smooth\'});return false">' +
+          epLogo(it) + "<span><b dir=\"ltr\">" + esc(it.sym) + "</b> <small>" + epDow(it.date) + " " + epDate(it.date) + " · " + epWhen(it) + "</small></span></a>";
+      }).join("") + "</div>";
+    }
+    intro += "</section>";
+    var body = items.length ? items.map(epCard).join("")
+      : '<div class="ep-empty">אף חברה עם ניתוח קודם באתר לא מדווחת בשבועיים הקרובים.' +
+        (later.length ? "<br>הבאות בתור: " + later.slice(0, 6).map(function (x) { return '<b dir="ltr">' + esc(x.sym) + "</b> " + epDate(x.date); }).join(" · ") : "") + "</div>";
+    el.innerHTML = '<div class="ep-wrap">' + intro + body + "</div>";
+  }
+
   /* ---------- הנבחרות (30.9.2026, np93) ----------
      data/picks.json = המהדורה של היום מ-scripts/build_picks.js: המועמדים+המומנטום
      שקיבלו "אישור מחיר לקנייה" מהמנוע הטכני על הסגירה האחרונה. data/picks_ledger.json =
@@ -3943,6 +4134,9 @@
         .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); noteSig("insider", d); })
         .catch(function () { if (!("insider" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
       // הנבחרות (30.9.2026): המהדורה + יומן הכנות; היומן לא חוסם את הקלפים
+      Promise.all([fetchJSON("data/earnings_prep.json"), fetchJSON("data/earnings_prep_notes.json").catch(function () { return {}; })])
+        .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; renderPrep(document.getElementById("panel-prep")); noteSig("prep", r[1]); })
+        .catch(function () { if (!PREPD) renderPrep(document.getElementById("panel-prep")); });
       Promise.all([fetchJSON("data/picks.json"), fetchJSON("data/picks_ledger.json").catch(function () { return null; })])
         .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); noteSig("picks", r[0]); })
         .catch(function () { if (!PICKD) emptyPanel(document.getElementById("panel-picks"), "✦", "הנבחרות — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); });

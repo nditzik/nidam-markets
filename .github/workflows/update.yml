@@ -234,6 +234,13 @@ jobs:
         continue-on-error: true
         run: node scripts/build_picks.js
 
+      # --- לקראת הדוח (2.10.2026): חברות עם ניתוח קודם באתר שמדווחות בשבועיים הקרובים —
+      #     צפי אנליסטים, תגובות קודמות, התזוזה שהאופציות מתמחרות → data/earnings_prep.json.
+      #     המילים נכתבות ע"י הרוטינה היומית (scripts/prompts/earnings_prep.md). ---
+      - name: Build earnings prep (לקראת הדוח)
+        continue-on-error: true
+        run: python scripts/build_earnings_prep.py
+
       - name: Write daily analysis (auto)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
