@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 13:38",
+  "updatedAt": "02/10/2026 13:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 183.0
     }
    ],
-   "yahooDate": "2026-10-08",
-   "analystsAt": "2026-10-02T10:38+00:00",
    "price": {
     "close": 125.6,
     "date": "2026-10-01",
@@ -483,6 +481,8 @@
      "spy": 2.5
     }
    },
+   "analystsAt": "2026-10-02T10:38+00:00",
+   "yahooDate": "2026-10-08",
    "options": null,
    "avgMove": 3.7,
    "hasNote": false
@@ -628,8 +628,6 @@
      "ptPrev": 408.0
     }
    ],
-   "yahooDate": "2026-10-13",
-   "analystsAt": "2026-10-02T10:38+00:00",
    "price": {
     "close": 333.18,
     "date": "2026-10-01",
@@ -964,6 +962,8 @@
      "spy": 2.0
     }
    },
+   "analystsAt": "2026-10-02T10:38+00:00",
+   "yahooDate": "2026-10-13",
    "options": null,
    "avgMove": 2.4,
    "hasNote": true
@@ -973,6 +973,11 @@
   {
    "sym": "CVX",
    "date": "2026-10-23",
+   "when": null
+  },
+  {
+   "sym": "MSFT",
+   "date": "2026-10-27",
    "when": null
   },
   {
@@ -986,8 +991,8 @@
    "when": "before"
   },
   {
-   "sym": "MSFT",
-   "date": "2026-10-27",
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -996,8 +1001,13 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
+   "sym": "UBER",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "AMZN",
+   "date": "2026-10-29",
    "when": null
   },
   {
@@ -1006,22 +1016,7 @@
    "when": "after"
   },
   {
-   "sym": "AMZN",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
    "sym": "CUBE",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
@@ -1029,6 +1024,11 @@
    "sym": "MRK",
    "date": "2026-10-29",
    "when": "before"
+  },
+  {
+   "sym": "AAPL",
+   "date": "2026-10-29",
+   "when": null
   }
  ]
 }
