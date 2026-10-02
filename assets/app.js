@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np100";
+  var TA_VER = "np101";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1190,6 +1190,8 @@
   }
 
   /* "מניות במוקד" — גלאי מפגשים: מניה שמופיעה ב-2+ מקורות פעילים (מומנטום/מועמדים/בולטות) */
+  /* 2.10.2026 (איציק): הכרטיס ירד מהבית — "הנבחרות" עונה על אותו צורך. אין #home-focus ב-index.html,
+     ולכן renderFocus יוצא מיד; archive_focus.py ו-focus_history.json נשארים כמו שהם. */
   function renderFocus() {
     var el = document.getElementById("home-focus");
     if (!el) return;
@@ -3865,9 +3867,6 @@
         .catch(function () {});
       fetchJSON("data/movers.json")
         .then(function (d) { MOVERS = d; renderHomeSplit(); renderFocus(); })
-        .catch(function () {});
-      fetchJSON("data/focus_history.json")
-        .then(function (d) { FHIST = d; renderFocus(); })
         .catch(function () {});
       fetchJSON("data/pulse.json")
         .then(function (d) { PULSE_X = d; renderPulseX(); })
