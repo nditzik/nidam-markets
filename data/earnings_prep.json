@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 18:46",
+  "updatedAt": "02/10/2026 18:55",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,14 +484,14 @@
    "analystsAt": "2026-10-02T10:38+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "02/10 18:46",
-    "price": 125.35,
+    "asOf": "02/10 18:55",
+    "price": 125.325,
     "exp": "2026-10-09",
     "strike": 125.0,
     "pct": 3.81,
-    "earn": 3.67,
+    "earn": 3.64,
     "preExp": "2026-10-02",
-    "prePct": 0.51
+    "prePct": 0.56
    },
    "avgMove": 3.7,
    "hasNote": false
@@ -974,14 +974,14 @@
    "analystsAt": "2026-10-02T10:38+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "02/10 18:46",
-    "price": 330.95,
+    "asOf": "02/10 18:55",
+    "price": 331.155,
     "exp": "2026-10-16",
     "strike": 330.0,
     "pct": 4.64,
-    "earn": 3.31,
+    "earn": 3.27,
     "preExp": "2026-10-09",
-    "prePct": 2.42
+    "prePct": 2.45
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -989,18 +989,23 @@
  ],
  "later": [
   {
-   "sym": "GOOGL",
-   "date": "2026-10-27",
-   "when": null
-  },
-  {
    "sym": "SOFI",
    "date": "2026-10-27",
    "when": "before"
   },
   {
+   "sym": "GOOGL",
+   "date": "2026-10-27",
+   "when": null
+  },
+  {
    "sym": "MSFT",
    "date": "2026-10-27",
+   "when": null
+  },
+  {
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -1009,12 +1014,17 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
+   "sym": "AMZN",
+   "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "AMZN",
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
+  },
+  {
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
@@ -1030,16 +1040,6 @@
   },
   {
    "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "MRK",
-   "date": "2026-10-29",
-   "when": "before"
-  },
-  {
-   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
