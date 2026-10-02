@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 19:01",
+  "updatedAt": "02/10/2026 19:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,14 +484,14 @@
    "analystsAt": "2026-10-02T10:38+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "02/10 19:01",
-    "price": 125.38,
+    "asOf": "02/10 19:16",
+    "price": 125.32,
     "exp": "2026-10-09",
     "strike": 125.0,
-    "pct": 3.84,
-    "earn": 3.67,
+    "pct": 3.78,
+    "earn": 3.63,
     "preExp": "2026-10-02",
-    "prePct": 0.56
+    "prePct": 0.53
    },
    "avgMove": 3.7,
    "hasNote": false
@@ -974,14 +974,14 @@
    "analystsAt": "2026-10-02T10:38+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "02/10 19:01",
-    "price": 331.345,
+    "asOf": "02/10 19:16",
+    "price": 331.065,
     "exp": "2026-10-16",
-    "strike": 332.5,
-    "pct": 4.64,
-    "earn": 3.18,
+    "strike": 330.0,
+    "pct": 4.61,
+    "earn": 3.25,
     "preExp": "2026-10-09",
-    "prePct": 2.52
+    "prePct": 2.44
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -989,9 +989,9 @@
  ],
  "later": [
   {
-   "sym": "MSFT",
+   "sym": "SOFI",
    "date": "2026-10-27",
-   "when": null
+   "when": "before"
   },
   {
    "sym": "GOOGL",
@@ -999,9 +999,9 @@
    "when": null
   },
   {
-   "sym": "SOFI",
+   "sym": "MSFT",
    "date": "2026-10-27",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "BSX",
@@ -1011,16 +1011,6 @@
   {
    "sym": "META",
    "date": "2026-10-28",
-   "when": null
-  },
-  {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
-   "sym": "CUBE",
-   "date": "2026-10-29",
    "when": null
   },
   {
@@ -1034,12 +1024,22 @@
    "when": null
   },
   {
+   "sym": "UBER",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
    "sym": "MRK",
    "date": "2026-10-29",
    "when": "before"
   },
   {
-   "sym": "UBER",
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
