@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np99";
+  var TA_VER = "np100";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3505,17 +3505,33 @@
         (mk && v.spy != null ? '<small class="mk">S&amp;P ' + pkPct(v.spy, 2) + "</small>" : "") + "</td>";
     };
     // מהלך יומי: קו התשואה המצטברת יום-יום (עד 20), קו אפס, נקודה בסוף בצבע הכיוון
+    // מחיר כניסה → סגירה אחרונה (2.10.2026, איציק); הסגירה מ-cur.close, או נגזרת מהתשואה
+    var pxNow = function (s, rs, twoLines) {
+      var c = rs && rs.cur ? (rs.cur.close != null ? rs.cur.close : s.entry * (1 + rs.cur.ret / 100)) : null;
+      return '<span class="pk-px" dir="ltr">$' + fmtNum(s.entry, 2) + (c != null ? "\u00a0→" + (twoLines ? "<br>" : " ") + '<b class="' + (c > s.entry ? "up" : c < s.entry ? "dn" : "") + '">$' + fmtNum(c, 2) + "</b>" : "") + "</span>";
+    };
+    // מהלך יומי (2.10.2026, איציק): עמודה לכל יום מסחר 1..20 — גובה = התשואה המצטברת מהכניסה
+    // באותו יום (ירוק/אדום), משבצת ריקה לימים שעוד לא הגיעו, קו מקווקו אחרי יום 5 ויום 10
+    // (העמודות "אחרי 5"/"אחרי 10"). ציר הזמן משמאל לימין כמו בשאר הגרפים באתר.
     var spark = function (path) {
       if (!path || !path.length) return '<td class="pk-path"></td>';
-      var W = 84, Hh = 24, n = 20, ys = path.map(function (p) { return p[0]; }).concat([0]);
-      var lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys), rg = (hi - lo) || 1;
-      var X = function (i) { return 2 + i * (W - 4) / (n - 1); }, Y = function (v) { return Hh - 3 - (v - lo) / rg * (Hh - 6); };
-      var pts = [[X(0), Y(0)]].concat(path.map(function (p, i) { return [X(i + 1 > n - 1 ? n - 1 : i + 1), Y(p[0])]; }));
-      var last = path[path.length - 1][0], tone = last > 0 ? "up" : last < 0 ? "dn" : "";
-      return '<td class="pk-path"><svg viewBox="0 0 ' + W + " " + Hh + '" width="' + W + '" height="' + Hh + '" role="img" aria-label="מהלך ' + path.length + ' ימים">' +
-        '<line class="z" x1="2" x2="' + (W - 2) + '" y1="' + Y(0).toFixed(1) + '" y2="' + Y(0).toFixed(1) + '"/>' +
-        '<polyline class="l ' + tone + '" points="' + pts.map(function (q) { return q[0].toFixed(1) + "," + q[1].toFixed(1); }).join(" ") + '"/>' +
-        '<circle class="e ' + tone + '" cx="' + pts[pts.length - 1][0].toFixed(1) + '" cy="' + pts[pts.length - 1][1].toFixed(1) + '" r="2.2"/></svg>' +
+      var n = 20, W = 200, Hh = 30, slot = W / n, bw = slot * 0.62, pad = 2;
+      var ys = path.map(function (p) { return p[0]; });
+      var top = Math.max(0.5, Math.max.apply(null, ys)), bot = Math.min(-0.5, Math.min.apply(null, ys));
+      var Y = function (v) { return pad + (top - v) / (top - bot) * (Hh - 2 * pad); }, y0 = Y(0);
+      var bars = "";
+      for (var d = 0; d < n; d++) {
+        var x = (d * slot + (slot - bw) / 2).toFixed(1);
+        if (d < path.length) {
+          var v = path[d][0], yv = Y(v), h = Math.max(1, Math.abs(yv - y0));
+          bars += '<rect class="b ' + (v > 0 ? "up" : v < 0 ? "dn" : "") + '" x="' + x + '" y="' + Math.min(yv, y0).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '"><title>יום ' + (d + 1) + ": " + pkPct(v) + " (מול השוק " + pkPct(path[d][1]) + ")</title></rect>";
+        } else {
+          bars += '<rect class="f" x="' + x + '" y="' + (y0 - 1.5).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="3"/>';
+        }
+      }
+      var cut = function (k) { var xx = (k * slot).toFixed(1); return '<line class="m" x1="' + xx + '" x2="' + xx + '" y1="0" y2="' + Hh + '"/>'; };
+      return '<td class="pk-path"><svg viewBox="0 0 ' + W + " " + Hh + '" preserveAspectRatio="none" role="img" aria-label="מהלך ' + path.length + ' ימים מתוך 20">' +
+        cut(5) + cut(10) + '<line class="z" x1="0" x2="' + (path.length * slot).toFixed(1) + '" y1="' + y0.toFixed(1) + '" y2="' + y0.toFixed(1) + '"/>' + bars + "</svg>" +
         '<small>יום ' + path.length + "/20</small></td>";
     };
     var rows = eds.slice().reverse().map(function (e, i) {
@@ -3526,7 +3542,7 @@
       var det = (e.symbols || []).map(function (s) {
         var rs = e.results && e.results[s.sym] || {};
         var stopped = H.some(function (h) { return rs[h] && rs[h].stopped; }) || (rs.cur && rs.cur.stopped);
-        return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + "</a>" + (stopped ? '<small class="pk-stopped">נגעה בסטופ</small>' : "") + '</td><td><span dir="ltr">$' + fmtNum(s.entry, 2) + "</span></td>" +
+        return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + "</a>" + '<small class="pk-px-m">' + pxNow(s, rs, true) + "</small>" + (stopped ? '<small class="pk-stopped">נגעה בסטופ</small>' : "") + '</td><td>' + pxNow(s, rs) + "</td>" +
           spark(rs.path) + H.map(function (h) { return cell(rs[h], rs.cur, h); }).join("") + "</tr>";
       }).join("");
       return main + det;

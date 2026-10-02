@@ -337,7 +337,7 @@ function updateLedger(ledger, spy) {
           lo = Math.min(lo, bars[bi + d].low);
           const r = (bars[bi + d].close / s.entry - 1) * 100, m = (spy[si + d].close / spy[si].close - 1) * 100;
           res.path.push([+r.toFixed(2), +(r - m).toFixed(2)]);
-          if (d === maxD) res.cur = { day: d, ret: +r.toFixed(2), spy: +m.toFixed(2), excess: +(r - m).toFixed(2), mae: +((lo / s.entry - 1) * 100).toFixed(1),
+          if (d === maxD) res.cur = { day: d, close: +bars[bi + d].close.toFixed(2), ret: +r.toFixed(2), spy: +m.toFixed(2), excess: +(r - m).toFixed(2), mae: +((lo / s.entry - 1) * 100).toFixed(1),
             stopped: s.stop != null ? lo < s.stop : (s.atr ? (s.entry - lo) / s.atr >= 1.5 : false), date: bars[bi + d].date };
         }
       }

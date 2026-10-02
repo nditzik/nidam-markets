@@ -1622,16 +1622,20 @@ b.ta-good, .ta-good > b { color: #1b7f76; } b.ta-bad { color: #c62828; } b.ta-mi
 .pk-path { white-space: nowrap; }
 .pk-path svg { display: block; direction: ltr; }
 .pk-path small { display: block; font-size: .68rem; color: var(--text-3); }
-.pk-path .z { stroke: var(--text-3); stroke-width: 1; stroke-dasharray: 2 2; }
-.pk-path .l { fill: none; stroke: var(--text-soft); stroke-width: 1.6; stroke-linejoin: round; }
-.pk-path .l.up, .pk-path .e.up { stroke: var(--up); } .pk-path .l.dn, .pk-path .e.dn { stroke: var(--down); }
-.pk-path .e { fill: var(--card-bg); stroke-width: 1.6; stroke: var(--text-soft); }
+.pk-path svg { width: 170px; height: 30px; }
+.pk-path .z { stroke: var(--text-3); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.pk-path .m { stroke: var(--text-3); stroke-width: 1; stroke-dasharray: 2 2; opacity: .6; vector-effect: non-scaling-stroke; }
+.pk-path .b { fill: var(--text-soft); } .pk-path .b.up { fill: var(--up); } .pk-path .b.dn { fill: var(--down); }
+.pk-path .f { fill: var(--text-3); opacity: .28; }
+.pk-px b.up { color: var(--up); } .pk-px b.dn { color: var(--down); } .pk-px b { font-weight: 600; }
+.pk-table small.pk-px-m { display: none; }
 /* טלפון: בלי עמודת מצב השוק/מחיר הכניסה ובלי רשימת הטיקרים בשורת המהדורה — הטבלה נכנסת ברוחב 390 */
 @media (max-width: 600px) {
   .pk-table th:nth-child(3), .pk-table td:nth-child(3), .pk-table .pk-syms { display: none; }
   .pk-table th, .pk-table td { padding: 7px 4px; }
   .pk-table { font-size: .82rem; }
-  .pk-path svg { width: 52px; height: 20px; }
+  .pk-path svg { width: 45px; height: 22px; }
+  .pk-table small.pk-px-m { display: block; white-space: normal; font-size: .66rem; }
   .pk-table .vm, .pk-table .dd, .pk-table small.mk { display: none; }
   .pk-table td small.pk-spy, .pk-table td small.pk-stopped { white-space: normal; font-size: .62rem; }
   .pk-table td small { white-space: nowrap; }
