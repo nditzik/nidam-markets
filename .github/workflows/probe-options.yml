@@ -1,0 +1,21 @@
+name: Probe options sources (one-off)
+
+# בדיקה חד-פעמית (2.10.2026): האם Yahoo / CBOE נותנים שרשרת אופציות מה-runner.
+# לא כותב קבצים ולא מקמט. יימחק אחרי הבדיקה.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/probe-options.yml"
+      - "scripts/tools/probe_options.py"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/tools/probe_options.py MSFT NKE JPM
