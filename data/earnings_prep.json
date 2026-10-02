@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 20:46",
+  "updatedAt": "02/10/2026 20:58",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -483,14 +483,14 @@
    "analystsAt": "2026-10-02T16:46+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "02/10 20:46",
-    "price": 125.52,
+    "asOf": "02/10 20:58",
+    "price": 125.47,
     "exp": "2026-10-09",
-    "strike": 126.0,
-    "pct": 3.8,
-    "earn": 3.7,
+    "strike": 125.0,
+    "pct": 3.75,
+    "earn": 3.61,
     "preExp": "2026-10-02",
-    "prePct": 0.43
+    "prePct": 0.51
    },
    "avgMove": 3.7,
    "hasNote": false
@@ -972,14 +972,14 @@
    "analystsAt": "2026-10-02T16:46+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "02/10 20:46",
-    "price": 331.3,
+    "asOf": "02/10 20:58",
+    "price": 331.0,
     "exp": "2026-10-16",
-    "strike": 332.5,
-    "pct": 4.66,
-    "earn": 3.34,
+    "strike": 330.0,
+    "pct": 4.61,
+    "earn": 3.33,
     "preExp": "2026-10-09",
-    "prePct": 2.42
+    "prePct": 2.38
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -987,9 +987,9 @@
  ],
  "later": [
   {
-   "sym": "MSFT",
+   "sym": "SOFI",
    "date": "2026-10-27",
-   "when": null
+   "when": "before"
   },
   {
    "sym": "GOOGL",
@@ -997,14 +997,9 @@
    "when": null
   },
   {
-   "sym": "SOFI",
+   "sym": "MSFT",
    "date": "2026-10-27",
-   "when": "before"
-  },
-  {
-   "sym": "BSX",
-   "date": "2026-10-28",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "META",
@@ -1012,12 +1007,22 @@
    "when": null
   },
   {
+   "sym": "BSX",
+   "date": "2026-10-28",
+   "when": "before"
+  },
+  {
    "sym": "AAPL",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "AMZN",
+   "sym": "UBER",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
@@ -1032,12 +1037,7 @@
    "when": "before"
   },
   {
-   "sym": "UBER",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "CUBE",
+   "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
   },
