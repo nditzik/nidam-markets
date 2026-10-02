@@ -16,7 +16,7 @@
 
 **רענון בדפדפן:** `loadDaily()` + `loadLiveContent()` כל 5 דק' עם שומרי-שינוי (`contentSig`), `visibilitychange` מרענן בחזרה-לטאב, ציטוטים חיים כל דקה מהסורק של TradingView (טיקר + מפת חום סקטוריאלית).
 
-**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np101.
+**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np102.
 
 ## עיצוב "מהדורת עיתון" (2026-08-08)
 
@@ -87,6 +87,7 @@
 - **GitHub Pages משמיט קבצים שמתחילים בקו תחתון** (29.9.2026). Jekyll (ברירת המחדל של Pages) לא מעלה `_x.json`/`_dir/` לאתר — `data/bars/_index.json` היה בריפו אבל החזיר 404 באתר, והלשונית הראתה "אין נתונים" (גם `data/_health.json` סבל מזה בשקט). תוקן: `.nojekyll` בשורש + שם הקובץ `index.json`. כלל: קובץ שהדפדפן קורא — בלי קו תחתון בהתחלה.
 - **מיילי ה-CSV של גרוק האטו את כל ה-Action** (1.10.2026). fetch_gmail / fetch_barchart / fetch_pulse חיפשו "כל מה שמ-nditzik@gmail.com בימים האחרונים" והורידו כל מייל במלואו כדי לבדוק את הנושא; מ-29.9 מגיעים לאותו שולח גם מיילי האופציות (~500KB) והמומנטום (~300KB, לפעמים כמה בבוקר), ו-Gmail האט: "Fetch gmail briefings" 13 דק', Barchart 5, X pulse עוד יותר — ריצות נערמו, המומנטום והדשבורד של 30.9 לא נכנסו לאתר בזמן. תוקן: `scripts/imap_util.py` — `headers()` (FETCH אחד של Subject/Date/Message-ID/From לכל המזהים, BODY.PEEK) ואז `full()` רק למייל שעבר סינון; בשני ה-relays גם מייל שה-Message-ID שלו כבר ב-state לא יורד שוב. **כלל: קורא IMAP חדש — כותרות קודם, גוף רק למה שצריך.** המשך אותו בוקר: X pulse עדיין לקח 10 דק', כי כל ריצה הורידה מחדש את כל ~11 מיילי X Scan של 48 השעות; מאז `data/_xscan_cache.json` שומר את הפריטים לכל Message-ID ורק מייל חדש יורד.
 - **קריאות ל-API של GitHub בלי טוקן** (1.10.2026). רשימות הקבצים ב-stocks-momentum / nidam-reports (momentum, reports, sectors, trades, insider, broadcast) נקראו מ-api.github.com בלי טוקן — 60 בשעה לכתובת IP משותפת של ה-runner. בבוקר שבו ריצות נערמו (המלכודת הקודמת) כולן קיבלו 403 "rate limit exceeded", והמומנטום נשאר על 29.9 למרות שקבצי 30.9 כבר היו בריפו. תוקן: `GITHUB_TOKEN: ${{ github.token }}` ב-env של ה-job ב-update.yml, ו-`scripts/gh_api.py::gh_headers(url)` מוסיף אותו רק לבקשות ל-api.github.com. **כלל: קריאה חדשה ל-API של GitHub — דרך gh_headers.**
+- **לוגו לבן על רקע שקוף נעלם בטאב ניתוח דוחות** (2.10.2026, NKE). הכרטיס מציג את הלוגו על ריבוע לבן, ו-FMP מחזיר לנייקי (וגם לאמזון) לוגו לבן על שקוף. `logo_is_light()` ב-fetch_reports.py (מפענח PNG ב-stdlib) מסמן `logoBg:"dark"` כשלפחות 20% מהתמונה שקוף והפיקסלים הנראים כמעט לבנים (בהירות ממוצעת ≥225); `rep-logo-dk` בכרטיס = ריבוע כהה. לוגו עם רקע לבן אטום (AAPL, LEN) לא מסומן.
 - **התדריך מגרוק משנה מבנה HTML בלי הודעה** (16.9.2026: תבליטי "חדש מאז" הפכו לשורות `<tr><td>` בטבלה, בלי ul/li — הבית הציג 2 מתוך 4 כי הפרסר נפל לסעיף "הידיעות המרכזיות"). `headlines_of` ב-fetch_gmail.py מנסה לפי הסדר: ul/li → תאי הטבלה הראשונה → div.bullet → פיצול •. כשמספר הידיעות בבית לא 4, לבדוק את `data/briefings/morning.html` ולהוסיף אסטרטגיה, ולבדוק רגרסיה על `data/briefings/archive/*.html`.
 
 1. **סדר push:** commit → `git pull --rebase` → push. קונפליקט ב-data: `git checkout --theirs` (הכל רגנרטיבי). מסר-קומיט עם גרשיים ב-PowerShell נשבר — `git commit -F msgfile`.

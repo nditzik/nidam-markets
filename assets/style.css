@@ -614,6 +614,7 @@ a.tv:hover { text-decoration: underline; }
   width: 38px; height: 38px; object-fit: contain; border-radius: 8px;
   background: #fff; padding: 3px; flex: none; box-shadow: 0 1px 3px rgba(0,0,0,.1);
 }
+.rep-logo.rep-logo-dk { background: #16181d; }   /* לוגו לבן על רקע שקוף (NKE, AMZN) — logoBg ב-reports.json */
 .rep-ticker {
   background: var(--accent-soft); color: var(--accent);
   font-weight: 700; font-size: .76rem; padding: 3px 9px; border-radius: 6px; letter-spacing: .02em;

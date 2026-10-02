@@ -525,7 +525,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np101";
+  var TA_VER = "np102";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3802,7 +3802,7 @@
     }
     var cards = reports.map(function (r, i) {
       var head = '<div class="rep-head">' +
-        (r.logo ? '<img class="rep-logo" src="' + esc(r.logo) + '" alt="' + esc(r.ticker || "") + '" onerror="this.remove()">' : "") +
+        (r.logo ? '<img class="rep-logo' + (r.logoBg === "dark" ? " rep-logo-dk" : "") + '" src="' + esc(r.logo) + '" alt="' + esc(r.ticker || "") + '" onerror="this.remove()">' : "") +
         (r.ticker ? '<span class="rep-ticker">' + esc(r.ticker) + "</span>" : "") + "</div>";
       return '<button class="rep-card" data-rep="' + i + '">' + head +
         '<span class="rep-title">' + esc(r.title || r.file) + "</span>" +

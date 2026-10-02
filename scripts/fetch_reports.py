@@ -14,6 +14,8 @@ import re
 import sys
 import urllib.parse
 import urllib.request
+import struct
+import zlib
 from gh_api import gh_headers
 from datetime import datetime, timezone, timedelta
 from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
@@ -76,6 +78,55 @@ def fetch_logo(ticker):
     return None
 
 
+def logo_is_light(path):
+    """לוגו לבן על רקע שקוף (NKE, 2.10.2026) נעלם על הריבוע הלבן של הכרטיס.
+    מפענח PNG ‏8-ביט RGB/RGBA בלי interlace (stdlib בלבד) ובודק אם הפיקסלים הנראים כמעט לבנים.
+    כל פורמט אחר / שגיאה → False (ברירת המחדל: ריבוע לבן כמו תמיד)."""
+    try:
+        d = open(path, "rb").read()
+        i, idat, hdr = 8, b"", None
+        while i < len(d):
+            ln = struct.unpack(">I", d[i:i + 4])[0]
+            t, c = d[i + 4:i + 8], d[i + 8:i + 8 + ln]
+            if t == b"IHDR":
+                hdr = struct.unpack(">IIBBBBB", c)
+            elif t == b"IDAT":
+                idat += c
+            i += 12 + ln
+        w, h, depth, ctype, _, _, inter = hdr
+        if depth != 8 or inter or ctype not in (2, 6):
+            return False
+        bpp = 4 if ctype == 6 else 3
+        raw, stride, pos = zlib.decompress(idat), w * bpp, 0
+        prev = bytearray(stride)
+        n = lum = clear = 0
+        for _ in range(h):
+            f = raw[pos]; pos += 1
+            line = bytearray(raw[pos:pos + stride]); pos += stride
+            for x in range(stride):
+                a = line[x - bpp] if x >= bpp else 0
+                b = prev[x]
+                if f == 1: line[x] = (line[x] + a) & 255
+                elif f == 2: line[x] = (line[x] + b) & 255
+                elif f == 3: line[x] = (line[x] + (a + b) // 2) & 255
+                elif f == 4:
+                    cc = prev[x - bpp] if x >= bpp else 0
+                    pp = a + b - cc
+                    pa, pb, pc = abs(pp - a), abs(pp - b), abs(pp - cc)
+                    line[x] = (line[x] + (a if pa <= pb and pa <= pc else b if pb <= pc else cc)) & 255
+            for x in range(0, stride, bpp):
+                if bpp == 4 and line[x + 3] < 40:
+                    clear += 1
+                    continue
+                n += 1
+                lum += 0.299 * line[x] + 0.587 * line[x + 1] + 0.114 * line[x + 2]
+            prev = line
+        # רק לוגו על רקע שקוף: לוגו עם רקע לבן אטום (AAPL, LEN) נראה טוב על הריבוע הלבן
+        return n > 0 and clear >= 0.2 * w * h and lum / n >= 225
+    except Exception:
+        return False
+
+
 def parse_meta(fname, content):
     m = NAME_RE.match(fname)
     ticker = m.group(1).upper() if m else fname.replace(".html", "")
@@ -129,9 +180,12 @@ def main():
                 f.write(content)
         ticker, date, title = parse_meta(name, content)
         logo = fetch_logo(ticker) if ticker else None
-        reports.append({"file": "data/reports/" + name, "ticker": ticker,
-                        "date": date, "title": title, "logo": logo,
-                        "added": prev_added.get(name, now_iso)})
+        rec = {"file": "data/reports/" + name, "ticker": ticker,
+               "date": date, "title": title, "logo": logo,
+               "added": prev_added.get(name, now_iso)}
+        if logo and logo_is_light(os.path.join(ROOT, logo)):
+            rec["logoBg"] = "dark"   # לוגו לבן → ריבוע כהה בכרטיס
+        reports.append(rec)
         print(f"[ok] {ticker} {date} — {title[:40]}" + ("  🖼" if logo else ""))
 
     # חדש ראשון: תאריך הדוח, ובתוך אותו יום — מי שהועלה אחרון קודם
