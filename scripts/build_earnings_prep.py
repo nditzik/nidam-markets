@@ -38,7 +38,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 TV_SCAN = "https://scanner.tradingview.com/america/scan"
 AHEAD_DAYS = 14          # חברה נכנסת כשהדוח בתוך שבועיים
 ANALYST_EVERY_H = 6      # רענון אנליסטים/נרות לכל חברה
-VER = 2                  # שינוי מבנה → הרענון של 6 השעות מתאפס (v2: תאריכי דוחות מ-Nasdaq)
+VER = 3                  # שינוי מבנה → הרענון של 6 השעות מתאפס (v2: תאריכי Nasdaq; v3: יום תגובה לפי שעת הדוח)
 # חברות שנשמרות בשם ולא בטיקר (כמו LOGO_ALIAS ב-fetch_reports.py)
 ALIAS = {"ALPHABET": "GOOGL", "GOOGLE": "GOOGL", "FACEBOOK": "META", "BERKSHIRE": "BRK-B"}
 
@@ -220,7 +220,7 @@ def nasdaq_history(rows):
     return sorted(out, key=lambda h: h["q"])[-4:]
 
 
-def reactions(bars, history):
+def reactions(bars, history, when=None):
     """יום התגובה לכל רבעון. עם תאריך פרסום אמיתי (Nasdaq): יום הפרסום או יום המסחר שאחריו — מי שהמחזור
     שלו גבוה יותר (לפני הפתיחה = אותו יום, אחרי הסגירה = למחרת). בלי תאריך: יום המחזור הגבוה 5–50 יום
     אחרי סוף הרבעון (פחות מדויק — ל-JPM נתן 8.7 במקום 14.7)."""
@@ -230,8 +230,12 @@ def reactions(bars, history):
         if h.get("reported"):
             i = next((k for k, b in enumerate(bars) if b[0] >= h["reported"]), None)
             if i is not None and i > 0:
-                if bars[i][0] == h["reported"] and i + 1 < len(bars) and bars[i + 1][2] > bars[i][2]:
-                    i += 1
+                # חברות שומרות על אותה שעה בכל רבעון → לפי השעה של הדוח הבא (TradingView):
+                # לפני הפתיחה = יום הדוח, אחרי הסגירה = המחרת. שעה לא ידועה — לפי המחזור הגבוה מבין השניים
+                # (לבד המחזור טועה: JPM 13.1 נמכרה גם למחרת, והמחזור של 14.1 היה גבוה יותר).
+                if bars[i][0] == h["reported"] and i + 1 < len(bars):
+                    if when == "after" or (when is None and bars[i + 1][2] > bars[i][2]):
+                        i += 1
                 out.append(dict(h, day=bars[i][0], move=round((bars[i][1] / bars[i - 1][1] - 1) * 100, 2)))
                 continue
         q = date.fromisoformat(h["q"])
@@ -374,7 +378,7 @@ def main(fetch=None, now=None):
             try:
                 bars = net.bars(sym)
                 spy = load(os.path.join(DATA, "bars", "SPY.json"), {}).get("bars") or []
-                hist, _ = reactions(bars, it.get("history") or [])
+                hist, _ = reactions(bars, it.get("history") or [], when)
                 it["history"] = hist
                 last_react = next((h["day"] for h in reversed(hist) if h.get("day")), None)
                 it["price"] = price_block(bars, spy, last_react)
