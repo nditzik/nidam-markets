@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 22:31",
+  "updatedAt": "02/10/2026 22:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -483,14 +483,14 @@
    "analystsAt": "2026-10-02T16:46+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "02/10 22:31",
-    "price": 125.845,
+    "asOf": "02/10 22:46",
+    "price": 125.725,
     "exp": "2026-10-09",
     "strike": 126.0,
     "pct": 3.77,
-    "earn": 3.72,
+    "earn": 3.73,
     "preExp": "2026-10-02",
-    "prePct": 0.31
+    "prePct": 0.26
    },
    "avgMove": 3.7,
    "hasNote": false
@@ -972,25 +972,20 @@
    "analystsAt": "2026-10-02T16:46+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "02/10 22:31",
-    "price": 332.085,
+    "asOf": "02/10 22:46",
+    "price": 332.34,
     "exp": "2026-10-16",
     "strike": 332.5,
-    "pct": 4.55,
-    "earn": 3.28,
+    "pct": 4.54,
+    "earn": 3.32,
     "preExp": "2026-10-09",
-    "prePct": 2.35
+    "prePct": 2.31
    },
    "avgMove": 2.4,
    "hasNote": true
   }
  ],
  "later": [
-  {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
   {
    "sym": "GOOGL",
    "date": "2026-10-27",
@@ -1002,9 +997,9 @@
    "when": null
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
-   "when": null
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
   },
   {
    "sym": "BSX",
@@ -1012,13 +1007,8 @@
    "when": "before"
   },
   {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -1032,14 +1022,24 @@
    "when": null
   },
   {
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
+  },
+  {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
    "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "MRK",
+   "sym": "AAPL",
    "date": "2026-10-29",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "CVX",
