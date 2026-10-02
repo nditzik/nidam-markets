@@ -1,20 +1,35 @@
 {
-  "today": "2026-10-02",
-  "todayCount": 3,
-  "todayBig": [
-    {
-      "ticker": "TSLA",
-      "name": "Tesla, Inc.",
-      "capB": 1463.7
-    },
-    {
-      "ticker": "RIVN",
-      "name": "Rivian Automotive, Inc. Class A",
-      "capB": 20.7
-    }
-  ],
+  "today": "2026-10-03",
+  "todayCount": 0,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-02",
+        "label": "2.10",
+        "items": [
+          {
+            "ticker": "TSLA",
+            "name": "Tesla, Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": 4.65,
+            "price": 370.59,
+            "reactDate": "2026-10-02",
+            "baseDate": "2026-10-01"
+          },
+          {
+            "ticker": "RIVN",
+            "name": "Rivian Automotive, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "chg": -3.12,
+            "price": 14.3,
+            "reactDate": "2026-10-02",
+            "baseDate": "2026-10-01"
+          }
+        ]
+      },
       {
         "date": "2026-10-01",
         "label": "1.10",
@@ -126,207 +141,170 @@
             "baseDate": "2026-09-30"
           }
         ]
-      },
-      {
-        "date": "2026-09-29",
-        "label": "29.9",
-        "items": [
-          {
-            "ticker": "CCL",
-            "name": "Carnival Corporation Ltd.",
-            "when": "before",
-            "status": "final",
-            "chg": 13.41,
-            "price": 25.11,
-            "reactDate": "2026-09-29",
-            "baseDate": "2026-09-28"
-          },
-          {
-            "ticker": "KMX",
-            "name": "CarMax, Inc.",
-            "when": "before",
-            "status": "final",
-            "chg": 4.74,
-            "price": 59.23,
-            "reactDate": "2026-09-29",
-            "baseDate": "2026-09-28"
-          },
-          {
-            "ticker": "UEC",
-            "name": "Uranium Energy Corp.",
-            "when": "before",
-            "status": "final",
-            "chg": 0.87,
-            "price": 9.29,
-            "reactDate": "2026-09-29",
-            "baseDate": "2026-09-28"
-          },
-          {
-            "ticker": "CNXC",
-            "name": "Concentrix Corporation",
-            "when": "after",
-            "status": "final",
-            "chg": 0.28,
-            "price": 24.95,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
+  "reporting": [],
+  "more": 0,
+  "upcoming": [
     {
-      "ticker": "TSLA",
-      "name": "Tesla, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/TSLA.png"
+      "date": "2026-10-06",
+      "label": "6/10",
+      "dow": "ג׳",
+      "count": 8,
+      "tickers": [
+        "STZ",
+        "RPM",
+        "LW",
+        "AEHR",
+        "PENG",
+        "CHRN"
+      ]
     },
     {
-      "ticker": "RIVN",
-      "name": "Rivian Automotive, Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/RIVN.png"
+      "date": "2026-10-07",
+      "label": "7/10",
+      "dow": "ד׳",
+      "count": 2,
+      "tickers": [
+        "LEVI",
+        "APLD"
+      ]
     },
     {
-      "ticker": "VFS",
-      "name": "VinFast Auto Ltd.",
-      "when": "",
-      "logo": "data/earnings/logos/VFS.png"
+      "date": "2026-10-08",
+      "label": "8/10",
+      "dow": "ה׳",
+      "count": 5,
+      "tickers": [
+        "PEP",
+        "PGR",
+        "NG",
+        "KARO",
+        "ODC"
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "label": "9/10",
+      "dow": "ו׳",
+      "count": 2,
+      "tickers": [
+        "DAL",
+        "NRIX"
+      ]
     }
   ],
-  "more": 0,
-  "upcoming": [],
   "week": [
     {
-      "date": "2026-09-28",
+      "date": "2026-10-05",
       "dow": "שני",
-      "label": "28.9",
-      "total": 4,
-      "companies": [
-        {
-          "ticker": "JEF",
-          "name": "Jefferies Financial Group Inc."
-        },
-        {
-          "ticker": "MTN",
-          "name": "Vail Resorts, Inc."
-        },
-        {
-          "ticker": "AIR",
-          "name": "AAR CORP."
-        },
-        {
-          "ticker": "IDT",
-          "name": "IDT Corporation Class B"
-        }
-      ]
+      "label": "5.10",
+      "total": 0,
+      "companies": []
     },
     {
-      "date": "2026-09-29",
+      "date": "2026-10-06",
       "dow": "שלישי",
-      "label": "29.9",
-      "total": 4,
+      "label": "6.10",
+      "total": 8,
       "companies": [
         {
-          "ticker": "CCL",
-          "name": "Carnival Corporation Ltd."
+          "ticker": "STZ",
+          "name": "Constellation Brands, Inc. Class A"
         },
         {
-          "ticker": "KMX",
-          "name": "CarMax, Inc."
+          "ticker": "RPM",
+          "name": "RPM International Inc."
         },
         {
-          "ticker": "UEC",
-          "name": "Uranium Energy Corp."
+          "ticker": "LW",
+          "name": "Lamb Weston Holdings, Inc."
         },
         {
-          "ticker": "CNXC",
-          "name": "Concentrix Corporation"
+          "ticker": "AEHR",
+          "name": "Aehr Test Systems"
+        },
+        {
+          "ticker": "PENG",
+          "name": "Penguin Solutions Incorporation"
+        },
+        {
+          "ticker": "CHRN",
+          "name": "ChronoScale Holdings Corporation"
+        },
+        {
+          "ticker": "NEOG",
+          "name": "Neogen Corp"
+        },
+        {
+          "ticker": "WS",
+          "name": "Worthington Steel, Inc."
         }
       ]
     },
     {
-      "date": "2026-09-30",
+      "date": "2026-10-07",
       "dow": "רביעי",
-      "label": "30.9",
-      "total": 6,
+      "label": "7.10",
+      "total": 2,
       "companies": [
         {
-          "ticker": "MU",
-          "name": "Micron Technology, Inc."
+          "ticker": "LEVI",
+          "name": "Levi Strauss & Co. Class A"
         },
         {
-          "ticker": "JBL",
-          "name": "Jabil Inc."
-        },
-        {
-          "ticker": "FDS",
-          "name": "FactSet Research Systems Inc."
-        },
-        {
-          "ticker": "CAG",
-          "name": "Conagra Brands, Inc."
-        },
-        {
-          "ticker": "CALM",
-          "name": "Cal-Maine Foods, Inc."
-        },
-        {
-          "ticker": "PRGS",
-          "name": "Progress Software Corporation"
+          "ticker": "APLD",
+          "name": "Applied Digital Corporation"
         }
       ]
     },
     {
-      "date": "2026-10-01",
+      "date": "2026-10-08",
       "dow": "חמישי",
-      "label": "1.10",
-      "total": 4,
+      "label": "8.10",
+      "total": 5,
       "companies": [
         {
-          "ticker": "ACN",
-          "name": "Accenture Plc Class A"
+          "ticker": "PEP",
+          "name": "PepsiCo, Inc."
         },
         {
-          "ticker": "NKE",
-          "name": "NIKE, Inc. Class B"
+          "ticker": "PGR",
+          "name": "Progressive Corporation"
         },
         {
-          "ticker": "MKC",
-          "name": "McCormick & Company, Incorporated"
+          "ticker": "NG",
+          "name": "Novagold Resources Inc"
         },
         {
-          "ticker": "AYI",
-          "name": "Acuity Inc."
+          "ticker": "KARO",
+          "name": "Karooooo Ltd."
+        },
+        {
+          "ticker": "ODC",
+          "name": "Oil-Dri Corporation of America"
         }
       ]
     },
     {
-      "date": "2026-10-02",
+      "date": "2026-10-09",
       "dow": "שישי",
-      "label": "2.10",
-      "total": 3,
+      "label": "9.10",
+      "total": 2,
       "companies": [
         {
-          "ticker": "TSLA",
-          "name": "Tesla, Inc."
+          "ticker": "DAL",
+          "name": "Delta Air Lines, Inc."
         },
         {
-          "ticker": "RIVN",
-          "name": "Rivian Automotive, Inc. Class A"
-        },
-        {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd."
+          "ticker": "NRIX",
+          "name": "Nurix Therapeutics, Inc."
         }
       ]
     }
   ],
   "window": {
-    "TSLA": "2026-10-02",
-    "RIVN": "2026-10-02",
-    "VFS": "2026-10-02",
     "STZ": "2026-10-06",
     "RPM": "2026-10-06",
     "LW": "2026-10-06",
@@ -346,7 +324,7 @@
     "NRIX": "2026-10-09"
   },
   "_meta": {
-    "updatedAt": "02/10/2026 23:46",
+    "updatedAt": "03/10/2026 00:01",
     "source": "tradingview"
   }
 }
