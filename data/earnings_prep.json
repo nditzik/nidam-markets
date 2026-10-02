@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/10/2026 19:46",
+  "updatedAt": "02/10/2026 20:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 183.0
     }
    ],
-   "yahooDate": "2026-10-08",
-   "analystsAt": "2026-10-02T16:46+00:00",
    "price": {
     "close": 125.5,
     "date": "2026-10-02",
@@ -482,15 +480,17 @@
      "chg": -11.9
     }
    },
+   "analystsAt": "2026-10-02T16:46+00:00",
+   "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "02/10 19:46",
-    "price": 125.5,
+    "asOf": "02/10 20:01",
+    "price": 125.54,
     "exp": "2026-10-09",
-    "strike": 125.0,
-    "pct": 3.76,
+    "strike": 126.0,
+    "pct": 3.84,
     "earn": 3.64,
     "preExp": "2026-10-02",
-    "prePct": 0.48
+    "prePct": 0.61
    },
    "avgMove": 3.7,
    "hasNote": false
@@ -636,8 +636,6 @@
      "ptPrev": 408.0
     }
    ],
-   "yahooDate": "2026-10-13",
-   "analystsAt": "2026-10-02T16:46+00:00",
    "price": {
     "close": 330.88,
     "date": "2026-10-02",
@@ -971,26 +969,23 @@
      "chg": -1.1
     }
    },
+   "analystsAt": "2026-10-02T16:46+00:00",
+   "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "02/10 19:46",
-    "price": 330.88,
+    "asOf": "02/10 20:01",
+    "price": 331.2899,
     "exp": "2026-10-16",
-    "strike": 330.0,
-    "pct": 4.61,
-    "earn": 3.13,
+    "strike": 332.5,
+    "pct": 4.64,
+    "earn": 3.15,
     "preExp": "2026-10-09",
-    "prePct": 2.52
+    "prePct": 2.54
    },
    "avgMove": 2.4,
    "hasNote": true
   }
  ],
  "later": [
-  {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
   {
    "sym": "GOOGL",
    "date": "2026-10-27",
@@ -1000,6 +995,11 @@
    "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
+  },
+  {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
   },
   {
    "sym": "BSX",
@@ -1017,12 +1017,12 @@
    "when": "after"
   },
   {
-   "sym": "AMZN",
+   "sym": "AAPL",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "CUBE",
+   "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
   },
@@ -1032,7 +1032,7 @@
    "when": null
   },
   {
-   "sym": "AAPL",
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
