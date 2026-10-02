@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np103";
+  var TA_VER = "np104";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3596,7 +3596,7 @@
     }
     var foot = '<div class="ep-foot"><span>מקורות: ניתוח הדוח הקודם (האתר) · צפי ואנליסטים: Yahoo Finance · אופציות: Yahoo' +
       (o.asOf ? ", " + esc(o.asOf) : "") + " · מחירים: נרות יומיים" + (n && n.writtenAt ? " · ההכנה נכתבה " + esc(n.writtenAt) : "") + ".</span>" +
-      "<span>התזוזה ליום הדוח = הסטראדל לפקיעה הראשונה אחרי הדוח, בניכוי התנודה הרגילה. יום התגובה בעבר = יום המחזור הגבוה אחרי סוף הרבעון. תיאור מבוסס נתונים, לא ייעוץ השקעות.</span></div>";
+      "<span>התזוזה ליום הדוח = הסטראדל לפקיעה הראשונה אחרי הדוח, בניכוי התנודה הרגילה. תאריכי הדוחות הקודמים והרווח מול הצפי: Nasdaq; יום התגובה = יום הדוח (לפני הפתיחה) או המחרת (אחרי הסגירה). תיאור מבוסס נתונים, לא ייעוץ השקעות.</span></div>";
     return '<article class="ep-card" id="ep-' + esc(it.sym) + '">' + head + words + stats + grid + price + after + foot + "</article>";
   }
   function renderPrep(el) {

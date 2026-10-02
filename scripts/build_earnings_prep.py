@@ -11,8 +11,8 @@ build_earnings_prep.py — "לקראת הדוח" (2.10.2026, איציק): לכל
 - אנליסטים: Yahoo quoteSummary (צפי רווח/הכנסות, 4 הפתעות אחרונות, מחירי יעד, דירוגים, עדכונים).
 - אופציות: Yahoo v7 (cookie+crumb) — סטראדל ATM לפקיעה הראשונה אחרי הדוח; התזוזה "ליום הדוח"
   = בניכוי התנודה הרגילה לפי הפקיעה שלפני הדוח. מתעדכן רק בשעות המסחר (מחוץ להן הציטוטים לא עקביים).
-- תגובות קודמות: נרות יומיים — בכל רבעון, יום המחזור הגבוה ביותר 5–50 יום אחרי סוף הרבעון
-  = יום התגובה (מכסה גם "לפני הפתיחה" וגם "אחרי הסגירה" בלי לדעת את השעה).
+- תגובות קודמות: תאריכי הפרסום של 4 הדוחות האחרונים מ-Nasdaq (earnings-surprise, ציבורי) + נרות יומיים —
+  יום התגובה = יום הפרסום או המחרת, לפי המחזור. בלי Nasdaq: יום המחזור הגבוה אחרי סוף הרבעון (פחות מדויק).
 עמידות: כשל במקור משאיר את הערכים הקודמים של אותה חברה; כשל כללי משאיר את הקובץ.
 בדיקה מקומית: main(fetch=..., now=...) עם נתונים מדומים (אין רשת בסנדבוקס).
 """
@@ -38,6 +38,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 TV_SCAN = "https://scanner.tradingview.com/america/scan"
 AHEAD_DAYS = 14          # חברה נכנסת כשהדוח בתוך שבועיים
 ANALYST_EVERY_H = 6      # רענון אנליסטים/נרות לכל חברה
+VER = 2                  # שינוי מבנה → הרענון של 6 השעות מתאפס (v2: תאריכי דוחות מ-Nasdaq)
 # חברות שנשמרות בשם ולא בטיקר (כמו LOGO_ALIAS ב-fetch_reports.py)
 ALIAS = {"ALPHABET": "GOOGL", "GOOGLE": "GOOGL", "FACEBOOK": "META", "BERKSHIRE": "BRK-B"}
 
@@ -85,6 +86,14 @@ class Net:
         if exp:
             u += f"&date={exp}"
         return json.loads(self._get(u))["optionChain"]["result"][0]
+
+    def nasdaq(self, sym):
+        """4 הדוחות האחרונים עם תאריך פרסום אמיתי (Yahoo לא נותן תאריכים; נבדק 2.10.2026)."""
+        req = urllib.request.Request(f"https://api.nasdaq.com/api/company/{urllib.parse.quote(sym)}/earnings-surprise",
+                                     headers={"User-Agent": UA, "Accept": "application/json, text/plain, */*",
+                                              "Origin": "https://www.nasdaq.com", "Referer": "https://www.nasdaq.com/"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return (((json.loads(r.read()) or {}).get("data") or {}).get("earningsSurpriseTable") or {}).get("rows") or []
 
     def bars(self, sym):
         u = f"https://query1.finance.yahoo.com/v8/finance/chart/{urllib.parse.quote(sym)}?interval=1d&range=2y"
@@ -183,11 +192,48 @@ def parse_summary(r):
     }
 
 
+MONTHS = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
+
+
+def _num(v):
+    try:
+        return float(str(v).replace("$", "").replace(",", ""))
+    except (TypeError, ValueError):
+        return None
+
+
+def nasdaq_history(rows):
+    """שורות Nasdaq → [{q, reported, actual, est, surprise}] מהישן לחדש."""
+    out = []
+    for r in rows:
+        try:
+            mon, yr = (r.get("fiscalQtrEnd") or "").split()
+            m, y = MONTHS[mon[:3]], int(yr)
+            q = (date(y + (m == 12), m % 12 + 1, 1) - timedelta(days=1)).isoformat()   # סוף החודש
+            mm, dd, yy = (r.get("dateReported") or "").split("/")
+            rep = date(int(yy), int(mm), int(dd)).isoformat()
+        except (ValueError, KeyError):
+            continue
+        a, e = _num(r.get("eps")), _num(r.get("consensusForecast"))
+        out.append({"q": q, "reported": rep, "actual": a, "est": e,
+                    "surprise": round((a / e - 1) * 100, 1) if a is not None and e else None})
+    return sorted(out, key=lambda h: h["q"])[-4:]
+
+
 def reactions(bars, history):
-    """לכל רבעון בהיסטוריה: יום המחזור הגבוה 5–50 יום אחרי סוף הרבעון = יום התגובה."""
+    """יום התגובה לכל רבעון. עם תאריך פרסום אמיתי (Nasdaq): יום הפרסום או יום המסחר שאחריו — מי שהמחזור
+    שלו גבוה יותר (לפני הפתיחה = אותו יום, אחרי הסגירה = למחרת). בלי תאריך: יום המחזור הגבוה 5–50 יום
+    אחרי סוף הרבעון (פחות מדויק — ל-JPM נתן 8.7 במקום 14.7)."""
     idx = {b[0]: i for i, b in enumerate(bars)}
     out = []
     for h in history:
+        if h.get("reported"):
+            i = next((k for k, b in enumerate(bars) if b[0] >= h["reported"]), None)
+            if i is not None and i > 0:
+                if bars[i][0] == h["reported"] and i + 1 < len(bars) and bars[i + 1][2] > bars[i][2]:
+                    i += 1
+                out.append(dict(h, day=bars[i][0], move=round((bars[i][1] / bars[i - 1][1] - 1) * 100, 2)))
+                continue
         q = date.fromisoformat(h["q"])
         lo, hi = (q + timedelta(days=5)).isoformat(), (q + timedelta(days=50)).isoformat()
         cand = [i for i, b in enumerate(bars) if lo <= b[0] <= hi and i > 0]
@@ -260,6 +306,7 @@ def main(fetch=None, now=None):
     reports = load(REPORTS, {}).get("reports") or []
     prev = load(OUT, {})
     prev_items = {it["sym"]: it for it in prev.get("items", [])}
+    stale_ver = (prev.get("_meta") or {}).get("ver") != VER
     notes = load(os.path.join(DATA, "earnings_prep_notes.json"), {})
 
     # הניתוח האחרון לכל חברה
@@ -302,7 +349,7 @@ def main(fetch=None, now=None):
                          "logoBg": rep.get("logoBg")},
               "tvConsensus": {"eps": tv_eps, "rev": tv_rev}}
         # אנליסטים + נרות: פעם ב-6 שעות לחברה
-        fresh = old.get("analystsAt") and \
+        fresh = not stale_ver and old.get("analystsAt") and \
             (now - datetime.fromisoformat(old["analystsAt"])).total_seconds() < ANALYST_EVERY_H * 3600 and \
             old.get("date") == it["date"]
         if fresh:
@@ -318,6 +365,12 @@ def main(fetch=None, now=None):
                 for k in ("consensus", "revisions", "targets", "recs", "history", "actions", "analystsAt"):
                     if k in old:
                         it[k] = old[k]
+            try:
+                nh = nasdaq_history(net.nasdaq(sym))
+                if len(nh) >= 2:
+                    it["history"] = nh      # תאריכים אמיתיים; ה-EPS מ-Nasdaq (מתואם, כמו הצפי שלו)
+            except Exception as e:
+                print(f"[warn] {sym}: Nasdaq נכשל ({e}) — תאריכי התגובה יוערכו לפי מחזור")
             try:
                 bars = net.bars(sym)
                 spy = load(os.path.join(DATA, "bars", "SPY.json"), {}).get("bars") or []
@@ -347,10 +400,10 @@ def main(fetch=None, now=None):
               f"אופציות {((it.get('options') or {}).get('earn'))} · הערות {'✓' if it['hasNote'] else '—'}")
 
     items.sort(key=lambda x: (x["date"], x["sym"]))
-    out = {"_meta": {"updatedAt": now.astimezone(IL).strftime("%d/%m/%Y %H:%M"), "aheadDays": AHEAD_DAYS,
+    out = {"_meta": {"updatedAt": now.astimezone(IL).strftime("%d/%m/%Y %H:%M"), "aheadDays": AHEAD_DAYS, "ver": VER,
                      "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"},
            "items": items, "later": sorted(later, key=lambda x: x["date"])[:12]}
-    if json.dumps([items, out["later"]], sort_keys=True) == json.dumps([prev.get("items", []), prev.get("later", [])], sort_keys=True):
+    if not stale_ver and json.dumps([items, out["later"]], sort_keys=True) == json.dumps([prev.get("items", []), prev.get("later", [])], sort_keys=True):
         print("[nochange]")
         return 0
     with open(OUT, "w", encoding="utf-8") as f:
