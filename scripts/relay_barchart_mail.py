@@ -68,6 +68,12 @@ CANON = {"watchlist": "watchlist-sp-500-intraday-{d}.csv", "flow": "spx-options-
 HE = {"watchlist": "רשימת S&P 500", "flow": "אופציות SPX", "spyflow": "אופציות SPY", "allflow": "Options Flow כל השוק", "uoa": "אופציות חריגות"}
 
 
+# העמודות שהדשבורד (send_report.py) צריך מרשימת ה-S&P 500. 2.10.2026: גרוק הוריד את 1.10 בתצוגה
+# הראשית של Barchart (מחיר/מחזור בלבד) — חסר "52W %/High" נקרא כ-0, כל 504 המניות נספרו "בשיא 52 שבועות"
+# (504 שיאים / 0 שפלים), והממוצעים החסרים עיוותו את הרוחב והציון הטכני. קובץ כזה נדחה ולא נדחף.
+WATCHLIST_COLS = ("50D MA", "20D MA", "200D MA", "150D MA", "52W %/High", "RSI Rank", "20D RelVol")
+
+
 def rows_of(data):
     text = data.decode("utf-8-sig", errors="replace")
     return list(csv.DictReader(io.StringIO(text)))
@@ -136,6 +142,11 @@ def extract(msg):
         if len(rows) < 5:
             skipped.append("%s: קובץ ריק/קצר" % fn)
             continue
+        if kind == "watchlist":
+            missing = [c for c in WATCHLIST_COLS if c not in rows[0]]
+            if missing:
+                skipped.append("%s: תצוגה שגויה ב-Barchart — חסרות העמודות %s (צריך את התצוגה \"s&p 500\" עם הממוצעים)" % (fn, ", ".join(missing)))
+                continue
         if kind == "uoa" and uoa_is_spx_only(rows):
             skipped.append("%s: UOA של SPX בלבד (לא הקובץ הרחב)" % fn)
             continue
