@@ -36,7 +36,8 @@ ANCHOR = "JPM"
 WEEKS = 8
 MILESTONES = [
     ("banks", "הבנקים", ["JPM", "WFC", "C", "BAC", "GS", "MS"]),
-    ("nflx", None, ["NFLX", "TSLA"]),
+    ("tsla", None, ["TSLA"]),            # 3.10.2026: טסלה דיווחה ב-2.10, לפני תחילת העונה — תחנה משלה
+    ("nflx", None, ["NFLX"]),
     ("mega", None, ["MSFT", "GOOGL", "META"]),
     ("aapl", None, ["AAPL", "AMZN"]),
     ("nvda", None, ["NVDA"]),
@@ -173,15 +174,27 @@ def main(fetch=None, now=None):
     for r in rep.get("reports") or rep.get("items") or []:
         if isinstance(r, dict) and r.get("ticker"):
             mine.add(str(r["ticker"]).upper())
+    def mile_day(sym):
+        """כמו season_day, אבל לתחנות מתקבל גם דוח מהשבועיים שלפני תחילת העונה (טסלה 2.10) —
+        הוא מצויר בקצה הימני של הציר כתחנה שכבר עברה."""
+        if sym not in tv:
+            return None
+        l, n, _ = tv[sym]
+        for d in (l, n):
+            if d and start - timedelta(days=14) <= d <= end:
+                return d
+        return None
+
     miles = []
     for key, label, group in MILESTONES:
-        ds = sorted((season_day(s)[0], s) for s in group if season_day(s)[0])
+        ds = sorted((mile_day(s), s) for s in group if mile_day(s))
         if not ds:
             continue
         present = {x for _, x in ds}
         label = label or " · ".join(HE[x] for x in group if x in present)
         miles.append({"key": key, "label": label, "date": ds[0][0].isoformat(),
                       "syms": [s for _, s in ds], "mine": sorted(set(group) & mine)})
+    miles.sort(key=lambda m: m["date"])
 
     q = (anchor.month - 1) // 3          # הבנקים של אוקטובר מדווחים על רבעון 3
     q, year = (4, anchor.year - 1) if q == 0 else (q, anchor.year)

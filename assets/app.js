@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np108";
+  var TA_VER = "np109";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1838,7 +1838,8 @@
     var s = SEASON, today = ilNowParts().iso;
     if (!s || !s.weeks || !s.weeks.length || today < ssAdd(s.start, -7) || today > s.end) { el.hidden = true; el.innerHTML = ""; return; }
     var nW = s.weeks.length, days = nW * 7;
-    var first = (s.milestones || [])[0] || { label: "הבנקים", date: s.anchor.date };
+    // הפתיחה = הבנקים (העוגן), לא התחנה הראשונה — טסלה דיווחה לפני תחילת העונה (3.10)
+    var first = (s.milestones || []).filter(function (m) { return m.key === "banks"; })[0] || { label: "הבנקים", date: s.anchor.date };
     var toFirst = ssDiff(today, first.date), title;
     if (toFirst > 0) title = "העונה נפתחת " + (toFirst === 1 ? "מחר" : "בעוד " + toFirst + " ימים") + " — " + first.label + " פותחים ב-" + ssLbl(first.date);
     else if (toFirst === 0 && !s.reported) title = "העונה נפתחת היום — " + first.label + " מדווחים";
@@ -1865,12 +1866,13 @@
       while (row < 2 && lastX[row] - x < 175) row++;
       lastX[row] = x;
       var y = 184 + row * 36, passed = m.date < today, mine = m.mine && m.mine.length;
+      var tx = Math.max(L + 40, Math.min(R - 30, x));   // תווית בקצה (טסלה לפני תחילת העונה) לא נחתכת
       var tip = m.syms.join(" · ") + (mine ? " — יש ניתוח דוח קודם באתר (" + m.mine.join(", ") + ")" : "");
       h += '<g class="ss-m' + (mine ? " ss-mine" : "") + '"' + (mine ? ' role="link" tabindex="0" onclick="__goTab(\'prep\')" onkeydown="if(event.key===\'Enter\')__goTab(\'prep\')"' : "") + '><title>' + esc(tip) + "</title>" +
         '<line x1="' + x.toFixed(1) + '" y1="' + (base + 22) + '" x2="' + x.toFixed(1) + '" y2="' + (y - 12) + '" class="ss-base"></line>' +
         '<circle cx="' + x.toFixed(1) + '" cy="' + (base + 22) + '" r="4.5" class="' + (mine ? "ss-gold" : passed ? "ss-past" : "ss-next") + '"></circle>' +
-        '<text class="ss-lbl" x="' + x.toFixed(1) + '" y="' + y + '">' + esc(m.label) + "</text>" +
-        '<text class="ss-num" x="' + x.toFixed(1) + '" y="' + (y + 14) + '">' + ssLbl(m.date) + "</text></g>";
+        '<text class="ss-lbl" x="' + tx.toFixed(1) + '" y="' + y + '">' + esc(m.label) + "</text>" +
+        '<text class="ss-num" x="' + tx.toFixed(1) + '" y="' + (y + 14) + '">' + ssLbl(m.date) + "</text></g>";
     });
     h += '<line x1="' + nx.toFixed(1) + '" y1="' + (base - maxH - 8) + '" x2="' + nx.toFixed(1) + '" y2="' + (base + 4) + '" class="ss-now"></line>' +
       '<rect x="' + (Math.min(R - 68, Math.max(L, nx - 34))).toFixed(1) + '" y="' + (base - maxH - 30) + '" width="68" height="20" rx="10" class="ss-nowbg"></rect>' +

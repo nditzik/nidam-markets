@@ -1731,7 +1731,8 @@ ol.ep-check .t { display: block; color: var(--text-soft); font-size: .84rem; }
 .ss-head a { font-size: .8rem; font-weight: 600; color: var(--accent); text-decoration: none; }
 .ss-title { font-family: var(--serif); font-size: 1.45rem; font-weight: 700; line-height: 1.3; margin: 4px 0 4px; text-wrap: balance; }
 .ss-scroll { overflow-x: auto; }
-.ss-tl { width: 100%; height: auto; display: block; overflow: visible; }
+/* direction:ltr — כמו בגלגל הרוטציה: ב-WebKit (אייפון) טקסט עברי בתוך SVG שיורש rtl יוצא הפוך */
+.ss-tl { width: 100%; height: auto; display: block; overflow: visible; direction: ltr; }
 .ss-tl text { font-family: Heebo, sans-serif; text-anchor: middle; }
 .ss-num { font-size: 10.5px; fill: var(--text-3); font-variant-numeric: tabular-nums; }
 .ss-lbl { font-size: 12.5px; font-weight: 700; fill: var(--text); }
