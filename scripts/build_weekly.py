@@ -140,16 +140,21 @@ def sectors_block(week_of):
         out = {"date": rep["date"], "file": rep["file"], "title": rep.get("title") or ""}
         i = h.find("בחמישה משפטים")
         if i >= 0:
-            m = _re.search(r"<p[^>]*>(.*?)</p>", h[i:], _re.S)
+            # 3.10.2026: הדוח עבר מפסקה (<p>) לרשימה ממוספרת (<ol><li>) — לוקחים את הראשון מביניהם
+            m = _re.search(r"<(p|li)[^>]*>(.*?)</\1>", h[i:], _re.S)
             if m:
-                first = _re.split(r"(?<=[^\d])\.\s", _txt(m.group(1)), maxsplit=1)[0].strip()
+                first = _re.split(r"(?<=[^\d])\.\s", _txt(m.group(2)), maxsplit=1)[0].strip()
                 if first and not first.endswith("."):
                     first += "."
                 if 30 <= len(first) <= 260 and not any(w in first for w in _PERSONAL):
                     out["lead"] = first
+        # 3.10.2026: הכותרת בתרשים התקצרה ל"הכסף יצא" / "הכסף נכנס" (ומופיעה גם בכותרת הפרק —
+        # לכן מעוגנים בסוף תגית ה-<text>)
         j = h.find("מכאן הכסף יצא")
+        if j < 0:
+            j = h.find("הכסף יצא</text>")
         if j >= 0:
-            ends = [x for x in (h.find("לאן הוא הלך", j), h.find("לכאן הכסף נכנס", j)) if x > j]
+            ends = [x for x in (h.find("לאן הוא הלך", j), h.find("לכאן הכסף נכנס", j), h.find("הכסף נכנס</text>", j)) if x > j]
             k = min(ends) if ends else -1
             seg = h[j: k if k > j else j + 3000]
             texts = [_txt(t) for t in _re.findall(r"<text[^>]*>([^<]+)</text>", seg)]
@@ -161,6 +166,10 @@ def sectors_block(week_of):
                     name = None
                 elif not mv:
                     name = t
+            # 3.10.2026: הדוח הפך את סדר הזוג ל"עכשיו ← לפני" (נכון לקריאה מימין לשמאל). בקופסת
+            # היציאה הרוחב ירד — אם רוב הזוגות "עולים", הסדר הפוך → מחליפים
+            if pairs and sum(1 for x in pairs if x["to"] > x["from"]) > len(pairs) / 2:
+                pairs = [{"name": x["name"], "from": x["to"], "to": x["from"]} for x in pairs]
             if pairs:
                 out["out"] = pairs[:5]
         # הצד השני של התרשים (19.9.2026, איציק: "הורדת את הבריאות שהיה הכי חזק"): הקופסה
@@ -169,7 +178,7 @@ def sectors_block(week_of):
         if j >= 0:
             k2 = h.find("</svg>", j)
             seg_all = h[j: k2 if k2 > j else j + 6000]
-            m2 = _re.search(r"(לכאן הכסף נכנס[^<]*|לאן הוא הלך[^<]*)", seg_all)
+            m2 = _re.search(r"(לכאן הכסף נכנס[^<]*|לאן הוא הלך[^<]*|הכסף נכנס(?=</text>))", seg_all)
             if m2:
                 texts2 = [_txt(t) for t in _re.findall(r"<text[^>]*>([^<]+)</text>", seg_all[m2.start():])]
                 held, name2 = [], None
@@ -192,6 +201,10 @@ def sectors_block(week_of):
                             name2 = None
                         elif "%" not in t and len(t) <= 28:
                             name2 = t
+                # אותו היפוך-סדר כמו בקופסת היציאה: בקופסת "נכנס" הרוחב עלה
+                pr = [x for x in held if x.get("from") is not None]
+                if "נכנס" in m2.group(1) and pr and sum(1 for x in pr if x["to"] < x["from"]) > len(pr) / 2:
+                    held = [dict(x, **{"from": x["to"], "to": x["from"]}) if x.get("from") is not None else x for x in held]
                 out_names = {o["name"] for o in out.get("out", [])}
                 held = [x for x in held if x["name"] not in out_names][:4]
                 if held:
@@ -204,7 +217,9 @@ def sectors_block(week_of):
             except ValueError:
                 pass
         # 27.9.2026: הדוח משנה ניסוח משבוע לשבוע — "שוק: 28% רוחב" (19.9) / "רק 26% מהמניות במגמת עלייה" (26.9)
-        mb = _re.search(r"שוק:\s*(\d+)%\s*רוחב", _txt(h)) or _re.search(r"(\d+)%\s*מהמניות\s+במגמת\s+עלייה", _txt(h))
+        # 3.10.2026: "רוחב השוק 25%" / "רוחב השוק (אחוז המניות מעל ממוצע 50) — כרגע 25%"
+        mb = (_re.search(r"שוק:\s*(\d+)%\s*רוחב", _txt(h)) or _re.search(r"(\d+)%\s*מהמניות\s+במגמת\s+עלייה", _txt(h))
+              or _re.search(r"רוחב השוק[^\d%]{0,60}?(\d+)%", _txt(h)))
         if mb:
             out["marketBreadth"] = int(mb.group(1))
         if out.get("lead") or out.get("out"):
