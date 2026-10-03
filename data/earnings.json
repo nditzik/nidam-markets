@@ -12,13 +12,21 @@
             "ticker": "TSLA",
             "name": "Tesla, Inc.",
             "when": "before",
-            "status": "pending"
+            "status": "final",
+            "chg": 4.65,
+            "price": 370.59,
+            "reactDate": "2026-10-02",
+            "baseDate": "2026-10-01"
           },
           {
             "ticker": "RIVN",
             "name": "Rivian Automotive, Inc. Class A",
             "when": "before",
-            "status": "pending"
+            "status": "final",
+            "chg": -3.12,
+            "price": 14.3,
+            "reactDate": "2026-10-02",
+            "baseDate": "2026-10-01"
           }
         ]
       },
@@ -40,7 +48,11 @@
             "ticker": "NKE",
             "name": "NIKE, Inc. Class B",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": -3.64,
+            "price": 33.87,
+            "reactDate": "2026-10-02",
+            "baseDate": "2026-10-01"
           },
           {
             "ticker": "MKC",
@@ -136,6 +148,15 @@
   "more": 0,
   "upcoming": [
     {
+      "date": "2026-10-05",
+      "label": "5/10",
+      "dow": "ב׳",
+      "count": 1,
+      "tickers": [
+        "VFS"
+      ]
+    },
+    {
       "date": "2026-10-06",
       "label": "6/10",
       "dow": "ג׳",
@@ -188,8 +209,13 @@
       "date": "2026-10-05",
       "dow": "שני",
       "label": "5.10",
-      "total": 0,
-      "companies": []
+      "total": 1,
+      "companies": [
+        {
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd."
+        }
+      ]
     },
     {
       "date": "2026-10-06",
@@ -293,6 +319,7 @@
     }
   ],
   "window": {
+    "VFS": "2026-10-05",
     "STZ": "2026-10-06",
     "RPM": "2026-10-06",
     "LW": "2026-10-06",
@@ -312,7 +339,7 @@
     "NRIX": "2026-10-09"
   },
   "_meta": {
-    "updatedAt": "03/10/2026 04:31",
+    "updatedAt": "03/10/2026 04:46",
     "source": "tradingview"
   }
 }
