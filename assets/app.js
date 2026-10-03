@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np107";
+  var TA_VER = "np108";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1842,7 +1842,7 @@
     var toFirst = ssDiff(today, first.date), title;
     if (toFirst > 0) title = "העונה נפתחת " + (toFirst === 1 ? "מחר" : "בעוד " + toFirst + " ימים") + " — " + first.label + " פותחים ב-" + ssLbl(first.date);
     else if (toFirst === 0 && !s.reported) title = "העונה נפתחת היום — " + first.label + " מדווחים";
-    else title = "שבוע " + Math.min(nW, Math.floor(ssDiff(s.start, today) / 7) + 1) + " מתוך " + nW + " · דיווחו " + s.reported + " מתוך " + s.total + " חברות במדד";
+    else title = "שבוע " + Math.min(nW, Math.floor(ssDiff(s.start, today) / 7) + 1) + " מתוך " + nW + " · דיווחו " + s.reported + " מתוך " + s.total + " חברות המדד שמדווחות העונה";
     // הציר — אותה גאומטריה כמו במוקאפ; הזמן זורם מימין לשמאל
     var L = 10, R = 1130, base = 140, maxH = 82, colW = (R - L) / nW, h = "", max = 1;
     s.weeks.forEach(function (w) { if (w.n > max) max = w.n; });

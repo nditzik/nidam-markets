@@ -36,12 +36,15 @@ ANCHOR = "JPM"
 WEEKS = 8
 MILESTONES = [
     ("banks", "הבנקים", ["JPM", "WFC", "C", "BAC", "GS", "MS"]),
-    ("nflx", "נטפליקס · טסלה", ["NFLX", "TSLA"]),
-    ("mega", "מיקרוסופט · גוגל · מטא", ["MSFT", "GOOGL", "META"]),
-    ("aapl", "אפל · אמזון", ["AAPL", "AMZN"]),
-    ("nvda", "אנבידיה", ["NVDA"]),
-    ("wmt", "וולמארט", ["WMT"]),
+    ("nflx", None, ["NFLX", "TSLA"]),
+    ("mega", None, ["MSFT", "GOOGL", "META"]),
+    ("aapl", None, ["AAPL", "AMZN"]),
+    ("nvda", None, ["NVDA"]),
+    ("wmt", None, ["WMT"]),
 ]
+# תווית התחנה = השמות של מי שבאמת מדווחת בעונה (3.10: טסלה עוד בלי מועד בסורק — "נטפליקס" לבד)
+HE = {"NFLX": "נטפליקס", "TSLA": "טסלה", "MSFT": "מיקרוסופט", "GOOGL": "גוגל", "META": "מטא",
+      "AAPL": "אפל", "AMZN": "אמזון", "NVDA": "אנבידיה", "WMT": "וולמארט"}
 
 
 def _get(url, data=None, headers=None):
@@ -66,7 +69,7 @@ def sp500(fetch, today):
     """רשימת חברות המדד — מהמטמון, ומתרעננת פעם ביום מקובץ ה-watchlist האחרון."""
     cache = load(SP_CACHE) or {}
     if cache.get("checked") == today and cache.get("symbols"):
-        return cache["symbols"]
+        return [x for x in cache["symbols"] if not x.startswith("$")]
     try:
         files = json.loads(fetch(IS_LIST, None, gh_headers(IS_LIST)))
         names = [f["name"] for f in files if f.get("name", "").startswith("watchlist-sp-500") and f["name"].endswith(".csv")]
@@ -87,6 +90,7 @@ def sp500(fetch, today):
         print(f"[warn] רשימת S&P 500 לא רועננה ({e}) — משתמש במטמון")
     if not cache.get("symbols"):
         return []
+    cache["symbols"] = [x for x in cache["symbols"] if not x.startswith("$")]
     cache["checked"] = today
     with open(SP_CACHE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, separators=(",", ":"))
@@ -174,6 +178,8 @@ def main(fetch=None, now=None):
         ds = sorted((season_day(s)[0], s) for s in group if season_day(s)[0])
         if not ds:
             continue
+        present = {x for _, x in ds}
+        label = label or " · ".join(HE[x] for x in group if x in present)
         miles.append({"key": key, "label": label, "date": ds[0][0].isoformat(),
                       "syms": [s for _, s in ds], "mine": sorted(set(group) & mine)})
 
