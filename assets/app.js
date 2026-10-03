@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np110";
+  var TA_VER = "np111";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1836,14 +1836,19 @@
     var el = document.getElementById("home-season");
     if (!el) return;
     var s = SEASON, today = ilNowParts().iso;
-    if (!s || !s.weeks || !s.weeks.length || today < ssAdd(s.start, -7) || today > s.end) { el.hidden = true; el.innerHTML = ""; return; }
+    if (!s || !s.weeks || !s.weeks.length || today < ssAdd(s.start, -7) || today > s.end) { el.hidden = true; el.innerHTML = ""; refreshSeasonBoard(); return; }
     var nW = s.weeks.length, days = nW * 7;
     // הפתיחה = הבנקים (העוגן), לא התחנה הראשונה — טסלה דיווחה לפני תחילת העונה (3.10)
     var first = (s.milestones || []).filter(function (m) { return m.key === "banks"; })[0] || { label: "הבנקים", date: s.anchor.date };
     var toFirst = ssDiff(today, first.date), title;
     if (toFirst > 0) title = "העונה נפתחת " + (toFirst === 1 ? "מחר" : "בעוד " + toFirst + " ימים") + " — " + first.label + " פותחים ב-" + ssLbl(first.date);
     else if (toFirst === 0 && !s.reported) title = "העונה נפתחת היום — " + first.label + " מדווחים";
-    else title = "שבוע " + Math.min(nW, Math.floor(ssDiff(s.start, today) / 7) + 1) + " מתוך " + nW + " · דיווחו " + s.reported + " מתוך " + s.total + " חברות המדד שמדווחות העונה";
+    else {
+      title = "שבוע " + Math.min(nW, Math.floor(ssDiff(s.start, today) / 7) + 1) + " מתוך " + nW + " · דיווחו " + s.reported + " מתוך " + s.total;
+      var bd = s.board || {};
+      title += (bd.epsN >= 10 && bd.epsBeatPct != null) ? " · " + bd.epsBeatPct + "% עקפו את צפי הרווח" + (bd.revBeatPct != null ? ", " + bd.revBeatPct + "% בהכנסות" : "")
+        : " חברות המדד שמדווחות העונה";
+    }
     // הציר — אותה גאומטריה כמו במוקאפ; הזמן זורם מימין לשמאל
     var L = 10, R = 1130, base = 140, maxH = 82, colW = (R - L) / nW, h = "", max = 1, ov = "";
     // np110 (איציק: "עדיין הפוך" באייפון): כל טקסט עברי יוצא מה-SVG לשכבת HTML מעליו — WebKit לא
@@ -1884,12 +1889,55 @@
       "";
     ov += ovAt("ss-ov-now", Math.min(R - 34, Math.max(L + 34, nx)), base - maxH - 16, "אנחנו כאן");
     el.innerHTML = '<div class="ss-head"><span class="np-k">🗓 עונת הדוחות · ' + esc(s.season) + "</span>" +
-        '<a href="#weekcal" onclick="__goTab(\'weekcal\');return false">לוח הדיווחים המלא ←</a></div>' +
+        '<a href="#weekcal" onclick="__goTab(\'weekcal\');return false">' + (s.reported ? "לוח התוצאות המלא ←" : "לוח הדיווחים המלא ←") + "</a></div>" +
       '<h2 class="ss-title">' + esc(title) + "</h2>" +
       '<div class="ss-scroll"><div class="ss-wrap"><svg class="ss-tl" viewBox="0 0 1140 252" role="img" aria-label="ציר עונת הדוחות: כמה חברות מהמדד מדווחות בכל שבוע">' + h + "</svg>" + ov + "</div></div>" +
       '<p class="ss-cap">העמודות: כמה מחברות ה-S&amp;P 500 מדווחות בכל שבוע · כהה = שבוע שעבר · נקודה זהובה = יש באתר ניתוח של הדוח הקודם (לחיצה פותחת את "לקראת הדוח").</p>';
     el.hidden = false;
+    refreshSeasonBoard();
   }
+
+  /* לוח התוצאות של העונה (3.10.2026, שלב 2) — בראש טאב לוח הדיווחים. מ-earnings_season.json.board:
+     בפועל מול צפי מסורק TradingView (הרבעון שדווח), תגובה = סגירה מול סגירה ביום התגובה. */
+  function seasonBoardHtml() {
+    var s = SEASON, b = s && s.board;
+    if (!s || !b) return "";
+    var today = ilNowParts().iso;
+    if (today < ssAdd(s.start, -7) || today > ssAdd(s.end, 14)) return "";
+    function sgn(v) { return v == null ? "—" : '<bdi dir="ltr">' + (v > 0 ? "+" : "") + v.toFixed(1) + "%</bdi>"; }
+    var head = '<div class="sbd-head"><span class="np-k">🗓 לוח התוצאות · עונת הדוחות ' + esc(s.season) + "</span>" +
+      '<span class="sbd-sub">חברות ה-S&amp;P 500 · מתעדכן כל רבע שעה</span></div>';
+    if (!b.reported) {
+      var opens = ((s.milestones || []).filter(function (m) { return m.key === "banks"; })[0] || {}).date || s.anchor.date;
+      return '<section class="sbd">' + head + '<p class="sbd-pre">יתמלא מ-' + ssLbl(opens) +
+        ", כשהבנקים פותחים את העונה: כמה חברות דיווחו, כמה עקפו את הצפי ברווח ובהכנסות, איך השוק הגיב — ולפי סקטור.</p></section>";
+    }
+    var p = s.total ? Math.round(b.reported / s.total * 100) : 0;
+    function tile(v, l, sub, cls) { return '<div class="sbd-st"><div class="v ' + (cls || "") + '">' + v + '</div><div class="l">' + l + '</div><div class="s">' + sub + "</div></div>"; }
+    var stats =
+      tile(b.epsBeatPct != null ? b.epsBeatPct + "%" : "—", "עקפו את צפי הרווח", b.epsBeat + " מתוך " + b.epsN) +
+      tile(b.revBeatPct != null ? b.revBeatPct + "%" : "—", "עקפו בהכנסות", b.revBeat + " מתוך " + b.revN) +
+      tile(b.reactBeatN >= 3 ? sgn(b.reactBeat) : "—", "פרס על עקיפה", b.reactBeatN >= 3 ? "תגובה ממוצעת ביום הדוח (" + b.reactBeatN + ")" : "מתמלא", b.reactBeat > 0 ? "up" : b.reactBeat < 0 ? "down" : "") +
+      tile(b.reactMissN >= 3 ? sgn(b.reactMiss) : "—", "עונש על החטאה", b.reactMissN >= 3 ? "תגובה ממוצעת ביום הדוח (" + b.reactMissN + ")" : "מתמלא", b.reactMiss > 0 ? "up" : b.reactMiss < 0 ? "down" : "");
+    var secs = (b.sectors || []).filter(function (x) { return x.n >= 2; }).map(function (x) {
+      var q = Math.round(x.beat / x.n * 100);
+      return '<div class="sbd-row"><span>' + esc(x.name) + '</span><span class="t"><i class="' + (q < 60 ? "lo" : "") + '" style="width:' + q + '%"></i></span><span class="n">' + x.beat + "/" + x.n + "</span></div>";
+    }).join("");
+    var movers = (b.movers || []).map(function (m) {
+      return '<a class="sbd-mv" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(m.sym) + '/" target="_blank" rel="noopener" title="' +
+        (m.eps > 0 ? "עקפה" : m.eps < 0 ? "החטיאה" : "בצפי") + " את צפי הרווח ב-" + Math.abs(m.eps) + '%">' + esc(m.sym) +
+        ' <b class="' + (m.react > 0 ? "up" : "down") + '">' + (m.react > 0 ? "+" : "") + m.react.toFixed(1) + "%</b></a>";
+    }).join("");
+    return '<section class="sbd">' + head +
+      '<div class="sbd-grid"><div>' +
+        '<div class="sbd-prog"><b>' + b.reported + "</b><span>מתוך " + s.total + " דיווחו (" + p + "%)</span></div>" +
+        '<div class="sbd-bar" aria-hidden="true"><i style="width:' + p + '%"></i></div>' +
+        '<div class="sbd-stats">' + stats + "</div></div>" +
+      "<div>" + (secs ? '<p class="sbd-h">עקפו את צפי הרווח, לפי סקטור</p>' + secs : "") +
+        (movers ? '<p class="sbd-h">התגובות הבולטות ביום הדוח</p><div class="sbd-mvs">' + movers + "</div>" : "") +
+      "</div></div></section>";
+  }
+  function refreshSeasonBoard() { var el = document.getElementById("season-board"); if (el) el.innerHTML = seasonBoardHtml(); }
 
   /* ---------- הידיעה המובילה + רייל המד (מהדורת עיתון) ---------- */
   var CA = null;   // data/claude_analysis.json — הניתוח היומי (נכתב ע"י המשימה המתוזמנת)
@@ -3037,7 +3085,7 @@
           (day.total ? '<span class="wk-n">' + day.total + "</span>" : "") + "</div>" +
         '<div class="wk-list">' + tiles + empty + "</div>" + more + "</div>";
     }).join("");
-    el.innerHTML = stamp(d._meta) +
+    el.innerHTML = stamp(d._meta) + '<div id="season-board">' + seasonBoardHtml() + "</div>" +
       '<div class="section-title" style="margin-top:0">📅 לוח דיווחים שבועי</div>' +
       '<p class="stamp" style="margin-top:-6px">שבוע המסחר <span dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) +
       "</span> · מובילות לפי שווי שוק · לחיצה פותחת ב-TradingView · מתעדכן בכל שבת</p>" +

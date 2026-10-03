@@ -106,7 +106,9 @@ def tv_dates(fetch):
             {"left": "type", "operation": "in_range", "right": ["stock", "dr"]},
             {"left": "market_cap_basic", "operation": "greater", "right": 2e9},
         ],
-        "columns": ["name", "earnings_release_date", "earnings_release_next_date"],
+        # שלב 2 (3.10.2026): בפועל מול צפי של הרבעון האחרון — נבדק ב-probe_surprise.py על ה-runner
+        "columns": ["name", "earnings_release_date", "earnings_release_next_date", "earnings_release_time",
+                    "eps_surprise_percent_fq", "revenue_surprise_percent_fq", "sector"],
         "sort": {"sortBy": "market_cap_basic", "sortOrder": "desc"},
         "range": [0, 2500],
     }
@@ -114,12 +116,106 @@ def tv_dates(fetch):
 
     def day(ts):
         return datetime.fromtimestamp(ts, timezone.utc).astimezone(NY).date() if ts else None
-    out = {}
+    out, extra = {}, {}
     for row in data:
-        sym, last_ts, next_ts = row["d"]
+        sym, last_ts, next_ts, t_flag, eps_s, rev_s, sector = row["d"]
         if sym and sym not in out:
             out[sym] = (day(last_ts), day(next_ts), last_ts)
+            extra[sym] = {"when": {1: "after", -1: "before"}.get(t_flag), "eps": eps_s, "rev": rev_s, "sector": sector}
+    tv_dates.extra = extra
     return out
+
+
+# ---------- שלב 2: לוח התוצאות (3.10.2026) ----------
+# סקטורי TradingView → 11 הסקטורים שבשאר האתר (גוגל ומטא יושבות אצל TV ב-Technology Services)
+SECTOR_HE = {
+    "Technology Services": "טכנולוגיה", "Electronic Technology": "טכנולוגיה", "Finance": "פיננסים",
+    "Health Technology": "בריאות", "Health Services": "בריאות", "Retail Trade": "צריכה מחזורית",
+    "Consumer Durables": "צריכה מחזורית", "Consumer Services": "צריכה מחזורית",
+    "Consumer Non-Durables": "צריכה בסיסית", "Energy Minerals": "אנרגיה", "Utilities": "תשתיות",
+    "Producer Manufacturing": "תעשייה", "Industrial Services": "תעשייה", "Transportation": "תעשייה",
+    "Commercial Services": "תעשייה", "Distribution Services": "תעשייה", "Process Industries": "חומרים",
+    "Non-Energy Minerals": "חומרים", "Communications": "תקשורת", "Miscellaneous": "אחר",
+}
+REACT_CACHE = os.path.join(DATA, "_season_react.json")
+MAX_BARS_PER_RUN = 60
+
+
+def reaction(fetch, sym, d, when, now):
+    """תגובת המניה לדוח: לפני הפתיחה = סגירת יום הדוח מול היום שלפניו; אחרי הסגירה = סגירת
+    יום המסחר הבא מול יום הדוח (כמו reactions() ב-fetch_earnings). None = עוד לא נסגר / חסר."""
+    url = "https://query1.finance.yahoo.com/v8/finance/chart/" + sym.replace(".", "-") + "?interval=1d&range=1mo"
+    res = json.loads(fetch(url, None, None))["chart"]["result"][0]
+    days = [datetime.fromtimestamp(t, timezone.utc).astimezone(NY).date() for t in res["timestamp"]]
+    closes = res["indicators"]["quote"][0]["close"]
+    bars = [(dd, c) for dd, c in zip(days, closes) if c]
+    idx = next((i for i, (dd, _) in enumerate(bars) if dd >= d), None)
+    if idx is None:
+        return None
+    if when == "after":
+        idx += 1
+    if idx <= 0 or idx >= len(bars):
+        return None
+    rday = bars[idx][0]
+    ny = now.astimezone(NY)
+    if rday > ny.date() or (rday == ny.date() and (ny.hour, ny.minute) < (16, 20)):
+        return None                                   # סשן התגובה עוד פתוח
+    return round((bars[idx][1] / bars[idx - 1][1] - 1) * 100, 2)
+
+
+def scoreboard(fetch, now, start, end, syms, tv, extra, season_day):
+    """כמה דיווחו, כמה עקפו את צפי הרווח/ההכנסות, לפי סקטור, ו"פרס מול עונש" — התגובה
+    הממוצעת ביום הדוח אחרי עקיפה ואחרי החטאה. התגובות נשמרות במטמון ומחושבות פעם אחת למניה."""
+    cache = load(REACT_CACHE) or {}
+    key = start.isoformat()
+    if cache.get("season") != key:
+        cache = {"season": key, "react": {}}
+    rows, fetched = [], 0
+    for s in syms:
+        d, done = season_day(s)
+        if not (d and done):
+            continue
+        x = extra.get(s) or {}
+        r = cache["react"].get(s)
+        if (r is None or r.get("d") != d.isoformat() or r.get("v") is None) and x.get("when") and fetched < MAX_BARS_PER_RUN:
+            fetched += 1
+            try:
+                cache["react"][s] = {"d": d.isoformat(), "v": reaction(fetch, s, d, x["when"], now)}
+            except Exception as e:
+                print(f"[warn] תגובה {s}: {e}")
+        r = cache["react"].get(s) or {}
+        rows.append({"sym": s, "eps": x.get("eps"), "rev": x.get("rev"),
+                     "sector": SECTOR_HE.get(x.get("sector") or "", "אחר"),
+                     "react": r.get("v") if r.get("d") == d.isoformat() else None})
+    with open(REACT_CACHE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, separators=(",", ":"))
+
+    def pct(a, b):
+        return round(a / b * 100) if b else None
+
+    def avg(v):
+        return round(sum(v) / len(v), 2) if v else None
+    eps = [r for r in rows if r["eps"] is not None]
+    rev = [r for r in rows if r["rev"] is not None]
+    beat = [r for r in eps if r["eps"] > 0]
+    miss = [r for r in eps if r["eps"] < 0]
+    sect = {}
+    for r in eps:
+        g = sect.setdefault(r["sector"], [0, 0])
+        g[0] += 1
+        g[1] += 1 if r["eps"] > 0 else 0
+    sectors = sorted(({"name": k, "n": v[0], "beat": v[1]} for k, v in sect.items() if k != "אחר"),
+                     key=lambda z: (-z["n"], z["name"]))
+    rb = [r["react"] for r in beat if r["react"] is not None]
+    rm = [r["react"] for r in miss if r["react"] is not None]
+    top = sorted((r for r in eps if r["react"] is not None), key=lambda r: -abs(r["react"]))[:6]
+    return {"reported": len(rows), "epsN": len(eps), "epsBeat": len(beat), "epsBeatPct": pct(len(beat), len(eps)),
+            "revN": len(rev), "revBeat": sum(1 for r in rev if r["rev"] > 0),
+            "revBeatPct": pct(sum(1 for r in rev if r["rev"] > 0), len(rev)),
+            "reactBeat": avg(rb), "reactBeatN": len(rb), "reactMiss": avg(rm), "reactMissN": len(rm),
+            "sectors": sectors,
+            "movers": [{"sym": r["sym"], "react": r["react"], "eps": round(r["eps"], 1)} for r in top]}
+
 
 
 def main(fetch=None, now=None):
@@ -196,11 +292,13 @@ def main(fetch=None, now=None):
                       "syms": [s for _, s in ds], "mine": sorted(set(group) & mine)})
     miles.sort(key=lambda m: m["date"])
 
+    board = scoreboard(fetch, now, start, end, syms, tv, getattr(tv_dates, "extra", {}), season_day)
+
     q = (anchor.month - 1) // 3          # הבנקים של אוקטובר מדווחים על רבעון 3
     q, year = (4, anchor.year - 1) if q == 0 else (q, anchor.year)
     out = {"season": "רבעון %d" % q, "year": year, "start": start.isoformat(), "end": end.isoformat(),
            "anchor": {"sym": ANCHOR, "date": anchor.isoformat()}, "weeks": weeks, "milestones": miles,
-           "total": total, "reported": reported, "members": len(syms),
+           "total": total, "reported": reported, "members": len(syms), "board": board,
            "_meta": {"updatedAt": now.astimezone(IL).strftime("%d/%m/%Y %H:%M"), "source": "TradingView + S&P 500 watchlist"}}
     prev = load(OUT) or {}
     if {k: v for k, v in prev.items() if k != "_meta"} == {k: v for k, v in out.items() if k != "_meta"}:

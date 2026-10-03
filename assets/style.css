@@ -1760,3 +1760,37 @@ ol.ep-check .t { display: block; color: var(--text-soft); font-size: .84rem; }
 .ss-ov-mine { pointer-events: auto; cursor: pointer; }
 .ss-ov-mine:hover { color: var(--accent); }
 @media (max-width: 760px) { .ss-wrap { min-width: 760px; } .ss-title { font-size: 1.2rem; } }
+
+/* ===== לוח התוצאות של עונת הדוחות — טאב לוח הדיווחים (3.10.2026, np111) ===== */
+.sbd { border: 1px solid var(--paper-hair); border-radius: 12px; padding: 16px 18px; margin: 0 0 22px; }
+.sbd-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.sbd-sub { font-size: .76rem; color: var(--text-3); }
+.sbd-pre { font-family: var(--serif); font-size: 1rem; color: var(--text-soft); margin: 0; line-height: 1.6; }
+.sbd-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 34px; }
+.sbd-grid > div + div { border-inline-start: 1px solid var(--paper-hair); padding-inline-start: 30px; }
+.sbd-prog { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.sbd-prog b { font-family: var(--serif); font-size: 2.2rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+.sbd-prog span { font-size: .86rem; color: var(--text-soft); }
+.sbd-bar { height: 7px; background: var(--surface-3); border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
+.sbd-bar i { display: block; height: 100%; background: var(--text); border-radius: 4px; }
+.sbd-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+.sbd-st { border-top: 1px solid var(--paper-hair); padding-top: 8px; }
+.sbd-st .v { font-family: var(--serif); font-size: 1.55rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.sbd-st .v.up { color: var(--up); } .sbd-st .v.down { color: var(--down); }
+.sbd-st .l { font-size: .8rem; font-weight: 600; margin-top: 2px; }
+.sbd-st .s { font-size: .72rem; color: var(--text-3); margin-top: 1px; }
+.sbd-h { font-size: .78rem; font-weight: 700; color: var(--text-soft); margin: 0 0 6px; }
+.sbd-h + .sbd-row { margin-top: 0; }
+.sbd-row { display: grid; grid-template-columns: 6.8em minmax(0, 1fr) 3.4em; align-items: center; gap: 8px; font-size: .8rem; padding: 3px 0; }
+.sbd-row .t { height: 6px; background: var(--surface-3); border-radius: 3px; position: relative; overflow: hidden; }
+.sbd-row .t i { position: absolute; inset-block: 0; inset-inline-start: 0; border-radius: 3px; background: var(--up); }
+.sbd-row .t i.lo { background: var(--warn); }
+.sbd-row .n { color: var(--text-soft); font-variant-numeric: tabular-nums; direction: ltr; text-align: end; }
+.sbd-mvs { display: flex; flex-wrap: wrap; gap: 6px; }
+.sbd-mv { border: 1px solid var(--paper-hair); border-radius: 999px; padding: 3px 10px; font-size: .78rem; font-weight: 700; color: var(--text); text-decoration: none; }
+.sbd-mv b.up { color: var(--up); } .sbd-mv b.down { color: var(--down); }
+.sbd-h:not(:first-child) { margin-top: 14px; }
+@media (max-width: 760px) {
+  .sbd-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .sbd-grid > div + div { border-inline-start: 0; padding-inline-start: 0; border-top: 1px solid var(--paper-hair); padding-top: 14px; }
+}
