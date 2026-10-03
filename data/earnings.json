@@ -12,13 +12,13 @@
             "ticker": "TSLA",
             "name": "Tesla, Inc.",
             "when": "before",
-            "status": "na"
+            "status": "pending"
           },
           {
             "ticker": "RIVN",
             "name": "Rivian Automotive, Inc. Class A",
             "when": "before",
-            "status": "na"
+            "status": "pending"
           }
         ]
       },
@@ -30,25 +30,37 @@
             "ticker": "ACN",
             "name": "Accenture Plc Class A",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": 15.78,
+            "price": 212.3,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
           },
           {
             "ticker": "NKE",
             "name": "NIKE, Inc. Class B",
             "when": "after",
-            "status": "na"
+            "status": "pending"
           },
           {
             "ticker": "MKC",
             "name": "McCormick & Company, Incorporated",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": -4.87,
+            "price": 44.14,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
           },
           {
             "ticker": "AYI",
             "name": "Acuity Inc.",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": -3.4,
+            "price": 299.28,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
           }
         ]
       },
@@ -60,37 +72,61 @@
             "ticker": "MU",
             "name": "Micron Technology, Inc.",
             "when": "after",
-            "status": "na"
+            "status": "final",
+            "chg": 3.03,
+            "price": 1097.39,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
           },
           {
             "ticker": "JBL",
             "name": "Jabil Inc.",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": -10.03,
+            "price": 286.86,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
           },
           {
             "ticker": "FDS",
             "name": "FactSet Research Systems Inc.",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": 3.84,
+            "price": 269.95,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
           },
           {
             "ticker": "CAG",
             "name": "Conagra Brands, Inc.",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": -4.88,
+            "price": 13.44,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
           },
           {
             "ticker": "CALM",
             "name": "Cal-Maine Foods, Inc.",
             "when": "before",
-            "status": "na"
+            "status": "final",
+            "chg": -0.71,
+            "price": 68.06,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
           },
           {
             "ticker": "PRGS",
             "name": "Progress Software Corporation",
             "when": "after",
-            "status": "na"
+            "status": "final",
+            "chg": -8.48,
+            "price": 36.58,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
           }
         ]
       }
@@ -276,7 +312,7 @@
     "NRIX": "2026-10-09"
   },
   "_meta": {
-    "updatedAt": "03/10/2026 03:01",
+    "updatedAt": "03/10/2026 03:16",
     "source": "tradingview"
   }
 }
