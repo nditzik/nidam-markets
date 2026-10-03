@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "03/10/2026 06:46",
+  "updatedAt": "03/10/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "PepsiCo, Inc.",
    "date": "2026-10-08",
    "when": "before",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/PEP__2026-07-09.html",
     "date": "2026-07-09",
@@ -501,7 +501,7 @@
    "name": "JPMorgan Chase & Co.",
    "date": "2026-10-13",
    "when": "before",
-   "daysTo": 11,
+   "daysTo": 10,
    "report": {
     "file": "data/reports/JPM__2026-07-14.html",
     "date": "2026-07-14",
@@ -989,11 +989,6 @@
  ],
  "later": [
   {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
-  {
    "sym": "GOOGL",
    "date": "2026-10-27",
    "when": null
@@ -1002,6 +997,11 @@
    "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
+  },
+  {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
   },
   {
    "sym": "META",
@@ -1019,14 +1019,9 @@
    "when": null
   },
   {
-   "sym": "UBER",
+   "sym": "MRK",
    "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
+   "when": "before"
   },
   {
    "sym": "SNDK",
@@ -1034,14 +1029,19 @@
    "when": "after"
   },
   {
+   "sym": "AAPL",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
    "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "MRK",
+   "sym": "UBER",
    "date": "2026-10-29",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "CVX",
