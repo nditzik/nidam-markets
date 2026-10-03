@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np105";
+  var TA_VER = "np106";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1772,7 +1772,7 @@
   var SEC_EXPLAIN = "האחוז = כמה מהמניות בסקטור נסחרות מעל ממוצע 50 יום שלהן.";
   function weekendLeadHtml(ca, foot) {
     var w = WEEKLY, nar = w && w.narrative;
-    if (!w || !w.weekOf || !nar || !nar.lead) return "";
+    if (!w || !w.weekOf) return "";
     var t = ilNowParts();
     var inWindow = t.dow === "Sat" || (t.dow === "Sun" && t.hour < 15);
     if (!inWindow) return "";
@@ -1783,6 +1783,15 @@
     var eu = freshEventUpdate(CA);
     if (eu && eu.kind !== "preview" && eu.date > w.weekOf) return "";
     var s = w.summary || {}, sec = w.sectors || null;
+    // 3.10.2026 (איציק): "עיוות" בשבת בבוקר — 06:18 כותרת הניתוח של שישי, 07:02 הסיכום השבועי.
+    // המספרים של השבוע (build_weekly) קיימים כבר מ-05:31, אז עד שהסיכום המילולי נכתב
+    // הכותרת היא כבר שבועית — משפט שנבנה מהמספרים; הניתוח של שישי נשאר בשורה שמתחת.
+    if (!nar || !nar.lead) {
+      if (s.spxPct == null) return "";
+      var mv = Math.abs(s.spxPct) < 0.5 ? "כמעט ללא שינוי"   // המספר המדויק באריח שמתחת — בלי סוגריים שמתהפכים ב-RTL
+        : (s.spxPct > 0 ? "בעלייה של " : "בירידה של ") + Math.abs(s.spxPct).toFixed(2) + "%";
+      nar = { lead: "S&P 500 סיים את השבוע " + mv + ".", pending: true };
+    }
     function pct(v) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(2) + "%"; }
     function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
     // H1 = המשפט הראשון של ה-lead; ארוך מדי → עד הנקודתיים/המקף הראשון
@@ -1805,7 +1814,8 @@
     return '<span class="np-today">' + todayLine() + "</span>" +
       // 26.9.2026 (איציק): שעת הכתיבה של הסיכום — כדי שיהיה ברור מתי הכותרת התחלפה משישי לשבועי
       '<span class="np-k np-evt-mid">🗓 סיכום השבוע · <b dir="ltr">' + esc(w.label || "") + "</b>" +
-        ((nar.writtenAt && /\d{1,2}:\d{2}/.test(nar.writtenAt)) ? ' · <span class="np-upd">נכתב <b dir="ltr">' + esc(/(\d{1,2}:\d{2})/.exec(nar.writtenAt)[1]) + "</b></span>" : "") + "</span>" +
+        ((nar.writtenAt && /\d{1,2}:\d{2}/.test(nar.writtenAt)) ? ' · <span class="np-upd">נכתב <b dir="ltr">' + esc(/(\d{1,2}:\d{2})/.exec(nar.writtenAt)[1]) + "</b></span>" : "") +
+        (nar.pending ? ' · <span class="np-upd">הסיכום המילולי ייכתב בשעה הקרובה</span>' : "") + "</span>" +
       '<h2 class="np-h1">' + esc(first) + "</h2>" +
       stats +
       // טקסט קצר: משפט אחד מהסיכום + משפט אחד מדוח הסקטורים; המלא בטאב מדדים ובדוח
