@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np106";
+  var TA_VER = "np107";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1823,6 +1823,64 @@
       sectorTilesHtml(sec) +
       (ca ? '<p class="np-wk-last"><span class="np-k">יום המסחר האחרון · <b dir="ltr">' + esc(fmtTradeDate(ca.date)) + "</b></span> " + esc(ca.headline) + "</p>" : "") +
       foot;
+  }
+
+  /* ---------- עונת הדוחות — ציר בבית (3.10.2026, np107, איציק; אושר במוקאפ 3) ----------
+     data/earnings_season.json (build_earnings_season.py): 8 שבועות, כמה מחברות ה-S&P 500 מדווחות בכל
+     שבוע, כמה כבר דיווחו, ו-6 תחנות. מוצג מתחת לכותרת רק משבוע לפני תחילת העונה ועד סופה. */
+  var SEASON = null;
+  function ssAdd(iso, n) { var d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+  function ssDiff(a, b) { return Math.round((Date.parse(b + "T12:00:00Z") - Date.parse(a + "T12:00:00Z")) / 864e5); }
+  function ssLbl(iso) { var p = iso.split("-"); return +p[2] + "." + +p[1]; }
+  function renderSeason() {
+    var el = document.getElementById("home-season");
+    if (!el) return;
+    var s = SEASON, today = ilNowParts().iso;
+    if (!s || !s.weeks || !s.weeks.length || today < ssAdd(s.start, -7) || today > s.end) { el.hidden = true; el.innerHTML = ""; return; }
+    var nW = s.weeks.length, days = nW * 7;
+    var first = (s.milestones || [])[0] || { label: "הבנקים", date: s.anchor.date };
+    var toFirst = ssDiff(today, first.date), title;
+    if (toFirst > 0) title = "העונה נפתחת " + (toFirst === 1 ? "מחר" : "בעוד " + toFirst + " ימים") + " — " + first.label + " פותחים ב-" + ssLbl(first.date);
+    else if (toFirst === 0 && !s.reported) title = "העונה נפתחת היום — " + first.label + " מדווחים";
+    else title = "שבוע " + Math.min(nW, Math.floor(ssDiff(s.start, today) / 7) + 1) + " מתוך " + nW + " · דיווחו " + s.reported + " מתוך " + s.total + " חברות במדד";
+    // הציר — אותה גאומטריה כמו במוקאפ; הזמן זורם מימין לשמאל
+    var L = 10, R = 1130, base = 140, maxH = 82, colW = (R - L) / nW, h = "", max = 1;
+    s.weeks.forEach(function (w) { if (w.n > max) max = w.n; });
+    function xd(iso) { return R - Math.max(0, Math.min(1, (ssDiff(s.start, iso) + 0.5) / days)) * (R - L); }
+    var nx = Math.max(L + 2, Math.min(R - 2, R - (ssDiff(s.start, today) + 0.5) / days * (R - L)));
+    s.weeks.forEach(function (w, i) {
+      var x1 = R - (i + 1) * colW + 5, wd = colW - 10, bh = Math.max(3, w.n / max * maxH);
+      var done = ssAdd(w.mon, 7) <= today;
+      h += '<rect x="' + x1.toFixed(1) + '" y="' + (base - bh).toFixed(1) + '" width="' + wd.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="2" class="' + (done ? "ss-done" : "ss-bar") + '"' +
+        (w.n === max ? ' stroke="var(--accent)" stroke-width="1.5"' : "") + '><title>' + w.n + " חברות מהמדד מדווחות בשבוע " + w.label + "</title></rect>";
+      h += '<text class="ss-num" x="' + (x1 + wd / 2).toFixed(1) + '" y="' + (base - bh - 5).toFixed(1) + '">' + w.n + "</text>";
+      h += '<text class="ss-num" x="' + (x1 + wd / 2).toFixed(1) + '" y="' + (base + 16) + '">' + w.label + "</text>";
+      if (w.n === max) h += '<text class="ss-peak" x="' + (x1 + wd / 2).toFixed(1) + '" y="' + (base - maxH - 18) + '">שבוע השיא</text>';
+    });
+    h += '<line x1="' + L + '" y1="' + base + '" x2="' + R + '" y2="' + base + '" class="ss-base"></line>';
+    // תחנות — שורה אוטומטית לפי המרחק מהתווית הקודמת באותה שורה
+    var lastX = [9999, 9999, 9999];
+    (s.milestones || []).forEach(function (m) {
+      var x = xd(m.date), row = 0;
+      while (row < 2 && lastX[row] - x < 175) row++;
+      lastX[row] = x;
+      var y = 184 + row * 36, passed = m.date < today, mine = m.mine && m.mine.length;
+      var tip = m.syms.join(" · ") + (mine ? " — יש ניתוח דוח קודם באתר (" + m.mine.join(", ") + ")" : "");
+      h += '<g class="ss-m' + (mine ? " ss-mine" : "") + '"' + (mine ? ' role="link" tabindex="0" onclick="__goTab(\'prep\')" onkeydown="if(event.key===\'Enter\')__goTab(\'prep\')"' : "") + '><title>' + esc(tip) + "</title>" +
+        '<line x1="' + x.toFixed(1) + '" y1="' + (base + 22) + '" x2="' + x.toFixed(1) + '" y2="' + (y - 12) + '" class="ss-base"></line>' +
+        '<circle cx="' + x.toFixed(1) + '" cy="' + (base + 22) + '" r="4.5" class="' + (mine ? "ss-gold" : passed ? "ss-past" : "ss-next") + '"></circle>' +
+        '<text class="ss-lbl" x="' + x.toFixed(1) + '" y="' + y + '">' + esc(m.label) + "</text>" +
+        '<text class="ss-num" x="' + x.toFixed(1) + '" y="' + (y + 14) + '">' + ssLbl(m.date) + "</text></g>";
+    });
+    h += '<line x1="' + nx.toFixed(1) + '" y1="' + (base - maxH - 8) + '" x2="' + nx.toFixed(1) + '" y2="' + (base + 4) + '" class="ss-now"></line>' +
+      '<rect x="' + (Math.min(R - 68, Math.max(L, nx - 34))).toFixed(1) + '" y="' + (base - maxH - 30) + '" width="68" height="20" rx="10" class="ss-nowbg"></rect>' +
+      '<text class="ss-nowt" x="' + (Math.min(R - 34, Math.max(L + 34, nx))).toFixed(1) + '" y="' + (base - maxH - 16) + '">אנחנו כאן</text>';
+    el.innerHTML = '<div class="ss-head"><span class="np-k">🗓 עונת הדוחות · ' + esc(s.season) + "</span>" +
+        '<a href="#weekcal" onclick="__goTab(\'weekcal\');return false">לוח הדיווחים המלא ←</a></div>' +
+      '<h2 class="ss-title">' + esc(title) + "</h2>" +
+      '<div class="ss-scroll"><svg class="ss-tl" viewBox="0 0 1140 252" role="img" aria-label="ציר עונת הדוחות: כמה חברות מהמדד מדווחות בכל שבוע">' + h + "</svg></div>" +
+      '<p class="ss-cap">העמודות: כמה מחברות ה-S&amp;P 500 מדווחות בכל שבוע · כהה = שבוע שעבר · נקודה זהובה = יש באתר ניתוח של הדוח הקודם (לחיצה פותחת את "לקראת הדוח").</p>';
+    el.hidden = false;
   }
 
   /* ---------- הידיעה המובילה + רייל המד (מהדורת עיתון) ---------- */
@@ -4107,6 +4165,10 @@
       // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
       fetchJSON("data/weekly.json")
         .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); renderLead(); refreshRotationWheel(); })
+        .catch(function () {});
+      // עונת הדוחות (3.10.2026): ציר מתחת לכותרת, רק בזמן העונה
+      fetchJSON("data/earnings_season.json")
+        .then(function (d) { if (!freshD("season", d)) return; SEASON = d; renderSeason(); })
         .catch(function () {});
       fetchJSON("data/earnings.json")
         .then(function (d) {

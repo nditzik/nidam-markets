@@ -241,6 +241,10 @@ jobs:
         continue-on-error: true
         run: python scripts/build_earnings_prep.py
 
+      - name: Build earnings season (ציר עונת הדוחות)
+        continue-on-error: true
+        run: python scripts/build_earnings_season.py
+
       - name: Write daily analysis (auto)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
