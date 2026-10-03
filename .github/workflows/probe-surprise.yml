@@ -1,0 +1,21 @@
+name: Probe earnings surprise (one-off)
+
+# בדיקה חד-פעמית (3.10.2026): בפועל מול צפי מסורק TradingView ללוח התוצאות של עונת הדוחות. יימחק אחרי הבדיקה.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-surprise.yml"
+      - "scripts/tools/probe_surprise.py"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/tools/probe_surprise.py
