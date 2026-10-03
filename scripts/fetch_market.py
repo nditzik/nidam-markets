@@ -11,7 +11,7 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
-from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
+from iltime import il_off, NY   # שעון ישראל/ניו יורק אמיתי (zoneinfo), ראו iltime.py
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "market.json")
@@ -60,7 +60,7 @@ def quote(sym):
         step = len(closes) / 26.0
         closes = [closes[int(i * step)] for i in range(26)]
     spark = [round(c, 4) for c in closes]
-    return price, chg, prev, spark
+    return price, chg, prev, spark, m.get("regularMarketTime")
 
 
 def _daily(sym, rng):
@@ -122,7 +122,7 @@ def main():
     items = []
     for key, label, sym, digits in SYMBOLS:
         try:
-            price, chg, prev, spark = quote(sym)
+            price, chg, prev, spark, ts = quote(sym)
             if price is None:
                 raise ValueError("no price")
             items.append({
@@ -131,6 +131,7 @@ def main():
                 "chg": round(chg, 2) if chg is not None else None,
                 "prev": round(prev, digits) if prev else None,
                 "spark": spark,
+                "ts": ts,
             })
             print(f"[ok] {label}: {price} ({chg:+.2f}%)")
         except Exception as e:
@@ -150,15 +151,32 @@ def main():
         hist = json.load(open(os.path.join(os.path.dirname(OUT), "history.json"), encoding="utf-8"))
         last = [d for d in hist.get("days", []) if d.get("spx")][-1]
         for it in items:
+            # 3.10.2026: בשבת בבוקר הרוטינה כתבה "חוזה S&P מוסיף עוד 0.7% הבוקר" — אבל chg של החוזה
+            # הוא מול הסטלמנט של *היום הקודם*, ואחרי סגירת המסחר (ובכל סוף השבוע) הוא תנועת אותו יום
+            # מסחר עצמו, שכבר כלולה בסגירת המדד. יום המסחר של החוזה = התאריך בניו יורק, ומ-18:00
+            # (פתיחת הסשן הבא) — היום שאחריו. אם הוא לא אחרי יום הסגירה של המדד — אין תנועת לילה.
+            if it["key"] in ("es", "nq") and it.get("chg") is not None and it.get("ts"):
+                t = datetime.fromtimestamp(it["ts"], NY)
+                tday = (t + timedelta(days=1)).date() if t.hour >= 18 else t.date()
+                it["sameSession"] = tday.isoformat() <= last["date"]
             if it["key"] == "es" and it.get("chg") is not None:
                 it["indexClose"] = last["spx"]
                 it["indexCloseDate"] = last["date"]
-                it["indexEquiv"] = round(last["spx"] * (1 + it["chg"] / 100), 2)
+                if it.get("sameSession"):
+                    it["overnight"] = 0.0
+                    it["indexEquiv"] = last["spx"]
+                    it["note"] = ("אין תנועת לילה: chg (%+.2f%%) הוא שינוי החוזה ביום המסחר של %s — אותו יום שסגירת המדד כבר משקפת. "
+                                  "אל תכתוב שהחוזה 'מוסיף' או 'ממשיך לטפס' הבוקר; כשהחוזים סגורים (סוף שבוע/אחרי 17:00 ניו יורק) "
+                                  "אין מה לדווח עליהם." % (it["chg"], last["date"]))
+                else:
+                    it["overnight"] = it["chg"]
+                    it["indexEquiv"] = round(last["spx"] * (1 + it["chg"] / 100), 2)
+                    it["note"] = ("מחיר החוזה כולל בסיס מעל המדד (עלות נשיאה) — אל תשווה אותו לסגירת המדד. "
+                                  "תנועת הלילה = overnight (מול הסטלמנט הקודם); רמת המדד שהחוזה מגלם = indexEquiv.")
                 it["basis"] = round(it["price"] - it["indexEquiv"], 2)
-                it["note"] = ("מחיר החוזה כולל בסיס של כ-%d נק' מעל המדד (עלות נשיאה) — אל תשווה אותו לסגירת המדד. "
-                              "השינוי לפני הפתיחה = chg (מול הסטלמנט הקודם); רמת המדד שהחוזה מגלם = indexEquiv." % round(it["basis"]))
             if it["key"] == "nq":
-                it["note"] = "מחיר החוזה כולל בסיס מעל המדד — השינוי לפני הפתיחה = chg בלבד, לא השוואה לסגירה."
+                it["note"] = ("אין תנועת לילה — chg הוא יום המסחר שכבר נסגר." if it.get("sameSession") else
+                              "מחיר החוזה כולל בסיס מעל המדד — השינוי לפני הפתיחה = chg בלבד, לא השוואה לסגירה.")
     except Exception as e:
         print(f"[warn] indexEquiv: {e}")
 
@@ -176,7 +194,7 @@ def main():
         print(f"[warn] רמזור VIX נכשל — נשאר הקודם: {e}")
 
     payload = {"items": items, "vixLight": light, "_meta": {"updatedAt": israel_stamp(), "source": "yahoo",
-               "note": "es/nq הם חוזים (ES=F/NQ=F, דצמבר) — מחירם גבוה מהמדד בבסיס של עשרות נקודות. תנועת הלילה = chg; רמת המדד המגולמת = es.indexEquiv."}}
+               "note": "es/nq הם חוזים (ES=F/NQ=F, דצמבר) — מחירם גבוה מהמדד בבסיס של עשרות נקודות. תנועת הלילה = es.overnight (0 כש-sameSession: chg הוא יום המסחר שכבר בסגירה); רמת המדד המגולמת = es.indexEquiv."}}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
