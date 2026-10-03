@@ -29,6 +29,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 OUT = os.path.join(DATA, "earnings_season.json")
 SP_CACHE = os.path.join(DATA, "sp500.json")
+HOLDINGS = os.path.join(DATA, "holdings.txt")
+TOP_PER_WEEK = 6
 TV_SCAN = "https://scanner.tradingview.com/america/scan"
 IS_LIST = "https://api.github.com/repos/nditzik/indexes-status/contents/data"
 IS_RAW = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/"
@@ -255,7 +257,7 @@ def main(fetch=None, now=None):
 
     weeks = [{"mon": (start + timedelta(days=7 * i)).isoformat(),
               "label": "%d.%d" % ((start + timedelta(days=7 * i)).day, (start + timedelta(days=7 * i)).month),
-              "n": 0} for i in range(WEEKS)]
+              "n": 0, "top": [], "mine": []} for i in range(WEEKS)]
     total = reported = 0
     for s in syms:
         d, done = season_day(s)
@@ -270,6 +272,36 @@ def main(fetch=None, now=None):
     for r in rep.get("reports") or rep.get("items") or []:
         if isinstance(r, dict) and r.get("ticker"):
             mine.add(str(r["ticker"]).upper())
+
+    # מי מדווחת בכל שבוע (3.10.2026, איציק: "הטיקרים בתוך העמודות"): המובילות לפי שווי מחברות
+    # המדד (הסורק ממוין לפי שווי), ובנפרד המניות שלו — data/holdings.txt (מחזיק) + מי שיש לה
+    # ניתוח דוח באתר — גם אם אינן במדד. כל פריט: סמל, תאריך, לפני/אחרי, דיווחה, מחזיק/ניתוח.
+    held = set()
+    try:
+        with open(HOLDINGS, encoding="utf-8") as f:
+            for line in f:
+                held.update(x.strip().upper() for x in line.split("#")[0].replace(",", " ").split() if x.strip())
+    except OSError:
+        pass
+    members = set(syms)
+    xtra = getattr(tv_dates, "extra", {})
+
+    def item(sym, d, done):
+        it = {"sym": sym, "date": d.isoformat(), "when": (xtra.get(sym) or {}).get("when"), "done": done}
+        if sym in held:
+            it["held"] = True
+        if sym in mine:
+            it["rep"] = True
+        return it
+    for sym in tv:                       # סדר הסורק = שווי יורד
+        d, done = season_day(sym)
+        if not d:
+            continue
+        w = weeks[min(WEEKS - 1, (d - start).days // 7)]
+        if sym in members and len(w["top"]) < TOP_PER_WEEK:
+            w["top"].append(item(sym, d, done))
+        if sym in held or sym in mine:
+            w["mine"].append(item(sym, d, done))
     def mile_day(sym):
         """כמו season_day, אבל לתחנות מתקבל גם דוח מהשבועיים שלפני תחילת העונה (טסלה 2.10) —
         הוא מצויר בקצה הימני של הציר כתחנה שכבר עברה."""
