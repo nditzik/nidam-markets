@@ -30,7 +30,10 @@ DATA = os.path.join(ROOT, "data")
 OUT = os.path.join(DATA, "earnings_season.json")
 SP_CACHE = os.path.join(DATA, "sp500.json")
 HOLDINGS = os.path.join(DATA, "holdings.txt")
-TOP_PER_WEEK = 8
+# הטיקרים בתוך עמודות הציר (np112, אושר במוקאפ 2): עד 5 לשבוע — חברות התחנות (חוץ מהבנקים, שהם
+# כותרת) ואחריהן הגדולות במדד מעל $300B, לפי שווי; ובנוסף מניות המעקב מ-data/holdings.txt, בלי הבלטה.
+TOP_PER_WEEK = 5
+BIG_CAP_B = 300
 TV_SCAN = "https://scanner.tradingview.com/america/scan"
 IS_LIST = "https://api.github.com/repos/nditzik/indexes-status/contents/data"
 IS_RAW = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/"
@@ -258,7 +261,7 @@ def main(fetch=None, now=None):
 
     weeks = [{"mon": (start + timedelta(days=7 * i)).isoformat(),
               "label": "%d.%d" % ((start + timedelta(days=7 * i)).day, (start + timedelta(days=7 * i)).month),
-              "n": 0, "top": [], "mine": []} for i in range(WEEKS)]
+              "n": 0, "tickers": []} for i in range(WEEKS)]
     total = reported = 0
     for s in syms:
         d, done = season_day(s)
@@ -274,9 +277,7 @@ def main(fetch=None, now=None):
         if isinstance(r, dict) and r.get("ticker"):
             mine.add(str(r["ticker"]).upper())
 
-    # מי מדווחת בכל שבוע (3.10.2026, איציק: "הטיקרים בתוך העמודות"): המובילות לפי שווי מחברות
-    # המדד (הסורק ממוין לפי שווי), ובנפרד המניות שלו — data/holdings.txt (מחזיק) + מי שיש לה
-    # ניתוח דוח באתר — גם אם אינן במדד. כל פריט: סמל, תאריך, לפני/אחרי, דיווחה, מחזיק/ניתוח.
+    # מי מדווחת בכל שבוע (3.10.2026, איציק: "הטיקרים בתוך העמודות") → weeks[].tickers
     held = set()
     try:
         with open(HOLDINGS, encoding="utf-8") as f:
@@ -286,24 +287,25 @@ def main(fetch=None, now=None):
         pass
     members = set(syms)
     xtra = getattr(tv_dates, "extra", {})
-
-    def item(sym, d, done):
-        x = xtra.get(sym) or {}
-        it = {"sym": sym, "date": d.isoformat(), "when": x.get("when"), "done": done, "capB": x.get("capB")}
-        if sym in held:
-            it["held"] = True
-        if sym in mine:
-            it["rep"] = True
-        return it
+    ms_syms = {x for key, _, group in MILESTONES if key != "banks" for x in group}
+    cand = [[] for _ in range(WEEKS)]
+    extra_held = [[] for _ in range(WEEKS)]
     for sym in tv:                       # סדר הסורק = שווי יורד
-        d, done = season_day(sym)
+        if sym == "GOOG":                # אותה חברה כמו GOOGL
+            continue
+        d, _ = season_day(sym)
         if not d:
             continue
-        w = weeks[min(WEEKS - 1, (d - start).days // 7)]
-        if sym in members and len(w["top"]) < TOP_PER_WEEK:
-            w["top"].append(item(sym, d, done))
-        if sym in held or sym in mine:
-            w["mine"].append(item(sym, d, done))
+        i = min(WEEKS - 1, (d - start).days // 7)
+        cap = (xtra.get(sym) or {}).get("capB") or 0
+        if sym in held:
+            extra_held[i].append(sym)
+        elif sym in members and (sym in ms_syms or cap >= BIG_CAP_B):
+            cand[i].append((0 if sym in ms_syms else 1, -cap, sym))
+    for i, w in enumerate(weeks):
+        top = sorted(cand[i])[:TOP_PER_WEEK]
+        caps = {s_: -c for _, c, s_ in top}
+        w["tickers"] = sorted(caps, key=lambda s_: -caps[s_]) + extra_held[i]
     def mile_day(sym):
         """כמו season_day, אבל לתחנות מתקבל גם דוח מהשבועיים שלפני תחילת העונה (טסלה 2.10) —
         הוא מצויר בקצה הימני של הציר כתחנה שכבר עברה."""

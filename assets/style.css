@@ -1748,6 +1748,9 @@ ol.ep-check .t { display: block; color: var(--text-soft); font-size: .84rem; }
 .ss-now { stroke: var(--down); stroke-width: 2; stroke-dasharray: 3 3; }
 .ss-nowbg { fill: var(--down); }
 .ss-nowt { font-size: 11.5px; font-weight: 700; fill: #fff; }
+/* np112: הטיקרים בתוך עמודות הציר (לטינית — נשארים ב-SVG; בשבוע שעבר העמודה כהה והטקסט מתהפך) */
+.ss-tk { font-size: 14px; font-weight: 700; fill: var(--text); letter-spacing: .02em; }
+.ss-tk.inv { fill: var(--bg); }
 .ss-cap { font-size: .76rem; color: var(--text-3); margin: 6px 0 0; line-height: 1.5; }
 /* np110: הכיתובים בעברית — שכבת HTML מעל ה-SVG (באייפון עברית בתוך SVG יוצאת הפוכה).
    הגודל יחסי לרוחב הציר (cqw = אחוז מרוחב המכל), כמו הטקסט שבתוך ה-SVG; px = נפילה לדפדפן ישן */
@@ -1759,7 +1762,7 @@ ol.ep-check .t { display: block; color: var(--text-soft); font-size: .84rem; }
 .ss-ov-now { font-size: 11.5px; font-size: calc(11.5 * 100cqw / 1140); font-weight: 700; color: #fff; }
 .ss-ov-mine { pointer-events: auto; cursor: pointer; }
 .ss-ov-mine:hover { color: var(--accent); }
-@media (max-width: 760px) { .ss-wrap { min-width: 760px; } .ss-title { font-size: 1.2rem; } }
+@media (max-width: 760px) { .ss-wrap { min-width: 860px; } .ss-title { font-size: 1.2rem; } }
 
 /* ===== לוח התוצאות של עונת הדוחות — טאב לוח הדיווחים (3.10.2026, np111) ===== */
 .sbd { border: 1px solid var(--paper-hair); border-radius: 12px; padding: 16px 18px; margin: 0 0 22px; }
