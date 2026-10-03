@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "03/10/2026 04:46",
+  "updatedAt": "03/10/2026 05:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -989,11 +989,6 @@
  ],
  "later": [
   {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
-  {
    "sym": "GOOGL",
    "date": "2026-10-27",
    "when": null
@@ -1002,6 +997,11 @@
    "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
+  },
+  {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
   },
   {
    "sym": "BSX",
@@ -1019,12 +1019,17 @@
    "when": null
   },
   {
-   "sym": "AMZN",
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "CUBE",
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
+   "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
@@ -1034,12 +1039,7 @@
    "when": "before"
   },
   {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
-   "sym": "UBER",
+   "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
   },
