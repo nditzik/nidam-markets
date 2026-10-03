@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np109";
+  var TA_VER = "np110";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1845,7 +1845,12 @@
     else if (toFirst === 0 && !s.reported) title = "העונה נפתחת היום — " + first.label + " מדווחים";
     else title = "שבוע " + Math.min(nW, Math.floor(ssDiff(s.start, today) / 7) + 1) + " מתוך " + nW + " · דיווחו " + s.reported + " מתוך " + s.total + " חברות המדד שמדווחות העונה";
     // הציר — אותה גאומטריה כמו במוקאפ; הזמן זורם מימין לשמאל
-    var L = 10, R = 1130, base = 140, maxH = 82, colW = (R - L) / nW, h = "", max = 1;
+    var L = 10, R = 1130, base = 140, maxH = 82, colW = (R - L) / nW, h = "", max = 1, ov = "";
+    // np110 (איציק: "עדיין הפוך" באייפון): כל טקסט עברי יוצא מה-SVG לשכבת HTML מעליו — WebKit לא
+    // מסדר עברית בתוך <text> של SVG גם עם direction:ltr. מיקום באחוזים מה-viewBox, גודל ב-cqw.
+    function ovAt(cls, x, y, txt, extra) {
+      return '<span class="ss-ov ' + cls + '" style="left:' + (x / 1140 * 100).toFixed(2) + "%;top:" + (y / 252 * 100).toFixed(2) + '%"' + (extra || "") + ">" + txt + "</span>";
+    }
     s.weeks.forEach(function (w) { if (w.n > max) max = w.n; });
     function xd(iso) { return R - Math.max(0, Math.min(1, (ssDiff(s.start, iso) + 0.5) / days)) * (R - L); }
     var nx = Math.max(L + 2, Math.min(R - 2, R - (ssDiff(s.start, today) + 0.5) / days * (R - L)));
@@ -1856,7 +1861,7 @@
         (w.n === max ? ' stroke="var(--accent)" stroke-width="1.5"' : "") + '><title>' + w.n + " חברות מהמדד מדווחות בשבוע " + w.label + "</title></rect>";
       h += '<text class="ss-num" x="' + (x1 + wd / 2).toFixed(1) + '" y="' + (base - bh - 5).toFixed(1) + '">' + w.n + "</text>";
       h += '<text class="ss-num" x="' + (x1 + wd / 2).toFixed(1) + '" y="' + (base + 16) + '">' + w.label + "</text>";
-      if (w.n === max) h += '<text class="ss-peak" x="' + (x1 + wd / 2).toFixed(1) + '" y="' + (base - maxH - 18) + '">שבוע השיא</text>';
+      if (w.n === max) ov += ovAt("ss-ov-peak", x1 + wd / 2, base - maxH - 18, "שבוע השיא");
     });
     h += '<line x1="' + L + '" y1="' + base + '" x2="' + R + '" y2="' + base + '" class="ss-base"></line>';
     // תחנות — שורה אוטומטית לפי המרחק מהתווית הקודמת באותה שורה
@@ -1871,16 +1876,17 @@
       h += '<g class="ss-m' + (mine ? " ss-mine" : "") + '"' + (mine ? ' role="link" tabindex="0" onclick="__goTab(\'prep\')" onkeydown="if(event.key===\'Enter\')__goTab(\'prep\')"' : "") + '><title>' + esc(tip) + "</title>" +
         '<line x1="' + x.toFixed(1) + '" y1="' + (base + 22) + '" x2="' + x.toFixed(1) + '" y2="' + (y - 12) + '" class="ss-base"></line>' +
         '<circle cx="' + x.toFixed(1) + '" cy="' + (base + 22) + '" r="4.5" class="' + (mine ? "ss-gold" : passed ? "ss-past" : "ss-next") + '"></circle>' +
-        '<text class="ss-lbl" x="' + tx.toFixed(1) + '" y="' + y + '">' + esc(m.label) + "</text>" +
         '<text class="ss-num" x="' + tx.toFixed(1) + '" y="' + (y + 14) + '">' + ssLbl(m.date) + "</text></g>";
+      ov += ovAt("ss-ov-lbl" + (mine ? " ss-ov-mine" : ""), tx, y, esc(m.label), mine ? ' role="link" tabindex="0" title="' + esc(tip) + '" onclick="__goTab(\'prep\')"' : ' title="' + esc(tip) + '"');
     });
     h += '<line x1="' + nx.toFixed(1) + '" y1="' + (base - maxH - 8) + '" x2="' + nx.toFixed(1) + '" y2="' + (base + 4) + '" class="ss-now"></line>' +
       '<rect x="' + (Math.min(R - 68, Math.max(L, nx - 34))).toFixed(1) + '" y="' + (base - maxH - 30) + '" width="68" height="20" rx="10" class="ss-nowbg"></rect>' +
-      '<text class="ss-nowt" x="' + (Math.min(R - 34, Math.max(L + 34, nx))).toFixed(1) + '" y="' + (base - maxH - 16) + '">אנחנו כאן</text>';
+      "";
+    ov += ovAt("ss-ov-now", Math.min(R - 34, Math.max(L + 34, nx)), base - maxH - 16, "אנחנו כאן");
     el.innerHTML = '<div class="ss-head"><span class="np-k">🗓 עונת הדוחות · ' + esc(s.season) + "</span>" +
         '<a href="#weekcal" onclick="__goTab(\'weekcal\');return false">לוח הדיווחים המלא ←</a></div>' +
       '<h2 class="ss-title">' + esc(title) + "</h2>" +
-      '<div class="ss-scroll"><svg class="ss-tl" viewBox="0 0 1140 252" role="img" aria-label="ציר עונת הדוחות: כמה חברות מהמדד מדווחות בכל שבוע">' + h + "</svg></div>" +
+      '<div class="ss-scroll"><div class="ss-wrap"><svg class="ss-tl" viewBox="0 0 1140 252" role="img" aria-label="ציר עונת הדוחות: כמה חברות מהמדד מדווחות בכל שבוע">' + h + "</svg>" + ov + "</div></div>" +
       '<p class="ss-cap">העמודות: כמה מחברות ה-S&amp;P 500 מדווחות בכל שבוע · כהה = שבוע שעבר · נקודה זהובה = יש באתר ניתוח של הדוח הקודם (לחיצה פותחת את "לקראת הדוח").</p>';
     el.hidden = false;
   }

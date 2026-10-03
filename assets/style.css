@@ -1749,4 +1749,14 @@ ol.ep-check .t { display: block; color: var(--text-soft); font-size: .84rem; }
 .ss-nowbg { fill: var(--down); }
 .ss-nowt { font-size: 11.5px; font-weight: 700; fill: #fff; }
 .ss-cap { font-size: .76rem; color: var(--text-3); margin: 6px 0 0; line-height: 1.5; }
-@media (max-width: 760px) { .ss-tl { min-width: 760px; } .ss-title { font-size: 1.2rem; } }
+/* np110: הכיתובים בעברית — שכבת HTML מעל ה-SVG (באייפון עברית בתוך SVG יוצאת הפוכה).
+   הגודל יחסי לרוחב הציר (cqw = אחוז מרוחב המכל), כמו הטקסט שבתוך ה-SVG; px = נפילה לדפדפן ישן */
+.ss-wrap { position: relative; container-type: inline-size; }
+.ss-ov { position: absolute; transform: translate(-50%, -82%); white-space: nowrap; line-height: 1;
+  font-family: Heebo, sans-serif; pointer-events: none; direction: rtl; }
+.ss-ov-lbl { font-size: 12.5px; font-size: calc(12.5 * 100cqw / 1140); font-weight: 700; color: var(--text); }
+.ss-ov-peak { font-size: 11px; font-size: calc(11 * 100cqw / 1140); color: var(--accent); }
+.ss-ov-now { font-size: 11.5px; font-size: calc(11.5 * 100cqw / 1140); font-weight: 700; color: #fff; }
+.ss-ov-mine { pointer-events: auto; cursor: pointer; }
+.ss-ov-mine:hover { color: var(--accent); }
+@media (max-width: 760px) { .ss-wrap { min-width: 760px; } .ss-title { font-size: 1.2rem; } }
