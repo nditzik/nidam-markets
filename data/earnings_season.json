@@ -12,716 +12,84 @@
    "mon": "2026-10-05",
    "label": "5.10",
    "n": 5,
-   "top": [
-    {
-     "sym": "PEP",
-     "date": "2026-10-08",
-     "when": "before",
-     "done": false,
-     "capB": 172,
-     "rep": true
-    },
-    {
-     "sym": "PGR",
-     "date": "2026-10-08",
-     "when": "before",
-     "done": false,
-     "capB": 122
-    },
-    {
-     "sym": "DAL",
-     "date": "2026-10-09",
-     "when": "before",
-     "done": false,
-     "capB": 55
-    },
-    {
-     "sym": "STZ",
-     "date": "2026-10-06",
-     "when": "after",
-     "done": false,
-     "capB": 19
-    },
-    {
-     "sym": "LW",
-     "date": "2026-10-06",
-     "when": "before",
-     "done": false,
-     "capB": 6
-    }
-   ],
-   "mine": [
-    {
-     "sym": "PEP",
-     "date": "2026-10-08",
-     "when": "before",
-     "done": false,
-     "capB": 172,
-     "rep": true
-    }
+   "tickers": [
+    "PEP"
    ]
   },
   {
    "mon": "2026-10-12",
    "label": "12.10",
    "n": 27,
-   "top": [
-    {
-     "sym": "JPM",
-     "date": "2026-10-13",
-     "when": "before",
-     "done": false,
-     "capB": 884,
-     "rep": true
-    },
-    {
-     "sym": "JNJ",
-     "date": "2026-10-13",
-     "when": "before",
-     "done": false,
-     "capB": 617
-    },
-    {
-     "sym": "BAC",
-     "date": "2026-10-14",
-     "when": "before",
-     "done": false,
-     "capB": 376
-    },
-    {
-     "sym": "UNH",
-     "date": "2026-10-13",
-     "when": "before",
-     "done": false,
-     "capB": 334
-    },
-    {
-     "sym": "MS",
-     "date": "2026-10-14",
-     "when": "before",
-     "done": false,
-     "capB": 299
-    },
-    {
-     "sym": "GS",
-     "date": "2026-10-13",
-     "when": "before",
-     "done": false,
-     "capB": 263
-    },
-    {
-     "sym": "WFC",
-     "date": "2026-10-13",
-     "when": "before",
-     "done": false,
-     "capB": 243
-    },
-    {
-     "sym": "C",
-     "date": "2026-10-13",
-     "when": "before",
-     "done": false,
-     "capB": 216
-    }
-   ],
-   "mine": [
-    {
-     "sym": "JPM",
-     "date": "2026-10-13",
-     "when": "before",
-     "done": false,
-     "capB": 884,
-     "rep": true
-    }
+   "tickers": [
+    "JPM",
+    "JNJ",
+    "BAC",
+    "UNH"
    ]
   },
   {
    "mon": "2026-10-19",
    "label": "19.10",
    "n": 97,
-   "top": [
-    {
-     "sym": "XOM",
-     "date": "2026-10-23",
-     "when": "before",
-     "done": false,
-     "capB": 674
-    },
-    {
-     "sym": "INTC",
-     "date": "2026-10-22",
-     "when": "after",
-     "done": false,
-     "capB": 631
-    },
-    {
-     "sym": "MA",
-     "date": "2026-10-22",
-     "when": "before",
-     "done": false,
-     "capB": 484
-    },
-    {
-     "sym": "LRCX",
-     "date": "2026-10-21",
-     "when": "after",
-     "done": false,
-     "capB": 435
-    },
-    {
-     "sym": "PG",
-     "date": "2026-10-22",
-     "when": "before",
-     "done": false,
-     "capB": 337
-    },
-    {
-     "sym": "GE",
-     "date": "2026-10-20",
-     "when": "before",
-     "done": false,
-     "capB": 321
-    },
-    {
-     "sym": "PM",
-     "date": "2026-10-20",
-     "when": "before",
-     "done": false,
-     "capB": 292
-    },
-    {
-     "sym": "NFLX",
-     "date": "2026-10-20",
-     "when": "after",
-     "done": false,
-     "capB": 279
-    }
-   ],
-   "mine": []
+   "tickers": [
+    "XOM",
+    "INTC",
+    "MA",
+    "LRCX",
+    "NFLX"
+   ]
   },
   {
    "mon": "2026-10-26",
    "label": "26.10",
    "n": 156,
-   "top": [
-    {
-     "sym": "AAPL",
-     "date": "2026-10-29",
-     "when": "after",
-     "done": false,
-     "capB": 4870,
-     "rep": true
-    },
-    {
-     "sym": "GOOGL",
-     "date": "2026-10-27",
-     "when": "after",
-     "done": false,
-     "capB": 4184
-    },
-    {
-     "sym": "GOOG",
-     "date": "2026-10-27",
-     "when": "after",
-     "done": false,
-     "capB": 4184
-    },
-    {
-     "sym": "MSFT",
-     "date": "2026-10-27",
-     "when": "after",
-     "done": false,
-     "capB": 3843,
-     "rep": true
-    },
-    {
-     "sym": "AMZN",
-     "date": "2026-10-29",
-     "when": "after",
-     "done": false,
-     "capB": 2713,
-     "rep": true
-    },
-    {
-     "sym": "META",
-     "date": "2026-10-28",
-     "when": "after",
-     "done": false,
-     "capB": 1855,
-     "rep": true
-    },
-    {
-     "sym": "LLY",
-     "date": "2026-10-29",
-     "when": "before",
-     "done": false,
-     "capB": 1076
-    },
-    {
-     "sym": "ABBV",
-     "date": "2026-10-30",
-     "when": "before",
-     "done": false,
-     "capB": 464
-    }
-   ],
-   "mine": [
-    {
-     "sym": "AAPL",
-     "date": "2026-10-29",
-     "when": "after",
-     "done": false,
-     "capB": 4870,
-     "rep": true
-    },
-    {
-     "sym": "MSFT",
-     "date": "2026-10-27",
-     "when": "after",
-     "done": false,
-     "capB": 3843,
-     "rep": true
-    },
-    {
-     "sym": "AMZN",
-     "date": "2026-10-29",
-     "when": "after",
-     "done": false,
-     "capB": 2713,
-     "rep": true
-    },
-    {
-     "sym": "META",
-     "date": "2026-10-28",
-     "when": "after",
-     "done": false,
-     "capB": 1855,
-     "rep": true
-    },
-    {
-     "sym": "CVX",
-     "date": "2026-10-30",
-     "when": "before",
-     "done": false,
-     "capB": 408,
-     "rep": true
-    },
-    {
-     "sym": "MRK",
-     "date": "2026-10-29",
-     "when": "before",
-     "done": false,
-     "capB": 356,
-     "rep": true
-    },
-    {
-     "sym": "SNDK",
-     "date": "2026-10-29",
-     "when": "after",
-     "done": false,
-     "capB": 252,
-     "rep": true
-    },
-    {
-     "sym": "UBER",
-     "date": "2026-10-29",
-     "when": "before",
-     "done": false,
-     "capB": 139,
-     "rep": true
-    },
-    {
-     "sym": "NOW",
-     "date": "2026-10-28",
-     "when": "after",
-     "done": false,
-     "capB": 139,
-     "held": true
-    },
-    {
-     "sym": "BSX",
-     "date": "2026-10-28",
-     "when": "before",
-     "done": false,
-     "capB": 62,
-     "rep": true
-    },
-    {
-     "sym": "SOFI",
-     "date": "2026-10-27",
-     "when": "before",
-     "done": false,
-     "capB": 20,
-     "rep": true
-    },
-    {
-     "sym": "CUBE",
-     "date": "2026-10-29",
-     "when": "after",
-     "done": false,
-     "capB": 8,
-     "rep": true
-    }
+   "tickers": [
+    "AAPL",
+    "GOOGL",
+    "MSFT",
+    "AMZN",
+    "META",
+    "NOW"
    ]
   },
   {
    "mon": "2026-11-02",
    "label": "2.11",
    "n": 115,
-   "top": [
-    {
-     "sym": "AMD",
-     "date": "2026-11-03",
-     "when": "after",
-     "done": false,
-     "capB": 1035,
-     "rep": true
-    },
-    {
-     "sym": "BRK.B",
-     "date": "2026-11-02",
-     "when": null,
-     "done": false,
-     "capB": 968
-    },
-    {
-     "sym": "V",
-     "date": "2026-11-03",
-     "when": "after",
-     "done": false,
-     "capB": 673
-    },
-    {
-     "sym": "CAT",
-     "date": "2026-11-04",
-     "when": "before",
-     "done": false,
-     "capB": 389
-    },
-    {
-     "sym": "ANET",
-     "date": "2026-11-02",
-     "when": "after",
-     "done": false,
-     "capB": 262
-    },
-    {
-     "sym": "AMGN",
-     "date": "2026-11-03",
-     "when": "after",
-     "done": false,
-     "capB": 218
-    },
-    {
-     "sym": "ETN",
-     "date": "2026-11-03",
-     "when": "before",
-     "done": false,
-     "capB": 169
-    },
-    {
-     "sym": "PFE",
-     "date": "2026-11-03",
-     "when": "before",
-     "done": false,
-     "capB": 158
-    }
-   ],
-   "mine": [
-    {
-     "sym": "AMD",
-     "date": "2026-11-03",
-     "when": "after",
-     "done": false,
-     "capB": 1035,
-     "rep": true
-    },
-    {
-     "sym": "NVO",
-     "date": "2026-11-04",
-     "when": "before",
-     "done": false,
-     "capB": 165,
-     "held": true,
-     "rep": true
-    }
+   "tickers": [
+    "AMD",
+    "BRK.B",
+    "V",
+    "CAT",
+    "NVO"
    ]
   },
   {
    "mon": "2026-11-09",
    "label": "9.11",
    "n": 35,
-   "top": [
-    {
-     "sym": "PLTR",
-     "date": "2026-11-09",
-     "when": "after",
-     "done": false,
-     "capB": 454,
-     "held": true,
-     "rep": true
-    },
-    {
-     "sym": "AMAT",
-     "date": "2026-11-12",
-     "when": "after",
-     "done": false,
-     "capB": 429,
-     "rep": true
-    },
-    {
-     "sym": "PANW",
-     "date": "2026-11-12",
-     "when": "after",
-     "done": false,
-     "capB": 330,
-     "rep": true
-    },
-    {
-     "sym": "QCOM",
-     "date": "2026-11-11",
-     "when": "after",
-     "done": false,
-     "capB": 194
-    },
-    {
-     "sym": "DIS",
-     "date": "2026-11-12",
-     "when": "before",
-     "done": false,
-     "capB": 176
-    },
-    {
-     "sym": "VRTX",
-     "date": "2026-11-09",
-     "when": "after",
-     "done": false,
-     "capB": 128
-    },
-    {
-     "sym": "CEG",
-     "date": "2026-11-09",
-     "when": "before",
-     "done": false,
-     "capB": 91
-    },
-    {
-     "sym": "EMR",
-     "date": "2026-11-10",
-     "when": "after",
-     "done": false,
-     "capB": 90
-    }
-   ],
-   "mine": [
-    {
-     "sym": "PLTR",
-     "date": "2026-11-09",
-     "when": "after",
-     "done": false,
-     "capB": 454,
-     "held": true,
-     "rep": true
-    },
-    {
-     "sym": "AMAT",
-     "date": "2026-11-12",
-     "when": "after",
-     "done": false,
-     "capB": 429,
-     "rep": true
-    },
-    {
-     "sym": "PANW",
-     "date": "2026-11-12",
-     "when": "after",
-     "done": false,
-     "capB": 330,
-     "rep": true
-    }
+   "tickers": [
+    "AMAT",
+    "PANW",
+    "PLTR"
    ]
   },
   {
    "mon": "2026-11-16",
    "label": "16.11",
    "n": 10,
-   "top": [
-    {
-     "sym": "WMT",
-     "date": "2026-11-19",
-     "when": "before",
-     "done": false,
-     "capB": 827,
-     "rep": true
-    },
-    {
-     "sym": "CSCO",
-     "date": "2026-11-18",
-     "when": "after",
-     "done": false,
-     "capB": 442,
-     "rep": true
-    },
-    {
-     "sym": "HD",
-     "date": "2026-11-17",
-     "when": "before",
-     "done": false,
-     "capB": 282
-    },
-    {
-     "sym": "TJX",
-     "date": "2026-11-18",
-     "when": "before",
-     "done": false,
-     "capB": 146
-    },
-    {
-     "sym": "LOW",
-     "date": "2026-11-18",
-     "when": "before",
-     "done": false,
-     "capB": 101
-    },
-    {
-     "sym": "TGT",
-     "date": "2026-11-18",
-     "when": "before",
-     "done": false,
-     "capB": 71
-    },
-    {
-     "sym": "TDG",
-     "date": "2026-11-18",
-     "when": "before",
-     "done": false,
-     "capB": 60
-    },
-    {
-     "sym": "CPRT",
-     "date": "2026-11-18",
-     "when": "after",
-     "done": false,
-     "capB": 25,
-     "rep": true
-    }
-   ],
-   "mine": [
-    {
-     "sym": "WMT",
-     "date": "2026-11-19",
-     "when": "before",
-     "done": false,
-     "capB": 827,
-     "rep": true
-    },
-    {
-     "sym": "CSCO",
-     "date": "2026-11-18",
-     "when": "after",
-     "done": false,
-     "capB": 442,
-     "rep": true
-    },
-    {
-     "sym": "CPRT",
-     "date": "2026-11-18",
-     "when": "after",
-     "done": false,
-     "capB": 25,
-     "rep": true
-    },
-    {
-     "sym": "ONDS",
-     "date": "2026-11-16",
-     "when": "before",
-     "done": false,
-     "capB": 4,
-     "held": true,
-     "rep": true
-    }
+   "tickers": [
+    "WMT",
+    "CSCO",
+    "ONDS"
    ]
   },
   {
    "mon": "2026-11-23",
    "label": "23.11",
    "n": 8,
-   "top": [
-    {
-     "sym": "NVDA",
-     "date": "2026-11-25",
-     "when": "after",
-     "done": false,
-     "capB": 5638,
-     "rep": true
-    },
-    {
-     "sym": "DE",
-     "date": "2026-11-25",
-     "when": "before",
-     "done": false,
-     "capB": 185
-    },
-    {
-     "sym": "MDT",
-     "date": "2026-11-24",
-     "when": "before",
-     "done": false,
-     "capB": 110
-    },
-    {
-     "sym": "KEYS",
-     "date": "2026-11-23",
-     "when": "after",
-     "done": false,
-     "capB": 65
-    },
-    {
-     "sym": "KR",
-     "date": "2026-11-26",
-     "when": "before",
-     "done": false,
-     "capB": 35
-    },
-    {
-     "sym": "DLTR",
-     "date": "2026-11-24",
-     "when": "before",
-     "done": false,
-     "capB": 21
-    },
-    {
-     "sym": "BBY",
-     "date": "2026-11-24",
-     "when": "before",
-     "done": false,
-     "capB": 18
-    },
-    {
-     "sym": "J",
-     "date": "2026-11-24",
-     "when": "after",
-     "done": false,
-     "capB": 16
-    }
-   ],
-   "mine": [
-    {
-     "sym": "NVDA",
-     "date": "2026-11-25",
-     "when": "after",
-     "done": false,
-     "capB": 5638,
-     "rep": true
-    },
-    {
-     "sym": "SYM",
-     "date": "2026-11-23",
-     "when": "after",
-     "done": false,
-     "capB": 26,
-     "rep": true
-    }
+   "tickers": [
+    "NVDA"
    ]
   }
  ],
@@ -829,7 +197,7 @@
   "movers": []
  },
  "_meta": {
-  "updatedAt": "03/10/2026 18:31",
+  "updatedAt": "03/10/2026 18:45",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
