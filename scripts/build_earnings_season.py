@@ -30,7 +30,7 @@ DATA = os.path.join(ROOT, "data")
 OUT = os.path.join(DATA, "earnings_season.json")
 SP_CACHE = os.path.join(DATA, "sp500.json")
 HOLDINGS = os.path.join(DATA, "holdings.txt")
-TOP_PER_WEEK = 6
+TOP_PER_WEEK = 8
 TV_SCAN = "https://scanner.tradingview.com/america/scan"
 IS_LIST = "https://api.github.com/repos/nditzik/indexes-status/contents/data"
 IS_RAW = "https://raw.githubusercontent.com/nditzik/indexes-status/main/data/"
@@ -110,7 +110,7 @@ def tv_dates(fetch):
         ],
         # שלב 2 (3.10.2026): בפועל מול צפי של הרבעון האחרון — נבדק ב-probe_surprise.py על ה-runner
         "columns": ["name", "earnings_release_date", "earnings_release_next_date", "earnings_release_time",
-                    "eps_surprise_percent_fq", "revenue_surprise_percent_fq", "sector"],
+                    "eps_surprise_percent_fq", "revenue_surprise_percent_fq", "sector", "market_cap_basic"],
         "sort": {"sortBy": "market_cap_basic", "sortOrder": "desc"},
         "range": [0, 2500],
     }
@@ -120,10 +120,11 @@ def tv_dates(fetch):
         return datetime.fromtimestamp(ts, timezone.utc).astimezone(NY).date() if ts else None
     out, extra = {}, {}
     for row in data:
-        sym, last_ts, next_ts, t_flag, eps_s, rev_s, sector = row["d"]
+        sym, last_ts, next_ts, t_flag, eps_s, rev_s, sector, cap = row["d"]
         if sym and sym not in out:
             out[sym] = (day(last_ts), day(next_ts), last_ts)
-            extra[sym] = {"when": {1: "after", -1: "before"}.get(t_flag), "eps": eps_s, "rev": rev_s, "sector": sector}
+            extra[sym] = {"when": {1: "after", -1: "before"}.get(t_flag), "eps": eps_s, "rev": rev_s, "sector": sector,
+                          "capB": round(cap / 1e9) if cap else None}
     tv_dates.extra = extra
     return out
 
@@ -287,7 +288,8 @@ def main(fetch=None, now=None):
     xtra = getattr(tv_dates, "extra", {})
 
     def item(sym, d, done):
-        it = {"sym": sym, "date": d.isoformat(), "when": (xtra.get(sym) or {}).get("when"), "done": done}
+        x = xtra.get(sym) or {}
+        it = {"sym": sym, "date": d.isoformat(), "when": x.get("when"), "done": done, "capB": x.get("capB")}
         if sym in held:
             it["held"] = True
         if sym in mine:
