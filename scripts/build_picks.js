@@ -221,6 +221,8 @@ function poolSignature() {
   return "cat1|" + files + "|" + (cand.date || "") + "|" + syms;
 }
 
+const GATE_LABEL = { defense: "הגנתי", neutral: "זהיר", green: "חיובי" };
+
 function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   const mom = readJSON(path.join(ROOT, "data", "momentum.json"), { stocks: [] });
   const cand = readJSON(path.join(ROOT, "data", "candidates.json"), { candidates: [] });
@@ -271,9 +273,12 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
 
   // שער השוק
   const ro = ind.riskOff || {}, sc = ind.scores || {}, ev = ind.evidence || {}, vl = mk.vixLight || {};
-  const state = ro.active ? "defense" : (sc.combined >= 65 ? "green" : "neutral");
+  // אותן מדרגות כמו המד באתר (meterWord): חיובי מ-66, זהיר 45–65, הגנתי מתחת. לחץ מכירות
+  // מצטבר (riskOff.active) מוצג בעובדות ולא מוריד מדרגה; רק מצב חריף (acute) מוריד להגנתי.
+  const comb = sc.combined;
+  const state = ro.acute || (comb != null && comb < 45) ? "defense" : (comb >= 66 ? "green" : "neutral");
   const gate = {
-    state, label: { defense: "הגנה", neutral: "ניטרלי", green: "ירוק" }[state],
+    state, label: GATE_LABEL[state],
     maxPos: { defense: 3, neutral: 4, green: 5 }[state],
     sizing: { defense: "חצי גודל", neutral: "שני שליש", green: "גודל מלא" }[state],
     combined: sc.combined, breadth: ev.pctMa50, sellDays: (ro.sellingDays || []).length, flow: sc.flow,

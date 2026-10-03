@@ -1530,9 +1530,9 @@ b.ta-good, .ta-good > b { color: #1b7f76; } b.ta-bad { color: #c62828; } b.ta-mi
    הצבעים הקטגוריאליים (ענף) הם שלושת המקומות הראשונים של פלטת dataviz — עוברים
    בודק CVD בשני המצבים; החותמת והלחצן בזהב שאינו משמש לשום דבר אחר באתר. */
 :root { --pk-gold: #b8860b; --pk-gold2: #e2b53a; --pk-gold-ink: #2a1f05; --pk-tech: #2a78d6; --pk-health: #1baf7a; --pk-other: #eb6834;
-  --pk-warn-bg: #fff4d6; --pk-warn-ink: #5a4200; --pk-good-bg: #e3f6ea; --pk-good-ink: #0f5a2c; --pk-mid-bg: #eceff3; --pk-mid-ink: #2a3541; --pk-area: rgba(29,29,31,.06); }
+  --pk-warn-bg: #fff4d6; --pk-warn-ink: #5a4200; --pk-good-bg: #e3f6ea; --pk-good-ink: #0f5a2c; --pk-mid-bg: #eceff3; --pk-mid-ink: #2a3541; --pk-bad-bg: #fde8e6; --pk-bad-ink: #6e1810; --pk-area: rgba(29,29,31,.06); }
 :root[data-theme="dark"] { --pk-gold: #e0b03a; --pk-gold2: #f2cf6e; --pk-gold-ink: #1a1200; --pk-tech: #3987e5; --pk-health: #199e70; --pk-other: #d95926;
-  --pk-warn-bg: #3a2e0c; --pk-warn-ink: #ffe08a; --pk-good-bg: #10301c; --pk-good-ink: #8fe0a8; --pk-mid-bg: #232c35; --pk-mid-ink: #c9d2da; --pk-area: rgba(245,245,247,.07); }
+  --pk-warn-bg: #3a2e0c; --pk-warn-ink: #ffe08a; --pk-good-bg: #10301c; --pk-good-ink: #8fe0a8; --pk-mid-bg: #232c35; --pk-mid-ink: #c9d2da; --pk-bad-bg: #3a1512; --pk-bad-ink: #ffb4aa; --pk-area: rgba(245,245,247,.07); }
 .tabs .tab.tab-gold { background: linear-gradient(135deg, var(--pk-gold2), var(--pk-gold)); color: var(--pk-gold-ink); border-color: var(--pk-gold); font-weight: 700; }
 .tabs .tab.tab-gold::before { content: "✦ "; font-size: .72em; }
 .tabs .tab.tab-gold:not(.is-active):hover { color: var(--pk-gold-ink); border-color: var(--pk-gold); filter: brightness(1.06); }
@@ -1547,6 +1547,7 @@ b.ta-good, .ta-good > b { color: #1b7f76; } b.ta-bad { color: #c62828; } b.ta-mi
 .pk-gate { display: grid; grid-template-columns: auto 1fr auto; gap: 12px 20px; align-items: center; border-radius: 14px; padding: 14px 18px; margin: 0 0 14px; }
 .pk-gate.warn { background: var(--pk-warn-bg); color: var(--pk-warn-ink); --pk-dot: var(--warn); }
 .pk-gate.good { background: var(--pk-good-bg); color: var(--pk-good-ink); --pk-dot: var(--up); }
+.pk-gate.bad { background: var(--pk-bad-bg); color: var(--pk-bad-ink); --pk-dot: var(--down); }
 .pk-gate.mid { background: var(--pk-mid-bg); color: var(--pk-mid-ink); --pk-dot: var(--text-soft); }
 .pk-gate .st { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.2rem; font-family: "Frank Ruhl Libre", serif; }
 .pk-gate .st i { width: 14px; height: 14px; border-radius: 50%; background: var(--pk-dot); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pk-dot) 25%, transparent); }

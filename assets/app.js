@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np104";
+  var TA_VER = "np105";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3749,7 +3749,8 @@
     var d = PICKD;
     if (!d || !d.picks) { emptyPanel(el, "✦", "הנבחרות — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); return; }
     var g = d.gate || {}, r = d.record;
-    var gateCls = { defense: "warn", neutral: "mid", green: "good" }[g.state] || "mid";
+    // אותם צבעים כמו המד: חיובי ירוק, זהיר כתום, הגנתי אדום
+    var gateCls = { defense: "bad", neutral: "warn", green: "good" }[g.state] || "mid";
     var rule = { defense: "עד 3 פוזיציות · חצי גודל · כניסה בשלישים · אופק 10 עד 20 יום", neutral: "עד 4 פוזיציות · שני שליש גודל · כניסה בשלישים · אופק 10 עד 20 יום", green: "עד 5 פוזיציות · גודל מלא · כניסה בשלישים · אופק 10 עד 20 יום" }[g.state] || "";
     var facts = [g.combined != null ? "ציון משולב <b>" + esc(g.combined) + "</b>" : "", g.breadth != null ? "רוחב <b>" + Math.round(g.breadth) + "%</b> מעל ממוצע 50" : "",
       g.sellDays != null ? "<b>" + esc(g.sellDays) + "</b> ימי מכירה בחודש" : "", g.flow != null ? "אופציות <b>" + esc(g.flow) + "</b>" : "",
