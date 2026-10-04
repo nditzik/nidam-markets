@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "04/10/2026 15:01",
+  "updatedAt": "04/10/2026 15:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -1014,19 +1014,14 @@
    "when": null
   },
   {
-   "sym": "CUBE",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
    "sym": "SNDK",
    "date": "2026-10-29",
    "when": "after"
+  },
+  {
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
   },
   {
    "sym": "UBER",
@@ -1039,9 +1034,14 @@
    "when": null
   },
   {
-   "sym": "MRK",
+   "sym": "AAPL",
    "date": "2026-10-29",
-   "when": "before"
+   "when": null
+  },
+  {
+   "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": null
   },
   {
    "sym": "CVX",
