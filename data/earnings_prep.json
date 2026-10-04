@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "04/10/2026 07:46",
+  "updatedAt": "04/10/2026 08:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,6 +147,8 @@
      "ptPrev": 155.0
     }
    ],
+   "yahooDate": "2026-10-08",
+   "analystsAt": "2026-10-04T05:01+00:00",
    "price": {
     "close": 125.89,
     "date": "2026-10-02",
@@ -481,8 +483,6 @@
      "spy": 3.3
     }
    },
-   "analystsAt": "2026-10-03T23:01+00:00",
-   "yahooDate": "2026-10-08",
    "options": {
     "asOf": "02/10 22:46",
     "price": 125.725,
@@ -527,7 +527,7 @@
     "quarterEnd": "2026-09-30"
    },
    "revisions": {
-    "up30": 7,
+    "up30": 1,
     "down30": 0
    },
    "targets": {
@@ -637,6 +637,8 @@
      "ptPrev": 408.0
     }
    ],
+   "yahooDate": "2026-10-13",
+   "analystsAt": "2026-10-04T05:01+00:00",
    "price": {
     "close": 332.38,
     "date": "2026-10-02",
@@ -971,8 +973,6 @@
      "spy": 2.7
     }
    },
-   "analystsAt": "2026-10-03T23:01+00:00",
-   "yahooDate": "2026-10-13",
    "options": {
     "asOf": "02/10 22:46",
     "price": 332.34,
@@ -989,23 +989,18 @@
  ],
  "later": [
   {
-   "sym": "MSFT",
-   "date": "2026-10-27",
-   "when": null
-  },
-  {
    "sym": "SOFI",
    "date": "2026-10-27",
    "when": "before"
   },
   {
-   "sym": "GOOGL",
+   "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
+   "sym": "GOOGL",
+   "date": "2026-10-27",
    "when": null
   },
   {
@@ -1014,12 +1009,17 @@
    "when": "before"
   },
   {
-   "sym": "UBER",
-   "date": "2026-10-29",
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
-   "sym": "CUBE",
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
+   "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
   },
@@ -1034,14 +1034,14 @@
    "when": "before"
   },
   {
-   "sym": "AMZN",
+   "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "SNDK",
+   "sym": "CUBE",
    "date": "2026-10-29",
-   "when": "after"
+   "when": null
   },
   {
    "sym": "CVX",
