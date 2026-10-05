@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "06/10/2026 01:46",
+  "updatedAt": "06/10/2026 02:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,11 +147,13 @@
      "ptPrev": 145.0
     }
    ],
+   "yahooDate": "2026-10-08",
+   "analystsAt": "2026-10-05T23:01+00:00",
    "price": {
-    "close": 125.21,
+    "close": 125.65,
     "date": "2026-10-05",
     "high52": 170.49,
-    "ma50": 136.76,
+    "ma50": 136.77,
     "series": [
      [
       "2026-06-11",
@@ -471,17 +473,16 @@
      ],
      [
       "2026-10-05",
-      125.21
+      125.65
      ]
     ],
-    "off52": -26.6,
+    "off52": -26.3,
     "since": {
      "from": "2026-07-08",
-     "chg": -12.1
+     "chg": -11.8,
+     "spy": 3.9
     }
    },
-   "analystsAt": "2026-10-05T17:01+00:00",
-   "yahooDate": "2026-10-08",
    "options": {
     "asOf": "05/10 22:16",
     "price": 125.425,
@@ -582,6 +583,15 @@
    ],
    "actions": [
     {
+     "date": "2026-10-05",
+     "firm": "UBS",
+     "action": "main",
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 395.0,
+     "ptPrev": 400.0
+    },
+    {
      "date": "2026-09-28",
      "firm": "HSBC",
      "action": "main",
@@ -625,22 +635,15 @@
      "from": "Outperform",
      "pt": 368.0,
      "ptPrev": 360.0
-    },
-    {
-     "date": "2026-07-16",
-     "firm": "B of A Securities",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 420.0,
-     "ptPrev": 408.0
     }
    ],
+   "yahooDate": "2026-10-13",
+   "analystsAt": "2026-10-05T23:01+00:00",
    "price": {
-    "close": 333.23,
+    "close": 332.38,
     "date": "2026-10-05",
     "high52": 365.18,
-    "ma50": 351.84,
+    "ma50": 351.82,
     "series": [
      [
       "2026-06-11",
@@ -960,17 +963,16 @@
      ],
      [
       "2026-10-05",
-      333.23
+      332.38
      ]
     ],
-    "off52": -8.7,
+    "off52": -9.0,
     "since": {
      "from": "2026-07-13",
-     "chg": -0.4
+     "chg": -0.6,
+     "spy": 3.4
     }
    },
-   "analystsAt": "2026-10-05T17:01+00:00",
-   "yahooDate": "2026-10-13",
    "options": {
     "asOf": "05/10 22:16",
     "price": 332.745,
@@ -987,9 +989,9 @@
  ],
  "later": [
   {
-   "sym": "GOOGL",
+   "sym": "SOFI",
    "date": "2026-10-27",
-   "when": null
+   "when": "before"
   },
   {
    "sym": "MSFT",
@@ -997,9 +999,9 @@
    "when": null
   },
   {
-   "sym": "SOFI",
+   "sym": "GOOGL",
    "date": "2026-10-27",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "META",
@@ -1012,22 +1014,7 @@
    "when": "before"
   },
   {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
    "sym": "AMZN",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "UBER",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
@@ -1037,9 +1024,24 @@
    "when": "before"
   },
   {
+   "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
    "sym": "SNDK",
    "date": "2026-10-29",
    "when": "after"
+  },
+  {
+   "sym": "UBER",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "AAPL",
+   "date": "2026-10-29",
+   "when": null
   },
   {
    "sym": "CVX",
