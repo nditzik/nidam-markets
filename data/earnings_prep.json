@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "05/10/2026 08:01",
+  "updatedAt": "05/10/2026 08:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 155.0
     }
    ],
-   "yahooDate": "2026-10-08",
-   "analystsAt": "2026-10-05T05:01+00:00",
    "price": {
     "close": 125.89,
     "date": "2026-10-02",
@@ -483,6 +481,8 @@
      "spy": 3.3
     }
    },
+   "analystsAt": "2026-10-05T05:01+00:00",
+   "yahooDate": "2026-10-08",
    "options": {
     "asOf": "02/10 22:46",
     "price": 125.725,
@@ -510,8 +510,8 @@
     "logoBg": null
    },
    "tvConsensus": {
-    "eps": 5.91052,
-    "rev": 51099600223
+    "eps": 5.90492,
+    "rev": 51152951762
    },
    "consensus": {
     "eps": 5.9072,
@@ -637,8 +637,6 @@
      "ptPrev": 408.0
     }
    ],
-   "yahooDate": "2026-10-13",
-   "analystsAt": "2026-10-05T05:01+00:00",
    "price": {
     "close": 332.38,
     "date": "2026-10-02",
@@ -973,6 +971,8 @@
      "spy": 2.7
     }
    },
+   "analystsAt": "2026-10-05T05:01+00:00",
+   "yahooDate": "2026-10-13",
    "options": {
     "asOf": "02/10 22:46",
     "price": 332.34,
@@ -989,18 +989,23 @@
  ],
  "later": [
   {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
-  {
    "sym": "GOOGL",
    "date": "2026-10-27",
    "when": null
   },
   {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
+  },
+  {
    "sym": "MSFT",
    "date": "2026-10-27",
+   "when": null
+  },
+  {
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -1009,9 +1014,9 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
-   "when": null
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
   },
   {
    "sym": "CUBE",
@@ -1024,6 +1029,11 @@
    "when": null
   },
   {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
    "sym": "UBER",
    "date": "2026-10-29",
    "when": null
@@ -1032,16 +1042,6 @@
    "sym": "AAPL",
    "date": "2026-10-29",
    "when": null
-  },
-  {
-   "sym": "MRK",
-   "date": "2026-10-29",
-   "when": "before"
-  },
-  {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
   },
   {
    "sym": "CVX",
