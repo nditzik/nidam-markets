@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "06/10/2026 00:46",
+  "updatedAt": "06/10/2026 01:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -510,7 +510,7 @@
    },
    "tvConsensus": {
     "eps": 5.904518,
-    "rev": 51184838854
+    "rev": 51185300392
    },
    "consensus": {
     "eps": 5.9072,
@@ -987,18 +987,23 @@
  ],
  "later": [
   {
-   "sym": "GOOGL",
-   "date": "2026-10-27",
-   "when": null
-  },
-  {
    "sym": "SOFI",
    "date": "2026-10-27",
    "when": "before"
   },
   {
+   "sym": "GOOGL",
+   "date": "2026-10-27",
+   "when": null
+  },
+  {
    "sym": "MSFT",
    "date": "2026-10-27",
+   "when": null
+  },
+  {
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -1007,12 +1012,7 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
-   "when": null
-  },
-  {
-   "sym": "AMZN",
+   "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
@@ -1022,9 +1022,14 @@
    "when": "before"
   },
   {
-   "sym": "SNDK",
+   "sym": "AAPL",
    "date": "2026-10-29",
-   "when": "after"
+   "when": null
+  },
+  {
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
   },
   {
    "sym": "CUBE",
@@ -1032,14 +1037,9 @@
    "when": null
   },
   {
-   "sym": "UBER",
+   "sym": "SNDK",
    "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
+   "when": "after"
   },
   {
    "sym": "CVX",
