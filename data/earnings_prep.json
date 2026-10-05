@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "05/10/2026 18:46",
+  "updatedAt": "05/10/2026 19:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,8 +484,8 @@
    "analystsAt": "2026-10-05T11:01+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "05/10 18:46",
-    "price": 124.77,
+    "asOf": "05/10 19:01",
+    "price": 124.82,
     "exp": "2026-10-09",
     "strike": 125.0,
     "pct": 3.42,
@@ -974,14 +974,14 @@
    "analystsAt": "2026-10-05T11:01+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "05/10 18:46",
-    "price": 332.17,
+    "asOf": "05/10 19:01",
+    "price": 332.48,
     "exp": "2026-10-16",
     "strike": 332.5,
-    "pct": 4.22,
-    "earn": 3.17,
+    "pct": 4.18,
+    "earn": 3.18,
     "preExp": "2026-10-09",
-    "prePct": 1.97
+    "prePct": 1.92
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -989,18 +989,23 @@
  ],
  "later": [
   {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
-  {
    "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
   },
   {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
+  },
+  {
    "sym": "GOOGL",
    "date": "2026-10-27",
+   "when": null
+  },
+  {
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -1009,14 +1014,9 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
-   "when": null
-  },
-  {
-   "sym": "MRK",
+   "sym": "AAPL",
    "date": "2026-10-29",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "AMZN",
@@ -1024,12 +1024,7 @@
    "when": null
   },
   {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "CUBE",
+   "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
@@ -1039,7 +1034,12 @@
    "when": "after"
   },
   {
-   "sym": "UBER",
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
+  },
+  {
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
