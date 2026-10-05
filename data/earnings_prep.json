@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "05/10/2026 18:16",
+  "updatedAt": "05/10/2026 18:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,11 +484,11 @@
    "analystsAt": "2026-10-05T11:01+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "05/10 18:16",
-    "price": 124.715,
+    "asOf": "05/10 18:31",
+    "price": 124.695,
     "exp": "2026-10-09",
     "strike": 125.0,
-    "pct": 3.39,
+    "pct": 3.38,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -974,20 +974,25 @@
    "analystsAt": "2026-10-05T11:01+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "05/10 18:16",
-    "price": 331.63,
+    "asOf": "05/10 18:31",
+    "price": 332.055,
     "exp": "2026-10-16",
     "strike": 332.5,
-    "pct": 4.26,
-    "earn": 3.21,
+    "pct": 4.24,
+    "earn": 3.2,
     "preExp": "2026-10-09",
-    "prePct": 1.98
+    "prePct": 1.97
    },
    "avgMove": 2.4,
    "hasNote": true
   }
  ],
  "later": [
+  {
+   "sym": "GOOGL",
+   "date": "2026-10-27",
+   "when": null
+  },
   {
    "sym": "SOFI",
    "date": "2026-10-27",
@@ -999,8 +1004,8 @@
    "when": null
   },
   {
-   "sym": "GOOGL",
-   "date": "2026-10-27",
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -1009,17 +1014,12 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
+   "sym": "AAPL",
+   "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
-   "sym": "AMZN",
+   "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
@@ -1029,17 +1029,17 @@
    "when": "before"
   },
   {
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
    "sym": "CUBE",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
