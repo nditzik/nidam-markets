@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "06/10/2026 07:46",
+  "updatedAt": "06/10/2026 08:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -24,15 +24,15 @@
     "rev": 24957200647
    },
    "consensus": {
-    "eps": 2.29642,
+    "eps": 2.29584,
     "epsLow": 2.26,
     "epsHigh": 2.33,
     "epsN": 17,
     "epsYearAgo": 2.29,
-    "rev": 24969941630,
+    "rev": 24950437460,
     "revLow": 24642820000,
     "revHigh": 25324500000,
-    "revN": 15,
+    "revN": 14,
     "revYearAgo": 23937000000,
     "quarterEnd": "2026-09-30"
    },
@@ -41,7 +41,7 @@
     "down30": 2
    },
    "targets": {
-    "mean": 149.36365,
+    "mean": 149.13635,
     "high": 180.0,
     "low": 124.0,
     "n": 22
@@ -147,6 +147,8 @@
      "ptPrev": 145.0
     }
    ],
+   "yahooDate": "2026-10-08",
+   "analystsAt": "2026-10-06T05:01+00:00",
    "price": {
     "close": 125.65,
     "date": "2026-10-05",
@@ -481,8 +483,6 @@
      "spy": 3.9
     }
    },
-   "analystsAt": "2026-10-05T23:01+00:00",
-   "yahooDate": "2026-10-08",
    "options": {
     "asOf": "05/10 22:16",
     "price": 125.425,
@@ -514,12 +514,12 @@
     "rev": 51185300392
    },
    "consensus": {
-    "eps": 5.9072,
+    "eps": 5.90654,
     "epsLow": 5.59,
     "epsHigh": 6.23,
     "epsN": 11,
     "epsYearAgo": 5.07,
-    "rev": 51109322200,
+    "rev": 51150775420,
     "revLow": 50338000000,
     "revHigh": 52491453000,
     "revN": 10,
@@ -531,7 +531,7 @@
     "down30": 1
    },
    "targets": {
-    "mean": 374.0,
+    "mean": 372.8095,
     "high": 420.0,
     "low": 305.0,
     "n": 21
@@ -637,6 +637,8 @@
      "ptPrev": 360.0
     }
    ],
+   "yahooDate": "2026-10-13",
+   "analystsAt": "2026-10-06T05:01+00:00",
    "price": {
     "close": 332.38,
     "date": "2026-10-05",
@@ -971,8 +973,6 @@
      "spy": 3.4
     }
    },
-   "analystsAt": "2026-10-05T23:01+00:00",
-   "yahooDate": "2026-10-13",
    "options": {
     "asOf": "05/10 22:16",
     "price": 332.745,
@@ -989,9 +989,9 @@
  ],
  "later": [
   {
-   "sym": "GOOGL",
+   "sym": "SOFI",
    "date": "2026-10-27",
-   "when": null
+   "when": "before"
   },
   {
    "sym": "MSFT",
@@ -999,9 +999,9 @@
    "when": null
   },
   {
-   "sym": "SOFI",
+   "sym": "GOOGL",
    "date": "2026-10-27",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "BSX",
@@ -1014,6 +1014,11 @@
    "when": null
   },
   {
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
+  },
+  {
    "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
@@ -1024,7 +1029,7 @@
    "when": "after"
   },
   {
-   "sym": "CUBE",
+   "sym": "AAPL",
    "date": "2026-10-29",
    "when": null
   },
@@ -1034,12 +1039,7 @@
    "when": null
   },
   {
-   "sym": "MRK",
-   "date": "2026-10-29",
-   "when": "before"
-  },
-  {
-   "sym": "AAPL",
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
