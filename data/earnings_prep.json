@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "06/10/2026 19:46",
+  "updatedAt": "06/10/2026 20:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -93,6 +93,15 @@
    ],
    "actions": [
     {
+     "date": "2026-10-06",
+     "firm": "RBC Capital",
+     "action": "main",
+     "grade": "Sector Perform",
+     "from": "Sector Perform",
+     "pt": 150.0,
+     "ptPrev": 161.0
+    },
+    {
      "date": "2026-10-05",
      "firm": "Wells Fargo",
      "action": "main",
@@ -136,27 +145,16 @@
      "from": "Overweight",
      "pt": 138.0,
      "ptPrev": 170.0
-    },
-    {
-     "date": "2026-09-28",
-     "firm": "TD Cowen",
-     "action": "main",
-     "grade": "Hold",
-     "from": "Hold",
-     "pt": 133.0,
-     "ptPrev": 145.0
     }
    ],
+   "yahooDate": "2026-10-08",
+   "analystsAt": "2026-10-06T17:01+00:00",
    "price": {
-    "close": 125.65,
-    "date": "2026-10-05",
+    "close": 126.73,
+    "date": "2026-10-06",
     "high52": 170.49,
-    "ma50": 136.77,
+    "ma50": 136.51,
     "series": [
-     [
-      "2026-06-11",
-      143.73
-     ],
      [
       "2026-06-12",
       144.27
@@ -472,23 +470,24 @@
      [
       "2026-10-05",
       125.65
+     ],
+     [
+      "2026-10-06",
+      126.73
      ]
     ],
-    "off52": -26.3,
+    "off52": -25.7,
     "since": {
      "from": "2026-07-08",
-     "chg": -11.8,
-     "spy": 3.9
+     "chg": -11.1
     }
    },
-   "analystsAt": "2026-10-06T11:01+00:00",
-   "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "06/10 19:46",
-    "price": 126.935,
+    "asOf": "06/10 20:01",
+    "price": 126.73,
     "exp": "2026-10-09",
     "strike": 127.0,
-    "pct": 3.38,
+    "pct": 3.36,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -637,16 +636,14 @@
      "ptPrev": 360.0
     }
    ],
+   "yahooDate": "2026-10-13",
+   "analystsAt": "2026-10-06T17:01+00:00",
    "price": {
-    "close": 332.38,
-    "date": "2026-10-05",
+    "close": 331.07,
+    "date": "2026-10-06",
     "high52": 365.18,
-    "ma50": 351.82,
+    "ma50": 351.32,
     "series": [
-     [
-      "2026-06-11",
-      313.49
-     ],
      [
       "2026-06-12",
       320.72
@@ -962,26 +959,27 @@
      [
       "2026-10-05",
       332.38
+     ],
+     [
+      "2026-10-06",
+      331.07
      ]
     ],
-    "off52": -9.0,
+    "off52": -9.3,
     "since": {
      "from": "2026-07-13",
-     "chg": -0.6,
-     "spy": 3.4
+     "chg": -1.0
     }
    },
-   "analystsAt": "2026-10-06T11:01+00:00",
-   "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "06/10 19:46",
-    "price": 331.5,
+    "asOf": "06/10 20:01",
+    "price": 331.07,
     "exp": "2026-10-16",
-    "strike": 332.5,
-    "pct": 4.1,
-    "earn": 3.1,
+    "strike": 330.0,
+    "pct": 4.14,
+    "earn": 3.05,
     "preExp": "2026-10-09",
-    "prePct": 1.76
+    "prePct": 1.83
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -994,14 +992,14 @@
    "when": null
   },
   {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
-  {
    "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
+  },
+  {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
   },
   {
    "sym": "BSX",
@@ -1014,26 +1012,6 @@
    "when": null
   },
   {
-   "sym": "MRK",
-   "date": "2026-10-29",
-   "when": "before"
-  },
-  {
-   "sym": "CUBE",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AMZN",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
    "sym": "UBER",
    "date": "2026-10-29",
    "when": null
@@ -1042,6 +1020,26 @@
    "sym": "SNDK",
    "date": "2026-10-29",
    "when": "after"
+  },
+  {
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
+  },
+  {
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "AAPL",
+   "date": "2026-10-29",
+   "when": null
   },
   {
    "sym": "CVX",
