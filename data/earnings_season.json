@@ -180,25 +180,31 @@
   }
  ],
  "total": 454,
- "reported": 0,
+ "reported": 1,
  "members": 504,
  "board": {
-  "reported": 0,
-  "epsN": 0,
-  "epsBeat": 0,
-  "epsBeatPct": null,
-  "revN": 0,
-  "revBeat": 0,
-  "revBeatPct": null,
+  "reported": 1,
+  "epsN": 1,
+  "epsBeat": 1,
+  "epsBeatPct": 100,
+  "revN": 1,
+  "revBeat": 1,
+  "revBeatPct": 100,
   "reactBeat": null,
   "reactBeatN": 0,
   "reactMiss": null,
   "reactMissN": 0,
-  "sectors": [],
+  "sectors": [
+   {
+    "name": "צריכה בסיסית",
+    "n": 1,
+    "beat": 1
+   }
+  ],
   "movers": []
  },
  "_meta": {
-  "updatedAt": "06/10/2026 17:16",
+  "updatedAt": "06/10/2026 18:31",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
