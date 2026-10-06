@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "06/10/2026 20:16",
+  "updatedAt": "06/10/2026 20:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -483,11 +483,11 @@
    "analystsAt": "2026-10-06T17:01+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "06/10 20:16",
-    "price": 126.06,
+    "asOf": "06/10 20:31",
+    "price": 125.37,
     "exp": "2026-10-09",
-    "strike": 126.0,
-    "pct": 3.49,
+    "strike": 125.0,
+    "pct": 3.46,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -972,14 +972,14 @@
    "analystsAt": "2026-10-06T17:01+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "06/10 20:16",
-    "price": 331.38,
+    "asOf": "06/10 20:31",
+    "price": 331.58,
     "exp": "2026-10-16",
     "strike": 332.5,
-    "pct": 4.1,
-    "earn": 3.07,
+    "pct": 4.07,
+    "earn": 3.08,
     "preExp": "2026-10-09",
-    "prePct": 1.78
+    "prePct": 1.74
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -1017,14 +1017,19 @@
    "when": null
   },
   {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
    "sym": "UBER",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "MRK",
+   "sym": "AAPL",
    "date": "2026-10-29",
-   "when": "before"
+   "when": null
   },
   {
    "sym": "AMZN",
@@ -1032,14 +1037,9 @@
    "when": null
   },
   {
-   "sym": "SNDK",
+   "sym": "MRK",
    "date": "2026-10-29",
-   "when": "after"
-  },
-  {
-   "sym": "AAPL",
-   "date": "2026-10-29",
-   "when": null
+   "when": "before"
   },
   {
    "sym": "CVX",
