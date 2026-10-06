@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np112";
+  var TA_VER = "np113";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -2091,6 +2091,21 @@
       (l.state === "red" ? ' · <span class="num" dir="ltr">' + Number(l.spxOffHigh).toFixed(1) + "%</span> מהשיא" : "") + "</small></span></div>";
   }
 
+  /* np113 (6.10.2026, איציק): יום המסחר שהמד מתייחס אליו — מתחת לכותרת המד, כדי שיהיה ברור
+     שהוא מסונכרן עם המדדים. "לא עודכן" רק כשהסגירה האחרונה כבר בת 10 שעות ויותר (הדשבורד
+     של סגירת אמש מגיע בבוקר, ~05:15) והמד עדיין על יום קודם. */
+  var MD_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  function meterDayHtml(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
+    if (!m) return "";
+    var dt = new Date(+m[1], +m[2] - 1, +m[3]);
+    var now = new Date(), c = new Date(now);
+    if (!(tradingDay(c) && c >= atTime(c, closeT(c)))) { do { c.setDate(c.getDate() - 1); } while (!tradingDay(c)); }
+    var lastClose = atTime(c, closeT(c)), stale = dayKey(dt) < dayKey(c) && (now - lastClose) > 10 * 3600e3;
+    return '<div class="np-meter-day">נכון לסגירת יום ' + MD_DOW[dt.getDay()] + ' · <b class="num" dir="ltr">' + fmtTradeDate(iso) + "</b>" +
+      (stale ? ' <span class="np-meter-stale" title="נתוני הסגירה של ' + c.getDate() + "." + (c.getMonth() + 1) + ' עוד לא הגיעו לדשבורד">· לא עודכן</span>' : "") + "</div>";
+  }
+
   // ─ רייל המד ─ (פונקציה נפרדת: קודם רץ רק בענף-הנפילה, והרייל נעלם אם ניתוח
   // Claude נטען לפני indices — עכשיו מרונדר תמיד, מכל קריאת renderLead)
   function renderLeadRail(d) {
@@ -2104,6 +2119,7 @@
     }
     rail.innerHTML =
       '<span class="np-k">The Edge Meter · מד השוק היומי</span>' +
+      meterDayHtml(d.date) +
       '<div class="np-score"><b class="num" style="color:' + w[1] + '">' + (s.combined != null ? s.combined : "—") + "</b>" +
         '<span style="color:' + w[1] + '">' + w[0] + "</span></div>" +
       '<svg class="meter-spark np-spark" id="meter-spark" viewBox="0 0 120 30" preserveAspectRatio="none" style="cursor:pointer" role="link" aria-label="לגרף המלא בטאב מדדים" onclick="__goTab(\'indices\');var m=document.getElementById(\'meter-timeline\');if(m)m.scrollIntoView({behavior:\'smooth\',block:\'start\'});"></svg>' +

@@ -733,6 +733,9 @@ body { background-image: none; background-color: var(--bg); }
 .np-score b { font-size: 3rem; font-weight: 700; line-height: 1; }
 .np-score span { font-weight: 700; }
 .np-spark { width: 100%; height: 40px; margin: 8px 0 4px; }
+.np-meter-day { font-size: .76rem; color: var(--text-3); margin: 4px 0 2px; }
+.np-meter-day b { color: var(--text); font-weight: 600; }
+.np-meter-stale { color: var(--down); font-weight: 600; }
 .np-rail .spark-label { font-size: .72rem; color: var(--text-3); margin-bottom: 10px; }
 .np-sub { display: flex; justify-content: space-between; align-items: baseline; font-size: .88rem; padding: 7px 0; border-bottom: 1px solid var(--paper-hair); }
 .np-sub .diff { font-size: .74rem; }
