@@ -5,32 +5,6 @@
   "reactions": {
     "days": [
       {
-        "date": "2026-10-02",
-        "label": "2.10",
-        "items": [
-          {
-            "ticker": "TSLA",
-            "name": "Tesla, Inc.",
-            "when": "before",
-            "status": "final",
-            "chg": 4.65,
-            "price": 370.59,
-            "reactDate": "2026-10-02",
-            "baseDate": "2026-10-01"
-          },
-          {
-            "ticker": "RIVN",
-            "name": "Rivian Automotive, Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "chg": -3.12,
-            "price": 14.3,
-            "reactDate": "2026-10-02",
-            "baseDate": "2026-10-01"
-          }
-        ]
-      },
-      {
         "date": "2026-10-01",
         "label": "1.10",
         "items": [
@@ -131,6 +105,42 @@
             "baseDate": "2026-09-29"
           }
         ]
+      },
+      {
+        "date": "2026-09-29",
+        "label": "29.9",
+        "items": [
+          {
+            "ticker": "CCL",
+            "name": "Carnival Corporation Ltd.",
+            "when": "before",
+            "status": "final",
+            "chg": 13.41,
+            "price": 25.11,
+            "reactDate": "2026-09-29",
+            "baseDate": "2026-09-28"
+          },
+          {
+            "ticker": "KMX",
+            "name": "CarMax, Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": 4.74,
+            "price": 59.23,
+            "reactDate": "2026-09-29",
+            "baseDate": "2026-09-28"
+          },
+          {
+            "ticker": "UEC",
+            "name": "Uranium Energy Corp.",
+            "when": "before",
+            "status": "final",
+            "chg": 0.87,
+            "price": 9.29,
+            "reactDate": "2026-09-29",
+            "baseDate": "2026-09-28"
+          }
+        ]
       }
     ]
   },
@@ -206,12 +216,11 @@
       "date": "2026-10-08",
       "label": "8/10",
       "dow": "ה׳",
-      "count": 4,
+      "count": 3,
       "tickers": [
         "PEP",
         "PGR",
-        "NG",
-        "KARO"
+        "NG"
       ]
     },
     {
@@ -297,7 +306,7 @@
       "date": "2026-10-08",
       "dow": "חמישי",
       "label": "8.10",
-      "total": 4,
+      "total": 3,
       "companies": [
         {
           "ticker": "PEP",
@@ -310,10 +319,6 @@
         {
           "ticker": "NG",
           "name": "Novagold Resources Inc"
-        },
-        {
-          "ticker": "KARO",
-          "name": "Karooooo Ltd."
         }
       ]
     },
@@ -349,29 +354,28 @@
     "PEP": "2026-10-08",
     "PGR": "2026-10-08",
     "NG": "2026-10-08",
-    "KARO": "2026-10-08",
     "DAL": "2026-10-09",
     "NRIX": "2026-10-09",
     "JPM": "2026-10-13",
-    "JPM/PK": "2026-10-13",
-    "JPM/PD": "2026-10-13",
-    "JPM/PM": "2026-10-13",
-    "JPM/PC": "2026-10-13",
     "JPM/PL": "2026-10-13",
     "JPM/PJ": "2026-10-13",
+    "JPM/PD": "2026-10-13",
+    "JPM/PK": "2026-10-13",
+    "JPM/PM": "2026-10-13",
+    "JPM/PC": "2026-10-13",
     "JNJ": "2026-10-13",
     "UNH": "2026-10-13",
-    "GS/PD": "2026-10-13",
     "GS": "2026-10-13",
-    "GS/PC": "2026-10-13",
     "GS/PA": "2026-10-13",
+    "GS/PC": "2026-10-13",
+    "GS/PD": "2026-10-13",
     "WFC": "2026-10-13",
+    "WFC/PD": "2026-10-13",
     "WFC/PY": "2026-10-13",
+    "WFC/PA": "2026-10-13",
     "WFC/PC": "2026-10-13",
     "WFC/PL": "2026-10-13",
-    "WFC/PA": "2026-10-13",
     "WFC/PZ": "2026-10-13",
-    "WFC/PD": "2026-10-13",
     "C": "2026-10-13",
     "C/PR": "2026-10-13",
     "DPZ": "2026-10-13",
@@ -380,7 +384,7 @@
     "FBK": "2026-10-13"
   },
   "_meta": {
-    "updatedAt": "06/10/2026 16:01",
+    "updatedAt": "06/10/2026 16:16",
     "source": "tradingview"
   }
 }
