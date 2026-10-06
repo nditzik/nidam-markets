@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "06/10/2026 13:46",
+  "updatedAt": "06/10/2026 14:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,6 +147,8 @@
      "ptPrev": 145.0
     }
    ],
+   "yahooDate": "2026-10-08",
+   "analystsAt": "2026-10-06T11:01+00:00",
    "price": {
     "close": 125.65,
     "date": "2026-10-05",
@@ -481,8 +483,6 @@
      "spy": 3.9
     }
    },
-   "analystsAt": "2026-10-06T05:01+00:00",
-   "yahooDate": "2026-10-08",
    "options": {
     "asOf": "05/10 22:16",
     "price": 125.425,
@@ -637,6 +637,8 @@
      "ptPrev": 360.0
     }
    ],
+   "yahooDate": "2026-10-13",
+   "analystsAt": "2026-10-06T11:01+00:00",
    "price": {
     "close": 332.38,
     "date": "2026-10-05",
@@ -971,8 +973,6 @@
      "spy": 3.4
     }
    },
-   "analystsAt": "2026-10-06T05:01+00:00",
-   "yahooDate": "2026-10-13",
    "options": {
     "asOf": "05/10 22:16",
     "price": 332.745,
@@ -989,14 +989,14 @@
  ],
  "later": [
   {
-   "sym": "GOOGL",
-   "date": "2026-10-27",
-   "when": null
-  },
-  {
    "sym": "SOFI",
    "date": "2026-10-27",
    "when": "before"
+  },
+  {
+   "sym": "GOOGL",
+   "date": "2026-10-27",
+   "when": null
   },
   {
    "sym": "MSFT",
@@ -1004,14 +1004,19 @@
    "when": null
   },
   {
+   "sym": "BSX",
+   "date": "2026-10-28",
+   "when": "before"
+  },
+  {
    "sym": "META",
    "date": "2026-10-28",
    "when": null
   },
   {
-   "sym": "BSX",
-   "date": "2026-10-28",
-   "when": "before"
+   "sym": "UBER",
+   "date": "2026-10-29",
+   "when": null
   },
   {
    "sym": "MRK",
@@ -1024,16 +1029,6 @@
    "when": null
   },
   {
-   "sym": "UBER",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
    "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
@@ -1042,6 +1037,11 @@
    "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
+  },
+  {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
   },
   {
    "sym": "CVX",
