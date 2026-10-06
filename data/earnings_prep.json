@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "06/10/2026 17:31",
+  "updatedAt": "06/10/2026 17:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,11 +484,11 @@
    "analystsAt": "2026-10-06T11:01+00:00",
    "yahooDate": "2026-10-08",
    "options": {
-    "asOf": "06/10 17:31",
-    "price": 126.49,
+    "asOf": "06/10 17:46",
+    "price": 126.8,
     "exp": "2026-10-09",
-    "strike": 126.0,
-    "pct": 3.45,
+    "strike": 127.0,
+    "pct": 3.46,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -974,14 +974,14 @@
    "analystsAt": "2026-10-06T11:01+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "06/10 17:31",
-    "price": 332.512,
+    "asOf": "06/10 17:46",
+    "price": 332.485,
     "exp": "2026-10-16",
     "strike": 332.5,
     "pct": 4.12,
-    "earn": 3.07,
+    "earn": 3.17,
     "preExp": "2026-10-09",
-    "prePct": 1.8
+    "prePct": 1.72
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -989,14 +989,14 @@
  ],
  "later": [
   {
-   "sym": "GOOGL",
-   "date": "2026-10-27",
-   "when": null
-  },
-  {
    "sym": "SOFI",
    "date": "2026-10-27",
    "when": "before"
+  },
+  {
+   "sym": "GOOGL",
+   "date": "2026-10-27",
+   "when": null
   },
   {
    "sym": "MSFT",
@@ -1004,24 +1004,14 @@
    "when": null
   },
   {
-   "sym": "BSX",
-   "date": "2026-10-28",
-   "when": "before"
-  },
-  {
    "sym": "META",
    "date": "2026-10-28",
    "when": null
   },
   {
-   "sym": "MRK",
-   "date": "2026-10-29",
+   "sym": "BSX",
+   "date": "2026-10-28",
    "when": "before"
-  },
-  {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
   },
   {
    "sym": "AMZN",
@@ -1034,14 +1024,24 @@
    "when": null
   },
   {
+   "sym": "UBER",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "MRK",
+   "date": "2026-10-29",
+   "when": "before"
+  },
+  {
    "sym": "CUBE",
    "date": "2026-10-29",
    "when": null
   },
   {
-   "sym": "UBER",
+   "sym": "SNDK",
    "date": "2026-10-29",
-   "when": null
+   "when": "after"
   },
   {
    "sym": "CVX",
