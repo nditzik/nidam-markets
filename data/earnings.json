@@ -170,16 +170,16 @@
       "logo": "data/earnings/logos/LW.png"
     },
     {
-      "ticker": "AEHR",
-      "name": "Aehr Test Systems",
-      "when": "",
-      "logo": "data/earnings/logos/AEHR.png"
-    },
-    {
       "ticker": "PENG",
       "name": "Penguin Solutions Incorporation",
       "when": "after",
       "logo": "data/earnings/logos/PENG.png"
+    },
+    {
+      "ticker": "AEHR",
+      "name": "Aehr Test Systems",
+      "when": "",
+      "logo": "data/earnings/logos/AEHR.png"
     },
     {
       "ticker": "CHRN",
@@ -259,12 +259,12 @@
           "name": "Lamb Weston Holdings, Inc."
         },
         {
-          "ticker": "AEHR",
-          "name": "Aehr Test Systems"
-        },
-        {
           "ticker": "PENG",
           "name": "Penguin Solutions Incorporation"
+        },
+        {
+          "ticker": "AEHR",
+          "name": "Aehr Test Systems"
         },
         {
           "ticker": "CHRN",
@@ -334,8 +334,8 @@
     "RPM": "2026-10-06",
     "VFS": "2026-10-06",
     "LW": "2026-10-06",
-    "AEHR": "2026-10-06",
     "PENG": "2026-10-06",
+    "AEHR": "2026-10-06",
     "CHRN": "2026-10-06",
     "NEOG": "2026-10-06",
     "LEVI": "2026-10-07",
@@ -345,26 +345,26 @@
     "NG": "2026-10-08",
     "DAL": "2026-10-09",
     "NRIX": "2026-10-09",
-    "JPM/PM": "2026-10-13",
-    "JPM/PC": "2026-10-13",
     "JPM/PD": "2026-10-13",
-    "JPM/PJ": "2026-10-13",
+    "JPM/PC": "2026-10-13",
     "JPM/PK": "2026-10-13",
+    "JPM/PJ": "2026-10-13",
+    "JPM/PM": "2026-10-13",
     "JPM/PL": "2026-10-13",
     "JPM": "2026-10-13",
     "JNJ": "2026-10-13",
     "UNH": "2026-10-13",
     "GS": "2026-10-13",
-    "GS/PA": "2026-10-13",
     "GS/PD": "2026-10-13",
     "GS/PC": "2026-10-13",
-    "WFC/PL": "2026-10-13",
-    "WFC/PY": "2026-10-13",
-    "WFC/PD": "2026-10-13",
+    "GS/PA": "2026-10-13",
+    "WFC": "2026-10-13",
     "WFC/PA": "2026-10-13",
+    "WFC/PD": "2026-10-13",
+    "WFC/PY": "2026-10-13",
     "WFC/PC": "2026-10-13",
     "WFC/PZ": "2026-10-13",
-    "WFC": "2026-10-13",
+    "WFC/PL": "2026-10-13",
     "C/PR": "2026-10-13",
     "C": "2026-10-13",
     "DPZ": "2026-10-13",
@@ -373,7 +373,7 @@
     "FBK": "2026-10-13"
   },
   "_meta": {
-    "updatedAt": "06/10/2026 22:16",
+    "updatedAt": "06/10/2026 22:31",
     "source": "tradingview"
   }
 }
