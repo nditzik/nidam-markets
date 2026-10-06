@@ -75,6 +75,72 @@
             "baseDate": "2026-09-30"
           }
         ]
+      },
+      {
+        "date": "2026-09-30",
+        "label": "30.9",
+        "items": [
+          {
+            "ticker": "MU",
+            "name": "Micron Technology, Inc.",
+            "when": "after",
+            "status": "final",
+            "chg": 3.03,
+            "price": 1097.39,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
+          },
+          {
+            "ticker": "JBL",
+            "name": "Jabil Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": -10.03,
+            "price": 286.86,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
+          },
+          {
+            "ticker": "FDS",
+            "name": "FactSet Research Systems Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": 3.84,
+            "price": 269.95,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
+          },
+          {
+            "ticker": "CAG",
+            "name": "Conagra Brands, Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": -4.88,
+            "price": 13.44,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
+          },
+          {
+            "ticker": "CALM",
+            "name": "Cal-Maine Foods, Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": -0.71,
+            "price": 68.06,
+            "reactDate": "2026-09-30",
+            "baseDate": "2026-09-29"
+          },
+          {
+            "ticker": "PRGS",
+            "name": "Progress Software Corporation",
+            "when": "after",
+            "status": "final",
+            "chg": -8.48,
+            "price": 36.58,
+            "reactDate": "2026-10-01",
+            "baseDate": "2026-09-30"
+          }
+        ]
       }
     ]
   },
@@ -169,13 +235,8 @@
       "date": "2026-10-05",
       "dow": "שני",
       "label": "5.10",
-      "total": 1,
-      "companies": [
-        {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd."
-        }
-      ]
+      "total": 0,
+      "companies": []
     },
     {
       "date": "2026-10-06",
@@ -297,24 +358,24 @@
     "DAL": "2026-10-09",
     "NRIX": "2026-10-09",
     "JPM": "2026-10-13",
-    "JPM/PC": "2026-10-13",
-    "JPM/PJ": "2026-10-13",
     "JPM/PK": "2026-10-13",
-    "JPM/PL": "2026-10-13",
-    "JPM/PM": "2026-10-13",
     "JPM/PD": "2026-10-13",
+    "JPM/PM": "2026-10-13",
+    "JPM/PC": "2026-10-13",
+    "JPM/PL": "2026-10-13",
+    "JPM/PJ": "2026-10-13",
     "JNJ": "2026-10-13",
     "UNH": "2026-10-13",
     "GS/PC": "2026-10-13",
-    "GS/PD": "2026-10-13",
     "GS/PA": "2026-10-13",
+    "GS/PD": "2026-10-13",
     "GS": "2026-10-13",
     "WFC": "2026-10-13",
+    "WFC/PD": "2026-10-13",
+    "WFC/PY": "2026-10-13",
     "WFC/PL": "2026-10-13",
     "WFC/PZ": "2026-10-13",
-    "WFC/PD": "2026-10-13",
     "WFC/PA": "2026-10-13",
-    "WFC/PY": "2026-10-13",
     "WFC/PC": "2026-10-13",
     "C": "2026-10-13",
     "C/PR": "2026-10-13",
@@ -324,7 +385,7 @@
     "FBK": "2026-10-13"
   },
   "_meta": {
-    "updatedAt": "06/10/2026 03:01",
+    "updatedAt": "06/10/2026 03:15",
     "source": "tradingview"
   }
 }
