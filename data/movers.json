@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "updatedAt": "08/10/2026 00:01",
+    "updatedAt": "08/10/2026 00:16",
     "source": "TradingView",
     "session": "post",
     "live": "אחרי הסגירה · חי"
@@ -9,9 +9,16 @@
     {
       "symbol": "WOLF",
       "name": "Wolfspeed Inc",
-      "price": 39.23,
-      "chg": 25.06,
-      "vol": 2379946
+      "price": 39.84,
+      "chg": 27.0,
+      "vol": 2668930
+    },
+    {
+      "symbol": "PROF",
+      "name": "Profound Medical Corp",
+      "price": 6.65,
+      "chg": 17.08,
+      "vol": 107205
     },
     {
       "symbol": "SVIA",
@@ -21,6 +28,13 @@
       "vol": 115510
     },
     {
+      "symbol": "APLD",
+      "name": "Applied Digital Corporation",
+      "price": 24.44,
+      "chg": 2.66,
+      "vol": 8446993
+    },
+    {
       "symbol": "GMED",
       "name": "Globus Medical Inc Class A",
       "price": 75.71,
@@ -28,28 +42,35 @@
       "vol": 397763
     },
     {
-      "symbol": "CIM",
-      "name": "Chimera Investment Corporation",
-      "price": 9.19,
-      "chg": 2.53,
-      "vol": 142302
-    },
-    {
-      "symbol": "LTGO",
-      "name": "Latigo Biotherapeutics, Inc.",
-      "price": 15.89,
-      "chg": 2.38,
-      "vol": 123932
-    },
-    {
-      "symbol": "IRD",
-      "name": "Opus Genetics, Inc.",
-      "price": 4.51,
-      "chg": 2.27,
-      "vol": 128752
+      "symbol": "RELL",
+      "name": "Richardson Electronics, Ltd.",
+      "price": 20.53,
+      "chg": 2.65,
+      "vol": 332125
     }
   ],
   "losers": [
+    {
+      "symbol": "MIR",
+      "name": "Mirion Technologies, Inc. Class A",
+      "price": 15.81,
+      "chg": -3.91,
+      "vol": 520136
+    },
+    {
+      "symbol": "ALHC",
+      "name": "Alignment Healthcare, Inc.",
+      "price": 8.25,
+      "chg": -3.51,
+      "vol": 1055743
+    },
+    {
+      "symbol": "AAON",
+      "name": "AAON, Inc.",
+      "price": 84.33,
+      "chg": -3.21,
+      "vol": 168587
+    },
     {
       "symbol": "UPBD",
       "name": "Upbound Group, Inc.",
@@ -70,71 +91,50 @@
       "price": 266.09,
       "chg": -2.37,
       "vol": 216239
-    },
-    {
-      "symbol": "LASR",
-      "name": "nLIGHT, Inc.",
-      "price": 39,
-      "chg": -2.21,
-      "vol": 312165
-    },
-    {
-      "symbol": "KYMR",
-      "name": "Kymera Therapeutics, Inc.",
-      "price": 106,
-      "chg": -2.17,
-      "vol": 143083
-    },
-    {
-      "symbol": "FE",
-      "name": "FirstEnergy Corp.",
-      "price": 43.69,
-      "chg": -2.0,
-      "vol": 786014
     }
   ],
   "active": [
     {
       "symbol": "FRSH",
       "name": "Freshworks, Inc. Class A",
-      "price": 13.38,
-      "chg": -1.62,
-      "vol": 23815449
+      "price": 13.4,
+      "chg": -1.47,
+      "vol": 23815649
     },
     {
       "symbol": "NVDA",
       "name": "NVIDIA Corporation",
-      "price": 237.5,
-      "chg": 0.01,
-      "vol": 10544590
-    },
-    {
-      "symbol": "BMNR",
-      "name": "BitMine Immersion Technologies Inc",
-      "price": 24.8,
-      "chg": 0.55,
-      "vol": 8350119
-    },
-    {
-      "symbol": "MDT",
-      "name": "Medtronic Plc",
-      "price": 85.51,
-      "chg": 0,
-      "vol": 8285272
-    },
-    {
-      "symbol": "HBAN",
-      "name": "Huntington Bancshares Incorporated",
-      "price": 15.2,
-      "chg": 0.2,
-      "vol": 7742268
+      "price": 237.57,
+      "chg": 0.04,
+      "vol": 10570901
     },
     {
       "symbol": "APLD",
       "name": "Applied Digital Corporation",
-      "price": 24.1,
-      "chg": 1.22,
-      "vol": 7193905
+      "price": 24.44,
+      "chg": 2.66,
+      "vol": 8446993
+    },
+    {
+      "symbol": "BMNR",
+      "name": "BitMine Immersion Technologies Inc",
+      "price": 24.85,
+      "chg": 0.77,
+      "vol": 8378777
+    },
+    {
+      "symbol": "MDT",
+      "name": "Medtronic Plc",
+      "price": 85.65,
+      "chg": 0.16,
+      "vol": 8285572
+    },
+    {
+      "symbol": "HBAN",
+      "name": "Huntington Bancshares Incorporated",
+      "price": 15.25,
+      "chg": 0.53,
+      "vol": 7745268
     }
   ]
 }
