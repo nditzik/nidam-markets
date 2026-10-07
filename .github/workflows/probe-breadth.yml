@@ -1,0 +1,36 @@
+name: Probe breadth history (one-off)
+
+# בדיקה חד-פעמית (7.10.2026): רוחב השוק מ-2005 (סוף 2021 מול היום). יימחק אחרי הבדיקה.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-breadth.yml"
+      - "scripts/tools/probe_breadth_history.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/tools/probe_breadth_history.py
+      - name: Commit result
+        run: |
+          git config user.name "nidam-markets-bot"
+          git config user.email "actions@github.com"
+          git add scripts/tools/out/breadth_history.json
+          git commit -m "probe: היסטוריית רוחב השוק מ-2005 (בדיקה חד-פעמית)"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            git pull --rebase origin main || true
+            sleep 4
+          done
+          exit 1
