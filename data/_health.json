@@ -1,54 +1,54 @@
 {
-  "generatedAt": "07/10/2026 23:47",
+  "generatedAt": "08/10/2026 00:02",
   "today": [
-    {
-      "label": "תדרוך בוקר",
-      "tab": "briefing",
-      "time": "06:03",
-      "arrived": true
-    },
-    {
-      "label": "Barchart בוקר",
-      "tab": "morning",
-      "time": "06:10",
-      "arrived": true
-    },
-    {
-      "label": "מועמדים",
-      "tab": "candidates",
-      "time": "06:21",
-      "arrived": true
-    },
-    {
-      "label": "Barchart טרום מסחר",
-      "tab": "morning",
-      "time": "14:16",
-      "arrived": true
-    },
-    {
-      "label": "תדרוך אחה\"צ",
-      "tab": "briefing",
-      "time": "15:04",
-      "arrived": true
-    },
     {
       "label": "מדדים",
       "tab": "indices",
-      "time": "23:45",
+      "time": "00:00",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "23:45",
+      "time": "00:00",
       "arrived": true
+    },
+    {
+      "label": "תדרוך בוקר",
+      "tab": "briefing",
+      "time": "06:03",
+      "arrived": false
+    },
+    {
+      "label": "תדרוך אחה\"צ",
+      "tab": "briefing",
+      "time": "15:04",
+      "arrived": false
+    },
+    {
+      "label": "Barchart בוקר",
+      "tab": "morning",
+      "time": "06:10",
+      "arrived": false
+    },
+    {
+      "label": "Barchart טרום מסחר",
+      "tab": "morning",
+      "time": "14:16",
+      "arrived": false
+    },
+    {
+      "label": "מועמדים",
+      "tab": "candidates",
+      "time": "23:52",
+      "arrived": false
     }
   ],
   "sources": [
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "07/10/2026 23:45",
+      "updatedAt": "08/10/2026 00:00",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -56,7 +56,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "07/10/2026 23:45",
+      "updatedAt": "08/10/2026 00:00",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -65,7 +65,7 @@
       "key": "morning",
       "label": "Barchart בוקר",
       "updatedAt": "07/10/2026 06:10",
-      "ageHours": 17.6,
+      "ageHours": 17.9,
       "status": "ok",
       "detail": ""
     },
@@ -73,7 +73,7 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "07/10/2026 14:16",
-      "ageHours": 9.5,
+      "ageHours": 9.8,
       "status": "ok",
       "detail": ""
     },
@@ -81,15 +81,15 @@
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "07/10/2026 15:15",
-      "ageHours": 8.5,
+      "ageHours": 8.8,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "מועמדים",
-      "updatedAt": "07/10/2026 06:21",
-      "ageHours": 17.4,
+      "updatedAt": "07/10/2026 23:52",
+      "ageHours": 0.2,
       "status": "ok",
       "detail": ""
     }

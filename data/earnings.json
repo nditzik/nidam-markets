@@ -1,9 +1,48 @@
 {
-  "today": "2026-10-07",
-  "todayCount": 4,
-  "todayBig": [],
+  "today": "2026-10-08",
+  "todayCount": 2,
+  "todayBig": [
+    {
+      "ticker": "PEP",
+      "name": "PepsiCo, Inc.",
+      "capB": 168.9
+    },
+    {
+      "ticker": "PGR",
+      "name": "Progressive Corporation",
+      "capB": 124.4
+    }
+  ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-07",
+        "label": "7.10",
+        "items": [
+          {
+            "ticker": "LEVI",
+            "name": "Levi Strauss & Co. Class A",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "APLD",
+            "name": "Applied Digital Corporation",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "TFPM",
+            "name": "Triple Flag Precious Metals Corp.",
+            "when": "before",
+            "status": "final",
+            "chg": -1.79,
+            "price": 30.13,
+            "reactDate": "2026-10-07",
+            "baseDate": "2026-10-06"
+          }
+        ]
+      },
       {
         "date": "2026-10-06",
         "label": "6.10",
@@ -85,93 +124,25 @@
             "baseDate": "2026-09-30"
           }
         ]
-      },
-      {
-        "date": "2026-09-30",
-        "label": "30.9",
-        "items": [
-          {
-            "ticker": "MU",
-            "name": "Micron Technology, Inc.",
-            "when": "after",
-            "status": "final",
-            "chg": 3.03,
-            "price": 1097.39,
-            "reactDate": "2026-10-01",
-            "baseDate": "2026-09-30"
-          },
-          {
-            "ticker": "JBL",
-            "name": "Jabil Inc.",
-            "when": "before",
-            "status": "final",
-            "chg": -10.03,
-            "price": 286.86,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
-          },
-          {
-            "ticker": "FDS",
-            "name": "FactSet Research Systems Inc.",
-            "when": "before",
-            "status": "final",
-            "chg": 3.84,
-            "price": 269.95,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
-          },
-          {
-            "ticker": "CAG",
-            "name": "Conagra Brands, Inc.",
-            "when": "before",
-            "status": "final",
-            "chg": -4.88,
-            "price": 13.44,
-            "reactDate": "2026-09-30",
-            "baseDate": "2026-09-29"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "LEVI",
-      "name": "Levi Strauss & Co. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/LEVI.png"
-    },
-    {
-      "ticker": "APLD",
-      "name": "Applied Digital Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/APLD.png"
-    },
-    {
-      "ticker": "VFS",
-      "name": "VinFast Auto Ltd.",
-      "when": "",
-      "logo": "data/earnings/logos/VFS.png"
-    },
-    {
-      "ticker": "TFPM",
-      "name": "Triple Flag Precious Metals Corp.",
+      "ticker": "PEP",
+      "name": "PepsiCo, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/TFPM.png"
+      "logo": "data/earnings/logos/PEP.png"
+    },
+    {
+      "ticker": "PGR",
+      "name": "Progressive Corporation",
+      "when": "",
+      "logo": "data/earnings/logos/PGR.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-10-08",
-      "label": "8/10",
-      "dow": "ה׳",
-      "count": 2,
-      "tickers": [
-        "PEP",
-        "PGR"
-      ]
-    },
     {
       "date": "2026-10-09",
       "label": "9/10",
@@ -264,71 +235,97 @@
     }
   ],
   "window": {
-    "LEVI": "2026-10-07",
-    "APLD": "2026-10-07",
-    "VFS": "2026-10-07",
-    "TFPM": "2026-10-07",
     "PEP": "2026-10-08",
     "PGR": "2026-10-08",
     "DAL": "2026-10-09",
+    "JPM/PK": "2026-10-13",
+    "JPM/PL": "2026-10-13",
     "JPM/PM": "2026-10-13",
     "JPM/PJ": "2026-10-13",
     "JPM/PC": "2026-10-13",
     "JPM/PD": "2026-10-13",
-    "JPM/PK": "2026-10-13",
-    "JPM/PL": "2026-10-13",
     "JPM": "2026-10-13",
     "JNJ": "2026-10-13",
     "UNH": "2026-10-13",
-    "GS/PD": "2026-10-13",
     "GS/PC": "2026-10-13",
+    "GS/PD": "2026-10-13",
     "GS/PA": "2026-10-13",
     "GS": "2026-10-13",
-    "WFC/PY": "2026-10-13",
-    "WFC/PD": "2026-10-13",
-    "WFC/PL": "2026-10-13",
     "WFC/PZ": "2026-10-13",
-    "WFC/PC": "2026-10-13",
+    "WFC/PL": "2026-10-13",
+    "WFC/PD": "2026-10-13",
     "WFC/PA": "2026-10-13",
+    "WFC/PC": "2026-10-13",
+    "WFC/PY": "2026-10-13",
     "WFC": "2026-10-13",
     "C/PR": "2026-10-13",
     "C": "2026-10-13",
     "DPZ": "2026-10-13",
     "ACI": "2026-10-13",
     "ASML": "2026-10-14",
-    "BAC/PL": "2026-10-14",
+    "BAC/PS": "2026-10-14",
+    "BAC/PE": "2026-10-14",
     "BAC/PB": "2026-10-14",
-    "BAC/PP": "2026-10-14",
     "BAC/PK": "2026-10-14",
     "BML/PH": "2026-10-14",
-    "BAC/PS": "2026-10-14",
-    "BAC/PQ": "2026-10-14",
-    "BML/PJ": "2026-10-14",
-    "BML/PL": "2026-10-14",
-    "BML/PG": "2026-10-14",
     "BAC/PO": "2026-10-14",
     "BAC/PN": "2026-10-14",
+    "BML/PL": "2026-10-14",
+    "BML/PG": "2026-10-14",
+    "BAC/PQ": "2026-10-14",
+    "BML/PJ": "2026-10-14",
+    "BAC/PP": "2026-10-14",
+    "BAC/PL": "2026-10-14",
     "BAC/PM": "2026-10-14",
-    "BAC/PE": "2026-10-14",
     "BAC": "2026-10-14",
-    "MS/PI": "2026-10-14",
+    "MS/PL": "2026-10-14",
+    "MS/PQ": "2026-10-14",
+    "MS/PF": "2026-10-14",
+    "MS/PA": "2026-10-14",
+    "MS/PP": "2026-10-14",
     "MS/PK": "2026-10-14",
     "MS/PE": "2026-10-14",
-    "MS/PQ": "2026-10-14",
-    "MS/PA": "2026-10-14",
+    "MS/PI": "2026-10-14",
     "MS/PO": "2026-10-14",
-    "MS/PP": "2026-10-14",
-    "MS/PF": "2026-10-14",
-    "MS/PL": "2026-10-14",
     "MS": "2026-10-14",
     "BLK": "2026-10-14",
     "FAST": "2026-10-14",
     "STT/PG": "2026-10-14",
     "STT": "2026-10-14",
-    "HOMB": "2026-10-14"
+    "HOMB": "2026-10-14",
+    "TSM": "2026-10-15",
+    "SCHW/PD": "2026-10-15",
+    "SCHW/PJ": "2026-10-15",
+    "SCHW": "2026-10-15",
+    "IBKR": "2026-10-15",
+    "PLD": "2026-10-15",
+    "BNY/PK": "2026-10-15",
+    "BNY": "2026-10-15",
+    "USB/PA": "2026-10-15",
+    "USB/PS": "2026-10-15",
+    "USB/PR": "2026-10-15",
+    "USB/PH": "2026-10-15",
+    "USB/PP": "2026-10-15",
+    "USB/PQ": "2026-10-15",
+    "USB": "2026-10-15",
+    "PNC": "2026-10-15",
+    "MRSH": "2026-10-15",
+    "ERIC": "2026-10-15",
+    "JBHT": "2026-10-15",
+    "SNA": "2026-10-15",
+    "WIT": "2026-10-15",
+    "WSO": "2026-10-15",
+    "AA": "2026-10-15",
+    "FHN/PE": "2026-10-15",
+    "FHN/PH": "2026-10-15",
+    "FHN/PF": "2026-10-15",
+    "FHN": "2026-10-15",
+    "CMC": "2026-10-15",
+    "POOL": "2026-10-15",
+    "IRDM": "2026-10-15"
   },
   "_meta": {
-    "updatedAt": "07/10/2026 23:46",
+    "updatedAt": "08/10/2026 00:01",
     "source": "tradingview"
   }
 }
