@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "07/10/2026 07:01",
+  "updatedAt": "07/10/2026 07:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -989,6 +989,11 @@
  ],
  "later": [
   {
+   "sym": "SOFI",
+   "date": "2026-10-27",
+   "when": "before"
+  },
+  {
    "sym": "GOOGL",
    "date": "2026-10-27",
    "when": null
@@ -997,11 +1002,6 @@
    "sym": "MSFT",
    "date": "2026-10-27",
    "when": null
-  },
-  {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
   },
   {
    "sym": "BSX",
@@ -1014,11 +1014,6 @@
    "when": null
   },
   {
-   "sym": "MRK",
-   "date": "2026-10-29",
-   "when": "before"
-  },
-  {
    "sym": "UBER",
    "date": "2026-10-29",
    "when": null
@@ -1029,9 +1024,14 @@
    "when": null
   },
   {
-   "sym": "AAPL",
+   "sym": "MRK",
    "date": "2026-10-29",
-   "when": null
+   "when": "before"
+  },
+  {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
   },
   {
    "sym": "AMZN",
@@ -1039,9 +1039,9 @@
    "when": null
   },
   {
-   "sym": "SNDK",
+   "sym": "AAPL",
    "date": "2026-10-29",
-   "when": "after"
+   "when": null
   },
   {
    "sym": "CVX",
