@@ -135,7 +135,7 @@
     var el = document.getElementById("ticker");
     if (!el) return;
     fetchJSON("data/market.json")
-      .then(function (d) { TICKD = d; renderMarketTicker(el, d); refreshTickerLive(); if (INDD) renderLead(); })
+      .then(function (d) { TICKD = d; renderMarketTicker(el, d); refreshTickerLive(); if (INDD) { renderLead(); renderBreadthPeaks(); } })
       .catch(function () {});
   }
   /* עדכון חי מהסורק של TradingView (CORS פתוח כ-simple request) — מחירים כל דקה;
@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np113";
+  var TA_VER = "np114";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -2709,6 +2709,47 @@
       "</div>";
   }
 
+
+  /* ---------- כמה מניות משתתפות בשיא? (np114, 7.10.2026, איציק — אושר במוקאפ) ----------
+     שורה לכל שיא בעבר: אחוז מניות ה-S&P מעל ממוצע 200 ביום השיא, התחתית בשנה שאחריו ואיפה המדד
+     היה שנה אחרי. נתוני העבר קבועים — מחושבים פעם אחת מנרות 2005–2026 (scripts/tools/probe_breadth_history.py,
+     חברות המדד של היום). שורת "היום" = evidence.pctMa200 מהדשבורד; המרחק מהשיא = vixLight.spxOffHigh. */
+  var BP_ROWS = [
+    { when: "ינואר 2022", p: 76, low: -25.4, lowAt: "אוקטובר 2022", y1: -19.7 },
+    { when: "דצמבר 2024", p: 60, low: -17.5, lowAt: "אפריל 2025", y1: 14.3 },
+    { when: "יולי 2015", p: 59, low: -13.7, lowAt: "פברואר 2016", y1: 2.5 },
+    { when: "יוני 2023", p: 52, low: -3.9, lowAt: "אוקטובר 2023", y1: 23.6 },
+    { when: "יוני 2025", p: 48, low: 0, lowAt: "", y1: 20.8 }
+  ];
+  function breadthPeaksHtml(d) {
+    var e = (d && d.evidence) || {}, p = e.pctMa200;
+    if (p == null) return "";
+    p = Math.round(p);
+    var off = TICKD && TICKD.vixLight && TICKD.vixLight.spxOffHigh != null ? +TICKD.vixLight.spxOffHigh : null;
+    function sg(v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1) + "%"; }
+    function row(r, today) {
+      var low = today ? '<span class="bp-res bp-low bp-q">?</span>' : (r.low <= -1
+        ? '<span class="bp-res bp-low ' + (r.low <= -10 ? "dn" : "mild") + '"><i>תחתית </i><b dir="ltr">' + sg(r.low) + "</b><small>" + r.lowAt + "</small></span>"
+        : '<span class="bp-res bp-low up"><i>תחתית: </i><b>לא ירד</b></span>');
+      var y1 = today ? '<span class="bp-res bp-y1 bp-q">?</span>' : '<span class="bp-res bp-y1 ' + (r.y1 >= 0 ? "up" : "dn") + '"><i>שנה אחרי </i><b dir="ltr">' + sg(r.y1) + "</b></span>";
+      return '<div class="bp-row' + (today ? " today" : "") + '"><span class="bp-when">' + r.when + "</span>" +
+        '<div class="bp-barw"><div class="bp-bar" style="width:' + r.p + '%"></div><span class="bp-pct" style="right:' + r.p + '%">' + r.p + "%</span></div>" + low + y1 + "</div>";
+    }
+    var n10 = Math.round(p / 10), minPast = Math.min.apply(null, BP_ROWS.map(function (r) { return r.p; }));
+    var where = off == null ? "בשיא" : off > -1 ? "בשיא" : off > -3 ? "ליד השיא" : null;
+    var title = !where ? "המדד " + Math.abs(off).toFixed(1) + "% מתחת לשיא, ו-" + n10 + " מכל 10 מניות במגמת עלייה"
+      : p >= 65 ? "הרוחב התרחב: " + n10 + " מכל 10 מניות במגמת עלייה, והמדד " + where
+      : "המדד " + where + ", אבל רק " + n10 + " מכל 10 מניות במגמת עלייה" + (p < minPast ? ", פחות מבכל שיא קודם" : "");
+    return '<section class="bp" id="breadth-peaks"><div class="bp-k">כמה מניות משתתפות בשיא?</div>' +
+      '<h3 class="bp-title">' + esc(title) + "</h3>" +
+      '<p class="bp-sub">אחוז מניות ה-S&amp;P 500 שמעל ממוצע 200 יום, ביום שבו המדד היה בשיא · כמה המדד ירד מהשיא עד התחתית בשנה שאחרי · ואיפה הוא היה שנה אחרי</p>' +
+      '<div class="bp-rows"><div class="bp-row bp-hdr"><span></span><span>מניות במגמת עלייה ביום השיא</span><span>התחתית בשנה שאחרי</span><span>שנה אחרי השיא</span></div>' +
+        row({ when: "היום", p: p }, true) + '<div class="bp-sep"></div>' + BP_ROWS.map(function (r) { return row(r); }).join("") + "</div>" +
+      '<p class="bp-take"><b>הלקח:</b> גם שיא רחב (ינואר 2022) נגמר בירידה, וגם שיאים צרים (2023, 2025) המשיכו לעלות. מה שהכריע הוא החודש שאחרי: אם תוך כחודש עוד מניות הצטרפו והאחוז קפץ מעל 65%, השוק המשיך לעלות. אם לא, הגיע תיקון.</p>' +
+      '<p class="stamp">נכון לסגירת <span dir="ltr">' + esc(fmtTradeDate(d.date)) + "</span> · התחתית = הנקודה הנמוכה ביותר של המדד בשנה שאחרי השיא, באחוזים מהשיא. נתוני העבר: חישוב על חברות המדד של היום מנרות 2005–2026 (חברות שיצאו מהמדד חסרות, ולכן העבר נראה מעט טוב יותר).</p></section>";
+  }
+  function renderBreadthPeaks() { var el = document.getElementById("bp-slot"); if (el && INDD) el.innerHTML = breadthPeaksHtml(INDD); }
+
   function renderIndicesDetail(el, d) {
     var c = d.conclusion || {};
     var rot = d.rotation || {};
@@ -2771,7 +2812,7 @@
     renderMarketOverview(overview, d, { detail: true });
 
     el.innerHTML = "";
-    el.insertAdjacentHTML("beforeend", meterTimelineHtml() + '<div id="weekly-slot"></div><div id="fc-track-slot"></div>');   // ציר הזמן של המד, ומתחתיו סיכום השבוע (11.9.2026)
+    el.insertAdjacentHTML("beforeend", meterTimelineHtml() + '<div id="bp-slot">' + breadthPeaksHtml(d) + '</div><div id="weekly-slot"></div><div id="fc-track-slot"></div>');   // ציר הזמן של המד, ומתחתיו סיכום השבוע (11.9.2026)
     bindMeterTimeline(el); renderMeterTimeline();
     setTimeout(renderOptVsPrice, 0);   // ה-figure של הגרף נכנס ל-DOM רק בהמשך הפונקציה
     if (WEEKLY) renderWeekly(WEEKLY);
