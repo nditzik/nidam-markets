@@ -12,7 +12,8 @@
 - ⏳ **סריקת IBKR אוטומטית בענן (איציק, "יותר מאוחר נעבוד על זה"):** להריץ את סריקת המועמדים על נרות Yahoo ב-Action, מיד אחרי קובצי המומנטום (~05:17), במקום הסריקה במחשב. קוד הסריקה (`ibkr-swing-system`) נמצא רק במחשב של איציק. ניתנה לו פקודה לקלוד קוד המקומי: לדחוף ל-`nidam-candidates/scanner/` את הקוד (בלי פרטי חשבון — הריפו ציבורי) + `SCAN_SPEC.md` (יקום, נתוני IBKR, ספים, נוסחאות hist_r/rank_score) + golden מ-8.10 (universe.csv עם סיבת נפילה לכל מניה, נרות IBKR, candidates.json). תוכנית: בנייה → ריצת צל 1–2 שבועות מול הרשימה שלו → החלפה רק כשתואם.
   - ✅ החבילה הגיעה (18:01). `scripts/scan_candidates.py` = פורט stdlib (כולל האריתמטיקה של pandas ewm) — `scripts/tests/test_scan_golden.py <golden>`: candidates.json **זהה** (56/56) ו-106/106 מניות באותו שלב.
   - ✅ היקום ניתן לשחזור: קובץ momentum_7.10 של איציק = בדיוק המניות שעברו בסיס ב-`_momentum_hist.json` (151/151), וה-RVOL תואם ל-momentum.json (62/62). היקום = איחוד כל הקבצים מ-25.6 (1,148); ההיסטוריה שלנו מ-15.7 (חסרות 106 — להשלים מ-git של stocks-momentum), ו-RVOL צריך להישמר ב-hist לכל מניה.
-  - ⏳ בדיקה חד-פעמית על ה-runner: `.github/workflows/probe-scan-yahoo.yml` + `scripts/tools/probe_scan_yahoo.py` → `scripts/tools/out/scan_yahoo_probe.json` (נרות Yahoo לאותו יקום, חלון IBKR מול 124 אחרונים). למחוק את ה-workflow אחרי.
+  - ✅ בדיקה על ה-runner (נרות Yahoo, אותו יקום, `scripts/tools/out/scan_yahoo_probe.json`): **55 מתוך 56 זהים** בשני אופני החלון. HNGE נפלה על סנט (שפל 96.84 ב-Yahoo מול 96.83 ב-IBKR, הסף 96.84); TEVA נוספה ב-124 נרות (ל-IBKR היו רק 18 נרות שלה). אותו setup בכל ה-55, הפרש סטופ עד ‎0.1%, hist_r זז קצת ב-19 (חלון שנתיים), דירוג זז בממוצע 0.85 מקום. ל-Yahoo יש נרות למניות ש-IBKR לא החזיר (BRK.B וכו'). Yahoo מחזיר float32 — לעגל ל-4 ספרות. ה-workflow נמחק.
+  - ⏭ הבא (ממתין לאישור איציק): השלמת היקום מ-25.6 + RVOL ב-hist → ריצת צל יומית ב-update.yml אחרי המומנטום (`data/candidates_cloud.json`, לא נוגע באתר) + השוואה בבדיקת הבוקר → החלפה אחרי 1–2 שבועות.
 
 ## 2026-10-07
 
