@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np114";
+  var TA_VER = "np115";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -814,6 +814,7 @@
     // סגירת אתמול, אבל ריצת הערב (23:41) נושאת אותו תאריך על סגירת היום עצמו — "תקפים ל-29.9"
     // הוצג על רשימה שמחיריה הם סגירות 30.9. נגזר משעת הריצה בשעון ניו יורק: אחרי 16:00 ביום
     // מסחר = אותו יום, אחרת יום המסחר הקודם.
+    if (d && d._meta && d._meta.basedOn) return d._meta.basedOn;   // הסריקה בענן כותבת את יום הסגירה במפורש
     var m = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/.exec((d && d._meta && d._meta.updatedAt) || "");
     if (!m) return prevTradingDate(d && d.date);
     var wall = Date.UTC(+m[3], +m[2] - 1, +m[1], +m[4], +m[5]);
@@ -3947,7 +3948,7 @@
       (d.picks.length ? '<section class="pk-deck">' + d.picks.map(pkCard).join("") + "</section>" : '<p class="pk-sub">אף מניה לא קיבלה היום אישור מחיר. זה קורה, ולא מחפשים תחליף.</p>') +
       ((d.excluded || []).length ? '<p class="pk-sub">נפסלו: ' + d.excluded.map(function (x) { return '<span dir="ltr">' + esc(x.sym) + "</span> (" + esc(x.reason) + ")"; }).join(" · ") + "</p>" : "") +
       pkLedger() +
-      '<section class="pk-how"><div><b>1. המאגר</b>המועמדים של IBKR וסריקות המומנטום. רק מה שכבר באתר.</div>' +
+      '<section class="pk-how"><div><b>1. המאגר</b>סריקת המועמדים וסריקות המומנטום. רק מה שכבר באתר.</div>' +
         '<div><b>2. השופט</b>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות עם "אישור מחיר לקנייה". "כניסה אפשרית" לא מספיק (נבדק לאחור: לא מנצח יום רגיל).</div>' +
         '<div><b>3. הסינון</b>מדווחת בשבוע הקרוב יוצאת. מניה ששלושת האישורים הקודמים שלה נכשלו יוצאת.</div>' +
         '<div><b>4. השער</b>מד השוק קובע כמה מותר: הגנה = עד 3 וחצי גודל. ירוק = עד 5.</div></section>' +
@@ -4121,7 +4122,7 @@
 
   function renderCandidates(el, d) {
     if (!d || d._status === "pending" || !d.candidates) {
-      emptyPanel(el, "🎯", "מועמדים — בקרוב", "יחובר ברגע שצינור ה-IBKR יופעל.");
+      emptyPanel(el, "🎯", "מועמדים — בקרוב", "הרשימה תופיע אחרי הסריקה הבאה.");
       return;
     }
     if (!d.candidates.length) {
@@ -4145,14 +4146,14 @@
     }).join("");
 
     el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">🎯 מועמדים למסחר (IBKR)</div>' +
+      '<div class="section-title" style="margin-top:0">🎯 מועמדים למסחר</div>' +
       tabIntro("candidates") +
       '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
       "<strong>הנתונים מיום <span dir=\"ltr\">" + esc(fmtTradeDate(d.date)) + "</span>" +
       (candTradeDay(d) ? " · מבוססים על סגירת <span dir=\"ltr\">" + esc(fmtTradeDate(candTradeDay(d))) + "</span>" : "") +
       "</strong> · " + (d.count || 0) + " מועמדים" +
       (d.shown && d.shown < d.count ? " (מוצגים " + d.shown + " מובילים)" : "") +
-      '<div class="stamp" style="margin:6px 0 0">Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב · לחיצה על טיקר פותחת ב-TradingView</div></div>' +
+      '<div class="stamp" style="margin:6px 0 0">' + (d._meta && d._meta.source === "nidam-cloud-scan" ? "נסרקו " + (d._meta.universe || "") + " מניות מומנטום בענן, אוטומטית אחרי שהמומנטום מתעדכן · " : "") + 'Entry/Stop/Target ברמות המערכת · R היסטורי = ביצוע 2 שנים · מסודר לפי דירוג משולב · לחיצה על טיקר פותחת ב-TradingView</div></div>' +
       '<div class="table-wrap"><table><thead><tr>' +
       "<th class=\"num\">#</th><th>סימבול</th><th>Setup</th>" +
       "<th class=\"num\">כניסה</th><th class=\"num\">סטופ</th><th class=\"num\">מטרה</th>" +

@@ -103,7 +103,13 @@ jobs:
         run: python scripts/fetch_barchart.py
         continue-on-error: true
 
-      # --- משיכת מועמדי IBKR מהריפו הציבורי nidam-candidates (נדחף מהמערכת המקומית) ---
+      # --- סריקת המועמדים בענן (9.10.2026): רצה פעם אחת לכל יום מומנטום חדש, על נרות Yahoo ---
+      - name: Scan candidates (cloud)
+        run: python scripts/scan_cloud.py
+        continue-on-error: true
+        timeout-minutes: 8
+
+      # --- משיכת מועמדי IBKR מהריפו הציבורי nidam-candidates — גיבוי בלבד (ראו fetch_ibkr.py) ---
       - name: Fetch IBKR candidates
         run: python scripts/fetch_ibkr.py
         continue-on-error: true

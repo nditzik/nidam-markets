@@ -151,6 +151,29 @@ def snapshot_of(date, rows):
     return {"date": date, "stocks": [{"s": r["symbol"], "sig": list(r.get("signals") or [])} for r in rows if passes_base(r)]}
 
 
+UNIVERSE_OUT = os.path.join(ROOT, "data", "_scan_universe.json")   # יקום סריקת המועמדים (scan_cloud.py)
+
+
+def universe_day(date, rows):
+    """היום הזה ביקום של סריקת המועמדים: כל מי שעבר בסיס + ה-RVOL שלו (בדיוק קובץ
+    momentum_D.M.YYYY.csv שאיציק ייצא מהדשבורד ל-IBKR). בלי תקרת ימים — היקום מצטבר."""
+    return {"date": date, "stocks": [[r["symbol"], r.get("rvol")] for r in rows if passes_base(r)]}
+
+
+def add_universe_day(date, rows):
+    try:
+        with open(UNIVERSE_OUT, "r", encoding="utf-8") as f:
+            u = json.load(f)
+    except Exception:
+        return   # בלי בסיס (backfill) לא מתחילים יקום חלקי
+    if any(d.get("date") == date for d in u.get("days", [])):
+        return
+    u["days"] = sorted(u.get("days", []) + [universe_day(date, rows)], key=lambda d: d["date"])
+    with open(UNIVERSE_OUT, "w", encoding="utf-8") as f:
+        json.dump(u, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"[ok] יקום הסריקה: נוסף {date} ({len(u['days'])} ימים)")
+
+
 def load_hist():
     try:
         with open(HIST_OUT, "r", encoding="utf-8") as f:
@@ -260,6 +283,11 @@ def main():
             print(f"[ok] סנאפשוט {csv_date} נוסף להיסטוריה ({len(hist)} ימים)")
         except Exception as e:
             print(f"[warn] כתיבת היסטוריה נכשלה: {e}")
+    if csv_date:
+        try:
+            add_universe_day(csv_date, merged.values())
+        except Exception as e:
+            print(f"[warn] יקום הסריקה: {e}")
     stocks = []
     for s in merged.values():
         s["readiness"] = readiness(s, hist)

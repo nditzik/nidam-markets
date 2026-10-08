@@ -61,6 +61,13 @@ def main():
               f"{existing.get('date')} ({len(existing['candidates'])} מועמדים).")
         return 0
 
+    # מ-9.10.2026 הסריקה רצה בענן (scan_cloud.py) והיא המקור. רשימת IBKR נכנסת רק כגיבוי —
+    # כשהיא מיום ריצה מאוחר מזה של הענן (בוקר שבו הסריקה בענן לא רצה/נכשלה).
+    if (existing.get("_meta") or {}).get("source") == "nidam-cloud-scan" and \
+       str(payload.get("date") or "") <= str(existing.get("date") or ""):
+        print(f"[cloud] הסריקה בענן ({existing.get('date')}) עדכנית — רשימת IBKR ({payload.get('date')}) לא נכנסת.")
+        return 0
+
     if {k: v for k, v in existing.items() if k != "_meta"} == \
        {k: v for k, v in payload.items() if k != "_meta"}:
         print("[nochange] אין מועמדים חדשים.")
