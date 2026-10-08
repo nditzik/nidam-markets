@@ -1,0 +1,36 @@
+name: Probe candidate scan on Yahoo (one-off)
+
+# בדיקה חד-פעמית (8.10.2026): סריקת המועמדים על נרות Yahoo מול תוצאת IBKR של הבוקר. יימחק אחרי הבדיקה.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-scan-yahoo.yml"
+      - "scripts/tools/probe_scan_yahoo.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/tools/probe_scan_yahoo.py
+      - name: Commit result
+        run: |
+          git config user.name "nidam-markets-bot"
+          git config user.email "actions@github.com"
+          git add scripts/tools/out/scan_yahoo_probe.json
+          git commit -m "probe: סריקת המועמדים על Yahoo מול IBKR (בדיקה חד-פעמית)"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            git pull --rebase origin main || true
+            sleep 4
+          done
+          exit 1

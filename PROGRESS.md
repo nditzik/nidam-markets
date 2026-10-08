@@ -10,6 +10,9 @@
 
 **פתוח:**
 - ⏳ **סריקת IBKR אוטומטית בענן (איציק, "יותר מאוחר נעבוד על זה"):** להריץ את סריקת המועמדים על נרות Yahoo ב-Action, מיד אחרי קובצי המומנטום (~05:17), במקום הסריקה במחשב. קוד הסריקה (`ibkr-swing-system`) נמצא רק במחשב של איציק. ניתנה לו פקודה לקלוד קוד המקומי: לדחוף ל-`nidam-candidates/scanner/` את הקוד (בלי פרטי חשבון — הריפו ציבורי) + `SCAN_SPEC.md` (יקום, נתוני IBKR, ספים, נוסחאות hist_r/rank_score) + golden מ-8.10 (universe.csv עם סיבת נפילה לכל מניה, נרות IBKR, candidates.json). תוכנית: בנייה → ריצת צל 1–2 שבועות מול הרשימה שלו → החלפה רק כשתואם.
+  - ✅ החבילה הגיעה (18:01). `scripts/scan_candidates.py` = פורט stdlib (כולל האריתמטיקה של pandas ewm) — `scripts/tests/test_scan_golden.py <golden>`: candidates.json **זהה** (56/56) ו-106/106 מניות באותו שלב.
+  - ✅ היקום ניתן לשחזור: קובץ momentum_7.10 של איציק = בדיוק המניות שעברו בסיס ב-`_momentum_hist.json` (151/151), וה-RVOL תואם ל-momentum.json (62/62). היקום = איחוד כל הקבצים מ-25.6 (1,148); ההיסטוריה שלנו מ-15.7 (חסרות 106 — להשלים מ-git של stocks-momentum), ו-RVOL צריך להישמר ב-hist לכל מניה.
+  - ⏳ בדיקה חד-פעמית על ה-runner: `.github/workflows/probe-scan-yahoo.yml` + `scripts/tools/probe_scan_yahoo.py` → `scripts/tools/out/scan_yahoo_probe.json` (נרות Yahoo לאותו יקום, חלון IBKR מול 124 אחרונים). למחוק את ה-workflow אחרי.
 
 ## 2026-10-07
 
