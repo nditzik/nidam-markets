@@ -9,7 +9,20 @@
 - ✅ הפלאגינים Design ו-frontend-design לא נטענו בסשן הענן (מסומנים "לא מופעל" בחשבון גם אחרי התקנה מחדש). לבקשת איציק ה-skills נשמרו בריפו: `.claude/skills/{design-critique,accessibility-review,design-system,ux-copy,frontend-design}` (+ `.claude/CONNECTORS.md`, רישיון Apache, מקור וקומיט ב-`.claude/skills/README.md`). נטענים אוטומטית מכל סשן חדש.
 
 **פתוח:**
-- ⏳ שלב 4ב עצמו (מיזוג `claude/zealous-cerf-9o4j64`, ביקורת design-critique + accessibility-review על גרסה ב, מוקאפ, ספר סגנון) — בסשן חדש, שבו ה-skills ייטענו מהריפו.
+- ✅ אחרי החלפת מודל באותו סשן ה-skills נטענו מהריפו — שלב 4ב ממשיך בסשן הזה (ענף `claude/happy-bell-cvzmae`, מוזג `claude/zealous-cerf-9o4j64`).
+
+## 2026-10-09 (ערב)
+
+**נעשה:**
+- 🎨 **עיצוב מחדש — נבחר כיוון ב · לוח המסחר**, בהיר כברירת מחדל עם מצב כהה כאפשרות. גרסאות המחשב יוצאו ל-PDF+PNG לסבב חוות דעת; ב הוסב לבהיר; תוקן כיתוב "אתמול 55". המחולל נשמר ב-`docs/redesign/mockups-4a/`.
+- התוספים Design + frontend-design הותקנו בחשבון — ייטענו רק בסשן חדש.
+- **פתוח (שלב 4ב, סשן חדש):** ביקורת עם Design → מוקאפ מלוטש של ב (בהיר+כהה, מחשב+טלפון, יום רגיל+יום אירוע) → אישור → ספר סגנון. פירוט ב-`docs/redesign/README.md`.
+
+## 2026-10-09
+
+**נעשה:**
+- 🎨 **עיצוב מחדש — שלב 4א:** שלושה כיווני עיצוב לדף הבית על הסקיצה המאושרת ועל הנתונים של היום — https://claude.ai/artifact/5hSDwjHDxwiBnUSsJefP7n (א · המהדורה / ב · לוח המסחר / ג · האפליקציה; מחשב+טלפון, בהיר+כהה). פירוט ב-`docs/redesign/README.md`. האתר החי לא נגע.
+- **פתוח:** איציק בוחר כיוון → ספר סגנון (Design System). התוספים Design / frontend-design לא מופיעים כמותקנים בסשן הזה.
 
 ## 2026-10-09
 
