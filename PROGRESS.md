@@ -3,6 +3,14 @@
 קובץ זה נקרא בתחילת כל סשן ומתעדכן לפני כל push (ראו "נהלי סשן" ב-CLAUDE.md).
 שורה לכל סשן/משימה: תאריך · מה נעשה · מה נשאר פתוח.
 
+## 2026-10-09 (שלב 4ב — הכנה)
+
+**נעשה:**
+- ✅ הפלאגינים Design ו-frontend-design לא נטענו בסשן הענן (מסומנים "לא מופעל" בחשבון גם אחרי התקנה מחדש). לבקשת איציק ה-skills נשמרו בריפו: `.claude/skills/{design-critique,accessibility-review,design-system,ux-copy,frontend-design}` (+ `.claude/CONNECTORS.md`, רישיון Apache, מקור וקומיט ב-`.claude/skills/README.md`). נטענים אוטומטית מכל סשן חדש.
+
+**פתוח:**
+- ⏳ שלב 4ב עצמו (מיזוג `claude/zealous-cerf-9o4j64`, ביקורת design-critique + accessibility-review על גרסה ב, מוקאפ, ספר סגנון) — בסשן חדש, שבו ה-skills ייטענו מהריפו.
+
 ## 2026-10-09
 
 **נעשה:**
