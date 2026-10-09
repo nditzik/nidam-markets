@@ -129,7 +129,8 @@ def main(force=False, fetch=None, now=None):
         json.dump(out, f, ensure_ascii=False, indent=2)
     with open(STATE, "w", encoding="utf-8") as f:
         json.dump({"day": day, "at": il_stamp(now), "count": out["count"], "universe": len(universe),
-                   "barsOk": ok, "stages": stages, "top": [c["symbol"] for c in out["candidates"][:10]]},
+                   "barsOk": ok, "stages": stages, "top": [c["symbol"] for c in out["candidates"][:10]],
+                   "all": [r["symbol"] for r in cands]},   # כל המועמדים (גם מעבר ל-60) — להשוואה מול IBKR
                   f, ensure_ascii=False, indent=1)
     print(f"[done] {out['count']} מועמדים על סגירת {day}: {', '.join(c['symbol'] for c in out['candidates'][:10])}…")
     return 0
