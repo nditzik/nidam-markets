@@ -1,20 +1,25 @@
 {
-  "today": "2026-10-09",
-  "todayCount": 2,
-  "todayBig": [
-    {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "capB": 126.3
-    },
-    {
-      "ticker": "DAL",
-      "name": "Delta Air Lines, Inc.",
-      "capB": 54.0
-    }
-  ],
+  "today": "2026-10-10",
+  "todayCount": 0,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-09",
+        "label": "9.10",
+        "items": [
+          {
+            "ticker": "DAL",
+            "name": "Delta Air Lines, Inc.",
+            "when": "before",
+            "status": "final",
+            "chg": 0.04,
+            "price": 82.17,
+            "reactDate": "2026-10-09",
+            "baseDate": "2026-10-08"
+          }
+        ]
+      },
       {
         "date": "2026-10-08",
         "label": "8.10",
@@ -59,134 +64,349 @@
       }
     ]
   },
-  "reporting": [
+  "reporting": [],
+  "more": 0,
+  "upcoming": [
     {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "when": "",
-      "logo": "data/earnings/logos/PGR.png"
+      "date": "2026-10-13",
+      "label": "13/10",
+      "dow": "ג׳",
+      "count": 23,
+      "tickers": [
+        "JPM",
+        "JPM/PC",
+        "JPM/PD",
+        "JPM/PJ",
+        "JPM/PK",
+        "JPM/PL"
+      ]
     },
     {
-      "ticker": "DAL",
-      "name": "Delta Air Lines, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/DAL.png"
+      "date": "2026-10-14",
+      "label": "14/10",
+      "dow": "ד׳",
+      "count": 30,
+      "tickers": [
+        "ASML",
+        "BAC",
+        "BAC/PB",
+        "BAC/PE",
+        "BAC/PK",
+        "BAC/PL"
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "label": "15/10",
+      "dow": "ה׳",
+      "count": 26,
+      "tickers": [
+        "TSM",
+        "SCHW/PD",
+        "SCHW/PJ",
+        "SCHW",
+        "IBKR",
+        "PLD"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "label": "16/10",
+      "dow": "ו׳",
+      "count": 18,
+      "tickers": [
+        "TRV",
+        "TFC/PI",
+        "TFC/PO",
+        "TFC/PR",
+        "TFC",
+        "MTB/PH"
+      ]
     }
   ],
-  "more": 0,
-  "upcoming": [],
   "week": [
     {
-      "date": "2026-10-05",
+      "date": "2026-10-12",
       "dow": "שני",
-      "label": "5.10",
+      "label": "12.10",
       "total": 0,
       "companies": []
     },
     {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "dow": "שלישי",
-      "label": "6.10",
-      "total": 2,
+      "label": "13.10",
+      "total": 23,
       "companies": [
         {
-          "ticker": "STZ",
-          "name": "Constellation Brands, Inc. Class A"
+          "ticker": "JPM",
+          "name": "JPMorgan Chase & Co."
         },
         {
-          "ticker": "RPM",
-          "name": "RPM International Inc."
+          "ticker": "JPM/PC",
+          "name": "JPMorgan Chase & Co Depositary Shs Repr 1/400th Non-Cum Perp Red Pfd Registered ShsSeries -EE-"
+        },
+        {
+          "ticker": "JPM/PD",
+          "name": "JPMorgan Chase & Co Depositary Shs Repr 1/400th Non-Cum Red Pfd Registered Shs Series -DD-"
+        },
+        {
+          "ticker": "JPM/PJ",
+          "name": "JPMorgan Chase & Co. Depositary Shs Repr 1/400th 4.75 Non-Cum Red Perp Pfd Rg Shs Series GG"
+        },
+        {
+          "ticker": "JPM/PK",
+          "name": "JPMorgan Chase & Co. Depositary Shs Repr 1/400th 4.55% Non-Cum Red Perp Pfd Rg Shs Series JJ"
+        },
+        {
+          "ticker": "JPM/PL",
+          "name": "JPMorgan Chase & Co. Depositary Shs Repr 1/400th Non-Cum Red Perp Pfd Rg Shs Series -LL-"
+        },
+        {
+          "ticker": "JPM/PM",
+          "name": "JPMorgan Chase & Co Depositary Shs Repr 1/400th Non-Cum Red Perp Pfd Rg Shs Series -MM-"
+        },
+        {
+          "ticker": "JNJ",
+          "name": "Johnson & Johnson"
+        },
+        {
+          "ticker": "UNH",
+          "name": "UnitedHealth Group Incorporated"
+        },
+        {
+          "ticker": "GS",
+          "name": "Goldman Sachs Group, Inc."
+        },
+        {
+          "ticker": "GS/PA",
+          "name": "Goldman Sachs Group, Inc. Deposit Repr 1/1000th Floating Rate Non-Cum Pfd Ser A"
+        },
+        {
+          "ticker": "GS/PC",
+          "name": "Goldman Sachs Group, Inc. Depositary Repr 1/1000th Flt Rt Non-Cum Pfd Series C"
         }
       ]
     },
     {
-      "date": "2026-10-07",
+      "date": "2026-10-14",
       "dow": "רביעי",
-      "label": "7.10",
-      "total": 0,
-      "companies": []
-    },
-    {
-      "date": "2026-10-08",
-      "dow": "חמישי",
-      "label": "8.10",
-      "total": 1,
+      "label": "14.10",
+      "total": 30,
       "companies": [
         {
-          "ticker": "PEP",
-          "name": "PepsiCo, Inc."
+          "ticker": "ASML",
+          "name": "ASML Holding NV Sponsored ADR"
+        },
+        {
+          "ticker": "BAC",
+          "name": "Bank of America Corp"
+        },
+        {
+          "ticker": "BAC/PB",
+          "name": "Bank of America Corp Deposit Shs Repr 1/1000th Non-Cum Red Perp Pfd Shs Series GG"
+        },
+        {
+          "ticker": "BAC/PE",
+          "name": "Bank of America Corp Deposit Shs Repr 1/1000th Perp Pfd Shs Series E"
+        },
+        {
+          "ticker": "BAC/PK",
+          "name": "Bank of America Corp Depositary Shs Repr 1/1000th Non-Cum Perp Red Pfd Registered Shs Ser -HH-"
+        },
+        {
+          "ticker": "BAC/PL",
+          "name": "Bank of America Corp 7.25 % Non Cum Perp Conv Pfd Registered Shs Series L"
+        },
+        {
+          "ticker": "BAC/PM",
+          "name": "Bank of America Corp Depositary Shs Repr 1/1000th Perp Non-Cum Pfd Registered Shs Series -KK-"
+        },
+        {
+          "ticker": "BAC/PN",
+          "name": "Bank of America Corp Depositary Shs Repr 1/1000th Perp Non-Cum Red Pfd Rg Shs Series -LL-"
+        },
+        {
+          "ticker": "BAC/PO",
+          "name": "Bank of America Corp Depositary Shs Repr 1/1000th Non-Cum Red Perp Pfd Rg Shs Series -NN-"
+        },
+        {
+          "ticker": "BAC/PP",
+          "name": "Bank of America Corp Depositary Shs Repr 1/1000th 4.125 % Non-Cum Red Pfd Rg Shs Series -PP-"
+        },
+        {
+          "ticker": "BAC/PQ",
+          "name": "Bank of America Corp Depositary Shs Repr 1/1000th Non-Cum Red Perp Pfd Rg Shs Series -QQ-"
+        },
+        {
+          "ticker": "BAC/PS",
+          "name": "Bank of America Corp Depositary Shs Repr 1/1000th Non-Cum Red Perp Pfd Registered Shs Ser -SS-"
         }
       ]
     },
     {
-      "date": "2026-10-09",
-      "dow": "שישי",
-      "label": "9.10",
-      "total": 2,
+      "date": "2026-10-15",
+      "dow": "חמישי",
+      "label": "15.10",
+      "total": 26,
       "companies": [
         {
-          "ticker": "PGR",
-          "name": "Progressive Corporation"
+          "ticker": "TSM",
+          "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR"
         },
         {
-          "ticker": "DAL",
-          "name": "Delta Air Lines, Inc."
+          "ticker": "SCHW/PD",
+          "name": "Charles Schwab Corp Depositary Shs Repr 1/40th 5.95 % Non-Cum Pfd Shs Series D"
+        },
+        {
+          "ticker": "SCHW/PJ",
+          "name": "Charles Schwab Corp Depositary Shs Repr 1/40th Non-Cum Pfd Shs Series J"
+        },
+        {
+          "ticker": "SCHW",
+          "name": "Charles Schwab Corp"
+        },
+        {
+          "ticker": "IBKR",
+          "name": "Interactive Brokers Group, Inc. Class A"
+        },
+        {
+          "ticker": "PLD",
+          "name": "Prologis, Inc."
+        },
+        {
+          "ticker": "BNY/PK",
+          "name": "Bank of New York Mellon Corp Preferred Shs Depositoty Receipt Repr 1/4000th Pfd Shs Series K"
+        },
+        {
+          "ticker": "BNY",
+          "name": "Bank of New York Mellon Corp"
+        },
+        {
+          "ticker": "USB",
+          "name": "U.S. Bancorp"
+        },
+        {
+          "ticker": "USB/PA",
+          "name": "U.S. Bancorp Deposit Shs Repr 1/1000th Non-Cum Perp Pfd Sh Series A"
+        },
+        {
+          "ticker": "USB/PH",
+          "name": "U.S. Bancorp Depositary Shs Repr 1/1000th Non-Cum Perpetual Pfd Shs Series -B-"
+        },
+        {
+          "ticker": "USB/PP",
+          "name": "U.S. Bancorp Depositary Shs Repr 1/1000th Non-Cum Perp Pfd Registered Shs Series K"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "dow": "שישי",
+      "label": "16.10",
+      "total": 18,
+      "companies": [
+        {
+          "ticker": "TRV",
+          "name": "Travelers Companies, Inc."
+        },
+        {
+          "ticker": "TFC/PI",
+          "name": "Truist Financial Corporation Depositary Shs Repr 1/4000 Perp Pfd Shs Series I"
+        },
+        {
+          "ticker": "TFC/PO",
+          "name": "Truist Financial Corporation Depositary Shs Repr 1/1000th 5.25 % Non-Cum Red Perp Pfd Rg Sh Series O"
+        },
+        {
+          "ticker": "TFC/PR",
+          "name": "Truist Financial Corporation Depositary Shs Repr 1/1000th Non-Cum Red Perp Pfd Rg Sh Series R"
+        },
+        {
+          "ticker": "TFC",
+          "name": "Truist Financial Corporation"
+        },
+        {
+          "ticker": "MTB/PH",
+          "name": "M&T Bank Corporation Non-Cum Perp Pfd Registered Shs Series -H-"
+        },
+        {
+          "ticker": "MTB/PJ",
+          "name": "M&T Bank Corporation Int Perp Pfd Shs Depository Shs Repr 1/400th Int Perp Pfd Shs Series J"
+        },
+        {
+          "ticker": "MTB/PK",
+          "name": "M&T Bank Corporation Int Perp Pfd Shs Depository Shs Repr 1/400th Int Perp Pfd Shs Series K"
+        },
+        {
+          "ticker": "MTB/PL",
+          "name": "M&T Bank Corporation Depositary Shs Repr 1/400th Non-Cum Perp Pfd Rg Shs Series L"
+        },
+        {
+          "ticker": "MTB",
+          "name": "M&T Bank Corporation"
+        },
+        {
+          "ticker": "CFG/PE",
+          "name": "Citizens Financial Group, Inc. Depositary Shs Repr 1/40th 5% Non-Cum Perp Red Pfd Registered Shs Ser E"
+        },
+        {
+          "ticker": "CFG/PH",
+          "name": "Citizens Financial Group, Inc. Perp Pfd Shs Depository Shs Repr 1/40th Perp Pfd Shs Series H"
         }
       ]
     }
   ],
   "window": {
-    "PGR": "2026-10-09",
-    "DAL": "2026-10-09",
     "JPM": "2026-10-13",
-    "JPM/PD": "2026-10-13",
-    "JPM/PC": "2026-10-13",
-    "JPM/PL": "2026-10-13",
     "JPM/PK": "2026-10-13",
-    "JPM/PM": "2026-10-13",
+    "JPM/PL": "2026-10-13",
+    "JPM/PC": "2026-10-13",
     "JPM/PJ": "2026-10-13",
+    "JPM/PM": "2026-10-13",
+    "JPM/PD": "2026-10-13",
     "JNJ": "2026-10-13",
     "UNH": "2026-10-13",
     "GS": "2026-10-13",
-    "GS/PA": "2026-10-13",
     "GS/PC": "2026-10-13",
+    "GS/PA": "2026-10-13",
     "GS/PD": "2026-10-13",
     "WFC": "2026-10-13",
+    "WFC/PZ": "2026-10-13",
     "WFC/PC": "2026-10-13",
     "WFC/PD": "2026-10-13",
-    "WFC/PY": "2026-10-13",
-    "WFC/PZ": "2026-10-13",
-    "WFC/PA": "2026-10-13",
     "WFC/PL": "2026-10-13",
+    "WFC/PA": "2026-10-13",
+    "WFC/PY": "2026-10-13",
     "C": "2026-10-13",
     "C/PR": "2026-10-13",
     "DPZ": "2026-10-13",
     "ASML": "2026-10-14",
     "BAC": "2026-10-14",
-    "BAC/PN": "2026-10-14",
-    "BAC/PM": "2026-10-14",
     "BAC/PQ": "2026-10-14",
+    "BAC/PN": "2026-10-14",
     "BAC/PS": "2026-10-14",
-    "BAC/PB": "2026-10-14",
-    "BAC/PO": "2026-10-14",
-    "BAC/PE": "2026-10-14",
     "BAC/PL": "2026-10-14",
-    "BML/PG": "2026-10-14",
-    "BAC/PP": "2026-10-14",
-    "BML/PL": "2026-10-14",
     "BML/PJ": "2026-10-14",
+    "BAC/PM": "2026-10-14",
+    "BML/PG": "2026-10-14",
     "BML/PH": "2026-10-14",
+    "BML/PL": "2026-10-14",
+    "BAC/PO": "2026-10-14",
     "BAC/PK": "2026-10-14",
+    "BAC/PP": "2026-10-14",
+    "BAC/PB": "2026-10-14",
+    "BAC/PE": "2026-10-14",
     "MS": "2026-10-14",
-    "MS/PK": "2026-10-14",
-    "MS/PP": "2026-10-14",
-    "MS/PL": "2026-10-14",
-    "MS/PI": "2026-10-14",
-    "MS/PF": "2026-10-14",
-    "MS/PE": "2026-10-14",
     "MS/PO": "2026-10-14",
-    "MS/PQ": "2026-10-14",
+    "MS/PL": "2026-10-14",
     "MS/PA": "2026-10-14",
+    "MS/PK": "2026-10-14",
+    "MS/PF": "2026-10-14",
+    "MS/PP": "2026-10-14",
+    "MS/PE": "2026-10-14",
+    "MS/PQ": "2026-10-14",
+    "MS/PI": "2026-10-14",
     "BLK": "2026-10-14",
     "FAST": "2026-10-14",
     "STT/PG": "2026-10-14",
@@ -200,12 +420,12 @@
     "BNY/PK": "2026-10-15",
     "BNY": "2026-10-15",
     "USB": "2026-10-15",
-    "USB/PQ": "2026-10-15",
     "USB/PH": "2026-10-15",
-    "USB/PP": "2026-10-15",
-    "USB/PR": "2026-10-15",
-    "USB/PA": "2026-10-15",
     "USB/PS": "2026-10-15",
+    "USB/PA": "2026-10-15",
+    "USB/PR": "2026-10-15",
+    "USB/PP": "2026-10-15",
+    "USB/PQ": "2026-10-15",
     "PNC": "2026-10-15",
     "MRSH": "2026-10-15",
     "ERIC": "2026-10-15",
@@ -219,25 +439,27 @@
     "FHN": "2026-10-15",
     "TRV": "2026-10-16",
     "TFC/PR": "2026-10-16",
-    "TFC/PO": "2026-10-16",
     "TFC/PI": "2026-10-16",
+    "TFC/PO": "2026-10-16",
     "TFC": "2026-10-16",
+    "MTB/PJ": "2026-10-16",
+    "MTB/PH": "2026-10-16",
     "MTB/PK": "2026-10-16",
     "MTB/PL": "2026-10-16",
-    "MTB/PH": "2026-10-16",
-    "MTB/PJ": "2026-10-16",
     "MTB": "2026-10-16",
+    "CFG/PI": "2026-10-16",
     "CFG/PE": "2026-10-16",
     "CFG/PH": "2026-10-16",
-    "CFG/PI": "2026-10-16",
     "CFG": "2026-10-16",
-    "RF/PE": "2026-10-16",
     "RF/PF": "2026-10-16",
+    "RF/PE": "2026-10-16",
     "RF/PC": "2026-10-16",
-    "RF": "2026-10-16"
+    "RF": "2026-10-16",
+    "HDB": "2026-10-17",
+    "IBN": "2026-10-17"
   },
   "_meta": {
-    "updatedAt": "09/10/2026 23:46",
+    "updatedAt": "10/10/2026 00:01",
     "source": "tradingview"
   }
 }
