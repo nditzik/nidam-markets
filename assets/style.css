@@ -1840,3 +1840,20 @@ ol.ep-check .t { display: block; color: var(--text-soft); font-size: .84rem; }
   .bp-when { font-size: .8rem; white-space: normal; }
   .bp-title { font-size: 1.12rem; }
 }
+
+/* ===== אחרי הדוח — ההכנה מול מה שקרה (9.10.2026, np116) ===== */
+.ep-intro2 { margin-top: 14px; padding-top: 18px; border-top: 1px solid var(--border-soft); }
+.ep-pill.done { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.ep-pill.sc-bull { background: color-mix(in srgb, var(--up) 14%, transparent); color: var(--up); font-weight: 700; }
+.ep-pill.sc-bear { background: color-mix(in srgb, var(--down) 14%, transparent); color: var(--down); font-weight: 700; }
+.ep-pill.sc-mixed { background: var(--surface-2); color: var(--text); font-weight: 700; }
+.ep-m { font-weight: 800; }
+.ep-m.hit { color: var(--up); } .ep-m.miss { color: var(--down); } .ep-m.mixed { color: var(--warn); }
+.ep-stat .v .ep-m { font-size: 1.25rem; }
+ol.ep-rv { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+ol.ep-rv li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; font-size: .92rem; }
+ol.ep-rv li > .ep-m { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: .95rem; background: var(--surface-2); }
+ol.ep-rv .t { display: block; color: var(--text); font-size: .88rem; margin-top: 2px; }
+ol.ep-rv .was { display: block; color: var(--text-3); font-size: .8rem; margin-top: 3px; }
+.ep-sec h4 small.down { color: var(--down); font-weight: 700; } .ep-sec h4 small.up { color: var(--up); font-weight: 700; }
+.ep-grid > .ep-wide { grid-column: 1 / -1; }

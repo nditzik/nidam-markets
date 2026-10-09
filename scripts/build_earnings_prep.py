@@ -38,6 +38,8 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 TV_SCAN = "https://scanner.tradingview.com/america/scan"
 AHEAD_DAYS = 14          # חברה נכנסת כשהדוח בתוך שבועיים
 ANALYST_EVERY_H = 6      # רענון אנליסטים/נרות לכל חברה
+REVIEW_DAYS = 14         # "אחרי הדוח": כמה ימים הכרטיס נשאר אחרי יום הדוח (9.10.2026)
+SNAP = os.path.join(DATA, "_prep_snap.json")   # מה היה ידוע לפני הדוח (צפי, אופציות) — נשמר כשהחברה עוד ב-items
 VER = 3                  # שינוי מבנה → הרענון של 6 השעות מתאפס (v2: תאריכי Nasdaq; v3: יום תגובה לפי שעת הדוח)
 # חברות שנשמרות בשם ולא בטיקר (כמו LOGO_ALIAS ב-fetch_reports.py)
 ALIAS = {"ALPHABET": "GOOGL", "GOOGLE": "GOOGL", "FACEBOOK": "META", "BERKSHIRE": "BRK-B"}
@@ -303,6 +305,41 @@ def price_block(bars, spy, since_day):
     return out
 
 
+def react_after(sym, day, when):
+    """התגובה בפועל לדוח (סגירה מול סגירה): לפני הפתיחה = יום הדוח מול הקודם; אחרי הסגירה = המחרת מול יום הדוח.
+    מהנרות שבאתר (data/bars), ונפילה למטמון של לוח התוצאות. None = הסשן עוד לא נסגר / אין נתונים."""
+    bars = (load(os.path.join(DATA, "bars", sym + ".json"), {}) or {}).get("bars") or []
+    i = next((k for k, b in enumerate(bars) if b[0] == day), None)
+    if i is not None:
+        j = i + 1 if when == "after" else i
+        if 0 < j < len(bars):
+            return {"day": bars[j][0], "move": round((bars[j][4] / bars[j - 1][4] - 1) * 100, 2), "close": bars[j][4]}
+        return None
+    r = (load(os.path.join(DATA, "_season_react.json"), {}).get("react") or {}).get(sym) or {}
+    if r.get("v") is not None and r.get("d", "") >= day:
+        return {"day": r["d"], "move": r["v"], "close": None}
+    return None
+
+
+def recent_block(snap, items, latest, sym_of, today, now):
+    """חברות שהדוח שלהן עבר (עד REVIEW_DAYS): מה היה צפוי לפני (מהתמונה שנשמרה) + התגובה + הניתוח החדש, אם הגיע."""
+    live = {it["sym"] for it in items}
+    out = []
+    for sym, s in snap.items():
+        d = date.fromisoformat(s["forDate"])
+        if sym in live or (today - d).days > REVIEW_DAYS or d > today:
+            continue
+        rep_t = next((t for t, v in sym_of.items() if v == sym), sym)
+        nr = latest.get(rep_t) or {}
+        new_rep = {"file": nr.get("file"), "date": nr.get("date"), "title": nr.get("title")} \
+            if (nr.get("date") or "") >= s["forDate"] and nr.get("file") != (s.get("report") or {}).get("file") else None
+        out.append({"sym": sym, "name": s.get("name"), "date": s["forDate"], "when": s.get("when"),
+                    "report": s.get("report"), "newReport": new_rep, "consensus": s.get("consensus"),
+                    "options": s.get("options"), "avgMove": s.get("avgMove"),
+                    "reaction": react_after(sym, s["forDate"], s.get("when"))})
+    return sorted(out, key=lambda x: x["date"], reverse=True)
+
+
 # ---------------------------------------------------------------- ראשי
 def main(fetch=None, now=None):
     now = now or datetime.now(timezone.utc)
@@ -404,10 +441,28 @@ def main(fetch=None, now=None):
               f"אופציות {((it.get('options') or {}).get('earn'))} · הערות {'✓' if it['hasNote'] else '—'}")
 
     items.sort(key=lambda x: (x["date"], x["sym"]))
+    # תמונת "לפני הדוח" לכל חברה (9.10.2026): כשהחברה יוצאת מ-items אחרי יום התגובה, הצפי והתזוזה
+    # שהאופציות תמחרו נשארים כאן — "אחרי הדוח" משווה אליהם.
+    snap = load(SNAP, {})
+    snap0 = json.dumps(snap, sort_keys=True)
+    for it in items:
+        s = snap.get(it["sym"]) or {}
+        same = s.get("forDate") == it["date"]
+        snap[it["sym"]] = {"forDate": it["date"], "when": it.get("when"), "name": it.get("name"), "report": it.get("report"),
+                           "consensus": it.get("consensus") or (s.get("consensus") if same else None),
+                           "options": it.get("options") or (s.get("options") if same else None),
+                           "avgMove": it.get("avgMove")}
+    for sym in [k for k, v in snap.items() if (today - date.fromisoformat(v["forDate"])).days > 45]:
+        del snap[sym]
+    if json.dumps(snap, sort_keys=True) != snap0:
+        with open(SNAP, "w", encoding="utf-8") as f:
+            json.dump(snap, f, ensure_ascii=False, indent=1)
+    recent = recent_block(snap, items, latest, sym_of, today, now)
     out = {"_meta": {"updatedAt": now.astimezone(IL).strftime("%d/%m/%Y %H:%M"), "aheadDays": AHEAD_DAYS, "ver": VER,
                      "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"},
-           "items": items, "later": sorted(later, key=lambda x: x["date"])[:12]}
-    if not stale_ver and json.dumps([items, out["later"]], sort_keys=True) == json.dumps([prev.get("items", []), prev.get("later", [])], sort_keys=True):
+           "items": items, "later": sorted(later, key=lambda x: x["date"])[:12], "recent": recent}
+    if not stale_ver and json.dumps([items, out["later"], recent], sort_keys=True) == \
+            json.dumps([prev.get("items", []), prev.get("later", []), prev.get("recent", [])], sort_keys=True):
         print("[nochange]")
         return 0
     with open(OUT, "w", encoding="utf-8") as f:

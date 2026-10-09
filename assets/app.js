@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np115";
+  var TA_VER = "np116";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3609,7 +3609,7 @@
      דוח קודם באתר ומדווחות בשבועיים הקרובים — צפי אנליסטים, היסטוריית הפתעות + תגובת המניה, מחירי יעד,
      התזוזה שהאופציות מתמחרות, מחיר מאז הדוח הקודם. data/earnings_prep_notes.json = המילים (הרוטינה
      היומית לפי scripts/prompts/earnings_prep.md): משפט מוביל, תחזית ההנהלה, 5 בדיקות, חולשות, תרחישים. */
-  var PREPD = null, PREPN = null;
+  var PREPD = null, PREPN = null, PREPR = null;
   var EP_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
   function epDate(iso) { var p = iso.split("-"); return (+p[2]) + "." + (+p[1]); }
   function epDow(iso) { return EP_DOW[new Date(iso + "T12:00:00Z").getUTCDay()]; }
@@ -3775,22 +3775,81 @@
       "<span>התזוזה ליום הדוח = הסטראדל לפקיעה הראשונה אחרי הדוח, בניכוי התנודה הרגילה. תאריכי הדוחות הקודמים והרווח מול הצפי: Nasdaq; יום התגובה = יום הדוח (לפני הפתיחה) או המחרת (אחרי הסגירה). תיאור מבוסס נתונים, לא ייעוץ השקעות.</span></div>";
     return '<article class="ep-card" id="ep-' + esc(it.sym) + '">' + head + words + stats + grid + price + after + foot + "</article>";
   }
+  /* "אחרי הדוח" (9.10.2026, איציק): כשהניתוח החדש עולה, הכרטיס של החברה עובר לכאן — ההכנה מול מה שקרה.
+     המספרים (צפי ותזוזה מתומחרת לפני הדוח, התגובה בפועל) מ-earnings_prep.json.recent (build_earnings_prep שומר
+     תמונת "לפני" ב-_prep_snap.json); המילים מ-earnings_review_notes.json שהרוטינה כותבת (scripts/prompts/earnings_review.md). */
+  var EP_MARK = { hit: ["✓", "פגע ברף"], miss: ["✗", "לא עמד ברף"], mixed: ["~", "חלקי"] };
+  var EP_SCEN = { bull: "קרוב לתרחיש החיובי", bear: "קרוב לתרחיש השלילי", mixed: "באמצע בין התרחישים" };
+  function epReviewCard(rc) {
+    var r = (PREPR && PREPR[rc.sym] && PREPR[rc.sym].forDate === rc.date) ? PREPR[rc.sym] : null;
+    var pn = (PREPN && PREPN[rc.sym] && PREPN[rc.sym].forDate === rc.date) ? PREPN[rc.sym] : null;
+    var o = rc.options || {}, c = rc.consensus || {}, re = rc.reaction || {}, nr = rc.newReport;
+    var head = '<header class="ep-head">' + epLogo(rc, true) +
+      '<div class="ep-who"><div class="ep-name">' + esc(rc.name || rc.sym) + ' <small dir="ltr">' + esc(rc.sym) + "</small></div>" +
+      '<div class="ep-when"><span class="ep-pill done">דיווחה · ' + epDow(rc.date) + " " + epDate(rc.date) + " · " + epWhen(rc) + "</span>" +
+      (r ? '<span class="ep-pill sc-' + esc(r.scenario || "mixed") + '">' + esc(EP_SCEN[r.scenario] || EP_SCEN.mixed) + "</span>" : "") + "</div></div>" +
+      (nr && nr.file ? '<button class="ep-rep" onclick="__openReport(\'' + esc(nr.file) + '\')">הניתוח החדש (' + esc(epDate(nr.date || "")) + ") ←</button>" : "") + "</header>";
+    var words = r ? '<h3 class="ep-thesis">' + esc(r.headline) + "</h3>" + (r.scenarioText ? '<p class="ep-dek">' + esc(r.scenarioText) + "</p>" : "")
+      : '<p class="ep-wait">' + (nr ? "ההשוואה המלאה (הבדיקות מול התוצאות, התחזית לפני ואחרי) תיכתב בבוקר הקרוב, מתוך הניתוח החדש." :
+        "ההשוואה תיכתב אחרי שהניתוח החדש של הדוח יעלה לאתר. בינתיים: מה תומחר מול מה שקרה.") + "</p>";
+    var marks = r ? (r.checks || []) : [];
+    var cnt = { hit: 0, miss: 0, mixed: 0 };
+    marks.forEach(function (x) { if (cnt[x.mark] != null) cnt[x.mark]++; });
+    var mv = re.move, band = o.earn;
+    var vsBand = mv != null && band != null ? (Math.abs(mv) > band ? "גדולה מהמתומחר" : "בתוך הטווח המתומחר") : (mv == null ? "מחכה לסגירת יום התגובה" : "");
+    var stats = '<div class="ep-stats">' +
+      '<div class="ep-stat"><span class="k">האופציות תמחרו</span><span class="v num" dir="ltr">' + (band != null ? "±" + band.toFixed(1) + "%" : "—") + '</span><span class="s">ליום הדוח' + (o.asOf ? " · " + esc(o.asOf) : "") + "</span></div>" +
+      '<div class="ep-stat"><span class="k">התגובה בפועל</span><span class="v num ' + (mv > 0 ? "up" : mv < 0 ? "down" : "") + '" dir="ltr">' + (mv != null ? pkPct(mv, 1) : "—") + '</span><span class="s">' + esc(vsBand) + "</span></div>" +
+      '<div class="ep-stat"><span class="k">צפי הרווח לפני הדוח</span><span class="v num" dir="ltr">' + (c.eps != null ? "$" + c.eps.toFixed(2) : "—") + '</span><span class="s">' + (c.epsLow != null ? 'טווח <span class="num" dir="ltr">' + c.epsLow.toFixed(2) + "–" + c.epsHigh.toFixed(2) + "</span>" : "") + "</span></div>" +
+      '<div class="ep-stat"><span class="k">הבדיקות שקבענו</span><span class="v">' + (marks.length ? '<span class="ep-m hit">' + cnt.hit + '✓</span> <span class="ep-m mixed">' + cnt.mixed + '~</span> <span class="ep-m miss">' + cnt.miss + "✗</span>" : "—") +
+        '</span><span class="s">' + (marks.length ? "מתוך " + marks.length : "מחכה להשוואה") + "</span></div></div>";
+    var sec = [];
+    if (marks.length) {
+      var pre = {};
+      ((pn && pn.checks) || []).forEach(function (x) { pre[x.title] = x.text; });
+      sec.push('<section class="ep-sec ep-wide"><h4>מה בדקנו מול מה שקרה' + (pn && pn.writtenAt ? " <small>ההכנה נכתבה " + esc(pn.writtenAt) + "</small>" : "") + '</h4><ol class="ep-rv">' +
+        marks.map(function (x) {
+          var m = EP_MARK[x.mark] || EP_MARK.mixed;
+          return '<li><span class="ep-m ' + esc(x.mark) + '" title="' + m[1] + '" aria-label="' + m[1] + '">' + m[0] + "</span><span><b>" + esc(x.title) + '</b><span class="t">' + esc(x.actual) + "</span>" +
+            (pre[x.title] ? '<span class="was">לפני: ' + esc(pre[x.title]) + "</span>" : "") + "</span></li>";
+        }).join("") + "</ol></section>");
+    }
+    if (r && (r.guidance || []).length) {
+      sec.push('<section class="ep-sec"><h4>התחזית לפני ואחרי' + (r.guidanceDir === "down" ? ' <small class="down">הורדה</small>' : r.guidanceDir === "up" ? ' <small class="up">הועלתה</small>' : "") + "</h4>" +
+        '<table class="ep-tbl"><tr><th>מדד</th><th class="r">לפני</th><th class="r">אחרי</th></tr>' +
+        r.guidance.map(function (g) { return "<tr><td>" + esc(g.metric) + '</td><td class="r">' + esc(g.before || "—") + '</td><td class="r"><b>' + esc(g.after || "—") + "</b></td></tr>"; }).join("") + "</table></section>");
+    }
+    if (r && (r.nextChecks || []).length) {
+      sec.push('<section class="ep-sec"><h4>מה בודקים ברבעון הבא <small>ייכנס להכנה הבאה</small></h4><ul class="ep-dots">' +
+        r.nextChecks.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></section>");
+    }
+    var grid = sec.length ? '<div class="ep-grid">' + sec.join("") + "</div>" : "";
+    var foot = '<div class="ep-foot"><span>ההכנה: ' + (pn && pn.writtenAt ? esc(pn.writtenAt) : "—") + " · ההשוואה: " + (r && r.writtenAt ? esc(r.writtenAt) : "טרם נכתבה") +
+      " · התגובה: סגירה מול סגירה ביום התגובה (" + (re.day ? esc(epDate(re.day)) : "—") + ") · האופציות: התמונה האחרונה לפני הדוח.</span>" +
+      "<span>תיאור מבוסס נתונים, לא ייעוץ השקעות.</span></div>";
+    return '<article class="ep-card ep-after" id="ep-' + esc(rc.sym) + '">' + head + words + stats + grid + foot + "</article>";
+  }
   function renderPrep(el) {
     if (!el) return;
-    var items = (PREPD && PREPD.items) || [], later = (PREPD && PREPD.later) || [];
+    var items = (PREPD && PREPD.items) || [], later = (PREPD && PREPD.later) || [], recent = (PREPD && PREPD.recent) || [];
     var intro = '<section class="ep-intro"><div class="ep-kicker">לקראת הדוחות · השבועיים הקרובים</div>' +
       '<h2>מי מדווח, ומה צריך לבדוק לפי הדוח הקודם</h2>' +
       "<p>רק חברות שיש להן ניתוח דוח קודם באתר. המספרים מתעדכנים כל רבע שעה עד יום הדוח; ההכנה המילולית נכתבת בבוקר שלפני שבוע הדוח.</p>";
-    if (items.length) {
-      intro += '<div class="ep-chips">' + items.map(function (it) {
+    if (items.length || recent.length) {
+      intro += '<div class="ep-chips">' + items.concat(recent).map(function (it) {
         return '<a class="ep-chip" href="#ep-' + esc(it.sym) + '" onclick="document.getElementById(\'ep-' + esc(it.sym) + '\').scrollIntoView({behavior:\'smooth\'});return false">' +
-          epLogo(it) + "<span><b dir=\"ltr\">" + esc(it.sym) + "</b> <small>" + epDow(it.date) + " " + epDate(it.date) + " · " + epWhen(it) + "</small></span></a>";
+          epLogo(it) + "<span><b dir=\"ltr\">" + esc(it.sym) + "</b> <small>" + (recent.indexOf(it) >= 0 ? "דיווחה " + epDate(it.date) : epDow(it.date) + " " + epDate(it.date) + " · " + epWhen(it)) + "</small></span></a>";
       }).join("") + "</div>";
     }
     intro += "</section>";
     var body = items.length ? items.map(epCard).join("")
       : '<div class="ep-empty">אף חברה עם ניתוח קודם באתר לא מדווחת בשבועיים הקרובים.' +
         (later.length ? "<br>הבאות בתור: " + later.slice(0, 6).map(function (x) { return '<b dir="ltr">' + esc(x.sym) + "</b> " + epDate(x.date); }).join(" · ") : "") + "</div>";
+    if (recent.length) {
+      body += '<section class="ep-intro ep-intro2"><div class="ep-kicker">אחרי הדוח · השבועיים האחרונים</div>' +
+        "<h2>ההכנה מול מה שקרה</h2><p>לכל חברה שדיווחה: הבדיקות שקבענו לפני הדוח, מה יצא בפועל, התחזית לפני ואחרי, וכמה המניה זזה מול מה שהאופציות תמחרו.</p></section>" +
+        recent.map(epReviewCard).join("");
+    }
     el.innerHTML = '<div class="ep-wrap">' + intro + body + "</div>";
   }
 
@@ -4183,6 +4242,13 @@
 
     var list = el.querySelector("#rep-list");
     var view = el.querySelector("#rep-view");
+    // פתיחת דוח מסוים מבחוץ ("הניתוח החדש" בכרטיס "אחרי הדוח", 9.10.2026)
+    window.__openReport = function (file) {
+      if (window.__goTab) window.__goTab("reports");
+      var i = reports.findIndex(function (x) { return x.file === file; });
+      var b = i >= 0 ? el.querySelector('.rep-card[data-rep="' + i + '"]') : null;
+      if (b) setTimeout(function () { b.click(); }, 30);
+    };
     function back() { view.style.display = "none"; view.innerHTML = ""; list.style.display = ""; }
     el.querySelectorAll(".rep-card").forEach(function (b) {
       b.addEventListener("click", function () {
@@ -4315,8 +4381,9 @@
         .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); noteSig("insider", d); })
         .catch(function () { if (!("insider" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
       // הנבחרות (30.9.2026): המהדורה + יומן הכנות; היומן לא חוסם את הקלפים
-      Promise.all([fetchJSON("data/earnings_prep.json"), fetchJSON("data/earnings_prep_notes.json").catch(function () { return {}; })])
-        .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; renderPrep(document.getElementById("panel-prep")); noteSig("prep", r[1]); })
+      Promise.all([fetchJSON("data/earnings_prep.json"), fetchJSON("data/earnings_prep_notes.json").catch(function () { return {}; }),
+        fetchJSON("data/earnings_review_notes.json").catch(function () { return {}; })])
+        .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; PREPR = r[2]; renderPrep(document.getElementById("panel-prep")); noteSig("prep", [r[1], r[2]]); })
         .catch(function () { if (!PREPD) renderPrep(document.getElementById("panel-prep")); });
       Promise.all([fetchJSON("data/picks.json"), fetchJSON("data/picks_ledger.json").catch(function () { return null; })])
         .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); noteSig("picks", r[0]); })
