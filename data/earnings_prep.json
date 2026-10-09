@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "09/10/2026 22:16",
+  "updatedAt": "09/10/2026 22:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -483,14 +483,14 @@
    "analystsAt": "2026-10-09T17:31+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "09/10 22:16",
-    "price": 333.355,
+    "asOf": "09/10 22:31",
+    "price": 333.41,
     "exp": "2026-10-16",
     "strike": 332.5,
-    "pct": 3.61,
-    "earn": 3.56,
+    "pct": 3.56,
+    "earn": 3.51,
     "preExp": "2026-10-09",
-    "prePct": 0.3
+    "prePct": 0.29
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -498,18 +498,13 @@
  ],
  "later": [
   {
-   "sym": "GOOGL",
-   "date": "2026-10-27",
-   "when": null
-  },
-  {
    "sym": "SOFI",
    "date": "2026-10-27",
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
+   "sym": "GOOGL",
+   "date": "2026-10-27",
    "when": null
   },
   {
@@ -523,9 +518,19 @@
    "when": "after"
   },
   {
+   "sym": "META",
+   "date": "2026-10-28",
+   "when": null
+  },
+  {
    "sym": "AMZN",
    "date": "2026-10-29",
    "when": null
+  },
+  {
+   "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": "after"
   },
   {
    "sym": "SNDK",
@@ -536,11 +541,6 @@
    "sym": "MRK",
    "date": "2026-10-29",
    "when": "before"
-  },
-  {
-   "sym": "CUBE",
-   "date": "2026-10-29",
-   "when": "after"
   },
   {
    "sym": "CVX",
