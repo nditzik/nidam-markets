@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "09/10/2026 20:16",
+  "updatedAt": "09/10/2026 20:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,16 +147,14 @@
      "ptPrev": 360.0
     }
    ],
+   "yahooDate": "2026-10-13",
+   "analystsAt": "2026-10-09T17:31+00:00",
    "price": {
-    "close": 331.42,
-    "date": "2026-10-08",
+    "close": 332.93,
+    "date": "2026-10-09",
     "high52": 365.18,
-    "ma50": 350.5,
+    "ma50": 350.14,
     "series": [
-     [
-      "2026-06-16",
-      331.14
-     ],
      [
       "2026-06-17",
       333.46
@@ -472,26 +470,27 @@
      [
       "2026-10-08",
       331.42
+     ],
+     [
+      "2026-10-09",
+      332.93
      ]
     ],
-    "off52": -9.2,
+    "off52": -8.8,
     "since": {
      "from": "2026-07-13",
-     "chg": -0.9,
-     "spy": 3.3
+     "chg": -0.5
     }
    },
-   "analystsAt": "2026-10-09T11:27+00:00",
-   "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "09/10 20:16",
-    "price": 332.965,
+    "asOf": "09/10 20:31",
+    "price": 332.88,
     "exp": "2026-10-16",
     "strike": 332.5,
-    "pct": 3.61,
-    "earn": 3.53,
+    "pct": 3.65,
+    "earn": 3.59,
     "preExp": "2026-10-09",
-    "prePct": 0.38
+    "prePct": 0.34
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -499,13 +498,18 @@
  ],
  "later": [
   {
+   "sym": "GOOGL",
+   "date": "2026-10-27",
+   "when": null
+  },
+  {
    "sym": "SOFI",
    "date": "2026-10-27",
    "when": "before"
   },
   {
-   "sym": "GOOGL",
-   "date": "2026-10-27",
+   "sym": "META",
+   "date": "2026-10-28",
    "when": null
   },
   {
@@ -519,19 +523,14 @@
    "when": "before"
   },
   {
-   "sym": "META",
-   "date": "2026-10-28",
-   "when": null
-  },
-  {
    "sym": "CUBE",
    "date": "2026-10-29",
    "when": "after"
   },
   {
-   "sym": "SNDK",
+   "sym": "AMZN",
    "date": "2026-10-29",
-   "when": "after"
+   "when": null
   },
   {
    "sym": "MRK",
@@ -539,9 +538,9 @@
    "when": "before"
   },
   {
-   "sym": "AMZN",
+   "sym": "SNDK",
    "date": "2026-10-29",
-   "when": null
+   "when": "after"
   },
   {
    "sym": "CVX",
