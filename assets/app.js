@@ -96,26 +96,6 @@
     return Number(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: d });
   }
   var PIN_KEYS = { es: 1, nq: 1, usdils: 1 };   // בשורה הקבועה, לא ברצועה הנעה
-  function mtItem(it) {
-    var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : ""), arr = c > 0 ? "▲" : (c < 0 ? "▼" : "");
-    var chg = (c == null) ? "" :
-      ' <span class="mt-chg ' + cls + '">' + arr + " " + (c > 0 ? "+" : "") + Number(c).toFixed(2) + "%</span>";
-    return '<span class="mt-item"><span class="mt-label">' + esc(it.label) + "</span>" +
-      '<span class="mt-price num">' + fmtQuote(it.price) + "</span>" + chg + "</span>";
-  }
-  function tickSpark(sp, up) {
-    if (!sp || sp.length < 2) return "";
-    var min = Math.min.apply(null, sp), max = Math.max.apply(null, sp);
-    if (max === min) max = min + 1;
-    var W = 64, Hh = 26;
-    var pts = sp.map(function (v, i) {
-      return (i * (W / (sp.length - 1))).toFixed(1) + "," + (Hh - 3 - ((v - min) / (max - min)) * (Hh - 6)).toFixed(1);
-    });
-    var col = up ? "var(--up)" : "var(--down)";
-    return '<svg class="np-blk-spark" viewBox="0 0 64 26" preserveAspectRatio="none">' +
-      '<polygon points="0,' + Hh + " " + pts.join(" ") + " " + W + "," + Hh + '" fill="' + col + '" opacity=".12"/>' +
-      '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + col + '" stroke-width="1.6"/></svg>';
-  }
   function renderMarketTicker(el, data) {
     if (!el || !data || !data.items || !data.items.length) return;
     // שתי שורות רזות: עליונה = המדדים (SPY→DXY מימין), תחתונה = חוזים + דולר/שקל
@@ -242,22 +222,6 @@
       '<div class="ht-grid">' + tiles + "</div>";
   }
 
-  /* "מה השווקים מהמרים" — כרטיסי מגמה אחידים (data/bets.json + history) */
-  function betSpark(h, dir) {
-    var W = 160, H = 56;
-    var min = Math.min.apply(null, h), max = Math.max.apply(null, h);
-    if (max - min < 4) { var mid = (max + min) / 2; min = mid - 2; max = mid + 2; }
-    var pts = h.map(function (v, i) {
-      return [(i * (W / (h.length - 1))).toFixed(1), ((H - 8) - ((v - min) / (max - min)) * (H - 20)).toFixed(1)];
-    });
-    var line = pts.map(function (p) { return p[0] + "," + p[1]; }).join(" ");
-    var col = dir === "up" ? "var(--up)" : dir === "down" ? "var(--down)" : "var(--accent)";
-    var last = pts[pts.length - 1];
-    return '<div class="bt2-chart"><svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none">' +
-      '<polygon points="0,' + H + " " + line + " " + W + "," + H + '" fill="' + col + '" fill-opacity=".13"/>' +
-      '<polyline points="' + line + '" fill="none" stroke="' + col + '" stroke-width="2"/>' +
-      '<circle cx="' + last[0] + '" cy="' + last[1] + '" r="3" fill="' + col + '"/></svg></div>';
-  }
   /* ===== np117 — פאנלי הבית של "לוח המסחר" (עיצוב מחדש שלב 6, ספר הסגנון docs/redesign/styleguide) =====
      כל פאנל = .pan עם .ph (כותרת + קישור אחד) ותוכן. מספרים ב-.num (מונו, LTR). כל גרפיקה LTR. */
   function bdPct(v, d) {
@@ -266,7 +230,6 @@
     return '<span class="num ' + cls + '" dir="ltr">' + (n > 0 ? "+" : n < 0 ? "−" : "") + Math.abs(n).toFixed(d == null ? 2 : d) + "%</span>";
   }
   function bdGo(name, label) { return '<a class="go" href="#' + name + '" onclick="__goTab(\'' + name + '\');return false">' + label + "</a>"; }
-  function bdIso(dt) { return dt.getFullYear() + "-" + ("0" + (dt.getMonth() + 1)).slice(-2) + "-" + ("0" + dt.getDate()).slice(-2); }
   function bdDM(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ""); return m ? (+m[3]) + "." + (+m[2]) : ""; }
   var BD_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
 
@@ -647,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np125";
+  var TA_VER = "np126";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -999,17 +962,6 @@
     IT: "טכנולוגיה", ENE: "אנרגיה", UTL: "תשתיות", RE: "נדל\"ן", MAT: "חומרים", COM: "תקשורת"
   };
 
-  /* ---------- home pulse: Edge Meter (right) + live market clock (left) ---------- */
-  function mPolar(cx, cy, r, deg) {   // deg מ"12:00": ‎-90=שמאל, ‎+90=ימין
-    var a = deg * Math.PI / 180;
-    return [cx + r * Math.sin(a), cy - r * Math.cos(a)];
-  }
-  function mArc(cx, cy, r, a1, a2) {
-    var p1 = mPolar(cx, cy, r, a1), p2 = mPolar(cx, cy, r, a2);
-    return "M" + p1[0].toFixed(1) + "," + p1[1].toFixed(1) +
-      " A" + r + "," + r + " 0 0 1 " + p2[0].toFixed(1) + "," + p2[1].toFixed(1);
-  }
-  function mDeg(score) { return -90 + score * 1.8; }
   // 26.9.2026: המסלול בתוך השבוע — "שפל 49" כשהשפל נמוך משתי הקצוות (או "שיא" כשגבוה משתיהן)
   function meterLowHi(s) {
     var a = s.combStart, b = s.combEnd, lo = s.combLow, hi = s.combHigh, out = "";
@@ -1019,73 +971,7 @@
   }
   function meterWord(v) { return v >= 66 ? ["חיובי", "var(--up)"] : v >= 45 ? ["זהיר", "var(--warn)"] : ["הגנתי", "var(--down)"]; }
 
-  function initHomePulse() {
-    var el = document.getElementById("home-pulse");
-    if (!el) return;
-    el.innerHTML =
-      '<section class="card pulse-card">' +
-        '<div class="pulse-title">🎯 The Edge Meter · מד השוק היומי</div>' +
-        '<svg class="meter-svg" viewBox="0 0 200 118" aria-label="מד ציון משולב">' +
-          '<g id="meter-arcs" fill="none" stroke-linecap="round"></g>' +
-          '<g id="meter-ticks" stroke="var(--text-3)" stroke-width="1" opacity=".55"></g>' +
-          '<g class="meter-needle" id="meter-needle" style="transform:rotate(-90deg)">' +
-            '<line x1="100" y1="100" x2="100" y2="36" stroke="var(--text)" stroke-width="3.2" stroke-linecap="round"/>' +
-            '<circle cx="100" cy="100" r="6.5" fill="var(--text)"/>' +
-            '<circle cx="100" cy="100" r="2.4" fill="var(--card-bg)"/>' +
-          "</g></svg>" +
-        '<div class="meter-score num" id="meter-score">—</div>' +
-        '<div class="meter-word" id="meter-word"></div>' +
-        '<div class="meter-sub" id="meter-sub"></div>' +
-        '<svg class="meter-spark" id="meter-spark" viewBox="0 0 120 30" preserveAspectRatio="none"></svg>' +
-        '<div class="spark-label" id="spark-label"></div>' +
-      "</section>" +
-      '<section class="card pulse-card pulse-news">' +
-        '<div class="pulse-title pn-title">📰 חדשות השוק</div>' +
-        '<ul class="pn-list" id="pn-list"></ul>' +
-      "</section>" +
-      '<section class="card pulse-card clock-card">' +
-        '<span class="clock-badge closed" id="clock-badge">…</span>' +
-        '<div class="clock-time num" id="clock-time" dir="ltr">--:--:--</div>' +
-        '<div class="clock-label" id="clock-label"></div>' +
-        '<div class="clock-next" id="clock-next" style="display:none"></div>' +
-      "</section>";
 
-    // קשתות אזורי הצבע + שנתות
-    var arcs = document.getElementById("meter-arcs");
-    [[0, 44, "var(--down)"], [45, 65, "var(--warn)"], [66, 100, "var(--up)"]].forEach(function (z) {
-      var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      p.setAttribute("d", mArc(100, 100, 78, mDeg(z[0]) + 1, mDeg(z[1]) - 1));
-      p.setAttribute("stroke", z[2]); p.setAttribute("stroke-width", "13"); p.setAttribute("opacity", ".92");
-      arcs.appendChild(p);
-    });
-    var ticks = document.getElementById("meter-ticks");
-    [0, 25, 50, 75, 100].forEach(function (v) {
-      var a = mDeg(v), o = mPolar(100, 100, 66, a), i2 = mPolar(100, 100, 60, a);
-      var l = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      l.setAttribute("x1", o[0]); l.setAttribute("y1", o[1]);
-      l.setAttribute("x2", i2[0]); l.setAttribute("y2", i2[1]);
-      ticks.appendChild(l);
-    });
-    startClock();
-  }
-
-  function renderMeter(d) {
-    var v = (d.scores || {}).combined;
-    var score = document.getElementById("meter-score");
-    if (!score || v == null) return;
-    var w = meterWord(v);
-    score.textContent = v; score.style.color = w[1];
-    var word = document.getElementById("meter-word");
-    word.textContent = w[0]; word.style.color = w[1];
-    document.getElementById("meter-sub").textContent =
-      "טכני " + (d.scores.tech != null ? d.scores.tech : "—") +
-      " · רוחב " + (d.scores.breadth != null ? d.scores.breadth : "—") +
-      " · אופציות " + (d.scores.flow != null ? d.scores.flow : "—");
-    requestAnimationFrame(function () { setTimeout(function () {
-      var n = document.getElementById("meter-needle");
-      if (n) n.style.transform = "rotate(" + mDeg(v) + "deg)";
-    }, 150); });
-  }
 
   /* שעון המסחר — שעון ישראל מקומי; פתיחה 16:30, סגירה 23:00, ב'-ו' */
   var OPEN_T = { h: 16, m: 30 }, CLOSE_T = { h: 23, m: 0 };
@@ -1767,7 +1653,6 @@
       '<b class="num" dir="ltr">' + esc(w.label) + '</b><span class="fc-days" title="ימי מסחר שנסגרו">' + dots + "</span></div>" +
       '<p class="fc-sum" style="margin-bottom:8px">' + esc(f.label || "") + (f.headline ? " — " + esc(f.headline) : "") + "</p>" + rows + rec + "</section>";
   }
-  function renderFcTrack() { var el = document.getElementById("fc-track-slot"); if (el) el.innerHTML = fcTrackHtml(); }
 
   function forecastHtml(f) {
     if (!f || !f.label) return "";
@@ -2332,128 +2217,6 @@
   }
 
   /* ---------- renderers ---------- */
-  function renderMarketOverview(el, d, opts) {
-    opts = opts || {};
-    var v = d.verdict || {};
-    var s = d.scores || {};
-    var e = d.evidence || {};
-    var c = d.conclusion || {};
-    var lightsMap = { trend: "מגמה", breadth: "רוחב", volatility: "תנודתיות", rotation: "רוטציה" };
-
-    var lights = "";
-    if (v.lights) {
-      lights = '<div class="lights">' + Object.keys(lightsMap).map(function (k) {
-        var st = v.lights[k] || "";
-        return '<span class="light ' + esc(st) + '"><span class="dot"></span>' + lightsMap[k] + "</span>";
-      }).join("") + "</div>";
-    }
-
-    var tradeDate = fmtTradeDate(d.date);
-    // הסיכום היומי החדש (ai_analysis) — מוצג רק כשתאריכו תואם את יום המסחר של הנתונים
-    var ai = (d.aiSummary && d.aiSummary.date === d.date) ? d.aiSummary : null;
-    var mid;
-    if (opts.home && ai) {
-      // בבית: הסיכום היומי מחליף את משפטי-הרקע הישנים; הנוריות נשארות
-      mid =
-        (ai.headline ? '<p class="v-regime">' + esc(ai.headline) + "</p>" : "") +
-        '<div class="verdict-narr">' +
-          (ai.paragraphs || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
-          (ai.watchFor ? "<p><b>לעקוב:</b> " + esc(ai.watchFor) + "</p>" : "") +
-        "</div>";
-    } else {
-      // נפילה חזרה (אין סיכום יומי / טאב מדדים): המבנה הקודם
-      var nrt = d.narrative || {};
-      var narr = (opts.home && (nrt.today || nrt.week || nrt.watchFor))
-        ? '<div class="verdict-narr">' +
-            (nrt.today ? "<p><b>היום:</b> " + esc(nrt.today) + "</p>" : "") +
-            (nrt.week ? "<p><b>השבוע:</b> " + esc(nrt.week) + "</p>" : "") +
-            (nrt.watchFor ? "<p><b>לעקוב:</b> " + esc(nrt.watchFor) + "</p>" : "") +
-          "</div>"
-        : "";
-      mid = (c.headline && v.headline ? '<p class="v-regime">' + esc(v.headline) + "</p>" : "") +
-        "<p>" + esc(v.subline || "") + "</p>" + narr;
-    }
-    var verdictCard =
-      '<div class="card verdict tone-' + esc(v.tone || "") + '">' +
-        '<div class="v-top">' +
-          '<span class="emoji">' + h(v.emoji || "📊") + "</span>" +
-          (tradeDate ? '<span class="vday">יום המסחר ' + tradeDate + "</span>" : "") +
-        "</div>" +
-        // הכותרת הראשית = סיכום היום המתחלף (conclusion.headline, למשל "יום ירידה מתון -0.2%")
-        "<h2>" + esc(c.headline || v.headline || "סקירת שוק") + "</h2>" +
-        mid + lights +
-      "</div>";
-
-    var fl = d.flow || {};
-    var scoreCards =
-      '<div class="grid grid-4" style="margin-top:16px">' +
-      [["combined", "ציון משולב"], ["tech", "טכני"], ["breadth", "רוחב"], ["flow", "אופציות"]]
-        .map(function (p) {
-          var val = s[p[0]];
-          var sub = "", tip = "";
-          if (p[0] === "flow" && (fl.deltaLabel || fl.directionLabel)) {
-            // ההימור נטו משוקלל-הדלתא (הכסף הגדול) — לא ציון-הכיוון הישן, שסתר את הדלתא
-            if (fl.deltaLabel) {
-              var dc = fl.deltaLabel === "דובי" ? "down" : (fl.deltaLabel === "שורי" ? "up" : "");
-              sub = '<div class="sub">הכסף הגדול: <b class="' + dc + '">' + esc(fl.deltaLabel) + "</b>" +
-                (fl.meterScore != null ? ' · במד: <b class="num">' + fl.meterScore + "</b> (ממוצע יומיים)" : "") + "</div>";
-              tip = ' title="' + esc("קניית Calls $" + Math.round((fl.callBuyP || 0) / 1e6) + "M · מכירת Calls $" + Math.round((fl.callSellP || 0) / 1e6) +
-                "M · קניית Puts $" + Math.round((fl.putBuyP || 0) / 1e6) + "M · מכירת Puts $" + Math.round((fl.putSellP || 0) / 1e6) + "M") + '"';
-            } else {
-              sub = '<div class="sub">' + esc(fl.directionLabel) + "</div>";
-              if (fl.directionReason) tip = ' title="' + esc(fl.directionReason) + '"';
-            }
-          }
-          return '<div class="card stat"' + tip + '><div class="label">' + p[1] + "</div>" +
-            '<div class="value num ' + scoreBand(val) + '">' + (val == null ? "—" : val) + diffTag(p[0]) + "</div>" + sub + "</div>";
-        }).join("") + "</div>";
-
-    var marketCards =
-      '<div class="grid grid-4" style="margin-top:16px">' +
-      [
-        ['S&P 500', fmtNum(e.spxPrice, 2), (e.pctMa200 != null ? e.pctMa200 + "% מעל MA200" : "")],
-        ['VIX', fmtNum(e.vix, 1), (e.vix != null && e.vix < 20 ? "רגוע" : "מוגבר")],
-        ['שיאים ושפלים', '<span class="up">' + fmtNum(e.nhCount) + '</span> <small>שיאים</small> <span class="soft">·</span> <span class="down">' + fmtNum(e.nlCount) + '</span> <small>שפלים</small>', "52 שבועות", "nhnl"],
-        ['EQ vs SPX 20י', (e.eqSpx20 != null ? (e.eqSpx20 > 0 ? "+" : "") + e.eqSpx20 + "%" : "—"), "רוחב פנימי"]
-      ].map(function (p) {
-        return '<div class="card stat"><div class="label">' + p[0] + "</div>" +
-          '<div class="value num' + (p[3] ? " " + p[3] : "") + '"' + (p[3] ? "" : ' dir="ltr"') + '>' + p[1] + "</div>" +   // dir=ltr: "-3.04%" הוצג כ-"3.04%-" ב-RTL
-          '<div class="sub">' + esc(p[2]) + "</div></div>";
-      }).join("") + "</div>";
-
-    var concl = "";
-    if (c.conclusion || c.recommendation) {
-      var r = c.recommendation || {};
-      concl =
-        '<div class="section-title">📌 המסקנה של איציק</div>' +
-        '<div class="card"><p style="margin:0 0 12px">' + esc(c.conclusion || "") + "</p>" +
-        (r.action ? '<div class="reco"><h3>מה עושים</h3><p class="line">' + esc(r.action) + "</p>" +
-          (r.improve ? '<p class="line"><b>ישתפר אם:</b> ' + esc(r.improve) + "</p>" : "") +
-          (r.worsen ? '<p class="line"><b>יורע אם:</b> ' + esc(r.worsen) + "</p>" : "") + "</div>" : "") +
-        "</div>";
-    }
-
-    // חותמת עדכון: בבית מוצגת בשורת הטלגרם (head-stamp); בטאב מדדים — inline בראש הכרטיס
-    var stampHtml = "";
-    if (opts.home) {
-      var hs = document.getElementById("head-stamp");
-      if (hs) hs.innerHTML = stamp(d._meta);
-    } else {
-      stampHtml = stamp(d._meta);
-    }
-
-    // בבית: כרטיס תמונת-המצב יושב בעמודה השמאלית (#home-verdict), הנתונים מתחת (קונטיינרים סטטיים)
-    if (opts.home) {
-      var hv = document.getElementById("home-verdict");
-      if (hv) hv.innerHTML = verdictCard;
-      el.innerHTML = scoreCards + marketCards;
-    } else {
-      el.innerHTML =
-        stampHtml +
-        verdictCard + scoreCards + marketCards +
-        (opts.detail ? concl : "");   // "המסקנה של איציק" רק בטאב מדדים
-    }
-  }
 
   // טקסט מהמנוע מכיל הדגשות <b> בלבד — משחררים רק אותן אחרי escape
   function escB(s) {
@@ -2945,12 +2708,6 @@
     renderForecastPan();
   }
 
-  function chgClass(v) {
-    var s = String(v || "").trim();
-    if (s.charAt(0) === "-" || s.indexOf("−") === 0) return "down";
-    if (s.charAt(0) === "+" || parseFloat(s) > 0) return "up";
-    return "";
-  }
 
   /* ---- momentum classification (ported verbatim from the local dashboard) ---- */
   var MIN_VOL = 750000;
@@ -4081,59 +3838,6 @@
   var PK_BO = { CONFIRMED: "פריצה מאושרת", RETEST: "בדיקה חוזרת של הפריצה", UNRESOLVED: "פריצה לא הוכרעה", PULLBACK: "תיקון אחרי פריצה",
     IN_PROGRESS: "פריצה בתהליך", GAP_PARTIAL_FILL: "מילוי חלקי של פער", GAP_BREAKOUT: "פריצה בפער", FAILED: "פריצה שנכשלה", NONE: "ללא פריצה" };
   function pkPct(v, d) { return v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(d == null ? 1 : d) + "%"; }
-  function pkSpark(p) {
-    var c = p.closes || [];
-    if (c.length < 2) return "";
-    var W = 360, H = 96, pad = 8;
-    var vals = c.slice(); if (p.sup) vals.push(p.sup); if (p.res) vals.push(p.res);
-    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), rng = (hi - lo) || 1;
-    var X = function (i) { return pad + i * (W - 2 * pad) / (c.length - 1); };
-    var Y = function (v) { return H - pad - (v - lo) / rng * (H - 2 * pad); };
-    var pts = c.map(function (v, i) { return X(i).toFixed(1) + "," + Y(v).toFixed(1); });
-    var area = "M" + X(0).toFixed(1) + "," + (H - pad) + " L" + pts.join(" L") + " L" + X(c.length - 1).toFixed(1) + "," + (H - pad) + " Z";
-    var lines = "";
-    if (p.sup) { var ys = Y(p.sup); lines += '<line class="lv" x1="' + pad + '" x2="' + (W - pad) + '" y1="' + ys.toFixed(1) + '" y2="' + ys.toFixed(1) + '"/><text class="lvt" x="' + (pad + 2) + '" y="' + (ys + 12).toFixed(1) + '">תמיכה ' + fmtNum(p.sup, 2) + "</text>"; }
-    if (p.res) { var yr = Y(p.res); lines += '<line class="lv" x1="' + pad + '" x2="' + (W - pad) + '" y1="' + yr.toFixed(1) + '" y2="' + yr.toFixed(1) + '"/><text class="lvt" x="' + (pad + 2) + '" y="' + (yr - 4).toFixed(1) + '">התנגדות ' + fmtNum(p.res, 2) + "</text>"; }
-    return '<svg class="pk-sp" viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="60 ימי מסחר אחרונים">' +
-      '<path class="area" d="' + area + '"/>' + lines + '<polyline class="line" points="' + pts.join(" ") + '"/>' +
-      '<circle class="end" cx="' + X(c.length - 1).toFixed(1) + '" cy="' + Y(c[c.length - 1]).toFixed(1) + '" r="3.5"/></svg>';
-  }
-  function pkLevels(p) {
-    var col = function (cls, k, v, sub) { return '<div class="pk-lv ' + cls + '"><span class="k">' + k + "</span><b>" + (v == null ? "—" : fmtNum(v, 2)) + "</b><i>" + sub + "</i></div>"; };
-    if (p.entry != null && p.stop != null && p.target != null) {
-      var pos = (p.entry - p.stop) / ((p.target - p.stop) || 1) * 100;
-      return '<div class="pk-lvs">' + col("bad", "יציאה", p.stop, pkPct((p.stop / p.entry - 1) * 100)) + col("", "כניסה", p.entry, "מחיר סגירה") + col("good", "יעד", p.target, pkPct((p.target / p.entry - 1) * 100)) + "</div>" +
-        '<div class="pk-range"><span class="rt"></span><span class="rp" style="right:' + Math.max(0, Math.min(100, pos)).toFixed(0) + '%"></span></div>';
-    }
-    var sup = p.sup, res = p.res, pr = p.price;
-    var pos2 = sup ? (pr - sup) / (((res || pr * 1.08) - sup) || 1) * 100 : 50;
-    return '<div class="pk-lvs">' + col("bad", "תמיכה", sup, sup ? pkPct((sup / pr - 1) * 100) : "") + col("", "מחיר", pr, "סגירה") + col("good", "התנגדות", res, res ? pkPct((res / pr - 1) * 100) : "אין מעל") + "</div>" +
-      '<div class="pk-range dim"><span class="rt"></span><span class="rp" style="right:' + Math.max(0, Math.min(100, pos2)).toFixed(0) + '%"></span></div>';
-  }
-  function pkRecord(p) {
-    var r = p.rec;
-    if (!r || !r.n) return '<div class="pk-rec first"><span class="rk">בעבר</span><span>אישור ראשון למניה הזו. אין עבר להשוות אליו.</span></div>';
-    var ok = Math.round(r.n * r.win10 / 100), tone = r.win10 >= 60 ? "good" : r.win10 >= 40 ? "warn" : "bad";
-    var dots = (r.dots || []).map(function (d) { return '<i class="' + (d ? "w" : "l") + '"></i>'; }).join("");
-    return '<div class="pk-rec ' + tone + '" title="ממוצע 10 ימים אחרי אישור: ' + pkPct(r.avg10) + ' · 20 ימים: ' + pkPct(r.avg20) + ' · ירידה ממוצעת בדרך: ' + pkPct(r.mae) + '">' +
-      '<span class="rk">בעבר</span><span class="rv">' + r.n + " אישורים בשנה, <b>" + ok + "</b> הצליחו תוך 10 ימים</span>" +
-      '<span class="rd" aria-hidden="true">' + dots + "</span></div>";
-  }
-  function pkCard(p, i) {
-    var src = (p.sources || []).map(function (s) { return '<span class="pk-chip ' + esc(s.k) + '"><b>' + esc(s.t) + "</b> " + esc(s.sub || "") + "</span>"; }).join("");
-    var tags = '<span class="ind">' + esc(PK_GRP[p.grp] || "אחר") + (p.industry ? " · " + esc(p.industry) : "") + "</span>" +
-      '<span>' + esc(PK_BO[p.bo] || p.boLabel || "") + "</span>" + (p.pbLabel ? "<span>" + esc(p.pbLabel) + "</span>" : "") +
-      (p.since ? '<span class="since">ברשימה מ-<span dir="ltr">' + esc(secDate(p.since)) + "</span></span>" : "");
-    return '<article class="pk-card ' + esc(p.grp || "other") + '" style="--d:' + (i * 50) + 'ms">' +
-      '<header class="pk-ch"><div class="pk-tk">' +
-        '<a class="pk-sym" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(p.sym) + '/" target="_blank" rel="noopener">' + esc(p.sym) + "</a>" +
-        (p.name ? '<span class="pk-nm">' + esc(p.name) + "</span>" : "") +
-        '<span class="pk-pr"><span dir="ltr">$' + fmtNum(p.price, 2) + '</span> <span class="chg ' + (p.chg >= 0 ? "up" : "dn") + '">' + pkPct(p.chg, 2) + "</span></span></div>" +
-        '<div class="pk-stamp" aria-label="אישור מחיר לקנייה"><span>אישור מחיר</span><small>המנוע הטכני · ' + esc(p.score) + "</small></div></header>" +
-      '<div class="pk-tags">' + tags + "</div>" + pkSpark(p) + pkLevels(p) +
-      (src ? '<div class="pk-src">' + src + "</div>" : "") + pkRecord(p) +
-      '<a class="pk-more" dir="rtl" href="https://www.tradingview.com/symbols/' + encodeURIComponent(p.sym) + '/" target="_blank" rel="noopener">הניתוח הטכני המלא ←</a></article>';
-  }
   function pkLedger(bare_) {
     var eds = (PICKL && PICKL.editions) || [];
     if (!eds.length) return "";
@@ -4850,19 +4554,6 @@
       (d.generatedAt ? '<span class="hgen">נבדק ' + esc(d.generatedAt) + "</span>" : "");
   }
 
-  function loadPlaceholder(name, emoji, title) {
-    var el = document.getElementById("panel-" + name);
-    fetchJSON("data/" + name + ".json").then(function (d) {
-      if (!d || d._status === "pending") {
-        emptyPanel(el, emoji, title + " — בקרוב", (d && d._note) || "הטאב הזה יחובר בשלב הבא של הבנייה.");
-      } else {
-        // future: real renderer per tab; for now show note if provided
-        emptyPanel(el, emoji, title, (d && d._note) || "");
-      }
-    }).catch(function () {
-      emptyPanel(el, emoji, title + " — בקרוב", "הטאב הזה יחובר בשלב הבא של הבנייה.");
-    });
-  }
 
   boot();
 })();
