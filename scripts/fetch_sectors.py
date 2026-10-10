@@ -55,6 +55,20 @@ def _get(url):
         return r.read().decode("utf-8", "ignore")
 
 
+def local_reports():
+    """הדוחות שנבנו ע"י scripts/build_rotation.py (data/rotation/index.json), רק אם ה-HTML קיים."""
+    try:
+        with open(os.path.join(ROOT, "data", "rotation", "index.json"), "r", encoding="utf-8") as f:
+            idx = json.load(f)
+    except (OSError, ValueError):
+        return []
+    out = []
+    for r in idx.get("reports", []):
+        if r.get("date") and r.get("file") and os.path.exists(os.path.join(ROOT, r["file"].replace("/", os.sep))):
+            out.append({"file": r["file"], "date": r["date"], "title": r.get("title") or "", "source": "build_rotation"})
+    return out
+
+
 def main():
     try:
         files = [f["name"] for f in json.loads(_get(API))
@@ -78,6 +92,9 @@ def main():
         # שם מאוחסן בטוח-ל-URL: תאריך + סיומת (שם עברי בקישור נשבר בחלק מהדפדפנים)
         stored = "sectors-" + iso + ".html"
         path = os.path.join(OUT_DIR, stored)
+        if iso in {r["date"] for r in local_reports()}:
+            print(f"[local] {iso}: דוח אוטומטי קיים — העותק מ-nidam-reports לא נשמר")
+            continue
         old = None
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
@@ -94,6 +111,12 @@ def main():
         reports.append({"file": "data/sectors/" + stored, "date": iso, "title": title})
         print(f"[ok] {iso} — {title[:50]}")
 
+    # 10.10.2026: דוחות שנבנו כאן (build_rotation.py, מקובצי ה-CSV בדרייב) רשומים ב-data/rotation/index.json —
+    # דוח מקומי באותו תאריך גובר על העותק מ-nidam-reports (הדוח האוטומטי מחליף את הידני), ואינו נמחק.
+    local = local_reports()
+    if local:
+        dates = {r["date"] for r in local}
+        reports = [r for r in reports if r["date"] not in dates] + local
     reports.sort(key=lambda r: r["date"], reverse=True)
     payload = {"reports": reports,
                "_meta": {"updatedAt": israel_stamp(), "source": "nidam-reports/sectors"}}
