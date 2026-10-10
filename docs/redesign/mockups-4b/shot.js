@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
   for (const f of process.argv.slice(2)) {
     const w = f.includes('Phone') ? 390 : 1280;
     const p = await b.newPage({ viewport: { width: w, height: 900 } });
-    await p.goto('file://' + process.cwd() + '/out/prev/' + f);
+    await p.goto('file://' + process.cwd() + '/' + (process.env.PREV||'out/prev') + '/' + f);
     await p.waitForTimeout(2500);
     const h = await p.evaluate(() => document.body.firstElementChild.scrollHeight);
     const sw = await p.evaluate(() => document.documentElement.scrollWidth);
@@ -15,7 +15,7 @@ const { chromium } = require('playwright');
       return {fs, small: small.slice(0,12), nsmall: small.length};
     });
     console.log(f, 'height', h, 'scrollW', sw, JSON.stringify(info));
-    await p.screenshot({ path: 'out/prev/' + f.replace('.html', '.png'), fullPage: true });
+    await p.screenshot({ path: (process.env.PREV||'out/prev') + '/' + f.replace('.html', '.png'), fullPage: true });
   }
   await b.close();
 })();

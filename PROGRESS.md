@@ -12,7 +12,8 @@
 - ✅ אחרי החלפת מודל באותו סשן ה-skills נטענו מהריפו — שלב 4ב ממשיך בסשן הזה (ענף `claude/happy-bell-cvzmae`, מוזג `claude/zealous-cerf-9o4j64`).
 - ✅ **ביקורת על גרסה ב** (design-critique + accessibility-review, 4 מצבים בצילום + מדידת ניגודיות): `docs/redesign/critique-4b.md`. עיקר: ענבר בארבעה תפקידים (קישור=אזהרה), 3 כשלי AA בבהיר, KPI של S&P סותר את הכותרת, טלפון בלי תוויות סטופ/יעד ומטרות מגע קטנות. אושר.
 - ✅ **מוקאפ מלוטש של ב** בקנבס חדש: https://claude.ai/artifact/Pjr6N7S5BmwdBM2ePT5SPW — מחשב בהיר/כהה, טלפון בהיר/כהה, יום אירוע (13.10 הבנקים + JPM לקראת הדוח + CPI מחר), על data/ של היום. 10 החלטות עיצוב ב-`docs/redesign/README.md` (שלב 4ב); מחולל ב-`docs/redesign/mockups-4b/`. אושר.
-- ✅ **ספר הסגנון** (סוג Design System): https://claude.ai/artifact/HEuRzFXTKzwWsqyE5ZFaf4 — טוקנים בהיר/כהה עם usage, סולם טיפוגרפי, 12 רכיבים חיים + Cover; מקור ב-`docs/redesign/styleguide/` (bundle.css = ה-CSS לבנייה). **פתוח:** אישור איציק לספר → שלב 5 (מוקאפ ל-5 הדפים הנותרים).
+- ✅ **ספר הסגנון** (סוג Design System): https://claude.ai/artifact/HEuRzFXTKzwWsqyE5ZFaf4 — טוקנים בהיר/כהה עם usage, סולם טיפוגרפי, 12 רכיבים חיים + Cover; מקור ב-`docs/redesign/styleguide/` (bundle.css = ה-CSS לבנייה). אושר.
+- ✅ **שלב 5 — מוקאפ לחמשת הטאבים** (השוק · היומן · מניות · חדשות · העולם), מחשב בהיר, על הנתונים האמיתיים, מספר הסגנון: https://claude.ai/artifact/DHhqrDD4kBiWuSfTsYTNAQ — מחולל ב-`docs/redesign/mockups-5/`. **פתוח:** אישור איציק → שלב 6 בנייה.
 
 ## 2026-10-09 (ערב)
 
