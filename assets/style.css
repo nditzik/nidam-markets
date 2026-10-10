@@ -2182,6 +2182,10 @@ main { padding: 16px 0 48px; }
 /* לוגו לבן על רקע שקוף בלוח הדיווחים / בית / תגובות (logoBg:"dark", 10.10.2026, np118) */
 .wk-tile img.dk, .rx-co img.dk, .earn-tile img.dk { background: #16181d; }
 
+/* כותרת סוף השבוע ארוכה — כל המשפט בכותרת, בגופן קטן יותר (10.10.2026) */
+.np-h1.np-h1-long, .bd-lead .np-h1.np-h1-long { font-size: 22px; line-height: 1.35; }
+@media (max-width: 700px) { .np-h1.np-h1-long, .bd-lead .np-h1.np-h1-long { font-size: 18px; } }
+
 /* =========== BOARD TABS — גוף הטאבים (np120, 10.10.2026) — עיצוב מחדש שלב 6 חלק 2 ===========
    חמשת הטאבים כרשת 12 של פאנלים (.board > .pan), כמו הבית. הרכיבים החדשים מהמוקאפ של שלב 5:
    .tiles/.tile אריח סטטיסטי · .sent שורת סנטימנט · .kv שורת מפתח-ערך · .wk5 השבוע הקרוב · .clock/.ck שעון עולמי ·

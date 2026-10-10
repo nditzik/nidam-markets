@@ -647,7 +647,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np120";
+  var TA_VER = "np121";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1914,13 +1914,9 @@
     // התאריכים כבר בקיקר; בסוגריים בתוך הטקסט הם מתהפכים ב-RTL — מסירים לפני החיתוך
     var leadClean = String(nar.lead).replace(/\s*\(\d{1,2}[–-]\d{1,2}\.\d{1,2}\)/, "");
     var first = leadClean.split(/(?<=[^\d])\.\s/)[0].replace(/\.$/, "");
-    if (first.length > 95) {
-      // 26.9.2026: משפט ראשון ארוך (הסיכום של 21–25.9 היה 150 תווים, 5 שורות) — חותכים בפסיק/מקף/נקודתיים
-      // הראשונים שאחרי תו 40; אם אין, בנקודתיים/מקף אחרי תו 25 (הכלל הישן). השאר יורד לטקסט שמתחת.
-      var m40 = /[,—:;]/.exec(first.slice(40)), cut = m40 ? 40 + m40.index : -1;
-      if (cut < 0) { cut = first.search(/[:—]/); if (cut <= 25) cut = -1; }
-      if (cut > 0) first = first.slice(0, cut).trim();
-    }
+    // 10.10.2026 (איציק: "המשפט צריך להיות ביחד"): לא חותכים יותר את המשפט הראשון — משפט ארוך
+    // מקבל כותרת בגופן קטן יותר (np-h1-long) במקום חצי בכותרת וחצי בטקסט שמתחת.
+    var longH1 = first.length > 95;
     var rest = leadClean.slice(first.length).replace(/^[\s:—.,;]+/, "");   // גם פסיק — אחרי החיתוך בפסיק (26.9)
     var stats = leadStats([
       { l: "S&amp;P 500 · שבועי", v: pct(s.spxPct), cls: cls(s.spxPct), s: '<span title="מסגירת שישי הקודם ועד סגירת שישי, כמו S&amp;P ו-VIX">מד השוק ' + (s.combStart != null ? s.combStart : "—") + " ← " + (s.combEnd != null ? s.combEnd : "—") + meterLowHi(s) + "</span>" },
@@ -1932,7 +1928,7 @@
       '<span class="np-k np-evt-mid">🗓 סיכום השבוע · <b dir="ltr">' + esc(w.label || "") + "</b>" +
         ((nar.writtenAt && /\d{1,2}:\d{2}/.test(nar.writtenAt)) ? ' · <span class="np-upd">נכתב <b dir="ltr">' + esc(/(\d{1,2}:\d{2})/.exec(nar.writtenAt)[1]) + "</b></span>" : "") +
         (nar.pending ? ' · <span class="np-upd">הסיכום המילולי ייכתב בשעה הקרובה</span>' : "") + "</span>" +
-      '<h2 class="np-h1">' + esc(first) + "</h2>" +
+      '<h2 class="np-h1' + (longH1 ? " np-h1-long" : "") + '">' + esc(first) + "</h2>" +
       stats +
       // טקסט קצר: משפט אחד מהסיכום + משפט אחד מדוח הסקטורים; המלא בטאב מדדים ובדוח
       '<p class="np-dek">' + (rest ? esc(firstSentence(rest)) + " " : "") + (sec && sec.lead ? esc(firstSentence(sec.lead)) : "") + "</p>" +
