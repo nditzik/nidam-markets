@@ -1444,10 +1444,11 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 #rw-svg.all .rw-trail, #rw-svg.all .rw-tdot { opacity: .5; }
 #rw-svg .rw-trail.hl { opacity: .9; stroke-width: 2.5; } #rw-svg .rw-tdot.hl { opacity: .9; }
 /* 29.9 (איציק): בריחוף — השביל של הסקטור בירוק (השתפר) / אדום (נחלש) לאורך התקופה, והשאר כמעט שקופים */
-#rw-svg .rw-trail.hl.up, #rw-svg .rw-now-ln.hl.up { stroke: var(--up); } #rw-svg .rw-tdot.hl.up { fill: var(--up); }
-#rw-svg .rw-trail.hl.down, #rw-svg .rw-now-ln.hl.down { stroke: var(--down); } #rw-svg .rw-tdot.hl.down { fill: var(--down); }
-#rw-svg .rw-dot.hl.up, #rw-svg .rw-now.hl.up { fill: var(--up); } #rw-svg .rw-now.hl.up { fill: var(--bg); stroke: var(--up); }
-#rw-svg .rw-dot.hl.down { fill: var(--down); } #rw-svg .rw-now.hl.down { fill: var(--bg); stroke: var(--down); }
+/* 10.10.2026: צבעים קבועים — הקו לפי הסקטור עצמו בתקופה, העיגול לפי מול-המדד בתקופה */
+#rw-svg .rw-trail.up { stroke: var(--up); } #rw-svg .rw-tdot.up { fill: var(--up); }
+#rw-svg .rw-trail.down { stroke: var(--down); } #rw-svg .rw-tdot.down { fill: var(--down); }
+#rw-svg .rw-trail:not(.hl), #rw-svg .rw-tdot:not(.hl) { opacity: .28; } #rw-svg.all .rw-trail:not(.hl), #rw-svg.all .rw-tdot:not(.hl) { opacity: .6; }
+#rw-svg .rw-dot.up { fill: var(--up); } #rw-svg .rw-dot.down { fill: var(--down); }
 #rw-svg.focus .rw-dot:not(.hl), #rw-svg.focus .rw-lbl:not(.hl), #rw-svg.focus .rw-now:not(.hl), #rw-svg.focus .rw-now-ln:not(.hl) { opacity: .1; }
 #rw-svg.focus .rw-trail:not(.hl), #rw-svg.focus .rw-tdot:not(.hl) { opacity: .04; }
 #rw-svg .rw-lbl.hl { font-weight: 800; }
@@ -1456,6 +1457,8 @@ a.bt2-card.hot:hover { border-color: var(--warn); box-shadow: 0 0 0 1px var(--wa
 .rw-now { fill: var(--bg); stroke: var(--accent); stroke-width: 2; }
 .rw-now-ln { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 2 3; opacity: .7; }
 #rw-svg .rw-now.hl { stroke-width: 3; } #rw-svg .rw-now-ln.hl { opacity: 1; stroke-width: 2; }
+.rw-legend i.g, .rw-legend i.r { display: inline-block; width: 9px; height: 9px; border-radius: 2px; vertical-align: -1px; margin-inline-end: 3px; }
+.rw-legend i.g { background: var(--up); } .rw-legend i.r { background: var(--down); }
 .rw-legend i.n { display: inline-block; width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); vertical-align: -1px; margin-inline-end: 5px; }
 .rw-now-t { margin-top: 4px; font-weight: 600; }
 .rw-hit { fill: transparent; cursor: pointer; outline: none; }
