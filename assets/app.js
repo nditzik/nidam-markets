@@ -647,7 +647,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np121";
+  var TA_VER = "np123";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3620,7 +3620,7 @@
           '<button class="chip rw-chip' + (RW.mode === "week" ? " on" : "") + '" data-rw="week">השבוע · יום-יום</button>' +
           '<button class="chip rw-chip' + (RW.mode === "month" ? " on" : "") + '" data-rw="month">החודש · שבוע-שבוע</button>' +
           '<button class="chip rw-chip' + (RW.all ? " on" : "") + '" data-rw="all">כל השבילים</button>' +
-          '<span class="rw-legend"><span><i class="d"></i>סגירה אחרונה</span><span><i class="t"></i>הדרך לכאן</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
+          '<span class="rw-legend"><span><i class="d"></i>העיגול: מול המדד בתקופה</span><span><i class="t"></i>הקו: התנועה האחרונה על הגרף</span><span><i class="g"></i>ירוק עלה · <i class="r"></i>אדום ירד</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
         '<div class="rw-wrap"><svg id="rw-svg" role="img" aria-label="גלגל הרוטציה של 11 הסקטורים"></svg><div class="rw-tip" id="rw-tip"></div></div>' +
         '<p class="rw-foot" id="rw-foot"></p>' +
       "</div>";
@@ -3652,21 +3652,29 @@
       .forEach(function (q) { t = mtEl("text", { x: q[0], y: q[1], class: "rw-qt", "text-anchor": q[2] }); t.textContent = q[3]; g.appendChild(t); });
     var n = days.length, last = days[n - 1], pts = [];
     var step = RW.mode === "week" ? 1 : 5, cnt = RW.mode === "week" ? 4 : 4;
+    // 10.10.2026 (איציק, שלושה סבבים): שני צבעים, שתי שאלות. הקו = התנועה האחרונה *על הגרף* — הקטע האחרון של
+    // השביל (יום בתצוגת השבוע, שבוע בתצוגת החודש), שני הצירים יחד: "ירדה מהמובילים לנחלשים" = אדום.
+    // העיגול = מול המדד לאורך התקופה (סימן rs5 לשבוע, rs20 לחודש). הצבעים קבועים, לא רק בריחוף.
+    // (ניסיון קודם באותו יום: הקו לפי המחיר של הסקטור — טכנולוגיה עלתה 5.9% בחודש ויצאה ירוקה למרות שעל הגרף ירדה.)
+    var win = RW.mode === "week" ? 5 : 20;
+    function sgn(v) { return v == null ? "" : v > 0.05 ? "up" : v < -0.05 ? "down" : ""; }
     Object.keys(last.rs).forEach(function (k) {
       var cur = last.rs[k]; if (cur[0] == null || cur[1] == null) return;
       var tr = [];
       for (var i = cnt; i >= 0; i--) { var j = n - 1 - i * step; if (j >= 0 && days[j].rs[k] && days[j].rs[k][0] != null) tr.push(days[j]); }
+      var rsP = RW.mode === "week" ? cur[0] : cur[1], dotDir = sgn(rsP);
+      var pv = tr.length > 1 ? tr[tr.length - 2].rs[k] : null, lastMove = pv ? (cur[0] + cur[1]) - (pv[0] + pv[1]) : null, lineDir = sgn(lastMove);
       var tg = mtEl("g", { class: "rw-tg", "data-k": k });
       if (tr.length > 1) {
-        tg.appendChild(mtEl("path", { class: "rw-trail", "data-k": k, d: tr.map(function (d, i) { return (i ? "L" : "M") + sx(cl(d.rs[k][1], L.X0, L.X1)) + "," + sy(cl(d.rs[k][0], L.Y0, L.Y1)); }).join(" ") }));
-        tr.slice(0, -1).forEach(function (d) { tg.appendChild(mtEl("circle", { class: "rw-tdot", "data-k": k, cx: sx(cl(d.rs[k][1], L.X0, L.X1)), cy: sy(cl(d.rs[k][0], L.Y0, L.Y1)), r: 3.5 })); });
+        tg.appendChild(mtEl("path", { class: "rw-trail " + lineDir, "data-k": k, d: tr.map(function (d, i) { return (i ? "L" : "M") + sx(cl(d.rs[k][1], L.X0, L.X1)) + "," + sy(cl(d.rs[k][0], L.Y0, L.Y1)); }).join(" ") }));
+        tr.slice(0, -1).forEach(function (d) { tg.appendChild(mtEl("circle", { class: "rw-tdot " + lineDir, "data-k": k, cx: sx(cl(d.rs[k][1], L.X0, L.X1)), cy: sy(cl(d.rs[k][0], L.Y0, L.Y1)), r: 3.5 })); });
       }
       g.appendChild(tg);
       var prev1 = n >= 2 && days[n - 2].rs[k], prev5 = n >= 6 && days[n - 6].rs[k];
       // כיוון השביל לאורך התקופה (29.9, איציק): תחילת השביל מול סופו על שני הצירים יחד (rs5+rs20) — ירוק השתפר, אדום נחלש
       var first = tr.length > 1 ? tr[0].rs[k] : null, tdf = first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null;
       var dir = tdf == null ? "" : tdf > 0.05 ? "up" : tdf < -0.05 ? "down" : "";   // |שינוי| ≤ 0.05 = ללא שינוי (נשאר כחול)
-      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], dir: dir,
+      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], dir: dir, lineDir: lineDir, dotDir: dotDir, lastMove: lastMove, rsP: rsP, win: win,
                  tdiff: first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null, tdays: tr.length - 1,
                  d1: prev1 ? [cur[0] - prev1[0], cur[1] - prev1[1]] : null, d5: prev5 ? [cur[0] - prev5[0], cur[1] - prev5[1]] : null });
     });
@@ -3691,7 +3699,7 @@
         g.appendChild(mtEl("line", { class: "rw-now-ln", "data-k": p.k, x1: p.x, y1: p.y, x2: nx, y2: ny }));
         g.appendChild(mtEl("circle", { class: "rw-now", "data-k": p.k, cx: nx, cy: ny, r: mobile ? 5 : 5.5 }));
       }
-      g.appendChild(mtEl("circle", { class: "rw-dot", "data-k": p.k, cx: p.x, cy: p.y, r: mobile ? 5.5 : 6 }));
+      g.appendChild(mtEl("circle", { class: "rw-dot " + p.dotDir, "data-k": p.k, cx: p.x, cy: p.y, r: mobile ? 5.5 : 6 }));
       t = mtEl("text", { class: "rw-lbl", "data-k": p.k, x: p.lx, y: p.ly, "text-anchor": p.la }); t.textContent = SECTOR_HE[p.k] || p.k; g.appendChild(t);
     });
     function show(p) {
@@ -3707,7 +3715,9 @@
       });
       if (p.now) { var nw = document.createElement("div"); nw.className = "rw-now-t"; nw.textContent = "עכשיו (אומדן חי): " + rwFmt(p.dnow) + " מול המדד היום → " + rwQuad(p.now[0], p.now[1])[0]; tip.appendChild(nw); }
       var wn = rwWeeklyNote(name); if (wn) { var w = document.createElement("div"); w.className = "rw-sub rw-wn"; w.textContent = wn; tip.appendChild(w); }
-      if (p.tdiff != null) { var td = document.createElement("div"); td.className = "rw-sub rw-td " + p.dir; td.textContent = "לאורך השביל (" + p.tdays + " ימים): " + (p.dir === "up" ? "השתפר " + rwFmt(p.tdiff) : p.dir === "down" ? "נחלש " + rwFmt(p.tdiff) : "ללא שינוי") + " (שני הצירים יחד)"; tip.appendChild(td); }
+      var per = p.win === 5 ? "5 ימים" : "20 יום";
+      if (p.lastMove != null) { var tl = document.createElement("div"); tl.className = "rw-sub rw-td " + p.lineDir; tl.textContent = "הקו · התנועה האחרונה על הגרף (" + (p.win === 5 ? "מאתמול" : "מלפני שבוע") + "): " + rwFmt(p.lastMove) + (p.lineDir === "up" ? " (עלה)" : p.lineDir === "down" ? " (ירד)" : " (ללא שינוי)") + " · שני הצירים יחד"; tip.appendChild(tl); }
+      var td = document.createElement("div"); td.className = "rw-sub rw-td " + p.dotDir; td.textContent = "העיגול · מול המדד ב-" + per + ": " + rwFmt(p.rsP) + (p.dotDir === "up" ? " (הכה את המדד)" : p.dotDir === "down" ? " (פיגר אחרי המדד)" : ""); tip.appendChild(td);
       tip.style.display = "block";
       // 29.9 (איציק): ההסבר בפינה הריקה שממול לסקטור, לא על השביל שלו
       var r = svg.getBoundingClientRect(), sc = r.width / W;
@@ -3716,9 +3726,9 @@
       tip.style.left = (p.x * sc < midX ? plotR - tw - 8 : plotL + 8) + "px";
       tip.style.top = (p.y * sc < midY ? plotB - th - 8 : plotT + 8) + "px";
       svg.classList.add("focus");
-      svg.querySelectorAll("[data-k]").forEach(function (x) { var on = x.dataset.k === p.k; x.classList.toggle("hl", on); x.classList.toggle("up", on && p.dir === "up"); x.classList.toggle("down", on && p.dir === "down"); });
+      svg.querySelectorAll("[data-k]").forEach(function (x) { x.classList.toggle("hl", x.dataset.k === p.k); });
     }
-    function hide() { tip.style.display = "none"; svg.classList.remove("focus"); svg.querySelectorAll(".hl").forEach(function (x) { x.classList.remove("hl"); x.classList.remove("up"); x.classList.remove("down"); }); }
+    function hide() { tip.style.display = "none"; svg.classList.remove("focus"); svg.querySelectorAll(".hl").forEach(function (x) { x.classList.remove("hl"); }); }
     pts.forEach(function (p) {
       var h = mtEl("circle", { class: "rw-hit", cx: p.x, cy: p.y, r: 18, tabindex: 0 });
       h.addEventListener("pointerenter", function () { show(p); }); h.addEventListener("pointerleave", hide);
@@ -3728,7 +3738,7 @@
     svg.addEventListener("pointerleave", hide);
     var f = document.getElementById("rw-foot"), ld = last.date.split("-");
     if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד, מהדשבורד, עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
-      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
+      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " צבע הקו = לאן הסקטור זז על הגרף בקטע האחרון של השביל (יום בשבוע, שבוע בחודש): ירוק עלה, אדום ירד; צבע העיגול = האם הכה את המדד או פיגר אחריו לאורך התקופה. ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
     document.querySelectorAll(".rw-chip").forEach(function (c) {
       c.onclick = function () {
         if (c.dataset.rw === "all") { RW.all = !RW.all; c.classList.toggle("on", RW.all); svg.classList.toggle("all", RW.all); return; }
