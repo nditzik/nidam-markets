@@ -16,7 +16,7 @@
 
 **רענון בדפדפן:** `loadDaily()` + `loadLiveContent()` כל 5 דק' עם שומרי-שינוי (`contentSig`), `visibilitychange` מרענן בחזרה-לטאב, ציטוטים חיים כל דקה מהסורק של TradingView (טיקר + מפת חום סקטוריאלית).
 
-**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np119 (np117 = סקין לוח המסחר; np118 = לוגו כהה בלוח הדיווחים, סשן תפעול; np119 = המיזוג).
+**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np120.(np117 = סקין לוח המסחר; np118 = לוגו כהה בלוח הדיווחים, סשן תפעול; np119 = המיזוג).
 
 ## עיצוב "לוח המסחר" (np117→np119, 10.10.2026) — עיצוב מחדש שלב 6, חלק 1
 ספר הסגנון: `docs/redesign/styleguide/` (README + tokens + bundle.css + 12 רכיבים; קנבס https://claude.ai/artifact/HEuRzFXTKzwWsqyE5ZFaf4). המוקאפים: בית https://claude.ai/artifact/Pjr6N7S5BmwdBM2ePT5SPW · חמשת הטאבים https://claude.ai/artifact/DHhqrDD4kBiWuSfTsYTNAQ. תיק העבודה: `docs/redesign/README.md`.
