@@ -2221,3 +2221,10 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .ta-banner { border-radius: var(--radius-sm); font-size: 13px; }
 .ta-levels { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 6px 8px 2px; }
 .ta-levels .ta-lab { position: static; transform: none; padding: 0; background: none; }
+/* לחצני בחירה — כמו לשוניות-משנה (שלב 7): פעיל = link-bg + link-text, לא גלולה שחורה */
+.mt-seg { background: transparent; padding: 0; gap: 6px; border-radius: 0; }
+.mt-seg button { border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; min-height: 28px; font-size: 12px; font-weight: 500; }
+.mt-seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: transparent; font-weight: 600; }
+.mt-lg button { border-color: var(--border); font-size: 12px; min-height: 28px; }
+.rw-chip { border-radius: 999px; font-size: 12px; min-height: 28px; }
+.rw-chip.on { background: var(--accent-soft); color: var(--accent); border-color: transparent; font-weight: 600; }
