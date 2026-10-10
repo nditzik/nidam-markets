@@ -2228,3 +2228,13 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .mt-lg button { border-color: var(--border); font-size: 12px; min-height: 28px; }
 .rw-chip { border-radius: 999px; font-size: 12px; min-height: 28px; }
 .rw-chip.on { background: var(--accent-soft); color: var(--accent); border-color: transparent; font-weight: 600; }
+
+/* ===== סיכום השבוע גרסה 2 (np128, 10.10.2026) — כותרת, פרקים, "מה לבדוק" ===== */
+.pan .wk-head { font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 6px; color: var(--text); }
+.pan .wk-nar.v2 .wk-lead { font-size: 15px; color: var(--text); margin-bottom: 10px; }
+.pan .wk-nar.v2 .wk-line { margin: 0 0 8px; }
+.pan .wk-nar.v2 .wk-line b { display: block; font-size: 12px; font-weight: 600; color: var(--text-3); margin: 0 0 1px; }
+.pan .wk-watch { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); font-size: 13px; }
+.pan .wk-watch b { display: block; font-size: 12px; font-weight: 600; color: var(--text-3); margin-bottom: 4px; }
+.pan .wk-watch ol { margin: 0; padding-inline-start: 18px; line-height: 1.55; color: var(--text-soft); }
+.pan .wk-watch li + li { margin-top: 3px; }

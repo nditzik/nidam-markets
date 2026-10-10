@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np127";
+  var TA_VER = "np128";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1803,6 +1803,8 @@
     // מקבל כותרת בגופן קטן יותר (np-h1-long) במקום חצי בכותרת וחצי בטקסט שמתחת.
     var longH1 = first.length > 95;
     var rest = leadClean.slice(first.length).replace(/^[\s:—.,;]+/, "");   // גם פסיק — אחרי החיתוך בפסיק (26.9)
+    // np128: בגרסה 2 של הסיכום יש כותרת משלו (headline, עד 80 תווים) — היא ה-H1, וה-lead כולו הטקסט שמתחת
+    if (nar.headline) { first = String(nar.headline).replace(/\.$/, ""); longH1 = first.length > 60; rest = leadClean; }
     var stats = leadStats([
       { l: "S&amp;P 500 · שבועי", v: pct(s.spxPct), cls: cls(s.spxPct), s: '<span title="מסגירת שישי הקודם ועד סגירת שישי, כמו S&amp;P ו-VIX">מד השוק ' + (s.combStart != null ? s.combStart : "—") + " ← " + (s.combEnd != null ? s.combEnd : "—") + meterLowHi(s) + "</span>" },
       (s.vixStart != null && s.vixEnd != null) ? { l: "VIX · מדד הפחד", v: s.vixStart.toFixed(2) + " → " + s.vixEnd.toFixed(2), s: s.vixEnd < s.vixStart ? "ירד במהלך השבוע" : s.vixEnd > s.vixStart ? "עלה במהלך השבוע" : "ללא שינוי" } : null,
@@ -1816,7 +1818,7 @@
       '<h2 class="np-h1' + (longH1 ? " np-h1-long" : "") + '">' + esc(first) + "</h2>" +
       stats +
       // טקסט קצר: משפט אחד מהסיכום + משפט אחד מדוח הסקטורים; המלא בטאב מדדים ובדוח
-      '<p class="np-dek">' + (rest ? esc(firstSentence(rest)) + " " : "") + (sec && sec.lead ? esc(firstSentence(sec.lead)) : "") + "</p>" +
+      '<p class="np-dek">' + (rest ? esc(nar.headline ? rest : firstSentence(rest)) + " " : "") + (sec && sec.lead && !nar.sectors ? esc(firstSentence(sec.lead)) : "") + "</p>" +
       sectorTilesHtml(sec) +
       (ca ? '<p class="np-wk-last"><span class="np-k">יום המסחר האחרון · <b dir="ltr">' + esc(fmtTradeDate(ca.date)) + "</b></span> " + esc(ca.headline) + "</p>" : "") +
       foot;
@@ -2202,11 +2204,19 @@
           '<div class="wk-p num ' + cls(x.chg) + '" dir="ltr">' + pct(x.chg) + "</div>" +
           (x.headline ? '<div class="wk-h">' + esc(x.headline) + "</div>" : "") + "</div>";
       }).join("") + "</div>" +
-      (nar ? '<div class="wk-nar">' +
+      (nar ? '<div class="wk-nar' + (nar.version >= 2 ? " v2" : "") + '">' +
+          // np128 (10.10.2026, איציק: "סיכום שבועי איכותי יותר"): גרסה 2 של הסיכום — כותרת, שורה תחתונה,
+          // ופרקים עם כותרות (מה הזיז את השוק / לאן זרם הכסף / הדוחות / מאקרו / הצפי שלנו / הנבחרות / השבוע הבא)
+          // + "מה לבדוק" (3 שאלות). המפתחות הישנים (news/earnings/macro/lookahead) נשארו באותם שמות — גרסה 1 מתרנדרת כרגיל.
+          (nar.headline ? '<h3 class="wk-head">' + esc(nar.headline) + "</h3>" : "") +
           (nar.lead ? "<p class=\"wk-lead\">" + esc(nar.lead) + "</p>" : "") +
-          [["חדשות", nar.news], ["דוחות", nar.earnings], ["מאקרו", nar.macro], ["השבוע הבא", nar.lookahead]].map(function (p) {
+          [["מה הזיז את השוק", nar.news], ["לאן זרם הכסף", nar.sectors], ["הדוחות", nar.earnings], ["מאקרו", nar.macro],
+           ["הצפי שלנו מול מה שקרה", nar.forecast], ["הנבחרות", nar.picks], ["השבוע הבא", nar.lookahead]].map(function (p) {
             return p[1] ? '<p class="wk-line"><b>' + p[0] + "</b> " + esc(p[1]) + "</p>" : "";
-          }).join("") + "</div>"
+          }).join("") +
+          (nar.version >= 2 && !nar.sectors ? '<p class="wk-line mute"><b>לאן זרם הכסף</b> דוח הסקטורים השבועי טרם הגיע — הסיכום ייכתב מחדש כשיגיע.</p>' : "") +
+          ((nar.watch || []).length ? '<div class="wk-watch"><b>מה לבדוק בשבוע הבא</b><ol>' + nar.watch.map(function (q) { return "<li>" + esc(q) + "</li>"; }).join("") + "</ol></div>" : "") +
+          "</div>"
         : '<p class="wk-wait mute">הסיכום המילולי של השבוע נכתב בסוף השבוע, אחרי שסגירת שישי נקלטת.</p>') +
       (d.sectors && (d.sectors.lead || (d.sectors.out || []).length) ? '<div class="kv"><span>💸 לאן זרם הכסף</span><span>' +
         (d.sectors.lead ? esc(d.sectors.lead) + " " : "") +

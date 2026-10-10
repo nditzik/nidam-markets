@@ -246,6 +246,26 @@ def attach_sectors():
     return True
 
 
+def refresh_headlines(days):
+    """10.10.2026: הכותרת של שישי חסרה ברצועת חמשת הימים — הסיכום נבנה ב-05:30 כשהדשבורד נקלט,
+    והניתוח של שישי נכתב רק ב-06:21 (archive_scores שומר אותו ל-history.json). משלימים כותרות
+    ריקות מ-history בכל מחזור, גם כשהשבוע כבר סוכם. מחזיר True אם נכתב שינוי."""
+    w = load(OUT) or {}
+    if not w.get("days"):
+        return False
+    by_date = {d["date"]: d.get("headline") or "" for d in days}
+    changed = False
+    for d in w["days"]:
+        if not d.get("headline") and by_date.get(d["date"]):
+            d["headline"] = by_date[d["date"]]
+            changed = True
+    if changed:
+        with open(OUT, "w", encoding="utf-8") as f:
+            json.dump(w, f, ensure_ascii=False, indent=1)
+        print("[ok] כותרות יומיות חסרות הושלמו בסיכום השבועי")
+    return changed
+
+
 def main():
     force = "--force" in sys.argv
     hist = load(os.path.join(DATA, "history.json")) or {}
@@ -269,6 +289,7 @@ def main():
     if st.get("weekOf") == last and not force:
         print(f"[ok] השבוע שמסתיים ב-{last} כבר סוכם.")
         attach_sectors()      # דוח הסקטורים מגיע אחרי הסיכום — מצרפים כשהוא נוחת
+        refresh_headlines(days)   # הכותרת של שישי נכתבת אחרי הבנייה (10.10.2026)
         return 0
 
     idx = load(os.path.join(DATA, "indices.json")) or {}
