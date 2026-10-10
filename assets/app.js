@@ -373,21 +373,7 @@
     if (!d || !d.picks) { el.innerHTML = '<div class="ph"><h2>הנבחרות</h2>' + bdGo("picks", "הנבחרות") + '</div><div class="pb mute">המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט.</div>'; return; }
     var g = d.gate || {}, gw = g.combined != null ? meterWord(g.combined) : ["", ""];
     var gateCls = { defense: "bad", neutral: "warn", green: "good" }[g.state] || "";
-    var rows = d.picks.slice(0, 5).map(function (p, i) {
-      var lo_ = p.stop || p.sup, hi_ = p.target || p.res, loL = p.stop ? "סטופ" : "תמיכה", hiL = p.target ? "יעד" : "התנגדות";
-      var pos = (lo_ && hi_) ? Math.max(0, Math.min(100, (p.price - lo_) / ((hi_ - lo_) || 1) * 100)) : null;
-      var rec = p.rec || {}, dots = (rec.dots || []).map(function (x) { return '<i class="rd' + (x ? " w" : "") + '"></i>'; }).join("");
-      var src = (p.sources || []).map(function (s) { return '<span class="tag">' + esc(String(s.t || "").split(" #")[0]) + "</span>"; }).join(" ");
-      return "<tr><td><a href=\"https://www.tradingview.com/symbols/" + encodeURIComponent(p.sym) + '/" class="tsym" target="_blank" rel="noopener"><span class="rank num">' + (i + 1) + "</span>" + esc(p.sym) + "</a>" +
-          '<div class="mute nm">' + esc((p.name || "").replace(/ Inc\.?$| Corp.*$| and Company$|, Inc\.$/, "")) + "</div></td>" +
-        '<td><span class="num" dir="ltr">' + fmtNum(p.price, 2) + "</span></td><td>" + bdPct(p.chg) + "</td>" +
-        '<td class="sp-cell">' + bdPickSpark(p) + "</td>" +
-        '<td><span class="num down" dir="ltr">' + (lo_ != null ? fmtNum(lo_, 2) : "—") + '</span><div class="mute s">' + loL + "</div></td>" +
-        "<td>" + (pos != null ? '<div class="rng" role="img" aria-label="המחיר ב-' + pos.toFixed(0) + '% מהדרך בין ' + loL + ' ל' + hiL + '"><b style="left:calc(' + pos.toFixed(0) + '% - 1px)"></b></div>' : "") + "</td>" +
-        '<td><span class="num up" dir="ltr">' + (hi_ != null ? fmtNum(hi_, 2) : "—") + '</span><div class="mute s">' + hiL + "</div></td>" +
-        "<td>" + src + "</td>" +
-        "<td>" + dots + (rec.n ? '<div class="mute s"><span class="num">' + (rec.dots || []).reduce(function (a, b) { return a + b; }, 0) + "</span> מתוך <span class=\"num\">" + rec.n + "</span> עלו</div>" : "") + "</td></tr>";
-    }).join("");
+    var rows = d.picks.slice(0, 5).map(pickRowHtml).join("");
     var eds = ((PICKL && PICKL.editions) || []).slice(-4), led = eds.map(function (e) {
       var a5 = e.avg && e.avg["5"], c = e.cur;
       var v = a5 ? a5.excess : (c ? c.excess : null), lbl = a5 ? "5 ימים" : (c ? "יום " + c.day : "נבנתה היום");
@@ -661,7 +647,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np119";
+  var TA_VER = "np120";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1218,6 +1204,8 @@
   /* פס מבזק שוק — תנועה חדה תוך-יומית (data/flash.json), מוצג עד 3 שעות מהאירוע */
   var FLASH_TTL_MS = 3 * 60 * 60 * 1000;
   function renderFlash(d) {
+    FLASHD = d || FLASHD;
+    renderNewsSiblings();
     var wrap = document.getElementById("flash-wrap");
     var el = document.getElementById("flash-bar");
     if (!wrap || !el) return;
@@ -1416,33 +1404,21 @@
   function renderEcon() {
     var el = document.getElementById("home-econ");
     if (!el || !ECON || !(ECON.events || []).length) return;
-    var released = ECON.events.filter(function (e) { return e.actual != null; }).slice(-5).reverse();
-    var upcoming = ECON.events.filter(function (e) { return e.actual == null; }).slice(0, 5);
-    function row(e, isUp) {
+    // np120: טבלה אחת בפאנל "מאקרו · צפי מול בפועל" בטאב היומן — הבאים בתור ואז מה שפורסם
+    var released = ECON.events.filter(function (e) { return e.actual != null; }).slice(-6).reverse();
+    var upcoming = ECON.events.filter(function (e) { return e.actual == null; }).slice(0, 8);
+    function row(e) {
       var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : "";
-      var val = isUp
-        ? (e.forecast ? 'צפי <b class="num" dir="ltr">' + esc(e.forecast) + "</b>" : "צפי —") +
-          (e.previous ? ' · קודם <span class="num" dir="ltr">' + esc(e.previous) + "</span>" : "")
-        : 'בפועל <b class="num ' + cls + '" dir="ltr">' + esc(e.actual) + "</b>" +
-          (e.forecast ? ' מול צפי <span class="num" dir="ltr">' + esc(e.forecast) + "</span>" : "") +
-          (e.surprise === "good" ? " ✓" : e.surprise === "bad" ? " ✗" : "");
-      // התאריך מימין והשעה משמאל (סדר RTL טבעי) — כל מספר LTR בפני עצמו
-      return '<div class="ec-row' + (isUp ? "" : " " + cls) + '">' +
-        '<span class="ec-when num"><span dir="ltr">' + esc(e.ilDate) + "</span>" +
-          (isUp && e.ilTime ? ' · <span dir="ltr">' + esc(e.ilTime) + "</span>" : "") + "</span>" +
-        '<span class="ec-name">' + esc(e.he) + "</span>" +
-        '<span class="ec-val">' + val + "</span></div>";
+      return "<tr><td class=\"num\" dir=\"ltr\">" + esc(e.ilDate) + (e.ilTime ? " · " + esc(e.ilTime) : "") + "</td><td>" + esc(e.he) + (e.period ? ' <span class="mute s">' + esc(e.period) + "</span>" : "") + "</td>" +
+        '<td class="num" dir="ltr">' + esc(e.forecast || "—") + '</td><td class="num mute" dir="ltr">' + esc(e.previous || "—") + '</td><td class="num ' + cls + '" dir="ltr">' +
+        (e.actual != null ? "<b>" + esc(e.actual) + "</b>" + (e.surprise === "good" ? " ✓" : e.surprise === "bad" ? " ✗" : "") : '<span class="mute">—</span>') + "</td></tr>";
     }
-    el.innerHTML =
-      '<section class="card econ-card">' +
-        '<div class="split-head"><span class="split-title">📊 נתוני מאקרו — צפי מול בפועל</span>' +
-          '<span class="split-sub">מתעדכן אוטומטית עם הפרסום</span></div>' +
-        '<div class="ec-cols">' +
-          '<div class="ec-col"><div class="ec-t">🔔 פורסמו לאחרונה</div>' +
-            (released.map(function (e) { return row(e, false); }).join("") || '<div class="ec-row">אין פרסומים אחרונים</div>') + "</div>" +
-          '<div class="ec-col"><div class="ec-t">🗓️ הבאים בתור</div>' +
-            (upcoming.map(function (e) { return row(e, true); }).join("") || '<div class="ec-row">אין אירועים קרובים</div>') + "</div>" +
-        "</div></section>";
+    el.className = "pan";
+    el.innerHTML = panHd("מאקרו · צפי מול בפועל", '<span class="mute">מתעדכן אוטומטית עם הפרסום · שעון ישראל</span>') +
+      '<div class="tbl"><table class="bd-tbl"><thead><tr><th>מועד</th><th>נתון</th><th>צפי</th><th>קודם</th><th>בפועל</th></tr></thead><tbody>' +
+      (upcoming.length ? '<tr class="sec"><td colspan="5">🗓️ הבאים בתור</td></tr>' + upcoming.map(row).join("") : "") +
+      (released.length ? '<tr class="sec"><td colspan="5">🔔 פורסמו לאחרונה</td></tr>' + released.map(row).join("") : "") +
+      (!upcoming.length && !released.length ? '<tr><td colspan="5" class="mute">אין אירועים</td></tr>' : "") + "</tbody></table></div>";
     renderTriIndex();
   }
 
@@ -1507,8 +1483,9 @@
   var HIST = null, DIFFS = null, INDD = null;   // היסטוריית ציונים + שינוי-יומי
 
   /* גרף מגמה קטן מתחת למד — הציון המשולב לאורך הימים האחרונים */
-  function renderSpark() {
-    var svg = document.getElementById("meter-spark");
+  function renderSpark(sfx) {
+    sfx = sfx || "";
+    var svg = document.getElementById("meter-spark" + sfx);
     if (!svg || !HIST || !(HIST.days || []).length) return;
     var days = HIST.days.slice(-30);
     var vals = days.map(function (d) { return d.combined; }).filter(function (v) { return v != null; });
@@ -1526,7 +1503,7 @@
     svg.innerHTML =
       '<polyline points="' + pts.join(" ") + '" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>' +
       '<circle cx="' + lastPt[0] + '" cy="' + lastPt[1] + '" r="2.6" fill="' + meterWord(last)[1] + '"/>';
-    var lbl = document.getElementById("spark-label");
+    var lbl = document.getElementById("spark-label" + sfx);
     if (lbl) lbl.textContent = vals.length + " ימי מסחר אחרונים";
   }
 
@@ -2021,24 +1998,25 @@
     h = '<line x1="' + nx.toFixed(1) + '" y1="' + (base - maxH - 36) + '" x2="' + nx.toFixed(1) + '" y2="' + (base + 4) + '" class="ss-now"></line>' + h +
       '<rect x="' + (Math.min(R - 68, Math.max(L, nx - 34))).toFixed(1) + '" y="' + (base - maxH - 58) + '" width="68" height="20" rx="10" class="ss-nowbg"></rect>';
     ov += ovAt("ss-ov-now", Math.min(R - 34, Math.max(L + 34, nx)), base - maxH - 44, "אנחנו כאן");
-    el.innerHTML = '<div class="ss-head"><span class="np-k">🗓 עונת הדוחות · ' + esc(s.season) + "</span>" +
-        '<a href="#weekcal" onclick="__goTab(\'weekcal\');return false">' + (s.reported ? "לוח התוצאות המלא ←" : "לוח הדיווחים המלא ←") + "</a></div>" +
-      '<h2 class="ss-title">' + esc(title) + "</h2>" +
-      '<div class="ss-scroll"><div class="ss-wrap"><svg class="ss-tl" viewBox="0 0 1140 ' + VH + '" role="img" aria-label="ציר עונת הדוחות: כמה חברות מהמדד מדווחות בכל שבוע">' + h + "</svg>" + ov + "</div></div>" +
-      '<p class="ss-cap">העמודות: כמה מחברות ה-S&amp;P 500 מדווחות בכל שבוע · בתוכן: החברות הגדולות שמדווחות באותו שבוע · כהה = שבוע שעבר</p>';
+    // np120: הציר הוא פאנל בטאב היומן — הכותרת ב-.ph, הקישור גולל ללוח התוצאות באותו טאב
+    el.classList.add("pan");
+    el.innerHTML = panHd("🗓 עונת הדוחות · " + esc(s.season), '<span class="mute">' + esc(title) + "</span>",
+        '<a class="go" href="#weekcal" onclick="var m=document.getElementById(\'sbd-pan\');if(m)m.scrollIntoView({behavior:\'smooth\',block:\'start\'});return false">' + (s.reported ? "לוח התוצאות" : "לוח התוצאות") + "</a>") +
+      '<div class="pb"><div class="ss-scroll"><div class="ss-wrap"><svg class="ss-tl" viewBox="0 0 1140 ' + VH + '" role="img" aria-label="ציר עונת הדוחות: כמה חברות מהמדד מדווחות בכל שבוע">' + h + "</svg>" + ov + "</div></div>" +
+      '<p class="ss-cap">העמודות: כמה מחברות ה-S&amp;P 500 מדווחות בכל שבוע · בתוכן: החברות הגדולות שמדווחות באותו שבוע · כהה = שבוע שעבר</p></div>';
     el.hidden = false;
     refreshSeasonBoard();
   }
 
   /* לוח התוצאות של העונה (3.10.2026, שלב 2) — בראש טאב לוח הדיווחים. מ-earnings_season.json.board:
      בפועל מול צפי מסורק TradingView (הרבעון שדווח), תגובה = סגירה מול סגירה ביום התגובה. */
-  function seasonBoardHtml() {
+  function seasonBoardHtml(bare_) {
     var s = SEASON, b = s && s.board;
     if (!s || !b) return "";
     var today = ilNowParts().iso;
     if (today < ssAdd(s.start, -7) || today > ssAdd(s.end, 14)) return "";
     function sgn(v) { return v == null ? "—" : '<bdi dir="ltr">' + (v > 0 ? "+" : "") + v.toFixed(1) + "%</bdi>"; }
-    var head = '<div class="sbd-head"><span class="np-k">🗓 לוח התוצאות · עונת הדוחות ' + esc(s.season) + "</span>" +
+    var head = bare_ ? "" : '<div class="sbd-head"><span class="np-k">🗓 לוח התוצאות · עונת הדוחות ' + esc(s.season) + "</span>" +
       '<span class="sbd-sub">חברות ה-S&amp;P 500 · מתעדכן כל רבע שעה</span></div>';
     if (!b.reported) {
       var opens = ((s.milestones || []).filter(function (m) { return m.key === "banks"; })[0] || {}).date || s.anchor.date;
@@ -2070,7 +2048,7 @@
         (movers ? '<p class="sbd-h">התגובות הבולטות ביום הדוח</p><div class="sbd-mvs">' + movers + "</div>" : "") +
       "</div></div></section>";
   }
-  function refreshSeasonBoard() { var el = document.getElementById("season-board"); if (el) el.innerHTML = seasonBoardHtml(); }
+  function refreshSeasonBoard() { var el = document.getElementById("season-board"); if (el) el.innerHTML = seasonBoardHtml(true); }
 
   /* ---------- הידיעה המובילה + רייל המד (מהדורת עיתון) ---------- */
   var CA = null;   // data/claude_analysis.json — הניתוח היומי (נכתב ע"י המשימה המתוזמנת)
@@ -2252,6 +2230,12 @@
   function renderLeadRail(d) {
     var rail = document.getElementById("lead-rail");
     if (!rail) return;
+    rail.innerHTML = leadRailHtml(d, "");
+    renderSpark("");
+  }
+  /* גוף רייל המד — משותף לבית (sfx="") ולטאב השוק (sfx="-i", np120); ה-id-ים של הספארקליין מקבלים סיומת */
+  function leadRailHtml(d, sfx) {
+    sfx = sfx || "";
     var s = d.scores || {}, e = d.evidence || {};
     var w = s.combined != null ? meterWord(s.combined) : ["", "var(--text)"];
     function sub(label, key, val) {
@@ -2260,12 +2244,11 @@
     }
     var seg = s.combined != null ? '<div class="seg" role="img" aria-label="ציון ' + s.combined + ' מתוך 100"><i style="background:var(--down)"></i><i style="background:var(--state-fill)"></i><i style="background:var(--up)"></i><b style="left:calc(' + s.combined + '% - 1px)"></b></div>' +
       '<div class="segl"><span>הגנתי · עד 44</span><span>זהיר · 45–65</span><span>חיובי · מ-66</span></div>' : "";
-    rail.innerHTML =
-      '<div class="ph"><h2>The Edge Meter</h2>' + meterDayHtml(d.date) + '<a class="go" href="#indices" onclick="__goTab(\'indices\');return false">המד המלא</a></div><div class="pb">' +
+    return '<div class="ph"><h2>The Edge Meter</h2>' + meterDayHtml(d.date) + (sfx ? "" : '<a class="go" href="#indices" onclick="__goTab(\'indices\');return false">המד המלא</a>') + '</div><div class="pb">' +
       '<div class="np-score"><b class="num" style="color:' + w[1] + '">' + (s.combined != null ? s.combined : "—") + "</b>" +
         '<span style="color:' + w[1] + '">' + w[0] + "</span>" + (DIFFS && DIFFS.combined != null && HIST && HIST.days.length > 1 ? '<span class="mute s" style="margin-inline-start:auto">אתמול: <span class="num">' + HIST.days[HIST.days.length - 2].combined + "</span></span>" : "") + "</div>" + seg +
-      '<svg class="meter-spark np-spark" id="meter-spark" viewBox="0 0 120 30" preserveAspectRatio="none" style="cursor:pointer" role="link" aria-label="לגרף המלא בטאב מדדים" onclick="__goTab(\'indices\');var m=document.getElementById(\'meter-timeline\');if(m)m.scrollIntoView({behavior:\'smooth\',block:\'start\'});"></svg>' +
-      '<div class="spark-label" id="spark-label"></div>' +
+      '<svg class="meter-spark np-spark" id="meter-spark' + sfx + '" viewBox="0 0 120 30" preserveAspectRatio="none" style="cursor:pointer" role="link" aria-label="לגרף המלא בטאב מדדים" onclick="__goTab(\'indices\');var m=document.getElementById(\'meter-timeline\');if(m)m.scrollIntoView({behavior:\'smooth\',block:\'start\'});"></svg>' +
+      '<div class="spark-label" id="spark-label' + sfx + '"></div>' +
       sub("טכני", "tech", s.tech) +
       sub("רוחב", "breadth", s.breadth) +
       sub("אופציות", "flow", s.flow) +
@@ -2279,7 +2262,6 @@
         '<span class="up"><span class="num" dir="ltr">' + e.nhCount + '</span> שיאים</span><span class="np-sep">·</span>' +
         '<span class="down"><span class="num" dir="ltr">' + e.nlCount + '</span> שפלים</span></b></div>' : "") +
       "</div>";
-    renderSpark();
   }
 
   /* עמודת "מדווחות היום והשבוע" — לוגו+טיקר להיום, שורות ימים לשבוע */
@@ -2324,14 +2306,14 @@
     var nar = d.narrative || null;
     function pct(v) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(2) + "%"; }
     function cls(v) { return v > 0 ? "up" : v < 0 ? "down" : ""; }
-    var w0 = meterWord(s.combStart || 0), w1 = meterWord(s.combEnd || 0);
+    var w1 = meterWord(s.combEnd || 0);
+    // np120: פאנל "סיכום השבוע" בטאב השוק — 4 אריחים, חמשת הימים, הסיכום המילולי, "לאן זרם הכסף"
     el.innerHTML =
-      '<section class="wk"><div class="wk-head"><span class="wk-ttl"><span class="np-k">🗓 סיכום השבוע שעבר</span><b class="wk-when num" dir="ltr">' + esc(d.label || "") + "</b></span>" +   // "שעבר" + תאריכים מובלטים (11.9.2026, בקשת איציק: שיהיה ברור שזה לא השבוע הנוכחי)
-        '<span class="wk-stat">S&amp;P 500 <b class="num ' + cls(s.spxPct) + '" dir="ltr">' + pct(s.spxPct) + "</b></span>" +
-        '<span class="wk-stat" title="מסגירת שישי הקודם ועד סגירת שישי, כמו S&amp;P ו-VIX">מד השוק <b class="num" dir="ltr">' + (s.combStart != null ? s.combStart : "—") + " → " + (s.combEnd != null ? s.combEnd : "—") + "</b>" + meterLowHi(s) +
-          ' <span style="color:' + w1[1] + '">' + w1[0] + "</span></span>" +
-        (s.sellDays ? '<span class="wk-stat">' + (s.sellDays === 1 ? '<b class="down">יום מכירה רחבה אחד</b>' : '<b class="num down" dir="ltr">' + s.sellDays + "</b> ימי מכירה רחבה") + "</span>" : "") +
-      "</div>" +
+      panHd('סיכום השבוע שעבר · <span class="num" dir="ltr">' + esc(d.label || "") + "</span>", '<span class="mute">מסגירת שישי לסגירת שישי</span>') + '<div class="pb">' +
+      '<div class="tiles">' + bdTile("S&amp;P 500", pct(s.spxPct), "", cls(s.spxPct)) +
+        bdTile("מד השוק", (s.combStart != null ? s.combStart : "—") + "→" + (s.combEnd != null ? s.combEnd : "—"), '<span style="color:' + w1[1] + '">' + w1[0] + "</span>" + meterLowHi(s)) +
+        bdTile("VIX", (s.vixStart != null ? s.vixStart.toFixed(1) : "—") + "→" + (s.vixEnd != null ? s.vixEnd.toFixed(1) : "—")) +
+        bdTile("ימי מכירה רחבה", s.sellDays || 0, "", s.sellDays ? "down" : "") + "</div>" +
       '<div class="wk-days">' + days.map(function (x) {
         var w = meterWord(x.combined || 0);
         return '<div class="wk-day' + (x.sell ? " sell" : "") + '"><div class="wk-dow">' + esc(x.dow) + ' <span dir="ltr">' + esc(x.label) + "</span></div>" +
@@ -2343,14 +2325,14 @@
           (nar.lead ? "<p class=\"wk-lead\">" + esc(nar.lead) + "</p>" : "") +
           [["חדשות", nar.news], ["דוחות", nar.earnings], ["מאקרו", nar.macro], ["השבוע הבא", nar.lookahead]].map(function (p) {
             return p[1] ? '<p class="wk-line"><b>' + p[0] + "</b> " + esc(p[1]) + "</p>" : "";
-          }).join("") +
-          (d.sectors && (d.sectors.lead || (d.sectors.out || []).length) ? '<p class="wk-line"><b>לאן זרם הכסף</b> ' +
-            (d.sectors.lead ? esc(d.sectors.lead) + " " : "") +
-            ((d.sectors.out || []).length ? "הרוחב ירד ב: " + d.sectors.out.map(function (o) { return esc(o.name) + ' <span class="num"><bdi>' + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi></span>"; }).join(" · ") : "") + heldHtml(d.sectors) + " · " +
-            '<a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא ←</a></p>' + '<p class="np-wk-exp">' + SEC_EXPLAIN + "</p>" : "") +
-          '<p class="stamp">סיכום מילולי · נכתב ' + esc(nar.writtenAt || "") + "</p></div>"
-        : '<p class="wk-wait">הסיכום המילולי של השבוע נכתב בסוף השבוע, אחרי שסגירת שישי נקלטת.</p>') +
-      "</section>";
+          }).join("") + "</div>"
+        : '<p class="wk-wait mute">הסיכום המילולי של השבוע נכתב בסוף השבוע, אחרי שסגירת שישי נקלטת.</p>') +
+      (d.sectors && (d.sectors.lead || (d.sectors.out || []).length) ? '<div class="kv"><span>💸 לאן זרם הכסף</span><span>' +
+        (d.sectors.lead ? esc(d.sectors.lead) + " " : "") +
+        ((d.sectors.out || []).length ? "הרוחב ירד ב: " + d.sectors.out.map(function (o) { return esc(o.name) + ' <span class="num"><bdi>' + o.from + "%</bdi> ← <bdi>" + o.to + "%</bdi></span>"; }).join(" · ") : "") + heldHtml(d.sectors) + " · " +
+        '<a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח המלא</a></span></div>' + '<p class="np-wk-exp mute s">' + SEC_EXPLAIN + "</p>" : "") +
+      (nar ? '<p class="stamp" style="margin:0">סיכום מילולי · נכתב ' + esc(nar.writtenAt || "") + "</p>" : "") +
+      "</div>";
   }
 
   /* ---------- renderers ---------- */
@@ -2592,16 +2574,18 @@
   function mtCss(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
   function mtD(s) { var p = s.split("-"); return (+p[2]) + "/" + (+p[1]); }
   function mtEl(t, a) { var e = document.createElementNS("http://www.w3.org/2000/svg", t); for (var k in a) e.setAttribute(k, a[k]); return e; }
-  function meterTimelineHtml() {
-    return '<section class="mt" id="meter-timeline">' +
-      '<div class="mt-head"><h3 class="section-title" style="margin:0">📈 The Edge Meter <small id="mt-sub"></small></h3>' +
-        '<div class="mt-seg" role="group" aria-label="טווח">' + [30, 60, 90].map(function (r) {
+  function meterTimelineHtml(bare_) {
+    var seg = '<div class="mt-seg" role="group" aria-label="טווח">' + [30, 60, 90].map(function (r) {
           return '<button type="button" data-r="' + r + '" aria-pressed="' + (MT.range === r) + '">' + r + "</button>";
-        }).join("") + "</div></div>" +
-      '<div class="mt-lg" role="group" aria-label="רכיבים"><span class="k">רכיבים:</span>' +
+        }).join("") + "</div>";
+    var lg = '<div class="mt-lg" role="group" aria-label="רכיבים"><span class="k">רכיבים:</span>' +
         [["tech", "טכני"], ["breadth", "רוחב"], ["flow", "אופציות"]].map(function (p) {
           return '<button type="button" data-s="' + p[0] + '" aria-pressed="' + MT.show[p[0]] + '" style="--c:var(--mt-' + p[0] + ')"><i></i>' + p[1] + "</button>";
-        }).join("") + "</div>" +
+        }).join("") + "</div>";
+    // np120: בפאנל של טאב השוק הכותרת יושבת ב-.ph של הפאנל (עם #mt-sub) — כאן רק הכפתורים
+    return '<section class="mt" id="meter-timeline">' +
+      (bare_ ? '<div class="mt-ctrl">' + seg + lg + "</div>"
+        : '<div class="mt-head"><h3 class="section-title" style="margin:0">📈 The Edge Meter <small id="mt-sub"></small></h3>' + seg + "</div>" + lg) +
       '<figure class="mt-fig" id="mt-fig" tabindex="0" aria-label="ציר הזמן של ציון בריאות השוק ו-S&P 500. חצים ימינה ושמאלה לנוע בין ימים.">' +
         '<svg id="mt-svg" aria-hidden="true"></svg><div class="mt-tip" id="mt-tip"></div>' +
         "<figcaption>הציון המשולב (0–100) על רקע שלושת המצבים של המד — חיובי מ-66, זהיר 45–66, הגנתי מתחת. ▲ = יום מכירה רחבה. קו מקווקו = שינוי בנוסחת ציון האופציות (v5 ב-13.9.2026, v6 ב-18.9.2026): ערכים משני צדיו אינם ברי-השוואה ישירה. מתחת: S&amp;P 500 על אותו ציר זמן. ריחוף או חצי מקלדת מציגים את כל הערכים של אותו יום, כולל הכותרת שפורסמה בו.</figcaption>" +
@@ -2889,82 +2873,80 @@
       '<p class="bp-take"><b>הלקח:</b> גם שיא רחב (ינואר 2022) נגמר בירידה, וגם שיאים צרים (2023, 2025) המשיכו לעלות. מה שהכריע הוא החודש שאחרי: אם תוך כחודש עוד מניות הצטרפו והאחוז קפץ מעל 65%, השוק המשיך לעלות. אם לא, הגיע תיקון.</p>' +
       '<p class="stamp">נכון לסגירת <span dir="ltr">' + esc(fmtTradeDate(d.date)) + "</span> · התחתית = הנקודה הנמוכה ביותר של המדד בשנה שאחרי השיא, באחוזים מהשיא. נתוני העבר: חישוב על חברות המדד של היום מנרות 2005–2026 (חברות שיצאו מהמדד חסרות, ולכן העבר נראה מעט טוב יותר).</p></section>";
   }
-  function renderBreadthPeaks() { var el = document.getElementById("bp-slot"); if (el && INDD) el.innerHTML = breadthPeaksHtml(INDD); }
+  function renderBreadthPeaks() { var el = document.getElementById("bp-slot"); if (el && INDD) el.innerHTML = bpPan(INDD); }
 
   function renderIndicesDetail(el, d) {
-    var c = d.conclusion || {};
-    var rot = d.rotation || {};
-    var ro = d.riskOff || {};
-
-    // ניתוח לפי תחום: 4 הבלוקים של מנוע-הכללים (מניות/סקטורים/אופציות/התמונה המשולבת);
-    // הרשימה הישנה של מנוע-המסקנות נשארת רק כנפילה-חזרה כשאין בלוקים (כפילות אחרת)
-    var analysis = aiBlocksHtml(d);
-    if (!analysis && c.analysis && c.analysis.length) {
-      analysis = '<div class="section-title">🔬 ניתוח לפי תחום</div><div class="card"><ul class="analysis">' +
-        c.analysis.map(function (a) {
-          return '<li class="tone-' + esc(a.tone || "") + '"><span class="tone-dot"></span>' +
-            '<span class="domain">' + esc(a.domain) + "</span><span>" + esc(a.text) + "</span></li>";
-        }).join("") + "</ul></div>";
-    }
-    analysis += flowQuadHtml(d);
-    analysis += optVsPriceHtml(d);
-    analysis += bigTradesHtml(d);
-
+    // np120 (עיצוב מחדש שלב 6 חלק 2): טאב השוק כרשת פאנלים לפי מוקאפ שלב 5 —
+    // המד | ציר הזמן → הניתוח היומי → סיכום השבוע | הצפי → ההימור נטו | הכסף הגדול →
+    // הרוחב בשיא | מנוע המסקנות → ניתוח לפי תחום | תמונת מצב → ציון האופציות מול המחיר →
+    // רוטציה | לחץ מכירות | רקע → "איך זה עובד". שום תוכן לא ירד — רק הלבשה וסדר.
+    var c = d.conclusion || {}, rot = d.rotation || {}, ro = d.riskOff || {}, e = d.evidence || {}, s = d.scores || {}, fl = d.flow || {}, v = d.verdict || {}, nrt = d.narrative || {};
+    var sd = (ro.sellingDays || []).length, mAbove = null;
+    (c.analysis || []).forEach(function (a) { var m = /מעל MA200 כבר (\d+)/.exec(a.text || ""); if (m) mAbove = +m[1]; });
+    var tiles = '<div class="tiles">' +
+      bdTile("ימי מכירה ב-" + ((ro.sellDaysMap || []).length || 25) + " הימים", sd, ro.active ? "לחץ מכירות פעיל" : "", sd >= 4 ? "down" : "") +
+      (mAbove != null ? bdTile("S&amp;P מעל ממוצע 200", mAbove + ' <small>ימים</small>') : bdTile("VIX", fmtNum(e.vix, 1), e.vix != null && e.vix < 20 ? "רגוע" : "מוגבר")) +
+      bdTile("מניות מעל ממוצע 200", e.pctMa200 != null ? Math.round(e.pctMa200) + "%" : "—", e.pctMa50 != null ? Math.round(e.pctMa50) + "% מעל ממוצע 50" : "") +
+      '<div class="tile"><div class="l">שיאים / שפלים 52ש׳</div><div class="v num" dir="ltr"><span class="up">' + fmtNum(e.nhCount) + '</span>/<span class="down">' + fmtNum(e.nlCount) + "</span></div></div></div>";
+    var TONE = { pos: "up", neg: "down", warn: "warn" };
+    var conclRows = (c.analysis || []).map(function (a) {
+      return '<div class="sent"><b><i class="dot ' + (TONE[a.tone] || "") + '"></i>' + esc(a.domain) + "</b><span>" + esc(a.text) + "</span></div>";
+    }).join("");
+    var r = c.recommendation || {};
+    var concl = (c.conclusion ? '<p class="bd-concl">📌 ' + esc(c.conclusion) + "</p>" : "") +
+      (r.action ? '<div class="bd-reco"><p><b>מה עושים:</b> ' + esc(r.action) + "</p>" + (r.improve ? "<p><b>ישתפר אם:</b> " + esc(r.improve) + "</p>" : "") + (r.worsen ? "<p><b>יורע אם:</b> " + esc(r.worsen) + "</p>" : "") + "</div>" : "");
+    var lightsMap = { trend: "מגמה", breadth: "רוחב", volatility: "תנודתיות", rotation: "רוטציה" };
+    var lights = v.lights ? '<div class="lights">' + Object.keys(lightsMap).map(function (k) { return '<span class="light ' + esc(v.lights[k] || "") + '"><span class="dot"></span>' + lightsMap[k] + "</span>"; }).join("") + "</div>" : "";
+    var scoreTiles = [["combined", "ציון משולב"], ["tech", "טכני"], ["breadth", "רוחב"], ["flow", "אופציות"]].map(function (p) {
+      return '<div class="tile"><div class="l">' + p[1] + '</div><div class="v num ' + scoreBand(s[p[0]]) + '">' + (s[p[0]] == null ? "—" : s[p[0]]) + diffTag(p[0]) + "</div>" +
+        (p[0] === "flow" && fl.deltaLabel ? '<div class="s mute">הכסף הגדול: <b class="' + (fl.deltaLabel === "דובי" ? "down" : fl.deltaLabel === "שורי" ? "up" : "") + '">' + esc(fl.deltaLabel) + "</b>" + (fl.meterScore != null ? ' · במד <span class="num">' + fl.meterScore + "</span>" : "") + "</div>" : "") + "</div>";
+    }).join("");
+    var mktTiles = bdTile("S&amp;P 500", fmtNum(e.spxPrice, 2), e.pctMa200 != null ? e.pctMa200 + "% מעל MA200" : "") +
+      bdTile("VIX", fmtNum(e.vix, 1), e.vix != null && e.vix < 20 ? "רגוע" : "מוגבר") +
+      bdTile("מניות מעל ממוצע 50", e.pctMa50 != null ? Math.round(e.pctMa50) + "%" : "—", "רוחב") +
+      bdTile("EQ מול SPX 20י", e.eqSpx20 != null ? (e.eqSpx20 > 0 ? "+" : "") + e.eqSpx20 + "%" : "—", "רוחב פנימי");
+    var verdict = (v.headline ? '<p class="bd-vh">' + h(v.emoji || "📊") + " " + esc(v.headline) + "</p>" : "") + (v.subline ? '<p class="mute" style="margin:0">' + esc(v.subline) + "</p>" : "") + lights;
+    var backg = (nrt.today ? "<p><b>היום:</b> " + esc(nrt.today) + "</p>" : "") + (nrt.week ? "<p><b>השבוע:</b> " + esc(nrt.week) + "</p>" : "") + (nrt.watchFor ? "<p><b>לעקוב:</b> " + esc(nrt.watchFor) + "</p>" : "");
     var sectors = "";
     if (rot.sectorRs) {
       var lead = rot.leadingSectors || [];
-      sectors = '<div class="section-title">🔄 רוטציה סקטוריאלית</div>' +
-        '<div class="card"><div class="chips">' +
-        Object.keys(rot.sectorRs).sort(function (a, b) {
-          return (rot.sectorRs[b].rs20 || 0) - (rot.sectorRs[a].rs20 || 0);
-        }).map(function (k) {
-          var isLead = lead.indexOf(k) !== -1;
-          return '<span class="chip' + (isLead ? " lead" : "") + '">' +
-            esc(SECTOR_HE[k] || k) + " " +
-            '<span class="num ' + ((rot.sectorRs[k].rs20 || 0) >= 0 ? "up" : "down") + '">' +
-            (rot.sectorRs[k].rs20 > 0 ? "+" : "") + rot.sectorRs[k].rs20 + "%</span></span>";
-        }).join("") + "</div></div>";
+      sectors = '<div class="chips">' + Object.keys(rot.sectorRs).sort(function (a, b) { return (rot.sectorRs[b].rs20 || 0) - (rot.sectorRs[a].rs20 || 0); }).map(function (k) {
+        return '<span class="chip' + (lead.indexOf(k) !== -1 ? " lead" : "") + '">' + esc(SECTOR_HE[k] || k) + ' <span class="num ' + ((rot.sectorRs[k].rs20 || 0) >= 0 ? "up" : "down") + '">' + (rot.sectorRs[k].rs20 > 0 ? "+" : "") + rot.sectorRs[k].rs20 + "%</span></span>";
+      }).join("") + "</div>";
     }
-
     var selling = "";
     if (ro.sellingDays && ro.sellingDays.length) {
-      selling = '<div class="section-title">⚠️ לחץ מכירות מוסדי</div>' +
-        '<div class="card"><p style="margin-top:0">' + esc(ro.stateLine || "") + "</p>" +
-        '<div class="table-wrap"><table><thead><tr><th>תאריך</th><th class="num">שינוי %</th></tr></thead><tbody>' +
-        ro.sellingDays.map(function (day) {
-          return "<tr><td>" + esc(day.date) + '</td><td class="num down">' + day.chg + "%</td></tr>";
-        }).join("") + "</tbody></table></div>" +
-        (ro.actionLine ? '<p class="stamp" style="margin-bottom:0">' + esc(ro.actionLine) + "</p>" : "") +
-        "</div>";
+      selling = '<p style="margin:0">' + esc(ro.stateLine || "") + "</p>" +
+        '<div class="tbl"><table class="bd-tbl"><thead><tr><th>תאריך</th><th>שינוי %</th></tr></thead><tbody>' +
+        ro.sellingDays.map(function (day) { return '<tr><td class="num" dir="ltr">' + esc(day.date) + '</td><td class="num down" dir="ltr">' + day.chg + "%</td></tr>"; }).join("") + "</tbody></table></div>" +
+        (ro.actionLine ? '<p class="stamp" style="margin:0">' + esc(ro.actionLine) + "</p>" : "");
     }
-
-    var narr = "";
-    if (d.narrative) {
-      var n = d.narrative;
-      narr = '<div class="section-title">📖 רקע</div><div class="card">' +
-        (n.today ? "<p><b>היום:</b> " + esc(n.today) + "</p>" : "") +
-        (n.week ? "<p><b>השבוע:</b> " + esc(n.week) + "</p>" : "") +
-        (n.watchFor ? '<p style="margin-bottom:0"><b>לעקוב:</b> ' + esc(n.watchFor) + "</p>" : "") +
-        "</div>";
-    }
-
-    var head = '<div class="section-title" style="margin-top:0">📈 תמונת מצב מדדים</div>';
-    var overview = document.createElement("div");
-    renderMarketOverview(overview, d, { detail: true });
-
-    el.innerHTML = "";
-    el.insertAdjacentHTML("beforeend", meterTimelineHtml() + '<div id="bp-slot">' + breadthPeaksHtml(d) + '</div><div id="weekly-slot"></div><div id="fc-track-slot"></div>');   // ציר הזמן של המד, ומתחתיו סיכום השבוע (11.9.2026)
-    bindMeterTimeline(el); renderMeterTimeline();
+    var ai = aiBlocksHtml(d), flowQ = flowQuadHtml(d), ovp = optVsPriceHtml(d), big = bigTradesHtml(d), ca = claudeCardHtml(d), bt = d.bigTrades || {};
+    var flowPill = s.flow != null ? '<span class="pill' + (fl.spxWarning && fl.spxWarning.active ? " state" : "") + '">ציון <span class="num">' + s.flow + "</span>" + (fl.spxWarning && fl.spxWarning.active ? " · אזהרת SPX" : "") + "</span>" : "";
+    var tradeDate = fmtTradeDate(d.date);
+    el.innerHTML = stamp(d._meta) + '<div class="board">' +
+      '<section class="pan bd-meter" id="ind-meter"' + bdSpan(4) + ">" + leadRailHtml(d, "-i") + "</section>" +
+      '<section class="pan"' + bdSpan(8) + ">" + panHd("ציר הזמן של The Edge Meter", '<span class="mute" id="mt-sub"></span>') + '<div class="pb">' + meterTimelineHtml(true) + tiles + "</div></section>" +
+      (ca ? '<section class="pan"' + bdSpan(12) + ">" + panHd("הניתוח היומי", tradeDate ? '<span class="mute">יום המסחר <span class="num" dir="ltr">' + esc(tradeDate) + "</span></span>" : "") + '<div class="pb bd-ca">' + bare(ca) + "</div></section>" : "") +
+      '<section class="pan" id="weekly-slot"' + bdSpan(6) + "></section>" +
+      '<section class="pan" id="fc-pan"' + bdSpan(6) + "></section>" +
+      (flowQ ? '<section class="pan"' + bdSpan(6) + ">" + panHd("ההימור נטו · אופציות" + (bt.label ? ' · <span class="num" dir="ltr">' + esc(bt.label) + "</span>" : ""), flowPill) + '<div class="pb bd-flow">' + bare(flowQ) + "</div></section>" : "") +
+      (big ? '<section class="pan"' + bdSpan(6) + ">" + panHd("הכסף הגדול היום במניות", '<span class="mute">' + (bt.prints ? '<span class="num">' + esc(String(bt.prints)) + "</span> העסקאות הגדולות · " : "") + '<span class="num">' + esc(String(bt.symbols || "")) + "</span> מניות</span>") + '<div class="pb">' + bare(big) + "</div></section>" : "") +
+      '<section class="pan" id="bp-slot"' + bdSpan(7) + ">" + bpPan(d) + "</section>" +
+      (conclRows || concl ? '<section class="pan"' + bdSpan(5) + ">" + panHd("מנוע המסקנות", '<span class="mute">' + esc(c.headline || "") + "</span>") + '<div class="pb bd-sents">' + conclRows + concl + "</div></section>" : "") +
+      (ai ? '<section class="pan"' + bdSpan(6) + ">" + panHd("ניתוח לפי תחום", '<span class="mute">מנוע הכללים</span>') + '<div class="pb">' + bare(ai) + "</div></section>" : "") +
+      '<section class="pan"' + bdSpan(ai ? 6 : 12) + ">" + panHd("תמונת מצב", tradeDate ? '<span class="mute">יום המסחר <span class="num" dir="ltr">' + esc(tradeDate) + "</span></span>" : "") +
+        '<div class="pb">' + verdict + '<div class="tiles">' + scoreTiles + '</div><div class="tiles">' + mktTiles + "</div>" + (backg ? '<div class="bd-backg">' + backg + "</div>" : "") + "</div></section>" +
+      (ovp ? '<section class="pan"' + bdSpan(12) + ">" + panHd("ציון האופציות מול המחיר", '<span class="mute num" dir="ltr">' + ((fl.v6Series || []).length) + " ימים</span>") + '<div class="pb">' + bare(ovp) + "</div></section>" : "") +
+      (sectors ? '<section class="pan"' + bdSpan(selling ? 6 : 12) + ">" + panHd("רוטציה סקטוריאלית", '<span class="mute">כוח יחסי 20 יום מול S&amp;P</span>', '<a class="go" href="#sectors" onclick="__goTab(\'sectors\');return false">גלגל הרוטציה</a>') + '<div class="pb">' + sectors + "</div></section>" : "") +
+      (selling ? '<section class="pan"' + bdSpan(sectors ? 6 : 12) + ">" + panHd("לחץ מכירות מוסדי", '<span class="mute">' + esc(ro.evidenceLine || "") + "</span>") + '<div class="pb">' + selling + "</div></section>" : "") +
+      '<section class="pan"' + bdSpan(12) + '><details class="bd-exp"><summary>איך זה עובד</summary>' + INDICES_EXPLAINER + "</details>" +
+        '<p class="stamp" style="margin:0 14px 12px">מקור: <a href="https://nditzik.github.io/indexes-status/" target="_blank" rel="noopener">דשבורד המדדים המלא ↗</a></p></section>' +
+      "</div>";
+    bindMeterTimeline(el); renderMeterTimeline(); renderSpark("-i");
     setTimeout(renderOptVsPrice, 0);   // ה-figure של הגרף נכנס ל-DOM רק בהמשך הפונקציה
     if (WEEKLY) renderWeekly(WEEKLY);
-    renderFcTrack();
-    el.insertAdjacentHTML("beforeend", head + claudeCardHtml(d) + INDICES_EXPLAINER);   // הניתוח היומי, ואז ההסבר ותמונת המצב
-    el.appendChild(overview);
-    el.insertAdjacentHTML("beforeend", analysis + sectors + selling + narr);
-    var link = document.createElement("p");
-    link.className = "stamp";
-    link.innerHTML = 'מקור: <a href="https://nditzik.github.io/indexes-status/" target="_blank" rel="noopener">דשבורד המדדים המלא ↗</a>';
-    el.appendChild(link);
+    renderForecastPan();
   }
 
   function chgClass(v) {
@@ -3198,8 +3180,7 @@
       emptyPanel(el, "📣", "תדרוך משקיעים — בקרוב", "הטאב יתמלא ברגע שצינור הג'ימייל יופעל.");
       return;
     }
-    // המהדורה החדשה ביותר → iso (כדי לא להציג אותה פעמיים בצ'יפים);
-    // בבוקר briefing.json מחזיק בוקר-של-היום + אחה"צ-של-אתמול — לוקחים את המאוחר
+    // np120: טאב חדשות כרשת פאנלים — תקציר התדרוך | בזק מהרשת → Barchart | חדשות RSS → המבזק האחרון → התדרוך המלא (המייל + ארכיון)
     function isoOf(s) { var m = /^(\d{2})\/(\d{2})\/(\d{4})/.exec(s || ""); return m ? m[3] + "-" + m[2] + "-" + m[1] : ""; }
     var aIso = isoOf(d.morning && d.morning.dateLabel), bIso = isoOf(d.afternoon && d.afternoon.dateLabel);
     var latestIso = aIso > bIso ? aIso : bIso;
@@ -3219,23 +3200,35 @@
           h(sl.sentiment && sl.sentiment.emoji) + " " + esc(s[1]) +
           (sl.time ? ' <span class="num">' + esc(sl.time) + "</span>" : "") + "</button>";
       }).join("") + "</div>";
-
     var frames = slots.map(function (s, i) {
       var sl = s[2];
       return '<div class="brief-view" data-brief="' + s[0] + '" style="display:' + (i === 0 ? "block" : "none") + '">' +
-        '<div class="card" style="padding:14px 18px;margin-bottom:12px">' +
-        "<strong>" + esc(sl.subject || "") + "</strong>" +
+        '<div class="mute s" style="margin-bottom:8px"><b>' + esc(sl.subject || "") + "</b>" +
         (sl.sentiment && sl.sentiment.text ? ' · <span>' + h(sl.sentiment.emoji) + " " + esc(sl.sentiment.text) + "</span>" : "") +
-        (sl.dateLabel ? '<div class="stamp" style="margin:4px 0 0">' + esc(sl.dateLabel) + (sl.time ? " · " + esc(sl.time) : "") + "</div>" : "") +
-        "</div>" +
+        (sl.dateLabel ? " · " + esc(sl.dateLabel) + (sl.time ? " · " + esc(sl.time) : "") : "") + "</div>" +
         '<iframe class="brief-frame" src="' + bust(sl.file, d._meta) + '" title="' + esc(sl.subject || "") +
-        '" style="width:100%;border:1px solid var(--border);border-radius:14px;background:#fff;min-height:640px" ' +
+        '" style="width:100%;border:1px solid var(--border);border-radius:6px;background:#fff;min-height:640px" ' +
         'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe></div>';
     }).join("");
-
-    el.innerHTML = stamp(d._meta) +
-      '<div class="section-title" style="margin-top:0">📣 תדרוך משקיעים</div>' + archNav + nav + frames;
-
+    // התקציר: המהדורה המאוחרת ראשונה, השנייה מתחתיה
+    var m = d.morning, a = d.afternoon, lead;
+    if (m && a) lead = briefKey(a) >= briefKey(m) ? [a, "אחר הצהריים", m, "בוקר"] : [m, "בוקר", a, "אחר הצהריים"];
+    else lead = m ? [m, "בוקר"] : [a, "אחר הצהריים"];
+    function hl(list) { return '<div class="bd-list">' + (list || []).map(function (t, i) { return '<div class="li"><span class="num mute">' + (i + 1) + "</span><span>" + esc(t) + "</span></div>"; }).join("") + "</div>"; }
+    function sentPill(s) { return s && s.sentiment && s.sentiment.text ? '<span class="pill state">' + esc(s.sentiment.text.replace(/^סנטימנט:\s*/, "")) + "</span>" : ""; }
+    function tm(s) { return s.time ? ' · <span class="num" dir="ltr">' + esc(s.time) + "</span>" : ""; }
+    var sched = (lead[0].schedule || []).filter(function (x) { return !x.day; }).slice(0, 3);
+    var summary = panHd("התדרוך · " + lead[1] + tm(lead[0]), '<span class="mute">' + esc(lead[0].dateLabel || "") + "</span>" + sentPill(lead[0]),
+        '<a class="go" href="#brief-full" onclick="var m=document.getElementById(\'brief-full\');if(m)m.scrollIntoView({behavior:\'smooth\',block:\'start\'});return false">התדרוך המלא</a>') +
+      hl(lead[0].headlines) +
+      (lead[2] ? '<div class="ph ph2"><h2>' + lead[3] + tm(lead[2]) + "</h2>" + sentPill(lead[2]) + "</div>" + hl((lead[2].headlines || []).slice(0, 4)) : "") +
+      (sched.length ? '<div class="led bd-sched">' + sched.map(function (x) { return '<div><span class="num mute" dir="ltr">' + esc(x.time) + "</span><span>" + esc(x.text) + "</span></div>"; }).join("") + "</div>" : "");
+    el.innerHTML = stamp(d._meta) + '<div class="board">' +
+      '<section class="pan" id="nb-brief"' + bdSpan(8) + ">" + summary + "</section>" +
+      '<section class="pan" id="nb-pulse"' + bdSpan(4) + "></section>" +
+      '<section class="pan" id="nb-bar"' + bdSpan(6) + '></section><section class="pan" id="nb-rss"' + bdSpan(6) + "></section>" +
+      '<section class="pan" id="nb-flash"' + bdSpan(12) + "></section>" +
+      '<section class="pan" id="brief-full"' + bdSpan(12) + ">" + panHd("התדרוך המלא", '<span class="mute">המייל כפי שהתקבל · ארכיון 30 יום</span>') + '<div class="pb">' + archNav + nav + frames + "</div></section></div>";
     el.querySelectorAll(".brief-tab").forEach(function (b) {
       b.addEventListener("click", function () {
         var k = b.dataset.brief;
@@ -3246,6 +3239,7 @@
     el.querySelectorAll(".brief-day").forEach(function (b) {
       b.addEventListener("click", function () { BRIEF_DAY = b.dataset.day || null; renderBriefing(el, d); });
     });
+    renderNewsSiblings();
   }
 
   /* טאב "דיווחים" — לוח דוחות שבועי (ב'–ו') בסגנון Earnings Whispers */
@@ -3255,32 +3249,71 @@
       emptyPanel(el, "📅", "לוח דיווחים — בקרוב", "");
       return;
     }
+    // np120: טאב היומן כרשת פאנלים (display:contents על #weekcal-body — הפאנלים משתתפים ברשת של #panel-weekcal):
+    // ציר העונה (#home-season) → "השבוע הקרוב" (דוחות + מאקרו ביחד) → לקראת הדוח | איך הגיבו → מאקרו (#home-econ) | ניתוח דוחות → לוח התוצאות
     var first = week[0], last = week[week.length - 1];
-    var year = (first.date || "").slice(0, 4);
-    var todayIso = (function () {
-      var n = new Date();
-      return n.getFullYear() + "-" + ("0" + (n.getMonth() + 1)).slice(-2) + "-" + ("0" + n.getDate()).slice(-2);
-    })();
+    var year = (first.date || "").slice(0, 4), todayIso = ilNowParts().iso;
+    var ecoBy = {}; ((ECON && ECON.events) || []).forEach(function (e) { var k = String(e.date).slice(0, 10); (ecoBy[k] = ecoBy[k] || []).push(e); });
     var cols = week.map(function (day) {
-      var tiles = day.companies.map(function (c) {
-        return '<a class="wk-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(c.ticker) +
-          '/" target="_blank" rel="noopener" title="' + esc(c.name) + '">' +
-          earnLogoImg(c) +
-          '<span dir="ltr">' + esc(c.ticker) + "</span></a>";
+      var mac = (ecoBy[day.date] || []).slice(0, 3).map(function (e) {
+        var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : "";
+        return '<div class="wkm"><span class="tag macro">מאקרו' + (e.ilTime ? ' <span class="num" dir="ltr">' + esc(e.ilTime) + "</span>" : "") + "</span> " + esc(e.he) +
+          ' <span class="mute">' + (e.actual != null ? 'בפועל <b class="num ' + cls + '" dir="ltr">' + esc(e.actual) + "</b>" : (e.forecast ? 'צפי <span class="num" dir="ltr">' + esc(e.forecast) + "</span>" : "")) + "</span></div>";
       }).join("");
-      var more = day.total > day.companies.length
-        ? '<div class="wk-more">+' + (day.total - day.companies.length) + " נוספות</div>" : "";
-      var empty = !day.total ? '<div class="wk-more">אין דיווחים</div>' : "";
-      return '<div class="wk-day' + (day.date === todayIso ? " today" : "") + '">' +
-        '<div class="wk-head"><b>' + esc(day.dow) + '</b><span class="num" dir="ltr">' + esc(day.label) + "</span>" +
-          (day.total ? '<span class="wk-n">' + day.total + "</span>" : "") + "</div>" +
-        '<div class="wk-list">' + tiles + empty + "</div>" + more + "</div>";
+      var tiles = day.companies.map(function (c) {
+        return '<a class="wk-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(c.ticker) + '/" target="_blank" rel="noopener" title="' + esc(c.name) + '">' + earnLogoImg(c) + '<span dir="ltr">' + esc(c.ticker) + "</span></a>";
+      }).join("");
+      var more = day.total > day.companies.length ? '<div class="wk-more">+' + (day.total - day.companies.length) + " נוספות</div>" : "";
+      var empty = !day.total && !mac ? '<div class="mute s">אין דיווחים</div>' : "";
+      return '<div' + (day.date === todayIso ? ' class="today"' : "") + '><span class="d">' + esc(day.dow) + ' <b class="num" dir="ltr">' + esc(day.label) + "</b>" + (day.total ? ' · <span class="num">' + day.total + "</span> מדווחות" : "") + "</span>" +
+        mac + '<div class="tk">' + tiles + empty + "</div>" + more + "</div>";
     }).join("");
-    el.innerHTML = stamp(d._meta) + '<div id="season-board">' + seasonBoardHtml() + "</div>" +
-      '<div class="section-title" style="margin-top:0">📅 לוח דיווחים שבועי</div>' +
-      '<p class="stamp" style="margin-top:-6px">שבוע המסחר <span dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) +
-      "</span> · מובילות לפי שווי שוק · לחיצה פותחת ב-TradingView · מתעדכן בכל שבת</p>" +
-      '<div class="wk-grid">' + cols + "</div>" + reactionsTable(d.reactions);
+    // לקראת הדוח — הקרובה ביותר
+    var items = (PREPD && PREPD.items) || [], p0 = items[0], prepPan = "";
+    if (p0) {
+      var pn = PREPN && PREPN[p0.sym], cons = p0.consensus || {}, opt = p0.options || {}, tg = p0.targets || {};
+      prepPan = panHd("לקראת הדוח", '<span class="tag earn"><span dir="ltr">' + esc(p0.sym) + "</span> · " + epDow(p0.date) + ' <span class="num" dir="ltr">' + epDate(p0.date) + "</span> · " + epWhen(p0) + "</span>", bdGo("prep", "כל ההכנות")) +
+        '<div class="pb">' + (pn && pn.thesis ? '<p class="bd-lead-p">' + esc(pn.thesis) + "</p>" + (pn.dek ? '<p class="mute" style="margin:0">' + esc(pn.dek) + "</p>" : "") : '<p class="mute" style="margin:0">ההכנה המילולית תיכתב בבוקר שלפני שבוע הדוח. המספרים כבר כאן.</p>') +
+        '<div class="tiles t3">' + bdTile("צפי רווח למניה", cons.eps != null ? "$" + Number(cons.eps).toFixed(2) : "—") +
+          bdTile("האופציות מתמחרות", opt.earn != null ? "±" + Number(opt.earn).toFixed(1) + "%" : (opt.pct != null ? "±" + Number(opt.pct).toFixed(1) + "%" : "—"), opt.earn != null ? "ליום הדוח" : (p0.avgMove != null ? "ממוצע בדוחות " + Number(p0.avgMove).toFixed(1) + "%" : "")) +
+          bdTile("מחיר יעד ממוצע", tg.mean != null ? "$" + Math.round(tg.mean) : "—", tg.n ? '<span class="num">' + tg.n + "</span> אנליסטים" : "") + "</div>" +
+        (items.length > 1 ? '<p class="mute s" style="margin:0">אחר כך: ' + items.slice(1, 5).map(function (x) { return '<b class="num" dir="ltr">' + esc(x.sym) + "</b> " + epDate(x.date); }).join(" · ") + "</p>" : "") + "</div>";
+    } else if (PREPD) {
+      var later = (PREPD.later || []).slice(0, 6);
+      prepPan = panHd("לקראת הדוח", "", bdGo("prep", "כל ההכנות")) + '<div class="pb mute">אף חברה עם ניתוח קודם באתר לא מדווחת בשבועיים הקרובים.' +
+        (later.length ? "<br>הבאות בתור: " + later.map(function (x) { return '<b class="num" dir="ltr">' + esc(x.sym) + "</b> " + epDate(x.date); }).join(" · ") : "") + "</div>";
+    }
+    // איך הגיבו המדווחות + "העונה עד כה" מלוח התוצאות
+    var rx = reactionsTable(d.reactions, true), b = SEASON && SEASON.board, rxPan = "";
+    if (rx) {
+      var kv = b && (b.reactBeatN >= 3 || b.reactMissN >= 3) ? '<div class="kv"><span>העונה עד כה</span><span>עקיפה → ' + (b.reactBeatN >= 3 ? bdPct(b.reactBeat) + ' בממוצע (<span class="num">' + b.reactBeatN + "</span> דוחות)" : "מתמלא") +
+        " · החטאה → " + (b.reactMissN >= 3 ? bdPct(b.reactMiss) + ' בממוצע (<span class="num">' + b.reactMissN + "</span>)" : "אין עדיין") + "</span></div>" : "";
+      rxPan = panHd("איך הגיבו המדווחות", '<span class="mute">סגירה מול סגירה, נרות יומיים · Yahoo Finance</span>') + rx + (kv ? '<div class="pb" style="padding-top:8px">' + kv + "</div>" : "");
+    }
+    // ניתוח דוחות — צ'יפים + "אחרי הדוח"
+    var reps = (REPD && REPD.reports) || [], repPan = "";
+    if (reps.length) {
+      var chips = reps.slice(0, 12).map(function (r) {
+        return '<a class="tag rep-chip" href="#reports" onclick="if(window.__openReport)window.__openReport(\'' + esc(r.file) + '\');return false"><b class="num" dir="ltr">' + esc(r.ticker || "") + "</b> " + (/^\d{4}-/.test(r.date || "") ? '<span class="num" dir="ltr">' + bdDM(r.date) + "</span>" : esc(r.date || "")) + "</a>";
+      }).join("");
+      var rc = ((PREPD && PREPD.recent) || [])[0], rn = rc && PREPR && PREPR[rc.sym], after = "";
+      if (rc) {
+        var re = rc.reaction || {}, o = rc.options || {}, marks = { hit: 0, mixed: 0, miss: 0 };
+        ((rn && rn.checks) || []).forEach(function (ck) { if (marks[ck.mark] != null) marks[ck.mark]++; });
+        after = '<div class="prep"><div class="h"><b class="num" dir="ltr">' + esc(rc.sym) + '</b><span>אחרי הדוח · <span class="num" dir="ltr">' + epDate(rc.date) + "</span> · ההכנה מול מה שקרה</span></div>" +
+          "<p>" + (rn ? esc(rn.headline || "") + (rn.checks ? ' · <span class="num">' + marks.hit + "</span> בדיקות עמדו, <span class=\"num\">" + marks.mixed + "</span> חלקית, <span class=\"num\">" + marks.miss + "</span> נכשלו" : "") : "ההשוואה המילולית תיכתב בבוקר הקרוב") +
+          (re.chg != null ? " · " + bdPct(re.chg) + (o.pct != null ? ' מול <span class="num" dir="ltr">±' + Number(o.pct).toFixed(1) + "%</span> מתומחר" : "") : "") + "</p>" +
+          (rc.newReport && rc.newReport.file ? '<a href="#reports" onclick="if(window.__openReport)window.__openReport(\'' + esc(rc.newReport.file) + '\');return false">הניתוח החדש</a>' : '<a href="#prep" onclick="__goTab(\'prep\');return false">ההכנה המלאה</a>') + "</div>";
+      }
+      repPan = panHd("ניתוח דוחות", '<span class="mute"><span class="num">' + reps.length + "</span> דוחות באתר</span>", bdGo("reports", "כל הניתוחים")) + '<div class="pb"><div class="chips bd-chips">' + chips + "</div>" + after + "</div>";
+    }
+    el.innerHTML =
+      '<section class="pan bd-wk5" style="order:1;grid-column:span 12">' + panHd('השבוע הקרוב · <span class="num" dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) + "</span>", '<span class="mute">דוחות ומאקרו ביחד · שעון ישראל · מובילות לפי שווי שוק · מתעדכן בכל שבת</span>') +
+        '<div class="wk5">' + cols + "</div></section>" +
+      (prepPan ? '<section class="pan" style="order:2;grid-column:span 6">' + prepPan + "</section>" : "") +
+      (rxPan ? '<section class="pan bd-rx" style="order:3;grid-column:span ' + (prepPan ? 6 : 12) + '">' + rxPan + "</section>" : "") +
+      (repPan ? '<section class="pan" style="order:5;grid-column:span 5">' + repPan + "</section>" : "") +
+      '<section class="pan" id="sbd-pan" style="order:6;grid-column:span 12">' + panHd("לוח התוצאות" + (SEASON && SEASON.season ? " · עונת הדוחות " + esc(SEASON.season) : ""), '<span class="mute">חברות ה-S&amp;P 500 · מתעדכן כל רבע שעה</span>') + '<div class="pb" id="season-board">' + seasonBoardHtml(true) + "</div></section>";
   }
   /* לוגו בלוח הדיווחים: העותק שה-Action שמר (FMP ומקורות גיבוי, data/earnings/logos) ואם אין — FMP ישירות.
      (10.10.2026: ל-UNH לא הוצג לוגו כשהדפדפן משך רק מ-FMP) */
@@ -3295,7 +3328,7 @@
      סגירה-מול-סגירה מנרות יומיים (לא %Change של ה-CSV, שהוא מיום הייצוא). מדווחת
      אחרי-הסגירה נמדדת ביום המסחר הבא; מספר של סשן שעדיין פתוח מסומן "ביניים" ולא
      מוצג כסופי; בלי נר תגובה — "מגיבה במסחר הבא". */
-  function reactionsTable(rx) {
+  function reactionsTable(rx, bare_) {
     var days = (rx && rx.days) || [];
     if (!days.length) return "";
     function d2(iso) { var m = /^\d{4}-(\d{2})-(\d{2})/.exec(iso || ""); return m ? (+m[2]) + "." + (+m[1]) : ""; }
@@ -3325,6 +3358,7 @@
           "<td>" + note + "</td></tr>");
       });
     });
+    if (bare_) return '<div class="tbl rx-wrap"><table class="bd-tbl"><thead><tr><th>דיווח</th><th>חברה</th><th>מועד</th><th>תגובה</th><th>סגירה</th><th>סטטוס</th></tr></thead><tbody>' + rows.join("") + "</tbody></table></div>";
     return '<div class="section-title" style="margin-top:26px">📈 איך הגיבו המדווחות</div>' +
       '<p class="stamp" style="margin-top:-6px">שינוי סגירה-מול-סגירה ביום התגובה (מדווחת אחרי הסגירה — ביום המסחר הבא) · מקור: Yahoo Finance · הגדולות לפי שווי שוק</p>' +
       '<div class="table-wrap rx-wrap"><table><thead><tr><th>דיווח</th><th>חברה</th><th>מועד</th><th class="num">תגובה</th><th class="num">סגירה</th><th>סטטוס</th></tr></thead><tbody>' +
@@ -3381,13 +3415,10 @@
     if (!el) return;
     var items = (d && d.items) || [];
     if (!items.length) { emptyPanel(el, "🌍", "שווקים בינלאומיים — בקרוב", ""); return; }
-    /* שכבות התצוגה (11.9.2026, אחרי "כל נתון על שורה זה בזבוז"):
-       1. שורת סיכום עולמי — ממוצע שינוי לכל אזור, במשפט אחד.
-       2. שעון עולמי — הבורסות לפי סדר הפתיחה ביממה; מה שפתוח עכשיו מואר.
-       3. שתי עמודות במחשב: ישראל (כרטיסי המדדים הראשיים + מפת חום של הסקטורים)
-          מול העולם (כרטיסים לפי אזור). בנייד כל קבוצת כרטיסים היא רצועת גלילה אופקית.
-       הסקטורים כמפת חום ולא ככרטיסים: שם הם עניין של השוואה (מי מוביל/מפגר),
-       לא של ערך מוחלט — צבע ממוין אומר את זה בשנייה. */
+    // np120: טאב העולם כרשת פאנלים — סיכום + שעון עולמי → ישראל (כרטיסים + מפת חום) | העולם לפי אזור →
+    // מפת העולם → קריפטו | מה השווקים מהמרים. המצב של כל שורה נגזר מחותמת הציטוט (ראו הערות 9–11.9.2026).
+    // שנגחאי 10.10.2026: fetch_world החזיר chg של מיליארדים — ערך לא סביר נחשב חסר (באג בצינור, לא כאן)
+    items.forEach(function (i) { if (i.chg != null && Math.abs(i.chg) > 50) { i.chg = null; i.chg5d = null; } });
     var byKey = {}; items.forEach(function (i) { byKey[i.key] = i; });
     var IL_MAIN = "ישראל — מדדים ראשיים", IL_SECT = "ישראל — סקטורים";
     var groups = {}; items.forEach(function (i) { (groups[i.region] = groups[i.region] || []).push(i); });
@@ -3410,25 +3441,29 @@
     function card(i) {
       var c = cls(i.chg);
       return '<div class="wc wc-' + esc(i.state) + '" id="wc-' + esc(i.key) + '" title="' + esc(i.stateHe) + (i.at ? " · " + esc(i.at) : "") + '">' +
-        '<div class="wc-h"><span class="wm-fl">' + esc(i.flag) + '</span><span class="wc-n">' + esc(i.label) + "</span></div>" +
-          '<div class="wc-s">' + (dot[i.state] || "") + " " + esc(i.stateHe) + (i.at ? ' · <span dir="ltr">' + esc(i.at) + "</span>" : "") + "</div>" +
-        '<div class="wc-row"><span class="wc-p num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—") + "</span>" +
-          '<b class="wc-c num ' + c + '" dir="ltr">' + pc(i.chg) + "</b></div>" +
+        '<div class="t"><span class="wc-n"><span class="wm-fl">' + esc(i.flag) + "</span> " + esc(i.label) + '</span><b class="wc-c num ' + c + '" dir="ltr">' + pc(i.chg) + "</b></div>" +
+        '<div class="m"><span class="wc-p num" dir="ltr">' + (i.price != null ? i.price.toLocaleString("en-US", { maximumFractionDigits: i.price > 1000 ? 0 : 2 }) : "—") + "</span>" +
+          '<span>שבוע <b class="num ' + cls(i.chg5d) + '" dir="ltr">' + pc(i.chg5d, 1) + "</b></span>" +
+          (i.chgYtd != null ? '<span>השנה <b class="num ' + cls(i.chgYtd) + '" dir="ltr">' + pc(i.chgYtd, 1) + "</b></span>" : "") + "</div>" +
         spark(i) +
-        '<div class="wc-f"><span>5 ימים <b class="num ' + cls(i.chg5d) + '" dir="ltr">' + pc(i.chg5d, 1) + "</b></span>" +
-          (i.chgYtd != null ? '<span>מתחילת השנה <b class="num ' + cls(i.chgYtd) + '" dir="ltr">' + pc(i.chgYtd, 1) + "</b></span>" : "") + "</div></div>";
+        '<div class="wc-s mute">' + (dot[i.state] || "") + " " + esc(i.stateHe) + (i.at ? ' · <span class="num" dir="ltr">' + esc(i.at) + "</span>" : "") + "</div></div>";
     }
-    function cards(rows) { return '<div class="wm-cards">' + rows.map(card).join("") + "</div>"; }
+    function cards(rows, g) { return '<div class="wgrid' + (g ? " " + g : "") + '">' + rows.map(card).join("") + "</div>"; }
     function heat(rows) {
       var sorted = rows.slice().sort(function (a, b) { return (b.chg == null ? -99 : b.chg) - (a.chg == null ? -99 : a.chg); });
       return '<div class="wm-heat">' + sorted.map(function (i) {
         var v = i.chg, a = v == null ? 0 : Math.min(1, Math.abs(v) / 2.5);
-        var bg = v > 0 ? "rgba(26,157,87," + (0.12 + 0.62 * a).toFixed(2) + ")" : v < 0 ? "rgba(224,52,42," + (0.12 + 0.62 * a).toFixed(2) + ")" : "var(--surface-2)";
+        var bg = v > 0 ? "rgba(13,122,82," + (0.18 + 0.62 * a).toFixed(2) + ")" : v < 0 ? "rgba(190,46,28," + (0.18 + 0.62 * a).toFixed(2) + ")" : "var(--surface-2)";
         return '<div class="wh wh-' + esc(i.state) + '" style="background:' + bg + '" title="' + esc(i.label) + " · " + (i.price != null ? i.price.toLocaleString("en-US") : "") + " · " + esc(i.stateHe) + (i.at ? " " + esc(i.at) : "") + '">' +
           '<span class="wh-n">' + esc(i.label.replace(/^ת"א /, "")) + "</span>" +
           '<b class="wh-c num" dir="ltr">' + pc(v, 1) + "</b>" +
           (i.chg5d != null ? '<span class="wh-5 num" dir="ltr">5d ' + pc(i.chg5d, 1) + "</span>" : "") + "</div>";
       }).join("") + "</div>";
+    }
+    function stateWord(rows) {
+      if (rows.some(function (i) { return i.state === "live"; })) return "נסחר";
+      if (rows.some(function (i) { return i.state === "pre"; })) return "לפני פתיחה";
+      return "סגירה אחרונה";
     }
     // 1. שורת סיכום עולמי
     var fut = null;
@@ -3443,38 +3478,41 @@
     if (usLive && byKey.spx) segs.push('ארה"ב ' + segWord(byKey.spx.chg, true) + ' <b class="num ' + cls(byKey.spx.chg) + '" dir="ltr">' + pc(byKey.spx.chg) + "</b>");
     else if (WKND && WKND.mode === "weekend" && (WKND.items || []).some(function (i) { return i.key === "sp500" && i.chg != null; }))
       (WKND.items || []).forEach(function (i) { if (i.key === "sp500") segs.push('ארה"ב בסוף השבוע (xyz) <b class="num ' + cls(i.chg) + '" dir="ltr">' + pc(i.chg) + "</b>"); });
-    else if (fut && fut.chg != null) segs.push('חוזי ארה"ב <b class="num ' + cls(fut.chg) + '" dir="ltr">' + pc(fut.chg) + "</b>");
-    // 2. שעון עולמי — לפי שעת הפתיחה בשעון ישראל (hours מגיע מ-fetch_world.py)
+    else if (fut && fut.chg != null) segs.push('ארה"ב מהחוזים <b class="num ' + cls(fut.chg) + '" dir="ltr">' + pc(fut.chg) + "</b>");
+    // 2. שעון עולמי — צ'יפים לפי שעת הפתיחה בשעון ישראל; פתוח = ירוק
     var CITIES = [["n225", "טוקיו"], ["ks11", "סיאול"], ["twii", "טאיפיי"], ["sse", "שנגחאי"], ["hsi", "הונג קונג"], ["nsei", "מומבאי"], ["ta125", "תל אביב"], ["ftse", "לונדון"], ["dax", "פרנקפורט"], ["spx", "ניו יורק"], ["tsx", "טורונטו"]];
     function hm(h) { var H = Math.floor(h), M = Math.round((h - H) * 60); return ("0" + H).slice(-2) + ":" + ("0" + M).slice(-2); }
+    var SW = { live: "פתוח", pre: "לפני פתיחה", closed: "סגור", stale: "ציטוט ישן" };
     var clock = CITIES.map(function (c) { return byKey[c[0]] ? { i: byKey[c[0]], city: c[1] } : null; }).filter(Boolean)
       .sort(function (a, b) { return (a.i.hours || [0])[0] - (b.i.hours || [0])[0]; })
       .map(function (x) {
-        var h = x.i.hours || [];
-        return '<span class="wm-ck wm-ck-' + esc(x.i.state) + '"><span class="wm-fl">' + esc(x.i.flag) + "</span>" + esc(x.city) +
-          (h.length === 2 ? ' <span class="wm-ckh" dir="ltr">' + hm(h[0]) + "–" + hm(h[1]) + "</span>" : "") + "</span>";
+        var hh = x.i.hours || [];
+        return '<span class="ck ' + esc(x.i.state) + '"><span class="wm-fl">' + esc(x.i.flag) + "</span> " + esc(x.city) +
+          (hh.length === 2 ? ' <span class="num" dir="ltr">' + hm(hh[0]) + "–" + hm(hh[1]) + "</span>" : "") + " · " + (SW[x.i.state] || esc(x.i.stateHe)) + "</span>";
       }).join("");
-    var html = '<div class="wm-head"><h2>שווקים בינלאומיים</h2>' +
-      (segs.length ? '<p class="wm-sum">' + segs.join(' <span class="wm-sep">·</span> ') + "</p>" : "") +
-      '<div class="wm-clock" aria-label="שעון עולמי">' + clock + "</div>" +
-      '<span class="wm-note">🟢 נסחר · 🟡 לפני פתיחה · ⚪ סגור (השינוי = יום המסחר האחרון) · שעון ישראל</span></div>';
-    // 3. שתי עמודות
-    html += '<div class="wm-cols"><div class="wm-col">';
-    if (groups[IL_MAIN]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_MAIN) + "</h3>" + cards(groups[IL_MAIN]) + "</section>";
-    if (groups[IL_SECT]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(IL_SECT) + ' <span class="wm-rg-s">ממוין מהעולה החזק ליורד</span></h3>' + heat(groups[IL_SECT]) + "</section>";
-    html += '<section class="wm-grp"><h3 class="wm-rg">מפת העולם <span class="wm-rg-s">צבע = השינוי היומי · נקודה פועמת = נסחר עכשיו · האזור המוצלל בלילה</span></h3><div id="wm-map" class="wm-map"></div></section>';
-    // קריפטו (13.9.2026) — כרטיסים כמו המדדים, מתחת למפה; נסחר 24/7, השינוי היומי מ-00:00 UTC
-    if (groups["קריפטו"]) html += '<section class="wm-grp"><h3 class="wm-rg">קריפטו <span class="wm-rg-s">נסחר 24/7 · השינוי היומי מ-00:00 UTC</span></h3>' + cards(groups["קריפטו"]) + "</section>";
-    html += '</div><div class="wm-col">';
+    var t = ilNowParts(), DOW = { Sun: "ראשון", Mon: "שני", Tue: "שלישי", Wed: "רביעי", Thu: "חמישי", Fri: "שישי", Sat: "שבת" };
+    var hmNow = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Jerusalem", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date());
+    var html = '<div class="board">' +
+      '<section class="pan"' + bdSpan(12) + ">" + panHd("העולם · " + (DOW[t.dow] || "") + ' <span class="num" dir="ltr">' + bdDM(t.iso) + '</span> · <span class="num" dir="ltr">' + hmNow + "</span> שעון ישראל", segs.length ? '<span class="mute">' + segs.join(' <span class="wm-sep">·</span> ') + "</span>" : "") +
+        '<div class="pb"><div class="clock" aria-label="שעון עולמי">' + clock + '</div><span class="mute s">🟢 נסחר · 🟡 לפני פתיחה · ⚪ סגור (השינוי = יום המסחר האחרון) · ⚠️ ציטוט ישן · שעון ישראל</span></div></section>';
+    if (groups[IL_MAIN] || groups[IL_SECT]) {
+      html += '<section class="pan"' + bdSpan(6) + ">" + panHd("ישראל", '<span class="mute">בורסת תל אביב · ' + stateWord(groups[IL_MAIN] || []) + "</span>") + '<div class="pb">' +
+        (groups[IL_MAIN] ? cards(groups[IL_MAIN], "g2") : "") +
+        (groups[IL_SECT] ? '<div class="mute s">מפת חום · <span class="num">' + groups[IL_SECT].length + "</span> סקטורים · ממוין מהעולה החזק ליורד</div>" + heat(groups[IL_SECT]) : "") + "</div></section>";
+    }
+    html += '<section class="pan"' + bdSpan(6) + ">" + panHd("העולם", '<span class="mute">לפי אזור · מצב המסחר מחותמת הציטוט</span>') + '<div class="pb">';
     ["אסיה", "אירופה", "ארה\"ב"].forEach(function (region) {
-      if (groups[region]) html += '<section class="wm-grp"><h3 class="wm-rg">' + esc(region) + "</h3>" + cards(groups[region]) + "</section>";
+      if (groups[region]) html += '<div class="mute s">' + esc(region) + " · " + stateWord(groups[region]) + "</div>" + cards(groups[region]);
       if (region === "ארה\"ב") html += weekendStrip();
     });
-    html += "</div></div>";
-    html += '<p class="wm-foot">נתוני המדדים מ-Yahoo Finance, מושהים בכ-15-20 דקות · 5 ימים ומתחילת השנה מסגירה לסגירה · עודכן ' +
-      esc((d._meta || {}).updatedAt || "") + "</p>";
+    html += "</div></section>";
+    html += '<section class="pan"' + bdSpan(12) + ">" + panHd("מפת העולם", '<span class="mute">צבע = השינוי היומי · נקודה פועמת = נסחר עכשיו · האזור המוצלל בלילה · לחיצה גוללת לכרטיס</span>') + '<div class="pb"><div id="wm-map" class="wm-map"></div></div></section>';
+    if (groups["קריפטו"]) html += '<section class="pan"' + bdSpan(4) + ">" + panHd("קריפטו", '<span class="mute">24/7 · השינוי היומי מ-00:00 UTC</span>') + '<div class="pb">' + cards(groups["קריפטו"], "g1") + "</div></section>";
+    html += '<section class="pan" id="wd-bets"' + bdSpan(groups["קריפטו"] ? 8 : 12) + "></section>";
+    html += '<p class="stamp" style="grid-column:span 12;margin:0">נתוני המדדים מ-Yahoo Finance, מושהים בכ-15-20 דקות · 5 ימים ומתחילת השנה מסגירה לסגירה · עודכן ' + esc((d._meta || {}).updatedAt || "") + "</p></div>";
     el.innerHTML = html;
     renderWorldMap(items);
+    renderWorldBets();
   }
 
   /* מפת העולם (11.9.2026) — מתחת לסקטורי ישראל. הגבולות מגיעים מ-assets/worldmap.json
@@ -4065,7 +4103,7 @@
       (src ? '<div class="pk-src">' + src + "</div>" : "") + pkRecord(p) +
       '<a class="pk-more" dir="rtl" href="https://www.tradingview.com/symbols/' + encodeURIComponent(p.sym) + '/" target="_blank" rel="noopener">הניתוח הטכני המלא ←</a></article>';
   }
-  function pkLedger() {
+  function pkLedger(bare_) {
     var eds = (PICKL && PICKL.editions) || [];
     if (!eds.length) return "";
     var H = [5, 10, 20], LO = { 5: 0, 10: 5, 20: 10 };
@@ -4123,50 +4161,60 @@
       }).join("");
       return main + det;
     }).join("");
+    if (bare_) return '<p class="pk-sub mute s" style="margin:10px 14px 4px">כל מהדורה נרשמת עם מחיר הסגירה של אותו יום ונמדדת כל יום מסחר: התשואה המצטברת באחוזים, ולידה ההפרש מ-S&P 500. ימים 1–5 מתעדכנים בעמודת "5", ביום 5 היא ננעלת, ואז 6–10 בעמודת "10", וכך עד 20. מניה שחוזרת יום אחרי יום נספרת פעם אחת.</p>' +
+      '<div class="tbl"><table class="pk-table"><thead><tr><th>מהדורה</th><th>מניות</th><th>מצב השוק</th><th>מהלך יומי</th><th>אחרי 5 ימים</th><th>אחרי 10</th><th>אחרי 20</th></tr></thead><tbody>' + rows + "</tbody></table></div>";
     return '<section class="pk-ledger card"><div class="section-title" style="margin-top:0">📒 יומן הכנות</div>' +
       '<p class="pk-sub">כל מהדורה נרשמת עם מחיר הסגירה של אותו יום ונמדדת כל יום מסחר: התשואה המצטברת באחוזים, ולידה ההפרש מ-S&P 500 באותם ימים. ימים 1–5 מתעדכנים בעמודת "5" ("יום 3"), ביום 5 היא ננעלת, ואז ימים 6–10 בעמודת "10", וכך עד 20. הקו מראה את המהלך היומי. הצבע לפי ההפרש מהשוק. לחיצה על מהדורה פותחת מניה-מניה. מניה שחוזרת יום אחרי יום נספרת פעם אחת, מהמהדורה הראשונה שלה.</p>' +
       '<div class="table-wrap"><table class="pk-table"><thead><tr><th>מהדורה</th><th>מניות</th><th>מצב השוק</th><th>מהלך יומי</th><th>אחרי 5 ימים</th><th>אחרי 10</th><th>אחרי 20</th></tr></thead><tbody>' + rows + "</tbody></table></div></section>";
   }
   function renderPicks(el) {
     if (!el) return;
-    var d = PICKD;
-    if (!d || !d.picks) { emptyPanel(el, "✦", "הנבחרות — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); return; }
-    var g = d.gate || {}, r = d.record;
-    // אותם צבעים כמו המד: חיובי ירוק, זהיר כתום, הגנתי אדום
-    var gateCls = { defense: "bad", neutral: "warn", green: "good" }[g.state] || "mid";
-    var rule = { defense: "עד 3 פוזיציות · חצי גודל · כניסה בשלישים · אופק 10 עד 20 יום", neutral: "עד 4 פוזיציות · שני שליש גודל · כניסה בשלישים · אופק 10 עד 20 יום", green: "עד 5 פוזיציות · גודל מלא · כניסה בשלישים · אופק 10 עד 20 יום" }[g.state] || "";
-    var facts = [g.combined != null ? "ציון משולב <b>" + esc(g.combined) + "</b>" : "", g.breadth != null ? "רוחב <b>" + Math.round(g.breadth) + "%</b> מעל ממוצע 50" : "",
-      g.sellDays != null ? "<b>" + esc(g.sellDays) + "</b> ימי מכירה בחודש" : "", g.flow != null ? "אופציות <b>" + esc(g.flow) + "</b>" : "",
-      g.vix != null ? "VIX <b>" + Math.round(g.vix) + "</b> " + ({ green: "ירוק", yellow: "צהוב", red: "אדום" }[g.vixState] || "") : ""].filter(Boolean);
-    var byGrp = {}; d.picks.forEach(function (p) { byGrp[p.grp] = (byGrp[p.grp] || 0) + 1; });
-    var mix = Object.keys(byGrp).map(function (k) { return byGrp[k] + " " + (PK_GRP[k] || k); }).join(" · ");
-    var html = stamp(d._meta) +
-      '<header class="pk-mast"><div><div class="pk-kick">אישור המנוע הטכני · מתעדכן כל בוקר</div><h2 class="pk-h1">הנבחרות</h2>' +
-        '<p class="pk-dek">' + d.picks.length + (d.momOnly ? ' מניות מתוך המומנטום של האתר' : ' מניות מתוך המועמדים והמומנטום של האתר') + ' שקיבלו בסגירה האחרונה "אישור מחיר לקנייה" מהמנוע הטכני. לא המלצה, רשימת עבודה לעשרת הימים הבאים.</p></div>' +
-        '<div class="pk-date">על סגירת<b dir="ltr">' + esc(secDate(d.date)) + "</b>נסרקו " + esc(d.scanned) + " מניות" +
-          (d.momOnly ? '<span class="pk-pend">מהמומנטום בלבד: המועמדים לא הגיעו עד 08:00. כשיגיעו, המהדורה תיבנה מחדש משניהם</span>' : "") +
-          (d.pending && d.pending.asOf > d.date ? '<span class="pk-pend">מהדורת <span dir="ltr">' + esc(secDate(d.pending.asOf)) + "</span> ממתינה ל" + esc((d.pending.waiting || []).join(" ו")) + "</span>" : "") +
-        "</div></header>" +
-      '<section class="pk-gate ' + gateCls + '"><div class="st"><i></i>מצב השוק: ' + esc(g.label || "") + '</div><div class="facts">' + facts.map(function (f) { return "<span>" + f + "</span>"; }).join("") + '</div><div class="rule">' + esc(rule) + "</div></section>" +
-      (r ? '<section class="pk-stats"><div class="pk-tile"><span class="v hero">' + esc(r.win10) + '%</span><span class="k">מהאישורים הקודמים עלו תוך 10 ימים</span><span class="s">' + esc(r.n) + " אישורים ב-" + esc(r.symbols) + " המניות שנבחרו עד היום, שנה אחורה</span></div>" +
-        '<div class="pk-tile"><span class="v">' + pkPct(r.avg10) + '</span><span class="k">תשואה ממוצעת 10 ימים אחרי אישור</span><span class="s">' + (r.excess10 != null ? "מול S&P 500 באותם ימים: " + pkPct(r.excess10) : "") + "</span></div>" +
-        '<div class="pk-tile"><span class="v">' + pkPct(r.avg20) + '</span><span class="k">ממוצע 20 ימים אחרי אישור</span><span class="s">בדרך: ירידה ממוצעת של ' + Math.abs(r.mae || 0).toFixed(0) + "% מהכניסה. הסטופ לא צמוד.</span></div></section>" : "") +
-      '<div class="section-title">הקלפים של היום</div><p class="pk-sub">' + esc(mix) + ". הצבע בראש הקלף הוא הענף. הסדר: כמה מקורות באתר מסכימים, ואז הציון הטכני. לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>" +
-      (d.picks.length ? '<section class="pk-deck">' + d.picks.map(pkCard).join("") + "</section>" : '<p class="pk-sub">אף מניה לא קיבלה היום אישור מחיר. זה קורה, ולא מחפשים תחליף.</p>') +
-      ((d.excluded || []).length ? '<p class="pk-sub">נפסלו: ' + d.excluded.map(function (x) { return '<span dir="ltr">' + esc(x.sym) + "</span> (" + esc(x.reason) + ")"; }).join(" · ") + "</p>" : "") +
-      pkLedger() +
-      '<section class="pk-how"><div><b>1. המאגר</b>סריקת המועמדים וסריקות המומנטום. רק מה שכבר באתר.</div>' +
-        '<div><b>2. השופט</b>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות עם "אישור מחיר לקנייה". "כניסה אפשרית" לא מספיק (נבדק לאחור: לא מנצח יום רגיל).</div>' +
-        '<div><b>3. הסינון</b>מדווחת בשבוע הקרוב יוצאת. מניה ששלושת האישורים הקודמים שלה נכשלו יוצאת.</div>' +
-        '<div><b>4. השער</b>מד השוק קובע כמה מותר: הגנה = עד 3 וחצי גודל. ירוק = עד 5.</div></section>' +
-      '<p class="pk-foot">תיאור טכני של מצב המניות על פי נרות יומיים, לא ייעוץ השקעות. המספרים ההיסטוריים מבוססים על שנה אחת ועל מניות שנבחרו כשהן במגמת עלייה, ולכן מוטים לטובה.</p>';
-    el.innerHTML = html;
+    // np120: טאב מניות כרשת פאנלים — טבלת הנבחרות המלאה (כמו בבית, כל המניות) + רצועות הערות →
+    // יומן ההכנות | הרקורד → מועמדים | מומנטום → הצעות לטרייד | Insider (הפאנלים האחים ב-renderStockSiblings)
+    var d = PICKD, main;
+    if (!d || !d.picks) main = panHd("הנבחרות") + '<div class="pb mute">המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט.</div>';
+    else {
+      var g = d.gate || {}, r = d.record;
+      var gateCls = { defense: "bad", neutral: "warn", green: "good" }[g.state] || "";
+      var rule = { defense: "עד 3 פוזיציות · חצי גודל · כניסה בשלישים · אופק 10 עד 20 יום", neutral: "עד 4 פוזיציות · שני שליש גודל · כניסה בשלישים · אופק 10 עד 20 יום", green: "עד 5 פוזיציות · גודל מלא · כניסה בשלישים · אופק 10 עד 20 יום" }[g.state] || "";
+      var facts = [g.combined != null ? "ציון משולב <b class=\"num\">" + esc(g.combined) + "</b>" : "", g.breadth != null ? "רוחב <b class=\"num\">" + Math.round(g.breadth) + "%</b> מעל ממוצע 50" : "",
+        g.sellDays != null ? "<b class=\"num\">" + esc(g.sellDays) + "</b> ימי מכירה בחודש" : "", g.flow != null ? "אופציות <b class=\"num\">" + esc(g.flow) + "</b>" : "",
+        g.vix != null ? "VIX <b class=\"num\">" + Math.round(g.vix) + "</b> " + ({ green: "ירוק", yellow: "צהוב", red: "אדום" }[g.vixState] || "") : ""].filter(Boolean);
+      var byGrp = {}; d.picks.forEach(function (p) { byGrp[p.grp] = (byGrp[p.grp] || 0) + 1; });
+      var mix = Object.keys(byGrp).map(function (k) { return byGrp[k] + " " + (PK_GRP[k] || k); }).join(" · ");
+      var notes = (d.momOnly ? '<div class="pb mute s" style="padding-top:0">מהמומנטום בלבד: המועמדים לא הגיעו עד 08:00. כשיגיעו, המהדורה תיבנה מחדש משניהם.</div>' : "") +
+        (d.pending && d.pending.asOf > d.date ? '<div class="pb mute s" style="padding-top:0">מהדורת <span class="num" dir="ltr">' + esc(secDate(d.pending.asOf)) + "</span> ממתינה ל" + esc((d.pending.waiting || []).join(" ו")) + ".</div>" : "");
+      main = panHd('הנבחרות · אישור מחיר לקנייה · מהדורת <span class="num" dir="ltr">' + bdDM(d.date) + "</span>",
+          (g.label ? '<span class="pill state ' + gateCls + '">השוק ' + esc(g.label) + (g.maxPos ? ' · עד <span class="num">' + esc(g.maxPos) + "</span> פוזיציות" : "") + (g.sizing ? " · " + esc(g.sizing) + " גודל" : "") + "</span>" : "") +
+          (g.verdict ? '<span class="mute">' + esc(g.verdict) + "</span>" : "")) +
+        (d.picks.length ? picksTableHtml(d.picks) : '<div class="pb mute">אף מניה לא קיבלה היום אישור מחיר. זה קורה, ולא מחפשים תחליף.</div>') +
+        '<div class="led"><div><span class="mute">נפסלו</span><span>' + ((d.excluded || []).length ? d.excluded.map(function (x) { return '<b class="num" dir="ltr">' + esc(x.sym) + "</b> — " + esc(x.reason); }).join(" · ") : "אין") + "</span></div>" +
+          '<div><span class="mute">אופק</span><span>' + esc(rule || "10–20 יום · כניסה בשלישים · סטופ לא צמוד") + "</span></div>" +
+          '<div><span class="mute">המאגר</span><span>' + (d.momOnly ? "המומנטום בלבד" : "מועמדים ∪ מומנטום") + (d.poolSize ? ' · <span class="num">' + esc(d.poolSize) + "</span> מניות" : "") + (mix ? " · " + esc(mix) : "") + "</span></div>" +
+          '<div><span class="mute">מקור</span><span>' + (d.scanned ? 'נסרקו <span class="num">' + esc(d.scanned) + "</span> מניות" : "המנוע הטכני") + (facts.length ? " · " + facts.join(" · ") : "") + "</span></div></div>" + notes +
+        '<div class="led bd-how"><div><b>1. המאגר</b><span>סריקת המועמדים וסריקות המומנטום. רק מה שכבר באתר.</span></div>' +
+          '<div><b>2. השופט</b><span>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות עם "אישור מחיר לקנייה". "כניסה אפשרית" לא מספיק (נבדק לאחור: לא מנצח יום רגיל).</span></div>' +
+          '<div><b>3. הסינון</b><span>מדווחת בשבוע הקרוב יוצאת. מניה ששלושת האישורים הקודמים שלה נכשלו יוצאת.</span></div>' +
+          '<div><b>4. השער</b><span>מד השוק קובע כמה מותר: הגנה = עד 3 וחצי גודל. ירוק = עד 5.</span></div></div>' +
+        '<p class="stamp" style="margin:10px 14px">תיאור טכני של מצב המניות על פי נרות יומיים, לא ייעוץ השקעות. המספרים ההיסטוריים מבוססים על שנה אחת ועל מניות שנבחרו כשהן במגמת עלייה, ולכן מוטים לטובה. לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>';
+    }
+    var rec = d && d.record;
+    el.innerHTML = (d ? stamp(d._meta) : "") + '<div class="board">' +
+      '<section class="pan bd-picks" id="pk-main"' + bdSpan(12) + ">" + main + "</section>" +
+      (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מהכניסה, מול S&amp;P · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
+      (rec ? '<section class="pan"' + bdSpan(5) + ">" + panHd("הרקורד", '<span class="mute">מבחן לאחור · <span class="num">' + esc(rec.n) + '</span> אישורים ב-<span class="num">' + esc(rec.symbols) + "</span> מניות</span>") +
+        '<div class="pb"><div class="tiles t2">' + bdTile("עלו תוך 10 ימים", esc(rec.win10) + "%") + bdTile("ממוצע 10 ימים", pkPct(rec.avg10), rec.excess10 != null ? "מול S&amp;P " + pkPct(rec.excess10) : "", rec.avg10 > 0 ? "up" : "down") +
+          bdTile("ממוצע 20 יום", pkPct(rec.avg20), "", rec.avg20 > 0 ? "up" : "down") + bdTile("ירידה ממוצעת בדרך", pkPct(rec.mae), "הסטופ לא צמוד", "down") + "</div>" +
+        '<p class="mute s" style="margin:0">הדגימה מוטה לטובה: מניות שנבחרו כשהן במגמת עלייה. השבוע הראשון תנודתי — מחצית נוגעות ב-1.5 ATR.</p></div></section>' : "") +
+      '<section class="pan" id="pk-cand"' + bdSpan(6) + '></section><section class="pan" id="pk-mom"' + bdSpan(6) + "></section>" +
+      '<section class="pan" id="pk-trd"' + bdSpan(6) + '></section><section class="pan" id="pk-ins"' + bdSpan(6) + "></section></div>";
     el.querySelectorAll(".pk-ed").forEach(function (tr) {
       tr.addEventListener("click", function () {
         var open = tr.classList.toggle("open");
         el.querySelectorAll('.pk-det[data-ed="' + tr.dataset.ed + '"]').forEach(function (x) { x.hidden = !open; });
       });
     });
+    renderStockSiblings();
   }
   var INSD = null;
   function renderInsider(el, d) {
@@ -4212,7 +4260,6 @@
   }
 
   /* טאב "הצעות לטרייד" — דוחות Four Pillars וכד', כמו סקטורים (יומי במקום שבועי) */
-  var TRAD = null;
   function renderTrades(el, d) {
     TRAD = d;
     var reps = (d && d.reports) || [];
@@ -4415,6 +4462,165 @@
     });
   }
 
+  /* ===================== לוח המסחר — גוף הטאבים (np120, עיצוב מחדש שלב 6 חלק 2) =====================
+     עזרים משותפים לחמשת הטאבים + הפאנלים האחים (מניות/חדשות/העולם) שמתמלאים כשהנתונים שלהם מגיעים.
+     כל טאב = <div class="board"> (רשת 12) של <section class="pan"> עם כותרת .ph וגוף .pb — כמו הבית. */
+  function panHd(h2, extra, go) { return '<div class="ph"><h2>' + h2 + "</h2>" + (extra || "") + (go || "") + "</div>"; }
+  function bdSpan(n) { return ' style="grid-column:span ' + n + '"'; }
+  function bdTile(l, v, s, cls) {
+    return '<div class="tile"><div class="l">' + l + '</div><div class="v num' + (cls ? " " + cls : "") + '" dir="ltr">' + v + "</div>" + (s ? '<div class="s mute">' + s + "</div>" : "") + "</div>";
+  }
+  // מסיר את כותרת-הסעיף ואת עטיפת הכרטיס של הרנדררים הישנים — הגוף נכנס לפאנל החדש כפי שהוא
+  function bare(html) {
+    return String(html || "").replace(/^\s*<div class="section-title"[^>]*>[\s\S]*?<\/div>\s*/, "").replace(/^<div class="card[^"]*"[^>]*>/, "").replace(/<\/div>\s*$/, "");
+  }
+  function bpPan(d) {
+    var html = breadthPeaksHtml(d);
+    if (!html) return "";
+    var m = /<h3 class="bp-title">([\s\S]*?)<\/h3>/.exec(html);
+    return panHd("כמה מניות משתתפות בשיא?", m ? '<span class="mute">' + m[1] + "</span>" : "") + '<div class="pb">' + html + "</div>";
+  }
+  function currentForecast() {
+    var eu = CA && CA.eventUpdate;
+    return (eu && eu.forecast && eu.forecast.label) ? eu.forecast : (FCAST && FCAST.current && FCAST.current.label ? FCAST.current : null);
+  }
+  function renderForecastPan() {
+    var el = document.getElementById("fc-pan");
+    if (!el) return;
+    var f = currentForecast(), track = fcTrackHtml(), rec = FCAST && FCAST.record;
+    if (!f && !track) { el.innerHTML = ""; return; }
+    el.innerHTML = panHd("הצפי לשבוע", rec && rec.scored ? '<span class="mute">מאזן: <span class="num">' + rec.hits + '</span> מתוך <span class="num">' + rec.scored + '</span> פגיעות · <span class="num">' + (rec.inRange || 0) + "</span> בטווח</span>" : "") +
+      '<div class="pb">' + (f ? forecastHtml(f) : "") + '<div id="fc-track-slot">' + track + "</div></div>";
+  }
+  function pickRowHtml(p, i) {
+    var lo_ = p.stop || p.sup, hi_ = p.target || p.res, loL = p.stop ? "סטופ" : "תמיכה", hiL = p.target ? "יעד" : "התנגדות";
+    var pos = (lo_ && hi_) ? Math.max(0, Math.min(100, (p.price - lo_) / ((hi_ - lo_) || 1) * 100)) : null;
+    var rec = p.rec || {}, dots = (rec.dots || []).map(function (x) { return '<i class="rd' + (x ? " w" : "") + '"></i>'; }).join("");
+    var src = (p.sources || []).map(function (s) { return '<span class="tag">' + esc(String(s.t || "").split(" #")[0]) + "</span>"; }).join(" ");
+    return "<tr><td><a href=\"https://www.tradingview.com/symbols/" + encodeURIComponent(p.sym) + '/" class="tsym" target="_blank" rel="noopener"><span class="rank num">' + (i + 1) + "</span>" + esc(p.sym) + "</a>" +
+        '<div class="mute nm">' + esc((p.name || "").replace(/ Inc\.?$| Corp.*$| and Company$|, Inc\.$/, "")) + (p.since ? ' · ברשימה מ-<span class="num" dir="ltr">' + esc(secDate(p.since)) + "</span>" : "") + "</div></td>" +
+      '<td><span class="num" dir="ltr">' + fmtNum(p.price, 2) + "</span></td><td>" + bdPct(p.chg) + "</td>" +
+      '<td class="sp-cell">' + bdPickSpark(p) + "</td>" +
+      '<td><span class="num down" dir="ltr">' + (lo_ != null ? fmtNum(lo_, 2) : "—") + '</span><div class="mute s">' + loL + "</div></td>" +
+      "<td>" + (pos != null ? '<div class="rng" role="img" aria-label="המחיר ב-' + pos.toFixed(0) + '% מהדרך בין ' + loL + ' ל' + hiL + '"><b style="left:calc(' + pos.toFixed(0) + '% - 1px)"></b></div>' : "") + "</td>" +
+      '<td><span class="num up" dir="ltr">' + (hi_ != null ? fmtNum(hi_, 2) : "—") + '</span><div class="mute s">' + hiL + "</div></td>" +
+      "<td>" + src + "</td>" +
+      "<td>" + dots + (rec.n ? '<div class="mute s"><span class="num">' + (rec.dots || []).reduce(function (a, b) { return a + b; }, 0) + "</span> מתוך <span class=\"num\">" + rec.n + "</span> עלו</div>" : '<div class="mute s">אישור ראשון</div>') + "</td></tr>";
+  }
+  function picksTableHtml(picks, cap) {
+    return '<div class="tbl"><table><caption class="sr-only">' + (cap || "הנבחרות") + '</caption><thead><tr><th scope="col">מניה</th><th scope="col">מחיר</th><th scope="col">יום</th><th scope="col">60 יום</th><th scope="col">סטופ / תמיכה</th><th scope="col">מיקום בטווח</th><th scope="col">יעד / התנגדות</th><th scope="col">מקור</th><th scope="col">רקורד</th></tr></thead><tbody>' +
+      picks.map(pickRowHtml).join("") + "</tbody></table></div>";
+  }
+  /* הפאנלים האחים בטאב מניות: מועמדים · מומנטום · הצעות לטרייד · Insider — תקצירים עם קישור ללשונית המלאה */
+  var TRAD = null;
+  function renderStockSiblings() {
+    var ec = document.getElementById("pk-cand"), em = document.getElementById("pk-mom"), et = document.getElementById("pk-trd"), ei = document.getElementById("pk-ins");
+    if (ec) {
+      var c = CANDD, rows = (c && c.candidates) || [], tdy = c && candTradeDay(c);
+      ec.innerHTML = !rows.length
+        ? panHd("מועמדים למסחר", "", bdGo("candidates", "מועמדים")) + '<div class="pb mute">' + (c ? "אין מועמדים בסריקה האחרונה." : "טוען…") + "</div>"
+        : panHd("מועמדים למסחר" + (tdy ? ' · סגירת <span class="num" dir="ltr">' + esc(fmtTradeDate(tdy)) + "</span>" : ""),
+            '<span class="mute"><span class="num">' + (c.count || rows.length) + "</span> מועמדים" + (c._meta && c._meta.universe ? ' · נסרקו <span class="num">' + c._meta.universe + "</span> מניות בענן" : "") + "</span>", bdGo("candidates", "כל " + (c.shown || rows.length))) +
+          '<div class="tbl"><table class="bd-tbl"><thead><tr><th>#</th><th>מניה</th><th>סטאפ</th><th>כניסה</th><th>סטופ</th><th>יעד</th><th>סיכון</th><th>RVOL</th></tr></thead><tbody>' +
+          rows.slice(0, 6).map(function (x) {
+            return '<tr><td class="num mute">' + x.rank + "</td><td>" + tvLink(x.symbol) + erBadge(x.symbol) + '</td><td><span class="tag">' + esc(x.setup || "") + '</span></td><td class="num" dir="ltr">' + fmt(x.entry) +
+              '</td><td class="num down" dir="ltr">' + fmt(x.stop) + '</td><td class="num up" dir="ltr">' + fmt(x.target) + '</td><td class="num' + (x.risk_pct > 5 ? " down" : "") + '" dir="ltr">' + fmt(x.risk_pct, 1) + '%</td><td class="num" dir="ltr">' + fmt(x.rvol) + "</td></tr>";
+          }).join("") + "</tbody></table></div>";
+    }
+    if (em) {
+      var md = MOMD, pool = ((md && md.stocks) || []).filter(function (x) { return x.symbol && !/\s/.test(x.symbol) && passesBase(x); });
+      var top = pool.slice().sort(function (a, b) { return (b.readiness || 0) - (a.readiness || 0) || (b.wtd_alpha || 0) - (a.wtd_alpha || 0); }).slice(0, 6);
+      var n3 = pool.filter(function (x) { return x.signal_count >= 3; }).length, n2 = pool.filter(function (x) { return x.signal_count === 2; }).length, nc = pool.filter(function (x) { return (x.readiness || 0) >= 50; }).length;
+      var fdate = (function () { var f = (md && md._meta && md._meta.files) || {}, k = Object.keys(f)[0], m = k && /(\d{2})-(\d{2})-(\d{4})\.csv$/.exec(f[k]); return m ? (+m[2]) + "." + (+m[1]) : ""; })();
+      em.innerHTML = !top.length
+        ? panHd("מומנטום", "", bdGo("momentum", "מומנטום")) + '<div class="pb mute">' + (md ? "אין מניות שעברו את פילטר הבסיס." : "טוען…") + "</div>"
+        : panHd("מומנטום" + (fdate ? ' · סורקי <span class="num" dir="ltr">' + fdate + "</span>" : ""), '<span class="mute"><span class="num">' + n3 + '</span> עם 3+ סיגנלים · <span class="num">' + n2 + '</span> עם 2 · <span class="num">' + Math.min(12, nc) + "</span> מועמדות לטרייד</span>", bdGo("momentum", "כל " + pool.length)) +
+          '<div class="tbl"><table class="bd-tbl"><thead><tr><th>מניה</th><th>מוכנות</th><th>סיגנלים</th><th>יום</th></tr></thead><tbody>' +
+          top.map(function (s) {
+            return "<tr><td>" + tvLink(s.symbol) + erBadge(s.symbol) + '<div class="mute s">' + esc((s.industry || "").slice(0, 28)) + '</div></td><td class="num" dir="ltr">' + (s.readiness != null ? s.readiness : "—") + "</td><td>" +
+              (s.signals || []).map(function (k) { return '<span class="tag">' + esc(SIG_LABEL[k] || k) + "</span>"; }).join(" ") + "</td><td>" + pct(s.change_pct) + "</td></tr>";
+          }).join("") + "</tbody></table></div>";
+    }
+    if (et) {
+      var tr = TRAD && (TRAD.reports || [])[0], pk = tr && (typeof tr.picks === "string" ? [] : (tr.picks || []));
+      et.innerHTML = !tr
+        ? panHd("הצעות לטרייד", "", bdGo("trades", "הדוח")) + '<div class="pb mute">' + (TRAD ? "אין דוח." : "טוען…") + "</div>"
+        : panHd("הצעות לטרייד · " + esc(tr.title || "ארבעת העמודים"), '<span class="mute num" dir="ltr">' + esc(fmtTradeDate(tr.date) || tr.date || "") + "</span>", bdGo("trades", "הדוח")) +
+          (pk.length ? '<div class="pb bd-sents">' + pk.slice(0, 5).map(function (p) {
+            return '<div class="sent"><b><span class="num tk" dir="ltr">' + esc(p.ticker) + "</span></b><span><b>" + esc(p.cat || "") + "</b>" + (p.action ? " · " + esc(p.action) : "") + (p.note ? " — " + esc(p.note) : "") + "</span></div>";
+          }).join("") + "</div>" : '<div class="pb mute">' + (TRAD.method ? '<a href="' + esc(TRAD.method.url) + '" target="_blank" rel="noopener">📚 ' + esc(TRAD.method.title) + "</a>" : "הדוח המלא בלשונית הצעות לטרייד.") + "</div>");
+    }
+    if (ei) {
+      var ir = INSD && (INSD.reports || [])[0];
+      ei.innerHTML = !ir
+        ? panHd("Insider", "", bdGo("insider", "הדוח")) + '<div class="pb mute">' + (INSD ? "אין דוח." : "טוען…") + "</div>"
+        : panHd("Insider · " + esc(ir.title || "קניות של בעלי עניין"), '<span class="mute num" dir="ltr">' + esc(secDate(ir.date)) + "</span>", bdGo("insider", "הדוח")) +
+          '<div class="pb">' + (ir.range ? '<p class="mute" style="margin:0">' + esc(ir.range) + "</p>" : "") +
+          ((ir.tickers || []).length ? '<div class="chips bd-chips">' + ir.tickers.map(function (tk) { return '<a class="tag" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(tk) + '/" target="_blank" rel="noopener"><b class="num">' + esc(tk) + "</b></a>"; }).join("") + "</div>" : "") + "</div>";
+    }
+  }
+  /* הפאנלים האחים בטאב חדשות: בזק מהרשת · Barchart · חדשות RSS · המבזק האחרון */
+  var FLASHD = null, NB_PULSE_ALL = false;
+  function renderNewsSiblings() {
+    var ep = document.getElementById("nb-pulse"), eb = document.getElementById("nb-bar"), er = document.getElementById("nb-rss"), ef = document.getElementById("nb-flash");
+    if (ep) {
+      var items = (PULSE_X && PULSE_X.items) || [], shown = NB_PULSE_ALL ? items : items.slice(0, 8);
+      ep.innerHTML = !items.length ? panHd("בזק מהרשת") + '<div class="pb mute">אין בזקים כרגע.</div>'
+        : panHd("בזק מהרשת", '<span class="mute">4 ערוצים + X Scan</span>', items.length > 8 ? '<a class="go" href="#" id="nb-pulse-more">' + (NB_PULSE_ALL ? "פחות" : "כל " + items.length + " הבזקים") + "</a>" : "") +
+          '<div class="bd-list">' + shown.map(function (it) {
+            return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener"><span class="num mute" dir="ltr">' + esc(it.time) + '</span><span class="mute src" dir="ltr">' + esc(it.source) + '</span><span class="tx" dir="auto">' + esc(it.text) + "</span></a>";
+          }).join("") + "</div>";
+      var pm = document.getElementById("nb-pulse-more");
+      if (pm) pm.addEventListener("click", function (ev) { ev.preventDefault(); NB_PULSE_ALL = !NB_PULSE_ALL; renderNewsSiblings(); });
+    }
+    if (eb) {
+      var mo = MORND, cardsB = "";
+      if (mo && mo.file) cardsB += '<a class="prep" href="#morning" onclick="__goTab(\'morning\');return false"><div class="h"><span class="tag">סקירת בוקר' + (mo.time ? ' · <span class="num" dir="ltr">' + esc(mo.time) + "</span>" : "") + "</span>" + (mo.dateLabel ? '<span class="mute">' + esc(mo.dateLabel) + "</span>" : "") + "</div><p>" + esc(mo.subject || "דוח Barchart יומי") + "</p></a>";
+      if (mo && mo.premkt && mo.premkt.file) cardsB += '<a class="prep" href="#morning" onclick="__goTab(\'morning\');return false"><div class="h"><span class="tag earn">טרום מסחר' + (mo.premkt.time ? ' · <span class="num" dir="ltr">' + esc(mo.premkt.time) + "</span>" : "") + "</span>" + (mo.premkt.dateLabel ? '<span class="mute">' + esc(mo.premkt.dateLabel) + "</span>" : "") + "</div><p>" + esc(mo.premkt.subject || "") + "</p></a>";
+      var arch = archDays(["review", "premkt"], "").slice(0, 8);
+      eb.innerHTML = panHd("Barchart", '<span class="mute">שתי מהדורות ביום · 06:00 ו-14:00</span>', bdGo("morning", "הארכיון")) +
+        '<div class="pb">' + (cardsB || '<span class="mute">' + (mo ? "אין מהדורה היום." : "טוען…") + "</span>") +
+        (arch.length ? '<div class="chips bd-chips">' + arch.map(function (k, i) { return '<button type="button" class="tag nb-arch' + (i === 0 ? " on" : "") + '" data-day="' + (i === 0 ? "" : k) + '"><span class="num" dir="ltr">' + esc(fmtTradeDate(k)) + "</span></button>"; }).join("") + "</div>" : "") + "</div>";
+      eb.querySelectorAll(".nb-arch").forEach(function (b) {
+        b.addEventListener("click", function () { MORN_DAY = b.dataset.day || null; if (MORND) renderMorning(document.getElementById("panel-morning"), MORND); __goTab("morning"); });
+      });
+    }
+    if (er) {
+      var nw = ((NEWS && NEWS.news) || []).slice().sort(function (a, b) { return (b.dt || "") < (a.dt || "") ? -1 : 1; }).slice(0, 6);
+      er.innerHTML = panHd("חדשות", '<span class="mute">RSS, מתורגם</span>') + (nw.length ? '<div class="bd-list">' + nw.map(function (n) {
+        return '<a class="li nb-news" href="' + esc(n.link) + '" target="_blank" rel="noopener"><span class="num mute" dir="ltr">' + esc(n.time || "") + '</span><span dir="auto">' + esc(n.title || n.titleEn || "") + (n.source ? ' <span class="mute s">· ' + esc(n.source) + "</span>" : "") + "</span></a>";
+      }).join("") + "</div>" : '<div class="pb mute">' + (NEWS ? "אין חדשות כרגע." : "טוען…") + "</div>");
+    }
+    if (ef) {
+      var f = FLASHD;
+      if (!f || f.pct == null) ef.innerHTML = "";
+      else {
+        var ev = f.evidence || {}, lines = [];
+        (ev.econ || []).forEach(function (e) { lines.push("📊 " + esc(e.he) + ": בפועל " + esc(e.actual) + " מול צפי " + esc(e.forecast) + " (" + esc(e.ilTime) + ")"); });
+        (ev.pulse || []).slice(0, 3).forEach(function (p) { lines.push('<span dir="auto">💬 ' + esc(String(p.text).slice(0, 120)) + " · " + esc(p.source) + "</span>"); });
+        (ev.news || []).slice(0, 2).forEach(function (n) { lines.push('<span dir="auto">📰 ' + esc(n.title) + " · " + esc(n.source) + "</span>"); });
+        var fresh = f.ts && Date.now() - Date.parse(f.ts) < FLASH_TTL_MS;
+        ef.innerHTML = panHd("מבזק ⚡ · " + (fresh ? "תנועה חדה עכשיו" : "המבזק האחרון"), '<span class="mute">ספייק של 0.5%+ ב-' + (f.windowMin || 30) + " דקות · מציג מה התפרסם באותן דקות, לא סיבתיות</span>") +
+          '<div class="flash"><div><div class="big num ' + (f.pct < 0 ? "down" : "up") + '" dir="ltr">' + (f.pct > 0 ? "+" : "") + Number(f.pct).toFixed(2) + '%</div><div class="mute s">' + esc(f.label || f.symbol || "") + ' · <span class="num" dir="ltr">' + esc(f.date || "") + " " + esc(f.time || "") + "</span>" + (f.session ? " · " + esc(f.session) : "") + "</div></div>" +
+          '<div class="fx">' + (lines.length ? lines.map(function (l) { return "<div>" + l + "</div>"; }).join("") : '<span class="mute">לא נמצאו פרסומים באותן דקות.</span>') + "</div></div>";
+      }
+    }
+  }
+  /* "מה השווקים מהמרים" — כל השורות, בטאב העולם */
+  var BETSD = null;
+  function renderWorldBets() {
+    var el = document.getElementById("wd-bets");
+    if (!el) return;
+    var rows = (BETSD && BETSD.rows) || [];
+    if (!rows.length) { el.innerHTML = ""; return; }
+    el.innerHTML = panHd("מה השווקים מהמרים", '<span class="mute">Polymarket + Kalshi · הסתברות + שינוי יומי בנקודות</span>') + '<div class="pb bd-bets">' + rows.map(function (r) {
+      var sub = String(r.sub || "").replace("ההימור המוביל: ", "");
+      return '<div class="bet"><span>' + (r.url ? '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.label) + "</a>" : esc(r.label)) + '<div class="mute s">ההימור המוביל: ' + esc(sub) + (r.src ? " · " + esc(r.src) : "") + "</div></span>" +
+        '<div class="bar" role="img" aria-label="' + esc(r.pct) + '%"><i style="width:' + esc(r.pct) + '%"></i></div><span class="num" dir="ltr">' + esc(r.pct) + "%</span>" +
+        '<span class="mute s">' + (r.chg ? '<span class="num ' + (r.chg > 0 ? "up" : "down") + '" dir="ltr">' + (r.chg > 0 ? "+" : "−") + Math.abs(r.chg) + "</span> נק׳ יומי" : "ללא שינוי") + "</span></div>";
+    }).join("") + "</div>";
+  }
+
   /* ---------- boot ---------- */
   function boot() {
     loadTicker();
@@ -4445,13 +4651,13 @@
     // חדשות + בולטות מתרעננות לבד כל 5 דק' כשהדף פתוח (כמו סרט המדדים)
     function loadLiveContent() {
       fetchJSON("data/news.json")
-        .then(function (d) { NEWS = d; renderPulseNews(); })
+        .then(function (d) { NEWS = d; renderPulseNews(); renderNewsSiblings(); })
         .catch(function () {});
       fetchJSON("data/movers.json")
         .then(function (d) { MOVERS = d; renderHomeSplit(); renderFocus(); })
         .catch(function () {});
       fetchJSON("data/pulse.json")
-        .then(function (d) { PULSE_X = d; renderPulseX(); })
+        .then(function (d) { PULSE_X = d; renderPulseX(); renderNewsSiblings(); })
         .catch(function () {});
       // תדריך חדש (בוקר/צהריים) נכנס לבד לדף הבית ולטאב — רק כשבאמת השתנה
       fetchJSON("data/briefing.json")
@@ -4490,7 +4696,7 @@
         .catch(function () {});
       // עונת הדוחות (3.10.2026): ציר מתחת לכותרת, רק בזמן העונה
       fetchJSON("data/earnings_season.json")
-        .then(function (d) { if (!freshD("season", d)) return; SEASON = d; renderSeason(); })
+        .then(function (d) { if (!freshD("season", d)) return; SEASON = d; renderSeason(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); })
         .catch(function () {});
       fetchJSON("data/earnings.json")
         .then(function (d) {
@@ -4520,18 +4726,18 @@
         emptyPanel(document.getElementById("panel-indices"), "📡", "נתוני המדדים לא נטענו", "");
       });
       fetchJSON("data/momentum.json")
-        .then(function (d) { if (!freshD("momentum", d)) return; MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); noteSig("momentum", d); })
+        .then(function (d) { if (!freshD("momentum", d)) return; MOMD = d; renderMomentum(document.getElementById("panel-momentum"), d); renderFocus(); renderHomeSplit(); renderStockSiblings(); noteSig("momentum", d); })
         .catch(function () { if (!MOMD) emptyPanel(document.getElementById("panel-momentum"), "🚀", "מומנטום — בקרוב", ""); });
       fetchJSON("data/forecasts.json")
-        .then(function (d) { if (!freshD("forecasts", d)) return; FCAST = d; if (INDD) renderLead(); renderFcTrack(); })
+        .then(function (d) { if (!freshD("forecasts", d)) return; FCAST = d; if (INDD) renderLead(); renderForecastPan(); })
         .catch(function () {});
       fetchJSON("data/insider.json")
-        .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); noteSig("insider", d); })
+        .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); renderStockSiblings(); noteSig("insider", d); })
         .catch(function () { if (!("insider" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
       // הנבחרות (30.9.2026): המהדורה + יומן הכנות; היומן לא חוסם את הקלפים
       Promise.all([fetchJSON("data/earnings_prep.json"), fetchJSON("data/earnings_prep_notes.json").catch(function () { return {}; }),
         fetchJSON("data/earnings_review_notes.json").catch(function () { return {}; })])
-        .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; PREPR = r[2]; renderPrep(document.getElementById("panel-prep")); renderHomeCal(); noteSig("prep", [r[1], r[2]]); })
+        .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; PREPR = r[2]; renderPrep(document.getElementById("panel-prep")); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("prep", [r[1], r[2]]); })
         .catch(function () { if (!PREPD) renderPrep(document.getElementById("panel-prep")); });
       Promise.all([fetchJSON("data/picks.json"), fetchJSON("data/picks_ledger.json").catch(function () { return null; })])
         .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); renderHomePicks(); noteSig("picks", r[0]); })
@@ -4543,10 +4749,10 @@
         .then(function (r) { WKND = r[1]; WORLDD = r[0]; renderWorld(document.getElementById("panel-world"), r[0]); renderHomeAround(); })
         .catch(function () { emptyPanel(document.getElementById("panel-world"), "🌍", "שווקים בינלאומיים — בקרוב", ""); });
       fetchJSON("data/morning.json")
-        .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); noteSig("morning", d); })
+        .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); renderNewsSiblings(); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "📊", "Barchart — בקרוב", ""); });
       fetchJSON("data/econ.json")
-        .then(function (d) { if (!freshD("econ", d)) return; ECON = d; renderEcon(); refreshLeadAgenda(); renderHomeCal(); })
+        .then(function (d) { if (!freshD("econ", d)) return; ECON = d; renderEcon(); refreshLeadAgenda(); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); })
         .catch(function () {});
       // הניתוח היומי של Claude — מוצג בבית (תקציר) ובטאב מדדים (מלא)
       fetchJSON("data/claude_analysis.json")
@@ -4567,13 +4773,13 @@
         })
         .catch(function () {});
       fetchJSON("data/candidates.json")
-        .then(function (d) { if (!freshD("candidates", d)) return; CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); noteSig("candidates", d); })
+        .then(function (d) { if (!freshD("candidates", d)) return; CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); renderStockSiblings(); noteSig("candidates", d); })
         .catch(function () { if (!CANDD) emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
       fetchJSON("data/trades.json")
-        .then(function (d) { if (!freshD("trades", d)) return; renderTrades(document.getElementById("panel-trades"), d); noteSig("trades", d); })
+        .then(function (d) { if (!freshD("trades", d)) return; renderTrades(document.getElementById("panel-trades"), d); renderStockSiblings(); noteSig("trades", d); })
         .catch(function () { if (!("trades" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-trades"), "💡", "הצעות לטרייד — בקרוב", ""); });
       fetchJSON("data/reports.json")
-        .then(function (d) { if (!freshD("reports", d)) return; REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); noteSig("reports", d); })
+        .then(function (d) { if (!freshD("reports", d)) return; REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("reports", d); })
         .catch(function () { if (!REPD) emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
       fetchJSON("data/_health.json")
         .then(function (d) {
@@ -4588,7 +4794,7 @@
         .catch(function () {});
       // הסתברויות שוקי חיזוי
       fetchJSON("data/bets.json")
-        .then(function (d) { if (!freshD("bets", d)) return; renderBets(d); })
+        .then(function (d) { if (!freshD("bets", d)) return; BETSD = d; renderBets(d); renderWorldBets(); })
         .catch(function () {});
     }
 
