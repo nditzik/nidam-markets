@@ -72,6 +72,15 @@
   "more": 0,
   "upcoming": [
     {
+      "date": "2026-10-12",
+      "label": "12/10",
+      "dow": "ב׳",
+      "count": 1,
+      "tickers": [
+        "PGR"
+      ]
+    },
+    {
       "date": "2026-10-13",
       "label": "13/10",
       "dow": "ג׳",
@@ -132,8 +141,15 @@
       "date": "2026-10-12",
       "dow": "שני",
       "label": "12.10",
-      "total": 0,
-      "companies": []
+      "total": 1,
+      "companies": [
+        {
+          "ticker": "PGR",
+          "name": "Progressive Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/PGR.png"
+        }
+      ]
     },
     {
       "date": "2026-10-13",
@@ -354,6 +370,7 @@
     }
   ],
   "window": {
+    "PGR": "2026-10-12",
     "JPM": "2026-10-13",
     "JNJ": "2026-10-13",
     "UNH": "2026-10-13",
@@ -390,7 +407,7 @@
     "IBN": "2026-10-17"
   },
   "_meta": {
-    "updatedAt": "10/10/2026 07:46",
+    "updatedAt": "10/10/2026 08:01",
     "source": "tradingview"
   }
 }
