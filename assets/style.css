@@ -2372,3 +2372,35 @@ a.prep:hover { border-color: var(--accent); }
   .pan .fc-main { grid-template-columns: 1fr; }
   .bd-picks .led > div:nth-child(n+3) { border-top: 1px solid var(--border); }
 }
+
+/* =========== BOARD INNER — הלשוניות הפנימיות (שלב 7, 10.10.2026) =========== */
+.mom-navwrap { padding-bottom: 0; }
+.mom-nav { margin: 0; }
+.mom-pan .mom-note { margin: 10px 14px 6px; }
+.mom-pan .tbl { border-top: 1px solid var(--border); margin-top: 10px; }
+.mom-pan .mom-list > .pb.mute { padding: 14px; }
+.bd-tbl .mom-name { white-space: normal; min-width: 140px; color: var(--text-soft); }
+.bd-tbl .sig-cell { white-space: normal; }
+/* תבנית הדוחות (סקטורים · הצעות לטרייד · Insider · Barchart) */
+.pan .rep-frame { border: 0; border-top: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); background: #fff; display: block; }
+.pan > .frame-scroll, .pan > .morn-view { border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; }
+.pan > .frame-scroll { overflow-x: auto; }
+.rep-arch { align-items: center; }
+.rep-tks { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.rep-note { margin: 8px 0 0; }
+.pb > .chips + .chips { margin-top: 8px; }
+.trd-method2 { display: block; margin-top: 10px; font-size: 13px; color: var(--accent); text-decoration: none; }
+.trd-method2:hover b { text-decoration: underline; }
+.pan .rw-card { padding: 12px 14px 10px; }
+.rep-arch { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; padding-bottom: 2px; }
+.rep-arch > * { flex: none; }
+/* לקראת הדוח — הכרטיסים ברשת הלוח */
+.ep-board > .ep-card { grid-column: 1 / -1; border-color: var(--border); }
+.ep-chips2 .tag { gap: 6px; min-height: 32px; }
+.ep-chips2 .ep-logo { width: 20px; height: 20px; }
+.ep-chips2 .mute { font-size: 12px; }
+/* ניתוח דוחות — רשת בתוך פאנל */
+#rep-list-pan .rep-grid { margin: 0; }
+.ph .rep-back { font: inherit; font-weight: 600; color: var(--accent); background: none; border: 0; padding: 12px 0; cursor: pointer; }
+.ph .rep-back:hover { text-decoration: underline; }
+@media (max-width: 700px) { .ph { padding-top: 8px; padding-bottom: 2px; } .ph .go { padding: 10px 0; } }
