@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -19,95 +19,111 @@
   <link rel="apple-touch-icon" href="assets/favicon-180.png?v=2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <!-- דגלי מדינות (טאב שווקים בינלאומיים): ווינדוס לא מכיל גופן דגלים בכלל
+  <!-- np117 (10.10.2026): עיצוב "לוח המסחר" — IBM Plex Sans Hebrew לטקסט, IBM Plex Mono למספרים (ספר הסגנון:
+       docs/redesign/styleguide). Heebo/Frank Ruhl נשארים לדוחות ה-iframe הישנים ולסקין העיתון שעוד מתחת. -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Heebo:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <!-- דגלי מדינות (טאב העולם): ווינדוס לא מכיל גופן דגלים בכלל
        ומרנדר 🇮🇱 כאותיות "IL". Noto Color Emoji מספק אותם בכל מערכת;
        הפרמטר text= מצמצם את הגופן לתווי הדגלים שבשימוש בלבד (9.9.2026). -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%87%AE%F0%9F%87%B1%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%B0%F0%9F%87%B7%F0%9F%87%B9%F0%9F%87%BC%F0%9F%87%A8%F0%9F%87%B3%F0%9F%87%AD%F0%9F%87%B0%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%BA%F0%9F%87%B8%F0%9F%87%A8%F0%9F%87%A6&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=np116" />
+  <link rel="stylesheet" href="assets/style.css?v=np117" />
 </head>
 <body>
   <a class="skip-link" href="#main">דלג לתוכן</a>
 
+  <!-- np117: כותרת "לוח המסחר" — שורה אחת: לוגו · 6 טאבים · חיפוש · מצב כהה · טלגרם · שעון.
+       שישה טאבים (עיצוב מחדש, שלב 3): בית · השוק · היומן · מניות · חדשות · העולם.
+       ארבעה מהם מאוחדים — הפאנלים, ה-hash וה-GoatCounter נשארו ברמת הפאנל (GROUPS ב-app.js). -->
   <div class="topbar">
   <header class="site-header">
-    <div class="wrap np-hd1">
+    <div class="wrap np-hd1 bd-hd">
       <h1 class="brand-lockup">
-        <img class="brand-logo-full logo-light" src="assets/logo-full-light.png" alt="The Daily Edge by NIDAM" width="5040" height="1124" />
-        <img class="brand-logo-full logo-dark" src="assets/logo-full-dark.png" alt="" aria-hidden="true" width="5040" height="1124" />
+        <a href="#home" onclick="__goTab('home');return false" aria-label="The Daily Edge — בית">
+          <img class="brand-logo-full logo-light" src="assets/logo-full-light.png" alt="The Daily Edge by NIDAM" width="5040" height="1124" />
+          <img class="brand-logo-full logo-dark" src="assets/logo-full-dark.png" alt="" aria-hidden="true" width="5040" height="1124" />
+        </a>
       </h1>
       <nav class="tabs" role="tablist" aria-label="ניווט ראשי">
         <button class="tab is-active" role="tab" data-tab="home">בית</button>
-        <button class="tab" role="tab" data-tab="indices">מדדים</button>
-        <button class="tab" role="tab" data-tab="sectors">סקטורים</button>
-        <button class="tab" role="tab" data-tab="candidates">מועמדים</button>
-        <button class="tab tab-gold" role="tab" data-tab="picks">הנבחרות</button>
-        <button class="tab" role="tab" data-tab="insider">Insider</button>
-        <button class="tab" role="tab" data-tab="briefing">תדריך</button>
-        <button class="tab" role="tab" data-tab="weekcal">דיווחים</button>
+        <button class="tab" role="tab" data-tab="market">השוק</button>
+        <button class="tab" role="tab" data-tab="calendar">היומן</button>
+        <button class="tab" role="tab" data-tab="stocks">מניות</button>
+        <button class="tab" role="tab" data-tab="news">חדשות</button>
         <button class="tab" role="tab" data-tab="world">העולם</button>
       </nav>
+      <div class="np-search bd-search">
+        <input id="site-search" type="search" placeholder="טיקר או נושא" autocomplete="off" dir="auto" aria-label="חיפוש באתר" />
+        <kbd aria-hidden="true">/</kbd>
+        <div id="search-results" class="sr-panel" hidden></div>
+      </div>
       <span class="np-hd-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="החלף מצב תצוגה">🌙</button>
         <a class="tg-btn tabs-tg" href="https://t.me/nidam_markets" target="_blank" rel="noopener" aria-label="הצטרפו לערוץ הטלגרם">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
           <span class="tg-txt">הצטרפו לטלגרם</span>
         </a>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="החלף מצב תצוגה">🌙</button>
+        <span class="np-clock bd-sess"><span id="clock-badge" class="clock-badge closed">…</span><span class="bd-clock"><span id="clock-time" class="num" dir="ltr">--:--:--</span> <span id="clock-label"></span></span></span>
       </span>
     </div>
+    <div class="wrap np-hd2" id="np-hd2"><span class="np-hd2-spacer" id="np-daymeta"></span></div>
   </header>
-  <div class="wrap np-hd2">
-    <div class="np-search">
-      <input id="site-search" type="search" placeholder="🔍 חיפוש טיקר, חברה או נושא" autocomplete="off" dir="auto" aria-label="חיפוש באתר" />
-      <div id="search-results" class="sr-panel" hidden></div>
-    </div>
-    <span class="np-clock"><span id="clock-badge" class="clock-badge closed">…</span> · <span id="clock-time" class="num" dir="ltr">--:--:--</span> <span id="clock-label"></span></span>
-    <span class="np-hd2-spacer" id="np-daymeta"></span>
-  </div>
   </div>
 
   <!-- פס מבזק שוק: מוצג בכל הטאבים כשיש תנועה חדה טרייה (data/flash.json) -->
   <div id="flash-wrap" hidden><div class="wrap" id="flash-bar"></div></div>
 
+  <!-- רצועת הציטוטים: בכל הטאבים (np117). מפת החום — בבית בלבד. -->
   <div id="ticker-wrap">
-    <div class="wrap"><div id="ticker" class="np-blocks" aria-label="נתוני שוק בזמן אמת"></div></div>
-    <div class="wrap"><div id="np-heat" aria-label="מפת חום סקטוריאלית"></div></div>
+    <div class="wrap"><div id="ticker" class="np-blocks bd-quotes" aria-label="נתוני שוק בזמן אמת"></div></div>
+    <div class="wrap" id="np-heat-wrap"><div id="np-heat" aria-label="מפת חום סקטוריאלית"></div></div>
   </div>
 
   <main id="main" class="wrap">
-    <!-- 28.9.2026: שלושה טאבים מאוחדים (הצעות לטרייד / תדריך / דיווחים) — לחצני-המשנה נבנים ב-app.js (GROUPS) -->
+    <!-- 28.9.2026: טאבים מאוחדים — לחצני-המשנה נבנים ב-app.js (GROUPS) -->
     <div id="subtabs" class="subtabs" role="tablist" aria-label="ניווט משנה" hidden></div>
-    <!-- Home — "מהדורת עיתון". הקונטיינרים סטטיים כדי שכשל במקור אחד לא יפיל את השאר -->
+
+    <!-- הבית (np117, "לוח המסחר"): רשת 12 עמודות של פאנלים. הקונטיינרים סטטיים כדי שכשל
+         במקור אחד לא יפיל את השאר. סדר: מצב השוק + המד → היומן → הנבחרות → תדרוך | בזק →
+         סקטורים | העולם | הימורים. ביום אירוע היומן עולה לראש (class "event" על #home-cal, CSS order). -->
     <section class="panel is-active" id="panel-home" role="tabpanel">
-      <section id="home-lead" class="np-lead">
-        <article id="lead-main"><div class="panel-loading">טוען נתוני שוק…</div></article>
-        <aside id="lead-rail" class="np-rail"></aside>
+      <section id="home-lead" class="pan bd-lead" aria-labelledby="lead-h2">
+        <div class="ph"><h2 id="lead-h2">מצב השוק</h2><span class="mute" id="lead-sub"></span><a class="go" href="#indices" onclick="__goTab('indices');return false">הניתוח המלא</a></div>
+        <article id="lead-main" class="pb"><div class="panel-loading">טוען נתוני שוק…</div></article>
       </section>
-      <section id="home-season" class="ss" aria-label="עונת הדוחות" hidden></section>
-      <section id="home-tri" class="np-tri">
-        <div id="tri-brief"></div>
-        <div id="tri-earn"></div>
-        <div id="tri-x"></div>
-      </section>
+      <aside id="lead-rail" class="pan np-rail bd-meter" aria-label="The Edge Meter"></aside>
+      <section id="home-cal" class="pan bd-cal" aria-label="היומן"></section>
+      <section id="home-picks" class="pan bd-picks" aria-label="הנבחרות"></section>
+      <section id="tri-brief" class="pan bd-brief" aria-label="התדרוך"></section>
+      <section id="tri-x" class="pan bd-pulse" aria-label="בזק מהרשת"></section>
+      <section id="home-sect" class="pan bd-sect" aria-label="סקטורים"></section>
+      <section id="home-world" class="pan bd-world" aria-label="העולם"></section>
+      <section id="home-bets" class="pan bd-bets" aria-label="מה השווקים מהמרים"></section>
       <div id="tri-news" class="np-news" style="display:none"></div>
-      <div id="home-econ"></div>
-      <div id="home-bets"></div>
-      <div id="home-split" class="home-split"></div>
     </section>
 
-    <section class="panel" id="panel-momentum" role="tabpanel"></section>
+    <!-- השוק: מדדים | סקטורים -->
     <section class="panel" id="panel-indices" role="tabpanel"></section>
-    <section class="panel" id="panel-world" role="tabpanel"></section>
     <section class="panel" id="panel-sectors" role="tabpanel"></section>
-    <section class="panel" id="panel-weekcal" role="tabpanel"></section>
-    <section class="panel" id="panel-candidates" role="tabpanel"></section>
-    <section class="panel" id="panel-trades" role="tabpanel"></section>
-    <section class="panel" id="panel-insider" role="tabpanel"></section>
-    <section class="panel" id="panel-picks" role="tabpanel"></section>
-    <section class="panel" id="panel-morning" role="tabpanel"></section>
-    <section class="panel" id="panel-briefing" role="tabpanel"></section>
+    <!-- היומן: לוח הדיווחים (ציר העונה + המאקרו עברו לכאן מהבית ב-np117) | לקראת הדוח | ניתוח דוחות -->
+    <section class="panel" id="panel-weekcal" role="tabpanel">
+      <section id="home-season" class="ss" aria-label="עונת הדוחות" hidden></section>
+      <div id="weekcal-body"></div>
+      <div id="home-econ"></div>
+    </section>
     <section class="panel" id="panel-prep" role="tabpanel"></section>
     <section class="panel" id="panel-reports" role="tabpanel"></section>
+    <!-- מניות: הנבחרות | מועמדים | מומנטום | הצעות לטרייד | Insider | הבולטות (הבולטות עברו מהבית ב-np117) -->
+    <section class="panel" id="panel-picks" role="tabpanel"></section>
+    <section class="panel" id="panel-candidates" role="tabpanel"></section>
+    <section class="panel" id="panel-momentum" role="tabpanel"></section>
+    <section class="panel" id="panel-trades" role="tabpanel"></section>
+    <section class="panel" id="panel-insider" role="tabpanel"></section>
+    <section class="panel" id="panel-movers" role="tabpanel"><div id="home-split" class="home-split"></div></section>
+    <!-- חדשות: תדרוך | Barchart -->
+    <section class="panel" id="panel-briefing" role="tabpanel"></section>
+    <section class="panel" id="panel-morning" role="tabpanel"></section>
+    <!-- העולם -->
+    <section class="panel" id="panel-world" role="tabpanel"></section>
   </main>
 
   <footer class="site-footer">
@@ -119,7 +135,7 @@
     </div>
   </footer>
 
-  <script src="assets/app.js?v=np116"></script>
+  <script src="assets/app.js?v=np117"></script>
   <!-- GoatCounter — סטטיסטיקת מבקרים (פרטי, ללא עוגיות); דשבורד: nidam.goatcounter.com -->
   <script data-goatcounter="https://nidam.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>

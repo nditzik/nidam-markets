@@ -16,9 +16,17 @@
 
 **רענון בדפדפן:** `loadDaily()` + `loadLiveContent()` כל 5 דק' עם שומרי-שינוי (`contentSig`), `visibilitychange` מרענן בחזרה-לטאב, ציטוטים חיים כל דקה מהסורק של TradingView (טיקר + מפת חום סקטוריאלית).
 
-**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np116.
+**Cache-bust:** כל שינוי ב-app.js/style.css מחייב הקפצת `v=npN` ב-index.html (שתי שורות) **וגם את `TA_VER` ב-app.js** (גרסת ta_ui.js/ta_engine.js הנטענים בעצלתיים). נכון לעכשיו: np117.
 
-## עיצוב "מהדורת עיתון" (2026-08-08)
+## עיצוב "לוח המסחר" (np117, 10.10.2026) — עיצוב מחדש שלב 6, חלק 1
+ספר הסגנון: `docs/redesign/styleguide/` (README + tokens + bundle.css + 12 רכיבים; קנבס https://claude.ai/artifact/HEuRzFXTKzwWsqyE5ZFaf4). המוקאפים: בית https://claude.ai/artifact/Pjr6N7S5BmwdBM2ePT5SPW · חמשת הטאבים https://claude.ai/artifact/DHhqrDD4kBiWuSfTsYTNAQ. תיק העבודה: `docs/redesign/README.md`.
+- **הסקין:** בלוק "BOARD SKIN" בסוף style.css דורס את סקין העיתון. הטוקנים של ספר הסגנון ממופים על שמות המשתנים הקיימים (`--bg --surface --border --text --text-soft --text-3 --accent --warn --up --down --track --state-fill`), לכן הטאבים הישנים נצבעים נכון בלי לגעת בהם. גופנים: IBM Plex Sans Hebrew + IBM Plex Mono (`.num`). כלל: ענבר (`--warn`) = מצב השוק/מאקרו בלבד; כחול (`--accent`) = אינטראקטיבי; ירוק/אדום = כיוון; כל גרפיקה LTR; 12px רצפה; מטרת מגע 44px.
+- **6 טאבים** (index.html): בית · השוק (indices|sectors) · היומן (weekcal|prep|reports) · מניות (picks|candidates|momentum|trades|insider|movers) · חדשות (briefing|morning) · העולם. `GROUPS` ב-app.js; הפאנלים/hash/GoatCounter נשארו בשמות הישנים (רציפות). `movers` = "הבולטות" (ירד מהבית לפאנל משלו).
+- **הבית** (`#panel-home` = רשת 12): `#home-lead` (מצב השוק, 8 — renderLead כמו קודם, רק הלבשה) + `#lead-rail` (המד, 4 — renderLeadRail עם פס 3 מצבים ופסי רכיבים) → `#home-cal` (`renderHomeCal`: 4 ימים, תג מאקרו/דוחות; **יום אירוע** = מאקרו היום או "לקראת הדוח" היום → class `event`, עולה לראש עם שתי עמודות) → `#home-picks` (`renderHomePicks`: 5 הנבחרות כטבלה + רצועת היומן) → `#tri-brief` | `#tri-x` → `#home-sect` | `#home-world` | `#home-bets` (`renderHomeAround`/`renderBets`). ירדו מהבית: ציר העונה + המאקרו (ל-`#panel-weekcal`, שם `renderWeekCal` מרנדר ל-`#weekcal-body`), הבולטות (`#panel-movers`), "מדווחות היום" (נכנס ליומן).
+- **רצועת הציטוטים** (`renderMarketTicker`): 8 תאים שווים בכל הטאבים (חוזים ראשונים לפני הפתיחה); מפת החום רק בבית. בטלפון 3 תאים, טאבים ברצועה נגללת, חיפוש כאייקון.
+- **עוד לא עבר לעיצוב החדש (שלב 6, חלק 2):** גוף הטאבים (ציר הזמן של המד, לוח הדיווחים, הנבחרות המלאה, התדרוך, העולם) רק קיבל את הסקין; המבנים מהמוקאפ של שלב 5 (סיכום השבוע/הצפי כפאנלים, "השבוע הקרוב", יומן ההכנות כטבלה, שעון עולמי כצ'יפים) טרם נבנו. 13 הרכיבים החדשים מהמוקאפ טרם נוספו לספר הסגנון.
+
+## עיצוב "מהדורת עיתון" (2026-08-08) — הסקין הקודם, עדיין מתחת
 
 הבית כעיתון: כותרת (לוגו+ניווט / חיפוש+שעון+חג-קרוב / שתי שורות טיקר + מפת חום סקטוריאלית) → ידיעה מובילה (תאריך היום → קיקר "יום המסחר" → H1 סריף) + רייל The Edge Meter (ציונים, "הכסף הגדול", שיאים/שפלים) → שלוש עמודות (תדרוך | מדווחות | בזק מהרשת) → מאקרו צפי-מול-בפועל → 🎲 מה השווקים מהמרים → בולטות ("מניות במוקד" ירד מהבית ב-2.10.2026, np101 — איציק: הנבחרות עונה על זה). קווי-שיער במקום צללים; NEWSPAPER SKIN בסוף style.css דורס בקסקדה; דארק דרך טוקנים.
 
