@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "10/10/2026 06:46",
+  "updatedAt": "10/10/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "JPMorgan Chase & Co.",
    "date": "2026-10-13",
    "when": "before",
-   "daysTo": 4,
+   "daysTo": 3,
    "report": {
     "file": "data/reports/JPM__2026-07-14.html",
     "date": "2026-07-14",
@@ -509,11 +509,6 @@
    "when": null
   },
   {
-   "sym": "MSFT",
-   "date": "2026-10-28",
-   "when": "after"
-  },
-  {
    "sym": "BSX",
    "date": "2026-10-28",
    "when": "before"
@@ -524,12 +519,12 @@
    "when": null
   },
   {
-   "sym": "AMZN",
-   "date": "2026-10-29",
-   "when": null
+   "sym": "MSFT",
+   "date": "2026-10-28",
+   "when": "after"
   },
   {
-   "sym": "SNDK",
+   "sym": "CUBE",
    "date": "2026-10-29",
    "when": "after"
   },
@@ -539,7 +534,12 @@
    "when": "before"
   },
   {
-   "sym": "CUBE",
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "SNDK",
    "date": "2026-10-29",
    "when": "after"
   },
