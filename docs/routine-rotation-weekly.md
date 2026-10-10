@@ -1,6 +1,6 @@
 # רוטינה: nidam-rotation-weekly — דוח הרוטציה הסקטוריאלית מקובצי הדרייב
 
-**סטטוס 10.10.2026:** נוצרה מהסשן (`create_trigger`, לכן ניתנת לעריכה מכאן — לא כמו 7 הרוטינות הידניות). cron `CRON_TZ=Asia/Jerusalem 0 7-12 * * 6` (שעתי, שבת 07:00–12:00 שעון ישראל — בלי תלות בשעון קיץ/חורף). מחבר: Google Drive. גוף ההוראות ב-`scripts/prompts/rotation_weekly.md`; המספרים ב-`scripts/build_rotation.py`; המתודולוגיה ב-`docs/rotation/METHOD.md`.
+**סטטוס 10.10.2026:** ⏳ **איציק ליצור את הרוטינה ב-claude.ai/code/routines** (ניסיון ליצור אותה מהסשן נכשל: הפלטפורמה לא מעבירה מחברים לרוטינה שנוצרת מכאן — "connectors parameter is not available for this organization"; רוטינה בלי המחבר לא יכולה לקרוא את הדרייב). הגדרות: שם `nidam-rotation-weekly` · הפרומפט שלמטה (להעתיק מ-Raw) · cron `CRON_TZ=Asia/Jerusalem 0 7-12 * * 6` או בשעון UTC `0 4-9 * * 6` (קיץ; בחורף `0 5-10 * * 6`) · סביבה `env_01HuUSRgi26Njgf7bJ391qw9` · מודל `claude-sonnet-5` · **מחבר Google Drive מסומן**. אחרי היצירה — לרשום כאן את ה-trig id. גוף ההוראות ב-`scripts/prompts/rotation_weekly.md`; המספרים ב-`scripts/build_rotation.py`; המתודולוגיה ב-`docs/rotation/METHOD.md`.
 
 **הדחיפה — בלי מפתח בפרומפט:** הפקודה קוראת את משתנה הסביבה `NIDAM_PUSH_PAT` (Fine-grained PAT, הרשאת Contents לריפו הזה בלבד). ⏳ **איציק להוסיף את המשתנה בהגדרות הסביבה** (תפריט סביבת הענן בכותרת הסשן ← Edit ← משתני סביבה; שם: `NIDAM_PUSH_PAT`, ערך: מפתח חדש מ-GitHub). עד אז הרוטינה כותבת, מבצעת commit ומדווחת שהדחיפה ממתינה — בלי לדחוף.
 

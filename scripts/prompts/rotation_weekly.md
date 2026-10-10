@@ -8,6 +8,7 @@
 ## 1. השער — האם לרוץ עכשיו
 הרוטינה רצה כל שעה בשבת 07:00–12:00 שעון ישראל. כל התנאים עצירים; כשעוצרים — לא כותבים כלום ולא דוחפים (חוץ משורת HB).
 
+0. אם אין לך כלי של מחבר Google Drive (`mcp__Google_Drive__search_files` / `download_file_content`) — הרוטינה נוצרה בלי המחבר. רשום `echo "HB $(date -u +%H:%M) rotation: no drive connector" >> data/_routine_heartbeat.log`, commit ל-log בלבד, דחוף, וצא.
 1. `D` = התאריך של היום (שבת, `date +%F`). אם היום אינו שבת — צא.
 2. אם `data/sectors/sectors-D.html` כבר קיים **וגם** `data/rotation/index.json` מכיל רשומה עם `date == D` — הדוח של השבוע נכתב. צא.
 3. בדרייב (מחבר Google Drive): בתיקיית `Rotation` (id `17KWUB0aF2Ahwk8QNpIA3Rck-d8JqOJoV`) חפש תת-תיקייה ששמה `D`:
