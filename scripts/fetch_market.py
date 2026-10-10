@@ -30,6 +30,7 @@ SYMBOLS = [
     ("vix", "VIX", "^VIX", 2),
     ("tnx", "אג\"ח 10Y", "^TNX", 3),
     ("dxy", "DXY", "DX-Y.NYB", 2),
+    ("brent", "ברנט", "BZ=F", 2),     # 10.10.2026: לכותרת סוף השבוע בבית (לא ברצועה — order ב-renderMarketTicker)
 ]
 
 

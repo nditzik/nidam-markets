@@ -2238,3 +2238,10 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .pan .wk-watch b { display: block; font-size: 12px; font-weight: 600; color: var(--text-3); margin-bottom: 4px; }
 .pan .wk-watch ol { margin: 0; padding-inline-start: 18px; line-height: 1.55; color: var(--text-soft); }
 .pan .wk-watch li + li { margin-top: 3px; }
+
+/* ===== כותרת סוף השבוע בבית, גרסה קצרה (np129, 10.10.2026, איציק) ===== */
+.np-wk-mkt { margin: 0 0 12px; font-size: 14px; color: var(--text-soft); display: flex; flex-wrap: wrap; gap: 4px 8px; }
+.np-wk-mkt b { font-weight: 500; color: var(--text-3); }
+.np-wk-mkt .num { font-weight: 600; color: var(--text); } .np-wk-mkt .num.up { color: var(--up); } .np-wk-mkt .num.down { color: var(--down); }
+.np-wk-next { margin: 0 0 12px; font-size: 14px; line-height: 1.55; color: var(--text-soft); }
+.np-wk-next b { color: var(--text); font-weight: 600; margin-inline-end: 6px; }

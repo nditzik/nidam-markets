@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np128";
+  var TA_VER = "np129";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1810,12 +1810,27 @@
       (s.vixStart != null && s.vixEnd != null) ? { l: "VIX · מדד הפחד", v: s.vixStart.toFixed(2) + " → " + s.vixEnd.toFixed(2), s: s.vixEnd < s.vixStart ? "ירד במהלך השבוע" : s.vixEnd > s.vixStart ? "עלה במהלך השבוע" : "ללא שינוי" } : null,
       (sec && sec.marketBreadth != null) ? { l: "מניות במגמת עלייה", v: sec.marketBreadth + "%", cls: sec.marketBreadth < 40 ? "down" : sec.marketBreadth > 60 ? "up" : "", s: "מעל ממוצע 50 יום" } : null
     ]);
-    return '<span class="np-today">' + todayLine() + "</span>" +
+    var head = '<span class="np-today">' + todayLine() + "</span>" +
       // 26.9.2026 (איציק): שעת הכתיבה של הסיכום — כדי שיהיה ברור מתי הכותרת התחלפה משישי לשבועי
       '<span class="np-k np-evt-mid">🗓 סיכום השבוע · <b dir="ltr">' + esc(w.label || "") + "</b>" +
         ((nar.writtenAt && /\d{1,2}:\d{2}/.test(nar.writtenAt)) ? ' · <span class="np-upd">נכתב <b dir="ltr">' + esc(/(\d{1,2}:\d{2})/.exec(nar.writtenAt)[1]) + "</b></span>" : "") +
         (nar.pending ? ' · <span class="np-upd">הסיכום המילולי ייכתב בשעה הקרובה</span>' : "") + "</span>" +
-      '<h2 class="np-h1' + (longH1 ? " np-h1-long" : "") + '">' + esc(first) + "</h2>" +
+      '<h2 class="np-h1' + (longH1 ? " np-h1-long" : "") + '">' + esc(first) + "</h2>";
+    // np129 (10.10.2026, איציק: "יותר מידע ופחות נתונים טכניים… קצר תמציתי"): כשהסיכום נושא drivers —
+    // שורת שוק אחת (S&P שבועי · ברנט · אג"ח 10 שנים, חי מ-TICKD), פסקת "מה הניע את השוק", ושורת "השבוע הבא".
+    // המד/הרוחב/אריחי הסקטורים יורדים מהבית — הם בטאב השוק. בלי drivers (גרסה 1–2) — הפריסה הקודמת.
+    if (nar.drivers) {
+      var tk = {}; ((TICKD && TICKD.items) || []).forEach(function (it) { tk[it.key] = it; });
+      var line = ['<b>S&amp;P 500</b> <span class="num ' + cls(s.spxPct) + '" dir="ltr">' + pct(s.spxPct) + "</span>"];
+      if (tk.brent && tk.brent.price != null) line.push('<b>ברנט</b> <span class="num" dir="ltr">' + Math.round(tk.brent.price) + "$</span>");
+      if (tk.tnx && tk.tnx.price != null) line.push('<b>אג"ח 10 שנים</b> <span class="num" dir="ltr">' + (+tk.tnx.price).toFixed(2) + "%</span>");
+      return head + '<p class="np-wk-mkt">' + line.join(' <span class="mute">·</span> ') + "</p>" +
+        '<p class="np-dek">' + esc(nar.drivers) + "</p>" +
+        (nar.nextWeek ? '<p class="np-wk-next"><b>השבוע הבא</b> ' + esc(nar.nextWeek) + "</p>" : "") +
+        (ca ? '<p class="np-wk-last"><span class="np-k">יום המסחר האחרון · <b dir="ltr">' + esc(fmtTradeDate(ca.date)) + "</b></span> " + esc(ca.headline) + "</p>" : "") +
+        foot;
+    }
+    return head +
       stats +
       // טקסט קצר: משפט אחד מהסיכום + משפט אחד מדוח הסקטורים; המלא בטאב מדדים ובדוח
       '<p class="np-dek">' + (rest ? esc(nar.headline ? rest : firstSentence(rest)) + " " : "") + (sec && sec.lead && !nar.sectors ? esc(firstSentence(sec.lead)) : "") + "</p>" +
