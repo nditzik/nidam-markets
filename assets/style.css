@@ -1857,3 +1857,6 @@ ol.ep-rv .t { display: block; color: var(--text); font-size: .88rem; margin-top:
 ol.ep-rv .was { display: block; color: var(--text-3); font-size: .8rem; margin-top: 3px; }
 .ep-sec h4 small.down { color: var(--down); font-weight: 700; } .ep-sec h4 small.up { color: var(--up); font-weight: 700; }
 .ep-grid > .ep-wide { grid-column: 1 / -1; }
+
+/* לוגו לבן על רקע שקוף בלוח הדיווחים / בית / תגובות (logoBg:"dark", 10.10.2026) */
+.wk-tile img.dk, .rx-co img.dk, .earn-tile img.dk { background: #16181d; }

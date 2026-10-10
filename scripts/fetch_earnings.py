@@ -28,6 +28,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
 from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
+from fetch_reports import logo_is_light   # לוגו לבן על שקוף → ריבוע כהה (כמו NKE בניתוח דוחות)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_JSON = os.path.join(ROOT, "data", "earnings.json")
@@ -241,15 +242,24 @@ def _save_miss():
         pass
 
 
+def add_logo(item, sym):
+    """לוגו + logoBg:"dark" כשהוא לבן על רקע שקוף (10.10.2026: UNH, DIS, CAT, ABBV, NKE… — 39 מ-326
+    נעלמו על הריבוע הלבן בבית ובלוח הדיווחים)."""
+    logo = fetch_logo(sym)
+    if logo:
+        item["logo"] = logo
+        if logo_is_light(os.path.join(ROOT, logo)):
+            item["logoBg"] = "dark"
+    return item
+
+
 def row_to_item(r, with_logo=False):
     sym = (r.get("Symbol") or "").strip().upper()
     item = {"ticker": sym, "name": (r.get("Name") or "").strip()}
     rel = (r.get("Released") or "").strip().lower()          # מועד הדיווח (11.9.2026): before/after/""
     item["when"] = "after" if "after" in rel else "before" if "before" in rel else ""
     if with_logo and sym:
-        logo = fetch_logo(sym)
-        if logo:
-            item["logo"] = logo
+        add_logo(item, sym)
     return item
 
 
@@ -340,9 +350,7 @@ def reactions(by_date, today, capk):
             sym = (r.get("Symbol") or "").strip().upper()
             when = _when(r)
             it = {"ticker": sym, "name": (r.get("Name") or "").strip(), "when": when, "status": "na"}
-            logo = fetch_logo(sym)
-            if logo:
-                it["logo"] = logo
+            add_logo(it, sym)
             try:
                 got = yahoo_bars(sym)
                 if got:

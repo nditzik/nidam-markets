@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np117";
+  var TA_VER = "np118";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -2151,7 +2151,7 @@
       ? '<div class="earn-grid">' + rep.slice(0, 8).map(function (r) {
           return '<a class="earn-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) +
             '/" target="_blank" rel="noopener" title="' + esc(r.name) + '">' +
-            (r.logo ? '<img src="' + esc(r.logo) + '" alt="" loading="lazy" onerror="this.remove()">' : "") +
+            (r.logo ? earnLogoImg(r) : "") +
             '<span dir="ltr">' + esc(r.ticker) + "</span></a>";
         }).join("") + "</div>" +
         (EARN.todayCount > 8 ? '<div class="np-earn-more">ועוד ' + (EARN.todayCount - 8) + " חברות היום</div>" : "")
@@ -3125,7 +3125,7 @@
       var tiles = day.companies.map(function (c) {
         return '<a class="wk-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(c.ticker) +
           '/" target="_blank" rel="noopener" title="' + esc(c.name) + '">' +
-          '<img src="' + esc(earnLogo(c)) + '" alt="" loading="lazy" onerror="this.remove()">' +
+          earnLogoImg(c) +
           '<span dir="ltr">' + esc(c.ticker) + "</span></a>";
       }).join("");
       var more = day.total > day.companies.length
@@ -3146,6 +3146,10 @@
      (10.10.2026: ל-UNH לא הוצג לוגו כשהדפדפן משך רק מ-FMP) */
   function earnLogo(c) {
     return c.logo || "https://financialmodelingprep.com/image-stock/" + encodeURIComponent(c.ticker) + ".png";
+  }
+  /* לוגו לבן על רקע שקוף (logoBg:"dark" מ-fetch_earnings, 10.10.2026) → ריבוע כהה */
+  function earnLogoImg(c) {
+    return '<img' + (c.logoBg === "dark" ? ' class="dk"' : "") + ' src="' + esc(earnLogo(c)) + '" alt="" loading="lazy" onerror="this.remove()">';
   }
   /* "איך הגיבו המדווחות" (11.9.2026) — טבלה בטאב דיווחים. המספרים מ-fetch_earnings.py:
      סגירה-מול-סגירה מנרות יומיים (לא %Change של ה-CSV, שהוא מיום הייצוא). מדווחת
@@ -3173,7 +3177,7 @@
         rows.push('<tr' + (i === 0 ? ' class="rx-first"' : "") + ">" +
           "<td>" + (i === 0 ? '<b>' + esc(day.label) + "</b>" : "") + "</td>" +
           '<td><a class="rx-co" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) + '/" target="_blank" rel="noopener">' +
-            '<img src="' + esc(earnLogo(r)) + '" alt="" loading="lazy" onerror="this.remove()">' +
+            earnLogoImg(r) +
             '<span class="rx-tk" dir="ltr">' + esc(r.ticker) + '</span><span class="rx-nm">' + esc(r.name || "") + "</span></a></td>" +
           '<td class="rx-when">' + when + "</td>" +
           '<td class="num">' + val + "</td>" +
