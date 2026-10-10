@@ -2404,3 +2404,71 @@ a.prep:hover { border-color: var(--accent); }
 .ph .rep-back { font: inherit; font-weight: 600; color: var(--accent); background: none; border: 0; padding: 12px 0; cursor: pointer; }
 .ph .rep-back:hover { text-decoration: underline; }
 @media (max-width: 700px) { .ph { padding-top: 8px; padding-bottom: 2px; } .ph .go { padding: 10px 0; } }
+
+/* =========== חלון הניתוח הטכני — לוח המסחר (שלב 7, 10.10.2026) ===========
+   ta_ui.js: התוויות העבריות בשכבת HTML (.ta-ov) מעל ה-SVG; צבעי הנרות/האזורים מהטוקנים; ענבר לא בשימוש (שמור למצב השוק). */
+.tvm-box { background: var(--bg); border-color: var(--border); }
+.tvm-head { border-bottom: 1px solid var(--border); background: var(--surface); }
+.tvm-tabs { background: transparent; padding: 0; gap: 6px; }
+.tvm-tab { border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; min-height: 32px; font-size: 13px; color: var(--text-soft); }
+.tvm-tab.is-on { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.tvm-full { font-size: 13px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.tvm-full:hover { text-decoration: underline; }
+.tvm-ta { font-size: 14px; }
+/* אריחים: נקודת כיוון במקום פס צבעוני עליון */
+.ta-tile { border: 1px solid var(--border); border-top-width: 1px; border-radius: var(--radius-sm); background: var(--surface); }
+.ta-tile.ta-good, .ta-tile.ta-bad, .ta-tile.ta-mid { border-top-color: var(--border); }
+.ta-tile-h { font-size: 12px; display: flex; align-items: center; gap: 6px; letter-spacing: 0; }
+.ta-tile-v { font-size: 15px; font-weight: 600; }
+.ta-tile-s { font-size: 12px; }
+.ta-tdot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--text-3); }
+.ta-good .ta-tdot { background: var(--up); } .ta-bad .ta-tdot { background: var(--down); }
+.ta-sum { font-size: 15px; }
+.ta-chart, .ta-sec, .ta-det { border-color: var(--border); border-radius: var(--radius); background: var(--surface); }
+/* הגרף: נרות ואזורים בטוקנים */
+.ta-svg .ta-up { fill: var(--up); stroke: var(--up); } .ta-svg .ta-dn { fill: var(--down); stroke: var(--down); }
+.ta-svg .ta-zs { fill: var(--up); } .ta-svg .ta-zr { fill: var(--down); }
+.ta-svg .ta-zb { stroke: var(--text-soft); } .ta-svg .ta-pl { stroke: var(--up); }
+.ta-svg .ta-up-t { fill: var(--up); } .ta-svg .ta-dn-t { fill: var(--down); }
+.ta-svg .ta-grid { stroke: var(--border); }
+.ta-svg .ta-ax { font: 12px var(--mono); fill: var(--text-3); }
+.ta-svg .ta-sw { font: 600 11px var(--mono); }
+.ta-cw { position: relative; }
+.ta-ov { position: absolute; inset: 0; pointer-events: none; }
+.ta-lab { position: absolute; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+  font-size: 12px; line-height: 16px; padding: 0 6px; border-radius: 4px; color: var(--text-soft);
+  background: color-mix(in srgb, var(--surface) 86%, transparent); }
+.ta-lab b { font-weight: 600; color: var(--text); }
+.ta-lab i { width: 10px; height: 8px; border-radius: 2px; flex: none; }
+.ta-l-sup i { background: color-mix(in srgb, var(--up) 35%, transparent); }
+.ta-l-res i { background: color-mix(in srgb, var(--down) 35%, transparent); }
+.ta-l-bo i { border: 1.2px dashed var(--text-soft); background: none; }
+.ta-l-pl i { height: 0; border-top: 1.5px dotted var(--up); border-radius: 0; }
+.ta-legend { font-size: 12px; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; }
+.ta-legend span { flex: none; }
+/* ציונים וראיות: ירוק/אדום לכיוון, אמצע = דיו (לא ענבר) */
+.ta-sec h4 { font-size: 13px; font-weight: 600; color: var(--text-soft); }
+.ta-score { font-size: 13px; }
+.ta-score-v { font-family: var(--mono); }
+.ta-score-bar { background: var(--track, var(--surface-2)); }
+.ta-score-bar i, .ta-score-bar i.ta-mid { background: var(--text-3); }
+.ta-score-bar i.ta-good { background: var(--up); } .ta-score-bar i.ta-bad { background: var(--down); }
+.ta-ev { font-size: 13px; }
+.ta-ev > div > b { font-size: 13px; }
+b.ta-good, .ta-good > b, :root:not([data-theme="light"]) b.ta-good { color: var(--up); }
+b.ta-bad, :root:not([data-theme="light"]) b.ta-bad { color: var(--down); }
+b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
+.ta-fn, .ta-foot { font-size: 12px; }
+.ta-foot { border-top-color: var(--border); }
+/* החלקים המקופלים — כמו "איך זה עובד" */
+.ta-det { padding: 0; font-size: 13px; }
+.ta-det > summary { list-style: none; padding: 12px 14px; font-size: 13px; font-weight: 600; color: var(--text-soft); }
+.ta-det > summary::-webkit-details-marker { display: none; }
+.ta-det > summary::before { content: "▸ "; } .ta-det[open] > summary::before { content: "▾ "; }
+.ta-det > :not(summary) { margin-inline: 14px; }
+.ta-det[open] { padding-bottom: 8px; }
+.ta-tbl { font-size: 13px; } .ta-tbl th, .ta-tbl td { border-bottom-color: var(--border); }
+.ta-tbl td[dir="ltr"] { font-family: var(--mono); }
+.ta-banner { border-radius: var(--radius-sm); font-size: 13px; }
+.ta-levels { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 6px 8px 2px; }
+.ta-levels .ta-lab { position: static; transform: none; padding: 0; background: none; }

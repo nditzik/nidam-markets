@@ -63,7 +63,7 @@
     // רוחב הקנבס = רוחב המכל בפיקסלים (1:1), כדי שהטקסט יישאר קריא גם בטלפון; פחות נרות במסך צר
     var W = Math.max(320, Math.min(1400, Math.round(width || 1000))), narrow = W < 640;
     var n = Math.min(bars.length, narrow ? 60 : 120), start = bars.length - n, win = bars.slice(start);
-    var H = narrow ? 360 : 420, PH = narrow ? 250 : 300, VH = narrow ? 50 : 60, padR = 54, padL = 6, top = 14, gap = 10;
+    var H = narrow ? 320 : 420, PH = narrow ? 215 : 300, VH = narrow ? 45 : 60, padR = 54, padL = 6, top = 14, gap = 10;
     var lo = Infinity, hi = -Infinity;
     win.forEach(function (b) { if (b.low < lo) lo = b.low; if (b.high > hi) hi = b.high; });
     var series = r.series, mas = ["EMA20", "EMA40", "SMA50", "SMA100", "SMA150", "SMA200"];
@@ -74,27 +74,28 @@
     var xw = (W - padL - padR) / n;
     function X(i) { return padL + (i - start) * xw + xw / 2; }
     function Y(p) { return top + (hi - p) / span * PH; }
-    var out = [];
-    function lbl(y, cls, text) { return '<text x="' + (padL + 6) + '" y="' + y + '" class="ta-zl ' + cls + '" direction="rtl" text-anchor="end">' + esc(text) + "</text>"; }
+    var out = [], labs = [];
+    // שלב 7 (10.10.2026): תוויות עברית לא בתוך ה-SVG (WebKit הופך אותן) — שכבת HTML מעל הגרף, ראו ovHtml למטה
+    function lbl(y, cls, name, nums) { labs.push({ y: y, cls: cls, name: name, nums: nums }); }
     // אזורים
     (r.levels.chart_supports || []).forEach(function (z, k) {
-      out.push('<rect x="' + padL + '" y="' + Y(z.high) + '" width="' + (W - padL - padR) + '" height="' + Math.max(1, Y(z.low) - Y(z.high)) + '" fill="#26a69a" opacity="' + (k ? 0.10 : 0.18) + '"/>');
-      out.push(lbl(Y(z.high) + 11, "ta-c-sup", "תמיכה " + f2(z.low) + "–" + f2(z.high)));
+      out.push('<rect x="' + padL + '" y="' + Y(z.high) + '" width="' + (W - padL - padR) + '" height="' + Math.max(1, Y(z.low) - Y(z.high)) + '" class="ta-zs" opacity="' + (k ? 0.10 : 0.16) + '"/>');
+      lbl((Y(z.high) + Y(z.low)) / 2, "ta-l-sup", "תמיכה", f2(z.low) + "–" + f2(z.high));
     });
     if (r.levels.resistance) {
       var rz = r.levels.resistance;
-      out.push('<rect x="' + padL + '" y="' + Y(rz.high) + '" width="' + (W - padL - padR) + '" height="' + Math.max(1, Y(rz.low) - Y(rz.high)) + '" fill="#ef5350" opacity="0.14"/>');
-      out.push(lbl(Y(rz.low) - 4, "ta-c-res", "התנגדות " + f2(rz.low) + "–" + f2(rz.high)));
+      out.push('<rect x="' + padL + '" y="' + Y(rz.high) + '" width="' + (W - padL - padR) + '" height="' + Math.max(1, Y(rz.low) - Y(rz.high)) + '" class="ta-zr" opacity="0.13"/>');
+      lbl((Y(rz.high) + Y(rz.low)) / 2, "ta-l-res", "התנגדות", f2(rz.low) + "–" + f2(rz.high));
     }
     if (r.breakout && r.breakout.event && r.breakout.event.index >= start - 20) {
       var bz = r.breakout.zone, x0 = Math.max(padL, X(r.breakout.event.index) - xw);
-      out.push('<rect x="' + x0 + '" y="' + Y(bz.high) + '" width="' + (W - padR - x0) + '" height="' + Math.max(1, Y(bz.low) - Y(bz.high)) + '" fill="none" stroke="#7c3aed" stroke-dasharray="5 4" stroke-width="1.2"/>');
-      out.push(lbl(Y(bz.low) + 12, "ta-c-bo", "אזור הפריצה · " + r.breakout.label));
+      out.push('<rect x="' + x0 + '" y="' + Y(bz.high) + '" width="' + (W - padR - x0) + '" height="' + Math.max(1, Y(bz.low) - Y(bz.high)) + '" class="ta-zb" fill="none" stroke-dasharray="5 4" stroke-width="1.2"/>');
+      lbl((Y(bz.high) + Y(bz.low)) / 2, "ta-l-bo", /פריצ/.test(r.breakout.label) ? r.breakout.label : "אזור הפריצה · " + r.breakout.label, f2(bz.low) + "–" + f2(bz.high));
     }
     if (r.market_structure.protected_low && r.market_structure.protected_low.price > lo) {
       var pl = r.market_structure.protected_low;
-      out.push('<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + Y(pl.price) + '" y2="' + Y(pl.price) + '" stroke="#26a69a" stroke-dasharray="2 4" stroke-width="1"/>');
-      out.push('<text x="' + (W - padR - 6) + '" y="' + (Y(pl.price) - 3) + '" class="ta-zl ta-c-sup" direction="rtl" text-anchor="start">' + esc("שפל מוגן " + f2(pl.price)) + "</text>");
+      out.push('<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + Y(pl.price) + '" y2="' + Y(pl.price) + '" class="ta-pl" stroke-dasharray="2 4" stroke-width="1"/>');
+      lbl(Y(pl.price), "ta-l-pl", "שפל מוגן", f2(pl.price));
     }
     // ממוצעים
     mas.forEach(function (k) {
@@ -106,17 +107,17 @@
     var maxV = 0; win.forEach(function (b) { if (b.volume > maxV) maxV = b.volume; });
     var vTop = top + PH + gap;
     win.forEach(function (b, j) {
-      var i = start + j, x = X(i), up = b.close >= b.open, col = up ? "#26a69a" : "#ef5350", bw = Math.max(1.5, xw * 0.62);
-      out.push('<line x1="' + x + '" x2="' + x + '" y1="' + Y(b.high) + '" y2="' + Y(b.low) + '" stroke="' + col + '" stroke-width="1"/>');
+      var i = start + j, x = X(i), up = b.close >= b.open, col = up ? "ta-up" : "ta-dn", bw = Math.max(1.5, xw * 0.62);
+      out.push('<line x1="' + x + '" x2="' + x + '" y1="' + Y(b.high) + '" y2="' + Y(b.low) + '" class="' + col + '" stroke-width="1"/>');
       var y1 = Y(Math.max(b.open, b.close)), y2 = Y(Math.min(b.open, b.close));
-      out.push('<rect x="' + (x - bw / 2) + '" y="' + y1 + '" width="' + bw + '" height="' + Math.max(1, y2 - y1) + '" fill="' + col + '"' + (b.is_partial ? ' opacity=".55" stroke="' + col + '" stroke-dasharray="2 2"' : "") + '/>');
-      if (maxV) { var vh = b.volume / maxV * VH; out.push('<rect x="' + (x - bw / 2) + '" y="' + (vTop + VH - vh) + '" width="' + bw + '" height="' + vh + '" fill="' + col + '" opacity=".45"/>'); }
+      out.push('<rect x="' + (x - bw / 2) + '" y="' + y1 + '" width="' + bw + '" height="' + Math.max(1, y2 - y1) + '" class="' + col + '"' + (b.is_partial ? ' opacity=".55" stroke-dasharray="2 2"' : "") + '/>');
+      if (maxV) { var vh = b.volume / maxV * VH; out.push('<rect x="' + (x - bw / 2) + '" y="' + (vTop + VH - vh) + '" width="' + bw + '" height="' + vh + '" class="' + col + '" opacity=".35"/>'); }
     });
     // תוויות שיאים/שפלים ראשיים
     r.market_structure.swings.forEach(function (p) {
       if (p.index < start) return;
       var isH = p.kind === "HIGH";
-      out.push('<text x="' + X(p.index) + '" y="' + (isH ? Y(p.price) - 6 : Y(p.price) + 14) + '" class="ta-sw ' + (isH ? "ta-c-res" : "ta-c-sup") + '" text-anchor="middle">' + p.label + "</text>");
+      out.push('<text x="' + X(p.index) + '" y="' + (isH ? Y(p.price) - 6 : Y(p.price) + 14) + '" class="ta-sw ' + (isH ? "ta-dn-t" : "ta-up-t") + '" text-anchor="middle">' + p.label + "</text>");
     });
     // ציר מחיר
     for (var k = 0; k <= 5; k++) { var p = lo + span * k / 5, y = Y(p); out.push('<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y + '" y2="' + y + '" class="ta-grid"/><text x="' + (W - padR + 6) + '" y="' + (y + 4) + '" class="ta-ax">' + f2(p) + "</text>"); }
@@ -124,11 +125,24 @@
     var step = Math.max(1, Math.round(n / 6));
     for (var j = 0; j < n; j += step) { var d = win[j].date; out.push('<text x="' + X(start + j) + '" y="' + (vTop + VH + 14) + '" class="ta-ax" text-anchor="middle">' + d.slice(8, 10) + "." + d.slice(5, 7) + "</text>"); }
     var legend = mas.map(function (k) { return '<span><i style="background:' + MA_COLOR[k] + '"></i>' + k + "</span>"; }).join("");
-    return '<svg class="ta-svg" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" preserveAspectRatio="xMidYMid meet" direction="ltr">' + out.join("") + "</svg><div class=\"ta-legend\" dir=\"ltr\">" + legend + "</div>";
+    // שכבת התוויות: מרווח מינימלי של 17 יחידות בין תוויות (ממוינות לפי גובה), בתוך גבולות אזור המחיר
+    labs.sort(function (a, b) { return a.y - b.y; });
+    for (var q = 1; q < labs.length; q++) if (labs[q].y - labs[q - 1].y < 17) labs[q].y = labs[q - 1].y + 17;
+    for (var q2 = labs.length - 1; q2 >= 0; q2--) { var mx = top + PH - 8 - (labs.length - 1 - q2) * 17; if (labs[q2].y > mx) labs[q2].y = mx; }
+    var ov = labs.map(function (l) {
+      return '<span class="ta-lab ' + l.cls + '" style="top:' + (l.y / H * 100).toFixed(2) + '%;left:' + ((padL + 6) / W * 100).toFixed(2) + '%"><i></i>' + esc(l.name) +
+        (l.nums ? ' <b class="num" dir="ltr">' + esc(l.nums) + "</b>" : "") + "</span>";
+    }).join("");
+    // בטלפון התוויות מכסות את הנרות — שם הן יורדות לשורת "רמות" מתחת לגרף (מהגבוהה לנמוכה)
+    var lv = narrow && labs.length ? '<div class="ta-levels" dir="rtl">' + labs.map(function (l) {
+      return '<span class="ta-lab ' + l.cls + '"><i></i>' + esc(l.name) + (l.nums ? ' <b class="num" dir="ltr">' + esc(l.nums) + "</b>" : "") + "</span>";
+    }).join("") + "</div>" : "";
+    return '<div class="ta-cw"><svg class="ta-svg" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" preserveAspectRatio="xMidYMid meet" direction="ltr" role="img" aria-label="גרף נרות יומי עם ממוצעים, תמיכה והתנגדות">' + out.join("") +
+      "</svg>" + (narrow ? "" : '<div class="ta-ov" dir="rtl">' + ov + "</div>") + "</div>" + lv + '<div class="ta-legend" dir="ltr">' + legend + "</div>";
   }
 
   /* ───── רכיבי תצוגה ───── */
-  function tile(title, text, cls, sub) { return '<div class="ta-tile ' + cls + '"><div class="ta-tile-h">' + title + '</div><div class="ta-tile-v">' + esc(text) + "</div>" + (sub ? '<div class="ta-tile-s">' + esc(sub) + "</div>" : "") + "</div>"; }
+  function tile(title, text, cls, sub) { return '<div class="ta-tile ' + cls + '"><div class="ta-tile-h"><i class="ta-tdot" aria-hidden="true"></i>' + title + '</div><div class="ta-tile-v">' + esc(text) + "</div>" + (sub ? '<div class="ta-tile-s">' + esc(sub) + "</div>" : "") + "</div>"; }
   function tone(state) {
     if (/STRONG_UP|PRESERVED|PRICE_CONFIRMED|QUALITY_ENTRY|POSSIBLE_BUY|CONFIRMED|HEALTHY|RECOVERING|ORDERLY/.test(state)) return "ta-good";
     if (/DAMAGED|AT_RISK|DOWN|FAILED|STRUCTURE_BREAK|WEAKNESS|DEEP|DO_NOT_CHASE|NO_TRADE|UNRESOLVED/.test(state)) return "ta-bad";

@@ -647,7 +647,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np124";
+  var TA_VER = "np125";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -720,7 +720,7 @@
           '<div class="tvm-tabs" role="tablist"><button type="button" class="tvm-tab" data-view="ta">ניתוח טכני</button><button type="button" class="tvm-tab" data-view="tv">גרף TradingView</button></div>' +
           '<span class="tvm-note" hidden>ממוצעים <b style="color:#43a047">20</b> · <b style="color:#1e88e5">50</b> · <b style="color:#e53935">200</b> + ווליום</span>' +
           '<a class="tvm-full" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
-            '/" target="_blank" rel="noopener">פתיחה מלאה ↗</a>' +
+            '/" target="_blank" rel="noopener">פתיחה ב-TradingView</a>' +
           '<button class="tvm-x" type="button" aria-label="סגירה">✕</button>' +
         "</div>" +
         '<div class="tvm-body"><div id="tvm-ta" class="tvm-ta" hidden></div><div id="tvm-chart" hidden><div class="tvm-load">טוען גרף…</div></div></div>' +
