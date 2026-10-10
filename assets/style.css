@@ -2178,3 +2178,6 @@ main { padding: 16px 0 48px; }
 .bd-meter .np-cm { display: grid; grid-template-columns: 62px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
 .bd-meter .np-cm .bar { height: 6px; background: var(--track); border-radius: 1px; direction: ltr; display: block; }
 .bd-meter .np-cm .bar i { display: block; height: 6px; border-radius: 1px; background: var(--text-soft); }
+
+/* לוגו לבן על רקע שקוף בלוח הדיווחים / בית / תגובות (logoBg:"dark", 10.10.2026, np118) */
+.wk-tile img.dk, .rx-co img.dk, .earn-tile img.dk { background: #16181d; }

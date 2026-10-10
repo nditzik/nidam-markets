@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "09/10/2026 19:16",
+  "updatedAt": "10/10/2026 09:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "JPMorgan Chase & Co.",
    "date": "2026-10-13",
    "when": "before",
-   "daysTo": 4,
+   "daysTo": 3,
    "report": {
     "file": "data/reports/JPM__2026-07-14.html",
     "date": "2026-07-14",
@@ -24,7 +24,7 @@
     "rev": 51233785601
    },
    "consensus": {
-    "eps": 5.9285,
+    "eps": 5.94266,
     "epsLow": 5.59,
     "epsHigh": 6.23,
     "epsN": 12,
@@ -148,15 +148,11 @@
     }
    ],
    "price": {
-    "close": 331.42,
-    "date": "2026-10-08",
+    "close": 332.99,
+    "date": "2026-10-09",
     "high52": 365.18,
-    "ma50": 350.5,
+    "ma50": 350.14,
     "series": [
-     [
-      "2026-06-16",
-      331.14
-     ],
      [
       "2026-06-17",
       333.46
@@ -472,26 +468,30 @@
      [
       "2026-10-08",
       331.42
+     ],
+     [
+      "2026-10-09",
+      332.99
      ]
     ],
-    "off52": -9.2,
+    "off52": -8.8,
     "since": {
      "from": "2026-07-13",
-     "chg": -0.9,
-     "spy": 3.3
+     "chg": -0.5,
+     "spy": 3.9
     }
    },
-   "analystsAt": "2026-10-09T11:27+00:00",
+   "analystsAt": "2026-10-10T05:46+00:00",
    "yahooDate": "2026-10-13",
    "options": {
-    "asOf": "09/10 19:16",
-    "price": 332.95,
+    "asOf": "09/10 22:46",
+    "price": 333.12,
     "exp": "2026-10-16",
     "strike": 332.5,
     "pct": 3.59,
-    "earn": 3.48,
+    "earn": 3.54,
     "preExp": "2026-10-09",
-    "prePct": 0.45
+    "prePct": 0.29
    },
    "avgMove": 2.4,
    "hasNote": true
@@ -499,18 +499,13 @@
  ],
  "later": [
   {
-   "sym": "SOFI",
-   "date": "2026-10-27",
-   "when": "before"
-  },
-  {
    "sym": "GOOGL",
    "date": "2026-10-27",
    "when": null
   },
   {
-   "sym": "BSX",
-   "date": "2026-10-28",
+   "sym": "SOFI",
+   "date": "2026-10-27",
    "when": "before"
   },
   {
@@ -524,14 +519,19 @@
    "when": null
   },
   {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
+   "sym": "BSX",
+   "date": "2026-10-28",
+   "when": "before"
   },
   {
    "sym": "MRK",
    "date": "2026-10-29",
    "when": "before"
+  },
+  {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
   },
   {
    "sym": "AMZN",
