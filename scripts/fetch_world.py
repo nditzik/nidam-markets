@@ -136,6 +136,8 @@ def quote(sym):
     m = res["meta"]
     price = m.get("regularMarketPrice")
     prev = m.get("chartPreviousClose") or m.get("previousClose")
+    if price and prev and not (0.5 < price / prev < 2):
+        prev = None        # ציטוט שבור של Yahoo (שנגחאי 10.10.2026: prev≈0) — לא שינוי של אלפי אחוזים
     chg = (price / prev - 1) * 100 if price and prev else None
     closes = []
     try:
@@ -181,6 +183,17 @@ def daily(sym):
     return bars, m.get("chartPreviousClose")
 
 
+def sane_bars(bars):
+    """(10.10.2026) Yahoo החזיר לשנגחאי נר יומי עם סגירה כמעט אפס — השינוי היומי יצא
+    מיליארדי אחוזים. נר שסגירתו פחות מחצי או יותר מפי 2 מהחציון של הסדרה נזרק
+    (מדד לא זז ככה בשנה אחת; הסף רחב מספיק לכל תנועה אמיתית מתחילת השנה)."""
+    vals = sorted(c for _, c in bars if c and c > 0)
+    if not vals:
+        return []
+    med = vals[len(vals) // 2]
+    return [(d, c) for d, c in bars if c and 0.5 * med <= c <= 2 * med]
+
+
 def changes(price, chg_1d, state, qdate, bars, prev_year):
     """(chg, chg5d, chgYtd) — ראו הערת "0.00% ביום ללא מסחר" למטה."""
     i = None
@@ -220,6 +233,7 @@ def main():
             chg5 = ytd = None
             try:
                 bars, prev_year = daily(sym)
+                bars = sane_bars(bars)
                 qdate = datetime.fromtimestamp((ts or 0) + goff, timezone.utc).date().isoformat() if ts else ""
                 chg, chg5, ytd = changes(price, chg, state, qdate, bars, prev_year)
             except Exception as e:
