@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np129";
+  var TA_VER = "np130";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -4539,13 +4539,30 @@
     loadDaily();
     setInterval(loadDaily, 300000);
 
+    // np130 (10.10.2026, איציק: "האתר לא מתרענן לבד"): הנתונים כן מתרעננים כל 5 דק', אבל גרסה חדשה של
+    // הקוד (app.js/style.css) מגיעה רק בטעינה מחדש של הדף — טאב שנשאר פתוח ימים הציג את הגרסה הישנה.
+    // כל 5 דק' בודקים את ה-v=npN ב-index.html; כשהוא מתחלף — טעינה מחדש ברגע שהטאב חוזר להיות גלוי
+    // (לא באמצע קריאה), או מיד אם הטאב מוסתר.
+    var NEW_VER = false;
+    function checkVersion() {
+      fetch("index.html", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (html) {
+        var m = /app\.js\?v=(np\d+)/.exec(html || "");
+        if (m && m[1] !== TA_VER) {
+          NEW_VER = true;
+          if (document.visibilityState !== "visible") location.reload();
+        }
+      }).catch(function () {});
+    }
+    setInterval(checkVersion, 300000);
+
     // סלולר/טאב ברקע: דפדפנים מקפיאים טיימרים — כשחוזרים לדף, רענון מיידי
     var lastWake = Date.now();
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState !== "visible") return;
+      if (NEW_VER) { location.reload(); return; }
       if (Date.now() - lastWake < 120000) return;
       lastWake = Date.now();
-      loadTicker(); loadLiveContent(); loadDaily();
+      loadTicker(); loadLiveContent(); loadDaily(); checkVersion();
     });
 
     // החלפת קבוצות בבולטות (delegation — שורד רינדור מחדש)
