@@ -1,0 +1,49 @@
+Rotation data pull — 2026-10-10 (Saturday)
+Last trading day expected: 2026-10-09
+Source: Barchart.com (Daily, "2 Years" setting)
+Folder: /workspace/rotation-2026-10-10-data
+
+=== Files ===
+
+hist_CLZ26.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-17 | OK
+hist_DXY.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-10-09 | OK
+hist_GCZ26.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-17 | OK
+hist_SPX.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-17 | OK
+hist_SRCD.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRCS.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SREN.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRFI.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRHC.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRIN.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRIT.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRMA.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRRE.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRTS.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_SRUT.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-16 | OK
+hist_TNX.csv | data rows: 519 | last data date: 2026-10-09 | earliest: 2024-09-20 | OK
+
+breadth.csv | data rows: 12 | last data date: n/a | source: page text (Percentage Of Large Cap Stocks Above Their Moving Averages)
+industry-group-rankings.csv | data rows: 173 | last data date: n/a | Barchart Download from sectors/rankings
+
+B1_breadth.png | data rows: n/a | last data date: n/a | dims: 1024x390 | may not be full resolution
+D1_heatmap.png | data rows: n/a | last data date: n/a | dims: 766x1024 | small and hard to read; 1-Month, Only show Industries with 10 or more Stocks
+
+manifest.txt | this file
+
+=== Last-date check (hist_*) ===
+All 16 hist files have newest/last data row date = 2026-10-09. None flagged.
+
+=== Notes ===
+- Price-history ranges are Barchart's "2 Years" setting (~519 data rows after excluding header and Barchart footer).
+- Earliest dates across hist files range from about 2024-09-16 to 2024-10-09 (DXY starts latest at 2024-10-09; TNX at 2024-09-20; CLZ26/GCZ26/SPX at 2024-09-17; sector indexes mostly 2024-09-16).
+- D1_heatmap.png is small (766x1024) and hard to read.
+- B1_breadth.png may not be full resolution (1024x390).
+- breadth.csv was read from the page text (not OCR from the screenshot).
+- Nothing missing from the expected set of 16 hist + breadth.csv + B1_breadth.png + industry-group-rankings.csv + D1_heatmap.png + manifest.txt.
+
+=== Drive notes ===
+industry-group-rankings.csv, B1_breadth.png and D1_heatmap.png were uploaded as new files next to the same-named files from the morning screenshot run, which were not deleted. (Drive connector has no binary version-update path for these; update_file_content is text-only.)
+
+--- Update 2026-10-10 16:30 ---
+heatmap.csv | 173 rows | as of 2026-10-09 (1-Month, Industries with 10+ stocks) | 116 negative | from page text. Includes Barchart index/ETF/sector groupings rows (e.g. "Indices S&P 500", "ETFS - Bonds").
+Drive note: this updated manifest.txt was uploaded as a new file beside the previous manifest.txt (no in-place versioning available); this one is the latest.
