@@ -526,7 +526,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np116";
+  var TA_VER = "np117";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3125,8 +3125,7 @@
       var tiles = day.companies.map(function (c) {
         return '<a class="wk-tile" href="https://www.tradingview.com/symbols/' + encodeURIComponent(c.ticker) +
           '/" target="_blank" rel="noopener" title="' + esc(c.name) + '">' +
-          '<img src="https://financialmodelingprep.com/image-stock/' + encodeURIComponent(c.ticker) +
-            '.png" alt="" loading="lazy" onerror="this.remove()">' +
+          '<img src="' + esc(earnLogo(c)) + '" alt="" loading="lazy" onerror="this.remove()">' +
           '<span dir="ltr">' + esc(c.ticker) + "</span></a>";
       }).join("");
       var more = day.total > day.companies.length
@@ -3142,6 +3141,11 @@
       '<p class="stamp" style="margin-top:-6px">שבוע המסחר <span dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) +
       "</span> · מובילות לפי שווי שוק · לחיצה פותחת ב-TradingView · מתעדכן בכל שבת</p>" +
       '<div class="wk-grid">' + cols + "</div>" + reactionsTable(d.reactions);
+  }
+  /* לוגו בלוח הדיווחים: העותק שה-Action שמר (FMP ומקורות גיבוי, data/earnings/logos) ואם אין — FMP ישירות.
+     (10.10.2026: ל-UNH לא הוצג לוגו כשהדפדפן משך רק מ-FMP) */
+  function earnLogo(c) {
+    return c.logo || "https://financialmodelingprep.com/image-stock/" + encodeURIComponent(c.ticker) + ".png";
   }
   /* "איך הגיבו המדווחות" (11.9.2026) — טבלה בטאב דיווחים. המספרים מ-fetch_earnings.py:
      סגירה-מול-סגירה מנרות יומיים (לא %Change של ה-CSV, שהוא מיום הייצוא). מדווחת
@@ -3169,7 +3173,7 @@
         rows.push('<tr' + (i === 0 ? ' class="rx-first"' : "") + ">" +
           "<td>" + (i === 0 ? '<b>' + esc(day.label) + "</b>" : "") + "</td>" +
           '<td><a class="rx-co" href="https://www.tradingview.com/symbols/' + encodeURIComponent(r.ticker) + '/" target="_blank" rel="noopener">' +
-            '<img src="https://financialmodelingprep.com/image-stock/' + encodeURIComponent(r.ticker) + '.png" alt="" loading="lazy" onerror="this.remove()">' +
+            '<img src="' + esc(earnLogo(r)) + '" alt="" loading="lazy" onerror="this.remove()">' +
             '<span class="rx-tk" dir="ltr">' + esc(r.ticker) + '</span><span class="rx-nm">' + esc(r.name || "") + "</span></a></td>" +
           '<td class="rx-when">' + when + "</td>" +
           '<td class="num">' + val + "</td>" +

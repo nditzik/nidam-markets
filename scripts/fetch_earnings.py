@@ -13,13 +13,17 @@ C:\challenge\reports (המשימה המתוזמנת דוחפת אותו לבד �
     Symbol,Name,Latest,"Earnings Date","Market Cap"
     AAPL,"Apple Inc",333.43,2026-07-30,4897204800000
 
-לוגואים נמשכים לפי טיקר (FMP) ל-data/earnings/logos/ — content-aware, כל טיקר פעם אחת.
+לוגואים נמשכים לפי טיקר (FMP, ואחריו מקורות גיבוי) ל-data/earnings/logos/ — כל טיקר פעם אחת;
+בלי לוגו בשום מקור → _miss.json וניסיון חוזר אחרי יום. מניות בכורה (JPM/PM) מסוננות (is_pref).
 עמידות: אם הקובץ חסר/פגום — משאיר earnings.json קיים.
 """
 import csv
 import json
 import os
+import struct
 import sys
+import time
+import zlib
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
@@ -29,6 +33,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_JSON = os.path.join(ROOT, "data", "earnings.json")
 LOGO_DIR = os.path.join(ROOT, "data", "earnings", "logos")
 FMP_LOGO = "https://financialmodelingprep.com/image-stock/{}.png"
+# מקורות לוגו לפי הסדר (10.10.2026: ל-UNH לא הוצג לוגו — FMP לבד, בלי גיבוי)
+LOGO_SOURCES = [
+    FMP_LOGO,
+    "https://images.financialmodelingprep.com/symbol/{}.png",
+    "https://assets.parqet.com/logos/symbol/{}?format=png",
+]
+LOGO_MISS = os.path.join(LOGO_DIR, "_miss.json")   # טיקר בלי לוגו → מתי נוסה; ניסיון חוזר אחרי יום
+LOGO_RETRY_S = 86400
 
 # מקור ראשי: nidam-reports (מסתנכרן לבד מ-C:\challenge\reports)
 REMOTE_CSV = "https://raw.githubusercontent.com/nditzik/nidam-reports/main/earnings.csv"
@@ -112,26 +124,121 @@ def find_csv():
     return None
 
 
-def fetch_logo(ticker):
-    """מוריד לוגו לפי טיקר פעם אחת ושומר מקומית. מחזיר נתיב יחסי או None."""
-    safe = ticker.replace("/", "-")
-    rel = "data/earnings/logos/" + safe + ".png"
-    path = os.path.join(LOGO_DIR, safe + ".png")
-    if os.path.exists(path):
-        return rel if os.path.getsize(path) > 300 else None
+def is_pref(sym):
+    """מניית בכורה / יחידות (JPM/PM, BAC/PB): הסורק של TradingView מחזיר אותן כסמלים נפרדים
+    עם אותו מועד דיווח כמו האם, והן גנבו את 12 המקומות של כל יום (10.10.2026, שבוע הבנקים)."""
+    return "/" in sym
+
+
+def png_visible(data):
+    """חלק הפיקסלים הנראים (אלפא ≥ 40) ב-PNG ‏8-ביט RGB/RGBA בלי interlace. אחר → None (לא נבדק)."""
     try:
-        req = urllib.request.Request(FMP_LOGO.format(urllib.parse.quote(ticker)),
-                                     headers={"User-Agent": "nidam-markets-bot"})
-        with urllib.request.urlopen(req, timeout=20) as r:
-            data = r.read()
-        if data and len(data) > 300 and data[:4] == b"\x89PNG":
+        i, idat, hdr = 8, b"", None
+        while i < len(data):
+            ln = struct.unpack(">I", data[i:i + 4])[0]
+            t, c = data[i + 4:i + 8], data[i + 8:i + 8 + ln]
+            if t == b"IHDR":
+                hdr = struct.unpack(">IIBBBBB", c)
+            elif t == b"IDAT":
+                idat += c
+            i += 12 + ln
+        w, h, depth, ctype, _, _, inter = hdr
+        if depth != 8 or inter or ctype not in (2, 6):
+            return None
+        if ctype == 2:
+            return 1.0
+        raw, stride, pos = zlib.decompress(idat), w * 4, 0
+        prev, vis = bytearray(stride), 0
+        for _ in range(h):
+            f = raw[pos]; pos += 1
+            line = bytearray(raw[pos:pos + stride]); pos += stride
+            for x in range(stride):
+                a = line[x - 4] if x >= 4 else 0
+                b = prev[x]
+                if f == 1: line[x] = (line[x] + a) & 255
+                elif f == 2: line[x] = (line[x] + b) & 255
+                elif f == 3: line[x] = (line[x] + (a + b) // 2) & 255
+                elif f == 4:
+                    cc = prev[x - 4] if x >= 4 else 0
+                    pp = a + b - cc
+                    pa, pb, pc = abs(pp - a), abs(pp - b), abs(pp - cc)
+                    line[x] = (line[x] + (a if pa <= pb and pa <= pc else b if pb <= pc else cc)) & 255
+            vis += sum(1 for x in range(3, stride, 4) if line[x] >= 40)
+            prev = line
+        return vis / float(w * h)
+    except Exception:
+        return None
+
+
+def _logo_ok(data):
+    if not data or len(data) < 300 or data[:4] != b"\x89PNG":
+        return False
+    v = png_visible(data)
+    return v is None or v >= 0.02          # תמונה שקופה כולה = "אין לוגו"
+
+
+def _load_miss():
+    try:
+        with open(LOGO_MISS, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+_MISS = None
+
+
+def fetch_logo(ticker, get=None):
+    """מוריד לוגו לפי טיקר פעם אחת ושומר מקומית: FMP ואחריו מקורות גיבוי. מחזיר נתיב יחסי או None.
+    טיקר שלא נמצא לו לוגו בשום מקור נרשם ב-_miss.json ונוסה שוב רק אחרי יום."""
+    global _MISS
+    if is_pref(ticker):
+        return None
+    rel = "data/earnings/logos/" + ticker + ".png"
+    path = os.path.join(LOGO_DIR, ticker + ".png")
+    if os.path.exists(path) and os.path.getsize(path) > 300:
+        return rel
+    if _MISS is None:
+        _MISS = _load_miss()
+    now = time.time()
+    if now - _MISS.get(ticker, 0) < LOGO_RETRY_S:
+        return None
+    get = get or _http_get
+    for src in LOGO_SOURCES:
+        url = src.format(urllib.parse.quote(ticker))
+        try:
+            data = get(url)
+        except Exception as e:
+            print(f"[logo skip] {ticker} {url.split('/')[2]}: {e}")
+            continue
+        if _logo_ok(data):
             os.makedirs(LOGO_DIR, exist_ok=True)
             with open(path, "wb") as f:
                 f.write(data)
+            _MISS.pop(ticker, None)
+            _save_miss()
+            print(f"[logo] {ticker} ← {url.split('/')[2]}")
             return rel
-    except Exception as e:
-        print(f"[logo skip] {ticker}: {e}")
+        print(f"[logo skip] {ticker} {url.split('/')[2]}: לא תמונה תקינה")
+    _MISS[ticker] = now
+    _save_miss()
     return None
+
+
+def _http_get(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (nidam-markets-bot)"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return r.read()
+
+
+def _save_miss():
+    try:
+        os.makedirs(LOGO_DIR, exist_ok=True)
+        cut = time.time() - 30 * 86400
+        with open(LOGO_MISS, "w", encoding="utf-8") as f:
+            json.dump({k: v for k, v in _MISS.items() if v > cut}, f, indent=0, sort_keys=True)
+    except Exception:
+        pass
 
 
 def row_to_item(r, with_logo=False):
@@ -233,6 +340,9 @@ def reactions(by_date, today, capk):
             sym = (r.get("Symbol") or "").strip().upper()
             when = _when(r)
             it = {"ticker": sym, "name": (r.get("Name") or "").strip(), "when": when, "status": "na"}
+            logo = fetch_logo(sym)
+            if logo:
+                it["logo"] = logo
             try:
                 got = yahoo_bars(sym)
                 if got:
@@ -287,7 +397,7 @@ def load_rows_tv():
     symbols = {row["d"][0] for row in data}
     for row in data:
         sym, desc, cap, last_ts, last_t, next_ts, next_t = row["d"]
-        if not sym or cap is None:
+        if not sym or cap is None or is_pref(sym):
             continue
         if "." in sym and sym.split(".")[0] in symbols:      # LEN.B כשיש LEN — סדרת מניות שנייה
             continue
@@ -351,6 +461,7 @@ def main():
         print("[warn] פורמט CSV לא צפוי — נדרשות עמודות Symbol/Name/Latest/Earnings Date")
         return 0 if os.path.exists(OUT_JSON) else 1
 
+    rows = [r for r in rows if not is_pref((r.get("Symbol") or "").strip())]
     today = israel_today()
     by_date = {}
     for r in rows:
@@ -406,8 +517,7 @@ def main():
             "dow": ["שני", "שלישי", "רביעי", "חמישי", "שישי"][i],
             "label": "%d.%d" % (wday.day, wday.month),
             "total": len(rs),
-            "companies": [{"ticker": (r.get("Symbol") or "").strip().upper(),
-                           "name": (r.get("Name") or "").strip()} for r in rs[:12]],
+            "companies": [row_to_item(r, with_logo=True) for r in rs[:12]],
         })
 
     # מפת חיפוש מלאה לתגי "מדווחת בקרוב": טיקר → תאריך דיווח (היום עד +7 ימים)
