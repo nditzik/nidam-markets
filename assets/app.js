@@ -1940,8 +1940,19 @@
     if (first.length > 95) {
       // 26.9.2026: משפט ראשון ארוך (הסיכום של 21–25.9 היה 150 תווים, 5 שורות) — חותכים בפסיק/מקף/נקודתיים
       // הראשונים שאחרי תו 40; אם אין, בנקודתיים/מקף אחרי תו 25 (הכלל הישן). השאר יורד לטקסט שמתחת.
-      var m40 = /[,—:;]/.exec(first.slice(40)), cut = m40 ? 40 + m40.index : -1;
-      if (cut < 0) { cut = first.search(/[:—]/); if (cut <= 25) cut = -1; }
+      // 10.10.2026: לא חותכים בתוך מספר ("7,818.93" — הכותרת נחתכה ל"…חדש (7") ולא בתוך סוגריים
+      var cutAt = function (str, from, chars) {
+        for (var i = 0, depth = 0; i < str.length; i++) {
+          var c = str.charAt(i);
+          if (c === "(") depth++;
+          else if (c === ")") depth = Math.max(0, depth - 1);
+          else if (i >= from && !depth && chars.indexOf(c) >= 0 &&
+                   !(c === "," && /\d/.test(str.charAt(i - 1)) && /\d/.test(str.charAt(i + 1)))) return i;
+        }
+        return -1;
+      };
+      var cut = cutAt(first, 40, ",—:;");
+      if (cut < 0) { cut = cutAt(first, 0, ":—"); if (cut <= 25) cut = -1; }
       if (cut > 0) first = first.slice(0, cut).trim();
     }
     var rest = leadClean.slice(first.length).replace(/^[\s:—.,;]+/, "");   // גם פסיק — אחרי החיתוך בפסיק (26.9)
