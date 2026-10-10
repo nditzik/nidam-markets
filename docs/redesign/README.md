@@ -113,3 +113,9 @@
   10. 12px מינימום בכל מקום; נקודות הרקורד = ריבוע מתאר (הפסד) / מלא ירוק (הצלחה).
 - **קבצים:** `mockups-4b/gen.py` (מייבא את `mockups-4a/data.py` — הנתונים האמיתיים; מייצר `project/*.dc.html` + `canvas.json` לקנבס ו-`prev/` לצילום), `shot.js`, שלושה צילומי ייחוס. הרצה: `python3 gen.py out && NODE_PATH=$(npm root -g) node shot.js Main.html …`.
 - **הבא:** אישור איציק למוקאפ → ספר סגנון (סוג Design System) → מוקאפ ל-6 הדפים → בנייה.
+
+## ספר הסגנון (10.10.2026, סוג Design System)
+- **הקנבס:** https://claude.ai/artifact/HEuRzFXTKzwWsqyE5ZFaf4 — README (עקרונות, צבע, טיפוגרפיה, ריווח, רכיבים, מיקרו-קופי, נגישות), tokens.json (16 צבעים × בהיר/כהה עם usage לכל אחד, 16 סגנונות טקסט ב-3 קבוצות, 7 ריווחים, 4 רדיוסים), 12 רכיבים עם preview חי + README (Panel, PanelLink, Tabs, Number, KPI, Meter, Table, StockRow, Tag, Calendar, Quotes, Sparkline) + Cover.
+- **מקור בריפו:** `docs/redesign/styleguide/` — אותם קבצים (README, tokens.json, components/bundle.css + תיקיית כל רכיב, `make_components.py` שמייצר את ה-previews/READMEs/Cover). **`components/bundle.css` הוא ה-CSS שייכנס ל-style.css בבנייה** — אותם קלאסים (`.pan .ph .pb .tabs .tag .pill .quotes .kpis .seg .cm .msp .tsym .sp .rng .rd .led .crow .cal .crl .ev .prep .li .db`), הצבעים דרך `var(--surface-page …)` לפי שמות הטוקנים.
+- **שמות הטוקנים (= משתני ה-CSS):** `surface-page / surface-panel / surface-panel-2 / line-hair / ink-1 / ink-2 / ink-muted / signal-up / signal-down / state-text / state-fill / state-bg / link-text / link-bg / graphic-track / brand-mark`. המוקאפ ב-`mockups-4b/gen.py` עדיין בשמות הקצרים (`--bg --pan --tx …`) — המיפוי אחד-לאחד.
+- **הבא:** אישור איציק לספר → שלב 5: מוקאפ לכל אחד מ-6 הדפים מתוך ספר הסגנון (בית כבר קיים) → שלב 6 בנייה.

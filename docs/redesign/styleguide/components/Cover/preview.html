@@ -1,0 +1,36 @@
+<!-- @dsCard height=300 -->
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<style>
+body{margin:0;background:var(--surface-page);font-family:var(--font-sans)}
+.cv{position:relative;width:960px;height:300px;overflow:hidden}
+.name{position:absolute;left:40px;bottom:52px;width:440px;font-size:72px;line-height:.95;font-weight:700;color:var(--ink-1);margin:0;letter-spacing:-.01em}
+.tag{position:absolute;left:40px;bottom:24px;width:440px;font-size:13px;color:var(--ink-muted);margin:0}
+.brand{fill:var(--state-fill)}.ink{fill:var(--ink-1)}.up{fill:var(--signal-up)}.dn{fill:var(--signal-down)}.tint{fill:var(--link-bg)}.pan{fill:var(--surface-panel)}
+.hair{stroke:var(--line-hair);stroke-width:1;fill:none}.plus{stroke:var(--link-text);stroke-width:1.5;opacity:.55}
+.r6{rx:6}.r3{rx:3}
+</style></head><body><div class="cv">
+<svg width="960" height="300" viewBox="0 0 960 300" aria-hidden="true">
+<!-- derivation:
+ blocks: state-fill 232x144 (identity amber) · ink-1 120x288 slab · signal-up 112x64 · signal-down 112x64 · link-bg 232x80 · surface-panel 232x64
+ arrangement: a flush modular grid from x=480, 8px gutters (space-2), like the 12-column board; the ink slab bleeds off the right edge
+ pattern: "precise, technical, mono, a grid" row → a plus grid at space-6 (24px) pitch in link-text over the tint block; chosen because the product IS a grid of panels and numbers
+ scales: sides = space-2 multiples; corners radius-md (6px) on blocks, radius-xs (3px) on the two signal blocks -->
+<rect class="brand r6" x="488" y="8" width="232" height="144"></rect>
+<rect class="tint r6" x="488" y="160" width="232" height="80"></rect>
+<g class="plus">
+<path d="M512 176v8M508 180h8 M536 176v8M532 180h8 M560 176v8M556 180h8 M584 176v8M580 180h8 M608 176v8M604 180h8 M632 176v8M628 180h8 M656 176v8M652 180h8 M680 176v8M676 180h8 M704 176v8M700 180h8"></path>
+<path d="M512 200v8M508 204h8 M536 200v8M532 204h8 M560 200v8M556 204h8 M584 200v8M580 204h8 M608 200v8M604 204h8 M632 200v8M628 204h8 M656 200v8M652 204h8 M680 200v8M676 204h8 M704 200v8M700 204h8"></path>
+<path d="M512 224v8M508 228h8 M536 224v8M532 228h8 M560 224v8M556 228h8 M584 224v8M580 228h8 M608 224v8M604 228h8 M632 224v8M628 228h8 M656 224v8M652 228h8 M680 224v8M676 228h8 M704 224v8M700 228h8"></path>
+</g>
+<rect class="pan r6" x="488" y="248" width="232" height="44"></rect>
+<line class="hair" x1="488" y1="270" x2="720" y2="270"></line>
+<rect class="up r3" x="728" y="8" width="112" height="64"></rect>
+<rect class="dn r3" x="728" y="80" width="112" height="64"></rect>
+<rect class="pan r6" x="728" y="152" width="112" height="140"></rect>
+<line class="hair" x1="728" y1="199" x2="840" y2="199"></line>
+<line class="hair" x1="728" y1="246" x2="840" y2="246"></line>
+<rect class="ink r6" x="848" y="8" width="120" height="284"></rect>
+</svg>
+<h1 class="name">The Daily Edge</h1>
+<p class="tag">לוח המסחר של איציק נידם — מצב השוק, היומן, הנבחרות</p>
+</div></body></html>
