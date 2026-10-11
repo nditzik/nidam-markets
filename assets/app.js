@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np130";
+  var TA_VER = "np131";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -4598,4 +4598,18 @@
 
 
   boot();
+})();
+
+/* הבהרה משפטית — הרצועה העליונה (np131): מוצגת עד שהמשתמש סוגר אותה, ואז מוסתרת 30 יום באותו מכשיר. */
+(function () {
+  var strip = document.getElementById("legal-strip"), x = document.getElementById("legal-strip-x");
+  if (!strip) return;
+  var KEY = "np-legal-ack", DAYS = 30, ts = 0;
+  try { ts = parseInt(localStorage.getItem(KEY) || "0", 10) || 0; } catch (e) { ts = 0; }
+  if (Date.now() - ts < DAYS * 864e5) return;
+  strip.hidden = false;
+  if (x) x.addEventListener("click", function () {
+    strip.hidden = true;
+    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+  });
 })();
