@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np130";
+  var TA_VER = "np132";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1651,10 +1651,12 @@
         (FCAST.record && FCAST.record.scored ? " המאזן עד כה: " + FCAST.record.hits + " מתוך " + FCAST.record.scored + " שבועות." : "") + "</p>";
     return '<section class="fc-track" id="fc-track"><div class="fc-head"><span class="np-k">🎯 מעקב הצפי השבועי</span>' +
       '<b class="num" dir="ltr">' + esc(w.label) + '</b><span class="fc-days" title="ימי מסחר שנסגרו">' + dots + "</span></div>" +
-      '<p class="fc-sum" style="margin-bottom:8px">' + esc(f.label || "") + (f.headline ? " — " + esc(f.headline) : "") + "</p>" + rows + rec + "</section>";
+      // np132: הכותרת כבר מכילה את התווית — מציגים רק אותה כשיש
+      '<p class="fc-sum" style="margin-bottom:8px">' + esc(f.headline || f.label || "") + "</p>" + rows + rec + "</section>";
   }
 
-  function forecastHtml(f) {
+  // brief (np132): בכותרת הבית — בלי כותרת-המשנה (ה-H1 כבר אומר אותה) ובלי summary (הפסקה היא ה-tldr)
+  function forecastHtml(f, brief) {
     if (!f || !f.label) return "";
     function li(arr) { return (arr || []).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join(""); }
     var dirCls = f.direction === "up" ? "up" : f.direction === "down" ? "down" : "warn";
@@ -1671,10 +1673,10 @@
         (FCAST.last ? " · שבוע שעבר: " + (FCAST.last.hit ? "✓ פגענו" : "✗ החטאנו") + ' (<span class="num" dir="ltr">' + (FCAST.last.actual > 0 ? "+" : "") + FCAST.last.actual + "%</span>)" : "") + "</p>";
     } else rec = '<p class="fc-rec">זה הצפי הראשון. בשבת נבדוק אותו מול מה שקרה ונציג כאן מאזן מצטבר.</p>';
     return '<section class="fc"><div class="fc-head"><span class="np-k">🎯 הצפי שלנו לשבוע</span>' +
-        '<b class="fc-lbl ' + dirCls + '">' + esc(f.label) + "</b></div>" +
+        (brief ? "" : '<b class="fc-lbl ' + dirCls + '">' + esc(f.label) + "</b>") + "</div>" +
       '<div class="fc-main"><div class="fc-prob"><b class="num ' + dirCls + '">' + esc(String(f.prob)) + "%</b><span>" + esc(f.claim || "") + "</span></div>" +
         (bar ? '<div class="fc-range"><span class="fc-cap">טווח סביר לשבוע (S&amp;P 500)</span>' + bar + "</div>" : "") + "</div>" +
-      (f.summary ? '<p class="fc-sum">' + esc(f.summary) + "</p>" : "") +
+      (f.summary && !brief ? '<p class="fc-sum">' + esc(f.summary) + "</p>" : "") +
       // 20.9.2026 (איציק): הנימוקים סגורים כברירת מחדל — מי שרוצה מרחיב
       '<details class="fc-more"><summary><span class="fc-open">הנימוקים המלאים: מה מושך למטה, מה מושך למעלה ומה יכריע</span><span class="fc-close">סגור את הנימוקים</span></summary>' +
       '<div class="fc-cols"><div><h4 class="down">מה מושך למטה</h4><ul>' + li(f.bear) + '</ul></div><div><h4 class="up">מה מושך למעלה</h4><ul>' + li(f.bull) + "</ul></div></div>" +
@@ -2010,10 +2012,14 @@
         // 20.9.2026: כותרות רגועות באותו שלד של שאר הכותרות — 3 נתונים חיים + משפט אחד;
         // עדכון מאקרו אדום (CPI/פד) נשאר עם הטקסט המלא, שם הפירוט הוא העיקר
         (euCalm ? marketStats(eu.kind === "preview" ? ["es", "tnx", "vix"] : ["es", "nq", "vix"]) : "") +
-        (eu.tldr ? '<p class="np-dek">' + esc(euCalm ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
+        // np132 (11.10.2026): "לקראת שבוע המסחר" מציג את ה-tldr כולו (הפרומפט מגביל לשני משפטים), השאר משפט ראשון
+        (eu.tldr ? '<p class="np-dek">' + esc(euCalm && eu.kind !== "preview" ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
         // הרוטינה של שני 07:45 דורסת את eventUpdate — הצפי הנעול נשמר ב-forecasts.json (current)
-        (eu.kind === "preview" ? forecastHtml(eu.forecast || (FCAST && FCAST.current)) : "") +
-        (eu.action ? '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>" : "") +
+        (eu.kind === "preview" ? forecastHtml(eu.forecast || (FCAST && FCAST.current), true) : "") +
+        // np132: action עם " · " = רשימת "למה לשים לב השבוע"; אחרת שורת "מה עושים" כמו קודם
+        (eu.action ? (eu.action.indexOf(" · ") > 0
+          ? '<p class="np-bottom np-watch-h">⚡ <b>למה לשים לב השבוע</b></p><ul class="np-watch">' + eu.action.split(" · ").map(function (x) { return "<li>" + esc(x.trim()) + "</li>"; }).join("") + "</ul>"
+          : '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>") : "") +
         (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
         ((eu.kind === "preview" && (eu.forecast || (FCAST && FCAST.current))) ? footPlain : foot);
       return;
@@ -4598,4 +4604,18 @@
 
 
   boot();
+})();
+
+/* הבהרה משפטית — הרצועה העליונה (np131): מוצגת עד שהמשתמש סוגר אותה, ואז מוסתרת 30 יום באותו מכשיר. */
+(function () {
+  var strip = document.getElementById("legal-strip"), x = document.getElementById("legal-strip-x");
+  if (!strip) return;
+  var KEY = "np-legal-ack", DAYS = 30, ts = 0;
+  try { ts = parseInt(localStorage.getItem(KEY) || "0", 10) || 0; } catch (e) { ts = 0; }
+  if (Date.now() - ts < DAYS * 864e5) return;
+  strip.hidden = false;
+  if (x) x.addEventListener("click", function () {
+    strip.hidden = true;
+    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+  });
 })();

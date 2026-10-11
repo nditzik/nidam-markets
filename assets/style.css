@@ -2253,3 +2253,23 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 @media (max-width: 700px) {
   .bd-search #site-search:not(:placeholder-shown) { width: 60vw; color: var(--text); background-image: none; }
 }
+
+/* ===== הבהרה משפטית (np131, 11.10.2026, איציק: "חייבת להיות אזהרה משפטית בכל דף") =====
+   רצועה קצרה מעל התוכן בכל הטאבים (נסגרת ל-30 יום במכשיר) + פסקת הבהרה מלאה בפוטר + legal.html. */
+.legal-strip { display: flex; align-items: flex-start; gap: 10px; margin: 10px auto 2px; padding: 8px 12px; border: 1px solid var(--warn); border-radius: var(--radius-sm); background: var(--warn-soft); color: var(--text); font-size: 13px; line-height: 1.5; }
+.legal-strip[hidden] { display: none; }
+.legal-strip span { flex: 1 1 auto; }
+.legal-strip a { color: var(--accent); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.legal-strip a:hover { text-decoration: underline; }
+.legal-strip button { flex: none; border: 0; background: transparent; color: var(--text-soft); font-size: 14px; line-height: 1; padding: 2px 4px; cursor: pointer; min-width: 28px; min-height: 28px; }
+.legal-strip button:hover { color: var(--text); }
+.site-footer .legal-foot { max-width: 90ch; font-size: 12.5px; line-height: 1.6; color: var(--text-soft); margin: 0 0 8px; }
+.site-footer .legal-foot b { color: var(--text); font-weight: 600; }
+.site-footer .legal-foot a { display: inline-block; margin-top: 2px; color: var(--accent); font-weight: 600; text-decoration: none; }
+.site-footer .legal-foot a:hover { text-decoration: underline; }
+@media (max-width: 700px) { .legal-strip { font-size: 12px; margin-top: 8px; } }
+
+/* np132 (11.10.2026): "למה לשים לב השבוע" — רשימה במקום פסקה בכותרת "לקראת שבוע המסחר" */
+.np-watch-h { margin-bottom: 4px; }
+.np-watch { margin: 0 0 14px; padding-right: 22px; font-size: 16px; line-height: 1.6; color: var(--text-soft); }
+.np-watch li { margin: 2px 0; }

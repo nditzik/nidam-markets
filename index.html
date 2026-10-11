@@ -26,7 +26,7 @@
        ומרנדר 🇮🇱 כאותיות "IL". Noto Color Emoji מספק אותם בכל מערכת;
        הפרמטר text= מצמצם את הגופן לתווי הדגלים שבשימוש בלבד (9.9.2026). -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%87%AE%F0%9F%87%B1%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%B0%F0%9F%87%B7%F0%9F%87%B9%F0%9F%87%BC%F0%9F%87%A8%F0%9F%87%B3%F0%9F%87%AD%F0%9F%87%B0%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%BA%F0%9F%87%B8%F0%9F%87%A8%F0%9F%87%A6&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=np130" />
+  <link rel="stylesheet" href="assets/style.css?v=np132" />
 </head>
 <body>
   <a class="skip-link" href="#main">דלג לתוכן</a>
@@ -76,6 +76,12 @@
   <div id="ticker-wrap">
     <div class="wrap"><div id="ticker" class="np-blocks bd-quotes" aria-label="נתוני שוק בזמן אמת"></div></div>
     <div class="wrap" id="np-heat-wrap"><div id="np-heat" aria-label="מפת חום סקטוריאלית"></div></div>
+  </div>
+
+  <!-- הבהרה משפטית קצרה (np131, 11.10.2026): בכל הטאבים, מעל התוכן; נסגרת ל-30 יום במכשיר (localStorage) -->
+  <div id="legal-strip" class="wrap legal-strip" role="note" hidden>
+    <span>⚠️ המידע באתר הוא שיקוף נתונים וניתוח אוטומטי לצורכי מידע בלבד — לא ייעוץ השקעות ולא המלצה. <a href="legal.html">ההבהרה המלאה</a></span>
+    <button type="button" id="legal-strip-x" aria-label="סגור את ההודעה">✕</button>
   </div>
 
   <main id="main" class="wrap">
@@ -130,12 +136,15 @@
     <div class="wrap">
       <div id="head-stamp" class="foot-stamp"></div>
       <div id="health" class="health" aria-label="מצב עדכון המקורות"></div>
-      <p class="disclaimer">התוכן באתר אינו מהווה ייעוץ השקעות ואינו תחליף לייעוץ המתחשב בנתוניו של כל אדם.</p>
+      <p class="disclaimer legal-foot">
+        <b>הבהרה:</b> המידע באתר הוא שיקוף של נתוני שוק ושל ניתוחים שנוצרים באופן אוטומטי, לצורכי מידע ולימוד בלבד. הוא אינו מהווה ייעוץ השקעות, שיווק השקעות או המלצה לפעולה כלשהי, ואינו תחליף לייעוץ אישי המתחשב בנתוניו ובצרכיו של כל אדם. מפעיל האתר אינו בעל רישיון ייעוץ השקעות ועשוי להחזיק בניירות ערך המוזכרים. השקעה בשוק ההון כרוכה בסיכון; כל החלטה על בסיס המידע באתר היא באחריות המשתמש בלבד.
+        <a href="legal.html">ההבהרה המלאה ותנאי השימוש</a>
+      </p>
       <p class="credit" dir="ltr">© <span id="year"></span> The Daily Edge by <span class="brand-name">Nidam</span></p>
     </div>
   </footer>
 
-  <script src="assets/app.js?v=np130"></script>
+  <script src="assets/app.js?v=np132"></script>
   <!-- GoatCounter — סטטיסטיקת מבקרים (פרטי, ללא עוגיות); דשבורד: nidam.goatcounter.com -->
   <script data-goatcounter="https://nidam.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
