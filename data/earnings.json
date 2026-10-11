@@ -1,7 +1,13 @@
 {
-  "today": "2026-10-11",
-  "todayCount": 0,
-  "todayBig": [],
+  "today": "2026-10-12",
+  "todayCount": 1,
+  "todayBig": [
+    {
+      "ticker": "PGR",
+      "name": "Progressive Corporation",
+      "capB": 126.3
+    }
+  ],
   "reactions": {
     "days": [
       {
@@ -68,18 +74,16 @@
       }
     ]
   },
-  "reporting": [],
+  "reporting": [
+    {
+      "ticker": "PGR",
+      "name": "Progressive Corporation",
+      "when": "",
+      "logo": "data/earnings/logos/PGR.png"
+    }
+  ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-10-12",
-      "label": "12/10",
-      "dow": "ב׳",
-      "count": 1,
-      "tickers": [
-        "PGR"
-      ]
-    },
     {
       "date": "2026-10-13",
       "label": "13/10",
@@ -403,10 +407,15 @@
     "CFG": "2026-10-16",
     "RF": "2026-10-16",
     "HDB": "2026-10-17",
-    "IBN": "2026-10-17"
+    "IBN": "2026-10-17",
+    "FITB": "2026-10-19",
+    "STLD": "2026-10-19",
+    "WRB": "2026-10-19",
+    "CCK": "2026-10-19",
+    "ELS": "2026-10-19"
   },
   "_meta": {
-    "updatedAt": "11/10/2026 23:46",
+    "updatedAt": "12/10/2026 00:01",
     "source": "tradingview"
   }
 }
