@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np132";
+  var TA_VER = "np133";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -2012,8 +2012,9 @@
         // 20.9.2026: כותרות רגועות באותו שלד של שאר הכותרות — 3 נתונים חיים + משפט אחד;
         // עדכון מאקרו אדום (CPI/פד) נשאר עם הטקסט המלא, שם הפירוט הוא העיקר
         (euCalm ? marketStats(eu.kind === "preview" ? ["es", "tnx", "vix"] : ["es", "nq", "vix"]) : "") +
-        // np132 (11.10.2026): "לקראת שבוע המסחר" מציג את ה-tldr כולו (הפרומפט מגביל לשני משפטים), השאר משפט ראשון
-        (eu.tldr ? '<p class="np-dek">' + esc(euCalm && eu.kind !== "preview" ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
+        // np132–np133 (11.10.2026): כותרת עם צפי שבועי (ראשון 14:45, week_forecast.md מגביל לשני משפטים) מציגה את
+        // ה-tldr כולו; שאר הכותרות הרגועות (שני 07:45, preopen, midday — פרומפטים בלי מגבלה) — משפט ראשון בלבד
+        (eu.tldr ? '<p class="np-dek">' + esc(euCalm && !(eu.kind === "preview" && eu.forecast) ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
         // הרוטינה של שני 07:45 דורסת את eventUpdate — הצפי הנעול נשמר ב-forecasts.json (current)
         (eu.kind === "preview" ? forecastHtml(eu.forecast || (FCAST && FCAST.current), true) : "") +
         // np132: action עם " · " = רשימת "למה לשים לב השבוע"; אחרת שורת "מה עושים" כמו קודם
