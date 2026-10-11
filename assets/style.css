@@ -2268,3 +2268,8 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .site-footer .legal-foot a { display: inline-block; margin-top: 2px; color: var(--accent); font-weight: 600; text-decoration: none; }
 .site-footer .legal-foot a:hover { text-decoration: underline; }
 @media (max-width: 700px) { .legal-strip { font-size: 12px; margin-top: 8px; } }
+
+/* np132 (11.10.2026): "למה לשים לב השבוע" — רשימה במקום פסקה בכותרת "לקראת שבוע המסחר" */
+.np-watch-h { margin-bottom: 4px; }
+.np-watch { margin: 0 0 14px; padding-right: 22px; font-size: 16px; line-height: 1.6; color: var(--text-soft); }
+.np-watch li { margin: 2px 0; }
