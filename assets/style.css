@@ -2035,7 +2035,7 @@ a.prep:hover { border-color: var(--accent); }
 /* היומן */
 #panel-weekcal.is-active { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
 #weekcal-body { display: contents; }
-#home-season { order: 0; grid-column: span 12; }
+#home-season { order: 1; grid-column: span 12; } /* np134: מתחת ל"השבוע הקרוב" (order:0) */
 #home-season[hidden] { display: none; }
 #home-econ { order: 4; grid-column: span 7; }
 #home-econ:empty { display: none; }
