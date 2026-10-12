@@ -234,8 +234,8 @@
   var BD_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
 
   /* ---- היומן בבית: ארבעה תאים (היום + 3 הבאים), תג לפי סוג האירוע (מאקרו ענבר / דוחות כחול).
-     יום אירוע (מאקרו מתוזמן היום, או חברה עם "לקראת הדוח" שמדווחת היום) → הבלוק עולה לראש הבית
-     (class "event" → CSS order) עם שתי עמודות: דוחות | מאקרו. ---- */
+     יום אירוע (מאקרו מתוזמן היום, או חברה עם "לקראת הדוח" שמדווחת היום) → class "event": מסגרת מודגשת
+     ושתי עמודות דוחות | מאקרו. np135 (איציק): הסדר בבית קבוע — כותרת, מד, אירועים — גם ביום אירוע. ---- */
   function renderHomeCal() {
     var el = document.getElementById("home-cal");
     if (!el) return;
@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np134";
+  var TA_VER = "np135";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {

@@ -1768,11 +1768,9 @@ main { padding: 16px 0 48px; }
 #panel-home .bd-sect, #panel-home .bd-world, #panel-home .bd-bets { grid-column: span 4; }
 #panel-home .pan:empty { display: none; }
 #panel-home #tri-news { grid-column: span 12; }
-/* יום אירוע: היומן עולה לראש ליד המד, מצב השוק יורד לשורה מלאה */
-#panel-home .bd-cal.event { order: -2; grid-column: span 8; border-color: var(--state-fill); }
-#panel-home:has(.bd-cal.event) .bd-meter { order: -1; }
-#panel-home:has(.bd-cal.event) .bd-lead { grid-column: span 12; }
-#panel-home:has(.bd-cal.event) .bd-lead .np-h1 { font-size: 24px; }
+/* יום אירוע (np135, 13.10.2026, איציק): הסדר קבוע — הכותרת, המד, ואז האירועים ברוחב מלא (שתי עמודות דוחות | מאקרו בפנים).
+   עד np134 הפאנל עלה לראש ליד המד והכותרת ירדה — בטלפון זה דחק את הכותרת למקום השלישי. נשאר רק סימון המסגרת. */
+#panel-home .bd-cal.event { border-color: var(--state-fill); }
 
 /* מצב השוק (lead) — הגוף מרונדר ע"י renderLead; כאן רק ההלבשה */
 .bd-lead .pb { flex: 1; }
