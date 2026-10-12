@@ -26,13 +26,13 @@
        ומרנדר 🇮🇱 כאותיות "IL". Noto Color Emoji מספק אותם בכל מערכת;
        הפרמטר text= מצמצם את הגופן לתווי הדגלים שבשימוש בלבד (9.9.2026). -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%87%AE%F0%9F%87%B1%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%B0%F0%9F%87%B7%F0%9F%87%B9%F0%9F%87%BC%F0%9F%87%A8%F0%9F%87%B3%F0%9F%87%AD%F0%9F%87%B0%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%BA%F0%9F%87%B8%F0%9F%87%A8%F0%9F%87%A6&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=np133" />
+  <link rel="stylesheet" href="assets/style.css?v=np134" />
 </head>
 <body>
   <a class="skip-link" href="#main">דלג לתוכן</a>
 
   <!-- np117: כותרת "לוח המסחר" — שורה אחת: לוגו · 6 טאבים · חיפוש · מצב כהה · טלגרם · שעון.
-       שישה טאבים (עיצוב מחדש, שלב 3): בית · השוק · היומן · מניות · חדשות · העולם.
+       שישה טאבים (עיצוב מחדש, שלב 3): בית · השוק · אירועים (היה "היומן", np134) · מניות · חדשות · העולם.
        ארבעה מהם מאוחדים — הפאנלים, ה-hash וה-GoatCounter נשארו ברמת הפאנל (GROUPS ב-app.js). -->
   <div class="topbar">
   <header class="site-header">
@@ -46,7 +46,7 @@
       <nav class="tabs" role="tablist" aria-label="ניווט ראשי">
         <button class="tab is-active" role="tab" data-tab="home">בית</button>
         <button class="tab" role="tab" data-tab="market">השוק</button>
-        <button class="tab" role="tab" data-tab="calendar">היומן</button>
+        <button class="tab" role="tab" data-tab="calendar">אירועים</button>
         <button class="tab" role="tab" data-tab="stocks">מניות</button>
         <button class="tab" role="tab" data-tab="news">חדשות</button>
         <button class="tab" role="tab" data-tab="world">העולם</button>
@@ -97,7 +97,7 @@
         <article id="lead-main" class="pb"><div class="panel-loading">טוען נתוני שוק…</div></article>
       </section>
       <aside id="lead-rail" class="pan np-rail bd-meter" aria-label="The Edge Meter"></aside>
-      <section id="home-cal" class="pan bd-cal" aria-label="היומן"></section>
+      <section id="home-cal" class="pan bd-cal" aria-label="אירועים"></section>
       <section id="home-picks" class="pan bd-picks" aria-label="הנבחרות"></section>
       <section id="tri-brief" class="pan bd-brief" aria-label="התדרוך"></section>
       <section id="tri-x" class="pan bd-pulse" aria-label="בזק מהרשת"></section>
@@ -110,7 +110,7 @@
     <!-- השוק: מדדים | סקטורים -->
     <section class="panel" id="panel-indices" role="tabpanel"></section>
     <section class="panel" id="panel-sectors" role="tabpanel"></section>
-    <!-- היומן: לוח הדיווחים (ציר העונה + המאקרו עברו לכאן מהבית ב-np117) | לקראת הדוח | ניתוח דוחות -->
+    <!-- אירועים (היה "היומן"): לוח הדיווחים (ציר העונה + המאקרו עברו לכאן מהבית ב-np117; np134: "השבוע הקרוב" ראשון, ציר העונה מתחתיו) | לקראת הדוח | ניתוח דוחות -->
     <section class="panel" id="panel-weekcal" role="tabpanel">
       <section id="home-season" class="ss" aria-label="עונת הדוחות" hidden></section>
       <div id="weekcal-body"></div>
@@ -144,7 +144,7 @@
     </div>
   </footer>
 
-  <script src="assets/app.js?v=np133"></script>
+  <script src="assets/app.js?v=np134"></script>
   <!-- GoatCounter — סטטיסטיקת מבקרים (פרטי, ללא עוגיות); דשבורד: nidam.goatcounter.com -->
   <script data-goatcounter="https://nidam.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>

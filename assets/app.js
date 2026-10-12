@@ -255,7 +255,7 @@
     var prep = {}; ((PREPD && PREPD.items) || []).forEach(function (p) { if (p.date) (prep[p.date] = prep[p.date] || []).push(p); });
     Object.keys(prep).forEach(function (k) { if (k >= today) { var dp = byDay[k] = byDay[k] || { macro: [], earn: [], count: 0 }; dp.prep = prep[k]; } });
     var days = Object.keys(byDay).sort().filter(function (k) { return k >= today; }).slice(0, 4);
-    if (!days.length) { el.innerHTML = '<div class="ph"><h2>היומן</h2>' + bdGo("weekcal", "היומן המלא") + '</div><div class="pb mute">אין אירועים מתוזמנים בשבוע הקרוב.</div>'; el.classList.remove("event"); return; }
+    if (!days.length) { el.innerHTML = '<div class="ph"><h2>אירועים</h2>' + bdGo("weekcal", "כל האירועים") + '</div><div class="pb mute">אין אירועים מתוזמנים בשבוע הקרוב.</div>'; el.classList.remove("event"); return; }
     var isEvent = !!(byDay[today] && (byDay[today].macro.length || (byDay[today].prep || []).length));
     function dayLbl(k, cell) {
       var dt = new Date(k + "T12:00:00"), dow = k === today ? "היום" : (cell.dow ? cell.dow.replace("׳", "") : BD_DOW[dt.getDay()]);
@@ -295,7 +295,7 @@
       var nextDays = days.slice(1, 3).map(function (k) { var c = byDay[k]; return '<div class="mute s">' + dayLbl(k, c) + ": " + (c.macro.length ? esc(c.macro[0].he) + (c.macro[0].ilTime ? ' <span class="num" dir="ltr">' + esc(c.macro[0].ilTime) + "</span>" : "") : "") + (c.macro.length && c.earn.length ? " · " : "") + (c.earn.length ? c.earn.slice(0, 4).map(function (x) { return x.t; }).join(", ") : "") + "</div>"; }).join("");
       el.innerHTML = '<div class="ph"><h2>היום · ' + BD_DOW[new Date(today + "T12:00:00").getDay()] + ' <span class="num" dir="ltr">' + bdDM(today) + "</span> · יום אירוע</h2>" +
           (c0.macro.length ? '<span class="tag macro">' + esc(c0.macro[0].he) + (c0.macro[0].ilTime ? ' <span class="num" dir="ltr">' + esc(c0.macro[0].ilTime) + "</span>" : "") + "</span>" : "") +
-          ((c0.earn || []).length ? '<span class="tag earn">' + (c0.count || c0.earn.length) + " מדווחות</span>" : "") + bdGo("weekcal", "היומן המלא") + "</div>" +
+          ((c0.earn || []).length ? '<span class="tag earn">' + (c0.count || c0.earn.length) + " מדווחות</span>" : "") + bdGo("weekcal", "כל האירועים") + "</div>" +
         '<div class="ev"><div>' + (earnLine(c0) ? '<h3><span class="tag earn">דוחות</span>היום</h3>' + earnLine(c0).replace('<span class="tag earn">דוחות</span> ', "") : "") + prepCard + "</div>" +
         "<div>" + (c0.macro.length ? '<h3><span class="tag macro">מאקרו</span>' + (c0.macro[0].ilTime ? '<span class="num" dir="ltr">' + esc(c0.macro[0].ilTime) + "</span> · " : "") + "שעון ישראל</h3>" +
           '<div class="mrows"><div class="mrow mute"><span>נתון</span><span class="num">צפי</span><span class="num">קודם</span><span class="num">בפועל</span></div>' +
@@ -304,7 +304,7 @@
       el.classList.add("event");
       return;
     }
-    el.innerHTML = '<div class="ph"><h2>היומן</h2><span class="mute">שעון ישראל</span>' + bdGo("weekcal", "היומן המלא") + "</div>" +
+    el.innerHTML = '<div class="ph"><h2>אירועים</h2><span class="mute">שעון ישראל</span>' + bdGo("weekcal", "כל האירועים") + "</div>" +
       '<div class="cal">' + days.map(function (k) {
         var c = byDay[k];
         var inner = c.macro.slice(0, 2).map(function (e) { return macroLine(e); }).join("") + earnLine(c);
@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np133";
+  var TA_VER = "np134";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3057,7 +3057,7 @@
       return;
     }
     // np120: טאב היומן כרשת פאנלים (display:contents על #weekcal-body — הפאנלים משתתפים ברשת של #panel-weekcal):
-    // ציר העונה (#home-season) → "השבוע הקרוב" (דוחות + מאקרו ביחד) → לקראת הדוח | איך הגיבו → מאקרו (#home-econ) | ניתוח דוחות → לוח התוצאות
+    // np134 (איציק): "השבוע הקרוב" (דוחות + מאקרו ביחד) → ציר העונה (#home-season, order:1 ב-CSS) → לקראת הדוח | איך הגיבו → מאקרו (#home-econ) | ניתוח דוחות → לוח התוצאות
     var first = week[0], last = week[week.length - 1];
     var year = (first.date || "").slice(0, 4), todayIso = ilNowParts().iso;
     var ecoBy = {}; ((ECON && ECON.events) || []).forEach(function (e) { var k = String(e.date).slice(0, 10); (ecoBy[k] = ecoBy[k] || []).push(e); });
@@ -3115,7 +3115,7 @@
       repPan = panHd("ניתוח דוחות", '<span class="mute"><span class="num">' + reps.length + "</span> דוחות באתר</span>", bdGo("reports", "כל הניתוחים")) + '<div class="pb"><div class="chips bd-chips">' + chips + "</div>" + after + "</div>";
     }
     el.innerHTML =
-      '<section class="pan bd-wk5" style="order:1;grid-column:span 12">' + panHd('השבוע הקרוב · <span class="num" dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) + "</span>", '<span class="mute">דוחות ומאקרו ביחד · שעון ישראל · מובילות לפי שווי שוק · מתעדכן בכל שבת</span>') +
+      '<section class="pan bd-wk5" style="order:0;grid-column:span 12">' + panHd('השבוע הקרוב · <span class="num" dir="ltr">' + esc(first.label) + "–" + esc(last.label) + "." + esc(year) + "</span>", '<span class="mute">דוחות ומאקרו ביחד · שעון ישראל · מובילות לפי שווי שוק · מתעדכן בכל שבת</span>') +
         '<div class="wk5">' + cols + "</div></section>" +
       (prepPan ? '<section class="pan" style="order:2;grid-column:span 6">' + prepPan + "</section>" : "") +
       (rxPan ? '<section class="pan bd-rx" style="order:3;grid-column:span ' + (prepPan ? 6 : 12) + '">' + rxPan + "</section>" : "") +
