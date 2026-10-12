@@ -21,6 +21,7 @@
 | nidam-daily-market-analysis-retry | trig_01W8FY5Nu76pEBUvBnAePBNr | `30 3-9 * * 1-6` | `30 4-10 * * 1-6` | 06:30–12:30, ב'–ש' |
 | nidam-weekly-narrative | trig_016VP2ucQCPd2y4e2jbkSUyT | `0 4-11 * * 6,0,1` | `0 5-12 * * 6,0,1` | 07:00–14:00, שבת/א'/ב' |
 | nidam-preview-sun-mon | trig_01Ktgp3bjzo8rhp2eNNbuwvR | `45 4,11 * * 0,1` | `45 5,12 * * 0,1` | 07:45 + 14:45, א'/ב' |
+| nidam-rotation-weekly | trig_01PBFS69zLJY5iv6rBgkxz6p | `0 6 * * 6` | `0 7 * * 6` | 09:00, שבת (נוצרה ב-UI 10.10.2026 — ה-UI מאפשר שעה אחת; גרוק מעלה ~06:00) |
 
 ## קבוצה ב' — זזות עם ארה"ב (1.11.2026 → חורף · 14.3.2027 → קיץ)
 
