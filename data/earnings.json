@@ -5,7 +5,7 @@
     {
       "ticker": "PGR",
       "name": "Progressive Corporation",
-      "capB": 127.7
+      "capB": 127.8
     }
   ],
   "reactions": {
@@ -88,7 +88,7 @@
       "date": "2026-10-13",
       "label": "13/10",
       "dow": "ג׳",
-      "count": 6,
+      "count": 7,
       "tickers": [
         "JPM",
         "JNJ",
@@ -159,7 +159,7 @@
       "date": "2026-10-13",
       "dow": "שלישי",
       "label": "13.10",
-      "total": 6,
+      "total": 7,
       "companies": [
         {
           "ticker": "JPM",
@@ -197,6 +197,12 @@
           "name": "Citigroup Inc.",
           "when": "before",
           "logo": "data/earnings/logos/C.png"
+        },
+        {
+          "ticker": "DPZ",
+          "name": "Domino's Pizza, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/DPZ.png"
         }
       ]
     },
@@ -375,6 +381,7 @@
     "GS": "2026-10-13",
     "WFC": "2026-10-13",
     "C": "2026-10-13",
+    "DPZ": "2026-10-13",
     "ASML": "2026-10-14",
     "BAC": "2026-10-14",
     "MS": "2026-10-14",
@@ -408,7 +415,7 @@
     "ELS": "2026-10-19"
   },
   "_meta": {
-    "updatedAt": "12/10/2026 19:16",
+    "updatedAt": "12/10/2026 19:31",
     "source": "tradingview"
   }
 }
