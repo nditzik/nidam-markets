@@ -1,11 +1,36 @@
 {
-  "today": "2026-10-12",
-  "todayCount": 1,
+  "today": "2026-10-13",
+  "todayCount": 7,
   "todayBig": [
     {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "capB": 128.0
+      "ticker": "JPM",
+      "name": "JPMorgan Chase & Co.",
+      "capB": 888.6
+    },
+    {
+      "ticker": "JNJ",
+      "name": "Johnson & Johnson",
+      "capB": 635.6
+    },
+    {
+      "ticker": "UNH",
+      "name": "UnitedHealth Group Incorporated",
+      "capB": 339.8
+    },
+    {
+      "ticker": "GS",
+      "name": "Goldman Sachs Group, Inc.",
+      "capB": 260.3
+    },
+    {
+      "ticker": "WFC",
+      "name": "Wells Fargo & Company",
+      "capB": 252.0
+    },
+    {
+      "ticker": "C",
+      "name": "Citigroup Inc.",
+      "capB": 221.3
     }
   ],
   "reactions": {
@@ -43,61 +68,56 @@
             "baseDate": "2026-10-07"
           }
         ]
-      },
-      {
-        "date": "2026-10-06",
-        "label": "6.10",
-        "items": [
-          {
-            "ticker": "STZ",
-            "name": "Constellation Brands, Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/STZ.png",
-            "chg": 2.35,
-            "price": 118.39,
-            "reactDate": "2026-10-07",
-            "baseDate": "2026-10-06"
-          },
-          {
-            "ticker": "RPM",
-            "name": "RPM International Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/RPM.png",
-            "chg": 3.16,
-            "price": 98.31,
-            "reactDate": "2026-10-06",
-            "baseDate": "2026-10-05"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "when": "",
-      "logo": "data/earnings/logos/PGR.png"
+      "ticker": "JPM",
+      "name": "JPMorgan Chase & Co.",
+      "when": "before",
+      "logo": "data/earnings/logos/JPM.png"
+    },
+    {
+      "ticker": "JNJ",
+      "name": "Johnson & Johnson",
+      "when": "before",
+      "logo": "data/earnings/logos/JNJ.png"
+    },
+    {
+      "ticker": "UNH",
+      "name": "UnitedHealth Group Incorporated",
+      "when": "before",
+      "logo": "data/earnings/logos/UNH.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "GS",
+      "name": "Goldman Sachs Group, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/GS.png"
+    },
+    {
+      "ticker": "WFC",
+      "name": "Wells Fargo & Company",
+      "when": "before",
+      "logo": "data/earnings/logos/WFC.png"
+    },
+    {
+      "ticker": "C",
+      "name": "Citigroup Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/C.png"
+    },
+    {
+      "ticker": "DPZ",
+      "name": "Domino's Pizza, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/DPZ.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-10-13",
-      "label": "13/10",
-      "dow": "ג׳",
-      "count": 7,
-      "tickers": [
-        "JPM",
-        "JNJ",
-        "UNH",
-        "GS",
-        "WFC",
-        "C"
-      ]
-    },
     {
       "date": "2026-10-14",
       "label": "14/10",
@@ -374,7 +394,6 @@
     }
   ],
   "window": {
-    "PGR": "2026-10-12",
     "JPM": "2026-10-13",
     "JNJ": "2026-10-13",
     "UNH": "2026-10-13",
@@ -412,10 +431,34 @@
     "STLD": "2026-10-19",
     "WRB": "2026-10-19",
     "CCK": "2026-10-19",
-    "ELS": "2026-10-19"
+    "ELS": "2026-10-19",
+    "GE": "2026-10-20",
+    "PM": "2026-10-20",
+    "NFLX": "2026-10-20",
+    "RTX": "2026-10-20",
+    "ISRG": "2026-10-20",
+    "CB": "2026-10-20",
+    "COF": "2026-10-20",
+    "MMM": "2026-10-20",
+    "GM": "2026-10-20",
+    "NOC": "2026-10-20",
+    "AMX": "2026-10-20",
+    "MSCI": "2026-10-20",
+    "UAL": "2026-10-20",
+    "HAL": "2026-10-20",
+    "SYF": "2026-10-20",
+    "KEY": "2026-10-20",
+    "OMC": "2026-10-20",
+    "GPC": "2026-10-20",
+    "EFX": "2026-10-20",
+    "EWBC": "2026-10-20",
+    "NLY": "2026-10-20",
+    "HAS": "2026-10-20",
+    "VICR": "2026-10-20",
+    "ALLY": "2026-10-20"
   },
   "_meta": {
-    "updatedAt": "12/10/2026 23:46",
+    "updatedAt": "13/10/2026 00:01",
     "source": "tradingview"
   }
 }
