@@ -1,45 +1,113 @@
 {
-  "today": "2026-10-13",
-  "todayCount": 7,
+  "today": "2026-10-14",
+  "todayCount": 6,
   "todayBig": [
     {
-      "ticker": "JPM",
-      "name": "JPMorgan Chase & Co.",
-      "capB": 881.0
+      "ticker": "ASML",
+      "name": "ASML Holding NV Sponsored ADR",
+      "capB": 671.6
     },
     {
-      "ticker": "JNJ",
-      "name": "Johnson & Johnson",
-      "capB": 599.1
+      "ticker": "BAC",
+      "name": "Bank of America Corp",
+      "capB": 377.3
     },
     {
-      "ticker": "UNH",
-      "name": "UnitedHealth Group Incorporated",
-      "capB": 339.1
+      "ticker": "MS",
+      "name": "Morgan Stanley",
+      "capB": 293.1
     },
     {
-      "ticker": "GS",
-      "name": "Goldman Sachs Group, Inc.",
-      "capB": 259.7
+      "ticker": "BLK",
+      "name": "BlackRock, Inc.",
+      "capB": 173.2
     },
     {
-      "ticker": "WFC",
-      "name": "Wells Fargo & Company",
-      "capB": 244.2
+      "ticker": "FAST",
+      "name": "Fastenal Company",
+      "capB": 59.0
     },
     {
-      "ticker": "C",
-      "name": "Citigroup Inc.",
-      "capB": 208.9
-    },
-    {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "capB": 129.5
+      "ticker": "STT",
+      "name": "State Street Corporation",
+      "capB": 47.8
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-13",
+        "label": "13.10",
+        "items": [
+          {
+            "ticker": "JPM",
+            "name": "JPMorgan Chase & Co.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/JPM.png",
+            "chg": -0.86,
+            "price": 331.43,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
+          },
+          {
+            "ticker": "JNJ",
+            "name": "Johnson & Johnson",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/JNJ.png",
+            "chg": -5.73,
+            "price": 248.61,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
+          },
+          {
+            "ticker": "UNH",
+            "name": "UnitedHealth Group Incorporated",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/UNH.png",
+            "logoBg": "dark",
+            "chg": -0.2,
+            "price": 377.76,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
+          },
+          {
+            "ticker": "GS",
+            "name": "Goldman Sachs Group, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/GS.png",
+            "chg": -0.23,
+            "price": 891.91,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
+          },
+          {
+            "ticker": "WFC",
+            "name": "Wells Fargo & Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/WFC.png",
+            "chg": -3.1,
+            "price": 80.74,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
+          },
+          {
+            "ticker": "C",
+            "name": "Citigroup Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/C.png",
+            "chg": -5.6,
+            "price": 124.53,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
+          }
+        ]
+      },
       {
         "date": "2026-10-09",
         "label": "9.10",
@@ -73,98 +141,52 @@
             "baseDate": "2026-10-07"
           }
         ]
-      },
-      {
-        "date": "2026-10-06",
-        "label": "6.10",
-        "items": [
-          {
-            "ticker": "STZ",
-            "name": "Constellation Brands, Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/STZ.png",
-            "chg": 2.35,
-            "price": 118.39,
-            "reactDate": "2026-10-07",
-            "baseDate": "2026-10-06"
-          },
-          {
-            "ticker": "RPM",
-            "name": "RPM International Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/RPM.png",
-            "chg": 3.16,
-            "price": 98.31,
-            "reactDate": "2026-10-06",
-            "baseDate": "2026-10-05"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "JPM",
-      "name": "JPMorgan Chase & Co.",
+      "ticker": "ASML",
+      "name": "ASML Holding NV Sponsored ADR",
       "when": "before",
-      "logo": "data/earnings/logos/JPM.png"
+      "logo": "data/earnings/logos/ASML.png"
     },
     {
-      "ticker": "JNJ",
-      "name": "Johnson & Johnson",
+      "ticker": "BAC",
+      "name": "Bank of America Corp",
       "when": "before",
-      "logo": "data/earnings/logos/JNJ.png"
+      "logo": "data/earnings/logos/BAC.png"
     },
     {
-      "ticker": "UNH",
-      "name": "UnitedHealth Group Incorporated",
+      "ticker": "MS",
+      "name": "Morgan Stanley",
       "when": "before",
-      "logo": "data/earnings/logos/UNH.png",
+      "logo": "data/earnings/logos/MS.png"
+    },
+    {
+      "ticker": "BLK",
+      "name": "BlackRock, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/BLK.png",
       "logoBg": "dark"
     },
     {
-      "ticker": "GS",
-      "name": "Goldman Sachs Group, Inc.",
+      "ticker": "FAST",
+      "name": "Fastenal Company",
       "when": "before",
-      "logo": "data/earnings/logos/GS.png"
+      "logo": "data/earnings/logos/FAST.png",
+      "logoBg": "dark"
     },
     {
-      "ticker": "WFC",
-      "name": "Wells Fargo & Company",
+      "ticker": "STT",
+      "name": "State Street Corporation",
       "when": "before",
-      "logo": "data/earnings/logos/WFC.png"
-    },
-    {
-      "ticker": "C",
-      "name": "Citigroup Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/C.png"
-    },
-    {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "when": "",
-      "logo": "data/earnings/logos/PGR.png"
+      "logo": "data/earnings/logos/STT.png",
+      "logoBg": "dark"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-10-14",
-      "label": "14/10",
-      "dow": "ד׳",
-      "count": 6,
-      "tickers": [
-        "ASML",
-        "BAC",
-        "MS",
-        "BLK",
-        "FAST",
-        "STT"
-      ]
-    },
     {
       "date": "2026-10-15",
       "label": "15/10",
@@ -414,13 +436,6 @@
     }
   ],
   "window": {
-    "JPM": "2026-10-13",
-    "JNJ": "2026-10-13",
-    "UNH": "2026-10-13",
-    "GS": "2026-10-13",
-    "WFC": "2026-10-13",
-    "C": "2026-10-13",
-    "PGR": "2026-10-13",
     "ASML": "2026-10-14",
     "BAC": "2026-10-14",
     "MS": "2026-10-14",
@@ -469,10 +484,41 @@
     "EFX": "2026-10-20",
     "EWBC": "2026-10-20",
     "NLY": "2026-10-20",
-    "HAS": "2026-10-20"
+    "HAS": "2026-10-20",
+    "META": "2026-10-21",
+    "TSLA": "2026-10-21",
+    "LRCX": "2026-10-21",
+    "TXN": "2026-10-21",
+    "SAP": "2026-10-21",
+    "TMO": "2026-10-21",
+    "IBM": "2026-10-21",
+    "ABT": "2026-10-21",
+    "NEE": "2026-10-21",
+    "DHR": "2026-10-21",
+    "T": "2026-10-21",
+    "CME": "2026-10-21",
+    "ELV": "2026-10-21",
+    "CSX": "2026-10-21",
+    "MCO": "2026-10-21",
+    "KMI": "2026-10-21",
+    "URI": "2026-10-21",
+    "WAB": "2026-10-21",
+    "WCN": "2026-10-21",
+    "CCI": "2026-10-21",
+    "NTRSO": "2026-10-21",
+    "NTRS": "2026-10-21",
+    "LVS": "2026-10-21",
+    "PKG": "2026-10-21",
+    "RS": "2026-10-21",
+    "LUV": "2026-10-21",
+    "MEDP": "2026-10-21",
+    "ROL": "2026-10-21",
+    "PNFP": "2026-10-21",
+    "GGG": "2026-10-21",
+    "GL": "2026-10-21"
   },
   "_meta": {
-    "updatedAt": "13/10/2026 23:46",
+    "updatedAt": "14/10/2026 00:01",
     "source": "tradingview"
   }
 }
