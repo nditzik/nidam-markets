@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "13/10/2026 22:31",
+  "updatedAt": "13/10/2026 22:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -483,14 +483,14 @@
    "analystsAt": "2026-10-13T19:16+00:00",
    "yahooDate": "2026-10-21",
    "options": {
-    "asOf": "13/10 22:31",
-    "price": 764.29,
+    "asOf": "13/10 22:46",
+    "price": 764.28,
     "exp": "2026-10-23",
     "strike": 765.0,
-    "pct": 7.22,
-    "earn": 5.63,
+    "pct": 7.21,
+    "earn": 5.66,
     "preExp": "2026-10-19",
-    "prePct": 3.42
+    "prePct": 3.38
    },
    "avgMove": 9.6,
    "hasNote": false
@@ -972,14 +972,14 @@
    "analystsAt": "2026-10-13T16:01+00:00",
    "yahooDate": "2026-10-28",
    "options": {
-    "asOf": "13/10 22:31",
-    "price": 354.62,
+    "asOf": "13/10 22:46",
+    "price": 354.85,
     "exp": "2026-10-30",
     "strike": 355.0,
-    "pct": 7.31,
-    "earn": 5.04,
+    "pct": 7.24,
+    "earn": 5.03,
     "preExp": "2026-10-23",
-    "prePct": 4.32
+    "prePct": 4.25
    },
    "avgMove": 5.0,
    "hasNote": false
@@ -1461,14 +1461,14 @@
    "analystsAt": "2026-10-13T16:01+00:00",
    "yahooDate": "2026-10-27",
    "options": {
-    "asOf": "13/10 22:31",
-    "price": 15.205,
+    "asOf": "13/10 22:46",
+    "price": 15.18,
     "exp": "2026-10-30",
     "strike": 15.0,
-    "pct": 10.65,
-    "earn": 8.19,
+    "pct": 10.64,
+    "earn": 8.21,
     "preExp": "2026-10-23",
-    "prePct": 5.56
+    "prePct": 5.53
    },
    "avgMove": 9.1,
    "hasNote": false
@@ -1486,6 +1486,11 @@
    "when": "before"
   },
   {
+   "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
    "sym": "MRK",
    "date": "2026-10-29",
    "when": "before"
@@ -1501,22 +1506,17 @@
    "when": "after"
   },
   {
-   "sym": "CUBE",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
    "sym": "CVX",
    "date": "2026-10-30",
    "when": "before"
   },
   {
-   "sym": "AAPL",
+   "sym": "PLTR",
    "date": "2026-11-02",
    "when": "after"
   },
   {
-   "sym": "PLTR",
+   "sym": "AAPL",
    "date": "2026-11-02",
    "when": "after"
   },
@@ -1526,12 +1526,12 @@
    "when": "after"
   },
   {
-   "sym": "UBER",
+   "sym": "NVO",
    "date": "2026-11-04",
    "when": "before"
   },
   {
-   "sym": "NVO",
+   "sym": "UBER",
    "date": "2026-11-04",
    "when": "before"
   }
