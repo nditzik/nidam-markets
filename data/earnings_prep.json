@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "13/10/2026 19:16",
+  "updatedAt": "13/10/2026 19:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,14 +484,14 @@
    "analystsAt": "2026-10-13T13:16+00:00",
    "yahooDate": "2026-10-21",
    "options": {
-    "asOf": "13/10 19:16",
-    "price": 761.75,
+    "asOf": "13/10 19:31",
+    "price": 759.13,
     "exp": "2026-10-23",
     "strike": 760.0,
-    "pct": 7.25,
-    "earn": 5.56,
+    "pct": 7.26,
+    "earn": 5.51,
     "preExp": "2026-10-19",
-    "prePct": 3.52
+    "prePct": 3.57
    },
    "avgMove": 9.6,
    "hasNote": false
@@ -973,14 +973,14 @@
    "analystsAt": "2026-10-13T16:01+00:00",
    "yahooDate": "2026-10-28",
    "options": {
-    "asOf": "13/10 19:16",
-    "price": 356.35,
+    "asOf": "13/10 19:31",
+    "price": 354.2699,
     "exp": "2026-10-30",
     "strike": 355.0,
-    "pct": 7.25,
-    "earn": 4.93,
+    "pct": 7.38,
+    "earn": 4.98,
     "preExp": "2026-10-23",
-    "prePct": 4.34
+    "prePct": 4.45
    },
    "avgMove": 5.0,
    "hasNote": false
@@ -1462,14 +1462,14 @@
    "analystsAt": "2026-10-13T16:01+00:00",
    "yahooDate": "2026-10-27",
    "options": {
-    "asOf": "13/10 19:16",
-    "price": 15.15,
+    "asOf": "13/10 19:31",
+    "price": 15.135,
     "exp": "2026-10-30",
     "strike": 15.0,
-    "pct": 10.63,
-    "earn": 8.41,
+    "pct": 10.57,
+    "earn": 8.29,
     "preExp": "2026-10-23",
-    "prePct": 5.31
+    "prePct": 5.35
    },
    "avgMove": 9.1,
    "hasNote": false
@@ -1477,19 +1477,19 @@
  ],
  "later": [
   {
-   "sym": "BSX",
-   "date": "2026-10-28",
-   "when": "before"
-  },
-  {
    "sym": "MSFT",
    "date": "2026-10-28",
    "when": "after"
   },
   {
-   "sym": "MRK",
-   "date": "2026-10-29",
+   "sym": "BSX",
+   "date": "2026-10-28",
    "when": "before"
+  },
+  {
+   "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": "after"
   },
   {
    "sym": "AMZN",
@@ -1497,12 +1497,12 @@
    "when": null
   },
   {
-   "sym": "SNDK",
+   "sym": "MRK",
    "date": "2026-10-29",
-   "when": "after"
+   "when": "before"
   },
   {
-   "sym": "CUBE",
+   "sym": "SNDK",
    "date": "2026-10-29",
    "when": "after"
   },
