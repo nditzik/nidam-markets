@@ -68,6 +68,34 @@
             "baseDate": "2026-10-07"
           }
         ]
+      },
+      {
+        "date": "2026-10-06",
+        "label": "6.10",
+        "items": [
+          {
+            "ticker": "STZ",
+            "name": "Constellation Brands, Inc. Class A",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/STZ.png",
+            "chg": 2.35,
+            "price": 118.39,
+            "reactDate": "2026-10-07",
+            "baseDate": "2026-10-06"
+          },
+          {
+            "ticker": "RPM",
+            "name": "RPM International Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/RPM.png",
+            "chg": 3.16,
+            "price": 98.31,
+            "reactDate": "2026-10-06",
+            "baseDate": "2026-10-05"
+          }
+        ]
       }
     ]
   },
@@ -159,15 +187,8 @@
       "date": "2026-10-12",
       "dow": "שני",
       "label": "12.10",
-      "total": 1,
-      "companies": [
-        {
-          "ticker": "PGR",
-          "name": "Progressive Corporation",
-          "when": "",
-          "logo": "data/earnings/logos/PGR.png"
-        }
-      ]
+      "total": 0,
+      "companies": []
     },
     {
       "date": "2026-10-13",
@@ -445,7 +466,7 @@
     "ALLY": "2026-10-20"
   },
   "_meta": {
-    "updatedAt": "13/10/2026 03:01",
+    "updatedAt": "13/10/2026 03:16",
     "source": "tradingview"
   }
 }
