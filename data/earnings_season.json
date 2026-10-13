@@ -179,16 +179,16 @@
   }
  ],
  "total": 453,
- "reported": 5,
+ "reported": 8,
  "members": 504,
  "board": {
-  "reported": 5,
-  "epsN": 5,
-  "epsBeat": 4,
-  "epsBeatPct": 80,
-  "revN": 5,
-  "revBeat": 4,
-  "revBeatPct": 80,
+  "reported": 8,
+  "epsN": 8,
+  "epsBeat": 6,
+  "epsBeatPct": 75,
+  "revN": 8,
+  "revBeat": 5,
+  "revBeatPct": 62,
   "reactBeat": 4.52,
   "reactBeatN": 3,
   "reactMiss": 0.04,
@@ -198,6 +198,16 @@
     "name": "צריכה בסיסית",
     "n": 3,
     "beat": 3
+   },
+   {
+    "name": "פיננסים",
+    "n": 2,
+    "beat": 1
+   },
+   {
+    "name": "בריאות",
+    "n": 1,
+    "beat": 1
    },
    {
     "name": "צריכה מחזורית",
@@ -234,7 +244,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "13/10/2026 13:15",
+  "updatedAt": "13/10/2026 14:01",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
