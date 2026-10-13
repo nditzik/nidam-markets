@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "13/10/2026 22:16",
+  "updatedAt": "13/10/2026 22:27",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 600.0
     }
    ],
-   "yahooDate": "2026-10-21",
-   "analystsAt": "2026-10-13T19:16+00:00",
    "price": {
     "close": 765.77,
     "date": "2026-10-13",
@@ -482,15 +480,17 @@
      "chg": 30.8
     }
    },
+   "analystsAt": "2026-10-13T19:16+00:00",
+   "yahooDate": "2026-10-21",
    "options": {
-    "asOf": "13/10 22:16",
-    "price": 765.84,
+    "asOf": "13/10 22:27",
+    "price": 765.915,
     "exp": "2026-10-23",
     "strike": 765.0,
-    "pct": 7.21,
-    "earn": 5.57,
+    "pct": 7.19,
+    "earn": 5.59,
     "preExp": "2026-10-19",
-    "prePct": 3.46
+    "prePct": 3.42
    },
    "avgMove": 9.6,
    "hasNote": false
@@ -972,14 +972,14 @@
    "analystsAt": "2026-10-13T16:01+00:00",
    "yahooDate": "2026-10-28",
    "options": {
-    "asOf": "13/10 22:16",
-    "price": 354.71,
+    "asOf": "13/10 22:27",
+    "price": 354.57,
     "exp": "2026-10-30",
     "strike": 355.0,
-    "pct": 7.25,
-    "earn": 4.94,
+    "pct": 7.3,
+    "earn": 5.09,
     "preExp": "2026-10-23",
-    "prePct": 4.33
+    "prePct": 4.27
    },
    "avgMove": 5.0,
    "hasNote": false
@@ -1461,14 +1461,14 @@
    "analystsAt": "2026-10-13T16:01+00:00",
    "yahooDate": "2026-10-27",
    "options": {
-    "asOf": "13/10 22:16",
-    "price": 15.195,
+    "asOf": "13/10 22:27",
+    "price": 15.215,
     "exp": "2026-10-30",
     "strike": 15.0,
-    "pct": 10.69,
-    "earn": 8.3,
+    "pct": 10.68,
+    "earn": 8.27,
     "preExp": "2026-10-23",
-    "prePct": 5.5
+    "prePct": 5.52
    },
    "avgMove": 9.1,
    "hasNote": false
@@ -1476,28 +1476,13 @@
  ],
  "later": [
   {
-   "sym": "MSFT",
-   "date": "2026-10-28",
-   "when": "after"
-  },
-  {
    "sym": "BSX",
    "date": "2026-10-28",
    "when": "before"
   },
   {
-   "sym": "SNDK",
-   "date": "2026-10-29",
-   "when": "after"
-  },
-  {
-   "sym": "AMZN",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
-   "sym": "CUBE",
-   "date": "2026-10-29",
+   "sym": "MSFT",
+   "date": "2026-10-28",
    "when": "after"
   },
   {
@@ -1506,17 +1491,32 @@
    "when": "before"
   },
   {
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
+   "sym": "SNDK",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
+   "sym": "CUBE",
+   "date": "2026-10-29",
+   "when": "after"
+  },
+  {
    "sym": "CVX",
    "date": "2026-10-30",
    "when": "before"
   },
   {
-   "sym": "AAPL",
+   "sym": "PLTR",
    "date": "2026-11-02",
    "when": "after"
   },
   {
-   "sym": "PLTR",
+   "sym": "AAPL",
    "date": "2026-11-02",
    "when": "after"
   },
@@ -1526,12 +1526,12 @@
    "when": "after"
   },
   {
-   "sym": "UBER",
+   "sym": "NVO",
    "date": "2026-11-04",
    "when": "before"
   },
   {
-   "sym": "NVO",
+   "sym": "UBER",
    "date": "2026-11-04",
    "when": "before"
   }
