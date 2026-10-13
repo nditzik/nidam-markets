@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np136";
+  var TA_VER = "np137";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3432,7 +3432,7 @@
           '<button class="chip rw-chip' + (RW.mode === "week" ? " on" : "") + '" data-rw="week">השבוע · יום-יום</button>' +
           '<button class="chip rw-chip' + (RW.mode === "month" ? " on" : "") + '" data-rw="month">החודש · שבוע-שבוע</button>' +
           '<button class="chip rw-chip' + (RW.all ? " on" : "") + '" data-rw="all">כל השבילים</button>' +
-          '<span class="rw-legend"><span><i class="d"></i>העיגול: מול המדד בתקופה</span><span><i class="t"></i>הקו: ביחס לתחילת השביל</span><span><i class="g"></i>ירוק עלה · <i class="r"></i>אדום ירד</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
+          '<span class="rw-legend"><span><i class="d"></i>העיגול: מול המדד בתקופה</span><span><i class="t"></i>הקו: היום מול תחילת השביל</span><span><i class="g"></i>ירוק עלה · <i class="r"></i>אדום ירד</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
         '<div class="rw-wrap"><svg id="rw-svg" role="img" aria-label="גלגל הרוטציה של 11 הסקטורים"></svg><div class="rw-tip" id="rw-tip"></div></div>' +
         '<p class="rw-foot" id="rw-foot"></p>' +
       "</div>";
@@ -3464,18 +3464,19 @@
       .forEach(function (q) { t = mtEl("text", { x: q[0], y: q[1], class: "rw-qt", "text-anchor": q[2] }); t.textContent = q[3]; g.appendChild(t); });
     var n = days.length, last = days[n - 1], pts = [];
     var step = RW.mode === "week" ? 1 : 5, cnt = RW.mode === "week" ? 4 : 4;
-    // np136 (13.10.2026, איציק: "ביחס להתחלה"): הקו = סוף השביל מול תחילתו, שני הצירים יחד (rs5+rs20), בשתי התצוגות —
-    // השתפר ביחס להתחלה = ירוק, נחלש = אדום. (np123 צבע לפי הקטע האחרון בלבד — הבריאות טיפסה 5 ימים ויצאה אדומה
-    // כי ביום האחרון rs20 ירד.) העיגול = מול המדד לאורך התקופה (סימן rs5 לשבוע, rs20 לחודש). הצבעים קבועים, לא רק בריחוף.
-    var win = RW.mode === "week" ? 5 : 20;
+    // np137 (13.10.2026, איציק: "תקשורת השתפרה ביחס להתחלה ועדיין הקו אדום"): הקו = סוף השביל מול תחילתו על ציר התצוגה
+    // בלבד — rs5 (הציר האנכי) בשבוע, rs20 בחודש — אותו ציר שקובע את צבע העיגול. השתפר ביחס להתחלה = ירוק, נחלש = אדום.
+    // (np136 חיבר rs5+rs20: תקשורת עלתה בשבוע מ-‎-1.99 ל-‎+0.12 ב-5 ימים אבל rs20 ירד יותר — אדום על גרף שבו היא טיפסה.
+    // np123 צבע לפי הקטע האחרון בלבד.) העיגול = מול המדד לאורך התקופה (סימן rs5 לשבוע, rs20 לחודש). הצבעים קבועים.
+    var win = RW.mode === "week" ? 5 : 20, ai = RW.mode === "week" ? 0 : 1;
     function sgn(v) { return v == null ? "" : v > 0.05 ? "up" : v < -0.05 ? "down" : ""; }
     Object.keys(last.rs).forEach(function (k) {
       var cur = last.rs[k]; if (cur[0] == null || cur[1] == null) return;
       var tr = [];
       for (var i = cnt; i >= 0; i--) { var j = n - 1 - i * step; if (j >= 0 && days[j].rs[k] && days[j].rs[k][0] != null) tr.push(days[j]); }
       var rsP = RW.mode === "week" ? cur[0] : cur[1], dotDir = sgn(rsP);
-      var pv = tr.length > 1 ? tr[tr.length - 2].rs[k] : null, lastMove = pv ? (cur[0] + cur[1]) - (pv[0] + pv[1]) : null;
-      var first0 = tr.length > 1 ? tr[0].rs[k] : null, pathMove = first0 ? (cur[0] + cur[1]) - (first0[0] + first0[1]) : null, lineDir = sgn(pathMove);
+      var pv = tr.length > 1 ? tr[tr.length - 2].rs[k] : null, lastMove = pv ? cur[ai] - pv[ai] : null;
+      var first0 = tr.length > 1 ? tr[0].rs[k] : null, pathMove = first0 ? cur[ai] - first0[ai] : null, lineDir = sgn(pathMove);
       var tg = mtEl("g", { class: "rw-tg", "data-k": k });
       if (tr.length > 1) {
         tg.appendChild(mtEl("path", { class: "rw-trail " + lineDir, "data-k": k, d: tr.map(function (d, i) { return (i ? "L" : "M") + sx(cl(d.rs[k][1], L.X0, L.X1)) + "," + sy(cl(d.rs[k][0], L.Y0, L.Y1)); }).join(" ") }));
@@ -3483,7 +3484,7 @@
       }
       g.appendChild(tg);
       var prev1 = n >= 2 && days[n - 2].rs[k], prev5 = n >= 6 && days[n - 6].rs[k];
-      // כיוון השביל לאורך התקופה (29.9, איציק): תחילת השביל מול סופו על שני הצירים יחד (rs5+rs20) — ירוק השתפר, אדום נחלש
+      // tdiff/dir: שני הצירים יחד (rs5+rs20) — נשמר למידע בחלונית; צבע הקו מ-lineDir (ציר התצוגה)
       var first = tr.length > 1 ? tr[0].rs[k] : null, tdf = first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null;
       var dir = tdf == null ? "" : tdf > 0.05 ? "up" : tdf < -0.05 ? "down" : "";   // |שינוי| ≤ 0.05 = ללא שינוי (נשאר כחול)
       pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], dir: dir, lineDir: lineDir, dotDir: dotDir, lastMove: lastMove, pathMove: pathMove, rsP: rsP, win: win,
@@ -3528,8 +3529,8 @@
       if (p.now) { var nw = document.createElement("div"); nw.className = "rw-now-t"; nw.textContent = "עכשיו (אומדן חי): " + rwFmt(p.dnow) + " מול המדד היום → " + rwQuad(p.now[0], p.now[1])[0]; tip.appendChild(nw); }
       var wn = rwWeeklyNote(name); if (wn) { var w = document.createElement("div"); w.className = "rw-sub rw-wn"; w.textContent = wn; tip.appendChild(w); }
       var per = p.win === 5 ? "5 ימים" : "20 יום";
-      if (p.pathMove != null) { var tl = document.createElement("div"); tl.className = "rw-sub rw-td " + p.lineDir; tl.textContent = "הקו · ביחס לתחילת השביל (" + (p.win === 5 ? "לפני 5 ימי מסחר" : "לפני חודש") + "): " + rwFmt(p.pathMove) + (p.lineDir === "up" ? " (השתפר)" : p.lineDir === "down" ? " (נחלש)" : " (ללא שינוי)") + " · שני הצירים יחד"; tip.appendChild(tl); }
-      if (p.lastMove != null) { var tm = document.createElement("div"); tm.className = "rw-sub"; tm.textContent = "הקטע האחרון (" + (p.win === 5 ? "מאתמול" : "מלפני שבוע") + "): " + rwFmt(p.lastMove); tip.appendChild(tm); }
+      if (p.pathMove != null) { var tl = document.createElement("div"); tl.className = "rw-sub rw-td " + p.lineDir; tl.textContent = "הקו · " + (p.win === 5 ? "5 ימים" : "20 יום") + " מול המדד, ביחס לתחילת השביל (" + (p.win === 5 ? "לפני 5 ימי מסחר" : "לפני חודש") + "): " + rwFmt(p.pathMove) + (p.lineDir === "up" ? " (השתפר)" : p.lineDir === "down" ? " (נחלש)" : " (ללא שינוי)"); tip.appendChild(tl); }
+      if (p.lastMove != null) { var tm = document.createElement("div"); tm.className = "rw-sub"; tm.textContent = "הקטע האחרון (" + (p.win === 5 ? "מאתמול" : "מלפני שבוע") + "): " + rwFmt(p.lastMove) + (p.tdiff != null ? " · שני הצירים יחד מתחילת השביל: " + rwFmt(p.tdiff) : ""); tip.appendChild(tm); }
       var td = document.createElement("div"); td.className = "rw-sub rw-td " + p.dotDir; td.textContent = "העיגול · מול המדד ב-" + per + ": " + rwFmt(p.rsP) + (p.dotDir === "up" ? " (הכה את המדד)" : p.dotDir === "down" ? " (פיגר אחרי המדד)" : ""); tip.appendChild(td);
       tip.style.display = "block";
       // 29.9 (איציק): ההסבר בפינה הריקה שממול לסקטור, לא על השביל שלו
@@ -3551,7 +3552,7 @@
     svg.addEventListener("pointerleave", hide);
     var f = document.getElementById("rw-foot"), ld = last.date.split("-");
     if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד, מהדשבורד, עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
-      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " צבע הקו = איפה הסקטור עומד היום ביחס לתחילת השביל, שני הצירים יחד: ירוק השתפר, אדום נחלש; צבע העיגול = האם הכה את המדד או פיגר אחריו לאורך התקופה. ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
+      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " צבע הקו = איפה הסקטור עומד היום ביחס לתחילת השביל על ציר התצוגה (" + (RW.mode === "week" ? "5 ימים" : "20 יום") + " מול המדד): ירוק השתפר, אדום נחלש; צבע העיגול = האם הכה את המדד או פיגר אחריו לאורך התקופה. ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
     document.querySelectorAll(".rw-chip").forEach(function (c) {
       c.onclick = function () {
         if (c.dataset.rw === "all") { RW.all = !RW.all; c.classList.toggle("on", RW.all); svg.classList.toggle("all", RW.all); return; }
