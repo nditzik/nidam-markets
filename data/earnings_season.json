@@ -189,10 +189,10 @@
   "revN": 11,
   "revBeat": 8,
   "revBeatPct": 73,
-  "reactBeat": 4.52,
-  "reactBeatN": 3,
-  "reactMiss": 0.04,
-  "reactMissN": 1,
+  "reactBeat": -0.67,
+  "reactBeatN": 9,
+  "reactMiss": -0.41,
+  "reactMissN": 2,
   "sectors": [
    {
     "name": "פיננסים",
@@ -227,24 +227,34 @@
     "eps": 27.8
    },
    {
+    "sym": "JNJ",
+    "react": -5.73,
+    "eps": 2.7
+   },
+   {
+    "sym": "C",
+    "react": -5.6,
+    "eps": 7.6
+   },
+   {
+    "sym": "DPZ",
+    "react": -4.76,
+    "eps": 5.5
+   },
+   {
     "sym": "PEP",
     "react": 3.73,
     "eps": 2.0
    },
    {
-    "sym": "STZ",
-    "react": 2.35,
-    "eps": 5.3
-   },
-   {
-    "sym": "DAL",
-    "react": 0.04,
-    "eps": -2.9
+    "sym": "WFC",
+    "react": -3.1,
+    "eps": 1.2
    }
   ]
  },
  "_meta": {
-  "updatedAt": "13/10/2026 17:31",
+  "updatedAt": "13/10/2026 23:32",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
