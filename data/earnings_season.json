@@ -179,16 +179,16 @@
   }
  ],
  "total": 453,
- "reported": 4,
+ "reported": 5,
  "members": 504,
  "board": {
-  "reported": 4,
-  "epsN": 4,
-  "epsBeat": 3,
-  "epsBeatPct": 75,
-  "revN": 4,
-  "revBeat": 3,
-  "revBeatPct": 75,
+  "reported": 5,
+  "epsN": 5,
+  "epsBeat": 4,
+  "epsBeatPct": 80,
+  "revN": 5,
+  "revBeat": 4,
+  "revBeatPct": 80,
   "reactBeat": 4.52,
   "reactBeatN": 3,
   "reactMiss": 0.04,
@@ -198,6 +198,11 @@
     "name": "צריכה בסיסית",
     "n": 3,
     "beat": 3
+   },
+   {
+    "name": "צריכה מחזורית",
+    "n": 1,
+    "beat": 1
    },
    {
     "name": "תעשייה",
@@ -229,7 +234,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "13/10/2026 06:16",
+  "updatedAt": "13/10/2026 13:15",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
