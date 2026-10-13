@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "14/10/2026 00:46",
+  "updatedAt": "14/10/2026 01:02",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -513,12 +513,12 @@
     "rev": 127469574196
    },
    "consensus": {
-    "eps": 3.0214,
+    "eps": 3.02233,
     "epsLow": 2.65,
     "epsHigh": 3.68,
     "epsN": 43,
     "epsYearAgo": 2.87,
-    "rev": 127459099580,
+    "rev": 127500474580,
     "revLow": 123409000000,
     "revHigh": 132554000000,
     "revN": 40,
@@ -526,7 +526,7 @@
     "quarterEnd": "2026-09-30"
    },
    "revisions": {
-    "up30": 3,
+    "up30": 4,
     "down30": 0
    },
    "targets": {
@@ -636,11 +636,13 @@
      "ptPrev": 420.0
     }
    ],
+   "yahooDate": "2026-10-28",
+   "analystsAt": "2026-10-13T22:02+00:00",
    "price": {
-    "close": 355.8,
+    "close": 353.78,
     "date": "2026-10-13",
     "high52": 402.62,
-    "ma50": 345.83,
+    "ma50": 345.79,
     "series": [
      [
       "2026-06-22",
@@ -960,17 +962,16 @@
      ],
      [
       "2026-10-13",
-      355.8
+      353.78
      ]
     ],
-    "off52": -11.6,
+    "off52": -12.1,
     "since": {
      "from": "2026-07-22",
-     "chg": 4.0
+     "chg": 3.4,
+     "spy": 4.1
     }
    },
-   "analystsAt": "2026-10-13T16:01+00:00",
-   "yahooDate": "2026-10-28",
    "options": {
     "asOf": "13/10 22:46",
     "price": 354.85,
@@ -1002,15 +1003,15 @@
     "rev": 1250604917
    },
    "consensus": {
-    "eps": 0.16721,
+    "eps": 0.16641,
     "epsLow": 0.15765,
     "epsHigh": 0.18,
-    "epsN": 8,
+    "epsN": 9,
     "epsYearAgo": 0.1014,
-    "rev": 1256784760,
+    "rev": 1257444480,
     "revLow": 1213300000,
     "revHigh": 1309000000,
-    "revN": 16,
+    "revN": 17,
     "revYearAgo": 949626000,
     "quarterEnd": "2026-09-30"
    },
@@ -1019,14 +1020,14 @@
     "down30": 4
    },
    "targets": {
-    "mean": 20.28636,
+    "mean": 20.36087,
     "high": 30.0,
     "low": 12.0,
-    "n": 22
+    "n": 23
    },
    "recs": {
     "strongBuy": 4,
-    "buy": 5,
+    "buy": 6,
     "hold": 11,
     "sell": 2,
     "strongSell": 2
@@ -1125,11 +1126,13 @@
      "ptPrev": 18.0
     }
    ],
+   "yahooDate": "2026-10-27",
+   "analystsAt": "2026-10-13T22:02+00:00",
    "price": {
-    "close": 15.13,
+    "close": 15.24,
     "date": "2026-10-13",
     "high52": 32.21,
-    "ma50": 17.31,
+    "ma50": 17.32,
     "series": [
      [
       "2026-06-22",
@@ -1449,17 +1452,16 @@
      ],
      [
       "2026-10-13",
-      15.13
+      15.24
      ]
     ],
-    "off52": -53.0,
+    "off52": -52.7,
     "since": {
      "from": "2026-07-28",
-     "chg": -9.6
+     "chg": -9.0,
+     "spy": 5.0
     }
    },
-   "analystsAt": "2026-10-13T16:01+00:00",
-   "yahooDate": "2026-10-27",
    "options": {
     "asOf": "13/10 22:46",
     "price": 15.18,
@@ -1491,6 +1493,11 @@
    "when": "before"
   },
   {
+   "sym": "AMZN",
+   "date": "2026-10-29",
+   "when": null
+  },
+  {
    "sym": "CUBE",
    "date": "2026-10-29",
    "when": "after"
@@ -1501,22 +1508,17 @@
    "when": "after"
   },
   {
-   "sym": "AMZN",
-   "date": "2026-10-29",
-   "when": null
-  },
-  {
    "sym": "CVX",
    "date": "2026-10-30",
    "when": "before"
   },
   {
-   "sym": "AAPL",
+   "sym": "PLTR",
    "date": "2026-11-02",
    "when": "after"
   },
   {
-   "sym": "PLTR",
+   "sym": "AAPL",
    "date": "2026-11-02",
    "when": "after"
   },
