@@ -43,44 +43,68 @@
             "ticker": "JPM",
             "name": "JPMorgan Chase & Co.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/JPM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/JPM.png",
+            "chg": -0.86,
+            "price": 331.43,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
           },
           {
             "ticker": "JNJ",
             "name": "Johnson & Johnson",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/JNJ.png"
+            "status": "final",
+            "logo": "data/earnings/logos/JNJ.png",
+            "chg": -5.73,
+            "price": 248.61,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
           },
           {
             "ticker": "UNH",
             "name": "UnitedHealth Group Incorporated",
             "when": "before",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/UNH.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -0.2,
+            "price": 377.76,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
           },
           {
             "ticker": "GS",
             "name": "Goldman Sachs Group, Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/GS.png"
+            "status": "final",
+            "logo": "data/earnings/logos/GS.png",
+            "chg": -0.23,
+            "price": 891.91,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
           },
           {
             "ticker": "WFC",
             "name": "Wells Fargo & Company",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/WFC.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WFC.png",
+            "chg": -3.1,
+            "price": 80.74,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
           },
           {
             "ticker": "C",
             "name": "Citigroup Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/C.png"
+            "status": "final",
+            "logo": "data/earnings/logos/C.png",
+            "chg": -5.6,
+            "price": 124.53,
+            "reactDate": "2026-10-13",
+            "baseDate": "2026-10-12"
           }
         ]
       },
@@ -486,7 +510,7 @@
     "PNFP": "2026-10-21"
   },
   "_meta": {
-    "updatedAt": "14/10/2026 04:31",
+    "updatedAt": "14/10/2026 04:46",
     "source": "tradingview"
   }
 }
