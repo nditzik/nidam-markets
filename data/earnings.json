@@ -1,45 +1,124 @@
 {
-  "today": "2026-10-14",
-  "todayCount": 7,
+  "today": "2026-10-15",
+  "todayCount": 11,
   "todayBig": [
     {
-      "ticker": "ASML",
-      "name": "ASML Holding NV Sponsored ADR",
-      "capB": 645.7
+      "ticker": "TSM",
+      "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
+      "capB": 2008.4
     },
     {
-      "ticker": "BAC",
-      "name": "Bank of America Corp",
-      "capB": 359.4
+      "ticker": "SCHW",
+      "name": "Charles Schwab Corp",
+      "capB": 167.4
     },
     {
-      "ticker": "MS",
-      "name": "Morgan Stanley",
-      "capB": 285.1
+      "ticker": "IBKR",
+      "name": "Interactive Brokers Group, Inc. Class A",
+      "capB": 143.1
     },
     {
-      "ticker": "BLK",
-      "name": "BlackRock, Inc.",
-      "capB": 174.5
+      "ticker": "PLD",
+      "name": "Prologis, Inc.",
+      "capB": 126.5
     },
     {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "capB": 124.0
+      "ticker": "BNY",
+      "name": "Bank of New York Mellon Corp",
+      "capB": 93.4
     },
     {
-      "ticker": "FAST",
-      "name": "Fastenal Company",
-      "capB": 59.7
+      "ticker": "USB",
+      "name": "U.S. Bancorp",
+      "capB": 87.7
     },
     {
-      "ticker": "STT",
-      "name": "State Street Corporation",
-      "capB": 45.8
+      "ticker": "PNC",
+      "name": "PNC Financial Services Group, Inc.",
+      "capB": 86.1
+    },
+    {
+      "ticker": "MRSH",
+      "name": "Marsh & McLennan Companies, Inc.",
+      "capB": 85.1
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-14",
+        "label": "14.10",
+        "items": [
+          {
+            "ticker": "ASML",
+            "name": "ASML Holding NV Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/ASML.png",
+            "chg": -3.94,
+            "price": 1650.0,
+            "reactDate": "2026-10-14",
+            "baseDate": "2026-10-13"
+          },
+          {
+            "ticker": "BAC",
+            "name": "Bank of America Corp",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BAC.png",
+            "chg": -4.76,
+            "price": 51.39,
+            "reactDate": "2026-10-14",
+            "baseDate": "2026-10-13"
+          },
+          {
+            "ticker": "MS",
+            "name": "Morgan Stanley",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/MS.png",
+            "chg": -2.75,
+            "price": 181.51,
+            "reactDate": "2026-10-14",
+            "baseDate": "2026-10-13"
+          },
+          {
+            "ticker": "BLK",
+            "name": "BlackRock, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BLK.png",
+            "logoBg": "dark",
+            "chg": 0.72,
+            "price": 1073.79,
+            "reactDate": "2026-10-14",
+            "baseDate": "2026-10-13"
+          },
+          {
+            "ticker": "PGR",
+            "name": "Progressive Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PGR.png",
+            "chg": -4.23,
+            "price": 213.46,
+            "reactDate": "2026-10-14",
+            "baseDate": "2026-10-13"
+          },
+          {
+            "ticker": "FAST",
+            "name": "Fastenal Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FAST.png",
+            "logoBg": "dark",
+            "chg": 1.11,
+            "price": 52.0,
+            "reactDate": "2026-10-14",
+            "baseDate": "2026-10-13"
+          }
+        ]
+      },
       {
         "date": "2026-10-13",
         "label": "13.10",
@@ -129,89 +208,80 @@
             "baseDate": "2026-10-08"
           }
         ]
-      },
-      {
-        "date": "2026-10-08",
-        "label": "8.10",
-        "items": [
-          {
-            "ticker": "PEP",
-            "name": "PepsiCo, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/PEP.png",
-            "chg": 3.73,
-            "price": 128.34,
-            "reactDate": "2026-10-08",
-            "baseDate": "2026-10-07"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "ASML",
-      "name": "ASML Holding NV Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/ASML.png"
+      "ticker": "TSM",
+      "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/TSM.png"
     },
     {
-      "ticker": "BAC",
-      "name": "Bank of America Corp",
+      "ticker": "SCHW",
+      "name": "Charles Schwab Corp",
       "when": "before",
-      "logo": "data/earnings/logos/BAC.png"
+      "logo": "data/earnings/logos/SCHW.png"
     },
     {
-      "ticker": "MS",
-      "name": "Morgan Stanley",
-      "when": "before",
-      "logo": "data/earnings/logos/MS.png"
+      "ticker": "IBKR",
+      "name": "Interactive Brokers Group, Inc. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/IBKR.png"
     },
     {
-      "ticker": "BLK",
-      "name": "BlackRock, Inc.",
+      "ticker": "PLD",
+      "name": "Prologis, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/BLK.png",
+      "logo": "data/earnings/logos/PLD.png"
+    },
+    {
+      "ticker": "BNY",
+      "name": "Bank of New York Mellon Corp",
+      "when": "before",
+      "logo": "data/earnings/logos/BNY.png"
+    },
+    {
+      "ticker": "USB",
+      "name": "U.S. Bancorp",
+      "when": "before",
+      "logo": "data/earnings/logos/USB.png"
+    },
+    {
+      "ticker": "PNC",
+      "name": "PNC Financial Services Group, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/PNC.png"
+    },
+    {
+      "ticker": "MRSH",
+      "name": "Marsh & McLennan Companies, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/MRSH.png"
+    },
+    {
+      "ticker": "ERIC",
+      "name": "Telefonaktiebolaget LM Ericsson Sponsored ADR Class B",
+      "when": "before",
+      "logo": "data/earnings/logos/ERIC.png",
       "logoBg": "dark"
     },
     {
-      "ticker": "PGR",
-      "name": "Progressive Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/PGR.png"
+      "ticker": "JBHT",
+      "name": "J.B. Hunt Transport Services, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/JBHT.png"
     },
     {
-      "ticker": "FAST",
-      "name": "Fastenal Company",
-      "when": "before",
-      "logo": "data/earnings/logos/FAST.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "STT",
-      "name": "State Street Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/STT.png",
-      "logoBg": "dark"
+      "ticker": "WIT",
+      "name": "Wipro Limited Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/WIT.png"
     }
   ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-10-15",
-      "label": "15/10",
-      "dow": "ה׳",
-      "count": 11,
-      "tickers": [
-        "TSM",
-        "SCHW",
-        "IBKR",
-        "PLD",
-        "BNY",
-        "USB"
-      ]
-    },
     {
       "date": "2026-10-16",
       "label": "16/10",
@@ -447,13 +517,6 @@
     }
   ],
   "window": {
-    "ASML": "2026-10-14",
-    "BAC": "2026-10-14",
-    "MS": "2026-10-14",
-    "BLK": "2026-10-14",
-    "PGR": "2026-10-14",
-    "FAST": "2026-10-14",
-    "STT": "2026-10-14",
     "TSM": "2026-10-15",
     "SCHW": "2026-10-15",
     "IBKR": "2026-10-15",
@@ -522,10 +585,52 @@
     "PKG": "2026-10-21",
     "LUV": "2026-10-21",
     "MEDP": "2026-10-21",
-    "ROL": "2026-10-21"
+    "ROL": "2026-10-21",
+    "PG": "2026-10-22",
+    "GILD": "2026-10-22",
+    "UNP": "2026-10-22",
+    "WDC": "2026-10-22",
+    "VLO": "2026-10-22",
+    "BX": "2026-10-22",
+    "LMT": "2026-10-22",
+    "NEM": "2026-10-22",
+    "SPOT": "2026-10-22",
+    "BCS": "2026-10-22",
+    "CMCSA": "2026-10-22",
+    "NSC": "2026-10-22",
+    "BE": "2026-10-22",
+    "HON": "2026-10-22",
+    "NOK": "2026-10-22",
+    "FIX": "2026-10-22",
+    "NDAQ": "2026-10-22",
+    "NBIS": "2026-10-22",
+    "BBD": "2026-10-22",
+    "CBRE": "2026-10-22",
+    "ROP": "2026-10-22",
+    "HIG": "2026-10-22",
+    "EME": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBAN": "2026-10-22",
+    "PCG": "2026-10-22",
+    "VRSN": "2026-10-22",
+    "DTK": "2026-10-22",
+    "DTE": "2026-10-22",
+    "DOV": "2026-10-22",
+    "DGX": "2026-10-22",
+    "DOW": "2026-10-22",
+    "PHM": "2026-10-22",
+    "SSNC": "2026-10-22",
+    "CRS": "2026-10-22",
+    "SNA": "2026-10-22",
+    "WF": "2026-10-22",
+    "TSCO": "2026-10-22",
+    "NVR": "2026-10-22"
   },
   "_meta": {
-    "updatedAt": "14/10/2026 23:46",
+    "updatedAt": "15/10/2026 00:01",
     "source": "tradingview"
   }
 }
