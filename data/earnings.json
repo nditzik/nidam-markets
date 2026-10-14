@@ -1,6 +1,6 @@
 {
   "today": "2026-10-14",
-  "todayCount": 6,
+  "todayCount": 7,
   "todayBig": [
     {
       "ticker": "ASML",
@@ -21,6 +21,11 @@
       "ticker": "BLK",
       "name": "BlackRock, Inc.",
       "capB": 173.2
+    },
+    {
+      "ticker": "PGR",
+      "name": "Progressive Corporation",
+      "capB": 129.5
     },
     {
       "ticker": "FAST",
@@ -171,6 +176,12 @@
       "logoBg": "dark"
     },
     {
+      "ticker": "PGR",
+      "name": "Progressive Corporation",
+      "when": "",
+      "logo": "data/earnings/logos/PGR.png"
+    },
+    {
       "ticker": "FAST",
       "name": "Fastenal Company",
       "when": "before",
@@ -272,7 +283,7 @@
       "date": "2026-10-14",
       "dow": "רביעי",
       "label": "14.10",
-      "total": 6,
+      "total": 7,
       "companies": [
         {
           "ticker": "ASML",
@@ -298,6 +309,12 @@
           "when": "before",
           "logo": "data/earnings/logos/BLK.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "PGR",
+          "name": "Progressive Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/PGR.png"
         },
         {
           "ticker": "FAST",
@@ -434,6 +451,7 @@
     "BAC": "2026-10-14",
     "MS": "2026-10-14",
     "BLK": "2026-10-14",
+    "PGR": "2026-10-14",
     "FAST": "2026-10-14",
     "STT": "2026-10-14",
     "TSM": "2026-10-15",
@@ -510,7 +528,7 @@
     "PNFP": "2026-10-21"
   },
   "_meta": {
-    "updatedAt": "14/10/2026 06:31",
+    "updatedAt": "14/10/2026 06:46",
     "source": "tradingview"
   }
 }
