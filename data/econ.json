@@ -8,30 +8,8 @@
    "period": "Sep",
    "forecast": "0.2%",
    "previous": "0.3%",
-   "actual": null,
-   "surprise": null
-  },
-  {
-   "date": "2026-10-14T12:30",
-   "ilDate": "14.10",
-   "ilTime": "15:30",
-   "he": "CPI שנתי",
-   "period": "Sep",
-   "forecast": "3.6%",
-   "previous": "3.4%",
-   "actual": null,
-   "surprise": null
-  },
-  {
-   "date": "2026-10-14T12:30",
-   "ilDate": "14.10",
-   "ilTime": "15:30",
-   "he": "CPI ליבה שנתי",
-   "period": "Sep",
-   "forecast": "2.5%",
-   "previous": "2.4%",
-   "actual": null,
-   "surprise": null
+   "actual": "0.3%",
+   "surprise": "bad"
   },
   {
    "date": "2026-10-14T12:30",
@@ -41,8 +19,30 @@
    "period": "Sep",
    "forecast": "0.6%",
    "previous": "0.4%",
-   "actual": null,
-   "surprise": null
+   "actual": "0.6%",
+   "surprise": "inline"
+  },
+  {
+   "date": "2026-10-14T12:30",
+   "ilDate": "14.10",
+   "ilTime": "15:30",
+   "he": "CPI שנתי",
+   "period": "Sep",
+   "forecast": "3.6%",
+   "previous": "3.4%",
+   "actual": "3.7%",
+   "surprise": "bad"
+  },
+  {
+   "date": "2026-10-14T12:30",
+   "ilDate": "14.10",
+   "ilTime": "15:30",
+   "he": "CPI ליבה שנתי",
+   "period": "Sep",
+   "forecast": "2.5%",
+   "previous": "2.4%",
+   "actual": "2.6%",
+   "surprise": "bad"
   },
   {
    "date": "2026-10-15T12:30",
@@ -200,7 +200,7 @@
   }
  ],
  "_meta": {
-  "updatedAt": "14/10/2026 15:16",
+  "updatedAt": "14/10/2026 15:31",
   "source": "TradingView econ calendar"
  }
 }
