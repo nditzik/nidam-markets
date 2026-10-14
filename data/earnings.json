@@ -10,12 +10,12 @@
     {
       "ticker": "BAC",
       "name": "Bank of America Corp",
-      "capB": 356.1
+      "capB": 356.7
     },
     {
       "ticker": "MS",
       "name": "Morgan Stanley",
-      "capB": 282.0
+      "capB": 283.1
     },
     {
       "ticker": "BLK",
@@ -25,17 +25,17 @@
     {
       "ticker": "PGR",
       "name": "Progressive Corporation",
-      "capB": 123.6
+      "capB": 123.9
     },
     {
       "ticker": "FAST",
       "name": "Fastenal Company",
-      "capB": 59.4
+      "capB": 59.5
     },
     {
       "ticker": "STT",
       "name": "State Street Corporation",
-      "capB": 45.0
+      "capB": 45.2
     }
   ],
   "reactions": {
@@ -375,16 +375,16 @@
           "logo": "data/earnings/logos/USB.png"
         },
         {
-          "ticker": "MRSH",
-          "name": "Marsh & McLennan Companies, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/MRSH.png"
-        },
-        {
           "ticker": "PNC",
           "name": "PNC Financial Services Group, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/PNC.png"
+        },
+        {
+          "ticker": "MRSH",
+          "name": "Marsh & McLennan Companies, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/MRSH.png"
         },
         {
           "ticker": "ERIC",
@@ -460,8 +460,8 @@
     "PLD": "2026-10-15",
     "BNY": "2026-10-15",
     "USB": "2026-10-15",
-    "MRSH": "2026-10-15",
     "PNC": "2026-10-15",
+    "MRSH": "2026-10-15",
     "ERIC": "2026-10-15",
     "JBHT": "2026-10-15",
     "WIT": "2026-10-15",
@@ -525,7 +525,7 @@
     "ROL": "2026-10-21"
   },
   "_meta": {
-    "updatedAt": "14/10/2026 22:01",
+    "updatedAt": "14/10/2026 22:16",
     "source": "tradingview"
   }
 }
