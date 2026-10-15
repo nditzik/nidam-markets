@@ -10,12 +10,12 @@
     {
       "ticker": "SCHW",
       "name": "Charles Schwab Corp",
-      "capB": 162.5
+      "capB": 162.9
     },
     {
       "ticker": "IBKR",
       "name": "Interactive Brokers Group, Inc. Class A",
-      "capB": 143.8
+      "capB": 144.2
     },
     {
       "ticker": "PLD",
@@ -25,22 +25,22 @@
     {
       "ticker": "BNY",
       "name": "Bank of New York Mellon Corp",
-      "capB": 96.2
-    },
-    {
-      "ticker": "MRSH",
-      "name": "Marsh & McLennan Companies, Inc.",
-      "capB": 89.3
+      "capB": 96.6
     },
     {
       "ticker": "USB",
       "name": "U.S. Bancorp",
-      "capB": 89.3
+      "capB": 89.4
+    },
+    {
+      "ticker": "MRSH",
+      "name": "Marsh & McLennan Companies, Inc.",
+      "capB": 89.2
     },
     {
       "ticker": "PNC",
       "name": "PNC Financial Services Group, Inc.",
-      "capB": 85.8
+      "capB": 85.9
     }
   ],
   "reactions": {
@@ -243,16 +243,16 @@
       "logo": "data/earnings/logos/BNY.png"
     },
     {
-      "ticker": "MRSH",
-      "name": "Marsh & McLennan Companies, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/MRSH.png"
-    },
-    {
       "ticker": "USB",
       "name": "U.S. Bancorp",
       "when": "before",
       "logo": "data/earnings/logos/USB.png"
+    },
+    {
+      "ticker": "MRSH",
+      "name": "Marsh & McLennan Companies, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/MRSH.png"
     },
     {
       "ticker": "PNC",
@@ -433,16 +433,16 @@
           "logo": "data/earnings/logos/BNY.png"
         },
         {
-          "ticker": "MRSH",
-          "name": "Marsh & McLennan Companies, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/MRSH.png"
-        },
-        {
           "ticker": "USB",
           "name": "U.S. Bancorp",
           "when": "before",
           "logo": "data/earnings/logos/USB.png"
+        },
+        {
+          "ticker": "MRSH",
+          "name": "Marsh & McLennan Companies, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/MRSH.png"
         },
         {
           "ticker": "PNC",
@@ -510,8 +510,8 @@
     "IBKR": "2026-10-15",
     "PLD": "2026-10-15",
     "BNY": "2026-10-15",
-    "MRSH": "2026-10-15",
     "USB": "2026-10-15",
+    "MRSH": "2026-10-15",
     "PNC": "2026-10-15",
     "ERIC": "2026-10-15",
     "JBHT": "2026-10-15",
@@ -595,10 +595,10 @@
     "HIG": "2026-10-22",
     "EME": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANL": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DTK": "2026-10-22",
@@ -612,7 +612,7 @@
     "CRS": "2026-10-22"
   },
   "_meta": {
-    "updatedAt": "15/10/2026 21:31",
+    "updatedAt": "15/10/2026 21:46",
     "source": "tradingview"
   }
 }
