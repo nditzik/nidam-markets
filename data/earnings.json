@@ -1,50 +1,103 @@
 {
-  "today": "2026-10-15",
-  "todayCount": 10,
+  "today": "2026-10-16",
+  "todayCount": 5,
   "todayBig": [
     {
-      "ticker": "TSM",
-      "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
-      "capB": 2004.9
+      "ticker": "TRV",
+      "name": "Travelers Companies, Inc.",
+      "capB": 80.1
     },
     {
-      "ticker": "SCHW",
-      "name": "Charles Schwab Corp",
-      "capB": 162.8
+      "ticker": "TFC",
+      "name": "Truist Financial Corporation",
+      "capB": 56.9
     },
     {
-      "ticker": "IBKR",
-      "name": "Interactive Brokers Group, Inc. Class A",
-      "capB": 146.4
+      "ticker": "MTB",
+      "name": "M&T Bank Corporation",
+      "capB": 31.6
     },
     {
-      "ticker": "PLD",
-      "name": "Prologis, Inc.",
-      "capB": 123.0
+      "ticker": "CFG",
+      "name": "Citizens Financial Group, Inc.",
+      "capB": 26.7
     },
     {
-      "ticker": "BNY",
-      "name": "Bank of New York Mellon Corp",
-      "capB": 96.4
-    },
-    {
-      "ticker": "USB",
-      "name": "U.S. Bancorp",
-      "capB": 89.4
-    },
-    {
-      "ticker": "MRSH",
-      "name": "Marsh & McLennan Companies, Inc.",
-      "capB": 89.0
-    },
-    {
-      "ticker": "PNC",
-      "name": "PNC Financial Services Group, Inc.",
-      "capB": 85.7
+      "ticker": "RF",
+      "name": "Regions Financial Corporation",
+      "capB": 23.3
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-15",
+        "label": "15.10",
+        "items": [
+          {
+            "ticker": "TSM",
+            "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TSM.png",
+            "chg": -1.8,
+            "price": 422.25,
+            "reactDate": "2026-10-15",
+            "baseDate": "2026-10-14"
+          },
+          {
+            "ticker": "SCHW",
+            "name": "Charles Schwab Corp",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SCHW.png",
+            "chg": -2.73,
+            "price": 94.16,
+            "reactDate": "2026-10-15",
+            "baseDate": "2026-10-14"
+          },
+          {
+            "ticker": "IBKR",
+            "name": "Interactive Brokers Group, Inc. Class A",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/IBKR.png"
+          },
+          {
+            "ticker": "PLD",
+            "name": "Prologis, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PLD.png",
+            "chg": -2.7,
+            "price": 126.94,
+            "reactDate": "2026-10-15",
+            "baseDate": "2026-10-14"
+          },
+          {
+            "ticker": "BNY",
+            "name": "Bank of New York Mellon Corp",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BNY.png",
+            "chg": 3.23,
+            "price": 142.09,
+            "reactDate": "2026-10-15",
+            "baseDate": "2026-10-14"
+          },
+          {
+            "ticker": "USB",
+            "name": "U.S. Bancorp",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/USB.png",
+            "chg": 2.01,
+            "price": 57.39,
+            "reactDate": "2026-10-15",
+            "baseDate": "2026-10-14"
+          }
+        ]
+      },
       {
         "date": "2026-10-14",
         "label": "14.10",
@@ -191,105 +244,43 @@
             "baseDate": "2026-10-12"
           }
         ]
-      },
-      {
-        "date": "2026-10-09",
-        "label": "9.10",
-        "items": [
-          {
-            "ticker": "DAL",
-            "name": "Delta Air Lines, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/DAL.png",
-            "chg": 0.04,
-            "price": 82.17,
-            "reactDate": "2026-10-09",
-            "baseDate": "2026-10-08"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "TSM",
-      "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
+      "ticker": "TRV",
+      "name": "Travelers Companies, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/TSM.png"
+      "logo": "data/earnings/logos/TRV.png"
     },
     {
-      "ticker": "SCHW",
-      "name": "Charles Schwab Corp",
+      "ticker": "TFC",
+      "name": "Truist Financial Corporation",
       "when": "before",
-      "logo": "data/earnings/logos/SCHW.png"
+      "logo": "data/earnings/logos/TFC.png"
     },
     {
-      "ticker": "IBKR",
-      "name": "Interactive Brokers Group, Inc. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/IBKR.png"
-    },
-    {
-      "ticker": "PLD",
-      "name": "Prologis, Inc.",
+      "ticker": "MTB",
+      "name": "M&T Bank Corporation",
       "when": "before",
-      "logo": "data/earnings/logos/PLD.png"
+      "logo": "data/earnings/logos/MTB.png"
     },
     {
-      "ticker": "BNY",
-      "name": "Bank of New York Mellon Corp",
+      "ticker": "CFG",
+      "name": "Citizens Financial Group, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/BNY.png"
+      "logo": "data/earnings/logos/CFG.png"
     },
     {
-      "ticker": "USB",
-      "name": "U.S. Bancorp",
+      "ticker": "RF",
+      "name": "Regions Financial Corporation",
       "when": "before",
-      "logo": "data/earnings/logos/USB.png"
-    },
-    {
-      "ticker": "MRSH",
-      "name": "Marsh & McLennan Companies, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/MRSH.png"
-    },
-    {
-      "ticker": "PNC",
-      "name": "PNC Financial Services Group, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/PNC.png"
-    },
-    {
-      "ticker": "ERIC",
-      "name": "Telefonaktiebolaget LM Ericsson Sponsored ADR Class B",
-      "when": "before",
-      "logo": "data/earnings/logos/ERIC.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "JBHT",
-      "name": "J.B. Hunt Transport Services, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/JBHT.png"
+      "logo": "data/earnings/logos/RF.png"
     }
   ],
   "more": 0,
-  "upcoming": [
-    {
-      "date": "2026-10-16",
-      "label": "16/10",
-      "dow": "ו׳",
-      "count": 5,
-      "tickers": [
-        "TRV",
-        "TFC",
-        "MTB",
-        "CFG",
-        "RF"
-      ]
-    }
-  ],
+  "upcoming": [],
   "week": [
     {
       "date": "2026-10-12",
@@ -505,16 +496,6 @@
     }
   ],
   "window": {
-    "TSM": "2026-10-15",
-    "SCHW": "2026-10-15",
-    "IBKR": "2026-10-15",
-    "PLD": "2026-10-15",
-    "BNY": "2026-10-15",
-    "USB": "2026-10-15",
-    "MRSH": "2026-10-15",
-    "PNC": "2026-10-15",
-    "ERIC": "2026-10-15",
-    "JBHT": "2026-10-15",
     "TRV": "2026-10-16",
     "TFC": "2026-10-16",
     "MTB": "2026-10-16",
@@ -542,7 +523,6 @@
     "OMC": "2026-10-20",
     "KEY": "2026-10-20",
     "EFX": "2026-10-20",
-    "GPC": "2026-10-20",
     "META": "2026-10-21",
     "TSLA": "2026-10-21",
     "LRCX": "2026-10-21",
@@ -596,9 +576,9 @@
     "EME": "2026-10-22",
     "HBAN": "2026-10-22",
     "HBANL": "2026-10-22",
-    "HBANP": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DTE": "2026-10-22",
@@ -609,10 +589,20 @@
     "PHM": "2026-10-22",
     "SSNC": "2026-10-22",
     "SNA": "2026-10-22",
-    "CRS": "2026-10-22"
+    "CRS": "2026-10-22",
+    "XOM": "2026-10-23",
+    "AXP": "2026-10-23",
+    "E": "2026-10-23",
+    "SLB": "2026-10-23",
+    "INFY": "2026-10-23",
+    "NVT": "2026-10-23",
+    "FCNCA": "2026-10-23",
+    "FCNCN": "2026-10-23",
+    "FCNCO": "2026-10-23",
+    "FCNCP": "2026-10-23"
   },
   "_meta": {
-    "updatedAt": "15/10/2026 23:46",
+    "updatedAt": "16/10/2026 00:01",
     "source": "tradingview"
   }
 }
