@@ -10,37 +10,37 @@
     {
       "ticker": "SCHW",
       "name": "Charles Schwab Corp",
-      "capB": 158.8
+      "capB": 158.9
     },
     {
       "ticker": "IBKR",
       "name": "Interactive Brokers Group, Inc. Class A",
-      "capB": 139.7
+      "capB": 138.9
     },
     {
       "ticker": "PLD",
       "name": "Prologis, Inc.",
-      "capB": 128.0
+      "capB": 125.4
     },
     {
       "ticker": "BNY",
       "name": "Bank of New York Mellon Corp",
-      "capB": 92.2
+      "capB": 92.3
     },
     {
       "ticker": "MRSH",
       "name": "Marsh & McLennan Companies, Inc.",
-      "capB": 89.2
+      "capB": 89.7
     },
     {
       "ticker": "USB",
       "name": "U.S. Bancorp",
-      "capB": 88.0
+      "capB": 88.6
     },
     {
       "ticker": "PNC",
       "name": "PNC Financial Services Group, Inc.",
-      "capB": 85.7
+      "capB": 85.6
     }
   ],
   "reactions": {
@@ -215,7 +215,7 @@
     {
       "ticker": "TSM",
       "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
-      "when": "",
+      "when": "before",
       "logo": "data/earnings/logos/TSM.png"
     },
     {
@@ -411,7 +411,7 @@
         {
           "ticker": "TSM",
           "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/TSM.png"
         },
         {
@@ -561,8 +561,8 @@
     "TSLA": "2026-10-21",
     "LRCX": "2026-10-21",
     "SAP": "2026-10-21",
-    "TXN": "2026-10-21",
     "TMO": "2026-10-21",
+    "TXN": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
@@ -607,11 +607,11 @@
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
     "EME": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBAN": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DTE": "2026-10-22",
@@ -625,7 +625,7 @@
     "CRS": "2026-10-22"
   },
   "_meta": {
-    "updatedAt": "15/10/2026 17:01",
+    "updatedAt": "15/10/2026 17:16",
     "source": "tradingview"
   }
 }
