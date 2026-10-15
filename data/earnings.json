@@ -53,69 +53,45 @@
             "ticker": "ASML",
             "name": "ASML Holding NV Sponsored ADR",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/ASML.png",
-            "chg": -3.94,
-            "price": 1650.0,
-            "reactDate": "2026-10-14",
-            "baseDate": "2026-10-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/ASML.png"
           },
           {
             "ticker": "BAC",
             "name": "Bank of America Corp",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BAC.png",
-            "chg": -4.76,
-            "price": 51.39,
-            "reactDate": "2026-10-14",
-            "baseDate": "2026-10-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/BAC.png"
           },
           {
             "ticker": "MS",
             "name": "Morgan Stanley",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MS.png",
-            "chg": -2.75,
-            "price": 181.51,
-            "reactDate": "2026-10-14",
-            "baseDate": "2026-10-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/MS.png"
           },
           {
             "ticker": "BLK",
             "name": "BlackRock, Inc.",
             "when": "before",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/BLK.png",
-            "logoBg": "dark",
-            "chg": 0.72,
-            "price": 1073.79,
-            "reactDate": "2026-10-14",
-            "baseDate": "2026-10-13"
+            "logoBg": "dark"
           },
           {
             "ticker": "PGR",
             "name": "Progressive Corporation",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/PGR.png",
-            "chg": -4.23,
-            "price": 213.46,
-            "reactDate": "2026-10-14",
-            "baseDate": "2026-10-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/PGR.png"
           },
           {
             "ticker": "FAST",
             "name": "Fastenal Company",
             "when": "before",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/FAST.png",
-            "logoBg": "dark",
-            "chg": 1.11,
-            "price": 52.0,
-            "reactDate": "2026-10-14",
-            "baseDate": "2026-10-13"
+            "logoBg": "dark"
           }
         ]
       },
@@ -609,10 +585,10 @@
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
     "EME": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANP": "2026-10-22",
     "HBANM": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
@@ -629,7 +605,7 @@
     "TSCO": "2026-10-22"
   },
   "_meta": {
-    "updatedAt": "15/10/2026 02:46",
+    "updatedAt": "15/10/2026 03:01",
     "source": "tradingview"
   }
 }
