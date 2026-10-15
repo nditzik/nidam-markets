@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "15/10/2026 10:01",
+  "updatedAt": "15/10/2026 10:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,16 +147,14 @@
      "ptPrev": 865.0
     }
    ],
+   "yahooDate": "2026-10-21",
+   "analystsAt": "2026-10-15T07:16+00:00",
    "price": {
-    "close": 762.5,
-    "date": "2026-10-13",
+    "close": 737.54,
+    "date": "2026-10-14",
     "high52": 777.59,
-    "ma50": 646.9,
+    "ma50": 649.89,
     "series": [
-     [
-      "2026-06-22",
-      563.85
-     ],
      [
       "2026-06-23",
       562.2
@@ -472,17 +470,19 @@
      [
       "2026-10-13",
       762.5
+     ],
+     [
+      "2026-10-14",
+      737.54
      ]
     ],
-    "off52": -1.9,
+    "off52": -5.2,
     "since": {
      "from": "2026-07-29",
-     "chg": 30.2,
-     "spy": 6.7
+     "chg": 25.9,
+     "spy": 5.5
     }
    },
-   "analystsAt": "2026-10-15T01:16+00:00",
-   "yahooDate": "2026-10-21",
    "options": {
     "asOf": "14/10 22:46",
     "price": 736.625,
@@ -4388,12 +4388,12 @@
    "when": "before"
   },
   {
-   "sym": "PLTR",
+   "sym": "AAPL",
    "date": "2026-11-02",
    "when": "after"
   },
   {
-   "sym": "AAPL",
+   "sym": "PLTR",
    "date": "2026-11-02",
    "when": "after"
   },
@@ -4413,14 +4413,14 @@
    "when": "before"
   },
   {
-   "sym": "PANW",
-   "date": "2026-11-12",
-   "when": null
-  },
-  {
    "sym": "AMAT",
    "date": "2026-11-12",
    "when": "after"
+  },
+  {
+   "sym": "PANW",
+   "date": "2026-11-12",
+   "when": null
   },
   {
    "sym": "ONDS",
@@ -4428,12 +4428,12 @@
    "when": null
   },
   {
-   "sym": "CPRT",
+   "sym": "CSCO",
    "date": "2026-11-18",
    "when": null
   },
   {
-   "sym": "CSCO",
+   "sym": "CPRT",
    "date": "2026-11-18",
    "when": null
   },
