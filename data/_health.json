@@ -1,16 +1,22 @@
 {
-  "generatedAt": "16/10/2026 05:16",
+  "generatedAt": "16/10/2026 05:33",
   "today": [
     {
       "label": "מדדים",
       "tab": "indices",
-      "time": "05:15",
+      "time": "05:30",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "05:15",
+      "time": "05:30",
+      "arrived": true
+    },
+    {
+      "label": "מועמדים",
+      "tab": "candidates",
+      "time": "05:30",
       "arrived": true
     },
     {
@@ -36,28 +42,22 @@
       "tab": "morning",
       "time": "14:53",
       "arrived": false
-    },
-    {
-      "label": "מועמדים",
-      "tab": "candidates",
-      "time": "05:30",
-      "arrived": false
     }
   ],
   "sources": [
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "16/10/2026 05:15",
-      "ageHours": 0.0,
+      "updatedAt": "16/10/2026 05:30",
+      "ageHours": 0.1,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "16/10/2026 05:15",
-      "ageHours": 0.0,
+      "updatedAt": "16/10/2026 05:30",
+      "ageHours": 0.1,
       "status": "ok",
       "detail": ""
     },
@@ -65,7 +65,7 @@
       "key": "morning",
       "label": "Barchart בוקר",
       "updatedAt": "15/10/2026 06:00",
-      "ageHours": 23.3,
+      "ageHours": 23.6,
       "status": "ok",
       "detail": ""
     },
@@ -73,7 +73,7 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "15/10/2026 14:53",
-      "ageHours": 14.4,
+      "ageHours": 14.7,
       "status": "ok",
       "detail": ""
     },
@@ -81,15 +81,15 @@
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "15/10/2026 15:15",
-      "ageHours": 14.0,
+      "ageHours": 14.3,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "מועמדים",
-      "updatedAt": "15/10/2026 05:30",
-      "ageHours": 23.8,
+      "updatedAt": "16/10/2026 05:30",
+      "ageHours": 0.1,
       "status": "ok",
       "detail": ""
     }
