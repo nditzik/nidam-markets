@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "16/10/2026 12:46",
+  "updatedAt": "16/10/2026 13:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -20,7 +20,7 @@
     "logoBg": null
    },
    "tvConsensus": {
-    "eps": 6.670973,
+    "eps": 6.586102,
     "rev": 63310367975
    },
    "consensus": {
@@ -2597,6 +2597,8 @@
      "ptPrev": 328.0
     }
    ],
+   "yahooDate": "2026-10-29",
+   "analystsAt": "2026-10-16T10:01+00:00",
    "price": {
     "close": 254.76,
     "date": "2026-10-15",
@@ -2931,8 +2933,6 @@
      "spy": 4.1
     }
    },
-   "analystsAt": "2026-10-16T04:01+00:00",
-   "yahooDate": "2026-10-29",
    "options": {
     "asOf": "15/10 22:46",
     "price": 255.07,
@@ -3087,6 +3087,8 @@
      "ptPrev": 48.0
     }
    ],
+   "yahooDate": "2026-10-29",
+   "analystsAt": "2026-10-16T10:01+00:00",
    "price": {
     "close": 38.56,
     "date": "2026-10-15",
@@ -3421,8 +3423,6 @@
      "spy": 4.1
     }
    },
-   "analystsAt": "2026-10-16T04:01+00:00",
-   "yahooDate": "2026-10-29",
    "options": {
     "asOf": "15/10 22:46",
     "price": 38.565,
@@ -3451,7 +3451,7 @@
    },
    "tvConsensus": {
     "eps": 2.094085,
-    "rev": 17283590819
+    "rev": 17283601930
    },
    "consensus": {
     "eps": 2.0942,
@@ -3467,8 +3467,8 @@
     "quarterEnd": "2026-09-30"
    },
    "revisions": {
-    "up30": 0,
-    "down30": 5
+    "up30": 1,
+    "down30": 7
    },
    "targets": {
     "mean": 158.64,
@@ -3577,6 +3577,8 @@
      "ptPrev": 155.0
     }
    ],
+   "yahooDate": "2026-10-29",
+   "analystsAt": "2026-10-16T10:01+00:00",
    "price": {
     "close": 145.19,
     "date": "2026-10-15",
@@ -3911,8 +3913,6 @@
      "spy": 1.9
     }
    },
-   "analystsAt": "2026-10-16T04:01+00:00",
-   "yahooDate": "2026-10-29",
    "options": {
     "asOf": "15/10 22:46",
     "price": 146.85,
@@ -4067,6 +4067,8 @@
      "ptPrev": 2000.0
     }
    ],
+   "yahooDate": "2026-10-29",
+   "analystsAt": "2026-10-16T10:01+00:00",
    "price": {
     "close": 1394.83,
     "date": "2026-10-15",
@@ -4401,8 +4403,6 @@
      "spy": 0.3
     }
    },
-   "analystsAt": "2026-10-16T04:01+00:00",
-   "yahooDate": "2026-10-29",
    "options": {
     "asOf": "15/10 22:46",
     "price": 1384.105,
@@ -4430,11 +4430,11 @@
     "logoBg": null
    },
    "tvConsensus": {
-    "eps": 4.88432,
+    "eps": 4.884273,
     "rev": 60548793967
    },
    "consensus": {
-    "eps": 4.87365,
+    "eps": 4.88778,
     "epsLow": 3.61,
     "epsHigh": 5.66,
     "epsN": 20,
@@ -4447,11 +4447,11 @@
     "quarterEnd": "2026-09-30"
    },
    "revisions": {
-    "up30": 5,
-    "down30": 2
+    "up30": 6,
+    "down30": 4
    },
    "targets": {
-    "mean": 228.08333,
+    "mean": 227.91667,
     "high": 253.0,
     "low": 175.0,
     "n": 24
@@ -4557,6 +4557,8 @@
      "ptPrev": 210.0
     }
    ],
+   "yahooDate": "2026-10-30",
+   "analystsAt": "2026-10-16T10:01+00:00",
    "price": {
     "close": 219.32,
     "date": "2026-10-15",
@@ -4891,8 +4893,6 @@
      "spy": 4.1
     }
    },
-   "analystsAt": "2026-10-16T04:01+00:00",
-   "yahooDate": "2026-10-30",
    "options": null,
    "avgMove": 2.5,
    "hasNote": false
@@ -4900,12 +4900,12 @@
  ],
  "later": [
   {
-   "sym": "PLTR",
+   "sym": "AAPL",
    "date": "2026-11-02",
    "when": "after"
   },
   {
-   "sym": "AAPL",
+   "sym": "PLTR",
    "date": "2026-11-02",
    "when": "after"
   },
@@ -4915,12 +4915,12 @@
    "when": "after"
   },
   {
-   "sym": "UBER",
+   "sym": "NVO",
    "date": "2026-11-04",
    "when": "before"
   },
   {
-   "sym": "NVO",
+   "sym": "UBER",
    "date": "2026-11-04",
    "when": "before"
   },
@@ -4940,12 +4940,12 @@
    "when": null
   },
   {
-   "sym": "CPRT",
+   "sym": "CSCO",
    "date": "2026-11-18",
    "when": null
   },
   {
-   "sym": "CSCO",
+   "sym": "CPRT",
    "date": "2026-11-18",
    "when": null
   },
