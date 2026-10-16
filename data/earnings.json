@@ -1,35 +1,81 @@
 {
-  "today": "2026-10-16",
-  "todayCount": 5,
+  "today": "2026-10-17",
+  "todayCount": 2,
   "todayBig": [
     {
-      "ticker": "TRV",
-      "name": "Travelers Companies, Inc.",
-      "capB": 81.2
+      "ticker": "HDB",
+      "name": "HDFC Bank Limited Sponsored ADR",
+      "capB": 118.6
     },
     {
-      "ticker": "TFC",
-      "name": "Truist Financial Corporation",
-      "capB": 57.5
-    },
-    {
-      "ticker": "MTB",
-      "name": "M&T Bank Corporation",
-      "capB": 31.1
-    },
-    {
-      "ticker": "CFG",
-      "name": "Citizens Financial Group, Inc.",
-      "capB": 26.7
-    },
-    {
-      "ticker": "RF",
-      "name": "Regions Financial Corporation",
-      "capB": 23.4
+      "ticker": "IBN",
+      "name": "ICICI Bank Limited Sponsored ADR",
+      "capB": 105.7
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-16",
+        "label": "16.10",
+        "items": [
+          {
+            "ticker": "TRV",
+            "name": "Travelers Companies, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TRV.png",
+            "chg": 1.47,
+            "price": 389.54,
+            "reactDate": "2026-10-16",
+            "baseDate": "2026-10-15"
+          },
+          {
+            "ticker": "TFC",
+            "name": "Truist Financial Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TFC.png",
+            "chg": 1.07,
+            "price": 47.07,
+            "reactDate": "2026-10-16",
+            "baseDate": "2026-10-15"
+          },
+          {
+            "ticker": "MTB",
+            "name": "M&T Bank Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/MTB.png",
+            "chg": -1.54,
+            "price": 215.28,
+            "reactDate": "2026-10-16",
+            "baseDate": "2026-10-15"
+          },
+          {
+            "ticker": "CFG",
+            "name": "Citizens Financial Group, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CFG.png",
+            "chg": -0.11,
+            "price": 63.36,
+            "reactDate": "2026-10-16",
+            "baseDate": "2026-10-15"
+          },
+          {
+            "ticker": "RF",
+            "name": "Regions Financial Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/RF.png",
+            "chg": 0.51,
+            "price": 27.45,
+            "reactDate": "2026-10-16",
+            "baseDate": "2026-10-15"
+          }
+        ]
+      },
       {
         "date": "2026-10-15",
         "label": "15.10",
@@ -175,336 +221,432 @@
             "baseDate": "2026-10-13"
           }
         ]
-      },
-      {
-        "date": "2026-10-13",
-        "label": "13.10",
-        "items": [
-          {
-            "ticker": "JPM",
-            "name": "JPMorgan Chase & Co.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/JPM.png",
-            "chg": -0.86,
-            "price": 331.43,
-            "reactDate": "2026-10-13",
-            "baseDate": "2026-10-12"
-          },
-          {
-            "ticker": "JNJ",
-            "name": "Johnson & Johnson",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/JNJ.png",
-            "chg": -5.73,
-            "price": 248.61,
-            "reactDate": "2026-10-13",
-            "baseDate": "2026-10-12"
-          },
-          {
-            "ticker": "UNH",
-            "name": "UnitedHealth Group Incorporated",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/UNH.png",
-            "logoBg": "dark",
-            "chg": -0.2,
-            "price": 377.76,
-            "reactDate": "2026-10-13",
-            "baseDate": "2026-10-12"
-          },
-          {
-            "ticker": "GS",
-            "name": "Goldman Sachs Group, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GS.png",
-            "chg": -0.23,
-            "price": 891.91,
-            "reactDate": "2026-10-13",
-            "baseDate": "2026-10-12"
-          },
-          {
-            "ticker": "WFC",
-            "name": "Wells Fargo & Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/WFC.png",
-            "chg": -3.1,
-            "price": 80.74,
-            "reactDate": "2026-10-13",
-            "baseDate": "2026-10-12"
-          },
-          {
-            "ticker": "C",
-            "name": "Citigroup Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/C.png",
-            "chg": -5.6,
-            "price": 124.53,
-            "reactDate": "2026-10-13",
-            "baseDate": "2026-10-12"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "TRV",
-      "name": "Travelers Companies, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/TRV.png"
+      "ticker": "HDB",
+      "name": "HDFC Bank Limited Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/HDB.png"
     },
     {
-      "ticker": "TFC",
-      "name": "Truist Financial Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/TFC.png"
-    },
-    {
-      "ticker": "MTB",
-      "name": "M&T Bank Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/MTB.png"
-    },
-    {
-      "ticker": "CFG",
-      "name": "Citizens Financial Group, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/CFG.png"
-    },
-    {
-      "ticker": "RF",
-      "name": "Regions Financial Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/RF.png"
+      "ticker": "IBN",
+      "name": "ICICI Bank Limited Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/IBN.png"
     }
   ],
   "more": 0,
-  "upcoming": [],
+  "upcoming": [
+    {
+      "date": "2026-10-19",
+      "label": "19/10",
+      "dow": "ב׳",
+      "count": 3,
+      "tickers": [
+        "FITB",
+        "STLD",
+        "WRB"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "label": "20/10",
+      "dow": "ג׳",
+      "count": 16,
+      "tickers": [
+        "GE",
+        "NFLX",
+        "RTX",
+        "ISRG",
+        "CB",
+        "COF"
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "label": "21/10",
+      "dow": "ד׳",
+      "count": 27,
+      "tickers": [
+        "META",
+        "TSLA",
+        "LRCX",
+        "PM",
+        "SAP",
+        "TMO"
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "label": "22/10",
+      "dow": "ה׳",
+      "count": 32,
+      "tickers": [
+        "PG",
+        "UNP",
+        "BX",
+        "VLO",
+        "LMT",
+        "NEM"
+      ]
+    },
+    {
+      "date": "2026-10-23",
+      "label": "23/10",
+      "dow": "ו׳",
+      "count": 10,
+      "tickers": [
+        "XOM",
+        "AXP",
+        "E",
+        "SLB",
+        "INFY",
+        "FCNCA"
+      ]
+    }
+  ],
   "week": [
     {
-      "date": "2026-10-12",
+      "date": "2026-10-19",
       "dow": "שני",
-      "label": "12.10",
-      "total": 0,
-      "companies": []
+      "label": "19.10",
+      "total": 3,
+      "companies": [
+        {
+          "ticker": "FITB",
+          "name": "Fifth Third Bancorp",
+          "when": "before",
+          "logo": "data/earnings/logos/FITB.png"
+        },
+        {
+          "ticker": "STLD",
+          "name": "Steel Dynamics, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/STLD.png"
+        },
+        {
+          "ticker": "WRB",
+          "name": "W. R. Berkley Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/WRB.png"
+        }
+      ]
     },
     {
-      "date": "2026-10-13",
+      "date": "2026-10-20",
       "dow": "שלישי",
-      "label": "13.10",
-      "total": 6,
+      "label": "20.10",
+      "total": 16,
       "companies": [
         {
-          "ticker": "JPM",
-          "name": "JPMorgan Chase & Co.",
+          "ticker": "GE",
+          "name": "GE Aerospace",
           "when": "before",
-          "logo": "data/earnings/logos/JPM.png"
+          "logo": "data/earnings/logos/GE.png"
         },
         {
-          "ticker": "JNJ",
-          "name": "Johnson & Johnson",
-          "when": "before",
-          "logo": "data/earnings/logos/JNJ.png"
+          "ticker": "NFLX",
+          "name": "Netflix, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/NFLX.png"
         },
         {
-          "ticker": "UNH",
-          "name": "UnitedHealth Group Incorporated",
+          "ticker": "RTX",
+          "name": "RTX Corporation",
           "when": "before",
-          "logo": "data/earnings/logos/UNH.png",
-          "logoBg": "dark"
+          "logo": "data/earnings/logos/RTX.png"
         },
         {
-          "ticker": "GS",
-          "name": "Goldman Sachs Group, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/GS.png"
+          "ticker": "ISRG",
+          "name": "Intuitive Surgical, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/ISRG.png"
         },
         {
-          "ticker": "WFC",
-          "name": "Wells Fargo & Company",
-          "when": "before",
-          "logo": "data/earnings/logos/WFC.png"
+          "ticker": "CB",
+          "name": "Chubb Limited",
+          "when": "after",
+          "logo": "data/earnings/logos/CB.png"
         },
         {
-          "ticker": "C",
-          "name": "Citigroup Inc.",
+          "ticker": "COF",
+          "name": "Capital One Financial Corp",
+          "when": "after",
+          "logo": "data/earnings/logos/COF.png"
+        },
+        {
+          "ticker": "MMM",
+          "name": "3M Company",
           "when": "before",
-          "logo": "data/earnings/logos/C.png"
+          "logo": "data/earnings/logos/MMM.png"
+        },
+        {
+          "ticker": "NOC",
+          "name": "Northrop Grumman Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/NOC.png"
+        },
+        {
+          "ticker": "GM",
+          "name": "General Motors Company",
+          "when": "before",
+          "logo": "data/earnings/logos/GM.png"
+        },
+        {
+          "ticker": "AMX",
+          "name": "America Movil SAB de CV Sponsored ADR Class B",
+          "when": "after",
+          "logo": "data/earnings/logos/AMX.png"
+        },
+        {
+          "ticker": "MSCI",
+          "name": "MSCI Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/MSCI.png"
+        },
+        {
+          "ticker": "UAL",
+          "name": "United Airlines Holdings, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/UAL.png"
         }
       ]
     },
     {
-      "date": "2026-10-14",
+      "date": "2026-10-21",
       "dow": "רביעי",
-      "label": "14.10",
-      "total": 7,
+      "label": "21.10",
+      "total": 27,
       "companies": [
         {
-          "ticker": "ASML",
-          "name": "ASML Holding NV Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/ASML.png"
+          "ticker": "META",
+          "name": "Meta Platforms Inc Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/META.png"
         },
         {
-          "ticker": "BAC",
-          "name": "Bank of America Corp",
-          "when": "before",
-          "logo": "data/earnings/logos/BAC.png"
+          "ticker": "TSLA",
+          "name": "Tesla, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/TSLA.png"
         },
         {
-          "ticker": "MS",
-          "name": "Morgan Stanley",
-          "when": "before",
-          "logo": "data/earnings/logos/MS.png"
+          "ticker": "LRCX",
+          "name": "Lam Research Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/LRCX.png"
         },
         {
-          "ticker": "BLK",
-          "name": "BlackRock, Inc.",
+          "ticker": "PM",
+          "name": "Philip Morris International Inc.",
           "when": "before",
-          "logo": "data/earnings/logos/BLK.png",
+          "logo": "data/earnings/logos/PM.png"
+        },
+        {
+          "ticker": "SAP",
+          "name": "SAP SE Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/SAP.png"
+        },
+        {
+          "ticker": "TMO",
+          "name": "Thermo Fisher Scientific Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/TMO.png"
+        },
+        {
+          "ticker": "TXN",
+          "name": "Texas Instruments Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/TXN.png"
+        },
+        {
+          "ticker": "IBM",
+          "name": "International Business Machines Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/IBM.png",
           "logoBg": "dark"
         },
         {
-          "ticker": "PGR",
-          "name": "Progressive Corporation",
+          "ticker": "ABT",
+          "name": "Abbott Laboratories",
           "when": "before",
-          "logo": "data/earnings/logos/PGR.png"
+          "logo": "data/earnings/logos/ABT.png"
         },
         {
-          "ticker": "FAST",
-          "name": "Fastenal Company",
+          "ticker": "NEE",
+          "name": "NextEra Energy, Inc.",
           "when": "before",
-          "logo": "data/earnings/logos/FAST.png",
-          "logoBg": "dark"
+          "logo": "data/earnings/logos/NEE.png"
         },
         {
-          "ticker": "STT",
-          "name": "State Street Corporation",
+          "ticker": "DHR",
+          "name": "Danaher Corporation",
           "when": "before",
-          "logo": "data/earnings/logos/STT.png",
-          "logoBg": "dark"
+          "logo": "data/earnings/logos/DHR.png"
+        },
+        {
+          "ticker": "T",
+          "name": "AT&T Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/T.png"
         }
       ]
     },
     {
-      "date": "2026-10-15",
+      "date": "2026-10-22",
       "dow": "חמישי",
-      "label": "15.10",
+      "label": "22.10",
+      "total": 32,
+      "companies": [
+        {
+          "ticker": "PG",
+          "name": "Procter & Gamble Company",
+          "when": "before",
+          "logo": "data/earnings/logos/PG.png"
+        },
+        {
+          "ticker": "UNP",
+          "name": "Union Pacific Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/UNP.png"
+        },
+        {
+          "ticker": "BX",
+          "name": "Blackstone Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BX.png"
+        },
+        {
+          "ticker": "VLO",
+          "name": "Valero Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/VLO.png"
+        },
+        {
+          "ticker": "LMT",
+          "name": "Lockheed Martin Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/LMT.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "NEM",
+          "name": "Newmont Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NEM.png"
+        },
+        {
+          "ticker": "WDC",
+          "name": "Western Digital Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/WDC.png"
+        },
+        {
+          "ticker": "SPOT",
+          "name": "Spotify Technology SA",
+          "when": "before",
+          "logo": "data/earnings/logos/SPOT.png"
+        },
+        {
+          "ticker": "CMCSA",
+          "name": "Comcast Corporation Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/CMCSA.png"
+        },
+        {
+          "ticker": "BCS",
+          "name": "Barclays PLC Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/BCS.png"
+        },
+        {
+          "ticker": "NSC",
+          "name": "Norfolk Southern Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/NSC.png"
+        },
+        {
+          "ticker": "HON",
+          "name": "Honeywell International Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/HON.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-23",
+      "dow": "שישי",
+      "label": "23.10",
       "total": 10,
       "companies": [
         {
-          "ticker": "TSM",
-          "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/TSM.png"
+          "ticker": "XOM",
+          "name": "Exxonmobil Holdings Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/XOM.png"
         },
         {
-          "ticker": "SCHW",
-          "name": "Charles Schwab Corp",
+          "ticker": "AXP",
+          "name": "American Express Company",
           "when": "before",
-          "logo": "data/earnings/logos/SCHW.png"
+          "logo": "data/earnings/logos/AXP.png"
         },
         {
-          "ticker": "IBKR",
-          "name": "Interactive Brokers Group, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/IBKR.png"
+          "ticker": "E",
+          "name": "Eni S.p.A. Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/E.png"
         },
         {
-          "ticker": "PLD",
-          "name": "Prologis, Inc.",
+          "ticker": "SLB",
+          "name": "SLB Limited",
           "when": "before",
-          "logo": "data/earnings/logos/PLD.png"
+          "logo": "data/earnings/logos/SLB.png"
         },
         {
-          "ticker": "BNY",
-          "name": "Bank of New York Mellon Corp",
-          "when": "before",
-          "logo": "data/earnings/logos/BNY.png"
+          "ticker": "INFY",
+          "name": "Infosys Limited Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/INFY.png"
         },
         {
-          "ticker": "USB",
-          "name": "U.S. Bancorp",
+          "ticker": "FCNCA",
+          "name": "First Citizens BancShares, Inc. Class A",
           "when": "before",
-          "logo": "data/earnings/logos/USB.png"
+          "logo": "data/earnings/logos/FCNCA.png"
         },
         {
-          "ticker": "MRSH",
-          "name": "Marsh & McLennan Companies, Inc.",
+          "ticker": "FCNCN",
+          "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
           "when": "before",
-          "logo": "data/earnings/logos/MRSH.png"
+          "logo": "data/earnings/logos/FCNCN.png"
         },
         {
-          "ticker": "PNC",
-          "name": "PNC Financial Services Group, Inc.",
+          "ticker": "FCNCO",
+          "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
           "when": "before",
-          "logo": "data/earnings/logos/PNC.png"
+          "logo": "data/earnings/logos/FCNCO.png"
         },
         {
-          "ticker": "ERIC",
-          "name": "Telefonaktiebolaget LM Ericsson Sponsored ADR Class B",
+          "ticker": "FCNCP",
+          "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
           "when": "before",
-          "logo": "data/earnings/logos/ERIC.png",
-          "logoBg": "dark"
+          "logo": "data/earnings/logos/FCNCP.png"
         },
         {
-          "ticker": "JBHT",
-          "name": "J.B. Hunt Transport Services, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/JBHT.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-16",
-      "dow": "שישי",
-      "label": "16.10",
-      "total": 5,
-      "companies": [
-        {
-          "ticker": "TRV",
-          "name": "Travelers Companies, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/TRV.png"
-        },
-        {
-          "ticker": "TFC",
-          "name": "Truist Financial Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/TFC.png"
-        },
-        {
-          "ticker": "MTB",
-          "name": "M&T Bank Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/MTB.png"
-        },
-        {
-          "ticker": "CFG",
-          "name": "Citizens Financial Group, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/CFG.png"
-        },
-        {
-          "ticker": "RF",
-          "name": "Regions Financial Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/RF.png"
+          "ticker": "NVT",
+          "name": "nVent Electric plc",
+          "when": "",
+          "logo": "data/earnings/logos/NVT.png"
         }
       ]
     }
   ],
   "window": {
-    "TRV": "2026-10-16",
-    "TFC": "2026-10-16",
-    "MTB": "2026-10-16",
-    "CFG": "2026-10-16",
-    "RF": "2026-10-16",
     "HDB": "2026-10-17",
     "IBN": "2026-10-17",
     "FITB": "2026-10-19",
@@ -574,10 +716,10 @@
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANM": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
@@ -591,13 +733,13 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "NVT": "2026-10-23"
   },
   "_meta": {
-    "updatedAt": "16/10/2026 23:46",
+    "updatedAt": "17/10/2026 00:01",
     "source": "tradingview"
   }
 }
