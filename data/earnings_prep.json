@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "16/10/2026 13:16",
+  "updatedAt": "16/10/2026 13:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -637,8 +637,6 @@
      "ptPrev": 395.0
     }
    ],
-   "yahooDate": "2026-10-28",
-   "analystsAt": "2026-10-16T10:16+00:00",
    "price": {
     "close": 349.22,
     "date": "2026-10-15",
@@ -973,6 +971,8 @@
      "spy": 3.3
     }
    },
+   "analystsAt": "2026-10-16T10:16+00:00",
+   "yahooDate": "2026-10-28",
    "options": {
     "asOf": "15/10 22:46",
     "price": 349.705,
@@ -1127,8 +1127,6 @@
      "ptPrev": 18.0
     }
    ],
-   "yahooDate": "2026-10-27",
-   "analystsAt": "2026-10-16T10:16+00:00",
    "price": {
     "close": 15.09,
     "date": "2026-10-15",
@@ -1463,6 +1461,8 @@
      "spy": 4.2
     }
    },
+   "analystsAt": "2026-10-16T10:16+00:00",
+   "yahooDate": "2026-10-27",
    "options": {
     "asOf": "15/10 22:46",
     "price": 15.115,
@@ -1617,8 +1617,6 @@
      "ptPrev": 57.0
     }
    ],
-   "yahooDate": "2026-10-28",
-   "analystsAt": "2026-10-16T10:16+00:00",
    "price": {
     "close": 44.14,
     "date": "2026-10-15",
@@ -1953,6 +1951,8 @@
      "spy": 4.2
     }
    },
+   "analystsAt": "2026-10-16T10:16+00:00",
+   "yahooDate": "2026-10-28",
    "options": {
     "asOf": "15/10 22:46",
     "price": 44.175,
@@ -2107,8 +2107,6 @@
      "ptPrev": 512.0
     }
    ],
-   "yahooDate": "2026-10-28",
-   "analystsAt": "2026-10-16T10:16+00:00",
    "price": {
     "close": 539.44,
     "date": "2026-10-15",
@@ -2443,6 +2441,8 @@
      "spy": 5.8
     }
    },
+   "analystsAt": "2026-10-16T10:16+00:00",
+   "yahooDate": "2026-10-28",
    "options": {
     "asOf": "15/10 22:46",
     "price": 540.34,
@@ -4900,12 +4900,12 @@
  ],
  "later": [
   {
-   "sym": "AAPL",
+   "sym": "PLTR",
    "date": "2026-11-02",
    "when": "after"
   },
   {
-   "sym": "PLTR",
+   "sym": "AAPL",
    "date": "2026-11-02",
    "when": "after"
   },
@@ -4915,24 +4915,24 @@
    "when": "after"
   },
   {
-   "sym": "UBER",
-   "date": "2026-11-04",
-   "when": "before"
-  },
-  {
    "sym": "NVO",
    "date": "2026-11-04",
    "when": "before"
   },
   {
-   "sym": "AMAT",
-   "date": "2026-11-12",
-   "when": "after"
+   "sym": "UBER",
+   "date": "2026-11-04",
+   "when": "before"
   },
   {
    "sym": "PANW",
    "date": "2026-11-12",
    "when": null
+  },
+  {
+   "sym": "AMAT",
+   "date": "2026-11-12",
+   "when": "after"
   },
   {
    "sym": "ONDS",
