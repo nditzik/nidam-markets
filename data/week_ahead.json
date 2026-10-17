@@ -81,122 +81,125 @@
   }
  },
  "state": {
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "scores": {
-   "tech": 93,
-   "breadth": 66,
-   "flow": 15,
-   "combined": 75
+   "tech": 58,
+   "breadth": 63,
+   "flow": 23,
+   "combined": 54
   },
   "evidence": {
-   "spxPrice": 7744.06,
-   "spxMa200": 7266.05,
+   "spxPrice": 7659.44,
+   "spxMa200": 7270.12,
    "pctMa200": 52.0,
-   "pctMa50": 44.2,
-   "vix": 16.46,
-   "nhCount": 72,
-   "nlCount": 92,
-   "eqSpx20": -0.24
+   "pctMa50": 45.6,
+   "vix": 19.99,
+   "nhCount": 74,
+   "nlCount": 93,
+   "eqSpx20": 1.1
   },
-  "sellDays": "ציון משולב 75",
+  "sellDays": "לחץ מכירות מצטבר (4 ימי מכירה ב-25) · ציון משולב 54",
   "options": {
-   "dailyScore": 15,
-   "meterScore": 36,
+   "dailyScore": 23,
+   "meterScore": 19,
    "bigMoney": "דובי",
    "newMoney": "דובי",
    "spxWarning": {
     "active": true,
-    "putSb": 2.636,
-    "pct": 85,
-    "text": "מכירת ביטוח חריגה ב-SPX (אחוזון 85 מול 60 יום). במחקר שלנו זה הקדים יום מכירה מוסדית בתוך 3 ימי מסחר ב-66% מהמקרים, מול 31% בשאר הימים."
+    "putSb": 4.114,
+    "pct": 95,
+    "text": "מכירת ביטוח חריגה ב-SPX (אחוזון 95 מול 60 יום). במחקר שלנו זה הקדים יום מכירה מוסדית בתוך 3 ימי מסחר ב-66% מהמקרים, מול 31% בשאר הימים."
    }
   },
   "rotation": {
    "leadingSectors": [
     "HC",
     "CS",
-    "CD"
+    "UTL",
+    "CD",
+    "MAT",
+    "IND"
    ],
    "sectorRs": {
-    "IND": {
-     "rs5": 1.42,
-     "rs20": -0.47,
-     "leading": false
-    },
-    "HC": {
-     "rs5": 5.91,
-     "rs20": 4.3,
+    "CD": {
+     "rs5": 3.89,
+     "rs20": 1.98,
      "leading": true
     },
-    "IT": {
-     "rs5": -3.23,
-     "rs20": 0.15,
-     "leading": false
-    },
-    "RE": {
-     "rs5": 2.03,
-     "rs20": -5.45,
-     "leading": false
-    },
     "ENE": {
-     "rs5": -0.63,
-     "rs20": -6.25,
+     "rs5": 2.91,
+     "rs20": -2.43,
      "leading": false
     },
-    "MAT": {
-     "rs5": 2.78,
-     "rs20": -2.67,
+    "IT": {
+     "rs5": -5.67,
+     "rs20": -2.29,
+     "leading": false
+    },
+    "FIN": {
+     "rs5": 3.66,
+     "rs20": -0.85,
      "leading": false
     },
     "UTL": {
-     "rs5": 2.22,
-     "rs20": -0.96,
-     "leading": false
-    },
-    "COM": {
-     "rs5": 2.17,
-     "rs20": -2.07,
-     "leading": false
-    },
-    "CD": {
-     "rs5": 2.79,
-     "rs20": 0.6,
+     "rs5": 5.14,
+     "rs20": 3.35,
      "leading": true
+    },
+    "HC": {
+     "rs5": 5.32,
+     "rs20": 5.26,
+     "leading": true
+    },
+    "MAT": {
+     "rs5": 4.91,
+     "rs20": 0.69,
+     "leading": true
+    },
+    "RE": {
+     "rs5": 2.41,
+     "rs20": -2.86,
+     "leading": false
     },
     "CS": {
-     "rs5": 4.41,
-     "rs20": 1.3,
+     "rs5": 7.5,
+     "rs20": 4.7,
      "leading": true
     },
-    "FIN": {
-     "rs5": 1.98,
-     "rs20": -2.13,
+    "IND": {
+     "rs5": 2.58,
+     "rs20": 0.56,
+     "leading": true
+    },
+    "COM": {
+     "rs5": 4.36,
+     "rs20": -0.3,
      "leading": false
     }
    },
-   "cyclicalLeading": 1,
-   "defensiveLeading": 2,
+   "cyclicalLeading": 2,
+   "defensiveLeading": 3,
    "series": [
-    0.691,
-    1.396,
-    0.767,
-    1.308,
-    1.099,
-    1.096,
-    0.357,
-    -0.186,
-    0.187,
-    1.78,
-    1.616,
-    1.469,
-    1.469,
-    0.522,
-    0.534,
-    0.254,
-    -0.815,
-    -0.622,
-    -3.062,
-    -3.111
+    0.705,
+    0.076,
+    0.617,
+    0.409,
+    0.405,
+    -0.334,
+    -0.877,
+    -0.504,
+    1.09,
+    0.925,
+    0.778,
+    0.778,
+    -0.169,
+    -0.156,
+    -0.437,
+    -1.506,
+    -1.313,
+    -3.753,
+    -3.802,
+    -4.919
    ]
   },
   "vixLight": {
@@ -211,149 +214,176 @@
    "note": "לניתוח: רמזור ה-VIX צהוב — VIX 20.0, 28% מעל הממוצע ל-50 יום (15.6). ציין זאת במשפט אחד: פחד מזדחל בזמן שהמדד ליד השיא; בבדיקה על 2005–2026 ב-18% מהמקרים הדומים הגיע תיקון של 5% תוך 20 ימי מסחר, מול 11% בימים רגילים — כלומר תשומת לב מוגברת, לא תחזית (4 מתוך 5 אזעקות הן שווא)."
   },
   "lastWeek": {
-   "label": "5–9.10",
+   "label": "12–16.10",
    "summary": {
-    "combStart": 57,
-    "combEnd": 64,
-    "spxPct": 1.15,
-    "vixStart": 15.31,
-    "vixEnd": 14.84,
-    "sellDays": 0,
-    "combLow": 55,
-    "combHigh": 64
+    "combStart": 64,
+    "combEnd": 54,
+    "spxPct": -1.95,
+    "vixStart": 14.84,
+    "vixEnd": 19.99,
+    "sellDays": 2,
+    "combLow": 42,
+    "combHigh": 75
    },
-   "sectors": {
-    "date": "2026-10-10",
-    "file": "data/sectors/sectors-2026-10-10.html",
-    "title": "לאן זרם הכסף השבוע? | שבוע 11 | 10.10.2026",
-    "lead": "השוק התרחב: 35% מהמניות הגדולות מעל ממוצע 50 הימים, לעומת 25% לפני שבוע.",
-    "out": [
-     {
-      "name": "תעשייה",
-      "from": 27,
-      "to": 24
-     },
-     {
-      "name": "טכנולוגיה",
-      "from": 71,
-      "to": 69
-     }
-    ],
-    "held": [
-     {
-      "name": "אנרגיה",
-      "from": 38,
-      "to": 71
-     },
-     {
-      "name": "צריכה בסיסית",
-      "from": 6,
-      "to": 30
-     },
-     {
-      "name": "בריאות",
-      "from": 39,
-      "to": 57
-     },
-     {
-      "name": "פיננסים",
-      "from": 3,
-      "to": 20
-     }
-    ],
-    "heldIn": true,
-    "marketBreadth": 35
-   }
+   "sectors": null
   }
  },
  "knn": {
   "horizonDays": 20,
   "latest": {
-   "date": "2026-10-15",
+   "date": "2026-10-16",
    "gap": false,
-   "fcMin": -1.35,
-   "fcMax": 3.25,
-   "fcQ25": 0.82,
-   "fcQ75": 2.86,
-   "fcMedian": 1.44,
+   "fcMin": -10.49,
+   "fcMax": 4.61,
+   "fcQ25": -2.47,
+   "fcQ75": 1.72,
+   "fcMedian": 0.99,
    "actual": null,
    "hit": null,
    "coreHit": null,
-   "confidence": "high",
-   "medDist": 0.68
+   "confidence": "low",
+   "medDist": 1.5
   },
   "record": {
-   "matured": 79,
+   "matured": 80,
    "directionHitPct": 65,
    "avgForecast": 1.76,
-   "avgActual": 0.84
+   "avgActual": 0.83
   }
  },
  "calendar": {
   "macro": [],
-  "earnings": [],
+  "earnings": [
+   {
+    "date": "2026-10-19",
+    "label": "19/10",
+    "dow": "ב׳",
+    "count": 3,
+    "tickers": [
+     "FITB",
+     "STLD",
+     "WRB"
+    ]
+   },
+   {
+    "date": "2026-10-20",
+    "label": "20/10",
+    "dow": "ג׳",
+    "count": 16,
+    "tickers": [
+     "GE",
+     "NFLX",
+     "RTX",
+     "ISRG",
+     "CB",
+     "COF"
+    ]
+   },
+   {
+    "date": "2026-10-21",
+    "label": "21/10",
+    "dow": "ד׳",
+    "count": 27,
+    "tickers": [
+     "META",
+     "TSLA",
+     "LRCX",
+     "PM",
+     "SAP",
+     "TMO"
+    ]
+   },
+   {
+    "date": "2026-10-22",
+    "label": "22/10",
+    "dow": "ה׳",
+    "count": 32,
+    "tickers": [
+     "PG",
+     "UNP",
+     "BX",
+     "VLO",
+     "LMT",
+     "NEM"
+    ]
+   },
+   {
+    "date": "2026-10-23",
+    "label": "23/10",
+    "dow": "ו׳",
+    "count": 10,
+    "tickers": [
+     "XOM",
+     "AXP",
+     "E",
+     "SLB",
+     "INFY",
+     "FCNCA"
+    ]
+   }
+  ],
   "note": "יומן המאקרו כאן חלקי (אירועים מרכזיים בלבד) — להשלים בחיפוש: נאומי פד, נתונים משניים, פגישות מדיניות"
  },
  "weekend": {
   "pulse": [
    {
-    "t": "2026-10-16T20:45",
-    "src": "FinancialJuice",
-    "text": "Trump: Iran will be over very soon"
+    "t": "2026-10-17T09:48",
+    "src": "Walter Bloomberg",
+    "text": "🚨 ANTHROPIC: AI COULD PUSH U.S. GDP TO $44 TRILLION BY 2030 Anthropic co-founder Jack Clark says an internal model projects AI could boost U.S. GDP from $30 trillion to…"
    },
    {
-    "t": "2026-10-16T20:44",
-    "src": "FinancialJuice",
-    "text": "Anthropic: Revenue per employee 2x-4x its peers, Meta and Google. $META $GOOGL"
+    "t": "2026-10-17T09:43",
+    "src": "Walter Bloomberg",
+    "text": "🚨 ANTHROPIC'S CLARK: WE ARE IN CONTROL OF AI NOW, BUT IT IS GETTING MUCH MORE CAPABLE MUCH MORE QUICKLY THAN OUR INTUITIONS @walter_bloomberg | Source"
    },
    {
-    "t": "2026-10-16T20:36",
-    "src": "@AIStockSavvy",
-    "text": "מנכ\"ל NVIDIA Jensen Huang: התנודתיות הנוכחית בשוק ה-AI תעבור. $NVDA"
-   },
-   {
-    "t": "2026-10-16T20:33",
-    "src": "FinancialJuice",
-    "text": "Trump speaks at a rally in Dalton, Georgia - WATCH LIVE"
-   },
-   {
-    "t": "2026-10-16T20:30",
-    "src": "@AIStockSavvy",
-    "text": "רכישת פנים ב-Nebius $NBIS: דירקטור רכש מניות ב-50 אלף דולר"
-   },
-   {
-    "t": "2026-10-16T20:27",
-    "src": "@AIStockSavvy",
-    "text": "Eli Lilly מדווחת על החזקה של 19.9% ב-Trex Bio. $LLY $TRXB"
-   },
-   {
-    "t": "2026-10-16T20:09",
-    "src": "@LiveSquawk",
-    "text": "Morningstar DBRS מאשרת את דירוג איטליה ב-A (נמוך), מגמה יציבה"
-   },
-   {
-    "t": "2026-10-16T20:09",
-    "src": "@LiveSquawk",
-    "text": "Morningstar DBRS מאשרת את דירוג האיחוד האירופי ב-AAA, מגמה יציבה"
-   },
-   {
-    "t": "2026-10-16T20:04",
-    "src": "@LiveSquawk",
-    "text": "S&P מאשרת דירוג הולנד AAA/A-1+, תחזית יציבה"
-   },
-   {
-    "t": "2026-10-16T20:02",
+    "t": "2026-10-17T02:35",
     "src": "@KobeissiLetter",
-    "text": "BREAKING: The Nasdaq 100 officially closes the week down -5.5%, posting its largest weekly decline since April 2025. The index is now down -7% from its high seen just 10…"
+    "text": "BREAKING: Katie Zacharia officially resigns as White House Press Secretary after 5 days in the role, making her the shortest-serving White House Press Secretary in US…"
+   },
+   {
+    "t": "2026-10-17T01:37",
+    "src": "FinancialJuice",
+    "text": "Indian police detain 'cockroach' movement founder Abhijeet Dipke: Indian media"
+   },
+   {
+    "t": "2026-10-17T00:49",
+    "src": "FinancialJuice",
+    "text": "Blackstone funds to invest $9 billion in"
+   },
+   {
+    "t": "2026-10-17T00:49",
+    "src": "FinancialJuice",
+    "text": "backed by five-year lease payments from Anthropic for the chips - FT"
+   },
+   {
+    "t": "2026-10-16T22:44",
+    "src": "@Barchart",
+    "text": "U.S. Homes are now the most unaffordable in history 🚨 🚨 @​Barchart • Oct 16, 2026"
+   },
+   {
+    "t": "2026-10-16T22:01",
+    "src": "@KobeissiLetter",
+    "text": "BREAKING: US equity ETFs have attracted +$1.4 trillion in inflows over the last 12 months, their largest 12-month inflow on record. Tech funds alone have attracted +$65…"
+   },
+   {
+    "t": "2026-10-16T21:41",
+    "src": "@Barchart",
+    "text": "📈The Nov soybean/Dec corn 2027 futures ratio is at a six-year high for mid-October of 2.45 vs. 2.31 a year ago. That's a more favorable signal for soybean profitability…"
+   },
+   {
+    "t": "2026-10-16T20:50",
+    "src": "@KobeissiLetter",
+    "text": "BREAKING: The US deficit widened to $1.99 trillion for FY2026, up +12% from the $1.78 trillion recorded last year. Spending rose by +6%, to $7.4 trillion, and NET…"
    }
   ],
   "news": [
-   "Coreweave שקופיות 25% לשבוע עם גידול חששות האשראי בינה מלאכותית | סגירת פעמון",
-   "ניתוח: מדוע גירעון של 2 טריליון $ ותשואות של 5% באוצר הופכים לאתגר הכלכלי הגדול ביותר של אמריקה",
-   "מדוע מניית האסטרטגיה (MSTR) יורדת היום",
-   "Nasdaq 100 שובר תמיכה של 29,361, RSI ב-23.5: רמות חיות",
-   "\"Farrow and Ball\": צבעי ספרי החובה של כסף",
-   "הגירעון התקציבי של ארה\"ב תפח לכמעט 2 טריליון דולר לשנת הכספים 2026, עלייה של 12% בשנה אחת"
+   "דיוויד בירן מסביר כיצד רעיונות נשכחים חוזרים לחיים",
+   "הגירעון התקציבי של ארה\"ב תפח לכמעט 2 טריליון דולר לשנת הכספים 2026, עלייה של 12% בשנה אחת",
+   "האם קניית חשמל תקע היום יכולה להפוך 1,000 דולר לעושר משנה חיים?",
+   "גרינשפן מחזיק בהובלה לראש האו\"ם הבא כשהמירוץ נכנס לשלב מכריע",
+   "לגארד אומר כי פיננסים בר קיימא מפתח ליציבות כלכלית",
+   "ניתוח: מדוע גירעון של 2 טריליון דולר ותשואות של 5% באוצר הופכים לאתגר הכלכלי הגדול ביותר של אמריקה"
   ],
   "briefings": {
    "morning": {
@@ -362,10 +392,10 @@
      "text": ""
     },
     "headlines": [
-     "PPI בארה״ב זינק 1.3% בספטמבר לעומת צפי ל־0.5%; הקצב השנתי הגיע ל־6.3%.",
-     "המכירות הקמעונאיות עלו 0.8%, אך קבוצת הבקרה עלתה רק 0.1% — חלק ניכר מהכותרת נבע ממחירי דלק.",
-     "TSMC פרסמה רווח שיא והכוונת הכנסות של 52.3–54.3 מיליארד דולר לרבעון הרביעי.",
-     "וול סטריט התאוששה: דאו +1.08%, ראסל 2000 +1.38%, בעוד נאסד״ק עלה רק 0.08%."
+     "מחירי היבוא בארה״ב עלו בספטמבר 1.1% וב־8.1% בשנה — שיא שנתי מאז יולי 2022.",
+     "מכירת מניות ה־AI החריפה: Nasdaq ירד 2.15%, S&P 500 ירד 1.09% ו־VIX עלה ל־19.99.",
+     "WTI חצה שוב 100 דולר ונסגר ב־101.41 דולר; Brent נסגר ב־109.86 דולר.",
+     "הבנקים האזוריים הציגו הלוואות עמידות וצמיחה בריבית נטו, אך התגובה לא הייתה אחידה."
     ]
    },
    "afternoon": {
@@ -384,57 +414,93 @@
   "web": {
    "trump": [
     {
-     "t": "10-16 20:37",
-     "title": "Did the economy break Trump? Enten unpacks the numbers - Modern Ghana"
+     "t": "10-17 10:38",
+     "title": "'Those Seeking To Break Canada...': Carney Alerts Canadians Amid Feud With Trump Over U.S. Tariffs - The Times of India"
     },
     {
-     "t": "10-16 19:47",
-     "title": "US budget deficit grows to nearly $2 trillion, highest since 2021 - France 24"
+     "t": "10-17 09:45",
+     "title": "Trump Waives Russia Energy Tariffs, Sanctions in Graham Law - Bloomberg.com"
     },
     {
-     "t": "10-16 18:56",
-     "title": "Could Trump's Pressure Actually Save Canada? - RealClearMarkets"
+     "t": "10-17 09:39",
+     "title": "Trump waives tariffs on largest buyers of Russian oil, days before Lindsey Graham-backed law was set to take effect - CBS News"
     },
     {
-     "t": "10-16 17:38",
-     "title": "US President Trump says US economy has never been stronger; regarding oil drilling in Texas, nobody can take a chance on it - Newsquawk"
+     "t": "10-17 09:25",
+     "title": "Dow Jones Forecast: 55,000 Target Faces Trump Tariffs and Fed Risks - FXEmpire"
     },
     {
-     "t": "10-16 17:24",
-     "title": "Roger Marshall praises Trump's tariff policies after Kansas executive says they hurt his business - Kansas Reflector"
+     "t": "10-17 09:18",
+     "title": "Moscow delighted by Trump’s suspension of tariffs - Yahoo"
     },
     {
-     "t": "10-16 17:20",
-     "title": "Roger Marshall praises Trump’s tariff policies after Kansas executive says they hurt his business - News From The States"
+     "t": "10-17 09:15",
+     "title": "Trump Waives Key Russia-Related Sanctions and Tariffs Before New Law Takes Effect - Modern Diplomacy"
     },
     {
-     "t": "10-16 17:01",
-     "title": "Ford's stark warning: Ontario must prepare for tariffs 'for good' - Inside Halton"
+     "t": "10-17 09:14",
+     "title": "Why Trump waived Russia sanctions that threatened 100% tariffs on India - Firstpost"
     },
     {
-     "t": "10-16 16:28",
-     "title": "Trump wants the midterms to be all about him. Based on Democrats' ads, they are happy to oblige - PBS"
+     "t": "10-17 09:01",
+     "title": "Trump Waives Russia-Related Tariffs Weeks After Signing Sanctions Bill, Easing Pressure on Putin as Oil P - Benzinga"
     },
     {
-     "t": "10-16 15:59",
-     "title": "No president can convince voters economy is better than they feel: Byron York - Washington Examiner"
+     "t": "10-17 08:37",
+     "title": "Trump signs order waiving Graham Act sanctions on Russia - ABC News - Breaking News, Latest News and Videos"
     },
     {
-     "t": "10-16 15:43",
-     "title": "US midterms 2026: Trump faces growing backlash over tariff policies - Moneycontrol.com"
+     "t": "10-17 08:26",
+     "title": "President Donald Trump Claims Gasoline Prices Will \"Drop Like a Rock\" When the Iran War Ends, but He's Completely Missed the Bigger Picture - Yahoo Finance"
     },
     {
-     "t": "10-16 15:11",
-     "title": "Who Among Republicans Thinks Trump's Economic Policies Are Helping or Hurting? New Poll Reveals a Party Divided - Latin Times"
+     "t": "10-17 08:22",
+     "title": "Shafaq News..Trump waives tariffs tied to Russian energy purchases - شفق نيوز"
     },
     {
-     "t": "10-16 15:03",
-     "title": "Toy prices set to hike ahead of holiday season thanks to Trump’s tariffs - The Independent"
+     "t": "10-17 08:21",
+     "title": "Trump Waives Russia Oil Sanctions, Tariffs Ahead of Enforcement - Egypt Oil & Gas"
     }
    ],
    "trumpAI": [
     {
-     "t": "10-16 20:21",
+     "t": "10-17 09:04",
+     "title": "President Donald Trump announces creation of 'Super Intelligence Force' AI task force - ABC News - Breaking News, Latest News and Videos"
+    },
+    {
+     "t": "10-17 07:04",
+     "title": "Despite President Trump’s flurry of posts, memes and AI content daily, Truth Social sees 30% decline in da - The Economic Times"
+    },
+    {
+     "t": "10-17 06:12",
+     "title": "NASA replaces AI with superintelligence under Trump order — Space.com - UA.NEWS"
+    },
+    {
+     "t": "10-17 05:07",
+     "title": "President Trump’s task force to commission report on AI risks — NDTV - UA.NEWS"
+    },
+    {
+     "t": "10-17 04:45",
+     "title": "Trump's AI Task Force To Commission Report On Technology's Risks - NDTV"
+    },
+    {
+     "t": "10-17 01:32",
+     "title": "Zacharia says it was 'an honor' to work for Trump - LiveNOW from FOX"
+    },
+    {
+     "t": "10-17 01:02",
+     "title": "Warsh Touts ‘Consequential’ AI, Trump Press Secretary Out After Five Days｜Bloomberg Businessweek - finance.biggo.com"
+    },
+    {
+     "t": "10-16 21:47",
+     "title": "Watch Warsh Touts ‘Consequential’ AI, Trump Press Secretary Out After Five Days - Bloomberg.com"
+    },
+    {
+     "t": "10-16 20:37",
+     "title": "AI Should Elevate Decision Making, Not End Responsibility - Yahoo"
+    },
+    {
+     "t": "10-16 20:24",
      "title": "Trump Task Force Orders Report on AI Dangers - PYMNTS.com"
     },
     {
@@ -444,52 +510,32 @@
     {
      "t": "10-16 18:26",
      "title": "Delegation for 10.16.26: Guard shortage — Trump returns — diesel diplomacy — party lines — AI deception - Florida Politics"
-    },
-    {
-     "t": "10-16 17:30",
-     "title": "Can voters learn to stop worrying and love Big AI? - The Hill"
-    },
-    {
-     "t": "10-16 16:44",
-     "title": "They voted for Trump. Now they’re questioning his AI agenda | CNN Politics - CNN"
-    },
-    {
-     "t": "10-16 16:36",
-     "title": "The Needle: Trump Is Refusing to Testify and Turn Over Documents Related to Kennedy Center Takeover, D.C. Is No. 2 on List of Cities Most Vulnerable to AI, a Confederate Memorial May Return to Arlington Cemetery, and More - Washington City Paper"
-    },
-    {
-     "t": "10-16 14:21",
-     "title": "President Trump Posts AI Video of Himself Tackling a Tiger Days After Man Was Mauled to Death at Zoo - Yahoo"
-    },
-    {
-     "t": "10-16 13:55",
-     "title": "OpenAI Saudi national bugging case shows threat to U.S. leadership in AI: DNI Clayton - CNBC"
-    },
-    {
-     "t": "10-16 13:55",
-     "title": "'We are getting a lot of pressure from the administrator himself': How NASA is racing to obey Trump's 'Super Intelligence' order - Space"
-    },
-    {
-     "t": "10-16 13:08",
-     "title": "President Trump and Nancy Pelosi’s AI Data Center Stock Pick: Vistra (VST) - Yahoo Finance"
-    },
-    {
-     "t": "10-16 13:08",
-     "title": "Nancy Pelosi and Trump Like This Top AI Stock - Yahoo Finance"
-    },
-    {
-     "t": "10-16 12:41",
-     "title": "COMMENTARY: AI jitters, Trump's fading oil clout and China shock 2.0: The financial week in five charts - Reuters"
     }
    ],
    "fed": [
+    {
+     "t": "10-16 21:36",
+     "title": "Inflation data sparks debate over Federal Reserve rate decisions - Fox Business"
+    },
+    {
+     "t": "10-16 17:21",
+     "title": "Fed chair Warsh says price stability is key but shies away from signals about rates - PBS"
+    },
+    {
+     "t": "10-16 16:20",
+     "title": "Traders bet on October interest-rate hold after Kevin Warsh is tight-lipped at conference - New York Post"
+    },
     {
      "t": "10-16 15:38",
      "title": "Analysis: Everyone expects the Fed to hold rates in October. Kevin Warsh could surprise us all - CNBC"
     },
     {
      "t": "10-16 08:49",
-     "title": "New Zealand Dollar rallies beyond 0.5650 amid lower yields, Fed’s dovishness | FXStreet - شبكة تواصل الإخبارية"
+     "title": "Kevin Warsh Gives No Hint on October Fed Decision, Says AI Path Will Be “Very Bumpy” - Coinpedia"
+    },
+    {
+     "t": "10-16 08:45",
+     "title": "New Zealand Dollar rallies beyond 0.5650 amid lower yields, Fed’s dovishness - FXStreet"
     },
     {
      "t": "10-16 08:31",
@@ -500,300 +546,308 @@
      "title": "USD/CAD Price Forecast: US Dollar bears gain momentum below 14200 - FXStreet"
     },
     {
-     "t": "10-16 05:25",
+     "t": "10-16 06:43",
      "title": "Bets on Fed rate hold in October strengthen after Warsh comments - Financial Times"
     },
     {
-     "t": "10-15 20:18",
-     "title": "Economic and event calendar in Asia Friday, October 16, 2026 - Federal Reserve Chair Warsh speaking - investingLive"
+     "t": "10-16 05:30",
+     "title": "Fed Chair Kevin Warsh — AI Optimism Eases US Rate Hike Fears - The Korea Daily"
     },
     {
-     "t": "10-15 13:01",
-     "title": "Update: US Equity Futures Mixed Pre-Bell as Traders Assess AI Overspending Concerns, Raised Odds of Fed Rate Increase - Yahoo! Finance Canada"
+     "t": "10-16 05:28",
+     "title": "Warsh says Fed must burnish credibility to get policy right - Bangkok Post"
     },
     {
-     "t": "10-15 12:01",
-     "title": "Warsh's quest for quiet Fed gets vocal pushback - Reuters"
-    },
-    {
-     "t": "10-15 02:02",
-     "title": "Dollar retreats from 18-month high despite hot CPI as Fed officials temper hike bets - The Economic Times"
-    },
-    {
-     "t": "10-14 21:25",
-     "title": "Dollar hits 18-month high, then cools as investors await patient Fed - Reuters"
-    },
-    {
-     "t": "10-14 19:04",
-     "title": "What to expect at the next Fed meeting now that rate-hike odds are rising - MarketWatch"
-    },
-    {
-     "t": "10-14 13:11",
-     "title": "Today's Federal Reserve speaker slate suddenly got much more interesting - investingLive"
+     "t": "10-16 05:23",
+     "title": "AI ‘most consequential change’ to economy in my lifetime: Fed’s Kevin Warsh - The Straits Times"
     }
    ],
    "china": [
+    {
+     "t": "10-17 09:46",
+     "title": "Focus This Week: Navigating New Pressures - October 16, 2026 - Focus This Week - China-US Focus"
+    },
+    {
+     "t": "10-17 08:47",
+     "title": "Trump touts 'truly great friendship' with China's Xi amid high-stakes state visit - 6abc Philadelphia"
+    },
+    {
+     "t": "10-17 08:06",
+     "title": "Trump welcomes Xi to White House for state dinner - ABC News - Breaking News, Latest News and Videos"
+    },
+    {
+     "t": "10-17 05:42",
+     "title": "Trump’s 100% Russian oil tariff U-turn has a catch India can’t ignore - The Economic Times"
+    },
+    {
+     "t": "10-17 03:41",
+     "title": "China’s Trade Surplus Hits Record; Bessent Skips IMF Talks - NTD News"
+    },
+    {
+     "t": "10-17 00:56",
+     "title": "White House: Socialism's Cost Is Misery, Starvation, Death - NTD News"
+    },
+    {
+     "t": "10-16 20:39",
+     "title": "EAM S Jaishankar says India-US trade talks heading in right direction - News On AIR"
+    },
+    {
+     "t": "10-16 18:03",
+     "title": "Mastercard, Citigroup In Focus As US Presses China On Market Access: Report - NDTV Profit"
+    },
+    {
+     "t": "10-16 17:11",
+     "title": "Trump Says He Does Not Care About USMCA as US, Canada Plan Trade Talks - EnergyNow.com"
+    },
     {
      "t": "10-16 16:11",
      "title": "U.S. presses China on Mastercard, Citigroup market access in bilateral Bangkok talks, official says - CNBC"
     },
     {
-     "t": "10-16 15:29",
+     "t": "10-16 15:49",
      "title": "China targets AI technology exports with new controls as US trade truce frays - The National"
     },
     {
      "t": "10-16 14:31",
      "title": "China Buys First US Soybeans Since Trump-Xi Meeting - Morning Ag Clips"
-    },
-    {
-     "t": "10-16 13:00",
-     "title": "Anti-China protectionism backfiring on US carmakers’ EV plans: analyst - South China Morning Post"
-    },
-    {
-     "t": "10-16 12:50",
-     "title": "China Buys More U.S. Soybeans as Trade Demand Rebounds After Trump-Xi Summit - AgroLatam"
-    },
-    {
-     "t": "10-16 11:12",
-     "title": "Tariffs on Metals, Autos Mire Down U.S.-Mexico Trade Talks - WSJ"
-    },
-    {
-     "t": "10-16 02:31",
-     "title": "Trump welcomes Xi to White House for state dinner - ABC News - Breaking News, Latest News and Videos"
-    },
-    {
-     "t": "10-16 01:30",
-     "title": "Opinion | Pageantry matters for US-China summits, even with modest results - South China Morning Post"
-    },
-    {
-     "t": "10-16 00:51",
-     "title": "Hegseth Pushes Military Buildup Amid China Rivalry - NTD News"
-    },
-    {
-     "t": "10-15 21:53",
-     "title": "Visa’s China approval a ‘direct outcome’ of Trump-Xi summit, Beijing says - South China Morning Post"
-    },
-    {
-     "t": "10-15 18:20",
-     "title": "China-EU trade talks rebalance, stabilize relations - China Daily"
-    },
-    {
-     "t": "10-15 17:32",
-     "title": "Dr. Kevin Rudd: U.S. and China in “Relative Stability Mode” After Trump-Xi Summit - Asia Society"
     }
    ],
    "geopolitics": [
     {
-     "t": "10-16 20:18",
-     "title": "Why Oil Prices Are Still High Despite Middle East Supply Recovery - Investopedia"
+     "t": "10-17 10:20",
+     "title": "Oil Prices Climb on Middle East Supply Worries - IndexBox"
     },
     {
-     "t": "10-16 20:01",
-     "title": "Oil Futures Rise on Middle East, Russia-Ukraine Concerns - WSJ"
+     "t": "10-17 09:46",
+     "title": "Jefferies warns Houthi war with Saudi Arabia threatens oil infra, Red Sea shipping route - Moneycontrol.com"
     },
     {
-     "t": "10-16 19:01",
-     "title": "Will Oil Prices Decline as Middle East Supply Recovers? - Goldman Sachs"
+     "t": "10-17 06:38",
+     "title": "Oil prices may ease to $80 per barrel in 2027 as Middle East supply recovers: Goldman Sachs - The Economic Times"
     },
     {
-     "t": "10-16 19:01",
-     "title": "Oil Market Faces New Supply Puzzle as Sanctions Debate Meets Middle East Risks - kalkine.ca"
+     "t": "10-17 06:18",
+     "title": "Brentcrude oil prices hit $110 for first time since May as Iran attacks continue, Ukraine eyes Russia energy infra - The Economic Times"
     },
     {
-     "t": "10-16 19:00",
+     "t": "10-17 06:18",
+     "title": "Brent crude oil prices hit $110 for first time since May as Iran attacks continue, Ukraine eyes Russia ene - The Economic Times"
+    },
+    {
+     "t": "10-17 06:10",
+     "title": "How much oil can cushion another Middle East supply shock? - Al-Monitor"
+    },
+    {
+     "t": "10-17 04:40",
+     "title": "PetroChina Trading Arm Eyes Record $3B Profit Amid Middle East Crisis - News and Statistics - IndexBox"
+    },
+    {
+     "t": "10-17 04:01",
+     "title": "Trump waives sanctions on Russian oil, relief for India - Rediff"
+    },
+    {
+     "t": "10-17 02:22",
      "title": "Natural Gas, WTI Oil, Brent Oil Forecasts – Oil Soars 4% As Traders Prepare For Escalation In The Middle East - FXEmpire"
     },
     {
-     "t": "10-16 18:47",
-     "title": "Oil prices surge as Middle East and Russian supply jitters mount - Baird Maritime"
+     "t": "10-17 00:19",
+     "title": "Energy Stocks Rise as Global Conflicts Push Up Oil Prices - WSJ"
     },
     {
-     "t": "10-16 18:46",
-     "title": "Oil futures: Crude in late surge amid rising Middle East tensions - Quantum Commodity Intelligence"
+     "t": "10-16 22:25",
+     "title": "Oil Prices Surge as Middle East and Russia Supply Disruptions Converge — Brent Briefly Tops $110 - BigGo Finance"
     },
     {
-     "t": "10-16 18:26",
-     "title": "Russian diesel heads to Morocco as supply crunch grips global markets - Al-Monitor"
-    },
-    {
-     "t": "10-16 18:06",
-     "title": "US Crude Oil Tops $100 As Iran Escalates Hormuz Attacks, WTI Up 9% This Week - NDTV Profit"
-    },
-    {
-     "t": "10-16 17:32",
-     "title": "Oil futures: Crude extends gains on rising Middle East tensions - Quantum Commodity Intelligence"
-    },
-    {
-     "t": "10-16 17:21",
-     "title": "Oil futures: Crude higher amid Middle East uncertainty - Quantum Commodity Intelligence"
-    },
-    {
-     "t": "10-16 17:19",
-     "title": "IEA: Middle East war weighs on emerging-market oil demand - Oil & Gas Journal"
+     "t": "10-16 22:17",
+     "title": "Oil Climbs as Fighting Flares in Middle East, Ukraine - WSJ"
     }
    ],
    "oil": [
     {
-     "t": "10-16 20:48",
-     "title": "Oil hits $110 per barrel for first time since May - The Hill"
+     "t": "10-17 09:38",
+     "title": "Brent Nears $110 on Middle East Supply Concerns - Business Post Nigeria"
     },
     {
-     "t": "10-16 20:35",
-     "title": "Brent Oil Hits $110 as Supply Risks Mount - Rigzone"
+     "t": "10-17 09:16",
+     "title": "Crude oil prices may fall to $80 in 2027: What could bring prices down? - The Times of India"
     },
     {
-     "t": "10-16 20:27",
-     "title": "Brent crude oil rose to $110 per barrel for the first time since May amid the threat of a new escalation in the Middle East - Українські Національні Новини (УНН)"
+     "t": "10-17 09:01",
+     "title": "How the US Can Get Oil Prices Down - Robin J Brooks | Substack"
     },
     {
-     "t": "10-16 18:46",
-     "title": "Oil surges to $110 per barrel for the first time since May - NBC News"
+     "t": "10-17 07:59",
+     "title": "Brent Crude Hits $110 as Iran Escalates Hormuz Attacks, Ukraine Targets Russian Refineries - APAC Media"
     },
     {
-     "t": "10-16 18:33",
-     "title": "Brent Oil Taps $110 for First Time Since May as Risks Swirl - Bloomberg.com"
+     "t": "10-17 07:23",
+     "title": "Oil prices jump as Brent crude hits $110 amid supply concerns - The Assam Tribune"
     },
     {
-     "t": "10-16 17:31",
-     "title": "Crude Oil Heads For Weekly Gain: Brent Rises 2% To Hit $108/Barrel As Ship Attacks Disrupt Flows - NDTV Profit"
+     "t": "10-17 06:36",
+     "title": "Oil prices may ease to USD 80 per barrel in 2027 as Middle East supply recovers: Goldman Sachs - ChiniMandi"
     },
     {
-     "t": "10-16 17:12",
-     "title": "Brent Crude Surges 3% Nearing $110: What Is Causing Oil Prices to Rise Again? - TradingKey"
+     "t": "10-17 05:54",
+     "title": "Oil Market Defies Trump as Brent Crude Nears $110 a Barrel - WANA News Agency"
     },
     {
-     "t": "10-16 15:44",
-     "title": "Oil Price Today: WTI Gains 6.5% as US Crude Inventories Drop 8.6 Million Barrels, Brent Tops $105 - CryptoRank"
+     "t": "10-17 05:52",
+     "title": "Brent Crude Rises 3.6% in 24 Hours to Top $112 a Barrel - TOKENPOST"
     },
     {
-     "t": "10-16 15:34",
-     "title": "Global Markets Stabilize as AI Sell-Off Meets Inflation Risks - FXEmpire"
+     "t": "10-17 05:49",
+     "title": "Brent oil futures hit $110 a barrel! These stocks to watch next week - Business Today"
     },
     {
-     "t": "10-16 13:10",
-     "title": "Crude: Benchmarks diverge as Dubai hit by shipping costs - Quantum Commodity Intelligence"
+     "t": "10-17 05:38",
+     "title": "Oil prices rise by more than 3% on global markets - Apa.az"
     },
     {
-     "t": "10-16 12:47",
-     "title": "Brent rises to $108.51 per barrel on October 16, 2026 — Fortune - UA.NEWS"
+     "t": "10-17 05:28",
+     "title": "World oil prices hit $110 per barrel. - Vietnam.vn"
     },
     {
-     "t": "10-16 12:21",
-     "title": "Brent Crude at $105 as Hormuz Attacks Disrupt Oil Flows - grafa.com"
+     "t": "10-17 04:38",
+     "title": "Fuel prices today, October 17th: Global prices rise sharply, domestic prices experience a significant drop. - Vietnam.vn"
     }
    ],
    "bigtech": [
     {
-     "t": "10-16 20:48",
-     "title": "Tesla, SpaceX, CoreWeave, Lam Research, Netflix, Strategy, and More Stocks That Explain Today’s Market - Barron's"
+     "t": "10-17 09:48",
+     "title": "Apple Is Ready to Fight Britain Over iPhone Tap-to-Pay. The Fee Is What Matters - TIKR.com"
     },
     {
-     "t": "10-16 20:33",
-     "title": "Wall Street ends down sharply, worries about AI trade and high oil prices weigh - Reuters"
+     "t": "10-17 09:17",
+     "title": "Why Is Tesla (NASDAQ:TSLA) Stock Falling After Musk’s Flying Roadster Reveal? - Stocks Down Under"
     },
     {
-     "t": "10-16 20:25",
-     "title": "Apple Stock Climbs as Its New Foldable iPhone Faces a Three-Month Wait - TradingView"
+     "t": "10-17 08:49",
+     "title": "History Says Tesla Stock Swings Hard on Earnings. It Has Moved 8% or More After 10 of Its Last 15 Reports. - Yahoo Finance"
     },
     {
-     "t": "10-16 20:06",
-     "title": "Apple Called Top Defensive Play With AI Stocks Under Pressure - Investor's Business Daily"
+     "t": "10-17 08:31",
+     "title": "Once-in-a-Decade Buying Opportunity: This AI Stock That’s Soared 900% Over 5 Years Is the Cheapest of the “Magnificent Seven.” - The Motley Fool"
     },
     {
-     "t": "10-16 19:34",
-     "title": "Apple is Now the Top-Performing Magnificent 7 Stock in 2026. Here’s why it’s Beating NVIDIA, Tesla, and Amazon - Yahoo Finance"
+     "t": "10-17 08:15",
+     "title": "Morgan Stanley Picks Quantinuum As Its Top Quantum Stock - Quantum Zeitgeist"
     },
     {
-     "t": "10-16 19:09",
-     "title": "Germany Confirms Its Nvidia AI Deal: Will Any of Huang’s $2 Billion Europe Pledge Land in Berlin? - TIKR.com"
+     "t": "10-17 07:37",
+     "title": "Apple Inc. $AAPL Stock Sold by Chickasaw Capital Management LLC - MarketBeat"
     },
     {
-     "t": "10-16 19:04",
-     "title": "TSLY: Tesla Flies, The Stock Doesn’t For Me, The Premiums Do (NYSEARCA:TSLY) - Seeking Alpha"
+     "t": "10-17 07:37",
+     "title": "NVIDIA Corporation $NVDA Stock: Covington Investment Advisors Inc. Boosts Position - MarketBeat"
     },
     {
-     "t": "10-16 19:00",
-     "title": "9 Dow Jones Stocks Make Bullish Moves In A Defensive Market Rotation - Investor's Business Daily"
+     "t": "10-17 06:50",
+     "title": "BYD or Tesla: Which Is a Better Stock? - Yahoo Finance"
     },
     {
-     "t": "10-16 18:52",
-     "title": "Apple’s $1,999 iPhone Duo puts the company's status-symbol power to the test - CNBC"
+     "t": "10-17 06:50",
+     "title": "BYD or Tesla: Which Is a Better Stock? - AOL.com"
     },
     {
-     "t": "10-16 18:51",
-     "title": "Jensen Huang's Nvidia Lost $200 Billion in Value After OpenAI's Revenue Run Rate Came Up $18 Billion Below Expectations. Is This AI-Jitters Sell-Off a Buying Opportunity? - Yahoo Finance"
+     "t": "10-17 06:33",
+     "title": "BYD or Tesla: Which Is a Better Stock? - The Motley Fool"
     },
     {
-     "t": "10-16 18:39",
-     "title": "Why Dan Ives Says Now Is the Time to Buy the Dip on Nvidia Stock - Barchart.com"
+     "t": "10-17 06:30",
+     "title": "Missed Out On Micron and Sandisk? Make Sure You Don't Miss Out On This Memory Stock. - The Motley Fool"
     },
     {
-     "t": "10-16 18:01",
-     "title": "Microsoft Stock Reaches a Record High. How It Suddenly Became an AI Winner. - Barron's"
+     "t": "10-17 05:10",
+     "title": "UK Watchdog Proposes Strategic Market Tag for Microsoft, Puts Excel and Copilot AI Under Competition Scrutiny - Benzinga"
     }
    ],
    "weekAhead": [
+    {
+     "t": "10-17 08:01",
+     "title": "Big earnings reports, homebuilding and the mood of consumers up front next week - Yahoo! Finance Canada"
+    },
+    {
+     "t": "10-17 04:34",
+     "title": "The S&P 500 experienced its sharpest weekly decline since June 2026. - Vietnam.vn"
+    },
+    {
+     "t": "10-17 04:02",
+     "title": "Global markets: Stocks slip as dollar heads for weekly loss - The Economic Times"
+    },
+    {
+     "t": "10-17 02:29",
+     "title": "What’s choking the PH stock market? Guinigundo flags thin trading, too few IPOs, weak protection - Bilyonaryo Business"
+    },
+    {
+     "t": "10-16 21:23",
+     "title": "Wall St Week Ahead As AI rally wobbles, stock market's spotlight turns to earnings - Reuters"
+    },
+    {
+     "t": "10-16 21:10",
+     "title": "Wall St Week Ahead-As AI rally wobbles, stock market's spotlight turns to earnings - Devdiscourse"
+    },
     {
      "t": "10-16 20:58",
      "title": "Don’t buy this dip: Several signs suggest there’s more pain ahead for tech stocks - MarketWatch"
     },
     {
-     "t": "10-16 20:45",
-     "title": "US markets are weighed down by an extended sell-off in the tech sector - The Globe and Mail"
+     "t": "10-16 18:17",
+     "title": "Wall Street undecided on gold’s near-term trajectory, Main Street flirts with bearish bias after gold hits $4,200/oz ceiling - Kitco"
     },
     {
-     "t": "10-16 18:23",
-     "title": "Nasdaq Posts Worst Weekly Drop in Months as Dow Edges to a Narrow Gain - The Globe and Mail"
-    },
-    {
-     "t": "10-16 15:09",
-     "title": "Week Ahead for FX, Bonds: U.S., European PMI Data in Focus - WSJ"
+     "t": "10-16 14:45",
+     "title": "Rocket Lab Has Imploded For 3 Months: 145% Gains Are Coming According to This Pro Analyst - 24/7 Wall St."
     },
     {
      "t": "10-16 14:41",
      "title": "Shopify Nears Record High as Wall Street Hikes Targets Ahead of November 3 Earnings - ad-hoc-news.de"
     },
     {
-     "t": "10-16 13:44",
-     "title": "Wall Street Muted: S&P, Dow Edge Higher Ahead Of Weekly Drop; Nasdaq Reels Under AI Rout - NDTV Profit"
+     "t": "10-16 14:15",
+     "title": "Week Ahead for FX, Bonds: U.S., European PMI Data in Focus - WSJ"
     },
     {
-     "t": "10-16 13:36",
-     "title": "Wall St opens muted as tech jitters linger; Tesla gains - Yahoo Finance"
-    },
-    {
-     "t": "10-16 13:14",
-     "title": "What the Latest Fed Decision Means for Costco, Walmart, Target, and Home Depot - Yahoo Finance"
-    },
-    {
-     "t": "10-16 13:00",
-     "title": "First Hawaiian (FHB) Reports Next Week: Wall Street Expects Earnings Growth - Yahoo Finance"
-    },
-    {
-     "t": "10-16 12:45",
-     "title": "Taiwan Semiconductor is Right Back to Where It Was a Month Ago: Pull The Trigger? - 24/7 Wall St."
-    },
-    {
-     "t": "10-16 12:15",
-     "title": "Ahead of Meta Platforms (META) Q3 Earnings: Get Ready With Wall Street Estimates for Key Metrics - Yahoo Finance"
-    },
-    {
-     "t": "10-16 10:50",
-     "title": "Elon Musk Takes Out The Thrusters - Seeking Alpha"
+     "t": "10-16 13:54",
+     "title": "What to Look Out for in Economic Data This Week - Yahoo Finance"
     }
    ],
    "influencers": [
     {
+     "t": "10-17 07:24",
+     "title": "Elon Musk Wants the Indian Market—and Rahul Gandhi’s Support Too! - FM Bharat"
+    },
+    {
      "t": "10-16 18:25",
-     "title": "Tesla investors hardly impressed with Elon Musk's 'flying car' - www.thestreet.com"
+     "title": "Tesla investors hardly impressed with Elon Musk's 'flying car' - TheStreet"
+    },
+    {
+     "t": "10-16 17:13",
+     "title": "US Treasury Secretary Bessent Says Oil Market Well Supplied Amid Iran War - EnergyNow.com"
+    },
+    {
+     "t": "10-16 17:03",
+     "title": "Jamie Dimon Sounds the Alarm on the US Economy: Inflation and Rising Asset Prices Could Put Markets at Risk - mibolsillo.co"
     },
     {
      "t": "10-16 17:00",
      "title": "Elon Musk’s Companies Maintain Premium Valuations Despite Market Fluctuations - SSBCrack"
     },
     {
+     "t": "10-16 14:48",
+     "title": "JPMorgan Chase CEO Jamie Dimon Warns That Inflation, Rising Asset Prices, and More \"Continue to Shift Under the Surface.\" - The Globe and Mail"
+    },
+    {
      "t": "10-16 13:00",
      "title": "Elon Musk says SpaceX will be worth over $100 trillion in under 10 years, dwarfing Ron Baron's $50T forecast - Yahoo Finance"
+    },
+    {
+     "t": "10-16 12:16",
+     "title": "Elon Musk contributed over $150 million to bolster the Republican Party in Texas Senate race - Crypto Briefing"
+    },
+    {
+     "t": "10-16 12:04",
+     "title": "SpaceX IPO Pricing At $135 Per Share Will Value The Rocket Maker At $1.77 Trillion — Musk To Keep Ironclad Control - Stocktwits"
     },
     {
      "t": "10-16 12:02",
@@ -804,32 +858,8 @@
      "title": "Stock Market Today: Dow, S&P 500 Futures Rise as Bessent Intensifies Economic Pressure on Iran, Treasury - Benzinga"
     },
     {
-     "t": "10-16 07:04",
-     "title": "Musk's Tesla-SpaceX Merger Speculation and Roadster 'Flight' Stunt Spark Market Attention - KuCoin"
-    },
-    {
-     "t": "10-16 04:34",
-     "title": "Elon Musk Unveils Tesla Roadster That Can Fly, Drive Upside Down and Barrel Roll With SpaceX Thrusters - Benzinga"
-    },
-    {
-     "t": "10-16 03:28",
-     "title": "Ambani's Reliance welcomes Starlink competition in first response to Musk - Business Recorder"
-    },
-    {
-     "t": "10-15 21:30",
-     "title": "Jamie Dimon Sees 'Higher Chance' of Market Trouble Than Wall Street Does — ‘That Is Not a Prediction,’ but JPMorgan Is Preparing for the Risk - Yahoo Finance"
-    },
-    {
-     "t": "10-15 17:21",
-     "title": "SpaceX CEO Elon Musk Teases ‘X Shop’ After Amazon Shuts Out Grok Agents - Yahoo Finance"
-    },
-    {
-     "t": "10-15 17:05",
-     "title": "Warren Buffett Once Summed Up Investing in 13 Words. Here's Why It's More Important Than Ever. - Yahoo Finance"
-    },
-    {
-     "t": "10-15 14:45",
-     "title": "Wall Street on Alert for Bessent to Act on Bond Yields Again - Yahoo Finance"
+     "t": "10-16 08:45",
+     "title": "SPCX Stock Rises Overnight Even As Elon Musk Shoots Down Report Of $52B Foxconn-Nvidia Order As 'Fake News' - Stocktwits"
     }
    ]
   },
@@ -837,35 +867,44 @@
  },
  "record": {
   "record": {
-   "scored": 3,
+   "scored": 4,
    "hits": 0,
    "inRange": 1
   },
   "last": {
-   "weekOf": "2026-10-05",
-   "label": "שבוע מאקרו שקט, נטייה קלה למטה",
-   "prob": 55,
-   "close": 7811.54,
-   "actual": 1.15,
+   "weekOf": "2026-10-12",
+   "label": "שבוע חיובי מתון",
+   "prob": 58,
+   "close": 7659.44,
+   "actual": -1.95,
    "hit": false,
    "inRange": false,
    "claims": {
     "sellDay": {
-     "hit": false,
-     "days": []
+     "hit": true,
+     "days": [
+      {
+       "date": "2026-10-14",
+       "chg": -1.11
+      },
+      {
+       "date": "2026-10-16",
+       "chg": -1.09
+      }
+     ]
     },
     "breadth": {
      "hit": false,
-     "value": 34.1,
+     "value": 45.6,
      "source": "pctMa50"
     },
     "vix": {
-     "hit": true,
-     "value": -4.2,
+     "hit": false,
+     "value": 28.1,
      "source": "vixLight"
     }
    },
-   "scoredAt": "10/10/2026 05:45"
+   "scoredAt": "17/10/2026 05:45"
   },
   "history": [
    {
@@ -1128,14 +1167,46 @@
      }
     ],
     "headline": "הצפי: שבוע חיובי מתון — דוחות הבנקים ומדד המחירים ברביעי יכריעו",
-    "savedAt": "11/10/2026 19:31"
+    "savedAt": "11/10/2026 19:31",
+    "result": {
+     "close": 7659.44,
+     "actual": -1.95,
+     "hit": false,
+     "inRange": false,
+     "claims": {
+      "sellDay": {
+       "hit": true,
+       "days": [
+        {
+         "date": "2026-10-14",
+         "chg": -1.11
+        },
+        {
+         "date": "2026-10-16",
+         "chg": -1.09
+        }
+       ]
+      },
+      "breadth": {
+       "hit": false,
+       "value": 45.6,
+       "source": "pctMa50"
+      },
+      "vix": {
+       "hit": false,
+       "value": 28.1,
+       "source": "vixLight"
+      }
+     },
+     "scoredAt": "17/10/2026 05:45"
+    }
    }
   ]
  },
  "_meta": {
-  "updatedAt": "17/10/2026 00:01",
+  "updatedAt": "17/10/2026 14:01",
   "builtDay": "2026-10-17",
-  "builtHour": 0,
+  "builtHour": 14,
   "source": "build_week_ahead"
  }
 }
