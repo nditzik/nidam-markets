@@ -1,7 +1,23 @@
 {
-  "today": "2026-10-18",
-  "todayCount": 0,
-  "todayBig": [],
+  "today": "2026-10-19",
+  "todayCount": 3,
+  "todayBig": [
+    {
+      "ticker": "FITB",
+      "name": "Fifth Third Bancorp",
+      "capB": 45.7
+    },
+    {
+      "ticker": "STLD",
+      "name": "Steel Dynamics, Inc.",
+      "capB": 34.5
+    },
+    {
+      "ticker": "WRB",
+      "name": "W. R. Berkley Corporation",
+      "capB": 28.0
+    }
+  ],
   "reactions": {
     "days": [
       {
@@ -139,20 +155,28 @@
       }
     ]
   },
-  "reporting": [],
+  "reporting": [
+    {
+      "ticker": "FITB",
+      "name": "Fifth Third Bancorp",
+      "when": "before",
+      "logo": "data/earnings/logos/FITB.png"
+    },
+    {
+      "ticker": "STLD",
+      "name": "Steel Dynamics, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/STLD.png"
+    },
+    {
+      "ticker": "WRB",
+      "name": "W. R. Berkley Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/WRB.png"
+    }
+  ],
   "more": 0,
   "upcoming": [
-    {
-      "date": "2026-10-19",
-      "label": "19/10",
-      "dow": "ב׳",
-      "count": 3,
-      "tickers": [
-        "FITB",
-        "STLD",
-        "WRB"
-      ]
-    },
     {
       "date": "2026-10-20",
       "label": "20/10",
@@ -617,11 +641,11 @@
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBAN": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANL": "2026-10-22",
     "HBANP": "2026-10-22",
+    "HBAN": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -634,13 +658,22 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
     "FCNCP": "2026-10-23",
-    "NVT": "2026-10-23"
+    "FCNCN": "2026-10-23",
+    "NVT": "2026-10-23",
+    "VZ": "2026-10-26",
+    "WELL": "2026-10-26",
+    "CDNS": "2026-10-26",
+    "NUE": "2026-10-26",
+    "PSA": "2026-10-26",
+    "CLS": "2026-10-26",
+    "CINF": "2026-10-26",
+    "PFG": "2026-10-26",
+    "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "18/10/2026 23:46",
+    "updatedAt": "19/10/2026 00:01",
     "source": "tradingview"
   }
 }
