@@ -5,12 +5,12 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 45.9
+      "capB": 45.8
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 34.9
+      "capB": 35.1
     },
     {
       "ticker": "WRB",
@@ -209,14 +209,14 @@
       "date": "2026-10-22",
       "label": "22/10",
       "dow": "ה׳",
-      "count": 32,
+      "count": 31,
       "tickers": [
         "PG",
         "UNP",
         "BX",
         "WDC",
         "LMT",
-        "NEM"
+        "VLO"
       ]
     },
     {
@@ -426,7 +426,7 @@
       "date": "2026-10-22",
       "dow": "חמישי",
       "label": "22.10",
-      "total": 32,
+      "total": 31,
       "companies": [
         {
           "ticker": "PG",
@@ -460,16 +460,16 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "NEM",
-          "name": "Newmont Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NEM.png"
-        },
-        {
           "ticker": "VLO",
           "name": "Valero Energy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/VLO.png"
+        },
+        {
+          "ticker": "NEM",
+          "name": "Newmont Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NEM.png"
         },
         {
           "ticker": "SPOT",
@@ -625,8 +625,8 @@
     "BX": "2026-10-22",
     "WDC": "2026-10-22",
     "LMT": "2026-10-22",
-    "NEM": "2026-10-22",
     "VLO": "2026-10-22",
+    "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
     "CMCSA": "2026-10-22",
     "BCS": "2026-10-22",
@@ -642,8 +642,8 @@
     "CBRE": "2026-10-22",
     "HIG": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANM": "2026-10-22",
     "HBANL": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
@@ -651,15 +651,14 @@
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
     "DOW": "2026-10-22",
-    "PHM": "2026-10-22",
     "XOM": "2026-10-23",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
+    "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
     "FCNCN": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCA": "2026-10-23",
     "NVT": "2026-10-23",
     "VZ": "2026-10-26",
@@ -673,7 +672,7 @@
     "PFG": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 22:46",
+    "updatedAt": "19/10/2026 23:01",
     "source": "tradingview"
   }
 }
