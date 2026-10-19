@@ -421,5 +421,59 @@
    "prePct": 2.9
   },
   "avgMove": 2.5
+ },
+ "AAPL": {
+  "forDate": "2026-11-02",
+  "when": "after",
+  "name": "Apple Inc.",
+  "report": {
+   "file": "data/reports/AAPL__2026-07-31.html",
+   "date": "2026-07-31",
+   "title": "Apple FY26 Q3 – דוח מנהלים",
+   "logo": "data/reports/logos/AAPL.png",
+   "logoBg": null
+  },
+  "consensus": {
+   "eps": 1.97842,
+   "epsLow": 1.93,
+   "epsHigh": 2.07,
+   "epsN": 27,
+   "epsYearAgo": 1.85,
+   "rev": 113626875100,
+   "revLow": 112525022000,
+   "revHigh": 117220000000,
+   "revN": 27,
+   "revYearAgo": 102466000000,
+   "quarterEnd": "2026-09-30"
+  },
+  "options": null,
+  "avgMove": 2.9
+ },
+ "PLTR": {
+  "forDate": "2026-11-02",
+  "when": "after",
+  "name": "Palantir Technologies Inc. Class A",
+  "report": {
+   "file": "data/reports/PLTR__2026-08-04.html",
+   "date": "2026-08-04",
+   "title": "Palantir Q2 2026 – דוח מנהלים",
+   "logo": "data/reports/logos/PLTR.png",
+   "logoBg": null
+  },
+  "consensus": {
+   "eps": 0.41222,
+   "epsLow": 0.38,
+   "epsHigh": 0.48,
+   "epsN": 24,
+   "epsYearAgo": 0.21,
+   "rev": 2179529430,
+   "revLow": 2161000000,
+   "revHigh": 2262971840,
+   "revN": 24,
+   "revYearAgo": 1181092000,
+   "quarterEnd": "2026-09-30"
+  },
+  "options": null,
+  "avgMove": 12.8
  }
 }
