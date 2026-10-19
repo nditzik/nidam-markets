@@ -5,17 +5,17 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 46.3
+      "capB": 46.4
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 34.8
+      "capB": 35.0
     },
     {
       "ticker": "WRB",
       "name": "W. R. Berkley Corporation",
-      "capB": 27.5
+      "capB": 27.6
     }
   ],
   "reactions": {
@@ -409,16 +409,16 @@
           "logo": "data/earnings/logos/NEE.png"
         },
         {
-          "ticker": "DHR",
-          "name": "Danaher Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/DHR.png"
-        },
-        {
           "ticker": "T",
           "name": "AT&T Inc",
           "when": "before",
           "logo": "data/earnings/logos/T.png"
+        },
+        {
+          "ticker": "DHR",
+          "name": "Danaher Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DHR.png"
         }
       ]
     },
@@ -478,16 +478,16 @@
           "logo": "data/earnings/logos/SPOT.png"
         },
         {
-          "ticker": "BCS",
-          "name": "Barclays PLC Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/BCS.png"
-        },
-        {
           "ticker": "CMCSA",
           "name": "Comcast Corporation Class A",
           "when": "before",
           "logo": "data/earnings/logos/CMCSA.png"
+        },
+        {
+          "ticker": "BCS",
+          "name": "Barclays PLC Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/BCS.png"
         },
         {
           "ticker": "NSC",
@@ -603,8 +603,8 @@
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
-    "DHR": "2026-10-21",
     "T": "2026-10-21",
+    "DHR": "2026-10-21",
     "CME": "2026-10-21",
     "ELV": "2026-10-21",
     "CSX": "2026-10-21",
@@ -628,8 +628,8 @@
     "LMT": "2026-10-22",
     "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
-    "BCS": "2026-10-22",
     "CMCSA": "2026-10-22",
+    "BCS": "2026-10-22",
     "NSC": "2026-10-22",
     "BE": "2026-10-22",
     "HON": "2026-10-22",
@@ -641,11 +641,11 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBAN": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -657,9 +657,9 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCO": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
+    "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "FCNCA": "2026-10-23",
     "NVT": "2026-10-23",
     "VZ": "2026-10-26",
@@ -673,7 +673,7 @@
     "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 18:01",
+    "updatedAt": "19/10/2026 18:16",
     "source": "tradingview"
   }
 }
