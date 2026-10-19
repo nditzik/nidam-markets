@@ -5,12 +5,12 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 46.0
+      "capB": 45.9
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 35.2
+      "capB": 35.0
     },
     {
       "ticker": "WRB",
@@ -216,7 +216,7 @@
         "BX",
         "WDC",
         "LMT",
-        "VLO"
+        "NEM"
       ]
     },
     {
@@ -460,16 +460,16 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "VLO",
-          "name": "Valero Energy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/VLO.png"
-        },
-        {
           "ticker": "NEM",
           "name": "Newmont Corporation",
           "when": "after",
           "logo": "data/earnings/logos/NEM.png"
+        },
+        {
+          "ticker": "VLO",
+          "name": "Valero Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/VLO.png"
         },
         {
           "ticker": "SPOT",
@@ -625,8 +625,8 @@
     "BX": "2026-10-22",
     "WDC": "2026-10-22",
     "LMT": "2026-10-22",
-    "VLO": "2026-10-22",
     "NEM": "2026-10-22",
+    "VLO": "2026-10-22",
     "SPOT": "2026-10-22",
     "CMCSA": "2026-10-22",
     "BCS": "2026-10-22",
@@ -641,10 +641,10 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBANM": "2026-10-22",
-    "HBANP": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
@@ -657,9 +657,9 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCA": "2026-10-23",
     "NVT": "2026-10-23",
     "VZ": "2026-10-26",
@@ -673,7 +673,7 @@
     "PFG": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 21:48",
+    "updatedAt": "19/10/2026 22:01",
     "source": "tradingview"
   }
 }
