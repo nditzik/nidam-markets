@@ -1,25 +1,81 @@
 {
-  "today": "2026-10-19",
-  "todayCount": 3,
+  "today": "2026-10-20",
+  "todayCount": 17,
   "todayBig": [
     {
-      "ticker": "FITB",
-      "name": "Fifth Third Bancorp",
-      "capB": 45.8
+      "ticker": "SPCX",
+      "name": "Space Exploration Technologies Corp",
+      "capB": 2008.0
     },
     {
-      "ticker": "STLD",
-      "name": "Steel Dynamics, Inc.",
-      "capB": 35.1
+      "ticker": "GE",
+      "name": "GE Aerospace",
+      "capB": 323.0
     },
     {
-      "ticker": "WRB",
-      "name": "W. R. Berkley Corporation",
-      "capB": 27.5
+      "ticker": "NFLX",
+      "name": "Netflix, Inc.",
+      "capB": 290.9
+    },
+    {
+      "ticker": "RTX",
+      "name": "RTX Corporation",
+      "capB": 258.9
+    },
+    {
+      "ticker": "ISRG",
+      "name": "Intuitive Surgical, Inc.",
+      "capB": 153.0
+    },
+    {
+      "ticker": "CB",
+      "name": "Chubb Limited",
+      "capB": 137.4
+    },
+    {
+      "ticker": "COF",
+      "name": "Capital One Financial Corp",
+      "capB": 122.6
+    },
+    {
+      "ticker": "MMM",
+      "name": "3M Company",
+      "capB": 83.6
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-19",
+        "label": "19.10",
+        "items": [
+          {
+            "ticker": "FITB",
+            "name": "Fifth Third Bancorp",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FITB.png",
+            "chg": 0.28,
+            "price": 50.51,
+            "reactDate": "2026-10-19",
+            "baseDate": "2026-10-16"
+          },
+          {
+            "ticker": "STLD",
+            "name": "Steel Dynamics, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/STLD.png"
+          },
+          {
+            "ticker": "WRB",
+            "name": "W. R. Berkley Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/WRB.png"
+          }
+        ]
+      },
       {
         "date": "2026-10-16",
         "label": "16.10",
@@ -80,117 +136,85 @@
             "baseDate": "2026-10-15"
           }
         ]
-      },
-      {
-        "date": "2026-10-15",
-        "label": "15.10",
-        "items": [
-          {
-            "ticker": "TSM",
-            "name": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/TSM.png",
-            "chg": -1.8,
-            "price": 422.25,
-            "reactDate": "2026-10-15",
-            "baseDate": "2026-10-14"
-          },
-          {
-            "ticker": "SCHW",
-            "name": "Charles Schwab Corp",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SCHW.png",
-            "chg": -2.73,
-            "price": 94.16,
-            "reactDate": "2026-10-15",
-            "baseDate": "2026-10-14"
-          },
-          {
-            "ticker": "IBKR",
-            "name": "Interactive Brokers Group, Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/IBKR.png",
-            "chg": -3.88,
-            "price": 82.69,
-            "reactDate": "2026-10-16",
-            "baseDate": "2026-10-15"
-          },
-          {
-            "ticker": "PLD",
-            "name": "Prologis, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/PLD.png",
-            "chg": -2.7,
-            "price": 126.94,
-            "reactDate": "2026-10-15",
-            "baseDate": "2026-10-14"
-          },
-          {
-            "ticker": "BNY",
-            "name": "Bank of New York Mellon Corp",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BNY.png",
-            "chg": 3.23,
-            "price": 142.09,
-            "reactDate": "2026-10-15",
-            "baseDate": "2026-10-14"
-          },
-          {
-            "ticker": "USB",
-            "name": "U.S. Bancorp",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/USB.png",
-            "chg": 2.01,
-            "price": 57.39,
-            "reactDate": "2026-10-15",
-            "baseDate": "2026-10-14"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "FITB",
-      "name": "Fifth Third Bancorp",
+      "ticker": "SPCX",
+      "name": "Space Exploration Technologies Corp",
+      "when": "after",
+      "logo": "data/earnings/logos/SPCX.png"
+    },
+    {
+      "ticker": "GE",
+      "name": "GE Aerospace",
       "when": "before",
-      "logo": "data/earnings/logos/FITB.png"
+      "logo": "data/earnings/logos/GE.png"
     },
     {
-      "ticker": "STLD",
-      "name": "Steel Dynamics, Inc.",
+      "ticker": "NFLX",
+      "name": "Netflix, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/STLD.png"
+      "logo": "data/earnings/logos/NFLX.png"
     },
     {
-      "ticker": "WRB",
-      "name": "W. R. Berkley Corporation",
+      "ticker": "RTX",
+      "name": "RTX Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/RTX.png"
+    },
+    {
+      "ticker": "ISRG",
+      "name": "Intuitive Surgical, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/ISRG.png"
+    },
+    {
+      "ticker": "CB",
+      "name": "Chubb Limited",
       "when": "after",
-      "logo": "data/earnings/logos/WRB.png"
+      "logo": "data/earnings/logos/CB.png"
+    },
+    {
+      "ticker": "COF",
+      "name": "Capital One Financial Corp",
+      "when": "after",
+      "logo": "data/earnings/logos/COF.png"
+    },
+    {
+      "ticker": "MMM",
+      "name": "3M Company",
+      "when": "before",
+      "logo": "data/earnings/logos/MMM.png"
+    },
+    {
+      "ticker": "GM",
+      "name": "General Motors Company",
+      "when": "before",
+      "logo": "data/earnings/logos/GM.png"
+    },
+    {
+      "ticker": "NOC",
+      "name": "Northrop Grumman Corp.",
+      "when": "before",
+      "logo": "data/earnings/logos/NOC.png"
+    },
+    {
+      "ticker": "AMX",
+      "name": "America Movil SAB de CV Sponsored ADR Class B",
+      "when": "after",
+      "logo": "data/earnings/logos/AMX.png"
+    },
+    {
+      "ticker": "MSCI",
+      "name": "MSCI Inc. Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/MSCI.png"
     }
   ],
-  "more": 0,
+  "more": 5,
   "upcoming": [
-    {
-      "date": "2026-10-20",
-      "label": "20/10",
-      "dow": "ג׳",
-      "count": 17,
-      "tickers": [
-        "SPCX",
-        "GE",
-        "NFLX",
-        "RTX",
-        "ISRG",
-        "CB"
-      ]
-    },
     {
       "date": "2026-10-21",
       "label": "21/10",
@@ -209,7 +233,7 @@
       "date": "2026-10-22",
       "label": "22/10",
       "dow": "ה׳",
-      "count": 32,
+      "count": 31,
       "tickers": [
         "PG",
         "UNP",
@@ -426,7 +450,7 @@
       "date": "2026-10-22",
       "dow": "חמישי",
       "label": "22.10",
-      "total": 32,
+      "total": 31,
       "companies": [
         {
           "ticker": "PG",
@@ -573,9 +597,6 @@
     }
   ],
   "window": {
-    "FITB": "2026-10-19",
-    "STLD": "2026-10-19",
-    "WRB": "2026-10-19",
     "SPCX": "2026-10-20",
     "GE": "2026-10-20",
     "NFLX": "2026-10-20",
@@ -641,25 +662,24 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANL": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBANP": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
     "DOW": "2026-10-22",
-    "PHM": "2026-10-22",
     "XOM": "2026-10-23",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCA": "2026-10-23",
     "NVT": "2026-10-23",
     "VZ": "2026-10-26",
@@ -670,10 +690,56 @@
     "CLS": "2026-10-26",
     "CINF": "2026-10-26",
     "BRO": "2026-10-26",
-    "PFG": "2026-10-26"
+    "PFG": "2026-10-26",
+    "V": "2026-10-27",
+    "KO": "2026-10-27",
+    "HSBC": "2026-10-27",
+    "NVS": "2026-10-27",
+    "SCCO": "2026-10-27",
+    "BA": "2026-10-27",
+    "STX": "2026-10-27",
+    "SPGI": "2026-10-27",
+    "GLW": "2026-10-27",
+    "FCX": "2026-10-27",
+    "HCA": "2026-10-27",
+    "WM": "2026-10-27",
+    "JCI": "2026-10-27",
+    "HOOD": "2026-10-27",
+    "AMT": "2026-10-27",
+    "UPS": "2026-10-27",
+    "SHW": "2026-10-27",
+    "ECL": "2026-10-27",
+    "HLT": "2026-10-27",
+    "ITW": "2026-10-27",
+    "RCL": "2026-10-27",
+    "NXPI": "2026-10-27",
+    "PCAR": "2026-10-27",
+    "BKR": "2026-10-27",
+    "TER": "2026-10-27",
+    "PYPL": "2026-10-27",
+    "VTR": "2026-10-27",
+    "IQV": "2026-10-27",
+    "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
+    "ACGL": "2026-10-27",
+    "EQT": "2026-10-27",
+    "CNC": "2026-10-27",
+    "SHG": "2026-10-27",
+    "EXR": "2026-10-27",
+    "FE": "2026-10-27",
+    "CNP": "2026-10-27",
+    "FFIV": "2026-10-27",
+    "LPLA": "2026-10-27",
+    "HUBB": "2026-10-27",
+    "XYL": "2026-10-27",
+    "PPG": "2026-10-27",
+    "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
+    "EXE": "2026-10-27",
+    "CMS": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 23:46",
+    "updatedAt": "20/10/2026 00:01",
     "source": "tradingview"
   }
 }
