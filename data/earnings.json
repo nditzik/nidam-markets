@@ -209,7 +209,7 @@
       "date": "2026-10-22",
       "label": "22/10",
       "dow": "ה׳",
-      "count": 31,
+      "count": 32,
       "tickers": [
         "PG",
         "UNP",
@@ -316,16 +316,16 @@
           "logo": "data/earnings/logos/MMM.png"
         },
         {
-          "ticker": "NOC",
-          "name": "Northrop Grumman Corp.",
-          "when": "before",
-          "logo": "data/earnings/logos/NOC.png"
-        },
-        {
           "ticker": "GM",
           "name": "General Motors Company",
           "when": "before",
           "logo": "data/earnings/logos/GM.png"
+        },
+        {
+          "ticker": "NOC",
+          "name": "Northrop Grumman Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/NOC.png"
         },
         {
           "ticker": "AMX",
@@ -426,7 +426,7 @@
       "date": "2026-10-22",
       "dow": "חמישי",
       "label": "22.10",
-      "total": 31,
+      "total": 32,
       "companies": [
         {
           "ticker": "PG",
@@ -584,8 +584,8 @@
     "CB": "2026-10-20",
     "COF": "2026-10-20",
     "MMM": "2026-10-20",
-    "NOC": "2026-10-20",
     "GM": "2026-10-20",
+    "NOC": "2026-10-20",
     "AMX": "2026-10-20",
     "MSCI": "2026-10-20",
     "UAL": "2026-10-20",
@@ -642,23 +642,24 @@
     "CBRE": "2026-10-22",
     "HIG": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
     "DOW": "2026-10-22",
+    "PHM": "2026-10-22",
     "XOM": "2026-10-23",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCP": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCN": "2026-10-23",
+    "FCNCO": "2026-10-23",
+    "FCNCP": "2026-10-23",
     "FCNCA": "2026-10-23",
     "NVT": "2026-10-23",
     "VZ": "2026-10-26",
@@ -672,7 +673,7 @@
     "PFG": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 23:01",
+    "updatedAt": "19/10/2026 23:16",
     "source": "tradingview"
   }
 }
