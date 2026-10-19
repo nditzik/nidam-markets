@@ -5,17 +5,17 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 46.3
+      "capB": 46.2
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 34.9
+      "capB": 34.5
     },
     {
       "ticker": "WRB",
       "name": "W. R. Berkley Corporation",
-      "capB": 27.8
+      "capB": 27.7
     }
   ],
   "reactions": {
@@ -202,7 +202,7 @@
         "LRCX",
         "PM",
         "SAP",
-        "TXN"
+        "TMO"
       ]
     },
     {
@@ -378,16 +378,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TXN",
-          "name": "Texas Instruments Incorporated",
-          "when": "after",
-          "logo": "data/earnings/logos/TXN.png"
-        },
-        {
           "ticker": "TMO",
           "name": "Thermo Fisher Scientific Inc.",
           "when": "before",
           "logo": "data/earnings/logos/TMO.png"
+        },
+        {
+          "ticker": "TXN",
+          "name": "Texas Instruments Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/TXN.png"
         },
         {
           "ticker": "IBM",
@@ -409,16 +409,16 @@
           "logo": "data/earnings/logos/NEE.png"
         },
         {
-          "ticker": "DHR",
-          "name": "Danaher Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/DHR.png"
-        },
-        {
           "ticker": "T",
           "name": "AT&T Inc",
           "when": "before",
           "logo": "data/earnings/logos/T.png"
+        },
+        {
+          "ticker": "DHR",
+          "name": "Danaher Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DHR.png"
         }
       ]
     },
@@ -478,16 +478,16 @@
           "logo": "data/earnings/logos/SPOT.png"
         },
         {
-          "ticker": "BCS",
-          "name": "Barclays PLC Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/BCS.png"
-        },
-        {
           "ticker": "CMCSA",
           "name": "Comcast Corporation Class A",
           "when": "before",
           "logo": "data/earnings/logos/CMCSA.png"
+        },
+        {
+          "ticker": "BCS",
+          "name": "Barclays PLC Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/BCS.png"
         },
         {
           "ticker": "NSC",
@@ -598,13 +598,13 @@
     "LRCX": "2026-10-21",
     "PM": "2026-10-21",
     "SAP": "2026-10-21",
-    "TXN": "2026-10-21",
     "TMO": "2026-10-21",
+    "TXN": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
-    "DHR": "2026-10-21",
     "T": "2026-10-21",
+    "DHR": "2026-10-21",
     "CME": "2026-10-21",
     "ELV": "2026-10-21",
     "CSX": "2026-10-21",
@@ -628,8 +628,8 @@
     "LMT": "2026-10-22",
     "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
-    "BCS": "2026-10-22",
     "CMCSA": "2026-10-22",
+    "BCS": "2026-10-22",
     "NSC": "2026-10-22",
     "BE": "2026-10-22",
     "HON": "2026-10-22",
@@ -642,9 +642,9 @@
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
     "HBAN": "2026-10-22",
+    "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
@@ -673,7 +673,7 @@
     "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 17:01",
+    "updatedAt": "19/10/2026 17:16",
     "source": "tradingview"
   }
 }
