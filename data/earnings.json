@@ -5,17 +5,17 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 45.7
+      "capB": 45.6
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 34.5
+      "capB": 35.4
     },
     {
       "ticker": "WRB",
       "name": "W. R. Berkley Corporation",
-      "capB": 28.0
+      "capB": 27.8
     }
   ],
   "reactions": {
@@ -202,7 +202,7 @@
         "LRCX",
         "PM",
         "SAP",
-        "TMO"
+        "TXN"
       ]
     },
     {
@@ -214,9 +214,9 @@
         "PG",
         "UNP",
         "BX",
+        "WDC",
         "VLO",
-        "LMT",
-        "NEM"
+        "LMT"
       ]
     },
     {
@@ -230,7 +230,7 @@
         "E",
         "SLB",
         "INFY",
-        "FCNCA"
+        "NVT"
       ]
     }
   ],
@@ -378,16 +378,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TMO",
-          "name": "Thermo Fisher Scientific Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/TMO.png"
-        },
-        {
           "ticker": "TXN",
           "name": "Texas Instruments Incorporated",
           "when": "after",
           "logo": "data/earnings/logos/TXN.png"
+        },
+        {
+          "ticker": "TMO",
+          "name": "Thermo Fisher Scientific Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/TMO.png"
         },
         {
           "ticker": "IBM",
@@ -447,6 +447,12 @@
           "logo": "data/earnings/logos/BX.png"
         },
         {
+          "ticker": "WDC",
+          "name": "Western Digital Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/WDC.png"
+        },
+        {
           "ticker": "VLO",
           "name": "Valero Energy Corporation",
           "when": "before",
@@ -466,22 +472,10 @@
           "logo": "data/earnings/logos/NEM.png"
         },
         {
-          "ticker": "WDC",
-          "name": "Western Digital Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/WDC.png"
-        },
-        {
           "ticker": "SPOT",
           "name": "Spotify Technology SA",
           "when": "before",
           "logo": "data/earnings/logos/SPOT.png"
-        },
-        {
-          "ticker": "CMCSA",
-          "name": "Comcast Corporation Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/CMCSA.png"
         },
         {
           "ticker": "BCS",
@@ -490,16 +484,22 @@
           "logo": "data/earnings/logos/BCS.png"
         },
         {
+          "ticker": "CMCSA",
+          "name": "Comcast Corporation Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/CMCSA.png"
+        },
+        {
           "ticker": "NSC",
           "name": "Norfolk Southern Corporation",
           "when": "",
           "logo": "data/earnings/logos/NSC.png"
         },
         {
-          "ticker": "HON",
-          "name": "Honeywell International Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/HON.png"
+          "ticker": "BE",
+          "name": "Bloom Energy Corporation Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/BE.png"
         }
       ]
     },
@@ -540,10 +540,10 @@
           "logo": "data/earnings/logos/INFY.png"
         },
         {
-          "ticker": "FCNCA",
-          "name": "First Citizens BancShares, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/FCNCA.png"
+          "ticker": "NVT",
+          "name": "nVent Electric plc",
+          "when": "",
+          "logo": "data/earnings/logos/NVT.png"
         },
         {
           "ticker": "FCNCN",
@@ -564,10 +564,10 @@
           "logo": "data/earnings/logos/FCNCP.png"
         },
         {
-          "ticker": "NVT",
-          "name": "nVent Electric plc",
-          "when": "",
-          "logo": "data/earnings/logos/NVT.png"
+          "ticker": "FCNCA",
+          "name": "First Citizens BancShares, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/FCNCA.png"
         }
       ]
     }
@@ -598,8 +598,8 @@
     "LRCX": "2026-10-21",
     "PM": "2026-10-21",
     "SAP": "2026-10-21",
-    "TMO": "2026-10-21",
     "TXN": "2026-10-21",
+    "TMO": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
@@ -618,34 +618,34 @@
     "NTRSO": "2026-10-21",
     "TDY": "2026-10-21",
     "LVS": "2026-10-21",
-    "PKG": "2026-10-21",
     "RS": "2026-10-21",
+    "PKG": "2026-10-21",
     "PG": "2026-10-22",
     "UNP": "2026-10-22",
     "BX": "2026-10-22",
+    "WDC": "2026-10-22",
     "VLO": "2026-10-22",
     "LMT": "2026-10-22",
     "NEM": "2026-10-22",
-    "WDC": "2026-10-22",
     "SPOT": "2026-10-22",
-    "CMCSA": "2026-10-22",
     "BCS": "2026-10-22",
+    "CMCSA": "2026-10-22",
     "NSC": "2026-10-22",
-    "HON": "2026-10-22",
     "BE": "2026-10-22",
+    "HON": "2026-10-22",
     "NOK": "2026-10-22",
-    "NDAQ": "2026-10-22",
     "FIX": "2026-10-22",
+    "NDAQ": "2026-10-22",
     "NBIS": "2026-10-22",
     "BBD": "2026-10-22",
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBANM": "2026-10-22",
+    "HBANL": "2026-10-22",
     "HBANP": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -657,11 +657,11 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
-    "FCNCO": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "NVT": "2026-10-23",
+    "FCNCN": "2026-10-23",
+    "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
+    "FCNCA": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -673,7 +673,7 @@
     "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 16:31",
+    "updatedAt": "19/10/2026 16:46",
     "source": "tradingview"
   }
 }
