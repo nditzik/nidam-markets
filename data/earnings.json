@@ -10,7 +10,7 @@
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 34.8
+      "capB": 34.9
     },
     {
       "ticker": "WRB",
@@ -202,7 +202,7 @@
         "LRCX",
         "PM",
         "SAP",
-        "TMO"
+        "TXN"
       ]
     },
     {
@@ -215,8 +215,8 @@
         "UNP",
         "BX",
         "WDC",
-        "VLO",
-        "LMT"
+        "LMT",
+        "VLO"
       ]
     },
     {
@@ -378,16 +378,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TMO",
-          "name": "Thermo Fisher Scientific Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/TMO.png"
-        },
-        {
           "ticker": "TXN",
           "name": "Texas Instruments Incorporated",
           "when": "after",
           "logo": "data/earnings/logos/TXN.png"
+        },
+        {
+          "ticker": "TMO",
+          "name": "Thermo Fisher Scientific Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/TMO.png"
         },
         {
           "ticker": "IBM",
@@ -409,16 +409,16 @@
           "logo": "data/earnings/logos/NEE.png"
         },
         {
-          "ticker": "DHR",
-          "name": "Danaher Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/DHR.png"
-        },
-        {
           "ticker": "T",
           "name": "AT&T Inc",
           "when": "before",
           "logo": "data/earnings/logos/T.png"
+        },
+        {
+          "ticker": "DHR",
+          "name": "Danaher Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DHR.png"
         }
       ]
     },
@@ -453,17 +453,17 @@
           "logo": "data/earnings/logos/WDC.png"
         },
         {
-          "ticker": "VLO",
-          "name": "Valero Energy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/VLO.png"
-        },
-        {
           "ticker": "LMT",
           "name": "Lockheed Martin Corporation",
           "when": "before",
           "logo": "data/earnings/logos/LMT.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "VLO",
+          "name": "Valero Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/VLO.png"
         },
         {
           "ticker": "NEM",
@@ -598,13 +598,13 @@
     "LRCX": "2026-10-21",
     "PM": "2026-10-21",
     "SAP": "2026-10-21",
-    "TMO": "2026-10-21",
     "TXN": "2026-10-21",
+    "TMO": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
-    "DHR": "2026-10-21",
     "T": "2026-10-21",
+    "DHR": "2026-10-21",
     "CME": "2026-10-21",
     "ELV": "2026-10-21",
     "CSX": "2026-10-21",
@@ -624,8 +624,8 @@
     "UNP": "2026-10-22",
     "BX": "2026-10-22",
     "WDC": "2026-10-22",
-    "VLO": "2026-10-22",
     "LMT": "2026-10-22",
+    "VLO": "2026-10-22",
     "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
     "CMCSA": "2026-10-22",
@@ -641,10 +641,10 @@
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBANL": "2026-10-22",
     "HBANM": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
@@ -658,8 +658,8 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCO": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCA": "2026-10-23",
     "NVT": "2026-10-23",
     "VZ": "2026-10-26",
@@ -673,7 +673,7 @@
     "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 19:31",
+    "updatedAt": "19/10/2026 19:35",
     "source": "tradingview"
   }
 }
