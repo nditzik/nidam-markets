@@ -5,12 +5,12 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 45.6
+      "capB": 46.3
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 35.4
+      "capB": 34.9
     },
     {
       "ticker": "WRB",
@@ -230,7 +230,7 @@
         "E",
         "SLB",
         "INFY",
-        "NVT"
+        "FCNCN"
       ]
     }
   ],
@@ -316,16 +316,16 @@
           "logo": "data/earnings/logos/MMM.png"
         },
         {
-          "ticker": "NOC",
-          "name": "Northrop Grumman Corp.",
-          "when": "before",
-          "logo": "data/earnings/logos/NOC.png"
-        },
-        {
           "ticker": "GM",
           "name": "General Motors Company",
           "when": "before",
           "logo": "data/earnings/logos/GM.png"
+        },
+        {
+          "ticker": "NOC",
+          "name": "Northrop Grumman Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/NOC.png"
         },
         {
           "ticker": "AMX",
@@ -540,12 +540,6 @@
           "logo": "data/earnings/logos/INFY.png"
         },
         {
-          "ticker": "NVT",
-          "name": "nVent Electric plc",
-          "when": "",
-          "logo": "data/earnings/logos/NVT.png"
-        },
-        {
           "ticker": "FCNCN",
           "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
           "when": "before",
@@ -568,6 +562,12 @@
           "name": "First Citizens BancShares, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/FCNCA.png"
+        },
+        {
+          "ticker": "NVT",
+          "name": "nVent Electric plc",
+          "when": "",
+          "logo": "data/earnings/logos/NVT.png"
         }
       ]
     }
@@ -584,8 +584,8 @@
     "CB": "2026-10-20",
     "COF": "2026-10-20",
     "MMM": "2026-10-20",
-    "NOC": "2026-10-20",
     "GM": "2026-10-20",
+    "NOC": "2026-10-20",
     "AMX": "2026-10-20",
     "MSCI": "2026-10-20",
     "UAL": "2026-10-20",
@@ -614,8 +614,8 @@
     "WAB": "2026-10-21",
     "WCN": "2026-10-21",
     "CCI": "2026-10-21",
-    "NTRS": "2026-10-21",
     "NTRSO": "2026-10-21",
+    "NTRS": "2026-10-21",
     "TDY": "2026-10-21",
     "LVS": "2026-10-21",
     "RS": "2026-10-21",
@@ -634,18 +634,18 @@
     "BE": "2026-10-22",
     "HON": "2026-10-22",
     "NOK": "2026-10-22",
-    "FIX": "2026-10-22",
     "NDAQ": "2026-10-22",
+    "FIX": "2026-10-22",
     "NBIS": "2026-10-22",
     "BBD": "2026-10-22",
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANP": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -657,11 +657,11 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "NVT": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCA": "2026-10-23",
+    "NVT": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -673,7 +673,7 @@
     "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 16:46",
+    "updatedAt": "19/10/2026 17:01",
     "source": "tradingview"
   }
 }
