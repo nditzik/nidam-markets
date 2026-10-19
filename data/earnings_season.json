@@ -30,19 +30,19 @@
   {
    "mon": "2026-10-19",
    "label": "19.10",
-   "n": 80,
+   "n": 79,
    "tickers": [
     "META",
     "TSLA",
-    "XOM",
     "PG",
+    "LRCX",
     "NFLX"
    ]
   },
   {
    "mon": "2026-10-26",
    "label": "26.10",
-   "n": 174,
+   "n": 175,
    "tickers": [
     "GOOGL",
     "MSFT",
@@ -178,16 +178,16 @@
   }
  ],
  "total": 453,
- "reported": 32,
+ "reported": 31,
  "members": 504,
  "board": {
-  "reported": 32,
-  "epsN": 32,
+  "reported": 31,
+  "epsN": 31,
   "epsBeat": 27,
-  "epsBeatPct": 84,
-  "revN": 32,
+  "epsBeatPct": 87,
+  "revN": 31,
   "revBeat": 19,
-  "revBeatPct": 59,
+  "revBeatPct": 61,
   "reactBeat": -0.79,
   "reactBeatN": 26,
   "reactMiss": -1.13,
@@ -212,11 +212,6 @@
     "name": "בריאות",
     "n": 2,
     "beat": 2
-   },
-   {
-    "name": "חומרים",
-    "n": 1,
-    "beat": 0
    },
    {
     "name": "צריכה מחזורית",
@@ -258,7 +253,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "20/10/2026 00:01",
+  "updatedAt": "20/10/2026 01:01",
   "source": "TradingView + S&P 500 watchlist"
  }
 }

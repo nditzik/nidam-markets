@@ -247,14 +247,14 @@
       "date": "2026-10-23",
       "label": "23/10",
       "dow": "ו׳",
-      "count": 10,
+      "count": 9,
       "tickers": [
-        "XOM",
         "AXP",
         "E",
         "SLB",
         "INFY",
-        "FCNCN"
+        "FCNCN",
+        "FCNCO"
       ]
     }
   ],
@@ -531,14 +531,8 @@
       "date": "2026-10-23",
       "dow": "שישי",
       "label": "23.10",
-      "total": 10,
+      "total": 9,
       "companies": [
-        {
-          "ticker": "XOM",
-          "name": "Exxonmobil Holdings Corporation",
-          "when": "",
-          "logo": "data/earnings/logos/XOM.png"
-        },
         {
           "ticker": "AXP",
           "name": "American Express Company",
@@ -662,17 +656,16 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HIG": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "HBANP": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANL": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
     "DOW": "2026-10-22",
-    "XOM": "2026-10-23",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
@@ -739,7 +732,7 @@
     "CMS": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 00:46",
+    "updatedAt": "20/10/2026 01:01",
     "source": "tradingview"
   }
 }
