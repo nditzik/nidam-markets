@@ -5,17 +5,17 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 46.4
+      "capB": 46.5
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 35.0
+      "capB": 34.9
     },
     {
       "ticker": "WRB",
       "name": "W. R. Berkley Corporation",
-      "capB": 27.6
+      "capB": 27.5
     }
   ],
   "reactions": {
@@ -215,8 +215,8 @@
         "UNP",
         "BX",
         "WDC",
-        "VLO",
-        "LMT"
+        "LMT",
+        "VLO"
       ]
     },
     {
@@ -453,17 +453,17 @@
           "logo": "data/earnings/logos/WDC.png"
         },
         {
-          "ticker": "VLO",
-          "name": "Valero Energy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/VLO.png"
-        },
-        {
           "ticker": "LMT",
           "name": "Lockheed Martin Corporation",
           "when": "before",
           "logo": "data/earnings/logos/LMT.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "VLO",
+          "name": "Valero Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/VLO.png"
         },
         {
           "ticker": "NEM",
@@ -614,8 +614,8 @@
     "WAB": "2026-10-21",
     "WCN": "2026-10-21",
     "CCI": "2026-10-21",
-    "NTRSO": "2026-10-21",
     "NTRS": "2026-10-21",
+    "NTRSO": "2026-10-21",
     "TDY": "2026-10-21",
     "LVS": "2026-10-21",
     "RS": "2026-10-21",
@@ -624,8 +624,8 @@
     "UNP": "2026-10-22",
     "BX": "2026-10-22",
     "WDC": "2026-10-22",
-    "VLO": "2026-10-22",
     "LMT": "2026-10-22",
+    "VLO": "2026-10-22",
     "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
     "CMCSA": "2026-10-22",
@@ -638,14 +638,14 @@
     "FIX": "2026-10-22",
     "NBIS": "2026-10-22",
     "BBD": "2026-10-22",
-    "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
+    "ROP": "2026-10-22",
     "HIG": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANP": "2026-10-22",
     "HBANZ": "2026-10-22",
     "HBANM": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANL": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -657,9 +657,9 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCA": "2026-10-23",
     "NVT": "2026-10-23",
     "VZ": "2026-10-26",
@@ -673,7 +673,7 @@
     "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 18:16",
+    "updatedAt": "19/10/2026 18:31",
     "source": "tradingview"
   }
 }
