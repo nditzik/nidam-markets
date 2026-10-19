@@ -5,12 +5,12 @@
     {
       "ticker": "FITB",
       "name": "Fifth Third Bancorp",
-      "capB": 46.2
+      "capB": 46.1
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
-      "capB": 34.9
+      "capB": 34.8
     },
     {
       "ticker": "WRB",
@@ -409,16 +409,16 @@
           "logo": "data/earnings/logos/NEE.png"
         },
         {
-          "ticker": "T",
-          "name": "AT&T Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/T.png"
-        },
-        {
           "ticker": "DHR",
           "name": "Danaher Corporation",
           "when": "before",
           "logo": "data/earnings/logos/DHR.png"
+        },
+        {
+          "ticker": "T",
+          "name": "AT&T Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/T.png"
         }
       ]
     },
@@ -603,8 +603,8 @@
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
-    "T": "2026-10-21",
     "DHR": "2026-10-21",
+    "T": "2026-10-21",
     "CME": "2026-10-21",
     "ELV": "2026-10-21",
     "CSX": "2026-10-21",
@@ -641,11 +641,11 @@
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HIG": "2026-10-22",
-    "HBAN": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANL": "2026-10-22",
     "HBANM": "2026-10-22",
+    "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -673,7 +673,7 @@
     "BRO": "2026-10-26"
   },
   "_meta": {
-    "updatedAt": "19/10/2026 19:17",
+    "updatedAt": "19/10/2026 19:31",
     "source": "tradingview"
   }
 }
