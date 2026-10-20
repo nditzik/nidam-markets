@@ -5,12 +5,12 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp",
-      "capB": 2015.0
+      "capB": 2012.1
     },
     {
       "ticker": "GE",
       "name": "GE Aerospace",
-      "capB": 316.1
+      "capB": 316.3
     },
     {
       "ticker": "NFLX",
@@ -20,27 +20,27 @@
     {
       "ticker": "RTX",
       "name": "RTX Corporation",
-      "capB": 260.6
+      "capB": 259.8
     },
     {
       "ticker": "ISRG",
       "name": "Intuitive Surgical, Inc.",
-      "capB": 153.5
+      "capB": 154.3
     },
     {
       "ticker": "CB",
       "name": "Chubb Limited",
-      "capB": 137.7
+      "capB": 137.4
     },
     {
       "ticker": "COF",
       "name": "Capital One Financial Corp",
-      "capB": 124.3
+      "capB": 124.7
     },
     {
       "ticker": "MMM",
       "name": "3M Company",
-      "capB": 88.4
+      "capB": 88.8
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STLD.png",
-            "chg": 0.06,
-            "price": 245.3,
+            "chg": -0.76,
+            "price": 243.31,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WRB.png",
-            "chg": -0.89,
-            "price": 73.42,
+            "chg": -1.03,
+            "price": 73.32,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           }
@@ -227,7 +227,7 @@
       "date": "2026-10-21",
       "label": "21/10",
       "dow": "ד׳",
-      "count": 26,
+      "count": 27,
       "tickers": [
         "META",
         "TSLA",
@@ -377,7 +377,7 @@
       "date": "2026-10-21",
       "dow": "רביעי",
       "label": "21.10",
-      "total": 26,
+      "total": 27,
       "companies": [
         {
           "ticker": "META",
@@ -635,6 +635,7 @@
     "TDY": "2026-10-21",
     "LVS": "2026-10-21",
     "RS": "2026-10-21",
+    "PKG": "2026-10-21",
     "PG": "2026-10-22",
     "UNP": "2026-10-22",
     "BX": "2026-10-22",
@@ -656,8 +657,8 @@
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANL": "2026-10-22",
     "HBANP": "2026-10-22",
     "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
@@ -672,9 +673,9 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
+    "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
     "FCNCN": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -731,7 +732,7 @@
     "EXE": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 18:01",
+    "updatedAt": "20/10/2026 18:16",
     "source": "tradingview"
   }
 }
