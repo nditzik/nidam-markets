@@ -1,16 +1,22 @@
 {
-  "generatedAt": "20/10/2026 05:16",
+  "generatedAt": "20/10/2026 05:32",
   "today": [
     {
       "label": "מדדים",
       "tab": "indices",
-      "time": "05:15",
+      "time": "05:30",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "05:15",
+      "time": "05:30",
+      "arrived": true
+    },
+    {
+      "label": "מועמדים",
+      "tab": "candidates",
+      "time": "05:30",
       "arrived": true
     },
     {
@@ -36,19 +42,13 @@
       "tab": "morning",
       "time": "14:53",
       "arrived": false
-    },
-    {
-      "label": "מועמדים",
-      "tab": "candidates",
-      "time": "05:30",
-      "arrived": false
     }
   ],
   "sources": [
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "20/10/2026 05:15",
+      "updatedAt": "20/10/2026 05:30",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -56,7 +56,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "20/10/2026 05:15",
+      "updatedAt": "20/10/2026 05:30",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -65,7 +65,7 @@
       "key": "morning",
       "label": "Barchart בוקר",
       "updatedAt": "19/10/2026 06:08",
-      "ageHours": 23.1,
+      "ageHours": 23.4,
       "status": "ok",
       "detail": ""
     },
@@ -73,7 +73,7 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "19/10/2026 14:53",
-      "ageHours": 14.4,
+      "ageHours": 14.7,
       "status": "ok",
       "detail": ""
     },
@@ -81,16 +81,16 @@
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "19/10/2026 15:15",
-      "ageHours": 14.0,
+      "ageHours": 14.3,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "מועמדים",
-      "updatedAt": "17/10/2026 05:30",
-      "ageHours": 71.8,
-      "status": "stale",
+      "updatedAt": "20/10/2026 05:30",
+      "ageHours": 0.0,
+      "status": "ok",
       "detail": ""
     }
   ]
