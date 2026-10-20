@@ -1,50 +1,106 @@
 {
-  "today": "2026-10-20",
-  "todayCount": 16,
+  "today": "2026-10-21",
+  "todayCount": 27,
   "todayBig": [
     {
-      "ticker": "SPCX",
-      "name": "Space Exploration Technologies Corp",
-      "capB": 2005.7
+      "ticker": "META",
+      "name": "Meta Platforms Inc Class A",
+      "capB": 1768.6
     },
     {
-      "ticker": "GE",
-      "name": "GE Aerospace",
-      "capB": 311.1
+      "ticker": "TSLA",
+      "name": "Tesla, Inc.",
+      "capB": 1477.2
     },
     {
-      "ticker": "NFLX",
-      "name": "Netflix, Inc.",
-      "capB": 286.0
+      "ticker": "LRCX",
+      "name": "Lam Research Corporation",
+      "capB": 329.7
     },
     {
-      "ticker": "RTX",
-      "name": "RTX Corporation",
-      "capB": 260.6
+      "ticker": "PM",
+      "name": "Philip Morris International Inc.",
+      "capB": 311.6
     },
     {
-      "ticker": "ISRG",
-      "name": "Intuitive Surgical, Inc.",
-      "capB": 154.7
+      "ticker": "SAP",
+      "name": "SAP SE Sponsored ADR",
+      "capB": 261.6
     },
     {
-      "ticker": "CB",
-      "name": "Chubb Limited",
-      "capB": 138.0
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific Inc.",
+      "capB": 254.2
     },
     {
-      "ticker": "COF",
-      "name": "Capital One Financial Corp",
-      "capB": 123.7
+      "ticker": "TXN",
+      "name": "Texas Instruments Incorporated",
+      "capB": 253.7
     },
     {
-      "ticker": "MMM",
-      "name": "3M Company",
-      "capB": 88.4
+      "ticker": "IBM",
+      "name": "International Business Machines Corporation",
+      "capB": 227.9
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-20",
+        "label": "20.10",
+        "items": [
+          {
+            "ticker": "SPCX",
+            "name": "Space Exploration Technologies Corp",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/SPCX.png"
+          },
+          {
+            "ticker": "GE",
+            "name": "GE Aerospace",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/GE.png",
+            "chg": -3.67,
+            "price": 299.87,
+            "reactDate": "2026-10-20",
+            "baseDate": "2026-10-19"
+          },
+          {
+            "ticker": "NFLX",
+            "name": "Netflix, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/NFLX.png"
+          },
+          {
+            "ticker": "RTX",
+            "name": "RTX Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/RTX.png",
+            "chg": 0.64,
+            "price": 193.34,
+            "reactDate": "2026-10-20",
+            "baseDate": "2026-10-19"
+          },
+          {
+            "ticker": "ISRG",
+            "name": "Intuitive Surgical, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/ISRG.png"
+          },
+          {
+            "ticker": "CB",
+            "name": "Chubb Limited",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/CB.png"
+          }
+        ]
+      },
       {
         "date": "2026-10-19",
         "label": "19.10",
@@ -83,160 +139,86 @@
             "baseDate": "2026-10-19"
           }
         ]
-      },
-      {
-        "date": "2026-10-16",
-        "label": "16.10",
-        "items": [
-          {
-            "ticker": "TRV",
-            "name": "Travelers Companies, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/TRV.png",
-            "chg": 1.47,
-            "price": 389.54,
-            "reactDate": "2026-10-16",
-            "baseDate": "2026-10-15"
-          },
-          {
-            "ticker": "TFC",
-            "name": "Truist Financial Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/TFC.png",
-            "chg": 1.07,
-            "price": 47.07,
-            "reactDate": "2026-10-16",
-            "baseDate": "2026-10-15"
-          },
-          {
-            "ticker": "MTB",
-            "name": "M&T Bank Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MTB.png",
-            "chg": -1.54,
-            "price": 215.28,
-            "reactDate": "2026-10-16",
-            "baseDate": "2026-10-15"
-          },
-          {
-            "ticker": "CFG",
-            "name": "Citizens Financial Group, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CFG.png",
-            "chg": -0.11,
-            "price": 63.36,
-            "reactDate": "2026-10-16",
-            "baseDate": "2026-10-15"
-          },
-          {
-            "ticker": "RF",
-            "name": "Regions Financial Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/RF.png",
-            "chg": 0.51,
-            "price": 27.45,
-            "reactDate": "2026-10-16",
-            "baseDate": "2026-10-15"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "SPCX",
-      "name": "Space Exploration Technologies Corp",
+      "ticker": "META",
+      "name": "Meta Platforms Inc Class A",
       "when": "after",
-      "logo": "data/earnings/logos/SPCX.png"
+      "logo": "data/earnings/logos/META.png"
     },
     {
-      "ticker": "GE",
-      "name": "GE Aerospace",
-      "when": "before",
-      "logo": "data/earnings/logos/GE.png"
-    },
-    {
-      "ticker": "NFLX",
-      "name": "Netflix, Inc.",
+      "ticker": "TSLA",
+      "name": "Tesla, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/NFLX.png"
+      "logo": "data/earnings/logos/TSLA.png"
     },
     {
-      "ticker": "RTX",
-      "name": "RTX Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/RTX.png"
-    },
-    {
-      "ticker": "ISRG",
-      "name": "Intuitive Surgical, Inc.",
+      "ticker": "LRCX",
+      "name": "Lam Research Corporation",
       "when": "after",
-      "logo": "data/earnings/logos/ISRG.png"
+      "logo": "data/earnings/logos/LRCX.png"
     },
     {
-      "ticker": "CB",
-      "name": "Chubb Limited",
+      "ticker": "PM",
+      "name": "Philip Morris International Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/PM.png"
+    },
+    {
+      "ticker": "SAP",
+      "name": "SAP SE Sponsored ADR",
       "when": "after",
-      "logo": "data/earnings/logos/CB.png"
+      "logo": "data/earnings/logos/SAP.png"
     },
     {
-      "ticker": "COF",
-      "name": "Capital One Financial Corp",
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/TMO.png"
+    },
+    {
+      "ticker": "TXN",
+      "name": "Texas Instruments Incorporated",
       "when": "after",
-      "logo": "data/earnings/logos/COF.png"
+      "logo": "data/earnings/logos/TXN.png"
     },
     {
-      "ticker": "MMM",
-      "name": "3M Company",
-      "when": "before",
-      "logo": "data/earnings/logos/MMM.png"
-    },
-    {
-      "ticker": "NOC",
-      "name": "Northrop Grumman Corp.",
-      "when": "before",
-      "logo": "data/earnings/logos/NOC.png"
-    },
-    {
-      "ticker": "AMX",
-      "name": "America Movil SAB de CV Sponsored ADR Class B",
+      "ticker": "IBM",
+      "name": "International Business Machines Corporation",
       "when": "after",
-      "logo": "data/earnings/logos/AMX.png"
+      "logo": "data/earnings/logos/IBM.png",
+      "logoBg": "dark"
     },
     {
-      "ticker": "GM",
-      "name": "General Motors Company",
+      "ticker": "ABT",
+      "name": "Abbott Laboratories",
       "when": "before",
-      "logo": "data/earnings/logos/GM.png"
+      "logo": "data/earnings/logos/ABT.png"
     },
     {
-      "ticker": "MSCI",
-      "name": "MSCI Inc. Class A",
+      "ticker": "NEE",
+      "name": "NextEra Energy, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/MSCI.png"
+      "logo": "data/earnings/logos/NEE.png"
+    },
+    {
+      "ticker": "T",
+      "name": "AT&T Inc",
+      "when": "before",
+      "logo": "data/earnings/logos/T.png"
+    },
+    {
+      "ticker": "DHR",
+      "name": "Danaher Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/DHR.png"
     }
   ],
-  "more": 4,
+  "more": 15,
   "upcoming": [
-    {
-      "date": "2026-10-21",
-      "label": "21/10",
-      "dow": "ד׳",
-      "count": 27,
-      "tickers": [
-        "META",
-        "TSLA",
-        "LRCX",
-        "PM",
-        "SAP",
-        "TMO"
-      ]
-    },
     {
       "date": "2026-10-22",
       "label": "22/10",
@@ -593,22 +575,6 @@
     }
   ],
   "window": {
-    "SPCX": "2026-10-20",
-    "GE": "2026-10-20",
-    "NFLX": "2026-10-20",
-    "RTX": "2026-10-20",
-    "ISRG": "2026-10-20",
-    "CB": "2026-10-20",
-    "COF": "2026-10-20",
-    "MMM": "2026-10-20",
-    "NOC": "2026-10-20",
-    "AMX": "2026-10-20",
-    "GM": "2026-10-20",
-    "MSCI": "2026-10-20",
-    "UAL": "2026-10-20",
-    "HAL": "2026-10-20",
-    "SYF": "2026-10-20",
-    "KEY": "2026-10-20",
     "META": "2026-10-21",
     "TSLA": "2026-10-21",
     "LRCX": "2026-10-21",
@@ -658,9 +624,9 @@
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -673,8 +639,8 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
@@ -729,10 +695,60 @@
     "HUBB": "2026-10-27",
     "PPG": "2026-10-27",
     "CMS": "2026-10-27",
-    "EXE": "2026-10-27"
+    "EXE": "2026-10-27",
+    "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
+    "GOOG": "2026-10-28",
+    "GOOGL": "2026-10-28",
+    "MSFT": "2026-10-28",
+    "SKHY": "2026-10-28",
+    "GEV": "2026-10-28",
+    "KLAC": "2026-10-28",
+    "APH": "2026-10-28",
+    "SAN": "2026-10-28",
+    "TMUS": "2026-10-28",
+    "NOW": "2026-10-28",
+    "UBS": "2026-10-28",
+    "FTNT": "2026-10-28",
+    "PSX": "2026-10-28",
+    "ADP": "2026-10-28",
+    "EQNR": "2026-10-28",
+    "GSK": "2026-10-28",
+    "EQIX": "2026-10-28",
+    "AEM": "2026-10-28",
+    "VRT": "2026-10-28",
+    "CP": "2026-10-28",
+    "ORLY": "2026-10-28",
+    "FDX": "2026-10-28",
+    "AEP": "2026-10-28",
+    "CVNA": "2026-10-28",
+    "BSX": "2026-10-28",
+    "AON": "2026-10-28",
+    "TEL": "2026-10-28",
+    "DB": "2026-10-28",
+    "GRMN": "2026-10-28",
+    "EBAY": "2026-10-28",
+    "UMC": "2026-10-28",
+    "HONA": "2026-10-28",
+    "F": "2026-10-28",
+    "ODFL": "2026-10-28",
+    "CMG": "2026-10-28",
+    "BIIB": "2026-10-28",
+    "FLEX": "2026-10-28",
+    "GEHC": "2026-10-28",
+    "RJF": "2026-10-28",
+    "KGC": "2026-10-28",
+    "OTIS": "2026-10-28",
+    "AWK": "2026-10-28",
+    "NMR": "2026-10-28",
+    "LH": "2026-10-28",
+    "VICI": "2026-10-28",
+    "FMX": "2026-10-28",
+    "AER": "2026-10-28",
+    "DINO": "2026-10-28"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 23:46",
+    "updatedAt": "21/10/2026 00:01",
     "source": "tradingview"
   }
 }
