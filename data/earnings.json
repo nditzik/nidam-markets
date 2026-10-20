@@ -233,7 +233,7 @@
       "date": "2026-10-22",
       "label": "22/10",
       "dow": "ה׳",
-      "count": 32,
+      "count": 31,
       "tickers": [
         "PG",
         "UNP",
@@ -247,7 +247,7 @@
       "date": "2026-10-23",
       "label": "23/10",
       "dow": "ו׳",
-      "count": 9,
+      "count": 8,
       "tickers": [
         "AXP",
         "E",
@@ -450,7 +450,7 @@
       "date": "2026-10-22",
       "dow": "חמישי",
       "label": "22.10",
-      "total": 32,
+      "total": 31,
       "companies": [
         {
           "ticker": "PG",
@@ -531,7 +531,7 @@
       "date": "2026-10-23",
       "dow": "שישי",
       "label": "23.10",
-      "total": 9,
+      "total": 8,
       "companies": [
         {
           "ticker": "AXP",
@@ -554,7 +554,7 @@
         {
           "ticker": "INFY",
           "name": "Infosys Limited Sponsored ADR",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/INFY.png"
         },
         {
@@ -580,12 +580,6 @@
           "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
           "when": "before",
           "logo": "data/earnings/logos/FCNCP.png"
-        },
-        {
-          "ticker": "NVT",
-          "name": "nVent Electric plc",
-          "when": "",
-          "logo": "data/earnings/logos/NVT.png"
         }
       ]
     }
@@ -653,12 +647,11 @@
     "BBD": "2026-10-22",
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
-    "HIG": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANL": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -670,16 +663,16 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCO": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "NVT": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
     "NUE": "2026-10-26",
     "PSA": "2026-10-26",
     "CLS": "2026-10-26",
+    "HIG": "2026-10-26",
     "CINF": "2026-10-26",
     "BRO": "2026-10-26",
     "PFG": "2026-10-26",
@@ -711,8 +704,8 @@
     "PYPL": "2026-10-27",
     "VTR": "2026-10-27",
     "IQV": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "ACGL": "2026-10-27",
     "EQT": "2026-10-27",
     "CNC": "2026-10-27",
@@ -731,7 +724,7 @@
     "CMSD": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 15:46",
+    "updatedAt": "20/10/2026 16:01",
     "source": "tradingview"
   }
 }
