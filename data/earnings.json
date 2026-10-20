@@ -5,42 +5,42 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp",
-      "capB": 1998.0
+      "capB": 1998.5
     },
     {
       "ticker": "GE",
       "name": "GE Aerospace",
-      "capB": 311.2
+      "capB": 310.7
     },
     {
       "ticker": "NFLX",
       "name": "Netflix, Inc.",
-      "capB": 285.4
+      "capB": 285.3
     },
     {
       "ticker": "RTX",
       "name": "RTX Corporation",
-      "capB": 259.0
+      "capB": 259.6
     },
     {
       "ticker": "ISRG",
       "name": "Intuitive Surgical, Inc.",
-      "capB": 154.0
+      "capB": 154.3
     },
     {
       "ticker": "CB",
       "name": "Chubb Limited",
-      "capB": 137.5
+      "capB": 137.2
     },
     {
       "ticker": "COF",
       "name": "Capital One Financial Corp",
-      "capB": 122.9
+      "capB": 123.6
     },
     {
       "ticker": "MMM",
       "name": "3M Company",
-      "capB": 87.5
+      "capB": 88.0
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STLD.png",
-            "chg": -0.35,
-            "price": 244.31,
+            "chg": -0.59,
+            "price": 243.73,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WRB.png",
-            "chg": -1.37,
-            "price": 73.07,
+            "chg": -0.78,
+            "price": 73.5,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           }
@@ -234,7 +234,7 @@
         "LRCX",
         "PM",
         "SAP",
-        "TXN"
+        "TMO"
       ]
     },
     {
@@ -410,16 +410,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TXN",
-          "name": "Texas Instruments Incorporated",
-          "when": "after",
-          "logo": "data/earnings/logos/TXN.png"
-        },
-        {
           "ticker": "TMO",
           "name": "Thermo Fisher Scientific Inc.",
           "when": "before",
           "logo": "data/earnings/logos/TMO.png"
+        },
+        {
+          "ticker": "TXN",
+          "name": "Texas Instruments Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/TXN.png"
         },
         {
           "ticker": "IBM",
@@ -614,8 +614,8 @@
     "LRCX": "2026-10-21",
     "PM": "2026-10-21",
     "SAP": "2026-10-21",
-    "TXN": "2026-10-21",
     "TMO": "2026-10-21",
+    "TXN": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
@@ -657,25 +657,25 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANP": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
-    "OMC": "2026-10-22",
     "DOW": "2026-10-22",
+    "OMC": "2026-10-22",
     "PHM": "2026-10-22",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -715,24 +715,24 @@
     "VTR": "2026-10-27",
     "IQV": "2026-10-27",
     "CNC": "2026-10-27",
-    "ACGL": "2026-10-27",
     "EQT": "2026-10-27",
-    "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGLN": "2026-10-27",
+    "ACGL": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
     "CNP": "2026-10-27",
     "FE": "2026-10-27",
     "FFIV": "2026-10-27",
     "LPLA": "2026-10-27",
-    "HUBB": "2026-10-27",
     "XYL": "2026-10-27",
+    "HUBB": "2026-10-27",
     "PPG": "2026-10-27",
     "EXE": "2026-10-27",
     "CMS": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 22:31",
+    "updatedAt": "20/10/2026 22:46",
     "source": "tradingview"
   }
 }
