@@ -5,42 +5,42 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp",
-      "capB": 1952.9
+      "capB": 1967.3
     },
     {
       "ticker": "GE",
       "name": "GE Aerospace",
-      "capB": 311.8
+      "capB": 310.1
     },
     {
       "ticker": "NFLX",
       "name": "Netflix, Inc.",
-      "capB": 290.6
+      "capB": 294.0
     },
     {
       "ticker": "RTX",
       "name": "RTX Corporation",
-      "capB": 263.7
+      "capB": 264.6
     },
     {
       "ticker": "ISRG",
       "name": "Intuitive Surgical, Inc.",
-      "capB": 153.4
+      "capB": 153.5
     },
     {
       "ticker": "CB",
       "name": "Chubb Limited",
-      "capB": 139.1
+      "capB": 138.6
     },
     {
       "ticker": "COF",
       "name": "Capital One Financial Corp",
-      "capB": 123.2
+      "capB": 123.8
     },
     {
       "ticker": "MMM",
       "name": "3M Company",
-      "capB": 87.0
+      "capB": 87.9
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STLD.png",
-            "chg": -1.54,
-            "price": 241.4,
+            "chg": -2.18,
+            "price": 239.82,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WRB.png",
-            "chg": -0.43,
-            "price": 73.76,
+            "chg": -1.26,
+            "price": 73.15,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           }
@@ -234,7 +234,7 @@
         "LRCX",
         "PM",
         "SAP",
-        "TMO"
+        "TXN"
       ]
     },
     {
@@ -410,16 +410,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TMO",
-          "name": "Thermo Fisher Scientific Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/TMO.png"
-        },
-        {
           "ticker": "TXN",
           "name": "Texas Instruments Incorporated",
           "when": "after",
           "logo": "data/earnings/logos/TXN.png"
+        },
+        {
+          "ticker": "TMO",
+          "name": "Thermo Fisher Scientific Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/TMO.png"
         },
         {
           "ticker": "IBM",
@@ -614,8 +614,8 @@
     "LRCX": "2026-10-21",
     "PM": "2026-10-21",
     "SAP": "2026-10-21",
-    "TMO": "2026-10-21",
     "TXN": "2026-10-21",
+    "TMO": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
@@ -656,10 +656,10 @@
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANP": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANL": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -672,16 +672,16 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
     "NUE": "2026-10-26",
     "PSA": "2026-10-26",
-    "HIG": "2026-10-26",
     "CLS": "2026-10-26",
+    "HIG": "2026-10-26",
     "CINF": "2026-10-26",
     "BRO": "2026-10-26",
     "PFG": "2026-10-26",
@@ -725,13 +725,13 @@
     "LPLA": "2026-10-27",
     "FFIV": "2026-10-27",
     "XYL": "2026-10-27",
-    "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
-    "CMS": "2026-10-27",
-    "EXE": "2026-10-27"
+    "PPG": "2026-10-27",
+    "EXE": "2026-10-27",
+    "CMS": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 17:01",
+    "updatedAt": "20/10/2026 17:16",
     "source": "tradingview"
   }
 }
