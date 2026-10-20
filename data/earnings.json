@@ -5,22 +5,22 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp",
-      "capB": 1966.9
+      "capB": 1952.9
     },
     {
       "ticker": "GE",
       "name": "GE Aerospace",
-      "capB": 310.2
+      "capB": 311.8
     },
     {
       "ticker": "NFLX",
       "name": "Netflix, Inc.",
-      "capB": 291.3
+      "capB": 290.6
     },
     {
       "ticker": "RTX",
       "name": "RTX Corporation",
-      "capB": 255.7
+      "capB": 263.7
     },
     {
       "ticker": "ISRG",
@@ -30,17 +30,17 @@
     {
       "ticker": "CB",
       "name": "Chubb Limited",
-      "capB": 138.9
+      "capB": 139.1
     },
     {
       "ticker": "COF",
       "name": "Capital One Financial Corp",
-      "capB": 122.8
+      "capB": 123.2
     },
     {
       "ticker": "MMM",
       "name": "3M Company",
-      "capB": 85.2
+      "capB": 87.0
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STLD.png",
-            "chg": -3.19,
-            "price": 237.35,
+            "chg": -1.54,
+            "price": 241.4,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WRB.png",
-            "chg": -1.03,
-            "price": 73.32,
+            "chg": -0.43,
+            "price": 73.76,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           }
@@ -241,7 +241,7 @@
       "date": "2026-10-22",
       "label": "22/10",
       "dow": "ה׳",
-      "count": 31,
+      "count": 32,
       "tickers": [
         "PG",
         "UNP",
@@ -261,8 +261,8 @@
         "E",
         "SLB",
         "INFY",
-        "FCNCN",
-        "FCNCO"
+        "FCNCA",
+        "FCNCN"
       ]
     }
   ],
@@ -458,7 +458,7 @@
       "date": "2026-10-22",
       "dow": "חמישי",
       "label": "22.10",
-      "total": 31,
+      "total": 32,
       "companies": [
         {
           "ticker": "PG",
@@ -566,6 +566,12 @@
           "logo": "data/earnings/logos/INFY.png"
         },
         {
+          "ticker": "FCNCA",
+          "name": "First Citizens BancShares, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/FCNCA.png"
+        },
+        {
           "ticker": "FCNCN",
           "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
           "when": "before",
@@ -582,12 +588,6 @@
           "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
           "when": "before",
           "logo": "data/earnings/logos/FCNCP.png"
-        },
-        {
-          "ticker": "FCNCA",
-          "name": "First Citizens BancShares, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/FCNCA.png"
         }
       ]
     }
@@ -634,7 +634,7 @@
     "NTRSO": "2026-10-21",
     "TDY": "2026-10-21",
     "LVS": "2026-10-21",
-    "RS": "2026-10-21",
+    "PKG": "2026-10-21",
     "PG": "2026-10-22",
     "UNP": "2026-10-22",
     "BX": "2026-10-22",
@@ -648,39 +648,40 @@
     "NSC": "2026-10-22",
     "HON": "2026-10-22",
     "BE": "2026-10-22",
-    "NOK": "2026-10-22",
     "NDAQ": "2026-10-22",
+    "NOK": "2026-10-22",
     "FIX": "2026-10-22",
     "NBIS": "2026-10-22",
     "BBD": "2026-10-22",
-    "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
+    "ROP": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANP": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANP": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
-    "DOW": "2026-10-22",
     "OMC": "2026-10-22",
+    "DOW": "2026-10-22",
+    "PHM": "2026-10-22",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCP": "2026-10-23",
-    "FCNCN": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCA": "2026-10-23",
+    "FCNCN": "2026-10-23",
+    "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
     "NUE": "2026-10-26",
     "PSA": "2026-10-26",
-    "CLS": "2026-10-26",
     "HIG": "2026-10-26",
+    "CLS": "2026-10-26",
     "CINF": "2026-10-26",
     "BRO": "2026-10-26",
     "PFG": "2026-10-26",
@@ -710,29 +711,27 @@
     "BKR": "2026-10-27",
     "TER": "2026-10-27",
     "PYPL": "2026-10-27",
-    "IQV": "2026-10-27",
     "VTR": "2026-10-27",
+    "IQV": "2026-10-27",
     "ACGL": "2026-10-27",
+    "CNC": "2026-10-27",
     "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
     "EQT": "2026-10-27",
-    "CNC": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
-    "FE": "2026-10-27",
     "CNP": "2026-10-27",
-    "FFIV": "2026-10-27",
+    "FE": "2026-10-27",
     "LPLA": "2026-10-27",
+    "FFIV": "2026-10-27",
     "XYL": "2026-10-27",
-    "HUBB": "2026-10-27",
     "PPG": "2026-10-27",
-    "EXE": "2026-10-27",
+    "HUBB": "2026-10-27",
     "CMS": "2026-10-27",
-    "CMSD": "2026-10-27",
-    "CMSA": "2026-10-27"
+    "EXE": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 16:46",
+    "updatedAt": "20/10/2026 17:01",
     "source": "tradingview"
   }
 }
