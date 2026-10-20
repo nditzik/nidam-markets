@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "20/10/2026 16:16",
+  "updatedAt": "20/10/2026 16:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -24,12 +24,12 @@
     "rev": 63343014439
    },
    "consensus": {
-    "eps": 5.56523,
+    "eps": 5.5366,
     "epsLow": 2.61,
     "epsHigh": 7.64,
     "epsN": 44,
     "epsYearAgo": 1.05,
-    "rev": 63400497920,
+    "rev": 63405722410,
     "revLow": 61702000000,
     "revHigh": 65278000000,
     "revN": 49,
@@ -41,7 +41,7 @@
     "down30": 3
    },
    "targets": {
-    "mean": 818.9952,
+    "mean": 817.87445,
     "high": 1050.0,
     "low": 580.0,
     "n": 58
@@ -56,71 +56,40 @@
    "history": [
     {
      "q": "2025-09-30",
-     "reported": "2025-10-29",
-     "actual": 7.25,
-     "est": 6.61,
-     "surprise": 9.7,
+     "actual": 1.05,
+     "est": 6.70696,
+     "surprise": -84.3,
      "day": "2025-10-30",
      "move": -11.33
     },
     {
      "q": "2025-12-31",
-     "reported": "2026-01-28",
      "actual": 8.88,
-     "est": 8.21,
-     "surprise": 8.2,
+     "est": 8.22253,
+     "surprise": 8.0,
      "day": "2026-01-29",
      "move": 10.4
     },
     {
      "q": "2026-03-31",
-     "reported": "2026-04-29",
-     "actual": 7.31,
-     "est": 6.71,
-     "surprise": 8.9,
+     "actual": 10.44,
+     "est": 6.65872,
+     "surprise": 56.8,
      "day": "2026-04-30",
      "move": -8.55
     },
     {
      "q": "2026-06-30",
-     "reported": "2026-07-29",
      "actual": 6.18,
-     "est": 7.1,
-     "surprise": -13.0,
+     "est": 7.22143,
+     "surprise": -14.4,
      "day": "2026-07-30",
      "move": -7.95
     }
    ],
    "actions": [
     {
-     "date": "2026-10-13",
-     "firm": "Pivotal Research",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 930.0,
-     "ptPrev": 790.0
-    },
-    {
-     "date": "2026-10-13",
-     "firm": "Truist Securities",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 1000.0,
-     "ptPrev": 763.0
-    },
-    {
-     "date": "2026-10-13",
-     "firm": "Keybanc",
-     "action": "reit",
-     "grade": "Overweight",
-     "from": "Overweight",
-     "pt": 900.0,
-     "ptPrev": 900.0
-    },
-    {
-     "date": "2026-10-13",
+     "date": "2026-10-20",
      "firm": "Rosenblatt",
      "action": "main",
      "grade": "Buy",
@@ -129,34 +98,59 @@
      "ptPrev": 886.0
     },
     {
-     "date": "2026-10-12",
-     "firm": "Cantor Fitzgerald",
+     "date": "2026-10-19",
+     "firm": "Morgan Stanley",
      "action": "main",
      "grade": "Overweight",
      "from": "Overweight",
-     "pt": 840.0,
+     "pt": 820.0,
+     "ptPrev": 775.0
+    },
+    {
+     "date": "2026-10-15",
+     "firm": "Citigroup",
+     "action": "main",
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 895.0,
+     "ptPrev": 800.0
+    },
+    {
+     "date": "2026-10-15",
+     "firm": "JP Morgan",
+     "action": "reit",
+     "grade": "Overweight",
+     "from": "Overweight",
+     "pt": 920.0,
+     "ptPrev": 920.0
+    },
+    {
+     "date": "2026-10-14",
+     "firm": "Goldman Sachs",
+     "action": "main",
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 860.0,
      "ptPrev": 860.0
     },
     {
-     "date": "2026-10-08",
-     "firm": "TD Cowen",
-     "action": "reit",
+     "date": "2026-10-14",
+     "firm": "UBS",
+     "action": "main",
      "grade": "Buy",
      "from": "Buy",
-     "pt": 865.0,
-     "ptPrev": 865.0
+     "pt": 884.0,
+     "ptPrev": 715.0
     }
    ],
+   "yahooDate": "2026-10-21",
+   "analystsAt": "2026-10-20T13:31+00:00",
    "price": {
-    "close": 705.44,
-    "date": "2026-10-19",
+    "close": 690.53,
+    "date": "2026-10-20",
     "high52": 777.59,
-    "ma50": 657.51,
+    "ma50": 659.42,
     "series": [
-     [
-      "2026-06-26",
-      550.25
-     ],
      [
       "2026-06-29",
       562.6
@@ -472,17 +466,18 @@
      [
       "2026-10-19",
       705.44
+     ],
+     [
+      "2026-10-20",
+      690.53
      ]
     ],
-    "off52": -9.3,
+    "off52": -11.2,
     "since": {
      "from": "2026-07-29",
-     "chg": 20.5,
-     "spy": 5.1
+     "chg": 17.9
     }
    },
-   "analystsAt": "2026-10-20T07:31+00:00",
-   "yahooDate": "2026-10-21",
    "options": {
     "asOf": "19/10 22:46",
     "price": 706.24,
@@ -6370,19 +6365,14 @@
  ],
  "later": [
   {
-   "sym": "NVO",
-   "date": "2026-11-04",
-   "when": "before"
-  },
-  {
    "sym": "UBER",
    "date": "2026-11-04",
    "when": "before"
   },
   {
-   "sym": "PANW",
-   "date": "2026-11-12",
-   "when": null
+   "sym": "NVO",
+   "date": "2026-11-04",
+   "when": "before"
   },
   {
    "sym": "AMAT",
@@ -6390,17 +6380,22 @@
    "when": "after"
   },
   {
+   "sym": "PANW",
+   "date": "2026-11-12",
+   "when": null
+  },
+  {
    "sym": "ONDS",
    "date": "2026-11-16",
    "when": null
   },
   {
-   "sym": "CPRT",
+   "sym": "CSCO",
    "date": "2026-11-18",
    "when": null
   },
   {
-   "sym": "CSCO",
+   "sym": "CPRT",
    "date": "2026-11-18",
    "when": null
   },
