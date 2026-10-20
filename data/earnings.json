@@ -5,42 +5,42 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp",
-      "capB": 2008.0
+      "capB": 1966.9
     },
     {
       "ticker": "GE",
       "name": "GE Aerospace",
-      "capB": 323.0
+      "capB": 310.2
     },
     {
       "ticker": "NFLX",
       "name": "Netflix, Inc.",
-      "capB": 290.9
+      "capB": 291.3
     },
     {
       "ticker": "RTX",
       "name": "RTX Corporation",
-      "capB": 258.9
+      "capB": 255.7
     },
     {
       "ticker": "ISRG",
       "name": "Intuitive Surgical, Inc.",
-      "capB": 153.0
+      "capB": 153.4
     },
     {
       "ticker": "CB",
       "name": "Chubb Limited",
-      "capB": 137.4
+      "capB": 138.9
     },
     {
       "ticker": "COF",
       "name": "Capital One Financial Corp",
-      "capB": 122.6
+      "capB": 122.8
     },
     {
       "ticker": "MMM",
       "name": "3M Company",
-      "capB": 83.6
+      "capB": 85.2
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STLD.png",
-            "chg": -3.63,
-            "price": 236.28,
+            "chg": -3.19,
+            "price": 237.35,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WRB.png",
-            "chg": -0.94,
-            "price": 73.39,
+            "chg": -1.03,
+            "price": 73.32,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           }
@@ -197,12 +197,6 @@
       "logo": "data/earnings/logos/MMM.png"
     },
     {
-      "ticker": "GM",
-      "name": "General Motors Company",
-      "when": "before",
-      "logo": "data/earnings/logos/GM.png"
-    },
-    {
       "ticker": "NOC",
       "name": "Northrop Grumman Corp.",
       "when": "before",
@@ -213,6 +207,12 @@
       "name": "America Movil SAB de CV Sponsored ADR Class B",
       "when": "after",
       "logo": "data/earnings/logos/AMX.png"
+    },
+    {
+      "ticker": "GM",
+      "name": "General Motors Company",
+      "when": "before",
+      "logo": "data/earnings/logos/GM.png"
     },
     {
       "ticker": "MSCI",
@@ -234,7 +234,7 @@
         "LRCX",
         "PM",
         "SAP",
-        "TXN"
+        "TMO"
       ]
     },
     {
@@ -261,8 +261,8 @@
         "E",
         "SLB",
         "INFY",
-        "FCNCA",
-        "FCNCN"
+        "FCNCN",
+        "FCNCO"
       ]
     }
   ],
@@ -348,12 +348,6 @@
           "logo": "data/earnings/logos/MMM.png"
         },
         {
-          "ticker": "GM",
-          "name": "General Motors Company",
-          "when": "before",
-          "logo": "data/earnings/logos/GM.png"
-        },
-        {
           "ticker": "NOC",
           "name": "Northrop Grumman Corp.",
           "when": "before",
@@ -364,6 +358,12 @@
           "name": "America Movil SAB de CV Sponsored ADR Class B",
           "when": "after",
           "logo": "data/earnings/logos/AMX.png"
+        },
+        {
+          "ticker": "GM",
+          "name": "General Motors Company",
+          "when": "before",
+          "logo": "data/earnings/logos/GM.png"
         },
         {
           "ticker": "MSCI",
@@ -410,16 +410,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TXN",
-          "name": "Texas Instruments Incorporated",
-          "when": "after",
-          "logo": "data/earnings/logos/TXN.png"
-        },
-        {
           "ticker": "TMO",
           "name": "Thermo Fisher Scientific Inc.",
           "when": "before",
           "logo": "data/earnings/logos/TMO.png"
+        },
+        {
+          "ticker": "TXN",
+          "name": "Texas Instruments Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/TXN.png"
         },
         {
           "ticker": "IBM",
@@ -528,10 +528,10 @@
           "logo": "data/earnings/logos/NSC.png"
         },
         {
-          "ticker": "BE",
-          "name": "Bloom Energy Corporation Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/BE.png"
+          "ticker": "HON",
+          "name": "Honeywell International Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/HON.png"
         }
       ]
     },
@@ -566,12 +566,6 @@
           "logo": "data/earnings/logos/INFY.png"
         },
         {
-          "ticker": "FCNCA",
-          "name": "First Citizens BancShares, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/FCNCA.png"
-        },
-        {
           "ticker": "FCNCN",
           "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
           "when": "before",
@@ -588,6 +582,12 @@
           "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
           "when": "before",
           "logo": "data/earnings/logos/FCNCP.png"
+        },
+        {
+          "ticker": "FCNCA",
+          "name": "First Citizens BancShares, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/FCNCA.png"
         }
       ]
     }
@@ -601,9 +601,9 @@
     "CB": "2026-10-20",
     "COF": "2026-10-20",
     "MMM": "2026-10-20",
-    "GM": "2026-10-20",
     "NOC": "2026-10-20",
     "AMX": "2026-10-20",
+    "GM": "2026-10-20",
     "MSCI": "2026-10-20",
     "UAL": "2026-10-20",
     "HAL": "2026-10-20",
@@ -614,8 +614,8 @@
     "LRCX": "2026-10-21",
     "PM": "2026-10-21",
     "SAP": "2026-10-21",
-    "TXN": "2026-10-21",
     "TMO": "2026-10-21",
+    "TXN": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
@@ -646,8 +646,8 @@
     "CMCSA": "2026-10-22",
     "BCS": "2026-10-22",
     "NSC": "2026-10-22",
-    "BE": "2026-10-22",
     "HON": "2026-10-22",
+    "BE": "2026-10-22",
     "NOK": "2026-10-22",
     "NDAQ": "2026-10-22",
     "FIX": "2026-10-22",
@@ -655,25 +655,25 @@
     "BBD": "2026-10-22",
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
-    "HBANL": "2026-10-22",
+    "HBAN": "2026-10-22",
+    "HBANM": "2026-10-22",
     "HBANZ": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBAN": "2026-10-22",
+    "HBANL": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
-    "OMC": "2026-10-22",
     "DOW": "2026-10-22",
+    "OMC": "2026-10-22",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCA": "2026-10-23",
+    "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
-    "FCNCP": "2026-10-23",
+    "FCNCA": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -693,8 +693,8 @@
     "STX": "2026-10-27",
     "SPGI": "2026-10-27",
     "GLW": "2026-10-27",
-    "FCX": "2026-10-27",
     "HCA": "2026-10-27",
+    "FCX": "2026-10-27",
     "WM": "2026-10-27",
     "JCI": "2026-10-27",
     "HOOD": "2026-10-27",
@@ -710,11 +710,11 @@
     "BKR": "2026-10-27",
     "TER": "2026-10-27",
     "PYPL": "2026-10-27",
-    "VTR": "2026-10-27",
     "IQV": "2026-10-27",
-    "ACGLO": "2026-10-27",
-    "ACGLN": "2026-10-27",
+    "VTR": "2026-10-27",
     "ACGL": "2026-10-27",
+    "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "EQT": "2026-10-27",
     "CNC": "2026-10-27",
     "SHG": "2026-10-27",
@@ -723,16 +723,16 @@
     "CNP": "2026-10-27",
     "FFIV": "2026-10-27",
     "LPLA": "2026-10-27",
-    "HUBB": "2026-10-27",
     "XYL": "2026-10-27",
+    "HUBB": "2026-10-27",
     "PPG": "2026-10-27",
     "EXE": "2026-10-27",
     "CMS": "2026-10-27",
-    "CMSA": "2026-10-27",
-    "CMSD": "2026-10-27"
+    "CMSD": "2026-10-27",
+    "CMSA": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 16:31",
+    "updatedAt": "20/10/2026 16:46",
     "source": "tradingview"
   }
 }
