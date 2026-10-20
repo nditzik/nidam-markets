@@ -5,32 +5,32 @@
     {
       "ticker": "SPCX",
       "name": "Space Exploration Technologies Corp",
-      "capB": 1990.7
+      "capB": 1997.3
     },
     {
       "ticker": "GE",
       "name": "GE Aerospace",
-      "capB": 308.8
+      "capB": 308.6
     },
     {
       "ticker": "NFLX",
       "name": "Netflix, Inc.",
-      "capB": 290.8
+      "capB": 290.9
     },
     {
       "ticker": "RTX",
       "name": "RTX Corporation",
-      "capB": 257.3
+      "capB": 256.7
     },
     {
       "ticker": "ISRG",
       "name": "Intuitive Surgical, Inc.",
-      "capB": 153.8
+      "capB": 153.9
     },
     {
       "ticker": "CB",
       "name": "Chubb Limited",
-      "capB": 137.5
+      "capB": 137.4
     },
     {
       "ticker": "COF",
@@ -40,7 +40,7 @@
     {
       "ticker": "MMM",
       "name": "3M Company",
-      "capB": 87.8
+      "capB": 87.9
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STLD.png",
-            "chg": -1.22,
-            "price": 242.19,
+            "chg": -1.24,
+            "price": 242.14,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WRB.png",
-            "chg": -1.15,
-            "price": 73.23,
+            "chg": -1.1,
+            "price": 73.26,
             "reactDate": "2026-10-20",
             "baseDate": "2026-10-19"
           }
@@ -248,7 +248,7 @@
         "BX",
         "WDC",
         "LMT",
-        "NEM"
+        "VLO"
       ]
     },
     {
@@ -492,16 +492,16 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "NEM",
-          "name": "Newmont Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NEM.png"
-        },
-        {
           "ticker": "VLO",
           "name": "Valero Energy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/VLO.png"
+        },
+        {
+          "ticker": "NEM",
+          "name": "Newmont Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NEM.png"
         },
         {
           "ticker": "SPOT",
@@ -641,8 +641,8 @@
     "BX": "2026-10-22",
     "WDC": "2026-10-22",
     "LMT": "2026-10-22",
-    "NEM": "2026-10-22",
     "VLO": "2026-10-22",
+    "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
     "CMCSA": "2026-10-22",
     "BCS": "2026-10-22",
@@ -657,10 +657,10 @@
     "CBRE": "2026-10-22",
     "ROP": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -673,9 +673,9 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -705,8 +705,8 @@
     "SHW": "2026-10-27",
     "HLT": "2026-10-27",
     "ECL": "2026-10-27",
-    "ITW": "2026-10-27",
     "RCL": "2026-10-27",
+    "ITW": "2026-10-27",
     "NXPI": "2026-10-27",
     "PCAR": "2026-10-27",
     "BKR": "2026-10-27",
@@ -732,7 +732,7 @@
     "EXE": "2026-10-27"
   },
   "_meta": {
-    "updatedAt": "20/10/2026 19:01",
+    "updatedAt": "20/10/2026 19:16",
     "source": "tradingview"
   }
 }
