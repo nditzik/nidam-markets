@@ -263,7 +263,7 @@
       "date": "2026-10-20",
       "dow": "שלישי",
       "label": "20.10",
-      "total": 16,
+      "total": 15,
       "companies": [
         {
           "ticker": "SPCX",
@@ -320,12 +320,6 @@
           "logo": "data/earnings/logos/NOC.png"
         },
         {
-          "ticker": "AMX",
-          "name": "America Movil SAB de CV Sponsored ADR Class B",
-          "when": "after",
-          "logo": "data/earnings/logos/AMX.png"
-        },
-        {
           "ticker": "GM",
           "name": "General Motors Company",
           "when": "before",
@@ -336,6 +330,12 @@
           "name": "MSCI Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MSCI.png"
+        },
+        {
+          "ticker": "UAL",
+          "name": "United Airlines Holdings, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/UAL.png"
         }
       ]
     },
@@ -608,9 +608,9 @@
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
     "HBANM": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -667,8 +667,8 @@
     "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
     "EQT": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
     "CNP": "2026-10-27",
@@ -732,7 +732,7 @@
     "DINO": "2026-10-28"
   },
   "_meta": {
-    "updatedAt": "21/10/2026 03:01",
+    "updatedAt": "21/10/2026 03:16",
     "source": "tradingview"
   }
 }
