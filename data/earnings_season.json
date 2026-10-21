@@ -178,30 +178,30 @@
   }
  ],
  "total": 453,
- "reported": 66,
+ "reported": 72,
  "members": 504,
  "board": {
-  "reported": 66,
-  "epsN": 66,
-  "epsBeat": 57,
+  "reported": 72,
+  "epsN": 71,
+  "epsBeat": 61,
   "epsBeatPct": 86,
-  "revN": 66,
-  "revBeat": 44,
-  "revBeatPct": 67,
-  "reactBeat": 0.16,
-  "reactBeatN": 39,
-  "reactMiss": -0.97,
-  "reactMissN": 5,
+  "revN": 72,
+  "revBeat": 49,
+  "revBeatPct": 68,
+  "reactBeat": -0.03,
+  "reactBeatN": 55,
+  "reactMiss": 0.05,
+  "reactMissN": 7,
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 29,
-    "beat": 26
+    "n": 30,
+    "beat": 27
    },
    {
     "name": "תעשייה",
-    "n": 13,
-    "beat": 9
+    "n": 16,
+    "beat": 12
    },
    {
     "name": "בריאות",
@@ -220,7 +220,7 @@
    },
    {
     "name": "צריכה מחזורית",
-    "n": 3,
+    "n": 4,
     "beat": 3
    },
    {
@@ -261,19 +261,19 @@
     "eps": 0.1
    },
    {
+    "sym": "T",
+    "react": -6.45,
+    "eps": 8.1
+   },
+   {
     "sym": "MMM",
     "react": 5.78,
     "eps": 4.9
-   },
-   {
-    "sym": "JNJ",
-    "react": -5.73,
-    "eps": 2.7
    }
   ]
  },
  "_meta": {
-  "updatedAt": "21/10/2026 23:16",
+  "updatedAt": "21/10/2026 23:32",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
