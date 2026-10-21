@@ -5,22 +5,22 @@
     {
       "ticker": "META",
       "name": "Meta Platforms Inc Class A",
-      "capB": 1791.3
+      "capB": 1776.9
     },
     {
       "ticker": "TSLA",
       "name": "Tesla, Inc.",
-      "capB": 1527.5
+      "capB": 1527.6
     },
     {
       "ticker": "LRCX",
       "name": "Lam Research Corporation",
-      "capB": 328.8
+      "capB": 326.4
     },
     {
       "ticker": "PM",
       "name": "Philip Morris International Inc.",
-      "capB": 306.5
+      "capB": 307.8
     },
     {
       "ticker": "SAP",
@@ -30,17 +30,17 @@
     {
       "ticker": "TXN",
       "name": "Texas Instruments Incorporated",
-      "capB": 260.7
+      "capB": 260.0
     },
     {
       "ticker": "TMO",
       "name": "Thermo Fisher Scientific Inc.",
-      "capB": 257.0
+      "capB": 256.6
     },
     {
       "ticker": "IBM",
       "name": "International Business Machines Corporation",
-      "capB": 234.6
+      "capB": 236.9
     }
   ],
   "reactions": {
@@ -108,7 +108,7 @@
             "ticker": "CB",
             "name": "Chubb Limited",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/CB.png",
             "chg": -0.78,
             "price": 354.95,
@@ -215,16 +215,16 @@
       "logo": "data/earnings/logos/ABT.png"
     },
     {
-      "ticker": "NEE",
-      "name": "NextEra Energy, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/NEE.png"
-    },
-    {
       "ticker": "DHR",
       "name": "Danaher Corporation",
       "when": "before",
       "logo": "data/earnings/logos/DHR.png"
+    },
+    {
+      "ticker": "NEE",
+      "name": "NextEra Energy, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/NEE.png"
     },
     {
       "ticker": "T",
@@ -433,16 +433,16 @@
           "logo": "data/earnings/logos/ABT.png"
         },
         {
-          "ticker": "NEE",
-          "name": "NextEra Energy, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/NEE.png"
-        },
-        {
           "ticker": "DHR",
           "name": "Danaher Corporation",
           "when": "before",
           "logo": "data/earnings/logos/DHR.png"
+        },
+        {
+          "ticker": "NEE",
+          "name": "NextEra Energy, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/NEE.png"
         },
         {
           "ticker": "T",
@@ -600,8 +600,8 @@
     "TMO": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
-    "NEE": "2026-10-21",
     "DHR": "2026-10-21",
+    "NEE": "2026-10-21",
     "T": "2026-10-21",
     "CME": "2026-10-21",
     "ELV": "2026-10-21",
@@ -639,8 +639,8 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANP": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBANZ": "2026-10-22",
     "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
@@ -655,8 +655,8 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
+    "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
@@ -710,14 +710,14 @@
     "XYL": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
+    "EXE": "2026-10-27",
     "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
-    "EXE": "2026-10-27",
     "CMS": "2026-10-27",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
-    "GOOGL": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GOOG": "2026-10-28",
+    "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
@@ -767,7 +767,7 @@
     "AMRZ": "2026-10-28"
   },
   "_meta": {
-    "updatedAt": "21/10/2026 23:01",
+    "updatedAt": "21/10/2026 23:16",
     "source": "tradingview"
   }
 }
