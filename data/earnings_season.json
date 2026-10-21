@@ -30,7 +30,7 @@
   {
    "mon": "2026-10-19",
    "label": "19.10",
-   "n": 78,
+   "n": 77,
    "tickers": [
     "META",
     "TSLA",
@@ -55,7 +55,7 @@
   {
    "mon": "2026-11-02",
    "label": "2.11",
-   "n": 139,
+   "n": 140,
    "tickers": [
     "AAPL",
     "BRK.B",
@@ -178,15 +178,15 @@
   }
  ],
  "total": 453,
- "reported": 62,
+ "reported": 49,
  "members": 504,
  "board": {
-  "reported": 62,
-  "epsN": 62,
-  "epsBeat": 55,
-  "epsBeatPct": 89,
-  "revN": 62,
-  "revBeat": 40,
+  "reported": 49,
+  "epsN": 49,
+  "epsBeat": 43,
+  "epsBeatPct": 88,
+  "revN": 49,
+  "revBeat": 32,
   "revBeatPct": 65,
   "reactBeat": 0.16,
   "reactBeatN": 39,
@@ -195,28 +195,28 @@
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 29,
-    "beat": 26
+    "n": 26,
+    "beat": 23
    },
    {
     "name": "תעשייה",
-    "n": 11,
-    "beat": 8
-   },
-   {
-    "name": "בריאות",
-    "n": 7,
+    "n": 9,
     "beat": 7
    },
    {
     "name": "טכנולוגיה",
-    "n": 5,
-    "beat": 5
+    "n": 4,
+    "beat": 4
+   },
+   {
+    "name": "בריאות",
+    "n": 3,
+    "beat": 3
    },
    {
     "name": "צריכה בסיסית",
-    "n": 4,
-    "beat": 4
+    "n": 3,
+    "beat": 3
    },
    {
     "name": "צריכה מחזורית",
@@ -227,16 +227,6 @@
     "name": "חומרים",
     "n": 1,
     "beat": 0
-   },
-   {
-    "name": "תקשורת",
-    "n": 1,
-    "beat": 1
-   },
-   {
-    "name": "תשתיות",
-    "n": 1,
-    "beat": 1
    }
   ],
   "movers": [
@@ -273,7 +263,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "21/10/2026 17:35",
+  "updatedAt": "21/10/2026 18:01",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
