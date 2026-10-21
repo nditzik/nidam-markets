@@ -5,22 +5,22 @@
     {
       "ticker": "META",
       "name": "Meta Platforms Inc Class A",
-      "capB": 1799.4
+      "capB": 1791.7
     },
     {
       "ticker": "TSLA",
       "name": "Tesla, Inc.",
-      "capB": 1525.5
+      "capB": 1524.6
     },
     {
       "ticker": "LRCX",
       "name": "Lam Research Corporation",
-      "capB": 326.5
+      "capB": 324.6
     },
     {
       "ticker": "PM",
       "name": "Philip Morris International Inc.",
-      "capB": 306.3
+      "capB": 306.6
     },
     {
       "ticker": "SAP",
@@ -30,17 +30,17 @@
     {
       "ticker": "TXN",
       "name": "Texas Instruments Incorporated",
-      "capB": 260.2
+      "capB": 260.6
     },
     {
       "ticker": "TMO",
       "name": "Thermo Fisher Scientific Inc.",
-      "capB": 257.0
+      "capB": 257.2
     },
     {
       "ticker": "IBM",
       "name": "International Business Machines Corporation",
-      "capB": 231.8
+      "capB": 232.6
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SPCX.png",
-            "chg": 6.96,
-            "price": 158.08,
+            "chg": 7.4,
+            "price": 158.73,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NFLX.png",
-            "chg": -5.07,
-            "price": 65.21,
+            "chg": -4.82,
+            "price": 65.38,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ISRG.png",
-            "chg": -2.52,
-            "price": 426.96,
+            "chg": -1.66,
+            "price": 430.75,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CB.png",
-            "chg": -0.56,
-            "price": 355.73,
+            "chg": -0.7,
+            "price": 355.24,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           }
@@ -639,10 +639,10 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANP": "2026-10-22",
+    "HBANL": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANZ": "2026-10-22",
-    "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -656,8 +656,8 @@
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
     "FCNCP": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCN": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -697,8 +697,8 @@
     "IQV": "2026-10-27",
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "ACGL": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
@@ -714,8 +714,8 @@
     "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
     "CMS": "2026-10-27",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -767,7 +767,7 @@
     "AMRZ": "2026-10-28"
   },
   "_meta": {
-    "updatedAt": "21/10/2026 22:16",
+    "updatedAt": "21/10/2026 22:31",
     "source": "tradingview"
   }
 }
