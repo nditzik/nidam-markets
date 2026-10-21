@@ -5,22 +5,22 @@
     {
       "ticker": "META",
       "name": "Meta Platforms Inc Class A",
-      "capB": 1768.6
+      "capB": 1771.4
     },
     {
       "ticker": "TSLA",
       "name": "Tesla, Inc.",
-      "capB": 1477.2
+      "capB": 1524.3
     },
     {
       "ticker": "LRCX",
       "name": "Lam Research Corporation",
-      "capB": 329.7
+      "capB": 337.5
     },
     {
       "ticker": "PM",
       "name": "Philip Morris International Inc.",
-      "capB": 311.6
+      "capB": 296.5
     },
     {
       "ticker": "SAP",
@@ -28,14 +28,14 @@
       "capB": 264.4
     },
     {
-      "ticker": "TMO",
-      "name": "Thermo Fisher Scientific Inc.",
-      "capB": 254.2
-    },
-    {
       "ticker": "TXN",
       "name": "Texas Instruments Incorporated",
-      "capB": 253.7
+      "capB": 255.2
+    },
+    {
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific Inc.",
+      "capB": 250.5
     },
     {
       "ticker": "IBM",
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SPCX.png",
-            "chg": 9.57,
-            "price": 161.94,
+            "chg": 8.05,
+            "price": 159.68,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NFLX.png",
-            "chg": -4.45,
-            "price": 65.64,
+            "chg": -3.36,
+            "price": 66.38,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ISRG.png",
-            "chg": -5.37,
-            "price": 414.5,
+            "chg": -1.64,
+            "price": 430.81,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CB.png",
-            "chg": -0.73,
-            "price": 355.14,
+            "chg": -1.13,
+            "price": 353.7,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           }
@@ -190,16 +190,16 @@
       "logo": "data/earnings/logos/SAP.png"
     },
     {
-      "ticker": "TMO",
-      "name": "Thermo Fisher Scientific Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/TMO.png"
-    },
-    {
       "ticker": "TXN",
       "name": "Texas Instruments Incorporated",
       "when": "after",
       "logo": "data/earnings/logos/TXN.png"
+    },
+    {
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/TMO.png"
     },
     {
       "ticker": "IBM",
@@ -221,16 +221,16 @@
       "logo": "data/earnings/logos/NEE.png"
     },
     {
-      "ticker": "T",
-      "name": "AT&T Inc",
-      "when": "before",
-      "logo": "data/earnings/logos/T.png"
-    },
-    {
       "ticker": "DHR",
       "name": "Danaher Corporation",
       "when": "before",
       "logo": "data/earnings/logos/DHR.png"
+    },
+    {
+      "ticker": "T",
+      "name": "AT&T Inc",
+      "when": "before",
+      "logo": "data/earnings/logos/T.png"
     }
   ],
   "more": 15,
@@ -243,8 +243,8 @@
       "tickers": [
         "PG",
         "UNP",
-        "BX",
         "WDC",
+        "BX",
         "LMT",
         "VLO"
       ]
@@ -408,16 +408,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TMO",
-          "name": "Thermo Fisher Scientific Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/TMO.png"
-        },
-        {
           "ticker": "TXN",
           "name": "Texas Instruments Incorporated",
           "when": "after",
           "logo": "data/earnings/logos/TXN.png"
+        },
+        {
+          "ticker": "TMO",
+          "name": "Thermo Fisher Scientific Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/TMO.png"
         },
         {
           "ticker": "IBM",
@@ -439,16 +439,16 @@
           "logo": "data/earnings/logos/NEE.png"
         },
         {
-          "ticker": "T",
-          "name": "AT&T Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/T.png"
-        },
-        {
           "ticker": "DHR",
           "name": "Danaher Corporation",
           "when": "before",
           "logo": "data/earnings/logos/DHR.png"
+        },
+        {
+          "ticker": "T",
+          "name": "AT&T Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/T.png"
         }
       ]
     },
@@ -471,16 +471,16 @@
           "logo": "data/earnings/logos/UNP.png"
         },
         {
-          "ticker": "BX",
-          "name": "Blackstone Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BX.png"
-        },
-        {
           "ticker": "WDC",
           "name": "Western Digital Corporation",
           "when": "after",
           "logo": "data/earnings/logos/WDC.png"
+        },
+        {
+          "ticker": "BX",
+          "name": "Blackstone Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BX.png"
         },
         {
           "ticker": "LMT",
@@ -522,14 +522,14 @@
         {
           "ticker": "NSC",
           "name": "Norfolk Southern Corporation",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/NSC.png"
         },
         {
-          "ticker": "HON",
-          "name": "Honeywell International Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/HON.png"
+          "ticker": "BE",
+          "name": "Bloom Energy Corporation Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/BE.png"
         }
       ]
     },
@@ -596,13 +596,13 @@
     "LRCX": "2026-10-21",
     "PM": "2026-10-21",
     "SAP": "2026-10-21",
-    "TMO": "2026-10-21",
     "TXN": "2026-10-21",
+    "TMO": "2026-10-21",
     "IBM": "2026-10-21",
     "ABT": "2026-10-21",
     "NEE": "2026-10-21",
-    "T": "2026-10-21",
     "DHR": "2026-10-21",
+    "T": "2026-10-21",
     "CME": "2026-10-21",
     "ELV": "2026-10-21",
     "CSX": "2026-10-21",
@@ -612,16 +612,16 @@
     "WAB": "2026-10-21",
     "WCN": "2026-10-21",
     "CCI": "2026-10-21",
-    "NTRSO": "2026-10-21",
     "NTRS": "2026-10-21",
+    "NTRSO": "2026-10-21",
     "TDY": "2026-10-21",
     "LVS": "2026-10-21",
     "RS": "2026-10-21",
     "PKG": "2026-10-21",
     "PG": "2026-10-22",
     "UNP": "2026-10-22",
-    "BX": "2026-10-22",
     "WDC": "2026-10-22",
+    "BX": "2026-10-22",
     "LMT": "2026-10-22",
     "VLO": "2026-10-22",
     "NEM": "2026-10-22",
@@ -629,8 +629,8 @@
     "CMCSA": "2026-10-22",
     "BCS": "2026-10-22",
     "NSC": "2026-10-22",
-    "HON": "2026-10-22",
     "BE": "2026-10-22",
+    "HON": "2026-10-22",
     "NDAQ": "2026-10-22",
     "NOK": "2026-10-22",
     "FIX": "2026-10-22",
@@ -638,11 +638,11 @@
     "BBD": "2026-10-22",
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBAN": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -654,9 +654,9 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCA": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
@@ -698,8 +698,8 @@
     "IQV": "2026-10-27",
     "CNC": "2026-10-27",
     "ACGLN": "2026-10-27",
-    "ACGL": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGL": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
@@ -714,10 +714,10 @@
     "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
     "EXE": "2026-10-27",
-    "GOOGL": "2026-10-28",
     "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
     "GOOG": "2026-10-28",
+    "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
@@ -758,8 +758,8 @@
     "KGC": "2026-10-28",
     "OTIS": "2026-10-28",
     "AWK": "2026-10-28",
-    "LH": "2026-10-28",
     "NMR": "2026-10-28",
+    "LH": "2026-10-28",
     "FMX": "2026-10-28",
     "VICI": "2026-10-28",
     "AER": "2026-10-28",
@@ -768,7 +768,7 @@
     "BSBR": "2026-10-28"
   },
   "_meta": {
-    "updatedAt": "21/10/2026 16:31",
+    "updatedAt": "21/10/2026 16:46",
     "source": "tradingview"
   }
 }

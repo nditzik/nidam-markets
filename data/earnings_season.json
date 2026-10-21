@@ -42,7 +42,7 @@
   {
    "mon": "2026-10-26",
    "label": "26.10",
-   "n": 172,
+   "n": 174,
    "tickers": [
     "GOOGL",
     "MSFT",
@@ -55,7 +55,7 @@
   {
    "mon": "2026-11-02",
    "label": "2.11",
-   "n": 143,
+   "n": 140,
    "tickers": [
     "AAPL",
     "BRK.B",
@@ -67,7 +67,7 @@
   {
    "mon": "2026-11-09",
    "label": "9.11",
-   "n": 14,
+   "n": 15,
    "tickers": [
     "AMAT"
    ]
@@ -178,16 +178,16 @@
   }
  ],
  "total": 453,
- "reported": 49,
+ "reported": 61,
  "members": 504,
  "board": {
-  "reported": 49,
-  "epsN": 49,
-  "epsBeat": 43,
-  "epsBeatPct": 88,
-  "revN": 49,
-  "revBeat": 32,
-  "revBeatPct": 65,
+  "reported": 61,
+  "epsN": 61,
+  "epsBeat": 54,
+  "epsBeatPct": 89,
+  "revN": 61,
+  "revBeat": 40,
+  "revBeatPct": 66,
   "reactBeat": 0.16,
   "reactBeatN": 39,
   "reactMiss": -0.97,
@@ -195,28 +195,28 @@
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 26,
-    "beat": 23
+    "n": 28,
+    "beat": 25
    },
    {
     "name": "תעשייה",
-    "n": 9,
+    "n": 11,
+    "beat": 8
+   },
+   {
+    "name": "בריאות",
+    "n": 7,
     "beat": 7
    },
    {
     "name": "טכנולוגיה",
-    "n": 4,
-    "beat": 4
-   },
-   {
-    "name": "בריאות",
-    "n": 3,
-    "beat": 3
+    "n": 5,
+    "beat": 5
    },
    {
     "name": "צריכה בסיסית",
-    "n": 3,
-    "beat": 3
+    "n": 4,
+    "beat": 4
    },
    {
     "name": "צריכה מחזורית",
@@ -227,6 +227,16 @@
     "name": "חומרים",
     "n": 1,
     "beat": 0
+   },
+   {
+    "name": "תקשורת",
+    "n": 1,
+    "beat": 1
+   },
+   {
+    "name": "תשתיות",
+    "n": 1,
+    "beat": 1
    }
   ],
   "movers": [
@@ -263,7 +273,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "21/10/2026 16:31",
+  "updatedAt": "21/10/2026 16:46",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
