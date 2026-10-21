@@ -60,12 +60,8 @@
             "ticker": "GE",
             "name": "GE Aerospace",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GE.png",
-            "chg": -3.67,
-            "price": 299.87,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
+            "status": "pending",
+            "logo": "data/earnings/logos/GE.png"
           },
           {
             "ticker": "NFLX",
@@ -78,12 +74,8 @@
             "ticker": "RTX",
             "name": "RTX Corporation",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/RTX.png",
-            "chg": 0.64,
-            "price": 193.34,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
+            "status": "pending",
+            "logo": "data/earnings/logos/RTX.png"
           },
           {
             "ticker": "ISRG",
@@ -120,23 +112,15 @@
             "ticker": "STLD",
             "name": "Steel Dynamics, Inc.",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/STLD.png",
-            "chg": -0.33,
-            "price": 244.37,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
+            "status": "pending",
+            "logo": "data/earnings/logos/STLD.png"
           },
           {
             "ticker": "WRB",
             "name": "W. R. Berkley Corporation",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/WRB.png",
-            "chg": -1.26,
-            "price": 73.15,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
+            "status": "pending",
+            "logo": "data/earnings/logos/WRB.png"
           }
         ]
       }
@@ -625,8 +609,8 @@
     "HBAN": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANZ": "2026-10-22",
     "HBANL": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -639,9 +623,9 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -748,7 +732,7 @@
     "DINO": "2026-10-28"
   },
   "_meta": {
-    "updatedAt": "21/10/2026 02:46",
+    "updatedAt": "21/10/2026 03:01",
     "source": "tradingview"
   }
 }
