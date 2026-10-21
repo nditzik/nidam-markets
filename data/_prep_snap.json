@@ -407,12 +407,12 @@
    "logoBg": null
   },
   "consensus": {
-   "eps": 4.82078,
+   "eps": 4.81978,
    "epsLow": 3.61,
    "epsHigh": 5.18,
    "epsN": 20,
    "epsYearAgo": 1.85,
-   "rev": 60816483850,
+   "rev": 61646139060,
    "revLow": 53773000000,
    "revHigh": 66488000000,
    "revN": 9,
@@ -515,12 +515,12 @@
    "logoBg": null
   },
   "consensus": {
-   "eps": 1.93439,
+   "eps": 1.93464,
    "epsLow": 1.72,
    "epsHigh": 2.1,
    "epsN": 40,
    "epsYearAgo": 1.2,
-   "rev": 13077900250,
+   "rev": 13077889730,
    "revLow": 12749000000,
    "revHigh": 14019000000,
    "revN": 38,
@@ -538,5 +538,59 @@
    "prePct": 7.63
   },
   "avgMove": 16.7
+ },
+ "NVO": {
+  "forDate": "2026-11-04",
+  "when": "before",
+  "name": "Novo Nordisk A/S Sponsored ADR Class B",
+  "report": {
+   "file": "data/reports/NVO__2026-08-06.html",
+   "date": "2026-08-06",
+   "title": "Novo Nordisk Q2 2026 – דוח מנהלים",
+   "logo": "data/reports/logos/NVO.png",
+   "logoBg": null
+  },
+  "consensus": {
+   "eps": 4.62067,
+   "epsLow": 4.01,
+   "epsHigh": 5.282,
+   "epsN": 3,
+   "epsYearAgo": 4.5,
+   "rev": 73791821440,
+   "revLow": 71193000000,
+   "revHigh": 78488000000,
+   "revN": 12,
+   "revYearAgo": 74976000000,
+   "quarterEnd": "2026-09-30"
+  },
+  "options": null,
+  "avgMove": 6.7
+ },
+ "UBER": {
+  "forDate": "2026-11-04",
+  "when": "before",
+  "name": "Uber Technologies, Inc.",
+  "report": {
+   "file": "data/reports/UBER__2026-08-06.html",
+   "date": "2026-08-06",
+   "title": "UBER Q2 2026",
+   "logo": "data/reports/logos/UBER.png",
+   "logoBg": null
+  },
+  "consensus": {
+   "eps": 0.90292,
+   "epsLow": 0.79,
+   "epsHigh": 1.133,
+   "epsN": 31,
+   "epsYearAgo": 3.11,
+   "rev": 14674998290,
+   "revLow": 14267000000,
+   "revHigh": 15195000000,
+   "revN": 41,
+   "revYearAgo": 13467000000,
+   "quarterEnd": "2026-09-30"
+  },
+  "options": null,
+  "avgMove": 6.0
  }
 }
