@@ -178,16 +178,16 @@
   }
  ],
  "total": 453,
- "reported": 49,
+ "reported": 59,
  "members": 504,
  "board": {
-  "reported": 49,
-  "epsN": 49,
-  "epsBeat": 43,
+  "reported": 59,
+  "epsN": 59,
+  "epsBeat": 52,
   "epsBeatPct": 88,
-  "revN": 49,
-  "revBeat": 32,
-  "revBeatPct": 65,
+  "revN": 59,
+  "revBeat": 38,
+  "revBeatPct": 64,
   "reactBeat": 0.16,
   "reactBeatN": 39,
   "reactMiss": -0.97,
@@ -200,23 +200,23 @@
    },
    {
     "name": "תעשייה",
-    "n": 9,
+    "n": 11,
+    "beat": 8
+   },
+   {
+    "name": "בריאות",
+    "n": 7,
     "beat": 7
    },
    {
     "name": "טכנולוגיה",
-    "n": 4,
-    "beat": 4
-   },
-   {
-    "name": "בריאות",
-    "n": 3,
-    "beat": 3
+    "n": 5,
+    "beat": 5
    },
    {
     "name": "צריכה בסיסית",
-    "n": 3,
-    "beat": 3
+    "n": 4,
+    "beat": 4
    },
    {
     "name": "צריכה מחזורית",
@@ -227,6 +227,16 @@
     "name": "חומרים",
     "n": 1,
     "beat": 0
+   },
+   {
+    "name": "תקשורת",
+    "n": 1,
+    "beat": 1
+   },
+   {
+    "name": "תשתיות",
+    "n": 1,
+    "beat": 1
    }
   ],
   "movers": [
@@ -263,7 +273,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "21/10/2026 15:16",
+  "updatedAt": "21/10/2026 15:46",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
