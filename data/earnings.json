@@ -5,22 +5,22 @@
     {
       "ticker": "META",
       "name": "Meta Platforms Inc Class A",
-      "capB": 1803.1
+      "capB": 1802.9
     },
     {
       "ticker": "TSLA",
       "name": "Tesla, Inc.",
-      "capB": 1528.5
+      "capB": 1528.1
     },
     {
       "ticker": "LRCX",
       "name": "Lam Research Corporation",
-      "capB": 327.0
+      "capB": 327.8
     },
     {
       "ticker": "PM",
       "name": "Philip Morris International Inc.",
-      "capB": 307.1
+      "capB": 307.0
     },
     {
       "ticker": "SAP",
@@ -30,17 +30,17 @@
     {
       "ticker": "TXN",
       "name": "Texas Instruments Incorporated",
-      "capB": 263.5
+      "capB": 263.9
     },
     {
       "ticker": "TMO",
       "name": "Thermo Fisher Scientific Inc.",
-      "capB": 256.4
+      "capB": 256.7
     },
     {
       "ticker": "IBM",
       "name": "International Business Machines Corporation",
-      "capB": 231.0
+      "capB": 231.3
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SPCX.png",
-            "chg": 6.52,
-            "price": 157.43,
+            "chg": 7.04,
+            "price": 158.2,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NFLX.png",
-            "chg": -4.21,
-            "price": 65.8,
+            "chg": -4.43,
+            "price": 65.65,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ISRG.png",
-            "chg": -1.75,
-            "price": 430.34,
+            "chg": -1.8,
+            "price": 430.13,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CB.png",
-            "chg": -0.65,
-            "price": 355.43,
+            "chg": -0.71,
+            "price": 355.22,
             "reactDate": "2026-10-21",
             "baseDate": "2026-10-20"
           }
@@ -354,7 +354,7 @@
         {
           "ticker": "AMX",
           "name": "America Movil SAB de CV Sponsored ADR Class B",
-          "when": "after",
+          "when": "before",
           "logo": "data/earnings/logos/AMX.png"
         },
         {
@@ -639,9 +639,9 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
+    "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
     "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANM": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
@@ -655,9 +655,9 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -697,8 +697,8 @@
     "IQV": "2026-10-27",
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
-    "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGLN": "2026-10-27",
     "EQT": "2026-10-27",
     "ACGL": "2026-10-27",
     "SHG": "2026-10-27",
@@ -714,8 +714,8 @@
     "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
     "CMS": "2026-10-27",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -767,7 +767,7 @@
     "AMRZ": "2026-10-28"
   },
   "_meta": {
-    "updatedAt": "21/10/2026 21:16",
+    "updatedAt": "21/10/2026 21:31",
     "source": "tradingview"
   }
 }
