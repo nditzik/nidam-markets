@@ -413,7 +413,7 @@
       "date": "2026-10-21",
       "dow": "רביעי",
       "label": "21.10",
-      "total": 27,
+      "total": 28,
       "companies": [
         {
           "ticker": "META",
@@ -471,6 +471,12 @@
           "logo": "data/earnings/logos/ABT.png"
         },
         {
+          "ticker": "SCCO",
+          "name": "Southern Copper Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/SCCO.png"
+        },
+        {
           "ticker": "DHR",
           "name": "Danaher Corporation",
           "when": "before",
@@ -481,12 +487,6 @@
           "name": "NextEra Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NEE.png"
-        },
-        {
-          "ticker": "T",
-          "name": "AT&T Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/T.png"
         }
       ]
     },
@@ -650,10 +650,10 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANP": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANL": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -682,7 +682,6 @@
     "KO": "2026-10-27",
     "HSBC": "2026-10-27",
     "NVS": "2026-10-27",
-    "SCCO": "2026-10-27",
     "STX": "2026-10-27",
     "BA": "2026-10-27",
     "SPGI": "2026-10-27",
@@ -707,8 +706,8 @@
     "IQV": "2026-10-27",
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
-    "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGLN": "2026-10-27",
     "ACGL": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
@@ -724,8 +723,8 @@
     "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
     "CMS": "2026-10-27",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -807,10 +806,10 @@
     "MSTR": "2026-10-29",
     "TAK": "2026-10-29",
     "MPWR": "2026-10-29",
+    "STRK": "2026-10-29",
     "STRD": "2026-10-29",
     "STRC": "2026-10-29",
     "STRF": "2026-10-29",
-    "STRK": "2026-10-29",
     "LNG": "2026-10-29",
     "CRH": "2026-10-29",
     "ABEV": "2026-10-29",
@@ -857,7 +856,7 @@
     "YPF": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 06:16",
+    "updatedAt": "22/10/2026 06:31",
     "source": "tradingview"
   }
 }
