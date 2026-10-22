@@ -5,7 +5,7 @@
     {
       "ticker": "PG",
       "name": "Procter & Gamble Company",
-      "capB": 387.2
+      "capB": 386.9
     },
     {
       "ticker": "UNP",
@@ -15,32 +15,32 @@
     {
       "ticker": "BX",
       "name": "Blackstone Inc.",
-      "capB": 145.3
+      "capB": 145.0
     },
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corporation",
-      "capB": 134.0
+      "capB": 133.8
     },
     {
       "ticker": "WDC",
       "name": "Western Digital Corporation",
-      "capB": 131.8
+      "capB": 131.1
     },
     {
       "ticker": "VLO",
       "name": "Valero Energy Corporation",
-      "capB": 120.4
-    },
-    {
-      "ticker": "NEM",
-      "name": "Newmont Corporation",
-      "capB": 118.2
+      "capB": 120.9
     },
     {
       "ticker": "SPOT",
       "name": "Spotify Technology SA",
-      "capB": 117.4
+      "capB": 117.7
+    },
+    {
+      "ticker": "NEM",
+      "name": "Newmont Corporation",
+      "capB": 117.5
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/META.png",
-            "chg": -7.35,
-            "price": 646.28,
+            "chg": -7.2,
+            "price": 647.27,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TSLA.png",
-            "chg": -1.86,
-            "price": 379.29,
+            "chg": -1.85,
+            "price": 379.33,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -88,8 +88,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/LRCX.png",
-            "chg": -10.9,
-            "price": 232.38,
+            "chg": -11.01,
+            "price": 232.1,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SAP.png",
-            "chg": 3.35,
-            "price": 240.52,
+            "chg": 3.57,
+            "price": 241.03,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TXN.png",
-            "chg": -1.86,
-            "price": 279.35,
+            "chg": -0.92,
+            "price": 282.03,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           }
@@ -269,16 +269,16 @@
       "logo": "data/earnings/logos/VLO.png"
     },
     {
-      "ticker": "NEM",
-      "name": "Newmont Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/NEM.png"
-    },
-    {
       "ticker": "SPOT",
       "name": "Spotify Technology SA",
       "when": "before",
       "logo": "data/earnings/logos/SPOT.png"
+    },
+    {
+      "ticker": "NEM",
+      "name": "Newmont Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/NEM.png"
     },
     {
       "ticker": "CMCSA",
@@ -503,10 +503,10 @@
           "logo": "data/earnings/logos/DHR.png"
         },
         {
-          "ticker": "SCCO",
-          "name": "Southern Copper Corporation",
-          "when": "",
-          "logo": "data/earnings/logos/SCCO.png"
+          "ticker": "T",
+          "name": "AT&T Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/T.png"
         }
       ]
     },
@@ -554,16 +554,16 @@
           "logo": "data/earnings/logos/VLO.png"
         },
         {
-          "ticker": "NEM",
-          "name": "Newmont Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NEM.png"
-        },
-        {
           "ticker": "SPOT",
           "name": "Spotify Technology SA",
           "when": "before",
           "logo": "data/earnings/logos/SPOT.png"
+        },
+        {
+          "ticker": "NEM",
+          "name": "Newmont Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NEM.png"
         },
         {
           "ticker": "CMCSA",
@@ -655,8 +655,8 @@
     "LMT": "2026-10-22",
     "WDC": "2026-10-22",
     "VLO": "2026-10-22",
-    "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
+    "NEM": "2026-10-22",
     "CMCSA": "2026-10-22",
     "NSC": "2026-10-22",
     "BCS": "2026-10-22",
@@ -669,27 +669,27 @@
     "BBD": "2026-10-22",
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
-    "HBAN": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANP": "2026-10-22",
     "HBANL": "2026-10-22",
-    "HBANZ": "2026-10-22",
+    "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
+    "DOW": "2026-10-22",
     "PHM": "2026-10-22",
     "OMC": "2026-10-22",
-    "DOW": "2026-10-22",
     "SSNC": "2026-10-22",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -725,8 +725,8 @@
     "BKR": "2026-10-27",
     "TER": "2026-10-27",
     "PYPL": "2026-10-27",
-    "IQV": "2026-10-27",
     "VTR": "2026-10-27",
+    "IQV": "2026-10-27",
     "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
     "ACGLN": "2026-10-27",
@@ -737,16 +737,16 @@
     "CNP": "2026-10-27",
     "FE": "2026-10-27",
     "FFIV": "2026-10-27",
-    "XYL": "2026-10-27",
     "LPLA": "2026-10-27",
+    "XYL": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "CMS": "2026-10-27",
+    "EXE": "2026-10-27",
     "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
-    "EXE": "2026-10-27",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -771,8 +771,8 @@
     "FDX": "2026-10-28",
     "AEP": "2026-10-28",
     "BSX": "2026-10-28",
-    "CVNA": "2026-10-28",
     "AON": "2026-10-28",
+    "CVNA": "2026-10-28",
     "TEL": "2026-10-28",
     "DB": "2026-10-28",
     "GRMN": "2026-10-28",
@@ -785,13 +785,13 @@
     "CMG": "2026-10-28",
     "GEHC": "2026-10-28",
     "RJF": "2026-10-28",
-    "OTIS": "2026-10-28",
     "FLEX": "2026-10-28",
+    "OTIS": "2026-10-28",
     "AWK": "2026-10-28",
     "KGC": "2026-10-28",
     "NMR": "2026-10-28",
-    "LH": "2026-10-28",
     "VICI": "2026-10-28",
+    "LH": "2026-10-28",
     "FMX": "2026-10-28",
     "AER": "2026-10-28",
     "SW": "2026-10-28",
@@ -827,10 +827,10 @@
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
-    "STRK": "2026-10-29",
     "STRF": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRK": "2026-10-29",
+    "STRC": "2026-10-29",
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "MSTR": "2026-10-29",
@@ -848,8 +848,8 @@
     "LYV": "2026-10-29",
     "DHI": "2026-10-29",
     "KB": "2026-10-29",
-    "ILMN": "2026-10-29",
     "TWLO": "2026-10-29",
+    "ILMN": "2026-10-29",
     "RBLX": "2026-10-29",
     "RMD": "2026-10-29",
     "HSY": "2026-10-29",
@@ -858,12 +858,12 @@
     "RKT": "2026-10-29",
     "CTSH": "2026-10-29",
     "CQP": "2026-10-29",
-    "ALNY": "2026-10-29",
     "WTW": "2026-10-29",
+    "ALNY": "2026-10-29",
     "DXCM": "2026-10-29",
     "TECK": "2026-10-29",
-    "IR": "2026-10-29",
     "EME": "2026-10-29",
+    "IR": "2026-10-29",
     "RDDT": "2026-10-29",
     "TW": "2026-10-29",
     "WST": "2026-10-29",
@@ -879,12 +879,12 @@
     "THC": "2026-10-29",
     "YPF": "2026-10-29",
     "INSM": "2026-10-29",
-    "ENTG": "2026-10-29",
     "BCH": "2026-10-29",
+    "ENTG": "2026-10-29",
     "BG": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 19:46",
+    "updatedAt": "22/10/2026 20:01",
     "source": "tradingview"
   }
 }
