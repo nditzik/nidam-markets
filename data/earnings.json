@@ -74,8 +74,12 @@
             "ticker": "PM",
             "name": "Philip Morris International Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/PM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PM.png",
+            "chg": -1.22,
+            "price": 197.46,
+            "reactDate": "2026-10-21",
+            "baseDate": "2026-10-20"
           },
           {
             "ticker": "SAP",
@@ -101,8 +105,12 @@
             "ticker": "SPCX",
             "name": "Space Exploration Technologies Corp",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/SPCX.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SPCX.png",
+            "chg": 7.79,
+            "price": 159.31,
+            "reactDate": "2026-10-21",
+            "baseDate": "2026-10-20"
           },
           {
             "ticker": "GE",
@@ -119,8 +127,12 @@
             "ticker": "NFLX",
             "name": "Netflix, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/NFLX.png"
+            "status": "final",
+            "logo": "data/earnings/logos/NFLX.png",
+            "chg": -5.31,
+            "price": 65.04,
+            "reactDate": "2026-10-21",
+            "baseDate": "2026-10-20"
           },
           {
             "ticker": "RTX",
@@ -137,15 +149,23 @@
             "ticker": "ISRG",
             "name": "Intuitive Surgical, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/ISRG.png"
+            "status": "final",
+            "logo": "data/earnings/logos/ISRG.png",
+            "chg": -2.26,
+            "price": 428.12,
+            "reactDate": "2026-10-21",
+            "baseDate": "2026-10-20"
           },
           {
             "ticker": "CB",
             "name": "Chubb Limited",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CB.png"
+            "status": "final",
+            "logo": "data/earnings/logos/CB.png",
+            "chg": -0.78,
+            "price": 354.95,
+            "reactDate": "2026-10-21",
+            "baseDate": "2026-10-20"
           }
         ]
       },
@@ -630,10 +650,10 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANP": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -646,8 +666,8 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
@@ -688,8 +708,8 @@
     "IQV": "2026-10-27",
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "ACGL": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
@@ -702,11 +722,11 @@
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "EXE": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "CMS": "2026-10-27",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -788,10 +808,10 @@
     "MSTR": "2026-10-29",
     "TAK": "2026-10-29",
     "MPWR": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRK": "2026-10-29",
     "STRF": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRC": "2026-10-29",
+    "STRK": "2026-10-29",
     "LNG": "2026-10-29",
     "CRH": "2026-10-29",
     "ABEV": "2026-10-29",
@@ -838,7 +858,7 @@
     "YPF": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 04:16",
+    "updatedAt": "22/10/2026 04:31",
     "source": "tradingview"
   }
 }
