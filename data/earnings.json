@@ -5,12 +5,12 @@
     {
       "ticker": "PG",
       "name": "Procter & Gamble Company",
-      "capB": 387.3
+      "capB": 386.5
     },
     {
       "ticker": "UNP",
       "name": "Union Pacific Corporation",
-      "capB": 175.5
+      "capB": 175.4
     },
     {
       "ticker": "BX",
@@ -20,27 +20,27 @@
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corporation",
-      "capB": 135.8
+      "capB": 135.5
     },
     {
       "ticker": "WDC",
       "name": "Western Digital Corporation",
-      "capB": 131.2
+      "capB": 131.6
     },
     {
       "ticker": "VLO",
       "name": "Valero Energy Corporation",
-      "capB": 120.4
-    },
-    {
-      "ticker": "NEM",
-      "name": "Newmont Corporation",
-      "capB": 118.4
+      "capB": 120.9
     },
     {
       "ticker": "SPOT",
       "name": "Spotify Technology SA",
-      "capB": 117.2
+      "capB": 118.1
+    },
+    {
+      "ticker": "NEM",
+      "name": "Newmont Corporation",
+      "capB": 118.0
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/META.png",
-            "chg": -5.61,
-            "price": 658.4,
+            "chg": -5.52,
+            "price": 659.04,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TSLA.png",
-            "chg": -1.01,
-            "price": 382.56,
+            "chg": -0.99,
+            "price": 382.64,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -88,8 +88,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/LRCX.png",
-            "chg": -10.52,
-            "price": 233.36,
+            "chg": -9.85,
+            "price": 235.13,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SAP.png",
-            "chg": 3.81,
-            "price": 241.59,
+            "chg": 3.82,
+            "price": 241.61,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TXN.png",
-            "chg": -1.94,
-            "price": 279.14,
+            "chg": -1.26,
+            "price": 281.06,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           }
@@ -269,16 +269,16 @@
       "logo": "data/earnings/logos/VLO.png"
     },
     {
-      "ticker": "NEM",
-      "name": "Newmont Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/NEM.png"
-    },
-    {
       "ticker": "SPOT",
       "name": "Spotify Technology SA",
       "when": "before",
       "logo": "data/earnings/logos/SPOT.png"
+    },
+    {
+      "ticker": "NEM",
+      "name": "Newmont Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/NEM.png"
     },
     {
       "ticker": "CMCSA",
@@ -554,16 +554,16 @@
           "logo": "data/earnings/logos/VLO.png"
         },
         {
-          "ticker": "NEM",
-          "name": "Newmont Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NEM.png"
-        },
-        {
           "ticker": "SPOT",
           "name": "Spotify Technology SA",
           "when": "before",
           "logo": "data/earnings/logos/SPOT.png"
+        },
+        {
+          "ticker": "NEM",
+          "name": "Newmont Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NEM.png"
         },
         {
           "ticker": "CMCSA",
@@ -655,8 +655,8 @@
     "LMT": "2026-10-22",
     "WDC": "2026-10-22",
     "VLO": "2026-10-22",
-    "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
+    "NEM": "2026-10-22",
     "CMCSA": "2026-10-22",
     "NSC": "2026-10-22",
     "BCS": "2026-10-22",
@@ -669,17 +669,17 @@
     "BBD": "2026-10-22",
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
+    "HBAN": "2026-10-22",
+    "HBANZ": "2026-10-22",
+    "HBANL": "2026-10-22",
     "HBANP": "2026-10-22",
     "HBANM": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
-    "DGX": "2026-10-22",
     "DOV": "2026-10-22",
-    "OMC": "2026-10-22",
+    "DGX": "2026-10-22",
     "PHM": "2026-10-22",
+    "OMC": "2026-10-22",
     "DOW": "2026-10-22",
     "SSNC": "2026-10-22",
     "AXP": "2026-10-23",
@@ -687,8 +687,8 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
@@ -742,8 +742,8 @@
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "CMS": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "EXE": "2026-10-27",
     "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
@@ -827,16 +827,16 @@
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
+    "STRF": "2026-10-29",
     "STRD": "2026-10-29",
     "STRK": "2026-10-29",
-    "STRF": "2026-10-29",
     "STRC": "2026-10-29",
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
-    "CRH": "2026-10-29",
     "LNG": "2026-10-29",
+    "CRH": "2026-10-29",
     "ABEV": "2026-10-29",
     "VALE": "2026-10-29",
     "XEL": "2026-10-29",
@@ -862,8 +862,8 @@
     "CQP": "2026-10-29",
     "DXCM": "2026-10-29",
     "TECK": "2026-10-29",
-    "EME": "2026-10-29",
     "RDDT": "2026-10-29",
+    "EME": "2026-10-29",
     "IR": "2026-10-29",
     "TW": "2026-10-29",
     "WST": "2026-10-29",
@@ -876,15 +876,15 @@
     "XPO": "2026-10-29",
     "TROW": "2026-10-29",
     "THC": "2026-10-29",
-    "ATI": "2026-10-29",
     "YPF": "2026-10-29",
+    "ATI": "2026-10-29",
     "INSM": "2026-10-29",
     "BCH": "2026-10-29",
     "ENTG": "2026-10-29",
     "BG": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 18:46",
+    "updatedAt": "22/10/2026 19:01",
     "source": "tradingview"
   }
 }
