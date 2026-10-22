@@ -10,37 +10,37 @@
     {
       "ticker": "UNP",
       "name": "Union Pacific Corporation",
-      "capB": 176.0
+      "capB": 176.1
     },
     {
       "ticker": "BX",
       "name": "Blackstone Inc.",
-      "capB": 144.5
+      "capB": 145.0
     },
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corporation",
-      "capB": 134.5
+      "capB": 134.2
     },
     {
       "ticker": "WDC",
       "name": "Western Digital Corporation",
-      "capB": 131.6
+      "capB": 132.0
     },
     {
       "ticker": "VLO",
       "name": "Valero Energy Corporation",
-      "capB": 120.6
+      "capB": 121.5
     },
     {
       "ticker": "SPOT",
       "name": "Spotify Technology SA",
-      "capB": 118.3
+      "capB": 118.4
     },
     {
       "ticker": "NEM",
       "name": "Newmont Corporation",
-      "capB": 117.8
+      "capB": 117.9
     }
   ],
   "reactions": {
@@ -56,7 +56,7 @@
             "status": "live",
             "logo": "data/earnings/logos/META.png",
             "chg": -7.22,
-            "price": 647.16,
+            "price": 647.13,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TSLA.png",
-            "chg": -2.07,
-            "price": 378.48,
+            "chg": -1.99,
+            "price": 378.77,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -88,8 +88,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/LRCX.png",
-            "chg": -11.12,
-            "price": 231.82,
+            "chg": -10.97,
+            "price": 232.21,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SAP.png",
-            "chg": 3.58,
-            "price": 241.07,
+            "chg": 3.61,
+            "price": 241.13,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TXN.png",
-            "chg": -0.85,
-            "price": 282.24,
+            "chg": -0.41,
+            "price": 283.48,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           }
@@ -503,10 +503,10 @@
           "logo": "data/earnings/logos/DHR.png"
         },
         {
-          "ticker": "T",
-          "name": "AT&T Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/T.png"
+          "ticker": "SCCO",
+          "name": "Southern Copper Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/SCCO.png"
         }
       ]
     },
@@ -670,10 +670,10 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBAN": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANP": "2026-10-22",
     "HBANM": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANP": "2026-10-22",
+    "HBANL": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
@@ -687,9 +687,9 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -729,8 +729,8 @@
     "IQV": "2026-10-27",
     "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
-    "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGLN": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
@@ -743,8 +743,8 @@
     "HUBB": "2026-10-27",
     "CMS": "2026-10-27",
     "EXE": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
     "GOOG": "2026-10-28",
@@ -828,8 +828,8 @@
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
     "STRK": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRD": "2026-10-29",
     "STRC": "2026-10-29",
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
@@ -884,7 +884,7 @@
     "BG": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 20:31",
+    "updatedAt": "22/10/2026 20:46",
     "source": "tradingview"
   }
 }
