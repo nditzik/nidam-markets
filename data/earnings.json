@@ -1,50 +1,119 @@
 {
-  "today": "2026-10-22",
-  "todayCount": 33,
+  "today": "2026-10-23",
+  "todayCount": 8,
   "todayBig": [
     {
-      "ticker": "PG",
-      "name": "Procter & Gamble Company",
-      "capB": 384.6
+      "ticker": "AXP",
+      "name": "American Express Company",
+      "capB": 219.6
     },
     {
-      "ticker": "UNP",
-      "name": "Union Pacific Corporation",
-      "capB": 177.1
+      "ticker": "E",
+      "name": "Eni S.p.A. Sponsored ADR",
+      "capB": 86.7
     },
     {
-      "ticker": "BX",
-      "name": "Blackstone Inc.",
-      "capB": 147.5
+      "ticker": "SLB",
+      "name": "SLB Limited",
+      "capB": 73.5
     },
     {
-      "ticker": "LMT",
-      "name": "Lockheed Martin Corporation",
-      "capB": 136.1
+      "ticker": "INFY",
+      "name": "Infosys Limited Sponsored ADR",
+      "capB": 50.1
     },
     {
-      "ticker": "WDC",
-      "name": "Western Digital Corporation",
-      "capB": 132.6
+      "ticker": "FCNCA",
+      "name": "First Citizens BancShares, Inc. Class A",
+      "capB": 24.4
     },
     {
-      "ticker": "VLO",
-      "name": "Valero Energy Corporation",
-      "capB": 122.7
+      "ticker": "FCNCN",
+      "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
+      "capB": 23.8
     },
     {
-      "ticker": "NEM",
-      "name": "Newmont Corporation",
-      "capB": 120.2
+      "ticker": "FCNCO",
+      "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
+      "capB": 23.8
     },
     {
-      "ticker": "SPOT",
-      "name": "Spotify Technology SA",
-      "capB": 120.2
+      "ticker": "FCNCP",
+      "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
+      "capB": 23.8
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-22",
+        "label": "22.10",
+        "items": [
+          {
+            "ticker": "PG",
+            "name": "Procter & Gamble Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PG.png",
+            "chg": 5.58,
+            "price": 165.59,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
+            "ticker": "UNP",
+            "name": "Union Pacific Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/UNP.png",
+            "chg": 3.55,
+            "price": 298.09,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
+            "ticker": "BX",
+            "name": "Blackstone Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BX.png",
+            "chg": 8.38,
+            "price": 118.75,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
+            "ticker": "LMT",
+            "name": "Lockheed Martin Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/LMT.png",
+            "logoBg": "dark",
+            "chg": 6.96,
+            "price": 589.91,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
+            "ticker": "WDC",
+            "name": "Western Digital Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/WDC.png"
+          },
+          {
+            "ticker": "VLO",
+            "name": "Valero Energy Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VLO.png",
+            "chg": -2.4,
+            "price": 426.28,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          }
+        ]
+      },
       {
         "date": "2026-10-21",
         "label": "21.10",
@@ -188,140 +257,61 @@
             "baseDate": "2026-10-20"
           }
         ]
-      },
-      {
-        "date": "2026-10-19",
-        "label": "19.10",
-        "items": [
-          {
-            "ticker": "FITB",
-            "name": "Fifth Third Bancorp",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FITB.png",
-            "chg": 0.28,
-            "price": 50.51,
-            "reactDate": "2026-10-19",
-            "baseDate": "2026-10-16"
-          },
-          {
-            "ticker": "STLD",
-            "name": "Steel Dynamics, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/STLD.png",
-            "chg": -0.33,
-            "price": 244.37,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
-          },
-          {
-            "ticker": "WRB",
-            "name": "W. R. Berkley Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/WRB.png",
-            "chg": -1.26,
-            "price": 73.15,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "PG",
-      "name": "Procter & Gamble Company",
+      "ticker": "AXP",
+      "name": "American Express Company",
       "when": "before",
-      "logo": "data/earnings/logos/PG.png"
+      "logo": "data/earnings/logos/AXP.png"
     },
     {
-      "ticker": "UNP",
-      "name": "Union Pacific Corporation",
+      "ticker": "E",
+      "name": "Eni S.p.A. Sponsored ADR",
       "when": "before",
-      "logo": "data/earnings/logos/UNP.png"
+      "logo": "data/earnings/logos/E.png"
     },
     {
-      "ticker": "BX",
-      "name": "Blackstone Inc.",
+      "ticker": "SLB",
+      "name": "SLB Limited",
       "when": "before",
-      "logo": "data/earnings/logos/BX.png"
+      "logo": "data/earnings/logos/SLB.png"
     },
     {
-      "ticker": "LMT",
-      "name": "Lockheed Martin Corporation",
+      "ticker": "INFY",
+      "name": "Infosys Limited Sponsored ADR",
       "when": "before",
-      "logo": "data/earnings/logos/LMT.png",
-      "logoBg": "dark"
+      "logo": "data/earnings/logos/INFY.png"
     },
     {
-      "ticker": "WDC",
-      "name": "Western Digital Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/WDC.png"
-    },
-    {
-      "ticker": "VLO",
-      "name": "Valero Energy Corporation",
+      "ticker": "FCNCA",
+      "name": "First Citizens BancShares, Inc. Class A",
       "when": "before",
-      "logo": "data/earnings/logos/VLO.png"
+      "logo": "data/earnings/logos/FCNCA.png"
     },
     {
-      "ticker": "NEM",
-      "name": "Newmont Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/NEM.png"
-    },
-    {
-      "ticker": "SPOT",
-      "name": "Spotify Technology SA",
+      "ticker": "FCNCN",
+      "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
       "when": "before",
-      "logo": "data/earnings/logos/SPOT.png"
+      "logo": "data/earnings/logos/FCNCN.png"
     },
     {
-      "ticker": "CMCSA",
-      "name": "Comcast Corporation Class A",
+      "ticker": "FCNCO",
+      "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
       "when": "before",
-      "logo": "data/earnings/logos/CMCSA.png"
+      "logo": "data/earnings/logos/FCNCO.png"
     },
     {
-      "ticker": "NSC",
-      "name": "Norfolk Southern Corporation",
+      "ticker": "FCNCP",
+      "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
       "when": "before",
-      "logo": "data/earnings/logos/NSC.png"
-    },
-    {
-      "ticker": "BCS",
-      "name": "Barclays PLC Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/BCS.png"
-    },
-    {
-      "ticker": "HON",
-      "name": "Honeywell International Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/HON.png"
+      "logo": "data/earnings/logos/FCNCP.png"
     }
   ],
-  "more": 21,
-  "upcoming": [
-    {
-      "date": "2026-10-23",
-      "label": "23/10",
-      "dow": "ו׳",
-      "count": 8,
-      "tickers": [
-        "AXP",
-        "E",
-        "SLB",
-        "INFY",
-        "FCNCA",
-        "FCNCN"
-      ]
-    }
-  ],
+  "more": 0,
+  "upcoming": [],
   "week": [
     {
       "date": "2026-10-19",
@@ -649,47 +639,14 @@
     }
   ],
   "window": {
-    "PG": "2026-10-22",
-    "UNP": "2026-10-22",
-    "BX": "2026-10-22",
-    "LMT": "2026-10-22",
-    "WDC": "2026-10-22",
-    "VLO": "2026-10-22",
-    "NEM": "2026-10-22",
-    "SPOT": "2026-10-22",
-    "CMCSA": "2026-10-22",
-    "NSC": "2026-10-22",
-    "BCS": "2026-10-22",
-    "HON": "2026-10-22",
-    "BE": "2026-10-22",
-    "NDAQ": "2026-10-22",
-    "NOK": "2026-10-22",
-    "FIX": "2026-10-22",
-    "NBIS": "2026-10-22",
-    "BBD": "2026-10-22",
-    "ROP": "2026-10-22",
-    "CBRE": "2026-10-22",
-    "HBANM": "2026-10-22",
-    "HBANL": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBAN": "2026-10-22",
-    "PCG": "2026-10-22",
-    "VRSN": "2026-10-22",
-    "DGX": "2026-10-22",
-    "DOV": "2026-10-22",
-    "DOW": "2026-10-22",
-    "OMC": "2026-10-22",
-    "PHM": "2026-10-22",
-    "SSNC": "2026-10-22",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -729,8 +686,8 @@
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
-    "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGLN": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
@@ -745,8 +702,8 @@
     "EXE": "2026-10-27",
     "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -827,8 +784,8 @@
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRD": "2026-10-29",
     "STRC": "2026-10-29",
     "STRF": "2026-10-29",
     "TAK": "2026-10-29",
@@ -881,10 +838,29 @@
     "INSM": "2026-10-29",
     "BCH": "2026-10-29",
     "BG": "2026-10-29",
-    "ENTG": "2026-10-29"
+    "ENTG": "2026-10-29",
+    "XOM": "2026-10-30",
+    "ABBV": "2026-10-30",
+    "CVX": "2026-10-30",
+    "AZN": "2026-10-30",
+    "BP": "2026-10-30",
+    "GD": "2026-10-30",
+    "REGN": "2026-10-30",
+    "CL": "2026-10-30",
+    "CNI": "2026-10-30",
+    "NWG": "2026-10-30",
+    "IMO": "2026-10-30",
+    "D": "2026-10-30",
+    "EXC": "2026-10-30",
+    "KVUE": "2026-10-30",
+    "UI": "2026-10-30",
+    "CCJ": "2026-10-30",
+    "CHD": "2026-10-30",
+    "LYB": "2026-10-30",
+    "NVT": "2026-10-30"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 23:46",
+    "updatedAt": "23/10/2026 00:01",
     "source": "tradingview"
   }
 }
