@@ -5,42 +5,42 @@
     {
       "ticker": "PG",
       "name": "Procter & Gamble Company",
-      "capB": 364.3
+      "capB": 379.5
     },
     {
       "ticker": "UNP",
       "name": "Union Pacific Corporation",
-      "capB": 171.0
+      "capB": 169.0
     },
     {
       "ticker": "WDC",
       "name": "Western Digital Corporation",
-      "capB": 141.7
-    },
-    {
-      "ticker": "BX",
-      "name": "Blackstone Inc.",
-      "capB": 136.1
+      "capB": 134.6
     },
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corporation",
-      "capB": 127.3
+      "capB": 133.7
+    },
+    {
+      "ticker": "BX",
+      "name": "Blackstone Inc.",
+      "capB": 133.0
     },
     {
       "ticker": "VLO",
       "name": "Valero Energy Corporation",
-      "capB": 125.8
+      "capB": 125.1
     },
     {
       "ticker": "NEM",
       "name": "Newmont Corporation",
-      "capB": 123.5
+      "capB": 119.6
     },
     {
       "ticker": "SPOT",
       "name": "Spotify Technology SA",
-      "capB": 108.2
+      "capB": 117.6
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/META.png",
-            "chg": -5.27,
-            "price": 660.73,
+            "chg": -6.93,
+            "price": 649.2,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -66,19 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TSLA.png",
-            "chg": -2.25,
-            "price": 377.76,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "LRCX",
-            "name": "Lam Research Corporation",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/LRCX.png",
-            "chg": -9.75,
-            "price": 235.39,
+            "chg": -1.36,
+            "price": 381.23,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -94,26 +83,37 @@
             "baseDate": "2026-10-20"
           },
           {
+            "ticker": "LRCX",
+            "name": "Lam Research Corporation",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/LRCX.png",
+            "chg": -9.25,
+            "price": 236.68,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
             "ticker": "SAP",
             "name": "SAP SE Sponsored ADR",
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SAP.png",
-            "chg": 2.09,
-            "price": 237.6,
+            "chg": 2.64,
+            "price": 238.87,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
           {
-            "ticker": "TXN",
-            "name": "Texas Instruments Incorporated",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/TXN.png",
-            "chg": 0.23,
-            "price": 285.3,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
+            "ticker": "TMO",
+            "name": "Thermo Fisher Scientific Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TMO.png",
+            "chg": 0.97,
+            "price": 694.02,
+            "reactDate": "2026-10-21",
+            "baseDate": "2026-10-20"
           }
         ]
       },
@@ -250,17 +250,17 @@
       "logo": "data/earnings/logos/WDC.png"
     },
     {
-      "ticker": "BX",
-      "name": "Blackstone Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/BX.png"
-    },
-    {
       "ticker": "LMT",
       "name": "Lockheed Martin Corporation",
       "when": "before",
       "logo": "data/earnings/logos/LMT.png",
       "logoBg": "dark"
+    },
+    {
+      "ticker": "BX",
+      "name": "Blackstone Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/BX.png"
     },
     {
       "ticker": "VLO",
@@ -299,10 +299,10 @@
       "logo": "data/earnings/logos/NSC.png"
     },
     {
-      "ticker": "BE",
-      "name": "Bloom Energy Corporation Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/BE.png"
+      "ticker": "HON",
+      "name": "Honeywell International Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/HON.png"
     }
   ],
   "more": 21,
@@ -448,16 +448,16 @@
           "logo": "data/earnings/logos/TSLA.png"
         },
         {
-          "ticker": "LRCX",
-          "name": "Lam Research Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/LRCX.png"
-        },
-        {
           "ticker": "PM",
           "name": "Philip Morris International Inc.",
           "when": "before",
           "logo": "data/earnings/logos/PM.png"
+        },
+        {
+          "ticker": "LRCX",
+          "name": "Lam Research Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/LRCX.png"
         },
         {
           "ticker": "SAP",
@@ -466,16 +466,16 @@
           "logo": "data/earnings/logos/SAP.png"
         },
         {
-          "ticker": "TXN",
-          "name": "Texas Instruments Incorporated",
-          "when": "after",
-          "logo": "data/earnings/logos/TXN.png"
-        },
-        {
           "ticker": "TMO",
           "name": "Thermo Fisher Scientific Inc.",
           "when": "before",
           "logo": "data/earnings/logos/TMO.png"
+        },
+        {
+          "ticker": "TXN",
+          "name": "Texas Instruments Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/TXN.png"
         },
         {
           "ticker": "IBM",
@@ -491,12 +491,6 @@
           "logo": "data/earnings/logos/ABT.png"
         },
         {
-          "ticker": "SCCO",
-          "name": "Southern Copper Corporation",
-          "when": "",
-          "logo": "data/earnings/logos/SCCO.png"
-        },
-        {
           "ticker": "DHR",
           "name": "Danaher Corporation",
           "when": "before",
@@ -507,6 +501,12 @@
           "name": "NextEra Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NEE.png"
+        },
+        {
+          "ticker": "SCCO",
+          "name": "Southern Copper Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/SCCO.png"
         }
       ]
     },
@@ -535,17 +535,17 @@
           "logo": "data/earnings/logos/WDC.png"
         },
         {
-          "ticker": "BX",
-          "name": "Blackstone Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BX.png"
-        },
-        {
           "ticker": "LMT",
           "name": "Lockheed Martin Corporation",
           "when": "before",
           "logo": "data/earnings/logos/LMT.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "BX",
+          "name": "Blackstone Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BX.png"
         },
         {
           "ticker": "VLO",
@@ -584,10 +584,10 @@
           "logo": "data/earnings/logos/NSC.png"
         },
         {
-          "ticker": "BE",
-          "name": "Bloom Energy Corporation Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/BE.png"
+          "ticker": "HON",
+          "name": "Honeywell International Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/HON.png"
         }
       ]
     },
@@ -652,16 +652,16 @@
     "PG": "2026-10-22",
     "UNP": "2026-10-22",
     "WDC": "2026-10-22",
-    "BX": "2026-10-22",
     "LMT": "2026-10-22",
+    "BX": "2026-10-22",
     "VLO": "2026-10-22",
     "NEM": "2026-10-22",
     "SPOT": "2026-10-22",
     "CMCSA": "2026-10-22",
     "BCS": "2026-10-22",
     "NSC": "2026-10-22",
-    "BE": "2026-10-22",
     "HON": "2026-10-22",
+    "BE": "2026-10-22",
     "NDAQ": "2026-10-22",
     "NOK": "2026-10-22",
     "FIX": "2026-10-22",
@@ -669,34 +669,34 @@
     "BBD": "2026-10-22",
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
-    "HBANZ": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANL": "2026-10-22",
     "HBANP": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANZ": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DOV": "2026-10-22",
     "DGX": "2026-10-22",
-    "OMC": "2026-10-22",
     "DOW": "2026-10-22",
+    "OMC": "2026-10-22",
     "PHM": "2026-10-22",
     "SSNC": "2026-10-22",
     "AXP": "2026-10-23",
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCN": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCA": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
     "NUE": "2026-10-26",
     "PSA": "2026-10-26",
-    "CLS": "2026-10-26",
     "HIG": "2026-10-26",
+    "CLS": "2026-10-26",
     "CINF": "2026-10-26",
     "BRO": "2026-10-26",
     "PFG": "2026-10-26",
@@ -704,15 +704,15 @@
     "KO": "2026-10-27",
     "HSBC": "2026-10-27",
     "NVS": "2026-10-27",
-    "STX": "2026-10-27",
     "BA": "2026-10-27",
+    "STX": "2026-10-27",
     "SPGI": "2026-10-27",
     "GLW": "2026-10-27",
     "HCA": "2026-10-27",
     "FCX": "2026-10-27",
     "WM": "2026-10-27",
-    "HOOD": "2026-10-27",
     "JCI": "2026-10-27",
+    "HOOD": "2026-10-27",
     "UPS": "2026-10-27",
     "AMT": "2026-10-27",
     "SHW": "2026-10-27",
@@ -727,10 +727,10 @@
     "PYPL": "2026-10-27",
     "IQV": "2026-10-27",
     "VTR": "2026-10-27",
-    "CNC": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGL": "2026-10-27",
+    "CNC": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
@@ -742,13 +742,13 @@
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "EXE": "2026-10-27",
-    "CMSA": "2026-10-27",
     "CMS": "2026-10-27",
     "CMSD": "2026-10-27",
-    "GOOGL": "2026-10-28",
-    "GOOG": "2026-10-28",
+    "CMSA": "2026-10-27",
     "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOG": "2026-10-28",
+    "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
@@ -770,8 +770,8 @@
     "ORLY": "2026-10-28",
     "FDX": "2026-10-28",
     "AEP": "2026-10-28",
-    "CVNA": "2026-10-28",
     "BSX": "2026-10-28",
+    "CVNA": "2026-10-28",
     "AON": "2026-10-28",
     "TEL": "2026-10-28",
     "DB": "2026-10-28",
@@ -783,18 +783,18 @@
     "ODFL": "2026-10-28",
     "BIIB": "2026-10-28",
     "CMG": "2026-10-28",
-    "FLEX": "2026-10-28",
     "GEHC": "2026-10-28",
+    "FLEX": "2026-10-28",
     "RJF": "2026-10-28",
-    "KGC": "2026-10-28",
     "OTIS": "2026-10-28",
+    "KGC": "2026-10-28",
     "AWK": "2026-10-28",
     "NMR": "2026-10-28",
-    "LH": "2026-10-28",
     "FMX": "2026-10-28",
+    "LH": "2026-10-28",
     "VICI": "2026-10-28",
-    "AER": "2026-10-28",
     "DINO": "2026-10-28",
+    "AER": "2026-10-28",
     "SW": "2026-10-28",
     "AMRZ": "2026-10-28",
     "BSBR": "2026-10-28",
@@ -808,8 +808,8 @@
     "SHEL": "2026-10-29",
     "LIN": "2026-10-29",
     "TTE": "2026-10-29",
-    "SNDK": "2026-10-29",
     "GILD": "2026-10-29",
+    "SNDK": "2026-10-29",
     "BBVA": "2026-10-29",
     "BMY": "2026-10-29",
     "MO": "2026-10-29",
@@ -819,72 +819,72 @@
     "ING": "2026-10-29",
     "ASX": "2026-10-29",
     "MNST": "2026-10-29",
-    "PWR": "2026-10-29",
     "ICE": "2026-10-29",
-    "HWM": "2026-10-29",
+    "PWR": "2026-10-29",
     "MDLZ": "2026-10-29",
-    "LYG": "2026-10-29",
+    "HWM": "2026-10-29",
     "EPD": "2026-10-29",
+    "LYG": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
     "DLR": "2026-10-29",
-    "STRF": "2026-10-29",
-    "STRK": "2026-10-29",
-    "MSTR": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRC": "2026-10-29",
+    "STRF": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRK": "2026-10-29",
     "TAK": "2026-10-29",
+    "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "LNG": "2026-10-29",
     "CRH": "2026-10-29",
     "ABEV": "2026-10-29",
     "VALE": "2026-10-29",
     "XEL": "2026-10-29",
-    "COIN": "2026-10-29",
-    "CARR": "2026-10-29",
     "LHX": "2026-10-29",
+    "CARR": "2026-10-29",
+    "COIN": "2026-10-29",
     "AMP": "2026-10-29",
     "ILMN": "2026-10-29",
     "STM": "2026-10-29",
-    "LYV": "2026-10-29",
     "TWLO": "2026-10-29",
+    "LYV": "2026-10-29",
     "KB": "2026-10-29",
     "DHI": "2026-10-29",
     "RBLX": "2026-10-29",
-    "RMD": "2026-10-29",
     "VMC": "2026-10-29",
-    "HSY": "2026-10-29",
+    "RMD": "2026-10-29",
     "QSR": "2026-10-29",
+    "HSY": "2026-10-29",
     "RKT": "2026-10-29",
     "CTSH": "2026-10-29",
     "CQP": "2026-10-29",
-    "EME": "2026-10-29",
-    "TECK": "2026-10-29",
-    "IR": "2026-10-29",
     "DXCM": "2026-10-29",
     "ALNY": "2026-10-29",
+    "EME": "2026-10-29",
     "WTW": "2026-10-29",
+    "IR": "2026-10-29",
+    "TECK": "2026-10-29",
     "RDDT": "2026-10-29",
     "TW": "2026-10-29",
     "WST": "2026-10-29",
     "FTI": "2026-10-29",
-    "ARES": "2026-10-29",
     "PPL": "2026-10-29",
+    "ARES": "2026-10-29",
     "VLTO": "2026-10-29",
-    "ATI": "2026-10-29",
     "INCY": "2026-10-29",
-    "ENTG": "2026-10-29",
-    "XPO": "2026-10-29",
-    "TROW": "2026-10-29",
-    "EIX": "2026-10-29",
+    "ATI": "2026-10-29",
     "THC": "2026-10-29",
+    "EIX": "2026-10-29",
+    "TROW": "2026-10-29",
+    "XPO": "2026-10-29",
+    "ENTG": "2026-10-29",
     "YPF": "2026-10-29",
     "INSM": "2026-10-29",
     "BCH": "2026-10-29",
     "BG": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 16:31",
+    "updatedAt": "22/10/2026 16:46",
     "source": "tradingview"
   }
 }
