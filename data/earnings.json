@@ -53,22 +53,34 @@
             "ticker": "META",
             "name": "Meta Platforms Inc Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/META.png"
+            "status": "live",
+            "logo": "data/earnings/logos/META.png",
+            "chg": -5.27,
+            "price": 660.73,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "TSLA",
             "name": "Tesla, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TSLA.png"
+            "status": "live",
+            "logo": "data/earnings/logos/TSLA.png",
+            "chg": -2.25,
+            "price": 377.76,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "LRCX",
             "name": "Lam Research Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/LRCX.png"
+            "status": "live",
+            "logo": "data/earnings/logos/LRCX.png",
+            "chg": -9.75,
+            "price": 235.39,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "PM",
@@ -85,15 +97,23 @@
             "ticker": "SAP",
             "name": "SAP SE Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/SAP.png"
+            "status": "live",
+            "logo": "data/earnings/logos/SAP.png",
+            "chg": 2.09,
+            "price": 237.6,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "TXN",
             "name": "Texas Instruments Incorporated",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TXN.png"
+            "status": "live",
+            "logo": "data/earnings/logos/TXN.png",
+            "chg": 0.23,
+            "price": 285.3,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           }
         ]
       },
@@ -650,9 +670,9 @@
     "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
     "HBANZ": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANL": "2026-10-22",
     "HBANM": "2026-10-22",
+    "HBANL": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
@@ -666,9 +686,9 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
-    "FCNCO": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
+    "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "FCNCA": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
@@ -708,9 +728,9 @@
     "IQV": "2026-10-27",
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "ACGL": "2026-10-27",
     "ACGLN": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
@@ -723,12 +743,12 @@
     "HUBB": "2026-10-27",
     "EXE": "2026-10-27",
     "CMSA": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMS": "2026-10-27",
-    "GOOG": "2026-10-28",
+    "CMSD": "2026-10-27",
     "GOOGL": "2026-10-28",
-    "GOOGM": "2026-10-28",
+    "GOOG": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "MSFT": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
@@ -808,11 +828,11 @@
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
     "DLR": "2026-10-29",
+    "STRF": "2026-10-29",
+    "STRK": "2026-10-29",
+    "MSTR": "2026-10-29",
     "STRD": "2026-10-29",
     "STRC": "2026-10-29",
-    "STRF": "2026-10-29",
-    "MSTR": "2026-10-29",
-    "STRK": "2026-10-29",
     "TAK": "2026-10-29",
     "MPWR": "2026-10-29",
     "LNG": "2026-10-29",
@@ -864,7 +884,7 @@
     "BG": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 16:16",
+    "updatedAt": "22/10/2026 16:31",
     "source": "tradingview"
   }
 }
