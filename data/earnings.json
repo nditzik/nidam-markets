@@ -5,42 +5,42 @@
     {
       "ticker": "PG",
       "name": "Procter & Gamble Company",
-      "capB": 385.6
+      "capB": 384.6
     },
     {
       "ticker": "UNP",
       "name": "Union Pacific Corporation",
-      "capB": 176.8
+      "capB": 177.1
     },
     {
       "ticker": "BX",
       "name": "Blackstone Inc.",
-      "capB": 146.6
+      "capB": 147.5
     },
     {
       "ticker": "LMT",
       "name": "Lockheed Martin Corporation",
-      "capB": 136.4
+      "capB": 136.1
     },
     {
       "ticker": "WDC",
       "name": "Western Digital Corporation",
-      "capB": 131.4
+      "capB": 132.6
     },
     {
       "ticker": "VLO",
       "name": "Valero Energy Corporation",
-      "capB": 122.1
-    },
-    {
-      "ticker": "SPOT",
-      "name": "Spotify Technology SA",
-      "capB": 120.0
+      "capB": 122.7
     },
     {
       "ticker": "NEM",
       "name": "Newmont Corporation",
-      "capB": 119.2
+      "capB": 120.2
+    },
+    {
+      "ticker": "SPOT",
+      "name": "Spotify Technology SA",
+      "capB": 120.2
     }
   ],
   "reactions": {
@@ -97,10 +97,10 @@
             "ticker": "SAP",
             "name": "SAP SE Sponsored ADR",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/SAP.png",
-            "chg": 3.47,
-            "price": 240.81,
+            "chg": 3.38,
+            "price": 240.59,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -269,16 +269,16 @@
       "logo": "data/earnings/logos/VLO.png"
     },
     {
-      "ticker": "SPOT",
-      "name": "Spotify Technology SA",
-      "when": "before",
-      "logo": "data/earnings/logos/SPOT.png"
-    },
-    {
       "ticker": "NEM",
       "name": "Newmont Corporation",
       "when": "after",
       "logo": "data/earnings/logos/NEM.png"
+    },
+    {
+      "ticker": "SPOT",
+      "name": "Spotify Technology SA",
+      "when": "before",
+      "logo": "data/earnings/logos/SPOT.png"
     },
     {
       "ticker": "CMCSA",
@@ -554,16 +554,16 @@
           "logo": "data/earnings/logos/VLO.png"
         },
         {
-          "ticker": "SPOT",
-          "name": "Spotify Technology SA",
-          "when": "before",
-          "logo": "data/earnings/logos/SPOT.png"
-        },
-        {
           "ticker": "NEM",
           "name": "Newmont Corporation",
           "when": "after",
           "logo": "data/earnings/logos/NEM.png"
+        },
+        {
+          "ticker": "SPOT",
+          "name": "Spotify Technology SA",
+          "when": "before",
+          "logo": "data/earnings/logos/SPOT.png"
         },
         {
           "ticker": "CMCSA",
@@ -655,8 +655,8 @@
     "LMT": "2026-10-22",
     "WDC": "2026-10-22",
     "VLO": "2026-10-22",
-    "SPOT": "2026-10-22",
     "NEM": "2026-10-22",
+    "SPOT": "2026-10-22",
     "CMCSA": "2026-10-22",
     "NSC": "2026-10-22",
     "BCS": "2026-10-22",
@@ -665,21 +665,21 @@
     "NDAQ": "2026-10-22",
     "NOK": "2026-10-22",
     "FIX": "2026-10-22",
-    "ROP": "2026-10-22",
-    "BBD": "2026-10-22",
     "NBIS": "2026-10-22",
+    "BBD": "2026-10-22",
+    "ROP": "2026-10-22",
     "CBRE": "2026-10-22",
-    "HBANP": "2026-10-22",
-    "HBANM": "2026-10-22",
     "HBANL": "2026-10-22",
     "HBANZ": "2026-10-22",
+    "HBANM": "2026-10-22",
+    "HBANP": "2026-10-22",
     "HBAN": "2026-10-22",
     "PCG": "2026-10-22",
     "VRSN": "2026-10-22",
     "DGX": "2026-10-22",
     "DOV": "2026-10-22",
-    "OMC": "2026-10-22",
     "DOW": "2026-10-22",
+    "OMC": "2026-10-22",
     "PHM": "2026-10-22",
     "SSNC": "2026-10-22",
     "AXP": "2026-10-23",
@@ -687,8 +687,8 @@
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
@@ -725,8 +725,8 @@
     "BKR": "2026-10-27",
     "PYPL": "2026-10-27",
     "TER": "2026-10-27",
-    "VTR": "2026-10-27",
     "IQV": "2026-10-27",
+    "VTR": "2026-10-27",
     "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
     "ACGLN": "2026-10-27",
@@ -738,15 +738,15 @@
     "FE": "2026-10-27",
     "XYL": "2026-10-27",
     "FFIV": "2026-10-27",
-    "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
+    "LPLA": "2026-10-27",
     "HUBB": "2026-10-27",
     "CMS": "2026-10-27",
     "EXE": "2026-10-27",
     "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -771,8 +771,8 @@
     "FDX": "2026-10-28",
     "AEP": "2026-10-28",
     "BSX": "2026-10-28",
-    "CVNA": "2026-10-28",
     "AON": "2026-10-28",
+    "CVNA": "2026-10-28",
     "TEL": "2026-10-28",
     "DB": "2026-10-28",
     "GRMN": "2026-10-28",
@@ -790,8 +790,8 @@
     "FLEX": "2026-10-28",
     "KGC": "2026-10-28",
     "LH": "2026-10-28",
-    "NMR": "2026-10-28",
     "VICI": "2026-10-28",
+    "NMR": "2026-10-28",
     "FMX": "2026-10-28",
     "AER": "2026-10-28",
     "SW": "2026-10-28",
@@ -828,9 +828,9 @@
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
     "STRF": "2026-10-29",
-    "STRK": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRC": "2026-10-29",
+    "STRK": "2026-10-29",
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "MSTR": "2026-10-29",
@@ -845,10 +845,10 @@
     "COIN": "2026-10-29",
     "AMP": "2026-10-29",
     "STM": "2026-10-29",
-    "LYV": "2026-10-29",
     "DHI": "2026-10-29",
-    "KB": "2026-10-29",
+    "LYV": "2026-10-29",
     "ILMN": "2026-10-29",
+    "KB": "2026-10-29",
     "TWLO": "2026-10-29",
     "RBLX": "2026-10-29",
     "RMD": "2026-10-29",
@@ -861,10 +861,10 @@
     "WTW": "2026-10-29",
     "ALNY": "2026-10-29",
     "DXCM": "2026-10-29",
-    "TECK": "2026-10-29",
     "EME": "2026-10-29",
-    "IR": "2026-10-29",
     "RDDT": "2026-10-29",
+    "TECK": "2026-10-29",
+    "IR": "2026-10-29",
     "TW": "2026-10-29",
     "WST": "2026-10-29",
     "ARES": "2026-10-29",
@@ -873,9 +873,9 @@
     "VLTO": "2026-10-29",
     "INCY": "2026-10-29",
     "EIX": "2026-10-29",
-    "ATI": "2026-10-29",
     "XPO": "2026-10-29",
     "TROW": "2026-10-29",
+    "ATI": "2026-10-29",
     "THC": "2026-10-29",
     "YPF": "2026-10-29",
     "INSM": "2026-10-29",
@@ -884,7 +884,7 @@
     "ENTG": "2026-10-29"
   },
   "_meta": {
-    "updatedAt": "22/10/2026 23:01",
+    "updatedAt": "22/10/2026 23:16",
     "source": "tradingview"
   }
 }
