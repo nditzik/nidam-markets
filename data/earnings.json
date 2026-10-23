@@ -1,6 +1,6 @@
 {
   "today": "2026-10-23",
-  "todayCount": 8,
+  "todayCount": 9,
   "todayBig": [
     {
       "ticker": "AXP",
@@ -23,6 +23,11 @@
       "capB": 50.1
     },
     {
+      "ticker": "BBD",
+      "name": "Banco Bradesco SA Sponsored ADR Pfd",
+      "capB": 43.2
+    },
+    {
       "ticker": "FCNCA",
       "name": "First Citizens BancShares, Inc. Class A",
       "capB": 24.4
@@ -35,11 +40,6 @@
     {
       "ticker": "FCNCO",
       "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
-      "capB": 23.8
-    },
-    {
-      "ticker": "FCNCP",
-      "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
       "capB": 23.8
     }
   ],
@@ -244,6 +244,12 @@
       "name": "Infosys Limited Sponsored ADR",
       "when": "before",
       "logo": "data/earnings/logos/INFY.png"
+    },
+    {
+      "ticker": "BBD",
+      "name": "Banco Bradesco SA Sponsored ADR Pfd",
+      "when": "",
+      "logo": "data/earnings/logos/BBD.png"
     },
     {
       "ticker": "FCNCA",
@@ -545,7 +551,7 @@
       "date": "2026-10-23",
       "dow": "שישי",
       "label": "23.10",
-      "total": 8,
+      "total": 9,
       "companies": [
         {
           "ticker": "AXP",
@@ -570,6 +576,12 @@
           "name": "Infosys Limited Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/INFY.png"
+        },
+        {
+          "ticker": "BBD",
+          "name": "Banco Bradesco SA Sponsored ADR Pfd",
+          "when": "",
+          "logo": "data/earnings/logos/BBD.png"
         },
         {
           "ticker": "FCNCA",
@@ -603,10 +615,11 @@
     "E": "2026-10-23",
     "SLB": "2026-10-23",
     "INFY": "2026-10-23",
+    "BBD": "2026-10-23",
     "FCNCA": "2026-10-23",
-    "FCNCP": "2026-10-23",
     "FCNCN": "2026-10-23",
     "FCNCO": "2026-10-23",
+    "FCNCP": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -646,8 +659,8 @@
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
-    "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGLN": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
@@ -662,8 +675,8 @@
     "EXE": "2026-10-27",
     "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -744,10 +757,10 @@
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
-    "STRK": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
+    "STRK": "2026-10-29",
+    "STRD": "2026-10-29",
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "MSTR": "2026-10-29",
@@ -820,7 +833,7 @@
     "NVT": "2026-10-30"
   },
   "_meta": {
-    "updatedAt": "23/10/2026 03:46",
+    "updatedAt": "23/10/2026 04:01",
     "source": "tradingview"
   }
 }
