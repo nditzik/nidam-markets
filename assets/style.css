@@ -1174,7 +1174,7 @@ p.np-evt-mid { font-size: .88rem; color: var(--accent); }
 
 /* ── רמזור VIX (27.9.2026) ── */
 .vl-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; margin-inline-start: 3px; background: var(--text-3); }
-.vl-dot.green { background: var(--up); } .vl-dot.yellow { background: var(--warn); } .vl-dot.red { background: var(--down); }
+.vl-dot.green { background: var(--up); } .vl-dot.yellow { background: var(--state-fill, var(--warn)); } .vl-dot.red { background: var(--down); }
 .np-vixl b.green { color: var(--up); } .np-vixl b.yellow { color: var(--warn); } .np-vixl b.red { color: var(--down); }
 .np-vixl small { color: var(--text-soft); font-size: .78rem; margin-inline-start: 4px; }
 .vl-spike { color: var(--down); font-weight: 900; margin-inline-start: 2px; }
