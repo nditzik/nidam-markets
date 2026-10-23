@@ -53,30 +53,46 @@
             "ticker": "PG",
             "name": "Procter & Gamble Company",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/PG.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PG.png",
+            "chg": 5.58,
+            "price": 165.59,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "UNP",
             "name": "Union Pacific Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/UNP.png"
+            "status": "final",
+            "logo": "data/earnings/logos/UNP.png",
+            "chg": 3.55,
+            "price": 298.09,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "BX",
             "name": "Blackstone Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/BX.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BX.png",
+            "chg": 8.38,
+            "price": 118.75,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "LMT",
             "name": "Lockheed Martin Corporation",
             "when": "before",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/LMT.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": 6.96,
+            "price": 589.91,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "WDC",
@@ -89,8 +105,12 @@
             "ticker": "VLO",
             "name": "Valero Energy Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/VLO.png"
+            "status": "final",
+            "logo": "data/earnings/logos/VLO.png",
+            "chg": -2.4,
+            "price": 426.28,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           }
         ]
       },
@@ -102,15 +122,23 @@
             "ticker": "META",
             "name": "Meta Platforms Inc Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/META.png"
+            "status": "final",
+            "logo": "data/earnings/logos/META.png",
+            "chg": -6.98,
+            "price": 648.85,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "TSLA",
             "name": "Tesla, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TSLA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TSLA.png",
+            "chg": -3.08,
+            "price": 374.58,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "PM",
@@ -127,22 +155,34 @@
             "ticker": "LRCX",
             "name": "Lam Research Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/LRCX.png"
+            "status": "final",
+            "logo": "data/earnings/logos/LRCX.png",
+            "chg": -11.76,
+            "price": 230.15,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "SAP",
             "name": "SAP SE Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/SAP.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SAP.png",
+            "chg": 3.38,
+            "price": 240.59,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           },
           {
             "ticker": "TXN",
             "name": "Texas Instruments Incorporated",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TXN.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TXN.png",
+            "chg": -1.81,
+            "price": 279.5,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
           }
         ]
       },
@@ -618,8 +658,8 @@
     "BBD": "2026-10-23",
     "FCNCA": "2026-10-23",
     "FCNCN": "2026-10-23",
-    "FCNCO": "2026-10-23",
     "FCNCP": "2026-10-23",
+    "FCNCO": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -659,8 +699,8 @@
     "VTR": "2026-10-27",
     "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "EQT": "2026-10-27",
     "SHG": "2026-10-27",
     "EXR": "2026-10-27",
@@ -675,8 +715,8 @@
     "EXE": "2026-10-27",
     "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -757,8 +797,8 @@
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
-    "STRK": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRK": "2026-10-29",
     "STRF": "2026-10-29",
     "STRC": "2026-10-29",
     "TAK": "2026-10-29",
@@ -833,7 +873,7 @@
     "NVT": "2026-10-30"
   },
   "_meta": {
-    "updatedAt": "23/10/2026 04:16",
+    "updatedAt": "23/10/2026 04:31",
     "source": "tradingview"
   }
 }
