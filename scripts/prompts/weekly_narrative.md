@@ -5,6 +5,24 @@
 
 אתה כותב את הסיכום המילולי של שבוע המסחר ל-The Daily Edge by NIDAM — אתר עברי של איציק נידם, קהל רחב, לא רק מקצוענים. הסיכום הוא מה שקורא רואה בבוקר שבת: הכותרת הראשית בבית (עד ראשון 15:00) והפאנל "סיכום השבוע שעבר" בטאב השוק. הוא צריך לענות על ארבע שאלות, בסדר הזה: **מה קרה, למה, מה זה אומר, ומה בודקים בשבוע הבא** — ובכנות על מה שאנחנו עצמנו צפינו.
 
+## 0. שבת בלבד — קודם דוח הרוטציה, אחר כך הסיכום (רשת ביטחון, 23.10.2026)
+רוטינת `nidam-rotation-weekly` נוצרה ב-UI בלי ריפו ובלי כלי דרייב, וב-17.10 לא כתבה דוח. הרוטינה הזו רצה כל שעה בשבת עם מחבר דרייב וריפו שעובדים, ולכן היא מריצה את הדוח בעצמה כשצריך. דוח הרוטציה הוא גם מקור לסיכום (פרק "לאן זרם הכסף"), אז הסדר הנכון הוא דוח ואז סיכום.
+
+בצע **רק** אם כל אלה מתקיימים (אחרת דלג על הסעיף כולו והמשך ל-§1):
+1. היום שבת (`date +%u` = 6; `D=$(date +%F)`).
+2. יש לך כלי של מחבר Google Drive (`mcp__Google_Drive__search_files` / `download_file_content`). אין — רשום `echo "HB $(date -u +%H:%M) rotation(via weekly): no drive tools" >> data/_routine_heartbeat.log` והמשך ל-§1.
+3. `data/sectors/sectors-D.html` **לא** קיים (או ש-`data/rotation/index.json` בלי רשומה `date == D`).
+4. בדרייב קיימת תיקיית `D` תחת `Rotation` (id `17KWUB0aF2Ahwk8QNpIA3Rck-d8JqOJoV`), עם 20 הקבצים. אין/חסר — רשום HB `rotation(via weekly): no drive folder D` (או `folder D incomplete`) והמשך ל-§1 (הריצה השעתית הבאה תנסה שוב).
+
+כשכל התנאים מתקיימים: קרא את `scripts/prompts/rotation_weekly.md` ובצע את סעיפים **2–6** שלו במלואם (הורדה כ-base64 ל-`data/rotation/D/raw/*.b64` בקבצים קטנים ומיד, `decode`/`check`/`compute`, כתיבת `narrative.json`, `render`, ה-commit שמוגדר שם — **בלי** לדחוף עדיין; הדחיפה של העטיפה בסוף תדחוף את שני הקומיטים יחד). `check` או `render` נכשלו — HB עם הסיבה, אל תתקן נתונים ידנית, והמשך ל-§1 בלי הדוח.
+אחרי ה-render, כדי שהסיכום של אותה ריצה כבר יכלול את הסקטורים:
+```
+python3 scripts/fetch_sectors.py || true
+python3 scripts/build_weekly.py || true
+git add data/sectors.json data/weekly.json && git commit -m "rotation: sectors block for D" || true
+```
+(`build_weekly` מצרף את בלוק `sectors` ל-`weekly.json` מהדוח החדש; אם נכשל — הריצה השעתית הבאה תכתוב את הסיכום מחדש לפי §1.4.) עכשיו המשך ל-§1 כרגיל.
+
 ## 1. השער — האם לכתוב עכשיו
 הרוטינה רצה כל שעה בשבת/ראשון/שני 07:00–14:00. כל התנאים עצירים; כשעוצרים — לא כותבים כלום ולא דוחפים.
 
@@ -72,7 +90,7 @@ python: `json.load` של `data/weekly.json` → `w["narrative"] = {...}` (לא �
 בסוף: `echo "HB $(date -u +%H:%M) weekly-narrative written v2 sectors=<sectorsDate|none>" >> data/_routine_heartbeat.log`
 
 ## 6. דחיפה
-`git add data/weekly.json data/_routine_heartbeat.log` · `git commit -m "weekly-narrative: <weekOf>"` · הדחיפה בפקודה שבעטיפה. נכשל (ה-Action דוחף כל רבע שעה) — `git pull --rebase origin main` ונסה שוב, עד 3 פעמים; קונפליקט בקבצי data אחרים — `git checkout --theirs` עליהם, את `data/weekly.json` השאר בגרסה שלך (ואם ה-rebase הביא `sectors` חדש ל-weekly.json — קח את הגרסה שלהם של הקובץ והוסף עליה את ה-narrative שלך מחדש).
+`git add data/weekly.json data/_routine_heartbeat.log` · `git commit -m "weekly-narrative: <weekOf>"` (קומיטים של §0, אם היו, כבר קיימים לפניו — הדחיפה מעבירה את כולם) · הדחיפה בפקודה שבעטיפה. נכשל (ה-Action דוחף כל רבע שעה) — `git pull --rebase origin main` ונסה שוב, עד 3 פעמים; קונפליקט בקבצי data אחרים — `git checkout --theirs` עליהם, את `data/weekly.json` השאר בגרסה שלך (ואם ה-rebase הביא `sectors` חדש ל-weekly.json — קח את הגרסה שלהם של הקובץ והוסף עליה את ה-narrative שלך מחדש).
 
 ## דוגמה (שבוע 5–9.10.2026, נכתבה ידנית כדוגמה למבנה)
 ```
