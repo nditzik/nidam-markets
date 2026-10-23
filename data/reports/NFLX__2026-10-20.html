@@ -1,0 +1,463 @@
+<title>NFLX דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; --brand:#e50914;
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; --brand:#ff4b55; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; --brand:#ff4b55; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:var(--navy);color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.wordmark{font-size:28px;font-weight:800;letter-spacing:.02em;color:var(--brand);direction:ltr;display:inline-block;margin-bottom:18px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="wordmark">NETFLIX</span>
+    <div class="eyebrow">Netflix, Inc. · NASDAQ: NFLX · תוצאות רבעון שלישי 2026</div>
+    <h1>הרווח בשיא, התחזית מאכזבת, והמניה בשפל של שנתיים. הבעיה אינה הכסף — היא הזמן</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-20 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: מכתב לבעלי המניות, תמלול ראיון התוצאות</span>
+      <span>עודכן: 23.10.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>נטפליקס מוכרת מנוי אחד לכמעט מיליארד צופים — והמתחרה האמיתית שלה היא יוטיוב, לא דיסני</h2>
+  <p class="lead">נטפליקס היא שירות הסטרימינג הגדול בעולם: כ-190 מדינות, קהל שמתקרב למיליארד בני אדם, ו-$51 מיליארד הכנסות שנתיות. המודל פשוט — מנוי חודשי (ומאז 2022 גם מסלול זול יותר עם פרסומות) — ו-95% מההוצאות הולכות לדבר אחד: תוכן מקורי ובלעדי שגורם לאנשים לא לבטל.</p>
+  <p class="body" style="margin-top:14px">שלושה מנועי הכנסה: עוד מנויים (בעיקר בהודו, דרום-מזרח אסיה ואמריקה הלטינית), מחיר גבוה יותר למנוי (העלאות מחיר ב-2026 "עברו חלק"), ופרסום — העסק הצעיר שצומח 80% בשנה אבל עדיין קטן ($2.7B מתוך $51B).</p>
+  <p class="body">הערה למי שמסתכל על המחיר: בנובמבר 2025 נטפליקס פיצלה כל מניה לעשר. מניה של ~$65 היום שווה ל-$650 במונחים של לפני הפיצול. היא לא "זולה" — היא פשוט נספרת אחרת.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>YouTube (Google) — על הזמן</h3>
+      <p>המתחרה שההנהלה מדברת עליה הכי פחות ושהמשקיעים חוששים ממנה הכי הרבה. יוטיוב מחזיקה כ-14% מזמן הצפייה בטלוויזיה בארה"ב — כמעט כפול מנטפליקס (7.8%) — והיא חינמית. כל שעה ביוטיוב היא שעה שלא בנטפליקס.</p>
+    </div>
+    <div class="col">
+      <h3>Disney+, Amazon, Paramount, WBD — על התוכן</h3>
+      <p>שירותי הסטרימינג המסורתיים. רובם עדיין מפסידים או בקושי מרוויחים, בעוד נטפליקס ברווחיות תפעולית של 35%. חלקם הפכו מיריבים לספקים: דיסני מרשה כעת לנטפליקס את סרטי "עידן הקרח", ו-TF1 הצרפתית משדרת דרכה.</p>
+    </div>
+    <div class="col">
+      <h3>TikTok, גיימינג, רשתות — על תשומת הלב</h3>
+      <p>לא שירותי וידאו באורך מלא, אבל הם גוזלים את אותן שעות ערב. הצמיחה הגלובלית בשעות הצפייה בנטפליקס במחצית הראשונה של 2026 הייתה כ-2% בלבד — וזו הסיבה שהשוק עצבני גם כשהכסף נראה מצוין.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>החברה עמדה בכל מה שהבטיחה — והשוק הגיב לרמזים על מה שיהיה קשה יותר להבטיח</h2>
+  <p class="lead">ההכנסות צמחו 12% ל-$12.9B, בדיוק לפי התחזית. שיעור הרווח התפעולי קפץ ל-34.6% (מ-28.2% לפני שנה), והרווח למניה עלה 49% ל-$0.87 — מעל צפי של $0.82. תזרים חופשי של $2.9B, ורכישה חוזרת של מניות בשיא היסטורי: $4.8B ברבעון אחד.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>הירידה היא על העתיד, לא על ההווה. שלושה דברים הטרידו: (1) תחזית ההכנסות לרבעון הבא ($13.44B) מעט מתחת לצפי; (2) תחזית הפרסום לשנה קוצצה מ-$3B ל-$2.7B; (3) שיעור הרווח ב-Q4 יצנח ל-26% בגלל עלויות פיטורים של כ-1,000 עובדים. ומעל הכול — צמיחת שעות הצפייה של 2% בלבד. נטפליקס מרוויחה יותר מכל צופה, אבל לא מוסיפה הרבה צופים או שעות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>שישה מדדים: כולם טובים מהשנה שעברה, ושניים מהם טובים יותר ממה שהחברה הבטיחה</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$12.87B</div><div class="l">הכנסות</div><div class="d up">+12% · בדיוק לפי התחזית</div></div>
+    <div class="kpi"><div class="v num">34.6%</div><div class="l">רווחיות תפעולית</div><div class="d up">מ-28.2% לפני שנה · מעל התחזית</div></div>
+    <div class="kpi"><div class="v num">$0.87</div><div class="l">רווח למניה</div><div class="d up">+49% · הצפי היה $0.82</div></div>
+    <div class="kpi"><div class="v num">$2.88B</div><div class="l">תזרים מזומנים חופשי</div><div class="d up">מ-$2.66B לפני שנה</div></div>
+    <div class="kpi"><div class="v num">$4.8B</div><div class="l">רכישה חוזרת של מניות</div><div class="d up">שיא כל הזמנים · 63.9M מניות</div></div>
+    <div class="kpi"><div class="v num">26%</div><div class="l">רווחיות תפעולית צפויה ב-Q4</div><div class="d down">ירידה מ-34.6% · כולל עלויות פיטורים</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: נטפליקס כמעט לא משתמשת במספרי Non-GAAP. הרווח של $0.87 הוא GAAP מלא. העלייה ברווחיות ברבעון הזה נבעה חלקית מ"עיתוי הוצאות" — כלומר תוכן שיופיע ברבעון הבא — ולכן Q3 חזק ו-Q4 חלש הם בחלקם אותו כסף שזז בין רבעונים.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>ההכנסות עולות כל רבעון, אבל קצב הצמיחה יורד: מ-17% לפני שנה ל-12% היום</h2>
+  <p class="body">בגרף: הכנסות רבעוניות (עמודות, במיליארדי דולר) ומעל כל עמודה שיעור הצמיחה לעומת אותו רבעון שנה קודם. מתחת לציר — שיעור הרווח התפעולי. שימו לב לכיוון: ההכנסות עולות, הצמיחה מאטה, הרווחיות מתרחבת. זה פרופיל של עסק שמתבגר.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 380" role="img" aria-label="הכנסות וצמיחה, חמישה רבעונים">
+      <g font-size="14" fill="var(--muted)">
+        <line x1="60" y1="300" x2="780" y2="300" stroke="var(--rule)"/>
+        <line x1="60" y1="220" x2="780" y2="220" stroke="var(--rule)" stroke-dasharray="3 4"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="var(--rule)" stroke-dasharray="3 4"/>
+        <text x="52" y="304" text-anchor="end">0</text>
+        <text x="52" y="224" text-anchor="end">$5B</text>
+        <text x="52" y="144" text-anchor="end">$10B</text>
+      </g>
+      <g fill="var(--navy)">
+        <rect x="95" y="115.8" width="90" height="184.2"/>
+        <rect x="245" y="107.2" width="90" height="192.8"/>
+        <rect x="395" y="104" width="90" height="196"/>
+        <rect x="545" y="99" width="90" height="201"/>
+        <rect x="695" y="94" width="90" height="206" fill="var(--accent)"/>
+      </g>
+      <g font-size="15" font-weight="700" fill="#fff" text-anchor="middle">
+        <text x="140" y="290">11.5</text><text x="290" y="290">12.1</text><text x="440" y="290">12.3</text><text x="590" y="290">12.6</text><text x="740" y="290">12.9</text>
+      </g>
+      <g font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle">
+        <text x="140" y="106">+17.2%</text><text x="290" y="97">+17.6%</text><text x="440" y="94">+16.2%</text><text x="590" y="89">+13.4%</text><text x="740" y="84">+11.8%</text>
+      </g>
+      <text x="420" y="50" font-size="13" fill="var(--muted)" text-anchor="middle">מעל כל עמודה: צמיחה לעומת אותו רבעון שנה קודם</text>
+      <g font-size="14" fill="var(--muted)" text-anchor="middle">
+        <text x="140" y="326">Q3 2025</text><text x="290" y="326">Q4 2025</text><text x="440" y="326">Q1 2026</text><text x="590" y="326">Q2 2026</text><text x="740" y="326">Q3 2026</text>
+      </g>
+      <g font-size="14" font-weight="700" fill="var(--accent2)" text-anchor="middle">
+        <text x="140" y="352">28.2%</text><text x="290" y="352">24.5%</text><text x="440" y="352">32.3%</text><text x="590" y="352">33.4%</text><text x="740" y="352">34.6%</text>
+      </g>
+      <text x="780" y="352" font-size="12" fill="var(--muted)" text-anchor="start" direction="rtl">רווחיות</text>
+      <text x="780" y="368" font-size="12" fill="var(--muted)" text-anchor="start" direction="rtl">תפעולית</text>
+    </svg>
+    <figcaption>הכנסות במיליארדי דולר (עמודות) ושיעור רווח תפעולי (שורה תחתונה). מקור: מכתב לבעלי המניות, 20.10.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>עוד מנויים — בעיקר מחוץ למערב</h3>
+      <p>הודו רשמה את הרבעון הטוב ביותר אי פעם במנויים חדשים: שעות הצפייה שם צמחו 24% וההכנסות 18%. אסיה ואמריקה הלטינית צומחות 12–17%; ארה"ב וקנדה — 11%. הצמיחה במנויים עברה למדינות שבהן המנוי זול.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>מחיר גבוה יותר למנוי</h3>
+      <p>העלאות המחיר של 2026 (כולל בארה"ב) "עברו כמו קודמותיהן": שיעור הנטישה ירד לעומת השנה שעברה. ההנהלה ציינה שבארה"ב מנוי נטפליקס משלם הכי פחות לשעת צפייה מכל שירות מתחרה — לפעמים חצי.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>פרסום — צומח מהר, מאחר ליעד</h3>
+      <p>העסק צומח 80%+ השנה, אבל התחזית ל-2026 קוצצה מ-$3B ל-$2.7B כי כלי פרסום חדשים התעכבו. ב-2027 המסלול עם פרסומות יגיע ל-15 מדינות נוספות (9 באירופה, קולומביה, פרו, ניו זילנד — ממרץ).</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · בעיית שעות הצפייה</div>
+  <h2>נטפליקס מרוויחה יותר על כל צופה — אבל הצופים לא צופים יותר, וזו השאלה שמעסיקה את וול סטריט</h2>
+  <p class="body">מכתב בעלי המניות מודה בכך במילים ברורות: "אנחנו יודעים שיש דאגה בקרב המשקיעים לגבי צמיחת שעות הצפייה." במחצית הראשונה של 2026 הצפייה העולמית בנטפליקס צמחה כ-2% בלבד. ההכנסות צמחו 12% — כלומר כמעט כל הצמיחה הגיעה ממחיר ומפרסום, לא מעוד שעות מול המסך. למה זה חשוב? כי לאורך זמן, אנשים משלמים על מה שהם צורכים. אם הצפייה לא גדלה, העלאות המחיר מגיעות לתקרה.</p>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>מה ההנהלה עונה</h3>
+      <p>שלושה טיעונים: (1) "מעורבות" היא איכות וגיוון, לא רק כמות — והראיה היא שהנטישה בשפל; (2) איפה שהתוכן המקומי חזק, הצפייה מזנקת — הודו +24%, הנורדים, קוריאה, יפן; (3) בארה"ב "הייתה לנו שנה של דאבלים וטריפלים, אבל לא הום-ראנים" — בעיית ביצוע, לא בעיית מודל.</p>
+    </div>
+    <div class="col">
+      <h3>מה השוק שומע</h3>
+      <p>שהתוכן האמריקאי לא מספיק טוב, שיוטיוב לוקחת את הזמן, ושנטפליקס נאלצת לקנות צפייה בכסף: NFL בחג ההודיה ובחג המולד, קרב פיורי–ג'ושואה, מונדיאל נשים 2027, רישוי סרטי דיסני, ערוץ TF1 שלם בצרפת. כל אלה מוסיפים שעות — אבל הם יקרים, ולא בלעדיים לנצח.</p>
+    </div>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>אזור</th><th>הכנסות Q3 ($M)</th><th>צמיחה</th><th>מה קורה שם</th></tr></thead>
+      <tbody>
+        <tr><td>ארה"ב וקנדה</td><td class="n">5,628</td><td class="n">+11%</td><td>השוק הגדול, הכי בשל. צמיחה ממחיר ופרסום בלבד. "יכולים טוב יותר"</td></tr>
+        <tr><td>אירופה, מזה"ת, אפריקה</td><td class="n">4,107</td><td class="n">+11% (9% בנטרול מטבע)</td><td>הנורדים חזקים; שותפות TF1 בצרפת מוסיפה צפייה</td></tr>
+        <tr><td>אמריקה הלטינית</td><td class="n">1,603</td><td class="n">+17% (12%)</td><td>הסכם רישוי ענק עם Globo בברזיל; מקסיקו — להיט "Facing El Chapo"</td></tr>
+        <tr><td>אסיה-פסיפיק</td><td class="n">1,537</td><td class="n">+12% (15%)</td><td>הודו בשיא, יפן וקוריאה חזקות. כאן גדלים המנויים</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>המודל של נטפליקס עובד מצוין כשיש להיט — הודו הוכיחה את זה. הסיכון הוא לא שהעסק נשבר, אלא שהצמיחה ממחירים תתמצה לפני שהצפייה תחזור לצמוח. המספר לעקוב אחריו ב-2027 הוא לא ההכנסות — הוא שעות הצפייה בארה"ב.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית לרבעון הבא ולשנה</div>
+  <h2>רבעון רביעי של $13.4B — הנמוך בטווח הצפי — ושיעור רווח שיורד זמנית ל-26%</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית החברה</th><th>מה האנליסטים ציפו</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות Q4 2026</td><td class="n">$13.44B</td><td class="n">$13.52B</td><td>+11.5% · קצת מתחת לצפי</td></tr>
+        <tr><td>רווחיות תפעולית Q4</td><td class="n">26.0%</td><td class="n">—</td><td>כולל ~1.2 נק' עלויות פיטורים; לפני שנה 24.5%</td></tr>
+        <tr class="hl"><td>רווח למניה Q4</td><td class="n">$0.67</td><td class="n">$0.73</td><td>מתחת לצפי</td></tr>
+        <tr><td>הכנסות 2026 (שנה מלאה)</td><td class="n">$51.1B</td><td class="n">$51.2B</td><td>+13% · 0.2% מתחת לאמצע הטווח הקודם</td></tr>
+        <tr><td>רווחיות תפעולית 2026</td><td class="n">31.5%</td><td class="n">—</td><td>מ-29.5% ב-2025 · רווח תפעולי +20%</td></tr>
+        <tr><td>הכנסות פרסום 2026</td><td class="n">~$2.7B</td><td class="n">—</td><td>קוצץ מ-~$3B</td></tr>
+        <tr><td>תזרים חופשי 2026</td><td class="n">~$12.0B</td><td class="n">—</td><td>קוצץ מ-$12.5B בגלל עסקת נדל"ן</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body" style="margin-top:16px">במילים פשוטות: שום דבר כאן לא רע. הכול פשוט קצת פחות טוב ממה שקיוו. חברה שצומחת 12% עם רווחיות של 31% היא עסק מצוין — אבל המניה תומחרה לעסק שצומח 15%+. התחזית ל-2027 תפורסם בינואר; ההנהלה אמרה רק שהיא מצפה ל"צמיחה דו-ספרתית" והמשך הרחבת רווחיות.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · שינויים בהנהלה ובארגון</div>
+  <h2>מנהלת תוכן חדשה-ישנה מדיסני, והפיטורים הגדולים ביותר מאז 2022 — באותו רבעון</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>פיטר רייס מחליף את בלה בג'ריה</h3>
+      <p>בלה בג'ריה הובילה את התוכן כעשור ובנתה את מכונת "המקומי שהופך לגלובלי" — Squid Game, Lupin, Money Heist. פיטר רייס, שניהל את אולפני פוקס ואת התוכן של דיסני, נכנס במקומה כ-Chief Content Officer. סרנדוס היה ישיר: "יש לנו הזדמנות לקחת את הסלייט לרמה הבאה, במיוחד בארה"ב." התרגום: התוכן האמריקאי לא מספיק טוב, והביאו מישהו שיודע לייצר להיטים גדולים.</p>
+    </div>
+    <div class="col">
+      <h3>~1,000 עובדים הביתה</h3>
+      <p>הקיצוץ הגדול ביותר מאז 2022, כ-6% מכוח האדם. ההסבר של גרג פיטרס: "אחרי שנים של צמיחה מהירה, יש תחומים שבנינו מהר והשקענו בהם יתר על המידה." העלות: ~1.2 נק' משיעור הרווח ב-Q4 ו-0.3 נק' מהשנה. החיסכון ב-2027 לא כומת — "נספר בינואר".</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>שני השינויים יחד מספרים סיפור אחד: נטפליקס מאמינה שהבעיה היא בביצוע, לא באסטרטגיה. היא לא משנה כיוון — היא מחליפה את מי שמריץ אותו ומקצצת במה שלא עובד. זו תגובה של חברה בטוחה בעצמה. השאלה היא אם השוק יחכה לראות אם רייס מצליח — תוצאות של מנהל תוכן נראות רק אחרי 18–24 חודשים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ההנהלה אמרה בראיון</div>
+  <h2>ארבעה מסרים: האסטרטגיה לא משתנה, הליבה היא 95%, הפרסום מאחר אבל גדל, והשותפויות עובדות</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"האסטרטגיה שלנו לא השתנתה"</h3>
+      <p>סרנדוס פתח בתשובה לשאלה על "אובדן היתרון התחרותי": תוכן מקורי ובלעדי הוא העוגן, 95% מההוצאה ו"כמעט כל ההכנסה" בליבה. ספורט חי, פודקאסטים, וידאו קצר — "יוזמות בשלב מוקדם" עם תקציב "הדוק מאוד".</p>
+    </div>
+    <div class="col">
+      <h3>"הנטישה בשפל — זו ההוכחה"</h3>
+      <p>פיטרס: המדד האולטימטיבי לערך הוא תגובה להעלאת מחיר. העלאות 2026 עברו, הנטישה ירדה בכל אזור, בארה"ב ובעולם — "כבר מובילת תעשייה, והשתפרה". זו התשובה לכל שאלה על צפייה.</p>
+    </div>
+    <div class="col">
+      <h3>"קצת מאחרים ליעד הפרסום"</h3>
+      <p>פיטרס הודה בפיגור: בניית מערכת הפרסום הייתה "המהירה בתעשייה", אבל אינטגרציות עם שותפים התעכבו. "אם היעדים אגרסיביים מספיק, מדי פעם מפספסים אבן דרך." הביקוש חזק; הבעיה טכנית, לא שיווקית.</p>
+    </div>
+    <div class="col">
+      <h3>"ספקים שהם גם מתחרים"</h3>
+      <p>סרנדוס על הסכמי הרישוי (דיסני, Globo, Sony, Universal): "כל הספקים שלנו הם גם המתחרים שלנו — זה קצת מסובך." נטפליקס הפכה למפיץ שהאולפנים צריכים, ומנצלת את זה. 30 סרטים יצאו לקולנוע השנה, נרניה עם חלון של 45 יום.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>השאלה הראשונה הייתה "איך תחזירו את היתרון התחרותי?" — כשזו הפתיחה, הטון כבר נקבע</h2>
+  <p class="body">נטפליקס מנהלת את שיחת התוצאות כראיון: האנליסטים שולחים שאלות מראש, ואיש הקשר למשקיעים מקריא אותן. זה נותן להנהלה שליטה — ולכן מעניין במיוחד מה היא בחרה לפתוח בו ומה היא בחרה להשאיר לסוף.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>מעורבות וצפייה — ארבע שאלות בניסוחים שונים (גולדמן, מורגן סטנלי, JPMorgan, Loop). ההנהלה ענתה בכל פעם באותם שני דברים: נטישה נמוכה, והודו. כשהתשובה חוזרת מילה במילה, היא מוכנה מראש.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>$4.8B רכישות חוזרות ברבעון — שיא כל הזמנים, פי 2.6 מהשנה שעברה. ההנהלה קונה את המניה בידיים מלאות בדיוק כשהיא בשפל. זו הצהרה שהחברה חושבת שהמניה זולה — או שאין לה שימוש טוב יותר לכסף. שתי הקריאות אפשריות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>"אנחנו לא מרוצים, אנחנו עובדים על זה" (הסמנכ"ל על שעות הצפייה), ו"היו לנו דאבלים וטריפלים, לא הום-ראנים" (סרנדוס על ארה"ב). הודאות נדירות מהנהלה שבדרך כלל מגוננת.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>החיסכון מהפיטורים ב-2027: "לא נכמת". תחזית 2027: "מוקדם מדי". השאלה על יוטיוב — לא נשאלה ישירות, ולא נענתה. המילה "YouTube" לא הופיעה בראיון אפילו פעם אחת.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"היתרון של השוק האמריקאי הוא ההזדמנות שלנו" (פיטרס). ההנהלה מציגה את החולשה בארה"ב כפוטנציאל לא ממומש, לא כבעיה מבנית. אם זה נכון — פיטר רייס הוא הקטליזטור. אם לא — זה הסיפור של 2027.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>ההנהלה הקדישה זמן ארוך לפירוט הסלייט של Q4 ו-2027 — נרניה, ברידג'רטון 5, וונסדיי 3, Charlie and the Chocolate Factory, הקנדיז של פסבנדר. כשמנהלים מקריאים רשימת להיטים עתידיים, הם אומרים "חכו, זה בא". השוק לא אוהב לחכות.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>נטפליקס היא היום החברה הרווחית ביותר בסטרימינג, במרחק רב מהשנייה. הוויכוח הוא לא על הרווח — הוא על קצב הצמיחה: האם 12% הוא הקצב החדש, או תחנת ביניים בדרך חזרה ל-15%. מי שמאמין בראשון רואה מכפיל 18 על רווח שצומח 20% — זול. מי שמאמין שהצמיחה ממשיכה לרדת — רואה חברת מדיה בוגרת שעוד לא מתומחרת ככזאת.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · איך השוק הגיב</div>
+  <h2>ירידה של כ-6% לשפל של שנתיים — והאנליסטים הורידו יעדים אבל אף אחד לא הוריד דירוג</h2>
+  <p class="body">המניה ירדה כ-6% במסחר המאוחר אחרי הדוח (20.10) ופתחה את 21.10 סביב $64–65 — השפל הנמוך ביותר מזה שנתיים. ב-12 החודשים האחרונים המניה איבדה כ-46%, ומתחילת 2026 כ-27%. שווי השוק: כ-$270 מיליארד. מכפיל הרווח על 12 החודשים האחרונים: כ-19; על הרווח הצפוי ל-2026: כ-18.</p>
+  <p class="body">שלושה בנקים הורידו יעדי מחיר: UBS מ-$115 ל-$110, Guggenheim מ-$80 ל-$78, Seaport מ-$90 ל-$85. Jefferies ($85), Deutsche Bank ($93) ו-TD Cowen ($100) השאירו. כולם — ללא יוצא מהכלל — על "קנייה". הסיבות שצוינו: תחזית פרסום חלשה, חשש ממעורבות, היעדר להיטים, תחרות מיוטיוב. הנגד שצוין: רווח מעל הצפי ונטישה בשפל.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>כשכל האנליסטים על "קנייה" והמניה יורדת 46% בשנה, אחד משני הצדדים טועה. היסטורית, בנטפליקס השוק צדק לטווח קצר והאנליסטים לטווח ארוך — המניה ירדה 70% ב-2022 על אותם חששות (האטה, תחרות) ואז עלתה פי חמישה. זה לא מבטיח חזרה, אבל זה מסביר למה אף אחד לא ממהר להוריד דירוג.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי הוא "התבגרות": שהצמיחה תמשיך לרדת עד שהמניה תתומחר כחברת טלוויזיה</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>האטה בצמיחה</h3><p>מ-17% ל-12% בשנה אחת, והתחזית ל-Q4 היא 11.5%. אם זה ממשיך ל-8–9% ב-2027, המכפיל יירד גם אם הרווח ימשיך לעלות. זה בדיוק מה שקרה למניה ב-2022.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>שעות צפייה שלא גדלות</h3><p>+2% בלבד במחצית הראשונה. העלאות מחיר אפשריות רק כל עוד הצופים מרגישים שהם מקבלים ערך. בלי צמיחה בצפייה, מנוע המחיר נעצר תוך שנתיים-שלוש.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>יוטיוב</h3><p>14% מזמן הטלוויזיה בארה"ב, חינם, ועם 100 מיליון יוצרים שמייצרים תוכן בחינם. נטפליקס לא יכולה להתחרות בכמות — רק באיכות. ההנהלה לא הזכירה אותה אפילו פעם אחת.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תלות בתוכן יקר</h3><p>NFL, אגרוף, מונדיאל, סרטים של 200 מיליון דולר. כשהתוכן המקורי לא מספיק, קונים אירועים — אבל זכויות ספורט מתייקרות כל חידוש, ואינן בלעדיות לאורך זמן.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>מעבר הנהלה בתוכן</h3><p>מנהל תוכן חדש אחרי עשור הוא שינוי גדול. תוצאות של סלייט נראות אחרי 18–24 חודשים; עד אז המניה תסחר על אמונה. רייס הצליח בפוקס ובדיסני — אבל נטפליקס היא מכונה אחרת.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>פרסום מאחר</h3><p>היעד קוצץ 10% בגלל עיכובים טכניים. העסק צומח 80%, אבל מבסיס קטן. אם ההרחבה ל-15 מדינות ב-2027 תתעכב גם היא, המנוע השלישי יישאר קטן עוד שנה.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>הצמיחה</strong></td><td>12% עם רווח תפעולי +20% ותזרים +15%. שלושה מנועים (מנויים, מחיר, פרסום) שכולם עובדים. הודו מראה מה קורה כשהתוכן פוגע.</td><td>הקצב יורד רבעון אחרי רבעון. 12% היום, 11.5% בתחזית. אם ארה"ב לא חוזרת לצמוח, גם השאר לא יספיק.</td></tr>
+        <tr><td><strong>הרווחיות</strong></td><td>31.5% השנה, מ-29.5%; היעד הוא הרחבה שנתית. פיטורי 6% מהעובדים יוסיפו ל-2027. אין מתחרה סטרימינג עם רווחיות דומה.</td><td>Q4 יורד ל-26%. חלק מהשיא ב-Q3 הוא "עיתוי הוצאות" — כסף שזז בין רבעונים. התוכן היקר (ספורט, סרטי ענק) לוחץ על הרווחיות.</td></tr>
+        <tr><td><strong>הפרסום</strong></td><td>+80% בשנה, 15 מדינות חדשות ב-2027, מערכת פרסום עצמאית. פער ההכנסה למנוי בין מסלול הפרסום למסלול הרגיל נסגר — זו צמיחה בטוחה.</td><td>יעד 2026 קוצץ ב-10%. "אבני דרך שפוספסו". מבסיס של $2.7B, גם 80% צמיחה הם קטן יחסית ל-$51B.</td></tr>
+        <tr><td><strong>התוכן</strong></td><td>סלייט 2027 הוא החזק אי פעם: נרניה, ברידג'רטון, וונסדיי, צ'ארלי, מונדיאל נשים. פיטר רייס מביא ניסיון בלהיטי ענק. רישוי מדיסני ו-Globo מרחיב בזול.</td><td>"דאבלים וטריפלים, לא הום-ראנים" בארה"ב. מנהל תוכן חדש = 18 חודשים של אי-ודאות. הספקים הם מתחרים ויכולים לסגור את הברז.</td></tr>
+        <tr><td><strong>המאזן</strong></td><td>חוב נטו של $7B בלבד מול $12B תזרים שנתי. $22B אישור לרכישות חוזרות. יכולת לרכוש מניות בשפל — וזה מה שנעשה.</td><td>רכישות של $4.8B ברבעון בלי לעצור את הירידה. אם המניה תמשיך לרדת, הכסף "נשרף" במקום להישמר לרכישה אסטרטגית.</td></tr>
+        <tr><td><strong>התחרות</strong></td><td>כל שירותי הסטרימינג המסורתיים מפסידים או בקושי מרוויחים, וחלקם הפכו לספקים. נטפליקס היא היחידה שמסוגלת לשלם על ספורט ולהישאר רווחית.</td><td>המתחרה שחשובה היא יוטיוב — חינמית, כפולה בזמן צפייה, ולא תלויה בתקציב תוכן. זו תחרות שלא מנצחים בכסף.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>מכפיל ~18 על 2026 — הנמוך מזה שנים לחברה שהרווח שלה צומח 20%+. המניה כבר ירדה 46%; הרבה פסימיות כבר במחיר.</td><td>מכפיל 18 הוא "זול" רק אם הצמיחה נשארת דו-ספרתית. אם היא יורדת ל-8%, מכפיל 14–15 של חברת מדיה בוגרת הוא היעד — עוד 20% למטה.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהרבעון הבא יהיה חלש בכוונה (26% רווחיות, עלויות פיטורים) ושהתחזית ל-2027 מגיעה רק בינואר — אין קטליזטור חיובי קרוב. משקיע לטווח ארוך צריך לעקוב אחרי שני מספרים: שעות צפייה בארה"ב, והכנסות הפרסום ב-2027 אחרי ההרחבה ל-15 מדינות. אם שניהם עולים — החששות של היום ייראו כמו 2022.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 13 -->
+<section>
+  <div class="sec-label">13 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>ARM</dt><dd>Average Revenue per Membership — כמה כסף נכנס בממוצע מכל מנוי בחודש. עולה דרך העלאות מחיר ופרסום. המנוע העיקרי של הצמיחה בשווקים הבשלים.</dd>
+    <dt>נטישה (Churn)</dt><dd>אחוז המנויים שמבטלים בחודש. המדד שההנהלה אוהבת הכי הרבה — "מובילת תעשייה" והשתפר השנה, גם אחרי העלאות מחיר.</dd>
+    <dt>מעורבות (Engagement)</dt><dd>כמה, כמה טוב ובאיזה גיוון אנשים צופים. נטפליקס מודדת שעות צפייה; הצמיחה שלהן (~2%) היא לב החשש של השוק.</dd>
+    <dt>UCAN / EMEA / LATAM / APAC</dt><dd>ארבעת אזורי הדיווח: ארה"ב וקנדה; אירופה, המזרח התיכון ואפריקה; אמריקה הלטינית; אסיה-פסיפיק.</dd>
+    <dt>בנטרול מטבע (F/X neutral)</dt><dd>הצמיחה כאילו שערי החליפין לא זזו. חשוב כי נטפליקס גובה ב-190 מטבעות; השנה הדולר החלש "הוסיף" כ-1% לצמיחה המדווחת.</dd>
+    <dt>רווחיות תפעולית</dt><dd>כמה נשאר מכל דולר הכנסה אחרי כל ההוצאות התפעוליות (תוכן, שיווק, טכנולוגיה). 34.6% ברבעון, 31.5% יעד לשנה.</dd>
+    <dt>תזרים מזומנים חופשי</dt><dd>מזומן מהפעילות פחות השקעות בציוד. $2.9B ברבעון, ~$12B לשנה. זה הכסף שמממן את רכישות המניות.</dd>
+    <dt>רכישה חוזרת (Buyback)</dt><dd>החברה קונה את מניותיה בבורסה ומבטלת אותן — כל מניה שנשארת שווה חלק גדול יותר מהחברה. $4.8B ברבעון, שיא.</dd>
+    <dt>סלייט (Slate)</dt><dd>רשימת התכנים שיוצאים בתקופה. "סלייט חזק" = הרבה להיטים צפויים. סלייט Q4 ו-2027 תואר כחזק ביותר אי פעם.</dd>
+    <dt>פיצול מניות 10:1</dt><dd>בנובמבר 2025 כל מניה הפכה לעשר. מחיר של $65 היום = $650 במונחים הישנים. השווי של האחזקה לא השתנה.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Netflix — מכתב לבעלי המניות Q3 2026 (20.10.2026); תמלול ראיון התוצאות (20.10.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: TheWrap, TradingKey, GuruFocus, Yahoo Finance, FactSet/StockOracle (20–23.10.2026). נטפליקס אינה מפרסמת מצגת משקיעים; המכתב משמש במקומה.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
