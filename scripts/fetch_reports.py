@@ -53,9 +53,24 @@ def _get(url, binary=False):
 
 
 def list_html():
+    """שמות הקבצים בשורש nidam-reports שהם דוחות: *.html, וגם קובץ בלי סיומת
+    בתבנית TICKER__YYYY-MM-DD (23.10.2026: WDC__2026-10-22 נשמר כך בחלון
+    "שמירה בשם" של ווינדוס — הסיומת מוסתרת, אז בסייר הוא נראה כמו האחרים)."""
     data = json.loads(_get(API))
-    return [f["name"] for f in data
-            if f.get("type") == "file" and f["name"].lower().endswith(".html")]
+    out = []
+    for f in data:
+        if f.get("type") != "file":
+            continue
+        name = f["name"]
+        if name.lower().endswith(".html") or NAME_RE.fullmatch(name):
+            out.append(name)
+    return out
+
+
+def local_name(name):
+    """השם שבו הקובץ נשמר באתר — תמיד עם .html, כדי שהדפדפן יציג אותו ב-iframe
+    (GitHub Pages מגיש קובץ בלי סיומת כהורדה)."""
+    return name if name.lower().endswith(".html") else name + ".html"
 
 
 def fetch_logo(ticker):
@@ -169,6 +184,7 @@ def main():
         except Exception as e:
             print(f"[skip] {name}: {e}")
             continue
+        name = local_name(name)
         # write file (content-aware)
         path = os.path.join(OUT_DIR, name)
         old = None
