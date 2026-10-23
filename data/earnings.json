@@ -1,50 +1,81 @@
 {
-  "today": "2026-10-23",
-  "todayCount": 10,
-  "todayBig": [
-    {
-      "ticker": "AXP",
-      "name": "American Express Company",
-      "capB": 211.5
-    },
-    {
-      "ticker": "E",
-      "name": "Eni S.p.A. Sponsored ADR",
-      "capB": 85.7
-    },
-    {
-      "ticker": "SLB",
-      "name": "SLB Limited",
-      "capB": 78.7
-    },
-    {
-      "ticker": "INFY",
-      "name": "Infosys Limited Sponsored ADR",
-      "capB": 49.3
-    },
-    {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Class A",
-      "capB": 43.2
-    },
-    {
-      "ticker": "BBD",
-      "name": "Banco Bradesco SA Sponsored ADR Pfd",
-      "capB": 42.0
-    },
-    {
-      "ticker": "FCNCA",
-      "name": "First Citizens BancShares, Inc. Class A",
-      "capB": 26.3
-    },
-    {
-      "ticker": "FCNCN",
-      "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
-      "capB": 24.4
-    }
-  ],
+  "today": "2026-10-24",
+  "todayCount": 0,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-23",
+        "label": "23.10",
+        "items": [
+          {
+            "ticker": "AXP",
+            "name": "American Express Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/AXP.png",
+            "chg": -3.68,
+            "price": 313.22,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "E",
+            "name": "Eni S.p.A. Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/E.png",
+            "chg": 4.28,
+            "price": 62.08,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "SLB",
+            "name": "SLB Limited",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SLB.png",
+            "chg": 7.08,
+            "price": 53.06,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "INFY",
+            "name": "Infosys Limited Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/INFY.png",
+            "chg": -6.58,
+            "price": 12.35,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "FCNCA",
+            "name": "First Citizens BancShares, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FCNCA.png",
+            "chg": 8.15,
+            "price": 2375.84,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "FCNCN",
+            "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FCNCN.png",
+            "chg": 0.23,
+            "price": 22.15,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          }
+        ]
+      },
       {
         "date": "2026-10-22",
         "label": "22.10",
@@ -189,494 +220,479 @@
             "baseDate": "2026-10-21"
           }
         ]
-      },
-      {
-        "date": "2026-10-20",
-        "label": "20.10",
-        "items": [
-          {
-            "ticker": "SPCX",
-            "name": "Space Exploration Technologies Corp",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/SPCX.png",
-            "chg": 7.79,
-            "price": 159.31,
-            "reactDate": "2026-10-21",
-            "baseDate": "2026-10-20"
-          },
-          {
-            "ticker": "GE",
-            "name": "GE Aerospace",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GE.png",
-            "chg": -3.67,
-            "price": 299.87,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
-          },
-          {
-            "ticker": "NFLX",
-            "name": "Netflix, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/NFLX.png",
-            "chg": -5.31,
-            "price": 65.04,
-            "reactDate": "2026-10-21",
-            "baseDate": "2026-10-20"
-          },
-          {
-            "ticker": "RTX",
-            "name": "RTX Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/RTX.png",
-            "chg": 0.64,
-            "price": 193.34,
-            "reactDate": "2026-10-20",
-            "baseDate": "2026-10-19"
-          },
-          {
-            "ticker": "ISRG",
-            "name": "Intuitive Surgical, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/ISRG.png",
-            "chg": -2.26,
-            "price": 428.12,
-            "reactDate": "2026-10-21",
-            "baseDate": "2026-10-20"
-          },
-          {
-            "ticker": "CB",
-            "name": "Chubb Limited",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/CB.png",
-            "chg": -0.78,
-            "price": 354.95,
-            "reactDate": "2026-10-21",
-            "baseDate": "2026-10-20"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
+  "reporting": [],
+  "more": 0,
+  "upcoming": [
     {
-      "ticker": "AXP",
-      "name": "American Express Company",
-      "when": "before",
-      "logo": "data/earnings/logos/AXP.png"
+      "date": "2026-10-26",
+      "label": "26/10",
+      "dow": "ב׳",
+      "count": 10,
+      "tickers": [
+        "VZ",
+        "WELL",
+        "CDNS",
+        "NUE",
+        "PSA",
+        "HIG"
+      ]
     },
     {
-      "ticker": "E",
-      "name": "Eni S.p.A. Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/E.png"
+      "date": "2026-10-27",
+      "label": "27/10",
+      "dow": "ג׳",
+      "count": 47,
+      "tickers": [
+        "V",
+        "KO",
+        "HSBC",
+        "NVS",
+        "BA",
+        "STX"
+      ]
     },
     {
-      "ticker": "SLB",
-      "name": "SLB Limited",
-      "when": "before",
-      "logo": "data/earnings/logos/SLB.png"
+      "date": "2026-10-28",
+      "label": "28/10",
+      "dow": "ד׳",
+      "count": 55,
+      "tickers": [
+        "GOOGM",
+        "GOOGN",
+        "GOOG",
+        "GOOGL",
+        "MSFT",
+        "SKHY"
+      ]
     },
     {
-      "ticker": "INFY",
-      "name": "Infosys Limited Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/INFY.png"
+      "date": "2026-10-29",
+      "label": "29/10",
+      "dow": "ה׳",
+      "count": 84,
+      "tickers": [
+        "AMZN",
+        "LLY",
+        "MA",
+        "INTC",
+        "MRK",
+        "CAT"
+      ]
     },
     {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/NBIS.png"
-    },
-    {
-      "ticker": "BBD",
-      "name": "Banco Bradesco SA Sponsored ADR Pfd",
-      "when": "",
-      "logo": "data/earnings/logos/BBD.png"
-    },
-    {
-      "ticker": "FCNCA",
-      "name": "First Citizens BancShares, Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/FCNCA.png"
-    },
-    {
-      "ticker": "FCNCN",
-      "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
-      "when": "before",
-      "logo": "data/earnings/logos/FCNCN.png"
-    },
-    {
-      "ticker": "FCNCO",
-      "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
-      "when": "before",
-      "logo": "data/earnings/logos/FCNCO.png"
-    },
-    {
-      "ticker": "FCNCP",
-      "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
-      "when": "before",
-      "logo": "data/earnings/logos/FCNCP.png"
+      "date": "2026-10-30",
+      "label": "30/10",
+      "dow": "ו׳",
+      "count": 19,
+      "tickers": [
+        "XOM",
+        "ABBV",
+        "CVX",
+        "AZN",
+        "BP",
+        "GD"
+      ]
     }
   ],
-  "more": 0,
-  "upcoming": [],
   "week": [
     {
-      "date": "2026-10-19",
+      "date": "2026-10-26",
       "dow": "שני",
-      "label": "19.10",
-      "total": 3,
-      "companies": [
-        {
-          "ticker": "FITB",
-          "name": "Fifth Third Bancorp",
-          "when": "before",
-          "logo": "data/earnings/logos/FITB.png"
-        },
-        {
-          "ticker": "STLD",
-          "name": "Steel Dynamics, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/STLD.png"
-        },
-        {
-          "ticker": "WRB",
-          "name": "W. R. Berkley Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/WRB.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-20",
-      "dow": "שלישי",
-      "label": "20.10",
-      "total": 17,
-      "companies": [
-        {
-          "ticker": "SPCX",
-          "name": "Space Exploration Technologies Corp",
-          "when": "after",
-          "logo": "data/earnings/logos/SPCX.png"
-        },
-        {
-          "ticker": "GE",
-          "name": "GE Aerospace",
-          "when": "before",
-          "logo": "data/earnings/logos/GE.png"
-        },
-        {
-          "ticker": "NFLX",
-          "name": "Netflix, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/NFLX.png"
-        },
-        {
-          "ticker": "RTX",
-          "name": "RTX Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/RTX.png"
-        },
-        {
-          "ticker": "ISRG",
-          "name": "Intuitive Surgical, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/ISRG.png"
-        },
-        {
-          "ticker": "CB",
-          "name": "Chubb Limited",
-          "when": "after",
-          "logo": "data/earnings/logos/CB.png"
-        },
-        {
-          "ticker": "COF",
-          "name": "Capital One Financial Corp",
-          "when": "after",
-          "logo": "data/earnings/logos/COF.png"
-        },
-        {
-          "ticker": "MMM",
-          "name": "3M Company",
-          "when": "before",
-          "logo": "data/earnings/logos/MMM.png"
-        },
-        {
-          "ticker": "NOC",
-          "name": "Northrop Grumman Corp.",
-          "when": "before",
-          "logo": "data/earnings/logos/NOC.png"
-        },
-        {
-          "ticker": "AMX",
-          "name": "America Movil SAB de CV Sponsored ADR Class B",
-          "when": "before",
-          "logo": "data/earnings/logos/AMX.png"
-        },
-        {
-          "ticker": "GM",
-          "name": "General Motors Company",
-          "when": "before",
-          "logo": "data/earnings/logos/GM.png"
-        },
-        {
-          "ticker": "MSCI",
-          "name": "MSCI Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/MSCI.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-21",
-      "dow": "רביעי",
-      "label": "21.10",
-      "total": 30,
-      "companies": [
-        {
-          "ticker": "META",
-          "name": "Meta Platforms Inc Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/META.png"
-        },
-        {
-          "ticker": "TSLA",
-          "name": "Tesla, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/TSLA.png"
-        },
-        {
-          "ticker": "PM",
-          "name": "Philip Morris International Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/PM.png"
-        },
-        {
-          "ticker": "LRCX",
-          "name": "Lam Research Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/LRCX.png"
-        },
-        {
-          "ticker": "SAP",
-          "name": "SAP SE Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/SAP.png"
-        },
-        {
-          "ticker": "TXN",
-          "name": "Texas Instruments Incorporated",
-          "when": "after",
-          "logo": "data/earnings/logos/TXN.png"
-        },
-        {
-          "ticker": "TMO",
-          "name": "Thermo Fisher Scientific Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/TMO.png"
-        },
-        {
-          "ticker": "IBM",
-          "name": "International Business Machines Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/IBM.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "ABT",
-          "name": "Abbott Laboratories",
-          "when": "before",
-          "logo": "data/earnings/logos/ABT.png"
-        },
-        {
-          "ticker": "NEE",
-          "name": "NextEra Energy, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/NEE.png"
-        },
-        {
-          "ticker": "DHR",
-          "name": "Danaher Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/DHR.png"
-        },
-        {
-          "ticker": "SCCO",
-          "name": "Southern Copper Corporation",
-          "when": "",
-          "logo": "data/earnings/logos/SCCO.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-22",
-      "dow": "חמישי",
-      "label": "22.10",
-      "total": 32,
-      "companies": [
-        {
-          "ticker": "PG",
-          "name": "Procter & Gamble Company",
-          "when": "before",
-          "logo": "data/earnings/logos/PG.png"
-        },
-        {
-          "ticker": "UNP",
-          "name": "Union Pacific Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/UNP.png"
-        },
-        {
-          "ticker": "BX",
-          "name": "Blackstone Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BX.png"
-        },
-        {
-          "ticker": "LMT",
-          "name": "Lockheed Martin Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/LMT.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "WDC",
-          "name": "Western Digital Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/WDC.png"
-        },
-        {
-          "ticker": "VLO",
-          "name": "Valero Energy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/VLO.png"
-        },
-        {
-          "ticker": "SPOT",
-          "name": "Spotify Technology SA",
-          "when": "before",
-          "logo": "data/earnings/logos/SPOT.png"
-        },
-        {
-          "ticker": "NEM",
-          "name": "Newmont Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NEM.png"
-        },
-        {
-          "ticker": "CMCSA",
-          "name": "Comcast Corporation Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/CMCSA.png"
-        },
-        {
-          "ticker": "NSC",
-          "name": "Norfolk Southern Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/NSC.png"
-        },
-        {
-          "ticker": "BCS",
-          "name": "Barclays PLC Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/BCS.png"
-        },
-        {
-          "ticker": "HON",
-          "name": "Honeywell International Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/HON.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-23",
-      "dow": "שישי",
-      "label": "23.10",
+      "label": "26.10",
       "total": 10,
       "companies": [
         {
-          "ticker": "AXP",
-          "name": "American Express Company",
+          "ticker": "VZ",
+          "name": "Verizon Communications Inc.",
           "when": "before",
-          "logo": "data/earnings/logos/AXP.png"
+          "logo": "data/earnings/logos/VZ.png"
         },
         {
-          "ticker": "E",
-          "name": "Eni S.p.A. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/E.png"
+          "ticker": "WELL",
+          "name": "Welltower Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/WELL.png"
         },
         {
-          "ticker": "SLB",
-          "name": "SLB Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/SLB.png"
+          "ticker": "CDNS",
+          "name": "Cadence Design Systems, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/CDNS.png",
+          "logoBg": "dark"
         },
         {
-          "ticker": "INFY",
-          "name": "Infosys Limited Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/INFY.png"
+          "ticker": "NUE",
+          "name": "Nucor Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NUE.png"
         },
         {
-          "ticker": "NBIS",
-          "name": "Nebius Group N.V. Class A",
+          "ticker": "PSA",
+          "name": "Public Storage",
+          "when": "after",
+          "logo": "data/earnings/logos/PSA.png"
+        },
+        {
+          "ticker": "HIG",
+          "name": "Hartford Insurance Group, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/HIG.png"
+        },
+        {
+          "ticker": "CLS",
+          "name": "Celestica Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/CLS.png"
+        },
+        {
+          "ticker": "CINF",
+          "name": "Cincinnati Financial Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/CINF.png"
+        },
+        {
+          "ticker": "BRO",
+          "name": "Brown & Brown, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/BRO.png"
+        },
+        {
+          "ticker": "PFG",
+          "name": "Principal Financial Group, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/PFG.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-27",
+      "dow": "שלישי",
+      "label": "27.10",
+      "total": 47,
+      "companies": [
+        {
+          "ticker": "V",
+          "name": "Visa Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/V.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "KO",
+          "name": "Coca-Cola Company",
+          "when": "before",
+          "logo": "data/earnings/logos/KO.png"
+        },
+        {
+          "ticker": "HSBC",
+          "name": "HSBC Holdings PLC Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/HSBC.png"
+        },
+        {
+          "ticker": "NVS",
+          "name": "Novartis AG Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/NVS.png"
+        },
+        {
+          "ticker": "BA",
+          "name": "Boeing Company",
+          "when": "before",
+          "logo": "data/earnings/logos/BA.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "STX",
+          "name": "Seagate Technology Holdings PLC",
+          "when": "after",
+          "logo": "data/earnings/logos/STX.png"
+        },
+        {
+          "ticker": "SPGI",
+          "name": "S&P Global, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/SPGI.png"
+        },
+        {
+          "ticker": "GLW",
+          "name": "Corning Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/GLW.png"
+        },
+        {
+          "ticker": "HCA",
+          "name": "HCA Healthcare Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/HCA.png"
+        },
+        {
+          "ticker": "WM",
+          "name": "Waste Management, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/WM.png"
+        },
+        {
+          "ticker": "FCX",
+          "name": "Freeport-McMoRan, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/FCX.png"
+        },
+        {
+          "ticker": "AMT",
+          "name": "American Tower Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/AMT.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "dow": "רביעי",
+      "label": "28.10",
+      "total": 55,
+      "companies": [
+        {
+          "ticker": "GOOGM",
+          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+          "when": "after"
+        },
+        {
+          "ticker": "GOOGN",
+          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+          "when": "after"
+        },
+        {
+          "ticker": "GOOG",
+          "name": "Alphabet Inc. Class C",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOG.png"
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOGL.png"
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/MSFT.png"
+        },
+        {
+          "ticker": "SKHY",
+          "name": "SK hynix Inc. Sponsored ADR",
           "when": "",
-          "logo": "data/earnings/logos/NBIS.png"
+          "logo": "data/earnings/logos/SKHY.png"
         },
         {
-          "ticker": "BBD",
-          "name": "Banco Bradesco SA Sponsored ADR Pfd",
+          "ticker": "GEV",
+          "name": "GE Vernova Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/GEV.png"
+        },
+        {
+          "ticker": "KLAC",
+          "name": "KLA Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/KLAC.png"
+        },
+        {
+          "ticker": "SAN",
+          "name": "Banco Santander S.A. Sponsored ADR",
           "when": "",
-          "logo": "data/earnings/logos/BBD.png"
+          "logo": "data/earnings/logos/SAN.png"
         },
         {
-          "ticker": "FCNCA",
-          "name": "First Citizens BancShares, Inc. Class A",
+          "ticker": "APH",
+          "name": "Amphenol Corporation Class A",
           "when": "before",
-          "logo": "data/earnings/logos/FCNCA.png"
+          "logo": "data/earnings/logos/APH.png"
         },
         {
-          "ticker": "FCNCN",
-          "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
-          "when": "before",
-          "logo": "data/earnings/logos/FCNCN.png"
+          "ticker": "NOW",
+          "name": "ServiceNow, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/NOW.png"
         },
         {
-          "ticker": "FCNCO",
-          "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
-          "when": "before",
-          "logo": "data/earnings/logos/FCNCO.png"
+          "ticker": "TMUS",
+          "name": "T-Mobile US, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/TMUS.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "dow": "חמישי",
+      "label": "29.10",
+      "total": 84,
+      "companies": [
+        {
+          "ticker": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/AMZN.png",
+          "logoBg": "dark"
         },
         {
-          "ticker": "FCNCP",
-          "name": "First Citizens BancShares, Inc. Non-Cum Red Perp Pfd Registered Shs Series A",
+          "ticker": "LLY",
+          "name": "Eli Lilly and Company",
           "when": "before",
-          "logo": "data/earnings/logos/FCNCP.png"
+          "logo": "data/earnings/logos/LLY.png"
+        },
+        {
+          "ticker": "MA",
+          "name": "Mastercard Incorporated Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/MA.png"
+        },
+        {
+          "ticker": "INTC",
+          "name": "Intel Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/INTC.png"
+        },
+        {
+          "ticker": "MRK",
+          "name": "Merck & Co., Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/MRK.png"
+        },
+        {
+          "ticker": "CAT",
+          "name": "Caterpillar Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/CAT.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "SHEL",
+          "name": "Shell Plc Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/SHEL.png"
+        },
+        {
+          "ticker": "LIN",
+          "name": "Linde plc",
+          "when": "before",
+          "logo": "data/earnings/logos/LIN.png"
+        },
+        {
+          "ticker": "TTE",
+          "name": "TotalEnergies SE",
+          "when": "",
+          "logo": "data/earnings/logos/TTE.png"
+        },
+        {
+          "ticker": "GILD",
+          "name": "Gilead Sciences, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/GILD.png"
+        },
+        {
+          "ticker": "SNDK",
+          "name": "Sandisk Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/SNDK.png"
+        },
+        {
+          "ticker": "BBVA",
+          "name": "Banco Bilbao Vizcaya Argentaria, S.A. Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/BBVA.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dow": "שישי",
+      "label": "30.10",
+      "total": 19,
+      "companies": [
+        {
+          "ticker": "XOM",
+          "name": "Exxonmobil Holdings Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/XOM.png"
+        },
+        {
+          "ticker": "ABBV",
+          "name": "AbbVie, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/ABBV.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "CVX",
+          "name": "Chevron Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/CVX.png"
+        },
+        {
+          "ticker": "AZN",
+          "name": "AstraZeneca PLC",
+          "when": "before",
+          "logo": "data/earnings/logos/AZN.png"
+        },
+        {
+          "ticker": "BP",
+          "name": "BP PLC Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/BP.png"
+        },
+        {
+          "ticker": "GD",
+          "name": "General Dynamics Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/GD.png"
+        },
+        {
+          "ticker": "REGN",
+          "name": "Regeneron Pharmaceuticals, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/REGN.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "CL",
+          "name": "Colgate-Palmolive Company",
+          "when": "before",
+          "logo": "data/earnings/logos/CL.png"
+        },
+        {
+          "ticker": "CNI",
+          "name": "Canadian National Railway Company",
+          "when": "before",
+          "logo": "data/earnings/logos/CNI.png"
+        },
+        {
+          "ticker": "NWG",
+          "name": "NatWest Group Plc Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/NWG.png"
+        },
+        {
+          "ticker": "IMO",
+          "name": "Imperial Oil Limited",
+          "when": "",
+          "logo": "data/earnings/logos/IMO.png"
+        },
+        {
+          "ticker": "D",
+          "name": "Dominion Energy Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/D.png"
         }
       ]
     }
   ],
   "window": {
-    "AXP": "2026-10-23",
-    "E": "2026-10-23",
-    "SLB": "2026-10-23",
-    "INFY": "2026-10-23",
-    "NBIS": "2026-10-23",
-    "BBD": "2026-10-23",
-    "FCNCA": "2026-10-23",
-    "FCNCP": "2026-10-23",
-    "FCNCO": "2026-10-23",
-    "FCNCN": "2026-10-23",
     "VZ": "2026-10-26",
     "WELL": "2026-10-26",
     "CDNS": "2026-10-26",
@@ -729,13 +745,13 @@
     "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
-    "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
+    "CMSA": "2026-10-27",
     "CMS": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -821,10 +837,10 @@
     "DLR": "2026-10-29",
     "LNG": "2026-10-29",
     "MSTR": "2026-10-29",
-    "STRK": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRC": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRK": "2026-10-29",
     "CRH": "2026-10-29",
     "MPWR": "2026-10-29",
     "ABEV": "2026-10-29",
@@ -894,7 +910,7 @@
     "NVT": "2026-10-30"
   },
   "_meta": {
-    "updatedAt": "23/10/2026 23:46",
+    "updatedAt": "24/10/2026 00:01",
     "source": "tradingview"
   }
 }
