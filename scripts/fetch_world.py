@@ -35,7 +35,12 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
 # key, שם תצוגה, דגל, סמל Yahoo, אזור, (פתיחה, נעילה) בשעון ישראל, ימי מסחר
 # ימים: 0=שני … 6=ראשון (כמו datetime.weekday)
-IL_WEEK = (6, 0, 1, 2, 3)          # ראשון–חמישי (TASE)
+IL_WEEK = (0, 1, 2, 3, 4)          # שני–שישי (TASE מינואר 2026; שישי יום קצר)
+# ⚠️ 23.10.2026 (איציק: "יש מסחר מעשר בשישי"): הבורסה בת"א עברה בינואר 2026 לשבוע
+# מסחר שני–שישי. עד אז הקוד הניח ראשון–חמישי, ולכן ביום שישי כל מדדי ת"א הוצגו
+# "סגור" בזמן שהציטוטים זזו (16.10: 10:00–13:44), וביום ראשון "לפני פתיחה" כשאין
+# מסחר. יום שישי קצר: הציטוטים ב-git נגמרים ~13:44, הסגירה מוגדרת כאן 14:00.
+IL_FRI_CLOSE = 14.0
 WEST_WEEK = (0, 1, 2, 3, 4)        # שני–שישי
 ALL_WEEK = (0, 1, 2, 3, 4, 5, 6)   # קריפטו — 24/7
 
@@ -105,13 +110,21 @@ def israel_stamp():
     return il_now().strftime("%d/%m/%Y %H:%M")
 
 
+def effective_hours(hours, days, now=None):
+    """לוח השעות של היום: בת"א יום שישי קצר (סגירה IL_FRI_CLOSE), שאר הימים כרגיל."""
+    now = now or il_now()
+    if tuple(days) == IL_WEEK and now.weekday() == 4:
+        return (hours[0], IL_FRI_CLOSE)
+    return tuple(hours)
+
+
 def session_state(quote_ts, hours, days):
     """(state, תווית) — live / pre / closed, לפי טריות הציטוט ולוח השעות."""
     now = il_now()
     age_min = None
     if quote_ts:
         age_min = (datetime.now(timezone.utc).timestamp() - quote_ts) / 60.0
-    open_h, close_h = hours
+    open_h, close_h = effective_hours(hours, days, now)
     cur_h = now.hour + now.minute / 60.0
     trading_day = now.weekday() in days
     # ציטוט טרי בתוך חלון המסחר = נסחר עכשיו. זהו האות האמין ביותר, כי הוא
@@ -251,7 +264,7 @@ def main():
                 "prev": round(prev, 2) if prev else None,
                 "chg5d": round(chg5, 2) if chg5 is not None else None,
                 "chgYtd": round(ytd, 2) if ytd is not None else None,
-                "hours": list(hours), "days": list(days),
+                "hours": list(effective_hours(hours, days)), "days": list(days),
                 "spark": spark, "state": state, "stateHe": state_he, "at": at,
             })
             print(f"[ok] {label}: {price:,.2f} ({(chg or 0):+.2f}%) · 5d {chg5} · ytd {ytd} · {state_he} · {at}")
