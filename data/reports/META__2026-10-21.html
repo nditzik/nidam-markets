@@ -1,0 +1,465 @@
+<title>META דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f;
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:var(--navy);color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.wordmark{font-size:30px;font-weight:800;letter-spacing:-.02em;color:#fff;direction:ltr;display:inline-block;margin-bottom:18px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="wordmark">Meta</span>
+    <div class="eyebrow">Meta Platforms · NASDAQ: META · תוצאות רבעון שלישי 2026</div>
+    <h1>העסק צומח 26%, הרווח נחתך בחצי בגלל קנס, והמניה נפלה 7% — בגלל משהו שלישי לגמרי</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-21 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה לעיתונות, תמלול שיחת האנליסטים</span>
+      <span>עודכן: 23.10.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>מטא היא מכונת פרסום ענקית שמממנת הימור על בינה מלאכותית אישית</h2>
+  <p class="lead">Meta מפעילה את פייסבוק, אינסטגרם, וואטסאפ, מסנג'ר ו-Threads — 3.64 מיליארד בני אדם משתמשים לפחות באחת מהן מדי יום. כמעט כל ההכנסה (98%) מגיעה ממודעות: עסקים משלמים כדי להופיע מול האנשים הנכונים, ומטא יודעת מי האנשים הנכונים טוב כמעט מכל אחד אחר.</p>
+  <p class="body" style="margin-top:14px">החברה מדווחת על שני מגזרים. <strong>Family of Apps</strong> (האפליקציות) הרוויח ברבעון $17.1B. <strong>Reality Labs</strong> (משקפיים חכמים, מציאות מדומה) הפסיד $4.1B. המגזר השני ממומן על ידי הראשון, וכך זה כבר שנים.</p>
+  <p class="body">מה שהשתנה השנה: מטא החליטה שהעתיד הוא "סופר-אינטליגנציה אישית" — סוכן AI בשם Muse שמלווה כל אדם, קונה בשבילו, מתכנן בשבילו ומנהל לו את העסק הקטן. בשביל זה היא בונה מודלי AI משלה (Muse Wonder) ומוציאה על שרתים ומרכזי נתונים כ-$140 מיליארד בשנה — יותר מכל חברה אחרת בעולם מלבד אולי שתיים.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>על כסף הפרסום: Google, TikTok, Amazon</h3>
+      <p>גוגל היא המתחרה הגדולה (חיפוש ויוטיוב). TikTok מתחרה על זמן המסך של צעירים. אמזון צומחת מהר בפרסום של מוצרים. מטא עדיין לוקחת חלק גדל מהעוגה: מחיר ממוצע למודעה +14%, כמות מודעות +10%.</p>
+    </div>
+    <div class="col">
+      <h3>על ה-AI: OpenAI, Google, Anthropic</h3>
+      <p>Muse מתחרה ישירות ב-ChatGPT וב-Gemini על להיות "העוזר האישי" של כולם. היתרון של מטא: 3.6 מיליארד משתמשים קיימים ו-500 מיליון עסקים קטנים שכבר על הפלטפורמה. החיסרון: היא מאחרת, והמודלים שלה עד לאחרונה נחשבו פחות טובים.</p>
+    </div>
+    <div class="col">
+      <h3>על המשקפיים: Apple, Google, Snap</h3>
+      <p>משקפי Ray-Ban Meta הם להיט, ואפל וגוגל עוד לא הציגו מוצר מתחרה אמיתי. מטא מתמחרת את החומרה בלי רווח כדי למכור מנויי Muse מעליה. זו המערכה היחידה שבה היא ראשונה ולא רודפת.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>שלושה סיפורים בדוח אחד: עסק ליבה מצוין, קנס ענק חד-פעמי, והוצאות AI שהפחידו את השוק</h2>
+  <p class="lead">ההכנסות עלו 26% ל-$64.6B, מעל הצפי. אבל הרווח הנקי "הרשמי" הוא $3.83 למניה בלבד, כי החברה רשמה הוצאה של $9.89B על הסדר פשרה עם 52 תובעים כלליים במדינות ארה"ב בנושא בריאות נפשית של בני נוער. בלי הקנס, הרווח למניה היה $7.40 — הרבה מעל צפי האנליסטים ($6.54).</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>המניה לא ירדה בגלל הקנס — הוא היה ידוע מאוגוסט. היא ירדה כי מטא העלתה את רף ההשקעות ל-$135–145B השנה, רשמה תזרים מזומנים <em>שלילי</em> לראשונה מזה שנים, והודיעה על סוג מניות חדש שיאפשר לה לגייס עוד הון. השוק קרא את זה כ"ההוצאות על AI לא נגמרות, ואולי נצטרך לשלם עליהן בדילול".</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>כל מספר שקשור למשתמשים ולמודעות עלה; כל מספר שקשור לרווח ולמזומן ירד</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$64.6B</div><div class="l">הכנסות</div><div class="d up">+26% מהשנה שעברה · הצפי היה $63.3B</div></div>
+    <div class="kpi"><div class="v num">$3.83</div><div class="l">רווח למניה (GAAP, כולל הקנס)</div><div class="d flat">בלי הקנס: $7.40 · הצפי היה $6.54</div></div>
+    <div class="kpi"><div class="v num">20%</div><div class="l">רווחיות תפעולית</div><div class="d down">מ-40% לפני שנה · בלי הקנס: 35%</div></div>
+    <div class="kpi"><div class="v num">$34.9B</div><div class="l">השקעות הוניות (קאפקס) ברבעון</div><div class="d down">+85% מהשנה שעברה</div></div>
+    <div class="kpi"><div class="v num">−$2.1B</div><div class="l">תזרים מזומנים חופשי</div><div class="d down">לפני שנה: +$10.6B</div></div>
+    <div class="kpi"><div class="v num">3.64B</div><div class="l">משתמשים פעילים ביום</div><div class="d up">+3% · מחיר למודעה +14%</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הפעם הפער בין GAAP ל"מנוקה" הוא הקנס בלבד. מטא לא מפרסמת רווח Non-GAAP רשמי; המספר $7.40 הוא חישוב של החברה עצמה בהודעה ("אילולא ההוצאה המשפטית"). שימו לב גם לשנה שעברה: הרווח הנקי של Q3 2025 ($2.7B) היה נמוך באופן חריג בגלל הוצאת מס חד-פעמית של $19B — ולכן "+264% ברווח הנקי" הוא מספר מטעה לשני הכיוונים.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>ההכנסות צומחות כבר שנים בקצב של 20%+ — וה-AI הוא הסיבה שהקצב לא מאט</h2>
+  <p class="body">בגרף: הכנסות רבעוניות (במיליארדי דולר) בחמשת הרבעונים האחרונים. העונתיות ברורה — הרבעון הרביעי (חגים) תמיד הגבוה ביותר — אבל כל רבעון גבוה מאותו רבעון שנה קודם בכ-25%.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 360" role="img" aria-label="הכנסות רבעוניות, חמישה רבעונים">
+      <g font-size="14" fill="var(--muted)">
+        <line x1="60" y1="300" x2="780" y2="300" stroke="var(--rule)"/>
+        <line x1="60" y1="240" x2="780" y2="240" stroke="var(--rule)" stroke-dasharray="3 4"/>
+        <line x1="60" y1="180" x2="780" y2="180" stroke="var(--rule)" stroke-dasharray="3 4"/>
+        <line x1="60" y1="120" x2="780" y2="120" stroke="var(--rule)" stroke-dasharray="3 4"/>
+        <text x="52" y="304" text-anchor="end">0</text>
+        <text x="52" y="244" text-anchor="end">$20B</text>
+        <text x="52" y="184" text-anchor="end">$40B</text>
+        <text x="52" y="124" text-anchor="end">$60B</text>
+      </g>
+      <g fill="var(--navy)">
+        <rect x="95" y="146.3" width="90" height="153.7"/>
+        <rect x="245" y="120.3" width="90" height="179.7"/>
+        <rect x="395" y="131.1" width="90" height="168.9"/>
+        <rect x="545" y="117.6" width="90" height="182.4"/>
+        <rect x="695" y="106.2" width="90" height="193.8" fill="var(--accent)"/>
+      </g>
+      <g font-size="15" font-weight="700" fill="#fff" text-anchor="middle">
+        <text x="140" y="290">51.2</text><text x="290" y="290">59.9</text><text x="440" y="290">56.3</text><text x="590" y="290">60.8</text><text x="740" y="290">64.6</text>
+      </g>
+      <g font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle">
+        <text x="140" y="136">+26%</text><text x="290" y="110">+24%</text><text x="440" y="121">+33%</text><text x="590" y="107">+28%</text><text x="740" y="96">+26%</text>
+      </g>
+      <text x="420" y="56" font-size="13" fill="var(--muted)" text-anchor="middle">מעל כל עמודה: שינוי לעומת אותו רבעון שנה קודם</text>
+      <g font-size="14" fill="var(--muted)" text-anchor="middle">
+        <text x="140" y="326">Q3 2025</text><text x="290" y="326">Q4 2025</text><text x="440" y="326">Q1 2026</text><text x="590" y="326">Q2 2026</text><text x="740" y="326">Q3 2026</text>
+        <text x="140" y="346">יול–ספט 25</text><text x="290" y="346">אוק–דצמ 25</text><text x="440" y="346">ינו–מרץ 26</text><text x="590" y="346">אפר–יוני 26</text><text x="740" y="346">יול–ספט 26</text>
+      </g>
+    </svg>
+    <figcaption>הכנסות במיליארדי דולר. מקור: דוחות החברה; שיעורי השינוי לפי נתוני FactSet/StockOracle.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>יותר זמן מסך</h3>
+      <p>הזמן שאנשים מבלים באינסטגרם הגיע לשיא כל הזמנים; Threads עקף את X במשתמשים חודשיים; ב-Reels הזמן גדל בשני ספרות. הסיבה: מנועי ההמלצה מבוססי AI מציגים תוכן שאנשים לא עוזבים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>מודעות יקרות יותר</h3>
+      <p>מחיר ממוצע למודעה +14%. מפרסמים משלמים יותר כי המודעות עובדות יותר טוב — מודל AI חדש (Generative Recommender) העלה המרות בכ-2%, ועוזר ה-AI למפרסמים הביא 5% יותר רכישות באותו מחיר.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>הכנסות חדשות, עדיין קטנות</h3>
+      <p>"הכנסות אחרות" (מנויים, הודעות עסקיות בוואטסאפ) צמחו 59% ל-$1.1B. מנוי Meta 1 עבר 15 מיליון נרשמים. מודעות שותפות עם יוצרים: קצב שנתי של $15B, +97%. קטן לעומת הפרסום, אבל צומח פי שניים ממנו.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · Muse — ההימור על סופר-אינטליגנציה אישית</div>
+  <h2>בשישה שבועות 10 מיליון אמריקאים הקימו לעצמם סוכן AI, ורבע מהם קונים דרכו</h2>
+  <p class="body">Muse הוא סוכן AI אישי: אפליקציה שמכירה אתכם, מחוברת למייל וליומן ולכרטיס האשראי, ויכולה לבצע פעולות — להזמין, לקנות, לתכנן טיול, לנהל דף עסקי. הוא יצא בספטמבר בארה"ב ובקנדה בלבד, ולפי צוקרברג הגיע למקום הראשון בחנות האפליקציות כמעט כל יום.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>מה כבר עובד</h3>
+      <p>10M+ משתמשים, 25% מהם פעילים כל יום (פי שניים מ-Threads בתחילתו). השימוש הנפוץ ביותר: קניות, בממוצע מעל $200 לרכישה. בשבוע הראשון מטא נאלצה לבקש מ-Stripe להעלות מסגרות אשראי כי הנפח הפתיע את כולם.</p>
+    </div>
+    <div class="col">
+      <h3>מה עוד לא עובד</h3>
+      <p>זה יקר. כל שיחה עם Muse עולה למטא כסף אמיתי בחשמל ובשרתים, ולכן היא עדיין לא השיקה אותו בעולם. היעד: לשפר את יעילות החישוב פי 10 בשנה הקרובה. בלי זה, המוצר לא רווחי. בלי זה גם אין השקה גלובלית.</p>
+    </div>
+    <div class="col">
+      <h3>איך זה אמור להרוויח</h3>
+      <p>לרוב האנשים — חינם; מטא תגבה עמלה על עסקאות שהיא מתווכת. מי שרוצה מודלים חזקים יותר — ישלם מנוי. עסקים קטנים (500 מיליון על הפלטפורמה) — ישלמו על כלי ניהול. ארגונים — דרך API ו"Meta Enterprise".</p>
+    </div>
+  </div>
+  <ul class="tl">
+    <li><div class="when">ספטמבר 2026</div><div class="what">השקת Muse בארה"ב וקנדה; מודל Muse Wonder (הראשון ברמת "חזית" של מטא)</div></li>
+    <li><div class="when">נובמבר 2026</div><div class="what">Muse מגיע למשקפי Meta</div></li>
+    <li><div class="when">2027</div><div class="what">יעד: יעילות חישוב פי 10; "Muse Charm" — מכשיר חומרה חדש; השקה גלובלית בכפוף ליעילות</div></li>
+    <li><div class="when">2027–2028</div><div class="what">Reality Labs: הפסד יורד ל-~$15B ב-2027 "ובדרך לרווחיות" — מטא תפסיק להשיק מכשירי VR חדשים בלי פריצת דרך</div></li>
+  </ul>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>Muse הוא ההצדקה לקאפקס. אם הוא יגיע למיליארד משתמשים ויגזור עמלה על קניות, מטא תהפוך מחברת פרסום לחברת מסחר — שוק גדול בהרבה. אם לא, מטא בנתה את חוות השרתים היקרות בעולם בשביל לשפר מודעות ב-2%. השאלה הזאת תוכרע ב-2027, לא השבוע.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית לרבעון הבא (אוקטובר–דצמבר 2026)</div>
+  <h2>הכנסות של $73–76B — בטווח הצפי, לא מעליו — וקאפקס שרק עולה</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית החברה</th><th>מה האנליסטים ציפו</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות Q4</td><td class="n">$73B–$76B</td><td class="n">$73.75B</td><td>אמצע הטווח ($74.5B) = צמיחה של כ-24%</td></tr>
+        <tr><td>סך הוצאות 2026</td><td class="n">$175B–$179B</td><td class="n">—</td><td>הועלה כדי לכלול את הקנס ($9.9B)</td></tr>
+        <tr class="hl"><td>קאפקס 2026</td><td class="n">$135B–$145B</td><td class="n">—</td><td>הרף התחתון עלה מ-$130B. ב-2027: "נמשיך להשקיע באגרסיביות"</td></tr>
+        <tr><td>הפסד Reality Labs 2026</td><td class="n">$18B–$19B</td><td class="n">—</td><td>ב-2027: כ-$15B</td></tr>
+        <tr><td>שיעור מס Q4</td><td class="n">15%–17%</td><td class="n">—</td><td>ברבעון הזה: 24% כי הקנס לא מוכר לצורכי מס</td></tr>
+        <tr><td>רווח תפעולי 2026</td><td class="n">מעל 2025 (בלי הקנס)</td><td class="n">—</td><td>כולל הקנס: כנראה מתחת</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body" style="margin-top:16px">במילים פשוטות: החברה תגדל, אבל כמעט כל הצמיחה ברווח הגולמי תלך לשרתים. מטא לא נתנה תחזית הכנסות ל-2027 — רק אמרה שהיא מצפה "לצמיחה חזקה לאורך כל השנה". את מספרי 2027 נקבל בדוח הרבעון הרביעי, בינואר.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מניות Class C — מה הוחלט ולמה זה חשוב</div>
+  <h2>כל בעל מניה יקבל מניה נוספת בלי זכות הצבעה. זה פיצול 2:1, וגם ארנק חדש לגיוס הון</h2>
+  <p class="body">מטא תנפיק סוג מניות חדש, Class C, ללא זכויות הצבעה. כל מי שמחזיק מניה (A או B) יקבל מניית C אחת במתנה — "דיבידנד במניות". התוצאה המעשית: כמות המניות מוכפלת, ומחיר כל מניה אמור להתחלק בשניים. השווי הכולל של האחזקה לא משתנה. המסחר ב-Class C צפוי להתחיל בסוף ינואר 2027.</p>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>למה מטא עושה את זה</h3>
+      <p>הסיבה הרשמית: ליצור "מטבע" שאפשר להשתמש בו לגיוס הון, לתגמול עובדים ולרכישות — בלי לדלל את השליטה של צוקרברג (שמחזיק ברוב זכויות ההצבעה דרך מניות B). הוועדה המיוחדת של הדירקטוריון כתבה במפורש שהיקף ההשקעה הנדרש כדי להתחרות ב-AI "משמעותי", ושלקיחת חוב בסדר גודל כזה עלולה לפגוע בדירוג האשראי.</p>
+    </div>
+    <div class="col">
+      <h3>למה השוק נבהל</h3>
+      <p>כי זו דרך אלגנטית להגיד "אולי נצטרך לגייס הון". חברה שמחזיקה $82B במזומן ומייצרת $33B מהפעילות ברבעון, בדרך כלל לא בונה תשתית לגיוס הון — אלא אם היא מתכננת להוציא יותר ממה שהיא מייצרת. בשילוב עם תזרים שלילי ברבעון וקאפקס של $140B, המסקנה של המשקיעים הייתה שהדילול הוא רק שאלה של מתי.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">מה זה אומר למחזיק מניה</div>
+    <p>בטווח המיידי — כלום: אותו שווי, פי שניים מניות, מחיר מפוצל. בטווח הארוך — זה תלוי במה מטא תעשה עם המניות החדשות. אם תנפיק אותן למימון שרתים, האחזקה שלכם תהיה אחוז קטן יותר מחברה גדולה יותר. גם צוקרברג חתם על "הסכם יישור" שמגביל את יכולתו למכור את מניות ה-C שלו — פרט שנועד להרגיע.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ההנהלה אמרה בשיחה</div>
+  <h2>צוקרברג דיבר 20 דקות על Muse ודקה על פרסום. זו הצהרת כוונות</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"AI הוא בסיס מערכת, לא מוצר"</h3>
+      <p>צוקרברג: הטכנולוגיה כבר קיימת, עכשיו השלב הוא תפעולי — "להגדיל את המוצר, להגדיל הכנסות, ולהוריד עלויות חישוב". המודלים ישמשו גם לשיפור המלצות ומודעות: מודל פנימי כבר הוריד עלות עיבוד תוכן ב-80%.</p>
+    </div>
+    <div class="col">
+      <h3>"נגבה כסף מוקדם מהרגיל"</h3>
+      <p>בניגוד לנוהל ההיסטורי של מטא (קודם משתמשים, אחר כך כסף), צוקרברג אמר שב-Muse "נעבוד על מונטיזציה מוקדם יותר" — כי העלויות גבוהות מדי בשביל לחכות. המודל: אחוז מהעסקאות שהסוכן מתווך, כולל טיולים.</p>
+    </div>
+    <div class="col">
+      <h3>הסמנכ"לית: "אין תוכנית מימון ספציפית"</h3>
+      <p>סוזן לי על מניות ה-C: המטרה היא "גמישות" ו"גישה למגוון מקורות מימון", ואין כרגע תוכנית לגייס. על 2027: "מוקדם מדי", מספרים יגיעו בינואר. על עלות Muse למשתמש: "אין לנו מספרים לשתף".</p>
+    </div>
+    <div class="col">
+      <h3>הסיכון המשפטי ממשיך</h3>
+      <p>ההסדר עם 52 התובעים הכלליים ($18.59B בסך הכול, מתוכם $9.89B נרשמו עכשיו) סוגר חזית אחת. אבל הסמנכ"לית הזכירה "מספר משפטים הקשורים לבני נוער בחודשים הקרובים בארה"ב" ו"פיקוח בכמה שווקים". זה לא נגמר.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>אף אחד לא שאל, ואף אחד לא ענה: מה יקרה לרכישות המניות החוזרות? ברבעון הזה מטא לא קנתה מניות בכלל (לעומת $3.3B לפני שנה), והוציאה את כל המזומן על שרתים. חברה שמפסיקה לקנות את מניותיה ובמקביל יוצרת סוג מניות למכירה — שינתה כיוון בשקט.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים הפסיקו לשאול על מודעות. כולם שאלו רק דבר אחד: כמה Muse עולה ומתי הוא מחזיר</h2>
+  <p class="body">שבע שאלות, ולא אחת מהן על פרסום — העסק שמייצר 98% מההכנסה. כולן על Muse, סוכנים, עלויות חישוב ו-2027. כשהעסק המרכזי לא מעניין אף אחד, זה אומר שהוא נתפס כמובן מאליו — וזה גם אומר שהמניה מתומחרת לפי משהו שעדיין לא קיים.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שלוש פעמים</h3>
+      <p>עלות החישוב של Muse למשתמש (Barclays, Evercore, Morgan Stanley). ההנהלה ענתה שלוש פעמים ב"אין מספרים, אבל יעילות פי 10 בדרך". כשאין מספר, השוק מניח את הגרוע.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>"מחזיקי Muse הקיימים מייצרים לנו כבר היום כמה מאות דולרים בשנה בפרסום" — צוקרברג רמז שמשתמשי Muse הם המשתמשים היקרים ביותר של מטא. אם זה נכון, הסוכן הוא גם כלי לשימור הלקוחות הטובים, לא רק מוצר חדש.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>על Reality Labs: "נפסיק להשיק מכשירי VR חדשים אלא אם יש פריצת דרך". אחרי שנים של "המטאוורס הוא העתיד", זו הודאה. ההפסד יורד מ-$18B ל-$15B — עדיין עצום, אבל הכיוון התהפך לראשונה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>על 2027 — ארבע פעמים "מוקדם מדי". על מימון — "אין תוכנית ספציפית". המשקיע שומע: הם יודעים שהמספרים של 2027 יבהילו, ומעדיפים לפרסם אותם בינואר, אחרי שהשוק יתרגל לרעיון.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>סוזן לי: "ההשקעות האלה ייקחו יותר זמן להחזיר את עצמן מההשקעות בעסק הליבה". זו ההודאה הכי כנה בדוח, והיא מסבירה את הירידה טוב יותר מכל ניתוח.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>מספר העובדים ירד 15% בשנה ל-66,775 — אחרי גל פיטורים במאי. במקביל הוצאות המו"פ עלו 32%. התרגום: פחות אנשים, יותר שבבים. מטא מחליפה כוח אדם בכוח חישוב, ומצפה שהעובדים שנשארו ייצרו יותר בעזרת ה-AI שלה.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>מטא היום היא שתי השקעות בחבילה אחת: עסק פרסום שצומח 26% עם רווחיות של 35% (בלי הקנס), ושלוחה של AI שמוציאה $140B בשנה ועוד לא מרוויחה. מי שקונה את המניה קונה את שתיהן. השאלה היחידה שחשובה ל-2027 היא האם היעילות פי 10 תגיע — כי בלעדיה גם העסק הראשון לא יספיק לממן את השני.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · איך השוק הגיב</div>
+  <h2>המניה עלתה 4% אחרי השעות — ואז נפלה 7% למחרת, בגל מכירות של כל מניות ה-AI</h2>
+  <p class="body">ביום הדוח (21.10) המניה סגרה ב-$697.52. אחרי פרסום התוצאות היא זינקה כ-4% במסחר המאוחר על ההכנסות החזקות. למחרת (22.10) התהפך הכיוון: סגירה ב-$648.85, ירידה של 7%. באותו יום נאסד"ק ירד 2.6%, אנבידיה 4%, AMD 7% ואינטל 6% — השוק מכר כל מה שקשור להוצאות AI, ומטא הייתה הדוגמה הבולטת.</p>
+  <p class="body">ההקשר הרחב: המניה ירדה כ-1% מתחילת 2026, בזמן שה-S&P 500 עלה 12%. טווח 52 שבועות: $520–$780. השווי הנוכחי: כ-$1.65 טריליון. מכפיל הרווח על 12 החודשים האחרונים: כ-22 (ללא נטרול הקנס).</p>
+  <p class="body">מה האנליסטים עשו: לפחות 15 מהם <em>העלו</em> יעדי מחיר באותו יום שבו המניה נפלה — JPMorgan ל-$940, UBS ל-$892, Wells Fargo הוריד מעט ל-$995. כולם שומרים על "קנייה". הפער בין וול סטריט ($900+) למחיר ($650) הוא אחד הגדולים בין חברות הענק.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>כשהתוצאות טובות, האנליסטים מעלים יעדים והמניה יורדת — זה ויכוח על אופק זמן. האנליסטים מתמחרים 2028, כשה-AI אמור להרוויח. השוק מתמחר 2027, כשההוצאה תהיה בשיא והתשואה עדיין לא. שני הצדדים יכולים להיות צודקים; השאלה היא כמה סבלנות יש לכם.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון הגדול הוא לא שהעסק ייחלש — אלא שההוצאות יגדלו מהר יותר ממנו</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>קאפקס ללא תקרה</h3><p>$135–145B השנה, "אגרסיבי" גם ב-2027, ותזרים חופשי כבר שלילי. אם ההכנסות יאטו ל-15% במקום 25%, מטא תצטרך לבחור בין להאט את ה-AI לבין לגייס הון.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>דילול דרך Class C</h3><p>סוג המניות החדש נוצר כדי להיות "מטבע". כל הנפקה למימון שרתים או לרכישות תקטין את חלקם של בעלי המניות הקיימים — בלי שתהיה להם זכות הצבעה על זה.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>משפטים על בני נוער</h3><p>הסדר של $18.6B סגר 52 מדינות, אבל יש משפטים אזרחיים פרטיים, פיקוח באירופה, ו"מספר משפטים בחודשים הקרובים". כל אחד מהם יכול להביא קנס נוסף או הגבלות על המוצר.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>Muse לא יגיע ליעילות</h3><p>ההנהלה הודתה שהמוצר "יקר מאוד להפעלה" ושההשקה הגלובלית תלויה בשיפור פי 10. אם זה ייקח שנתיים במקום שנה, ההפסדים על Muse יצטרפו להפסדי Reality Labs.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תלות בפרסום (98%)</h3><p>הכנסות הפרסום רגישות למיתון: כשעסקים מקצצים, התקציב הראשון שנחתך הוא שיווק. כל האסטרטגיה החדשה ממומנת ממקור הכנסה אחד.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>חוב של $83.7B</h3><p>החוב כבר גדול מהמזומן ($82.4B). מטא עברה ממצב של "מזומן נטו" ל"חוב נטו" קל, והוועדה המיוחדת של הדירקטוריון עצמה הזהירה מפגיעה בדירוג האשראי אם ההלוואות יימשכו.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>עסק הליבה</strong></td><td>חברה בת 22 שצומחת 26%, זמן מסך בשיא, מחירים עולים. ה-AI כבר משפר את המודעות ברבעונים — זה כסף אמיתי, היום.</td><td>98% מהכסף ממקור אחד שתלוי במחזור הכלכלי. כל האטה בפרסום פוגעת ישירות ביכולת לממן את ה-AI.</td></tr>
+        <tr><td><strong>Muse</strong></td><td>10M משתמשים ב-6 שבועות בשני שווקים בלבד; 25% קונים דרכו; עסקים מבקשים להתחבר. אם זה מגיע למיליארד — מטא היא חברת מסחר, לא פרסום.</td><td>"יקר מאוד להפעלה", אין נתוני עלות, השקה גלובלית תלויה בשיפור פי 10 שעוד לא קרה. ChatGPT כבר שם עם מאות מיליוני משתמשים.</td></tr>
+        <tr><td><strong>קאפקס</strong></td><td>מי שבונה את התשתית הכי גדולה מגיע ראשון למודלים הכי טובים. המודל הפנימי כבר חתך 80% מעלות עיבוד התוכן.</td><td>$140B בשנה בלי תאריך סיום, תזרים שלילי, ואזהרה שההחזר "ייקח יותר זמן". היסטורית, הוצאה שלא נעצרת היא הסיכון הראשון של משקיעים.</td></tr>
+        <tr><td><strong>Class C</strong></td><td>גמישות מימונית בלי לפגוע בשליטה של המייסד, שהביא 1,700% תשואה מאז ההנפקה. פיצול 2:1 הופך את המניה לנגישה יותר.</td><td>כלי לדילול שקט. השוק כבר הגיב: המניה ירדה 7% ביום ההודעה. בעלי מניות C לא יוכלו להצביע נגד.</td></tr>
+        <tr><td><strong>Reality Labs</strong></td><td>לראשונה ההפסד יורד ($19B → $15B), VR מוקפא, המשקפיים מוכרים טוב ומטא ראשונה בקטגוריה.</td><td>$15B הפסד בשנה הוא עדיין יותר מהרווח השנתי של רוב חברות ה-S&P. "בדרך לרווחיות" נאמר גם ב-2022.</td></tr>
+        <tr><td><strong>משפטי</strong></td><td>הסדר של 52 מדינות הסיר ענן גדול. הקנס חד-פעמי, לא פוגע בפעילות, וכבר שולם מהמזומן בלי להשפיע על התחזית.</td><td>זה הסדר ראשון, לא אחרון. משפטים פרטיים ואירופה עוד לפנינו. כל פסיקה שתגביל את האלגוריתם לבני נוער פוגעת בזמן מסך — כלומר בהכנסות.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>מכפיל 22 על רווח שכולל קנס חד-פעמי; בלי הקנס כ-20. זול יחסית לחברת ענק שצומחת 26%. 15 אנליסטים העלו יעדים ל-$900+.</td><td>המכפיל נמוך כי השוק לא מאמין שהרווח יגיע למשקיעים — הוא יגיע לשרתים. "זול" לחברה שתזרימה שלילי הוא לא בהכרח הזדמנות.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לזכור שהאירוע הבא הוא דוח ינואר, שבו מטא תיתן לראשונה מספרי קאפקס ל-2027 — וסביר שהם יהיו גבוהים. משקיע לטווח ארוך צריך לעקוב אחרי שני מספרים בלבד: כמה משתמשים ל-Muse, וכמה עולה להפעיל אותו. כל השאר רעש.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 13 -->
+<section>
+  <div class="sec-label">13 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>DAP</dt><dd>Daily Active People — כמה בני אדם שונים השתמשו באחת מאפליקציות מטא ביום ממוצע. 3.64 מיליארד = כ-45% מאוכלוסיית העולם.</dd>
+    <dt>Family of Apps</dt><dd>מגזר האפליקציות: פייסבוק, אינסטגרם, וואטסאפ, מסנג'ר, Threads. 99% מההכנסות וכל הרווח.</dd>
+    <dt>Reality Labs</dt><dd>מגזר החומרה: משקפי Meta, אוזניות Quest, VR. מפסיד $15–19B בשנה, ממומן מהפרסום.</dd>
+    <dt>Muse</dt><dd>סוכן ה-AI האישי של מטא — אפליקציה שמבצעת פעולות בשמכם. Muse Wonder הוא המודל שמאחוריו.</dd>
+    <dt>קאפקס (CapEx)</dt><dd>השקעות הוניות: כסף שיוצא על שרתים, מרכזי נתונים ורשתות. $34.9B ברבעון; לא נרשם כהוצאה מיידית אלא מופחת לאורך שנים.</dd>
+    <dt>תזרים מזומנים חופשי</dt><dd>הכסף שנכנס מהפעילות פחות הקאפקס. שלילי = החברה הוציאה על תשתית יותר ממה שהרוויחה במזומן. −$2.1B ברבעון.</dd>
+    <dt>Class C</dt><dd>סוג מניה חדש ללא זכות הצבעה, יחולק חינם לכל בעלי המניות (אחת לכל מניה). מאפשר לגייס הון בלי לפגוע בשליטת צוקרברג.</dd>
+    <dt>פיצול מניות 2:1</dt><dd>כל מניה הופכת לשתיים ומחירה מתחלק בשניים. השווי הכולל לא משתנה. מטא עושה את זה דרך דיבידנד במניות C.</dd>
+    <dt>GAAP</dt><dd>הרווח לפי כללי החשבונאות הרשמיים, כולל קנסות והוצאות חד-פעמיות. $3.83 למניה. "בלי הקנס" ($7.40) הוא חישוב של החברה, לא מספר רשמי.</dd>
+    <dt>רווחיות תפעולית</dt><dd>כמה נשאר מכל דולר הכנסה אחרי כל ההוצאות התפעוליות. 20% כולל הקנס, 35% בלעדיו, 40% לפני שנה.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Meta Platforms — הודעה לעיתונות Q3 2026 (Exhibit 99.1, 21.10.2026); תמלול שיחת האנליסטים (21.10.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: TheStreet, Yahoo Finance, HeyGoTrade, FactSet/StockOracle (21–23.10.2026). לא צורפה מצגת משקיעים לרבעון זה.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
