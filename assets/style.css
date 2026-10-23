@@ -1174,8 +1174,11 @@ p.np-evt-mid { font-size: .88rem; color: var(--accent); }
 
 /* ── רמזור VIX (27.9.2026) ── */
 .vl-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; margin-inline-start: 3px; background: var(--text-3); }
-.vl-dot.green { background: var(--up); } .vl-dot.yellow { background: var(--state-fill, var(--warn)); } .vl-dot.red { background: var(--down); }
-.np-vixl b.green { color: var(--up); } .np-vixl b.yellow { color: var(--warn); } .np-vixl b.red { color: var(--down); }
+.vl-dot.green { background: var(--up); } .vl-dot.yellow { background: var(--vl-yellow, #F5C400); } .vl-dot.red { background: var(--down); }
+/* np139 (23.10.2026, איציק: "צהוב זה חום") — מילת המצב ברייל כתגית רמזור מלאה, לא טקסט צבוע:
+   צהוב אמיתי לא קריא כטקסט על לבן, ו-ענבר-לטקסט נראה חום. התגית בצבע הרמזור עם דיו כהה/לבן. */
+.np-vixl b.green, .np-vixl b.yellow, .np-vixl b.red { display: inline-block; padding: 0 7px; border-radius: 4px; line-height: 1.5; font-weight: 700; }
+.np-vixl b.green { background: var(--up); color: #fff; } .np-vixl b.yellow { background: var(--vl-yellow, #F5C400); color: #14181F; } .np-vixl b.red { background: var(--down); color: #fff; }
 .np-vixl small { color: var(--text-soft); font-size: .78rem; margin-inline-start: 4px; }
 .vl-spike { color: var(--down); font-weight: 900; margin-inline-start: 2px; }
 
@@ -1622,7 +1625,7 @@ ol.ep-rv .was { display: block; color: var(--text-3); font-size: .8rem; margin-t
   --border: #D8DDE4; --border-soft: #D8DDE4; --paper-hair: #D8DDE4;
   --text: #14181F; --text-soft: #3D4653; --text-3: #5B6675;
   --accent: #1D5BB8; --accent-soft: #E7EEFA;
-  --up: #0D7A52; --down: #BE2E1C; --warn: #8A5200; --warn-soft: #FBF1DC; --state-fill: #D9961F; --brand: #D9961F;
+  --up: #0D7A52; --down: #BE2E1C; --warn: #8A5200; --warn-soft: #FBF1DC; --state-fill: #D9961F; --brand: #D9961F; --vl-yellow: #F5C400;
   --track: #CBD2DB;
   --ink: #14181F; --ink-text: #FFFFFF; --ink-soft: #5B6675; --seg-active: #FFFFFF;
   --shadow: none; --shadow-sm: none; --card-bg: #FFFFFF; --card-border: #D8DDE4; --card-shadow: none;
@@ -1635,7 +1638,7 @@ ol.ep-rv .was { display: block; color: var(--text-3); font-size: .8rem; margin-t
   --border: #243040; --border-soft: #243040; --paper-hair: #243040;
   --text: #E3E8EF; --text-soft: #B4BECB; --text-3: #8C98A8;
   --accent: #7FB2FF; --accent-soft: #182A47;
-  --up: #3CCB7F; --down: #FF6B5A; --warn: #F5B03E; --warn-soft: #2A2110; --state-fill: #D9961F; --brand: #F5B03E;
+  --up: #3CCB7F; --down: #FF6B5A; --warn: #F5B03E; --warn-soft: #2A2110; --state-fill: #D9961F; --brand: #F5B03E; --vl-yellow: #FFD60A;
   --track: #2C3746; --ink: #E3E8EF; --ink-text: #0B0E13; --ink-soft: #8C98A8; --seg-active: #1C2430;
   --card-bg: #121821; --card-border: #243040; color-scheme: dark;
 }
@@ -1645,7 +1648,7 @@ ol.ep-rv .was { display: block; color: var(--text-3); font-size: .8rem; margin-t
     --border: #243040; --border-soft: #243040; --paper-hair: #243040;
     --text: #E3E8EF; --text-soft: #B4BECB; --text-3: #8C98A8;
     --accent: #7FB2FF; --accent-soft: #182A47;
-    --up: #3CCB7F; --down: #FF6B5A; --warn: #F5B03E; --warn-soft: #2A2110; --state-fill: #D9961F; --brand: #F5B03E;
+    --up: #3CCB7F; --down: #FF6B5A; --warn: #F5B03E; --warn-soft: #2A2110; --state-fill: #D9961F; --brand: #F5B03E; --vl-yellow: #FFD60A;
     --track: #2C3746; --ink: #E3E8EF; --ink-text: #0B0E13; --ink-soft: #8C98A8; --seg-active: #1C2430;
     --card-bg: #121821; --card-border: #243040; color-scheme: dark;
   }
