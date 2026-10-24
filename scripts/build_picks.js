@@ -224,6 +224,27 @@ function poolSignature() {
 
 const GATE_LABEL = { defense: "הגנתי", neutral: "זהיר", green: "חיובי" };
 
+// np149 (24.10.2026, איציק: "סטופ ויעד אך ורק בטבלה של הנבחרת היומית, כעזר"): סטופ ויעד לכל מניה.
+// מניה מהסריקה (מועמדים) שומרת את הסטופ והיעד של הסריקה. לשאר — מהמבחן לאחור על 398 האישורים
+// (scripts/tools/backtest_stops.js, out/stops_backtest.json): סטופ 2.5 ATR מתחת לכניסה נפגע ב-18% תוך 10 ימים
+// ו-27% תוך 20, ותשואת 20 הימים עם יציאה בו 4.5% מול 4.9% בלי סטופ; 1.5 ATR נפגע 40%/51% (3.1%), ותחתית אזור
+// התמיכה של המנוע צמודה מדי (45%/57%). יעד = תחתית אזור ההתנגדות אם היא לפחות 1.5 מהסיכון, אחרת
+// כניסה + 2× הסיכון (יעד 2R כמעט לא משנה את התוצאה: 4.45% מול 4.52%). היומן ממשיך למדוד בלי יציאה בסטופ
+// (איציק: "כאילו אין סטופ"); הסטופ הזה משמש רק לסימון "נגעה בסטופ".
+function stopTarget(r, c) {
+  const p = r.price, atr = r.atr;
+  if (c && c.stop != null && c.target != null) {
+    const risk = c.entry - c.stop;
+    return { stopSrc: "סריקה", targetSrc: "סריקה", rr: risk > 0 ? +((c.target - c.entry) / risk).toFixed(1) : null };
+  }
+  if (!atr || !p) return { stopSrc: null, targetSrc: null, rr: null };
+  const stop = +(p - 2.5 * atr).toFixed(2), risk = p - stop;
+  const resLow = r.levels.resistance && r.levels.resistance.low;
+  const useRes = resLow != null && resLow - p >= 1.5 * risk;
+  const target = +((useRes ? resLow : p + 2 * risk)).toFixed(2);
+  return { stop, target, stopSrc: "2.5 ATR", targetSrc: useRes ? "התנגדות" : "2R", rr: +((target - p) / risk).toFixed(1) };
+}
+
 function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   const mom = readJSON(path.join(ROOT, "data", "momentum.json"), { stocks: [] });
   const cand = readJSON(path.join(ROOT, "data", "candidates.json"), { candidates: [] });
@@ -265,6 +286,7 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
       pb: r.pullback_quality.state, pbLabel: r.pullback_quality.label, ext: r.extension.state,
       sup: r.levels.support && r.levels.support.mid, res: r.levels.resistance && r.levels.resistance.mid, atr: r.atr,
       entry: c ? +c.entry.toFixed(2) : null, stop: c ? +c.stop.toFixed(2) : null, target: c ? +c.target.toFixed(2) : null,
+      ...stopTarget(r, c),
       sources, closes: bars.slice(-60).map(b => b.close),
       rec: h.n ? { n: h.n, win10: h.win10, avg10: h.avg10, avg20: h.avg20, mae: h.mae, dots: h.events.map(e => e.r10 > 0 ? 1 : 0) } : null,
       since: null
