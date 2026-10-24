@@ -12,36 +12,56 @@
             "ticker": "AXP",
             "name": "American Express Company",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/AXP.png"
+            "status": "final",
+            "logo": "data/earnings/logos/AXP.png",
+            "chg": -3.68,
+            "price": 313.22,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
           },
           {
             "ticker": "E",
             "name": "Eni S.p.A. Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/E.png"
+            "status": "final",
+            "logo": "data/earnings/logos/E.png",
+            "chg": 4.28,
+            "price": 62.08,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
           },
           {
             "ticker": "SLB",
             "name": "SLB Limited",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/SLB.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SLB.png",
+            "chg": 7.08,
+            "price": 53.06,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
           },
           {
             "ticker": "INFY",
             "name": "Infosys Limited Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/INFY.png"
+            "status": "final",
+            "logo": "data/earnings/logos/INFY.png",
+            "chg": -6.58,
+            "price": 12.35,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
           },
           {
             "ticker": "FCNCA",
             "name": "First Citizens BancShares, Inc. Class A",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/FCNCA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/FCNCA.png",
+            "chg": 8.15,
+            "price": 2375.84,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
           },
           {
             "ticker": "FCNCN",
@@ -109,8 +129,12 @@
             "ticker": "WDC",
             "name": "Western Digital Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WDC.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WDC.png",
+            "chg": -2.97,
+            "price": 343.67,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
           },
           {
             "ticker": "VLO",
@@ -728,13 +752,13 @@
     "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "CMS": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
@@ -821,9 +845,9 @@
     "LNG": "2026-10-29",
     "MSTR": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRF": "2026-10-29",
     "STRC": "2026-10-29",
     "STRD": "2026-10-29",
-    "STRF": "2026-10-29",
     "CRH": "2026-10-29",
     "MPWR": "2026-10-29",
     "ABEV": "2026-10-29",
@@ -893,7 +917,7 @@
     "NVT": "2026-10-30"
   },
   "_meta": {
-    "updatedAt": "24/10/2026 04:16",
+    "updatedAt": "24/10/2026 04:31",
     "source": "tradingview"
   }
 }
