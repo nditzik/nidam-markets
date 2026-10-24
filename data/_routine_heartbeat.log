@@ -195,3 +195,5 @@ HB 12:38 preopen-update written
 HB 16:05 midday-update written
 HB 03:15 daily-analysis written (date=2026-10-23)
 HB 03:15 earnings-review: META
+HB 05:35 rotation(via weekly): decode skipped — Drive file transcription (download_file_content base64 → write) proved unreliable for large CSVs after repeated retries (silent character corruption in long repetitive numeric strings); abandoning rotation safety-net this run, proceeding to weekly_narrative §1 without sector report
+HB 05:47 weekly-narrative written v2 sectors=none
