@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np146";
+  var TA_VER = "np147";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3912,28 +3912,27 @@
   var PK_BO = { CONFIRMED: "פריצה מאושרת", RETEST: "בדיקה חוזרת של הפריצה", UNRESOLVED: "פריצה לא הוכרעה", PULLBACK: "תיקון אחרי פריצה",
     IN_PROGRESS: "פריצה בתהליך", GAP_PARTIAL_FILL: "מילוי חלקי של פער", GAP_BREAKOUT: "פריצה בפער", FAILED: "פריצה שנכשלה", NONE: "ללא פריצה" };
   function pkPct(v, d) { return v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(d == null ? 1 : d) + "%"; }
-  // np145 (איציק 24.10: "הרקורד צריך להוסיף גם ממוצע חמישה ימים, כולל עד חמישה ימים"): הרקורד בפועל של
-  // המהדורות ביומן — לכל אופק ממוצע כל המניות שנמדדו בו (שקול למניה, לא למהדורה). באופק 5 נכנסות גם
-  // המניות שעדיין בימים 1–4 (לפי היום האחרון שנמדד), כדי שהמהדורות הטריות ייספרו; 10 ו-20 — נעולים בלבד.
+  // np145→np147 (איציק 24.10: "צריך שהכל יהיה זהה — רק מי שסיים 5 ימים, כמו ה-10 וכמו ה-20"): הרקורד
+  // בפועל של המהדורות ביומן — לכל אופק ממוצע כל המניות שסיימו אותו במלואו (שקול למניה, לא למהדורה).
+  // מניה ביום 3 לא נספרת ב-5, מניה ביום 7 לא נספרת ב-10. np145 כלל בחמישה גם ימים 1–4 — בוטל.
   function pkLedgerRecord() {
     var eds = (PICKL && PICKL.editions) || [];
     if (!eds.length) return "";
     var H = [5, 10, 20], tiles = "", nEd = 0, nSym = 0;
     eds.forEach(function (e) { if ((e.symbols || []).length) { nEd++; nSym += e.symbols.length; } });
     H.forEach(function (h) {
-      var rs = [], live = 0;
+      var rs = [];
       eds.forEach(function (e) {
         (e.symbols || []).forEach(function (s) {
           var r = e.results && e.results[s.sym] || {};
           if (r[h]) rs.push(r[h]);
-          else if (h === 5 && r.cur && r.cur.day < 5) { rs.push(r.cur); live++; }
         });
       });
       if (!rs.length) { tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), "—", "עוד אין"); return; }
       var avg = rs.reduce(function (a, r) { return a + r.ret; }, 0) / rs.length;
       var ex = rs.reduce(function (a, r) { return a + r.excess; }, 0) / rs.length;
       var win = Math.round(rs.filter(function (r) { return r.ret > 0; }).length / rs.length * 100);
-      tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), pkPct(avg), "מול S&amp;P " + pkPct(ex) + " · עלו " + win + "% · " + rs.length + " מניות" + (live ? " (" + live + " בימים 1–4)" : ""), avg > 0 ? "up" : avg < 0 ? "down" : "");
+      tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), pkPct(avg), "מול S&amp;P " + pkPct(ex) + " · עלו " + win + "% · " + rs.length + " מניות", avg > 0 ? "up" : avg < 0 ? "down" : "");
     });
     return '<div class="pk-rec-h"><span class="num">' + nEd + '</span> מהדורות · <span class="num">' + nSym + '</span> מניות · מאז <span class="num" dir="ltr">' + esc(secDate(eds[0].date)) + '</span></div><div class="tiles t3">' + tiles + "</div>";
   }
@@ -4041,7 +4040,7 @@
       (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מהכניסה, מול S&amp;P · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
       (PICKL && (PICKL.editions || []).length ? '<section class="pan" style="grid-column:span 5;align-self:start">' + panHd("הרקורד", '<span class="mute">הנבחרות בפועל, מהיומן</span>') +
         '<div class="pb">' + pkLedgerRecord() +
-        '<p class="mute s" style="margin:8px 0 0">רק המניות שנכנסו לנבחרות, מהכניסה בסגירת יום המהדורה. המבחן לאחור של השיטה — ב"איך זה עובד" למטה.</p></div></section>' : "") +
+        '<p class="mute s" style="margin:8px 0 0">רק המניות שנכנסו לנבחרות, מהכניסה בסגירת יום המהדורה. בכל עמודה נספרות רק מניות שסיימו את כל הימים שלה (5, 10 או 20 ימי מסחר) — מניה ביום 3 עדיין לא נספרת. המבחן לאחור של השיטה — ב"איך זה עובד" למטה.</p></div></section>' : "") +
       '<section class="pan" id="pk-cand"' + bdSpan(6) + '></section><section class="pan" id="pk-mom"' + bdSpan(6) + "></section>" +
       '<section class="pan" id="pk-trd"' + bdSpan(6) + '></section><section class="pan" id="pk-ins"' + bdSpan(6) + "></section></div>";
     el.querySelectorAll(".pk-ed").forEach(function (tr) {
