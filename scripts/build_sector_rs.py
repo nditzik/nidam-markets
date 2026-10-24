@@ -75,8 +75,14 @@ def main():
     if not days:
         print("build_sector_rs: אין מספיק נרות")
         return 0
+    # np143: סגירות מיושרות ל-days — הגלגל מחשב מהן שביל "מעוגן" (מצטבר מול SPY מאז תחילת השביל),
+    # כך שהקטע האחרון בשביל = התנועה של היום מול המדד, ולא הפרש בין שני חלונות נעים.
+    first = len(dates) - len(days)
+    px = {"dates": dates[first:], SPY: [spy.get(d) for d in dates[first:]]}
+    for sym, code in ETF.items():
+        px[code] = [etfs[sym].get(d) for d in dates[first:]]
     payload = {
-        "source": "ETF", "spy": SPY, "etf": ETF, "date": days[-1]["date"], "days": days,
+        "source": "ETF", "spy": SPY, "etf": ETF, "date": days[-1]["date"], "days": days, "closes": px,
         "note": "תעודות הסל של הסקטורים מול SPY, מנרות יומיים סגורים (Yahoo) — אותו מקור כמו מפת החום בבית. rs5/rs20 = תשואת התעודה פחות תשואת SPY ב-5/20 ימי מסחר; d1 = השינוי היומי והפער היומי.",
         "_meta": {"updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "source": "build_sector_rs"},
     }
