@@ -354,11 +354,11 @@
   function renderHomeAround() {
     var es = document.getElementById("home-sect"), ew = document.getElementById("home-world");
     if (es) {
-      var rs = (INDD && INDD.rotation && INDD.rotation.sectorRs) || null;
+      var sl = srsLast(), rs = sl ? sl.rs : ((INDD && INDD.rotation && INDD.rotation.sectorRs) || null);
       if (rs) {
-        var arr = Object.keys(rs).map(function (k) { return { k: k, v: rs[k].rs5 }; }).filter(function (x) { return x.v != null; }).sort(function (a, b) { return b.v - a.v; });
+        var arr = Object.keys(rs).map(function (k) { return { k: k, v: sl ? rs[k][0] : rs[k].rs5 }; }).filter(function (x) { return x.v != null; }).sort(function (a, b) { return b.v - a.v; });
         var show = arr.slice(0, 3).concat(arr.slice(-3));
-        es.innerHTML = '<div class="ph"><h2>סקטורים · 5 ימים מול S&amp;P</h2>' + bdGo("sectors", "השוק") + '</div><div class="pb bd-dbs">' + show.map(function (x) {
+        es.innerHTML = '<div class="ph"><h2>סקטורים · 5 ימים מול S&amp;P</h2>' + bdGo("sectors", "השוק") + '</div><div class="pb bd-dbs"' + (sl ? ' title="תעודות הסל של הסקטורים מול SPY, כמו מפת החום"' : "") + ">" + show.map(function (x) {
           var w = Math.min(Math.abs(x.v) / 3 * 50, 50), pos = x.v > 0 ? "left:50%" : "left:calc(50% - " + w.toFixed(1) + "%)";
           return '<div class="db"><span>' + esc(SECTOR_HE[x.k] || x.k) + '</span><div class="t" role="img" aria-label="' + esc(SECTOR_HE[x.k] || x.k) + " " + x.v + '%"><i style="' + pos + ";width:" + w.toFixed(1) + "%;background:var(--" + (x.v > 0 ? "up" : "down") + ')"></i></div>' + bdPct(x.v) + "</div>";
         }).join("") + "</div>";
@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np140";
+  var TA_VER = "np141";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1367,6 +1367,10 @@
   var NEWS = null, EARN = null, MOVERS = null, MV_CUR = "gainers";
   var MOMD = null, CANDD = null, REPD = null;   // מאגרי-על לחישוב "מניות במוקד"
   var HIST = null, DIFFS = null, INDD = null;   // היסטוריית ציונים + שינוי-יומי
+  // np141 (24.10.2026, איציק: "חייבים אחידות"): חוזק יחסי של הסקטורים מתעודות הסל מול SPY (data/sector_rs.json,
+  // build_sector_rs.py) — אותו מקור כמו מפת החום בבית. מחליף את rs5/rs20 של הדשבורד בגלגל, בבית ובטאב השוק.
+  var SRS = null;
+  function srsLast() { return SRS && SRS.days && SRS.days.length ? SRS.days[SRS.days.length - 1] : null; }
 
   /* גרף מגמה קטן מתחת למד — הציון המשולב לאורך הימים האחרונים */
   function renderSpark(sfx) {
@@ -2706,8 +2710,12 @@
       bdTile("EQ מול SPX 20י", e.eqSpx20 != null ? (e.eqSpx20 > 0 ? "+" : "") + e.eqSpx20 + "%" : "—", "רוחב פנימי");
     var verdict = (v.headline ? '<p class="bd-vh">' + h(v.emoji || "📊") + " " + esc(v.headline) + "</p>" : "") + (v.subline ? '<p class="mute" style="margin:0">' + esc(v.subline) + "</p>" : "") + lights;
     var backg = (nrt.today ? "<p><b>היום:</b> " + esc(nrt.today) + "</p>" : "") + (nrt.week ? "<p><b>השבוע:</b> " + esc(nrt.week) + "</p>" : "") + (nrt.watchFor ? "<p><b>לעקוב:</b> " + esc(nrt.watchFor) + "</p>" : "");
-    var sectors = "";
-    if (rot.sectorRs) {
+    var sectors = "", sl = srsLast();
+    if (sl) {   // np141: תעודות הסל מול SPY (rs20); "מוביל" = חיובי בשני החלונות
+      sectors = '<div class="chips">' + Object.keys(sl.rs).sort(function (a, b) { return sl.rs[b][1] - sl.rs[a][1]; }).map(function (k) {
+        return '<span class="chip' + (sl.rs[k][0] > 0 && sl.rs[k][1] > 0 ? " lead" : "") + '">' + esc(SECTOR_HE[k] || k) + ' <span class="num ' + (sl.rs[k][1] >= 0 ? "up" : "down") + '">' + (sl.rs[k][1] > 0 ? "+" : "") + sl.rs[k][1] + "%</span></span>";
+      }).join("") + "</div>";
+    } else if (rot.sectorRs) {
       var lead = rot.leadingSectors || [];
       sectors = '<div class="chips">' + Object.keys(rot.sectorRs).sort(function (a, b) { return (rot.sectorRs[b].rs20 || 0) - (rot.sectorRs[a].rs20 || 0); }).map(function (k) {
         return '<span class="chip' + (lead.indexOf(k) !== -1 ? " lead" : "") + '">' + esc(SECTOR_HE[k] || k) + ' <span class="num ' + ((rot.sectorRs[k].rs20 || 0) >= 0 ? "up" : "down") + '">' + (rot.sectorRs[k].rs20 > 0 ? "+" : "") + rot.sectorRs[k].rs20 + "%</span></span>";
@@ -3411,6 +3419,7 @@
     return n ? out : null;
   }
   function rwDays() {
+    if (SRS && SRS.days && SRS.days.length) return SRS.days;   // np141: תעודות הסל מול SPY
     var days = ((HIST && HIST.days) || []).filter(function (d) { return d.rs && Object.keys(d.rs).length; });
     // היום של indices עשוי להיות טרי יותר מ-history (עד ריצת הארכיון הבאה) — משלימים
     if (INDD && INDD.rotation && INDD.rotation.sectorRs && INDD.date && (!days.length || days[days.length - 1].date < INDD.date)) {
@@ -3434,7 +3443,7 @@
     // שלב 7 (10.10.2026): כותרת פאנל במקום כותרת-סעיף + כרטיס
     return panHd("גלגל הרוטציה · לאן הכסף זז", '<span class="mute">11 הסקטורים מול S&amp;P 500</span>') +
       '<div class="pb rw-card">' +
-        '<p class="rw-dek">כל סקטור נמדד מול S&P 500: ימינה = חזק יותר מהמדד ב-20 הימים האחרונים, למעלה = חזק יותר ב-5 הימים האחרונים. ' +
+        '<p class="rw-dek">כל סקטור נמדד מול S&P 500 דרך תעודת הסל שלו (XLE, XLK…) מול SPY — אותם מספרים כמו מפת החום בבית, מצטברים: ימינה = חזק יותר מהמדד ב-20 הימים האחרונים, למעלה = חזק יותר ב-5 הימים האחרונים. ' +
         'השביל מראה מאיפה הוא הגיע. סקטור שנע למטה-שמאלה מאבד כסף; למעלה-ימינה מקבל.</p>' +
         '<div class="rw-row"><span class="rw-cap">שביל:</span>' +
           '<button class="chip rw-chip' + (RW.mode === "week" ? " on" : "") + '" data-rw="week">השבוע · יום-יום</button>' +
@@ -3451,7 +3460,16 @@
     var days = rwDays(); if (!days.length) return;
     var mobile = window.innerWidth < 600;
     var W = mobile ? 520 : 960, H = mobile ? 560 : 540, P = mobile ? { l: 44, r: 14, t: 30, b: 40 } : { l: 56, r: 24, t: 34, b: 44 };
-    var L = RW_LAY;
+    // np141: הצירים לפי הנתונים — מול SPY הפערים גדולים יותר מאשר בממוצע המניות (אנרגיה +13% ב-20 יום),
+    // וטווח קבוע הצמיד שלושה סקטורים לשוליים. מינימום ±6/±4, מתרחב לפי הנקודות והשבילים המוצגים.
+    var L = { X0: RW_LAY.X0, X1: RW_LAY.X1, Y0: RW_LAY.Y0, Y1: RW_LAY.Y1 };
+    (function () {
+      var span = RW.mode === "week" ? 6 : 22, xs = [], ys = [];
+      days.slice(-span).forEach(function (d) { Object.keys(d.rs || {}).forEach(function (k) { if (d.rs[k][0] != null) ys.push(d.rs[k][0]); if (d.rs[k][1] != null) xs.push(d.rs[k][1]); }); });
+      if (!xs.length) return;
+      L.X0 = Math.min(-6, Math.floor(Math.min.apply(null, xs)) - 1); L.X1 = Math.max(6, Math.ceil(Math.max.apply(null, xs)) + 1);
+      L.Y0 = Math.min(-4, Math.floor(Math.min.apply(null, ys)) - 1); L.Y1 = Math.max(4, Math.ceil(Math.max.apply(null, ys)) + 1);
+    })();
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
     svg.classList.toggle("all", RW.all);
     function sx(v) { return P.l + (v - L.X0) / (L.X1 - L.X0) * (W - P.l - P.r); }
@@ -3461,9 +3479,9 @@
     var g = mtEl("g", {}); svg.appendChild(g);
     g.appendChild(mtEl("rect", { x: sx(0), y: P.t, width: sx(L.X1) - sx(0), height: sy(0) - P.t, class: "rw-q up" }));
     g.appendChild(mtEl("rect", { x: sx(L.X0), y: sy(0), width: sx(0) - sx(L.X0), height: sy(L.Y0) - sy(0), class: "rw-q down" }));
-    var xs = mobile ? 4 : 2, t;
-    for (var x = -8; x <= 6; x += xs) { g.appendChild(mtEl("line", { x1: sx(x), x2: sx(x), y1: P.t, y2: H - P.b, class: "rw-ax" })); t = mtEl("text", { x: sx(x), y: H - P.b + 16, class: "rw-axl", "text-anchor": "middle" }); t.textContent = (x > 0 ? "+" : "") + x + "%"; g.appendChild(t); }
-    for (var y = -8; y <= 4; y += 2) { g.appendChild(mtEl("line", { y1: sy(y), y2: sy(y), x1: P.l, x2: W - P.r, class: "rw-ax" })); t = mtEl("text", { x: P.l - 8, y: sy(y) + 4, class: "rw-axl", "text-anchor": "end" }); t.textContent = (y > 0 ? "+" : "") + y + "%"; g.appendChild(t); }
+    var xs = (L.X1 - L.X0) > (mobile ? 16 : 24) ? 4 : (mobile ? 4 : 2), ysp = (L.Y1 - L.Y0) > 16 ? 4 : 2, t;
+    for (var x = Math.ceil(L.X0 / xs) * xs; x <= L.X1; x += xs) { g.appendChild(mtEl("line", { x1: sx(x), x2: sx(x), y1: P.t, y2: H - P.b, class: "rw-ax" })); t = mtEl("text", { x: sx(x), y: H - P.b + 16, class: "rw-axl", "text-anchor": "middle" }); t.textContent = (x > 0 ? "+" : "") + x + "%"; g.appendChild(t); }
+    for (var y = Math.ceil(L.Y0 / ysp) * ysp; y <= L.Y1; y += ysp) { g.appendChild(mtEl("line", { y1: sy(y), y2: sy(y), x1: P.l, x2: W - P.r, class: "rw-ax" })); t = mtEl("text", { x: P.l - 8, y: sy(y) + 4, class: "rw-axl", "text-anchor": "end" }); t.textContent = (y > 0 ? "+" : "") + y + "%"; g.appendChild(t); }
     g.appendChild(mtEl("line", { x1: sx(0), x2: sx(0), y1: P.t, y2: H - P.b, class: "rw-zero" }));
     g.appendChild(mtEl("line", { y1: sy(0), y2: sy(0), x1: P.l, x2: W - P.r, class: "rw-zero" }));
     t = mtEl("text", { x: W - P.r, y: H - 6, class: "rw-axt", "text-anchor": "start", style: "direction:rtl" }); t.textContent = "← חוזק מול S&P 500 ב-20 יום"; g.appendChild(t);
@@ -3495,7 +3513,7 @@
       // tdiff/dir: שני הצירים יחד (rs5+rs20) — נשמר למידע בחלונית; צבע הקו מ-lineDir (ציר התצוגה)
       var first = tr.length > 1 ? tr[0].rs[k] : null, tdf = first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null;
       var dir = tdf == null ? "" : tdf > 0.05 ? "up" : tdf < -0.05 ? "down" : "";   // |שינוי| ≤ 0.05 = ללא שינוי (נשאר כחול)
-      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], dir: dir, lineDir: lineDir, dotDir: dotDir, lastMove: lastMove, pathMove: pathMove, rsP: rsP, win: win,
+      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], dir: dir, lineDir: lineDir, dotDir: dotDir, lastMove: lastMove, pathMove: pathMove, rsP: rsP, win: win, day: last.d1 && last.d1[k],
                  tdiff: first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null, tdays: tr.length - 1,
                  d1: prev1 ? [cur[0] - prev1[0], cur[1] - prev1[1]] : null, d5: prev5 ? [cur[0] - prev5[0], cur[1] - prev5[1]] : null });
     });
@@ -3528,6 +3546,8 @@
       tip.innerHTML = "";
       var b = document.createElement("b"); b.textContent = name; tip.appendChild(b);
       var qd = document.createElement("div"); qd.className = "rw-qd " + q[1]; qd.textContent = q[0]; tip.appendChild(qd);
+      // np141: היום עצמו — כמו מפת החום בבית — לפני החלונות הנעים (יום חזק יכול להוריד את חלון 5 הימים כשיום חזק יותר יוצא ממנו)
+      if (p.day) { var dy = document.createElement("div"); dy.className = "rw-sub rw-day"; dy.textContent = "היום: " + rwFmt(p.day[0]) + " · מול S&P " + rwFmt(p.day[1]); tip.appendChild(dy); }
       [["5 ימים מול המדד", p.rs5, p.d1 && p.d1[0], p.d5 && p.d5[0]], ["20 יום מול המדד", p.rs20, p.d1 && p.d1[1], p.d5 && p.d5[1]]].forEach(function (r) {
         var d = document.createElement("div"); d.textContent = r[0] + ": ";
         var nn = document.createElement("span"); nn.className = "num"; nn.textContent = rwFmt(r[1]); d.appendChild(nn); tip.appendChild(d);
@@ -3559,7 +3579,7 @@
     });
     svg.addEventListener("pointerleave", hide);
     var f = document.getElementById("rw-foot"), ld = last.date.split("-");
-    if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד, מהדשבורד, עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
+    if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד" + (SRS ? " — תעודות הסל של הסקטורים מול SPY, מנרות יומיים סגורים (אותו מקור כמו מפת החום בבית)" : ", מהדשבורד") + ", עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
       (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " צבע הקו = איפה הסקטור עומד היום ביחס לתחילת השביל על ציר התצוגה (" + (RW.mode === "week" ? "5 ימים" : "20 יום") + " מול המדד): ירוק השתפר, אדום נחלש; צבע העיגול = האם הכה את המדד או פיגר אחריו לאורך התקופה. ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
     document.querySelectorAll(".rw-chip").forEach(function (c) {
       c.onclick = function () {
@@ -4441,6 +4461,10 @@
           if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD);
           refreshRotationWheel();
         })
+        .catch(function () {});
+      // np141: חוזק יחסי של הסקטורים מתעודות הסל (build_sector_rs.py) — הגלגל, הבית וטאב השוק
+      fetchJSON("data/sector_rs.json")
+        .then(function (d) { if (!freshD("sectorrs", d)) return; SRS = d; renderHomeAround(); refreshRotationWheel(); if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD); })
         .catch(function () {});
       // סיכום השבוע (11.9.2026): נבנה ע"י build_weekly.py כשסגירת שישי נקלטת,
       // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
