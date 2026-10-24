@@ -10,6 +10,7 @@ fetch_trades.py — דוחות "הצעות לטרייד" (Four Pillars וכד') 
 
 עמידות: כשל משיכה → משאיר את הקיים.
 """
+import html as html_mod
 import json
 import os
 import re
@@ -59,7 +60,17 @@ CAT_MAP = [("דוהר", "רכבות דוהרות"), ("מומנטום", "רכבו
 
 
 def _txt(h):
-    return re.sub(r"\s+", " ", TAG_RE.sub(" ", h)).strip()
+    return html_mod.unescape(re.sub(r"\s+", " ", TAG_RE.sub(" ", h)).strip())
+
+
+def _short(note, n=220):
+    """הערה קצרה לפאנל: עד n תווים, חתוכה בסוף משפט (לא באמצע מילה)."""
+    note = note.strip()
+    if len(note) <= n:
+        return note
+    cut = note[:n]
+    i = max(cut.rfind(". "), cut.rfind("; "), cut.rfind(" — "))
+    return (cut[:i + 1] if i > 60 else cut.rsplit(" ", 1)[0] + "…").strip()
 
 
 def _cat(heading):
@@ -96,7 +107,7 @@ def extract_picks(html):
                 continue
             picks.append({"ticker": sym, "cat": cat,
                           "action": tds[ai] if ai is not None and ai < len(tds) else "",
-                          "note": (tds[ni] if ni is not None and ni < len(tds) else "")[:120]})
+                          "note": _short(tds[ni] if ni is not None and ni < len(tds) else "")})
     return picks
 
 
