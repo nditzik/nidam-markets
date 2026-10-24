@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np149";
+  var TA_VER = "np150";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -4459,7 +4459,7 @@
         ? panHd("הצעות לטרייד", "", bdGo("trades", "הדוח")) + '<div class="pb mute">' + (TRAD ? "אין דוח." : "טוען…") + "</div>"
         : panHd("הצעות לטרייד · " + esc(tr.title || "ארבעת העמודים"), '<span class="mute num" dir="ltr">' + esc(fmtTradeDate(tr.date) || tr.date || "") + "</span>", bdGo("trades", "הדוח")) +
           (pk.length ? '<div class="pb bd-sents">' + pk.slice(0, 5).map(function (p) {
-            return '<div class="sent"><b><span class="num tk" dir="ltr">' + esc(p.ticker) + "</span></b><span><b>" + esc(p.cat || "") + "</b>" + (p.action ? " · " + esc(p.action) : "") + (p.note ? " — " + esc(p.note) : "") + "</span></div>";
+            return '<div class="sent"><b class="num tk" dir="ltr">' + tvLink(p.ticker) + "</b><span><b>" + esc(p.cat || "") + "</b>" + (p.action ? " · " + esc(p.action) : "") + (p.note ? " — " + esc(p.note) : "") + "</span></div>";
           }).join("") + "</div>" : '<div class="pb mute">' + (TRAD.method ? '<a href="' + esc(TRAD.method.url) + '" target="_blank" rel="noopener">📚 ' + esc(TRAD.method.title) + "</a>" : "הדוח המלא בלשונית הצעות לטרייד.") + "</div>");
     }
     if (ei) {
