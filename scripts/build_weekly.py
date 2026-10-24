@@ -138,6 +138,21 @@ def sectors_block(week_of):
         except Exception:
             continue
         out = {"date": rep["date"], "file": rep["file"], "title": rep.get("title") or ""}
+        # 31.10.2026: דוח גרסה 2 (build_rotation.render_html_v2) נושא בלוק JSON מוכן — lead/out/held/marketBreadth —
+        # במקום שנגרד את ה-HTML. הגירוד שלמטה נשאר לדוחות הישנים (עד 24.10) ולעותקים מ-nidam-reports.
+        mj = _re.search(r'<script type="application/json" id="rotation-summary">(.*?)</script>', h, _re.S)
+        if mj:
+            try:
+                summ = json.loads(mj.group(1).replace("<\\/", "</"))
+            except ValueError:
+                summ = None
+            if isinstance(summ, dict) and summ.get("lead"):
+                for k in ("lead", "out", "held", "heldIn", "best", "marketBreadth", "marketBreadthPrev"):
+                    if summ.get(k) is not None:
+                        out[k] = summ[k]
+                if any(w in out["lead"] for w in _PERSONAL):
+                    out.pop("lead")
+                return out
         i = h.find("בחמישה משפטים")
         if i >= 0:
             # 3.10.2026: הדוח עבר מפסקה (<p>) לרשימה ממוספרת (<ol><li>) — לוקחים את הראשון מביניהם
