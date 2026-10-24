@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np142";
+  var TA_VER = "np143";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3431,6 +3431,15 @@
     }
     return days;
   }
+  // np143 (24.10.2026, איציק: "אתמול עלה 2.4% ובגרף נראה כאילו ירד"): שביל מעוגן. כל נקודה בשביל = כמה הסקטור
+  // הכה את SPY מצטבר מאז תחילת השביל (5 ימי מסחר בשבוע, 20 בחודש) — ולכן הקטע האחרון הוא בדיוק התנועה של היום
+  // מול המדד, והנקודה האחרונה שווה ל-rs5/rs20. קודם כל נקודה הייתה חלון נע משלה, ויום חזק "ירד" כשיום חזק יותר יצא מהחלון.
+  function rwAnch(k, a, j) {
+    var c = SRS && SRS.closes; if (!c || !c[k] || !c[SRS.spy || "SPY"]) return null;
+    var e0 = c[k][a], e1 = c[k][j], s0 = c[SRS.spy || "SPY"][a], s1 = c[SRS.spy || "SPY"][j];
+    if (!e0 || !e1 || !s0 || !s1) return null;
+    return Math.round(((e1 / e0 - 1) - (s1 / s0 - 1)) * 10000) / 100;
+  }
   function rwQuad(rs5, rs20) { return rs20 >= 0 ? (rs5 >= 0 ? ["מוביל", "up"] : ["נחלש", "down"]) : (rs5 >= 0 ? ["מתאושש", "up"] : ["מפגר", "down"]); }
   function rwFmt(v) { return v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(1) + "%"; }
   function rwWeeklyNote(name) {
@@ -3447,12 +3456,12 @@
     return panHd("גלגל הרוטציה · לאן הכסף זז", '<span class="mute">11 הסקטורים מול S&amp;P 500</span>') +
       '<div class="pb rw-card">' +
         '<p class="rw-dek">כל סקטור נמדד מול S&P 500 דרך תעודת הסל שלו (XLE, XLK…) מול SPY — אותם מספרים כמו מפת החום בבית, מצטברים: ימינה = חזק יותר מהמדד ב-20 הימים האחרונים, למעלה = חזק יותר ב-5 הימים האחרונים. ' +
-        'השביל מראה מאיפה הוא הגיע. סקטור שנע למטה-שמאלה מאבד כסף; למעלה-ימינה מקבל.</p>' +
+        'השביל מראה איך זה נבנה יום אחרי יום: כל נקודה בו = כמה הסקטור הכה את המדד מצטבר מאז תחילת השביל, ולכן הקטע האחרון הוא התנועה של היום מול המדד. סקטור שנע למטה-שמאלה מאבד כסף; למעלה-ימינה מקבל.</p>' +
         '<div class="rw-row"><span class="rw-cap">שביל:</span>' +
           '<button class="chip rw-chip' + (RW.mode === "week" ? " on" : "") + '" data-rw="week">השבוע · יום-יום</button>' +
           '<button class="chip rw-chip' + (RW.mode === "month" ? " on" : "") + '" data-rw="month">החודש · שבוע-שבוע</button>' +
           '<button class="chip rw-chip' + (RW.all ? " on" : "") + '" data-rw="all">כל השבילים</button>' +
-          '<span class="rw-legend"><span><i class="d"></i>העיגול: מול המדד בתקופה</span><span><i class="t"></i>הקו: היום מול תחילת השביל</span><span><i class="g"></i>ירוק עלה · <i class="r"></i>אדום ירד</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
+          '<span class="rw-legend"><span><i class="d"></i>העיגול: מול המדד בתקופה</span><span><i class="t"></i>הקו: מצטבר מתחילת השביל</span><span><i class="g"></i>ירוק עלה · <i class="r"></i>אדום ירד</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
         '<div class="rw-wrap"><svg id="rw-svg" role="img" aria-label="גלגל הרוטציה של 11 הסקטורים"></svg><div class="rw-tip" id="rw-tip"></div></div>' +
         '<p class="rw-foot" id="rw-foot"></p>' +
       "</div>";
@@ -3467,8 +3476,12 @@
     // וטווח קבוע הצמיד שלושה סקטורים לשוליים. מינימום ±6/±4, מתרחב לפי הנקודות והשבילים המוצגים.
     var L = { X0: RW_LAY.X0, X1: RW_LAY.X1, Y0: RW_LAY.Y0, Y1: RW_LAY.Y1 };
     (function () {
-      var span = RW.mode === "week" ? 6 : 22, xs = [], ys = [];
-      days.slice(-span).forEach(function (d) { Object.keys(d.rs || {}).forEach(function (k) { if (d.rs[k][0] != null) ys.push(d.rs[k][0]); if (d.rs[k][1] != null) xs.push(d.rs[k][1]); }); });
+      var span = RW.mode === "week" ? 6 : 21, xs = [], ys = [], n0 = days.length, a0 = n0 - span;
+      days.slice(-span).forEach(function (d, i) { Object.keys(d.rs || {}).forEach(function (k) {
+        var av = a0 >= 0 ? rwAnch(k, a0, a0 + i) : null;
+        if (RW.mode === "week") { if (av != null) ys.push(av); else if (d.rs[k][0] != null) ys.push(d.rs[k][0]); if (d.rs[k][1] != null) xs.push(d.rs[k][1]); }
+        else { if (av != null) xs.push(av); else if (d.rs[k][1] != null) xs.push(d.rs[k][1]); if (d.rs[k][0] != null) ys.push(d.rs[k][0]); }
+      }); });
       if (!xs.length) return;
       L.X0 = Math.min(-6, Math.floor(Math.min.apply(null, xs)) - 1); L.X1 = Math.max(6, Math.ceil(Math.max.apply(null, xs)) + 1);
       L.Y0 = Math.min(-4, Math.floor(Math.min.apply(null, ys)) - 1); L.Y1 = Math.max(4, Math.ceil(Math.max.apply(null, ys)) + 1);
@@ -3492,33 +3505,31 @@
     [[sx(L.X1) - 8, P.t + 16, "end", "מובילים"], [sx(L.X1) - 8, sy(L.Y0) - 10, "end", "נחלשים"], [sx(L.X0) + 8, sy(L.Y0) - 10, "start", "מפגרים"], [sx(L.X0) + 8, P.t + 16, "start", "מתאוששים"]]
       .forEach(function (q) { t = mtEl("text", { x: q[0], y: q[1], class: "rw-qt", "text-anchor": q[2] }); t.textContent = q[3]; g.appendChild(t); });
     var n = days.length, last = days[n - 1], pts = [];
-    var step = RW.mode === "week" ? 1 : 5, cnt = RW.mode === "week" ? 4 : 4;
-    // np137 (13.10.2026, איציק: "תקשורת השתפרה ביחס להתחלה ועדיין הקו אדום"): הקו = סוף השביל מול תחילתו על ציר התצוגה
-    // בלבד — rs5 (הציר האנכי) בשבוע, rs20 בחודש — אותו ציר שקובע את צבע העיגול. השתפר ביחס להתחלה = ירוק, נחלש = אדום.
-    // (np136 חיבר rs5+rs20: תקשורת עלתה בשבוע מ-‎-1.99 ל-‎+0.12 ב-5 ימים אבל rs20 ירד יותר — אדום על גרף שבו היא טיפסה.
-    // np123 צבע לפי הקטע האחרון בלבד.) העיגול = מול המדד לאורך התקופה (סימן rs5 לשבוע, rs20 לחודש). הצבעים קבועים.
+    // np143: השביל מעוגן — שבוע = 5 ימי מסחר יום-יום (6 נקודות), חודש = 20 ימי מסחר בקפיצות של 5 (5 נקודות).
+    // ציר התצוגה (rs5 בשבוע / rs20 בחודש) נמדד מצטבר מתחילת השביל (rwAnch); הציר השני = החלון הנע של אותו יום.
+    var step = RW.mode === "week" ? 1 : 5, cnt = RW.mode === "week" ? 5 : 4;
     var win = RW.mode === "week" ? 5 : 20, ai = RW.mode === "week" ? 0 : 1;
     function sgn(v) { return v == null ? "" : v > 0.05 ? "up" : v < -0.05 ? "down" : ""; }
     Object.keys(last.rs).forEach(function (k) {
       var cur = last.rs[k]; if (cur[0] == null || cur[1] == null) return;
-      var tr = [];
-      for (var i = cnt; i >= 0; i--) { var j = n - 1 - i * step; if (j >= 0 && days[j].rs[k] && days[j].rs[k][0] != null) tr.push(days[j]); }
+      var a = n - 1 - cnt * step, tr = [];
+      for (var i = cnt; i >= 0; i--) {
+        var j = n - 1 - i * step; if (j < 0 || !days[j].rs[k] || days[j].rs[k][0] == null) continue;
+        var av = a >= 0 ? rwAnch(k, a, j) : null, rs = days[j].rs[k];
+        // [x, y] של הנקודה; בלי סגירות (קובץ ישן) — נפילה לחלונות הנעים כמו קודם
+        tr.push(RW.mode === "week" ? [rs[1], av != null ? av : rs[0]] : [av != null ? av : rs[1], rs[0]]);
+      }
       var rsP = RW.mode === "week" ? cur[0] : cur[1], dotDir = sgn(rsP);
-      var pv = tr.length > 1 ? tr[tr.length - 2].rs[k] : null, lastMove = pv ? cur[ai] - pv[ai] : null;
-      var first0 = tr.length > 1 ? tr[0].rs[k] : null, pathMove = first0 ? cur[ai] - first0[ai] : null, lineDir = sgn(pathMove);
+      var endV = tr.length ? tr[tr.length - 1][ai === 0 ? 1 : 0] : rsP;
+      var pv = tr.length > 1 ? tr[tr.length - 2][ai === 0 ? 1 : 0] : null, lastMove = pv != null ? Math.round((endV - pv) * 100) / 100 : null;
+      var first0 = tr.length > 1 ? tr[0][ai === 0 ? 1 : 0] : null, pathMove = first0 != null ? Math.round((endV - first0) * 100) / 100 : null, lineDir = sgn(pathMove);
       var tg = mtEl("g", { class: "rw-tg", "data-k": k });
       if (tr.length > 1) {
-        tg.appendChild(mtEl("path", { class: "rw-trail " + lineDir, "data-k": k, d: tr.map(function (d, i) { return (i ? "L" : "M") + sx(cl(d.rs[k][1], L.X0, L.X1)) + "," + sy(cl(d.rs[k][0], L.Y0, L.Y1)); }).join(" ") }));
-        tr.slice(0, -1).forEach(function (d) { tg.appendChild(mtEl("circle", { class: "rw-tdot " + lineDir, "data-k": k, cx: sx(cl(d.rs[k][1], L.X0, L.X1)), cy: sy(cl(d.rs[k][0], L.Y0, L.Y1)), r: 3.5 })); });
+        tg.appendChild(mtEl("path", { class: "rw-trail " + lineDir, "data-k": k, d: tr.map(function (q, i) { return (i ? "L" : "M") + sx(cl(q[0], L.X0, L.X1)) + "," + sy(cl(q[1], L.Y0, L.Y1)); }).join(" ") }));
+        tr.slice(0, -1).forEach(function (q) { tg.appendChild(mtEl("circle", { class: "rw-tdot " + lineDir, "data-k": k, cx: sx(cl(q[0], L.X0, L.X1)), cy: sy(cl(q[1], L.Y0, L.Y1)), r: 3.5 })); });
       }
       g.appendChild(tg);
-      var prev1 = n >= 2 && days[n - 2].rs[k], prev5 = n >= 6 && days[n - 6].rs[k];
-      // tdiff/dir: שני הצירים יחד (rs5+rs20) — נשמר למידע בחלונית; צבע הקו מ-lineDir (ציר התצוגה)
-      var first = tr.length > 1 ? tr[0].rs[k] : null, tdf = first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null;
-      var dir = tdf == null ? "" : tdf > 0.05 ? "up" : tdf < -0.05 ? "down" : "";   // |שינוי| ≤ 0.05 = ללא שינוי (נשאר כחול)
-      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], dir: dir, lineDir: lineDir, dotDir: dotDir, lastMove: lastMove, pathMove: pathMove, rsP: rsP, win: win, day: last.d1 && last.d1[k],
-                 tdiff: first ? (cur[0] + cur[1]) - (first[0] + first[1]) : null, tdays: tr.length - 1,
-                 d1: prev1 ? [cur[0] - prev1[0], cur[1] - prev1[1]] : null, d5: prev5 ? [cur[0] - prev5[0], cur[1] - prev5[1]] : null });
+      pts.push({ k: k, x: sx(cl(cur[1], L.X0, L.X1)), y: sy(cl(cur[0], L.Y0, L.Y1)), rs5: cur[0], rs20: cur[1], lineDir: lineDir, dotDir: dotDir, lastMove: lastMove, pathMove: pathMove, rsP: rsP, win: win, day: last.d1 && last.d1[k], tdays: tr.length - 1 });
     });
     // תוויות: מעל הנקודה; בהתנגשות — לצדדים/מתחת
     var placed = []; pts.sort(function (a, b) { return a.x - b.x; });
@@ -3551,17 +3562,15 @@
       var qd = document.createElement("div"); qd.className = "rw-qd " + q[1]; qd.textContent = q[0]; tip.appendChild(qd);
       // np141: היום עצמו — כמו מפת החום בבית — לפני החלונות הנעים (יום חזק יכול להוריד את חלון 5 הימים כשיום חזק יותר יוצא ממנו)
       if (p.day) { var dy = document.createElement("div"); dy.className = "rw-sub rw-day"; dy.textContent = "היום: " + rwFmt(p.day[0]) + " · מול S&P " + rwFmt(p.day[1]); tip.appendChild(dy); }
-      [["5 ימים מול המדד", p.rs5, p.d1 && p.d1[0], p.d5 && p.d5[0]], ["20 יום מול המדד", p.rs20, p.d1 && p.d1[1], p.d5 && p.d5[1]]].forEach(function (r) {
+      [["5 ימים מול המדד", p.rs5], ["20 יום מול המדד", p.rs20]].forEach(function (r) {
         var d = document.createElement("div"); d.textContent = r[0] + ": ";
         var nn = document.createElement("span"); nn.className = "num"; nn.textContent = rwFmt(r[1]); d.appendChild(nn); tip.appendChild(d);
-        var sub = document.createElement("div"); sub.className = "rw-sub";
-        sub.textContent = "מול אתמול " + (r[2] == null ? "—" : rwFmt(r[2])) + " · מול לפני שבוע " + (r[3] == null ? "—" : rwFmt(r[3])); tip.appendChild(sub);
       });
       if (p.now) { var nw = document.createElement("div"); nw.className = "rw-now-t"; nw.textContent = "עכשיו (אומדן חי): " + rwFmt(p.dnow) + " מול המדד היום → " + rwQuad(p.now[0], p.now[1])[0]; tip.appendChild(nw); }
       var wn = rwWeeklyNote(name); if (wn) { var w = document.createElement("div"); w.className = "rw-sub rw-wn"; w.textContent = wn; tip.appendChild(w); }
       var per = p.win === 5 ? "5 ימים" : "20 יום";
-      if (p.pathMove != null) { var tl = document.createElement("div"); tl.className = "rw-sub rw-td " + p.lineDir; tl.textContent = "הקו · " + (p.win === 5 ? "5 ימים" : "20 יום") + " מול המדד, ביחס לתחילת השביל (" + (p.win === 5 ? "לפני 5 ימי מסחר" : "לפני חודש") + "): " + rwFmt(p.pathMove) + (p.lineDir === "up" ? " (השתפר)" : p.lineDir === "down" ? " (נחלש)" : " (ללא שינוי)"); tip.appendChild(tl); }
-      if (p.lastMove != null) { var tm = document.createElement("div"); tm.className = "rw-sub"; tm.textContent = "הקטע האחרון (" + (p.win === 5 ? "מאתמול" : "מלפני שבוע") + "): " + rwFmt(p.lastMove) + (p.tdiff != null ? " · שני הצירים יחד מתחילת השביל: " + rwFmt(p.tdiff) : ""); tip.appendChild(tm); }
+      if (p.pathMove != null) { var tl = document.createElement("div"); tl.className = "rw-sub rw-td " + p.lineDir; tl.textContent = "הקו · מתחילת השביל (" + (p.win === 5 ? "5 ימי מסחר" : "20 ימי מסחר") + ") מול המדד: " + rwFmt(p.pathMove) + (p.lineDir === "up" ? " (הכה את המדד)" : p.lineDir === "down" ? " (פיגר)" : " (ללא שינוי)"); tip.appendChild(tl); }
+      if (p.lastMove != null) { var tm = document.createElement("div"); tm.className = "rw-sub"; tm.textContent = "הקטע האחרון (" + (p.win === 5 ? "אתמול → היום" : "5 ימי המסחר האחרונים") + ") מול המדד: " + rwFmt(p.lastMove); tip.appendChild(tm); }
       var td = document.createElement("div"); td.className = "rw-sub rw-td " + p.dotDir; td.textContent = "העיגול · מול המדד ב-" + per + ": " + rwFmt(p.rsP) + (p.dotDir === "up" ? " (הכה את המדד)" : p.dotDir === "down" ? " (פיגר אחרי המדד)" : ""); tip.appendChild(td);
       tip.style.display = "block";
       // 29.9 (איציק): ההסבר בפינה הריקה שממול לסקטור, לא על השביל שלו
@@ -3583,7 +3592,7 @@
     svg.addEventListener("pointerleave", hide);
     var f = document.getElementById("rw-foot"), ld = last.date.split("-");
     if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד" + (SRS ? " — תעודות הסל של הסקטורים מול SPY, מנרות יומיים סגורים (אותו מקור כמו מפת החום בבית)" : ", מהדשבורד") + ", עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
-      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום." : "השביל: איפה הסקטור עמד לפני שבוע, שבועיים, שלושה, חודש.") + " צבע הקו = איפה הסקטור עומד היום ביחס לתחילת השביל על ציר התצוגה (" + (RW.mode === "week" ? "5 ימים" : "20 יום") + " מול המדד): ירוק השתפר, אדום נחלש; צבע העיגול = האם הכה את המדד או פיגר אחריו לאורך התקופה. ריחוף או נגיעה על סקטור: המספרים, מול אתמול ומול לפני שבוע." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
+      (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום — על הציר האנכי מצטבר מתחילת השביל, כך שכל קטע הוא יום אחד מול המדד." : "השביל: 20 ימי המסחר האחרונים בקפיצות של שבוע — על הציר האופקי מצטבר מתחילת השביל, כך שכל קטע הוא שבוע אחד מול המדד.") + " צבע הקו והעיגול = האם הסקטור הכה את המדד (ירוק) או פיגר אחריו (אדום) לאורך התקופה. ריחוף או נגיעה על סקטור: היום, 5 ימים, 20 יום." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
     document.querySelectorAll(".rw-chip").forEach(function (c) {
       c.onclick = function () {
         if (c.dataset.rw === "all") { RW.all = !RW.all; c.classList.toggle("on", RW.all); svg.classList.toggle("all", RW.all); return; }
