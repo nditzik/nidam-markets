@@ -304,7 +304,7 @@ def row_html(k, s, note):
         fmtn(s["last"]), pc(s["d5"]), "%.0f" % s["alpha"] if s["alpha"] is not None else "—", e(s["opRaw"]),
         "%.0f" % s["rsi"] if s["rsi"] is not None else "—", "%.0f" % s["nh"] if s["nh"] is not None else "—", pc(s["offHi"]),
         fmtn(lv["trigger"]), fmtn(lv["ma100"]),
-        (fl + "<br>" if fl else ""), e(note) if note else "")
+        e(note) if note else "", ("<br>" + fl if fl else ""))
 
 
 def template_note(k, s):
