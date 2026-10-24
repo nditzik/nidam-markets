@@ -233,6 +233,13 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_bars.py
 
+      # --- חוזק יחסי של 11 הסקטורים מתעודות הסל מול SPY (24.10.2026, np141) → data/sector_rs.json.
+      #     מזין את גלגל הרוטציה, "סקטורים · 5 ימים" בבית וצ'יפי הרוטציה בטאב השוק — אותו מקור
+      #     כמו מפת החום (ETF), במקום ממוצע המניות של הדשבורד. ראו build_sector_rs.py ---
+      - name: Build sector relative strength (ETF vs SPY)
+        continue-on-error: true
+        run: python scripts/build_sector_rs.py
+
       # --- הנבחרות (30.9.2026): המועמדים+המומנטום שקיבלו "אישור מחיר לקנייה"
       #     מהמנוע הטכני (assets/ta_engine.js) על הנר הסגור האחרון → data/picks.json,
       #     ויומן הכנות 5/10/20 יום → data/picks_ledger.json. node קיים ב-runner. ---
