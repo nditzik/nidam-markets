@@ -23,7 +23,7 @@
 | מבנה השוק של כל יום | חמשת הניתוחים היומיים מ-git: לכל תאריך ב-`days` — `git log --format=%H -- data/claude_analysis.json`, ולכל sha `git show <sha>:data/claude_analysis.json`; הגרסה הראשונה שה-`date` שלה שווה לתאריך → `tldr` + `paragraphs` | הרוחב, המד, הכסף הגדול, ואיך השוק הגיב לחדשות |
 | הדוחות ואיך הגיבו | `data/earnings.json` → `reactions.days[]` (ticker, name, chg, when, status) — רק `status:"final"`; `week[]` → המדווחות של השבוע הבא (`companies[].ticker/when`) | פרק הדוחות + השבוע הבא |
 | מאקרו | `data/econ.json` → `events[]` (he, ilDate, forecast, previous, actual, surprise): השבוע = `actual` לא ריק; השבוע הבא = ilDate בשבוע הקרוב | מאקרו + השבוע הבא |
-| הסקטורים | `data/weekly.json.sectors` + הדוח עצמו `data/sectors/sectors-<date>.html` (HTML → טקסט): "בחמישה משפטים" + טבלת "תמונת המצב" (עמודת "שבוע" = שינוי שבועי לכל סקטור, הרוחב של כל סקטור) | פרק "לאן זרם הכסף" — **רק אם** `sectors.date` קיים ובטווח 0–3 ימים מ-`weekOf` |
+| הסקטורים | `data/weekly.json.sectors` + הדוח עצמו `data/sectors/sectors-<date>.html` (HTML → טקסט). מ-31.10 הדוח במבנה החדש: הכותרת (H1) + ה-dek, הטבלה (מצב · מול המדד בשבוע/בחודש · רוחב · פסק דין), "מה השתנה השבוע" (סיבה → תוצאה → אבל) ו"מה עושים"; הנתונים הגולמיים גם ב-`data/rotation/<date>/week.json` ו-`narrative.json` | פרק "לאן זרם הכסף" — **רק אם** `sectors.date` קיים ובטווח 0–3 ימים מ-`weekOf` |
 | הצפי שלנו | `data/forecasts.json` → `last` (label, prob, claim, close, actual, hit, inRange, claims{sellDay,breadth,vix}.hit) כש-`last.weekOf` = יום שני של השבוע; `record` (scored, hits, inRange) | פרק "הצפי שלנו מול מה שקרה" |
 | הנבחרות | `data/picks_ledger.json` → `editions[]` עם `date` בתוך השבוע: `symbols` (n), `cur` {day, ret, spy, excess, win, n} | פרק "הנבחרות" |
 

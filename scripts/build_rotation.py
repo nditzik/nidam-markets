@@ -657,6 +657,343 @@ def render_html(w, nar):
     return f'<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>{e(title)}</title>\n<style>{CSS}</style>\n</head>\n<body><div class="wrap">\n{"".join(H)}\n</div></body></html>', title
 
 
+# ---------------------------------------------------------------- HTML גרסה 2 (24.10.2026, איציק: "מבולגן, עמוס וקשה לקרוא" → מוקאפ אושר)
+# עמוד אחד בארבעה צעדים: (1) הרקע — ארבעה מדי מאקרו עם "מה זה עושה לסקטורים" · (2) טבלה אחת ל-11 הסקטורים
+# (מצב · מול המדד בשבוע/בחודש · רוחב · ארבע בדיקות · פסק דין) ממוינת לפי פסק הדין · (3) מה השתנה השבוע —
+# שלוש כרטיסיות "סיבה → תוצאה → אבל" · (4) מה עושים — רק סקטורים שיש בהם פעולה, עם טריגר וביטול.
+# כל השאר (דין וחשבון, תעשיות, לוח דוחות, מדדי עומק, שיטה) מקופל ב-<details>. המספרים מ-week.json; המילים
+# מ-narrative.json גרסה 2 (ראו scripts/prompts/rotation_weekly.md §4). בלוק JSON בסוף הדף (#rotation-summary) =
+# מה ש-build_weekly.sectors_block קורא לבית ולסיכום השבוע — במקום לגרד את ה-HTML.
+CSS2 = """
+:root{--bg:#EEF0F3;--surface:#FFFFFF;--surface-2:#F6F7F9;--border:#D8DDE4;--text:#14181F;--text-soft:#3D4653;--text-3:#5B6675;
+--accent:#1D5BB8;--accent-soft:#E7EEFA;--up:#0D7A52;--down:#BE2E1C;--warn:#8A5200;--warn-soft:#FBF1DC;--state-fill:#D9961F;
+--track:#CBD2DB;--up-soft:#E3F3EC;--down-soft:#F9E7E4;--sans:"IBM Plex Sans Hebrew","Heebo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0B0E13;--surface:#121821;--surface-2:#171E29;--border:#243040;--text:#E3E8EF;--text-soft:#B4BECB;--text-3:#8C98A8;
+--accent:#7FB2FF;--accent-soft:#182A47;--up:#3CCB7F;--down:#FF6B5A;--warn:#F5B03E;--warn-soft:#2A2110;--track:#2C3746;--up-soft:#15302A;--down-soft:#3A1F1C;color-scheme:dark}}
+*{box-sizing:border-box}
+html{direction:rtl}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 var(--sans);padding:20px 16px 48px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:12px}
+h1,h2,h3,p{margin:0}
+h1{font-size:26px;line-height:1.3;font-weight:700;text-wrap:balance}
+h2{font-size:13px;font-weight:600;color:var(--text-soft);line-height:20px}
+a{color:var(--accent)}
+.pan{background:var(--surface);border:1px solid var(--border);border-radius:6px;min-width:0}
+.ph{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;border-bottom:1px solid var(--border)}
+.ph .stp{font:600 12px/18px var(--mono);color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:0 7px}
+.ph .sub{margin-inline-start:auto;font-size:12px;color:var(--text-3)}
+.pb{padding:14px}
+.head{display:grid;gap:8px;padding:16px 14px 14px}
+.kick{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:var(--text-3)}
+.kick .tag{background:var(--warn-soft);color:var(--warn);border-radius:3px;padding:1px 7px;font-weight:600}
+.dek{font-size:16px;line-height:1.6;color:var(--text-soft);max-width:70ch}
+.mkt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--border)}
+.mkt>div{padding:10px 14px;border-inline-start:1px solid var(--border);min-width:0}
+.mkt>div:first-child{border-inline-start:0}
+.mkt .l{font-size:12px;color:var(--text-3)}
+.mkt .v{font:600 20px/1.2 var(--mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.mkt .v.t{font:600 16px/1.3 var(--sans);direction:rtl}
+.mkt .v.up,.up{color:var(--up)} .mkt .v.dn,.dn{color:var(--down)}
+.mkt .s{font-size:12px;color:var(--text-soft)}
+.dials{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px}
+.dial{border:1px solid var(--border);border-radius:4px;padding:12px;display:grid;gap:4px;align-content:start;min-width:0;background:var(--surface-2)}
+.dl{font-size:12px;color:var(--text-3)}
+.dv{font-size:26px;line-height:1.1;font-weight:600}
+.dv small{font-size:14px;font-weight:400;color:var(--text-3);margin-inline-start:2px}
+.dc{font-size:13px;color:var(--text-soft)}
+.dial-up .dc{color:var(--up)} .dial-dn .dc{color:var(--down)}
+.dm{font-size:12px;color:var(--text-3)}
+.de{font-size:13px;line-height:1.5;color:var(--text);border-top:1px solid var(--border);padding-top:8px;margin-top:4px}
+.de b,.cg .so b,.frozen b,.act .v b{font-weight:600}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+.main{min-width:860px}
+thead th{font-size:12px;font-weight:500;color:var(--text-3);text-align:start;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap}
+thead th.ck{text-align:center;padding:8px 4px;font-size:11px;line-height:1.3;white-space:normal;width:64px}
+tbody th{text-align:start;padding:10px 14px 10px 10px;font-weight:400;vertical-align:top}
+tbody th b{display:block;font-weight:600;font-size:14px}
+tbody th small{font:12px var(--mono);color:var(--text-3)}
+tbody td{padding:10px;vertical-align:top}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:0}
+.st{display:inline-block;font-size:12px;font-weight:600;border-radius:3px;padding:1px 8px;border:1px solid var(--border);color:var(--text-soft);white-space:nowrap}
+.st-held{background:var(--text);color:var(--surface);border-color:var(--text)}
+.st-cand{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.relw{display:grid;gap:4px;min-width:92px}
+.rb{position:relative;height:8px;background:var(--track);border-radius:1px;direction:ltr}
+.rb::before{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text-3)}
+.rb i{position:absolute;top:0;bottom:0;display:block;border-radius:1px}
+.rb i.up{background:var(--up)} .rb i.dn{background:var(--down)}
+.bw{display:grid;gap:4px;min-width:84px}
+.bt{position:relative;display:block;height:8px;background:var(--track);border-radius:1px;direction:ltr}
+.bt i{position:absolute;left:0;top:0;bottom:0;background:var(--text-soft);border-radius:1px}
+.bt em{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--state-fill)}
+.bn{font-size:13px}
+.ck{text-align:center;width:64px}
+.ci{display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;border-radius:50%;font-size:14px;font-weight:700}
+.ci.ok{color:var(--up);background:var(--up-soft)} .ci.no{color:var(--down);background:var(--down-soft)}
+.ci.part{color:var(--text-soft);background:var(--surface-2);border:1px dashed var(--text-3)} .ci.none{color:var(--text-3)}
+.vd{min-width:260px}
+.vt{display:inline-block;font-weight:600;font-size:13px;padding-inline-start:10px;border-inline-start:3px solid var(--text-3);line-height:1.3}
+.vt-ok{border-color:var(--up)} .vt-warm{border-color:var(--state-fill)} .vt-bounce{border-color:var(--text-3)} .vt-broken{border-color:var(--down)}
+.vd p{font-size:13px;color:var(--text-soft);margin-top:4px;line-height:1.45}
+.legend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-3)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend .ci{width:18px;height:18px;font-size:11px}
+.chg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
+.cg{border:1px solid var(--border);border-radius:4px;padding:12px;display:grid;gap:8px;align-content:start;min-width:0}
+.cg .cause{font-size:12px;color:var(--text-3)} .cg .cause b{color:var(--text-soft);font-weight:600}
+.cg h3{font-size:15px;line-height:1.4;font-weight:600}
+.cg p{font-size:13px;line-height:1.5;color:var(--text-soft)}
+.cg .so{font-size:13px;color:var(--text);border-top:1px solid var(--border);padding-top:8px}
+.acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:14px}
+.act{border:1px solid var(--border);border-radius:4px;padding:12px;display:grid;gap:6px;min-width:0;grid-template-columns:auto 1fr;align-content:start}
+.act .who{grid-column:1 / -1;display:flex;align-items:center;gap:8px}
+.act .who b{font-size:15px;font-weight:600}
+.act .who .st{margin-inline-start:auto}
+.act .k{font-size:12px;color:var(--text-3);padding-top:2px;white-space:nowrap}
+.act .v{font-size:13px;line-height:1.5;color:var(--text-soft)}
+.act .v.do{color:var(--text);font-weight:500}
+.act.exit{border-inline-start:3px solid var(--down)} .act.enter{border-inline-start:3px solid var(--up)} .act.hold,.act.watch{border-inline-start:3px solid var(--text-3)}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--border)}
+.nums>div{padding:12px 14px;border-inline-start:1px solid var(--border);min-width:0}
+.nums>div:first-child{border-inline-start:0}
+.nums .l{font-size:12px;color:var(--text-3)}
+.nums .v{font:600 22px/1.2 var(--mono);direction:ltr;unicode-bidi:isolate;display:inline-block}
+.nums .s{font-size:12px;color:var(--text-soft)}
+.frozen{margin:0 14px 14px;padding:10px 12px;background:var(--warn-soft);color:var(--warn);border-radius:4px;font-size:13px;line-height:1.5}
+.acts+.frozen{margin-top:0}
+details.pan summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;font-size:13px;font-weight:600;color:var(--text-soft)}
+details.pan summary::-webkit-details-marker{display:none}
+details.pan summary::after{content:"+";margin-inline-start:auto;font:500 18px var(--mono);color:var(--text-3)}
+details.pan[open] summary::after{content:"−"}
+details.pan[open] summary{border-bottom:1px solid var(--border)}
+details .pb{font-size:13px;color:var(--text-soft);line-height:1.55}
+details .pb p+p,details .pb .tw+p,details .pb p+.tw{margin-top:8px}
+.acc{width:100%;border-collapse:collapse;font-size:13px}
+.acc td,.acc th{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;text-align:start}
+.acc th{color:var(--text-3);font-weight:500;font-size:12px}
+.acc td.n,.acc th.n{text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
+.acc .r{white-space:nowrap;font-weight:600}
+.acc .r.ok{color:var(--up)} .acc .r.part{color:var(--warn)} .acc .r.miss{color:var(--down)}
+.small{font-size:12px;color:var(--text-3)}
+figure{margin:10px 0;overflow-x:auto}
+figcaption{font-size:12px;color:var(--text-3);text-align:center}
+.foot{font-size:12px;color:var(--text-3);text-align:center;padding:4px 0 0}
+@media (max-width:860px){.dials,.chg,.acts{grid-template-columns:repeat(2,minmax(0,1fr))}.mkt{grid-template-columns:repeat(2,minmax(0,1fr))}.mkt>div:nth-child(3){border-inline-start:0}.mkt>div:nth-child(n+3){border-top:1px solid var(--border)}}
+@media (max-width:560px){h1{font-size:22px}.dials,.chg,.acts,.nums{grid-template-columns:1fr}.nums>div{border-inline-start:0}.nums>div+div{border-top:1px solid var(--border)}.ph .sub{display:none}body{padding:12px 12px 40px}}
+"""
+
+V2_STATUS = {"held": "מוחזק", "cand": "מועמד", "out": "בחוץ"}
+V2_CHK = {"y": ("✓", "ok", "כן"), "n": ("✗", "no", "לא"), "p": ("◐", "part", "חלקי / מתהפך"), "n0": ("–", "none", "לא רלוונטי")}
+V2_CHK_HEAD = ["מאקרו תומך?", "חזק מול המדד?", "רוחב מאשר?", "שבועיים רצופים?"]
+V2_CLS_ORDER = {"ok": 0, "warm": 1, "bounce": 2, "broken": 3}
+V2_KIND = {"exit": "exit", "enter": "enter", "hold": "hold", "watch": "watch"}
+V2_REQUIRED = ("headline", "dek", "macro_effect", "verdicts", "changes", "actions")
+
+
+def _sn(v, d=2, pct=True):
+    """מספר חתום במונו (מינוס אמיתי), LTR."""
+    if v is None:
+        return "—"
+    return '<span class="num">' + ("%+.*f" % (d, v)).replace("-", "−") + ("%" if pct else "") + "</span>"
+
+
+def _n(v, d=0):
+    return '<span class="num">' + ("{:,.%df}" % d).format(v) + "</span>"
+
+
+def _first_sentence(t):
+    t = re.sub(r"<[^>]+>", "", t or "").strip()
+    t = re.split(r"(?<=[^\d])\.\s", t, maxsplit=1)[0].strip()
+    return t + ("" if t.endswith(".") else ".") if t else ""
+
+
+def _rel_bar(v, scale):
+    wd = min(abs(v) / scale * 50, 50) if scale else 0
+    left = 50 if v >= 0 else 50 - wd
+    return '<div class="rb" aria-hidden="true"><i class="%s" style="left:%.1f%%;width:%.1f%%"></i></div>' % ("up" if v >= 0 else "dn", left, wd)
+
+
+def _ma_pos(close, ma, label, tol=0.3):
+    if not ma:
+        return ""
+    gap = (close / ma - 1) * 100
+    word = "על" if abs(gap) <= tol else ("מעל" if gap > 0 else "מתחת ל")
+    return f"{word}ממוצע {label} ({ma:,.2f})".replace("עלממוצע", "על ממוצע").replace("מעלממוצע", "מעל ממוצע").replace("מתחת לממוצע", "מתחת לממוצע")
+
+
+def _dial(key, label, v, unit, effect, dec=2, thousands=False):
+    close = v["close"]
+    val = ("{:,.0f}" if thousands else "{:.%df}" % dec).format(close)
+    chg1w = v.get("1w")
+    prev = close / (1 + chg1w / 100) if chg1w is not None else None
+    tone = "flat" if chg1w is None or abs(chg1w) < 0.2 else ("up" if chg1w > 0 else "dn")
+    arrow = {"up": "↑", "dn": "↓", "flat": "→"}[tone]
+    parts = []
+    if prev is not None:
+        parts.append(f"מ-{('{:,.0f}' if thousands else '{:.%df}' % dec).format(prev)}{unit if unit == '%' else ''} לפני שבוע")
+    parts.append(_sn(chg1w) + " בשבוע")
+    if v.get("1m") is not None and abs(v["1m"]) >= 3:
+        parts.append(_sn(v["1m"]) + " בחודש")
+    if v.get("off_hi52") == 0:
+        parts.append("<b>שיא שנתי</b>")
+    elif v.get("lo52") is not None and close <= v["lo52"]:
+        parts.append("<b>שפל שנתי</b>")
+    ma = " · ".join(x for x in (_ma_pos(close, v.get("ma20"), "20"), _ma_pos(close, v.get("ma50"), "50")) if x)
+    if v.get("ma20") and abs(close / v["ma20"] - 1) * 100 >= 8:
+        ma += f" — {abs(close / v['ma20'] - 1) * 100:.0f}% {'מעל' if close > v['ma20'] else 'מתחת ל'}ממוצע 20: חד".replace("מתחת לממוצע", "מתחת לממוצע")
+    return (f'<div class="dial dial-{tone}"><div class="dl">{e(label)}</div><div class="dv num">{val}<small>{unit}</small></div>'
+            f'<div class="dc">{arrow} {" · ".join(parts)}</div><div class="dm">{ma}</div><div class="de">{effect}</div></div>')
+
+
+def summary_block(w, nar):
+    """מה שהבית וסיכום השבוע קוראים מהדוח (build_weekly.sectors_block) — במקום לגרד HTML."""
+    S, sb = w["sectors"], w["spx_breadth"]
+    moves = [(S[k]["name_he"], S[k]["pct_above_ma50_prev"], S[k]["pct_above_ma50"], S[k]["breadth_delta_wow"])
+             for k in ORDER if S[k]["breadth_delta_wow"] is not None]
+    outp = sorted([m for m in moves if m[3] < 0], key=lambda m: m[3])[:5]   # רק ירידות רוחב אמיתיות; שבוע בלי ירידה → []
+    inp = sorted([m for m in moves if m[3] > 0], key=lambda m: -m[3])[:4]
+    best = max(ORDER, key=lambda k: S[k]["perf"]["1w"])
+    return {"lead": _first_sentence(nar["headline"]), "version": 2,
+            "out": [{"name": a, "from": b, "to": c} for a, b, c, _ in outp],
+            "held": [{"name": a, "from": b, "to": c} for a, b, c, _ in inp], "heldIn": True,
+            "best": {"name": S[best]["name_he"], "pct": S[best]["perf"]["1w"]},
+            "marketBreadth": sb.get("ma50"), "marketBreadthPrev": (w.get("spx_breadth_prev") or {}).get("ma50")}
+
+
+def render_html_v2(w, nar):
+    S, sp, lv = w["sectors"], w["spx_perf"], w["spx_levels"]
+    sb, sbp, im = w["spx_breadth"], w.get("spx_breadth_prev") or {}, w["intermarket_data"]
+    fri = w["data_date"]
+    week_no = nar.get("week_no") or (w["weeks_in_history"] + 1)
+    prev_fri = str(date.fromisoformat(fri) - timedelta(days=7))
+    season = nar.get("season_tag", "")
+    H = []
+    # ---- כותרת + ארבעה מספרים
+    by1w = sorted(ORDER, key=lambda k: -S[k]["perf"]["1w"])
+    top3, bot3 = by1w[:3], by1w[-3:][::-1]
+    spx_pos = " ו-".join(x for x in (("20" if lv["close"] < lv["ma20"] else ""), ("50" if lv["close"] < lv["ma50"] else "")) if x)
+    spx_line = (f"מתחת לממוצעי {spx_pos}" if spx_pos else ("מעל ממוצעי 20 ו-50" if lv["close"] > lv["ma50"] else "")) + f" · {abs(lv['off_hi52']):.1f}% מהשיא"
+    H.append(f'''<header class="pan"><div class="head">
+<div class="kick"><span>לאן זרם הכסף השבוע? · שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · נתונים עד {dmy(fri)}</span>{('<span class="tag">' + e(season) + '</span>') if season else ''}</div>
+<h1>{nar["headline"]}</h1><p class="dek">{nar["dek"]}</p></div>
+<div class="mkt">
+<div><div class="l">S&amp;P 500</div><span class="v {'up' if sp['1w'] >= 0 else 'dn'}">{lv['close']:,.0f}</span> {_sn(sp['1w'])}<div class="s">{spx_line}</div></div>
+<div><div class="l">רוחב · מעל ממוצע 50</div><span class="v {'up' if (sb.get('ma50') or 0) >= (sbp.get('ma50') or 0) else 'dn'}">{sb.get('ma50')}%</span><div class="s">מ-{sbp.get('ma50', '—')}% לפני שבוע · {sb.get('ma20')}% מעל ממוצע 20</div></div>
+<div><div class="l">ראשונות השבוע</div><span class="v t">{' · '.join(e(S[k]['name_he']) for k in top3)}</span><div class="s">{' · '.join(_sn(S[k]['perf']['1w'], 1) for k in top3)}</div></div>
+<div><div class="l">אחרונות השבוע</div><span class="v t">{' · '.join(e(S[k]['name_he']) for k in bot3)}</span><div class="s">{' · '.join(_sn(S[k]['perf']['1w'], 1) for k in bot3)}</div></div>
+</div></header>''')
+    # ---- 1 · הרקע
+    eff = nar.get("macro_effect") or {}
+    dials = ""
+    if "us10y" in im:
+        dials += _dial("us10y", 'ריבית השוק (אג"ח 10 שנים)', im["us10y"], "%", eff.get("us10y", ""))
+    if "oil" in im:
+        dials += _dial("oil", "נפט (חוזה " + im["oil"].get("sym", "") + ")", im["oil"], "$", eff.get("oil", ""))
+    if "dxy" in im:
+        dials += _dial("dxy", "דולר (DXY)", im["dxy"], "", eff.get("dxy", ""))
+    if "gold" in im:
+        dials += _dial("gold", "זהב (חוזה " + im["gold"].get("sym", "") + ")", im["gold"], "$", eff.get("gold", ""), thousands=True)
+    H.append(f'<section class="pan"><div class="ph"><span class="stp">1</span><h2>הרקע: מה המאקרו עושה לסקטורים</h2><span class="sub">כיוון · מספר · מה זה עושה</span></div><div class="dials">{dials}</div></section>')
+    # ---- 2 · הטבלה
+    V = nar["verdicts"]
+    rel = {k: (S[k]["perf"]["1w"] - sp["1w"], S[k]["perf"]["1m"] - sp["1m"]) for k in ORDER}
+    sc_w = max(3.0, max(abs(r[0]) for r in rel.values()))
+    sc_m = max(5.0, max(abs(r[1]) for r in rel.values()))
+    order = sorted(ORDER, key=lambda k: (V2_CLS_ORDER.get(V.get(k, {}).get("cls"), 9), -rel[k][1]))
+    rows = ""
+    for k in order:
+        d, v = S[k], V.get(k) or {}
+        chk = (v.get("checks") or ["n0"] * 4)[:4]
+        cells = "".join(f'<td class="ck"><span class="ci {V2_CHK[c][1]}" title="{V2_CHK_HEAD[i]} {V2_CHK[c][2]}">{V2_CHK[c][0]}</span></td>'
+                        for i, c in enumerate(chk) if c in V2_CHK)
+        br, brp = d["pct_above_ma50"], d["pct_above_ma50_prev"]
+        st = v.get("status", "out")
+        rows += (f'<tr><th scope="row"><b>{e(d["name_he"])}</b><small>{k}</small></th>'
+                 f'<td><span class="st st-{e(st)}">{V2_STATUS.get(st, st)}</span></td>'
+                 f'<td><div class="relw">{_sn(rel[k][0])}{_rel_bar(rel[k][0], sc_w)}</div></td>'
+                 f'<td><div class="relw">{_sn(rel[k][1])}{_rel_bar(rel[k][1], sc_m)}</div></td>'
+                 f'<td><div class="bw"><span class="bt"><i style="width:{br}%"></i><em style="left:{brp if brp is not None else br}%"></em></span><span class="bn num">{brp if brp is not None else "—"}→{br}</span></div></td>'
+                 f'{cells}<td class="vd"><span class="vt vt-{e(v.get("cls", "bounce"))}">{v.get("verdict", "")}</span><p>{v.get("note", "")}</p></td></tr>')
+    H.append(f'''<section class="pan"><div class="ph"><span class="stp">2</span><h2>11 הסקטורים בטבלה אחת</h2><span class="sub">ממוין לפי פסק הדין · מול המדד = תשואת מדד הסקטור פחות S&amp;P 500</span></div>
+<div class="tw"><table class="main"><thead><tr><th>סקטור</th><th>מצב</th><th>השבוע מול המדד</th><th>החודש מול המדד</th><th>רוחב · מעל ממוצע 50</th>{"".join(f'<th class="ck">{h}</th>' for h in V2_CHK_HEAD)}<th>פסק דין</th></tr></thead><tbody>{rows}</tbody></table></div>
+<div class="legend"><span><i class="ci ok">✓</i> כן</span><span><i class="ci part">◐</i> חלקי / מתהפך</span><span><i class="ci no">✗</i> לא</span><span><i class="ci none">–</i> לא רלוונטי</span><span>רוחב: הפס = עכשיו, הקו הענברי = לפני שבוע</span><span>"שבועיים רצופים" = כלל השבועיים: מחיר מעל/מתחת לקו המפתח בשתי סגירות שבועיות</span></div></section>''')
+    # ---- 3 · מה השתנה
+    cards = "".join(f'<div class="cg"><div class="cause"><b>הסיבה:</b> {c.get("cause", "")}</div><h3>{c.get("title", "")}</h3><p>{c.get("text", "")}</p>'
+                    + (f'<div class="so"><b>אבל:</b> {c["but"]}</div>' if c.get("but") else "") + "</div>" for c in nar["changes"][:3])
+    H.append(f'<section class="pan"><div class="ph"><span class="stp">3</span><h2>מה השתנה השבוע — ולמה</h2><span class="sub">עד שלושה דברים, כל אחד עם הסיבה שלו</span></div><div class="chg">{cards}</div></section>')
+    # ---- 4 · מה עושים
+    acts = ""
+    for a in nar["actions"]:
+        k = a.get("etf", "")
+        name = S[k]["name_he"] if k in S else a.get("sector", k)
+        st = (V.get(k) or {}).get("status", "out")
+        kind = V2_KIND.get(a.get("kind"), "hold")
+        rws = "".join(f'<span class="k">{e(lab)}</span><span class="v{" do" if i == 0 else ""}">{txt}</span>' for i, (lab, txt) in enumerate(a.get("rows", [])))
+        acts += f'<div class="act {kind}"><div class="who"><b>{e(name)}</b><span class="st st-{e(st)}">{V2_STATUS.get(st, st)}</span></div>{rws}</div>'
+    frozen = f'<div class="frozen">{nar["frozen_note"]}</div>' if nar.get("frozen_note") else ""
+    nums = "".join(f'<div><div class="l">{e(x.get("label", ""))}</div><span class="v">{e(x.get("value", ""))}</span><div class="s">{x.get("note", "")}</div></div>' for x in (nar.get("three_numbers") or [])[:3])
+    H.append(f'<section class="pan"><div class="ph"><span class="stp">4</span><h2>מה עושים השבוע</h2><span class="sub">רק סקטורים שיש בהם פעולה · פעולה · טריגר · ביטול</span></div>{frozen}<div class="acts">{acts}</div>'
+             + (f'<div class="nums">{nums}</div>' if nums else "") + "</section>")
+    # ---- נספחים מקופלים
+    acc = nar.get("accountability") or []
+    if acc:
+        def rcls(t):
+            t = re.sub(r"<[^>]+>", "", t)
+            return "miss" if "✘" in t or "פספוס" in t else "part" if "חלקית" in t else "ok"
+        acc_rows = "".join(f'<tr><td>{a}</td><td>{b}</td><td class="r {rcls(c)}">{c}</td></tr>' for a, b, c in acc)
+        n_ok = sum(1 for _, _, c in acc if rcls(c) == "ok"); n_p = sum(1 for _, _, c in acc if rcls(c) == "part"); n_m = len(acc) - n_ok - n_p
+        H.append(f'<details class="pan"><summary>מאזן הדוח הקודם ({dmy(w["prev_week"]["date"]) if w["prev_week"].get("date") else "—"}) · {n_ok} נכונות · {n_p} חלקיות · {n_m} פספוסים</summary><div class="pb">'
+                 f'<div class="tw"><table class="acc"><thead><tr><th>כתבנו</th><th>קרה</th><th>מאזן</th></tr></thead><tbody>{acc_rows}</tbody></table></div>'
+                 + (f'<p><b>הלקח:</b> {nar["acc_summary"]}</p>' if nar.get("acc_summary") else "") + "</div></details>")
+    r, hm = w["radar"], w["heatmap"]
+    ind = "".join(f'<p><b>{e(a)}.</b> {d} <span class="small">({b}: {c})</span></p>' for a, b, c, d in nar.get("industries", []))
+    if ind or nar.get("ch3_sowhat"):
+        H.append(f'<details class="pan"><summary>בתוך הסקטורים: המכ"ם ({r["groups"]} קבוצות תעשייה) ומפת החום החודשית</summary><div class="pb">'
+                 f'<p class="small">{r["positive"]} מ-{r["groups"]} קבוצות עם שינוי אלפא חיובי בשבוע · {hm["positive"]} מ-{hm["industries"]} תעשיות חיוביות בחודש.</p>{ind}'
+                 + (f'<p>{nar["ch3_sowhat"]}</p>' if nar.get("ch3_sowhat") else "") + "</div></details>")
+    erows = "".join(f'<tr><td class="n">{e(a)}</td><td>{b}</td><td>{c}</td><td>{d}</td></tr>' for a, b, c, d in nar.get("earnings_rows", []))
+    exrows = "".join(f'<tr><td>{e(a)}</td><td class="n">{b}</td><td class="n">{c}</td><td>{d}</td></tr>' for a, b, c, d in nar.get("expectations", []))
+    if erows or exrows:
+        H.append(f'<details class="pan"><summary>{e(nar.get("earnings_title") or "לוח הדוחות לשבוע הבא")}{" · ציפיות הרווח לפי סקטור" if exrows else ""}</summary><div class="pb">'
+                 + (f'<div class="tw"><table class="acc"><thead><tr><th class="n">יום</th><th>מי</th><th>סקטור</th><th>מה זה אומר לנו</th></tr></thead><tbody>{erows}</tbody></table></div>' if erows else "")
+                 + (f'<p>{nar["earnings_note"]}</p>' if nar.get("earnings_note") else "")
+                 + (f'<div class="tw"><table class="acc"><thead><tr><th>סקטור</th><th class="n">צמיחת רווח צפויה</th><th class="n">ביצוע 3 חודשים</th><th>קריאה</th></tr></thead><tbody>{exrows}</tbody></table></div><p class="small">{nar.get("expectations_note", "")}</p>' if exrows else "")
+                 + "</div></details>")
+    # מדדי העומק (הטבלה והמפה מגרסה 1 — מקופלים)
+    deep = ""
+    for k in ORDER:
+        d = S[k]; sc = d["score_components"]
+        ds = (d["rotation_score"] - d["rotation_score_prev"]) if d["rotation_score_prev"] is not None else None
+        deep += (f'<tr><td><b>{e(d["name_he"])}</b> <span class="small">{k}</span></td><td class="n">{d["rotation_score"]} <span class="small">({("%+d" % ds) if ds is not None else "—"})</span></td>'
+                 f'<td class="n">{d["rank"]["1w"]} / {d["rank"]["1m"]} / {d["rank"]["3m"]} / {d["rank"]["6m"]} / {d["rank"]["1y"]}</td>'
+                 f'<td class="n">{d["close"]:,.2f}</td><td class="n">{d["ma"]["ma20"]:,.0f} / {d["ma"]["ma50"]:,.0f} / {d["ma"]["ma200"]:,.0f}</td>'
+                 f'<td class="n">{_sn(d["off_hi52"], 1)}</td><td class="n">{d["crs_gap_pct"]:+.2f}% <span class="small">({d["crs_gap_pct_5d_ago"]:+.2f})</span></td><td>{CRS_HE[d["crs_state"]]}</td><td>{QHE[d["quadrant"]]}</td></tr>')
+    imtxt = " · ".join(f'{ {"us10y": "ריבית 10 שנים", "dxy": "דולר", "oil": "נפט", "gold": "זהב"}[k]} {v["sym"]} {v["close"]} (ממוצעים 20/50/200: {v["ma20"]}/{v["ma50"]}/{v["ma200"]}; שיא 52ש\' {v["hi52"]}, {pc(v["off_hi52"], 1)})' for k, v in im.items())
+    radar_txt = ("נכנס: " + " · ".join(f'{e(x["name"])} {x["chg"]:+.2f}' for x in r["inflows"][:10]) + ". יוצא: " + " · ".join(f'{e(x["name"])} {x["chg"]:+.2f}' for x in r["outflows"][:10]))
+    H.append(f'''<details class="pan"><summary>מדדי העומק: ציונים, רביעים, ממוצעים ועוצמה מול השוק</summary><div class="pb">
+<div class="tw"><table class="acc"><thead><tr><th>סקטור</th><th class="n">ציון (Δ)</th><th class="n">דירוג ש/ח/3ח/6ח/שנה</th><th class="n">סגירה</th><th class="n">ממוצע 20/50/200</th><th class="n">מהשיא</th><th class="n">עוצמה מול השוק (לפני 5 ימים)</th><th>מצב</th><th>רביע</th></tr></thead><tbody>{deep}</tbody></table></div>
+<p class="small">הציון מנורמל מ-3 רכיבים (70 נק' → 100): מומנטום דירוג (30), רוחב (25), עוצמה מול השוק (15). עוצמה מול השוק = סגירת הסקטור ÷ S&amp;P 500 מול הממוצע שלה ל-21 יום.</p>
+<figure>{quad_svg(w)}<figcaption>מפת הרוטציה: ציון זרימת כסף מול דירוג 6 חודשים. נקודה אפורה = לפני שבוע. {nar.get("quad_caption", "")}</figcaption></figure>
+<p class="small"><b>בין-שוקי (סגירות {dmy(fri)}):</b> {imtxt}. {nar.get("intermarket_read", "")}</p>
+<p class="small"><b>מכ"ם — שינוי אלפא בולט (קבוצות ≥10 מניות):</b> {radar_txt}.</p></div></details>''')
+    lims = list(nar.get("limitations", []))
+    H.append(f'''<details class="pan"><summary>איך הדוח בנוי · הכללים · מגבלות · מקורות</summary><div class="pb">
+<p><b>מול המדד</b> = תשואת מדד הסקטור (Barchart, משוקלל-שווי) פחות תשואת S&amp;P 500 באותו טווח. <b>רוחב</b> = אחוז מניות הסקטור מעל ממוצע 50 הימים. <b>ארבע הבדיקות</b> הן כללי השיטה: המאקרו (ריבית השוק / נפט / דולר) עובד בעד הסקטור; הסקטור חזק מהמדד בשבוע ובחודש והעוצמה מול השוק מעל הממוצע שלה; הרוחב מעל 50% ועולה; המחיר מעל (או מתחת) קו המפתח בשתי סגירות שבועיות רצופות. <b>פסק הדין</b> נגזר מהן ומכללי המשמעת: כלל השבועיים (כל כניסה אחרי שני שבועות אישור), היציאה המשולשת (רוחב + מחיר + שפל, לא עד בודד), כלל הדוחות (אין כניסה בשבוע שלפני דוח; פוזיציה לתוך דוח לא מוגדלת), כלל הפרבולה (מחיר רחוק מדי מממוצע 20 = נגיסה בלבד), וטו העוצמה מול השוק, והשבוע השני גם לטריגר.</p>
+<p><b>מגבלות:</b> מחושב מקובצי CSV בלבד (16 קובצי היסטוריה יומית, טבלת הרוחב, המכ"ם ומפת החום); הציון מ-3 מתוך 5 רכיבים (אין שיאים/שפל ואין סקרינרים בסט הקבצים); מפת החום שווה-משקל ומדדי הסקטור משוקללי-שווי — הפער הוא מידע. {" ".join(lims)}</p>
+<p class="small"><b>מקורות:</b> Barchart — hist_*.csv ×16 (Daily, 2 Years, סגירה {dmy(fri)}), breadth.csv, industry-group-rankings.csv, heatmap.csv (1-Month, ≥10 מניות), במייל של גרוק → data/rotation/{w["date"]}. לוח הדוחות: TradingView דרך האתר. {nar.get("sources_extra", "")}</p>
+</div></details>''')
+    H.append(f'<p class="foot">שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · הופק {dmy(w["date"])} מקובצי CSV בלבד. ניתוח לצרכים חינוכיים — תיאור, לא ייעוץ השקעות.</p>')
+    summ = json.dumps(summary_block(w, nar), ensure_ascii=False).replace("</", "<\\/")
+    title = f"לאן זרם הכסף השבוע? | שבוע {week_no} | {dmy(w['date'])}"
+    page = (f'<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>{e(title)}</title>\n'
+            f'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">\n'
+            f'<style>{CSS2}</style>\n</head>\n<body><div class="wrap">\n{"".join(H)}\n</div>\n<script type="application/json" id="rotation-summary">{summ}</script>\n</body></html>')
+    return page, title
+
+
 # ---------------------------------------------------------------- היסטוריה
 def history_record(w, nar):
     rec = {k: w[k] for k in ("date", "data_date", "source", "spx_perf", "spx_levels", "spx_breadth")}
@@ -664,7 +1001,9 @@ def history_record(w, nar):
     rec["sectors"] = {}
     for etf, s in w["sectors"].items():
         x = {k: v for k, v in s.items() if k != "crs_series"}
-        x["industries_note"] = nar.get("what", {}).get(etf)
+        x["industries_note"] = nar.get("what", {}).get(etf) or ((nar.get("verdicts") or {}).get(etf) or {}).get("note")
+        if nar.get("verdicts"):
+            x["verdict"] = {k: v for k, v in (nar["verdicts"].get(etf) or {}).items() if k != "note"}
         rec["sectors"][etf] = x
     rec["intermarket"] = {"data": w["intermarket_data"], "read_he": nar.get("intermarket_read")}
     rec["radar"] = {"breadth": f'{w["radar"]["positive"]}/{w["radar"]["groups"]} קבוצות עם שינוי אלפא חיובי; מפת חום {w["heatmap"]["positive"]}/{w["heatmap"]["industries"]} חיוביות בחודש',
@@ -777,11 +1116,20 @@ def cmd_render(d):
         w = json.load(f)
     with open(os.path.join(folder(d), "narrative.json"), encoding="utf-8") as f:
         nar = json.load(f)
-    for k in ("five", "ch1_title", "ch2_title", "ch3_title", "ch4_title", "story", "positions", "bottom_line"):
+    # גרסה 2 (מ-31.10.2026): narrative.json עם verdicts/changes/actions → העמוד בארבעה צעדים.
+    # גרסה 1 (עד 24.10) נשארת לדוחות ישנים ולמקרה שהרוטינה כתבה במבנה הישן.
+    v2 = nar.get("version") == 2 or "verdicts" in nar
+    req = V2_REQUIRED if v2 else ("five", "ch1_title", "ch2_title", "ch3_title", "ch4_title", "story", "positions", "bottom_line")
+    for k in req:
         if not nar.get(k):
-            print(f"[render] narrative.json חסר '{k}'")
+            print(f"[render] narrative.json (גרסה {2 if v2 else 1}) חסר '{k}'")
             return 1
-    page, title = render_html(w, nar)
+    if v2:
+        miss = [k for k in ORDER if k not in nar["verdicts"]]
+        if miss:
+            print(f"[render] verdicts חסרים: {miss}")
+            return 1
+    page, title = (render_html_v2 if v2 else render_html)(w, nar)
     out_dir = os.path.join(DATA, "sectors")
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "sectors-" + d + ".html")
