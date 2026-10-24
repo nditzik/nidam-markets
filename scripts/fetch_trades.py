@@ -112,17 +112,50 @@ def _get(url):
         return r.read().decode("utf-8", "ignore")
 
 
+def _prev():
+    try:
+        with open(OUT_JSON, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {"reports": [], "method": None}
+
+
+def local_reports():
+    """דוחות שנבנו כאן (build_fourpillars.py, 24.10.2026) — data/fourpillars/index.json.
+    מחזיר רשומות במבנה של trades.json; הקובץ נקרא מ-data/trades/ והמניות מחולצות ממנו."""
+    out = []
+    try:
+        with open(os.path.join(ROOT, "data", "fourpillars", "index.json"), encoding="utf-8") as f:
+            idx = json.load(f)
+    except (OSError, ValueError):
+        return out
+    for r in idx.get("reports", []):
+        path = os.path.join(ROOT, r.get("file", ""))
+        if not r.get("date") or not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                content = f.read()
+        except OSError:
+            continue
+        out.append({"file": r["file"], "date": r["date"], "title": r.get("title") or ("דוח ארבעת העמודים · " + r["date"]),
+                    "picks": extract_picks(content), "source": "build_fourpillars"})
+    return out
+
+
 def main():
+    prev = _prev()
     try:
         listing = [f["name"] for f in json.loads(_get(API)) if f.get("type") == "file"]
     except Exception as e:
-        print(f"[warn] רשימת דוחות טריידים נכשלה: {e}")
-        return 0 if os.path.exists(OUT_JSON) else 1
+        # 24.10.2026: הדוחות מהמייל נבנים כאן, אז כשל ברשימה של nidam-reports לא עוצר — ממשיכים עם מה שכבר יש
+        print(f"[warn] רשימת דוחות טריידים נכשלה: {e} — ממשיך עם הדוחות המקומיים והקיימים")
+        listing = []
 
     files = [n for n in listing if n.lower().endswith(".html")]
     # מצגת/מסמך השיטה — PDF קבוע; מקושר ישירות ל-raw (14MB — לא מעתיקים לריפו האתר)
     pdfs = [n for n in listing if n.lower().endswith(".pdf")]
-    method = None
+    method = prev.get("method") if not listing else None
     if pdfs:
         method = {"url": RAW + urllib.parse.quote(pdfs[0]),
                   "title": "שיטת ארבעת העמודים — מצגת הלימוד"}
@@ -158,10 +191,16 @@ def main():
         reports.append({"file": "data/trades/" + stored, "date": iso, "title": title, "picks": picks})
         print(f"[ok] {iso} — {title[:50]} · {len(picks)} מניות")
 
+    if not listing:   # הרשימה נכשלה — הרשומות הקודמות (שהקובץ שלהן עדיין כאן) נשארות
+        reports = [r for r in prev.get("reports", []) if r.get("source") != "build_fourpillars" and os.path.exists(os.path.join(ROOT, r.get("file", "")))]
+    # הדוחות שנבנו מהמייל (build_fourpillars) — גוברים על דוח ידני מאותו תאריך
+    local = local_reports()
+    local_days = {r["date"] for r in local}
+    reports = [r for r in reports if r["date"] not in local_days] + local
     reports.sort(key=lambda r: r["date"], reverse=True)
     reports = reports[:MAX_KEEP]
     payload = {"reports": reports, "method": method,
-               "_meta": {"updatedAt": israel_stamp(), "source": "nidam-reports/trades"}}
+               "_meta": {"updatedAt": israel_stamp(), "source": "nidam-reports/trades + build_fourpillars" if local else "nidam-reports/trades"}}
     with open(OUT_JSON, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"[done] {len(reports)} דוחות טריידים")

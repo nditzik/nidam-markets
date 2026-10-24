@@ -166,6 +166,17 @@ jobs:
         run: python scripts/fetch_sectors.py
         continue-on-error: true
 
+      # --- הצעות לטרייד מהמייל (24.10.2026): שלושת סורקי ארבעת העמודים של גרוק → data/fourpillars/<יום>/ → הדוח ---
+      - name: Relay Four Pillars screeners from mail
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/relay_fourpillars_mail.py
+        continue-on-error: true
+      - name: Build Four Pillars report
+        run: python scripts/build_fourpillars.py
+        continue-on-error: true
+
       # --- דוחות "הצעות לטרייד" (nidam-reports/trades) ---
       - name: Fetch trade ideas
         run: python scripts/fetch_trades.py
