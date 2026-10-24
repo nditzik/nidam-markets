@@ -198,7 +198,7 @@ def main():
         logo = fetch_logo(ticker) if ticker else None
         rec = {"file": "data/reports/" + name, "ticker": ticker,
                "date": date, "title": title, "logo": logo,
-               "added": prev_added.get(name, now_iso)}
+               "added": prev_added.get(name, now_iso), "season": season_of(date)}
         if logo and logo_is_light(os.path.join(ROOT, logo)):
             rec["logoBg"] = "dark"   # לוגו לבן → ריבוע כהה בכרטיס
         reports.append(rec)
@@ -209,6 +209,21 @@ def main():
     _write(reports)
     print(f"[done] {len(reports)} דוחות")
     return 0
+
+
+def season_of(date):
+    """עונת הדוחות שאליה הדוח שייך (24.10.2026, איציק: הפרדה בין הרבעון הקודם לנוכחי).
+    לא לפי הרבעון הפיסקלי שבכותרת (נייקי Q1 FY2027 ומיקרון Q4 FY2026 באותה עונה) אלא לפי חודש הפרסום:
+    ינואר–מרץ = עונת רבעון 4 של השנה הקודמת, אפריל–יוני = רבעון 1, יולי–ספטמבר = רבעון 2, אוקטובר–דצמבר = רבעון 3
+    (כמו FactSet/Barchart). key ממוין ("2026-3") — הטאב ממיין ומגלגל לפי זה."""
+    m = re.match(r"^(\d{4})-(\d{2})", date or "")
+    if not m:
+        return None
+    y, mo = int(m.group(1)), int(m.group(2))
+    q = (mo - 1) // 3          # 0..3
+    if q == 0:
+        q, y = 4, y - 1
+    return {"q": q, "year": y, "key": "%d-%d" % (y, q), "label": "רבעון %d %d" % (q, y)}
 
 
 def _write(reports):
