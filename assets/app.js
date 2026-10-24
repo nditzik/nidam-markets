@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np145";
+  var TA_VER = "np146";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3935,7 +3935,7 @@
       var win = Math.round(rs.filter(function (r) { return r.ret > 0; }).length / rs.length * 100);
       tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), pkPct(avg), "מול S&amp;P " + pkPct(ex) + " · עלו " + win + "% · " + rs.length + " מניות" + (live ? " (" + live + " בימים 1–4)" : ""), avg > 0 ? "up" : avg < 0 ? "down" : "");
     });
-    return '<div class="pk-rec-h"><b>בפועל</b> — <span class="num">' + nEd + '</span> מהדורות, <span class="num">' + nSym + '</span> מניות מאז 29.9, מהכניסה בסגירת יום המהדורה</div><div class="tiles t3">' + tiles + "</div>";
+    return '<div class="pk-rec-h"><span class="num">' + nEd + '</span> מהדורות · <span class="num">' + nSym + '</span> מניות · מאז <span class="num" dir="ltr">' + esc(secDate(eds[0].date)) + '</span></div><div class="tiles t3">' + tiles + "</div>";
   }
   function pkLedger(bare_) {
     var eds = (PICKL && PICKL.editions) || [];
@@ -4005,6 +4005,7 @@
   }
   function renderPicks(el) {
     if (!el) return;
+    var rec = PICKD && PICKD.record;
     // np120: טאב מניות כרשת פאנלים — טבלת הנבחרות המלאה (כמו בבית, כל המניות) + רצועות הערות →
     // יומן ההכנות | הרקורד → מועמדים | מומנטום → הצעות לטרייד | Insider (הפאנלים האחים ב-renderStockSiblings)
     var d = PICKD, main;
@@ -4029,22 +4030,18 @@
           '<div><span class="mute">המאגר</span><span>' + (d.momOnly ? "המומנטום בלבד" : "מועמדים ∪ מומנטום") + (d.poolSize ? ' · <span class="num">' + esc(d.poolSize) + "</span> מניות" : "") + (mix ? " · " + esc(mix) : "") + "</span></div>" +
           '<div><span class="mute">מקור</span><span>' + (d.scanned ? 'נסרקו <span class="num">' + esc(d.scanned) + "</span> מניות" : "המנוע הטכני") + (facts.length ? " · " + facts.join(" · ") : "") + "</span></div></div>" + notes +
         '<div class="led bd-how"><div><b>1. המאגר</b><span>סריקת המועמדים וסריקות המומנטום. רק מה שכבר באתר.</span></div>' +
-          '<div><b>2. השופט</b><span>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות עם "אישור מחיר לקנייה". "כניסה אפשרית" לא מספיק (נבדק לאחור: לא מנצח יום רגיל).</span></div>' +
+          '<div><b>2. השופט</b><span>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות עם "אישור מחיר לקנייה". "כניסה אפשרית" לא מספיק (נבדק לאחור: לא מנצח יום רגיל).' +
+            (rec ? ' <b>המבחן לאחור של האיתות</b> — <span class="num">' + esc(rec.symbols) + '</span> המניות שהגיעו אי-פעם לשלב הזה, שנה אחורה, <span class="num">' + esc(rec.n) + '</span> אישורים: ממוצע אחרי 5 ימים <b class="num" dir="ltr">' + pkPct(rec.avg5) + '</b> (<span class="num">' + esc(rec.win5) + '</span>% עלו), אחרי 10 <b class="num" dir="ltr">' + pkPct(rec.avg10) + '</b>' + (rec.excess10 != null ? ' (מול S&amp;P <bdi dir="ltr">' + pkPct(rec.excess10) + '</bdi>, <span class="num">' + esc(rec.win10) + '</span>% עלו)' : "") + ', אחרי 20 <b class="num" dir="ltr">' + pkPct(rec.avg20) + '</b>; ירידה ממוצעת בדרך <bdi dir="ltr">' + pkPct(rec.mae) + "</bdi>. מוטה לטובה: מניות שנבחרו במגמת עלייה." : "") + "</span></div>" +
           '<div><b>3. הסינון</b><span>מדווחת בשבוע הקרוב יוצאת. מניה ששלושת האישורים הקודמים שלה נכשלו יוצאת.</span></div>' +
           '<div><b>4. השער</b><span>מד השוק קובע כמה מותר: הגנה = עד 3 וחצי גודל. ירוק = עד 5.</span></div></div>' +
         '<p class="stamp" style="margin:10px 14px">תיאור טכני של מצב המניות על פי נרות יומיים, לא ייעוץ השקעות. המספרים ההיסטוריים מבוססים על שנה אחת ועל מניות שנבחרו כשהן במגמת עלייה, ולכן מוטים לטובה. לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>';
     }
-    var rec = d && d.record;
     el.innerHTML = (d ? stamp(d._meta) : "") + '<div class="board">' +
       '<section class="pan bd-picks" id="pk-main"' + bdSpan(12) + ">" + main + "</section>" +
       (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מהכניסה, מול S&amp;P · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
-      (rec ? '<section class="pan" style="grid-column:span 5;align-self:start">' + panHd("הרקורד", '<span class="mute">מבחן לאחור ובפועל</span>') +
+      (PICKL && (PICKL.editions || []).length ? '<section class="pan" style="grid-column:span 5;align-self:start">' + panHd("הרקורד", '<span class="mute">הנבחרות בפועל, מהיומן</span>') +
         '<div class="pb">' + pkLedgerRecord() +
-        '<div class="pk-rec-h"><b>מבחן לאחור</b> — <span class="num">' + esc(rec.symbols) + '</span> המניות שנבחרו אי-פעם, שנה אחורה: <span class="num">' + esc(rec.n) + '</span> פעמים שהמנוע נתן להן "אישור מחיר" (אותו איתות שמכניס לנבחרות), ומה קרה אחריו</div>' +
-        '<div class="tiles t3">' + bdTile("ממוצע 5 ימים", pkPct(rec.avg5), (rec.excess5 != null ? "מול S&amp;P " + pkPct(rec.excess5) + " · " : "") + "עלו " + esc(rec.win5) + "%", rec.avg5 > 0 ? "up" : "down") +
-          bdTile("ממוצע 10 ימים", pkPct(rec.avg10), (rec.excess10 != null ? "מול S&amp;P " + pkPct(rec.excess10) + " · " : "") + "עלו " + esc(rec.win10) + "%", rec.avg10 > 0 ? "up" : "down") +
-          bdTile("ממוצע 20 יום", pkPct(rec.avg20), "", rec.avg20 > 0 ? "up" : "down") + "</div>" +
-        '<p class="mute s" style="margin:8px 0 0">ירידה ממוצעת בדרך (10 ימים): <b class="num" dir="ltr">' + pkPct(rec.mae) + "</b> — הסטופ לא צמוד. הדגימה מוטה לטובה: מניות שנבחרו כשהן במגמת עלייה. השבוע הראשון תנודתי — מחצית נוגעות ב-1.5 ATR.</p></div></section>" : "") +
+        '<p class="mute s" style="margin:8px 0 0">רק המניות שנכנסו לנבחרות, מהכניסה בסגירת יום המהדורה. המבחן לאחור של השיטה — ב"איך זה עובד" למטה.</p></div></section>' : "") +
       '<section class="pan" id="pk-cand"' + bdSpan(6) + '></section><section class="pan" id="pk-mom"' + bdSpan(6) + "></section>" +
       '<section class="pan" id="pk-trd"' + bdSpan(6) + '></section><section class="pan" id="pk-ins"' + bdSpan(6) + "></section></div>";
     el.querySelectorAll(".pk-ed").forEach(function (tr) {
