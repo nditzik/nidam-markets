@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np141";
+  var TA_VER = "np142";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1840,7 +1840,10 @@
       if (tk.tnx && tk.tnx.price != null) line.push('<b>אג"ח 10 שנים</b> <span class="num" dir="ltr">' + (+tk.tnx.price).toFixed(2) + "%</span>");
       return head + '<p class="np-wk-mkt">' + line.join(' <span class="mute">·</span> ') + "</p>" +
         '<p class="np-dek">' + esc(nar.drivers) + "</p>" +
-        (nar.nextWeek ? '<p class="np-wk-next"><b>השבוע הבא</b> ' + esc(nar.nextWeek) + "</p>" : "") +
+        // np142 (24.10.2026, איציק: "הכותרת עדיין ללא הסקטורים"): משפט אחד מפרק הסקטורים של הסיכום
+        // (או מדוח הרוטציה כשהפרק טרם נכתב) + קישור לטאב הסקטורים. הפריסה הקצרה של np129 השמיטה אותו.
+        ((nar.sectors || (sec && sec.lead)) ? '<p class="np-wk-sect"><b>💸 לאן זרם הכסף</b> ' + esc(firstSentence(nar.sectors || sec.lead)) + ' <a href="#sectors" onclick="__goTab(\'sectors\');return false">הדוח ←</a></p>' : "") +
+        (nar.nextWeek ? '<p class="np-wk-next"><b>השבוע הבא</b> ' + esc(String(nar.nextWeek).replace(/^\s*השבוע הבא[:\s—-]*/, "")) + "</p>" : "") +
         (ca ? '<p class="np-wk-last"><span class="np-k">יום המסחר האחרון · <b dir="ltr">' + esc(fmtTradeDate(ca.date)) + "</b></span> " + esc(ca.headline) + "</p>" : "") +
         foot;
     }
