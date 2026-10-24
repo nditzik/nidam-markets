@@ -312,6 +312,16 @@ jobs:
         run: python scripts/relay_momentum_mail.py
         continue-on-error: true
 
+      # --- קובצי הרוטציה הסקטוריאלית מהמייל (24.10.2026): גרוק שולח בשבת ~06:00 מייל
+      #     "Rotation – DD.MM.YYYY" עם 20 צרופות → data/rotation/<D>/ בריפו הזה (ה-commit
+      #     בסוף הריצה דוחף). החליף את ההורדה מהדרייב ברוטינת הענן. ראו relay_rotation_mail.py ---
+      - name: Relay rotation CSVs from mail
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/relay_rotation_mail.py
+        continue-on-error: true
+
       # --- מבזק שוק: תנועה חדה תוך-יומית (ספייק 30 דק') + ראיות "מה קרה" ---
       - name: Detect market flash
         env:
