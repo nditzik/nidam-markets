@@ -74,17 +74,16 @@ python: `json.load` של `data/weekly.json` → `w["narrative"] = {...}` (לא �
 ## 6. דחיפה
 `git add data/weekly.json data/_routine_heartbeat.log` · `git commit -m "weekly-narrative: <weekOf>"` (הדחיפה הזו קודמת לניסיון דוח הרוטציה של §7 — הסיכום לא מחכה לסקטורים) · הדחיפה בפקודה שבעטיפה. נכשל (ה-Action דוחף כל רבע שעה) — `git pull --rebase origin main` ונסה שוב, עד 3 פעמים; קונפליקט בקבצי data אחרים — `git checkout --theirs` עליהם, את `data/weekly.json` השאר בגרסה שלך (ואם ה-rebase הביא `sectors` חדש ל-weekly.json — קח את הגרסה שלהם של הקובץ והוסף עליה את ה-narrative שלך מחדש).
 
-## 7. שבת בלבד — אחרי שהסיכום נדחף: דוח הרוטציה כגיבוי (23.10.2026; הסדר הפוך מ-24.10)
-**הסיכום לא מחכה לסקטורים.** ב-24.10 הסעיף הזה היה ראשון (§0), הריצה של 07:04 נתקעה 26 דקות בהורדת 20 הקבצים מהדרייב ולא הגיעה לסיכום בכלל. לכן עכשיו: קודם §1–§6 (כולל **הדחיפה בפקודה שבעטיפה**), ורק אז הסעיף הזה. כשהדוח ייבנה, §1.4 יכתוב את הסיכום מחדש עם פרק הסקטורים בריצה הבאה.
+## 7. שבת בלבד — אחרי שהסיכום נדחף: דוח הרוטציה כגיבוי, מקבצים שכבר בריפו
+**הסיכום לא מחכה לסקטורים** (ב-24.10 כ-§0 הסעיף הזה נתקע 26 דק' בהורדה מהדרייב ולא הגיע לסיכום). **אין הורדה מהדרייב — אל תשתמש בכלי Google Drive גם אם יש לך אותם** (איציק 24.10: "חבל על הטוקנים"). הקבצים מגיעים לריפו מהמייל של גרוק דרך ה-Action (`relay_rotation_mail.py` → `data/rotation/D/`).
 
-רקע: רוטינת `nidam-rotation-weekly` (שבת 09:00) נוצרה ב-UI ועד 23.10 רצה בלי ריפו; הסעיף הזה הוא רשת ביטחון אם היא לא כתבה. בצע **רק** אם כל אלה מתקיימים (אחרת סיים):
+בצע **רק** אם כל אלה מתקיימים (אחרת סיים):
 1. הסיכום של הריצה הזו (או של ריצה קודמת) כבר **נדחף** ל-main.
-2. היום שבת (`date +%u` = 6; `D=$(date +%F)`), והשעה לפחות 10:00 שעון ישראל (`TZ=Asia/Jerusalem date +%H`) — לתת לרוטינה הייעודית של 09:00 לסיים קודם.
-3. יש לך כלי של מחבר Google Drive (`mcp__Google_Drive__search_files` / `download_file_content`). אין — רשום `echo "HB $(date -u +%H:%M) rotation(via weekly): no drive tools" >> data/_routine_heartbeat.log`, commit+push של ה-log, וסיים.
-4. `data/sectors/sectors-D.html` **לא** קיים (או ש-`data/rotation/index.json` בלי רשומה `date == D`). **קודם בדוק אם הקבצים כבר בריפו:** `data/rotation/D/` עם 20 קבצים (מגיעים מהמייל של גרוק דרך ה-Action, מ-31.10) — אז דלג על ההורדה מהדרייב והמשך ישר ל-`check`.
-5. אחרת, בדרייב קיימת תיקיית `D` תחת `Rotation` (id `17KWUB0aF2Ahwk8QNpIA3Rck-d8JqOJoV`), עם 20 הקבצים. אין/חסר — HB `rotation(via weekly): no drive folder D` (או `folder D incomplete`), commit+push של ה-log, וסיים.
+2. היום שבת (`date +%u` = 6; `D=$(date +%F)`), והשעה לפחות 10:00 שעון ישראל (`TZ=Asia/Jerusalem date +%H`) — לתת לרוטינה הייעודית `nidam-rotation-weekly` לסיים קודם.
+3. `data/sectors/sectors-D.html` **לא** קיים (או ש-`data/rotation/index.json` בלי רשומה `date == D`).
+4. אחרי `git pull --rebase origin main`, `data/rotation/D/` קיימת עם 20 הקבצים (16 `hist_*.csv`, `breadth.csv`, `industry-group-rankings.csv`, `heatmap.csv`, `manifest.txt`). אין — סיים בשקט (הריצה השעתית הבאה תבדוק שוב).
 
-כשכל התנאים מתקיימים: קרא את `scripts/prompts/rotation_weekly.md` ובצע את סעיפים **2–6** שלו במלואם (הורדה כ-base64 ל-`data/rotation/D/raw/*.b64` — **קובץ אחד בכל פעם, Write מיד אחרי כל הורדה, בלי להחזיק כמה קבצים בזיכרון**; `decode`/`check`/`compute`, כתיבת `narrative.json`, `render`, ה-commit שמוגדר שם). `check` נכשל (קובץ קטוע) — נסה את אותו קובץ שוב פעם אחת; נכשל שוב — HB עם הסיבה, **אל תתקן נתונים ידנית**, commit+push של ה-log, וסיים. אחרי ה-render:
+כשכל התנאים מתקיימים: קרא את `scripts/prompts/rotation_weekly.md` ובצע את סעיפים **2–6** שלו (`check`/`compute`, כתיבת `narrative.json`, `render`, ה-commit שמוגדר שם). `check` נכשל — HB עם הסיבה, **אל תתקן נתונים ידנית**, commit+push של ה-log, וסיים. אחרי ה-render:
 ```
 python3 scripts/fetch_sectors.py || true
 python3 scripts/build_weekly.py || true

@@ -6,21 +6,16 @@
 אתה כותב את **המילים** של דוח "לאן זרם הכסף השבוע?" — דוח רוטציה סקטוריאלית שבועי לפי מתודולוגיית Barchart (John Rowland), בעברית פשוטה, לקורא שאינו מכיר את השיטה. **המספרים לא שלך:** `scripts/build_rotation.py` מחשב הכל מקובצי ה-CSV שגרוק מעלה לדרייב (תשואות, דירוגים, רוחב, עוצמה מול השוק, ציונים, רביעים, המכ"ם, מפת החום). אתה קורא את התקציר שלו, כותב `narrative.json`, והסקריפט מרכיב את ה-HTML ומעדכן את ההיסטוריה. **כל מספר, אחוז, שם ורמה — מהתקציר ומ-`week.json` בלבד.** פרט שאין לו מקור מושמט, לא מנוחש.
 
 ## 1. השער — האם לרוץ עכשיו
-הרוטינה רצה כל שעה בשבת 07:00–12:00 שעון ישראל. כל התנאים עצירים; כשעוצרים — לא כותבים כלום ולא דוחפים (חוץ משורת HB).
+הרוטינה רצה בשבת בבוקר. כל התנאים עצירים; כשעוצרים — לא כותבים כלום ולא דוחפים (חוץ משורת HB).
 
-0. אם אין לך כלי של מחבר Google Drive (`mcp__Google_Drive__search_files` / `download_file_content`) — הרוטינה נוצרה בלי המחבר. רשום `echo "HB $(date -u +%H:%M) rotation: no drive connector" >> data/_routine_heartbeat.log`, commit ל-log בלבד, דחוף, וצא.
+**מ-24.10.2026 אין הורדה מהדרייב** (איציק: "חבל על הטוקנים" — ההורדה כ-base64 דרך המחבר נתקעה פעמיים). הקבצים מגיעים לריפו מהמייל של גרוק (`Rotation – DD.MM.YYYY`, 20 צרופות) דרך `scripts/relay_rotation_mail.py` ב-Action, ל-`data/rotation/D/`. **אל תשתמש בכלי Google Drive גם אם יש לך אותם.**
+
 1. `D` = התאריך של היום (שבת, `date +%F`). אם היום אינו שבת — צא.
 2. אם `data/sectors/sectors-D.html` כבר קיים **וגם** `data/rotation/index.json` מכיל רשומה עם `date == D` — הדוח של השבוע נכתב. צא.
-3. בדרייב (מחבר Google Drive): בתיקיית `Rotation` (id `17KWUB0aF2Ahwk8QNpIA3Rck-d8JqOJoV`) חפש תת-תיקייה ששמה `D`:
-   `search_files` עם `parentId = '17KWUB0aF2Ahwk8QNpIA3Rck-d8JqOJoV' and title = 'D'`. אין תיקייה — גרוק עוד לא העלה. רשום `echo "HB $(date -u +%H:%M) rotation: no drive folder D" >> data/_routine_heartbeat.log`, commit ל-log בלבד, דחוף, וצא (הריצה הבאה תנסה שוב).
-4. רשום את קובצי התיקייה (`search_files` עם `parentId = '<id התיקייה>'`, דפדוף עם `pageToken` עד שהתשובה ריקה). חייבים: 16 קובצי `hist_*.csv`, `breadth.csv`, `industry-group-rankings.csv`, `heatmap.csv`, `manifest.txt`. חסר אחד — HB "rotation: folder D incomplete (<מה חסר>)", commit, דחוף, צא.
-   **קובץ באותו שם פעמיים** (הדרייב לא מעדכן קבצים בינאריים במקום — גרוק מעלה עותק חדש ליד הישן): קח את זה עם ה-`createdTime` המאוחר ביותר.
+3. `git pull --rebase origin main` ואז בדוק `data/rotation/D/`: חייבים 16 קובצי `hist_*.csv`, `breadth.csv`, `industry-group-rankings.csv`, `heatmap.csv`, `manifest.txt`. אין תיקייה או חסר קובץ — המייל עוד לא הגיע או נדחה. רשום `echo "HB $(date -u +%H:%M) rotation: no files in repo for D" >> data/_routine_heartbeat.log`, commit ל-log בלבד, דחוף, וצא.
 
-## 2. הורדה ופענוח
-לכל אחד מ-20 הקבצים: `download_file_content` (התשובה היא JSON עם `content` ב-base64). שמור את מחרוזת ה-base64 **כמו שהיא** (בלי לפענח בעצמך) בקובץ `data/rotation/D/raw/<שם הקובץ>.b64` (עם כלי Write). אחר כך:
-
+## 2. בדיקה
 ```
-python3 scripts/build_rotation.py decode D
 python3 scripts/build_rotation.py check D
 ```
 `check` נכשל (קוד יציאה ≠ 0, מדפיס מה לא בסדר: תאריך אחרון ≠ שישי, קובץ קצר, תשואה לא סבירה) → HB עם הסיבה, commit של ה-log, דחוף, צא. **אל תתקן נתונים ידנית.**
