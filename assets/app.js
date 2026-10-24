@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np147";
+  var TA_VER = "np148";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3931,8 +3931,9 @@
       if (!rs.length) { tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), "—", "עוד אין"); return; }
       var avg = rs.reduce(function (a, r) { return a + r.ret; }, 0) / rs.length;
       var ex = rs.reduce(function (a, r) { return a + r.excess; }, 0) / rs.length;
+      var mk = rs.reduce(function (a, r) { return a + r.spy; }, 0) / rs.length;   // np148: מה השוק עצמו עשה, בממוצע על אותם חלונות (ימים שונים לכל מהדורה)
       var win = Math.round(rs.filter(function (r) { return r.ret > 0; }).length / rs.length * 100);
-      tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), pkPct(avg), "מול S&amp;P " + pkPct(ex) + " · עלו " + win + "% · " + rs.length + " מניות", avg > 0 ? "up" : avg < 0 ? "down" : "");
+      tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), pkPct(avg), "ביחס לשוק <bdi dir=\"ltr\">" + pkPct(ex) + "</bdi> · עלו " + win + "% · " + rs.length + " מניות<br>השוק בממוצע באותם ימים <bdi dir=\"ltr\">" + pkPct(mk) + "</bdi>", avg > 0 ? "up" : avg < 0 ? "down" : "");
     });
     return '<div class="pk-rec-h"><span class="num">' + nEd + '</span> מהדורות · <span class="num">' + nSym + '</span> מניות · מאז <span class="num" dir="ltr">' + esc(secDate(eds[0].date)) + '</span></div><div class="tiles t3">' + tiles + "</div>";
   }
@@ -3950,7 +3951,7 @@
       var tone = v.excess > 0 ? "good" : v.excess < 0 ? "bad" : "";
       // np145 (איציק 24.10: "אחת ירדה 0.4 ואחת 1.1 ועדיין הממוצע יצא 0.7"): המספר היה נכון (−0.7) אבל הסימן
       // הוצג בקצה הלא נכון בתוך טקסט RTL ("0.7%-") — כל מספר חתום ב-bdi עם dir=ltr
-      return '<td class="' + tone + (live ? " live" : "") + '"><b dir="ltr">' + pkPct(v.ret) + "</b><small>" + (live ? '<span class="dd">יום ' + cur.day + " · </span>" : "") + '<bdi dir="ltr">' + pkPct(v.excess) + '</bdi><span class="vm"> מול השוק</span></small>' +
+      return '<td class="' + tone + (live ? " live" : "") + '"><b dir="ltr">' + pkPct(v.ret) + "</b><small>" + (live ? '<span class="dd">יום ' + cur.day + " · </span>" : "") + '<bdi dir="ltr">' + pkPct(v.excess) + '</bdi><span class="vm"> ביחס לשוק</span></small>' +
         (mk && v.spy != null ? '<small class="mk">S&amp;P <bdi dir="ltr">' + pkPct(v.spy, 2) + "</bdi></small>" : "") + "</td>";
     };
     // מהלך יומי: קו התשואה המצטברת יום-יום (עד 20), קו אפס, נקודה בסוף בצבע הכיוון
@@ -4037,7 +4038,7 @@
     }
     el.innerHTML = (d ? stamp(d._meta) : "") + '<div class="board">' +
       '<section class="pan bd-picks" id="pk-main"' + bdSpan(12) + ">" + main + "</section>" +
-      (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מהכניסה, מול S&amp;P · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
+      (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מהכניסה, ביחס ל-S&amp;P באותם ימים · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
       (PICKL && (PICKL.editions || []).length ? '<section class="pan" style="grid-column:span 5;align-self:start">' + panHd("הרקורד", '<span class="mute">הנבחרות בפועל, מהיומן</span>') +
         '<div class="pb">' + pkLedgerRecord() +
         '<p class="mute s" style="margin:8px 0 0">רק המניות שנכנסו לנבחרות, מהכניסה בסגירת יום המהדורה. בכל עמודה נספרות רק מניות שסיימו את כל הימים שלה (5, 10 או 20 ימי מסחר) — מניה ביום 3 עדיין לא נספרת. המבחן לאחור של השיטה — ב"איך זה עובד" למטה.</p></div></section>' : "") +
