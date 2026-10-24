@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np143";
+  var TA_VER = "np144";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -4200,6 +4200,16 @@
       "</div>";
   }
 
+  // np144 (24.10.2026, איציק: "הפרדה בין הדיווחים ברבעון הקודם לרבעון הנוכחי"): עונת הדוחות של כל ניתוח
+  // (fetch_reports.season — לפי חודש הפרסום, לא הרבעון הפיסקלי שבכותרת; נפילה: חישוב מהתאריך).
+  function repSeason(r) {
+    if (r.season && r.season.key) return r.season;
+    var m = /^(\d{4})-(\d{2})/.exec(r.date || "");
+    if (!m) return null;
+    var y = +m[1], q = Math.floor((+m[2] - 1) / 3);
+    if (q === 0) { q = 4; y -= 1; }
+    return { q: q, year: y, key: y + "-" + q, label: "רבעון " + q + " " + y };
+  }
   function renderReports(el, d) {
     var reports = (d && d.reports) || [];
     if (!reports.length) {
@@ -4207,44 +4217,82 @@
         "כאן יופיעו ניתוחי דוחות רבעוניים של חברות. הדוח הראשון בדרך.");
       return;
     }
-    var cards = reports.map(function (r, i) {
+    // עונות: המפתח הגבוה = הנוכחית, הבאה = הקודמת, השאר רק ב"הכל"
+    var seasons = {};
+    reports.forEach(function (r, i) { var sn = repSeason(r); if (sn) (seasons[sn.key] = seasons[sn.key] || { s: sn, idx: [] }).idx.push(i); });
+    var keys = Object.keys(seasons).sort().reverse();
+    var cur = keys[0], prev = keys[1];
+    var views = [];
+    if (cur) views.push({ id: cur, title: "הרבעון הנוכחי", sub: seasons[cur].s.label, idx: seasons[cur].idx });
+    if (prev) views.push({ id: prev, title: "הרבעון הקודם", sub: seasons[prev].s.label, idx: seasons[prev].idx });
+    views.push({ id: "all", title: "הכל", sub: "", idx: reports.map(function (_, i) { return i; }) });
+    // "הדוח הקודם ←": לכל כרטיס, הניתוח המאוחר ביותר של אותה חברה מעונה מוקדמת יותר
+    function prevOf(i) {
+      var r = reports[i], sn = repSeason(r);
+      if (!r.ticker || !sn) return -1;
+      var best = -1;
+      reports.forEach(function (x, k) {
+        var xs = repSeason(x);
+        if (k !== i && x.ticker === r.ticker && xs && xs.key < sn.key && (best < 0 || (x.date || "") > (reports[best].date || ""))) best = k;
+      });
+      return best;
+    }
+    function card(i) {
+      var r = reports[i], pv = prevOf(i), sn = repSeason(r);
       var head = '<div class="rep-head">' +
         (r.logo ? '<img class="rep-logo' + (r.logoBg === "dark" ? " rep-logo-dk" : "") + '" src="' + esc(r.logo) + '" alt="' + esc(r.ticker || "") + '" onerror="this.remove()">' : "") +
         (r.ticker ? '<span class="rep-ticker">' + esc(r.ticker) + "</span>" : "") + "</div>";
-      return '<button class="rep-card" data-rep="' + i + '">' + head +
+      return '<div class="rep-card" role="button" tabindex="0" data-rep="' + i + '">' + head +
         '<span class="rep-title">' + esc(r.title || r.file) + "</span>" +
-        (r.date ? '<span class="rep-date num" dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span>" : "") + "</button>";
-    }).join("");
-    // שלב 7 (10.10.2026): הרשת בתוך פאנל; דוח פתוח = פאנל עם "חזרה" ו"מסך מלא"
+        '<span class="rep-foot">' + (r.date ? '<span class="rep-date num" dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span>" : "") +
+        (pv >= 0 ? '<button type="button" class="rep-prev" data-prev="' + pv + '" title="' + esc((repSeason(reports[pv]) || {}).label || "") + '">הדוח הקודם ←</button>' : "") + "</span></div>";
+    }
+    var nav = '<div class="chips bd-chips rep-nav">' + views.map(function (v, k) {
+      return '<button type="button" class="tag rep-tab' + (k === 0 ? " on" : "") + '" data-view="' + v.id + '" aria-pressed="' + (k === 0) + '">' +
+        esc(v.title) + (v.sub ? ' <span class="mute">' + esc(v.sub) + "</span>" : "") + ' <b class="num">' + v.idx.length + "</b></button>";
+    }).join("") + "</div>";
     el.innerHTML = '<div class="board">' +
-      '<section class="pan" id="rep-list-pan"' + bdSpan(12) + ">" + panHd("ניתוח דוחות חברות", '<span class="mute"><span class="num">' + reports.length + "</span> ניתוחים · החדש ראשון</span>") +
-        '<div class="pb"><div id="rep-list" class="rep-grid">' + cards + "</div></div></section>" +
+      '<section class="pan" id="rep-list-pan"' + bdSpan(12) + ">" + panHd("ניתוח דוחות חברות", '<span class="mute" id="rep-count"></span>') +
+        '<div class="pb">' + nav + '<div id="rep-list" class="rep-grid"></div></div></section>' +
       '<section class="pan" id="rep-view"' + bdSpan(12) + ' style="display:none"></section></div>';
 
     var list = el.querySelector("#rep-list");
     var view = el.querySelector("#rep-view");
-    // פתיחת דוח מסוים מבחוץ ("הניתוח החדש" בכרטיס "אחרי הדוח", 9.10.2026)
+    var listPan = el.querySelector("#rep-list-pan");
+    var count = el.querySelector("#rep-count");
+    function back() { view.style.display = "none"; view.innerHTML = ""; listPan.style.display = ""; }
+    function open(i) {
+      var r = reports[i];
+      listPan.style.display = "none";
+      view.style.display = "";
+      view.innerHTML = panHd('<button type="button" class="rep-back">כל הניתוחים</button> · ' + esc(r.title || r.file), r.date ? '<span class="mute num" dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span>" : "", repFull(r.file)) +
+        '<iframe class="brief-frame rep-frame" src="' + bust(r.file, d._meta) + '" title="' + esc(r.title || "") +
+        '" style="width:100%;min-height:640px" ' +
+        'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
+      view.querySelector(".rep-back").addEventListener("click", back);
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    function show(id) {
+      var v = views.filter(function (x) { return x.id === id; })[0] || views[0];
+      list.innerHTML = v.idx.map(card).join("");
+      count.innerHTML = '<span class="num">' + v.idx.length + "</span> ניתוחים · " + (v.sub ? esc(v.sub) + " · " : "") + "החדש ראשון";
+      el.querySelectorAll(".rep-tab").forEach(function (x) { var on = x.dataset.view === v.id; x.classList.toggle("on", on); x.setAttribute("aria-pressed", on); });
+      list.querySelectorAll(".rep-card").forEach(function (b) {
+        b.addEventListener("click", function () { open(+b.dataset.rep); });
+        b.addEventListener("keydown", function (ev) { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); open(+b.dataset.rep); } });
+      });
+      list.querySelectorAll(".rep-prev").forEach(function (b) {
+        b.addEventListener("click", function (ev) { ev.stopPropagation(); open(+b.dataset.prev); });
+      });
+    }
+    el.querySelectorAll(".rep-tab").forEach(function (b) { b.addEventListener("click", function () { back(); show(b.dataset.view); }); });
+    show(views[0].id);
+    // פתיחת דוח מסוים מבחוץ ("הניתוח החדש" בכרטיס "אחרי הדוח", 9.10.2026) — בכל עונה שהיא
     window.__openReport = function (file) {
       if (window.__goTab) window.__goTab("reports");
       var i = reports.findIndex(function (x) { return x.file === file; });
-      var b = i >= 0 ? el.querySelector('.rep-card[data-rep="' + i + '"]') : null;
-      if (b) setTimeout(function () { b.click(); }, 30);
+      if (i >= 0) setTimeout(function () { open(i); }, 30);
     };
-    var listPan = el.querySelector("#rep-list-pan");
-    function back() { view.style.display = "none"; view.innerHTML = ""; listPan.style.display = ""; }
-    el.querySelectorAll(".rep-card").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var r = reports[+b.dataset.rep];
-        listPan.style.display = "none";
-        view.style.display = "";
-        view.innerHTML = panHd('<button type="button" class="rep-back">כל הניתוחים</button> · ' + esc(r.title || r.file), r.date ? '<span class="mute num" dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span>" : "", repFull(r.file)) +
-          '<iframe class="brief-frame rep-frame" src="' + bust(r.file, d._meta) + '" title="' + esc(r.title || "") +
-          '" style="width:100%;min-height:640px" ' +
-          'onload="try{this.style.height=(this.contentWindow.document.body.scrollHeight+30)+\'px\'}catch(e){}"></iframe>';
-        view.querySelector(".rep-back").addEventListener("click", back);
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
   }
 
   /* ===================== לוח המסחר — גוף הטאבים (np120, עיצוב מחדש שלב 6 חלק 2) =====================
