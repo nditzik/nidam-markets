@@ -150,7 +150,7 @@ def local_reports():
         except OSError:
             continue
         out.append({"file": r["file"], "date": r["date"], "title": r.get("title") or ("דוח ארבעת העמודים · " + r["date"]),
-                    "picks": extract_picks(content), "source": "build_fourpillars"})
+                    "picks": extract_picks(content), "featured": r.get("featured") or [], "source": "build_fourpillars"})
     return out
 
 
