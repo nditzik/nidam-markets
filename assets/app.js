@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np139";
+  var TA_VER = "np140";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1596,6 +1596,14 @@
     return { f: f, r: r, mon: mon, fri: fri, label: label, closes: closes, n: closes.length,
              price: price, below: below, claims: claims, hits: hits, total: total, weekend: (t.dow === "Sat" || t.dow === "Sun") && !isNext };
   }
+  // np140 (24.10.2026, איציק: "רוחב 59% ויש 22% — מה זה כל רוחב"): כל טענה שאינה יום-מכירה נקראה "רוחב",
+  // גם טענת ה-VIX (אחוז מעל הממוצע ל-50 יום). התווית לפי המדד.
+  function fcClaimLabel(c) {
+    if (c.key === "sellDay") return "יום מכירה";
+    if (c.metric === "vixOverMa50" || c.key === "vix") return "VIX מעל ממוצע 50";
+    if (c.metric === "pctMa50" || c.key === "breadth") return "רוחב · מעל ממוצע 50";
+    return c.key || "טענה";
+  }
   function fcSym(st) { return st === "hit" ? "✓" : st === "miss" ? "✗" : "○"; }
   function fcPct(v, signed) { return v == null ? "—" : '<span class="num" dir="ltr">' + (signed && v > 0 ? "+" : "") + v.toFixed(1) + "%</span>"; }
   function fcPriceText(w, long) {
@@ -1616,13 +1624,13 @@
       var res = ['<span class="np-fc-i st-' + w.price.st + '">' + fcSym(w.price.st) + " סגירה " + (w.below ? "מתחת ל-" : "מעל ") +
         '<span class="num" dir="ltr">' + Number(w.f.ref).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "</span> · S&amp;P " + fcPct(w.price.pct, true) + "</span>"];
       w.claims.forEach(function (c) {
-        res.push('<span class="np-fc-i st-' + c.st + '">' + fcSym(c.st) + " " + (c.key === "sellDay" ? "יום מכירה" : "רוחב") + " · " + c.val + "</span>");
+        res.push('<span class="np-fc-i st-' + c.st + '">' + fcSym(c.st) + " " + fcClaimLabel(c) + " · " + c.val + "</span>");
       });
       return '<span class="np-fc"><span class="np-fc-k">🎯 הצפי לשבוע ' + esc(w.label) + "</span>" + res.join("") + link + "</span>";
     }
     var items = ['<span class="np-fc-i st-' + w.price.st + '">' + fcSym(w.price.st) + " סגירה " + (w.below ? "מתחת ל-" : "מעל ") + '<span class="num" dir="ltr">' + Number(w.f.ref).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "</span> · " + fcPriceText(w, false) + "</span>"];
     w.claims.forEach(function (c) {
-      items.push('<span class="np-fc-i st-' + c.st + '">' + fcSym(c.st) + " " + (c.key === "sellDay" ? "יום מכירה" : "רוחב") + " · " + c.val + "</span>");
+      items.push('<span class="np-fc-i st-' + c.st + '">' + fcSym(c.st) + " " + fcClaimLabel(c) + " · " + c.val + "</span>");
     });
     return '<span class="np-fc"><span class="np-fc-k">🎯 הצפי · יום ' + '<span class="num" dir="ltr">' + w.n + "/5</span></span>" + items.join("") + link + "</span>";
   }
