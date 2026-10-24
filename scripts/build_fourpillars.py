@@ -409,7 +409,63 @@ def load_notes(day):
         return None
 
 
-def register(day, title, picks):
+def _short(note, n=220):
+    note = (note or "").strip()
+    if len(note) <= n:
+        return note
+    cut = note[:n]
+    i = max(cut.rfind(". "), cut.rfind("; "), cut.rfind(" — "))
+    return (cut[:i + 1] if i > 60 else cut.rsplit(" ", 1)[0] + "…").strip()
+
+
+def featured(rep, notes, n=5):
+    """חמש המניות לפאנל "הצעות לטרייד" בטאב מניות (24.10.2026, איציק): נציג מכל קטגוריה שיש בה
+    מניה כשירה (רכבת דוהרת · קפיץ נדרך · עוף חול — לא כל יום יש עוף חול), ואז השלמה מהמובילות
+    של הדוח (notes.top) ולבסוף לפי ציון. עוף חול מתחת לממוצע 100 מסומן "עוד לא עבר את הקו"."""
+    nn = (notes or {}).get("notes") or {}
+    top = [t for t in ((notes or {}).get("top") or []) if t.get("sym")]
+    top_syms = [t["sym"] for t in top]
+    top_txt = {t["sym"]: t.get("text", "") for t in top}
+    bysym = {s["sym"]: (k, s) for k in KINDS for s in rep["cats"][k]}
+    chosen = []
+
+    def pick_for(k):
+        ok = [s for s in rep["cats"][k] if s["status"] != "fail"]
+        if not ok:
+            return None
+        for sym in top_syms:                      # המובילה של הדוח בקטגוריה הזו
+            if sym in bysym and bysym[sym][0] == k and sym not in chosen:
+                return sym
+        ok.sort(key=lambda s: -s["score"])        # אחרת בעלת הציון הגבוה
+        return next((s["sym"] for s in ok if s["sym"] not in chosen), None)
+
+    for k in KINDS:
+        sym = pick_for(k)
+        if sym:
+            chosen.append(sym)
+    for sym in top_syms:
+        if len(chosen) >= n:
+            break
+        if sym in bysym and sym not in chosen and bysym[sym][1]["status"] != "fail":
+            chosen.append(sym)
+    rest = sorted((s for k in KINDS for s in rep["cats"][k] if s["status"] != "fail" and s["sym"] not in chosen), key=lambda s: -s["score"])
+    for s in rest:
+        if len(chosen) >= n:
+            break
+        chosen.append(s["sym"])
+    out = []
+    for sym in chosen[:n]:
+        k, s = bysym[sym]
+        action = {"ok": "עומדת", "warn": "גבולית", "fail": "לא עומדת"}[s["status"]]
+        if k == "phoenix" and s.get("ma100") and s.get("last") is not None and s["last"] < s["ma100"]:
+            action += " · עוד לא עברה את ממוצע 100 (%s) — מעקב" % fmtn(s["ma100"])
+        note = top_txt.get(sym) or nn.get(sym) or template_note(k, s)
+        out.append({"ticker": sym, "cat": CAT[k]["he"], "action": action, "note": _short(note), "score": s["score"],
+                    "lead": sym in top_syms})
+    return out
+
+
+def register(day, title, picks, feat=None):
     """data/fourpillars/index.json + שורה ב-data/trades.json (הטאב קורא ממנו; fetch_trades ממזג גם)."""
     idx_p = os.path.join(FP, "index.json")
     try:
@@ -417,7 +473,7 @@ def register(day, title, picks):
     except (OSError, ValueError):
         idx = {"reports": []}
     rel = "data/trades/trades-%s.html" % day
-    idx["reports"] = [r for r in idx["reports"] if r.get("date") != day] + [{"date": day, "file": rel, "title": title, "source": "build_fourpillars"}]
+    idx["reports"] = [r for r in idx["reports"] if r.get("date") != day] + [{"date": day, "file": rel, "title": title, "source": "build_fourpillars", "featured": feat or []}]
     idx["reports"].sort(key=lambda r: r["date"], reverse=True)
     idx["_meta"] = {"updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")}
     json.dump(idx, open(idx_p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -426,7 +482,7 @@ def register(day, title, picks):
         t = json.load(open(tj, encoding="utf-8"))
     except (OSError, ValueError):
         t = {"reports": [], "method": None, "_meta": {}}
-    t["reports"] = [r for r in t.get("reports", []) if r.get("date") != day] + [{"file": rel, "date": day, "title": title, "picks": picks, "source": "build_fourpillars"}]
+    t["reports"] = [r for r in t.get("reports", []) if r.get("date") != day] + [{"file": rel, "date": day, "title": title, "picks": picks, "featured": feat or [], "source": "build_fourpillars"}]
     t["reports"].sort(key=lambda r: r["date"], reverse=True)
     t["reports"] = t["reports"][:20]
     json.dump(t, open(tj, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
@@ -447,7 +503,10 @@ def build(day):
         picks = extract_picks(page)
     except Exception:
         picks = []
-    register(day, title, picks)
+    feat = featured(rep, notes)
+    rep["featured"] = [f["ticker"] for f in feat]
+    json.dump(rep, open(os.path.join(FP, day, "report.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    register(day, title, picks, feat)
     print("[fourpillars] %s: %d מניות, %d כשירות · notes=%s · %s" % (day, rep["total"], rep["passed"], "כן" if notes else "לא", out))
     return 0
 
