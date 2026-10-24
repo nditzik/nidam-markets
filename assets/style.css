@@ -507,6 +507,9 @@ a.tv:hover { text-decoration: underline; }
 .rep-nav { margin-bottom: 12px; }
 .rep-nav .tag .mute { font-weight: 400; }
 .rep-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* np145: כותרות המשנה בפאנל הרקורד (בפועל / מבחן לאחור) */
+.pk-rec-h { font-size: 13px; color: var(--text-soft); line-height: 1.45; margin: 0 0 8px; }
+.tiles + .pk-rec-h { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
 
 /* ---- Updated stamp ---- */
 .stamp { font-size: .82rem; color: var(--text-3); margin: 4px 0 20px; }

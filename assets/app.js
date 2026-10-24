@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np144";
+  var TA_VER = "np145";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -3912,6 +3912,31 @@
   var PK_BO = { CONFIRMED: "פריצה מאושרת", RETEST: "בדיקה חוזרת של הפריצה", UNRESOLVED: "פריצה לא הוכרעה", PULLBACK: "תיקון אחרי פריצה",
     IN_PROGRESS: "פריצה בתהליך", GAP_PARTIAL_FILL: "מילוי חלקי של פער", GAP_BREAKOUT: "פריצה בפער", FAILED: "פריצה שנכשלה", NONE: "ללא פריצה" };
   function pkPct(v, d) { return v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(d == null ? 1 : d) + "%"; }
+  // np145 (איציק 24.10: "הרקורד צריך להוסיף גם ממוצע חמישה ימים, כולל עד חמישה ימים"): הרקורד בפועל של
+  // המהדורות ביומן — לכל אופק ממוצע כל המניות שנמדדו בו (שקול למניה, לא למהדורה). באופק 5 נכנסות גם
+  // המניות שעדיין בימים 1–4 (לפי היום האחרון שנמדד), כדי שהמהדורות הטריות ייספרו; 10 ו-20 — נעולים בלבד.
+  function pkLedgerRecord() {
+    var eds = (PICKL && PICKL.editions) || [];
+    if (!eds.length) return "";
+    var H = [5, 10, 20], tiles = "", nEd = 0, nSym = 0;
+    eds.forEach(function (e) { if ((e.symbols || []).length) { nEd++; nSym += e.symbols.length; } });
+    H.forEach(function (h) {
+      var rs = [], live = 0;
+      eds.forEach(function (e) {
+        (e.symbols || []).forEach(function (s) {
+          var r = e.results && e.results[s.sym] || {};
+          if (r[h]) rs.push(r[h]);
+          else if (h === 5 && r.cur && r.cur.day < 5) { rs.push(r.cur); live++; }
+        });
+      });
+      if (!rs.length) { tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), "—", "עוד אין"); return; }
+      var avg = rs.reduce(function (a, r) { return a + r.ret; }, 0) / rs.length;
+      var ex = rs.reduce(function (a, r) { return a + r.excess; }, 0) / rs.length;
+      var win = Math.round(rs.filter(function (r) { return r.ret > 0; }).length / rs.length * 100);
+      tiles += bdTile("אחרי " + h + (h === 5 ? " ימים" : ""), pkPct(avg), "מול S&amp;P " + pkPct(ex) + " · עלו " + win + "% · " + rs.length + " מניות" + (live ? " (" + live + " בימים 1–4)" : ""), avg > 0 ? "up" : avg < 0 ? "down" : "");
+    });
+    return '<div class="pk-rec-h"><b>בפועל</b> — <span class="num">' + nEd + '</span> מהדורות, <span class="num">' + nSym + '</span> מניות מאז 29.9, מהכניסה בסגירת יום המהדורה</div><div class="tiles t3">' + tiles + "</div>";
+  }
   function pkLedger(bare_) {
     var eds = (PICKL && PICKL.editions) || [];
     if (!eds.length) return "";
@@ -3924,8 +3949,10 @@
       var v = r || (live ? cur : null);
       if (!v) return '<td class="pend">—</td>';
       var tone = v.excess > 0 ? "good" : v.excess < 0 ? "bad" : "";
-      return '<td class="' + tone + (live ? " live" : "") + '"><b>' + pkPct(v.ret) + "</b><small>" + (live ? '<span class="dd">יום ' + cur.day + " · </span>" : "") + pkPct(v.excess) + '<span class="vm"> מול השוק</span></small>' +
-        (mk && v.spy != null ? '<small class="mk">S&amp;P ' + pkPct(v.spy, 2) + "</small>" : "") + "</td>";
+      // np145 (איציק 24.10: "אחת ירדה 0.4 ואחת 1.1 ועדיין הממוצע יצא 0.7"): המספר היה נכון (−0.7) אבל הסימן
+      // הוצג בקצה הלא נכון בתוך טקסט RTL ("0.7%-") — כל מספר חתום ב-bdi עם dir=ltr
+      return '<td class="' + tone + (live ? " live" : "") + '"><b dir="ltr">' + pkPct(v.ret) + "</b><small>" + (live ? '<span class="dd">יום ' + cur.day + " · </span>" : "") + '<bdi dir="ltr">' + pkPct(v.excess) + '</bdi><span class="vm"> מול השוק</span></small>' +
+        (mk && v.spy != null ? '<small class="mk">S&amp;P <bdi dir="ltr">' + pkPct(v.spy, 2) + "</bdi></small>" : "") + "</td>";
     };
     // מהלך יומי: קו התשואה המצטברת יום-יום (עד 20), קו אפס, נקודה בסוף בצבע הכיוון
     // מחיר כניסה → סגירה אחרונה (2.10.2026, איציק); הסגירה מ-cur.close, או נגזרת מהתשואה
@@ -4011,10 +4038,13 @@
     el.innerHTML = (d ? stamp(d._meta) : "") + '<div class="board">' +
       '<section class="pan bd-picks" id="pk-main"' + bdSpan(12) + ">" + main + "</section>" +
       (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מהכניסה, מול S&amp;P · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
-      (rec ? '<section class="pan"' + bdSpan(5) + ">" + panHd("הרקורד", '<span class="mute">מבחן לאחור · <span class="num">' + esc(rec.n) + '</span> אישורים ב-<span class="num">' + esc(rec.symbols) + "</span> מניות</span>") +
-        '<div class="pb"><div class="tiles t2">' + bdTile("עלו תוך 10 ימים", esc(rec.win10) + "%") + bdTile("ממוצע 10 ימים", pkPct(rec.avg10), rec.excess10 != null ? "מול S&amp;P " + pkPct(rec.excess10) : "", rec.avg10 > 0 ? "up" : "down") +
-          bdTile("ממוצע 20 יום", pkPct(rec.avg20), "", rec.avg20 > 0 ? "up" : "down") + bdTile("ירידה ממוצעת בדרך", pkPct(rec.mae), "הסטופ לא צמוד", "down") + "</div>" +
-        '<p class="mute s" style="margin:0">הדגימה מוטה לטובה: מניות שנבחרו כשהן במגמת עלייה. השבוע הראשון תנודתי — מחצית נוגעות ב-1.5 ATR.</p></div></section>' : "") +
+      (rec ? '<section class="pan" style="grid-column:span 5;align-self:start">' + panHd("הרקורד", '<span class="mute">מבחן לאחור ובפועל</span>') +
+        '<div class="pb">' + pkLedgerRecord() +
+        '<div class="pk-rec-h"><b>מבחן לאחור</b> — <span class="num">' + esc(rec.symbols) + '</span> המניות שנבחרו אי-פעם, שנה אחורה: <span class="num">' + esc(rec.n) + '</span> פעמים שהמנוע נתן להן "אישור מחיר" (אותו איתות שמכניס לנבחרות), ומה קרה אחריו</div>' +
+        '<div class="tiles t3">' + bdTile("ממוצע 5 ימים", pkPct(rec.avg5), (rec.excess5 != null ? "מול S&amp;P " + pkPct(rec.excess5) + " · " : "") + "עלו " + esc(rec.win5) + "%", rec.avg5 > 0 ? "up" : "down") +
+          bdTile("ממוצע 10 ימים", pkPct(rec.avg10), (rec.excess10 != null ? "מול S&amp;P " + pkPct(rec.excess10) + " · " : "") + "עלו " + esc(rec.win10) + "%", rec.avg10 > 0 ? "up" : "down") +
+          bdTile("ממוצע 20 יום", pkPct(rec.avg20), "", rec.avg20 > 0 ? "up" : "down") + "</div>" +
+        '<p class="mute s" style="margin:8px 0 0">ירידה ממוצעת בדרך (10 ימים): <b class="num" dir="ltr">' + pkPct(rec.mae) + "</b> — הסטופ לא צמוד. הדגימה מוטה לטובה: מניות שנבחרו כשהן במגמת עלייה. השבוע הראשון תנודתי — מחצית נוגעות ב-1.5 ATR.</p></div></section>" : "") +
       '<section class="pan" id="pk-cand"' + bdSpan(6) + '></section><section class="pan" id="pk-mom"' + bdSpan(6) + "></section>" +
       '<section class="pan" id="pk-trd"' + bdSpan(6) + '></section><section class="pan" id="pk-ins"' + bdSpan(6) + "></section></div>";
     el.querySelectorAll(".pk-ed").forEach(function (tr) {
