@@ -111,8 +111,9 @@ function history(sym, bars, spy) {
       const c = bars[i].close, si = spyIdx[bars[i].date];
       const f = {}; HORIZONS.forEach(h => { f[h] = +((bars[i + h].close / c - 1) * 100).toFixed(2); });
       const spy10 = (si != null && spy[si + 10]) ? +((spy[si + 10].close / spy[si].close - 1) * 100).toFixed(2) : null;
+      const spy5 = (si != null && spy[si + 5]) ? +((spy[si + 5].close / spy[si].close - 1) * 100).toFixed(2) : null;   // np145: גם מול השוק ל-5 ימים
       let lo = Infinity; for (let k = 1; k <= 10; k++) lo = Math.min(lo, bars[i + k].low);
-      ev.push({ date: bars[i].date, r5: f[5], r10: f[10], r20: f[20], spy10, mae: +((lo / c - 1) * 100).toFixed(1) });
+      ev.push({ date: bars[i].date, r5: f[5], r10: f[10], r20: f[20], spy5, spy10, mae: +((lo / c - 1) * 100).toFixed(1) });
     }
     last = a;
   }
@@ -306,6 +307,8 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
     n: all.length, symbols: Object.keys(ledger.hist).length,
     win5: Math.round(all.filter(e => e.r5 > 0).length / all.length * 100),
     win10: Math.round(all.filter(e => e.r10 > 0).length / all.length * 100),
+    avg5: +(all.reduce((s, e) => s + e.r5, 0) / all.length).toFixed(1),   // np145 (איציק 24.10): גם ממוצע 5 ימים
+    excess5: (() => { const v = all.filter(e => e.spy5 != null); return v.length ? +(v.reduce((s, e) => s + e.r5 - e.spy5, 0) / v.length).toFixed(1) : null; })(),
     avg10: +(all.reduce((s, e) => s + e.r10, 0) / all.length).toFixed(1),
     avg20: +(all.reduce((s, e) => s + e.r20, 0) / all.length).toFixed(1),
     mae: +(all.reduce((s, e) => s + e.mae, 0) / all.length).toFixed(1),
