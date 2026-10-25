@@ -20,7 +20,7 @@
 | nidam-daily-market-analysis | trig_01QxCeHkMGrGcXk4Uhk4mCBv | `0 3-8 * * 1-6` | `0 4-9 * * 1-6` | 06:00–11:00, ב'–ש' |
 | nidam-daily-market-analysis-retry | trig_01W8FY5Nu76pEBUvBnAePBNr | `30 3-9 * * 1-6` | `30 4-10 * * 1-6` | 06:30–12:30, ב'–ש' |
 | nidam-weekly-narrative | trig_016VP2ucQCPd2y4e2jbkSUyT | `0 4-11 * * 6,0,1` | `0 5-12 * * 6,0,1` | 07:00–14:00, שבת/א'/ב' |
-| nidam-preview-sun-mon | trig_01Ktgp3bjzo8rhp2eNNbuwvR | `45 4,11 * * 0,1` | `45 5,12 * * 0,1` | 07:45 + 14:45, א'/ב' |
+| nidam-preview-sun-mon | trig_01Ktgp3bjzo8rhp2eNNbuwvR | `45 4,11 * * 0,1` | `45 5,12 * * 0,1` ✅ 25.10.2026 | 07:45 + 14:45, א'/ב' — **חובה**: הצפי נכתב רק אחרי 14:00 |
 | nidam-rotation-weekly | trig_01PBFS69zLJY5iv6rBgkxz6p | `0 6 * * 6` | `0 7 * * 6` | 09:00, שבת (נוצרה ב-UI 10.10.2026 — ה-UI מאפשר שעה אחת; גרוק מעלה ~06:00) |
 
 ## קבוצה ב' — זזות עם ארה"ב (1.11.2026 → חורף · 14.3.2027 → קיץ)
@@ -31,6 +31,8 @@
 | nidam-event-update-1545 | trig_01BZNrS3UZbLQMEeQh2pUDVT | `50 12 * * 1-5` | `50 13 * * 1-5` | 15:50 |
 | nidam-event-update-1700 | trig_018imBgiWmzyXYKppZvnKWyA | `5 14 * * 1-5` | `5 15 * * 1-5` | 17:05 |
 | nidam-midday-1900 | trig_012hxPwq27eeJyr6ForerGjf | `0 16 * * 1-5` | `0 17 * * 1-5` | 19:00 |
+
+**25.10.2026:** איציק עדכן רק את nidam-preview-sun-mon; השאר בקבוצה א' נשארו על קיץ בהחלטתו (רצים שעה מוקדם, לא מזיק). הסשן לא יכול לערוך/להריץ רוטינות http_api — רק מהממשק (שדה cron כטקסט, כפתור Run).
 
 **לחורף:** להעתיק את עמודת "cron חורף". **לקיץ:** להעתיק את עמודת "cron קיץ". (⚠️ ב-nidam-preview-sun-mon: `run_once_at` מוחק את ה-cron — לא להשתמש בו.)
 
