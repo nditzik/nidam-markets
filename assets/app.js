@@ -610,7 +610,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np151";
+  var TA_VER = "np152";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -1967,6 +1967,22 @@
 
   /* ---------- הידיעה המובילה + רייל המד (מהדורת עיתון) ---------- */
   var CA = null;   // data/claude_analysis.json — הניתוח היומי (נכתב ע"י המשימה המתוזמנת)
+  // np152 (25.10.2026, איציק): כותרת "לקראת שבוע המסחר" — בלי "סגירת יום שישי" (מבלבל: זה צפי קדימה);
+  // תאריכי השבוע + "(נכון ליום X, HH:MM)" = מתי הרוטינה כתבה אותה. הכל מ-eventUpdate (date/time/forecast.weekOf) — אוטומטי בכל ריצה.
+  function previewStamp(eu) {
+    if (!eu || !eu.date) return null;
+    var weekly = /שבוע/.test(eu.event || "") || !!eu.forecast;
+    var mon = (eu.forecast && eu.forecast.weekOf) || (function () { var wd = new Date(eu.date + "T00:00:00Z").getUTCDay(); return wd === 0 ? isoAdd(eu.date, 1) : mondayOf(eu.date); })();
+    var fri = isoAdd(mon, 4), m1 = mon.split("-"), m2 = fri.split("-");
+    var range = weekly
+      ? ((+m1[2]) + (m1[1] === m2[1] ? "" : "." + (+m1[1])) + "–" + (+m2[2]) + "." + (+m2[1]) + "." + m2[0])
+      : fmtTradeDate(eu.date).replace(/\.(\d\d)$/, ".20$1");
+    var asOf = "נכון ליום " + MD_DOW[new Date(eu.date + "T12:00:00").getDay()] + " " + (+eu.date.slice(8, 10)) + "." + (+eu.date.slice(5, 7)) + (eu.time ? ", " + eu.time : "");
+    return { weekly: weekly, range: range, asOf: asOf,
+      sub: (weekly ? "שבוע המסחר" : "יום המסחר") + ' · <b class="num" dir="ltr">' + range + "</b>",
+      line: '<span class="np-k-sub"><b class="num" dir="ltr">' + range + '</b> <span class="mute">(' + asOf + ")</span></span>" };
+  }
+
   function renderLead() {
     var el = document.getElementById("lead-main");
     if (!el || !INDD) return;
@@ -2019,10 +2035,13 @@
       var euIco = eu.kind === "midday" ? "🕑" : eu.kind === "preview" ? "🗓" : eu.kind === "preopen" ? "🔔" : "🔴";
       // preview/preopen: ה-event הוא כבר כותרת שלמה ("לקראת פתיחת המסחר") — בלי "עדכון"
       var euLbl = (eu.kind === "preview" || eu.kind === "preopen" ? "" : "עדכון ") + esc(eu.event || "אירוע");
+      var pst = eu.kind === "preview" ? previewStamp(eu) : null;
+      if (pst && ls) ls.innerHTML = pst.sub;   // "שבוע המסחר · 26–30.10.2026" במקום "סגירת יום שישי"
       el.innerHTML =
         '<span class="np-today">' + todayLine() + "</span>" +
         '<span class="np-k ' + (euCalm ? "np-evt-mid" : "np-evt") + '">' + euIco +
-          " " + euLbl + ' · <b dir="ltr">' + esc(eu.time || "") + "</b></span>" +
+          " " + euLbl + (pst ? "" : ' · <b dir="ltr">' + esc(eu.time || "") + "</b>") + "</span>" +
+        (pst ? pst.line : "") +
         '<h2 class="np-h1">' + esc(eu.headline) + "</h2>" +
         // 20.9.2026: כותרות רגועות באותו שלד של שאר הכותרות — 3 נתונים חיים + משפט אחד;
         // עדכון מאקרו אדום (CPI/פד) נשאר עם הטקסט המלא, שם הפירוט הוא העיקר

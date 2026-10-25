@@ -2304,3 +2304,8 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .np-watch-h { margin-bottom: 4px; }
 .np-watch { margin: 0 0 14px; padding-right: 22px; font-size: 16px; line-height: 1.6; color: var(--text-soft); }
 .np-watch li { margin: 2px 0; }
+
+/* np152 — שורת התאריכים מתחת לקיקר "לקראת שבוע המסחר" */
+.np-k-sub { display: block; font-size: .82rem; color: var(--text-soft); margin: -2px 0 8px; }
+.np-k-sub b { font-weight: 600; color: var(--text); }
+.np-k-sub .mute { color: var(--text-3); }
