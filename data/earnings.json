@@ -1,50 +1,103 @@
 {
-  "today": "2026-10-26",
-  "todayCount": 11,
+  "today": "2026-10-27",
+  "todayCount": 48,
   "todayBig": [
     {
-      "ticker": "VZ",
-      "name": "Verizon Communications Inc.",
-      "capB": 179.1
+      "ticker": "V",
+      "name": "Visa Inc. Class A",
+      "capB": 754.6
     },
     {
-      "ticker": "WELL",
-      "name": "Welltower Inc.",
-      "capB": 173.4
+      "ticker": "KO",
+      "name": "Coca-Cola Company",
+      "capB": 398.8
     },
     {
-      "ticker": "CDNS",
-      "name": "Cadence Design Systems, Inc.",
-      "capB": 88.7
+      "ticker": "HSBC",
+      "name": "HSBC Holdings PLC Sponsored ADR",
+      "capB": 309.8
     },
     {
-      "ticker": "NUE",
-      "name": "Nucor Corporation",
-      "capB": 58.4
+      "ticker": "NVS",
+      "name": "Novartis AG Sponsored ADR",
+      "capB": 283.9
     },
     {
-      "ticker": "PSA",
-      "name": "Public Storage",
-      "capB": 57.4
+      "ticker": "BA",
+      "name": "Boeing Company",
+      "capB": 148.8
     },
     {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Class A",
-      "capB": 41.7
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
+      "capB": 146.5
     },
     {
-      "ticker": "HIG",
-      "name": "Hartford Insurance Group, Inc.",
-      "capB": 36.8
+      "ticker": "SPGI",
+      "name": "S&P Global, Inc.",
+      "capB": 132.9
     },
     {
-      "ticker": "CLS",
-      "name": "Celestica Inc.",
-      "capB": 31.1
+      "ticker": "GLW",
+      "name": "Corning Inc",
+      "capB": 110.0
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-26",
+        "label": "26.10",
+        "items": [
+          {
+            "ticker": "VZ",
+            "name": "Verizon Communications Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VZ.png",
+            "chg": -3.49,
+            "price": 43.1,
+            "reactDate": "2026-10-26",
+            "baseDate": "2026-10-23"
+          },
+          {
+            "ticker": "WELL",
+            "name": "Welltower Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/WELL.png"
+          },
+          {
+            "ticker": "CDNS",
+            "name": "Cadence Design Systems, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/CDNS.png",
+            "logoBg": "dark"
+          },
+          {
+            "ticker": "NUE",
+            "name": "Nucor Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/NUE.png"
+          },
+          {
+            "ticker": "PSA",
+            "name": "Public Storage",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/PSA.png"
+          },
+          {
+            "ticker": "HIG",
+            "name": "Hartford Insurance Group, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/HIG.png"
+          }
+        ]
+      },
       {
         "date": "2026-10-23",
         "label": "23.10",
@@ -189,166 +242,87 @@
             "baseDate": "2026-10-21"
           }
         ]
-      },
-      {
-        "date": "2026-10-21",
-        "label": "21.10",
-        "items": [
-          {
-            "ticker": "META",
-            "name": "Meta Platforms Inc Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/META.png",
-            "chg": -6.98,
-            "price": 648.85,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "TSLA",
-            "name": "Tesla, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/TSLA.png",
-            "chg": -3.08,
-            "price": 374.58,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "PM",
-            "name": "Philip Morris International Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/PM.png",
-            "chg": -1.22,
-            "price": 197.46,
-            "reactDate": "2026-10-21",
-            "baseDate": "2026-10-20"
-          },
-          {
-            "ticker": "LRCX",
-            "name": "Lam Research Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/LRCX.png",
-            "chg": -11.76,
-            "price": 230.15,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "SAP",
-            "name": "SAP SE Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/SAP.png",
-            "chg": 3.38,
-            "price": 240.59,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "TXN",
-            "name": "Texas Instruments Incorporated",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/TXN.png",
-            "chg": -1.81,
-            "price": 279.5,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "VZ",
-      "name": "Verizon Communications Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/VZ.png"
-    },
-    {
-      "ticker": "WELL",
-      "name": "Welltower Inc.",
+      "ticker": "V",
+      "name": "Visa Inc. Class A",
       "when": "after",
-      "logo": "data/earnings/logos/WELL.png"
-    },
-    {
-      "ticker": "CDNS",
-      "name": "Cadence Design Systems, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/CDNS.png",
+      "logo": "data/earnings/logos/V.png",
       "logoBg": "dark"
     },
     {
-      "ticker": "NUE",
-      "name": "Nucor Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/NUE.png"
+      "ticker": "KO",
+      "name": "Coca-Cola Company",
+      "when": "before",
+      "logo": "data/earnings/logos/KO.png"
     },
     {
-      "ticker": "PSA",
-      "name": "Public Storage",
-      "when": "after",
-      "logo": "data/earnings/logos/PSA.png"
+      "ticker": "HSBC",
+      "name": "HSBC Holdings PLC Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/HSBC.png"
     },
     {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/NBIS.png"
+      "ticker": "NVS",
+      "name": "Novartis AG Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/NVS.png"
     },
     {
-      "ticker": "HIG",
-      "name": "Hartford Insurance Group, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/HIG.png"
+      "ticker": "BA",
+      "name": "Boeing Company",
+      "when": "before",
+      "logo": "data/earnings/logos/BA.png",
+      "logoBg": "dark"
     },
     {
-      "ticker": "CLS",
-      "name": "Celestica Inc.",
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings PLC",
       "when": "after",
-      "logo": "data/earnings/logos/CLS.png"
+      "logo": "data/earnings/logos/STX.png"
     },
     {
-      "ticker": "CINF",
-      "name": "Cincinnati Financial Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/CINF.png"
+      "ticker": "SPGI",
+      "name": "S&P Global, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/SPGI.png"
     },
     {
-      "ticker": "BRO",
-      "name": "Brown & Brown, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/BRO.png"
+      "ticker": "GLW",
+      "name": "Corning Inc",
+      "when": "before",
+      "logo": "data/earnings/logos/GLW.png"
     },
     {
-      "ticker": "PFG",
-      "name": "Principal Financial Group, Inc.",
+      "ticker": "HCA",
+      "name": "HCA Healthcare Inc",
+      "when": "before",
+      "logo": "data/earnings/logos/HCA.png"
+    },
+    {
+      "ticker": "WM",
+      "name": "Waste Management, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/PFG.png"
+      "logo": "data/earnings/logos/WM.png"
+    },
+    {
+      "ticker": "FCX",
+      "name": "Freeport-McMoRan, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/FCX.png"
+    },
+    {
+      "ticker": "JCI",
+      "name": "Johnson Controls International plc",
+      "when": "before",
+      "logo": "data/earnings/logos/JCI.png"
     }
   ],
-  "more": 0,
+  "more": 36,
   "upcoming": [
-    {
-      "date": "2026-10-27",
-      "label": "27/10",
-      "dow": "ג׳",
-      "count": 48,
-      "tickers": [
-        "V",
-        "KO",
-        "HSBC",
-        "NVS",
-        "BA",
-        "STX"
-      ]
-    },
     {
       "date": "2026-10-28",
       "label": "28/10",
@@ -794,17 +768,6 @@
     }
   ],
   "window": {
-    "VZ": "2026-10-26",
-    "WELL": "2026-10-26",
-    "CDNS": "2026-10-26",
-    "NUE": "2026-10-26",
-    "PSA": "2026-10-26",
-    "NBIS": "2026-10-26",
-    "HIG": "2026-10-26",
-    "CLS": "2026-10-26",
-    "CINF": "2026-10-26",
-    "BRO": "2026-10-26",
-    "PFG": "2026-10-26",
     "V": "2026-10-27",
     "KO": "2026-10-27",
     "HSBC": "2026-10-27",
@@ -941,9 +904,9 @@
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "LNG": "2026-10-29",
+    "STRD": "2026-10-29",
     "STRC": "2026-10-29",
     "STRF": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRK": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
@@ -1037,10 +1000,57 @@
     "L": "2026-11-02",
     "TSEM": "2026-11-02",
     "SBAC": "2026-11-02",
-    "PS": "2026-11-02"
+    "PS": "2026-11-02",
+    "AMD": "2026-11-03",
+    "AMGN": "2026-11-03",
+    "ANET": "2026-11-03",
+    "SHOP": "2026-11-03",
+    "PFE": "2026-11-03",
+    "ETN": "2026-11-03",
+    "MPC": "2026-11-03",
+    "BKNG": "2026-11-03",
+    "ITUB": "2026-11-03",
+    "SU": "2026-11-03",
+    "RACE": "2026-11-03",
+    "ET": "2026-11-03",
+    "APO": "2026-11-03",
+    "MPLX": "2026-11-03",
+    "AME": "2026-11-03",
+    "TRI": "2026-11-03",
+    "KDP": "2026-11-03",
+    "TEVA": "2026-11-03",
+    "ALAB": "2026-11-03",
+    "WAT": "2026-11-03",
+    "XYZ": "2026-11-03",
+    "AIG": "2026-11-03",
+    "YUM": "2026-11-03",
+    "SYY": "2026-11-03",
+    "PRU": "2026-11-03",
+    "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
+    "ADM": "2026-11-03",
+    "FTS": "2026-11-03",
+    "PHG": "2026-11-03",
+    "FISV": "2026-11-03",
+    "EXPD": "2026-11-03",
+    "CPNG": "2026-11-03",
+    "IFF": "2026-11-03",
+    "BNTX": "2026-11-03",
+    "SMCIP": "2026-11-03",
+    "SMCI": "2026-11-03",
+    "BR": "2026-11-03",
+    "OVV": "2026-11-03",
+    "SWKS": "2026-11-03",
+    "FIS": "2026-11-03",
+    "TOST": "2026-11-03",
+    "DT": "2026-11-03",
+    "DD": "2026-11-03",
+    "ZBRA": "2026-11-03",
+    "RVTY": "2026-11-03",
+    "LDOS": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "26/10/2026 23:46",
+    "updatedAt": "27/10/2026 00:01",
     "source": "tradingview"
   }
 }
