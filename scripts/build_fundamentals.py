@@ -211,9 +211,9 @@ def main(fetch=None, now=None):
     if todo:
         try:
             rows = fetch(todo)
-        except Exception as e:  # הסורק לא ענה — הקובץ נשאר, ננסה בריצה הבאה
-            print(f"[warn] fundamentals: הסורק של TradingView נכשל ({e}) — הקובץ נשאר")
-            return 0
+        except Exception as e:  # הסורק לא ענה (או אין רשת, כמו ברוטינה) — הרשומות הקיימות נשארות, ננסה לרענן בריצה הבאה
+            print(f"[warn] fundamentals: הסורק של TradingView נכשל ({e}) — בלי רענון הפעם")
+            rows, todo = {}, []
         for s in todo:
             d = rows.get(s)
             if not d or num(d.get("market_cap_basic")) is None:
@@ -226,10 +226,16 @@ def main(fetch=None, now=None):
             f["at"], f["ver"] = stamp, VER
             symbols[s] = f
             ok += 1
-    # מועד הדוח הבא + תזוזה מתומחרת — מתרעננים בכל ריצה (זולים, מהקבצים)
+    # מועד הדוח הבא + תזוזה מתומחרת + "מה החברה עושה" — מתרעננים בכל ריצה (זולים, מהקבצים)
+    blurbs = (load(os.path.join(DATA, "company_blurbs.json"), {}).get("blurbs") or {})
     for s, f in symbols.items():
         if "cap" not in f:
             continue
+        about = (blurbs.get(s) or {}).get("he")
+        if about:
+            f["about"] = about
+        else:
+            f.pop("about", None)
         d = earn.get(s)
         f["nextEarn"] = {"date": d[0], "when": d[1], "src": "tv"} if d else ({"date": f["scanEarn"]["date"], "when": f["scanEarn"]["when"], "src": "scan"} if f.get("scanEarn") else None)
         m = moves.get(s) or {}
@@ -248,8 +254,10 @@ def main(fetch=None, now=None):
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(out, fh, ensure_ascii=False, separators=(",", ":"))
     errs = [k for k, v in symbols.items() if v.get("error")]
-    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d missing=%s"
-          % (len(syms), out["count"], ok, fail, ",".join(errs[:12]) + ("…" if len(errs) > 12 else "") if errs else "0"))
+    no_blurb = [k for k, v in symbols.items() if "cap" in v and not v.get("about")]
+    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d missing=%s · without blurb=%d%s"
+          % (len(syms), out["count"], ok, fail, ",".join(errs[:12]) + ("…" if len(errs) > 12 else "") if errs else "0",
+             len(no_blurb), (" (" + ",".join(no_blurb[:10]) + ")") if no_blurb else ""))
     return 0
 
 
