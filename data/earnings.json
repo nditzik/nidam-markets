@@ -5,17 +5,17 @@
     {
       "ticker": "VZ",
       "name": "Verizon Communications Inc.",
-      "capB": 179.3
+      "capB": 179.1
     },
     {
       "ticker": "WELL",
       "name": "Welltower Inc.",
-      "capB": 173.0
+      "capB": 173.4
     },
     {
       "ticker": "CDNS",
       "name": "Cadence Design Systems, Inc.",
-      "capB": 90.0
+      "capB": 88.7
     },
     {
       "ticker": "NUE",
@@ -25,22 +25,22 @@
     {
       "ticker": "PSA",
       "name": "Public Storage",
-      "capB": 57.5
+      "capB": 57.4
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 42.7
+      "capB": 41.7
     },
     {
       "ticker": "HIG",
       "name": "Hartford Insurance Group, Inc.",
-      "capB": 36.8
+      "capB": 36.9
     },
     {
       "ticker": "CLS",
       "name": "Celestica Inc.",
-      "capB": 31.6
+      "capB": 31.1
     }
   ],
   "reactions": {
@@ -144,6 +144,17 @@
             "baseDate": "2026-10-21"
           },
           {
+            "ticker": "BX",
+            "name": "Blackstone Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BX.png",
+            "chg": 8.38,
+            "price": 118.75,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
             "ticker": "LMT",
             "name": "Lockheed Martin Corporation",
             "when": "before",
@@ -152,17 +163,6 @@
             "logoBg": "dark",
             "chg": 6.96,
             "price": 589.91,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "BX",
-            "name": "Blackstone Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BX.png",
-            "chg": 8.38,
-            "price": 118.75,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -345,8 +345,8 @@
         "KO",
         "HSBC",
         "NVS",
-        "STX",
-        "BA"
+        "BA",
+        "STX"
       ]
     },
     {
@@ -358,8 +358,8 @@
         "MSFT",
         "GOOGM",
         "GOOGN",
-        "GOOGL",
         "GOOG",
+        "GOOGL",
         "SKHY"
       ]
     },
@@ -500,17 +500,17 @@
           "logo": "data/earnings/logos/NVS.png"
         },
         {
-          "ticker": "STX",
-          "name": "Seagate Technology Holdings PLC",
-          "when": "after",
-          "logo": "data/earnings/logos/STX.png"
-        },
-        {
           "ticker": "BA",
           "name": "Boeing Company",
           "when": "before",
           "logo": "data/earnings/logos/BA.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "STX",
+          "name": "Seagate Technology Holdings PLC",
+          "when": "after",
+          "logo": "data/earnings/logos/STX.png"
         },
         {
           "ticker": "SPGI",
@@ -573,16 +573,16 @@
           "when": "after"
         },
         {
-          "ticker": "GOOGL",
-          "name": "Alphabet Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOGL.png"
-        },
-        {
           "ticker": "GOOG",
           "name": "Alphabet Inc. Class C",
           "when": "after",
           "logo": "data/earnings/logos/GOOG.png"
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOGL.png"
         },
         {
           "ticker": "SKHY",
@@ -809,8 +809,8 @@
     "KO": "2026-10-27",
     "HSBC": "2026-10-27",
     "NVS": "2026-10-27",
-    "STX": "2026-10-27",
     "BA": "2026-10-27",
+    "STX": "2026-10-27",
     "SPGI": "2026-10-27",
     "GLW": "2026-10-27",
     "HCA": "2026-10-27",
@@ -834,12 +834,12 @@
     "VTR": "2026-10-27",
     "IQV": "2026-10-27",
     "ACGL": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "EQT": "2026-10-27",
     "CNC": "2026-10-27",
-    "EXR": "2026-10-27",
     "SHG": "2026-10-27",
+    "EXR": "2026-10-27",
     "CNP": "2026-10-27",
     "FE": "2026-10-27",
     "FFIV": "2026-10-27",
@@ -847,17 +847,17 @@
     "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
-    "CMSD": "2026-10-27",
-    "CMSA": "2026-10-27",
     "CMS": "2026-10-27",
+    "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
     "MSFT": "2026-10-28",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
-    "GOOGL": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GOOG": "2026-10-28",
+    "GOOGL": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -893,8 +893,8 @@
     "CMG": "2026-10-28",
     "GEHC": "2026-10-28",
     "RJF": "2026-10-28",
-    "FLEX": "2026-10-28",
     "OTIS": "2026-10-28",
+    "FLEX": "2026-10-28",
     "AWK": "2026-10-28",
     "LH": "2026-10-28",
     "KGC": "2026-10-28",
@@ -942,9 +942,9 @@
     "DLR": "2026-10-29",
     "LNG": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRK": "2026-10-29",
     "STRC": "2026-10-29",
     "STRD": "2026-10-29",
-    "STRK": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
@@ -959,8 +959,8 @@
     "ILMN": "2026-10-29",
     "TWLO": "2026-10-29",
     "STM": "2026-10-29",
-    "KB": "2026-10-29",
     "RBLX": "2026-10-29",
+    "KB": "2026-10-29",
     "WEC": "2026-10-29",
     "RMD": "2026-10-29",
     "VMC": "2026-10-29",
@@ -971,8 +971,8 @@
     "CTSH": "2026-10-29",
     "ALNY": "2026-10-29",
     "WTW": "2026-10-29",
-    "TECK": "2026-10-29",
     "DXCM": "2026-10-29",
+    "TECK": "2026-10-29",
     "EME": "2026-10-29",
     "IR": "2026-10-29",
     "TW": "2026-10-29",
@@ -987,9 +987,9 @@
     "ATI": "2026-10-29",
     "EIX": "2026-10-29",
     "TROW": "2026-10-29",
-    "ENTG": "2026-10-29",
     "THC": "2026-10-29",
     "YPF": "2026-10-29",
+    "ENTG": "2026-10-29",
     "XPO": "2026-10-29",
     "INSM": "2026-10-29",
     "BG": "2026-10-29",
@@ -1040,7 +1040,7 @@
     "PS": "2026-11-02"
   },
   "_meta": {
-    "updatedAt": "26/10/2026 22:01",
+    "updatedAt": "26/10/2026 22:16",
     "source": "tradingview"
   }
 }
