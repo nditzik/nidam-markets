@@ -251,6 +251,11 @@ jobs:
         continue-on-error: true
         run: python scripts/build_sector_rs.py
 
+      # --- יסודות החברה לחלון הניתוח הטכני (26.10.2026): Yahoo quoteSummary, מניה פעם ב-7 ימים, עד 60 לריצה ---
+      - name: Build fundamentals (יסודות החברה)
+        continue-on-error: true
+        run: python scripts/build_fundamentals.py
+
       # --- הנבחרות (30.9.2026): המועמדים+המומנטום שקיבלו "אישור מחיר לקנייה"
       #     מהמנוע הטכני (assets/ta_engine.js) על הנר הסגור האחרון → data/picks.json,
       #     ויומן הכנות 5/10/20 יום → data/picks_ledger.json. node קיים ב-runner. ---
