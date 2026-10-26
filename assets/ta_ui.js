@@ -207,6 +207,7 @@
     if (readS) rows += '<div class="ta-fr"><span class="ta-fr-k">קריאה</span><span class="ta-fr-v">' + esc(readS) + "</span></div>";
     return '<section class="ta-fund" aria-label="יסודות החברה"><div class="ta-fund-h"><h4>יסודות החברה</h4>' + (q.label ? '<span class="ta-fq ' + esc(q.q || "mid") + '">' + esc(q.label) + "</span>" : "") +
       '<span class="ta-fund-src">' + esc([f.name, f.industry].filter(Boolean).join(" · ")) + (f.at ? " · עודכן " + esc(f.at.slice(8, 10)) + "." + esc(f.at.slice(5, 7)) : "") + "</span></div>" +
+      (f.about ? '<p class="ta-fund-about">' + esc(f.about) + "</p>" : "") +
       '<div class="ta-fund-grid">' + tiles + "</div>" + (rows ? '<div class="ta-fund-rows">' + rows + "</div>" : "") + "</section>";
   }
 

@@ -2315,6 +2315,7 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .ta-fund-h { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
 .ta-fund-h h4 { margin: 0; font-size: .84rem; }
 .ta-fund-src { font-size: .72rem; color: var(--text-3); margin-inline-start: auto; }
+.ta-fund-about { margin: -2px 0 10px; font-size: .82rem; line-height: 1.45; color: var(--text-soft); }
 .ta-fq { font-size: .7rem; font-weight: 700; border-radius: 3px; padding: 1px 8px; background: var(--surface-2); color: var(--text-soft); }
 .ta-fq.ok { background: color-mix(in srgb, var(--up) 15%, transparent); color: var(--up); }
 .ta-fq.bad { background: color-mix(in srgb, var(--down) 14%, transparent); color: var(--down); }
