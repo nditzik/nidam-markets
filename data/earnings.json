@@ -5,22 +5,22 @@
     {
       "ticker": "VZ",
       "name": "Verizon Communications Inc.",
-      "capB": 179.5
+      "capB": 179.3
     },
     {
       "ticker": "WELL",
       "name": "Welltower Inc.",
-      "capB": 173.1
+      "capB": 173.0
     },
     {
       "ticker": "CDNS",
       "name": "Cadence Design Systems, Inc.",
-      "capB": 90.6
+      "capB": 90.0
     },
     {
       "ticker": "NUE",
       "name": "Nucor Corporation",
-      "capB": 57.7
+      "capB": 58.4
     },
     {
       "ticker": "PSA",
@@ -30,17 +30,17 @@
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 43.0
+      "capB": 42.7
     },
     {
       "ticker": "HIG",
       "name": "Hartford Insurance Group, Inc.",
-      "capB": 36.9
+      "capB": 36.8
     },
     {
       "ticker": "CLS",
       "name": "Celestica Inc.",
-      "capB": 32.6
+      "capB": 31.6
     }
   ],
   "reactions": {
@@ -144,17 +144,6 @@
             "baseDate": "2026-10-21"
           },
           {
-            "ticker": "BX",
-            "name": "Blackstone Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BX.png",
-            "chg": 8.38,
-            "price": 118.75,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
             "ticker": "LMT",
             "name": "Lockheed Martin Corporation",
             "when": "before",
@@ -163,6 +152,17 @@
             "logoBg": "dark",
             "chg": 6.96,
             "price": 589.91,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
+            "ticker": "BX",
+            "name": "Blackstone Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BX.png",
+            "chg": 8.38,
+            "price": 118.75,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -847,15 +847,15 @@
     "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
-    "CMS": "2026-10-27",
     "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMS": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
     "MSFT": "2026-10-28",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
     "SKHY": "2026-10-28",
@@ -941,10 +941,10 @@
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "LNG": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRK": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRK": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
@@ -976,8 +976,8 @@
     "EME": "2026-10-29",
     "IR": "2026-10-29",
     "TW": "2026-10-29",
-    "FTI": "2026-10-29",
     "WST": "2026-10-29",
+    "FTI": "2026-10-29",
     "ARES": "2026-10-29",
     "RDDT": "2026-10-29",
     "PPL": "2026-10-29",
@@ -987,8 +987,8 @@
     "ATI": "2026-10-29",
     "EIX": "2026-10-29",
     "TROW": "2026-10-29",
-    "THC": "2026-10-29",
     "ENTG": "2026-10-29",
+    "THC": "2026-10-29",
     "YPF": "2026-10-29",
     "XPO": "2026-10-29",
     "INSM": "2026-10-29",
@@ -1040,7 +1040,7 @@
     "PS": "2026-11-02"
   },
   "_meta": {
-    "updatedAt": "26/10/2026 21:46",
+    "updatedAt": "26/10/2026 22:01",
     "source": "tradingview"
   }
 }
