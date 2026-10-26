@@ -5,17 +5,17 @@
     {
       "ticker": "VZ",
       "name": "Verizon Communications Inc.",
-      "capB": 180.0
+      "capB": 179.9
     },
     {
       "ticker": "WELL",
       "name": "Welltower Inc.",
-      "capB": 173.3
+      "capB": 173.0
     },
     {
       "ticker": "CDNS",
       "name": "Cadence Design Systems, Inc.",
-      "capB": 88.1
+      "capB": 88.3
     },
     {
       "ticker": "NUE",
@@ -25,12 +25,12 @@
     {
       "ticker": "PSA",
       "name": "Public Storage",
-      "capB": 57.8
+      "capB": 57.9
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 41.2
+      "capB": 41.5
     },
     {
       "ticker": "HIG",
@@ -40,7 +40,7 @@
     {
       "ticker": "CLS",
       "name": "Celestica Inc.",
-      "capB": 33.6
+      "capB": 33.2
     }
   ],
   "reactions": {
@@ -94,17 +94,6 @@
             "baseDate": "2026-10-22"
           },
           {
-            "ticker": "FCNCA",
-            "name": "First Citizens BancShares, Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FCNCA.png",
-            "chg": 8.15,
-            "price": 2375.84,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
             "ticker": "FCNCN",
             "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
             "when": "before",
@@ -112,6 +101,17 @@
             "logo": "data/earnings/logos/FCNCN.png",
             "chg": 0.23,
             "price": 22.15,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "FCNCO",
+            "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FCNCO.png",
+            "chg": 1.04,
+            "price": 18.43,
             "reactDate": "2026-10-23",
             "baseDate": "2026-10-22"
           }
@@ -543,10 +543,10 @@
           "logo": "data/earnings/logos/FCX.png"
         },
         {
-          "ticker": "JCI",
-          "name": "Johnson Controls International plc",
+          "ticker": "AMT",
+          "name": "American Tower Corporation",
           "when": "before",
-          "logo": "data/earnings/logos/JCI.png"
+          "logo": "data/earnings/logos/AMT.png"
         }
       ]
     },
@@ -816,8 +816,8 @@
     "HCA": "2026-10-27",
     "WM": "2026-10-27",
     "FCX": "2026-10-27",
-    "JCI": "2026-10-27",
     "AMT": "2026-10-27",
+    "JCI": "2026-10-27",
     "UPS": "2026-10-27",
     "HOOD": "2026-10-27",
     "SHW": "2026-10-27",
@@ -831,15 +831,15 @@
     "BKR": "2026-10-27",
     "TER": "2026-10-27",
     "PYPL": "2026-10-27",
-    "VTR": "2026-10-27",
     "IQV": "2026-10-27",
+    "VTR": "2026-10-27",
     "ACGL": "2026-10-27",
-    "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
+    "ACGLO": "2026-10-27",
     "CNC": "2026-10-27",
     "EQT": "2026-10-27",
-    "EXR": "2026-10-27",
     "SHG": "2026-10-27",
+    "EXR": "2026-10-27",
     "CNP": "2026-10-27",
     "FE": "2026-10-27",
     "FFIV": "2026-10-27",
@@ -848,13 +848,13 @@
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "CMS": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "MSFT": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
@@ -868,8 +868,8 @@
     "UBS": "2026-10-28",
     "FTNT": "2026-10-28",
     "ADP": "2026-10-28",
-    "EQNR": "2026-10-28",
     "PSX": "2026-10-28",
+    "EQNR": "2026-10-28",
     "GSK": "2026-10-28",
     "EQIX": "2026-10-28",
     "AEM": "2026-10-28",
@@ -894,8 +894,8 @@
     "GEHC": "2026-10-28",
     "RJF": "2026-10-28",
     "OTIS": "2026-10-28",
-    "FLEX": "2026-10-28",
     "AWK": "2026-10-28",
+    "FLEX": "2026-10-28",
     "LH": "2026-10-28",
     "VICI": "2026-10-28",
     "KGC": "2026-10-28",
@@ -940,11 +940,11 @@
     "AJG": "2026-10-29",
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
-    "STRK": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRD": "2026-10-29",
-    "STRF": "2026-10-29",
     "LNG": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRK": "2026-10-29",
+    "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
     "MSTR": "2026-10-29",
     "CRH": "2026-10-29",
     "MPWR": "2026-10-29",
@@ -964,23 +964,23 @@
     "WEC": "2026-10-29",
     "RMD": "2026-10-29",
     "QSR": "2026-10-29",
-    "HSY": "2026-10-29",
     "VMC": "2026-10-29",
+    "HSY": "2026-10-29",
     "RKT": "2026-10-29",
     "CQP": "2026-10-29",
     "CTSH": "2026-10-29",
     "ALNY": "2026-10-29",
     "WTW": "2026-10-29",
-    "TECK": "2026-10-29",
     "EME": "2026-10-29",
     "DXCM": "2026-10-29",
     "IR": "2026-10-29",
+    "TECK": "2026-10-29",
     "TW": "2026-10-29",
     "FTI": "2026-10-29",
     "ARES": "2026-10-29",
     "WST": "2026-10-29",
-    "PPL": "2026-10-29",
     "RDDT": "2026-10-29",
+    "PPL": "2026-10-29",
     "VLTO": "2026-10-29",
     "MKL": "2026-10-29",
     "INCY": "2026-10-29",
@@ -1030,8 +1030,8 @@
     "EL": "2026-11-02",
     "PEG": "2026-11-02",
     "ON": "2026-11-02",
-    "FOXA": "2026-11-02",
     "FOX": "2026-11-02",
+    "FOXA": "2026-11-02",
     "RYAAY": "2026-11-02",
     "ROKU": "2026-11-02",
     "L": "2026-11-02",
@@ -1040,7 +1040,7 @@
     "PS": "2026-11-02"
   },
   "_meta": {
-    "updatedAt": "26/10/2026 16:01",
+    "updatedAt": "26/10/2026 16:16",
     "source": "tradingview"
   }
 }
