@@ -2,27 +2,23 @@
 """
 build_fundamentals.py — "יסודות החברה" לחלון הניתוח הטכני (26.10.2026, איציק: "לשלב בגרף בלבד ולא לערבב עם הטבלאות").
 
-לכל מניה שמופיעה באתר (אותו יקום כמו fetch_bars, בלי תעודות הסל) נשמרים מספרים בסיסיים מ-Yahoo quoteSummary:
-שווי שוק, מכפיל רווח (12 חודשים וקדימה), צמיחת הכנסות, רווח תפעולי, תזרים חופשי, מזומן נטו, דיבידנד, מחיר יעד
-ודירוגי אנליסטים, צפי לדוח הבא (רווח למניה והכנסות), ענף ותעשייה. בנוסף: מועד הדוח הבא (קודם מלוח הדיווחים
-של האתר — הסורק של TradingView — ואז Yahoo), התזוזה שהאופציות מתמחרות ליום הדוח (מ-earnings_prep.json כשיש),
-תג איכות (מבוססת / צומחת, לא רווחית / קטנה / מעורבת / ספקולטיבית) ומשפט "קריאה" בעברית.
+לכל מניה שמופיעה באתר (אותו יקום כמו fetch_bars, בלי תעודות הסל) נשמרים מספרים בסיסיים מ**סורק TradingView**
+(בקשה אחת לכל היקום, בלי cookie/crumb — Yahoo quoteSummary חסם את ה-IP של ה-runner ב-429 לכל בקשה, 26.10.2026):
+שווי שוק, מכפיל רווח (12 חודשים וקדימה), צמיחת הכנסות, שולי רווח, תזרים חופשי, מזומן וחוב, דיבידנד, מחיר יעד
+ודירוגי אנליסטים, צפי לדוח הבא (רווח למניה והכנסות), ענף ותעשייה ומועד הדוח הבא. בנוסף: מועד הדוח קודם מלוח הדיווחים
+של האתר, התזוזה שהאופציות מתמחרות ליום הדוח (מ-earnings_prep.json כשיש), תג איכות (מבוססת / צומחת, לא רווחית /
+קטנה / מעורבת / ספקולטיבית) ומשפט "קריאה" בעברית.
 
-קצב: מניה מתרעננת פעם ב-7 ימים (יסודות משתנים פעם ברבעון), עד MAX_PER_RUN מניות לריצה — הריצה הראשונה
-מתפרסת על כמה מחזורים; קודם הנבחרות, ארבעת העמודים, מניות המעקב ו-ta_watchlist. מניה שיצאה מהיקום נמחקת
-אחרי 45 יום. פלט: data/fundamentals.json {updated, symbols:{SYM:{…}}}; assets/ta_ui.js קורא אותו בפתיחת החלון.
-בדיקה בלי רשת: main(fetch=<פונקציה sym→quoteSummary result>, now=<datetime>).
+קצב: הכל מתרענן פעם ביום (REFRESH_H) בבקשה אחת; מניה חדשה ביקום נמשכת בריצה הבאה. מניה שהסורק לא מכיר (OTC,
+סמל ישן) מסומנת error ומנוסה שוב אחרי יום. מניה שיצאה מהיקום נמחקת אחרי 45 יום.
+פלט: data/fundamentals.json {updated, symbols:{SYM:{…}}}; assets/ta_ui.js קורא אותו בפתיחת החלון.
+בדיקה בלי רשת: main(fetch=<פונקציה rows(symbols)→{SYM:{column:value}}>, now=<datetime>).
 """
-import http.cookiejar
 import json
 import os
-import re
 import sys
-import time
-import urllib.error
-import urllib.parse
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from iltime import NY  # noqa: E402
@@ -32,101 +28,80 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 OUT = os.path.join(DATA, "fundamentals.json")
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-MODS = "price,summaryProfile,summaryDetail,defaultKeyStatistics,financialData,calendarEvents,recommendationTrend,earningsTrend"
-REFRESH_DAYS = 7
-MAX_PER_RUN = 60
+TV_SCAN = "https://scanner.tradingview.com/america/scan"
+REFRESH_H = 24
+ERROR_RETRY_H = 24
 DROP_DAYS = 45
-VER = 1
-PAUSE_S = 0.7          # בין מניות — 60 בקשות רצופות בלי הפסקה קיבלו 429 בריצה הראשונה (26.10.2026)
-RETRY_WAIT_S = (4, 8, 15)   # ניסיונות חוזרים על 429, עם cookie+crumb חדשים
-ERROR_RETRY_H = 24     # מניה שנכשלה (סמל לא קיים, ADR דק) — ניסיון נוסף אחרי יום, לא כל רבע שעה
-LIMIT_ABORT = 3        # שלוש מניות ברצף שנחסמו גם אחרי הניסיונות החוזרים — Yahoo חוסם, ממשיכים בריצה הבאה
+VER = 2
+
+# העמודות אומתו על ה-runner ב-26.10.2026 (scripts/tools/probe_fund_sources.py) — כולן קיימות ב-metainfo של הסורק
+COLS = ["name", "description", "sector", "industry", "market_cap_basic", "close",
+        "price_earnings_ttm", "price_earnings_fwd", "earnings_per_share_diluted_ttm", "earnings_per_share_forecast_next_fy",
+        "total_revenue_yoy_growth_ttm", "earnings_per_share_diluted_yoy_growth_ttm",
+        "gross_margin_ttm", "operating_margin_ttm", "net_margin_ttm", "free_cash_flow_margin_ttm",
+        "cash_n_short_term_invest_fq", "total_debt_fq", "dividends_yield_current",
+        "price_target_average", "recommendation_mark", "recommendation_total",
+        "recommendation_buy", "recommendation_over", "recommendation_hold", "recommendation_under", "recommendation_sell",
+        "earnings_per_share_forecast_next_fq", "revenue_forecast_next_fq",
+        "earnings_release_next_date", "earnings_release_next_time"]
 
 
-class RateLimited(Exception):
-    pass
+def tv_rows(symbols):
+    """בקשה אחת לסורק: {SYM (סגנון Yahoo): {column: value}}. BRK-B אצלנו = BRK.B בסורק."""
+    tv2y = {s.replace("-", "."): s for s in symbols}
+    body = json.dumps({
+        "filter": [{"left": "name", "operation": "in_range", "right": sorted(tv2y)},
+                   {"left": "exchange", "operation": "in_range", "right": ["NASDAQ", "NYSE", "AMEX"]}],
+        "columns": COLS, "range": [0, len(tv2y) + 50]}).encode()
+    req = urllib.request.Request(TV_SCAN, data=body, headers={"User-Agent": UA, "Content-Type": "text/plain"})
+    with urllib.request.urlopen(req, timeout=40) as r:
+        data = json.loads(r.read().decode("utf-8")).get("data") or []
+    out = {}
+    for row in data:
+        d = dict(zip(COLS, row.get("d") or []))
+        sym = tv2y.get(d.get("name"))
+        if sym and sym not in out:
+            out[sym] = d
+    return out
 
 
-class Net:
-    """HTTP אמיתי: cookie+crumb של Yahoo נוצרים בבקשה הראשונה; על 429 — המתנה, cookie חדש וניסיון חוזר."""
-    def __init__(self):
-        self.cj = http.cookiejar.CookieJar()
-        self.op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
-        self.op.addheaders = [("User-Agent", UA), ("Accept", "*/*")]
-        self.crumb = None
-        self.strategy = None
-
-    def _get(self, url, timeout=20):
-        with self.op.open(url, timeout=timeout) as r:
-            return r.read()
-
-    GETCRUMB = "https://query2.finance.yahoo.com/v1/test/getcrumb"
-
-    def _cookie_basic(self):
-        """fc.yahoo.com מחזיר 404 אבל שותל cookie — עובד מ-runner אמריקאי."""
-        try:
-            self._get("https://fc.yahoo.com", 10)
-        except urllib.error.HTTPError:
-            pass
-
-    def _cookie_csrf(self):
-        """runner באירופה מקבל דף הסכמה (GDPR) במקום cookie, ו-getcrumb עונה 429 — עוברים את ההסכמה כמו yfinance."""
-        html = self._get("https://guce.yahoo.com/consent").decode("utf-8", "replace")
-        m_tok = re.search(r'name="csrfToken"\s+value="([^"]+)"', html) or re.search(r'value="([^"]+)"\s+name="csrfToken"', html)
-        m_sid = re.search(r'name="sessionId"\s+value="([^"]+)"', html) or re.search(r'value="([^"]+)"\s+name="sessionId"', html)
-        if not (m_tok and m_sid):
-            raise RuntimeError("consent page without csrfToken/sessionId")
-        sid = m_sid.group(1)
-        body = urllib.parse.urlencode([("agree", "agree"), ("agree", "agree"), ("consentUUID", "default"), ("sessionId", sid),
-                                       ("csrfToken", m_tok.group(1)), ("originalDoneUrl", "https://finance.yahoo.com/"), ("namespace", "yahoo")]).encode()
-        req = urllib.request.Request(f"https://consent.yahoo.com/v2/collectConsent?sessionId={sid}", data=body,
-                                     headers={"Content-Type": "application/x-www-form-urlencoded"})
-        with self.op.open(req, timeout=20) as r:
-            r.read()
-        try:
-            self._get(f"https://guce.yahoo.com/copyConsent?sessionId={sid}")
-        except urllib.error.HTTPError:
-            pass
-
-    def _crumb(self):
-        if self.crumb is None:
-            last = None
-            for strat in (self._cookie_basic, self._cookie_csrf):
-                try:
-                    strat()
-                    c = self._get(self.GETCRUMB).decode().strip()
-                    if c and "<" not in c:
-                        self.crumb, self.strategy = c, strat.__name__[8:]
-                        return c
-                    last = RuntimeError("empty crumb")
-                except Exception as e:  # 429 בלי cookie, דף הסכמה בלי שדות…
-                    last = e
-                self.cj.clear()
-            code = getattr(last, "code", 429)
-            raise urllib.error.HTTPError(self.GETCRUMB, code, f"crumb: {last}"[:70], None, None)
-        return self.crumb
-
-    def summary(self, sym):
-        last = None
-        for i in range(len(RETRY_WAIT_S) + 1):
-            try:
-                u = f"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{urllib.parse.quote(sym)}?modules={MODS}&crumb={self._crumb()}"
-                return json.loads(self._get(u))["quoteSummary"]["result"][0]
-            except urllib.error.HTTPError as e:
-                if e.code != 429:
-                    raise
-                last = e
-                if i < len(RETRY_WAIT_S):
-                    self.crumb = None
-                    self.cj.clear()
-                    time.sleep(RETRY_WAIT_S[i])
-        raise RateLimited(str(last)[:60])
+def num(v):
+    return v if isinstance(v, (int, float)) and v == v else None
 
 
-def raw(v):
-    if isinstance(v, dict):
-        return v.get("raw")
-    return v if isinstance(v, (int, float)) else None
+def rnd(v, d=1):
+    return None if v is None else round(v, d)
+
+
+def parse(d):
+    """שורת סורק → הרשומה שהאתר קורא (אותם שמות שדות כמו בגרסה 1, Yahoo)."""
+    close, fwd_eps = num(d.get("close")), num(d.get("earnings_per_share_forecast_next_fy"))
+    fwd_pe = num(d.get("price_earnings_fwd"))
+    if fwd_pe is None and close and fwd_eps and fwd_eps > 0:
+        fwd_pe = close / fwd_eps
+    cash, debt = num(d.get("cash_n_short_term_invest_fq")), num(d.get("total_debt_fq"))
+    mark = num(d.get("recommendation_mark"))
+    rec_key = None if mark is None else "strong_buy" if mark <= 1.5 else "buy" if mark <= 2.5 else "hold" if mark <= 3.5 else "sell" if mark <= 4.5 else "strong_sell"
+    ts, tflag = num(d.get("earnings_release_next_date")), d.get("earnings_release_next_time")
+    return {
+        "name": d.get("description"), "sector": d.get("sector"), "industry": d.get("industry"),
+        "cap": num(d.get("market_cap_basic")), "price": close,
+        "pe": rnd(num(d.get("price_earnings_ttm")), 2), "fwdPe": rnd(fwd_pe, 2),
+        "eps": rnd(num(d.get("earnings_per_share_diluted_ttm")), 3), "fwdEps": rnd(fwd_eps, 3),
+        "revGrowth": rnd(num(d.get("total_revenue_yoy_growth_ttm"))),
+        "epsGrowth": rnd(num(d.get("earnings_per_share_diluted_yoy_growth_ttm"))),
+        "grossMargin": rnd(num(d.get("gross_margin_ttm"))), "opMargin": rnd(num(d.get("operating_margin_ttm"))),
+        "netMargin": rnd(num(d.get("net_margin_ttm"))), "fcfMargin": rnd(num(d.get("free_cash_flow_margin_ttm"))),
+        "cash": cash, "debt": debt, "netCash": (cash - debt) if (cash is not None and debt is not None) else None,
+        "divYield": rnd(num(d.get("dividends_yield_current")), 2),
+        "target": rnd(num(d.get("price_target_average")), 2), "targetN": num(d.get("recommendation_total")),
+        "recKey": rec_key, "recMean": rnd(mark, 2),
+        "recs": {"strongBuy": num(d.get("recommendation_buy")), "buy": num(d.get("recommendation_over")), "hold": num(d.get("recommendation_hold")),
+                 "sell": num(d.get("recommendation_under")), "strongSell": num(d.get("recommendation_sell"))},
+        "epsEst": rnd(num(d.get("earnings_per_share_forecast_next_fq")), 3), "revEst": num(d.get("revenue_forecast_next_fq")),
+        "scanEarn": {"date": datetime.fromtimestamp(ts, NY).date().isoformat(),
+                     "when": {1: "after", -1: "before"}.get(tflag, "")} if ts else None,
+    }
 
 
 def load(path, default):
@@ -137,11 +112,6 @@ def load(path, default):
         return default
 
 
-def pct(v, d=1):
-    return None if v is None else round(v * 100, d)
-
-
-# ---------------------------------------------------------------- לוח הדיווחים של האתר (TradingView) — המועד הסמכותי
 def site_earnings():
     """{SYM: (date, when)} מלוח הדיווחים (היום/השבוע/הבאים) — מועד מאומת מהסורק."""
     out = {}
@@ -174,50 +144,6 @@ def prep_moves():
 
 
 # ---------------------------------------------------------------- פענוח
-def parse(r):
-    pr = r.get("price") or {}
-    sp = r.get("summaryProfile") or {}
-    sd = r.get("summaryDetail") or {}
-    ks = r.get("defaultKeyStatistics") or {}
-    fd = r.get("financialData") or {}
-    rt = ((r.get("recommendationTrend") or {}).get("trend") or [{}])[0]
-    trend = (r.get("earningsTrend") or {}).get("trend") or []
-    t0 = next((t for t in trend if t.get("period") == "0q"), {})
-    ce = (r.get("calendarEvents") or {}).get("earnings") or {}
-    edates = [raw(x) for x in (ce.get("earningsDate") or []) if raw(x)]
-    rev = raw(fd.get("totalRevenue"))
-    fcf = raw(fd.get("freeCashflow"))
-    cash, debt = raw(fd.get("totalCash")), raw(fd.get("totalDebt"))
-    eps = raw(ks.get("trailingEps"))
-    if eps is None:
-        eps = raw(fd.get("epsTrailingTwelveMonths"))
-    out = {
-        "name": pr.get("longName") or pr.get("shortName"),
-        "sector": sp.get("sector"), "industry": sp.get("industry"),
-        "cap": raw(pr.get("marketCap")) or raw(sd.get("marketCap")),
-        "price": raw(pr.get("regularMarketPrice")),
-        "pe": raw(sd.get("trailingPE")) or raw(ks.get("trailingPE")),
-        "fwdPe": raw(sd.get("forwardPE")) or raw(ks.get("forwardPE")),
-        "eps": eps, "fwdEps": raw(ks.get("forwardEps")),
-        "revGrowth": pct(raw(fd.get("revenueGrowth"))),
-        "epsGrowth": pct(raw(fd.get("earningsGrowth"))),
-        "grossMargin": pct(raw(fd.get("grossMargins"))),
-        "opMargin": pct(raw(fd.get("operatingMargins"))),
-        "netMargin": pct(raw(fd.get("profitMargins"))),
-        "fcfMargin": pct(fcf / rev) if (fcf is not None and rev) else None,
-        "cash": cash, "debt": debt,
-        "netCash": (cash - debt) if (cash is not None and debt is not None) else None,
-        "divYield": pct(raw(sd.get("dividendYield")), 2),
-        "target": raw(fd.get("targetMeanPrice")), "targetN": raw(fd.get("numberOfAnalystOpinions")),
-        "recKey": fd.get("recommendationKey"), "recMean": raw(fd.get("recommendationMean")),
-        "recs": {k: rt.get(k) for k in ("strongBuy", "buy", "hold", "sell", "strongSell")},
-        "epsEst": raw(((t0.get("earningsEstimate") or {}).get("avg"))),
-        "revEst": raw(((t0.get("revenueEstimate") or {}).get("avg"))),
-        "yahooEarn": datetime.fromtimestamp(edates[0], NY).date().isoformat() if edates else None,
-    }
-    return out
-
-
 def quality(f):
     cap, growth = f.get("cap"), f.get("revGrowth")
     prof = (f.get("eps") is not None and f["eps"] > 0) or (f.get("netMargin") is not None and f["netMargin"] > 0)
@@ -264,85 +190,48 @@ def read_sentence(f, q):
 
 
 # ---------------------------------------------------------------- ריצה
-def priority(syms):
-    """קודם מה שבולט באתר: הנבחרות, ארבעת העמודים, מניות המעקב, רשימת המעקב הטכנית."""
-    first = []
-    for p in (load(os.path.join(DATA, "picks.json"), {}).get("picks") or []):
-        first.append(p.get("sym") or p.get("symbol"))
-    for r in (load(os.path.join(DATA, "trades.json"), {}).get("reports") or [])[:2]:
-        for p in (r.get("featured") or r.get("picks") or []):
-            first.append(p.get("ticker"))
-    for fn in ("holdings.txt", "ta_watchlist.txt"):
-        try:
-            with open(os.path.join(DATA, fn), encoding="utf-8") as f:
-                first += [ln.strip().upper() for ln in f if ln.strip() and not ln.startswith("#")]
-        except OSError:
-            pass
-    seen, out = set(), []
-    for s in first + sorted(syms):
-        if s and s in syms and s not in seen:
-            seen.add(s)
-            out.append(s)
-    return out
+def age_h(rec, now):
+    try:
+        return (now - datetime.fromisoformat(rec["at"].replace("Z", "+00:00"))).total_seconds() / 3600
+    except (KeyError, ValueError, TypeError):
+        return 1e9
 
 
 def main(fetch=None, now=None):
     now = now or datetime.now(timezone.utc)
+    stamp = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     syms, _ = fetch_bars.universe()
     syms = {s for s in syms if s not in fetch_bars.SECTOR_ETFS + fetch_bars.INDEX_ETFS and "/" not in s}
     prev = load(OUT, {})
     symbols = prev.get("symbols") or {}
     earn, moves = site_earnings(), prep_moves()
-    net = None
-    if fetch is None:
-        net = Net()
-        fetch = net.summary
-    todo = []
-    for s in priority(syms):
-        rec = symbols.get(s)
-        if not rec or rec.get("ver") != VER:
-            todo.append(s)
-            continue
-        age_h = (now - datetime.fromisoformat(rec["at"].replace("Z", "+00:00"))).total_seconds() / 3600
-        if rec.get("error"):
-            if "429" in rec["error"] or age_h >= ERROR_RETRY_H:   # 429 של ריצה קודמת = לא כישלון של המניה
-                todo.append(s)
-        elif age_h >= 24 * REFRESH_DAYS:
-            todo.append(s)
-    ok = fail = limited = 0
-    first_err = None
-    for i, s in enumerate(todo[:MAX_PER_RUN]):
-        if net is not None and i:
-            time.sleep(PAUSE_S)
+    fetch = fetch or tv_rows
+    todo = sorted(s for s in syms if (lambda r: not r or r.get("ver") != VER or age_h(r, now) >= (ERROR_RETRY_H if r.get("error") else REFRESH_H))(symbols.get(s)))
+    ok = fail = 0
+    if todo:
         try:
-            f = parse(fetch(s))
-        except RateLimited as e:  # Yahoo חוסם גם אחרי הניסיונות החוזרים — לא רושמים כישלון, ננסה בריצה הבאה
-            limited += 1
-            first_err = first_err or f"{s}: {e}"
-            if limited >= LIMIT_ABORT:
-                print(f"[warn] Yahoo חוסם (429) — {limited} מניות ברצף, ממשיכים בריצה הבאה ({first_err})")
-                break
-            continue
-        except Exception as e:  # מניה בלי נתונים (SPAC, ADR דק) — לא עוצרת את הריצה
-            fail += 1
-            first_err = first_err or f"{s}: {e}"
-            symbols.setdefault(s, {})["at"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-            symbols[s]["ver"] = VER
-            symbols[s]["error"] = str(e)[:80]
-            continue
-        limited = 0
-        q = quality(f)
-        f["quality"], f["read"] = q, read_sentence(f, q)
-        f["at"], f["ver"] = now.strftime("%Y-%m-%dT%H:%M:%SZ"), VER
-        f.pop("error", None)
-        symbols[s] = f
-        ok += 1
+            rows = fetch(todo)
+        except Exception as e:  # הסורק לא ענה — הקובץ נשאר, ננסה בריצה הבאה
+            print(f"[warn] fundamentals: הסורק של TradingView נכשל ({e}) — הקובץ נשאר")
+            return 0
+        for s in todo:
+            d = rows.get(s)
+            if not d or num(d.get("market_cap_basic")) is None:
+                fail += 1
+                symbols[s] = {"at": stamp, "ver": VER, "error": "לא בסורק" if not d else "בלי שווי שוק"}
+                continue
+            f = parse(d)
+            q = quality(f)
+            f["quality"], f["read"] = q, read_sentence(f, q)
+            f["at"], f["ver"] = stamp, VER
+            symbols[s] = f
+            ok += 1
     # מועד הדוח הבא + תזוזה מתומחרת — מתרעננים בכל ריצה (זולים, מהקבצים)
     for s, f in symbols.items():
         if "cap" not in f:
             continue
         d = earn.get(s)
-        f["nextEarn"] = {"date": d[0], "when": d[1], "src": "tv"} if d else ({"date": f["yahooEarn"], "when": "", "src": "yahoo"} if f.get("yahooEarn") else None)
+        f["nextEarn"] = {"date": d[0], "when": d[1], "src": "tv"} if d else ({"date": f["scanEarn"]["date"], "when": f["scanEarn"]["when"], "src": "scan"} if f.get("scanEarn") else None)
         m = moves.get(s) or {}
         f["move"] = m.get("move")
         if m.get("eps") is not None:
@@ -351,19 +240,16 @@ def main(fetch=None, now=None):
             f["revEst"] = m["rev"]
     # ניקוי: מניה מחוץ ליקום 45 יום
     for s in list(symbols):
-        if s not in syms:
-            at = symbols[s].get("at")
-            if not at or (now - datetime.fromisoformat(at.replace("Z", "+00:00"))).days >= DROP_DAYS:
-                del symbols[s]
-    out = {"updated": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "ver": VER, "universe": len(syms),
-           "count": sum(1 for v in symbols.values() if "cap" in v), "pending": max(0, len(todo) - MAX_PER_RUN),
+        if s not in syms and age_h(symbols[s], now) >= 24 * DROP_DAYS:
+            del symbols[s]
+    out = {"updated": stamp, "ver": VER, "universe": len(syms), "source": "TradingView scanner",
+           "count": sum(1 for v in symbols.values() if "cap" in v), "pending": 0,
            "symbols": dict(sorted(symbols.items()))}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(out, fh, ensure_ascii=False, separators=(",", ":"))
-    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d limited=%d pending=%d%s%s"
-          % (len(syms), out["count"], ok, fail, limited, out["pending"],
-             f" · cookie via {net.strategy}" if net is not None and net.strategy else "",
-             f" · first error {first_err}" if first_err else ""))
+    errs = [k for k, v in symbols.items() if v.get("error")]
+    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d missing=%s"
+          % (len(syms), out["count"], ok, fail, ",".join(errs[:12]) + ("…" if len(errs) > 12 else "") if errs else "0"))
     return 0
 
 

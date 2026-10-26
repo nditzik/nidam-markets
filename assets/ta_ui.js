@@ -246,7 +246,7 @@
       (r.price_action.tracking.length ? "<p><b>מעקב תבניות (10 נרות אחרונים):</b></p>" + list(r.price_action.tracking.map(function (t) { return t.explanation; })) : "") + "</details>");
     h.push('<details class="ta-det"><summary>מה יאשר כניסה</summary><div class="ta-ev"><div><b class="ta-good">מתקיים</b>' + list(p.confirmation.positive) + '</div><div><b class="ta-mid">חסר</b>' + list(p.confirmation.missing) + '</div><div><b>אפשרויות למעקב</b>' + list(p.confirmation.alternatives) + "</div></div><div class=\"ta-fn\">" + esc(p.confirmation.note) + "</div>" +
       "<p><b>הצעד הבא:</b> " + esc(p.next_step) + "</p><p><b>סיכון:</b> " + esc(p.risk) + "</p></details>");
-    h.push('<div class="ta-foot">נתונים: Yahoo Finance (נרות ויסודות), ' + bars.length + " נרות יומיים, נר אחרון " + esc(lastBar.date) + (lastBar.is_partial ? " (מתהווה, מסורק TradingView)" : "") + " · מנוע: chart-price-action-v3 (כללים קבועים, ללא בינה מלאכותית) · תיאור טכני בלבד, לא ייעוץ השקעות.</div>");
+    h.push('<div class="ta-foot">נתונים: Yahoo Finance (נרות) · TradingView (יסודות החברה), ' + bars.length + " נרות יומיים, נר אחרון " + esc(lastBar.date) + (lastBar.is_partial ? " (מתהווה, מסורק TradingView)" : "") + " · מנוע: chart-price-action-v3 (כללים קבועים, ללא בינה מלאכותית) · תיאור טכני בלבד, לא ייעוץ השקעות.</div>");
     h.push("</div>");
     el.innerHTML = h.join("");
   }
