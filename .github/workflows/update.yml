@@ -256,6 +256,10 @@ jobs:
         continue-on-error: true
         run: python scripts/build_fundamentals.py
 
+      - name: Probe fundamentals sources (temporary, 26.10.2026)
+        continue-on-error: true
+        run: python scripts/tools/probe_fund_sources.py
+
       # --- הנבחרות (30.9.2026): המועמדים+המומנטום שקיבלו "אישור מחיר לקנייה"
       #     מהמנוע הטכני (assets/ta_engine.js) על הנר הסגור האחרון → data/picks.json,
       #     ויומן הכנות 5/10/20 יום → data/picks_ledger.json. node קיים ב-runner. ---
@@ -426,7 +430,12 @@ jobs:
                 echo "pushed on attempt $i"; exit 0
               fi
               echo "push rejected — rebasing and retrying ($i)…"
-              git pull --rebase --autostash origin main || true
+              if ! git pull --rebase --autostash origin main; then
+                # קונפליקט בנתונים (שתי ריצות כתבו אותו קובץ): הכל רגנרטיבי — לוקחים את הגרסה של הריצה הזו וממשיכים
+                git checkout --theirs -- . 2>/dev/null || true
+                git add -A
+                GIT_EDITOR=true git rebase --continue || { git rebase --abort; git reset --hard origin/main; echo "rebase aborted — this run's data dropped"; exit 0; }
+              fi
               sleep 3
             done
             echo "push failed after retries"; exit 1
