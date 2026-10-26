@@ -17,6 +17,8 @@ import http.cookiejar
 import json
 import os
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -34,12 +36,21 @@ REFRESH_DAYS = 7
 MAX_PER_RUN = 60
 DROP_DAYS = 45
 VER = 1
+PAUSE_S = 0.7          # בין מניות — 60 בקשות רצופות בלי הפסקה קיבלו 429 בריצה הראשונה (26.10.2026)
+RETRY_WAIT_S = (4, 8, 15)   # ניסיונות חוזרים על 429, עם cookie+crumb חדשים
+ERROR_RETRY_H = 24     # מניה שנכשלה (סמל לא קיים, ADR דק) — ניסיון נוסף אחרי יום, לא כל רבע שעה
+LIMIT_ABORT = 3        # שלוש מניות ברצף שנחסמו גם אחרי הניסיונות החוזרים — Yahoo חוסם, ממשיכים בריצה הבאה
+
+
+class RateLimited(Exception):
+    pass
 
 
 class Net:
+    """HTTP אמיתי: cookie+crumb של Yahoo נוצרים בבקשה הראשונה; על 429 — המתנה, cookie חדש וניסיון חוזר."""
     def __init__(self):
-        cj = http.cookiejar.CookieJar()
-        self.op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+        self.cj = http.cookiejar.CookieJar()
+        self.op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
         self.op.addheaders = [("User-Agent", UA), ("Accept", "*/*")]
         self.crumb = None
 
@@ -52,13 +63,28 @@ class Net:
             try:
                 self._get("https://fc.yahoo.com", 10)
             except Exception:
-                pass
-            self.crumb = self._get("https://query2.finance.yahoo.com/v1/test/getcrumb").decode().strip()
+                pass                      # מחזיר 404 אבל שותל cookie
+            try:
+                self.crumb = self._get("https://query2.finance.yahoo.com/v1/test/getcrumb").decode().strip()
+            except urllib.error.HTTPError as e:
+                raise urllib.error.HTTPError(e.url, e.code, "crumb: " + str(e.reason), e.headers, None)
         return self.crumb
 
     def summary(self, sym):
-        u = f"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{urllib.parse.quote(sym)}?modules={MODS}&crumb={self._crumb()}"
-        return json.loads(self._get(u))["quoteSummary"]["result"][0]
+        last = None
+        for i in range(len(RETRY_WAIT_S) + 1):
+            try:
+                u = f"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{urllib.parse.quote(sym)}?modules={MODS}&crumb={self._crumb()}"
+                return json.loads(self._get(u))["quoteSummary"]["result"][0]
+            except urllib.error.HTTPError as e:
+                if e.code != 429:
+                    raise
+                last = e
+                if i < len(RETRY_WAIT_S):
+                    self.crumb = None
+                    self.cj.clear()
+                    time.sleep(RETRY_WAIT_S[i])
+        raise RateLimited(str(last)[:60])
 
 
 def raw(v):
@@ -238,18 +264,37 @@ def main(fetch=None, now=None):
     todo = []
     for s in priority(syms):
         rec = symbols.get(s)
-        if not rec or rec.get("ver") != VER or (now - datetime.fromisoformat(rec["at"].replace("Z", "+00:00"))).days >= REFRESH_DAYS:
+        if not rec or rec.get("ver") != VER:
             todo.append(s)
-    ok = fail = 0
-    for s in todo[:MAX_PER_RUN]:
+            continue
+        age_h = (now - datetime.fromisoformat(rec["at"].replace("Z", "+00:00"))).total_seconds() / 3600
+        if rec.get("error"):
+            if "429" in rec["error"] or age_h >= ERROR_RETRY_H:   # 429 של ריצה קודמת = לא כישלון של המניה
+                todo.append(s)
+        elif age_h >= 24 * REFRESH_DAYS:
+            todo.append(s)
+    ok = fail = limited = 0
+    first_err = None
+    for i, s in enumerate(todo[:MAX_PER_RUN]):
+        if net is not None and i:
+            time.sleep(PAUSE_S)
         try:
             f = parse(fetch(s))
+        except RateLimited as e:  # Yahoo חוסם גם אחרי הניסיונות החוזרים — לא רושמים כישלון, ננסה בריצה הבאה
+            limited += 1
+            first_err = first_err or f"{s}: {e}"
+            if limited >= LIMIT_ABORT:
+                print(f"[warn] Yahoo חוסם (429) — {limited} מניות ברצף, ממשיכים בריצה הבאה ({first_err})")
+                break
+            continue
         except Exception as e:  # מניה בלי נתונים (SPAC, ADR דק) — לא עוצרת את הריצה
             fail += 1
+            first_err = first_err or f"{s}: {e}"
             symbols.setdefault(s, {})["at"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
             symbols[s]["ver"] = VER
             symbols[s]["error"] = str(e)[:80]
             continue
+        limited = 0
         q = quality(f)
         f["quality"], f["read"] = q, read_sentence(f, q)
         f["at"], f["ver"] = now.strftime("%Y-%m-%dT%H:%M:%SZ"), VER
@@ -279,7 +324,8 @@ def main(fetch=None, now=None):
            "symbols": dict(sorted(symbols.items()))}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(out, fh, ensure_ascii=False, separators=(",", ":"))
-    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d pending=%d" % (len(syms), out["count"], ok, fail, out["pending"]))
+    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d limited=%d pending=%d%s"
+          % (len(syms), out["count"], ok, fail, limited, out["pending"], f" · first error {first_err}" if first_err else ""))
     return 0
 
 
