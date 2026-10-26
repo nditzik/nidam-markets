@@ -2309,3 +2309,27 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .np-k-sub { display: block; font-size: .82rem; color: var(--text-soft); margin: -2px 0 8px; }
 .np-k-sub b { font-weight: 600; color: var(--text); }
 .np-k-sub .mute { color: var(--text-3); }
+
+/* np153 — יסודות החברה בחלון הניתוח הטכני */
+.ta-fund { border: 1px solid var(--paper-hair); border-radius: 10px; padding: 10px 12px 12px; margin: 2px 0 10px; }
+.ta-fund-h { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.ta-fund-h h4 { margin: 0; font-size: .84rem; }
+.ta-fund-src { font-size: .72rem; color: var(--text-3); margin-inline-start: auto; }
+.ta-fq { font-size: .7rem; font-weight: 700; border-radius: 3px; padding: 1px 8px; background: var(--surface-2); color: var(--text-soft); }
+.ta-fq.ok { background: color-mix(in srgb, var(--up) 15%, transparent); color: var(--up); }
+.ta-fq.bad { background: color-mix(in srgb, var(--down) 14%, transparent); color: var(--down); }
+.ta-fund-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.ta-ft { border: 1px solid var(--paper-hair); border-radius: 8px; padding: 7px 9px; min-width: 0; }
+.ta-ft-l { font-size: .68rem; color: var(--text-3); }
+.ta-ft-v { font: 600 1.02rem/1.3 "IBM Plex Mono", ui-monospace, monospace; margin-top: 2px; }
+.ta-ft-v.up { color: var(--up); } .ta-ft-v.down { color: var(--down); }
+.ta-ft-s { font-size: .68rem; color: var(--text-soft); margin-top: 1px; }
+.ta-fund-rows { display: grid; gap: 6px; margin-top: 10px; }
+.ta-fr { display: flex; gap: 10px; align-items: baseline; font-size: .8rem; line-height: 1.5; min-width: 0; }
+.ta-fr-k { flex: 0 0 auto; color: var(--text-3); font-size: .72rem; min-width: 64px; }
+.ta-fr-v { min-width: 0; }
+.ta-fr-v .num.up { color: var(--up); } .ta-fr-v .num.down { color: var(--down); }
+.ta-fr-earn { background: var(--warn-soft); border-radius: 6px; padding: 5px 8px; margin: 0 -4px; }
+.ta-fr-earn .ta-fr-k { color: var(--warn); }
+@media (max-width: 640px) { .ta-fund-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ta-fund-src { display: none; } }
+@media (max-width: 420px) { .ta-fund-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

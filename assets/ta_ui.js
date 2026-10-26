@@ -27,6 +27,15 @@
       .then(function (d) { IDX = d || { symbols: {} }; IDX_AT = now; cb(IDX); })
       .catch(function () { cb(IDX || { symbols: {} }); });
   }
+  // np153 (26.10.2026, איציק): "יסודות החברה" — data/fundamentals.json (build_fundamentals.py), נטען פעם אחת ל-10 דק'
+  var FUND = null, FUND_AT = 0;
+  function loadFund(cb) {
+    var now = Date.now();
+    if (FUND && now - FUND_AT < 10 * 60 * 1000) { cb(FUND); return; }
+    fetch("data/fundamentals.json?v=" + Math.floor(now / 600000)).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { FUND = d || { symbols: {} }; FUND_AT = now; cb(FUND); })
+      .catch(function () { cb(FUND || { symbols: {} }); });
+  }
   function hasBars(sym, cb) { loadIndex(function (ix) { var s = ix && ix.symbols && ix.symbols[sym]; cb(!!(s && s.last)); }); }
   function loadBars(sym, cb) {
     loadIndex(function (ix) {
@@ -153,7 +162,55 @@
     return '<div class="ta-score"><span class="ta-score-l">' + label + '</span><span class="ta-score-bar"><i class="' + cls + '" style="width:' + (val == null ? 0 : val) + '%"></i></span><b class="ta-score-v">' + (val == null ? "—" : val) + "</b></div>";
   }
   function list(items, cls) { return items && items.length ? '<ul class="ta-list ' + (cls || "") + '">' + items.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : '<div class="ta-none">—</div>'; }
-  function render(sym, el, bars, meta) {
+  var HE_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  function money(v) {
+    if (v == null) return "—";
+    var a = Math.abs(v), s = v < 0 ? "−" : "";
+    if (a >= 1e12) return s + "$" + (a / 1e12).toFixed(2) + "T";
+    if (a >= 1e9) return s + "$" + (a / 1e9).toFixed(a >= 1e10 ? 0 : 1) + "B";
+    if (a >= 1e6) return s + "$" + (a / 1e6).toFixed(0) + "M";
+    return s + "$" + Math.round(a);
+  }
+  function pctS(v, sign) { return v == null ? "—" : ((sign && v > 0) ? "+" : "") + (Math.abs(v) >= 100 ? Math.round(v) : v.toFixed(Math.abs(v) < 10 ? 1 : 0)) + "%"; }
+  function ftile(l, v, s, cls) { return '<div class="ta-ft"><div class="ta-ft-l">' + l + '</div><div class="ta-ft-v num' + (cls ? " " + cls : "") + '" dir="ltr">' + v + '</div>' + (s ? '<div class="ta-ft-s">' + s + "</div>" : "") + "</div>"; }
+  function fundHtml(sym, f, lastClose) {
+    if (!f || f.cap == null) return "";
+    var q = f.quality || {}, price = lastClose || f.price;
+    var capS = f.cap >= 2e11 ? "ענקית" : f.cap >= 1e10 ? "גדולה" : f.cap >= 2e9 ? "בינונית" : f.cap >= 3e8 ? "קטנה" : "זעירה";
+    var pe = f.fwdPe || f.pe, peLbl = f.fwdPe ? "מכפיל רווח קדימה" : "מכפיל רווח";
+    var peS = pe == null || pe <= 0 ? "—" : (pe >= 100 ? Math.round(pe) : pe.toFixed(pe >= 20 ? 0 : 1));
+    var peSub = pe == null || pe <= 0 ? "אין רווח" : pe > 35 ? "יקרה" : pe >= 15 ? "סבירה" : "זולה";
+    var prof = (f.eps != null && f.eps > 0) || (f.netMargin != null && f.netMargin > 0);
+    var tiles = ftile("שווי שוק", money(f.cap), capS) + ftile(peLbl, peS, peSub) +
+      ftile("צמיחת הכנסות", pctS(f.revGrowth, true), "שנה מול שנה", f.revGrowth == null ? "" : f.revGrowth >= 0 ? "up" : "down") +
+      ftile("רווח תפעולי", pctS(f.opMargin), prof ? "מההכנסות · רווחית" : "מההכנסות · מפסידה", f.opMargin == null ? "" : f.opMargin >= 0 ? "up" : "down") +
+      ftile("תזרים חופשי", pctS(f.fcfMargin), "מההכנסות", f.fcfMargin == null ? "" : f.fcfMargin >= 0 ? "up" : "down") +
+      ftile("מזומן נטו", money(f.netCash), f.netCash == null ? "" : f.netCash >= 0 ? "יותר מזומן מחוב" : "יותר חוב ממזומן", f.netCash == null ? "" : f.netCash >= 0 ? "" : "down");
+    var rows = "";
+    var ne = f.nextEarn;
+    if (ne && ne.date) {
+      var dt = new Date(ne.date + "T12:00:00"), days = Math.round((dt - new Date(new Date().toDateString())) / 864e5);
+      var whenS = ne.when === "after" ? "אחרי הסגירה" : ne.when === "before" ? "לפני הפתיחה" : "";
+      var inS = days < 0 ? "לפני " + (-days) + " ימים" : days === 0 ? "היום" : days === 1 ? "מחר" : "בעוד " + days + " ימים";
+      rows += '<div class="ta-fr' + (days >= 0 && days <= 7 ? " ta-fr-earn" : "") + '"><span class="ta-fr-k">📅 הדוח הבא</span><span class="ta-fr-v"><b>יום ' + HE_DOW[dt.getDay()] + " " + dt.getDate() + "." + (dt.getMonth() + 1) + (whenS ? ", " + whenS : "") + "</b> · " + inS +
+        (f.epsEst != null ? ' · צפי רווח למניה <b class="num" dir="ltr">$' + Number(f.epsEst).toFixed(2) + "</b>" : "") + (f.revEst != null ? ' · הכנסות <b class="num" dir="ltr">' + money(f.revEst) + "</b>" : "") +
+        (f.move != null ? ' · האופציות מתמחרות תזוזה של <b class="num" dir="ltr">±' + Number(f.move).toFixed(1) + "%</b>" : "") + "</span></div>";
+    }
+    if (f.target != null && price) {
+      var up = (f.target / price - 1) * 100, r = f.recs || {}, buy = (r.strongBuy || 0) + (r.buy || 0), tot = buy + (r.hold || 0) + (r.sell || 0) + (r.strongSell || 0);
+      rows += '<div class="ta-fr"><span class="ta-fr-k">אנליסטים</span><span class="ta-fr-v">מחיר יעד ממוצע <b class="num" dir="ltr">$' + (f.target >= 100 ? Math.round(f.target) : f.target.toFixed(2)) + '</b> (<b class="num ' + (up >= 0 ? "up" : "down") + '" dir="ltr">' + (up >= 0 ? "+" : "") + up.toFixed(0) + "%</b> מהמחיר)" +
+        (tot ? ' · <b class="num" dir="ltr">' + buy + "</b> מתוך <b class=\"num\" dir=\"ltr\">" + tot + "</b> ממליצים קנייה" : (f.targetN ? ' · <b class="num" dir="ltr">' + f.targetN + "</b> אנליסטים" : "")) + "</span></div>";
+    }
+    if (f.divYield != null && f.divYield > 0) rows += '<div class="ta-fr"><span class="ta-fr-k">דיבידנד</span><span class="ta-fr-v">תשואה שנתית <b class="num" dir="ltr">' + f.divYield.toFixed(1) + "%</b></span></div>";
+    var readS = f.read || "";
+    if (ne && ne.date) { var dd = Math.round((new Date(ne.date + "T12:00:00") - new Date(new Date().toDateString())) / 864e5); if (dd >= 0 && dd <= 7) readS += " הדוח " + (dd === 0 ? "היום" : dd === 1 ? "מחר" : "בעוד " + dd + " ימים") + ": כניסה טכנית עכשיו היא גם הימור על הדוח."; }
+    if (readS) rows += '<div class="ta-fr"><span class="ta-fr-k">קריאה</span><span class="ta-fr-v">' + esc(readS) + "</span></div>";
+    return '<section class="ta-fund" aria-label="יסודות החברה"><div class="ta-fund-h"><h4>יסודות החברה</h4>' + (q.label ? '<span class="ta-fq ' + esc(q.q || "mid") + '">' + esc(q.label) + "</span>" : "") +
+      '<span class="ta-fund-src">' + esc([f.name, f.industry].filter(Boolean).join(" · ")) + (f.at ? " · עודכן " + esc(f.at.slice(8, 10)) + "." + esc(f.at.slice(5, 7)) : "") + "</span></div>" +
+      '<div class="ta-fund-grid">' + tiles + "</div>" + (rows ? '<div class="ta-fund-rows">' + rows + "</div>" : "") + "</section>";
+  }
+
+  function render(sym, el, bars, meta, fund) {
     var r;
     try { r = window.TAEngine.analyze(bars, { symbol: sym }); }
     catch (e) { el.innerHTML = '<div class="ta-msg">הניתוח נכשל: ' + esc(e.message) + "</div>"; return; }
@@ -170,6 +227,8 @@
       scoreBar("איכות נקודת הכניסה", r.scores.entry) + scoreBar("מתיחות המחיר", r.scores.extension, true) + scoreBar("איכות המחזורים", r.scores.volume) +
       '<div class="ta-fn">מתיחות: ציון גבוה = המחיר רחוק מהממוצעים (פחות טוב לכניסה).</div></section>');
     h.push('<section class="ta-sec"><h4>מאזן הראיות</h4><div class="ta-ev"><div><b class="ta-good">מה תומך</b>' + list(r.confluence.supports) + '</div><div><b class="ta-bad">מה סותר או מגביל</b>' + list(r.confluence.contradicts) + '</div><div><b class="ta-mid">מה חסר או מעורב</b>' + list(r.confluence.missing) + "</div></div></section></div>");
+    // np153: יסודות החברה — מעל "אינדיקטורים וממוצעים"
+    h.push(fundHtml(sym, fund && fund.symbols && fund.symbols[sym], lastBar.close));
     // פירוט
     var maRows = r.moving_averages.map(function (m) { return "<tr><td dir=\"ltr\"><i class=\"ta-dot\" style=\"background:" + MA_COLOR[m.name] + "\"></i>" + m.name + "</td><td dir=\"ltr\">" + f2(m.value) + "</td><td dir=\"ltr\">" + (m.distance_pct >= 0 ? "+" : "") + f1(m.distance_pct) + "%</td><td>" + esc(m.slope) + "</td><td>" + esc(m.role) + "</td></tr>"; }).join("");
     var indRows = p.indicators.map(function (i) { return "<tr><td dir=\"ltr\">" + esc(i.name) + "</td><td dir=\"ltr\">" + esc(i.value) + "</td><td>" + esc(i.text) + "</td></tr>"; }).join("") +
@@ -187,7 +246,7 @@
       (r.price_action.tracking.length ? "<p><b>מעקב תבניות (10 נרות אחרונים):</b></p>" + list(r.price_action.tracking.map(function (t) { return t.explanation; })) : "") + "</details>");
     h.push('<details class="ta-det"><summary>מה יאשר כניסה</summary><div class="ta-ev"><div><b class="ta-good">מתקיים</b>' + list(p.confirmation.positive) + '</div><div><b class="ta-mid">חסר</b>' + list(p.confirmation.missing) + '</div><div><b>אפשרויות למעקב</b>' + list(p.confirmation.alternatives) + "</div></div><div class=\"ta-fn\">" + esc(p.confirmation.note) + "</div>" +
       "<p><b>הצעד הבא:</b> " + esc(p.next_step) + "</p><p><b>סיכון:</b> " + esc(p.risk) + "</p></details>");
-    h.push('<div class="ta-foot">נתונים: Yahoo Finance, ' + bars.length + " נרות יומיים, נר אחרון " + esc(lastBar.date) + (lastBar.is_partial ? " (מתהווה, מסורק TradingView)" : "") + " · מנוע: chart-price-action-v3 (כללים קבועים, ללא בינה מלאכותית) · תיאור טכני בלבד, לא ייעוץ השקעות.</div>");
+    h.push('<div class="ta-foot">נתונים: Yahoo Finance (נרות ויסודות), ' + bars.length + " נרות יומיים, נר אחרון " + esc(lastBar.date) + (lastBar.is_partial ? " (מתהווה, מסורק TradingView)" : "") + " · מנוע: chart-price-action-v3 (כללים קבועים, ללא בינה מלאכותית) · תיאור טכני בלבד, לא ייעוץ השקעות.</div>");
     h.push("</div>");
     el.innerHTML = h.join("");
   }
@@ -208,7 +267,7 @@
         var bars = d.bars.slice();
         liveBar(sym, function (lb) {
           if (lb && lb.date > bars[bars.length - 1].date) bars.push(lb);
-          render(sym, el, bars, d);
+          loadFund(function (fund) { render(sym, el, bars, d, fund); });
         });
       });
     });
