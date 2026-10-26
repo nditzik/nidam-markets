@@ -16,6 +16,7 @@ build_fundamentals.py — "יסודות החברה" לחלון הניתוח הט
 import http.cookiejar
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -53,21 +54,56 @@ class Net:
         self.op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
         self.op.addheaders = [("User-Agent", UA), ("Accept", "*/*")]
         self.crumb = None
+        self.strategy = None
 
     def _get(self, url, timeout=20):
         with self.op.open(url, timeout=timeout) as r:
             return r.read()
 
+    GETCRUMB = "https://query2.finance.yahoo.com/v1/test/getcrumb"
+
+    def _cookie_basic(self):
+        """fc.yahoo.com מחזיר 404 אבל שותל cookie — עובד מ-runner אמריקאי."""
+        try:
+            self._get("https://fc.yahoo.com", 10)
+        except urllib.error.HTTPError:
+            pass
+
+    def _cookie_csrf(self):
+        """runner באירופה מקבל דף הסכמה (GDPR) במקום cookie, ו-getcrumb עונה 429 — עוברים את ההסכמה כמו yfinance."""
+        html = self._get("https://guce.yahoo.com/consent").decode("utf-8", "replace")
+        m_tok = re.search(r'name="csrfToken"\s+value="([^"]+)"', html) or re.search(r'value="([^"]+)"\s+name="csrfToken"', html)
+        m_sid = re.search(r'name="sessionId"\s+value="([^"]+)"', html) or re.search(r'value="([^"]+)"\s+name="sessionId"', html)
+        if not (m_tok and m_sid):
+            raise RuntimeError("consent page without csrfToken/sessionId")
+        sid = m_sid.group(1)
+        body = urllib.parse.urlencode([("agree", "agree"), ("agree", "agree"), ("consentUUID", "default"), ("sessionId", sid),
+                                       ("csrfToken", m_tok.group(1)), ("originalDoneUrl", "https://finance.yahoo.com/"), ("namespace", "yahoo")]).encode()
+        req = urllib.request.Request(f"https://consent.yahoo.com/v2/collectConsent?sessionId={sid}", data=body,
+                                     headers={"Content-Type": "application/x-www-form-urlencoded"})
+        with self.op.open(req, timeout=20) as r:
+            r.read()
+        try:
+            self._get(f"https://guce.yahoo.com/copyConsent?sessionId={sid}")
+        except urllib.error.HTTPError:
+            pass
+
     def _crumb(self):
         if self.crumb is None:
-            try:
-                self._get("https://fc.yahoo.com", 10)
-            except Exception:
-                pass                      # מחזיר 404 אבל שותל cookie
-            try:
-                self.crumb = self._get("https://query2.finance.yahoo.com/v1/test/getcrumb").decode().strip()
-            except urllib.error.HTTPError as e:
-                raise urllib.error.HTTPError(e.url, e.code, "crumb: " + str(e.reason), e.headers, None)
+            last = None
+            for strat in (self._cookie_basic, self._cookie_csrf):
+                try:
+                    strat()
+                    c = self._get(self.GETCRUMB).decode().strip()
+                    if c and "<" not in c:
+                        self.crumb, self.strategy = c, strat.__name__[8:]
+                        return c
+                    last = RuntimeError("empty crumb")
+                except Exception as e:  # 429 בלי cookie, דף הסכמה בלי שדות…
+                    last = e
+                self.cj.clear()
+            code = getattr(last, "code", 429)
+            raise urllib.error.HTTPError(self.GETCRUMB, code, f"crumb: {last}"[:70], None, None)
         return self.crumb
 
     def summary(self, sym):
@@ -324,8 +360,10 @@ def main(fetch=None, now=None):
            "symbols": dict(sorted(symbols.items()))}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(out, fh, ensure_ascii=False, separators=(",", ":"))
-    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d limited=%d pending=%d%s"
-          % (len(syms), out["count"], ok, fail, limited, out["pending"], f" · first error {first_err}" if first_err else ""))
+    print("fundamentals: universe=%d have=%d refreshed=%d failed=%d limited=%d pending=%d%s%s"
+          % (len(syms), out["count"], ok, fail, limited, out["pending"],
+             f" · cookie via {net.strategy}" if net is not None and net.strategy else "",
+             f" · first error {first_err}" if first_err else ""))
     return 0
 
 
