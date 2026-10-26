@@ -5,42 +5,42 @@
     {
       "ticker": "VZ",
       "name": "Verizon Communications Inc.",
-      "capB": 181.5
+      "capB": 181.6
     },
     {
       "ticker": "WELL",
       "name": "Welltower Inc.",
-      "capB": 173.2
+      "capB": 173.1
     },
     {
       "ticker": "CDNS",
       "name": "Cadence Design Systems, Inc.",
-      "capB": 90.2
+      "capB": 90.3
     },
     {
       "ticker": "NUE",
       "name": "Nucor Corporation",
-      "capB": 58.3
+      "capB": 58.5
     },
     {
       "ticker": "PSA",
       "name": "Public Storage",
-      "capB": 57.7
+      "capB": 57.6
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 41.7
+      "capB": 42.6
     },
     {
       "ticker": "HIG",
       "name": "Hartford Insurance Group, Inc.",
-      "capB": 37.2
+      "capB": 37.1
     },
     {
       "ticker": "CLS",
       "name": "Celestica Inc.",
-      "capB": 33.5
+      "capB": 33.7
     }
   ],
   "reactions": {
@@ -356,9 +356,9 @@
       "count": 56,
       "tickers": [
         "MSFT",
+        "GOOGL",
         "GOOGM",
         "GOOGN",
-        "GOOGL",
         "GOOG",
         "SKHY"
       ]
@@ -563,6 +563,12 @@
           "logo": "data/earnings/logos/MSFT.png"
         },
         {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOGL.png"
+        },
+        {
           "ticker": "GOOGM",
           "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
           "when": "after"
@@ -571,12 +577,6 @@
           "ticker": "GOOGN",
           "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
           "when": "after"
-        },
-        {
-          "ticker": "GOOGL",
-          "name": "Alphabet Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOGL.png"
         },
         {
           "ticker": "GOOG",
@@ -847,16 +847,16 @@
     "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "CMS": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
     "MSFT": "2026-10-28",
-    "GOOGN": "2026-10-28",
-    "GOOGM": "2026-10-28",
     "GOOGL": "2026-10-28",
+    "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOG": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
@@ -897,14 +897,14 @@
     "FLEX": "2026-10-28",
     "AWK": "2026-10-28",
     "LH": "2026-10-28",
-    "VICI": "2026-10-28",
     "KGC": "2026-10-28",
+    "VICI": "2026-10-28",
     "NMR": "2026-10-28",
     "FMX": "2026-10-28",
     "AER": "2026-10-28",
     "DINO": "2026-10-28",
-    "AMRZ": "2026-10-28",
     "SW": "2026-10-28",
+    "AMRZ": "2026-10-28",
     "NI": "2026-10-28",
     "BSBR": "2026-10-28",
     "GFL": "2026-10-28",
@@ -939,11 +939,11 @@
     "AJG": "2026-10-29",
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
-    "STRD": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRK": "2026-10-29",
-    "STRF": "2026-10-29",
     "LNG": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRF": "2026-10-29",
+    "STRK": "2026-10-29",
+    "STRC": "2026-10-29",
     "MSTR": "2026-10-29",
     "CRH": "2026-10-29",
     "MPWR": "2026-10-29",
@@ -970,13 +970,13 @@
     "CTSH": "2026-10-29",
     "ALNY": "2026-10-29",
     "WTW": "2026-10-29",
-    "DXCM": "2026-10-29",
     "TECK": "2026-10-29",
+    "DXCM": "2026-10-29",
     "EME": "2026-10-29",
     "IR": "2026-10-29",
     "TW": "2026-10-29",
-    "WST": "2026-10-29",
     "FTI": "2026-10-29",
+    "WST": "2026-10-29",
     "ARES": "2026-10-29",
     "PPL": "2026-10-29",
     "RDDT": "2026-10-29",
@@ -984,11 +984,11 @@
     "MKL": "2026-10-29",
     "INCY": "2026-10-29",
     "TROW": "2026-10-29",
-    "THC": "2026-10-29",
     "EIX": "2026-10-29",
+    "THC": "2026-10-29",
     "ATI": "2026-10-29",
-    "XPO": "2026-10-29",
     "YPF": "2026-10-29",
+    "XPO": "2026-10-29",
     "ENTG": "2026-10-29",
     "INSM": "2026-10-29",
     "BG": "2026-10-29",
@@ -1016,8 +1016,8 @@
     "LYB": "2026-10-30",
     "NVT": "2026-10-30",
     "AAPL": "2026-11-02",
-    "BRK.B": "2026-11-02",
     "BRK.A": "2026-11-02",
+    "BRK.B": "2026-11-02",
     "PLTR": "2026-11-02",
     "VRTX": "2026-11-02",
     "MAR": "2026-11-02",
@@ -1039,7 +1039,7 @@
     "PS": "2026-11-02"
   },
   "_meta": {
-    "updatedAt": "26/10/2026 16:46",
+    "updatedAt": "26/10/2026 17:01",
     "source": "tradingview"
   }
 }
