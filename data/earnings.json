@@ -10,7 +10,7 @@
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "capB": 393.5
+      "capB": 393.8
     },
     {
       "ticker": "HSBC",
@@ -25,22 +25,22 @@
     {
       "ticker": "STX",
       "name": "Seagate Technology Holdings PLC",
-      "capB": 153.6
+      "capB": 153.8
     },
     {
       "ticker": "BA",
       "name": "Boeing Company",
-      "capB": 133.8
+      "capB": 133.6
     },
     {
       "ticker": "SPGI",
       "name": "S&P Global, Inc.",
-      "capB": 132.9
+      "capB": 132.6
     },
     {
       "ticker": "GLW",
       "name": "Corning Inc",
-      "capB": 109.5
+      "capB": 109.0
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WELL.png",
-            "chg": -6.39,
-            "price": 225.23,
+            "chg": -6.24,
+            "price": 225.59,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/CDNS.png",
             "logoBg": "dark",
-            "chg": 6.97,
-            "price": 344.63,
+            "chg": 6.58,
+            "price": 343.36,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NUE.png",
-            "chg": 4.75,
-            "price": 269.58,
+            "chg": 4.78,
+            "price": 269.64,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PSA.png",
-            "chg": 1.55,
-            "price": 311.72,
+            "chg": 1.87,
+            "price": 312.72,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HIG.png",
-            "chg": -1.88,
-            "price": 133.38,
+            "chg": -1.75,
+            "price": 133.56,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           }
@@ -820,12 +820,12 @@
     "CNP": "2026-10-27",
     "FE": "2026-10-27",
     "FFIV": "2026-10-27",
-    "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
+    "LPLA": "2026-10-27",
     "HUBB": "2026-10-27",
     "XYL": "2026-10-27",
-    "CMSA": "2026-10-27",
     "CMSD": "2026-10-27",
+    "CMSA": "2026-10-27",
     "EXE": "2026-10-27",
     "CMS": "2026-10-27",
     "SOFI": "2026-10-27",
@@ -833,8 +833,8 @@
     "MSFT": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -918,12 +918,12 @@
     "DLR": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
+    "MPWR": "2026-10-29",
     "MSTR": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRD": "2026-10-29",
     "STRC": "2026-10-29",
     "STRF": "2026-10-29",
-    "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
     "LHX": "2026-10-29",
@@ -935,8 +935,8 @@
     "ILMN": "2026-10-29",
     "DHI": "2026-10-29",
     "STM": "2026-10-29",
-    "TWLO": "2026-10-29",
     "RBLX": "2026-10-29",
+    "TWLO": "2026-10-29",
     "KB": "2026-10-29",
     "WEC": "2026-10-29",
     "RMD": "2026-10-29",
@@ -945,8 +945,8 @@
     "RKT": "2026-10-29",
     "HSY": "2026-10-29",
     "CQP": "2026-10-29",
-    "ALNY": "2026-10-29",
     "TECK": "2026-10-29",
+    "ALNY": "2026-10-29",
     "DXCM": "2026-10-29",
     "CTSH": "2026-10-29",
     "WTW": "2026-10-29",
@@ -1040,8 +1040,8 @@
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
-    "PFH": "2026-11-03",
     "PRS": "2026-11-03",
+    "PFH": "2026-11-03",
     "PRU": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
@@ -1065,7 +1065,7 @@
     "LDOS": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 21:16",
+    "updatedAt": "27/10/2026 21:31",
     "source": "tradingview"
   }
 }
