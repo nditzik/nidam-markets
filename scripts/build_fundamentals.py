@@ -65,6 +65,27 @@ def tv_rows(symbols):
     return out
 
 
+# np156: הניתוח המקוצר באתר (ta_ui.js, quickRender) מבקש מהדפדפן גם את העמודות הטכניות האלה.
+# בדיקה פעם ביום מה-runner — כדי לדעת מכאן שהן עדיין קיימות בסורק (שם עמודה שגוי = כל הבקשה נכשלת).
+TECH_COLS = ["name", "close", "change", "SMA20", "SMA50", "SMA200", "RSI", "Perf.W", "Perf.1M", "Perf.3M",
+             "price_52_week_high", "price_52_week_low", "ATR"]
+
+
+def probe_tech(sym="AAPL"):
+    body = json.dumps({"filter": [{"left": "name", "operation": "equal", "right": sym},
+                                  {"left": "exchange", "operation": "in_range", "right": ["NASDAQ", "NYSE", "AMEX"]}],
+                       "columns": TECH_COLS, "range": [0, 3]}).encode()
+    req = urllib.request.Request(TV_SCAN, data=body, headers={"User-Agent": UA, "Content-Type": "text/plain"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        rows = json.loads(r.read().decode("utf-8")).get("data") or []
+    row = next((x["d"] for x in rows if x.get("d") and x["d"][0] == sym), None)
+    if not row:
+        raise RuntimeError("no row")
+    vals = dict(zip(TECH_COLS, row))
+    missing = [c for c in TECH_COLS if vals.get(c) is None]
+    return {"ok": not missing, "missing": missing, "sample": {k: vals[k] for k in ("close", "SMA50", "RSI", "Perf.3M")}}
+
+
 def num(v):
     return v if isinstance(v, (int, float)) and v == v else None
 
@@ -248,7 +269,14 @@ def main(fetch=None, now=None):
     for s in list(symbols):
         if s not in syms and age_h(symbols[s], now) >= 24 * DROP_DAYS:
             del symbols[s]
-    out = {"updated": stamp, "ver": VER, "universe": len(syms), "source": "TradingView scanner",
+    tech = prev.get("techProbe") or {}
+    if fetch is tv_rows and tech.get("day") != stamp[:10]:
+        try:
+            tech = dict(probe_tech(), day=stamp[:10])
+        except Exception as e:  # noqa: BLE001 — מידע בלבד, לא עוצר
+            tech = {"day": stamp[:10], "ok": False, "error": str(e)[:80]}
+        print("fundamentals: tech columns probe %s" % json.dumps(tech, ensure_ascii=False))
+    out = {"updated": stamp, "ver": VER, "universe": len(syms), "source": "TradingView scanner", "techProbe": tech,
            "count": sum(1 for v in symbols.values() if "cap" in v), "pending": 0,
            "symbols": dict(sorted(symbols.items()))}
     with open(OUT, "w", encoding="utf-8") as fh:

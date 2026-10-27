@@ -2334,3 +2334,53 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .ta-fr-earn .ta-fr-k { color: var(--warn); }
 @media (max-width: 640px) { .ta-fund-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ta-fund-src { display: none; } }
 @media (max-width: 420px) { .ta-fund-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ===== np156 (27.10.2026): נתח מניה — כל טיקר אמריקאי (חיפוש, פאנל בטאב מניות, ניתוח מקוצר) ===== */
+.sr-name { font-size: .76rem; color: var(--text-3); padding: 0 10px 4px; min-height: 1em; }
+.sr-ta { display: block; width: calc(100% - 20px); margin: 4px 10px 6px; min-height: 44px; border: 0; border-radius: 8px;
+  background: var(--accent); color: #fff; font: inherit; font-weight: 600; font-size: .88rem; cursor: pointer; }
+.sr-ta:hover { filter: brightness(1.08); }
+.sr-ta:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.an-pan .pb { display: flex; flex-direction: column; gap: 14px; }
+.an-form { display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; }
+.an-q { width: 260px; max-width: 100%; height: 52px; box-sizing: border-box; border: 1.5px solid var(--accent); border-radius: 8px;
+  padding: 0 14px; font-size: 1.35rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; background: var(--surface); color: var(--text); }
+.an-q:focus { outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent); outline-offset: 1px; }
+.an-go { min-width: 88px; min-height: 52px; border: 0; border-radius: 8px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; font-size: .95rem; cursor: pointer; }
+.an-go:hover { filter: brightness(1.08); }
+.an-name { align-self: center; font-size: .84rem; color: var(--text-soft); }
+.an-name.bad { color: var(--down); }
+.an-recent { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 0; }
+.an-recent:empty { display: none; }
+.an-chip { min-height: 36px; padding: 0 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--accent); font-size: .82rem; cursor: pointer; }
+.an-chip:hover { background: var(--accent-soft); }
+.an-led > div { display: flex; flex-direction: column; gap: 2px; }
+.ta-quick { display: flex; flex-direction: column; gap: 14px; }
+.ta-qhd { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; font-size: .95rem; }
+.ta-qhd .num { font-weight: 600; }
+.ta-qbanner { background: var(--surface-2); border: 1px solid var(--paper-hair); border-radius: 8px; padding: 9px 12px; font-size: .82rem; color: var(--text-soft); line-height: 1.5; }
+.ta-qbanner b { color: var(--text); }
+.ta-qsec { border: 1px solid var(--paper-hair); border-radius: 10px; padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 12px; }
+.ta-range { display: flex; flex-direction: column; gap: 6px; }
+.ta-range-l, .ta-range-t { direction: ltr; }
+.ta-range-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--text-3); }
+.ta-range-l b { color: var(--text-soft); font-weight: 600; }
+.ta-range-t { position: relative; height: 10px; border-radius: 999px; background: var(--track); }
+.ta-range-t i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; background: color-mix(in srgb, var(--up) 40%, transparent); }
+.ta-range-t b { position: absolute; top: -4px; width: 12px; height: 18px; margin-left: -6px; border-radius: 4px; background: var(--text); }
+.ta-range-s { font-size: .8rem; color: var(--text-soft); }
+.ta-mas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ta-ma { display: flex; align-items: center; gap: 8px; border: 1px solid var(--paper-hair); border-radius: 8px; padding: 8px 10px; font-size: .82rem; min-width: 0; }
+.ta-ma i { font-style: normal; font-weight: 700; width: 22px; height: 22px; flex: 0 0 22px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: .8rem; }
+.ta-ma.ok i { color: var(--up); background: color-mix(in srgb, var(--up) 15%, transparent); }
+.ta-ma.bad i { color: var(--down); background: color-mix(in srgb, var(--down) 14%, transparent); }
+.ta-ma .num { color: var(--text-3); }
+.ta-qtiles { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.ta-qnext { border: 1.5px dashed var(--track); border-radius: 10px; padding: 10px 12px; font-size: .8rem; color: var(--text-soft); line-height: 1.5; }
+.ta-qnext b { color: var(--text); }
+@media (max-width: 640px) {
+  .ta-mas { grid-template-columns: minmax(0, 1fr); }
+  .ta-qtiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .an-q { width: 100%; }
+  .an-go { flex: 1; }
+}

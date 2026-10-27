@@ -3,7 +3,8 @@
    (500 נרות סגורים שהבוט שומר), מוסיף את הנר של היום מסורק TradingView (is_partial בזמן
    המסחר), מריץ TAEngine.analyze ומרנדר: 4 אריחים · סיכום · גרף נרות עם 6 ממוצעים ואזורי
    תמיכה/התנגדות/פריצה · 7 ציונים · מאזן הראיות · פירוט. הכל טקסט מהמנוע — אין LLM.
-   ממשק: window.__taRender(sym, containerEl), window.__taHas(sym, cb). */
+   ממשק: window.__taRender(sym, containerEl), window.__taHas(sym, cb).
+   np156: טיקר בלי נרות שמורים → quickRender (ניתוח מקוצר + יסודות מהסורק, לכל טיקר אמריקאי). */
 (function () {
   "use strict";
   var IDX = null, IDX_AT = 0, BARS = {}, NY = "America/New_York";
@@ -211,6 +212,152 @@
       '<div class="ta-fund-grid">' + tiles + "</div>" + (rows ? '<div class="ta-fund-rows">' + rows + "</div>" : "") + "</section>";
   }
 
+
+  /* ───── np156 (27.10.2026, איציק): ניתוח מקוצר לכל טיקר — גם כזה שלא במעקב באתר ─────
+     בלי נרות שמורים אין מנוע מלא, אז הכל מגיע עכשיו מהסורק של TradingView (שתי בקשות פשוטות:
+     יסודות = אותן 31 עמודות של build_fundamentals.py, טכני = ממוצעים/מד חום/ביצועים/טווח שנתי).
+     כשל של אחת מהן לא מפיל את השנייה. */
+  var SCAN = "https://scanner.tradingview.com/america/scan";
+  var FCOLS = ["name", "description", "sector", "industry", "market_cap_basic", "close",
+    "price_earnings_ttm", "price_earnings_fwd", "earnings_per_share_diluted_ttm", "earnings_per_share_forecast_next_fy",
+    "total_revenue_yoy_growth_ttm", "earnings_per_share_diluted_yoy_growth_ttm",
+    "gross_margin_ttm", "operating_margin_ttm", "net_margin_ttm", "free_cash_flow_margin_ttm",
+    "cash_n_short_term_invest_fq", "total_debt_fq", "dividends_yield_current",
+    "price_target_average", "recommendation_mark", "recommendation_total",
+    "recommendation_buy", "recommendation_over", "recommendation_hold", "recommendation_under", "recommendation_sell",
+    "earnings_per_share_forecast_next_fq", "revenue_forecast_next_fq",
+    "earnings_release_next_date", "earnings_release_next_time", "exchange"];
+  var TCOLS = ["name", "close", "change", "SMA20", "SMA50", "SMA200", "RSI", "Perf.W", "Perf.1M", "Perf.3M",
+    "price_52_week_high", "price_52_week_low", "ATR"];
+  function scanRow(tvSym, cols, cb) {
+    fetch(SCAN, { method: "POST", body: JSON.stringify({
+      filter: [{ left: "name", operation: "equal", right: tvSym }, { left: "exchange", operation: "in_range", right: ["NASDAQ", "NYSE", "AMEX"] }],
+      columns: cols, range: [0, 3] }) })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        var row = d && (d.data || []).filter(function (x) { return x.d && x.d[0] === tvSym; })[0];
+        if (!row) { cb(null); return; }
+        var o = {}; cols.forEach(function (c, i) { o[c] = row.d[i]; }); cb(o);
+      }).catch(function () { cb(null); });
+  }
+  function num(v) { return typeof v === "number" && isFinite(v) ? v : null; }
+  function rnd(v, d) { return v == null ? null : Math.round(v * Math.pow(10, d)) / Math.pow(10, d); }
+  function nyDate(ts) {
+    try { return new Intl.DateTimeFormat("en-CA", { timeZone: NY, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(ts * 1000)); }
+    catch (e) { return new Date(ts * 1000).toISOString().slice(0, 10); }
+  }
+  // פורט של build_fundamentals.parse / quality / read_sentence — אותם שדות ואותם משפטים
+  function parseFund(d) {
+    var close = num(d.close), fwdEps = num(d.earnings_per_share_forecast_next_fy), fwdPe = num(d.price_earnings_fwd);
+    if (fwdPe == null && close && fwdEps && fwdEps > 0) fwdPe = close / fwdEps;
+    var cash = num(d.cash_n_short_term_invest_fq), debt = num(d.total_debt_fq), ts = num(d.earnings_release_next_date);
+    var f = {
+      name: d.description, sector: d.sector, industry: d.industry, exchange: d.exchange,
+      cap: num(d.market_cap_basic), price: close,
+      pe: rnd(num(d.price_earnings_ttm), 2), fwdPe: rnd(fwdPe, 2),
+      eps: num(d.earnings_per_share_diluted_ttm), fwdEps: fwdEps,
+      revGrowth: rnd(num(d.total_revenue_yoy_growth_ttm), 1), opMargin: rnd(num(d.operating_margin_ttm), 1),
+      netMargin: rnd(num(d.net_margin_ttm), 1), fcfMargin: rnd(num(d.free_cash_flow_margin_ttm), 1),
+      netCash: (cash != null && debt != null) ? cash - debt : null,
+      divYield: rnd(num(d.dividends_yield_current), 2), target: rnd(num(d.price_target_average), 2), targetN: num(d.recommendation_total),
+      recs: { strongBuy: num(d.recommendation_buy), buy: num(d.recommendation_over), hold: num(d.recommendation_hold), sell: num(d.recommendation_under), strongSell: num(d.recommendation_sell) },
+      epsEst: num(d.earnings_per_share_forecast_next_fq), revEst: num(d.revenue_forecast_next_fq),
+      nextEarn: ts ? { date: nyDate(ts), when: d.earnings_release_next_time === 1 ? "after" : d.earnings_release_next_time === -1 ? "before" : "" } : null
+    };
+    var q = quality(f); f.quality = q; f.read = readSentence(f, q);
+    return f;
+  }
+  function profitable(f) { return (f.eps != null && f.eps > 0) || (f.netMargin != null && f.netMargin > 0); }
+  function quality(f) {
+    var cap = f.cap, g = f.revGrowth, prof = profitable(f);
+    if (cap == null) return { q: "mid", label: "חסר מידע" };
+    if (cap < 3e8 || (!prof && g != null && g < 0)) return { q: "bad", label: "ספקולטיבית" };
+    if (cap >= 2e9 && prof && (g == null || g >= 0)) return { q: "ok", label: "מבוססת" };
+    if (!prof) return { q: "mid", label: (g || 0) > 0 ? "צומחת, לא רווחית" : "לא רווחית" };
+    if (cap < 2e9) return { q: "mid", label: "קטנה" };
+    return { q: "mid", label: (g != null && g < 0) ? "רווחית, ההכנסות יורדות" : "מעורבת" };
+  }
+  function readSentence(f, q) {
+    var prof = profitable(f), g = f.revGrowth, s;
+    if (prof && g != null && g > 0) s = "חברה רווחית וצומחת";
+    else if (prof && g != null) s = "חברה רווחית, אבל ההכנסות יורדות";
+    else if (prof) s = "חברה רווחית";
+    else if (g != null && g > 0) s = "צומחת אבל עדיין לא רווחית";
+    else if (g != null) s = "לא רווחית וההכנסות יורדות";
+    else s = "נתוני הרווחיות חסרים";
+    var pe = f.fwdPe || f.pe;
+    if (pe && pe > 0) s += " במכפיל " + (pe > 35 ? "גבוה" : pe >= 15 ? "סביר" : "נמוך");
+    if (f.netCash != null && f.cap) { if (f.netCash > 0) s += ", עם יותר מזומן מחוב"; else if (-f.netCash > 0.3 * f.cap) s += ", ממונפת (החוב נטו מעל 30% מהשווי)"; }
+    if (q.q === "bad") s += ". שווי קטן או חברה מפסידה: תנודתית, לא לפוזיציה מלאה";
+    return s + ".";
+  }
+  function sgn(v, d) { return v == null ? "—" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d == null ? 1 : d) + "%"; }
+  function upDn(v) { return v == null ? "" : v > 0 ? "up" : v < 0 ? "down" : ""; }
+  function techHtml(t) {
+    var c = num(t.close); if (!c) return "";
+    var m20 = num(t.SMA20), m50 = num(t.SMA50), m200 = num(t.SMA200), rsi = num(t.RSI);
+    var hi = num(t.price_52_week_high), lo = num(t.price_52_week_low), atr = num(t.ATR);
+    var a20 = m20 != null ? c > m20 : null, a50 = m50 != null ? c > m50 : null, a200 = m200 != null ? c > m200 : null;
+    var trend = a200 == null || a50 == null ? null :
+      (a200 && a50 && a20) ? ["מגמה עולה", "ok"] : (a200 && a50) ? ["עולה, בתיקון קצר", "ok"] :
+      a200 ? ["תיקון בתוך מגמה עולה", "mid"] : a50 ? ["ניסיון התאוששות", "mid"] : ["מגמה יורדת", "bad"];
+    var offHi = hi ? (c / hi - 1) * 100 : null, fromLo = lo ? (c / lo - 1) * 100 : null;
+    var rsiW = rsi == null ? "" : rsi > 70 ? "חם מדי" : rsi >= 65 ? "מתחמם" : rsi >= 45 ? "נוח" : rsi >= 30 ? "חלש" : "מכירת יתר";
+    var h = '<section class="ta-qsec" aria-label="תמונה טכנית"><div class="ta-fund-h"><h4>תמונה טכנית</h4>' +
+      (trend ? '<span class="ta-fq ' + trend[1] + '">' + trend[0] + "</span>" : "") + '<span class="ta-fund-src">מהסורק של TradingView · עכשיו</span></div>';
+    if (hi && lo && hi > lo) {
+      var pos = Math.max(0, Math.min(100, (c - lo) / (hi - lo) * 100));
+      h += '<div class="ta-range"><div class="ta-range-l" dir="ltr"><span>שפל שנתי <b class="num">$' + f2(lo) + '</b></span><span>שיא שנתי <b class="num">$' + f2(hi) + "</b></span></div>" +
+        '<div class="ta-range-t" dir="ltr" role="img" aria-label="המחיר ב-' + Math.round(pos) + '% מהטווח השנתי"><i style="width:' + pos.toFixed(1) + '%"></i><b style="left:' + pos.toFixed(1) + '%"></b></div>' +
+        '<div class="ta-range-s">המחיר <b class="num" dir="ltr">' + sgn(offHi) + '</b> מהשיא השנתי, <b class="num" dir="ltr">' + sgn(fromLo, 0) + "</b> מעל השפל</div></div>";
+    }
+    function maChip(n, v, a) { return v == null ? "" : '<div class="ta-ma ' + (a ? "ok" : "bad") + '"><i aria-hidden="true">' + (a ? "✓" : "✗") + "</i>" + (a ? "מעל " : "מתחת ל") + "ממוצע " + n + ' <span class="num" dir="ltr">' + f2(v) + "</span></div>"; }
+    h += '<div class="ta-mas">' + maChip(20, m20, a20) + maChip(50, m50, a50) + maChip(200, m200, a200) + "</div>";
+    h += '<div class="ta-fund-grid ta-qtiles">' + ftile("מד חום", rsi == null ? "—" : Math.round(rsi), rsiW) +
+      ftile("שבוע", sgn(num(t["Perf.W"])), "", upDn(num(t["Perf.W"]))) + ftile("חודש", sgn(num(t["Perf.1M"])), "", upDn(num(t["Perf.1M"]))) +
+      ftile("3 חודשים", sgn(num(t["Perf.3M"])), "", upDn(num(t["Perf.3M"]))) +
+      ftile("תנודה יומית", atr ? (atr / c * 100).toFixed(1) + "%" : "—", "ממוצע 14 יום") + "</div>";
+    // קריאה — כללים קבועים, תיאור ולא תחזית
+    var parts = [];
+    if (a20 != null && a50 != null && a200 != null) {
+      var up = [], dn = []; [[20, a20], [50, a50], [200, a200]].forEach(function (x) { (x[1] ? up : dn).push(x[0]); });
+      parts.push(!dn.length ? "מעל שלושת הממוצעים" : !up.length ? "מתחת לשלושת הממוצעים" : "מעל ממוצע " + up.join(" ו-") + ", מתחת ל-" + dn.join(" ו-"));
+    }
+    if (offHi != null) parts.push(offHi >= -3 ? "ליד השיא השנתי" : offHi >= -10 ? "קרוב לשיא השנתי" : offHi >= -25 ? Math.round(-offHi) + "% מתחת לשיא השנתי" : "רחוק מאוד מהשיא השנתי (" + Math.round(-offHi) + "%)");
+    if (rsi != null) parts.push("מד חום " + rsiW + " (" + Math.round(rsi) + ")");
+    var read = parts.length ? parts.join(", ") + "." : "";
+    var p3 = num(t["Perf.3M"]);
+    if (p3 != null) read += Math.abs(p3) < 3 ? " בשלושה חודשים כמעט לא זזה." : " בשלושה חודשים " + (p3 > 0 ? "עלתה " : "ירדה ") + Math.abs(p3).toFixed(0) + "%.";
+    if (a200 === false && a50 === false) read += " חזרה מעל ממוצע 50 היא הסימן הראשון לשינוי.";
+    else if (offHi != null && offHi >= -3 && a50) read += " פריצה מעל השיא השנתי היא מה שיאשר המשך.";
+    if (read) h += '<div class="ta-fund-rows"><div class="ta-fr"><span class="ta-fr-k">קריאה</span><span class="ta-fr-v">' + esc(read.trim()) + "</span></div></div>";
+    return h + "</section>";
+  }
+  function quickRender(sym, el, fund) {
+    var tvSym = sym.replace(/-/g, "."), got = 0, F = null, T = null;
+    function done() {
+      if (++got < 2) return;
+      var stored = fund && fund.symbols && fund.symbols[sym];
+      var f = (stored && stored.cap != null) ? stored : F;
+      if (!f && !T) { el.innerHTML = '<div class="ta-msg">לא נמצא טיקר <b dir="ltr">' + esc(sym) + "</b> בבורסות האמריקאיות (NASDAQ / NYSE / AMEX).<br>אפשר לבדוק את האיות, או לפתוח את הלשונית \"גרף TradingView\".</div>"; return; }
+      var close = (T && num(T.close)) || (f && f.price), chg = T ? num(T.change) : null;
+      var h = ['<div class="ta ta-quick">'];
+      h.push('<div class="ta-qhd"><b>' + esc((f && f.name) || sym) + "</b>" + (F && F.exchange ? '<span class="mute">' + esc(F.exchange) + "</span>" : "") +
+        (close ? '<span class="num" dir="ltr">$' + f2(close) + "</span>" : "") + (chg != null ? '<span class="num ' + upDn(chg) + '" dir="ltr">' + sgn(chg, 2) + "</span>" : "") + "</div>");
+      h.push('<div class="ta-qbanner"><b>ניתוח מקוצר.</b> המניה לא במעקב באתר, ולכן אין לנו את ההיסטוריה שהמנוע המלא צריך. מה שמוצג כאן מגיע עכשיו מהסורק של TradingView.</div>');
+      if (T) h.push(techHtml(T)); else h.push('<div class="ta-msg">הנתונים הטכניים לא נטענו כרגע. אפשר לפתוח את הלשונית "גרף TradingView".</div>');
+      if (f) {
+        if (!f.about && f.sector) f = Object.assign({}, f, { about: "ענף: " + f.sector + (f.industry ? " · תעשייה: " + f.industry : "") });
+        h.push(fundHtml(sym, f, close));
+      }
+      h.push('<div class="ta-qnext"><b>הניתוח המלא</b> — אריחי המגמה, תמיכות והתנגדויות על הגרף, מכונת הפריצה ו"אישור מחיר" — זמין למניות שבמעקב באתר. חיבור שמביא היסטוריה לכל טיקר יאפשר אותו גם כאן.</div>');
+      h.push('<div class="ta-foot">נתונים: סורק TradingView, נכון לרגע הפתיחה · תיאור טכני ופונדמנטלי בלבד, לא ייעוץ השקעות.</div></div>');
+      el.innerHTML = h.join("");
+    }
+    scanRow(tvSym, FCOLS, function (d) { F = d && num(d.market_cap_basic) != null ? parseFund(d) : null; if (F) F.exchange = d.exchange; done(); });
+    scanRow(tvSym, TCOLS, function (d) { T = d; done(); });
+  }
+
   function render(sym, el, bars, meta, fund) {
     var r;
     try { r = window.TAEngine.analyze(bars, { symbol: sym }); }
@@ -264,7 +411,7 @@
     ensureEngine(function (err) {
       if (err || !window.TAEngine) { el.innerHTML = '<div class="ta-msg">טעינת מנוע הניתוח נכשלה</div>'; return; }
       loadBars(sym, function (d) {
-        if (!d) { el.innerHTML = '<div class="ta-msg">אין עדיין נתוני נרות ל־<b dir="ltr">' + esc(sym) + '</b>.<br>הבוט שומר 500 נרות יומיים למניות שמופיעות באתר ולרשימת המעקב (data/ta_watchlist.txt); מניה חדשה מתווספת בעדכון הבא (עד ~15 דקות, אחרי סגירת המסחר).</div>'; return; }
+        if (!d) { loadFund(function (fund) { quickRender(sym, el, fund); }); return; }   // np156: ניתוח מקוצר מהסורק
         var bars = d.bars.slice();
         liveBar(sym, function (lb) {
           if (lb && lb.date > bars[bars.length - 1].date) bars.push(lb);
