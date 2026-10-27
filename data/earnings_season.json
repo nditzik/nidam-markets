@@ -181,24 +181,24 @@
   }
  ],
  "total": 454,
- "reported": 146,
+ "reported": 152,
  "members": 504,
  "board": {
-  "reported": 146,
-  "epsN": 146,
-  "epsBeat": 116,
-  "epsBeatPct": 79,
-  "revN": 146,
-  "revBeat": 95,
-  "revBeatPct": 65,
-  "reactBeat": 0.68,
-  "reactBeatN": 90,
-  "reactMiss": -0.07,
-  "reactMissN": 18,
+  "reported": 152,
+  "epsN": 152,
+  "epsBeat": 121,
+  "epsBeatPct": 80,
+  "revN": 152,
+  "revBeat": 100,
+  "revBeatPct": 66,
+  "reactBeat": 0.78,
+  "reactBeatN": 112,
+  "reactMiss": -1.3,
+  "reactMissN": 29,
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 49,
+    "n": 50,
     "beat": 36
    },
    {
@@ -208,8 +208,8 @@
    },
    {
     "name": "טכנולוגיה",
-    "n": 16,
-    "beat": 13
+    "n": 19,
+    "beat": 16
    },
    {
     "name": "צריכה מחזורית",
@@ -223,8 +223,8 @@
    },
    {
     "name": "חומרים",
-    "n": 8,
-    "beat": 5
+    "n": 9,
+    "beat": 6
    },
    {
     "name": "צריכה בסיסית",
@@ -233,8 +233,8 @@
    },
    {
     "name": "תשתיות",
-    "n": 4,
-    "beat": 3
+    "n": 5,
+    "beat": 4
    },
    {
     "name": "אנרגיה",
@@ -254,6 +254,16 @@
     "eps": 1.3
    },
    {
+    "sym": "XYL",
+    "react": -14.21,
+    "eps": -0.6
+   },
+   {
+    "sym": "PNR",
+    "react": 12.8,
+    "eps": 9.9
+   },
+   {
     "sym": "LRCX",
     "react": -11.76,
     "eps": 0.8
@@ -267,21 +277,11 @@
     "sym": "HAS",
     "react": 11.2,
     "eps": 56.2
-   },
-   {
-    "sym": "ALLE",
-    "react": 11.02,
-    "eps": 3.9
-   },
-   {
-    "sym": "ROP",
-    "react": 9.73,
-    "eps": 1.7
    }
   ]
  },
  "_meta": {
-  "updatedAt": "27/10/2026 22:16",
+  "updatedAt": "27/10/2026 22:32",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
