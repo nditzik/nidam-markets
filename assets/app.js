@@ -34,7 +34,7 @@
   var GROUPS = {
     market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"]], def: "indices" },
     calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
-    stocks:   { subs: [["picks", "הנבחרות"], ["candidates", "מועמדים"], ["momentum", "מומנטום"], ["trades", "הצעות לטרייד"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
+    stocks:   { subs: [["analyze", "נתח מניה"], ["picks", "הנבחרות"], ["candidates", "מועמדים"], ["momentum", "מומנטום"], ["trades", "הצעות לטרייד"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
     news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" }
   };
   var SUB2TOP = {}, LAST_SUB = {};
@@ -383,6 +383,67 @@
     }).join("") + "</div>";
   }
 
+
+  /* ---- np156 (27.10.2026, איציק): "נתח מניה" — כל טיקר אמריקאי, גם כזה שלא מופיע באתר ----
+     נקודות כניסה: תיבת החיפוש בכותרת (כפתור + Enter) ופאנל משלו בראש טאב מניות. הניתוח עצמו =
+     החלון הקיים (openChart): מניה במעקב → המנוע המלא; אחרת ta_ui מציג ניתוח מקוצר + יסודות מהסורק. */
+  var TICKER_RE = /^[A-Za-z][A-Za-z.\-]{0,5}$/;
+  var AN_KEY = "np-an-recent";
+  function anRecent() { try { var a = JSON.parse(localStorage.getItem(AN_KEY) || "[]"); return Array.isArray(a) ? a.filter(function (x) { return TICKER_RE.test(x); }).slice(0, 8) : []; } catch (e) { return []; } }
+  function anRemember(sym) {
+    try { var a = anRecent().filter(function (x) { return x !== sym; }); a.unshift(sym); localStorage.setItem(AN_KEY, JSON.stringify(a.slice(0, 8))); } catch (e) {}
+    renderAnalyzeRecent();
+  }
+  function openAnalysis(sym) {
+    sym = String(sym || "").trim().toUpperCase();
+    if (!TICKER_RE.test(sym)) return;
+    anRemember(sym);
+    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "/analyze/run", event: true });
+    openChart(sym);
+  }
+  window.__openAnalysis = openAnalysis;
+  function renderAnalyzeRecent() {
+    var el = document.getElementById("an-recent");
+    if (!el) return;
+    var a = anRecent();
+    el.innerHTML = a.length ? '<span class="mute s">חיפושים אחרונים</span>' + a.map(function (x) { return '<button type="button" class="an-chip num" dir="ltr" data-sym="' + esc(x) + '">' + esc(x) + "</button>"; }).join("") + '<span class="mute s">נשמרים רק בדפדפן שלך</span>' : "";
+    el.querySelectorAll(".an-chip").forEach(function (b) { b.addEventListener("click", function () { openAnalysis(b.dataset.sym); }); });
+  }
+  function renderAnalyze() {
+    var el = document.getElementById("panel-analyze");
+    if (!el || el.dataset.ready) return;
+    el.dataset.ready = "1";
+    el.innerHTML = '<div class="board"><div class="pan an-pan"' + bdSpan(12) + ">" +
+      panHd("נתח מניה · כל טיקר אמריקאי", '<span class="mute">ניתוח טכני + יסודות החברה, גם למניה שלא מופיעה באתר</span>') +
+      '<div class="pb"><form class="an-form" id="an-form" autocomplete="off"><label class="sr-only" for="an-q">טיקר</label>' +
+        '<input id="an-q" class="an-q num" type="text" inputmode="text" maxlength="8" placeholder="AAPL" dir="ltr" spellcheck="false" autocapitalize="characters">' +
+        '<button type="submit" class="an-go">נתח</button><div id="an-name" class="an-name" aria-live="polite"></div></form>' +
+        '<div id="an-recent" class="an-recent"></div>' +
+        '<div class="led an-led"><div><b>מניה שבמעקב באתר</b><span class="mute">הניתוח המלא: מגמה, תמיכות והתנגדויות, מכונת הפריצה ויסודות החברה</span></div>' +
+        '<div><b>כל מניה אחרת</b><span class="mute">ניתוח טכני מקוצר + יסודות החברה, ישר מהסורק של TradingView</span></div></div>' +
+      "</div></div></div>";
+    var form = document.getElementById("an-form"), q = document.getElementById("an-q"), nm = document.getElementById("an-name"), deb = null, seq = 0;
+    q.addEventListener("input", function () {
+      clearTimeout(deb);
+      var v = q.value.trim().toUpperCase();
+      if (!TICKER_RE.test(v)) { nm.textContent = ""; return; }
+      deb = setTimeout(function () {
+        var my = ++seq;
+        fetch("https://scanner.tradingview.com/america/scan", { method: "POST", body: JSON.stringify({
+          filter: [{ left: "name", operation: "equal", right: v.replace(/-/g, ".") }, { left: "exchange", operation: "in_range", right: ["NASDAQ", "NYSE", "AMEX"] }],
+          columns: ["name", "description", "exchange"], range: [0, 3] }) })
+          .then(function (r) { return r.json(); }).then(function (d) {
+            if (my !== seq) return;
+            var row = (d.data || [])[0];
+            nm.textContent = row ? row.d[1] + " · " + row.d[2] : "לא נמצא בבורסות האמריקאיות";
+            nm.classList.toggle("bad", !row);
+          }).catch(function () {});
+      }, 300);
+    });
+    form.addEventListener("submit", function (e) { e.preventDefault(); openAnalysis(q.value); });
+    renderAnalyzeRecent();
+  }
+
   /* ---- חיפוש כלל-אתרי: סורק את כל הנתונים שכבר בזיכרון הדפדפן (בלי שרת) ---- */
   function tickerCard(sym) {
     var hits = [];
@@ -453,13 +514,15 @@
       body: JSON.stringify({
         filter: [{ left: "name", operation: "in_range", right: [sym] },
                  { left: "exchange", operation: "in_range", right: ["NASDAQ", "NYSE", "AMEX"] }],
-        columns: ["name", "close", "change"], range: [0, 3]
+        columns: ["name", "close", "change", "description", "exchange"], range: [0, 3]
       })
     }).then(function (x) { return x.json(); }).then(function (d) {
       var row = (d.data || [])[0];
       var el = document.getElementById("sr-quote");
       if (!row || !el) return;
       var px = row.d[1], chg = row.d[2];
+      var nm = document.getElementById("sr-name");
+      if (nm) nm.textContent = [row.d[3], row.d[4]].filter(Boolean).join(" · ");
       el.innerHTML = '<b class="num">' + fmtQuote(px) + "</b> " +
         '<span class="num ' + (chg >= 0 ? "up" : "down") + '" dir="ltr">' + (chg > 0 ? "+" : "") + Number(chg).toFixed(2) + "%</span>";
     }).catch(function () {});
@@ -470,17 +533,19 @@
     q = (q || "").trim();
     if (q.length < 2) { panel.hidden = true; return; }
     var html = "";
-    var isTicker = /^[A-Za-z][A-Za-z.\-]{0,5}$/.test(q);
+    var isTicker = TICKER_RE.test(q);
     if (isTicker) {
       var sym = q.toUpperCase();
       var hits = tickerCard(sym);
       html += '<div class="sr-tick"><div class="sr-tick-h"><b dir="ltr">' + esc(sym) + '</b><span id="sr-quote" class="sr-q"></span>' +
         '<a href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) + '/" target="_blank" rel="noopener">גרף ↗</a></div>' +
+        '<div id="sr-name" class="sr-name"></div>' +
+        '<button type="button" class="sr-ta" data-sym="' + esc(sym) + '">ניתוח טכני ופונדמנטלי</button>' +
         (hits.length
           ? hits.map(function (h) {
               return '<button class="sr-item" data-tab="' + h[0] + '">' + esc(h[1]) + "</button>";
             }).join("")
-          : '<div class="sr-none">לא נמצאת כרגע באף לוח באתר</div>') +
+          : '<div class="sr-none">לא מופיעה כרגע באתר — הניתוח עובד לכל טיקר אמריקאי</div>') +
         "</div>";
     }
     var rows = searchSite(q);
@@ -493,6 +558,13 @@
     panel.innerHTML = html;
     panel.hidden = false;
     if (isTicker) srQuote(q.toUpperCase());
+    var ta = panel.querySelector(".sr-ta");
+    if (ta) ta.addEventListener("click", function () {
+      panel.hidden = true;
+      var inp = document.getElementById("site-search");
+      if (inp) inp.blur();
+      openAnalysis(ta.dataset.sym);
+    });
     panel.querySelectorAll(".sr-item").forEach(function (b) {
       b.addEventListener("click", function () {
         panel.hidden = true;
@@ -512,6 +584,14 @@
       deb = setTimeout(function () { renderSearch(inp.value); }, 180);
     });
     inp.addEventListener("focus", function () { if (inp.value.trim().length >= 2) renderSearch(inp.value); });
+    // np156: Enter על טיקר פותח את הניתוח (לכל טיקר אמריקאי, גם שלא באתר)
+    inp.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+      var q = inp.value.trim();
+      if (!TICKER_RE.test(q)) return;
+      e.preventDefault(); panel.hidden = true; inp.blur();
+      openAnalysis(q.toUpperCase());
+    });
     document.addEventListener("keydown", function (e) {
       if (e.key === "/" && document.activeElement !== inp &&
           !/INPUT|TEXTAREA/.test((document.activeElement || {}).tagName || "")) {
@@ -610,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np155";
+  var TA_VER = "np156";
   window.__npVer = TA_VER;
   window.__jsSession = function () { return jsSession(); };
   function ensureTaUi(cb) {
@@ -694,11 +774,8 @@
     wrap.querySelector(".tvm-x").addEventListener("click", closeChart);
     wrap.querySelectorAll(".tvm-tab").forEach(function (b) { b.addEventListener("click", function () { showChartView(sym, b.dataset.view); }); });
     document.addEventListener("keydown", escChart);
-    // ברירת מחדל: ניתוח טכני כשיש נרות שמורים לסמל, אחרת גרף TradingView
-    var decided = false;
-    function decide(has) { if (decided || !document.getElementById("tvm-wrap")) return; decided = true; showChartView(sym, has ? "ta" : "tv"); }
-    ensureTaUi(function (err) { if (err || !window.__taHas) { decide(false); return; } window.__taHas(sym, decide); });
-    setTimeout(function () { decide(false); }, 4000);
+    // np156: ברירת המחדל תמיד "ניתוח טכני" — לסמל בלי נרות שמורים ta_ui מציג ניתוח מקוצר מהסורק
+    showChartView(sym, "ta");
   }
   document.addEventListener("click", function (e) {
     var t = e.target;
@@ -4558,6 +4635,7 @@
   function boot() {
     loadTicker();
     initSearch();
+    renderAnalyze();
     renderDayMeta();
     setInterval(renderDayMeta, 3600000);   // מתרענן שעה-שעה (חוצה-חצות)
     setInterval(loadTicker, 180000);        // הקובץ מהשרת (ספארקים + tnx) כל 3 דק'
