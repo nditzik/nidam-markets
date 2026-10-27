@@ -5,7 +5,7 @@
     {
       "ticker": "V",
       "name": "Visa Inc. Class A",
-      "capB": 747.0
+      "capB": 746.0
     },
     {
       "ticker": "KO",
@@ -25,22 +25,22 @@
     {
       "ticker": "STX",
       "name": "Seagate Technology Holdings PLC",
-      "capB": 153.1
+      "capB": 153.3
     },
     {
       "ticker": "BA",
       "name": "Boeing Company",
-      "capB": 134.9
+      "capB": 134.8
     },
     {
       "ticker": "SPGI",
       "name": "S&P Global, Inc.",
-      "capB": 132.5
+      "capB": 132.1
     },
     {
       "ticker": "GLW",
       "name": "Corning Inc",
-      "capB": 109.8
+      "capB": 109.2
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WELL.png",
-            "chg": -6.29,
-            "price": 225.48,
+            "chg": -6.44,
+            "price": 225.11,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/CDNS.png",
             "logoBg": "dark",
-            "chg": 7.4,
-            "price": 345.99,
+            "chg": 7.33,
+            "price": 345.8,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NUE.png",
-            "chg": 5.96,
-            "price": 272.68,
+            "chg": 5.77,
+            "price": 272.19,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PSA.png",
-            "chg": 1.78,
-            "price": 312.45,
+            "chg": 1.69,
+            "price": 312.14,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HIG.png",
-            "chg": -1.66,
-            "price": 133.69,
+            "chg": -1.71,
+            "price": 133.61,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           }
@@ -167,17 +167,6 @@
             "baseDate": "2026-10-22"
           },
           {
-            "ticker": "FCNCA",
-            "name": "First Citizens BancShares, Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FCNCA.png",
-            "chg": 8.15,
-            "price": 2375.84,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
             "ticker": "FCNCN",
             "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
             "when": "before",
@@ -185,6 +174,17 @@
             "logo": "data/earnings/logos/FCNCN.png",
             "chg": 0.23,
             "price": 22.15,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "FCNCO",
+            "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FCNCO.png",
+            "chg": 1.04,
+            "price": 18.43,
             "reactDate": "2026-10-23",
             "baseDate": "2026-10-22"
           }
@@ -812,8 +812,8 @@
     "VTR": "2026-10-27",
     "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
-    "CNC": "2026-10-27",
     "EQT": "2026-10-27",
+    "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
     "EXR": "2026-10-27",
     "SHG": "2026-10-27",
@@ -824,8 +824,8 @@
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "XYL": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "EXE": "2026-10-27",
     "CMS": "2026-10-27",
     "SOFI": "2026-10-27",
@@ -833,8 +833,8 @@
     "MSFT": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -852,8 +852,8 @@
     "AEM": "2026-10-28",
     "VRT": "2026-10-28",
     "CP": "2026-10-28",
-    "FDX": "2026-10-28",
     "ORLY": "2026-10-28",
+    "FDX": "2026-10-28",
     "AEP": "2026-10-28",
     "BSX": "2026-10-28",
     "CVNA": "2026-10-28",
@@ -915,15 +915,15 @@
     "LYG": "2026-10-29",
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
-    "AJG": "2026-10-29",
     "DLR": "2026-10-29",
+    "AJG": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
-    "MSTR": "2026-10-29",
-    "STRF": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRF": "2026-10-29",
     "STRC": "2026-10-29",
     "STRD": "2026-10-29",
+    "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
@@ -936,8 +936,8 @@
     "COIN": "2026-10-29",
     "DHI": "2026-10-29",
     "STM": "2026-10-29",
-    "RBLX": "2026-10-29",
     "TWLO": "2026-10-29",
+    "RBLX": "2026-10-29",
     "KB": "2026-10-29",
     "WEC": "2026-10-29",
     "RMD": "2026-10-29",
@@ -948,8 +948,8 @@
     "CQP": "2026-10-29",
     "TECK": "2026-10-29",
     "ALNY": "2026-10-29",
-    "DXCM": "2026-10-29",
     "CTSH": "2026-10-29",
+    "DXCM": "2026-10-29",
     "EME": "2026-10-29",
     "WTW": "2026-10-29",
     "IR": "2026-10-29",
@@ -995,8 +995,8 @@
     "LYB": "2026-10-30",
     "NVT": "2026-10-30",
     "AAPL": "2026-11-02",
-    "BRK.B": "2026-11-02",
     "BRK.A": "2026-11-02",
+    "BRK.B": "2026-11-02",
     "PLTR": "2026-11-02",
     "VRTX": "2026-11-02",
     "MAR": "2026-11-02",
@@ -1056,8 +1056,8 @@
     "SWKS": "2026-11-03",
     "BR": "2026-11-03",
     "OVV": "2026-11-03",
-    "DD": "2026-11-03",
     "TOST": "2026-11-03",
+    "DD": "2026-11-03",
     "DT": "2026-11-03",
     "FIS": "2026-11-03",
     "RVTY": "2026-11-03",
@@ -1065,7 +1065,7 @@
     "LDOS": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 20:11",
+    "updatedAt": "27/10/2026 20:16",
     "source": "tradingview"
   }
 }
