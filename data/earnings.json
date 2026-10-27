@@ -5,12 +5,12 @@
     {
       "ticker": "V",
       "name": "Visa Inc. Class A",
-      "capB": 746.7
+      "capB": 750.3
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "capB": 393.1
+      "capB": 392.3
     },
     {
       "ticker": "HSBC",
@@ -25,22 +25,22 @@
     {
       "ticker": "STX",
       "name": "Seagate Technology Holdings PLC",
-      "capB": 153.1
+      "capB": 151.9
     },
     {
       "ticker": "BA",
       "name": "Boeing Company",
-      "capB": 132.6
+      "capB": 132.9
     },
     {
       "ticker": "SPGI",
       "name": "S&P Global, Inc.",
-      "capB": 132.4
+      "capB": 132.3
     },
     {
       "ticker": "GLW",
       "name": "Corning Inc",
-      "capB": 109.1
+      "capB": 108.8
     }
   ],
   "reactions": {
@@ -64,10 +64,10 @@
             "ticker": "WELL",
             "name": "Welltower Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/WELL.png",
-            "chg": -5.86,
-            "price": 226.51,
+            "chg": -5.77,
+            "price": 226.73,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -87,7 +87,7 @@
             "ticker": "NUE",
             "name": "Nucor Corporation",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/NUE.png",
             "chg": 5.22,
             "price": 270.79,
@@ -98,10 +98,10 @@
             "ticker": "PSA",
             "name": "Public Storage",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/PSA.png",
-            "chg": 1.82,
-            "price": 312.56,
+            "chg": 1.79,
+            "price": 312.47,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -109,10 +109,10 @@
             "ticker": "HIG",
             "name": "Hartford Insurance Group, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/HIG.png",
-            "chg": -1.8,
-            "price": 133.49,
+            "chg": -1.79,
+            "price": 133.51,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           }
@@ -217,6 +217,17 @@
             "baseDate": "2026-10-21"
           },
           {
+            "ticker": "BX",
+            "name": "Blackstone Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BX.png",
+            "chg": 8.38,
+            "price": 118.75,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
             "ticker": "LMT",
             "name": "Lockheed Martin Corporation",
             "when": "before",
@@ -225,17 +236,6 @@
             "logoBg": "dark",
             "chg": 6.96,
             "price": 589.91,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "BX",
-            "name": "Blackstone Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BX.png",
-            "chg": 8.38,
-            "price": 118.75,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -329,16 +329,16 @@
       "logo": "data/earnings/logos/FCX.png"
     },
     {
-      "ticker": "WM",
-      "name": "Waste Management, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/WM.png"
-    },
-    {
       "ticker": "JCI",
       "name": "Johnson Controls International plc",
       "when": "before",
       "logo": "data/earnings/logos/JCI.png"
+    },
+    {
+      "ticker": "WM",
+      "name": "Waste Management, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/WM.png"
     }
   ],
   "more": 36,
@@ -525,16 +525,16 @@
           "logo": "data/earnings/logos/FCX.png"
         },
         {
-          "ticker": "WM",
-          "name": "Waste Management, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/WM.png"
-        },
-        {
           "ticker": "JCI",
           "name": "Johnson Controls International plc",
           "when": "before",
           "logo": "data/earnings/logos/JCI.png"
+        },
+        {
+          "ticker": "WM",
+          "name": "Waste Management, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/WM.png"
         }
       ]
     },
@@ -792,14 +792,14 @@
     "GLW": "2026-10-27",
     "HCA": "2026-10-27",
     "FCX": "2026-10-27",
-    "WM": "2026-10-27",
     "JCI": "2026-10-27",
+    "WM": "2026-10-27",
     "UPS": "2026-10-27",
-    "HOOD": "2026-10-27",
     "AMT": "2026-10-27",
+    "HOOD": "2026-10-27",
     "ECL": "2026-10-27",
-    "SHW": "2026-10-27",
     "RCL": "2026-10-27",
+    "SHW": "2026-10-27",
     "ITW": "2026-10-27",
     "HLT": "2026-10-27",
     "NXPI": "2026-10-27",
@@ -820,21 +820,21 @@
     "CNP": "2026-10-27",
     "FE": "2026-10-27",
     "FFIV": "2026-10-27",
-    "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
+    "LPLA": "2026-10-27",
     "HUBB": "2026-10-27",
-    "XYL": "2026-10-27",
     "EXE": "2026-10-27",
     "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "XYL": "2026-10-27",
     "CMS": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
     "MSFT": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -915,16 +915,16 @@
     "LYG": "2026-10-29",
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
-    "AJG": "2026-10-29",
     "DLR": "2026-10-29",
+    "AJG": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
-    "MPWR": "2026-10-29",
     "MSTR": "2026-10-29",
-    "STRC": "2026-10-29",
+    "MPWR": "2026-10-29",
     "STRK": "2026-10-29",
-    "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRF": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
     "LHX": "2026-10-29",
@@ -948,26 +948,26 @@
     "CQP": "2026-10-29",
     "TECK": "2026-10-29",
     "ALNY": "2026-10-29",
-    "DXCM": "2026-10-29",
     "CTSH": "2026-10-29",
     "WTW": "2026-10-29",
+    "DXCM": "2026-10-29",
     "EME": "2026-10-29",
     "IR": "2026-10-29",
+    "WST": "2026-10-29",
     "TW": "2026-10-29",
     "FTI": "2026-10-29",
-    "WST": "2026-10-29",
     "ARES": "2026-10-29",
     "RDDT": "2026-10-29",
     "VLTO": "2026-10-29",
     "INCY": "2026-10-29",
-    "ENTG": "2026-10-29",
     "MKL": "2026-10-29",
+    "ENTG": "2026-10-29",
     "ATI": "2026-10-29",
     "EIX": "2026-10-29",
     "TROW": "2026-10-29",
     "XPO": "2026-10-29",
-    "YPF": "2026-10-29",
     "THC": "2026-10-29",
+    "YPF": "2026-10-29",
     "INSM": "2026-10-29",
     "BG": "2026-10-29",
     "BCH": "2026-10-29",
@@ -991,8 +991,8 @@
     "UI": "2026-10-30",
     "CCJ": "2026-10-30",
     "CHD": "2026-10-30",
-    "NVT": "2026-10-30",
     "LYB": "2026-10-30",
+    "NVT": "2026-10-30",
     "AAPL": "2026-11-02",
     "BRK.A": "2026-11-02",
     "BRK.B": "2026-11-02",
@@ -1023,8 +1023,8 @@
     "ETN": "2026-11-03",
     "MPC": "2026-11-03",
     "BKNG": "2026-11-03",
-    "SU": "2026-11-03",
     "ITUB": "2026-11-03",
+    "SU": "2026-11-03",
     "RACE": "2026-11-03",
     "ET": "2026-11-03",
     "APO": "2026-11-03",
@@ -1064,7 +1064,7 @@
     "LDOS": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 22:01",
+    "updatedAt": "27/10/2026 22:16",
     "source": "tradingview"
   }
 }
