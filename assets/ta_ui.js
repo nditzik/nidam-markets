@@ -358,6 +358,37 @@
     scanRow(tvSym, TCOLS, function (d) { T = d; done(); });
   }
 
+  /* ───── "שכבה 2": נרות לכל טיקר דרך Cloudflare Worker (docs/cloudflare/bars-worker.js) ─────
+     הכתובת ב-window.__barsProxy (app.js). ריקה = לא מוגדר → ניתוח מקוצר כמו קודם. */
+  var PROXY_BARS = {};
+  function proxyBars(sym, cb) {
+    var base = window.__barsProxy || "";
+    if (!base) { cb(null); return; }
+    if (PROXY_BARS[sym] && Date.now() - PROXY_BARS[sym].at < 30 * 60 * 1000) { cb(PROXY_BARS[sym]); return; }
+    var done = false, t = setTimeout(function () { if (!done) { done = true; cb(null); } }, 8000);
+    fetch(base.replace(/\/$/, "") + "/bars?s=" + encodeURIComponent(sym)).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (done) return; done = true; clearTimeout(t);
+        if (!d || !d.bars || d.bars.length < 60) { cb(null); return; }
+        var bars = d.bars.map(function (b) { return { date: b[0], open: b[1], high: b[2], low: b[3], close: b[4], volume: b[5] }; });
+        // נר של היום בזמן המסחר = חלקי; liveBar יוסיף אותו מהסורק כ-is_partial
+        var ses = session();
+        if (bars.length && bars[bars.length - 1].date === nyToday() && (ses === "regular" || ses === "pre")) bars.pop();
+        PROXY_BARS[sym] = { bars: bars, last: bars[bars.length - 1].date, at: Date.now(), proxy: true };
+        cb(PROXY_BARS[sym]);
+      }).catch(function () { if (!done) { done = true; clearTimeout(t); cb(null); } });
+  }
+  // יסודות למניה שלא במעקב — מהסורק, באותו מבנה של fundamentals.json
+  function scanFund(sym, fund, cb) {
+    var stored = fund && fund.symbols && fund.symbols[sym];
+    if (stored && stored.cap != null) { cb(fund); return; }
+    scanRow(sym.replace(/-/g, "."), FCOLS, function (d) {
+      var f = d && num(d.market_cap_basic) != null ? parseFund(d) : null;
+      if (f && !f.about && f.sector) f.about = "ענף: " + f.sector + (f.industry ? " · תעשייה: " + f.industry : "");
+      var o = { symbols: {} }; if (f) o.symbols[sym] = f; cb(o);
+    });
+  }
+
   function render(sym, el, bars, meta, fund) {
     var r;
     try { r = window.TAEngine.analyze(bars, { symbol: sym }); }
@@ -411,7 +442,18 @@
     ensureEngine(function (err) {
       if (err || !window.TAEngine) { el.innerHTML = '<div class="ta-msg">טעינת מנוע הניתוח נכשלה</div>'; return; }
       loadBars(sym, function (d) {
-        if (!d) { loadFund(function (fund) { quickRender(sym, el, fund); }); return; }   // np156: ניתוח מקוצר מהסורק
+        if (!d) {
+          // np157: יש מתווך נרות (שכבה 2)? → המנוע המלא; אחרת ניתוח מקוצר מהסורק (np156)
+          proxyBars(sym, function (pd) {
+            if (!pd) { loadFund(function (fund) { quickRender(sym, el, fund); }); return; }
+            var pb = pd.bars.slice();
+            liveBar(sym, function (lb) {
+              if (lb && lb.date > pb[pb.length - 1].date) pb.push(lb);
+              loadFund(function (fund) { scanFund(sym, fund, function (fo) { render(sym, el, pb, pd, fo); }); });
+            });
+          });
+          return;
+        }
         var bars = d.bars.slice();
         liveBar(sym, function (lb) {
           if (lb && lb.date > bars[bars.length - 1].date) bars.push(lb);
