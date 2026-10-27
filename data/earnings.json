@@ -64,37 +64,57 @@
             "ticker": "WELL",
             "name": "Welltower Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WELL.png"
+            "status": "live",
+            "logo": "data/earnings/logos/WELL.png",
+            "chg": -1.54,
+            "price": 236.9,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
           },
           {
             "ticker": "CDNS",
             "name": "Cadence Design Systems, Inc.",
             "when": "after",
-            "status": "pending",
+            "status": "live",
             "logo": "data/earnings/logos/CDNS.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": 1.85,
+            "price": 328.11,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
           },
           {
             "ticker": "NUE",
             "name": "Nucor Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/NUE.png"
+            "status": "live",
+            "logo": "data/earnings/logos/NUE.png",
+            "chg": 3.66,
+            "price": 266.78,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
           },
           {
             "ticker": "PSA",
             "name": "Public Storage",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/PSA.png"
+            "status": "live",
+            "logo": "data/earnings/logos/PSA.png",
+            "chg": -0.04,
+            "price": 306.86,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
           },
           {
             "ticker": "HIG",
             "name": "Hartford Insurance Group, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/HIG.png"
+            "status": "live",
+            "logo": "data/earnings/logos/HIG.png",
+            "chg": -1.72,
+            "price": 133.6,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
           }
         ]
       },
@@ -341,7 +361,7 @@
       "date": "2026-10-29",
       "label": "29/10",
       "dow": "ה׳",
-      "count": 88,
+      "count": 87,
       "tickers": [
         "AMZN",
         "LLY",
@@ -600,7 +620,7 @@
       "date": "2026-10-29",
       "dow": "חמישי",
       "label": "29.10",
-      "total": 88,
+      "total": 87,
       "companies": [
         {
           "ticker": "AMZN",
@@ -804,17 +824,17 @@
     "LPLA": "2026-10-27",
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
-    "CMS": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
+    "CMS": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
     "MSFT": "2026-10-28",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
-    "GOOGL": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GOOG": "2026-10-28",
+    "GOOGL": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -898,11 +918,11 @@
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "LNG": "2026-10-29",
+    "STRC": "2026-10-29",
+    "STRF": "2026-10-29",
     "STRD": "2026-10-29",
     "STRK": "2026-10-29",
-    "STRC": "2026-10-29",
     "MSTR": "2026-10-29",
-    "STRF": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
@@ -937,7 +957,6 @@
     "FTI": "2026-10-29",
     "ARES": "2026-10-29",
     "RDDT": "2026-10-29",
-    "PPL": "2026-10-29",
     "VLTO": "2026-10-29",
     "MKL": "2026-10-29",
     "INCY": "2026-10-29",
@@ -975,8 +994,8 @@
     "LYB": "2026-10-30",
     "NVT": "2026-10-30",
     "AAPL": "2026-11-02",
-    "BRK.B": "2026-11-02",
     "BRK.A": "2026-11-02",
+    "BRK.B": "2026-11-02",
     "PLTR": "2026-11-02",
     "VRTX": "2026-11-02",
     "MAR": "2026-11-02",
@@ -1031,8 +1050,8 @@
     "CPNG": "2026-11-03",
     "IFF": "2026-11-03",
     "BNTX": "2026-11-03",
-    "SMCI": "2026-11-03",
     "SMCIP": "2026-11-03",
+    "SMCI": "2026-11-03",
     "BR": "2026-11-03",
     "OVV": "2026-11-03",
     "SWKS": "2026-11-03",
@@ -1046,7 +1065,7 @@
     "BALL": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 15:16",
+    "updatedAt": "27/10/2026 15:31",
     "source": "tradingview"
   }
 }
