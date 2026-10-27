@@ -108,10 +108,8 @@
     }
     // np117: רצועת לוח — 8 תאים שווים (ספר הסגנון, רכיב Quotes). לפני הפתיחה החוזים ראשונים.
     var by = {}; data.items.forEach(function (it) { by[it.key] = it; });
-    var ses = jsSession();
-    // np159 (איציק): QQQ נפל לפני הפתיחה (היה התשיעי) — 9 תאים בשורה אחת, QQQ תמיד אחרי SPY
-    var order = (ses === "regular" || ses === "post") ? ["spy", "qqq", "iwm", "vix", "tnx", "es", "nq", "usdils", "dxy"]
-                                                     : ["es", "nq", "spy", "qqq", "iwm", "vix", "tnx", "usdils", "dxy"];
+    // np159 (איציק): 9 תאים בשורה אחת. np160 (איציק): סדר קבוע בכל שעות היום — החוזים מימין, אחריהם SPY ו-QQQ
+    var order = ["es", "nq", "spy", "qqq", "iwm", "vix", "tnx", "usdils", "dxy"];
     var cells = order.map(function (k) { return by[k]; }).filter(Boolean).slice(0, 9);
     el.innerHTML = cells.map(function (it) {
       var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : "");
@@ -691,7 +689,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np159";
+  var TA_VER = "np160";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "";
