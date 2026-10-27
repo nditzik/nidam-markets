@@ -1,6 +1,6 @@
 {
   "today": "2026-10-27",
-  "todayCount": 49,
+  "todayCount": 48,
   "todayBig": [
     {
       "ticker": "V",
@@ -53,8 +53,12 @@
             "ticker": "VZ",
             "name": "Verizon Communications Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/VZ.png"
+            "status": "final",
+            "logo": "data/earnings/logos/VZ.png",
+            "chg": -3.49,
+            "price": 43.1,
+            "reactDate": "2026-10-26",
+            "baseDate": "2026-10-23"
           },
           {
             "ticker": "WELL",
@@ -317,7 +321,7 @@
       "logo": "data/earnings/logos/JCI.png"
     }
   ],
-  "more": 37,
+  "more": 36,
   "upcoming": [
     {
       "date": "2026-10-28",
@@ -436,7 +440,7 @@
       "date": "2026-10-27",
       "dow": "שלישי",
       "label": "27.10",
-      "total": 49,
+      "total": 48,
       "companies": [
         {
           "ticker": "V",
@@ -786,7 +790,6 @@
     "PYPL": "2026-10-27",
     "VTR": "2026-10-27",
     "IQV": "2026-10-27",
-    "NBIS": "2026-10-27",
     "ACGL": "2026-10-27",
     "ACGLO": "2026-10-27",
     "ACGLN": "2026-10-27",
@@ -802,8 +805,8 @@
     "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "CMS": "2026-10-27",
-    "CMSD": "2026-10-27",
     "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "EXE": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
@@ -895,10 +898,10 @@
     "TAK": "2026-10-29",
     "DLR": "2026-10-29",
     "LNG": "2026-10-29",
-    "STRC": "2026-10-29",
+    "STRF": "2026-10-29",
     "STRD": "2026-10-29",
     "STRK": "2026-10-29",
-    "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
@@ -1041,7 +1044,7 @@
     "LDOS": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 03:31",
+    "updatedAt": "27/10/2026 03:46",
     "source": "tradingview"
   }
 }
