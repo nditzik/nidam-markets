@@ -109,13 +109,14 @@
     // np117: רצועת לוח — 8 תאים שווים (ספר הסגנון, רכיב Quotes). לפני הפתיחה החוזים ראשונים.
     var by = {}; data.items.forEach(function (it) { by[it.key] = it; });
     var ses = jsSession();
+    // np159 (איציק): QQQ נפל לפני הפתיחה (היה התשיעי) — 9 תאים בשורה אחת, QQQ תמיד אחרי SPY
     var order = (ses === "regular" || ses === "post") ? ["spy", "qqq", "iwm", "vix", "tnx", "es", "nq", "usdils", "dxy"]
-                                                     : ["es", "nq", "spy", "iwm", "vix", "tnx", "usdils", "dxy", "qqq"];
-    var cells = order.map(function (k) { return by[k]; }).filter(Boolean).slice(0, 8);
+                                                     : ["es", "nq", "spy", "qqq", "iwm", "vix", "tnx", "usdils", "dxy"];
+    var cells = order.map(function (k) { return by[k]; }).filter(Boolean).slice(0, 9);
     el.innerHTML = cells.map(function (it) {
       var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : "");
       return '<div class="bd-q"><span class="l">' + esc(it.label) + (it.key === "vix" ? " " + vlDot(data && data.vixLight) : "") + "</span>" +
-        '<span class="v"><span class="num p" dir="ltr">' + fmtQuote(it.price) + "</span>" +
+        '<span class="v"><span class="num p" dir="ltr">' + (Math.abs(it.price) >= 1000 ? Number(it.price).toLocaleString("en-US", { maximumFractionDigits: 2 }) : fmtQuote(it.price)) + "</span>" +
         (c == null ? "" : '<span class="num c ' + cls + '" dir="ltr">' + (c > 0 ? "+" : c < 0 ? "−" : "") + Math.abs(Number(c)).toFixed(2) + "%</span>") + "</span></div>";
     }).join("");
   }
@@ -690,7 +691,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np158";
+  var TA_VER = "np159";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "";
