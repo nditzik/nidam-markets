@@ -5,12 +5,12 @@
     {
       "ticker": "V",
       "name": "Visa Inc. Class A",
-      "capB": 746.0
+      "capB": 745.7
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "capB": 395.1
+      "capB": 394.4
     },
     {
       "ticker": "HSBC",
@@ -25,22 +25,22 @@
     {
       "ticker": "STX",
       "name": "Seagate Technology Holdings PLC",
-      "capB": 153.3
+      "capB": 153.5
     },
     {
       "ticker": "BA",
       "name": "Boeing Company",
-      "capB": 134.8
+      "capB": 134.5
     },
     {
       "ticker": "SPGI",
       "name": "S&P Global, Inc.",
-      "capB": 132.1
+      "capB": 132.4
     },
     {
       "ticker": "GLW",
       "name": "Corning Inc",
-      "capB": 109.2
+      "capB": 109.5
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WELL.png",
-            "chg": -6.44,
-            "price": 225.11,
+            "chg": -6.16,
+            "price": 225.8,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/CDNS.png",
             "logoBg": "dark",
-            "chg": 7.33,
-            "price": 345.8,
+            "chg": 7.79,
+            "price": 347.28,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NUE.png",
-            "chg": 5.77,
-            "price": 272.19,
+            "chg": 5.89,
+            "price": 272.51,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PSA.png",
-            "chg": 1.69,
-            "price": 312.14,
+            "chg": 1.7,
+            "price": 312.19,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HIG.png",
-            "chg": -1.71,
-            "price": 133.61,
+            "chg": -1.72,
+            "price": 133.6,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           }
@@ -167,6 +167,17 @@
             "baseDate": "2026-10-22"
           },
           {
+            "ticker": "FCNCA",
+            "name": "First Citizens BancShares, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FCNCA.png",
+            "chg": 8.15,
+            "price": 2375.84,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
             "ticker": "FCNCN",
             "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
             "when": "before",
@@ -174,17 +185,6 @@
             "logo": "data/earnings/logos/FCNCN.png",
             "chg": 0.23,
             "price": 22.15,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
-            "ticker": "FCNCO",
-            "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FCNCO.png",
-            "chg": 1.04,
-            "price": 18.43,
             "reactDate": "2026-10-23",
             "baseDate": "2026-10-22"
           }
@@ -217,6 +217,17 @@
             "baseDate": "2026-10-21"
           },
           {
+            "ticker": "BX",
+            "name": "Blackstone Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BX.png",
+            "chg": 8.38,
+            "price": 118.75,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
             "ticker": "LMT",
             "name": "Lockheed Martin Corporation",
             "when": "before",
@@ -225,17 +236,6 @@
             "logoBg": "dark",
             "chg": 6.96,
             "price": 589.91,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "BX",
-            "name": "Blackstone Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BX.png",
-            "chg": 8.38,
-            "price": 118.75,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -810,11 +810,11 @@
     "PYPL": "2026-10-27",
     "IQV": "2026-10-27",
     "VTR": "2026-10-27",
-    "ACGLN": "2026-10-27",
     "ACGLO": "2026-10-27",
+    "ACGLN": "2026-10-27",
     "EQT": "2026-10-27",
-    "CNC": "2026-10-27",
     "ACGL": "2026-10-27",
+    "CNC": "2026-10-27",
     "EXR": "2026-10-27",
     "SHG": "2026-10-27",
     "CNP": "2026-10-27",
@@ -833,8 +833,8 @@
     "MSFT": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -852,8 +852,8 @@
     "AEM": "2026-10-28",
     "VRT": "2026-10-28",
     "CP": "2026-10-28",
-    "ORLY": "2026-10-28",
     "FDX": "2026-10-28",
+    "ORLY": "2026-10-28",
     "AEP": "2026-10-28",
     "BSX": "2026-10-28",
     "CVNA": "2026-10-28",
@@ -915,15 +915,15 @@
     "LYG": "2026-10-29",
     "HWM": "2026-10-29",
     "RSG": "2026-10-29",
-    "DLR": "2026-10-29",
     "AJG": "2026-10-29",
+    "DLR": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
+    "MSTR": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRD": "2026-10-29",
     "STRF": "2026-10-29",
     "STRC": "2026-10-29",
-    "STRD": "2026-10-29",
-    "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
@@ -932,8 +932,8 @@
     "CARR": "2026-10-29",
     "ABEV": "2026-10-29",
     "AMP": "2026-10-29",
-    "ILMN": "2026-10-29",
     "COIN": "2026-10-29",
+    "ILMN": "2026-10-29",
     "DHI": "2026-10-29",
     "STM": "2026-10-29",
     "TWLO": "2026-10-29",
@@ -992,8 +992,8 @@
     "UI": "2026-10-30",
     "CCJ": "2026-10-30",
     "CHD": "2026-10-30",
-    "LYB": "2026-10-30",
     "NVT": "2026-10-30",
+    "LYB": "2026-10-30",
     "AAPL": "2026-11-02",
     "BRK.A": "2026-11-02",
     "BRK.B": "2026-11-02",
@@ -1009,8 +1009,8 @@
     "PEG": "2026-11-02",
     "ON": "2026-11-02",
     "RYAAY": "2026-11-02",
-    "FOXA": "2026-11-02",
     "FOX": "2026-11-02",
+    "FOXA": "2026-11-02",
     "ROKU": "2026-11-02",
     "L": "2026-11-02",
     "TSEM": "2026-11-02",
@@ -1053,11 +1053,11 @@
     "SMCI": "2026-11-03",
     "BNTX": "2026-11-03",
     "SMCIP": "2026-11-03",
-    "SWKS": "2026-11-03",
     "BR": "2026-11-03",
+    "SWKS": "2026-11-03",
     "OVV": "2026-11-03",
-    "TOST": "2026-11-03",
     "DD": "2026-11-03",
+    "TOST": "2026-11-03",
     "DT": "2026-11-03",
     "FIS": "2026-11-03",
     "RVTY": "2026-11-03",
@@ -1065,7 +1065,7 @@
     "LDOS": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 20:16",
+    "updatedAt": "27/10/2026 20:33",
     "source": "tradingview"
   }
 }
