@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np157";
+  var TA_VER = "np158";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "";
@@ -1053,8 +1053,21 @@
 
 
 
-  /* שעון המסחר — שעון ישראל מקומי; פתיחה 16:30, סגירה 23:00, ב'-ו' */
-  var OPEN_T = { h: 16, m: 30 }, CLOSE_T = { h: 23, m: 0 };
+  /* שעון המסחר — השעות בשעון ניו יורק (09:30–16:00), מומרות לשעון המקומי של הדפדפן לכל יום לפי
+     הפער בפועל (np158, איציק 27.10.2026: השעון נשאר על 16:30 בשבוע שבין המעבר לחורף בישראל
+     (25.10) לבין ארה"ב (1.11), כשהפתיחה בפועל 15:30). בקיץ ובחורף 16:30/23:00, בשבועות-הפער 15:30/22:00. */
+  var OPEN_T = { h: 9, m: 30 }, CLOSE_T = { h: 16, m: 0 }, PRE_T = { h: 4, m: 0 };
+  var NY_FMT = null;
+  function nyGapMin(d) {           // כמה דקות השעון המקומי מקדים את ניו יורק ביום הזה (ישראל: 420, בשבועות-הפער 360)
+    var t = new Date(d); t.setHours(12, 0, 0, 0);
+    try {
+      NY_FMT = NY_FMT || new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23",
+        year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+      var p = {}; NY_FMT.formatToParts(t).forEach(function (x) { p[x.type] = +x.value; });
+      var nyOff = (Date.UTC(p.year, p.month - 1, p.day, p.hour % 24, p.minute) - Math.floor(t.getTime() / 60000) * 60000) / 60000;
+      return -t.getTimezoneOffset() - nyOff;
+    } catch (e) { return 420; }
+  }
   /* לוח חופשות NYSE — סטטי (מתפרסם שנים מראש); לרענן בתחילת כל שנה.
      שים לב: לוח הבורסה ≠ חגים פדרליים (Good Friday סגור, Columbus/Veterans פתוח) */
   var NYSE_HOLIDAYS = {
@@ -1069,12 +1082,13 @@
     "2027-07-05": "יום העצמאות האמריקאי", "2027-09-06": "יום העבודה",
     "2027-11-25": "חג ההודיה", "2027-12-24": "חג המולד"
   };
-  var NYSE_HALF_DAYS = { "2026-11-27": 1, "2026-12-24": 1, "2027-11-26": 1 };   // סגירה מוקדמת 20:00 IL
+  var NYSE_HALF_DAYS = { "2026-11-27": 1, "2026-12-24": 1, "2027-11-26": 1 };   // סגירה מוקדמת 13:00 ניו יורק (20:00 IL)
   function dayKey(d) {
     return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
   }
-  function closeT(d) { return NYSE_HALF_DAYS[dayKey(d)] ? { h: 20, m: 0 } : CLOSE_T; }
-  function atTime(base, t) { var d = new Date(base); d.setHours(t.h, t.m, 0, 0); return d; }
+  function closeT(d) { return NYSE_HALF_DAYS[dayKey(d)] ? { h: 13, m: 0 } : CLOSE_T; }
+  function atTime(base, t) { var d = new Date(base); d.setHours(0, t.h * 60 + t.m + nyGapMin(d), 0, 0); return d; }   // t = שעת ניו יורק
+  function hhmm(d) { return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2); }
   function tradingDay(d) { var w = d.getDay(); return w >= 1 && w <= 5 && !NYSE_HOLIDAYS[dayKey(d)]; }
   function clockTarget() {
     var now = new Date();
@@ -1102,7 +1116,7 @@
     if (NYSE_HOLIDAYS[k]) {
       txt = "🏖 הבורסה סגורה היום — " + NYSE_HOLIDAYS[k];
     } else if (NYSE_HALF_DAYS[k]) {
-      txt = "🕐 מסחר מקוצר היום · סגירה 20:00";
+      txt = "🕐 מסחר מקוצר היום · סגירה " + hhmm(atTime(now, closeT(now)));
     } else {
       var d = new Date(now), best = null;
       for (var i = 1; i <= 400 && !best; i++) {
@@ -1249,7 +1263,7 @@
   function jsSession() {
     var now = new Date();
     if (!tradingDay(now)) return "closed";
-    if (now < atTime(now, OPEN_T)) return (now.getHours() * 60 + now.getMinutes()) >= 660 ? "pre" : "closed";
+    if (now < atTime(now, OPEN_T)) return now >= atTime(now, PRE_T) ? "pre" : "closed";
     if (now < atTime(now, closeT(now))) return "regular";
     return "post";
   }
