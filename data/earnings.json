@@ -5,12 +5,12 @@
     {
       "ticker": "V",
       "name": "Visa Inc. Class A",
-      "capB": 745.3
+      "capB": 745.8
     },
     {
       "ticker": "KO",
       "name": "Coca-Cola Company",
-      "capB": 393.8
+      "capB": 393.5
     },
     {
       "ticker": "HSBC",
@@ -25,22 +25,22 @@
     {
       "ticker": "STX",
       "name": "Seagate Technology Holdings PLC",
-      "capB": 153.8
-    },
-    {
-      "ticker": "BA",
-      "name": "Boeing Company",
-      "capB": 133.6
+      "capB": 153.5
     },
     {
       "ticker": "SPGI",
       "name": "S&P Global, Inc.",
-      "capB": 132.6
+      "capB": 132.5
+    },
+    {
+      "ticker": "BA",
+      "name": "Boeing Company",
+      "capB": 132.5
     },
     {
       "ticker": "GLW",
       "name": "Corning Inc",
-      "capB": 109.0
+      "capB": 109.1
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WELL.png",
-            "chg": -6.24,
-            "price": 225.59,
+            "chg": -6.04,
+            "price": 226.08,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/CDNS.png",
             "logoBg": "dark",
-            "chg": 6.58,
-            "price": 343.36,
+            "chg": 7.32,
+            "price": 345.76,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NUE.png",
-            "chg": 4.78,
-            "price": 269.64,
+            "chg": 4.77,
+            "price": 269.62,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PSA.png",
-            "chg": 1.87,
-            "price": 312.72,
+            "chg": 2.04,
+            "price": 313.24,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HIG.png",
-            "chg": -1.75,
-            "price": 133.56,
+            "chg": -1.51,
+            "price": 133.89,
             "reactDate": "2026-10-27",
             "baseDate": "2026-10-26"
           }
@@ -217,6 +217,17 @@
             "baseDate": "2026-10-21"
           },
           {
+            "ticker": "BX",
+            "name": "Blackstone Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BX.png",
+            "chg": 8.38,
+            "price": 118.75,
+            "reactDate": "2026-10-22",
+            "baseDate": "2026-10-21"
+          },
+          {
             "ticker": "LMT",
             "name": "Lockheed Martin Corporation",
             "when": "before",
@@ -225,17 +236,6 @@
             "logoBg": "dark",
             "chg": 6.96,
             "price": 589.91,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "BX",
-            "name": "Blackstone Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BX.png",
-            "chg": 8.38,
-            "price": 118.75,
             "reactDate": "2026-10-22",
             "baseDate": "2026-10-21"
           },
@@ -298,17 +298,17 @@
       "logo": "data/earnings/logos/STX.png"
     },
     {
+      "ticker": "SPGI",
+      "name": "S&P Global, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/SPGI.png"
+    },
+    {
       "ticker": "BA",
       "name": "Boeing Company",
       "when": "before",
       "logo": "data/earnings/logos/BA.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "SPGI",
-      "name": "S&P Global, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/SPGI.png"
     },
     {
       "ticker": "GLW",
@@ -361,7 +361,7 @@
       "date": "2026-10-29",
       "label": "29/10",
       "dow": "ה׳",
-      "count": 88,
+      "count": 87,
       "tickers": [
         "AMZN",
         "LLY",
@@ -494,17 +494,17 @@
           "logo": "data/earnings/logos/STX.png"
         },
         {
+          "ticker": "SPGI",
+          "name": "S&P Global, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/SPGI.png"
+        },
+        {
           "ticker": "BA",
           "name": "Boeing Company",
           "when": "before",
           "logo": "data/earnings/logos/BA.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "SPGI",
-          "name": "S&P Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SPGI.png"
         },
         {
           "ticker": "GLW",
@@ -620,7 +620,7 @@
       "date": "2026-10-29",
       "dow": "חמישי",
       "label": "29.10",
-      "total": 88,
+      "total": 87,
       "companies": [
         {
           "ticker": "AMZN",
@@ -787,8 +787,8 @@
     "HSBC": "2026-10-27",
     "NVS": "2026-10-27",
     "STX": "2026-10-27",
-    "BA": "2026-10-27",
     "SPGI": "2026-10-27",
+    "BA": "2026-10-27",
     "GLW": "2026-10-27",
     "HCA": "2026-10-27",
     "FCX": "2026-10-27",
@@ -798,8 +798,8 @@
     "HOOD": "2026-10-27",
     "AMT": "2026-10-27",
     "ECL": "2026-10-27",
-    "SHW": "2026-10-27",
     "RCL": "2026-10-27",
+    "SHW": "2026-10-27",
     "ITW": "2026-10-27",
     "HLT": "2026-10-27",
     "NXPI": "2026-10-27",
@@ -820,21 +820,21 @@
     "CNP": "2026-10-27",
     "FE": "2026-10-27",
     "FFIV": "2026-10-27",
-    "PPG": "2026-10-27",
     "LPLA": "2026-10-27",
+    "PPG": "2026-10-27",
     "HUBB": "2026-10-27",
     "XYL": "2026-10-27",
-    "CMSD": "2026-10-27",
-    "CMSA": "2026-10-27",
     "EXE": "2026-10-27",
+    "CMSA": "2026-10-27",
+    "CMSD": "2026-10-27",
     "CMS": "2026-10-27",
     "SOFI": "2026-10-27",
     "ESS": "2026-10-27",
     "MSFT": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -852,12 +852,12 @@
     "AEM": "2026-10-28",
     "VRT": "2026-10-28",
     "CP": "2026-10-28",
-    "ORLY": "2026-10-28",
     "FDX": "2026-10-28",
+    "ORLY": "2026-10-28",
     "AEP": "2026-10-28",
     "BSX": "2026-10-28",
-    "CVNA": "2026-10-28",
     "TEL": "2026-10-28",
+    "CVNA": "2026-10-28",
     "AON": "2026-10-28",
     "DB": "2026-10-28",
     "GRMN": "2026-10-28",
@@ -921,9 +921,9 @@
     "MPWR": "2026-10-29",
     "MSTR": "2026-10-29",
     "STRK": "2026-10-29",
-    "STRD": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
+    "STRD": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
     "LHX": "2026-10-29",
@@ -947,8 +947,8 @@
     "CQP": "2026-10-29",
     "TECK": "2026-10-29",
     "ALNY": "2026-10-29",
-    "DXCM": "2026-10-29",
     "CTSH": "2026-10-29",
+    "DXCM": "2026-10-29",
     "WTW": "2026-10-29",
     "EME": "2026-10-29",
     "IR": "2026-10-29",
@@ -973,7 +973,6 @@
     "FSLR": "2026-10-29",
     "LNT": "2026-10-29",
     "APG": "2026-10-29",
-    "RIVN": "2026-10-29",
     "TPG": "2026-10-29",
     "XOM": "2026-10-30",
     "ABBV": "2026-10-30",
@@ -1065,7 +1064,7 @@
     "LDOS": "2026-11-03"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 21:31",
+    "updatedAt": "27/10/2026 21:46",
     "source": "tradingview"
   }
 }
