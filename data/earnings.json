@@ -1,50 +1,116 @@
 {
-  "today": "2026-10-27",
-  "todayCount": 48,
+  "today": "2026-10-28",
+  "todayCount": 58,
   "todayBig": [
     {
-      "ticker": "V",
-      "name": "Visa Inc. Class A",
-      "capB": 750.3
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "capB": 3945.9
     },
     {
-      "ticker": "KO",
-      "name": "Coca-Cola Company",
-      "capB": 392.3
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc. Class A",
+      "capB": 3906.1
     },
     {
-      "ticker": "HSBC",
-      "name": "HSBC Holdings PLC Sponsored ADR",
-      "capB": 312.0
+      "ticker": "GOOG",
+      "name": "Alphabet Inc. Class C",
+      "capB": 3892.5
     },
     {
-      "ticker": "NVS",
-      "name": "Novartis AG Sponsored ADR",
-      "capB": 281.9
+      "ticker": "GOOGM",
+      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+      "capB": 3860.0
     },
     {
-      "ticker": "STX",
-      "name": "Seagate Technology Holdings PLC",
-      "capB": 151.9
+      "ticker": "GOOGN",
+      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+      "capB": 3860.0
     },
     {
-      "ticker": "BA",
-      "name": "Boeing Company",
-      "capB": 132.9
+      "ticker": "SKHY",
+      "name": "SK hynix Inc. Sponsored ADR",
+      "capB": 697.0
     },
     {
-      "ticker": "SPGI",
-      "name": "S&P Global, Inc.",
-      "capB": 132.3
+      "ticker": "GEV",
+      "name": "GE Vernova Inc.",
+      "capB": 238.4
     },
     {
-      "ticker": "GLW",
-      "name": "Corning Inc",
-      "capB": 108.8
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "capB": 200.5
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-27",
+        "label": "27.10",
+        "items": [
+          {
+            "ticker": "V",
+            "name": "Visa Inc. Class A",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/V.png",
+            "logoBg": "dark"
+          },
+          {
+            "ticker": "KO",
+            "name": "Coca-Cola Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/KO.png",
+            "chg": -1.64,
+            "price": 91.18,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
+          },
+          {
+            "ticker": "HSBC",
+            "name": "HSBC Holdings PLC Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/HSBC.png",
+            "chg": -5.7,
+            "price": 86.01,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
+          },
+          {
+            "ticker": "NVS",
+            "name": "Novartis AG Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/NVS.png",
+            "chg": 1.98,
+            "price": 156.86,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
+          },
+          {
+            "ticker": "STX",
+            "name": "Seagate Technology Holdings PLC",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/STX.png"
+          },
+          {
+            "ticker": "BA",
+            "name": "Boeing Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BA.png",
+            "logoBg": "dark",
+            "chg": -10.69,
+            "price": 168.18,
+            "reactDate": "2026-10-27",
+            "baseDate": "2026-10-26"
+          }
+        ]
+      },
       {
         "date": "2026-10-26",
         "label": "26.10",
@@ -189,174 +255,83 @@
             "baseDate": "2026-10-22"
           }
         ]
-      },
-      {
-        "date": "2026-10-22",
-        "label": "22.10",
-        "items": [
-          {
-            "ticker": "PG",
-            "name": "Procter & Gamble Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/PG.png",
-            "chg": 5.58,
-            "price": 165.59,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "UNP",
-            "name": "Union Pacific Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/UNP.png",
-            "chg": 3.55,
-            "price": 298.09,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "BX",
-            "name": "Blackstone Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BX.png",
-            "chg": 8.38,
-            "price": 118.75,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "LMT",
-            "name": "Lockheed Martin Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/LMT.png",
-            "logoBg": "dark",
-            "chg": 6.96,
-            "price": 589.91,
-            "reactDate": "2026-10-22",
-            "baseDate": "2026-10-21"
-          },
-          {
-            "ticker": "WDC",
-            "name": "Western Digital Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/WDC.png",
-            "chg": -2.97,
-            "price": 343.67,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
-            "ticker": "NEM",
-            "name": "Newmont Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/NEM.png",
-            "chg": -4.59,
-            "price": 108.87,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "V",
-      "name": "Visa Inc. Class A",
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
       "when": "after",
-      "logo": "data/earnings/logos/V.png",
-      "logoBg": "dark"
+      "logo": "data/earnings/logos/MSFT.png"
     },
     {
-      "ticker": "KO",
-      "name": "Coca-Cola Company",
-      "when": "before",
-      "logo": "data/earnings/logos/KO.png"
-    },
-    {
-      "ticker": "HSBC",
-      "name": "HSBC Holdings PLC Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/HSBC.png"
-    },
-    {
-      "ticker": "NVS",
-      "name": "Novartis AG Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/NVS.png"
-    },
-    {
-      "ticker": "STX",
-      "name": "Seagate Technology Holdings PLC",
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc. Class A",
       "when": "after",
-      "logo": "data/earnings/logos/STX.png"
+      "logo": "data/earnings/logos/GOOGL.png"
     },
     {
-      "ticker": "BA",
-      "name": "Boeing Company",
-      "when": "before",
-      "logo": "data/earnings/logos/BA.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "SPGI",
-      "name": "S&P Global, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/SPGI.png"
-    },
-    {
-      "ticker": "GLW",
-      "name": "Corning Inc",
-      "when": "before",
-      "logo": "data/earnings/logos/GLW.png"
-    },
-    {
-      "ticker": "HCA",
-      "name": "HCA Healthcare Inc",
-      "when": "before",
-      "logo": "data/earnings/logos/HCA.png"
-    },
-    {
-      "ticker": "FCX",
-      "name": "Freeport-McMoRan, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/FCX.png"
-    },
-    {
-      "ticker": "JCI",
-      "name": "Johnson Controls International plc",
-      "when": "before",
-      "logo": "data/earnings/logos/JCI.png"
-    },
-    {
-      "ticker": "WM",
-      "name": "Waste Management, Inc.",
+      "ticker": "GOOG",
+      "name": "Alphabet Inc. Class C",
       "when": "after",
-      "logo": "data/earnings/logos/WM.png"
+      "logo": "data/earnings/logos/GOOG.png"
+    },
+    {
+      "ticker": "GOOGM",
+      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+      "when": "after"
+    },
+    {
+      "ticker": "GOOGN",
+      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+      "when": "after"
+    },
+    {
+      "ticker": "SKHY",
+      "name": "SK hynix Inc. Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/SKHY.png"
+    },
+    {
+      "ticker": "GEV",
+      "name": "GE Vernova Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/GEV.png"
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/KLAC.png"
+    },
+    {
+      "ticker": "APH",
+      "name": "Amphenol Corporation Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/APH.png"
+    },
+    {
+      "ticker": "SAN",
+      "name": "Banco Santander S.A. Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/SAN.png"
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/NOW.png"
+    },
+    {
+      "ticker": "TMUS",
+      "name": "T-Mobile US, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/TMUS.png"
     }
   ],
-  "more": 36,
+  "more": 46,
   "upcoming": [
-    {
-      "date": "2026-10-28",
-      "label": "28/10",
-      "dow": "ד׳",
-      "count": 58,
-      "tickers": [
-        "MSFT",
-        "GOOGL",
-        "GOOG",
-        "GOOGM",
-        "GOOGN",
-        "SKHY"
-      ]
-    },
     {
       "date": "2026-10-29",
       "label": "29/10",
@@ -782,59 +757,11 @@
     }
   ],
   "window": {
-    "V": "2026-10-27",
-    "KO": "2026-10-27",
-    "HSBC": "2026-10-27",
-    "NVS": "2026-10-27",
-    "STX": "2026-10-27",
-    "BA": "2026-10-27",
-    "SPGI": "2026-10-27",
-    "GLW": "2026-10-27",
-    "HCA": "2026-10-27",
-    "FCX": "2026-10-27",
-    "JCI": "2026-10-27",
-    "WM": "2026-10-27",
-    "UPS": "2026-10-27",
-    "AMT": "2026-10-27",
-    "HOOD": "2026-10-27",
-    "ECL": "2026-10-27",
-    "RCL": "2026-10-27",
-    "SHW": "2026-10-27",
-    "ITW": "2026-10-27",
-    "HLT": "2026-10-27",
-    "NXPI": "2026-10-27",
-    "OKE": "2026-10-27",
-    "BKR": "2026-10-27",
-    "PCAR": "2026-10-27",
-    "TER": "2026-10-27",
-    "PYPL": "2026-10-27",
-    "IQV": "2026-10-27",
-    "VTR": "2026-10-27",
-    "EQT": "2026-10-27",
-    "ACGLO": "2026-10-27",
-    "ACGLN": "2026-10-27",
-    "ACGL": "2026-10-27",
-    "CNC": "2026-10-27",
-    "EXR": "2026-10-27",
-    "SHG": "2026-10-27",
-    "CNP": "2026-10-27",
-    "FE": "2026-10-27",
-    "FFIV": "2026-10-27",
-    "PPG": "2026-10-27",
-    "LPLA": "2026-10-27",
-    "HUBB": "2026-10-27",
-    "EXE": "2026-10-27",
-    "CMSD": "2026-10-27",
-    "CMSA": "2026-10-27",
-    "XYL": "2026-10-27",
-    "CMS": "2026-10-27",
-    "SOFI": "2026-10-27",
-    "ESS": "2026-10-27",
     "MSFT": "2026-10-28",
     "GOOGL": "2026-10-28",
     "GOOG": "2026-10-28",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
@@ -921,10 +848,10 @@
     "LNG": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRF": "2026-10-29",
     "STRD": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRC": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
     "LHX": "2026-10-29",
@@ -1040,8 +967,8 @@
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
-    "PRS": "2026-11-03",
     "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
     "PRU": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
@@ -1062,10 +989,64 @@
     "FIS": "2026-11-03",
     "RVTY": "2026-11-03",
     "ZBRA": "2026-11-03",
-    "LDOS": "2026-11-03"
+    "LDOS": "2026-11-03",
+    "ARM": "2026-11-04",
+    "QCOM": "2026-11-04",
+    "MCD": "2026-11-04",
+    "NVO": "2026-11-04",
+    "UBER": "2026-11-04",
+    "CVS": "2026-11-04",
+    "MCK": "2026-11-04",
+    "DDOG": "2026-11-04",
+    "EMR": "2026-11-04",
+    "APP": "2026-11-04",
+    "MELI": "2026-11-04",
+    "MSI": "2026-11-04",
+    "MFC": "2026-11-04",
+    "DASH": "2026-11-04",
+    "ALL": "2026-11-04",
+    "MET": "2026-11-04",
+    "GWW": "2026-11-04",
+    "COR": "2026-11-04",
+    "AFL": "2026-11-04",
+    "CVE": "2026-11-04",
+    "EW": "2026-11-04",
+    "VMRK": "2026-11-04",
+    "COHR": "2026-11-04",
+    "SLF": "2026-11-04",
+    "MDLN": "2026-11-04",
+    "RVMD": "2026-11-04",
+    "RPRX": "2026-11-04",
+    "MLM": "2026-11-04",
+    "EXPE": "2026-11-04",
+    "NTR": "2026-11-04",
+    "TKO": "2026-11-04",
+    "TS": "2026-11-04",
+    "ATO": "2026-11-04",
+    "KHC": "2026-11-04",
+    "SN": "2026-11-04",
+    "CPAY": "2026-11-04",
+    "GFS": "2026-11-04",
+    "ES": "2026-11-04",
+    "UTHR": "2026-11-04",
+    "Q": "2026-11-04",
+    "TPL": "2026-11-04",
+    "PR": "2026-11-04",
+    "PTC": "2026-11-04",
+    "CRCL": "2026-11-04",
+    "RGLD": "2026-11-04",
+    "CDW": "2026-11-04",
+    "WES": "2026-11-04",
+    "ZBH": "2026-11-04",
+    "CF": "2026-11-04",
+    "APA": "2026-11-04",
+    "CW": "2026-11-04",
+    "ITT": "2026-11-04",
+    "HST": "2026-11-04",
+    "PAAS": "2026-11-04"
   },
   "_meta": {
-    "updatedAt": "27/10/2026 23:46",
+    "updatedAt": "28/10/2026 00:01",
     "source": "tradingview"
   }
 }
