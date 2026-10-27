@@ -1722,11 +1722,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
 /* ── רצועת הציטוטים (Quotes) + מפת החום ── */
 #ticker-wrap { background: var(--surface); border-bottom: 1px solid var(--border); margin: 0; }
-.bd-quotes { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); padding: 0; border: 0; font-size: 14px; }
-.bd-q { padding: 8px 14px; border-inline-start: 1px solid var(--border); display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.bd-quotes { display: grid; grid-template-columns: repeat(9, minmax(max-content, 1fr)); padding: 0; border: 0; font-size: 14px; overflow-x: auto; scrollbar-width: none; }
+.bd-quotes::-webkit-scrollbar { display: none; }
+.bd-q { padding: 8px 12px; border-inline-start: 1px solid var(--border); display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .bd-q:first-child { border-inline-start: 0; }
 .bd-q .l { font-size: 12px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bd-q .v { display: flex; gap: 8px; align-items: baseline; font-size: 15px; white-space: nowrap; }
+.bd-q .v { display: flex; gap: 6px; align-items: baseline; font-size: 15px; white-space: nowrap; }
 .bd-q .p { color: var(--text); }
 .bd-q .c { font-size: 13px; } .bd-q .c.up { color: var(--up); } .bd-q .c.down { color: var(--down); }
 #np-heat { padding: 6px 0 8px; border-top: 1px solid var(--border); gap: 10px; }
@@ -1909,8 +1910,8 @@ main { padding: 16px 0 48px; }
   #panel-home .bd-sect, #panel-home .bd-world, #panel-home .bd-bets { grid-column: span 12; }
   .bd-meter { border-inline-start: 1px solid var(--border); }
   .bd-picks th:nth-child(4), .bd-picks td:nth-child(4), .bd-picks th:nth-child(6), .bd-picks td:nth-child(6) { display: none; }
-  .bd-quotes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .bd-q:nth-child(5) { border-inline-start: 0; } .bd-q:nth-child(n+5) { border-top: 1px solid var(--border); }
+  /* np159: גם כאן שורה אחת — נגללת לרוחב במקום לרדת לשתי שורות */
+  .bd-quotes { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(max-content, 1fr); }
 }
 @media (max-width: 700px) {
   .wrap { width: min(1280px, 100% - 24px); }
