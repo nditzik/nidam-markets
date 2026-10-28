@@ -48,7 +48,7 @@
     "MSFT",
     "AMZN",
     "LLY",
-    "XOM",
+    "V",
     "NOW"
    ]
   },
@@ -180,34 +180,34 @@
   }
  ],
  "total": 454,
- "reported": 195,
+ "reported": 203,
  "members": 504,
  "board": {
-  "reported": 195,
-  "epsN": 195,
-  "epsBeat": 157,
-  "epsBeatPct": 81,
-  "revN": 195,
-  "revBeat": 135,
+  "reported": 203,
+  "epsN": 202,
+  "epsBeat": 160,
+  "epsBeatPct": 79,
+  "revN": 203,
+  "revBeat": 140,
   "revBeatPct": 69,
-  "reactBeat": 0.78,
-  "reactBeatN": 112,
-  "reactMiss": -1.3,
-  "reactMissN": 29,
+  "reactBeat": 0.26,
+  "reactBeatN": 149,
+  "reactMiss": -1.72,
+  "reactMissN": 33,
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 54,
-    "beat": 39
+    "n": 57,
+    "beat": 41
    },
    {
     "name": "תעשייה",
-    "n": 43,
-    "beat": 35
+    "n": 44,
+    "beat": 36
    },
    {
     "name": "טכנולוגיה",
-    "n": 31,
+    "n": 32,
     "beat": 26
    },
    {
@@ -217,7 +217,7 @@
    },
    {
     "name": "צריכה מחזורית",
-    "n": 16,
+    "n": 18,
     "beat": 11
    },
    {
@@ -248,6 +248,11 @@
   ],
   "movers": [
    {
+    "sym": "FFIV",
+    "react": -20.43,
+    "eps": 3.9
+   },
+   {
     "sym": "POOL",
     "react": 14.36,
     "eps": 1.3
@@ -258,6 +263,11 @@
     "eps": -0.7
    },
    {
+    "sym": "CSGP",
+    "react": -13.96,
+    "eps": 12.8
+   },
+   {
     "sym": "PNR",
     "react": 12.8,
     "eps": 9.9
@@ -266,21 +276,11 @@
     "sym": "LRCX",
     "react": -11.76,
     "eps": 0.8
-   },
-   {
-    "sym": "EFX",
-    "react": 11.33,
-    "eps": 2.8
-   },
-   {
-    "sym": "HAS",
-    "react": 11.2,
-    "eps": 56.2
    }
   ]
  },
  "_meta": {
-  "updatedAt": "28/10/2026 22:16",
+  "updatedAt": "28/10/2026 22:32",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
