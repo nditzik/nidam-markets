@@ -5,17 +5,17 @@
     {
       "ticker": "GOOG",
       "name": "Alphabet Inc. Class C",
-      "capB": 3949.1
+      "capB": 3954.4
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet Inc. Class A",
-      "capB": 3947.7
+      "capB": 3951.4
     },
     {
       "ticker": "MSFT",
       "name": "Microsoft Corporation",
-      "capB": 3935.3
+      "capB": 3931.9
     },
     {
       "ticker": "GOOGM",
@@ -30,17 +30,17 @@
     {
       "ticker": "GEV",
       "name": "GE Vernova Inc.",
-      "capB": 231.6
+      "capB": 231.1
     },
     {
       "ticker": "KLAC",
       "name": "KLA Corporation",
-      "capB": 205.1
+      "capB": 206.0
     },
     {
       "ticker": "APH",
       "name": "Amphenol Corporation Class A",
-      "capB": 198.5
+      "capB": 199.6
     }
   ],
   "reactions": {
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/V.png",
             "logoBg": "dark",
-            "chg": 0.06,
-            "price": 402.11,
+            "chg": -0.02,
+            "price": 401.78,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -67,8 +67,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SKHY.png",
-            "chg": 10.51,
-            "price": 160.63,
+            "chg": 10.37,
+            "price": 160.44,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STX.png",
-            "chg": -1.38,
-            "price": 658.65,
+            "chg": 0.02,
+            "price": 667.98,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           }
@@ -240,17 +240,6 @@
             "baseDate": "2026-10-22"
           },
           {
-            "ticker": "FCNCA",
-            "name": "First Citizens BancShares, Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FCNCA.png",
-            "chg": 8.15,
-            "price": 2375.84,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
             "ticker": "FCNCN",
             "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
             "when": "before",
@@ -258,6 +247,17 @@
             "logo": "data/earnings/logos/FCNCN.png",
             "chg": 0.23,
             "price": 22.15,
+            "reactDate": "2026-10-23",
+            "baseDate": "2026-10-22"
+          },
+          {
+            "ticker": "FCNCO",
+            "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FCNCO.png",
+            "chg": 1.04,
+            "price": 18.43,
             "reactDate": "2026-10-23",
             "baseDate": "2026-10-22"
           }
@@ -769,8 +769,8 @@
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
-    "GOOGN": "2026-10-28",
     "GOOGM": "2026-10-28",
+    "GOOGN": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
     "APH": "2026-10-28",
@@ -784,8 +784,8 @@
     "PSX": "2026-10-28",
     "GSK": "2026-10-28",
     "EQIX": "2026-10-28",
-    "AEM": "2026-10-28",
     "VRT": "2026-10-28",
+    "AEM": "2026-10-28",
     "CP": "2026-10-28",
     "ORLY": "2026-10-28",
     "FDX": "2026-10-28",
@@ -816,14 +816,14 @@
     "AER": "2026-10-28",
     "ARXS": "2026-10-28",
     "AMRZ": "2026-10-28",
-    "SW": "2026-10-28",
     "NI": "2026-10-28",
+    "SW": "2026-10-28",
     "FTV": "2026-10-28",
     "DINO": "2026-10-28",
     "GFL": "2026-10-28",
     "BSBR": "2026-10-28",
-    "STLA": "2026-10-28",
     "IP": "2026-10-28",
+    "STLA": "2026-10-28",
     "IEX": "2026-10-28",
     "CLH": "2026-10-28",
     "AMZN": "2026-10-29",
@@ -844,8 +844,8 @@
     "SYK": "2026-10-29",
     "TT": "2026-10-29",
     "ING": "2026-10-29",
-    "MNST": "2026-10-29",
     "PWR": "2026-10-29",
+    "MNST": "2026-10-29",
     "ASX": "2026-10-29",
     "ICE": "2026-10-29",
     "EPD": "2026-10-29",
@@ -858,9 +858,9 @@
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
     "STRD": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRK": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
@@ -897,8 +897,8 @@
     "ARES": "2026-10-29",
     "RDDT": "2026-10-29",
     "VLTO": "2026-10-29",
-    "INCY": "2026-10-29",
     "ENTG": "2026-10-29",
+    "INCY": "2026-10-29",
     "MKL": "2026-10-29",
     "ATI": "2026-10-29",
     "EIX": "2026-10-29",
@@ -972,18 +972,18 @@
     "APO": "2026-11-03",
     "MPLX": "2026-11-03",
     "AME": "2026-11-03",
-    "TRI": "2026-11-03",
     "ALAB": "2026-11-03",
-    "KDP": "2026-11-03",
+    "TRI": "2026-11-03",
     "WAT": "2026-11-03",
+    "KDP": "2026-11-03",
     "TEVA": "2026-11-03",
     "XYZ": "2026-11-03",
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
     "PRU": "2026-11-03",
-    "PFH": "2026-11-03",
     "PRS": "2026-11-03",
+    "PFH": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
@@ -991,8 +991,8 @@
     "CPNG": "2026-11-03",
     "FISV": "2026-11-03",
     "IFF": "2026-11-03",
-    "SMCIP": "2026-11-03",
     "SMCI": "2026-11-03",
+    "SMCIP": "2026-11-03",
     "BNTX": "2026-11-03",
     "SWKS": "2026-11-03",
     "BR": "2026-11-03",
@@ -1043,8 +1043,8 @@
     "CPAY": "2026-11-04",
     "ES": "2026-11-04",
     "GFS": "2026-11-04",
-    "UTHR": "2026-11-04",
     "Q": "2026-11-04",
+    "UTHR": "2026-11-04",
     "TPL": "2026-11-04",
     "PR": "2026-11-04",
     "PTC": "2026-11-04",
@@ -1062,7 +1062,7 @@
     "PAAS": "2026-11-04"
   },
   "_meta": {
-    "updatedAt": "28/10/2026 16:31",
+    "updatedAt": "28/10/2026 16:46",
     "source": "tradingview"
   }
 }
