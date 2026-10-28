@@ -5,17 +5,17 @@
     {
       "ticker": "GOOG",
       "name": "Alphabet Inc. Class C",
-      "capB": 3945.1
+      "capB": 3946.7
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet Inc. Class A",
-      "capB": 3940.2
+      "capB": 3941.1
     },
     {
       "ticker": "MSFT",
       "name": "Microsoft Corporation",
-      "capB": 3918.1
+      "capB": 3919.0
     },
     {
       "ticker": "GOOGM",
@@ -30,17 +30,17 @@
     {
       "ticker": "GEV",
       "name": "GE Vernova Inc.",
-      "capB": 235.9
+      "capB": 236.0
     },
     {
       "ticker": "KLAC",
       "name": "KLA Corporation",
-      "capB": 207.2
+      "capB": 206.7
     },
     {
       "ticker": "APH",
       "name": "Amphenol Corporation Class A",
-      "capB": 197.5
+      "capB": 198.3
     }
   ],
   "reactions": {
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/V.png",
             "logoBg": "dark",
-            "chg": 0.23,
-            "price": 402.77,
+            "chg": 0.17,
+            "price": 402.54,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -67,8 +67,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SKHY.png",
-            "chg": 12.38,
-            "price": 163.35,
+            "chg": 12.86,
+            "price": 164.05,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STX.png",
-            "chg": 1.33,
-            "price": 676.72,
+            "chg": 1.64,
+            "price": 678.79,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           }
@@ -483,17 +483,17 @@
           "logo": "data/earnings/logos/STX.png"
         },
         {
+          "ticker": "SPGI",
+          "name": "S&P Global, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/SPGI.png"
+        },
+        {
           "ticker": "BA",
           "name": "Boeing Company",
           "when": "before",
           "logo": "data/earnings/logos/BA.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "SPGI",
-          "name": "S&P Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SPGI.png"
         },
         {
           "ticker": "GLW",
@@ -807,8 +807,8 @@
     "FLEX": "2026-10-28",
     "RJF": "2026-10-28",
     "LH": "2026-10-28",
-    "AWK": "2026-10-28",
     "OTIS": "2026-10-28",
+    "AWK": "2026-10-28",
     "KGC": "2026-10-28",
     "NMR": "2026-10-28",
     "VICI": "2026-10-28",
@@ -849,18 +849,18 @@
     "ASX": "2026-10-29",
     "ICE": "2026-10-29",
     "EPD": "2026-10-29",
-    "MDLZ": "2026-10-29",
     "HWM": "2026-10-29",
+    "MDLZ": "2026-10-29",
     "LYG": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
     "DLR": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRF": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRC": "2026-10-29",
     "MPWR": "2026-10-29",
     "MSTR": "2026-10-29",
     "CRH": "2026-10-29",
@@ -879,17 +879,17 @@
     "KB": "2026-10-29",
     "WEC": "2026-10-29",
     "RMD": "2026-10-29",
-    "QSR": "2026-10-29",
     "VMC": "2026-10-29",
-    "RKT": "2026-10-29",
+    "QSR": "2026-10-29",
     "HSY": "2026-10-29",
+    "RKT": "2026-10-29",
     "CQP": "2026-10-29",
     "TECK": "2026-10-29",
     "ALNY": "2026-10-29",
     "CTSH": "2026-10-29",
-    "DXCM": "2026-10-29",
     "WTW": "2026-10-29",
     "EME": "2026-10-29",
+    "DXCM": "2026-10-29",
     "IR": "2026-10-29",
     "FTI": "2026-10-29",
     "WST": "2026-10-29",
@@ -1017,8 +1017,8 @@
     "APP": "2026-11-04",
     "MELI": "2026-11-04",
     "MSI": "2026-11-04",
-    "DASH": "2026-11-04",
     "MFC": "2026-11-04",
+    "DASH": "2026-11-04",
     "ALL": "2026-11-04",
     "MET": "2026-11-04",
     "GWW": "2026-11-04",
@@ -1053,8 +1053,8 @@
     "RGLD": "2026-11-04",
     "WES": "2026-11-04",
     "ZBH": "2026-11-04",
-    "CF": "2026-11-04",
     "APA": "2026-11-04",
+    "CF": "2026-11-04",
     "CRL": "2026-11-04",
     "CW": "2026-11-04",
     "ITT": "2026-11-04",
@@ -1062,7 +1062,7 @@
     "PAAS": "2026-11-04"
   },
   "_meta": {
-    "updatedAt": "28/10/2026 18:01",
+    "updatedAt": "28/10/2026 18:12",
     "source": "tradingview"
   }
 }
