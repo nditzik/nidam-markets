@@ -28,11 +28,6 @@
       "capB": 3860.0
     },
     {
-      "ticker": "SKHY",
-      "name": "SK hynix Inc. Sponsored ADR",
-      "capB": 697.0
-    },
-    {
       "ticker": "GEV",
       "name": "GE Vernova Inc.",
       "capB": 238.4
@@ -41,6 +36,11 @@
       "ticker": "KLAC",
       "name": "KLA Corporation",
       "capB": 200.5
+    },
+    {
+      "ticker": "APH",
+      "name": "Amphenol Corporation Class A",
+      "capB": 192.9
     }
   ],
   "reactions": {
@@ -56,6 +56,13 @@
             "status": "pending",
             "logo": "data/earnings/logos/V.png",
             "logoBg": "dark"
+          },
+          {
+            "ticker": "SKHY",
+            "name": "SK hynix Inc. Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/SKHY.png"
           },
           {
             "ticker": "KO",
@@ -96,18 +103,6 @@
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/STX.png"
-          },
-          {
-            "ticker": "BA",
-            "name": "Boeing Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BA.png",
-            "logoBg": "dark",
-            "chg": -10.69,
-            "price": 168.18,
-            "reactDate": "2026-10-27",
-            "baseDate": "2026-10-26"
           }
         ]
       },
@@ -288,12 +283,6 @@
       "when": "after"
     },
     {
-      "ticker": "SKHY",
-      "name": "SK hynix Inc. Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/SKHY.png"
-    },
-    {
       "ticker": "GEV",
       "name": "GE Vernova Inc.",
       "when": "before",
@@ -328,6 +317,13 @@
       "name": "T-Mobile US, Inc.",
       "when": "after",
       "logo": "data/earnings/logos/TMUS.png"
+    },
+    {
+      "ticker": "UBS",
+      "name": "UBS Group AG",
+      "when": "before",
+      "logo": "data/earnings/logos/UBS.png",
+      "logoBg": "dark"
     }
   ],
   "more": 46,
@@ -435,7 +431,7 @@
       "date": "2026-10-27",
       "dow": "שלישי",
       "label": "27.10",
-      "total": 47,
+      "total": 48,
       "companies": [
         {
           "ticker": "V",
@@ -443,6 +439,12 @@
           "when": "after",
           "logo": "data/earnings/logos/V.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "SKHY",
+          "name": "SK hynix Inc. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/SKHY.png"
         },
         {
           "ticker": "KO",
@@ -504,12 +506,6 @@
           "name": "Johnson Controls International plc",
           "when": "before",
           "logo": "data/earnings/logos/JCI.png"
-        },
-        {
-          "ticker": "WM",
-          "name": "Waste Management, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/WM.png"
         }
       ]
     },
@@ -548,12 +544,6 @@
           "when": "after"
         },
         {
-          "ticker": "SKHY",
-          "name": "SK hynix Inc. Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/SKHY.png"
-        },
-        {
           "ticker": "GEV",
           "name": "GE Vernova Inc.",
           "when": "before",
@@ -588,6 +578,13 @@
           "name": "T-Mobile US, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/TMUS.png"
+        },
+        {
+          "ticker": "UBS",
+          "name": "UBS Group AG",
+          "when": "before",
+          "logo": "data/earnings/logos/UBS.png",
+          "logoBg": "dark"
         }
       ]
     },
@@ -762,7 +759,6 @@
     "GOOG": "2026-10-28",
     "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
-    "SKHY": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
     "APH": "2026-10-28",
@@ -798,6 +794,7 @@
     "GEHC": "2026-10-28",
     "FLEX": "2026-10-28",
     "RJF": "2026-10-28",
+    "SHG": "2026-10-28",
     "OTIS": "2026-10-28",
     "AWK": "2026-10-28",
     "KGC": "2026-10-28",
@@ -848,10 +845,10 @@
     "LNG": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRD": "2026-10-29",
-    "STRF": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRF": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRC": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
     "LHX": "2026-10-29",
@@ -1043,11 +1040,10 @@
     "CW": "2026-11-04",
     "ITT": "2026-11-04",
     "HST": "2026-11-04",
-    "PAAS": "2026-11-04",
-    "CRL": "2026-11-04"
+    "PAAS": "2026-11-04"
   },
   "_meta": {
-    "updatedAt": "28/10/2026 05:16",
+    "updatedAt": "28/10/2026 05:32",
     "source": "tradingview"
   }
 }
