@@ -55,7 +55,7 @@
   {
    "mon": "2026-11-02",
    "label": "2.11",
-   "n": 145,
+   "n": 144,
    "tickers": [
     "AAPL",
     "BRK.B",
@@ -67,7 +67,7 @@
   {
    "mon": "2026-11-09",
    "label": "9.11",
-   "n": 9,
+   "n": 10,
    "tickers": [
     "PANW",
     "AMAT"
@@ -76,8 +76,9 @@
   {
    "mon": "2026-11-16",
    "label": "16.11",
-   "n": 10,
+   "n": 11,
    "tickers": [
+    "NVDA",
     "WMT",
     "CSCO",
     "HD",
@@ -87,10 +88,8 @@
   {
    "mon": "2026-11-23",
    "label": "23.11",
-   "n": 9,
-   "tickers": [
-    "NVDA"
-   ]
+   "n": 8,
+   "tickers": []
   }
  ],
  "milestones": [
@@ -158,6 +157,17 @@
    ]
   },
   {
+   "key": "nvda",
+   "label": "אנבידיה",
+   "date": "2026-11-17",
+   "syms": [
+    "NVDA"
+   ],
+   "mine": [
+    "NVDA"
+   ]
+  },
+  {
    "key": "wmt",
    "label": "וולמארט",
    "date": "2026-11-19",
@@ -167,30 +177,19 @@
    "mine": [
     "WMT"
    ]
-  },
-  {
-   "key": "nvda",
-   "label": "אנבידיה",
-   "date": "2026-11-25",
-   "syms": [
-    "NVDA"
-   ],
-   "mine": [
-    "NVDA"
-   ]
   }
  ],
  "total": 454,
- "reported": 162,
+ "reported": 164,
  "members": 504,
  "board": {
-  "reported": 162,
-  "epsN": 162,
-  "epsBeat": 129,
+  "reported": 164,
+  "epsN": 164,
+  "epsBeat": 131,
   "epsBeatPct": 80,
-  "revN": 162,
-  "revBeat": 109,
-  "revBeatPct": 67,
+  "revN": 164,
+  "revBeat": 111,
+  "revBeatPct": 68,
   "reactBeat": 0.78,
   "reactBeatN": 112,
   "reactMiss": -1.3,
@@ -208,13 +207,13 @@
    },
    {
     "name": "טכנולוגיה",
-    "n": 20,
-    "beat": 17
+    "n": 21,
+    "beat": 18
    },
    {
     "name": "בריאות",
-    "n": 13,
-    "beat": 13
+    "n": 14,
+    "beat": 14
    },
    {
     "name": "צריכה מחזורית",
@@ -281,7 +280,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "28/10/2026 12:16",
+  "updatedAt": "28/10/2026 12:31",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
