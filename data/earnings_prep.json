@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "28/10/2026 05:46",
+  "updatedAt": "28/10/2026 06:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "Boston Scientific Corporation",
    "date": "2026-10-28",
    "when": "before",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/BSX__2026-08-20.html",
     "date": "2026-08-20",
@@ -501,7 +501,7 @@
    "name": "Alphabet Inc. Class A",
    "date": "2026-10-28",
    "when": "after",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/alphabet__2026-07-30.html",
     "date": "2026-07-30",
@@ -991,7 +991,7 @@
    "name": "Microsoft Corporation",
    "date": "2026-10-28",
    "when": "after",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/MSFT__2026-07-30.html",
     "date": "2026-07-30",
@@ -1481,7 +1481,7 @@
    "name": "Amazon.com, Inc.",
    "date": "2026-10-29",
    "when": "after",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/AMZN__2026-07-31.html",
     "date": "2026-07-31",
@@ -1971,7 +1971,7 @@
    "name": "CubeSmart",
    "date": "2026-10-29",
    "when": "after",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/CUBE__2026-08-01.html",
     "date": "2026-08-01",
@@ -2461,7 +2461,7 @@
    "name": "Merck & Co., Inc.",
    "date": "2026-10-29",
    "when": "before",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/MRK__2026-08-04.html",
     "date": "2026-08-04",
@@ -2951,7 +2951,7 @@
    "name": "Sandisk Corporation",
    "date": "2026-10-29",
    "when": "after",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/SNDK__2026-08-05.html",
     "date": "2026-08-05",
@@ -3441,7 +3441,7 @@
    "name": "Chevron Corporation",
    "date": "2026-10-30",
    "when": "before",
-   "daysTo": 3,
+   "daysTo": 2,
    "report": {
     "file": "data/reports/CVX_2026-07-31.html",
     "date": "2026-07-31",
@@ -3931,7 +3931,7 @@
    "name": "Apple Inc.",
    "date": "2026-11-02",
    "when": "after",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/AAPL__2026-07-31.html",
     "date": "2026-07-31",
@@ -4421,7 +4421,7 @@
    "name": "Palantir Technologies Inc. Class A",
    "date": "2026-11-02",
    "when": "after",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/PLTR__2026-08-04.html",
     "date": "2026-08-04",
@@ -4911,7 +4911,7 @@
    "name": "Advanced Micro Devices, Inc.",
    "date": "2026-11-03",
    "when": "after",
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/AMD__2026-08-05.html",
     "date": "2026-08-05",
@@ -5401,7 +5401,7 @@
    "name": "Novo Nordisk A/S Sponsored ADR Class B",
    "date": "2026-11-04",
    "when": "before",
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/NVO__2026-08-06.html",
     "date": "2026-08-06",
@@ -5884,14 +5884,14 @@
     "prePct": 2.48
    },
    "avgMove": 3.6,
-   "hasNote": false
+   "hasNote": true
   },
   {
    "sym": "UBER",
    "name": "Uber Technologies, Inc.",
    "date": "2026-11-04",
    "when": "before",
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/UBER__2026-08-06.html",
     "date": "2026-08-06",
@@ -6374,19 +6374,19 @@
     "prePct": 2.7
    },
    "avgMove": 6.0,
-   "hasNote": false
+   "hasNote": true
   }
  ],
  "later": [
   {
-   "sym": "PANW",
-   "date": "2026-11-12",
-   "when": null
-  },
-  {
    "sym": "AMAT",
    "date": "2026-11-12",
    "when": "after"
+  },
+  {
+   "sym": "PANW",
+   "date": "2026-11-12",
+   "when": null
   },
   {
    "sym": "ONDS",
@@ -6394,12 +6394,12 @@
    "when": null
   },
   {
-   "sym": "CPRT",
+   "sym": "CSCO",
    "date": "2026-11-18",
    "when": null
   },
   {
-   "sym": "CSCO",
+   "sym": "CPRT",
    "date": "2026-11-18",
    "when": null
   },
@@ -6528,49 +6528,6 @@
     "day": "2026-10-22",
     "move": -6.98,
     "close": 648.85
-   }
-  },
-  {
-   "sym": "JPM",
-   "name": "JPMorgan Chase & Co.",
-   "date": "2026-10-13",
-   "when": "before",
-   "report": {
-    "file": "data/reports/JPM__2026-07-14.html",
-    "date": "2026-07-14",
-    "title": "JPMorgan Q2 2026",
-    "logo": "data/reports/logos/JPM.png",
-    "logoBg": null
-   },
-   "newReport": null,
-   "consensus": {
-    "eps": 5.94266,
-    "epsLow": 5.59,
-    "epsHigh": 6.23,
-    "epsN": 12,
-    "epsYearAgo": 5.07,
-    "rev": 51215704930,
-    "revLow": 50338000000,
-    "revHigh": 52491453000,
-    "revN": 11,
-    "revYearAgo": 46427000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "12/10 22:46",
-    "price": 334.16,
-    "exp": "2026-10-16",
-    "strike": 335.0,
-    "pct": 3.29,
-    "earn": null,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 2.4,
-   "reaction": {
-    "day": "2026-10-13",
-    "move": -0.86,
-    "close": 331.43
    }
   }
  ]
