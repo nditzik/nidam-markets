@@ -5,17 +5,17 @@
     {
       "ticker": "GOOG",
       "name": "Alphabet Inc. Class C",
-      "capB": 3939.3
+      "capB": 3945.1
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet Inc. Class A",
-      "capB": 3933.4
+      "capB": 3940.2
     },
     {
       "ticker": "MSFT",
       "name": "Microsoft Corporation",
-      "capB": 3923.9
+      "capB": 3918.1
     },
     {
       "ticker": "GOOGM",
@@ -30,17 +30,17 @@
     {
       "ticker": "GEV",
       "name": "GE Vernova Inc.",
-      "capB": 233.4
+      "capB": 235.9
     },
     {
       "ticker": "KLAC",
       "name": "KLA Corporation",
-      "capB": 206.2
+      "capB": 207.2
     },
     {
       "ticker": "APH",
       "name": "Amphenol Corporation Class A",
-      "capB": 196.6
+      "capB": 197.5
     }
   ],
   "reactions": {
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/V.png",
             "logoBg": "dark",
-            "chg": 0.32,
-            "price": 403.15,
+            "chg": 0.23,
+            "price": 402.77,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -67,8 +67,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SKHY.png",
-            "chg": 12.03,
-            "price": 162.84,
+            "chg": 12.38,
+            "price": 163.35,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STX.png",
-            "chg": 1.56,
-            "price": 678.29,
+            "chg": 1.33,
+            "price": 676.72,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           }
@@ -483,17 +483,17 @@
           "logo": "data/earnings/logos/STX.png"
         },
         {
-          "ticker": "SPGI",
-          "name": "S&P Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SPGI.png"
-        },
-        {
           "ticker": "BA",
           "name": "Boeing Company",
           "when": "before",
           "logo": "data/earnings/logos/BA.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "SPGI",
+          "name": "S&P Global, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/SPGI.png"
         },
         {
           "ticker": "GLW",
@@ -769,8 +769,8 @@
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
     "APH": "2026-10-28",
@@ -796,8 +796,8 @@
     "DB": "2026-10-28",
     "BSX": "2026-10-28",
     "HONA": "2026-10-28",
-    "GRMN": "2026-10-28",
     "EBAY": "2026-10-28",
+    "GRMN": "2026-10-28",
     "UMC": "2026-10-28",
     "F": "2026-10-28",
     "BIIB": "2026-10-28",
@@ -857,12 +857,12 @@
     "DLR": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
-    "STRF": "2026-10-29",
-    "STRD": "2026-10-29",
     "STRC": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRF": "2026-10-29",
     "STRK": "2026-10-29",
-    "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
+    "MSTR": "2026-10-29",
     "CRH": "2026-10-29",
     "XEL": "2026-10-29",
     "LHX": "2026-10-29",
@@ -881,8 +881,8 @@
     "RMD": "2026-10-29",
     "QSR": "2026-10-29",
     "VMC": "2026-10-29",
-    "HSY": "2026-10-29",
     "RKT": "2026-10-29",
+    "HSY": "2026-10-29",
     "CQP": "2026-10-29",
     "TECK": "2026-10-29",
     "ALNY": "2026-10-29",
@@ -975,8 +975,8 @@
     "AME": "2026-11-03",
     "ALAB": "2026-11-03",
     "TRI": "2026-11-03",
-    "WAT": "2026-11-03",
     "KDP": "2026-11-03",
+    "WAT": "2026-11-03",
     "TEVA": "2026-11-03",
     "XYZ": "2026-11-03",
     "AIG": "2026-11-03",
@@ -1062,7 +1062,7 @@
     "PAAS": "2026-11-04"
   },
   "_meta": {
-    "updatedAt": "28/10/2026 17:46",
+    "updatedAt": "28/10/2026 18:01",
     "source": "tradingview"
   }
 }
