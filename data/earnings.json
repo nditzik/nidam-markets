@@ -1,50 +1,100 @@
 {
-  "today": "2026-10-28",
-  "todayCount": 60,
+  "today": "2026-10-29",
+  "todayCount": 92,
   "todayBig": [
     {
-      "ticker": "GOOG",
-      "name": "Alphabet Inc. Class C",
-      "capB": 3962.3
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "capB": 2746.2
     },
     {
-      "ticker": "GOOGL",
-      "name": "Alphabet Inc. Class A",
-      "capB": 3952.4
+      "ticker": "LLY",
+      "name": "Eli Lilly and Company",
+      "capB": 1212.8
     },
     {
-      "ticker": "MSFT",
-      "name": "Microsoft Corporation",
-      "capB": 3943.5
+      "ticker": "MA",
+      "name": "Mastercard Incorporated Class A",
+      "capB": 534.6
     },
     {
-      "ticker": "GOOGM",
-      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-      "capB": 3900.0
+      "ticker": "INTC",
+      "name": "Intel Corporation",
+      "capB": 505.0
     },
     {
-      "ticker": "GOOGN",
-      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-      "capB": 3900.0
+      "ticker": "MRK",
+      "name": "Merck & Co., Inc.",
+      "capB": 347.7
     },
     {
-      "ticker": "GEV",
-      "name": "GE Vernova Inc.",
-      "capB": 233.8
+      "ticker": "CAT",
+      "name": "Caterpillar Inc.",
+      "capB": 327.9
     },
     {
-      "ticker": "KLAC",
-      "name": "KLA Corporation",
-      "capB": 207.2
+      "ticker": "SHEL",
+      "name": "Shell Plc Sponsored ADR",
+      "capB": 296.9
     },
     {
-      "ticker": "APH",
-      "name": "Amphenol Corporation Class A",
-      "capB": 199.6
+      "ticker": "LIN",
+      "name": "Linde plc",
+      "capB": 234.3
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-28",
+        "label": "28.10",
+        "items": [
+          {
+            "ticker": "GOOG",
+            "name": "Alphabet Inc. Class C",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/GOOG.png"
+          },
+          {
+            "ticker": "GOOGL",
+            "name": "Alphabet Inc. Class A",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/GOOGL.png"
+          },
+          {
+            "ticker": "MSFT",
+            "name": "Microsoft Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/MSFT.png"
+          },
+          {
+            "ticker": "GOOGM",
+            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "GOOGN",
+            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "GEV",
+            "name": "GE Vernova Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/GEV.png",
+            "chg": -1.9,
+            "price": 878.03,
+            "reactDate": "2026-10-28",
+            "baseDate": "2026-10-27"
+          }
+        ]
+      },
       {
         "date": "2026-10-27",
         "label": "27.10",
@@ -190,170 +240,87 @@
             "baseDate": "2026-10-26"
           }
         ]
-      },
-      {
-        "date": "2026-10-23",
-        "label": "23.10",
-        "items": [
-          {
-            "ticker": "AXP",
-            "name": "American Express Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/AXP.png",
-            "chg": -3.68,
-            "price": 313.22,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
-            "ticker": "E",
-            "name": "Eni S.p.A. Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/E.png",
-            "chg": 4.28,
-            "price": 62.08,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
-            "ticker": "SLB",
-            "name": "SLB Limited",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SLB.png",
-            "chg": 7.08,
-            "price": 53.06,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
-            "ticker": "INFY",
-            "name": "Infosys Limited Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/INFY.png",
-            "chg": -6.58,
-            "price": 12.35,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
-            "ticker": "FCNCN",
-            "name": "First Citizens BancShares, Inc. Depositary Shs Repr 1/40th Non-Cum Perp Pfd Registered Shs Ser E",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FCNCN.png",
-            "chg": 0.23,
-            "price": 22.15,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          },
-          {
-            "ticker": "FCNCO",
-            "name": "First Citizens BancShares, Inc. 5.625 % Non-Cum Red Perp Registered Pfd Shs Series C",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FCNCO.png",
-            "chg": 1.04,
-            "price": 18.43,
-            "reactDate": "2026-10-23",
-            "baseDate": "2026-10-22"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "GOOG",
-      "name": "Alphabet Inc. Class C",
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/GOOG.png"
-    },
-    {
-      "ticker": "GOOGL",
-      "name": "Alphabet Inc. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/GOOGL.png"
-    },
-    {
-      "ticker": "MSFT",
-      "name": "Microsoft Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/MSFT.png"
-    },
-    {
-      "ticker": "GOOGM",
-      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-      "when": "after"
-    },
-    {
-      "ticker": "GOOGN",
-      "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-      "when": "after"
-    },
-    {
-      "ticker": "GEV",
-      "name": "GE Vernova Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/GEV.png"
-    },
-    {
-      "ticker": "KLAC",
-      "name": "KLA Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/KLAC.png"
-    },
-    {
-      "ticker": "APH",
-      "name": "Amphenol Corporation Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/APH.png"
-    },
-    {
-      "ticker": "SAN",
-      "name": "Banco Santander S.A. Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/SAN.png"
-    },
-    {
-      "ticker": "TMUS",
-      "name": "T-Mobile US, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/TMUS.png"
-    },
-    {
-      "ticker": "NOW",
-      "name": "ServiceNow, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/NOW.png"
-    },
-    {
-      "ticker": "UBS",
-      "name": "UBS Group AG",
-      "when": "before",
-      "logo": "data/earnings/logos/UBS.png",
+      "logo": "data/earnings/logos/AMZN.png",
       "logoBg": "dark"
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly and Company",
+      "when": "before",
+      "logo": "data/earnings/logos/LLY.png"
+    },
+    {
+      "ticker": "MA",
+      "name": "Mastercard Incorporated Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/MA.png"
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/INTC.png"
+    },
+    {
+      "ticker": "MRK",
+      "name": "Merck & Co., Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/MRK.png"
+    },
+    {
+      "ticker": "CAT",
+      "name": "Caterpillar Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/CAT.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "SHEL",
+      "name": "Shell Plc Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/SHEL.png"
+    },
+    {
+      "ticker": "LIN",
+      "name": "Linde plc",
+      "when": "before",
+      "logo": "data/earnings/logos/LIN.png"
+    },
+    {
+      "ticker": "TTE",
+      "name": "TotalEnergies SE",
+      "when": "",
+      "logo": "data/earnings/logos/TTE.png"
+    },
+    {
+      "ticker": "SNDK",
+      "name": "Sandisk Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/SNDK.png"
+    },
+    {
+      "ticker": "GILD",
+      "name": "Gilead Sciences, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/GILD.png"
+    },
+    {
+      "ticker": "BBVA",
+      "name": "Banco Bilbao Vizcaya Argentaria, S.A. Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/BBVA.png"
     }
   ],
-  "more": 48,
+  "more": 80,
   "upcoming": [
-    {
-      "date": "2026-10-29",
-      "label": "29/10",
-      "dow": "ה׳",
-      "count": 92,
-      "tickers": [
-        "AMZN",
-        "LLY",
-        "MA",
-        "INTC",
-        "MRK",
-        "CAT"
-      ]
-    },
     {
       "date": "2026-10-30",
       "label": "30/10",
@@ -766,66 +733,6 @@
     }
   ],
   "window": {
-    "GOOG": "2026-10-28",
-    "GOOGL": "2026-10-28",
-    "MSFT": "2026-10-28",
-    "GOOGN": "2026-10-28",
-    "GOOGM": "2026-10-28",
-    "GEV": "2026-10-28",
-    "KLAC": "2026-10-28",
-    "APH": "2026-10-28",
-    "SAN": "2026-10-28",
-    "TMUS": "2026-10-28",
-    "NOW": "2026-10-28",
-    "UBS": "2026-10-28",
-    "FTNT": "2026-10-28",
-    "ADP": "2026-10-28",
-    "EQNR": "2026-10-28",
-    "PSX": "2026-10-28",
-    "GSK": "2026-10-28",
-    "EQIX": "2026-10-28",
-    "VRT": "2026-10-28",
-    "AEM": "2026-10-28",
-    "CP": "2026-10-28",
-    "ORLY": "2026-10-28",
-    "FDX": "2026-10-28",
-    "AEP": "2026-10-28",
-    "AON": "2026-10-28",
-    "CVNA": "2026-10-28",
-    "TEL": "2026-10-28",
-    "DB": "2026-10-28",
-    "BSX": "2026-10-28",
-    "HONA": "2026-10-28",
-    "GRMN": "2026-10-28",
-    "EBAY": "2026-10-28",
-    "F": "2026-10-28",
-    "UMC": "2026-10-28",
-    "CMG": "2026-10-28",
-    "BIIB": "2026-10-28",
-    "ODFL": "2026-10-28",
-    "FLEX": "2026-10-28",
-    "GEHC": "2026-10-28",
-    "RJF": "2026-10-28",
-    "LH": "2026-10-28",
-    "AWK": "2026-10-28",
-    "OTIS": "2026-10-28",
-    "KGC": "2026-10-28",
-    "NMR": "2026-10-28",
-    "VICI": "2026-10-28",
-    "FMX": "2026-10-28",
-    "AER": "2026-10-28",
-    "ARXS": "2026-10-28",
-    "AMRZ": "2026-10-28",
-    "SW": "2026-10-28",
-    "NI": "2026-10-28",
-    "DINO": "2026-10-28",
-    "FTV": "2026-10-28",
-    "GFL": "2026-10-28",
-    "IP": "2026-10-28",
-    "BSBR": "2026-10-28",
-    "STLA": "2026-10-28",
-    "IEX": "2026-10-28",
-    "CLH": "2026-10-28",
     "AMZN": "2026-10-29",
     "LLY": "2026-10-29",
     "MA": "2026-10-29",
@@ -860,8 +767,8 @@
     "MSTR": "2026-10-29",
     "STRD": "2026-10-29",
     "STRK": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
     "LHX": "2026-10-29",
@@ -1066,10 +973,69 @@
     "PAAS": "2026-11-04",
     "HST": "2026-11-04",
     "NWSA": "2026-11-04",
-    "NWS": "2026-11-04"
+    "NWS": "2026-11-04",
+    "TM": "2026-11-05",
+    "COP": "2026-11-05",
+    "PH": "2026-11-05",
+    "NET": "2026-11-05",
+    "CNQ": "2026-11-05",
+    "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
+    "SO": "2026-11-05",
+    "ABNB": "2026-11-05",
+    "DUK": "2026-11-05",
+    "EOG": "2026-11-05",
+    "LITE": "2026-11-05",
+    "NGG": "2026-11-05",
+    "CI": "2026-11-05",
+    "CMI": "2026-11-05",
+    "APD": "2026-11-05",
+    "SPG": "2026-11-05",
+    "TRP": "2026-11-05",
+    "TRGP": "2026-11-05",
+    "WPM": "2026-11-05",
+    "CAH": "2026-11-05",
+    "DVN": "2026-11-05",
+    "TEAM": "2026-11-05",
+    "SRE": "2026-11-05",
+    "BDX": "2026-11-05",
+    "ROK": "2026-11-05",
+    "AU": "2026-11-05",
+    "MCHPP": "2026-11-05",
+    "MCHP": "2026-11-05",
+    "ED": "2026-11-05",
+    "LYV": "2026-11-05",
+    "KMB": "2026-11-05",
+    "IRM": "2026-11-05",
+    "AXON": "2026-11-05",
+    "MTD": "2026-11-05",
+    "ZTS": "2026-11-05",
+    "AEE": "2026-11-05",
+    "PBA": "2026-11-05",
+    "DTK": "2026-11-05",
+    "DTE": "2026-11-05",
+    "GMAB": "2026-11-05",
+    "AFRM": "2026-11-05",
+    "CIB": "2026-11-05",
+    "VRSK": "2026-11-05",
+    "GH": "2026-11-05",
+    "RL": "2026-11-05",
+    "FWONK": "2026-11-05",
+    "FWONA": "2026-11-05",
+    "STE": "2026-11-05",
+    "GPN": "2026-11-05",
+    "TPR": "2026-11-05",
+    "USFD": "2026-11-05",
+    "VTRS": "2026-11-05",
+    "MTSI": "2026-11-05",
+    "EVRG": "2026-11-05",
+    "BCE": "2026-11-05",
+    "U": "2026-11-05",
+    "RGA": "2026-11-05",
+    "SBS": "2026-11-05"
   },
   "_meta": {
-    "updatedAt": "28/10/2026 23:46",
+    "updatedAt": "29/10/2026 00:01",
     "source": "tradingview"
   }
 }
