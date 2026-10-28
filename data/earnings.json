@@ -5,17 +5,17 @@
     {
       "ticker": "GOOG",
       "name": "Alphabet Inc. Class C",
-      "capB": 3946.6
+      "capB": 3949.1
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet Inc. Class A",
-      "capB": 3943.5
+      "capB": 3947.7
     },
     {
       "ticker": "MSFT",
       "name": "Microsoft Corporation",
-      "capB": 3932.7
+      "capB": 3935.3
     },
     {
       "ticker": "GOOGM",
@@ -30,17 +30,17 @@
     {
       "ticker": "GEV",
       "name": "GE Vernova Inc.",
-      "capB": 225.7
+      "capB": 231.6
     },
     {
       "ticker": "KLAC",
       "name": "KLA Corporation",
-      "capB": 206.0
+      "capB": 205.1
     },
     {
       "ticker": "APH",
       "name": "Amphenol Corporation Class A",
-      "capB": 197.9
+      "capB": 198.5
     }
   ],
   "reactions": {
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/V.png",
             "logoBg": "dark",
-            "chg": 0.3,
-            "price": 403.05,
+            "chg": 0.06,
+            "price": 402.11,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -67,8 +67,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SKHY.png",
-            "chg": 10.57,
-            "price": 160.72,
+            "chg": 10.51,
+            "price": 160.63,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/STX.png",
-            "chg": -2.63,
-            "price": 650.29,
+            "chg": -1.38,
+            "price": 658.65,
             "reactDate": "2026-10-28",
             "baseDate": "2026-10-27"
           }
@@ -344,7 +344,7 @@
       "date": "2026-10-29",
       "label": "29/10",
       "dow": "ה׳",
-      "count": 87,
+      "count": 88,
       "tickers": [
         "AMZN",
         "LLY",
@@ -604,7 +604,7 @@
       "date": "2026-10-29",
       "dow": "חמישי",
       "label": "29.10",
-      "total": 87,
+      "total": 88,
       "companies": [
         {
           "ticker": "AMZN",
@@ -663,16 +663,16 @@
           "logo": "data/earnings/logos/TTE.png"
         },
         {
-          "ticker": "SNDK",
-          "name": "Sandisk Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/SNDK.png"
-        },
-        {
           "ticker": "GILD",
           "name": "Gilead Sciences, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/GILD.png"
+        },
+        {
+          "ticker": "SNDK",
+          "name": "Sandisk Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/SNDK.png"
         },
         {
           "ticker": "BBVA",
@@ -769,8 +769,8 @@
     "GOOG": "2026-10-28",
     "GOOGL": "2026-10-28",
     "MSFT": "2026-10-28",
-    "GOOGM": "2026-10-28",
     "GOOGN": "2026-10-28",
+    "GOOGM": "2026-10-28",
     "GEV": "2026-10-28",
     "KLAC": "2026-10-28",
     "APH": "2026-10-28",
@@ -800,8 +800,8 @@
     "EBAY": "2026-10-28",
     "UMC": "2026-10-28",
     "F": "2026-10-28",
-    "ODFL": "2026-10-28",
     "BIIB": "2026-10-28",
+    "ODFL": "2026-10-28",
     "CMG": "2026-10-28",
     "GEHC": "2026-10-28",
     "FLEX": "2026-10-28",
@@ -835,8 +835,8 @@
     "SHEL": "2026-10-29",
     "LIN": "2026-10-29",
     "TTE": "2026-10-29",
-    "SNDK": "2026-10-29",
     "GILD": "2026-10-29",
+    "SNDK": "2026-10-29",
     "BBVA": "2026-10-29",
     "BMY": "2026-10-29",
     "MO": "2026-10-29",
@@ -850,16 +850,16 @@
     "ICE": "2026-10-29",
     "EPD": "2026-10-29",
     "MDLZ": "2026-10-29",
-    "LYG": "2026-10-29",
     "HWM": "2026-10-29",
+    "LYG": "2026-10-29",
     "RSG": "2026-10-29",
     "AJG": "2026-10-29",
     "DLR": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
-    "STRK": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRC": "2026-10-29",
+    "STRK": "2026-10-29",
     "STRF": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
@@ -887,8 +887,8 @@
     "TECK": "2026-10-29",
     "CTSH": "2026-10-29",
     "ALNY": "2026-10-29",
-    "DXCM": "2026-10-29",
     "WTW": "2026-10-29",
+    "DXCM": "2026-10-29",
     "EME": "2026-10-29",
     "IR": "2026-10-29",
     "WST": "2026-10-29",
@@ -897,14 +897,14 @@
     "ARES": "2026-10-29",
     "RDDT": "2026-10-29",
     "VLTO": "2026-10-29",
-    "ENTG": "2026-10-29",
     "INCY": "2026-10-29",
+    "ENTG": "2026-10-29",
     "MKL": "2026-10-29",
     "ATI": "2026-10-29",
     "EIX": "2026-10-29",
     "TROW": "2026-10-29",
-    "XPO": "2026-10-29",
     "THC": "2026-10-29",
+    "XPO": "2026-10-29",
     "INSM": "2026-10-29",
     "YPF": "2026-10-29",
     "BCH": "2026-10-29",
@@ -913,6 +913,7 @@
     "LNT": "2026-10-29",
     "APG": "2026-10-29",
     "TPG": "2026-10-29",
+    "WCC": "2026-10-29",
     "XOM": "2026-10-30",
     "ABBV": "2026-10-30",
     "CVX": "2026-10-30",
@@ -927,8 +928,8 @@
     "D": "2026-10-30",
     "EXC": "2026-10-30",
     "KVUE": "2026-10-30",
-    "UI": "2026-10-30",
     "CCJ": "2026-10-30",
+    "UI": "2026-10-30",
     "CHD": "2026-10-30",
     "NVT": "2026-10-30",
     "LYB": "2026-10-30",
@@ -948,8 +949,8 @@
     "PEG": "2026-11-02",
     "ON": "2026-11-02",
     "RYAAY": "2026-11-02",
-    "FOXA": "2026-11-02",
     "FOX": "2026-11-02",
+    "FOXA": "2026-11-02",
     "ROKU": "2026-11-02",
     "L": "2026-11-02",
     "TSEM": "2026-11-02",
@@ -990,8 +991,8 @@
     "CPNG": "2026-11-03",
     "FISV": "2026-11-03",
     "IFF": "2026-11-03",
-    "SMCI": "2026-11-03",
     "SMCIP": "2026-11-03",
+    "SMCI": "2026-11-03",
     "BNTX": "2026-11-03",
     "SWKS": "2026-11-03",
     "BR": "2026-11-03",
@@ -1061,7 +1062,7 @@
     "PAAS": "2026-11-04"
   },
   "_meta": {
-    "updatedAt": "28/10/2026 16:16",
+    "updatedAt": "28/10/2026 16:31",
     "source": "tradingview"
   }
 }
