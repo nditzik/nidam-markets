@@ -1,36 +1,36 @@
 {
   "today": "2026-10-29",
-  "todayCount": 94,
+  "todayCount": 95,
   "todayBig": [
     {
       "ticker": "AMZN",
       "name": "Amazon.com, Inc.",
-      "capB": 2657.5
+      "capB": 2650.8
     },
     {
       "ticker": "LLY",
       "name": "Eli Lilly and Company",
-      "capB": 1290.9
+      "capB": 1290.7
     },
     {
       "ticker": "MA",
       "name": "Mastercard Incorporated Class A",
-      "capB": 557.6
+      "capB": 557.8
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation",
-      "capB": 488.2
+      "capB": 486.3
     },
     {
       "ticker": "MRK",
       "name": "Merck & Co., Inc.",
-      "capB": 366.3
+      "capB": 366.5
     },
     {
       "ticker": "CAT",
       "name": "Caterpillar Inc.",
-      "capB": 302.7
+      "capB": 301.4
     },
     {
       "ticker": "SHEL",
@@ -40,7 +40,7 @@
     {
       "ticker": "LIN",
       "name": "Linde plc",
-      "capB": 231.3
+      "capB": 231.8
     }
   ],
   "reactions": {
@@ -54,8 +54,8 @@
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
             "status": "live",
-            "chg": -9.06,
-            "price": 42.49,
+            "chg": -9.18,
+            "price": 42.43,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -64,8 +64,8 @@
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
             "status": "live",
-            "chg": -8.72,
-            "price": 42.56,
+            "chg": -8.87,
+            "price": 42.49,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -75,8 +75,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/MSFT.png",
-            "chg": -1.25,
-            "price": 524.36,
+            "chg": -0.93,
+            "price": 526.09,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -86,8 +86,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/GOOG.png",
-            "chg": -12.33,
-            "price": 282.19,
+            "chg": -12.55,
+            "price": 281.5,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -97,8 +97,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/GOOGL.png",
-            "chg": -12.55,
-            "price": 284.12,
+            "chg": -12.71,
+            "price": 283.61,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -218,13 +218,9 @@
             "ticker": "CDNS",
             "name": "Cadence Design Systems, Inc.",
             "when": "after",
-            "status": "final",
+            "status": "na",
             "logo": "data/earnings/logos/CDNS.png",
-            "logoBg": "dark",
-            "chg": 6.49,
-            "price": 343.08,
-            "reactDate": "2026-10-27",
-            "baseDate": "2026-10-26"
+            "logoBg": "dark"
           },
           {
             "ticker": "NUE",
@@ -339,7 +335,7 @@
       "logo": "data/earnings/logos/BBVA.png"
     }
   ],
-  "more": 82,
+  "more": 83,
   "upcoming": [
     {
       "date": "2026-10-30",
@@ -501,16 +497,16 @@
           "logo": "data/earnings/logos/HCA.png"
         },
         {
-          "ticker": "JCI",
-          "name": "Johnson Controls International plc",
-          "when": "before",
-          "logo": "data/earnings/logos/JCI.png"
-        },
-        {
           "ticker": "FCX",
           "name": "Freeport-McMoRan, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/FCX.png"
+        },
+        {
+          "ticker": "JCI",
+          "name": "Johnson Controls International plc",
+          "when": "before",
+          "logo": "data/earnings/logos/JCI.png"
         }
       ]
     },
@@ -586,10 +582,10 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "NOW",
-          "name": "ServiceNow, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/NOW.png"
+          "ticker": "EQNR",
+          "name": "Equinor ASA Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/EQNR.png"
         }
       ]
     },
@@ -597,7 +593,7 @@
       "date": "2026-10-29",
       "dow": "חמישי",
       "label": "29.10",
-      "total": 94,
+      "total": 95,
       "companies": [
         {
           "ticker": "AMZN",
@@ -791,12 +787,12 @@
     "AJG": "2026-10-29",
     "LNG": "2026-10-29",
     "TAK": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRF": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRC": "2026-10-29",
     "STRD": "2026-10-29",
-    "MSTR": "2026-10-29",
+    "STRF": "2026-10-29",
     "CRH": "2026-10-29",
+    "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "LHX": "2026-10-29",
     "XEL": "2026-10-29",
@@ -818,8 +814,8 @@
     "QSR": "2026-10-29",
     "HSY": "2026-10-29",
     "CQP": "2026-10-29",
-    "EME": "2026-10-29",
     "TECK": "2026-10-29",
+    "EME": "2026-10-29",
     "WST": "2026-10-29",
     "DXCM": "2026-10-29",
     "IR": "2026-10-29",
@@ -829,9 +825,9 @@
     "TW": "2026-10-29",
     "FTI": "2026-10-29",
     "VLTO": "2026-10-29",
-    "ENTG": "2026-10-29",
     "ATI": "2026-10-29",
     "RDDT": "2026-10-29",
+    "ENTG": "2026-10-29",
     "INSM": "2026-10-29",
     "ALNY": "2026-10-29",
     "INCY": "2026-10-29",
@@ -853,6 +849,7 @@
     "RIVN": "2026-10-29",
     "EXEL": "2026-10-29",
     "KIM": "2026-10-29",
+    "OWL": "2026-10-29",
     "XOM": "2026-10-30",
     "ABBV": "2026-10-30",
     "CVX": "2026-10-30",
@@ -888,8 +885,8 @@
     "PEG": "2026-11-02",
     "ON": "2026-11-02",
     "RYAAY": "2026-11-02",
-    "FOX": "2026-11-02",
     "FOXA": "2026-11-02",
+    "FOX": "2026-11-02",
     "ROKU": "2026-11-02",
     "L": "2026-11-02",
     "TSEM": "2026-11-02",
@@ -925,8 +922,8 @@
     "PRS": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
-    "CPNG": "2026-11-03",
     "PHG": "2026-11-03",
+    "CPNG": "2026-11-03",
     "EXPD": "2026-11-03",
     "FISV": "2026-11-03",
     "SMCIP": "2026-11-03",
@@ -965,8 +962,8 @@
     "AFL": "2026-11-04",
     "CVE": "2026-11-04",
     "EW": "2026-11-04",
-    "COHR": "2026-11-04",
     "VMRK": "2026-11-04",
+    "COHR": "2026-11-04",
     "SLF": "2026-11-04",
     "MDLN": "2026-11-04",
     "RVMD": "2026-11-04",
@@ -987,14 +984,14 @@
     "TPL": "2026-11-04",
     "PR": "2026-11-04",
     "PTC": "2026-11-04",
-    "CRCL": "2026-11-04",
     "CDW": "2026-11-04",
+    "CRCL": "2026-11-04",
     "RGLD": "2026-11-04",
     "WES": "2026-11-04",
     "ZBH": "2026-11-04",
     "CW": "2026-11-04",
-    "ITT": "2026-11-04",
     "CRL": "2026-11-04",
+    "ITT": "2026-11-04",
     "APA": "2026-11-04",
     "CF": "2026-11-04",
     "HST": "2026-11-04",
@@ -1006,14 +1003,14 @@
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
-    "NET": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
+    "NET": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
-    "LITE": "2026-11-05",
     "EOG": "2026-11-05",
+    "LITE": "2026-11-05",
     "NGG": "2026-11-05",
     "CI": "2026-11-05",
     "CMI": "2026-11-05",
@@ -1034,8 +1031,8 @@
     "ED": "2026-11-05",
     "LYV": "2026-11-05",
     "KMB": "2026-11-05",
-    "IRM": "2026-11-05",
     "AXON": "2026-11-05",
+    "IRM": "2026-11-05",
     "MTD": "2026-11-05",
     "GMAB": "2026-11-05",
     "ZTS": "2026-11-05",
@@ -1064,7 +1061,7 @@
     "LAMR": "2026-11-05"
   },
   "_meta": {
-    "updatedAt": "29/10/2026 19:16",
+    "updatedAt": "29/10/2026 19:31",
     "source": "tradingview"
   }
 }
