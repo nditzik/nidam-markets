@@ -50,6 +50,13 @@
         "label": "28.10",
         "items": [
           {
+            "ticker": "GOOG",
+            "name": "Alphabet Inc. Class C",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/GOOG.png"
+          },
+          {
             "ticker": "GOOGL",
             "name": "Alphabet Inc. Class A",
             "when": "after",
@@ -67,13 +74,6 @@
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
             "status": "pending"
-          },
-          {
-            "ticker": "GOOG",
-            "name": "Alphabet Inc. Class C",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/GOOG.png"
           },
           {
             "ticker": "MSFT",
@@ -495,6 +495,12 @@
       "total": 60,
       "companies": [
         {
+          "ticker": "GOOG",
+          "name": "Alphabet Inc. Class C",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOG.png"
+        },
+        {
           "ticker": "GOOGL",
           "name": "Alphabet Inc. Class A",
           "when": "after",
@@ -509,12 +515,6 @@
           "ticker": "GOOGN",
           "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
           "when": "after"
-        },
-        {
-          "ticker": "GOOG",
-          "name": "Alphabet Inc. Class C",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOG.png"
         },
         {
           "ticker": "MSFT",
@@ -764,10 +764,10 @@
     "DLR": "2026-10-29",
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
-    "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
     "STRK": "2026-10-29",
     "STRD": "2026-10-29",
-    "STRC": "2026-10-29",
+    "STRF": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
@@ -861,8 +861,8 @@
     "PEG": "2026-11-02",
     "ON": "2026-11-02",
     "RYAAY": "2026-11-02",
-    "FOXA": "2026-11-02",
     "FOX": "2026-11-02",
+    "FOXA": "2026-11-02",
     "ROKU": "2026-11-02",
     "L": "2026-11-02",
     "TSEM": "2026-11-02",
@@ -893,9 +893,9 @@
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
-    "PRS": "2026-11-03",
     "PRU": "2026-11-03",
     "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
@@ -973,14 +973,14 @@
     "ITT": "2026-11-04",
     "PAAS": "2026-11-04",
     "HST": "2026-11-04",
-    "NWS": "2026-11-04",
+    "NWSA": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "NET": "2026-11-05",
     "CNQ": "2026-11-05",
-    "SO": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SO": "2026-11-05",
     "SOJE": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
@@ -1001,8 +1001,8 @@
     "BDX": "2026-11-05",
     "ROK": "2026-11-05",
     "AU": "2026-11-05",
-    "MCHP": "2026-11-05",
     "MCHPP": "2026-11-05",
+    "MCHP": "2026-11-05",
     "ED": "2026-11-05",
     "LYV": "2026-11-05",
     "KMB": "2026-11-05",
@@ -1035,7 +1035,7 @@
     "SBS": "2026-11-05"
   },
   "_meta": {
-    "updatedAt": "29/10/2026 11:31",
+    "updatedAt": "29/10/2026 11:46",
     "source": "tradingview"
   }
 }
