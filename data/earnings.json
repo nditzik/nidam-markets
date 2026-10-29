@@ -86,12 +86,8 @@
             "ticker": "GEV",
             "name": "GE Vernova Inc.",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GEV.png",
-            "chg": -1.9,
-            "price": 878.03,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
+            "status": "pending",
+            "logo": "data/earnings/logos/GEV.png"
           }
         ]
       },
@@ -103,24 +99,16 @@
             "ticker": "V",
             "name": "Visa Inc. Class A",
             "when": "after",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/V.png",
-            "logoBg": "dark",
-            "chg": -0.31,
-            "price": 400.6,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
+            "logoBg": "dark"
           },
           {
             "ticker": "SKHY",
             "name": "SK hynix Inc. Sponsored ADR",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/SKHY.png",
-            "chg": 13.3,
-            "price": 164.7,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
+            "status": "pending",
+            "logo": "data/earnings/logos/SKHY.png"
           },
           {
             "ticker": "KO",
@@ -159,12 +147,8 @@
             "ticker": "STX",
             "name": "Seagate Technology Holdings PLC",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/STX.png",
-            "chg": 4.51,
-            "price": 697.97,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
+            "status": "pending",
+            "logo": "data/earnings/logos/STX.png"
           }
         ]
       },
@@ -765,10 +749,10 @@
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
     "MSTR": "2026-10-29",
-    "STRF": "2026-10-29",
-    "STRD": "2026-10-29",
-    "STRC": "2026-10-29",
     "STRK": "2026-10-29",
+    "STRD": "2026-10-29",
+    "STRF": "2026-10-29",
+    "STRC": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
     "LHX": "2026-10-29",
@@ -892,8 +876,8 @@
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
     "PRU": "2026-11-03",
-    "PFH": "2026-11-03",
     "PRS": "2026-11-03",
+    "PFH": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
@@ -978,8 +962,8 @@
     "PH": "2026-11-05",
     "NET": "2026-11-05",
     "CNQ": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
@@ -1034,7 +1018,7 @@
     "SBS": "2026-11-05"
   },
   "_meta": {
-    "updatedAt": "29/10/2026 01:46",
+    "updatedAt": "29/10/2026 02:01",
     "source": "tradingview"
   }
 }
