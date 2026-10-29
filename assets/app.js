@@ -689,7 +689,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np161";
+  var TA_VER = "np162";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4031,6 +4031,7 @@
   // (1) קו מצטבר: סכום תשואות המהדורות שנסגרו (שקול למהדורה, "קנה כל מהדורה באותו סכום ומכור אחרי N ימים")
   // מול השוק באותם ימים; (2) "הבטחה מול ביצוע": המבחן לאחור מול בפועל; (3) ניצחונות לפי מהדורות.
   var PK_HIST_H = 10;
+  var PK_DONE_OPEN = false;   // np162: האם המהדורות שסיימו 20 ימים פתוחות ביומן (בתוך הביקור בלבד)
   function pkLedgerHistory(rec) {
     var eds = (PICKL && PICKL.editions) || [];
     var h = PK_HIST_H;
@@ -4139,9 +4140,22 @@
         cut(5) + cut(10) + '<line class="z" x1="0" x2="' + (path.length * slot).toFixed(1) + '" y1="' + y0.toFixed(1) + '" y2="' + y0.toFixed(1) + '"/>' + bars + "</svg>" +
         '<small>יום ' + path.length + "/20</small></td>";
     };
+    // np162 (איציק 29.10): מהדורה שסיימה 20 ימים כבר לא משתנה — מתקפלת לשורת סיכום בתחתית, כפתור פותח
+    var isDone = function (e) { return !!(e.avg && e.avg[20]); };
+    var doneEds = eds.filter(isDone), doneRow = "";
+    if (doneEds.length) {
+      var avgOf = function (k) { return doneEds.reduce(function (a, e) { return a + (e.avg[20][k] || 0); }, 0) / doneEds.length; };
+      var dWon = doneEds.filter(function (e) { return e.avg[20].excess > 0; }).length, dAvg = avgOf("ret"), dEx = avgOf("excess");
+      doneRow = '<tr class="pk-done-row"><td colspan="7"><button type="button" class="pk-done-btn" aria-expanded="' + PK_DONE_OPEN + '">' +
+        '<span class="pk-done-t"><b class="num">' + doneEds.length + "</b> " + (doneEds.length === 1 ? "מהדורה שהסתיימה" : "מהדורות שהסתיימו") + " (20 ימים)</span>" +
+        '<span class="pk-done-s">ממוצע <b class="' + (dAvg > 0 ? "up" : dAvg < 0 ? "dn" : "") + '" dir="ltr">' + pkPct(dAvg) + '</b> · ביחס לשוק <bdi dir="ltr">' + pkPct(dEx) + "</bdi> · ניצחו את השוק ב-" +
+        '<b class="num">' + dWon + "</b> מתוך " + '<b class="num">' + doneEds.length + "</b></span>" +
+        '<span class="pk-done-go">' + (PK_DONE_OPEN ? "הסתר" : "הצג") + "</span></button></td></tr>";
+    }
     var rows = eds.slice().reverse().map(function (e, i) {
       var syms = (e.symbols || []).map(function (s) { return s.sym; });
-      var main = '<tr class="pk-ed" data-ed="' + i + '"><td><span dir="ltr">' + esc(secDate(e.date)) + "</span>" +
+      var old = isDone(e), hid = old && !PK_DONE_OPEN ? " hidden" : "";
+      var main = (old && e === doneEds[doneEds.length - 1] ? doneRow : "") + '<tr class="pk-ed' + (old ? " pk-old" : "") + '" data-ed="' + i + '"' + hid + '><td><span dir="ltr">' + esc(secDate(e.date)) + "</span>" +
         (e.spyEntry ? '<small class="pk-spy" dir="ltr" title="מחיר הכניסה של השוק — סגירת SPY ביום המהדורה">SPY ' + fmtNum(e.spyEntry, 2) + "</small>" : "") + "</td><td>" + syms.length + '<small class="pk-syms" dir="ltr">' + esc(syms.join(" ")) + "</small></td><td>" + esc(e.gateLabel || "") + "</td>" +
         spark(e.path) + H.map(function (h) { return cell(e.avg && e.avg[h], e.cur, h, true); }).join("") + "</tr>";
       var det = (e.symbols || []).map(function (s) {
@@ -4209,6 +4223,16 @@
       tr.addEventListener("click", function () {
         var open = tr.classList.toggle("open");
         el.querySelectorAll('.pk-det[data-ed="' + tr.dataset.ed + '"]').forEach(function (x) { x.hidden = !open; });
+      });
+    });
+    var doneBtn = el.querySelector(".pk-done-btn");
+    if (doneBtn) doneBtn.addEventListener("click", function () {
+      PK_DONE_OPEN = !PK_DONE_OPEN;
+      doneBtn.setAttribute("aria-expanded", PK_DONE_OPEN);
+      doneBtn.querySelector(".pk-done-go").textContent = PK_DONE_OPEN ? "הסתר" : "הצג";
+      el.querySelectorAll(".pk-old").forEach(function (tr) {
+        tr.hidden = !PK_DONE_OPEN;
+        if (!PK_DONE_OPEN) { tr.classList.remove("open"); el.querySelectorAll('.pk-det[data-ed="' + tr.dataset.ed + '"]').forEach(function (x) { x.hidden = true; }); }
       });
     });
     renderStockSiblings();

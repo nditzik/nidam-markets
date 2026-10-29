@@ -2385,3 +2385,18 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .an-q { width: 100%; }
   .an-go { flex: 1; }
 }
+
+/* np162: יומן ההכנות — המהדורות שסיימו 20 ימים מתקפלות לשורת סיכום */
+.pk-done-row td { padding: 0 !important; background: var(--surface-2); }
+.pk-done-btn { all: unset; box-sizing: border-box; width: 100%; min-height: 44px; padding: 8px 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; cursor: pointer; font-size: 13px; color: var(--text-soft); }
+.pk-done-btn:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.pk-done-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.pk-done-t { color: var(--text); font-weight: 600; }
+.pk-done-s b.up { color: var(--up); } .pk-done-s b.dn { color: var(--down); }
+.pk-done-go { margin-inline-start: auto; color: var(--accent); font-weight: 600; }
+.pk-done-go::after { content: " ▾"; } .pk-done-btn[aria-expanded="true"] .pk-done-go::after { content: " ▴"; }
+.pk-old td { opacity: .92; }
+@media (max-width: 700px) {
+  /* בטלפון הטבלה נגללת לרוחב — שורת הסיכום נשארת צמודה למסך */
+  .pk-done-btn { position: sticky; inset-inline-start: 0; width: calc(100vw - 26px); }
+}
