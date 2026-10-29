@@ -50,25 +50,11 @@
         "label": "28.10",
         "items": [
           {
-            "ticker": "GOOG",
-            "name": "Alphabet Inc. Class C",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/GOOG.png"
-          },
-          {
             "ticker": "GOOGL",
             "name": "Alphabet Inc. Class A",
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/GOOGL.png"
-          },
-          {
-            "ticker": "MSFT",
-            "name": "Microsoft Corporation",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/MSFT.png"
           },
           {
             "ticker": "GOOGM",
@@ -81,6 +67,20 @@
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
             "status": "pending"
+          },
+          {
+            "ticker": "GOOG",
+            "name": "Alphabet Inc. Class C",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/GOOG.png"
+          },
+          {
+            "ticker": "MSFT",
+            "name": "Microsoft Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/MSFT.png"
           },
           {
             "ticker": "GEV",
@@ -495,22 +495,10 @@
       "total": 60,
       "companies": [
         {
-          "ticker": "GOOG",
-          "name": "Alphabet Inc. Class C",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOG.png"
-        },
-        {
           "ticker": "GOOGL",
           "name": "Alphabet Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/GOOGL.png"
-        },
-        {
-          "ticker": "MSFT",
-          "name": "Microsoft Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/MSFT.png"
         },
         {
           "ticker": "GOOGM",
@@ -521,6 +509,18 @@
           "ticker": "GOOGN",
           "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
           "when": "after"
+        },
+        {
+          "ticker": "GOOG",
+          "name": "Alphabet Inc. Class C",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOG.png"
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/MSFT.png"
         },
         {
           "ticker": "GEV",
@@ -765,10 +765,10 @@
     "TAK": "2026-10-29",
     "LNG": "2026-10-29",
     "MSTR": "2026-10-29",
-    "STRC": "2026-10-29",
-    "STRK": "2026-10-29",
     "STRF": "2026-10-29",
+    "STRK": "2026-10-29",
     "STRD": "2026-10-29",
+    "STRC": "2026-10-29",
     "MPWR": "2026-10-29",
     "CRH": "2026-10-29",
     "LHX": "2026-10-29",
@@ -820,11 +820,11 @@
     "LNT": "2026-10-29",
     "FTAI": "2026-10-29",
     "TPG": "2026-10-29",
+    "BSBR": "2026-10-29",
     "WCC": "2026-10-29",
     "RIVN": "2026-10-29",
     "EXEL": "2026-10-29",
     "H": "2026-10-29",
-    "FTAIM": "2026-10-29",
     "XOM": "2026-10-30",
     "ABBV": "2026-10-30",
     "CVX": "2026-10-30",
@@ -893,8 +893,8 @@
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
     "PRU": "2026-11-03",
-    "PFH": "2026-11-03",
     "PRS": "2026-11-03",
+    "PFH": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
@@ -1035,7 +1035,7 @@
     "SBS": "2026-11-05"
   },
   "_meta": {
-    "updatedAt": "29/10/2026 05:17",
+    "updatedAt": "29/10/2026 05:35",
     "source": "tradingview"
   }
 }
