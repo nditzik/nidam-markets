@@ -180,39 +180,39 @@
   }
  ],
  "total": 454,
- "reported": 258,
+ "reported": 266,
  "members": 504,
  "board": {
-  "reported": 258,
-  "epsN": 258,
-  "epsBeat": 211,
+  "reported": 266,
+  "epsN": 266,
+  "epsBeat": 217,
   "epsBeatPct": 82,
-  "revN": 258,
-  "revBeat": 179,
+  "revN": 266,
+  "revBeat": 184,
   "revBeatPct": 69,
-  "reactBeat": 0.22,
-  "reactBeatN": 150,
-  "reactMiss": -1.83,
-  "reactMissN": 35,
+  "reactBeat": 0.55,
+  "reactBeatN": 186,
+  "reactMiss": -1.12,
+  "reactMissN": 44,
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 69,
-    "beat": 51
+    "n": 72,
+    "beat": 53
    },
    {
     "name": "תעשייה",
-    "n": 51,
-    "beat": 43
+    "n": 53,
+    "beat": 45
    },
    {
     "name": "טכנולוגיה",
-    "n": 41,
-    "beat": 35
+    "n": 43,
+    "beat": 37
    },
    {
     "name": "בריאות",
-    "n": 28,
+    "n": 29,
     "beat": 28
    },
    {
@@ -253,6 +253,21 @@
     "eps": 3.9
    },
    {
+    "sym": "FTNT",
+    "react": -20.09,
+    "eps": 5.8
+   },
+   {
+    "sym": "GEN",
+    "react": 15.81,
+    "eps": 3.0
+   },
+   {
+    "sym": "CVNA",
+    "react": 15.68,
+    "eps": -11.6
+   },
+   {
     "sym": "POOL",
     "react": 14.36,
     "eps": 1.3
@@ -261,26 +276,11 @@
     "sym": "XYL",
     "react": -14.21,
     "eps": -0.7
-   },
-   {
-    "sym": "CSGP",
-    "react": -13.96,
-    "eps": 12.8
-   },
-   {
-    "sym": "PNR",
-    "react": 12.8,
-    "eps": 9.9
-   },
-   {
-    "sym": "LRCX",
-    "react": -11.76,
-    "eps": 0.8
    }
   ]
  },
  "_meta": {
-  "updatedAt": "29/10/2026 22:16",
+  "updatedAt": "29/10/2026 22:33",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
