@@ -5,27 +5,27 @@
     {
       "ticker": "AMZN",
       "name": "Amazon.com, Inc.",
-      "capB": 2643.4
+      "capB": 2644.8
     },
     {
       "ticker": "LLY",
       "name": "Eli Lilly and Company",
-      "capB": 1287.9
+      "capB": 1291.9
     },
     {
       "ticker": "MA",
       "name": "Mastercard Incorporated Class A",
-      "capB": 558.2
+      "capB": 558.7
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation",
-      "capB": 485.2
+      "capB": 484.1
     },
     {
       "ticker": "MRK",
       "name": "Merck & Co., Inc.",
-      "capB": 363.2
+      "capB": 362.5
     },
     {
       "ticker": "SHEL",
@@ -35,12 +35,12 @@
     {
       "ticker": "CAT",
       "name": "Caterpillar Inc.",
-      "capB": 297.5
+      "capB": 296.2
     },
     {
       "ticker": "LIN",
       "name": "Linde plc",
-      "capB": 231.4
+      "capB": 232.5
     }
   ],
   "reactions": {
@@ -54,8 +54,8 @@
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
             "status": "live",
-            "chg": -9.33,
-            "price": 42.36,
+            "chg": -9.0,
+            "price": 42.52,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -64,8 +64,8 @@
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
             "status": "live",
-            "chg": -9.12,
-            "price": 42.37,
+            "chg": -8.92,
+            "price": 42.46,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -73,10 +73,10 @@
             "ticker": "MSFT",
             "name": "Microsoft Corporation",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/MSFT.png",
-            "chg": -0.61,
-            "price": 527.76,
+            "chg": -0.16,
+            "price": 530.14,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -86,8 +86,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/GOOG.png",
-            "chg": -12.83,
-            "price": 280.59,
+            "chg": -12.34,
+            "price": 282.17,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -95,10 +95,10 @@
             "ticker": "GOOGL",
             "name": "Alphabet Inc. Class A",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/GOOGL.png",
-            "chg": -13.01,
-            "price": 282.62,
+            "chg": -12.64,
+            "price": 283.82,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -785,10 +785,10 @@
     "DLR": "2026-10-29",
     "LNG": "2026-10-29",
     "TAK": "2026-10-29",
+    "STRD": "2026-10-29",
     "STRC": "2026-10-29",
     "STRK": "2026-10-29",
     "STRF": "2026-10-29",
-    "STRD": "2026-10-29",
     "CRH": "2026-10-29",
     "MSTR": "2026-10-29",
     "MPWR": "2026-10-29",
@@ -804,8 +804,8 @@
     "DHI": "2026-10-29",
     "KB": "2026-10-29",
     "WEC": "2026-10-29",
-    "TWLO": "2026-10-29",
     "RBLX": "2026-10-29",
+    "TWLO": "2026-10-29",
     "VMC": "2026-10-29",
     "RMD": "2026-10-29",
     "RKT": "2026-10-29",
@@ -823,8 +823,8 @@
     "TW": "2026-10-29",
     "FTI": "2026-10-29",
     "VLTO": "2026-10-29",
-    "ENTG": "2026-10-29",
     "RDDT": "2026-10-29",
+    "ENTG": "2026-10-29",
     "INSM": "2026-10-29",
     "ATI": "2026-10-29",
     "ALNY": "2026-10-29",
@@ -934,8 +934,8 @@
     "OVV": "2026-11-03",
     "FIS": "2026-11-03",
     "DD": "2026-11-03",
-    "TOST": "2026-11-03",
     "RVTY": "2026-11-03",
+    "TOST": "2026-11-03",
     "ZBRA": "2026-11-03",
     "LDOS": "2026-11-03",
     "DT": "2026-11-03",
@@ -976,9 +976,9 @@
     "ATO": "2026-11-04",
     "KHC": "2026-11-04",
     "CPAY": "2026-11-04",
-    "Q": "2026-11-04",
     "ES": "2026-11-04",
     "UTHR": "2026-11-04",
+    "Q": "2026-11-04",
     "GFS": "2026-11-04",
     "TPL": "2026-11-04",
     "PR": "2026-11-04",
@@ -990,14 +990,14 @@
     "ZBH": "2026-11-04",
     "CW": "2026-11-04",
     "ITT": "2026-11-04",
-    "APA": "2026-11-04",
     "CRL": "2026-11-04",
+    "APA": "2026-11-04",
     "CF": "2026-11-04",
     "HST": "2026-11-04",
     "PAAS": "2026-11-04",
     "W": "2026-11-04",
-    "NWSA": "2026-11-04",
     "NWS": "2026-11-04",
+    "NWSA": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
@@ -1045,8 +1045,8 @@
     "CIB": "2026-11-05",
     "RL": "2026-11-05",
     "TPR": "2026-11-05",
-    "FWONK": "2026-11-05",
     "FWONA": "2026-11-05",
+    "FWONK": "2026-11-05",
     "GPN": "2026-11-05",
     "STE": "2026-11-05",
     "USFD": "2026-11-05",
@@ -1054,13 +1054,13 @@
     "EVRG": "2026-11-05",
     "MTSI": "2026-11-05",
     "BCE": "2026-11-05",
-    "U": "2026-11-05",
     "RGA": "2026-11-05",
+    "U": "2026-11-05",
     "SBS": "2026-11-05",
     "LAMR": "2026-11-05"
   },
   "_meta": {
-    "updatedAt": "29/10/2026 21:46",
+    "updatedAt": "29/10/2026 22:01",
     "source": "tradingview"
   }
 }
