@@ -26,23 +26,23 @@
    "date": "2026-10-29T12:30",
    "ilDate": "29.10",
    "ilTime": "14:30",
-   "he": "PCE ליבה חודשי",
-   "period": "Sep",
-   "forecast": "0.3%",
-   "previous": "0.3%",
-   "actual": "0.3%",
-   "surprise": "inline"
-  },
-  {
-   "date": "2026-10-29T12:30",
-   "ilDate": "29.10",
-   "ilTime": "14:30",
    "he": "תמ\"ג רבעוני (ראשוני)",
    "period": "Q3",
    "forecast": "3.2%",
    "previous": "2.2%",
    "actual": "3.4%",
    "surprise": "good"
+  },
+  {
+   "date": "2026-10-29T12:30",
+   "ilDate": "29.10",
+   "ilTime": "14:30",
+   "he": "PCE ליבה חודשי",
+   "period": "Sep",
+   "forecast": "0.3%",
+   "previous": "0.3%",
+   "actual": "0.3%",
+   "surprise": "inline"
   },
   {
    "date": "2026-11-06T13:30",
@@ -139,7 +139,7 @@
    "he": "PCE ליבה שנתי",
    "period": "Oct",
    "forecast": null,
-   "previous": null,
+   "previous": "3.1%",
    "actual": null,
    "surprise": null
   },
@@ -150,7 +150,7 @@
    "he": "PCE ליבה חודשי",
    "period": "Oct",
    "forecast": null,
-   "previous": null,
+   "previous": "0.3%",
    "actual": null,
    "surprise": null
   },
@@ -167,7 +167,7 @@
   }
  ],
  "_meta": {
-  "updatedAt": "29/10/2026 15:16",
+  "updatedAt": "29/10/2026 15:31",
   "source": "TradingView econ calendar"
  }
 }
