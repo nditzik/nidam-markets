@@ -5,22 +5,22 @@
     {
       "ticker": "XOM",
       "name": "Exxonmobil Holdings Corporation",
-      "capB": 762.5
+      "capB": 762.6
     },
     {
       "ticker": "ABBV",
       "name": "AbbVie, Inc.",
-      "capB": 521.6
+      "capB": 520.6
     },
     {
       "ticker": "CVX",
       "name": "Chevron Corporation",
-      "capB": 464.7
+      "capB": 464.6
     },
     {
       "ticker": "AZN",
       "name": "AstraZeneca PLC",
-      "capB": 289.5
+      "capB": 289.3
     },
     {
       "ticker": "BP",
@@ -30,12 +30,12 @@
     {
       "ticker": "GD",
       "name": "General Dynamics Corporation",
-      "capB": 101.7
+      "capB": 102.0
     },
     {
       "ticker": "REGN",
       "name": "Regeneron Pharmaceuticals, Inc.",
-      "capB": 93.9
+      "capB": 94.2
     },
     {
       "ticker": "MNST",
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/AMZN.png",
             "logoBg": "dark",
-            "chg": -2.16,
-            "price": 238.52,
+            "chg": -2.05,
+            "price": 238.8,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INTC.png",
-            "chg": -29.35,
-            "price": 65.04,
+            "chg": -29.77,
+            "price": 64.66,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -154,17 +154,6 @@
             "baseDate": "2026-10-28"
           },
           {
-            "ticker": "GOOGL",
-            "name": "Alphabet Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOGL.png",
-            "chg": -12.64,
-            "price": 283.82,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
             "ticker": "GOOG",
             "name": "Alphabet Inc. Class C",
             "when": "after",
@@ -172,6 +161,17 @@
             "logo": "data/earnings/logos/GOOG.png",
             "chg": -12.29,
             "price": 282.32,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
+          },
+          {
+            "ticker": "GOOGL",
+            "name": "Alphabet Inc. Class A",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/GOOGL.png",
+            "chg": -12.64,
+            "price": 283.82,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -522,16 +522,16 @@
           "when": "after"
         },
         {
-          "ticker": "GOOGL",
-          "name": "Alphabet Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOGL.png"
-        },
-        {
           "ticker": "GOOG",
           "name": "Alphabet Inc. Class C",
           "when": "after",
           "logo": "data/earnings/logos/GOOG.png"
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOGL.png"
         },
         {
           "ticker": "GEV",
@@ -883,8 +883,8 @@
     "NTR": "2026-11-04",
     "TS": "2026-11-04",
     "SN": "2026-11-04",
-    "KHC": "2026-11-04",
     "ATO": "2026-11-04",
+    "KHC": "2026-11-04",
     "CPAY": "2026-11-04",
     "ES": "2026-11-04",
     "UTHR": "2026-11-04",
@@ -896,12 +896,12 @@
     "RGLD": "2026-11-04",
     "WES": "2026-11-04",
     "CRCL": "2026-11-04",
-    "ZBH": "2026-11-04",
     "APA": "2026-11-04",
+    "ZBH": "2026-11-04",
     "CF": "2026-11-04",
     "CDW": "2026-11-04",
-    "ITT": "2026-11-04",
     "CW": "2026-11-04",
+    "ITT": "2026-11-04",
     "HST": "2026-11-04",
     "CRL": "2026-11-04",
     "NWS": "2026-11-04",
@@ -910,15 +910,15 @@
     "PAAS": "2026-11-04",
     "SWK": "2026-11-04",
     "PFGC": "2026-11-04",
-    "TRMB": "2026-11-04",
     "FICO": "2026-11-04",
+    "TRMB": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
-    "CNQ": "2026-11-05",
     "PH": "2026-11-05",
+    "CNQ": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
     "NET": "2026-11-05",
@@ -989,7 +989,7 @@
     "EMA": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 18:01",
+    "updatedAt": "30/10/2026 18:09",
     "source": "tradingview"
   }
 }
