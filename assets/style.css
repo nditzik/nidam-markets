@@ -2400,3 +2400,94 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   /* בטלפון הטבלה נגללת לרוחב — שורת הסיכום נשארת צמודה למסך */
   .pk-done-btn { position: sticky; inset-inline-start: 0; width: calc(100vw - 26px); }
 }
+
+/* np163: רכישות פנים · אתמול (טאב Insider) — data/insider_daily.json */
+.ins-lead { margin: 0 0 12px; font-size: 15px; color: var(--text-soft); max-width: 900px; line-height: 1.6; }
+.ins-tw { overflow-x: auto; padding-inline: 0; }
+.ins-tbl td { vertical-align: top; }
+.ins-tbl td .s, .ins-trk .s { font-size: 12px; }
+.ins-tbl .tk a.tv, .ins-hl .tk a.tv { font-size: 15px; }
+.ins-tbl tr.ex td { opacity: .55; }
+.ins-tbl tr.open td { background: var(--accent-soft); }
+.ins-tbl b.up, .ins-trk b.up, .ins-past .up, .ins-past-box .up { color: var(--up); }
+.ins-tbl b.dn, .ins-trk b.dn, .ins-past .dn, .ins-past-box .dn { color: var(--down); }
+.ins-tbl { table-layout: auto; }
+.ins-tbl th, .ins-tbl td { padding-inline: 8px; }
+.ins-tbl td.c-tk, .ins-tbl td.c-who, .ins-tbl td.c-tags { white-space: normal; }
+.ins-tbl td.c-tk { max-width: 170px; } .ins-tbl td.c-who { max-width: 140px; }
+.ins-tbl td.c-tags { min-width: 130px; max-width: 190px; }
+.ins-tbl td.c-px .s { display: block; }
+.ins-rng { position: relative; display: block; height: 6px; margin-top: 6px; background: var(--track); border-radius: 3px; min-width: 90px; direction: ltr; }
+.ins-rng i { position: absolute; top: -3px; width: 12px; height: 12px; border-radius: 50%; background: var(--text); border: 2px solid var(--surface); box-sizing: border-box; }
+.ins-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.ins-tag { font-size: 12px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; border: 1px solid var(--border); background: var(--surface); color: var(--text-soft); line-height: 1.5; }
+.ins-tag.ceo { background: var(--text); color: var(--surface); border-color: var(--text); }
+.ins-tag.big { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.ins-tag.low { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.ins-tag.clu { color: var(--text); border-color: var(--text); }
+.ins-tag.dim { border-style: dashed; color: var(--text-3); }
+.ins-tag.site { background: var(--surface-2); color: var(--brand); border-color: var(--brand); font-weight: 600; }
+.ins-tbl td.c-go { white-space: nowrap; }
+.ins-tbl td.c-go .ins-f4 { display: block; margin-top: 6px; }
+.ins-open { min-height: 36px; padding: 0 10px; border: 1px solid var(--accent); background: var(--surface); color: var(--accent); border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer; }
+.ins-open::after { content: " ▾"; } .ins-open[aria-expanded="true"]::after { content: " ▴"; }
+.ins-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ins-f4 { font-size: 13px; }
+.ins-foot { margin: 10px 14px 4px; }
+.ins-det > td { background: var(--surface) !important; white-space: normal; padding: 14px 16px 18px !important; }
+.ins-sent { margin: 0 0 12px; font-size: 14px; color: var(--text-soft); max-width: 980px; }
+.ins-det-grid { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+.ins-ch-wrap { flex: 999 1 520px; min-width: 0; }
+.ins-side { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.ins-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 6px; }
+.ins-leg b { color: var(--text); font-weight: 600; }
+.ins-leg i { font-style: normal; }
+.ins-leg i.b { color: var(--up); } .ins-leg i.s { color: var(--down); }
+.ins-leg i.o { display: inline-block; width: 10px; height: 10px; border: 2px solid var(--accent); border-radius: 50%; vertical-align: -2px; }
+.ins-svgw { position: relative; direction: ltr; }
+.ins-svgw svg { display: block; width: 100%; height: auto; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; }
+.ins-svgw line { stroke: var(--border); stroke-width: 1; }
+.ins-svgw path { fill: none; stroke: var(--text-soft); stroke-width: 1.6; stroke-linejoin: round; }
+.ins-svgw polygon.b { fill: var(--up); } .ins-svgw polygon.s { fill: var(--down); }
+.ins-svgw circle.o { fill: none; stroke: var(--accent); stroke-width: 2; }
+.ins-ax { position: absolute; left: 8px; font-size: 12px; color: var(--text-3); }
+.ins-ax.t { top: 4px; } .ins-ax.b { bottom: 4px; }
+.ins-xax { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-3); direction: ltr; padding: 2px 2px 0; }
+.ins-past-box { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.ins-past-box b.num { font-size: 22px; font-weight: 600; margin-inline-end: 4px; }
+.ins-past caption { text-align: right; font-weight: 600; padding-bottom: 6px; font-size: 13px; }
+.ins-hls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ins-hl { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.ins-hl p { margin: 4px 0 0; font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+.ins-site { margin-top: 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; font-size: 13px; }
+.ins-trk td { white-space: nowrap; }
+.ins-days { display: flex; gap: 6px; align-items: flex-end; height: 112px; direction: ltr; }
+.ins-day { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 100%; min-width: 0; }
+.ins-day i { display: block; width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; }
+.ins-day.no i { background: none; border: 1px dashed var(--track); border-bottom: 0; box-sizing: border-box; }
+.ins-day span { font-size: 12px; color: var(--text-3); }
+.ins-day.last span { color: var(--text); font-weight: 600; }
+.ins-how { margin: 8px 0 0; padding-inline-start: 18px; color: var(--text-soft); font-size: 13px; line-height: 1.6; }
+@media (max-width: 900px) {
+  .ins-hls { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  /* בטלפון כל רכישה = כרטיס */
+  .ins-tbl, .ins-tbl tbody { display: block; }
+  .ins-tbl thead { display: none; }
+  .ins-tbl tr.ins-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .ins-tbl tr.ins-row td { display: block; border: 0; padding: 0; white-space: normal; }
+  .ins-tbl td.c-tk { flex: 1 1 auto; } .ins-tbl td.c-val { order: 1; }
+  .ins-tbl td.c-who { order: 2; flex-basis: 100%; }
+  .ins-tbl td.c-px, .ins-tbl td.c-hold, .ins-tbl td.c-hi { order: 3; font-size: 12px; }
+  .ins-tbl td[data-l]::before { content: attr(data-l) " "; color: var(--text-3); font-size: 12px; }
+  .ins-tbl td.c-cap, .ins-rng { display: none !important; }
+  .ins-tbl td.c-tags { order: 4; flex-basis: 100%; min-width: 0; }
+  .ins-tbl td.c-go { order: 5; flex-basis: 100%; display: flex !important; align-items: center; gap: 14px; }
+  .ins-tbl td.c-go .ins-f4 { margin-top: 0; }
+  .ins-tbl td.c-tk, .ins-tbl td.c-who, .ins-tbl td.c-tags { max-width: none; }
+  .ins-tbl tr.ins-det { display: block; } .ins-tbl tr.ins-det > td { display: block; }
+  .ins-days { gap: 2px; } .ins-day span { display: none; } .ins-day.last span, .ins-day:first-child span { display: block; }
+}
+.ins-past th, .ins-past td { padding: 5px 6px; font-size: 12px; }
+.ins-past { table-layout: fixed; }

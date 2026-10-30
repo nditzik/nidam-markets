@@ -491,6 +491,7 @@
     ((REPD && REPD.reports) || []).forEach(function (r) { push("דוחות", "reports", r.title + " (" + r.ticker + ")"); });
     ((TRAD && TRAD.reports) || []).forEach(function (r) { push("הצעות לטרייד", "trades", r.title); });
     ((INSD && INSD.reports) || []).forEach(function (r) { push("Insider", "insider", r.title + " " + (r.tickers || []).join(" ")); });
+    ((INSDD && INSDD.rows) || []).forEach(function (r) { push("Insider", "insider", r.t + " · " + r.co + " · " + r.role + " " + insMoney(r.value)); });
     if (BRIEF) ["morning", "afternoon"].forEach(function (k) {
       var s = BRIEF[k] || {};
       (s.headlines || []).forEach(function (h) { push("תדרוך", "briefing", h); });
@@ -689,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np162";
+  var TA_VER = "np163";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4239,15 +4240,189 @@
   }
   var INSD = null;
   function renderInsider(el, d) {
-    INSD = d;
-    var reps = (d && d.reports) || [];
-    if (!reps.length) {
+    if (d) INSD = d;
+    el = el || document.getElementById("panel-insider");
+    if (!el) return;
+    var reps = (INSD && INSD.reports) || [];
+    if (!reps.length && !INSDD) {
       emptyPanel(el, "🕵️", "Insider — בקרוב", "הדוח הראשון בדרך.");
       return;
     }
-    el.innerHTML = '<div class="board"><section class="pan" id="ins-view"' + bdSpan(12) + "></section>" +
-      '<section class="pan"' + bdSpan(12) + '><details class="bd-exp"><summary>איך זה עובד</summary>' + tabIntro("insider") + "</details></section></div>";
-    showInsider(0);
+    el.innerHTML = '<div class="board">' + insDailyHtml() +
+      (reps.length ? '<section class="pan" id="ins-view"' + bdSpan(12) + "></section>" : "") +
+      '<section class="pan"' + bdSpan(12) + '><details class="bd-exp"><summary>איך זה עובד</summary>' + tabIntro("insider") + insDailyHow() + "</details></section></div>";
+    bindInsDaily(el);
+    if (reps.length) showInsider(0);
+  }
+
+  /* ===== רכישות פנים · אתמול (30.10.2026, np163) — data/insider_daily.json (build_insider_daily.py) =====
+     מוקאפ שאושר: https://claude.ai/artifact/Tfb2A52gWP9oXDeKM43gCd. הכל מהקובץ; הגרף בשורה הפתוחה
+     נבנה מ-data/bars/<SYM>.json בלחיצה (עצלתי). עברית רק ב-HTML מחוץ ל-SVG. */
+  var INSDD = null, INSD_BARS = {};
+  function insMoney(v) {
+    if (v == null || isNaN(v)) return "—";
+    var a = Math.abs(v);
+    return a >= 1e9 ? "$" + (v / 1e9).toFixed(1) + "B" : a >= 1e6 ? "$" + (v / 1e6).toFixed(2) + "M" : a >= 1e3 ? "$" + Math.round(v / 1e3) + "K" : "$" + Math.round(v);
+  }
+  function insQty(v) {
+    if (v == null || isNaN(v)) return "—";
+    var a = Math.abs(v);
+    return a >= 1e6 ? (v / 1e6).toFixed(2) + "M" : a >= 1e4 ? Math.round(v / 1e3) + "K" : a >= 1e3 ? (v / 1e3).toFixed(1) + "K" : String(Math.round(v));
+  }
+  function insPct(v, d) {
+    if (v == null || isNaN(v)) return "—";
+    return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d == null ? 1 : d) + "%";
+  }
+  function insCls(v) { return v == null ? "" : v > 0 ? "up" : v < 0 ? "dn" : ""; }
+  function insDm(iso) { return iso ? +iso.slice(8, 10) + "." + +iso.slice(5, 7) : ""; }
+  function insTags(tags) {
+    return (tags || []).map(function (t) { return '<span class="ins-tag ' + esc(t.k) + '">' + esc(t.txt) + "</span>"; }).join("");
+  }
+  function insDailyHtml() {
+    var d = INSDD;
+    if (!d || !d.rows) return "";
+    var sm = d.summary || {}, rows = d.rows || [];
+    var head = '<section class="pan ins-head"' + bdSpan(12) + ">" +
+      panHd("רכישות פנים · אתמול", '<span class="mute">דיווחי Form 4 שהוגשו ב-<span class="num" dir="ltr">' + esc(secDate(d.day)) + "</span> · רק קניות בשוק הפתוח, מכספם של המנהלים</span>") +
+      '<div class="pb">' + (d.lead ? '<p class="ins-lead">' + esc(d.lead) + "</p>" : "") +
+      '<div class="tiles">' +
+        bdTile("רכישות", String(sm.n || 0), sm.excluded ? "ועוד " + sm.excluded + " מחוץ לספירה" : "") +
+        bdTile("סכום כולל", insMoney(sm.total), sm.top ? "הגדולה: " + esc(sm.top.t) + " " + insMoney(sm.top.v) : "") +
+        bdTile('מנכ"לים שקנו', String(sm.ceo || 0), (sm.ceoWho || []).join(" · ")) +
+        bdTile("אשכולות (2+ קונים ב-30 יום)", String(sm.clusters || 0), (sm.clusterWho || []).join(" · ")) +
+      "</div></div></section>";
+    var tb = rows.map(function (r, i) {
+      var h = r.hist && d.history && d.history[r.t];
+      var rng = "";
+      if (r.offHi != null && r.offLo != null) {
+        var hi = 1 / (1 + r.offHi / 100), lo = 1 / (1 + r.offLo / 100), p = Math.max(0, Math.min(1, (1 - lo) / (hi - lo)));
+        rng = '<span class="ins-rng" aria-hidden="true"><i style="left:calc(' + (p * 100).toFixed(1) + '% - 5px)"></i></span>';
+      }
+      return '<tr class="ins-row' + (r.excluded ? " ex" : "") + (h ? " has" : "") + '" data-i="' + i + '">' +
+        '<td class="c-tk"><b class="num tk" dir="ltr">' + tvLink(r.t) + '</b><div class="s mute" dir="ltr">' + esc(r.co || "") + "</div></td>" +
+        '<td class="c-who"><b>' + esc(r.role || "") + '</b><div class="s mute" dir="ltr">' + esc(r.who || "") + "</div></td>" +
+        '<td class="c-val"><b class="num" dir="ltr">' + insMoney(r.value) + '</b><div class="s mute">ב-<span class="num">' + insDm(r.trade) + "</span></div></td>" +
+        '<td class="c-px" data-l="קנה ב-"><span class="num" dir="ltr">' + fmt(r.price) + "</span>" + (r.since != null ? '<span class="s mute">עד עכשיו <b class="num ' + insCls(r.since) + '" dir="ltr">' + insPct(r.since) + "</b></span>" : "") + "</td>" +
+        '<td class="c-hold" data-l="אחזקה"><span class="num" dir="ltr">' + insQty(r.before) + " → " + insQty(r.after) + "</span>" + (r.holdPct != null ? ' <span class="num s mute" dir="ltr">' + insPct(r.holdPct, 0) + "</span>" : "") + "</td>" +
+        '<td class="c-hi" data-l="מהשיא"><span class="num" dir="ltr">' + insPct(r.offHi) + "</span>" + rng + "</td>" +
+        '<td class="c-cap" data-l="שווי"><span class="num" dir="ltr">' + insMoney(r.cap) + "</span></td>" +
+        '<td class="c-tags"><div class="ins-tags">' + insTags(r.tags) + "</div></td>" +
+        '<td class="c-go">' + (h ? '<button type="button" class="ins-open" aria-expanded="false">היסטוריה</button>' : "") +
+          (r.url ? '<a class="ins-f4" href="' + esc(r.url) + '" target="_blank" rel="noopener">Form 4</a>' : "") + "</td></tr>" +
+        (h ? '<tr class="ins-det" data-i="' + i + '" hidden><td colspan="9"></td></tr>' : "");
+    }).join("");
+    var ck = d.check || {};
+    var table = '<section class="pan"' + bdSpan(12) + ">" + panHd("כל הרכישות", '<span class="mute">לפי סכום · "היסטוריה" פותחת שנתיים של קניות ומכירות בחברה</span>') +
+      '<div class="pb ins-tw"><table class="bd-tbl ins-tbl"><thead><tr><th>מניה</th><th>מי קנה</th><th>סכום</th><th>קנה ב- · עד עכשיו</th><th>האחזקה שלו</th><th>מהשיא השנתי</th><th>שווי</th><th>למה זה מעניין</th><th></th></tr></thead><tbody>' + tb + "</tbody></table>" +
+      '<p class="mute s ins-foot">הפס ב"מהשיא": שמאל = השפל השנתי, ימין = השיא, הנקודה = הסגירה האחרונה.' +
+      (ck.received ? " בדיקת הנתונים: " + ck.received + " עסקאות בהיסטוריה" + (ck.invalid ? ", " + ck.invalid + " נפסלו כי המחיר לא תואם למניה הרגילה באותו יום" : ", כולן תאמו את המחיר באותו יום") + "." : "") + "</p></div></section>";
+    var hl = (d.highlights || []).map(function (x) {
+      return '<div class="ins-hl"><div class="s mute">' + esc(x.k) + '</div><b class="num tk" dir="ltr">' + tvLink(x.t) + "</b><p>" + esc(x.txt) + "</p></div>";
+    }).join("");
+    var site = (d.siteHits || []).length
+      ? "גם באתר: " + d.siteHits.map(function (t) { return '<b class="num" dir="ltr">' + esc(t) + "</b>"; }).join(" · ") + " — התג בשורה."
+      : "אף אחת מהן לא בנבחרות, במועמדים או במומנטום היום.";
+    var hlPan = '<section class="pan"' + bdSpan(7) + ">" + panHd("מה בולט", "") + '<div class="pb"><div class="ins-hls">' + hl + "</div>" +
+      '<div class="ins-site"><b>חיתוך עם האתר:</b> <span>' + site + "</span></div></div></section>";
+    var tr = (d.track || []).slice(0, 10).map(function (b) {
+      var cells = [5, 20, 60].map(function (hz) {
+        var x = b.res && b.res[hz];
+        if (x) return '<td><b class="num ' + insCls(x.ret) + '" dir="ltr" title="S&amp;P באותם ימים ' + insPct(x.spy) + '">' + insPct(x.ret) + "</b></td>";
+        var left = hz - (b.elapsed || 0);
+        return '<td class="mute s">' + (left > 0 && left <= hz ? "בעוד " + left : "—") + "</td>";
+      }).join("");
+      return '<tr><td><b class="num" dir="ltr">' + esc(b.t) + '</b> <span class="mute s num">' + insDm(b.filed) + "</span></td>" +
+        '<td><b class="num ' + insCls(b.since) + '" dir="ltr">' + insPct(b.since) + "</b></td>" + cells + "</tr>";
+    }).join("");
+    var agg = d.trackAgg || {}, aggTxt = [5, 20, 60].filter(function (h) { return agg[h]; }).map(function (h) {
+      var a = agg[h];
+      return "אחרי " + h + " ימים: " + insPct(a.ret) + " בממוצע, מול השוק " + insPct(a.ex) + " (" + a.win + " מתוך " + a.n + " ניצחו)";
+    }).join(" · ");
+    var trPan = '<section class="pan"' + bdSpan(5) + ">" + panHd("המעקב · מה קרה אחרי הקנייה", '<span class="mute">"עד עכשיו" מהמחיר שהמנהל שילם; 5/20/60 מיום הדיווח</span>') +
+      '<div class="pb"><table class="bd-tbl ins-trk"><thead><tr><th>מניה</th><th>עד עכשיו</th><th>5 ימים</th><th>20 יום</th><th>60 יום</th></tr></thead><tbody>' + tr + "</tbody></table>" +
+      '<p class="mute s">' + (aggTxt || "הממוצעים ייכנסו כשהקניות הראשונות ישלימו 5 ימי מסחר.") + "</p></div></section>";
+    var days = d.days || [], mx = Math.max.apply(null, days.map(function (x) { return x.v || 0; }).concat([1]));
+    var strip = days.map(function (x, i) {
+      var hpx = x.v ? Math.max(6, Math.round(84 * x.v / mx)) : 84;
+      return '<div class="ins-day' + (x.has ? "" : " no") + (i === days.length - 1 ? " last" : "") + '" title="' + esc(secDate(x.d)) + (x.has ? " · " + x.n + " רכישות · " + insMoney(x.v) : " · לפני תחילת היומן") + '">' +
+        '<i style="height:' + hpx + 'px"></i><span class="num">' + insDm(x.d) + "</span></div>";
+    }).join("");
+    var hist = '<section class="pan"' + bdSpan(12) + ">" + panHd("היסטוריה · 20 ימי מסחר", '<span class="mute">סכום הרכישות שנספרו בכל יום דיווח</span>') +
+      '<div class="pb"><div class="ins-days" aria-hidden="true">' + strip + "</div>" +
+      '<p class="mute s">היומן מתחיל ב-<span class="num">' + insDm(d.firstDay) + "</span> ומתמלא יום אחרי יום: כל בוקר עמודה חדשה, וכל רכישה נכנסת למעקב.</p></div></section>";
+    return head + table + hlPan + trPan + hist;
+  }
+  function insDailyHow() {
+    return '<ul class="ins-how"><li>כל בוקר ב-05:00 הבוט סורק את דיווחי Form 4 של אתמול ב-SEC ושולח קובץ במייל; האתר קולט אותו תוך רבע שעה.</li>' +
+      "<li>רק קנייה בשוק הפתוח (קוד P) — לא אופציות, לא מענקים, לא מכירות. קרנות סגורות, תעודות סל ו-SPAC מחוץ לספירה.</li>" +
+      "<li>כל עסקה נבדקת מול טווח המחיר של המניה באותו יום; מחיר שלא תואם (למשל מניות בכורה) נפסל.</li>" +
+      "<li>אשכול = שני קונים או יותר באותה חברה ב-30 יום. המעקב: 5/20/60 ימי מסחר מסגירת יום הדיווח, מול S&amp;P.</li>" +
+      "<li>תיאור של מה שהמנהלים עשו, לא המלצה.</li></ul>";
+  }
+  function insDetHtml(r) {
+    var h = INSDD.history[r.t], st = h.stats || {};
+    var past = (h.past || []).slice(-6).map(function (p) {
+      return '<tr><td class="num">' + insDm(p.d) + "." + p.d.slice(2, 4) + "</td><td>" + esc(p.role || "") + '</td><td class="num" dir="ltr">' + fmt(p.price) + "</td>" +
+        '<td><b class="num ' + insCls(p.r20) + '" dir="ltr">' + (p.r20 == null ? "טרם" : insPct(p.r20)) + "</b></td>" +
+        '<td><span class="num ' + insCls(p.r60) + '" dir="ltr">' + (p.r60 == null ? "טרם" : insPct(p.r60)) + "</span></td></tr>";
+    }).join("");
+    var box = st.pastN
+      ? '<div class="ins-past-box"><div class="s mute">אחרי ' + st.pastN + ' הקניות הקודמות בחברה, 20 יום</div><div><b class="num ' + insCls(st.pastAvg) + '" dir="ltr">' + insPct(st.pastAvg) + '</b> <span class="s mute">בממוצע</span> <b class="num" dir="ltr">' + st.pastWin + "/" + st.pastN + '</b> <span class="s mute">ניצחו את השוק</span>' + (st.pastN < 4 ? ' <span class="s mute">· מדגם קטן</span>' : "") + "</div></div>"
+      : '<div class="ins-past-box"><div class="s mute">אין קניות קודמות עם 20 יום אחריהן</div></div>';
+    return '<div class="ins-det-in"><p class="ins-sent">' + esc(h.sent || "") + "</p>" +
+      '<div class="ins-det-grid"><div class="ins-ch-wrap"><div class="ins-leg s mute"><b>שנתיים · מחיר סגירה</b><span><i class="b">▲</i> קנייה</span><span><i class="s">▼</i> מכירה</span><span>גודל הסימן = הסכום</span><span><i class="o"></i> הקנייה הזו</span></div>' +
+        '<div class="ins-ch" data-t="' + esc(r.t) + '"><div class="mute s">טוען גרף…</div></div></div>' +
+      '<div class="ins-side">' + box + (past ? '<table class="bd-tbl ins-past"><caption>הקניות הקודמות בחברה</caption><thead><tr><th>תאריך</th><th>תפקיד</th><th>מחיר</th><th>20 יום</th><th>60 יום</th></tr></thead><tbody>' + past + "</tbody></table>" : "") +
+        '<p class="s mute">20/60 יום מסגירת יום הדיווח. "ניצחו את השוק" = יותר מ-S&amp;P באותם ימים.</p></div></div></div>';
+  }
+  function insChartHtml(r, bars) {
+    var h = INSDD.history[r.t], W = 760, H = 220, P = 8;
+    var b = bars.slice(-500), n = b.length;
+    if (n < 20) return '<div class="mute s">אין מספיק נרות לגרף.</div>';
+    var ds = b.map(function (x) { return x[0]; });
+    var lo = Infinity, hi = -Infinity;
+    b.forEach(function (x) { if (x[4] < lo) lo = x[4]; if (x[4] > hi) hi = x[4]; });
+    var X = function (i) { return P + (W - 2 * P) * i / (n - 1); };
+    var Y = function (p) { return P + (H - 2 * P) * (1 - (Math.max(lo, Math.min(hi, p)) - lo) / ((hi - lo) || 1)); };
+    var idx = function (d) { var i = 0; while (i < n - 1 && ds[i] < d) i++; return i; };
+    var path = "M" + b.map(function (x, i) { return X(i).toFixed(1) + " " + Y(x[4]).toFixed(1); }).join(" L");
+    var mk = "", ring = "";
+    (h.tx || []).forEach(function (t) {
+      if (!t.d || t.d < ds[0]) return;
+      var i = idx(t.d), x = X(i), y = Y(t.p || b[i][4]), sz = Math.max(3.5, Math.min(9, 2 + Math.sqrt((t.v || 0) / 1e5) * 1.6));
+      mk += t.ty === "P"
+        ? '<polygon class="b" points="' + x.toFixed(1) + "," + (y - sz).toFixed(1) + " " + (x - sz).toFixed(1) + "," + (y + sz * 0.8).toFixed(1) + " " + (x + sz).toFixed(1) + "," + (y + sz * 0.8).toFixed(1) + '"><title>' + esc(t.d + " · " + t.who + " · " + insMoney(t.v)) + "</title></polygon>"
+        : '<polygon class="s" points="' + x.toFixed(1) + "," + (y + sz).toFixed(1) + " " + (x - sz).toFixed(1) + "," + (y - sz * 0.8).toFixed(1) + " " + (x + sz).toFixed(1) + "," + (y - sz * 0.8).toFixed(1) + '"><title>' + esc(t.d + " · " + t.who + " · " + insMoney(t.v) + (t.plan ? " · מתוכננת" : "")) + "</title></polygon>";
+      if (t.ty === "P" && t.d === r.trade) ring = '<circle cx="' + x.toFixed(1) + '" cy="' + (y + 2).toFixed(1) + '" r="12" class="o"></circle>';
+    });
+    var grid = [0.25, 0.5, 0.75].map(function (f) { return '<line x1="0" x2="' + W + '" y1="' + (P + (H - 2 * P) * f) + '" y2="' + (P + (H - 2 * P) * f) + '"></line>'; }).join("");
+    return '<div class="ins-svgw"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(r.t) + ': שנתיים של מחיר עם קניות ומכירות של אנשי פנים">' + grid +
+      '<path d="' + path + '"></path>' + mk + ring + "</svg>" +
+      '<span class="ins-ax t num">$' + fmt(hi, hi >= 100 ? 0 : 2) + '</span><span class="ins-ax b num">$' + fmt(lo, lo >= 100 ? 0 : 2) + "</span></div>" +
+      '<div class="ins-xax num"><span>' + insDm(ds[0]) + "." + ds[0].slice(2, 4) + "</span><span>" + insDm(ds[n - 1]) + "." + ds[n - 1].slice(2, 4) + "</span></div>";
+  }
+  function bindInsDaily(el) {
+    if (!INSDD) return;
+    el.querySelectorAll(".ins-open").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var tr = btn.closest("tr"), i = +tr.dataset.i, r = INSDD.rows[i];
+        var det = el.querySelector('.ins-det[data-i="' + i + '"]');
+        if (!det || !r) return;
+        var open = det.hidden;
+        det.hidden = !open;
+        tr.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open);
+        if (!open || det.dataset.done) return;
+        det.dataset.done = "1";
+        det.firstChild.innerHTML = insDetHtml(r);
+        var ch = det.querySelector(".ins-ch");
+        var draw = function (bars) { ch.innerHTML = insChartHtml(r, bars); };
+        if (INSD_BARS[r.t]) return draw(INSD_BARS[r.t]);
+        fetchJSON("data/bars/" + encodeURIComponent(r.t.replace(".", "-")) + ".json")
+          .then(function (j) { INSD_BARS[r.t] = j.bars || []; draw(INSD_BARS[r.t]); })
+          .catch(function () { ch.innerHTML = '<div class="mute s">הגרף יופיע אחרי שהאתר יוריד את המחירים של המניה (עד רבע שעה).</div>'; });
+      });
+    });
   }
   function showInsider(i) {
     var view = document.getElementById("ins-view");
@@ -4788,7 +4963,10 @@
         .catch(function () {});
       fetchJSON("data/insider.json")
         .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); renderStockSiblings(); noteSig("insider", d); })
-        .catch(function () { if (!("insider" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
+        .catch(function () { if (!("insider" in DAILY_SIGS) && !INSDD) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
+      fetchJSON("data/insider_daily.json")
+        .then(function (d) { if (!freshD("insdd", d)) return; INSDD = d; renderInsider(); })
+        .catch(function () {});
       // הנבחרות (30.9.2026): המהדורה + יומן הכנות; היומן לא חוסם את הקלפים
       Promise.all([fetchJSON("data/earnings_prep.json"), fetchJSON("data/earnings_prep_notes.json").catch(function () { return {}; }),
         fetchJSON("data/earnings_review_notes.json").catch(function () { return {}; })])
