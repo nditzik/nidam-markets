@@ -1,26 +1,26 @@
 {
   "today": "2026-10-30",
-  "todayCount": 23,
+  "todayCount": 24,
   "todayBig": [
     {
       "ticker": "XOM",
       "name": "Exxonmobil Holdings Corporation",
-      "capB": 753.7
+      "capB": 768.6
     },
     {
       "ticker": "ABBV",
       "name": "AbbVie, Inc.",
-      "capB": 513.9
+      "capB": 516.0
     },
     {
       "ticker": "CVX",
       "name": "Chevron Corporation",
-      "capB": 457.3
+      "capB": 465.7
     },
     {
       "ticker": "AZN",
       "name": "AstraZeneca PLC",
-      "capB": 270.5
+      "capB": 287.2
     },
     {
       "ticker": "BP",
@@ -30,17 +30,17 @@
     {
       "ticker": "GD",
       "name": "General Dynamics Corporation",
-      "capB": 100.3
+      "capB": 102.8
     },
     {
       "ticker": "MNST",
       "name": "Monster Beverage Corporation",
-      "capB": 90.8
+      "capB": 92.5
     },
     {
       "ticker": "REGN",
       "name": "Regeneron Pharmaceuticals, Inc.",
-      "capB": 84.3
+      "capB": 88.0
     }
   ],
   "reactions": {
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/AMZN.png",
             "logoBg": "dark",
-            "chg": -5.47,
-            "price": 230.46,
+            "chg": -1.78,
+            "price": 239.46,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -84,17 +84,6 @@
             "baseDate": "2026-10-28"
           },
           {
-            "ticker": "INTC",
-            "name": "Intel Corporation",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/INTC.png",
-            "chg": -26.74,
-            "price": 67.45,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
             "ticker": "MRK",
             "name": "Merck & Co., Inc.",
             "when": "before",
@@ -104,6 +93,17 @@
             "price": 146.33,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
+          },
+          {
+            "ticker": "INTC",
+            "name": "Intel Corporation",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/INTC.png",
+            "chg": -29.0,
+            "price": 65.37,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "SHEL",
@@ -134,6 +134,26 @@
             "baseDate": "2026-10-28"
           },
           {
+            "ticker": "GOOGM",
+            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+            "when": "after",
+            "status": "final",
+            "chg": -8.97,
+            "price": 42.53,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
+          },
+          {
+            "ticker": "GOOGN",
+            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+            "when": "after",
+            "status": "final",
+            "chg": -8.77,
+            "price": 42.53,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
+          },
+          {
             "ticker": "GOOG",
             "name": "Alphabet Inc. Class C",
             "when": "after",
@@ -152,26 +172,6 @@
             "logo": "data/earnings/logos/GOOGL.png",
             "chg": -12.64,
             "price": 283.82,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "GOOGM",
-            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-            "when": "after",
-            "status": "final",
-            "chg": -8.97,
-            "price": 42.53,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "GOOGN",
-            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-            "when": "after",
-            "status": "final",
-            "chg": -8.77,
-            "price": 42.53,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -315,16 +315,16 @@
       "logoBg": "dark"
     },
     {
-      "ticker": "CNI",
-      "name": "Canadian National Railway Company",
-      "when": "before",
-      "logo": "data/earnings/logos/CNI.png"
-    },
-    {
       "ticker": "CL",
       "name": "Colgate-Palmolive Company",
       "when": "before",
       "logo": "data/earnings/logos/CL.png"
+    },
+    {
+      "ticker": "CNI",
+      "name": "Canadian National Railway Company",
+      "when": "before",
+      "logo": "data/earnings/logos/CNI.png"
     },
     {
       "ticker": "NWG",
@@ -339,7 +339,7 @@
       "logo": "data/earnings/logos/IMO.png"
     }
   ],
-  "more": 11,
+  "more": 12,
   "upcoming": [],
   "week": [
     {
@@ -380,16 +380,16 @@
           "logo": "data/earnings/logos/PSA.png"
         },
         {
-          "ticker": "CLS",
-          "name": "Celestica Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/CLS.png"
-        },
-        {
           "ticker": "HIG",
           "name": "Hartford Insurance Group, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/HIG.png"
+        },
+        {
+          "ticker": "CLS",
+          "name": "Celestica Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/CLS.png"
         },
         {
           "ticker": "CINF",
@@ -421,7 +421,7 @@
       "date": "2026-10-27",
       "dow": "שלישי",
       "label": "27.10",
-      "total": 52,
+      "total": 53,
       "companies": [
         {
           "ticker": "SKHY",
@@ -486,16 +486,16 @@
           "logo": "data/earnings/logos/HCA.png"
         },
         {
+          "ticker": "WM",
+          "name": "Waste Management, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/WM.png"
+        },
+        {
           "ticker": "JCI",
           "name": "Johnson Controls International plc",
           "when": "before",
           "logo": "data/earnings/logos/JCI.png"
-        },
-        {
-          "ticker": "FCX",
-          "name": "Freeport-McMoRan, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/FCX.png"
         }
       ]
     },
@@ -503,13 +503,23 @@
       "date": "2026-10-28",
       "dow": "רביעי",
       "label": "28.10",
-      "total": 67,
+      "total": 68,
       "companies": [
         {
           "ticker": "MSFT",
           "name": "Microsoft Corporation",
           "when": "after",
           "logo": "data/earnings/logos/MSFT.png"
+        },
+        {
+          "ticker": "GOOGM",
+          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+          "when": "after"
+        },
+        {
+          "ticker": "GOOGN",
+          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
+          "when": "after"
         },
         {
           "ticker": "GOOG",
@@ -522,16 +532,6 @@
           "name": "Alphabet Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/GOOGL.png"
-        },
-        {
-          "ticker": "GOOGM",
-          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-          "when": "after"
-        },
-        {
-          "ticker": "GOOGN",
-          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-          "when": "after"
         },
         {
           "ticker": "GEV",
@@ -571,10 +571,10 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "NOW",
-          "name": "ServiceNow, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/NOW.png"
+          "ticker": "ADP",
+          "name": "Automatic Data Processing, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/ADP.png"
         }
       ]
     },
@@ -604,16 +604,16 @@
           "logo": "data/earnings/logos/MA.png"
         },
         {
-          "ticker": "INTC",
-          "name": "Intel Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/INTC.png"
-        },
-        {
           "ticker": "MRK",
           "name": "Merck & Co., Inc.",
           "when": "before",
           "logo": "data/earnings/logos/MRK.png"
+        },
+        {
+          "ticker": "INTC",
+          "name": "Intel Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/INTC.png"
         },
         {
           "ticker": "SHEL",
@@ -664,7 +664,7 @@
       "date": "2026-10-30",
       "dow": "שישי",
       "label": "30.10",
-      "total": 23,
+      "total": 24,
       "companies": [
         {
           "ticker": "XOM",
@@ -717,16 +717,16 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "CNI",
-          "name": "Canadian National Railway Company",
-          "when": "before",
-          "logo": "data/earnings/logos/CNI.png"
-        },
-        {
           "ticker": "CL",
           "name": "Colgate-Palmolive Company",
           "when": "before",
           "logo": "data/earnings/logos/CL.png"
+        },
+        {
+          "ticker": "CNI",
+          "name": "Canadian National Railway Company",
+          "when": "before",
+          "logo": "data/earnings/logos/CNI.png"
         },
         {
           "ticker": "NWG",
@@ -752,12 +752,13 @@
     "GD": "2026-10-30",
     "MNST": "2026-10-30",
     "REGN": "2026-10-30",
-    "CNI": "2026-10-30",
     "CL": "2026-10-30",
+    "CNI": "2026-10-30",
     "NWG": "2026-10-30",
     "IMO": "2026-10-30",
     "D": "2026-10-30",
     "EXC": "2026-10-30",
+    "VALE": "2026-10-30",
     "KVUE": "2026-10-30",
     "UI": "2026-10-30",
     "CCJ": "2026-10-30",
@@ -768,8 +769,8 @@
     "RBC": "2026-10-30",
     "BSAC": "2026-10-30",
     "AAPL": "2026-11-02",
-    "BRK.A": "2026-11-02",
     "BRK.B": "2026-11-02",
+    "BRK.A": "2026-11-02",
     "PLTR": "2026-11-02",
     "VRTX": "2026-11-02",
     "MAR": "2026-11-02",
@@ -782,20 +783,19 @@
     "PEG": "2026-11-02",
     "ON": "2026-11-02",
     "RYAAY": "2026-11-02",
-    "FOXA": "2026-11-02",
     "FOX": "2026-11-02",
+    "FOXA": "2026-11-02",
     "ROKU": "2026-11-02",
     "L": "2026-11-02",
+    "SBAC": "2026-11-02",
     "TSEM": "2026-11-02",
     "PS": "2026-11-02",
-    "SBAC": "2026-11-02",
     "VNOM": "2026-11-02",
-    "CRBG": "2026-11-02",
     "CHKP": "2026-11-02",
+    "CRBG": "2026-11-02",
     "PKX": "2026-11-02",
-    "EQH": "2026-11-02",
     "NBIX": "2026-11-02",
-    "LSCC": "2026-11-02",
+    "EQH": "2026-11-02",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
     "ANET": "2026-11-03",
@@ -812,9 +812,9 @@
     "MPLX": "2026-11-03",
     "AME": "2026-11-03",
     "TRI": "2026-11-03",
-    "ALAB": "2026-11-03",
-    "TEVA": "2026-11-03",
     "KDP": "2026-11-03",
+    "TEVA": "2026-11-03",
+    "ALAB": "2026-11-03",
     "WAT": "2026-11-03",
     "XYZ": "2026-11-03",
     "AIG": "2026-11-03",
@@ -826,42 +826,43 @@
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
+    "FISV": "2026-11-03",
     "CPNG": "2026-11-03",
     "EXPD": "2026-11-03",
-    "FISV": "2026-11-03",
     "IFF": "2026-11-03",
-    "SMCI": "2026-11-03",
     "SMCIP": "2026-11-03",
     "BNTX": "2026-11-03",
+    "SMCI": "2026-11-03",
     "SWKS": "2026-11-03",
     "BR": "2026-11-03",
     "OVV": "2026-11-03",
     "FIS": "2026-11-03",
     "DD": "2026-11-03",
-    "RVTY": "2026-11-03",
     "TOST": "2026-11-03",
-    "ZBRA": "2026-11-03",
+    "RVTY": "2026-11-03",
     "LDOS": "2026-11-03",
+    "ZBRA": "2026-11-03",
     "DT": "2026-11-03",
     "BALL": "2026-11-03",
-    "TLN": "2026-11-03",
     "YUMC": "2026-11-03",
+    "TLN": "2026-11-03",
     "ULS": "2026-11-03",
     "SUN": "2026-11-03",
-    "UNM": "2026-11-03",
     "AIZ": "2026-11-03",
+    "IT": "2026-11-03",
+    "UNM": "2026-11-03",
     "ARM": "2026-11-04",
     "QCOM": "2026-11-04",
     "MCD": "2026-11-04",
     "NVO": "2026-11-04",
     "UBER": "2026-11-04",
-    "CVS": "2026-11-04",
     "MCK": "2026-11-04",
-    "DDOG": "2026-11-04",
+    "CVS": "2026-11-04",
     "EMR": "2026-11-04",
-    "APP": "2026-11-04",
+    "DDOG": "2026-11-04",
     "MELI": "2026-11-04",
     "MSI": "2026-11-04",
+    "APP": "2026-11-04",
     "MFC": "2026-11-04",
     "ALL": "2026-11-04",
     "GWW": "2026-11-04",
@@ -871,83 +872,81 @@
     "CVE": "2026-11-04",
     "EW": "2026-11-04",
     "VMRK": "2026-11-04",
-    "COHR": "2026-11-04",
     "SLF": "2026-11-04",
+    "COHR": "2026-11-04",
     "MDLN": "2026-11-04",
     "RVMD": "2026-11-04",
     "RPRX": "2026-11-04",
     "MLM": "2026-11-04",
-    "EXPE": "2026-11-04",
     "TKO": "2026-11-04",
+    "EXPE": "2026-11-04",
     "NTR": "2026-11-04",
     "TS": "2026-11-04",
     "SN": "2026-11-04",
     "ATO": "2026-11-04",
     "KHC": "2026-11-04",
     "CPAY": "2026-11-04",
-    "Q": "2026-11-04",
     "ES": "2026-11-04",
     "UTHR": "2026-11-04",
+    "Q": "2026-11-04",
     "GFS": "2026-11-04",
     "TPL": "2026-11-04",
     "PR": "2026-11-04",
     "PTC": "2026-11-04",
     "CDW": "2026-11-04",
-    "CRCL": "2026-11-04",
     "RGLD": "2026-11-04",
     "WES": "2026-11-04",
+    "CRCL": "2026-11-04",
+    "APA": "2026-11-04",
+    "CF": "2026-11-04",
     "ZBH": "2026-11-04",
     "CW": "2026-11-04",
     "ITT": "2026-11-04",
-    "APA": "2026-11-04",
     "CRL": "2026-11-04",
-    "CF": "2026-11-04",
     "HST": "2026-11-04",
-    "PAAS": "2026-11-04",
-    "W": "2026-11-04",
-    "NWSA": "2026-11-04",
     "NWS": "2026-11-04",
+    "NWSA": "2026-11-04",
+    "W": "2026-11-04",
+    "PAAS": "2026-11-04",
     "SWK": "2026-11-04",
     "PFGC": "2026-11-04",
-    "FICO": "2026-11-04",
     "TRMB": "2026-11-04",
-    "SITM": "2026-11-04",
-    "MKSI": "2026-11-04",
-    "CDE": "2026-11-04",
+    "FICO": "2026-11-04",
+    "COKE": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
-    "NET": "2026-11-05",
     "SO": "2026-11-05",
     "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "NET": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
     "EOG": "2026-11-05",
     "NGG": "2026-11-05",
-    "LITE": "2026-11-05",
     "CI": "2026-11-05",
-    "CMI": "2026-11-05",
+    "LITE": "2026-11-05",
     "SPG": "2026-11-05",
     "APD": "2026-11-05",
+    "CMI": "2026-11-05",
     "TRP": "2026-11-05",
     "TRGP": "2026-11-05",
     "CAH": "2026-11-05",
     "DVN": "2026-11-05",
     "SRE": "2026-11-05",
-    "WPM": "2026-11-05",
     "BDX": "2026-11-05",
+    "WPM": "2026-11-05",
     "TEAM": "2026-11-05",
     "ROK": "2026-11-05",
     "MCHPP": "2026-11-05",
     "MCHP": "2026-11-05",
-    "AU": "2026-11-05",
     "ED": "2026-11-05",
     "LYV": "2026-11-05",
+    "AU": "2026-11-05",
     "KMB": "2026-11-05",
-    "AXON": "2026-11-05",
     "IRM": "2026-11-05",
+    "AXON": "2026-11-05",
     "MTD": "2026-11-05",
     "GMAB": "2026-11-05",
     "ZTS": "2026-11-05",
@@ -955,28 +954,27 @@
     "PBA": "2026-11-05",
     "DTE": "2026-11-05",
     "DTK": "2026-11-05",
+    "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
     "GH": "2026-11-05",
-    "VRSK": "2026-11-05",
     "CIB": "2026-11-05",
     "RL": "2026-11-05",
     "TPR": "2026-11-05",
     "FWONK": "2026-11-05",
     "FWONA": "2026-11-05",
-    "GPN": "2026-11-05",
     "STE": "2026-11-05",
+    "GPN": "2026-11-05",
     "USFD": "2026-11-05",
     "VTRS": "2026-11-05",
     "EVRG": "2026-11-05",
-    "MTSI": "2026-11-05",
     "BCE": "2026-11-05",
-    "U": "2026-11-05",
+    "MTSI": "2026-11-05",
     "RGA": "2026-11-05",
+    "U": "2026-11-05",
     "SBS": "2026-11-05",
     "LAMR": "2026-11-05",
     "JHX": "2026-11-05",
     "HALO": "2026-11-05",
-    "CG": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -985,14 +983,14 @@
     "ONC": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTRP": "2026-11-06",
     "CHTR": "2026-11-06",
+    "CHTRP": "2026-11-06",
     "PAA": "2026-11-06",
     "BEN": "2026-11-06",
     "EMA": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 15:31",
+    "updatedAt": "30/10/2026 15:46",
     "source": "tradingview"
   }
 }
