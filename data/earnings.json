@@ -5,12 +5,12 @@
     {
       "ticker": "XOM",
       "name": "Exxonmobil Holdings Corporation",
-      "capB": 762.6
+      "capB": 762.5
     },
     {
       "ticker": "ABBV",
       "name": "AbbVie, Inc.",
-      "capB": 523.5
+      "capB": 521.6
     },
     {
       "ticker": "CVX",
@@ -20,7 +20,7 @@
     {
       "ticker": "AZN",
       "name": "AstraZeneca PLC",
-      "capB": 289.8
+      "capB": 289.5
     },
     {
       "ticker": "BP",
@@ -30,17 +30,17 @@
     {
       "ticker": "GD",
       "name": "General Dynamics Corporation",
-      "capB": 101.5
+      "capB": 101.7
     },
     {
       "ticker": "REGN",
       "name": "Regeneron Pharmaceuticals, Inc.",
-      "capB": 94.4
+      "capB": 93.9
     },
     {
       "ticker": "MNST",
       "name": "Monster Beverage Corporation",
-      "capB": 92.6
+      "capB": 92.4
     }
   ],
   "reactions": {
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/AMZN.png",
             "logoBg": "dark",
-            "chg": -1.81,
-            "price": 239.38,
+            "chg": -2.16,
+            "price": 238.52,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INTC.png",
-            "chg": -28.57,
-            "price": 65.76,
+            "chg": -29.35,
+            "price": 65.04,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -154,17 +154,6 @@
             "baseDate": "2026-10-28"
           },
           {
-            "ticker": "GOOG",
-            "name": "Alphabet Inc. Class C",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOG.png",
-            "chg": -12.29,
-            "price": 282.32,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
             "ticker": "GOOGL",
             "name": "Alphabet Inc. Class A",
             "when": "after",
@@ -172,6 +161,17 @@
             "logo": "data/earnings/logos/GOOGL.png",
             "chg": -12.64,
             "price": 283.82,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
+          },
+          {
+            "ticker": "GOOG",
+            "name": "Alphabet Inc. Class C",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/GOOG.png",
+            "chg": -12.29,
+            "price": 282.32,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -522,16 +522,16 @@
           "when": "after"
         },
         {
-          "ticker": "GOOG",
-          "name": "Alphabet Inc. Class C",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOG.png"
-        },
-        {
           "ticker": "GOOGL",
           "name": "Alphabet Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/GOOGL.png"
+        },
+        {
+          "ticker": "GOOG",
+          "name": "Alphabet Inc. Class C",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOG.png"
         },
         {
           "ticker": "GEV",
@@ -635,16 +635,16 @@
           "logo": "data/earnings/logos/LIN.png"
         },
         {
-          "ticker": "GILD",
-          "name": "Gilead Sciences, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/GILD.png"
-        },
-        {
           "ticker": "TTE",
           "name": "TotalEnergies SE",
           "when": "before",
           "logo": "data/earnings/logos/TTE.png"
+        },
+        {
+          "ticker": "GILD",
+          "name": "Gilead Sciences, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/GILD.png"
         },
         {
           "ticker": "SNDK",
@@ -820,9 +820,9 @@
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
-    "PRU": "2026-11-03",
-    "PFH": "2026-11-03",
     "PRS": "2026-11-03",
+    "PFH": "2026-11-03",
+    "PRU": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
@@ -896,10 +896,10 @@
     "RGLD": "2026-11-04",
     "WES": "2026-11-04",
     "CRCL": "2026-11-04",
-    "CDW": "2026-11-04",
     "ZBH": "2026-11-04",
     "APA": "2026-11-04",
     "CF": "2026-11-04",
+    "CDW": "2026-11-04",
     "ITT": "2026-11-04",
     "CW": "2026-11-04",
     "HST": "2026-11-04",
@@ -908,19 +908,19 @@
     "NWSA": "2026-11-04",
     "W": "2026-11-04",
     "PAAS": "2026-11-04",
-    "PFGC": "2026-11-04",
     "SWK": "2026-11-04",
+    "PFGC": "2026-11-04",
     "TRMB": "2026-11-04",
     "FICO": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
-    "PH": "2026-11-05",
     "CNQ": "2026-11-05",
+    "PH": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
-    "ABNB": "2026-11-05",
+    "SOJE": "2026-11-05",
     "DUK": "2026-11-05",
+    "ABNB": "2026-11-05",
     "NET": "2026-11-05",
     "EOG": "2026-11-05",
     "NGG": "2026-11-05",
@@ -929,8 +929,8 @@
     "SPG": "2026-11-05",
     "CMI": "2026-11-05",
     "APD": "2026-11-05",
-    "TRGP": "2026-11-05",
     "TRP": "2026-11-05",
+    "TRGP": "2026-11-05",
     "CAH": "2026-11-05",
     "DVN": "2026-11-05",
     "SRE": "2026-11-05",
@@ -960,8 +960,8 @@
     "RL": "2026-11-05",
     "TPR": "2026-11-05",
     "FWONK": "2026-11-05",
-    "FWONA": "2026-11-05",
     "GPN": "2026-11-05",
+    "FWONA": "2026-11-05",
     "STE": "2026-11-05",
     "USFD": "2026-11-05",
     "VTRS": "2026-11-05",
@@ -989,7 +989,7 @@
     "EMA": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 17:46",
+    "updatedAt": "30/10/2026 18:01",
     "source": "tradingview"
   }
 }
