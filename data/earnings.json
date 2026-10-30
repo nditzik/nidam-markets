@@ -1,6 +1,6 @@
 {
   "today": "2026-10-30",
-  "todayCount": 21,
+  "todayCount": 24,
   "todayBig": [
     {
       "ticker": "XOM",
@@ -33,14 +33,14 @@
       "capB": 100.3
     },
     {
+      "ticker": "MNST",
+      "name": "Monster Beverage Corporation",
+      "capB": 90.8
+    },
+    {
       "ticker": "REGN",
       "name": "Regeneron Pharmaceuticals, Inc.",
       "capB": 84.3
-    },
-    {
-      "ticker": "CNI",
-      "name": "Canadian National Railway Company",
-      "capB": 75.1
     }
   ],
   "reactions": {
@@ -290,6 +290,12 @@
       "logo": "data/earnings/logos/GD.png"
     },
     {
+      "ticker": "MNST",
+      "name": "Monster Beverage Corporation",
+      "when": "",
+      "logo": "data/earnings/logos/MNST.png"
+    },
+    {
       "ticker": "REGN",
       "name": "Regeneron Pharmaceuticals, Inc.",
       "when": "before",
@@ -319,15 +325,9 @@
       "name": "Imperial Oil Limited",
       "when": "",
       "logo": "data/earnings/logos/IMO.png"
-    },
-    {
-      "ticker": "D",
-      "name": "Dominion Energy Inc",
-      "when": "before",
-      "logo": "data/earnings/logos/D.png"
     }
   ],
-  "more": 9,
+  "more": 12,
   "upcoming": [],
   "week": [
     {
@@ -409,7 +409,7 @@
       "date": "2026-10-27",
       "dow": "שלישי",
       "label": "27.10",
-      "total": 51,
+      "total": 50,
       "companies": [
         {
           "ticker": "SKHY",
@@ -491,7 +491,7 @@
       "date": "2026-10-28",
       "dow": "רביעי",
       "label": "28.10",
-      "total": 64,
+      "total": 63,
       "companies": [
         {
           "ticker": "GOOGM",
@@ -570,7 +570,7 @@
       "date": "2026-10-29",
       "dow": "חמישי",
       "label": "29.10",
-      "total": 93,
+      "total": 94,
       "companies": [
         {
           "ticker": "AMZN",
@@ -652,7 +652,7 @@
       "date": "2026-10-30",
       "dow": "שישי",
       "label": "30.10",
-      "total": 21,
+      "total": 24,
       "companies": [
         {
           "ticker": "XOM",
@@ -692,6 +692,12 @@
           "logo": "data/earnings/logos/GD.png"
         },
         {
+          "ticker": "MNST",
+          "name": "Monster Beverage Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/MNST.png"
+        },
+        {
           "ticker": "REGN",
           "name": "Regeneron Pharmaceuticals, Inc.",
           "when": "before",
@@ -721,12 +727,6 @@
           "name": "Imperial Oil Limited",
           "when": "",
           "logo": "data/earnings/logos/IMO.png"
-        },
-        {
-          "ticker": "D",
-          "name": "Dominion Energy Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/D.png"
         }
       ]
     }
@@ -738,6 +738,7 @@
     "AZN": "2026-10-30",
     "BP": "2026-10-30",
     "GD": "2026-10-30",
+    "MNST": "2026-10-30",
     "REGN": "2026-10-30",
     "CNI": "2026-10-30",
     "CL": "2026-10-30",
@@ -751,6 +752,8 @@
     "CHD": "2026-10-30",
     "NVT": "2026-10-30",
     "LYB": "2026-10-30",
+    "YPF": "2026-10-30",
+    "BCH": "2026-10-30",
     "MGA": "2026-10-30",
     "RBC": "2026-10-30",
     "AAPL": "2026-11-02",
@@ -804,8 +807,8 @@
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
     "PRU": "2026-11-03",
-    "PFH": "2026-11-03",
     "PRS": "2026-11-03",
+    "PFH": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
@@ -887,16 +890,14 @@
     "NWS": "2026-11-04",
     "NWSA": "2026-11-04",
     "SWK": "2026-11-04",
-    "PFGC": "2026-11-04",
-    "FICO": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
     "NET": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
     "EOG": "2026-11-05",
@@ -964,7 +965,7 @@
     "BEN": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 04:01",
+    "updatedAt": "30/10/2026 04:16",
     "source": "tradingview"
   }
 }
