@@ -1,50 +1,82 @@
 {
-  "today": "2026-10-30",
-  "todayCount": 25,
-  "todayBig": [
-    {
-      "ticker": "XOM",
-      "name": "Exxonmobil Holdings Corporation",
-      "capB": 770.0
-    },
-    {
-      "ticker": "ABBV",
-      "name": "AbbVie, Inc.",
-      "capB": 521.1
-    },
-    {
-      "ticker": "CVX",
-      "name": "Chevron Corporation",
-      "capB": 465.3
-    },
-    {
-      "ticker": "AZN",
-      "name": "AstraZeneca PLC",
-      "capB": 289.5
-    },
-    {
-      "ticker": "BP",
-      "name": "BP PLC Sponsored ADR",
-      "capB": 129.0
-    },
-    {
-      "ticker": "GD",
-      "name": "General Dynamics Corporation",
-      "capB": 100.8
-    },
-    {
-      "ticker": "REGN",
-      "name": "Regeneron Pharmaceuticals, Inc.",
-      "capB": 95.5
-    },
-    {
-      "ticker": "MNST",
-      "name": "Monster Beverage Corporation",
-      "capB": 92.7
-    }
-  ],
+  "today": "2026-10-31",
+  "todayCount": 0,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-10-30",
+        "label": "30.10",
+        "items": [
+          {
+            "ticker": "XOM",
+            "name": "Exxonmobil Holdings Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/XOM.png",
+            "chg": 2.16,
+            "price": 187.25,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
+          },
+          {
+            "ticker": "ABBV",
+            "name": "AbbVie, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/ABBV.png",
+            "logoBg": "dark",
+            "chg": 1.41,
+            "price": 294.89,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
+          },
+          {
+            "ticker": "CVX",
+            "name": "Chevron Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CVX.png",
+            "chg": 1.75,
+            "price": 235.52,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
+          },
+          {
+            "ticker": "AZN",
+            "name": "AstraZeneca PLC",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/AZN.png",
+            "chg": 7.02,
+            "price": 186.65,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
+          },
+          {
+            "ticker": "BP",
+            "name": "BP PLC Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BP.png",
+            "chg": 0.08,
+            "price": 50.39,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
+          },
+          {
+            "ticker": "GD",
+            "name": "General Dynamics Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/GD.png",
+            "chg": 0.48,
+            "price": 372.59,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
+          }
+        ]
+      },
       {
         "date": "2026-10-29",
         "label": "29.10",
@@ -187,588 +219,491 @@
             "baseDate": "2026-10-27"
           }
         ]
-      },
-      {
-        "date": "2026-10-27",
-        "label": "27.10",
-        "items": [
-          {
-            "ticker": "SKHY",
-            "name": "SK hynix Inc. Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/SKHY.png",
-            "chg": 13.3,
-            "price": 164.7,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
-          },
-          {
-            "ticker": "V",
-            "name": "Visa Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/V.png",
-            "logoBg": "dark",
-            "chg": -0.31,
-            "price": 400.6,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
-          },
-          {
-            "ticker": "KO",
-            "name": "Coca-Cola Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/KO.png",
-            "chg": -1.64,
-            "price": 91.18,
-            "reactDate": "2026-10-27",
-            "baseDate": "2026-10-26"
-          },
-          {
-            "ticker": "HSBC",
-            "name": "HSBC Holdings PLC Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/HSBC.png",
-            "chg": -5.7,
-            "price": 86.01,
-            "reactDate": "2026-10-27",
-            "baseDate": "2026-10-26"
-          },
-          {
-            "ticker": "NVS",
-            "name": "Novartis AG Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/NVS.png",
-            "chg": 1.98,
-            "price": 156.86,
-            "reactDate": "2026-10-27",
-            "baseDate": "2026-10-26"
-          },
-          {
-            "ticker": "STX",
-            "name": "Seagate Technology Holdings PLC",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/STX.png",
-            "chg": 4.51,
-            "price": 697.97,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
+  "reporting": [],
+  "more": 0,
+  "upcoming": [
     {
-      "ticker": "XOM",
-      "name": "Exxonmobil Holdings Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/XOM.png"
+      "date": "2026-11-02",
+      "label": "2/11",
+      "dow": "ב׳",
+      "count": 28,
+      "tickers": [
+        "AAPL",
+        "BRK.B",
+        "BRK.A",
+        "PLTR",
+        "VRTX",
+        "MAR"
+      ]
     },
     {
-      "ticker": "ABBV",
-      "name": "AbbVie, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/ABBV.png",
-      "logoBg": "dark"
+      "date": "2026-11-03",
+      "label": "3/11",
+      "dow": "ג׳",
+      "count": 56,
+      "tickers": [
+        "AMD",
+        "AMGN",
+        "ANET",
+        "SHOP",
+        "PFE",
+        "ETN"
+      ]
     },
     {
-      "ticker": "CVX",
-      "name": "Chevron Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/CVX.png"
+      "date": "2026-11-04",
+      "label": "4/11",
+      "dow": "ד׳",
+      "count": 62,
+      "tickers": [
+        "ARM",
+        "MCD",
+        "QCOM",
+        "NVO",
+        "UBER",
+        "MCK"
+      ]
     },
     {
-      "ticker": "AZN",
-      "name": "AstraZeneca PLC",
-      "when": "before",
-      "logo": "data/earnings/logos/AZN.png"
+      "date": "2026-11-05",
+      "label": "5/11",
+      "dow": "ה׳",
+      "count": 63,
+      "tickers": [
+        "TM",
+        "COP",
+        "CNQ",
+        "PH",
+        "SO",
+        "SOJD"
+      ]
     },
     {
-      "ticker": "BP",
-      "name": "BP PLC Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/BP.png"
-    },
-    {
-      "ticker": "GD",
-      "name": "General Dynamics Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/GD.png"
-    },
-    {
-      "ticker": "REGN",
-      "name": "Regeneron Pharmaceuticals, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/REGN.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "MNST",
-      "name": "Monster Beverage Corporation",
-      "when": "",
-      "logo": "data/earnings/logos/MNST.png"
-    },
-    {
-      "ticker": "CL",
-      "name": "Colgate-Palmolive Company",
-      "when": "before",
-      "logo": "data/earnings/logos/CL.png"
-    },
-    {
-      "ticker": "CNI",
-      "name": "Canadian National Railway Company",
-      "when": "before",
-      "logo": "data/earnings/logos/CNI.png"
-    },
-    {
-      "ticker": "NWG",
-      "name": "NatWest Group Plc Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/NWG.png"
-    },
-    {
-      "ticker": "IMO",
-      "name": "Imperial Oil Limited",
-      "when": "before",
-      "logo": "data/earnings/logos/IMO.png"
+      "date": "2026-11-06",
+      "label": "6/11",
+      "dow": "ו׳",
+      "count": 14,
+      "tickers": [
+        "ENB",
+        "MRNA",
+        "BAM",
+        "HUM",
+        "VST",
+        "ONC"
+      ]
     }
   ],
-  "more": 13,
-  "upcoming": [],
   "week": [
     {
-      "date": "2026-10-26",
+      "date": "2026-11-02",
       "dow": "שני",
-      "label": "26.10",
-      "total": 11,
+      "label": "2.11",
+      "total": 28,
       "companies": [
         {
-          "ticker": "VZ",
-          "name": "Verizon Communications Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/VZ.png"
-        },
-        {
-          "ticker": "WELL",
-          "name": "Welltower Inc.",
+          "ticker": "AAPL",
+          "name": "Apple Inc.",
           "when": "after",
-          "logo": "data/earnings/logos/WELL.png"
+          "logo": "data/earnings/logos/AAPL.png"
         },
         {
-          "ticker": "CDNS",
-          "name": "Cadence Design Systems, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/CDNS.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "NUE",
-          "name": "Nucor Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NUE.png"
-        },
-        {
-          "ticker": "PSA",
-          "name": "Public Storage",
-          "when": "after",
-          "logo": "data/earnings/logos/PSA.png"
-        },
-        {
-          "ticker": "HIG",
-          "name": "Hartford Insurance Group, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/HIG.png"
-        },
-        {
-          "ticker": "CLS",
-          "name": "Celestica Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/CLS.png"
-        },
-        {
-          "ticker": "CINF",
-          "name": "Cincinnati Financial Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/CINF.png"
-        },
-        {
-          "ticker": "PFG",
-          "name": "Principal Financial Group, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/PFG.png"
-        },
-        {
-          "ticker": "BRO",
-          "name": "Brown & Brown, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/BRO.png"
-        },
-        {
-          "ticker": "CX",
-          "name": "Cemex SAB de CV Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/CX.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-27",
-      "dow": "שלישי",
-      "label": "27.10",
-      "total": 54,
-      "companies": [
-        {
-          "ticker": "SKHY",
-          "name": "SK hynix Inc. Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/SKHY.png"
-        },
-        {
-          "ticker": "V",
-          "name": "Visa Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/V.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "KO",
-          "name": "Coca-Cola Company",
-          "when": "before",
-          "logo": "data/earnings/logos/KO.png"
-        },
-        {
-          "ticker": "HSBC",
-          "name": "HSBC Holdings PLC Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/HSBC.png"
-        },
-        {
-          "ticker": "NVS",
-          "name": "Novartis AG Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/NVS.png"
-        },
-        {
-          "ticker": "STX",
-          "name": "Seagate Technology Holdings PLC",
-          "when": "after",
-          "logo": "data/earnings/logos/STX.png"
-        },
-        {
-          "ticker": "BA",
-          "name": "Boeing Company",
-          "when": "before",
-          "logo": "data/earnings/logos/BA.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "SPGI",
-          "name": "S&P Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SPGI.png"
-        },
-        {
-          "ticker": "GLW",
-          "name": "Corning Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/GLW.png"
-        },
-        {
-          "ticker": "HCA",
-          "name": "HCA Healthcare Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/HCA.png"
-        },
-        {
-          "ticker": "WM",
-          "name": "Waste Management, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/WM.png"
-        },
-        {
-          "ticker": "UPS",
-          "name": "United Parcel Service, Inc. Class B",
-          "when": "before",
-          "logo": "data/earnings/logos/UPS.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-28",
-      "dow": "רביעי",
-      "label": "28.10",
-      "total": 67,
-      "companies": [
-        {
-          "ticker": "MSFT",
-          "name": "Microsoft Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/MSFT.png"
-        },
-        {
-          "ticker": "GOOGM",
-          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-          "when": "after"
-        },
-        {
-          "ticker": "GOOGN",
-          "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-          "when": "after"
-        },
-        {
-          "ticker": "GOOGL",
-          "name": "Alphabet Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOGL.png"
-        },
-        {
-          "ticker": "GOOG",
-          "name": "Alphabet Inc. Class C",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOG.png"
-        },
-        {
-          "ticker": "GEV",
-          "name": "GE Vernova Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/GEV.png"
-        },
-        {
-          "ticker": "KLAC",
-          "name": "KLA Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/KLAC.png"
-        },
-        {
-          "ticker": "APH",
-          "name": "Amphenol Corporation Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/APH.png"
-        },
-        {
-          "ticker": "SAN",
-          "name": "Banco Santander S.A. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/SAN.png"
-        },
-        {
-          "ticker": "TMUS",
-          "name": "T-Mobile US, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/TMUS.png"
-        },
-        {
-          "ticker": "UBS",
-          "name": "UBS Group AG",
-          "when": "before",
-          "logo": "data/earnings/logos/UBS.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "ADP",
-          "name": "Automatic Data Processing, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/ADP.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-29",
-      "dow": "חמישי",
-      "label": "29.10",
-      "total": 100,
-      "companies": [
-        {
-          "ticker": "AMZN",
-          "name": "Amazon.com, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/AMZN.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "LLY",
-          "name": "Eli Lilly and Company",
-          "when": "before",
-          "logo": "data/earnings/logos/LLY.png"
-        },
-        {
-          "ticker": "MA",
-          "name": "Mastercard Incorporated Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/MA.png"
-        },
-        {
-          "ticker": "MRK",
-          "name": "Merck & Co., Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/MRK.png"
-        },
-        {
-          "ticker": "INTC",
-          "name": "Intel Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/INTC.png"
-        },
-        {
-          "ticker": "SHEL",
-          "name": "Shell Plc Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/SHEL.png"
-        },
-        {
-          "ticker": "CAT",
-          "name": "Caterpillar Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/CAT.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "LIN",
-          "name": "Linde plc",
-          "when": "before",
-          "logo": "data/earnings/logos/LIN.png"
-        },
-        {
-          "ticker": "TTE",
-          "name": "TotalEnergies SE",
-          "when": "before",
-          "logo": "data/earnings/logos/TTE.png"
-        },
-        {
-          "ticker": "GILD",
-          "name": "Gilead Sciences, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/GILD.png"
-        },
-        {
-          "ticker": "SNDK",
-          "name": "Sandisk Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/SNDK.png"
-        },
-        {
-          "ticker": "BBVA",
-          "name": "Banco Bilbao Vizcaya Argentaria, S.A. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/BBVA.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dow": "שישי",
-      "label": "30.10",
-      "total": 25,
-      "companies": [
-        {
-          "ticker": "XOM",
-          "name": "Exxonmobil Holdings Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/XOM.png"
-        },
-        {
-          "ticker": "ABBV",
-          "name": "AbbVie, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/ABBV.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "CVX",
-          "name": "Chevron Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/CVX.png"
-        },
-        {
-          "ticker": "AZN",
-          "name": "AstraZeneca PLC",
-          "when": "before",
-          "logo": "data/earnings/logos/AZN.png"
-        },
-        {
-          "ticker": "BP",
-          "name": "BP PLC Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/BP.png"
-        },
-        {
-          "ticker": "GD",
-          "name": "General Dynamics Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/GD.png"
-        },
-        {
-          "ticker": "REGN",
-          "name": "Regeneron Pharmaceuticals, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/REGN.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "MNST",
-          "name": "Monster Beverage Corporation",
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
           "when": "",
-          "logo": "data/earnings/logos/MNST.png"
+          "logo": "data/earnings/logos/BRK.B.png"
         },
         {
-          "ticker": "CL",
-          "name": "Colgate-Palmolive Company",
-          "when": "before",
-          "logo": "data/earnings/logos/CL.png"
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
         },
         {
-          "ticker": "CNI",
-          "name": "Canadian National Railway Company",
-          "when": "before",
-          "logo": "data/earnings/logos/CNI.png"
+          "ticker": "PLTR",
+          "name": "Palantir Technologies Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/PLTR.png"
         },
         {
-          "ticker": "NWG",
-          "name": "NatWest Group Plc Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/NWG.png"
+          "ticker": "VRTX",
+          "name": "Vertex Pharmaceuticals Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/VRTX.png",
+          "logoBg": "dark"
         },
         {
-          "ticker": "IMO",
-          "name": "Imperial Oil Limited",
+          "ticker": "MAR",
+          "name": "Marriott International, Inc. Class A",
           "when": "before",
-          "logo": "data/earnings/logos/IMO.png"
+          "logo": "data/earnings/logos/MAR.png"
+        },
+        {
+          "ticker": "WMB",
+          "name": "Williams Companies, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/WMB.png"
+        },
+        {
+          "ticker": "FANG",
+          "name": "Diamondback Energy, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/FANG.png"
+        },
+        {
+          "ticker": "O",
+          "name": "Realty Income Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/O.png"
+        },
+        {
+          "ticker": "ETR",
+          "name": "Entergy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/ETR.png"
+        },
+        {
+          "ticker": "IDXX",
+          "name": "IDEXX Laboratories, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/IDXX.png"
+        },
+        {
+          "ticker": "EL",
+          "name": "Estee Lauder Companies Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/EL.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "dow": "שלישי",
+      "label": "3.11",
+      "total": 56,
+      "companies": [
+        {
+          "ticker": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/AMD.png"
+        },
+        {
+          "ticker": "AMGN",
+          "name": "Amgen Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/AMGN.png"
+        },
+        {
+          "ticker": "ANET",
+          "name": "Arista Networks Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/ANET.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "SHOP",
+          "name": "Shopify, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/SHOP.png"
+        },
+        {
+          "ticker": "PFE",
+          "name": "Pfizer Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/PFE.png"
+        },
+        {
+          "ticker": "ETN",
+          "name": "Eaton Corp. Plc",
+          "when": "before",
+          "logo": "data/earnings/logos/ETN.png"
+        },
+        {
+          "ticker": "MPC",
+          "name": "Marathon Petroleum Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/MPC.png"
+        },
+        {
+          "ticker": "BKNG",
+          "name": "Booking Holdings Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/BKNG.png"
+        },
+        {
+          "ticker": "SU",
+          "name": "Suncor Energy Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SU.png"
+        },
+        {
+          "ticker": "RACE",
+          "name": "Ferrari NV",
+          "when": "before",
+          "logo": "data/earnings/logos/RACE.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "ITUB",
+          "name": "Itau Unibanco Holding S.A. Sponsored ADR Pfd",
+          "when": "after",
+          "logo": "data/earnings/logos/ITUB.png"
+        },
+        {
+          "ticker": "ET",
+          "name": "Energy Transfer LP",
+          "when": "before",
+          "logo": "data/earnings/logos/ET.png",
+          "logoBg": "dark"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "dow": "רביעי",
+      "label": "4.11",
+      "total": 62,
+      "companies": [
+        {
+          "ticker": "ARM",
+          "name": "ARM Holdings PLC Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/ARM.png"
+        },
+        {
+          "ticker": "MCD",
+          "name": "McDonald's Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/MCD.png"
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QUALCOMM Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/QCOM.png"
+        },
+        {
+          "ticker": "NVO",
+          "name": "Novo Nordisk A/S Sponsored ADR Class B",
+          "when": "before",
+          "logo": "data/earnings/logos/NVO.png"
+        },
+        {
+          "ticker": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/UBER.png"
+        },
+        {
+          "ticker": "MCK",
+          "name": "McKesson Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/MCK.png"
+        },
+        {
+          "ticker": "CVS",
+          "name": "CVS Health Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/CVS.png"
+        },
+        {
+          "ticker": "EMR",
+          "name": "Emerson Electric Co.",
+          "when": "before",
+          "logo": "data/earnings/logos/EMR.png"
+        },
+        {
+          "ticker": "DDOG",
+          "name": "Datadog, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/DDOG.png"
+        },
+        {
+          "ticker": "MELI",
+          "name": "MercadoLibre, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/MELI.png"
+        },
+        {
+          "ticker": "MSI",
+          "name": "Motorola Solutions, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/MSI.png"
+        },
+        {
+          "ticker": "APP",
+          "name": "AppLovin Corp. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/APP.png",
+          "logoBg": "dark"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-05",
+      "dow": "חמישי",
+      "label": "5.11",
+      "total": 63,
+      "companies": [
+        {
+          "ticker": "TM",
+          "name": "Toyota Motor Corp. Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/TM.png"
+        },
+        {
+          "ticker": "COP",
+          "name": "ConocoPhillips",
+          "when": "before",
+          "logo": "data/earnings/logos/COP.png"
+        },
+        {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
+        },
+        {
+          "ticker": "PH",
+          "name": "Parker-Hannifin Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/PH.png"
+        },
+        {
+          "ticker": "SO",
+          "name": "Southern Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SO.png"
+        },
+        {
+          "ticker": "SOJD",
+          "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
+          "when": "before",
+          "logo": "data/earnings/logos/SOJD.png"
+        },
+        {
+          "ticker": "SOJE",
+          "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
+          "when": "before",
+          "logo": "data/earnings/logos/SOJE.png"
+        },
+        {
+          "ticker": "NET",
+          "name": "Cloudflare Inc Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/NET.png"
+        },
+        {
+          "ticker": "DUK",
+          "name": "Duke Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DUK.png"
+        },
+        {
+          "ticker": "ABNB",
+          "name": "Airbnb, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ABNB.png"
+        },
+        {
+          "ticker": "EOG",
+          "name": "EOG Resources, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/EOG.png"
+        },
+        {
+          "ticker": "NGG",
+          "name": "National Grid plc Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/NGG.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dow": "שישי",
+      "label": "6.11",
+      "total": 14,
+      "companies": [
+        {
+          "ticker": "ENB",
+          "name": "Enbridge Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/ENB.png"
+        },
+        {
+          "ticker": "MRNA",
+          "name": "Moderna, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/MRNA.png"
+        },
+        {
+          "ticker": "BAM",
+          "name": "Brookfield Asset Management Ltd. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/BAM.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "HUM",
+          "name": "Humana Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/HUM.png"
+        },
+        {
+          "ticker": "VST",
+          "name": "Vistra Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/VST.png"
+        },
+        {
+          "ticker": "ONC",
+          "name": "BeOne Medicines Ltd. Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/ONC.png"
+        },
+        {
+          "ticker": "PPL",
+          "name": "PPL Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/PPL.png"
+        },
+        {
+          "ticker": "BIP",
+          "name": "Brookfield Infrastructure Partners L.P.",
+          "when": "before",
+          "logo": "data/earnings/logos/BIP.png"
+        },
+        {
+          "ticker": "CHTR",
+          "name": "Charter Communications, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/CHTR.png"
+        },
+        {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
+        },
+        {
+          "ticker": "PAA",
+          "name": "Plains All American Pipeline, L.P.",
+          "when": "before",
+          "logo": "data/earnings/logos/PAA.png"
+        },
+        {
+          "ticker": "BEN",
+          "name": "Franklin Templeton, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BEN.png"
         }
       ]
     }
   ],
   "window": {
-    "XOM": "2026-10-30",
-    "ABBV": "2026-10-30",
-    "CVX": "2026-10-30",
-    "AZN": "2026-10-30",
-    "BP": "2026-10-30",
-    "GD": "2026-10-30",
-    "REGN": "2026-10-30",
-    "MNST": "2026-10-30",
-    "CL": "2026-10-30",
-    "CNI": "2026-10-30",
-    "NWG": "2026-10-30",
-    "IMO": "2026-10-30",
-    "D": "2026-10-30",
-    "EXC": "2026-10-30",
-    "VALE": "2026-10-30",
-    "KVUE": "2026-10-30",
-    "UI": "2026-10-30",
-    "CCJ": "2026-10-30",
-    "CHD": "2026-10-30",
-    "LYB": "2026-10-30",
-    "NVT": "2026-10-30",
-    "BCH": "2026-10-30",
-    "MGA": "2026-10-30",
-    "BSAC": "2026-10-30",
-    "RBC": "2026-10-30",
     "AAPL": "2026-11-02",
     "BRK.B": "2026-11-02",
     "BRK.A": "2026-11-02",
@@ -920,8 +855,8 @@
     "CNQ": "2026-11-05",
     "PH": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "NET": "2026-11-05",
     "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
@@ -994,7 +929,7 @@
     "TU": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 23:46",
+    "updatedAt": "31/10/2026 00:01",
     "source": "tradingview"
   }
 }
