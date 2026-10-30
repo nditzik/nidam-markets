@@ -1,0 +1,468 @@
+<title>AMZN דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .logo{height:46px;width:auto;display:block;margin-bottom:24px;max-width:100%}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="Amazon">
+    <div class="eyebrow">Amazon.com, Inc. · NASDAQ: AMZN · תוצאות רבעון שלישי 2026</div>
+    <h1>AWS בצמיחה הכי מהירה מזה חמש שנים ורווחיות שיא, אבל אמזון שורפת עכשיו מזומן. השוק הוריד 7%</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-29 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, מצגת התוצאות, תמלול שיחת האנליסטים</span>
+      <span>עודכן: 30.10.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>אמזון היא חנות ענקית שמייצרת מעט רווח, וענן שמייצר את רוב הרווח</h2>
+  <p class="lead">Amazon מוכרת הכול באינטרנט, מספרים ועד מזון טרי, ומשלוחים מגיעים לרוב תוך יום. אבל מבחינה כספית היא בעיקר שלושה עסקים: חנות מקוונת ענקית ברווחיות נמוכה, עסק פרסום רווחי מאוד שיושב על החנות, ו-AWS, שירות הענן הגדול בעולם, שמכניס רק 23% מההכנסות אבל 63% מהרווח התפעולי.</p>
+  <p class="body" style="margin-top:14px">החברה מדווחת על שלושה מגזרים. <strong>צפון אמריקה</strong>: $112.9B ברבעון, רווחיות 7.7%. <strong>בינלאומי</strong>: $43.1B, רווחיות 3.7%. <strong>AWS</strong>: $46.0B, רווחיות 38.7%. מעבר לזה יש עסקים צעירים: פארמה (Amazon Pharmacy), לווייני אינטרנט (Amazon Leo), מוניות אוטונומיות (Zoox) ו-Prime Video, שכבר רווחי בפני עצמו.</p>
+  <p class="body">מה שהשתנה ב-2026: אמזון החליטה להשקיע כ-$220 מיליארד בשנה אחת, רובם במרכזי נתונים ובשבבי AI ל-AWS. זה יותר מכל הכסף שהעסק מייצר. בנוסף, לאמזון יש השקעה גדולה ב-Anthropic, אחת ממעבדות ה-AI המובילות, והשינויים בשוויה מזיזים את הרווח הנקי בעשרות מיליארדים.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>Microsoft ו-Google: על הענן</h3>
+      <p>Azure של מיקרוסופט ($33.2B ברבעון, +48%) ו-Google Cloud ($30.7B, +103%) צומחים מהר יותר מ-AWS, אבל מבסיס קטן יותר. AWS עדיין הגדול ביותר בפער, עם $46B ברבעון.</p>
+    </div>
+    <div class="col">
+      <h3>Walmart, Temu, Shein: על הקמעונאות</h3>
+      <p>וולמארט היא המתחרה הגדולה בארה"ב, עם רשת חנויות שמשמשת גם מרכזי משלוח. Temu ו-Shein מתחרות על הקונה שמחפש מחיר. לפי ג'אסי, אמזון מוסיפה כפול מכירות ברבעון מהמתחרה הבאה בארה"ב.</p>
+    </div>
+    <div class="col">
+      <h3>Nvidia: על השבבים</h3>
+      <p>אמזון מפתחת שבבי AI משלה (Trainium) ומעבדים משלה (Graviton). היא קונה גם מאנבידיה, אבל רוב שירות ה-AI שלה, Bedrock, כבר רץ על Trainium. מסוף 2027 היא תתחיל למכור את Trainium גם מחוץ ל-AWS.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רווח תפעולי בשיא כל הזמנים, וחוסר במזומן של $42 מיליארד. שני המספרים נכונים</h2>
+  <p class="lead">ההכנסות צמחו 12% ל-$201.9B, מעט מתחת לצפי ($202.2B). אבל ההשוואה מעוותת: אשתקד Prime Day היה ברבעון השלישי, השנה הוא עבר לשני. בלי ההזזה הזו, הצמיחה הייתה כ-16%. הרווח התפעולי קפץ 61% ל-$28.1B, ושיעור הרווחיות, 13.9%, הוא הגבוה ביותר בתולדות החברה. AWS צמח 39%, ברבעון השישי ברציפות של האצה.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>אמזון מעולם לא הייתה רווחית יותר, ואף פעם לא הוציאה כל כך הרבה. ב-12 החודשים האחרונים היא ייצרה $168B מהפעילות והשקיעה $211B. התוצאה: תזרים חופשי שלילי של $42B, לעומת חיובי של $15B לפני שנה. וג'אסי אמר שב-2027 ההשקעות יהיו "משמעותית יותר" גבוהות. השוק קיבל את הסיפור על AWS, אבל לא אהב את המחיר.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>כל מספר תפעולי בשיא, כל מספר של מזומן בשפל</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$201.9B</div><div class="l">הכנסות</div><div class="d flat">+12% · כ-16% בנטרול Prime Day</div></div>
+    <div class="kpi"><div class="v num">13.9%</div><div class="l">רווחיות תפעולית</div><div class="d up">שיא כל הזמנים · מ-9.7%</div></div>
+    <div class="kpi"><div class="v num">+39%</div><div class="l">צמיחת AWS</div><div class="d up">$46.0B · הכי מהר מזה 5 שנים</div></div>
+    <div class="kpi"><div class="v num">$1.89</div><div class="l">רווח למניה</div><div class="d down">‏−3% · הצפי היה $1.97</div></div>
+    <div class="kpi"><div class="v num">$75.9B</div><div class="l">השקעות הוניות ברבעון</div><div class="d down">יותר מכפול מאשתקד</div></div>
+    <div class="kpi"><div class="v num">−$42.4B</div><div class="l">תזרים חופשי (12 חודשים)</div><div class="d down">לפני שנה: +$14.8B</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה על הרווח הנקי: אמזון מדווחת רק GAAP. הרווח הנקי ירד 2%, אבל רק בגלל השוואה לאשתקד, אז נרשם רווח חד-פעמי של $9.5B משערוך ההשקעה ב-Anthropic. הרווח התפעולי, שמודד את העסקים עצמם, עלה 61%. מתחילת השנה נרשמו "הכנסות אחרות" של $68B, בעיקר רווחים על השקעות. לכן הרווח למניה מתחילת השנה ($10.42) גבוה כמעט פי שניים מאשתקד, אבל זה לא משקף את העסק.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>AWS מאיץ כבר שישה רבעונים ברציפות, והתזרים החופשי צונח באותו קצב</h2>
+  <p class="body">בגרף: הכנסות AWS ברבעון (עמודות, במיליארדי דולר) ומעל כל עמודה קצב הצמיחה לעומת השנה הקודמת. בשורה התחתונה: התזרים החופשי של כל אמזון ב-12 החודשים שהסתיימו באותו רבעון. ככל ש-AWS מאיץ, אמזון משקיעה יותר, והתזרים יורד.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 390" role="img" aria-label="הכנסות AWS, קצב צמיחה ותזרים חופשי, חמישה רבעונים">
+      <g font-size="13" fill="var(--muted)">
+        <line x1="60" y1="60" x2="790" y2="60" stroke="var(--rule)" stroke-dasharray="3 4"/>
+        <line x1="60" y1="180" x2="790" y2="180" stroke="var(--rule)" stroke-dasharray="3 4"/>
+        <line x1="60" y1="300" x2="790" y2="300" stroke="var(--muted)"/>
+        <text x="52" y="64" text-anchor="end">$50B</text>
+        <text x="52" y="184" text-anchor="end">$25B</text>
+        <text x="52" y="304" text-anchor="end">0</text>
+      </g>
+      <g fill="var(--navy)">
+        <rect x="95" y="141.6" width="90" height="158.4"/>
+        <rect x="245" y="129.1" width="90" height="170.9"/>
+        <rect x="395" y="119.5" width="90" height="180.5"/>
+        <rect x="545" y="97.4" width="90" height="202.6"/>
+        <rect x="695" y="79.2" width="90" height="220.8" fill="var(--accent)"/>
+      </g>
+      <g font-size="15" font-weight="700" fill="#fff" text-anchor="middle">
+        <text x="140" y="290">33.0</text><text x="290" y="290">35.6</text><text x="440" y="290">37.6</text><text x="590" y="290">42.2</text><text x="740" y="290">46.0</text>
+      </g>
+      <g font-size="14" font-weight="700" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="140" y="131">+20%</text><text x="290" y="119">+24%</text><text x="440" y="109">+28%</text><text x="590" y="87">+37%</text><text x="740" y="69">+39%</text>
+      </g>
+      <g font-size="14" fill="var(--muted)" text-anchor="middle">
+        <text x="140" y="326">Q3 2025</text><text x="290" y="326">Q4 2025</text><text x="440" y="326">Q1 2026</text><text x="590" y="326">Q2 2026</text><text x="740" y="326">Q3 2026</text>
+      </g>
+      <g font-size="14" font-weight="700" fill="var(--neg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="140" y="356">+14.8</text><text x="290" y="356">+11.2</text><text x="440" y="356">+1.2</text><text x="590" y="356">−7.6</text><text x="740" y="356">−42.4</text>
+      </g>
+      <text x="420" y="382" font-size="12" fill="var(--muted)" text-anchor="middle">שורה אדומה: תזרים חופשי של כל אמזון ב-12 החודשים האחרונים ($B)</text>
+      <text x="420" y="32" font-size="13" fill="var(--muted)" text-anchor="middle">מעל כל עמודה: צמיחת AWS לעומת אשתקד</text>
+    </svg>
+    <figcaption>הכנסות AWS ברבעון ותזרים חופשי מצטבר ל-12 חודשים, במיליארדי דולר. מקור: הודעת החברה ומצגת התוצאות, 29.10.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>AWS: ענן ליבה ו-AI ביחד</h3>
+      <p>צבר ההזמנות הגיע ל-$578B, צמיחה תלת-ספרתית. הכנסות ה-AI צומחות בשיעור תלת-ספרתי, והן מושכות איתן גם את הענן ה"רגיל": מחשוב ואחסון צמחו בקצב הגבוה מזה שנים. אמזון מתקינה מאיץ AI כל 14 שניות, ו"הלקוחות זוללים את הקיבולת כמעט באותו קצב".</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>הקמעונאות: יותר רווחית</h3>
+      <p>הרווחיות בצפון אמריקה עלתה מ-4.5% ל-7.7%, הרווח התפעולי גדל ב-82%. מכירת היחידות צמחה 12%. מזון טרי ומוצרי צריכה בסיסיים צומחים פי שלושה מהר יותר משאר החנות, והם כבר כמחצית מהיחידות. Amazon Now (משלוח תוך כמה דקות) פעיל ב-450 ערים, והשימוש בו גדל פי 10.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>פרסום: האטה זמנית</h3>
+      <p>$19.6B ברבעון, צמיחה של 12% בלבד, לעומת 22%–26% ברבעונים הקודמים. ג'אסי הסביר זאת בשלוש סיבות של עיתוי, ובעיקר בהזזת Prime Day שגרעה לבדה 8.5 נקודות. החברה צופה חזרה לצמיחה "בשנות העשרה הגבוהות" ברבעון הרביעי.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · ההימור של $220 מיליארד</div>
+  <h2>אמזון לווה $115 מיליארד השנה כדי לבנות מרכזי נתונים, ומבטיחה ש-AWS יכפיל את עצמו פעמיים</h2>
+  <p class="body">זה הסיפור המרכזי של הדוח. אמזון משקיעה כ-$220B ב-2026, בעיקר ב-AWS, ותשקיע "משמעותית יותר" ב-2027. התזרים מהפעילות לא מספיק, ולכן לראשונה מזה שנים החברה לוקחת חוב בהיקף גדול.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>סעיף</th><th>לפני שנה</th><th>היום</th><th>מה זה אומר</th></tr></thead>
+      <tbody>
+        <tr><td>תזרים מפעילות (12 חודשים)</td><td class="n">$130.7B</td><td class="n">$168.3B</td><td>+29%; העסק מייצר יותר כסף מאי פעם</td></tr>
+        <tr class="hl"><td>השקעות הוניות נטו (12 חודשים)</td><td class="n">$115.9B</td><td class="n">$210.7B</td><td>+82%; יותר מכל התזרים</td></tr>
+        <tr class="hl"><td>תזרים חופשי (12 חודשים)</td><td class="n">+$14.8B</td><td class="n">−$42.4B</td><td>השלילי ביותר בתולדות החברה</td></tr>
+        <tr><td>חוב לטווח ארוך</td><td class="n">$65.6B (דצמבר)</td><td class="n">$173.1B</td><td>$115B חוב חדש מתחילת השנה</td></tr>
+        <tr><td>הוצאות ריבית (ברבעון)</td><td class="n">$0.5B</td><td class="n">$1.7B</td><td>פי שלושה</td></tr>
+        <tr><td>מזומן וניירות ערך</td><td class="n">$123.0B (דצמבר)</td><td class="n">$114.2B</td><td>עדיין כרית גדולה</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>מה אמזון מבטיחה בתמורה</h3>
+      <p>AWS יצמח ביותר מ-40% גם ב-2027 וגם ב-2028. AWS צפוי לסיים את 2026 עם כ-$175B הכנסות. אם התחזית תתממש, הוא יעבור את $300 מיליארד הכנסות שנתיות ב-2028. ג'אסי: AWS יכול להיות "עסק של טריליון דולר בהכנסות בתוך 5–10 שנים". לדבריו, הלקוחות הגדולים מזמינים קיבולת של מאות מגה-וואט מראש, ולכן יש לו "נראות טובה מאוד" ל-2027, ל-2028 וחלק מ-2029.</p>
+    </div>
+    <div class="col">
+      <h3>למה ג'אסי חושב שזה ישתלם</h3>
+      <p>שלוש טענות: רוב מרכזי הנתונים של אמזון בבעלותה או בחכירה ארוכה, ולא שכורים לטווח קצר, וזה "3,500 נקודות בסיס" יותר רווחיות. רוב ה-AI רץ על שבבי Trainium שלה, ולא של אנבידיה. ותקופת ההחזר על ההשקעה הולכת ומתקצרת. "היה נוח יותר אם ההזדמנות הזו הייתה מתפרסת על 25 שנה. זה לא העולם שאנחנו חיים בו."</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>בניגוד לגוגל ולמטא, אמזון לא מנפיקה מניות. היא מממנת את ההשקעה בחוב, ומספר המניות כמעט לא זז (+1%). זה פחות מדלל, אבל מעלה את הסיכון: החוב גדל פי 2.6 בתשעה חודשים. אם הביקוש ל-AI יאט, אמזון תישאר עם מרכזי נתונים, חוב והוצאות פחת לשנים. ג'אסי בטוח שזה לא יקרה. השוק עוד לא.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית לרבעון הבא (אוקטובר–דצמבר 2026)</div>
+  <h2>רבעון החגים: הכנסות של $240–247B ורווח תפעולי של עד $33.5B</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית החברה</th><th>צפי / אשתקד</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות</td><td class="n">$240B–$247B</td><td>צפי: $244.5B</td><td>+12% עד +16%; אמצע הטווח מעט מתחת לצפי</td></tr>
+        <tr class="hl"><td>רווח תפעולי</td><td class="n">$28.5B–$33.5B</td><td>Q4 2025: $25.0B</td><td>+14% עד +34%</td></tr>
+        <tr><td>צמיחת הפרסום</td><td>"שנות העשרה הגבוהות"</td><td>Q3: 12%</td><td>כולל משחקי NBA ו-NFL</td></tr>
+        <tr><td>השקעות הוניות 2026</td><td class="n">~$220B</td><td>ללא שינוי</td><td>2027: "משמעותית יותר"</td></tr>
+        <tr><td>Amazon Leo</td><td>תחילת שירות השנה</td><td>—</td><td>העלויות עדיין נרשמות כהוצאה ב-Q4</td></tr>
+        <tr><td>AWS ב-2027 וב-2028</td><td>צמיחה של יותר מ-40% בכל שנה</td><td>—</td><td>תחזית ארוכת טווח נדירה לאמזון</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body" style="margin-top:16px">במילים פשוטות: ברבעון החגים אמזון צופה רווח תפעולי של כ-$31B, יותר מכל רבעון בתולדותיה. אבל הטווח רחב, ועלויות דלק והובלה גבוהות יותר מברבעון הקודם. שתי עלויות מכבידות: לוויני Leo, שנרשמים כהוצאה עד שהשירות מתחיל, ומחירי זיכרון לשרתים.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · הקמעונאות שאיש לא מדבר עליה</div>
+  <h2>"יש מי שמזלזל בהתקדמות של החנות", אמר ג'אסי. המספרים נותנים לו לפחות חלק מהצדק</h2>
+  <p class="body">כל תשומת הלב הולכת ל-AWS, אבל גם הקמעונאות השתנתה. הרווחיות בצפון אמריקה ובעולם עלתה בכמעט 10 נקודות בשנים האחרונות. עלות המשלוח ליחידה יורדת כבר שנה רביעית, גם כשהמשלוחים נעשים מהירים יותר.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>מזון טרי</h3>
+      <p>מכירות המזון ומוצרי הבסיס הגיעו לכמעט $250B ב-12 חודשים. לקוח שקונה מזון טרי במשלוח באותו יום קונה פי 7 יותר מוצרי צריכה בסיסיים, ומוציא פי 2 יותר על קטגוריות כמו בית וביגוד. ההזמנות החודשיות של מזון טרי אצל מנויי Prime יותר משולשו בשנה.</p>
+    </div>
+    <div class="col">
+      <h3>Alexa כסוכן קניות</h3>
+      <p>400 מיליון לקוחות השתמשו ב-Alexa for Shopping בשנה האחרונה, והאינטראקציות גדלו פי 6.7. מי שמשתמש בה מוציא 50% יותר להזמנה. ג'אסי: "סוכני AI חיצוניים" (כמו ChatGPT) עדיין לא משפיעים על הפרסום, כי "החוויה עדיין לא טובה".</p>
+    </div>
+    <div class="col">
+      <h3>רובוטים</h3>
+      <p>יותר ממיליון רובוטים במרכזי ההפצה, וצי זרועות הרובוט הוכפל השנה. ג'אסי: "הרבה מהעבודות החוזרות שבני אדם עושים היום ייעשו בידי רובוטים". מספר העובדים עלה 4%, ל-1.64 מיליון, לפני גיוס של 300 אלף עובדים לעונת החגים.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: AWS בדרך לטריליון, השבבים שלנו הם היתרון, זו הזדמנות של פעם בחיים, ואל תזלזלו בחנות</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"שני עסקים של טריליון דולר"</h3>
+      <p>ג'אסי: "מעולם לא היה עסק עם טריליון דולר הכנסות בשנה. אמזון בדרך לשניים: AWS והחנות", בתוך 5–10 שנים. זו הצהרה חריגה לאמזון, שבדרך כלל נמנעת מתחזיות ארוכות טווח.</p>
+    </div>
+    <div class="col">
+      <h3>"גלגל התנופה של AWS"</h3>
+      <p>ג'אסי תיאר "flywheel": לקוחות שומרים את הנתונים ב-AWS, ולכן מריצים שם גם AI. ה-AI צורך גם מחשוב "רגיל", ולכן הענן הבסיסי צומח, וההכנסות מושקעות בחזרה. "זה מודל שונה מאירוח GPU או השכרת קיבולת לטווח קצר" (רמז ברור למתחרים כמו CoreWeave).</p>
+    </div>
+    <div class="col">
+      <h3>"6–8 מודלים טובים באותה מידה"</h3>
+      <p>לדעת ג'אסי, בתוך 2–3 שנים יהיו 6–8 מודלי AI ברמה דומה, ורוב הלקוחות ישתמשו בכמה במקביל. לכן Bedrock מציע את כולם: Anthropic, OpenAI, Kimi, Grok ועוד. "זה יכול להיות שירות בגודל של EC2", השירות הגדול ביותר ב-AWS.</p>
+    </div>
+    <div class="col">
+      <h3>"הזדמנות של פעם בחיים"</h3>
+      <p>לשאלת JPMorgan כמה השקעה זה ידרוש, ג'אסי ענה שהיא "משמעותית" בלי מספר, ושמדובר ב"שינוי הגדול ביותר בימי חיינו. אנחנו יכולים לממן את התוכנית, והיא תשנה לתמיד את הגודל של אמזון".</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>אף אחד בשיחה לא הזכיר את המילים "תזרים חופשי שלילי" או "חוב". המצגת אמרה שהיעד ארוך הטווח הוא "למטב את התזרים החופשי", בזמן שהוא הגיע לשפל היסטורי. סמנכ"ל הכספים, בריאן אולסבסקי, דיבר רק על "השקעות משמעותיות" עם "פוטנציאל" לתזרים בעתיד.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>שישה אנליסטים, וכמעט כל השאלות היו על AWS. אף אחד לא שאל על החוב</h2>
+  <p class="body">כמו בשיחות של גוגל ומיקרוסופט, האנליסטים שאלו איך הצמיחה תימשך, לא כמה היא עולה. שאלה אחת עסקה בהשקעות (JPMorgan), ואף שאלה לא עסקה בתזרים השלילי או בחוב. השוק, לעומת זאת, הגיב בדיוק לזה.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>הקצב של AWS: BofA שאל למה הצמיחה הרבעונית האטה, Morgan Stanley שאל איך מגיעים לטריליון, Evercore שאל על הרווחיות, ו-JPMorgan שאל כמה השקעה זה דורש. ארבע זוויות על אותה שאלה: האם הקצב הזה בר-קיימא.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>"מאיץ AI כל 14 שניות". ועוד: לקוחות שמשתמשים בשבבים של אמזון חסכו יותר מ-$2B ברבעון אחד, וההתחייבויות של לקוחות ל-Graviton ול-Trainium גדלו כל אחת פי 20. עסק השבבים של אמזון כבר לא ניסוי.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>תחזית לשנתיים קדימה: "צמיחה של יותר מ-40% ב-2027 וב-2028". אמזון כמעט אף פעם לא נותנת מספרים כאלה. היא מבססת אותם על חוזים של לקוחות ששריינו קיבולת "של מאות מגה-וואט ועד ג'יגה-וואט" מראש.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>רווחיות AWS: "אנחנו לא נותנים תחזית", והוזכר שה-AI פחות רווחי ומחירי הזיכרון עולים. השקעות 2027: "משמעותית יותר", בלי מספר. אחרי שנתנו תחזית הכנסות לשנתיים, הסירוב לתת תחזית הוצאות בולט.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"היה נוח יותר אם ההאצה הזו הייתה קורית לאורך 25 שנה, ואפשר היה לפרוס את ההשקעה על 25 שנה. זה לא העולם שאנחנו חיים בו" (ג'אסי). זו התשובה של אמזון לכל מי ששואל למה התזרים שלילי.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>ג'אסי הסביר את ההחלטה למכור את Trainium החוצה: מכירה מכניסה כסף מיד, ושימוש פנימי מכניס יותר לאורך 5–6 שנים. "החברה השנייה במצב הזה בחרה אחרת", כלומר גוגל, שמוכרת TPU. אמזון בוחרת לשמור את השבבים לעצמה כמה שיותר. זה מראה כמה היא מאמינה בביקוש.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>אמזון מבקשת מהמשקיעים להאמין לשני דברים: ש-AWS יצמח 40% בשנה עד 2028, ושההשקעה העצומה תחזיר את עצמה. את הראשון היא מגבה בצבר של $578B. את השני היא מגבה בהיסטוריה: AWS עשה את זה בעבר. הסיכון הוא לא שאמזון טועה בביקוש, אלא שהעלות, כולל שבבים, זיכרון, חשמל וריבית, תהיה גבוהה מהמתוכנן.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · איך השוק הגיב</div>
+  <h2>ירידה של 4% ביום הדוח ועוד 6–7% אחריו, בשבוע שבו השוק מעניש כל ענקית AI ששורפת מזומן</h2>
+  <p class="body">ביום הדוח (29.10) המניה כבר ירדה 4.25% במסחר הרגיל, ל-$243.79, יחד עם כל מניות הטכנולוגיה. באותו יום גוגל ירדה כ-12.6% ו-ServiceNow כ-27%. אחרי הדוח אמזון ירדה עוד כ-6%–7% במסחר המאוחר. שווי השוק בסגירה היה כ-$2.64 טריליון. טווח 52 השבועות: $196 עד $287.</p>
+  <p class="body">הסיבות שצוינו: רווח למניה מתחת לצפי ($1.89 מול $1.97), הכנסות מעט מתחת לצפי, תחזית הכנסות לרבעון הבא שאמצעה מתחת לצפי, ובעיקר התזרים החופשי השלילי וההבטחה להשקיע עוד יותר ב-2027.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>השבוע הזה יצר חלוקה ברורה. מיקרוסופט, עם תזרים חיובי, עלתה. גוגל, מטא ואמזון, עם תזרים שלילי, ירדו. ההבדל אינו באיכות העסקים: AWS צומח מהר מאי פעם. ההבדל הוא שהשוק מתמחר עכשיו מזומן ולא צמיחה. זה ישתנה רק כשהתזרים של אמזון יתחיל לעלות, וכנראה לא ב-2027.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: אמזון הימרה את המאזן על כך שהביקוש ל-AI יחזיק לפחות עד 2029</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>השקעות וחוב</h3><p>$220B השנה, יותר ב-2027, וחוב שגדל ב-$107B בתשעה חודשים. אם הביקוש ל-AI יאט או המחירים יירדו, אמזון תישא שנים של פחת וריבית על תשתית שלא מנוצלת במלואה.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>רווחיות AWS</h3><p>סמנכ"ל הכספים הזהיר: ה-AI פחות רווחי מהענן הבסיסי, ומחירי הזיכרון עולים. ככל שה-AI יהיה חלק גדול יותר מ-AWS, הרווחיות (38.7%) עלולה לרדת, גם אם ההכנסות צומחות.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תלות במעבדות AI</h3><p>חלק גדול מהצבר הוא חוזים של מעבדות AI (Anthropic, OpenAI ואחרות) שמשריינות קיבולת ענק. המעבדות עצמן ממומנות בהון סיכון. אם הן ייתקלו בקשיי מימון, ההזמנות עלולות להיפגע.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תנודתיות ברווח הנקי</h3><p>שערוך ההשקעה ב-Anthropic ובאחרות מזיז את הרווח הנקי בעשרות מיליארדים: Q2 היה $62.6B, Q3 היה $20.7B. קשה לחזות, ומבלבל את מי שמסתכל על הרווח למניה.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תחרות בענן</h3><p>Azure צומח 48% ו-Google Cloud 103%. AWS עדיין הגדול ביותר, אבל נתח השוק שלו בצמיחה החדשה קטן מהנתח שלו בשוק כולו. אם המתחרים ימשיכו בקצב הזה, הפער ייסגר.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>רגולציה ועבודה</h3><p>תיקי הגבלים עסקיים בארה"ב ובאירופה, לחץ סביב תנאי העבודה במרכזי ההפצה, ומעבר לרובוטים שעלול לעורר התנגדות. ובנוסף: "Built Together", השקעה של $1B בקהילות מרכזי הנתונים, מעידה על רגישות ציבורית לנושא.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AWS</strong></td><td>+39%, שישה רבעונים של האצה, צבר של $578B, תחזית של +40% עד 2028. הענן הגדול בעולם צומח כמו סטארט-אפ.</td><td>Azure ו-Google Cloud צומחים מהר יותר. הרווחיות תחת לחץ מ-AI ומזיכרון. הצמיחה הרבעונית בדולרים האטה מעט.</td></tr>
+        <tr><td><strong>השבבים</strong></td><td>Trainium ו-Graviton חוסכים ללקוחות מיליארדים ונותנים לאמזון יתרון עלות על כל מי שתלוי באנבידיה. מכירה חיצונית מ-2027 פותחת עסק חדש.</td><td>כולם מייצרים אצל אותו יצרן (TSMC) עם הקצאה מוגבלת. אנבידיה עדיין המובילה, ולקוחות רבים לא ירצו לעבור.</td></tr>
+        <tr><td><strong>הקמעונאות</strong></td><td>רווחיות שיא, עלות משלוח יורדת, מזון טרי ופארמה מושכים לקוחות לקנות הכול. 80% מהקמעונאות עדיין בחנויות פיזיות, כך שיש עוד הרבה מקום לגדול.</td><td>הצמיחה בצפון אמריקה רק 6% (גם בגלל Prime Day). עלויות דלק עולות. Walmart, Temu ו-Shein לוחצות על המחירים.</td></tr>
+        <tr><td><strong>הפרסום</strong></td><td>כ-$78B בשנה, רווחי מאוד. ההאטה זמנית, וחזרה לשנות העשרה הגבוהות צפויה ב-Q4. NBA ו-NFL ב-Prime Video, ו-Ads Agent מבוסס AI.</td><td>12% ברבעון הוא הקצב הנמוך מזה שנים. אם סוכני AI חיצוניים ישנו את דרך הקנייה, הפרסום בחיפוש באמזון עלול להיפגע.</td></tr>
+        <tr><td><strong>המזומן</strong></td><td>תזרים מפעילות של $168B בשנה, עלייה של 29%. אמזון לא מנפיקה מניות (+1% בלבד במספרן). $114B במזומן ובניירות ערך.</td><td>תזרים חופשי ‏−$42B, החוב פי 2.6, הריבית פי 3. ב-2027 ההשקעות יגדלו, והתזרים כנראה יישאר שלילי.</td></tr>
+        <tr><td><strong>עסקים חדשים</strong></td><td>Leo (אינטרנט מלוויין) מתחיל שירות עם AT&amp;T, Zoox ב-12 ערים, הפארמה צומחת 60%. אופציות שהשוק כמעט לא מתמחר.</td><td>כולם מפסידים כסף בינתיים. Leo מתחרה ב-Starlink, שמקדימה בשנים. העלויות שלו עדיין נרשמות כהוצאה.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>במחיר של כ-$228 אחרי הירידה, המניה ב-20% מתחת לשיא השנתי. מכפיל של כ-18 על הרווח הנקי (המנופח) של 12 החודשים האחרונים.</td><td>הרווח הנקי מנופח ברווחי השקעות. על הרווח התפעולי, המכפיל גבוה יותר. השוק לא יתמחר את הצמיחה כל עוד התזרים שלילי.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שרבעון החגים צפוי להיות חזק ברווח, אבל ההשקעות ימשיכו לגדול והתזרים יישאר שלילי. הקטליזטור הבא הוא תחזית ההשקעות ל-2027 בדוח של פברואר. משקיע לטווח ארוך צריך לעקוב אחרי שלושה מספרים: צמיחת AWS (מעל 40%), רווחיות AWS (מעל 35%) והרגע שבו התזרים החופשי מתחיל לעלות. כששלושתם מיושרים, ההימור של ג'אסי מצליח.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 13 -->
+<section>
+  <div class="sec-label">13 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>AWS</dt><dd>Amazon Web Services: שירות הענן של אמזון. משכיר שרתים, אחסון ומחשוב AI לחברות. $46B ברבעון, 63% מהרווח התפעולי.</dd>
+    <dt>Run rate</dt><dd>קצב הכנסות שנתי: הכנסות הרבעון כפול ארבע. $184B ל-AWS.</dd>
+    <dt>צבר הזמנות (Backlog)</dt><dd>חוזים חתומים שעוד לא הפכו להכנסה. $578B ב-AWS, צמיחה תלת-ספרתית.</dd>
+    <dt>Bedrock</dt><dd>שירות AI ב-AWS שמאפשר לחברות להשתמש במודלים של Anthropic, OpenAI ואחרים, עם אבטחה ופרטיות. "השירות שצומח הכי מהר בתולדות AWS".</dd>
+    <dt>Trainium / Graviton</dt><dd>השבבים שאמזון מתכננת בעצמה: Trainium לאימון והפעלה של AI, Graviton מעבד רגיל לשרתים. זולים מהחלופות ב-30–40%.</dd>
+    <dt>תזרים חופשי</dt><dd>מזומן מהפעילות פחות השקעות בתשתית. ‏−$42.4B ב-12 החודשים האחרונים. המדד שהטריד את השוק.</dd>
+    <dt>קאפקס</dt><dd>השקעות הוניות: מרכזי נתונים, שבבים, מרכזי הפצה. $75.9B ברבעון, כ-$220B לשנה.</dd>
+    <dt>Prime Day</dt><dd>אירוע המבצעים השנתי של אמזון. השנה עבר מיולי (Q3) ליוני (Q2), וזה עיוות את השוואת הצמיחה בכ-4 נקודות.</dd>
+    <dt>עלות לשרת (Cost to serve)</dt><dd>כמה עולה לאמזון להביא מוצר אחד ללקוח. יורדת כבר ארבע שנים ברציפות.</dd>
+    <dt>Amazon Leo</dt><dd>רשת לווייני אינטרנט במסלול נמוך, מתחרה של Starlink. השירות מתחיל עד סוף השנה.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Amazon — הודעה לעיתונות על תוצאות Q3 2026 (29.10.2026); מצגת התוצאות; תמלול שיחת האנליסטים (Yahoo Finance / Quartr); נתוני מסחר וצפי אנליסטים: The Motley Fool, Yahoo Finance (29–30.10.2026). שווי השוק, המחיר אחרי הירידה והמכפיל הם חישוב לפי מספר המניות בדוח ושיעור הירידה המדווח. נתוני Azure ו-Google Cloud מדוחות החברות. הלוגו נלקח ממצגת החברה.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>

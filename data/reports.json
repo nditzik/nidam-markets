@@ -1,12 +1,27 @@
 {
   "reports": [
     {
+      "file": "data/reports/AMZN__2026-10-29.html",
+      "ticker": "AMZN",
+      "date": "2026-10-29",
+      "title": "AMZN דוח רבעון Q3 2026",
+      "logo": "data/reports/logos/AMZN.png",
+      "added": "2026-10-30T10:59:01",
+      "season": {
+        "q": 3,
+        "year": 2026,
+        "key": "2026-3",
+        "label": "רבעון 3 2026"
+      },
+      "logoBg": "dark"
+    },
+    {
       "file": "data/reports/INTC__2026-10-29.html",
       "ticker": "INTC",
       "date": "2026-10-29",
       "title": "INTC דוח רבעון Q3 2026",
       "logo": "data/reports/logos/INTC.png",
-      "added": "2026-10-30T10:57:17",
+      "added": "2026-10-30T10:59:01",
       "season": {
         "q": 3,
         "year": 2026,
@@ -607,7 +622,7 @@
     }
   ],
   "_meta": {
-    "updatedAt": "30/10/2026 12:57",
+    "updatedAt": "30/10/2026 12:59",
     "source": "nidam-reports"
   }
 }
