@@ -53,9 +53,13 @@
             "ticker": "AMZN",
             "name": "Amazon.com, Inc.",
             "when": "after",
-            "status": "pending",
+            "status": "live",
             "logo": "data/earnings/logos/AMZN.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -5.47,
+            "price": 230.46,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "LLY",
@@ -83,8 +87,12 @@
             "ticker": "INTC",
             "name": "Intel Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/INTC.png"
+            "status": "live",
+            "logo": "data/earnings/logos/INTC.png",
+            "chg": -26.74,
+            "price": 67.45,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "MRK",
@@ -822,8 +830,8 @@
     "EXPD": "2026-11-03",
     "FISV": "2026-11-03",
     "IFF": "2026-11-03",
-    "SMCIP": "2026-11-03",
     "SMCI": "2026-11-03",
+    "SMCIP": "2026-11-03",
     "BNTX": "2026-11-03",
     "SWKS": "2026-11-03",
     "BR": "2026-11-03",
@@ -945,8 +953,8 @@
     "ZTS": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
-    "DTK": "2026-11-05",
     "DTE": "2026-11-05",
+    "DTK": "2026-11-05",
     "AFRM": "2026-11-05",
     "GH": "2026-11-05",
     "VRSK": "2026-11-05",
@@ -977,14 +985,14 @@
     "ONC": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTR": "2026-11-06",
     "CHTRP": "2026-11-06",
+    "CHTR": "2026-11-06",
     "PAA": "2026-11-06",
     "BEN": "2026-11-06",
     "EMA": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 15:16",
+    "updatedAt": "30/10/2026 15:31",
     "source": "tradingview"
   }
 }
