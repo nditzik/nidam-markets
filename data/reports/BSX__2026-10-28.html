@@ -1,0 +1,479 @@
+<title>BSX דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .wordmark{font-size:28px;font-weight:700;letter-spacing:-.01em;color:#fff;direction:ltr;display:inline-block;margin-bottom:20px;border-bottom:3px solid #4cc3ff;padding-bottom:4px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="wordmark">Boston Scientific</span>
+    <div class="eyebrow">Boston Scientific Corporation · NYSE: BSX · תוצאות רבעון שלישי 2026</div>
+    <h1>מתקפת סייבר, אובדן נתח שוק בשני מנועי הצמיחה, ו-2027 בלי צמיחה. המניה איבדה יותר מחצי מערכה השנה</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-28 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת האנליסטים</span>
+      <span>עודכן: 30.10.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>בוסטון סיינטיפיק מייצרת מכשירים רפואיים שמוחדרים לגוף בלי ניתוח פתוח, בעיקר ללב</h2>
+  <p class="lead">Boston Scientific היא אחת מחברות המכשור הרפואי הגדולות בעולם, עם כ-$21 מיליארד הכנסות בשנה. היא מייצרת מכשירים לטיפולים "זעיר-פולשניים": צנתרים, תומכנים (סטנטים), קוצבי לב, מכשירים להוצאת אבנים בכליות ומשתלים לשיכוך כאבים. הלקוחות הם בתי חולים, והמשתמשים הם רופאים: קרדיולוגים, אורולוגים ונוירולוגים.</p>
+  <p class="body" style="margin-top:14px">החברה מחולקת לשני מגזרים. <strong>קרדיווסקולרי</strong> (לב וכלי דם): $3.4B ברבעון, שני שלישים מההכנסות. <strong>MedSurg</strong> (אנדוסקופיה, אורולוגיה ונוירומודולציה): $1.7B. בשנים 2023–2025 החברה הייתה מהצומחות ביותר בענף, בזכות שני מוצרים: <strong>FARAPULSE</strong>, טיפול חדשני בהפרעות קצב (פרפור פרוזדורים) בפולסים חשמליים, ו-<strong>WATCHMAN</strong>, "פקק" שנסגר בלב ומונע שבץ אצל חולי פרפור, כחלופה לתרופות נוגדות קרישה.</p>
+  <p class="body">ב-2026 הכול התהפך. שני המוצרים האלה מאבדים נתח שוק וצמיחה. באוגוסט החברה ספגה מתקפת סייבר שהשביתה את הייצור והמשלוחים לשמונה ימי עבודה. והיא בתהליך רכישה של Penumbra, יצרנית מכשירים להוצאת קרישי דם, שצפויה להיסגר בתחילת 2027.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>Medtronic, J&amp;J, Abbott: על הפרעות הקצב</h3>
+      <p>FARAPULSE היה הראשון בשוק עם טכנולוגיית PFA (אבלציה בשדה פולסים), וזכה בנתח עצום. עכשיו המתחרות הגדולות מציעות צנתרים בצורות אחרות, והרופאים עוברים. ההנהלה צופה שאובדן הנתח יימשך עד 2028.</p>
+    </div>
+    <div class="col">
+      <h3>Abbott ואחרות: על WATCHMAN</h3>
+      <p>WATCHMAN שולט בשוק סגירת הזרוע של העלייה השמאלית בלב, שוק של כ-$2 מיליארד. אבל השוק כולו מתכווץ, כי רופאים מפנים פחות מטופלים בעקבות מחקרים חדשים. בנוסף, מתחרה חדשה צפויה להיכנס לשוק ב-2027.</p>
+    </div>
+    <div class="col">
+      <h3>חברות סיניות: על המחיר</h3>
+      <p>בסין מתרחבת "רכישה מרוכזת לפי נפח" (VBP): הממשלה קונה כמויות ענק ומכתיבה מחירים נמוכים. זה פוגע באנדוסקופיה ובאורולוגיה, וההנהלה צופה שהלחץ יחריף ב-2027.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון חלש, תחזית חלשה יותר, ושנה הבאה בלי צמיחה. ההנהלה מודה: "המחזור התהפך"</h2>
+  <p class="lead">ההכנסות צמחו 1.5% בלבד, ל-$5.14B, לעומת תחזית של 3%–5%. הרווח המנוקה למניה, $0.73, ירד 3% והחטיא את התחזית של החברה עצמה ($0.80–$0.82). מתקפת הסייבר גרעה כ-3 נקודות מהצמיחה ו-7 סנט מהרווח. אבל גם בלעדיה, שני מנועי הצמיחה הגדולים בירידה: הפרעות קצב (EP) ‏−5%, ו-WATCHMAN בארה"ב ‏−7%.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>התחזית לרבעון הרביעי היא ירידה של 1%–3% בהכנסות. התחזית השנתית קוצצה מצמיחה של 5.5%–6.5% לכ-3.75%. והמנכ"ל, מייק מהוני, אמר במפורש: "יהיה לנו קשה לצמוח בהכנסות וברווח למניה ב-2027". החברה מציגה את 2027 כ"תחתית המחזור" ומבטיחה חזרה לצמיחה ב-2028. אחרי שנה של תחזיות שהוחטאו, השוק כבר לא ממהר להאמין.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>כל מספר מתחת לתחזית שהחברה עצמה נתנה לפני שלושה חודשים</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$5.14B</div><div class="l">הכנסות</div><div class="d down">+1.5% · התחזית: 3%–5%</div></div>
+    <div class="kpi"><div class="v num">$0.73</div><div class="l">רווח מנוקה למניה</div><div class="d down">‏−3% · התחזית: $0.80–$0.82</div></div>
+    <div class="kpi"><div class="v num">68.0%</div><div class="l">רווחיות גולמית (מנוקה)</div><div class="d down">‏−3 נק' · בעיקר בגלל הסייבר</div></div>
+    <div class="kpi"><div class="v num">26.5%</div><div class="l">רווחיות תפעולית (מנוקה)</div><div class="d down">‏−1.5 נק'</div></div>
+    <div class="kpi"><div class="v num">−1% עד −3%</div><div class="l">תחזית הכנסות Q4</div><div class="d down">השוק ציפה לצמיחה</div></div>
+    <div class="kpi"><div class="v num">$3.16–$3.18</div><div class="l">תחזית רווח למניה 2026</div><div class="d down">קוצצה מ-$3.28–$3.32</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הרווח הרשמי (GAAP) היה $0.40 למניה, לעומת $0.51 אשתקד. הפער מהרווח המנוקה ($0.73) נובע בעיקר מהפחתת נכסים מרכישות קודמות ($0.14), מהפרשה לתביעות על מוצרים פגומים (כ-$80M), מעלויות ארגון מחדש ומעלויות הקשורות לרכישות. הרווח המנוקה עמד בדיוק בצפי האנליסטים ($0.73), כי הם כבר הורידו ציפיות אחרי שהחברה דיווחה על מתקפת הסייבר באוגוסט.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מה צומח ומה מתכווץ</div>
+  <h2>שלושה רבעים מהעסק צומחים יפה. הרבע הרביעי, שהיה מנוע הצמיחה, גורר את כולם למטה</h2>
+  <p class="body">בגרף: צמיחת המכירות של כל תחום ברבעון לעומת אשתקד, באחוזים. בירוק התחומים שצומחים, באדום אלה שמתכווצים. כל התחומים נפגעו במידה מסוימת מהסייבר. ההבדל ביניהם נובע בעיקר מתחרות ומלחץ מחירים.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 400" role="img" aria-label="צמיחת מכירות לפי תחום, Q3 2026">
+      <line x1="420" y1="20" x2="420" y2="375" stroke="var(--muted)"/>
+      <g font-size="12" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="300" y="394">−10%</text><text x="420" y="394">0</text><text x="540" y="394">+10%</text><text x="660" y="394">+20%</text>
+      </g>
+      <g stroke="var(--rule)" stroke-dasharray="3 4">
+        <line x1="300" y1="20" x2="300" y2="375"/><line x1="540" y1="20" x2="540" y2="375"/><line x1="660" y1="20" x2="660" y2="375"/>
+      </g>
+      <g font-size="14" fill="var(--fg)" text-anchor="start">
+        <text x="322" y="45">קרדיולוגיה התערבותית</text>
+        <text x="322" y="83">נוירומודולציה</text>
+        <text x="322" y="121">אונקולוגיה ותסחיפים</text>
+        <text x="322" y="159">כלי דם היקפיים</text>
+        <text x="322" y="197">אנדוסקופיה</text>
+        <text x="322" y="235">קצב לב (CRM)</text>
+        <text x="322" y="273">אורולוגיה</text>
+        <text x="322" y="311">הפרעות קצב (EP)</text>
+        <text x="322" y="349">WATCHMAN (ארה"ב)</text>
+      </g>
+      <g fill="var(--pos)">
+        <rect x="420" y="30" width="228" height="22"/>
+        <rect x="420" y="68" width="156" height="22"/>
+        <rect x="420" y="106" width="60" height="22"/>
+        <rect x="420" y="144" width="12" height="22"/>
+      </g>
+      <g fill="var(--neg)">
+        <rect x="408" y="182" width="12" height="22"/>
+        <rect x="396" y="220" width="24" height="22"/>
+        <rect x="384" y="258" width="36" height="22"/>
+        <rect x="360" y="296" width="60" height="22"/>
+        <rect x="336" y="334" width="84" height="22"/>
+      </g>
+      <g font-size="14" font-weight="700" direction="ltr" unicode-bidi="embed">
+        <text x="656" y="46" fill="var(--pos)">+19%</text>
+        <text x="584" y="84" fill="var(--pos)">+13%</text>
+        <text x="488" y="122" fill="var(--pos)">+5%</text>
+        <text x="440" y="160" fill="var(--pos)">+1%</text>
+        <text x="428" y="198" fill="var(--neg)">−1%</text>
+        <text x="428" y="236" fill="var(--neg)">−2%</text>
+        <text x="428" y="274" fill="var(--neg)">−3%</text>
+        <text x="428" y="312" fill="var(--neg)">−5%</text>
+        <text x="428" y="350" fill="var(--neg)">−7%</text>
+      </g>
+    </svg>
+    <figcaption>צמיחת מכירות אורגנית, Q3 2026 לעומת Q3 2025. ב-WATCHMAN מוצג נתון ארה"ב (בעולם: +4%). מקור: הודעת החברה ותמלול השיחה, 28.10.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>מה עובד: הלב "הרגיל"</h3>
+      <p>הקרדיולוגיה ההתערבותית צמחה 19%: מערכות הדמיה בתוך העורקים, ובלון מצופה תרופה (AGENT DCB) שכבר טיפל ב-400 אלף מטופלים. הנוירומודולציה צמחה 13%, בזכות טכנולוגיות חדשות לשיכוך כאבים ולגירוי מוחי. לפי ההנהלה, 75% מהעסק צומח באופן עקבי ב-6%–7% בשנה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>מה לא עובד: הפרעות קצב</h3>
+      <p>EP ירד 5%, ובארה"ב 8%. FARAPULSE מאבד נתח שוק מול צנתרים של Medtronic, J&amp;J ו-Abbott. מהוני: "אנחנו צופים המשך שחיקה בנתח עד ההשקה של FARAWAVE Ultra", שנדחתה לתחילת 2028. כמחצית מההחטאה ב-EP ברבעון נבעה מהסייבר: רופאים שלא קיבלו ציוד עברו למתחרים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>מה לא עובד: WATCHMAN</h3>
+      <p>בארה"ב, ניתוחי WATCHMAN שנעשים כהליך עצמאי ירדו בשיעור של כמעט 20%. ניתוחים משולבים (יחד עם אבלציה) עלו כ-35%. השוק מתכווץ, כי רופאים מפנים פחות מטופלים. החברה מקיימת מאות כנסים רפואיים כדי להחזיר את ההפניות, ומחכה לשינוי בהוראות השימוש.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · מתקפת הסייבר</div>
+  <h2>שמונה ימי עבודה בלי ייצור ומשלוחים עלו כ-$150 מיליון בהכנסות, וההשפעה נמשכת</h2>
+  <p class="body">ב-26 באוגוסט דיווחה החברה על מתקפת סייבר. במשך כשבועיים מערכות המחשוב הושבתו, ולשמונה ימי עבודה החברה לא יכלה לייצר או לשלוח מוצרים בכל העולם. כל הפעילות חזרה ב-8 בספטמבר.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>השפעה</th><th>Q3 2026</th><th>Q4 2026 (צפי)</th><th>הסבר</th></tr></thead>
+      <tbody>
+        <tr><td>צמיחת הכנסות</td><td class="n">כ-‏−3 נק' (~$150M)</td><td class="n">‏−2 עד ‏−3 נק'</td><td>ב-Q4: לקוחות שהזמינו כמויות גדולות בסוף Q3 כדי למלא מלאים יזמינו פחות</td></tr>
+        <tr><td>רווח למניה</td><td class="n">‏−$0.07</td><td class="n">‏−$0.04 עד ‏−$0.05</td><td>מכירות שאבדו, מפעלים שעבדו מתחת לקיבולת, משלוחים דחופים ויועצים</td></tr>
+        <tr><td>רווחיות גולמית</td><td class="n">‏−3 נק'</td><td>—</td><td>הוצאות קבועות של מפעלים שעמדו</td></tr>
+        <tr><td>נתח שוק ב-EP ו-CRM</td><td colspan="2">"האיץ את המעבר למתחרים"</td><td>רופאים שלא קיבלו צנתרים עברו למוצרים אחרים, וחלקם לא יחזרו</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>ההשפעה הכספית הישירה זמנית, וכנראה תסתיים ברבעון הרביעי. ההשפעה העקיפה עלולה להיות ארוכה יותר: ב-EP, שבו החברה כבר איבדה נתח, השבתה של שבועיים נתנה לרופאים הזדמנות לנסות את המוצרים של המתחרים. מהוני אמר במפורש שהסייבר "האיץ חלק מהמעבר" למתחרים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>רבעון רביעי בירידה, 2027 בלי צמיחה, ו-2028 "חזרה לביצועים גבוהים"</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית חדשה</th><th>תחזית קודמת / צפי</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות Q4 (אורגני)</td><td class="n">−3% עד −1%</td><td>השוק ציפה לצמיחה</td><td>כולל ‏−2 עד ‏−3 נק' מהסייבר</td></tr>
+        <tr class="hl"><td>רווח מנוקה למניה Q4</td><td class="n">$0.77–$0.79</td><td class="n">צפי: $0.83</td><td>—</td></tr>
+        <tr><td>צמיחה אורגנית 2026</td><td class="n">~3.75%</td><td class="n">5.5%–6.5%</td><td>חצי ראשון: +8%</td></tr>
+        <tr><td>רווח מנוקה למניה 2026</td><td class="n">$3.16–$3.18</td><td class="n">$3.28–$3.32</td><td>+3% עד +4%</td></tr>
+        <tr><td>רווחיות תפעולית 2026</td><td class="n">~27.6%</td><td>—</td><td>לחץ על הרווחיות הגולמית</td></tr>
+        <tr><td>תזרים חופשי 2026</td><td class="n">~$3.6B</td><td>—</td><td>ירד בגלל רווח תפעולי נמוך יותר</td></tr>
+        <tr class="hl"><td>2027 (ללא Penumbra)</td><td>"יהיה קשה לצמוח" בהכנסות וברווח</td><td>—</td><td>Q4 הוא "בסיס סביר" לשנה הבאה</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="tl">
+    <li><div class="when">תחילת 2027</div><div class="what">סגירת רכישת Penumbra (נדחתה מהתכנון המקורי)</div></li>
+    <li><div class="when">מחצית שנייה 2027</div><div class="what">השקת מערכת אולטרסאונד תוך-לבבי (ICE) ל-EP; כניסת מתחרה חדשה ל-WATCHMAN</div></li>
+    <li><div class="when">2028</div><div class="what">FARAWAVE Ultra (נדחה ברבעון); פלטפורמת דפיברילטורים Denali</div></li>
+    <li><div class="when">2029</div><div class="what">FARAFLEX ו-WATCHMAN דור רביעי</div></li>
+    <li><div class="when">2030</div><div class="what">Vitalist, משאבת לב לחולים בהלם קרדיוגני, במימון משותף עם Blackstone</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · תוכנית הגשר ל-2028</div>
+  <h2>חיסכון של $500 מיליון, Penumbra ושורה של מוצרים חדשים. רובם בעוד שנתיים</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>קיצוץ והתייעלות</h3>
+      <p>תוכנית ארגון מחדש שתחסוך יותר מ-$500M בשלוש שנים, ויותר ממחצית מזה כבר עד סוף 2027. היא כוללת צמצום שכבות ניהול, ריכוז שירותים משותפים, ייעול שרשרת האספקה בעזרת AI, וקיצוץ בנסיעות ובספקים חיצוניים. סמנכ"ל הכספים: "אנחנו מעט לפני הלו"ז".</p>
+    </div>
+    <div class="col">
+      <h3>רכישת Penumbra</h3>
+      <p>Penumbra מייצרת מכשירים לשאיבת קרישי דם (בשבץ, בתסחיף ריאתי ובוורידים). היא צומחת מהר, ותצטרף לתחום הקרדיולוגיה ההתערבותית. לפי ההנהלה, החטיבה המשולבת תהיה "המגזר הגדול ביותר, במתקפה". אבל הסגירה נדחתה בגלל הרגולטורים, והרכישה צפויה לדלל את הרווח למניה בשנה הראשונה, בגלל עליית הריבית אף יותר מהתחזית המקורית ($0.06–$0.08).</p>
+    </div>
+    <div class="col">
+      <h3>חלוקה מחדש של הנהלה</h3>
+      <p>ג'ו פיצג'רלד מונה לסמנכ"ל תפעול, והחברה חולקה לסקטורים כדי לשפר "מיקוד, מהירות ואחריותיות". סמנכ"ל הכספים, ג'ונתן מונסון, הודה: "אנחנו צריכים לבנות מחדש את האמון בתחזיות שלנו", ותיאר תהליך חיזוי חדש עם יותר תרחישים ונתונים חיצוניים.</p>
+    </div>
+    <div class="col">
+      <h3>$25 מיליארד בשווקים חדשים</h3>
+      <p>החברה מתכננת להיכנס לשווקים חדשים בהיקף של $25B עד 2030: טיפול בלחץ דם על ידי עצבוב כליות (TIVUS), ליתוטריפסיה בכלי דם (SEISMIQ), משאבות לב (Vitalist) ו-EP מורחב. רבים מהם נדחו בכחצי שנה, ו-TIVUS תלוי בניסוי קליני שמתקדם "לאט מהמקווה".</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: המחזור התהפך, 2027 היא התחתית, העסק הבסיסי בריא, ואנחנו צריכים להחזיר אמון</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"המחזור התהפך"</h3>
+      <p>מהוני: "ב-2023–2025 חווינו מחזור צמיחה גבוה מאוד... ב-2026 ראינו את המחזור מתהפך, ושני העסקים האלה (EP ו-WATCHMAN) מכבידים עכשיו על הצמיחה". זו הפעם הראשונה שההנהלה מתארת את המצב כ"מחזור" ולא כ"רעשים זמניים".</p>
+    </div>
+    <div class="col">
+      <h3>"2027 תהיה התחתית"</h3>
+      <p>לפי ההנהלה, ב-2028 הצמיחה תחזור, אמנם "כנראה מתחת" לקצב השוק (7%). ב-2029 היא אמורה לעלות מעליו. מהוני: "אנחנו למטה לזמן מה, אבל רחוק מלהיות בחוץ".</p>
+    </div>
+    <div class="col">
+      <h3>"75% מהעסק צומח 6%"</h3>
+      <p>קרדיולוגיה התערבותית, כלי דם, אונקולוגיה, אנדוסקופיה ונוירומודולציה צומחים בסביבות 6%, למרות סין. ב-2027 לחץ המחירים בסין יגרע כנקודה מזה. הבעיה מרוכזת ברבע אחד של העסק.</p>
+    </div>
+    <div class="col">
+      <h3>"אנחנו לא מרוצים מהדחיות"</h3>
+      <p>מהוני הודה שמוצרים גדולים בצנרת נדחו בכחצי שנה, ושבאורולוגיה "טעינו בתחזית". על רכישת Axonics (2024) אמר: "התקשינו באינטגרציה", בגלל תחלופה גבוהה של אנשי מכירות.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>החברה לא נתנה תחזית ל-2027, רק "מסגרת" של אפס צמיחה, והיא "שמרנית במכוון". זה הגיוני אחרי שנה של החטאות: עדיף להפתיע לטובה. אבל זה גם אומר שגם ההנהלה לא יודעת איפה הרצפה ב-WATCHMAN וב-EP. מהוני הודה ש"טווח הטעות סביב ההנחות ל-WATCHMAN רחב מאוד".</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>עשר שאלות, וכמעט כולן על אותו דבר: האם אפשר להאמין לתוכנית של 2028</h2>
+  <p class="body">האנליסטים לא שאלו על הרבעון. הם שאלו על האמינות: האם 2027 היא באמת התחתית, למה המוצרים נדחים, והאם התחזיות החדשות טובות יותר מהקודמות. זו שיחה של חברה שצריכה להוכיח את עצמה מחדש.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>דחיות בצנרת: BofA, Piper Sandler, Wells Fargo ו-Deutsche Bank. "למה הכול נדחה? יש בעיה רחבה יותר?" ההנהלה ענתה שכל מוצר נדחה מסיבה אחרת: בדיקות תוכנה, אישורי FDA, גיוס מטופלים לניסוי. ארבעה הסברים שונים לאותה תופעה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>כמעט ‏−20%: הירידה בהליכי WATCHMAN העצמאיים בארה"ב. זה לא אובדן נתח לטובת מתחרים. זה שוק שמתכווץ, כי הרופאים כבר לא בטוחים ביתרון של הטיפול על פני תרופות. זה קשה יותר לתיקון מתחרות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>מונסון: "אנחנו צריכים לבנות מחדש את האמון בתחזיות... התקשינו לחזות את זה השנה, ואנחנו צריכים להיות טובים יותר". סמנכ"ל כספים שאומר את זה בפומבי מודה שהשוק צדק בחשדנות שלו.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>Penumbra: "לא נמסור עדכונים נוספים מעבר למה שאמרתי". מה מעכב את הרגולטורים, ובכמה בדיוק יגדל הדילול בגלל הריבית? ההנהלה אמרה רק שהדילול יהיה גדול מ-$0.06–$0.08, ושפרטים יינתנו אחרי הסגירה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"בוסטון סיינטיפיק נהנתה מכמה שנים של צמיחה יוצאת דופן... ב-2026 ראינו את המחזור מתהפך" (מהוני). חברה שבנתה את הסיפור שלה על שני מוצרים מגלה מה קורה כשהמתחרים מדביקים את הפער.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>Vitalist, אחת מתוכניות הפיתוח הגדולות של החברה, ממומנת עכשיו בחלקה על ידי Blackstone, שתקבל בתמורה תמלוגים. חברה בגודל כזה בדרך כלל לא צריכה שותף פיננסי לפיתוח מוצר. זה מעיד על תקציב מחקר ופיתוח לחוץ.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>בוסטון סיינטיפיק לא קורסת. 75% מהעסק בריא, הרווחיות התפעולית גבוהה (כ-27%), והתזרים חיובי. אבל הסיפור שהצדיק מכפיל גבוה, צמיחה דו-ספרתית על גבי FARAPULSE ו-WATCHMAN, נגמר. השאלה עכשיו היא אם החברה יכולה לבנות סיפור חדש עד 2028, ואם המשקיעים יחכו.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · איך השוק הגיב</div>
+  <h2>ירידה של כ-8% ביום הדוח, שתי הורדות המלצה, ומניה שירדה בכ-55% מתחילת השנה</h2>
+  <p class="body">לפני הדוח (27.10) המניה סגרה ב-$45.06. ביום הדוח (28.10) היא ירדה כ-8%, לכ-$41.9. שווי השוק: כ-$60 מיליארד. מתחילת 2026 המניה איבדה כ-55% מערכה. זו אחת הירידות החדות ביותר בקרב חברות המכשור הרפואי הגדולות בארה"ב.</p>
+  <p class="body">למחרת הורידו שני בנקים את המלצתם: Jefferies מ"קנייה" ל"החזק" (יעד מחיר מ-$60 ל-$46), ו-JPMorgan מ"משקל יתר" ל"ניטרלי" (מ-$56 ל-$46). Needham שמר על "קנייה" אבל הוריד יעד מ-$57 ל-$48. הנימוק המשותף: אין מנועי צמיחה ל-2027, ודחיות המוצרים מעוררות ספק ביעדי 2028.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>אחרי ירידה של יותר מחצי, רוב החדשות הרעות כבר במחיר. לפי תחזית הרווח של 2026, המניה נסחרת במכפיל של כ-13, לעומת 30 ומעלה בשנים הטובות. אבל מכפיל נמוך לא יעזור אם הרווח לא יגדל. הורדות ההמלצה של Jefferies ו-JPMorgan אומרות דבר אחד: אין סיבה לקנות עכשיו, כשהקטליזטורים רחוקים שנה-שנתיים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: התחתית של 2027 עלולה להיות עמוקה יותר, וההתאוששות של 2028 תלויה במוצרים שכבר נדחו</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>שחיקה ב-EP</h3><p>FARAPULSE מאבד נתח לשלוש חברות ענק. ההנהלה צופה שהשחיקה תימשך עד תחילת 2028, ו-Ultra כבר נדחה ברבעון אחד. אם יידחה שוב, השחיקה תימשך.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>שוק WATCHMAN מתכווץ</h3><p>הליכים עצמאיים בירידה של כמעט 20%, ומתחרה חדשה ב-2027. ההנחה של ההנהלה: "אין שיפור". אם גם ההנחה הזו אופטימית מדי, 2027 תהיה גרועה יותר מהמסגרת.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>אמינות התחזיות</h3><p>שלוש תחזיות שהוחטאו השנה, ודחיות במוצרים מרכזיים. כל החטאה נוספת תעמיק את חוסר האמון ותלחץ על המכפיל, גם אם העסק עצמו יתייצב.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>מחירים בסין</h3><p>רכש מרוכז מוריד מחירים באנדוסקופיה ובאורולוגיה, וצפוי להחריף ב-2027. סין הייתה מנוע צמיחה, ועכשיו היא לחץ על הרווחיות.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>Penumbra</h3><p>הרכישה הגדולה בתולדות החברה. הסגירה נדחתה, והדילול צפוי לגדול בגלל עליית הריבית. אם השילוב יתקשה כמו ב-Axonics, זה יכביד עוד.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>רווחיות גולמית</h3><p>סמנכ"ל הכספים: "לחץ משמעותי על הרווחיות הגולמית" ב-2027, בגלל תמהיל המוצרים (EP ו-WATCHMAN רווחיים במיוחד), סין והשקעות באיכות. הרווח למניה לא יצמח מהר מההכנסות.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>העסק הבסיסי</strong></td><td>75% מהעסק צומח כ-6%. קרדיולוגיה התערבותית +19%, נוירומודולציה +13%. מוצרים מובילים עם ראיות קליניות חזקות.</td><td>סין גורעת כנקודה. אורולוגיה בירידה כבר זמן רב. 6% לא מספיק כדי לפצות על הירידה ב-EP וב-WATCHMAN.</td></tr>
+        <tr><td><strong>EP</strong></td><td>שוק ה-PFA ממשיך לצמוח מהר. FARAWAVE הוא הצנתר הנחקר והנפוץ ביותר. ICE, Ultra ו-FLEX יחזירו אותה לתחרות ב-2028–2029.</td><td>שחיקת נתח עד 2028. Ultra ו-FLEX כבר נדחו. מתחרים עם משאבים גדולים יותר משקיעים באותו שוק.</td></tr>
+        <tr><td><strong>WATCHMAN</strong></td><td>נתח שוק דומיננטי. הליכים משולבים צומחים 35%. שינוי בהוראות השימוש צפוי עד 2028, ודור רביעי ב-2029.</td><td>השוק מתכווץ, כי רופאים מטילים ספק בתועלת. מתחרה חדשה ב-2027. ההנהלה עצמה לא יודעת איפה התחתית.</td></tr>
+        <tr><td><strong>Penumbra</strong></td><td>חברה צומחת בתחום משלים. תהפוך את הקרדיולוגיה ההתערבותית למגזר הגדול ביותר. סינרגיות במכירות ובעלויות.</td><td>דחייה רגולטורית ודילול שגדל. החברה התקשתה בשילוב Axonics.</td></tr>
+        <tr><td><strong>עלויות</strong></td><td>$500M חיסכון, יותר ממחציתו עד סוף 2027. "לפני הלו"ז". מבנה ניהול חדש. Blackstone מממנת חלק מהמחקר.</td><td>קיצוצים בזמן שהמוצרים כבר נדחים עלולים להאט את הצנרת עוד יותר. הרווחיות הגולמית תיפגע ב-2027.</td></tr>
+        <tr><td><strong>שווקים חדשים</strong></td><td>$25B בשווקים חדשים עד 2030: לחץ דם, ליתוטריפסיה, משאבות לב. אם אפילו חלק יצליח, הצמיחה תחזור מעל 7%.</td><td>הכול עתידי, תלוי בניסויים קליניים ובאישורים. TIVUS מתעכב. Vitalist רק ב-2030.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>ירידה של 55% מתחילת השנה. מכפיל של כ-13 על רווח 2026, הנמוך מזה שנים. אם 2028 תתממש, המניה זולה מאוד.</td><td>שתי הורדות המלצה, ואין קטליזטור לפני 2028. "זול" יכול להישאר זול עוד שנה שלמה של אפס צמיחה.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהקטליזטור הבא הוא תחזית 2027 בינואר, וסגירת Penumbra ברבעון הראשון. עד אז קשה לראות סיבה לעלייה. משקיע לטווח ארוך צריך לעקוב אחרי שלושה דברים: מגמת השוק של WATCHMAN (התייצבות = התחתית), לוח הזמנים של FARAWAVE Ultra (בזמן = אמינות חוזרת), והאם 75% מהעסק ממשיכים לצמוח 6%.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 13 -->
+<section>
+  <div class="sec-label">13 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>EP</dt><dd>Electrophysiology: טיפול בהפרעות קצב הלב באמצעות צנתר שמנטרל את האזור הבעייתי ברקמת הלב.</dd>
+    <dt>PFA / FARAPULSE</dt><dd>Pulsed Field Ablation: אבלציה בפולסים חשמליים במקום חום או קור. FARAPULSE היה המוצר הראשון והמוביל בתחום.</dd>
+    <dt>WATCHMAN</dt><dd>מכשיר שמושתל בלב וסוגר את "הזרוע" של העלייה השמאלית, שבה נוצרים קרישי דם אצל חולי פרפור. חלופה לתרופות נוגדות קרישה.</dd>
+    <dt>LAAC</dt><dd>Left Atrial Appendage Closure: שם השוק שבו פועל WATCHMAN. שוק של כ-$2 מיליארד.</dd>
+    <dt>הליך משולב (Concomitant)</dt><dd>השתלת WATCHMAN באותו טיפול עם אבלציה ל-EP. צומח 35%, בניגוד להליך עצמאי שמתכווץ.</dd>
+    <dt>אורגני</dt><dd>צמיחה בנטרול שערי מטבע ורכישות. מראה כמה העסק הקיים באמת גדל.</dd>
+    <dt>VBP</dt><dd>Volume-Based Procurement: רכש מרוכז של ממשלת סין, שקונה כמויות ענק ומכתיבה מחירים נמוכים.</dd>
+    <dt>WAMGR</dt><dd>Weighted Average Market Growth Rate: קצב הצמיחה הממוצע של כל השווקים שהחברה פועלת בהם. כ-7%.</dd>
+    <dt>Penumbra</dt><dd>חברת מכשור לשאיבת קרישי דם, שבוסטון סיינטיפיק רוכשת. הסגירה צפויה בתחילת 2027.</dd>
+    <dt>PMA / IDE</dt><dd>שני מסלולי אישור של ה-FDA: PMA לאישור מוצר בסיכון גבוה, IDE לאישור לבצע ניסוי קליני.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Boston Scientific — הודעה לעיתונות על תוצאות Q3 2026 (28.10.2026); תמלול שיחת האנליסטים (StockOracle / FactSet, 28.10.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: MoneyCheck, Stocktwits (28–29.10.2026). שווי השוק והמכפיל הם חישוב לפי מספר המניות בדוח ומחיר המניה ב-28.10. לא נמצא לוגו בקבצים שצורפו, ולכן שם החברה מוצג כטקסט.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
