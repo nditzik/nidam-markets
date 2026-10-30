@@ -88,6 +88,9 @@ def universe():
     ind = load(os.path.join(DATA, "indices.json"), {})
     for it in ((ind.get("bigTrades") or {}).get("items") or []):
         add(it.get("ticker"))
+    # רכישות פנים (30.10.2026): כל מניה שקנו בה ב-120 הימים האחרונים — למעקב 5/20/60 ולבדיקת המחיר
+    for t in (load(os.path.join(DATA, "insider_daily.json"), {}).get("universe") or []):
+        add(t)
     for r in (load(os.path.join(DATA, "insider.json"), {}).get("reports") or []):
         for t in (r.get("tickers") or []):
             add(t)

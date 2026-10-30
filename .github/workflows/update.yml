@@ -194,6 +194,13 @@ jobs:
       - name: Fetch insider reports
         run: python scripts/fetch_insider.py
         continue-on-error: true
+      # --- רכישות פנים · אתמול (30.10.2026): מייל "Insider Buys – DD.MM.YYYY" של גרוק → data/insider_daily/<יום>/ ---
+      - name: Relay insider buys from mail
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/relay_insider_mail.py
+        continue-on-error: true
 
       # --- שידור אוטומטי: כל תמונה חדשה תחת C:\challenge\reports (nidam-reports) → הערוץ ---
       - name: Broadcast new report images to Telegram
@@ -262,6 +269,11 @@ jobs:
       - name: Build picks (הנבחרות)
         continue-on-error: true
         run: node scripts/build_picks.js
+
+      # --- רכישות פנים: יומן + בדיקת מחיר מול הנרות + היסטוריה + מעקב 5/20/60 → data/insider_daily.json ---
+      - name: Build insider buys panel
+        continue-on-error: true
+        run: python scripts/build_insider_daily.py
 
       # --- לקראת הדוח (2.10.2026): חברות עם ניתוח קודם באתר שמדווחות בשבועיים הקרובים —
       #     צפי אנליסטים, תגובות קודמות, התזוזה שהאופציות מתמחרות → data/earnings_prep.json.
