@@ -61,15 +61,23 @@
             "ticker": "LLY",
             "name": "Eli Lilly and Company",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/LLY.png"
+            "status": "final",
+            "logo": "data/earnings/logos/LLY.png",
+            "chg": 6.63,
+            "price": 1373.7,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "MA",
             "name": "Mastercard Incorporated Class A",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/MA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MA.png",
+            "chg": 4.16,
+            "price": 635.7,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "INTC",
@@ -82,8 +90,12 @@
             "ticker": "MRK",
             "name": "Merck & Co., Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/MRK.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MRK.png",
+            "chg": 3.83,
+            "price": 146.33,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "SHEL",
@@ -102,34 +114,54 @@
             "ticker": "GOOGM",
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": -8.97,
+            "price": 42.53,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "GOOGN",
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": -8.77,
+            "price": 42.53,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "MSFT",
             "name": "Microsoft Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/MSFT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MSFT.png",
+            "chg": -0.16,
+            "price": 530.14,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "GOOG",
             "name": "Alphabet Inc. Class C",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/GOOG.png"
+            "status": "final",
+            "logo": "data/earnings/logos/GOOG.png",
+            "chg": -12.29,
+            "price": 282.32,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "GOOGL",
             "name": "Alphabet Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/GOOGL.png"
+            "status": "final",
+            "logo": "data/earnings/logos/GOOGL.png",
+            "chg": -12.64,
+            "price": 283.82,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           },
           {
             "ticker": "GEV",
@@ -932,7 +964,7 @@
     "BEN": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 03:31",
+    "updatedAt": "30/10/2026 03:47",
     "source": "tradingview"
   }
 }
