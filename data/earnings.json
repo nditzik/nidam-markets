@@ -101,8 +101,12 @@
             "ticker": "SHEL",
             "name": "Shell Plc Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/SHEL.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SHEL.png",
+            "chg": 2.36,
+            "price": 107.67,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
           }
         ]
       },
@@ -965,7 +969,7 @@
     "BEN": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 04:46",
+    "updatedAt": "30/10/2026 05:01",
     "source": "tradingview"
   }
 }
