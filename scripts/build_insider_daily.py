@@ -231,7 +231,8 @@ def main(root=ROOT, now=None):
             b["since"] = round((b["lastClose"] / b["price"] - 1) * 100, 2)
             b["sinceAt"] = b["day"]
 
-    latest = max(d for d, _, _ in days)
+    # יום בלי דיווחים (קובץ ריק בסוף שבוע/חג) לא מחליף את הרשימה האחרונה שיש בה רכישות
+    latest = max([d for d, rows, _ in days if rows] or [d for d, _, _ in days])
     today = [b for b in buys if b["day"] == latest]
     counted = [b for b in today if not b.get("excluded")]
 
