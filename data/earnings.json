@@ -5,22 +5,22 @@
     {
       "ticker": "XOM",
       "name": "Exxonmobil Holdings Corporation",
-      "capB": 760.6
+      "capB": 764.6
     },
     {
       "ticker": "ABBV",
       "name": "AbbVie, Inc.",
-      "capB": 522.2
+      "capB": 522.9
     },
     {
       "ticker": "CVX",
       "name": "Chevron Corporation",
-      "capB": 464.8
+      "capB": 466.1
     },
     {
       "ticker": "AZN",
       "name": "AstraZeneca PLC",
-      "capB": 287.9
+      "capB": 288.9
     },
     {
       "ticker": "BP",
@@ -30,12 +30,12 @@
     {
       "ticker": "GD",
       "name": "General Dynamics Corporation",
-      "capB": 101.3
+      "capB": 100.9
     },
     {
       "ticker": "REGN",
       "name": "Regeneron Pharmaceuticals, Inc.",
-      "capB": 95.0
+      "capB": 94.3
     },
     {
       "ticker": "MNST",
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/AMZN.png",
             "logoBg": "dark",
-            "chg": -1.34,
-            "price": 240.51,
+            "chg": -1.61,
+            "price": 239.87,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INTC.png",
-            "chg": -28.4,
-            "price": 65.92,
+            "chg": -28.33,
+            "price": 65.99,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -154,17 +154,6 @@
             "baseDate": "2026-10-28"
           },
           {
-            "ticker": "GOOG",
-            "name": "Alphabet Inc. Class C",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOG.png",
-            "chg": -12.29,
-            "price": 282.32,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
             "ticker": "GOOGL",
             "name": "Alphabet Inc. Class A",
             "when": "after",
@@ -172,6 +161,17 @@
             "logo": "data/earnings/logos/GOOGL.png",
             "chg": -12.64,
             "price": 283.82,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
+          },
+          {
+            "ticker": "GOOG",
+            "name": "Alphabet Inc. Class C",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/GOOG.png",
+            "chg": -12.29,
+            "price": 282.32,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -335,7 +335,7 @@
     {
       "ticker": "IMO",
       "name": "Imperial Oil Limited",
-      "when": "",
+      "when": "before",
       "logo": "data/earnings/logos/IMO.png"
     }
   ],
@@ -503,7 +503,7 @@
       "date": "2026-10-28",
       "dow": "רביעי",
       "label": "28.10",
-      "total": 67,
+      "total": 66,
       "companies": [
         {
           "ticker": "MSFT",
@@ -522,16 +522,16 @@
           "when": "after"
         },
         {
-          "ticker": "GOOG",
-          "name": "Alphabet Inc. Class C",
-          "when": "after",
-          "logo": "data/earnings/logos/GOOG.png"
-        },
-        {
           "ticker": "GOOGL",
           "name": "Alphabet Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/GOOGL.png"
+        },
+        {
+          "ticker": "GOOG",
+          "name": "Alphabet Inc. Class C",
+          "when": "after",
+          "logo": "data/earnings/logos/GOOG.png"
         },
         {
           "ticker": "GEV",
@@ -582,7 +582,7 @@
       "date": "2026-10-29",
       "dow": "חמישי",
       "label": "29.10",
-      "total": 99,
+      "total": 100,
       "companies": [
         {
           "ticker": "AMZN",
@@ -737,7 +737,7 @@
         {
           "ticker": "IMO",
           "name": "Imperial Oil Limited",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/IMO.png"
         }
       ]
@@ -763,8 +763,8 @@
     "UI": "2026-10-30",
     "CCJ": "2026-10-30",
     "CHD": "2026-10-30",
-    "NVT": "2026-10-30",
     "LYB": "2026-10-30",
+    "NVT": "2026-10-30",
     "MGA": "2026-10-30",
     "RBC": "2026-10-30",
     "BSAC": "2026-10-30",
@@ -827,8 +827,8 @@
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
     "EXPD": "2026-11-03",
-    "CPNG": "2026-11-03",
     "FISV": "2026-11-03",
+    "CPNG": "2026-11-03",
     "IFF": "2026-11-03",
     "SMCIP": "2026-11-03",
     "BNTX": "2026-11-03",
@@ -866,8 +866,8 @@
     "MFC": "2026-11-04",
     "ALL": "2026-11-04",
     "GWW": "2026-11-04",
-    "MET": "2026-11-04",
     "COR": "2026-11-04",
+    "MET": "2026-11-04",
     "AFL": "2026-11-04",
     "CVE": "2026-11-04",
     "EW": "2026-11-04",
@@ -897,19 +897,19 @@
     "WES": "2026-11-04",
     "CRCL": "2026-11-04",
     "CDW": "2026-11-04",
-    "ZBH": "2026-11-04",
     "APA": "2026-11-04",
+    "ZBH": "2026-11-04",
     "CF": "2026-11-04",
-    "CW": "2026-11-04",
     "ITT": "2026-11-04",
+    "CW": "2026-11-04",
     "HST": "2026-11-04",
     "CRL": "2026-11-04",
     "NWS": "2026-11-04",
     "NWSA": "2026-11-04",
     "W": "2026-11-04",
     "PAAS": "2026-11-04",
-    "SWK": "2026-11-04",
     "PFGC": "2026-11-04",
+    "SWK": "2026-11-04",
     "TRMB": "2026-11-04",
     "FICO": "2026-11-04",
     "TM": "2026-11-05",
@@ -917,17 +917,17 @@
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
-    "NET": "2026-11-05",
-    "ABNB": "2026-11-05",
+    "SOJD": "2026-11-05",
     "DUK": "2026-11-05",
+    "ABNB": "2026-11-05",
+    "NET": "2026-11-05",
     "EOG": "2026-11-05",
     "NGG": "2026-11-05",
     "CI": "2026-11-05",
     "LITE": "2026-11-05",
-    "CMI": "2026-11-05",
     "SPG": "2026-11-05",
+    "CMI": "2026-11-05",
     "APD": "2026-11-05",
     "TRGP": "2026-11-05",
     "TRP": "2026-11-05",
@@ -946,8 +946,8 @@
     "KMB": "2026-11-05",
     "AXON": "2026-11-05",
     "IRM": "2026-11-05",
-    "MTD": "2026-11-05",
     "GMAB": "2026-11-05",
+    "MTD": "2026-11-05",
     "ZTS": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
@@ -989,7 +989,7 @@
     "EMA": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 17:16",
+    "updatedAt": "30/10/2026 17:31",
     "source": "tradingview"
   }
 }
