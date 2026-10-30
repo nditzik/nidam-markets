@@ -5,22 +5,22 @@
     {
       "ticker": "XOM",
       "name": "Exxonmobil Holdings Corporation",
-      "capB": 763.9
+      "capB": 764.3
     },
     {
       "ticker": "ABBV",
       "name": "AbbVie, Inc.",
-      "capB": 521.1
+      "capB": 522.3
     },
     {
       "ticker": "CVX",
       "name": "Chevron Corporation",
-      "capB": 464.8
+      "capB": 463.5
     },
     {
       "ticker": "AZN",
       "name": "AstraZeneca PLC",
-      "capB": 289.7
+      "capB": 290.4
     },
     {
       "ticker": "BP",
@@ -30,17 +30,17 @@
     {
       "ticker": "GD",
       "name": "General Dynamics Corporation",
-      "capB": 102.0
+      "capB": 102.4
     },
     {
       "ticker": "REGN",
       "name": "Regeneron Pharmaceuticals, Inc.",
-      "capB": 94.0
+      "capB": 93.9
     },
     {
       "ticker": "MNST",
       "name": "Monster Beverage Corporation",
-      "capB": 92.4
+      "capB": 92.5
     }
   ],
   "reactions": {
@@ -56,8 +56,8 @@
             "status": "live",
             "logo": "data/earnings/logos/AMZN.png",
             "logoBg": "dark",
-            "chg": -1.99,
-            "price": 238.95,
+            "chg": -1.84,
+            "price": 239.31,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INTC.png",
-            "chg": -29.92,
-            "price": 64.53,
+            "chg": -29.58,
+            "price": 64.83,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           },
@@ -635,16 +635,16 @@
           "logo": "data/earnings/logos/LIN.png"
         },
         {
-          "ticker": "TTE",
-          "name": "TotalEnergies SE",
-          "when": "before",
-          "logo": "data/earnings/logos/TTE.png"
-        },
-        {
           "ticker": "GILD",
           "name": "Gilead Sciences, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/GILD.png"
+        },
+        {
+          "ticker": "TTE",
+          "name": "TotalEnergies SE",
+          "when": "before",
+          "logo": "data/earnings/logos/TTE.png"
         },
         {
           "ticker": "SNDK",
@@ -820,14 +820,14 @@
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
-    "PRS": "2026-11-03",
     "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
     "PRU": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
-    "EXPD": "2026-11-03",
     "FISV": "2026-11-03",
+    "EXPD": "2026-11-03",
     "CPNG": "2026-11-03",
     "IFF": "2026-11-03",
     "SMCIP": "2026-11-03",
@@ -896,16 +896,16 @@
     "RGLD": "2026-11-04",
     "WES": "2026-11-04",
     "CRCL": "2026-11-04",
+    "CDW": "2026-11-04",
     "APA": "2026-11-04",
     "CF": "2026-11-04",
     "ZBH": "2026-11-04",
-    "CDW": "2026-11-04",
     "CW": "2026-11-04",
     "ITT": "2026-11-04",
     "HST": "2026-11-04",
     "CRL": "2026-11-04",
-    "NWS": "2026-11-04",
     "NWSA": "2026-11-04",
+    "NWS": "2026-11-04",
     "W": "2026-11-04",
     "PAAS": "2026-11-04",
     "SWK": "2026-11-04",
@@ -914,11 +914,11 @@
     "TRMB": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
-    "PH": "2026-11-05",
     "CNQ": "2026-11-05",
+    "PH": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
     "NET": "2026-11-05",
@@ -940,8 +940,8 @@
     "TEAM": "2026-11-05",
     "MCHPP": "2026-11-05",
     "ED": "2026-11-05",
-    "MCHP": "2026-11-05",
     "LYV": "2026-11-05",
+    "MCHP": "2026-11-05",
     "AU": "2026-11-05",
     "KMB": "2026-11-05",
     "AXON": "2026-11-05",
@@ -958,8 +958,8 @@
     "CIB": "2026-11-05",
     "GH": "2026-11-05",
     "RL": "2026-11-05",
-    "TPR": "2026-11-05",
     "GPN": "2026-11-05",
+    "TPR": "2026-11-05",
     "FWONK": "2026-11-05",
     "FWONA": "2026-11-05",
     "STE": "2026-11-05",
@@ -989,7 +989,7 @@
     "EMA": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 18:16",
+    "updatedAt": "30/10/2026 18:31",
     "source": "tradingview"
   }
 }
