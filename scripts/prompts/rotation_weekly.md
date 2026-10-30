@@ -10,7 +10,7 @@
 
 **מ-24.10.2026 אין הורדה מהדרייב** (איציק: "חבל על הטוקנים" — ההורדה כ-base64 דרך המחבר נתקעה פעמיים). הקבצים מגיעים לריפו מהמייל של גרוק (`Rotation – DD.MM.YYYY`, 20 צרופות) דרך `scripts/relay_rotation_mail.py` ב-Action, ל-`data/rotation/D/`. **אל תשתמש בכלי Google Drive גם אם יש לך אותם.**
 
-1. `D` = התאריך של היום (שבת, `date +%F`). אם היום אינו שבת — צא.
+1. `D` = התאריך של היום (שבת, `date +%F`). אם היום אינו שבת (הרצה ידנית לבדיקה) — רשום `echo "HB $(date -u +%H:%M) rotation: test run ok (not saturday, repo+push work)" >> data/_routine_heartbeat.log`, commit ל-log בלבד, דחוף, וצא. כך הרצה ידנית באמצע השבוע מוכיחה שהריפו מחובר והדחיפה עובדת.
 2. אם `data/sectors/sectors-D.html` כבר קיים **וגם** `data/rotation/index.json` מכיל רשומה עם `date == D` — הדוח של השבוע נכתב. צא.
 3. `git pull --rebase origin main` ואז בדוק `data/rotation/D/`: חייבים 16 קובצי `hist_*.csv`, `breadth.csv`, `industry-group-rankings.csv`, `heatmap.csv`, `manifest.txt`. אין תיקייה או חסר קובץ — המייל עוד לא הגיע או נדחה. רשום `echo "HB $(date -u +%H:%M) rotation: no files in repo for D" >> data/_routine_heartbeat.log`, commit ל-log בלבד, דחוף, וצא.
 
