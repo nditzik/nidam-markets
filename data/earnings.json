@@ -61,23 +61,15 @@
             "ticker": "LLY",
             "name": "Eli Lilly and Company",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/LLY.png",
-            "chg": 6.63,
-            "price": 1373.7,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending",
+            "logo": "data/earnings/logos/LLY.png"
           },
           {
             "ticker": "MA",
             "name": "Mastercard Incorporated Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MA.png",
-            "chg": 4.16,
-            "price": 635.7,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending",
+            "logo": "data/earnings/logos/MA.png"
           },
           {
             "ticker": "INTC",
@@ -90,23 +82,15 @@
             "ticker": "MRK",
             "name": "Merck & Co., Inc.",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MRK.png",
-            "chg": 3.83,
-            "price": 146.33,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending",
+            "logo": "data/earnings/logos/MRK.png"
           },
           {
             "ticker": "SHEL",
             "name": "Shell Plc Sponsored ADR",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SHEL.png",
-            "chg": 2.36,
-            "price": 107.67,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending",
+            "logo": "data/earnings/logos/SHEL.png"
           }
         ]
       },
@@ -118,54 +102,34 @@
             "ticker": "GOOGM",
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
-            "status": "final",
-            "chg": -8.97,
-            "price": 42.53,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending"
           },
           {
             "ticker": "GOOGN",
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
-            "status": "final",
-            "chg": -8.77,
-            "price": 42.53,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending"
           },
           {
             "ticker": "MSFT",
             "name": "Microsoft Corporation",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/MSFT.png",
-            "chg": -0.16,
-            "price": 530.14,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending",
+            "logo": "data/earnings/logos/MSFT.png"
           },
           {
             "ticker": "GOOG",
             "name": "Alphabet Inc. Class C",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOG.png",
-            "chg": -12.29,
-            "price": 282.32,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending",
+            "logo": "data/earnings/logos/GOOG.png"
           },
           {
             "ticker": "GOOGL",
             "name": "Alphabet Inc. Class A",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOGL.png",
-            "chg": -12.64,
-            "price": 283.82,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
+            "status": "pending",
+            "logo": "data/earnings/logos/GOOGL.png"
           },
           {
             "ticker": "GEV",
@@ -807,8 +771,8 @@
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
     "PRU": "2026-11-03",
-    "PRS": "2026-11-03",
     "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "PHG": "2026-11-03",
@@ -896,8 +860,8 @@
     "CNQ": "2026-11-05",
     "NET": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
     "EOG": "2026-11-05",
@@ -965,7 +929,7 @@
     "BEN": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "30/10/2026 01:46",
+    "updatedAt": "30/10/2026 02:02",
     "source": "tradingview"
   }
 }
