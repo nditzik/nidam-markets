@@ -208,9 +208,34 @@ def main(root=ROOT, now=None):
                 b["excluded"] = "fund"
             ok = bars.price_ok(t, b["trade"], b["price"])
             if ok is False:
-                b["excluded"] = "price"
+                bar = bars.get(t)[2].get(b["trade"])
+                # מתחת לשפל היום = כנראה הנפקה/הקצאה (RAPP 28.10: $21 כשהמניה נסחרה ב-$22–24)
+                b["excluded"] = "offering" if bar and b["price"] < bar[3] else "price"
             b["priceCheck"] = ok
             buys.append(b)
+
+    # אותו קונה, אותה מניה, אותו יום דיווח = שורה אחת (Form 4 אחד עם כמה עסקאות; LYCA 30.10)
+    merged, idx = [], {}
+    for b in buys:
+        k = (b["t"], name_key(b["who"]), b["day"], b.get("excluded"))
+        if k not in idx:
+            idx[k] = b
+            merged.append(b)
+            continue
+        m = idx[k]
+        m["shares"] = (m["shares"] or 0) + (b["shares"] or 0)
+        m["value"] = (m["value"] or 0) + (b["value"] or 0)
+        m["price"] = round(m["value"] / m["shares"], 4) if m["shares"] else m["price"]
+        m["tradeTo"] = max(m.get("tradeTo") or m["trade"], b["trade"])
+        m["trade"] = min(m["trade"], b["trade"])
+        if b["before"] is not None and (m["before"] is None or b["before"] < m["before"]):
+            m["before"] = b["before"]
+        if b["after"] is not None and (m["after"] is None or b["after"] > m["after"]):
+            m["after"] = b["after"]
+        if m["before"] and m["after"] is not None:
+            m["holdPct"] = round((m["after"] - m["before"]) / m["before"] * 100, 2)
+        m["parts"] = m.get("parts", 1) + 1
+    buys = merged
 
     # --- מעקב: מסגירת יום הדיווח ---
     for b in buys:
@@ -288,7 +313,10 @@ def main(root=ROOT, now=None):
             continue
         # --- תגים מההקשר ---
         ctx = []
-        if len(same) >= 2:
+        span = (datetime.strptime(b["trade"], "%Y-%m-%d") - datetime.strptime(same[0]["trade"], "%Y-%m-%d")).days if same else 0
+        if len(same) >= 2 and span <= 45:
+            ctx.append(("big", "צובר · %d קניות ב-%d ימים" % (len(same) + 1, max(span, 1))))
+        elif len(same) >= 2:
             ctx.append(("big", "קונה חוזר · %d בשנתיים" % (len(same) + 1)))
         elif same and (datetime.strptime(b["trade"], "%Y-%m-%d") - datetime.strptime(same[-1]["trade"], "%Y-%m-%d")).days <= 60:
             wk = max(1, round((datetime.strptime(b["trade"], "%Y-%m-%d") - datetime.strptime(same[-1]["trade"], "%Y-%m-%d")).days / 7))
@@ -330,6 +358,8 @@ def main(root=ROOT, now=None):
         tags = []
         if b.get("excluded") == "fund":
             tags.append({"k": "dim", "txt": "קרן · לא נספרת"})
+        elif b.get("excluded") == "offering":
+            tags.append({"k": "dim", "txt": "כנראה בהנפקה · לא נספרת"})
         elif b.get("excluded") == "price":
             tags.append({"k": "dim", "txt": "מחיר לא תואם · לא נספרת"})
         else:
@@ -419,7 +449,7 @@ def main(root=ROOT, now=None):
                            "ex": round(sum(x["ex"] for x in r) / len(r), 2), "win": sum(1 for x in r if x["ex"] > 0)}
 
     def slim(b):
-        keys = ("t", "co", "who", "role", "ceo", "filed", "trade", "shares", "price", "value", "before", "after", "holdPct",
+        keys = ("t", "co", "who", "role", "ceo", "filed", "trade", "tradeTo", "parts", "shares", "price", "value", "before", "after", "holdPct",
                 "cap", "offHi", "offLo", "cluster", "clusterN", "url", "since", "sinceAt", "res", "elapsed", "excluded", "tags", "hist")
         return {k: b[k] for k in keys if k in b and b[k] is not None}
 
