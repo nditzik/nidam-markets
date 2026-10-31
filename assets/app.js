@@ -33,7 +33,7 @@
   // insider, briefing, morning, world) — הסטטיסטיקה רציפה. "movers" (הבולטות) חדש — ירד מהבית.
   var GROUPS = {
     market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"]], def: "indices" },
-    calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
+    calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["after", "אחרי הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
     stocks:   { subs: [["consensus", "סיכום"], ["analyze", "נתח מניה"], ["picks", "הנבחרות"], ["candidates", "מועמדים"], ["momentum", "מומנטום"], ["trades", "הצעות לטרייד"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
     news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" }
   };
@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np171";
+  var TA_VER = "np172";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -3242,7 +3242,7 @@
         after = '<div class="prep"><div class="h"><b class="num" dir="ltr">' + esc(rc.sym) + '</b><span>אחרי הדוח · <span class="num" dir="ltr">' + epDate(rc.date) + "</span> · ההכנה מול מה שקרה</span></div>" +
           "<p>" + (rn ? esc(rn.headline || "") + (rn.checks ? ' · <span class="num">' + marks.hit + "</span> בדיקות עמדו, <span class=\"num\">" + marks.mixed + "</span> חלקית, <span class=\"num\">" + marks.miss + "</span> נכשלו" : "") : "ההשוואה המילולית תיכתב בבוקר הקרוב") +
           (re.chg != null ? " · " + bdPct(re.chg) + (o.pct != null ? ' מול <span class="num" dir="ltr">±' + Number(o.pct).toFixed(1) + "%</span> מתומחר" : "") : "") + "</p>" +
-          (rc.newReport && rc.newReport.file ? '<a href="#reports" onclick="if(window.__openReport)window.__openReport(\'' + esc(rc.newReport.file) + '\');return false">הניתוח החדש</a>' : '<a href="#prep" onclick="__goTab(\'prep\');return false">ההכנה המלאה</a>') + "</div>";
+          (rc.newReport && rc.newReport.file ? '<a href="#reports" onclick="if(window.__openReport)window.__openReport(\'' + esc(rc.newReport.file) + '\');return false">הניתוח החדש</a>' : '<a href="#after" onclick="__goTab(\'after\');return false">ההשוואה המלאה</a>') + "</div>";
       }
       repPan = panHd("ניתוח דוחות", '<span class="mute"><span class="num">' + reps.length + "</span> דוחות באתר</span>", bdGo("reports", "כל הניתוחים")) + '<div class="pb"><div class="chips bd-chips">' + chips + "</div>" + after + "</div>";
     }
@@ -3994,24 +3994,36 @@
       "<span>תיאור מבוסס נתונים, לא ייעוץ השקעות.</span></div>";
     return '<article class="ep-card ep-after" id="ep-' + esc(rc.sym) + '">' + head + words + stats + grid + foot + "</article>";
   }
+  // np172 (31.10.2026, איציק: "באירועים קטגוריה של אחרי הדוח — מה שעולה דוח חדש עובר לשם"): "לקראת הדוח" =
+  // רק חברות שעוד לא דיווחו (items); חברה שדיווחה (recent) עוברת ללשונית-משנה משלה, "אחרי הדוח" (#panel-after).
+  function epChips(list, done) {
+    return '<div class="chips bd-chips ep-chips2">' + list.map(function (it) {
+      return '<a class="tag ep-chip2" href="#ep-' + esc(it.sym) + '" onclick="document.getElementById(\'ep-' + esc(it.sym) + '\').scrollIntoView({behavior:\'smooth\'});return false">' +
+        epLogo(it) + '<b class="num" dir="ltr">' + esc(it.sym) + "</b> <span class=\"mute\">" +
+        (done ? "דיווחה " + epDate(it.date) + (it.newReport && it.newReport.file ? " · ניתוח חדש" : "") : epDow(it.date) + " " + epDate(it.date) + " · " + epWhen(it)) + "</span></a>";
+    }).join("") + "</div>";
+  }
   function renderPrep(el) {
     if (!el) return;
     var items = (PREPD && PREPD.items) || [], later = (PREPD && PREPD.later) || [], recent = (PREPD && PREPD.recent) || [];
     // שלב 7 (10.10.2026): פאנל-כותרת עם הצ'יפים במקום הקיקר וה-H2; הכרטיסים עצמם (ep-card) נשארו כמו שהם
-    var chips = (items.length || recent.length) ? '<div class="chips bd-chips ep-chips2">' + items.concat(recent).map(function (it) {
-        return '<a class="tag ep-chip2" href="#ep-' + esc(it.sym) + '" onclick="document.getElementById(\'ep-' + esc(it.sym) + '\').scrollIntoView({behavior:\'smooth\'});return false">' +
-          epLogo(it) + '<b class="num" dir="ltr">' + esc(it.sym) + "</b> <span class=\"mute\">" + (recent.indexOf(it) >= 0 ? "דיווחה " + epDate(it.date) : epDow(it.date) + " " + epDate(it.date) + " · " + epWhen(it)) + "</span></a>";
-      }).join("") + "</div>" : "";
     var intro = '<section class="pan"' + bdSpan(12) + ">" +
       panHd("לקראת הדוח · השבועיים הקרובים", '<span class="mute">חברות שיש להן ניתוח דוח קודם באתר · המספרים מתעדכנים כל רבע שעה, ההכנה המילולית נכתבת בבוקר שלפני שבוע הדוח</span>') +
-      '<div class="pb">' + (chips || '<span class="mute">אף חברה עם ניתוח קודם באתר לא מדווחת בשבועיים הקרובים.' +
-        (later.length ? " הבאות בתור: " + later.slice(0, 6).map(function (x) { return '<b class="num" dir="ltr">' + esc(x.sym) + "</b> " + epDate(x.date); }).join(" · ") : "") + "</span>") + "</div></section>";
-    var body = items.map(epCard).join("");
-    if (recent.length) {
-      body += '<section class="pan"' + bdSpan(12) + ">" + panHd("אחרי הדוח · ההכנה מול מה שקרה", '<span class="mute">הבדיקות שקבענו לפני הדוח, מה יצא בפועל, התחזית לפני ואחרי, וכמה המניה זזה מול מה שהאופציות תמחרו</span>') + "</section>" +
-        recent.map(epReviewCard).join("");
-    }
-    el.innerHTML = '<div class="board ep-board">' + intro + body + "</div>";
+      '<div class="pb">' + (items.length ? epChips(items, false) : '<span class="mute">אף חברה עם ניתוח קודם באתר לא מדווחת בשבועיים הקרובים.' +
+        (later.length ? " הבאות בתור: " + later.slice(0, 6).map(function (x) { return '<b class="num" dir="ltr">' + esc(x.sym) + "</b> " + epDate(x.date); }).join(" · ") : "") + "</span>") +
+      (recent.length ? '<p class="mute" style="margin:10px 0 0">חברות שכבר דיווחו עברו ל' + bdGo("after", "אחרי הדוח") + ' (<span class="num">' + recent.length + "</span>).</p>" : "") +
+      "</div></section>";
+    el.innerHTML = '<div class="board ep-board">' + intro + items.map(epCard).join("") + "</div>";
+    renderAfter(document.getElementById("panel-after"));
+  }
+  function renderAfter(el) {
+    if (!el) return;
+    var recent = (PREPD && PREPD.recent) || [];
+    var intro = '<section class="pan"' + bdSpan(12) + ">" +
+      panHd("אחרי הדוח · ההכנה מול מה שקרה", '<span class="mute">חברה עוברת לכאן כשהיא מדווחת, ונשארת שבועיים · הבדיקות שקבענו לפני הדוח, מה יצא בפועל, התחזית לפני ואחרי, וכמה המניה זזה מול מה שהאופציות תמחרו</span>') +
+      '<div class="pb">' + (recent.length ? epChips(recent, true) : '<span class="mute">אף חברה עם ניתוח באתר לא דיווחה בשבועיים האחרונים. ' + bdGo("prep", "לקראת הדוח") + "</span>") +
+      "</div></section>";
+    el.innerHTML = '<div class="board ep-board">' + intro + recent.map(epReviewCard).join("") + "</div>";
   }
 
   /* ---------- הנבחרות (30.9.2026, np93) ----------
@@ -5040,7 +5052,7 @@
       // הנבחרות (30.9.2026): המהדורה + יומן הכנות; היומן לא חוסם את הקלפים
       Promise.all([fetchJSON("data/earnings_prep.json"), fetchJSON("data/earnings_prep_notes.json").catch(function () { return {}; }),
         fetchJSON("data/earnings_review_notes.json").catch(function () { return {}; })])
-        .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; PREPR = r[2]; renderPrep(document.getElementById("panel-prep")); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("prep", [r[1], r[2]]); })
+        .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; PREPR = r[2]; renderPrep(document.getElementById("panel-prep")); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("prep", r[1]); noteSig("after", r[2]); })
         .catch(function () { if (!PREPD) renderPrep(document.getElementById("panel-prep")); });
       Promise.all([fetchJSON("data/picks.json"), fetchJSON("data/picks_ledger.json").catch(function () { return null; })])
         .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); renderHomePicks(); noteSig("picks", r[0]); })
