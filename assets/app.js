@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np164";
+  var TA_VER = "np165";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4378,7 +4378,8 @@
   function insChartHtml(r, bars) {
     var h = INSDD.history[r.t], W = 760, H = 220, P = 8;
     var b = bars.slice(-500), n = b.length;
-    if (n < 20) return '<div class="mute s">אין מספיק נרות לגרף.</div>';
+    // מניה חדשה (הנפקה — LYCA 31.10: 6 נרות) מקבלת גרף קצר + הערה, לא "אין גרף"
+    if (n < 2) return '<div class="mute s">המניה התחילה להיסחר רק עכשיו — הגרף יופיע אחרי כמה ימי מסחר.</div>';
     var ds = b.map(function (x) { return x[0]; });
     var lo = Infinity, hi = -Infinity;
     b.forEach(function (x) { if (x[4] < lo) lo = x[4]; if (x[4] > hi) hi = x[4]; });
@@ -4399,7 +4400,8 @@
     return '<div class="ins-svgw"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(r.t) + ': שנתיים של מחיר עם קניות ומכירות של אנשי פנים">' + grid +
       '<path d="' + path + '"></path>' + mk + ring + "</svg>" +
       '<span class="ins-ax t num">$' + fmt(hi, hi >= 100 ? 0 : 2) + '</span><span class="ins-ax b num">$' + fmt(lo, lo >= 100 ? 0 : 2) + "</span></div>" +
-      '<div class="ins-xax num"><span>' + insDm(ds[0]) + "." + ds[0].slice(2, 4) + "</span><span>" + insDm(ds[n - 1]) + "." + ds[n - 1].slice(2, 4) + "</span></div>";
+      '<div class="ins-xax num"><span>' + insDm(ds[0]) + "." + ds[0].slice(2, 4) + "</span><span>" + insDm(ds[n - 1]) + "." + ds[n - 1].slice(2, 4) + "</span></div>" +
+      (n < 250 ? '<div class="mute s ins-young">המניה נסחרת רק מ-<span class="num">' + insDm(ds[0]) + "." + ds[0].slice(2, 4) + "</span> (" + n + " ימי מסחר), לכן הגרף קצר.</div>" : "");
   }
   function bindInsDaily(el) {
     if (!INSDD) return;
