@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np168";
+  var TA_VER = "np169";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -719,20 +719,18 @@
         hide_side_toolbar: true,
         allow_symbol_change: false,
         withdateranges: true,
-        // שלושה סוגי-ממוצע שונים בכוונה: צביעת overrides היא פר-סוג אינדיקטור
-        // (כל מופעי אותו סוג חולקים צבע), אז צבע נפרד לכל קו מחייב EMA/WMA/SMA.
-        // שם ה-plot של הממוצעים הוא "ma" — "plot" לא נתפס (נבדק אמפירית).
+        // צביעת overrides היא פר-סוג אינדיקטור (כל מופעי אותו סוג חולקים צבע).
+        // np169 (31.10.2026, איציק: "אני רוצה SMA 50"): 50 ו-200 פשוטים, כמו בשאר האתר (היה WMA 50) —
+        // לכן שניהם באותו צבע (כחול); EMA 20 בירוק. שם ה-plot של הממוצעים הוא "ma" ("plot" לא נתפס).
         studies: [
           { id: "MAExp@tv-basicstudies", inputs: { length: 20 } },
-          { id: "MAWeighted@tv-basicstudies", inputs: { length: 50 } },
+          { id: "MASimple@tv-basicstudies", inputs: { length: 50 } },
           { id: "MASimple@tv-basicstudies", inputs: { length: 200 } },
         ],
         studies_overrides: {
           "moving average exponential.ma.color": "#43a047",
           "moving average exponential.ma.linewidth": 2,
-          "moving average weighted.ma.color": "#1e88e5",
-          "moving average weighted.ma.linewidth": 2,
-          "moving average.ma.color": "#e53935",
+          "moving average.ma.color": "#1e88e5",
           "moving average.ma.linewidth": 2,
         },
       });
