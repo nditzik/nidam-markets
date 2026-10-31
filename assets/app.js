@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np169";
+  var TA_VER = "np170";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -720,18 +720,26 @@
         allow_symbol_change: false,
         withdateranges: true,
         // צביעת overrides היא פר-סוג אינדיקטור (כל מופעי אותו סוג חולקים צבע).
-        // np169 (31.10.2026, איציק: "אני רוצה SMA 50"): 50 ו-200 פשוטים, כמו בשאר האתר (היה WMA 50) —
-        // לכן שניהם באותו צבע (כחול); EMA 20 בירוק. שם ה-plot של הממוצעים הוא "ma" ("plot" לא נתפס).
+        // np170 (31.10.2026, איציק): EMA 20 ירוק · SMA 50 כחול · SMA 150 תכלת · SMA 200 אדום.
+        // שלושה SMA בשלושה צבעים — לכן 150/200 דרך "MA Cross" (סוג אחר: שני ממוצעים פשוטים עם plot נפרד לכל אחד,
+        // inputs in_0/in_1), וסימוני החצייה שלו מוסתרים. שם ה-plot של הממוצע הרגיל הוא "ma" ("plot" לא נתפס).
+        // ⚠️ מפתחות MA Cross לא נבדקו (TradingView חסום בסנדבוקס) — לאמת אצל איציק.
         studies: [
           { id: "MAExp@tv-basicstudies", inputs: { length: 20 } },
           { id: "MASimple@tv-basicstudies", inputs: { length: 50 } },
-          { id: "MASimple@tv-basicstudies", inputs: { length: 200 } },
+          { id: "MACross@tv-basicstudies", inputs: { in_0: 150, in_1: 200 } },
         ],
         studies_overrides: {
           "moving average exponential.ma.color": "#43a047",
           "moving average exponential.ma.linewidth": 2,
           "moving average.ma.color": "#1e88e5",
           "moving average.ma.linewidth": 2,
+          "ma cross.short:plot.color": "#4fc3f7",
+          "ma cross.short:plot.linewidth": 2,
+          "ma cross.long:plot.color": "#e53935",
+          "ma cross.long:plot.linewidth": 2,
+          "ma cross.crosses.visible": false,
+          "ma cross.crosses.transparency": 100,
         },
       });
     });
