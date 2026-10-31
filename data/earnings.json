@@ -12,44 +12,68 @@
             "ticker": "XOM",
             "name": "Exxonmobil Holdings Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/XOM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/XOM.png",
+            "chg": 2.16,
+            "price": 187.25,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "ABBV",
             "name": "AbbVie, Inc.",
             "when": "before",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/ABBV.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": 1.41,
+            "price": 294.89,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "CVX",
             "name": "Chevron Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/CVX.png"
+            "status": "final",
+            "logo": "data/earnings/logos/CVX.png",
+            "chg": 1.75,
+            "price": 235.52,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "AZN",
             "name": "AstraZeneca PLC",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/AZN.png"
+            "status": "final",
+            "logo": "data/earnings/logos/AZN.png",
+            "chg": 7.02,
+            "price": 186.65,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "BP",
             "name": "BP PLC Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/BP.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BP.png",
+            "chg": 0.08,
+            "price": 50.39,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "GD",
             "name": "General Dynamics Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/GD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/GD.png",
+            "chg": 0.48,
+            "price": 372.59,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           }
         ]
       },
@@ -61,9 +85,13 @@
             "ticker": "AMZN",
             "name": "Amazon.com, Inc.",
             "when": "after",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/AMZN.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -1.41,
+            "price": 240.35,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "LLY",
@@ -102,8 +130,12 @@
             "ticker": "INTC",
             "name": "Intel Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/INTC.png"
+            "status": "final",
+            "logo": "data/earnings/logos/INTC.png",
+            "chg": -28.58,
+            "price": 65.76,
+            "reactDate": "2026-10-30",
+            "baseDate": "2026-10-29"
           },
           {
             "ticker": "SHEL",
@@ -824,8 +856,8 @@
     "CNQ": "2026-11-05",
     "PH": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "NET": "2026-11-05",
     "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
@@ -898,7 +930,7 @@
     "TU": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "31/10/2026 03:16",
+    "updatedAt": "31/10/2026 03:31",
     "source": "tradingview"
   }
 }
