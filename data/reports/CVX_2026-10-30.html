@@ -1,0 +1,466 @@
+<title>CVX דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .logo{height:76px;width:auto;background:#fff;border-radius:10px;padding:8px 12px;margin-bottom:20px;display:inline-block}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="Chevron">
+    <div class="eyebrow">Chevron Corporation · NYSE: CVX · תוצאות רבעון שלישי 2026</div>
+    <h1>המלחמה עם איראן הקפיצה את רווחי הזיקוק. שברון הרוויחה פי 3 מאשתקד, צמצמה חוב, והמניה בשיא כל הזמנים</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-30 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת האנליסטים</span>
+      <span>עודכן: 31.10.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>שברון היא חברת האנרגיה השנייה בגודלה בארה"ב: היא מפיקה נפט וגז, מזקקת אותם לדלק ומוכרת בתחנות</h2>
+  <p class="lead">Chevron היא חברת נפט "משולבת": היא שולטת בכל השרשרת, מהבאר ועד משאבת הדלק. היא מפיקה כ-4 מיליון חביות שווה-ערך נפט ביום, כמחציתן בארה"ב. בבעלותה בתי זיקוק שמעבדים כ-1.75 מיליון חביות ביום, והיא מוכרת דלק תחת המותגים Chevron ו-Texaco.</p>
+  <p class="body" style="margin-top:14px">לחברה שני מנועים עיקריים. <strong>Upstream (הפקה)</strong>: חיפוש והפקה של נפט וגז. הנכסים המרכזיים: אגן הפרמיאן בטקסס (מעל מיליון חביות ביום), מפרץ מקסיקו (שנקרא היום "מפרץ אמריקה"), שדה טנגיז בקזחסטן, מתקני גז טבעי נוזלי באוסטרליה, ושדות לוויתן ותמר בים התיכון. ב-2025 היא רכשה את Hess, ואיתה נתח בגיאנה ושדות בבאקן שבצפון דקוטה. <strong>Downstream (זיקוק ושיווק)</strong>: בתי זיקוק בארה"ב ובאסיה, וגם כימיקלים, דרך שותפות עם Phillips 66.</p>
+  <p class="body">למשקיע הישראלי: שברון היא המפעילה של מאגרי הגז לוויתן ותמר. ברבעון הזה הם קבעו שיא תפוקה.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>ExxonMobil</h3>
+      <p>הגדולה ביותר בארה"ב, ובעלת מודל עסקי דומה (משולבת). פרסמה דוח באותו יום, גם היא עם רווחי זיקוק חריגים. אקסון גדולה יותר בכימיקלים ובגיאנה, ושברון חזקה יותר בגז באוסטרליה ובישראל.</p>
+    </div>
+    <div class="col">
+      <h3>Shell, BP, TotalEnergies</h3>
+      <p>הענקיות האירופיות. בשנים האחרונות הן השקיעו יותר באנרגיה מתחדשת, ונסחרות במכפילים נמוכים יותר. שברון נשארה ממוקדת בנפט ובגז, ועכשיו גם בייצור חשמל למרכזי נתונים.</p>
+    </div>
+    <div class="col">
+      <h3>ConocoPhillips ו-Saudi Aramco</h3>
+      <p>קונוקו היא מפיקה טהורה, בלי בתי זיקוק, ולכן לא נהנית מהזינוק ברווחי הזיקוק. ארמקו היא הענקית הממלכתית הסעודית. המלחמה במזרח התיכון פגעה ישירות ביצוא שלה.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רווח של $10.4 מיליארד, כמעט פי 3 מאשתקד. הזיקוק, ולא ההפקה, היה הכוכב של הרבעון</h2>
+  <p class="lead">הרווח המנוקה הגיע ל-$10.4B, או $5.28 למניה, מול $1.85 ברבעון המקביל אשתקד והרבה מעל הצפי ($4.87). הסיבה: המלחמה בין ארה"ב וישראל לאיראן, והסגירה בפועל של מצר הורמוז. מחיר נפט ברנט עמד בממוצע על $97 לחבית, לעומת $69 לפני שנה. וחשוב יותר: כ-10% מכושר הזיקוק בעולם מושבת, ולכן מרווחי הזיקוק זינקו. בתי הזיקוק של שברון בארה"ב עבדו ב-98% מהקיבולת, שיא, ורווחי הזיקוק בארה"ב קפצו מ-$638M ל-$3.6B.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>שברון לא "מנצלת" את הרווחים כדי לחלק יותר לבעלי המניות. היא ממשיכה לקנות מניות בקצב הרגיל ($2.5B ברבעון), ומשתמשת בעודף המזומנים להחזר חוב. החוב נטו ירד ב-$7.8B ברבעון אחד. סמנכ"לית הכספים, אימר בונר: "אנחנו חושבים בעשורים, לא ברבעונים". בפועל, החברה מתכוננת ליום שבו המלחמה תסתיים והמחירים ירדו.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>רווח פי 3, תזרים פי 2, חוב נטו במחצית. רק התפוקה ירדה מעט</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$5.28</div><div class="l">רווח מנוקה למניה</div><div class="d up">פי 2.9 · הצפי: $4.87</div></div>
+    <div class="kpi"><div class="v num">$67.8B</div><div class="l">הכנסות</div><div class="d up">+36% · הצפי: $61.8B</div></div>
+    <div class="kpi"><div class="v num">$14.2B</div><div class="l">תזרים חופשי מתואם</div><div class="d up">פי 2 · הצפי: ~$11.4B</div></div>
+    <div class="kpi"><div class="v num">3.98M</div><div class="l">חביות שווה-ערך ביום</div><div class="d down">‏−2.6% · המלחמה וחוזי חלוקה</div></div>
+    <div class="kpi"><div class="v num">17.7%</div><div class="l">תשואה על ההון המושקע</div><div class="d up">לעומת 7.6% אשתקד</div></div>
+    <div class="kpi"><div class="v num">$20.7B</div><div class="l">חוב נטו</div><div class="d up">‏−$7.8B ברבעון · 0.4x תזרים</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הרווח הרשמי (GAAP) היה $9.9B, או $5.06 למניה. הפער מהרווח המנוקה נובע מהפרשה משפטית ($160M), מהפחתת נכס ($110M), מעלויות פנסיה ($24M) ומהשפעות מטבע (‏−$143M). בנוסף, "השפעות תזמון" גרעו כ-$1.6B מהרווח: כשמחירי הנפט עולים מהר, חלק מהרווח נרשם רק ברבעון שבו הנפט נמסר בפועל. אם המחירים יירדו, הרווח הזה "יחזור".</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הרווח</div>
+  <h2>ברבעון הקודם ההפקה הובילה. ברבעון הזה הזיקוק כמעט השתווה אליה</h2>
+  <p class="body">בגרף: הרווח של כל אחד משני המגזרים, במיליארדי דולרים, לפי רבעון. ההפקה (Upstream) נהנית ממחיר נפט גבוה. הזיקוק (Downstream) נהנה מהפער בין מחיר הנפט הגולמי למחיר הדלק, והפער הזה התרחב מאוד בגלל המלחמה.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 370" role="img" aria-label="רווח לפי מגזר">
+      <g font-size="13" fill="var(--fg)">
+        <rect x="770" y="14" width="14" height="14" fill="var(--accent)"/>
+        <text x="762" y="26" text-anchor="start">הפקה (Upstream)</text>
+        <rect x="610" y="14" width="14" height="14" fill="#e3a21a"/>
+        <text x="602" y="26" text-anchor="start">זיקוק ושיווק (Downstream)</text>
+      </g>
+      <line x1="60" y1="300" x2="780" y2="300" stroke="var(--muted)"/>
+      <g fill="var(--accent)">
+        <rect x="105" y="212" width="70" height="88"/>
+        <rect x="335" y="82" width="70" height="218"/>
+        <rect x="565" y="148" width="70" height="152"/>
+      </g>
+      <g fill="#e3a21a">
+        <rect x="185" y="270" width="70" height="30"/>
+        <rect x="415" y="170" width="70" height="130"/>
+        <rect x="645" y="168" width="70" height="132"/>
+      </g>
+      <g font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="140" y="203">$3.3B</text><text x="220" y="261">$1.1B</text>
+        <text x="370" y="73">$8.2B</text><text x="450" y="161">$4.9B</text>
+        <text x="600" y="139">$5.7B</text><text x="680" y="159">$4.9B</text>
+      </g>
+      <g font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="180" y="324">Q3'25</text><text x="410" y="324">Q2'26</text><text x="640" y="324" font-weight="700">Q3'26</text>
+      </g>
+      <g font-size="13" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="180" y="346">Brent $69</text><text x="410" y="346">Brent $104</text><text x="640" y="346">Brent $97</text>
+      </g>
+    </svg>
+    <figcaption>רווח רשמי לפי מגזר (לפני "שאר הפעילות", שהיא הוצאה של ‏−$0.7B ברבעון). מחיר ברנט ממוצע לרבעון. מקור: הודעת החברה, 30.10.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>זיקוק: שנת שיא</h3>
+      <p>רווחי הזיקוק בארה"ב קפצו פי 5.6, ל-$3.6B, ורווחי הזיקוק בעולם היו הגבוהים לפחות מזה שש שנים. בתי הזיקוק בארה"ב עיבדו 1.09 מיליון חביות ביום, שיא. קטליזטור חדש שהחברה פיתחה העלה ב-10% את תפוקת הסולר בבתי הזיקוק הגדולים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>הפקה: מחיר גבוה, כמות נמוכה מעט</h3>
+      <p>רווחי ההפקה עלו ל-$5.7B (+73%), אבל ירדו מהרבעון הקודם, שבו הנפט היה יקר יותר. התפוקה הבינלאומית ירדה ב-109 אלף חביות ביום בגלל המלחמה, ובגלל חוזים שבהם מחיר גבוה מקטין את חלקה של החברה בנפט.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>יתרון: הספינות של שברון</h3>
+      <p>מחירי ההובלה הימית והביטוח זינקו. לשברון יש צי מכליות משלה או בחכירה ארוכת טווח, שנחתמה לפני המלחמה במחירים נמוכים. בנוסף, כמחצית מהנפט שהיא מזקקת מגיע מהבארות שלה. וירת': "זה תורם מהותי לתוצאות".</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · ונצואלה</div>
+  <h2>הימור של $7 מיליארד: הכפלת התפוקה בוונצואלה עד 2031, בעלות של פחות מ-$20 לחבית</h2>
+  <p class="body">שברון היא חברת הנפט האמריקאית היחידה שנשארה בוונצואלה לאורך כל שנות הסנקציות. עכשיו, עם תנאים פיסקליים חדשים ושטחים מורחבים, היא מתכננת להשקיע עם שותפותיה $7B בחמש שנים, ולהכפיל את התפוקה של שלוש חברות משותפות מכ-300 אלף ל-600 אלף חביות ביום עד 2031.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מה השתנה</th><th>למה זה חשוב</th></tr></thead>
+      <tbody>
+        <tr><td>שברון משווקת 100% מהנפט, ולא חברת הנפט הממלכתית PDVSA</td><td>שברון שולטת בתזרים ומשלמת את המסים והתמלוגים בעצמה</td></tr>
+        <tr><td>תנאים פיסקליים חדשים, עם סעיפי יציבות ובוררות בינלאומית</td><td>לפי וירת', הם "טובים כמו בכל מקום בעולם"</td></tr>
+        <tr><td>הפרויקט ממומן מההכנסות שלו עצמו</td><td>שברון לא חושפת הון חדש לסיכון</td></tr>
+        <tr><td>עלות כוללת של פחות מ-$20 לחבית, בלי צורך בתשתיות גדולות</td><td>רווחי מאוד גם במחירי נפט נמוכים</td></tr>
+        <tr><td>מעבר לשיטת "שווי מאזני" ברבעון</td><td>חודש אחד של תפוקה מוונצואלה כבר נכלל בתוצאות</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>ונצואלה הופכת מנכס בעייתי למנוע צמיחה זול. הסיכון ברור: היסטוריה של הלאמות ופוליטיקה לא יציבה. וירת' ענה שהדרך הטובה ביותר לנהל את הסיכון היא "לא להסתמך על חוזים, אלא לעשות את מה שאמרת". וגם: שברון שולטת עכשיו בכסף, ולא הממשלה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · מה עוד קרה ברבעון</div>
+  <h2>חוב יורד, באקן משתפר, קידוחי חיפוש מתרחבים, ושברון נכנסת לעסקי החשמל</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>באקן: הוזלה של 50% בהובלה</h3>
+      <p>הסכם חדש עם Hess Midstream יוזיל בחצי את עלויות ההובלה בבאקן. העסקה תוריד מהמאזן $3.7B חוב ותעלה את התשואה על ההון בחצי נקודה. בסגירה, בסוף הרבעון הרביעי, תירשם הפסד חשבונאי חד-פעמי של $3B–$4B, בלי השפעה על המזומנים.</p>
+    </div>
+    <div class="col">
+      <h3>חיפושים: תקציב גדל ב-50%</h3>
+      <p>תגלית נפט וגז באנגולה, עם עמודת נפט של יותר מ-600 מטר. הסכם חיפוש בלוב. 15 תגליות בשנתיים, בשיעור הצלחה של 40%. החברה מגדילה את תקציב החיפושים ב-50% לעומת 2025, ומשתמשת ב-AI כדי לאתר מטרות.</p>
+    </div>
+    <div class="col">
+      <h3>חשמל למרכזי נתונים: Project Kilby</h3>
+      <p>תחנת כוח בהספק של 2.67 ג'יגה-וואט במערב טקסס, עם הסכם ל-20 שנה עם Microsoft. התחנה מנותקת מרשת החשמל הציבורית ("behind the meter"). צפי לחשמל ראשון ב-2028 ולהפעלה מלאה ב-2031. ההחלטה הסופית על ההשקעה עוד לא התקבלה.</p>
+    </div>
+    <div class="col">
+      <h3>קזחסטן ועיראק</h3>
+      <p>המשא ומתן על הארכת הזיכיון בשדה טנגיז, הנכס הגדול של החברה, נמשך כבר יותר משנה. וירת': "אני לא רואה דגלים אדומים". במקביל החברה מנהלת משא ומתן על פיתוח שדות בעיראק, בתנאים "אטרקטיביים יותר מבעבר".</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · התחזית והקצאת ההון</div>
+  <h2>אין שינוי בתוכנית: דיבידנד, השקעות, מאזן, ורק אחר כך קניית מניות</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>נושא</th><th>מה נאמר</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>דיבידנד</td><td>$1.78 לרבעון (תשואה של כ-3%). 39 שנים רצופות של העלאות דיבידנד</td></tr>
+        <tr class="hl"><td>קניית מניות</td><td>$2.5–$3B לרבעון, ללא שינוי. ברבעון: $2.5B</td></tr>
+        <tr><td>השקעות הון 2026</td><td>בקצה התחתון של התחזית. ברבעון הרביעי ההשקעה תעלה, כרגיל</td></tr>
+        <tr><td>השקעות 2027</td><td>יפורסמו בדצמבר, אחרי אישור הדירקטוריון</td></tr>
+        <tr><td>פרמיאן</td><td>שמירה על "רמה" של מעל מיליון חביות ביום, ±3%. עלות ההשקעה לחבית ירדה ב-25%</td></tr>
+        <tr><td>באקן</td><td>מעבר מ-3 ל-2 אסדות קידוח, בלי ירידה בתפוקה (180 אלף חביות ביום)</td></tr>
+        <tr><td>רבעון רביעי</td><td>הפסד חשבונאי חד-פעמי של $3B–$4B על עסקת Hess Midstream</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="tl">
+    <li><div class="when">דצמבר 2026</div><div class="what">תוכנית ההשקעות ל-2027</div></li>
+    <li><div class="when">סוף 2026</div><div class="what">תפוקה ברוטו בוונצואלה של כ-300 אלף חביות ביום; סגירת עסקת Hess Midstream</div></li>
+    <li><div class="when">2027</div><div class="what">הפעלה מלאה של שני מתקני הכימיקלים החדשים של CPChem (טקסס וקטאר)</div></li>
+    <li><div class="when">2028</div><div class="what">חשמל ראשון מ-Project Kilby</div></li>
+    <li><div class="when">2031</div><div class="what">600 אלף חביות ביום בוונצואלה</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: אנחנו לא משנים כלום, אנחנו בונים צמיחה לעשור הבא, AI כבר מייצר ערך, ולא נקנה בשיא</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"שום שינוי בהקצאת ההון"</h3>
+      <p>בונר הזכירה שבתוך הרבעון נפט ברנט נע בין $68 ל-$132, פער של $64. בתנודתיות כזו, היא אמרה, "אנחנו לא משנים שום דבר בטווח הקצר".</p>
+    </div>
+    <div class="col">
+      <h3>"לא עושים עסקאות גדולות בשיא"</h3>
+      <p>וירת' על מיזוגים ורכישות: "ספרי ההיסטוריה לא מלאים בעסקאות מצוינות שנעשו בנפט של $100". המסר: שברון לא תקנה חברות בזמן שהמחירים בשיא.</p>
+    </div>
+    <div class="col">
+      <h3>"נערמות אופציות צמיחה"</h3>
+      <p>ונצואלה, עיראק, קזחסטן, חיפושים בנמיביה, במצרים ובסורינאם, וגם חשמל. וירת': "התיק שלנו היום הוא הטוב ביותר שהיה אי פעם". המיקוד הוא בצמיחה שאחרי 2030.</p>
+    </div>
+    <div class="col">
+      <h3>"2026 היא שנת המפנה של ה-AI"</h3>
+      <p>AI כבר הניב יותר מ-$100M ערך מתחילת השנה: אופטימיזציה של בארות, תחזוקה חזויה, וזיהוי של 150 מטרות קידוח חדשות במפרץ מקסיקו. כלי פנימי בשם ScoutAI מנתח אגן נפט בשעות במקום בשבועות.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>אף אחד לא שאל, וההנהלה לא אמרה, מה יקרה לרווחים כשהמלחמה תסתיים. הרווח של הרבעון הזה נשען על מחיר נפט של כמעט $100, ועל 10% מכושר הזיקוק בעולם שמושבת. מארק נלסון רמז: "אני מצפה שהמרווחים יתמתנו בסופו של דבר". הצמצום האגרסיבי של החוב הוא התשובה השקטה: לצבור כוח לימים פחות טובים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים שאלו על ונצואלה, קזחסטן ובאקן, ולא על הרבעון. השוק כבר מסתכל על 2030</h2>
+  <p class="body">16 אנליסטים שאלו שאלות, ואף אחד מהם לא שאל על הרווח של הרבעון או על הצפי לרבעון הבא. השאלות התמקדו בנכסים חדשים, בהקצאת הון ובטכנולוגיה. זה סימן שהשוק סומך על הביצוע, ומחפש את הסיפור לטווח ארוך.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>צמיחה מחוץ לארה"ב: ונצואלה (JPMorgan, Wells Fargo), קזחסטן (Morgan Stanley), עיראק וחיפושים (BMO, Bernstein). האנליסטים רוצים לדעת מאיפה תבוא הצמיחה אחרי שהפרמיאן הגיע לרמה קבועה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>$64: הפער בין המחיר הנמוך ($68) לגבוה ($132) של נפט ברנט ברבעון אחד. זו תנודתיות קיצונית, והיא מסבירה למה ההנהלה מסרבת להתחייב לקניות מניות גדולות יותר.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>הקצאת הון. אנליסט William Blair שאל אם המאזן ה"נקי" מצדיק שינוי. בונר: "לא משנים שום דבר". זה מאכזב את מי שקיווה להגדלה של קניית המניות, אבל עקבי עם 19 מתוך 23 השנים האחרונות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>קזחסטן. דיווחים בתקשורת דיברו על דרישות הממשלה לתשלומים חד-פעמיים או לשינוי באחזקות. וירת' סירב להתייחס, ואמר רק ש"רשימת הנושאים הצטמצמה לליבה". טנגיז הוא נכס קריטי, והזיכיון פג ב-2033.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"ספרי ההיסטוריה לא מלאים בעסקאות מצוינות שנעשו בנפט של $100 או בגז של $10" (וירת'). זו פילוסופיה של חברה שעברה הרבה מחזורים, ויודעת שהשיא לא נמשך לנצח.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>כ-50% מהנפט שבתי הזיקוק של שברון מעבדים מגיע היום מההפקה שלה עצמה, לעומת 15% בעבר. זה הופך את החברה לעמידה יותר: היא לא תלויה בספקים, בהובלה או בביטוח של אחרים. במשבר, זה שווה הרבה.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>שברון מתנהגת כמו חברה שמצפה לסוף המלחמה: היא לא מגדילה את קניית המניות ולא את ההשקעות, מקטינה חוב ובונה אופציות צמיחה זולות (ונצואלה ב-$20 לחבית). למי שקונה עכשיו, השאלה היא לא כמה שברון מרוויחה היום, אלא כמה היא תרוויח כשהנפט יחזור ל-$70.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · איך השוק הגיב</div>
+  <h2>עלייה של כ-2% ושיא כל הזמנים, אחרי זינוק של יותר מ-50% מתחילת השנה</h2>
+  <p class="body">לפני הדוח (29.10) המניה סגרה ב-$231.46. ביום הדוח (30.10) היא עלתה כ-1.5%–2%, נסחרה סביב $235 ונגעה בשיא כל הזמנים של $236.48. שווי השוק: כ-$460 מיליארד. מתחילת 2026 המניה עלתה ביותר מ-50%. השפל של 52 השבועות האחרונים: $146.49.</p>
+  <p class="body">אחרי הדוח, Goldman Sachs העלה את מחיר היעד ל-$241 (קנייה), UBS ל-$235 ו-Mizuho ל-$234. William Blair התחיל לסקר את המניה בהמלצת "תשואת יתר". מחיר היעד הממוצע של האנליסטים (כ-$214) עדיין נמוך מהמחיר בשוק, כלומר המניה עלתה מהר יותר מהתחזיות שלהם.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>העלייה המתונה (2%) אחרי עקיפה גדולה של התחזית אומרת שהרבה כבר מתומחר. לפי ה-Motley Fool, המניה נסחרת במכפיל של כ-16 על רווחי 12 החודשים האחרונים ($14.25 למניה), אבל אלה כנראה רווחי שיא. תשואת הדיבידנד ירדה לכ-3%, הנמוכה מזה שנים. מי שמחזיק נהנה, ומי שנכנס עכשיו קונה בשיא המחזור.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: הרווחים של היום נשענים על מלחמה, ומלחמות נגמרות</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>סוף המלחמה</h3><p>הסכם עם איראן ופתיחה של מצר הורמוז יורידו את מחיר הנפט ואת מרווחי הזיקוק. רווחי הזיקוק בארה"ב עלולים לחזור מ-$3.6B לפחות מ-$1B ברבעון, כמו אשתקד.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>קזחסטן (טנגיז)</h3><p>הזיכיון בשדה, מהנכסים הגדולים של החברה, פג ב-2033. דרישות ממשלתיות לתשלומים או לשינוי באחזקות עלולות לפגוע בערך. ההנהלה לא מוסרת פרטים.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>ונצואלה</h3><p>היסטוריה של הלאמות, סנקציות ומשטר לא יציב. השקעה של $7B (בחלקה של החברה ושותפותיה) תלויה ביציבות פוליטית לאורך חמש שנים לפחות.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תמחור המניה</h3><p>המניה עלתה ביותר מ-50% השנה, ונסחרת מעל מחיר היעד הממוצע. כל ירידה במחיר הנפט תתורגם מהר לירידה במניה.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>אסונות ושיבושים</h3><p>מתקפות על בתי זיקוק (כמו בסעודיה וברוסיה), נזקים במזרח הים התיכון, הוריקנים במפרץ. שברון פועלת באזורים רגישים, כולל ישראל.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>מעבר אנרגטי</h3><p>שברון משקיעה מעט באנרגיה מתחדשת. בטווח של 10–20 שנה, ירידה בביקוש לדלק תפגע בעסק. בינתיים העולם צריך יותר נפט, לא פחות.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>מחיר הנפט</strong></td><td>כל עוד המלחמה נמשכת, הנפט סביב $100 והזיקוק בשיא. שברון ממקסמת תפוקה וזיקוק בדיוק ברגע הנכון.</td><td>הסכם הפסקת אש יוריד מחירים מהר. הרווחים של הרבעון הזה הם כנראה שיא, ולא הבסיס החדש.</td></tr>
+        <tr><td><strong>זיקוק</strong></td><td>98% ניצולת, שיא תפוקה וקטליזטור חדש. 10% מהזיקוק בעולם מושבת, ושיקום ייקח זמן.</td><td>"המרווחים יתמתנו בסופו של דבר" (נלסון). אשתקד רווחי הזיקוק היו $1.1B, לעומת $4.9B היום.</td></tr>
+        <tr><td><strong>מאזן</strong></td><td>חוב נטו של $20.7B בלבד (0.4x תזרים), ירידה של $14B מסוף 2025. מוכנה לכל תרחיש, כולל רכישות בשפל.</td><td>מאזן חזק מדי יכול להיות גם בזבוז: המשקיעים רצו יותר קניות מניות, וההנהלה מסרבת.</td></tr>
+        <tr><td><strong>ונצואלה</strong></td><td>הכפלת תפוקה ב-$20 לחבית, במימון עצמי. שברון היא השחקנית המערבית היחידה שכבר נמצאת בשטח.</td><td>סיכון פוליטי קיצוני. כבר הייתה הלאמה ב-2007 (של אחרות). חוזים לא תמיד מגינים.</td></tr>
+        <tr><td><strong>צמיחה אחרי 2030</strong></td><td>עיראק, חיפושים ב-12 אגנים חדשים, תגלית באנגולה, Kilby (חשמל ל-Microsoft). תיק "הטוב ביותר אי פעם".</td><td>הפרמיאן כבר לא צומח. טנגיז בסיכון. רוב האופציות עוד לא מגובות בהחלטות השקעה סופיות.</td></tr>
+        <tr><td><strong>דיבידנד</strong></td><td>39 שנים רצופות של העלאות, $2.5B–$3B לרבעון בקניית מניות, גם במחירי נפט נמוכים.</td><td>תשואת דיבידנד של 3% בלבד, אחרי זינוק המניה. אין הגדלה של החלוקה למרות רווחי שיא.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>מכפיל של כ-16 על רווחים, ו-5.8x EV/EBITDAX לפי William Blair. לא יקר ביחס לאיכות.</td><td>מחיר מעל יעד האנליסטים הממוצע. עלייה של 50% השנה. "קנייה בשיא המחזור".</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר מהמר בעצם על המלחמה. כל ידיעה על הפסקת אש תפיל את המניה, וכל הסלמה תרים אותה. משקיע לטווח ארוך צריך לעקוב אחרי שלושה דברים: תוכנית ההשקעות ל-2027 (דצמבר), ההתקדמות בקזחסטן, והאם ונצואלה עומדת ביעד של 300 אלף חביות ביום בסוף השנה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 13 -->
+<section>
+  <div class="sec-label">13 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>Upstream</dt><dd>חיפוש והפקה של נפט וגז מהקרקע. הרווח תלוי בעיקר במחיר הנפט.</dd>
+    <dt>Downstream</dt><dd>זיקוק הנפט לדלק, סולר וכימיקלים, ושיווקם. הרווח תלוי בפער בין מחיר הנפט הגולמי למחיר המוצרים.</dd>
+    <dt>מרווח זיקוק</dt><dd>ההפרש בין מה שבית הזיקוק משלם על חבית נפט לבין מה שהוא מקבל על המוצרים שמפיקים ממנה.</dd>
+    <dt>ברנט (Brent)</dt><dd>מחיר הייחוס העולמי לנפט גולמי, על שם שדה בים הצפוני.</dd>
+    <dt>BOE (חבית שווה-ערך)</dt><dd>יחידה שמחברת נפט וגז: כמות הגז שמכילה אנרגיה כמו חבית נפט אחת.</dd>
+    <dt>ROCE</dt><dd>תשואה על ההון המושקע: כמה רווח החברה מייצרת על כל דולר של הון וחוב. אצל שברון: 17.7%.</dd>
+    <dt>השפעות תזמון</dt><dd>רווח או הפסד חשבונאי זמני שנובע מכך שחוזי גידור נרשמים לפני שהנפט נמסר בפועל. מתקזז ברבעונים הבאים.</dd>
+    <dt>חוזה חלוקת הפקה (Entitlement)</dt><dd>חוזה שבו כשמחיר הנפט עולה, חלקה של החברה בכמות הנפט קטן, כי היא מחזירה את ההשקעה מהר יותר.</dd>
+    <dt>תזרים חופשי</dt><dd>המזומן שנשאר אחרי ההשקעות. ממנו משלמים דיבידנד, קונים מניות ומחזירים חוב.</dd>
+    <dt>מצר הורמוז</dt><dd>המעבר הימי הצר בין איראן לעומאן, שדרכו עובר כחמישית מהנפט בעולם. הסגירה שלו הקפיצה את המחירים.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Chevron — הודעה לעיתונות על תוצאות Q3 2026 (30.10.2026); תמלול שיחת האנליסטים (StockOracle / FactSet, 30.10.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: MoneyCheck, The Motley Fool, MarketBeat, InvestingCube, Reuters (KFGO) (27–30.10.2026). שווי השוק הוא חישוב לפי מספר המניות בדוח ומחיר המניה ב-30.10. הלוגו נלקח מהודעת החברה.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
