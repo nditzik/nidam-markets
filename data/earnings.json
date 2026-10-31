@@ -271,7 +271,7 @@
       "date": "2026-11-05",
       "label": "5/11",
       "dow": "ה׳",
-      "count": 64,
+      "count": 66,
       "tickers": [
         "TM",
         "COP",
@@ -524,7 +524,7 @@
         {
           "ticker": "MELI",
           "name": "MercadoLibre, Inc.",
-          "when": "",
+          "when": "after",
           "logo": "data/earnings/logos/MELI.png"
         },
         {
@@ -546,7 +546,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 64,
+      "total": 66,
       "companies": [
         {
           "ticker": "TM",
@@ -609,16 +609,16 @@
           "logo": "data/earnings/logos/ABNB.png"
         },
         {
+          "ticker": "MNST",
+          "name": "Monster Beverage Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/MNST.png"
+        },
+        {
           "ticker": "EOG",
           "name": "EOG Resources, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/EOG.png"
-        },
-        {
-          "ticker": "NGG",
-          "name": "National Grid plc Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/NGG.png"
         }
       ]
     },
@@ -758,9 +758,9 @@
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
-    "PFH": "2026-11-03",
-    "PRU": "2026-11-03",
     "PRS": "2026-11-03",
+    "PRU": "2026-11-03",
+    "PFH": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "FISV": "2026-11-03",
@@ -863,6 +863,7 @@
     "NET": "2026-11-05",
     "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
+    "MNST": "2026-11-05",
     "EOG": "2026-11-05",
     "NGG": "2026-11-05",
     "CI": "2026-11-05",
@@ -872,6 +873,7 @@
     "CMI": "2026-11-05",
     "TRGP": "2026-11-05",
     "TRP": "2026-11-05",
+    "NTRA": "2026-11-05",
     "CAH": "2026-11-05",
     "DVN": "2026-11-05",
     "SRE": "2026-11-05",
@@ -892,8 +894,8 @@
     "ZTS": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
-    "DTE": "2026-11-05",
     "DTK": "2026-11-05",
+    "DTE": "2026-11-05",
     "GPN": "2026-11-05",
     "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
@@ -933,7 +935,7 @@
     "TU": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "01/11/2026 00:01",
+    "updatedAt": "01/11/2026 00:16",
     "source": "tradingview"
   }
 }

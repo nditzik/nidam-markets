@@ -55,7 +55,7 @@
   {
    "mon": "2026-11-02",
    "label": "2.11",
-   "n": 143,
+   "n": 144,
    "tickers": [
     "AAPL",
     "BRK.B",
@@ -70,7 +70,8 @@
    "n": 11,
    "tickers": [
     "AMAT",
-    "PANW"
+    "PANW",
+    "ONDS"
    ]
   },
   {
@@ -81,8 +82,7 @@
     "NVDA",
     "WMT",
     "CSCO",
-    "HD",
-    "ONDS"
+    "HD"
    ]
   },
   {
@@ -179,21 +179,21 @@
    ]
   }
  ],
- "total": 455,
+ "total": 456,
  "reported": 280,
  "members": 504,
  "board": {
   "reported": 280,
   "epsN": 280,
-  "epsBeat": 228,
-  "epsBeatPct": 81,
+  "epsBeat": 229,
+  "epsBeatPct": 82,
   "revN": 280,
   "revBeat": 196,
   "revBeatPct": 70,
-  "reactBeat": 0.65,
-  "reactBeatN": 228,
-  "reactMiss": -1.46,
-  "reactMissN": 52,
+  "reactBeat": 0.64,
+  "reactBeatN": 229,
+  "reactMiss": -1.47,
+  "reactMissN": 51,
   "sectors": [
    {
     "name": "פיננסים",
@@ -203,7 +203,7 @@
    {
     "name": "תעשייה",
     "n": 54,
-    "beat": 46
+    "beat": 47
    },
    {
     "name": "טכנולוגיה",
@@ -280,7 +280,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "31/10/2026 23:46",
+  "updatedAt": "01/11/2026 00:16",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
