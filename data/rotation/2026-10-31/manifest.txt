@@ -1,0 +1,43 @@
+Rotation data pull - 2026-10-31 (Saturday)
+Last trading day expected: 2026-10-30 (Friday)
+Source: Barchart.com
+Drive folder: Rotation/2026-10-31
+
+=== Files (name | data rows | last-row date) ===
+hist_CLZ26.csv | 519 | 2026-10-30 | earliest 2024-10-08 | OK
+hist_DXY.csv | 519 | 2026-10-30 | earliest 2024-10-30 | OK
+hist_GCZ26.csv | 519 | 2026-10-30 | earliest 2024-10-08 | OK
+hist_SPX.csv | 519 | 2026-10-30 | earliest 2024-10-08 | OK
+hist_SRCD.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRCS.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SREN.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRFI.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRHC.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRIN.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRIT.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRMA.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRRE.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRTS.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_SRUT.csv | 519 | 2026-10-30 | earliest 2024-10-07 | OK
+hist_TNX.csv | 519 | 2026-10-30 | earliest 2024-10-11 | OK
+breadth.csv | 12 | 2026-10-30 (page text, no as-of shown) | OK (12 rows required)
+industry-group-rankings.csv | 172 | as of 10-30-2026 (Barchart footer) | OK (~170 expected)
+heatmap.csv | 172 | ~2026-10-30 (page shows no as-of date) | OK (~170 expected)
+manifest.txt | this file | uploaded last
+
+=== Checks ===
+All 16 hist files: newest data row = 2026-10-30 (last trading day of the week).
+breadth.csv: 12 rows. heatmap.csv: 172 rows. industry-group-rankings.csv: 172 rows.
+
+=== Contracts ===
+WTI oil: CLZ26 (Dec '26; expires ~11/20/26, more than 5 trading days away).
+Gold: GCZ26 (Dec '26; expires ~12/29/26).
+
+=== Notes ===
+- hist files: Daily, 2 Years, Barchart Download button; newest row first, Barchart footer line kept as-is.
+- industry-group-rankings.csv: sectors/rankings page had no Download button, so the download link on stocks/sectors/industry-rankings was used.
+- breadth.csv: page text of 'Percentage Of Large Cap Stocks Above Their Moving Averages' on stocks/market-performance.
+- heatmap.csv: page text from stocks/sectors/industry-heat-map, 1-Month range, 'Only show Industries with 10 or more Stocks' checked; all rows kept, no filtering.
+
+=== Missing / exceptions ===
+None.

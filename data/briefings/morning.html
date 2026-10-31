@@ -1,31 +1,109 @@
-<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
-body{margin:0;background:#edf1f5;color:#172337;font-family:Arial,"Noto Sans Hebrew",sans-serif;direction:rtl}.wrap{max-width:790px;margin:auto;background:#f7f9fb}.hero{background:linear-gradient(135deg,#071827,#173b55);color:#fff;padding:34px 26px;border-bottom:5px solid #31d0aa}.kicker{font-size:11px;letter-spacing:1.7px;color:#8be8cf;font-weight:700}.hero h1{font-size:31px;margin:8px 0 6px}.hero p{margin:0;color:#d7e4ec}.section{padding:22px 18px 0}.title{font-size:20px;color:#102f4b;margin:0 0 12px;border-right:5px solid #22b894;padding-right:10px}.card{background:#fff;border:1px solid #dce5ec;border-radius:12px;padding:17px;margin:0 0 12px;box-shadow:0 2px 9px rgba(13,39,66,.05)}.card h3{margin:0 0 8px;font-size:17px;color:#12324e}.card p{font-size:14px;line-height:1.68;margin:7px 0}.new{background:#eafaf5;border-color:#bce9dc}.geo{background:#fff7e8;border-color:#efd5a2}.tag{display:inline-block;background:#dff7f0;color:#087660;font-size:11px;font-weight:700;padding:4px 9px;border-radius:16px;margin-left:5px}.grid{width:100%;border-collapse:separate;border-spacing:6px}.metric{background:#fff;border:1px solid #dbe4eb;border-radius:10px;padding:12px 7px;text-align:center}.metric b{display:block;color:#11324f;font-size:16px;margin:3px}.up{color:#087a5b}.down{color:#b42318}.src{border-top:1px solid #e5ebef;padding-top:8px;margin-top:10px;color:#607181;font-size:12px;line-height:1.6}a{color:#087f72;text-decoration:none;font-weight:700}.tbl{width:100%;border-collapse:collapse;background:#fff;font-size:13px}.tbl th,.tbl td{padding:10px;border-bottom:1px solid #e4e9ee;text-align:right;vertical-align:top}.tbl th{background:#e9f0f5;color:#143450}.bottom{background:#0d2943;color:#fff;padding:19px;border-radius:12px;line-height:1.7}.footer{padding:22px 18px 30px;text-align:center;color:#687988;font-size:11px}@media(max-width:600px){.hero{padding:26px 18px}.hero h1{font-size:25px}.section{padding:18px 12px 0}.grid{border-spacing:4px}.metric{font-size:11px;padding:8px 3px}.metric b{font-size:14px}.tbl{font-size:12px}.tbl th,.tbl td{padding:8px 6px}}</style></head><body><div class="wrap">
-<div class="hero"><div class="kicker">FRIDAY MARKET INTELLIGENCE</div><h1>📈 תדרוך משקיעים – בוקר</h1><p>30 באוקטובר 2026 · 06:03 שעון ישראל</p></div>
-<div class="section"><h2 class="title">🆕 חדש מאז התדרוך הקודם</h2><div class="card new"><p>• התמ״ג האמריקאי צמח בקצב שנתי של 3.4%, אך PCE שנתי האיץ ל־3.6% וליבת PCE ל־3.1%.<br>• <b>Amazon (AMZN)</b> ירדה עד 7%: AWS צמחה 39%, אך FCF שנתי היה שלילי 42.4 מיליארד דולר.<br>• <b>Intel (INTC)</b> צנחה כ־23%: מרכזי הנתונים צמחו 78%, אך החברה הזהירה מחולשה ב־PC עד אמצע 2027.<br>• <b>Alphabet (GOOGL/GOOG)</b> איבדה 12.6% — הירידה היומית החדה בתולדותיה — וחוזי Nasdaq 100 ירדו הבוקר כ־1.4%.<br>• תוצאות סופיות בישראל: 53 מושבים לגוש נתניהו, 48 לגוש איזנקוט ו־19 למפלגות ערביות; אין רוב.</p></div></div>
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{margin:0;background:#eaf0f4;color:#172337;font-family:Arial,"Noto Sans Hebrew",sans-serif;direction:rtl}
+.wrap{max-width:790px;margin:0 auto;padding:18px 10px 30px}
+.hero{background:linear-gradient(135deg,#071827 0%,#173b55 100%);border-top:5px solid #34d1a6;border-radius:18px;padding:28px 24px;color:#fff;box-shadow:0 14px 34px rgba(7,24,39,.22)}
+.kicker{font-size:12px;letter-spacing:2px;color:#91f0d5;font-weight:700;direction:ltr;text-align:right}.hero h1{margin:8px 0 6px;font-size:30px}.date{color:#c9d6df;font-size:14px}
+.section{background:#fff;border-radius:16px;padding:22px;margin-top:14px;box-shadow:0 6px 20px rgba(15,38,58,.07)}
+.title{font-size:21px;margin:0 0 14px;border-right:5px solid #1caa87;padding-right:10px;color:#0c2c44}
+.card{border:1px solid #dce5eb;border-radius:13px;padding:16px;margin:12px 0;background:#fbfcfd}
+.new{background:#ecfbf6;border-color:#bcebdc}.geo{background:#fff8e8;border-color:#f2d28b}.story h3{margin:0 0 8px;font-size:18px;color:#0f3855}.story p{margin:8px 0;line-height:1.65;font-size:14px}
+.meta{font-size:12px;color:#607080}.why{border-right:4px solid #e5aa29;background:#fffaf0;padding:10px 12px;border-radius:8px;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.metric{background:#071827;color:#fff;border-radius:11px;padding:12px}.metric b{display:block;font-size:17px}.down{color:#ff8d8d}.up{color:#79e6c6}.flat{color:#f5d67e}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}.tbl th,.tbl td{padding:10px 8px;border-bottom:1px solid #e2e8ed;text-align:right}.tbl th{background:#edf3f6;color:#365168}
+a{color:#087c68;text-decoration:none;font-weight:700}.source{font-size:12px;color:#526b7d;line-height:1.5}.tag{display:inline-block;background:#dff8ef;color:#086b57;border-radius:20px;padding:4px 9px;font-size:11px;font-weight:700;margin-left:4px}
+.watch li,.new ul{margin:7px 0;line-height:1.5}.bottom{background:#0a2234;color:#eef7fa;border-radius:16px;padding:20px;margin-top:14px}.bottom strong{color:#79e6c6}.foot{font-size:11px;color:#78909f;text-align:center;margin-top:12px;line-height:1.5}
+@media(max-width:560px){.wrap{padding:8px}.hero{padding:22px 17px}.hero h1{font-size:25px}.section{padding:16px}.grid{grid-template-columns:1fr 1fr}.metric{padding:10px}.metric b{font-size:15px}.tbl{font-size:12px}}
+</style></head>
+<body><div class="wrap">
+<div class="hero"><div class="kicker">SATURDAY MARKET INTELLIGENCE</div><h1>📈 תדרוך משקיעים – בוקר</h1><div class="date">31 באוקטובר 2026 · 06:01 שעון ישראל</div></div>
 
-<div class="section"><h2 class="title">🌍 אירועים גיאופוליטיים והשפעתם</h2><div class="card geo"><h3>תוצאות סופיות בישראל; הנפט מגיב לדיפלומטיה</h3><p>גוש נתניהו הוא הגדול ביותר אך אינו יכול להקים ממשלה לבדו. במקביל הועלו טענות לא מבוססות מצד הליכוד בדבר גניבת קולות, והנשיא קרא לחקירה מלאה ולהימנעות מפגיעה בלגיטימיות של המצביעים הערבים.</p><p>תקוות לחידוש שיחות ארה״ב–איראן הורידו את Brent ל־114.05 דולר ואת WTI ל־101.27 דולר במהלך חמישי, אך תקיפות החות׳ים מגבילות את הירידה. <b>למשקיע:</b> השקל, אג״ח ישראל, בנקים, בנייה, תעופה ותחבורה נשארים רגישים.</p><div class="src"><a href="https://www.arabnews.com/middle-east/netanyahu-bloc-leads-israel-election-but-falls-short-of-majority-as-likud-claims-vote-was-stolen-3008934">תוצאות ישראל</a> · <a href="https://live.euronext.com/en/financial-news/oil-falls-diplomacy-hopes-outweigh-middle-east-escalation-fears">Reuters — נפט</a></div></div></div>
+<div class="section new"><h2 class="title">🆕 חדש מאז התדרוך הקודם</h2><ul>
+<li>החשש מהוצאות AI עבר מדוחות הלילה למסחר בפועל: <b>Nasdaq ירד 2.86%</b>, מדד השבבים איבד 7.2%, Intel <b>(NASDAQ: INTC)</b> צנחה 28.6% ו-Amazon <b>(NASDAQ: AMZN)</b> סיימה בירידה מתונה יותר של 1.41%.</li>
+<li>מדד עלות ההעסקה עלה 0.8% ברבעון ו-3.4% בשנה; קצב השכר השנתי ירד ל-3.1% — הקלה מסוימת לפד.</li>
+<li>ExxonMobil <b>(NYSE: XOM)</b> ו-Chevron <b>(NYSE: CVX)</b> עקפו תחזיות בזכות זינוק במרווחי הזיקוק; שתי המניות עלו קרוב ל-2%.</li>
+<li>WTI נסגר ב-$104.12 וברנט הפעיל ב-$113.43, לאחר פגיעה במכלית במצר הורמוז; OPEC+ צפויה לדון ביום ראשון ביעדי דצמבר.</li>
+</ul></div>
 
-<div class="section"><h2 class="title">🌐 תמונת מצב ב־30 שניות</h2><table class="grid" role="presentation"><tr><td class="metric">S&amp;P 500<b>7,720.39</b><span class="down">−0.30%</span></td><td class="metric">Nasdaq<b>26,184.72</b><span class="down">−1.38%</span></td><td class="metric">Dow<b>52,342.56</b><span class="down">−0.25%</span></td></tr><tr><td class="metric">Russell 2000<b>2,859.22</b><span class="up">+1.01%</span></td><td class="metric">10Y UST<b>4.989%</b><span>סגירת 29.10</span></td><td class="metric">VIX<b>17.20</b><span class="up">+1.71%</span></td></tr><tr><td class="metric">WTI<b>$102.86</b><span class="up">+0.08%</span></td><td class="metric">Brent<b>$114.05</b><span class="down">−1.1%</span></td><td class="metric">סנטימנט<b>שלילי בטכנולוגיה</b><span>אך לא רוחבי</span></td></tr></table>
-<div class="card"><p>המדדים נסגרו בירידות בהובלת Alphabet, אך רוב המניות עלו וה־Russell 2000 התקדם. הבוקר, AMZN ו־INTC מורידות את חוזי Nasdaq 100 בכ־1.4% ומחדדות מעבר מ״צמיחת AI״ ל״תשואה על ההון״.</p><div class="src"><a href="https://apnews.com/article/2c26b0b1bbc3bfab9f3f4b902172f458">AP — מדדים</a> · <a href="https://portfolio-terminal.com/markets/stock-market-close/october-29-2026">נתוני שוק</a> · <a href="https://portfolio-terminal.com/markets/vix/october-2026">VIX</a> · <a href="https://www.reuters.com/legal/transactional/global-markets-global-markets-2026-10-30/">Reuters — בוקר</a></div></div></div>
+<div class="section"><h2 class="title">🌍 אירועים גיאופוליטיים והשפעתם על השוק</h2>
+<div class="card geo"><p><b>מצר הורמוז חוזר למרכז התמחור.</b> ביום שישי, 30 באוקטובר, מכלית נפגעה ממטענים שהוצמדו אליה מסירה קטנה, לפי UKMTO שצוטט ברויטרס. במקביל, מתווכים קטארים שבו לטהרן במאמץ לקדם מגעים בין ארה"ב לאיראן.</p>
+<p>ברנט דצמבר עלה 2.4% ל-$117.64 בעת פקיעתו; חוזה ינואר הפעיל נסגר ב-$113.43 ו-WTI ב-$104.12. ביום ראשון, 1 בנובמבר, שבע מדינות OPEC+ יקיימו פגישה מקוונת. הצפי הוא להשאיר את יעדי דצמבר ללא שינוי, אך טרם התקבלה החלטה סופית.</p>
+<div class="why"><b>למשקיע:</b> כל שינוי בזרימות דרך הורמוז או בהפקה בפועל חשוב יותר כרגע מהיעד הרשמי, משום שחלק מהיצרניות עדיין מתחת למכסות.</div>
+<p class="source">מקורות: <a href="https://ca.marketscreener.com/news/oil-set-for-fourth-monthly-gain-as-hormuz-tanker-attack-highlights-supply-risks-from-war-ce785fdad08ff622">Reuters – 30.10</a> · <a href="https://www.opec.org/pr-detail/616-4-october-2026.html">OPEC – מועד הפגישה</a> · <a href="https://www.reuters.com/world/asia-pacific/opec-oil-producers-set-keep-output-targets-steady-sunday-meeting-sources-say-2026-10-27/">Reuters – צפי ליעדים</a></p></div></div>
+
+<div class="section"><h2 class="title">🌐 תמונת מצב ב־30 שניות</h2>
+<div class="grid">
+<div class="metric"><span>S&amp;P 500</span><b>7,580.07</b><span class="down">▼ 1.82%</span></div>
+<div class="metric"><span>Nasdaq</span><b>25,437.00</b><span class="down">▼ 2.86%</span></div>
+<div class="metric"><span>Dow</span><b>51,770.31</b><span class="down">▼ 1.09%</span></div>
+<div class="metric"><span>Russell 2000</span><b>2,811.84</b><span class="down">▼ 1.66%</span></div>
+<div class="metric"><span>אג"ח ארה"ב 10 שנים</span><b>4.929%</b><span class="up">▼ כ־6 נ"ב</span></div>
+<div class="metric"><span>VIX</span><b>19.42</b><span class="down">▲ 12.91%</span></div>
+<div class="metric"><span>WTI</span><b>$104.12</b><span class="up">▲ 2.08%</span></div>
+<div class="metric"><span>Brent ינואר</span><b>$113.43</b><span class="up">▲ 2.37%</span></div>
+</div>
+<div class="card"><b>סנטימנט:</b> Risk-off ממוקד צמיחה ו-AI. הירידה בתשואות והחוסן היחסי של אנרגיה ופארמה מצביעים על רוטציה, לא על מכירת פאניקה אחידה.</div>
+<p class="source">סגירת 30.10: <a href="https://apnews.com/article/a01d3551e794fed1a0c317c20bc3f0a2">AP</a> · <a href="https://www.aol.co.uk/articles/nasdaq-futures-tumble-amazon-intel-084615000.html">Reuters – שוק המניות</a> · <a href="https://ca.marketscreener.com/news/oil-set-for-fourth-monthly-gain-as-hormuz-tanker-attack-highlights-supply-risks-from-war-ce785fdad08ff622">Reuters – נפט</a></p></div>
 
 <div class="section"><h2 class="title">📰 הידיעות המרכזיות</h2>
-<div class="card"><span class="tag">מאקרו</span><h3>1. ארה״ב: צמיחה חזקה, אינפלציה חמה יותר</h3><p>התמ״ג הריאלי צמח בקצב שנתי של 3.4% ברבעון השלישי, לעומת 2.2% ברבעון השני, בהובלת השקעות, צריכה והוצאה ממשלתית. המכירות הסופיות לרוכשים פרטיים מקומיים צמחו 4.9%.</p><p>בספטמבר PCE עלה 0.5% בחודש ו־3.6% בשנה; ליבת PCE עלתה 0.3% ו־3.1%. <b>למה זה חשוב:</b> השילוב מחזק העלאת ריבית בדצמבר. נהנים: בנקים וערך; נפגעים: אג״ח ארוכות, נדל״ן ומניות מכפיל גבוה.</p><div class="src">פורסם 29.10 · <a href="https://www.bea.gov/index.php/news/2026/gdp-advance-estimate-3rd-quarter-2026">BEA — GDP</a> · <a href="https://www.bea.gov/data/personal-consumption-expenditures-price-index/">BEA — PCE</a> · <a href="https://www.investing.com/news/economy-news/us-inflation-heats-up-in-september-consumer-spending-rises-4983689">Reuters</a></div></div>
 
-<div class="card"><span class="tag">ענן / AI</span><h3>2. Amazon: AWS מאיצה, אבל ה־Capex בולע את המזומן</h3><p><b>Amazon (NASDAQ: AMZN)</b> דיווחה הכנסות של 201.9 מיליארד דולר, עלייה של 12%, ורווח תפעולי שיא של 28.1 מיליארד. AWS צמחה 39% ל־46 מיליארד — הקצב המהיר ביותר כמעט חמש שנים.</p><p>ה־FCF ב־12 חודשים היה שלילי 42.4 מיליארד דולר עקב Capex של 77.26 מיליארד ברבעון. החברה מצפה ל־220 מיליארד דולר Capex ב־2026 וליותר ב־2027. <b>למה זה חשוב:</b> ספקי תשתית נהנים, אך AMZN נדרשת להוכיח תשואה ותזרים.</p><div class="src">פורסם 29–30.10; הרבעון הסתיים 30.9 · <a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx">Amazon IR</a> · <a href="https://www.reuters.com/business/retail-consumer/amazon-projects-fourth-quarter-sales-below-estimates-2026-10-29/">Reuters</a></div></div>
+<div class="card story"><span class="tag">1 · טכנולוגיה</span><h3>ירידת AI הפכה למימוש רוחבי</h3>
+<p class="meta">פרסום ואירוע: 30 באוקטובר 2026</p>
+<p>Nasdaq ירד 2.86% — הירידה היומית החדה ביותר מאז 5 ביוני — והוא נמוך 7.8% משיא הסגירה של 6 באוקטובר. Intel <b>(INTC)</b> צנחה 28.6%; Nvidia <b>(NASDAQ: NVDA)</b> ירדה 4.2%, AMD <b>(NASDAQ: AMD)</b> ירדה 10.9% ומדד השבבים איבד 7.2%. Amazon <b>(AMZN)</b> התאוששה מהשפל התוך-יומי וסיימה ב-$240.35, ירידה של 1.41%.</p>
+<div class="why"><b>למה זה חשוב:</b> השוק מעניש כעת גם הוצאה הונית גבוהה וגם תחזית רווח חלשה. נפגעים: שבבים, שרתים וספקיות ציוד. מרוויחים יחסית: תזרים יציב, אנרגיה ובריאות. הקטליזטור הבא: דוח Apple <b>(NASDAQ: AAPL)</b> ביום שני.</div>
+<p class="source"><a href="https://www.aol.co.uk/articles/nasdaq-futures-tumble-amazon-intel-084615000.html">Reuters</a> · <a href="https://apnews.com/article/a01d3551e794fed1a0c317c20bc3f0a2">AP</a></p></div>
 
-<div class="card"><span class="tag">שבבים</span><h3>3. Intel: מרכזי נתונים חזקים, אך המחשבים והייצור מכבידים</h3><p><b>Intel (NASDAQ: INTC)</b> דיווחה הכנסות של 16.5 מיליארד דולר, עלייה של 21%, ו־EPS מתואם 0.52 דולר. Data Center &amp; AI צמח 78% ל־7.3 מיליארד ו־Foundry צמחה 58% ל־6.7 מיליארד.</p><p>החברה הזהירה שהאטת ה־PC תימשך לפחות עד אמצע 2027. פיצוץ במפעל בישראל צפוי לגרוע כ־600 מיליון דולר משני רבעונים; המניה ירדה כ־23%. <b>למה זה חשוב:</b> Xeon חזק, אך Foundry, מרווחים וביצועי ייצור הם הסיכון.</p><div class="src">פורסם 29.10 · <a href="https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-26-000188/q326earningsrelease.htm">Intel</a> · <a href="https://www.fidelity.com/news/article/us-markets/202610291702RTRSNEWSCOMBINED_KCN3W935Y-OUSBS_1">Reuters</a></div></div>
+<div class="card story"><span class="tag">2 · מאקרו</span><h3>עלויות שכר: סימן מתון יותר מתחת לאינפלציית הכותרת</h3>
+<p class="meta">פרסום: BLS, 30 באוקטובר, 08:30 ניו יורק · אירוע: רבעון שלישי שהסתיים בספטמבר</p>
+<p>מדד עלות ההעסקה עלה 0.8% ברבעון ו-3.4% בשנה. שכר ומשכורות עלו 3.1% בשנה והטבות 3.9%; השכר הריאלי במגזר הפרטי ירד 0.6%.</p>
+<div class="why"><b>למה זה חשוב:</b> האטת השכר מקטינה את הסיכון לספירלת שכר-מחירים ותומכת באג"ח, אך עלויות אנרגיה גבוהות משאירות את הפד בעמדה זהירה. הסיכון: הלם הנפט גובר על ההקלה בשכר.</div>
+<p class="source"><a href="https://www.bls.gov/news.release/eci.nr0.htm">BLS – הודעה רשמית</a></p></div>
 
-<div class="card"><span class="tag">סנטימנט</span><h3>4. שוק ה־AI עובר ממבחן צמיחה למבחן תשואה</h3><p>Alphabet נפלה 12.6% ומחקה כ־500 מיליארד דולר משווי השוק. Amazon ו־Intel ירדו לאחר המסחר, וחוזי Nasdaq 100 איבדו כ־1.4%. באסיה ה־KOSPI צנח 5% והניקיי 3%.</p><p><b>למה זה חשוב:</b> השוק אינו מערער על ביקוש AI אלא על התשואה לבעלי המניות מההון העצום. ספקי תשתית עשויים ליהנות מה־Capex, אך לקוחות הענן סופגים לחץ תזרים ומכפילים.</p><div class="src">Reuters · פורסם 30.10 · <a href="https://www.reuters.com/legal/transactional/global-markets-global-markets-2026-10-30/">מקור</a></div></div>
+<div class="card story"><span class="tag">3 · אנרגיה</span><h3>Exxon ו-Chevron נהנות ממרווחי זיקוק חריגים</h3>
+<p class="meta">פרסום ואירוע: דוחות רבעון שלישי, 30 באוקטובר</p>
+<p>ExxonMobil <b>(XOM)</b> דיווחה רווח מתואם של $4.23 למניה, רווח GAAP של $15.4 מיליארד ותזרים חופשי של $19.1 מיליארד; הודיעה על רכישות עצמיות של $20 מיליארד ב-2027. Chevron <b>(CVX)</b> דיווחה רווח מתואם של $5.28 למניה ורווח GAAP של $9.9 מיליארד. שתי המניות עלו קרוב ל-2%.</p>
+<div class="why"><b>למה זה חשוב:</b> עוצמת הזיקוק מגדרת חלק מסיכון התנודתיות בהפקה, אך תלויה בהמשך מחסור בדיזל ובהפרעות אזוריות. מרוויחים: בתי זיקוק וחברות משולבות; נפגעים: תעופה, הובלה וצרכנים עתירי דלק.</div>
+<p class="source"><a href="https://investor.exxonmobil.com/sec-filings/all-sec-filings/content/0002115436-26-000018/livef8k3q26991.htm">ExxonMobil – דוח רשמי</a> · <a href="https://www.chevron.com/newsroom/2026/q4/chevron-reports-third-quarter-2026-results">Chevron – דוח רשמי</a> · <a href="https://www.reuters.com/business/energy/wrapup-exxon-chevron-earnings-propelled-by-war-driven-refining-surge-2026-10-30/">Reuters</a></p></div>
 
-<div class="card"><span class="tag">ישראל</span><h3>5. תוצאות סופיות בלי רוב</h3><p>התוצאות הרשמיות מעניקות 53 מושבים לגוש נתניהו, 48 לגוש איזנקוט ו־19 למפלגות ערביות. נתניהו מוביל, אך תלוי בשותפים מחוץ לגוש כדי להגיע ל־61.</p><p><b>למה זה חשוב:</b> השקל, הבנקים והבנייה רגישים למשך המשא ומתן, למדיניות תקציבית וליחסי חוץ. הקטליזטור הבא הוא הטלת המנדט; הסיכון הוא מבוי סתום או בחירות חוזרות.</p><div class="src">פורסם 30.10 · <a href="https://www.arabnews.com/middle-east/netanyahu-bloc-leads-israel-election-but-falls-short-of-majority-as-likud-claims-vote-was-stolen-3008934">מקור</a></div></div>
+<div class="card story"><span class="tag">4 · פארמה</span><h3>צמיחה חזקה ב-AbbVie וב-AstraZeneca</h3>
+<p class="meta">פרסום ואירוע: דוחות שפורסמו ב-30 באוקטובר</p>
+<p>AbbVie <b>(NYSE: ABBV)</b> רשמה הכנסות של $17.404 מיליארד, עלייה של 10.3%, ורווח מתואם של $3.82 למניה; העלתה תחזית EPS מתואם ל-$13.95–$13.99 והגדילה את הדיבידנד ל-2027 ב-5.2%.</p>
+<p>AstraZeneca <b>(LSE: AZN, בריטניה; ADR נאסד"ק: AZN)</b> דיווחה הכנסות רבעוניות של $16.209 מיליארד, עלייה של 7% במטבע קבוע, וליבת EPS של $2.79, עלייה של 19%; התחזית אושרה מחדש.</p>
+<div class="why"><b>למה זה חשוב:</b> מנועי צמיחה שאינם תלויים במחזור הטכנולוגיה. קטליזטורים: Skyrizi/Rinvoq ב-ABBV וצבר האונקולוגיה של AZN; סיכונים: שחיקת Humira, פקיעת פטנטים ותוצאות ניסויים.</div>
+<p class="source"><a href="https://news.abbvie.com/2026-10-30-AbbVie-Reports-Third-Quarter-2026-Financial-Results">AbbVie – הודעה רשמית</a> · <a href="https://www.astrazeneca.com/media-centre/press-releases/2026/9m-and-q3-2026-results.html">AstraZeneca – הודעה רשמית</a></p></div>
 
-<div class="card"><span class="tag">אירופה</span><h3>6. ECB עצר; לגארד תעזוב מוקדם</h3><p>ה־ECB הותיר את הריבית על 2.5% לאחר שתי העלאות השנה, אך הזהיר שסיכוני האינפלציה מוטים כלפי מעלה בגלל אנרגיה. כריסטין לגארד תעזוב ב־7 בפברואר, שמונה חודשים לפני תום כהונתה.</p><p><b>למה זה חשוב:</b> העלאה בדצמבר עדיין אפשרית. בנקים אירופיים עשויים ליהנות מריבית גבוהה יותר, בעוד נדל״ן וחברות ממונפות חשופות ללחץ; החלפת הנהגה מוסיפה אי־ודאות לאג״ח וליורו.</p><div class="src">פורסם והאירוע 29.10 · <a href="https://www.investing.com/news/economy-news/ecb-keeps-rates-unchanged-but-points-to-mounting-inflation-risk-4983925">Reuters — החלטה</a> · <a href="https://www.investing.com/news/economy-news/ecbs-lagarde-resigns-early-so-she-can-speak-freely-on-topics-beyond-monetary-policy-4984570">Reuters — לגארד</a></div></div>
+<div class="card story"><span class="tag">5 · נפט</span><h3>OPEC+: הזרימות בפועל חשובות יותר מהיעד — אך ההודעה יכולה להצית תנודתיות</h3>
+<p class="meta">פרסום: Reuters, 27 ו-30 באוקטובר · אירוע: פגישת OPEC+ ב-1 בנובמבר</p>
+<p>הקונצנזוס הוא השארת יעדי דצמבר ללא שינוי. ברקע, שכבת קיצוץ נוספת של כ-2 מיליון חביות ביום נותרת עד סוף 2026, בעוד שמלחמת איראן והפרעות הורמוז מגבילות את ההפקה והיצוא בפועל.</p>
+<div class="why"><b>למה זה חשוב:</b> הפתעה כלפי מעלה בתפוקה עשויה להכביד על מחיר הנפט, אך החרפה ביטחונית תבטל במהירות את האפקט. הרגישות גבוהה לתעופה, כימיקלים, שילוח ומדדי אינפלציה.</div>
+<p class="source"><a href="https://www.opec.org/pr-detail/616-4-october-2026.html">OPEC</a> · <a href="https://www.reuters.com/world/asia-pacific/opec-oil-producers-set-keep-output-targets-steady-sunday-meeting-sources-say-2026-10-27/">Reuters</a></p></div>
+
+<div class="card story"><span class="tag">6 · השבוע הבא</span><h3>בחירות אמצע, Apple ודו"ח התעסוקה</h3>
+<p class="meta">פרסום: Reuters, 30 באוקטובר · אירועים: 2–6 בנובמבר</p>
+<p>ISM ו-Apple ב-2 בנובמבר, בחירות אמצע ב-3 בנובמבר, ודו"ח התעסוקה ב-6 בנובמבר. כל 435 מושבי בית הנבחרים ושליש מהסנאט עומדים לבחירה; שליטה דמוקרטית בבית עשויה להעלות את רמת הבדיקה הרגולטורית ל-AI, בנקים וקריפטו.</p>
+<div class="why"><b>למה זה חשוב:</b> השילוב בין פוליטיקה, מאקרו ודוח AAPL יבחן אם הירידה בטכנולוגיה היא תיקון נקודתי או שינוי משטר. קטליזטורים: תחזית Apple, רכיב המחירים ב-ISM וקצב יצירת המשרות.</div>
+<p class="source"><a href="https://www.reuters.com/business/take-five/global-markets-themes-2026-10-30/">Reuters</a> · <a href="https://www.usa.gov/midterm-elections">USAGov</a> · <a href="https://www.bls.gov/schedule/2026/">BLS</a> · <a href="https://investor.apple.com/investor-relations/">Apple IR</a></p></div>
 </div>
 
-<div class="section"><h2 class="title">📅 יומן השוק להיום</h2><table class="tbl"><tr><th>ישראל</th><th>ניו יורק</th><th>אירוע</th></tr><tr><td>12:30</td><td>06:30</td><td>תוצאות Exxon Mobil (XOM)</td></tr><tr><td>לפני הפתיחה</td><td>לפני הפתיחה</td><td>CVX, ABBV, AZN, REGN, SNY, CCJ</td></tr><tr><td>14:30</td><td>08:30</td><td>מדד עלות התעסוקה Q3</td></tr><tr><td>15:00</td><td>09:00</td><td>שיחת AbbVie</td></tr><tr><td>15:30</td><td>09:30</td><td>שיחת Exxon Mobil</td></tr><tr><td>17:00</td><td>11:00</td><td>שיחת Chevron</td></tr></table>
-<div class="card"><p><b>סוף השבוע:</b> מעקב אחר מגעי ארה״ב–איראן, תהליך הקואליציה בישראל ותגובת חברות AI לירידות.</p><div class="src"><a href="https://www.bls.gov/schedule/news_release/eci.htm">BLS</a> · <a href="https://investor.exxonmobil.com/news-events/ir-calendar/detail/20261030-3q-2026-earnings-call">Exxon</a> · <a href="https://chevroncorp.gcs-web.com/events/event-details/3q-2026-chevron-earnings-conference-call">Chevron</a> · <a href="https://abbvie.gcs-web.com/events-and-presentations/upcoming-events">AbbVie</a></div></div></div>
+<div class="section"><h2 class="title">📅 יומן השוק להיום ולפתיחה הבאה</h2>
+<table class="tbl"><tr><th>מועד</th><th>אירוע</th><th>משמעות</th></tr>
+<tr><td>שבת, 31.10</td><td>וול סטריט והאג"ח סגורים</td><td>אין מסחר רגיל</td></tr>
+<tr><td>ראשון, 1.11</td><td>פגישת שבע מדינות OPEC+</td><td>יעדי דצמבר; שעה מדויקת לא פורסמה</td></tr>
+<tr><td>שני, 2.11<br>10:00 NY / 17:00 IL</td><td>ISM תעשייה + הוצאות בנייה</td><td>צמיחה, תעסוקה ומחירי תשומות</td></tr>
+<tr><td>שני, אחרי הסגירה<br>שיחה: 17:00 NY / 00:00 IL</td><td>Apple (AAPL) – דוחות</td><td>תחזית חגים, מרווחים והוצאות AI</td></tr>
+<tr><td>שלישי, 3.11</td><td>בחירות אמצע בארה"ב</td><td>שליטה בקונגרס; שעות משתנות לפי מדינה</td></tr>
+<tr><td>שישי, 6.11<br>08:30 NY / 15:30 IL</td><td>דוח תעסוקה לאוקטובר</td><td>ציפיות ריבית ותשואות</td></tr></table>
+<p class="source"><a href="https://www.newyorkfed.org/research/calendars/i-nov26.html">NY Fed</a> · <a href="https://www.ismworld.org/supply-management-news-and-reports/reports/rob-report-calendar">ISM</a> · <a href="https://www.bls.gov/schedule/2026/">BLS</a> · <a href="https://investor.apple.com/investor-relations/">Apple</a></p></div>
 
-<div class="section"><h2 class="title">🎯 מה הייתי עוקב אחריו היום</h2><div class="card"><p>• תגובת השוק המלאה ל־AMZN ול־INTC ורוחב הירידות.<br>• האם תשואת ה־10 שנים נשארת מתחת ל־5% למרות PCE חם.<br>• מדד עלות התעסוקה והשלכותיו על דצמבר.<br>• XOM ו־CVX: הפקה, מרווחי זיקוק ותחזית הון.<br>• GOOGL, AMZN, MSFT ו־META: שינויי תמחור לאחר שבוע הדוחות.<br>• השקל והאג״ח בישראל לאחר התוצאות הסופיות.</p></div></div>
+<div class="section watch"><h2 class="title">🎯 מה הייתי עוקב אחריו היום</h2><ul>
+<li>הודעת OPEC+ והאם יעדי דצמבר משתנים.</li>
+<li>עדכוני ביטחון ושיט במצר הורמוז לפני פתיחת החוזים.</li>
+<li>חוזי Nasdaq ביום ראשון בערב: האם לחץ השבבים נמשך.</li>
+<li>תשואת אג"ח ל-10 שנים סביב 4.93% מול נפט מעל $100.</li>
+<li>ציפיות לקראת AAPL: תחזית החגים, שולי רווח והוצאות AI.</li>
+</ul></div>
 
-<div class="section"><div class="bottom"><b>שורה תחתונה למשקיע</b><br>המאקרו האמריקאי חזק מספיק כדי להצדיק ריבית גבוהה יותר, אך שוק הטכנולוגיה מתמודד עם מבחן קשה יותר: לא צמיחת AI, אלא תזרים ותשואה על ההון. רוחב השוק עדיין טוב מהמדדים, אולם הירידות ב־GOOGL, AMZN ו־INTC מחייבות מעקב אחר הדבקה לספקיות התשתית ולשוק כולו.</div></div>
-<div class="footer">אין באמור המלצת קנייה או מכירה · המידע מבוסס על מקורות שפורסמו עד 06:03 שעון ישראל, 30.10.2026</div></div></body></html>
+<div class="bottom"><strong>שורה תחתונה למשקיע</strong><p>יום שישי סימן מעבר ברור מ"התלהבות AI" לבחינה מחמירה של תשואה על ההון, בעוד אנרגיה ופארמה סיפקו מקלט יחסי. סוף השבוע נשלט בידי סיכון הורמוז והחלטת OPEC+; בפתיחת השבוע, Apple, ISM והבחירות יקבעו אם הרוטציה מתרחבת או מתהפכת.</p></div>
+<div class="foot">המידע נכון ל-31 באוקטובר 2026, 06:01 שעון ישראל. אין באמור המלצת קנייה או מכירה.</div>
+</div></body></html>
