@@ -1,0 +1,449 @@
+<title>SOFI דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .wordmark{font-size:28px;font-weight:700;letter-spacing:-.01em;color:#fff;direction:ltr;display:inline-block;margin-bottom:20px;border-bottom:3px solid #4cc3ff;padding-bottom:4px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="wordmark">SoFi</span>
+    <div class="eyebrow">SoFi Technologies, Inc. · NASDAQ: SOFI · תוצאות רבעון שלישי 2026</div>
+    <h1>שיא בכל מדד, תחזית מוגברת ל-2026 ותחזית ראשונה ל-2027, למרות ריבית שעלתה במקום לרדת. המניה זינקה 13% ביום הדוח</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-27 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת האנליסטים</span>
+      <span>עודכן: 31.10.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>סופיי היא בנק דיגיטלי בלי סניפים, שמנסה להיות "אפליקציית הכול" לכסף של הצרכן האמריקאי</h2>
+  <p class="lead">SoFi התחילה ב-2011 כחברה למחזור הלוואות סטודנטים. היום היא בנק אמריקאי לאומי (עם רישיון בנק מ-2022), שמציע הכול באפליקציה אחת: חשבון עו"ש וחיסכון, הלוואות אישיות, משכנתאות, כרטיס אשראי, מסחר במניות ובקריפטו, ומנוי פרימיום. אין לה סניפים ואין בה פקידים. הכול דיגיטלי.</p>
+  <p class="body" style="margin-top:14px">לחברה שלושה מגזרים. <strong>הלוואות</strong> ($807M ברבעון, 59% מההכנסות): בעיקר הלוואות אישיות למחזור חובות כרטיסי אשראי. <strong>שירותים פיננסיים</strong> ($525M): עו"ש, השקעות, כרטיס אשראי, וגם "פלטפורמת ההלוואות" (LPB), שבה SoFi מעמידה הלוואות בשביל משקיעים חיצוניים ומקבלת עמלה. <strong>פלטפורמה טכנולוגית</strong> ($87M): Galileo ו-Technisys, תוכנה שבנקים וחברות פינטק אחרות משתמשים בה.</p>
+  <p class="body">הלקוחות של SoFi הם צעירים יחסית עם הכנסה גבוהה מהממוצע. האסטרטגיה שהמנכ"ל אנתוני נוטו חוזר עליה: מגייסים לקוח עם מוצר אחד (בדרך כלל חשבון חיסכון בריבית גבוהה), ואז מוכרים לו עוד מוצרים. החברה קוראת לזה "לולאת הפריון של השירותים הפיננסיים".</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>הבנקים הגדולים</h3>
+      <p>JPMorgan Chase, Bank of America ו-Wells Fargo מציעים את כל המוצרים, ויש להם מאות מיליוני לקוחות. היתרון של SoFi: אפליקציה אחת מודרנית, ריבית גבוהה יותר על פיקדונות (כי אין עלויות סניפים) ומהירות בהשקת מוצרים.</p>
+    </div>
+    <div class="col">
+      <h3>פינטק: Robinhood, Chime, Block</h3>
+      <p>Robinhood מתחרה במסחר ובקריפטו, Chime בעו"ש הדיגיטלי, ו-Block (Cash App) בתשלומים. היתרון של SoFi: רישיון בנק, שמאפשר לה לממן הלוואות מפיקדונות זולים ולא מקווי אשראי יקרים.</p>
+    </div>
+    <div class="col">
+      <h3>מלווים: LendingClub, Upstart</h3>
+      <p>מתחרים ישירים בהלוואות אישיות. LendingClub הוא גם בנק דיגיטלי. בפלטפורמה הטכנולוגית SoFi מתחרה ב-Fiserv וב-FIS, ספקיות התוכנה הוותיקות של הבנקים.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון שלישי ברציפות עם צמיחה של יותר מ-40%. והפעם זה קרה בסביבת ריבית שהחברה לא תכננה</h2>
+  <p class="lead">ההכנסות המנוקות צמחו 44%, לשיא של $1.37 מיליארד, הרבה מעל הצפי ($1.26B). הרווח הנקי קפץ 73%, ל-$241M. הרווח למניה, $0.18, עלה 64% ועבר את הצפי ($0.17). SoFi הוסיפה 1.2 מיליון לקוחות ברבעון אחד, שיא, והגיעה ל-17.1 מיליון.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>בתחילת 2026 החברה בנתה את התחזית על שתי הורדות ריבית. בפועל הייתה העלאה אחת, והשוק מצפה לעוד שתיים. ריבית גבוהה אמורה לפגוע במלווה: הכסף יקר יותר, וההלוואות פחות אטרקטיביות. ובכל זאת SoFi העלתה את תחזית ההכנסות ל-2026 ב-$385M מעל התחזית המקורית, ונתנה לראשונה תחזית ל-2027: צמיחה של 27% ורווח למניה של $0.90, מעל הצפי. המסר של ההנהלה: המודל עובד גם כשהריבית עולה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>שיא בהכנסות, ברווח, בלקוחות ובהלוואות, והרווחיות ממשיכה לעלות</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$1.37B</div><div class="l">הכנסות מנוקות</div><div class="d up">+44% · הצפי: $1.26B</div></div>
+    <div class="kpi"><div class="v num">$0.18</div><div class="l">רווח למניה</div><div class="d up">+64% · הצפי: $0.17</div></div>
+    <div class="kpi"><div class="v num">$470M</div><div class="l">EBITDA מנוקה</div><div class="d up">+70% · שולי רווח 34%</div></div>
+    <div class="kpi"><div class="v num">17.1M</div><div class="l">לקוחות</div><div class="d up">+35% · 1.2M חדשים ברבעון</div></div>
+    <div class="kpi"><div class="v num">$16.9B</div><div class="l">הלוואות שהועמדו</div><div class="d up">+71% · שיא</div></div>
+    <div class="kpi"><div class="v num">6.14%</div><div class="l">מרווח ריבית נטו</div><div class="d up">+0.16 נק' מהרבעון הקודם</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הפעם הרווח הרשמי (GAAP) והרווח המנוקה כמעט זהים: $241M מול $243M, ו-$0.18 למניה בשניהם. ההכנסות הרשמיות ($1.385B) גבוהות מעט מהמנוקות, כי ההנהלה מנטרלת שינויים בשווי ההוגן של זכויות שירות הלוואות. התשואה על ההון העצמי המוחשי (ROTCE) עמדה על כ-10%. היעד ארוך הטווח: 20%–30%.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>ההכנסות מאיצות מרבעון לרבעון: יותר לקוחות, יותר מוצרים לכל לקוח, ויותר הכנסה מכל מוצר</h2>
+  <p class="body">בגרף: ההכנסות המנוקות בכל רבעון, במיליוני דולרים. העמודה האחרונה היא התחזית של החברה לרבעון הרביעי. מתחת לכל עמודה: מספר הלקוחות בסוף הרבעון.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 370" role="img" aria-label="הכנסות מנוקות לפי רבעון">
+      <line x1="60" y1="300" x2="780" y2="300" stroke="var(--muted)"/>
+      <g fill="var(--accent)">
+        <rect x="90" y="137" width="70" height="163"/>
+        <rect x="205" y="126" width="70" height="174"/>
+        <rect x="320" y="114" width="70" height="186"/>
+        <rect x="435" y="93" width="70" height="207"/>
+        <rect x="550" y="65" width="70" height="235"/>
+      </g>
+      <rect x="665" y="64" width="70" height="236" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+      <g font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="125" y="128">$950M</text>
+        <text x="240" y="117">$1,013M</text>
+        <text x="355" y="105">$1,087M</text>
+        <text x="470" y="84">$1,206M</text>
+        <text x="585" y="56">$1,371M</text>
+        <text x="700" y="55" fill="var(--muted)">~$1,375M</text>
+      </g>
+      <g font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="125" y="322">Q3'25</text><text x="240" y="322">Q4'25</text><text x="355" y="322">Q1'26</text><text x="470" y="322">Q2'26</text><text x="585" y="322" font-weight="700">Q3'26</text><text x="700" y="322" fill="var(--muted)">Q4'26E</text>
+      </g>
+      <g font-size="13" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="125" y="344">12.6M</text><text x="240" y="344">13.7M</text><text x="355" y="344">14.7M</text><text x="470" y="344">15.8M</text><text x="585" y="344">17.1M</text><text x="700" y="344">—</text>
+      </g>
+      <text x="8" y="344" font-size="12" fill="var(--muted)" text-anchor="end">לקוחות</text>
+    </svg>
+    <figcaption>הכנסות מנוקות (Adjusted Net Revenue) ומספר לקוחות בסוף כל רבעון. Q4'26E היא תחזית החברה. מקור: הודעת החברה, תמלול השיחה ונתוני FactSet (StockOracle).</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>הלוואות אישיות: המנוע הגדול</h3>
+      <p>הוענקו הלוואות אישיות בהיקף שיא של $12.6B (+69%), מתוכן $9B נשארו במאזן. הלוואה אישית טיפוסית: ריבית 12.8%, עמלת פתיחה 1.4%, עלות מימון 3.1% והפסדי אשראי 3.4%. נשאר מרווח של כ-7.6% אחרי סיכון. עמלות הפתיחה זינקו פי 2.6, ל-$271M.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>שירותים פיננסיים: הצמיחה העתידית</h3>
+      <p>23.2 מיליון מוצרים (+44%). כ-8.5 מיליון חשבונות עו"ש וחיסכון, 4.2 מיליון חשבונות השקעה, 656 אלף כרטיסי אשראי (+67%). הכנסות העמלות מכרטיסים קפצו 77%. ההכנסה מכרטיסי אשראי כמעט הוכפלה מהרבעון הקודם. נוטו: "פיצחנו את הקוד".</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>הלוואות בשביל אחרים (LPB)</h3>
+      <p>SoFi העמידה $3.8B בהלוואות בשביל משקיעים חיצוניים, וקיבלה עמלות של $153M בלי לסכן הון. ברבעון נוספו שני שותפים חדשים, ולראשונה הועברו דרך הפלטפורמה גם הלוואות לעסקים קטנים והלוואות בביטחון דירה.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · הריבית שעלתה, והגידור שעבד</div>
+  <h2>הפסד של $800 מיליון בשווי ההלוואות קוזז ברובו ברווח של $734 מיליון מגידור</h2>
+  <p class="body">SoFi מחזיקה הלוואות בשווי של כ-$52B במאזן, ומחשבת את השווי שלהן לפי ריבית השוק. כשהריבית עולה, השווי שלהן יורד. ברבעון עלתה ריבית הבסיס (SOFR לשנתיים) מ-3.99% ל-4.75%, ושווי ההלוואות ירד ביותר מ-$800M. החברה גידרה את הסיכון הזה מראש, והגידור הניב רווח של כ-$734M, שקיזז את רוב הפגיעה.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>סוג הלוואה</th><th>שווי (% מהקרן)</th><th>שינוי מהרבעון הקודם</th><th>הסבר</th></tr></thead>
+      <tbody>
+        <tr><td>הלוואות אישיות</td><td class="n">103.3%</td><td class="n">‏−1.4 נק'</td><td>ריבית היוון גבוהה יותר</td></tr>
+        <tr><td>הלוואות סטודנטים</td><td class="n">101.9%</td><td class="n">‏−2.4 נק'</td><td>ריבית היוון גבוהה יותר</td></tr>
+        <tr><td>משכנתאות</td><td class="n">101.5%</td><td class="n">‏−3.3 נק'</td><td>ריבית היוון גבוהה יותר</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>מבחינת המשקיעים, השאלה הגדולה של 2026 הייתה מה יקרה ל-SoFi כשהריבית עולה. התשובה ברבעון הזה: הגידור עבד, החברה העלתה ריביות ועמלות ללווים בלי לאבד ביקוש, ומרווח הריבית אפילו עלה. נוטו: "יש לי עכשיו אותו ביטחון ביכולת שלנו לצמוח בסביבת ריבית גבוהה כמו בסביבת ריבית נמוכה".</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · איכות האשראי</div>
+  <h2>החשש הגדול של הדובים, הלוואות אישיות שלא יוחזרו, לא מתממש. ההפסדים דווקא יורדים</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>הלוואות אישיות</h3>
+      <p>שיעור המחיקות הכולל (אם מנטרלים מכירות של הלוואות בפיגור) ירד ל-3.4%, שיפור של 0.8 נק' משנה שעברה. שיעור הפיגור מעל 90 יום: 0.42%, יציב. הלוואות שניתנו בשנים 2022–2025 צברו עד כה הפסדים של 4.71%, הרבה מתחת לרף העליון שהחברה מוכנה לספוג (7%–8%).</p>
+    </div>
+    <div class="col">
+      <h3>נקודת תורפה: כרטיסי אשראי</h3>
+      <p>שיעור המחיקות בכרטיסי האשראי עלה ל-7.77%, לעומת 6.55% ברבעון הקודם. זה עסק קטן יחסית ובשלבי צמיחה מהירה, ונוטו הודה ש"הפסדנו הרבה כסף בכרטיסי אשראי כדי להגיע לאן שהגענו". שווה לעקוב אחרי המספר הזה ברבעונים הבאים.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · התחזית</div>
+  <h2>2026 מוגברת, 2027 מעל הציפיות, ובלי צורך לגייס הון</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>2026 (חדש)</th><th>2026 (קודם)</th><th>2027 (ראשוני)</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות מנוקות</td><td class="n">~$5.04B (+40%)</td><td class="n">$4.75–$4.85B</td><td class="n">~$6.4B (+27%)</td></tr>
+        <tr><td>EBITDA מנוקה</td><td class="n">~$1.66B (33%)</td><td class="n">$1.6B</td><td class="n">~$2.24B (35%)</td></tr>
+        <tr><td>רווח נקי מנוקה</td><td class="n">~$840M (17%)</td><td class="n">$825M</td><td class="n">~$1.28B (20%)</td></tr>
+        <tr class="hl"><td>רווח למניה</td><td class="n">~$0.61</td><td class="n">$0.60</td><td class="n">~$0.90 (הצפי: $0.81–$0.86)</td></tr>
+        <tr><td>רבעון רביעי 2026</td><td colspan="3">הכנסות ~$1.375B (+36%), EBITDA ‏$492M, רווח למניה $0.19</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body">ב-2027 צפויה צמיחה של 35% בשירותים פיננסיים ושל 25% בהלוואות ובפלטפורמה הטכנולוגית, שתחזור לצמוח. התחזית מניחה שתי העלאות ריבית ב-2027 ושיעור מס של 24%. סמנכ"ל הכספים, כריס לאפוינט, הדגיש: "התחזית ל-2027 לא דורשת גיוס הון". זה משפט חשוב: בעבר SoFi גייסה הון שוב ושוב, ומשקיעים חששו מדילול נוסף.</p>
+  <ul class="tl">
+    <li><div class="when">סוף 2027</div><div class="what">יעד של מיליון מנויי SoFi Plus (כיום כ-275 אלף)</div></li>
+    <li><div class="when">2030</div><div class="what">100 מיליון מוצרים (פי 4 מהיום) וכ-50 מיליון לקוחות</div></li>
+    <li><div class="when">2030</div><div class="what">5 עסקים עם יותר מ-$1B הכנסות, 5 עם יותר מ-$500M ו-5 עם יותר מ-$100M</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: הריבית לא מפחידה אותנו, יש לנו נראות, יש לנו הון, ויש לנו שמונה עסקים גדולים</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"המודל עמיד לתנודות ריבית"</h3>
+      <p>נוטו הזכיר שבפעם הקודמת שהריבית עלתה, הוא האט בכוונה את הצמיחה. הפעם, עם יותר הון ועסק מגוון יותר, החברה "נשענה קדימה". החברה העלתה את הריבית שהיא גובה מהלווים בקצב עליית ריבית הבסיס, ושמרה על הרווחיות.</p>
+    </div>
+    <div class="col">
+      <h3>"שינינו התנהגות בגלל הנראות"</h3>
+      <p>זו הפעם הראשונה ש-SoFi נותנת תחזית שנתית כבר ברבעון השלישי, רבעון לפני המועד הרגיל. נוטו: "לא היה רגע בהיסטוריה של החברה שבו שלטנו בגורלנו יותר מעכשיו".</p>
+    </div>
+    <div class="col">
+      <h3>"שמונה עסקים של $100 מיליון"</h3>
+      <p>לפי נוטו, ל-SoFi יש עכשיו שמונה עסקים שכל אחד מהם מכניס יותר מ-$100M בשנה, ורובם צומחים ביותר מ-30%. בנוסף יש "סטארט-אפים" פנימיים: מטבע יציב (SoFiUSD), בנקאות לעסקים קטנים וגדולים, קריפטו ו-SoFi Plus.</p>
+    </div>
+    <div class="col">
+      <h3>"AI הוא רוח גבית"</h3>
+      <p>נוטו טען שסוכני AI שישוו ריביות ועמלות בשביל הצרכן יעזרו ל-SoFi, ולא יפגעו בה: "בעולם עם שקיפות של 100%, SoFi מנצחת בכל פעם", כי ערך החיים של הלקוח אצלה הגבוה ביותר, ולכן היא יכולה להציע את התנאים הטובים ביותר.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>החברה שינתה את הדרך שבה היא מציגה את העסק. מעכשיו היא תדווח בעיקר על שלושה מדדים: לקוחות, מוצרים והכנסה למוצר. זה מפשט את הסיפור, אבל גם מזיז את תשומת הלב מהמדדים שהטרידו משקיעים: תלות בהלוואות אישיות, שווי הוגן במאזן, ומימון. בנוסף, ההכנסה למוצר בשירותים פיננסיים ($90) עלתה מהרבעון הקודם, אבל היא עדיין נמוכה מאשר לפני שנה ($104).</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים שאלו פחות "האם" ויותר "כמה": כמה הון יש, כמה הלוואות אישיות אפשר עוד להעמיד, וכמה אפשר להרוויח מכל לקוח</h2>
+  <p class="body">הטון בשיחה היה חיובי מאוד. רוב האנליסטים פתחו בברכות. השאלות התמקדו ביכולת לממן את הצמיחה, בעודף הלוואות אישיות ובמחיר הפיקדונות. אף אחד לא שאל על הקשיים בכרטיסי האשראי.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>הון ומימון: האם אפשר לממן את הצמיחה בלי לגייס הון? לאפוינט פירט: $9.6B הון פיקוחי, קיבולת פנויה של $15B בנכסים משוקללי סיכון, ועוד $14B שייווצרו מהרווחים. סך הכול כ-$29B של "מרווח" שלא נדרש לתחזית.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>$1.4B הכנסות במזומן ברבעון אחד, מתוכן $927M מריבית בפועל. זה עונה על טענה ישנה של המבקרים, שלפיה הרווחים של SoFi "על הנייר" בלבד, בגלל חישובי שווי הוגן. הפעם רוב ההכנסות הגיעו במזומן.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>SoFi Plus: "הצמיחה ברבעון השלישי הייתה מתחת למה שציפינו". נוטו הסביר שהיו "גורמים זדוניים" (הונאות) שניצלו את ההטבות, ושהחברה נאלצה לשנות תנאים. הוא אמר שהבעיה תוקנה ושהצמיחה חזרה להאיץ.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>אנליסט Piper Sandler חישב שלפי קצבי הצמיחה למגזרים, ההכנסות ב-2027 אמורות להגיע ל-$6.7B ולא ל-$6.4B. התשובה של לאפוינט הייתה משפט אחד: "יש עלייה קלה בשורת התאגיד". בלי פירוט. ייתכן שזו שמרנות מכוונת שמשאירה מקום להפתעות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"לא צריך הרבה דמיון כדי לראות איך 100 מיליון מוצרים יכולים להכפיל פי 4 את הרווחים" (נוטו). ומיד אחר כך הוא הוסיף: "גם פי 3 יהיה הישג מדהים". זו הדרך של נוטו לרמוז שהמניה זולה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>לאפוינט אמר שב-2027 ההלוואות האישיות לא יצמחו "באותו סדר גודל". הצמיחה תגיע ממשכנתאות ומהלוואות סטודנטים. זו תשובה לחשש של משקיעים ש-SoFi צומחת מהר מדי בהלוואות האישיות, מהר יותר מהענף כולו.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>ההנהלה הגיעה לשיחה עם תשובות לשלושת החששות הגדולים של 2026: ריבית (הגידור עבד), אשראי (ההפסדים יורדים) ודילול (לא יהיה גיוס הון ב-2027). הסיכון עכשיו הוא ההפך: אחרי רבעון כזה הציפיות גבוהות, וכל החטאה קטנה תיענש. 24/7 Wall St. מזכיר שאחרי הזינוק הקודם ב-16% על דוח טוב, המניה ירדה 18% בחודש שאחריו.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · איך השוק הגיב</div>
+  <h2>זינוק של 13% ביום הדוח, אבל המניה עדיין נמוכה בכשליש מתחילת השנה</h2>
+  <p class="body">לפני הדוח (26.10) המניה סגרה ב-$14.46, כמעט 45% מתחת למחיר בתחילת השנה. ביום הדוח (27.10) היא זינקה 13.4% וסגרה ב-$16.40. זה היה היום הטוב ביותר שלה ברבעון, והוא הוסיף כ-$2.5 מיליארד לשווי השוק. ב-30.10 המניה סגרה ב-$16.76. שווי השוק: כ-$21–22 מיליארד. טווח 52 שבועות: $13.86–$32.73.</p>
+  <p class="body">התגובות של האנליסטים היו זהירות. KBW העלה את מחיר היעד מ-$15 ל-$16, אבל השאיר המלצת "תשואת חסר". הקונצנזוס נשאר "החזק", עם מחיר יעד ממוצע של כ-$20.5–$21. כמעט חצי מהאנליסטים ממליצים "החזק". הצפי לרווח למניה ב-2027 היה $0.81–$0.86 לפני הדוח, והחברה מדברת על $0.90.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>ב-$16.76 המניה נסחרת במכפיל של כ-19 על תחזית הרווח של 2027 ($0.90), ובערך פי 2.2 מההון העצמי המוחשי ($7.48 למניה). זה זול ביחס לצמיחה של 27%, אבל יקר ביחס לבנק רגיל. וול סטריט עדיין לא החליטה אם SoFi היא חברת טכנולוגיה או בנק. כל עוד אין החלטה, המניה תמשיך להיות תנודתית מאוד (בטא של כ-2.3).</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: הלוואות אישיות לצרכנים, בשווי של עשרות מיליארדים, בסביבת ריבית עולה</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>אשראי צרכני</h3><p>כ-$31B הלוואות אישיות במאזן. כרגע ההפסדים יורדים, אבל אם הכלכלה תיחלש והאבטלה תעלה, הלווים יתקשו להחזיר. הלוואות אישיות לא מגובות בבטוחה.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>שווי הוגן והחשבונאות</h3><p>חלק מהרווח תלוי בהנחות על שווי ההלוואות. עלייה חדה בריבית, או שינוי בהנחות על פירעון מוקדם ועל הפסדים, יכולים למחוק מאות מיליונים, גם כשיש גידור.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>עלות הפיקדונות</h3><p>SoFi מושכת לקוחות עם ריבית גבוהה על חיסכון (4.4%). אם המתחרים יעלו ריביות, או אם סוכני AI יקלו על הלקוחות להשוות ריביות ולעבור, עלות המימון עלולה לעלות.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>כרטיסי אשראי</h3><p>שיעור מחיקות של 7.77%, ובעלייה. העסק צומח 67% בשנה. צמיחה מהירה בכרטיסים, יחד עם הפסדים עולים, היא שילוב שבנקים רבים נכוו ממנו.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>הפלטפורמה הטכנולוגית</h3><p>ירידה של 24% אחרי שלקוח גדול עזב. החברה מבטיחה חזרה לצמיחה של 25% ב-2027, אבל ההבטחה הזו כבר נדחתה בעבר.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>תנודתיות המניה</h3><p>בטא של כ-2.3: המניה זזה בערך פי 2 מהשוק. היא ירדה כמעט 45% השנה, למרות צמיחה של 40% ברווחים. גם עסק טוב לא מגן מירידות חדות.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>צמיחה</strong></td><td>44% ברבעון, 40% בשנה ו-27% בתחזית ל-2027. מעט מאוד חברות פיננסיות בגודל כזה צומחות בקצב הזה.</td><td>הצמיחה תלויה בהלוואות אישיות, שצמחו מהר יותר מהענף. ההנהלה עצמה צופה האטה בהן ב-2027.</td></tr>
+        <tr><td><strong>ריבית</strong></td><td>הגידור עבד, ומרווח הריבית עלה ל-6.14%. התחזית ל-2027 כבר מניחה שתי העלאות ריבית, ואם הריבית תרד, שוק המשכנתאות יתעורר.</td><td>תנודות ריבית חדות פוגעות בשווי ההלוואות. הגידור לא מכסה שינויים בהנחות על הפסדים ועל פירעון מוקדם.</td></tr>
+        <tr><td><strong>אשראי</strong></td><td>ההפסדים בהלוואות אישיות יורדים (3.4%), והפיגורים יציבים. הלקוחות בעלי הכנסה גבוהה.</td><td>כרטיסי אשראי ב-7.77% מחיקות, ובעלייה. ההלוואות האישיות לא מגובות בבטוחה. מיתון יפגע ישירות.</td></tr>
+        <tr><td><strong>הון</strong></td><td>יחס הון של 17%, ו"מרווח" של $29B שלא נדרש. אין צורך בגיוס הון ב-2027, כלומר אין דילול.</td><td>יחס ההון יורד במכוון (‏−1.8 נק' ברבעון) לכיוון 13%–15%. פחות כרית ביטחון אם יבוא משבר.</td></tr>
+        <tr><td><strong>עמלות</strong></td><td>42% מההכנסות מעמלות, והיעד הוא 50%. עמלות פתיחה, LPB, כרטיסים ומסחר צומחים מהר ולא דורשים הון.</td><td>הכנסות LPB תלויות בתיאבון של משקיעים חיצוניים, שעלול להיעלם במשבר. ההכנסה למוצר בשירותים פיננסיים ירדה משנה שעברה.</td></tr>
+        <tr><td><strong>חזון 2030</strong></td><td>100 מיליון מוצרים ופי 3–4 ברווחים. SoFi Plus, קריפטו, מטבע יציב ובנקאות עסקית הם אופציות צמיחה שלא נכללות בתחזית.</td><td>יעדים שאפתניים מאוד. הרבה עסקים חדשים במקביל עלולים לפזר את המיקוד ולשחוק רווחיות.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>מכפיל של כ-19 על רווח 2027, ירידה של כשליש מתחילת השנה. אם החברה תעמוד ביעדים, המניה זולה.</td><td>הקונצנזוס "החזק", ו-KBW עדיין ממליץ "תשואת חסר". היסטורית, זינוקים אחרי דוחות טובים נמחקו תוך שבועות.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהמניה תנודתית מאוד, ושזינוקים קודמים אחרי דוחות התמוססו. משקיע לטווח ארוך צריך לעקוב אחרי שלושה מדדים שההנהלה עצמה בחרה: קצב הוספת לקוחות (מעל מיליון ברבעון), מוצרים ללקוח (1.56 כיום) והכנסה למוצר. בנוסף כדאי לעקוב אחרי שיעור המחיקות בכרטיסי אשראי ובהלוואות אישיות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 13 -->
+<section>
+  <div class="sec-label">13 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>מרווח ריבית נטו (NIM)</dt><dd>ההפרש בין הריבית שהבנק מקבל על הלוואות לבין הריבית שהוא משלם על פיקדונות, כאחוז מהנכסים. אצל SoFi: 6.14%, גבוה מאוד ביחס לבנק רגיל.</dd>
+    <dt>LPB</dt><dd>Loan Platform Business: הלוואות ש-SoFi מאשרת ומעמידה, אבל משקיע חיצוני מממן. SoFi מקבלת עמלה, בלי לסכן הון משלה.</dd>
+    <dt>שווי הוגן</dt><dd>שיטה חשבונאית שבה ההלוואות נרשמות במאזן לפי שווי השוק שלהן, ולא לפי הקרן. כשהריבית עולה, השווי יורד.</dd>
+    <dt>גידור</dt><dd>עסקה פיננסית שמרוויחה כשהריבית עולה, כדי לקזז את הירידה בשווי ההלוואות.</dd>
+    <dt>שיעור מחיקות (NCO)</dt><dd>אחוז ההלוואות שהבנק מוותר על גבייתן בשנה. בהלוואות האישיות של SoFi: 3.4%.</dd>
+    <dt>EBITDA</dt><dd>רווח לפני ריבית, מסים, פחת והפחתות. מדד לרווחיות התפעולית של העסק.</dd>
+    <dt>Rule of 40</dt><dd>כלל אצבע לחברות טכנולוגיה: צמיחה ועוד שולי רווח צריכים להיות מעל 40. אצל SoFi: 44% ועוד 34% = 79.</dd>
+    <dt>ROTCE</dt><dd>תשואה על ההון העצמי המוחשי: כמה רווח החברה מייצרת על כל דולר הון שלה (בלי מוניטין). אצל SoFi: כ-10%, והיעד הוא 20%–30%.</dd>
+    <dt>עמלת פתיחה</dt><dd>תשלום חד-פעמי שהלווה משלם בעת קבלת ההלוואה. הלווים שמשלמים אותה נוטים להחזיר את ההלוואה טוב יותר.</dd>
+    <dt>SoFi Plus</dt><dd>מנוי בתשלום ($120 בשנה) שנותן ריבית גבוהה יותר, הטבות בהשקעות ובכרטיס, וכלים נוספים. נוטו משווה אותו ל-Amazon Prime.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> SoFi Technologies — הודעה לעיתונות על תוצאות Q3 2026 (27.10.2026); תמלול שיחת האנליסטים (StockOracle / FactSet, 27.10.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: TIKR, Stocktwits, Coinpaper, 24/7 Wall St., MarketBeat (27–30.10.2026). שווי השוק, המכפילים והירידה מתחילת השנה הם חישוב לפי מחיר המניה ב-30.10 ומספר המניות בדוח. לא נמצא לוגו בקבצים שצורפו, ולכן שם החברה מוצג כטקסט.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
