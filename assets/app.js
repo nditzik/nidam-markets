@@ -34,7 +34,7 @@
   var GROUPS = {
     market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"]], def: "indices" },
     calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
-    stocks:   { subs: [["analyze", "נתח מניה"], ["picks", "הנבחרות"], ["candidates", "מועמדים"], ["momentum", "מומנטום"], ["trades", "הצעות לטרייד"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
+    stocks:   { subs: [["consensus", "סיכום"], ["analyze", "נתח מניה"], ["picks", "הנבחרות"], ["candidates", "מועמדים"], ["momentum", "מומנטום"], ["trades", "הצעות לטרייד"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
     news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" }
   };
   var SUB2TOP = {}, LAST_SUB = {};
@@ -50,7 +50,7 @@
     var g = GROUPS[top];
     if (!g) { bar.hidden = true; bar.innerHTML = ""; return; }
     bar.innerHTML = g.subs.map(function (s) {
-      return '<button class="subtab' + (s[0] === sub ? " is-active" : "") + '" role="tab" data-sub="' + s[0] + '"' +
+      return '<button class="subtab' + (s[0] === sub ? " is-active" : "") + (s[0] === "consensus" ? " sub-hl" : "") + '" role="tab" data-sub="' + s[0] + '"' +
         (s[0] === sub ? ' aria-selected="true"' : "") + ">" + esc(s[1]) + "</button>";
     }).join("");
     bar.hidden = false;
@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np166";
+  var TA_VER = "np167";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4239,6 +4239,49 @@
     renderStockSiblings();
   }
   var INSD = null;
+  /* ===== סיכום · הכל מסכים (31.10.2026, np167, איציק) — data/consensus.json (build_consensus.py) =====
+     מוקאפ שאושר (הגרסה הפשוטה): https://claude.ai/artifact/KU3hNTXbgPJdBtEBcT2r2K — מניות ששלוש מערכות ומעלה
+     באתר בחרו בהן: מי בחר (במילים + התאריך), ומשפט למה. בלי טבלה ובלי ציון. */
+  var CONSD = null;
+  function renderConsensus(el) {
+    el = el || document.getElementById("panel-consensus");
+    if (!el) return;
+    var d = CONSD;
+    if (!d) { emptyPanel(el, "🧭", "סיכום — בקרוב", "נבנה בריצה הבאה של האתר."); return; }
+    var wd = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"][new Date(d.asOf + "T12:00:00Z").getUTCDay()];
+    var rows = (d.rows || []).map(function (r) {
+      var who = (r.who || []).map(function (w) {
+        return '<span class="cs-who"><span>' + esc(w.l) + '</span><span class="cs-d">' +
+          (w.k === "sec" ? "דוח שבועי " : "") + '<span class="num" dir="ltr">' + insDm(w.d) + "</span></span></span>";
+      }).join("");
+      return '<div class="cs-row"><div class="cs-tk"><b class="num tk" dir="ltr">' + tvLink(r.t) + '</b><div class="s mute"><bdi dir="ltr">' +
+        esc(r.co) + "</bdi>" + (r.sec ? " · " + esc(r.sec) : "") + '</div></div><div class="cs-body"><div class="cs-whos">' + who +
+        '</div><p class="cs-why">' + esc(r.why) + "</p></div></div>";
+    }).join("");
+    var sc = d.src || {};
+    function dn(iso) { return '<span class="num" dir="ltr">' + insDm(iso) + "</span>"; }
+    function rg(a, b) { return '<span class="num" dir="ltr">' + insDm(a) + "–" + insDm(b) + "</span>"; }
+    var srcRows = [
+      ["בנבחרות", sc.nb && "נכנסה למהדורה ב-" + rg(sc.nb.from, sc.nb.to) + " (שבועיים אחרונים). התאריך = המהדורה שבה נכנסה"],
+      ["מועמדת", sc.cand && "רשימת המועמדים, על סגירת " + dn(sc.cand.d)],
+      ["מומנטום", sc.mom && "קבצי " + dn(sc.mom.d) + " — שני סיגנלים ומעלה, או מוכנות 50 ומעלה"],
+      ["הצעות לטרייד", sc.fp && "הדוח של " + dn(sc.fp.d) + ", רק מניות שעברו את כל הבדיקות"],
+      ["מנהלים קנו", sc.ins && "קנייה בשוק הפתוח שדווחה ב-" + rg(sc.ins.from, sc.ins.to) + ". התאריך = יום הדיווח"],
+      ["סקטור מאושר / מתחמם", sc.sec && sc.sec.d && "דוח הרוטציה השבועי האחרון (" + dn(sc.sec.d) + ") — מתעדכן פעם בשבוע"]
+    ].filter(function (x) { return x[1]; }).map(function (x) {
+      return '<div class="cs-src"><b>' + esc(x[0]) + "</b><span>" + x[1] + "</span></div>";
+    }).join("");
+    el.innerHTML = '<div class="board cs-board">' +
+      '<section class="pan"' + bdSpan(12) + ">" + panHd("סיכום · הכל מסכים", '<span class="mute">נכון לסגירת יום ' + wd + ' <span class="num" dir="ltr">' + insDm(d.asOf) + "</span></span>") +
+      '<div class="pb"><p class="cs-h">' + (d.n
+        ? (d.n > (d.rows || []).length ? "המובילות מתוך " : "") + d.n + " מניות שנבחרו על ידי " + d.minN + " מערכות ומעלה באתר"
+        : "השבוע אין מניה ש-" + d.minN + " מערכות באתר בחרו בה") + "</p>" +
+      '<p class="cs-dek">כל מערכת באתר בוחרת מניות לבד. כאן — המניות שכמה מהן הגיעו אליהן.</p>' +
+      (rows ? '<div class="cs-list">' + rows + "</div>" : "") + "</div></section>" +
+      '<section class="pan"' + bdSpan(12) + ">" + panHd("מאיפה זה בא · ממתי עד מתי", "") +
+      '<div class="pb">' + srcRows + '<p class="mute s cs-foot">מתעדכן לבד בכל ריצה של האתר, כשהקבצים החדשים מגיעים. זו הצלבה בין מערכות, לא המלצה.</p></div></section></div>';
+  }
+
   function renderInsider(el, d) {
     if (d) INSD = d;
     el = el || document.getElementById("panel-insider");
@@ -4991,6 +5034,9 @@
       fetchJSON("data/insider_daily.json")
         .then(function (d) { if (!freshD("insdd", d)) return; INSDD = d; renderInsider(); })
         .catch(function () {});
+      fetchJSON("data/consensus.json")
+        .then(function (d) { if (!freshD("cons", d)) return; CONSD = d; renderConsensus(); noteSig("consensus", d); })
+        .catch(function () { if (!CONSD) renderConsensus(); });
       // הנבחרות (30.9.2026): המהדורה + יומן הכנות; היומן לא חוסם את הקלפים
       Promise.all([fetchJSON("data/earnings_prep.json"), fetchJSON("data/earnings_prep_notes.json").catch(function () { return {}; }),
         fetchJSON("data/earnings_review_notes.json").catch(function () { return {}; })])

@@ -2516,3 +2516,28 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 #np-intro .ni-skip:hover { color: #DCE2EA; }
 #np-intro .ni-skip:focus-visible { outline: 2px solid #7FB2FF; outline-offset: 2px; border-radius: 6px; }
 .ins-young { margin-top: 6px; }
+
+/* ===== np167 (31.10.2026, איציק): "סיכום · הכל מסכים" — לשונית-משנה בולטת + רשימה פשוטה ===== */
+.subtabs .subtab.sub-hl { background: var(--ink); color: var(--ink-text); border-color: var(--ink); font-weight: 600; }
+.subtabs .subtab.sub-hl:hover { color: var(--ink-text); opacity: .9; }
+.subtabs .subtab.sub-hl.is-active { background: var(--ink); color: var(--ink-text); border: 2px solid var(--accent); }
+.cs-h { margin: 0 0 4px; font-size: 20px; line-height: 1.4; font-weight: 700; color: var(--text); }
+.cs-dek { margin: 0; font-size: 14px; line-height: 1.5; color: var(--text-soft); }
+.cs-list { margin-top: 12px; border-top: 1px solid var(--border); }
+.cs-row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.cs-row:last-child { border-bottom: 0; }
+.cs-tk .tk { font-size: 17px; }
+.cs-tk .s { margin-top: 2px; }
+.cs-body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.cs-whos { display: flex; flex-wrap: wrap; gap: 6px; }
+.cs-who { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 3px; background: var(--surface-2); font-size: 13px; line-height: 1.2; color: var(--text); }
+.cs-d { font-size: 12px; color: var(--text-3); }
+.cs-why { margin: 0; font-size: 14px; line-height: 1.5; color: var(--text-soft); }
+.cs-src { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.5; }
+.cs-src b { font-weight: 600; }
+.cs-src span { color: var(--text-soft); }
+.cs-foot { margin: 10px 0 0; }
+@media (max-width: 600px) {
+  .cs-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .cs-src { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
