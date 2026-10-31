@@ -2,8 +2,8 @@
  "meta": {
   "version": 1,
   "created": "2026-08-01",
-  "last_updated": "2026-10-24",
-  "weeks_count": 13,
+  "last_updated": "2026-10-31",
+  "weeks_count": 14,
   "note": "שבועות 1-3 שוחזרו מהשיחה (22.8) לאחר איפוס סביבה — ערכי ליבה מלאים, פירוט חלקי",
   "weekly_checklist_v3": {
    "updated": "2026-09-19",
@@ -6995,6 +6995,1453 @@
       ],
       [
        "D",
+       "before"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "date": "2026-10-31",
+   "data_date": "2026-10-30",
+   "source": "csv_drive_rotation_2026-10-31",
+   "spx_perf": {
+    "1w": -0.57,
+    "1m": -0.93,
+    "3m": 1.92,
+    "6m": 5.15,
+    "ytd": 10.73,
+    "1y": 11.11
+   },
+   "spx_levels": {
+    "close": 7580.07,
+    "ma20": 7729.9035,
+    "ma50": 7697.0808,
+    "ma200": 7307.9482,
+    "hi52": 7818.93,
+    "off_hi52": -3.05
+   },
+   "spx_breadth": {
+    "ma5": 61,
+    "ma20": 69,
+    "ma50": 60,
+    "ma100": 58,
+    "ma150": 59,
+    "ma200": 59
+   },
+   "week_no": 14,
+   "sectors": {
+    "XLK": {
+     "name_he": "טכנולוגיה",
+     "index_sym": "SRIT",
+     "close": 6771.47,
+     "perf": {
+      "1d": -4.24,
+      "1w": -1.77,
+      "1m": -6.82,
+      "3m": 2.76,
+      "6m": 11.78,
+      "ytd": 19.13,
+      "1y": 13.25
+     },
+     "rank": {
+      "1w": 10,
+      "1m": 10,
+      "3m": 5,
+      "6m": 3,
+      "1y": 5
+     },
+     "rank_gap": -7,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 7140.824,
+      "ma50": 7080.9446,
+      "ma100": 6900.3955,
+      "ma200": 6370.6247
+     },
+     "above_ma200": true,
+     "above_ma50": false,
+     "hi52": 7494.8,
+     "off_hi52": -9.65,
+     "pct_above_ma5": 27,
+     "pct_above_ma20": 32,
+     "pct_above_ma50": 39,
+     "pct_above_ma100": 47,
+     "pct_above_ma200": 62,
+     "pct_above_ma50_prev": 47,
+     "breadth_delta_wow": -8,
+     "breadth_direction": "falling",
+     "crs_val": 0.8933,
+     "crs_ma": 0.9253,
+     "crs_gap_pct": -3.45,
+     "crs_gap_pct_5d_ago": -3.13,
+     "crs_state": "falling",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 6,
+      "breadth": 6,
+      "highs_lows": null,
+      "crs": 0,
+      "signals": null,
+      "raw": 12,
+      "max": 70
+     },
+     "rotation_score": 17,
+     "rotation_score_prev": 17,
+     "quadrant": "weakening",
+     "quadrant_prev": "weakening",
+     "flags": [],
+     "industries_note": "<span dir=\"ltr\">−1.8%</span> בשבוע ו-<span dir=\"ltr\">−6.8%</span> בחודש, רוחב 47→39. שבבים ומערכות מחשוב מובילים את היציאות במכ\"ם; עדיין 6% מעל ממוצע 200 (6,371).",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "בחוץ — מתחת לממוצע 50",
+      "checks": [
+       "p",
+       "n",
+       "n",
+       "n"
+      ]
+     }
+    },
+    "XLV": {
+     "name_he": "בריאות",
+     "index_sym": "SRHC",
+     "close": 2155.33,
+     "perf": {
+      "1d": 0.43,
+      "1w": 3.14,
+      "1m": 9.75,
+      "3m": 13.19,
+      "6m": 26.74,
+      "ytd": 19.35,
+      "1y": 28.18
+     },
+     "rank": {
+      "1w": 1,
+      "1m": 4,
+      "3m": 2,
+      "6m": 1,
+      "1y": 2
+     },
+     "rank_gap": -3,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 2048.354,
+      "ma50": 2006.573,
+      "ma100": 1942.9415,
+      "ma200": 1848.4426
+     },
+     "above_ma200": true,
+     "above_ma50": true,
+     "hi52": 2155.33,
+     "off_hi52": 0.0,
+     "pct_above_ma5": 50,
+     "pct_above_ma20": 78,
+     "pct_above_ma50": 75,
+     "pct_above_ma100": 85,
+     "pct_above_ma200": 85,
+     "pct_above_ma50_prev": 85,
+     "breadth_delta_wow": -10,
+     "breadth_direction": "falling",
+     "crs_val": 0.2843,
+     "crs_ma": 0.2644,
+     "crs_gap_pct": 7.55,
+     "crs_gap_pct_5d_ago": 5.36,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 7,
+      "breadth": 14,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 33,
+      "max": 70
+     },
+     "rotation_score": 47,
+     "rotation_score_prev": 56,
+     "quadrant": "weakening",
+     "quadrant_prev": "leading",
+     "flags": [],
+     "industries_note": "הסקטור החזק של השבוע (<span dir=\"ltr\">+3.1%</span>) אחרי לילי, מרק ואבווי. אבל הרוחב ירד 85→75 והציון בטבלה \"נחלש\": המחיר עולה, מספר המשתתפות קטן.",
+     "verdict": {
+      "status": "held",
+      "cls": "ok",
+      "verdict": "מאושר — השליש השני אחרי הדוחות",
+      "checks": [
+       "n0",
+       "y",
+       "p",
+       "y"
+      ]
+     }
+    },
+    "XLF": {
+     "name_he": "פיננסים",
+     "index_sym": "SRFI",
+     "close": 939.87,
+     "perf": {
+      "1d": -0.74,
+      "1w": 1.06,
+      "1m": 5.78,
+      "3m": -0.86,
+      "6m": 8.42,
+      "ytd": 3.1,
+      "1y": 8.17
+     },
+     "rank": {
+      "1w": 7,
+      "1m": 6,
+      "3m": 7,
+      "6m": 4,
+      "1y": 7
+     },
+     "rank_gap": -2,
+     "rank_1m_wow": -1,
+     "ma": {
+      "ma20": 920.26,
+      "ma50": 929.9976,
+      "ma100": 929.54,
+      "ma200": 892.8221
+     },
+     "above_ma200": true,
+     "above_ma50": true,
+     "hi52": 972.16,
+     "off_hi52": -3.32,
+     "pct_above_ma5": 58,
+     "pct_above_ma20": 80,
+     "pct_above_ma50": 58,
+     "pct_above_ma100": 46,
+     "pct_above_ma200": 63,
+     "pct_above_ma50_prev": 47,
+     "breadth_delta_wow": 11,
+     "breadth_direction": "rising",
+     "crs_val": 0.124,
+     "crs_ma": 0.1189,
+     "crs_gap_pct": 4.29,
+     "crs_gap_pct_5d_ago": 3.6,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 6,
+      "breadth": 16,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 34,
+      "max": 70
+     },
+     "rotation_score": 49,
+     "rotation_score_prev": 56,
+     "quadrant": "weakening",
+     "quadrant_prev": "leading",
+     "flags": [],
+     "industries_note": "סגרה מעל ממוצע 50 בפעם הראשונה (940 מול 930), רוחב 47→58. צריך עוד שבוע, וברקשייר מדווחת ביום שני.",
+     "verdict": {
+      "status": "cand",
+      "cls": "warm",
+      "verdict": "מתחמם — שבוע ראשון מעל ממוצע 50",
+      "checks": [
+       "n0",
+       "y",
+       "y",
+       "n"
+      ]
+     }
+    },
+    "XLY": {
+     "name_he": "צריכה מחזורית",
+     "index_sym": "SRCD",
+     "close": 1877.86,
+     "perf": {
+      "1d": -0.86,
+      "1w": 0.99,
+      "1m": 3.92,
+      "3m": 3.62,
+      "6m": -3.85,
+      "ytd": -2.62,
+      "1y": -0.44
+     },
+     "rank": {
+      "1w": 9,
+      "1m": 8,
+      "3m": 4,
+      "6m": 8,
+      "1y": 9
+     },
+     "rank_gap": 0,
+     "rank_1m_wow": -1,
+     "ma": {
+      "ma20": 1878.0185,
+      "ma50": 1871.4254,
+      "ma100": 1884.1998,
+      "ma200": 1886.0397
+     },
+     "above_ma200": false,
+     "above_ma50": true,
+     "hi52": 2024.18,
+     "off_hi52": -7.23,
+     "pct_above_ma5": 77,
+     "pct_above_ma20": 77,
+     "pct_above_ma50": 62,
+     "pct_above_ma100": 57,
+     "pct_above_ma200": 45,
+     "pct_above_ma50_prev": 51,
+     "breadth_delta_wow": 11,
+     "breadth_direction": "rising",
+     "crs_val": 0.2477,
+     "crs_ma": 0.2427,
+     "crs_gap_pct": 2.08,
+     "crs_gap_pct_5d_ago": 1.56,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 8,
+      "breadth": 16,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 36,
+      "max": 70
+     },
+     "rotation_score": 51,
+     "rotation_score_prev": 56,
+     "quadrant": "lagging",
+     "quadrant_prev": "improving",
+     "flags": [],
+     "industries_note": "על ממוצע 20 ו-50, 0.4% מתחת ל-1,886. הרוחב קפץ 51→62 אחרי אמזון, אבל המחיר עוד לא חצה.",
+     "verdict": {
+      "status": "out",
+      "cls": "bounce",
+      "verdict": "ריבאונד — מתחת לקו 200",
+      "checks": [
+       "n0",
+       "p",
+       "y",
+       "n"
+      ]
+     }
+    },
+    "XLP": {
+     "name_he": "צריכה בסיסית",
+     "index_sym": "SRCS",
+     "close": 1002.77,
+     "perf": {
+      "1d": 1.38,
+      "1w": 1.6,
+      "1m": 11.35,
+      "3m": 6.18,
+      "6m": 5.24,
+      "ytd": 15.94,
+      "1y": 17.59
+     },
+     "rank": {
+      "1w": 5,
+      "1m": 2,
+      "3m": 3,
+      "6m": 5,
+      "1y": 4
+     },
+     "rank_gap": 3,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 963.255,
+      "ma50": 940.3314,
+      "ma100": 939.7777,
+      "ma200": 942.3292
+     },
+     "above_ma200": true,
+     "above_ma50": true,
+     "hi52": 1005.37,
+     "off_hi52": -0.26,
+     "pct_above_ma5": 85,
+     "pct_above_ma20": 94,
+     "pct_above_ma50": 79,
+     "pct_above_ma100": 73,
+     "pct_above_ma200": 70,
+     "pct_above_ma50_prev": 76,
+     "breadth_delta_wow": 3,
+     "breadth_direction": "flat",
+     "crs_val": 0.1323,
+     "crs_ma": 0.1243,
+     "crs_gap_pct": 6.46,
+     "crs_gap_pct_5d_ago": 6.16,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 19,
+      "breadth": 17,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 48,
+      "max": 70
+     },
+     "rotation_score": 69,
+     "rotation_score_prev": 60,
+     "quadrant": "leading",
+     "quadrant_prev": "leading",
+     "flags": [],
+     "industries_note": "מבחן KO עבר (<span dir=\"ltr\">+1.6%</span>, רוחב 76→79) והעוצמה מול המדד עולה שוב. אחרי <span dir=\"ltr\">+11.4%</span> בחודש לא רודפים בשיא.",
+     "verdict": {
+      "status": "cand",
+      "cls": "ok",
+      "verdict": "מאושר — שליש ראשון",
+      "checks": [
+       "y",
+       "y",
+       "y",
+       "y"
+      ]
+     }
+    },
+    "XLE": {
+     "name_he": "אנרגיה",
+     "index_sym": "SREN",
+     "close": 1076.5,
+     "perf": {
+      "1d": 1.91,
+      "1w": 1.0,
+      "1m": 13.96,
+      "3m": 18.87,
+      "6m": 18.27,
+      "ytd": 56.62,
+      "1y": 60.57
+     },
+     "rank": {
+      "1w": 8,
+      "1m": 1,
+      "3m": 1,
+      "6m": 2,
+      "1y": 1
+     },
+     "rank_gap": 1,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 1031.5215,
+      "ma50": 993.8304,
+      "ma100": 935.3456,
+      "ma200": 898.4962
+     },
+     "above_ma200": true,
+     "above_ma50": true,
+     "hi52": 1076.5,
+     "off_hi52": 0.0,
+     "pct_above_ma5": 81,
+     "pct_above_ma20": 76,
+     "pct_above_ma50": 86,
+     "pct_above_ma100": 86,
+     "pct_above_ma200": 81,
+     "pct_above_ma50_prev": 86,
+     "breadth_delta_wow": 0,
+     "breadth_direction": "flat",
+     "crs_val": 0.142,
+     "crs_ma": 0.1331,
+     "crs_gap_pct": 6.72,
+     "crs_gap_pct_5d_ago": 7.79,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 14,
+      "breadth": 20,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 46,
+      "max": 70
+     },
+     "rotation_score": 66,
+     "rotation_score_prev": 70,
+     "quadrant": "leading",
+     "quadrant_prev": "leading",
+     "flags": [],
+     "industries_note": "ראשונה בחודש ובשנה, שיא שנתי (1,076), רוחב 86%. הנפט חד מדי, ועוד דוחות באנרגיה (COP, EOG, CNQ, SU) ביום חמישי — לא מגדילים לפניהם.",
+     "verdict": {
+      "status": "held",
+      "cls": "ok",
+      "verdict": "מאושר — מחזיקים רבע",
+      "checks": [
+       "y",
+       "y",
+       "y",
+       "y"
+      ]
+     }
+    },
+    "XLI": {
+     "name_he": "תעשייה",
+     "index_sym": "SRIN",
+     "close": 1416.77,
+     "perf": {
+      "1d": -1.57,
+      "1w": 1.67,
+      "1m": 0.24,
+      "3m": -6.1,
+      "6m": -4.13,
+      "ytd": 7.89,
+      "1y": 8.24
+     },
+     "rank": {
+      "1w": 4,
+      "1m": 9,
+      "3m": 10,
+      "6m": 9,
+      "1y": 6
+     },
+     "rank_gap": 0,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 1422.6495,
+      "ma50": 1443.7648,
+      "ma100": 1489.9728,
+      "ma200": 1466.0732
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 1577.25,
+     "off_hi52": -10.17,
+     "pct_above_ma5": 60,
+     "pct_above_ma20": 64,
+     "pct_above_ma50": 60,
+     "pct_above_ma100": 57,
+     "pct_above_ma200": 51,
+     "pct_above_ma50_prev": 48,
+     "breadth_delta_wow": 12,
+     "breadth_direction": "rising",
+     "crs_val": 0.1869,
+     "crs_ma": 0.1842,
+     "crs_gap_pct": 1.49,
+     "crs_gap_pct_5d_ago": -0.86,
+     "crs_state": "inflecting_up",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 11,
+      "breadth": 16,
+      "highs_lows": null,
+      "crs": 15,
+      "signals": null,
+      "raw": 42,
+      "max": 70
+     },
+     "rotation_score": 60,
+     "rotation_score_prev": 31,
+     "quadrant": "improving",
+     "quadrant_prev": "lagging",
+     "flags": [],
+     "industries_note": "הרוחב קפץ 48→60 והעוצמה מול המדד מתהפכת למעלה, אבל המחיר 3% מתחת לקו 200 (1,466). השתפרה מ\"להתרחק\" לרדאר.",
+     "verdict": {
+      "status": "out",
+      "cls": "bounce",
+      "verdict": "ריבאונד — מתחת לכל הממוצעים",
+      "checks": [
+       "p",
+       "p",
+       "y",
+       "n"
+      ]
+     }
+    },
+    "XLB": {
+     "name_he": "חומרים",
+     "index_sym": "SRMA",
+     "close": 657.95,
+     "perf": {
+      "1d": 0.04,
+      "1w": 2.02,
+      "1m": 6.51,
+      "3m": 2.06,
+      "6m": 2.1,
+      "ytd": 14.54,
+      "1y": 20.44
+     },
+     "rank": {
+      "1w": 2,
+      "1m": 5,
+      "3m": 6,
+      "6m": 6,
+      "1y": 3
+     },
+     "rank_gap": 1,
+     "rank_1m_wow": 1,
+     "ma": {
+      "ma20": 641.2365,
+      "ma50": 643.611,
+      "ma100": 643.847,
+      "ma200": 641.9971
+     },
+     "above_ma200": true,
+     "above_ma50": true,
+     "hi52": 676.35,
+     "off_hi52": -2.72,
+     "pct_above_ma5": 85,
+     "pct_above_ma20": 77,
+     "pct_above_ma50": 73,
+     "pct_above_ma100": 65,
+     "pct_above_ma200": 62,
+     "pct_above_ma50_prev": 65,
+     "breadth_delta_wow": 8,
+     "breadth_direction": "rising",
+     "crs_val": 0.0868,
+     "crs_ma": 0.0828,
+     "crs_gap_pct": 4.77,
+     "crs_gap_pct_5d_ago": 3.26,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 17,
+      "breadth": 20,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 49,
+      "max": 70
+     },
+     "rotation_score": 70,
+     "rotation_score_prev": 47,
+     "quadrant": "improving",
+     "quadrant_prev": "lagging",
+     "flags": [],
+     "industries_note": "שבוע שלישי מעל קבוצת הממוצעים (641–644), רוחב 65→73, עוצמה מול המדד עולה. מבחן LIN/FCX/NUE עבר, ואין ענקית מדווחת השבוע.",
+     "verdict": {
+      "status": "cand",
+      "cls": "ok",
+      "verdict": "מאושר — השחרור מההקפאה",
+      "checks": [
+       "p",
+       "y",
+       "y",
+       "y"
+      ]
+     }
+    },
+    "XLRE": {
+     "name_he": "נדל\"ן",
+     "index_sym": "SRRE",
+     "close": 275.07,
+     "perf": {
+      "1d": 0.15,
+      "1w": 1.35,
+      "1m": 4.98,
+      "3m": -4.67,
+      "6m": -2.59,
+      "ytd": 7.86,
+      "1y": 6.83
+     },
+     "rank": {
+      "1w": 6,
+      "1m": 7,
+      "3m": 9,
+      "6m": 7,
+      "1y": 8
+     },
+     "rank_gap": 0,
+     "rank_1m_wow": 1,
+     "ma": {
+      "ma20": 267.8555,
+      "ma50": 272.157,
+      "ma100": 278.7173,
+      "ma200": 275.5543
+     },
+     "above_ma200": false,
+     "above_ma50": true,
+     "hi52": 293.1,
+     "off_hi52": -6.15,
+     "pct_above_ma5": 73,
+     "pct_above_ma20": 80,
+     "pct_above_ma50": 43,
+     "pct_above_ma100": 30,
+     "pct_above_ma200": 37,
+     "pct_above_ma50_prev": 47,
+     "breadth_delta_wow": -4,
+     "breadth_direction": "falling",
+     "crs_val": 0.0363,
+     "crs_ma": 0.0346,
+     "crs_gap_pct": 4.82,
+     "crs_gap_pct_5d_ago": 3.6,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 14,
+      "breadth": 6,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 32,
+      "max": 70
+     },
+     "rotation_score": 46,
+     "rotation_score_prev": 59,
+     "quadrant": "lagging",
+     "quadrant_prev": "improving",
+     "flags": [],
+     "industries_note": "סגרה 275.07 — 0.07 מעל הרמה שקבענו אבל עדיין מתחת לקו 200 (276), והרוחב ירד 47→43. אין מועמדות.",
+     "verdict": {
+      "status": "out",
+      "cls": "bounce",
+      "verdict": "ריבאונד — נוגעת בקו 200",
+      "checks": [
+       "y",
+       "y",
+       "p",
+       "n"
+      ]
+     }
+    },
+    "XLU": {
+     "name_he": "תשתיות",
+     "index_sym": "SRUT",
+     "close": 441.14,
+     "perf": {
+      "1d": 0.64,
+      "1w": 2.0,
+      "1m": 10.11,
+      "3m": -2.73,
+      "6m": -7.32,
+      "ytd": 1.69,
+      "1y": -3.18
+     },
+     "rank": {
+      "1w": 3,
+      "1m": 3,
+      "3m": 8,
+      "6m": 10,
+      "1y": 10
+     },
+     "rank_gap": 7,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 426.158,
+      "ma50": 423.2716,
+      "ma100": 439.1562,
+      "ma200": 449.3327
+     },
+     "above_ma200": false,
+     "above_ma50": true,
+     "hi52": 482.91,
+     "off_hi52": -8.65,
+     "pct_above_ma5": 94,
+     "pct_above_ma20": 87,
+     "pct_above_ma50": 84,
+     "pct_above_ma100": 68,
+     "pct_above_ma200": 52,
+     "pct_above_ma50_prev": 81,
+     "breadth_delta_wow": 3,
+     "breadth_direction": "flat",
+     "crs_val": 0.0582,
+     "crs_ma": 0.055,
+     "crs_gap_pct": 5.79,
+     "crs_gap_pct_5d_ago": 5.13,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 24,
+      "breadth": 20,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 56,
+      "max": 70
+     },
+     "rotation_score": 80,
+     "rotation_score_prev": 89,
+     "quadrant": "improving",
+     "quadrant_prev": "improving",
+     "flags": [],
+     "industries_note": "מקום 3 בחודש, רוחב 84%, אבל 1.8% מתחת ל-449. מועמדות רק אחרי סגירה שבועית מעליו, ואז שבוע נוסף.",
+     "verdict": {
+      "status": "out",
+      "cls": "bounce",
+      "verdict": "ריבאונד — מתחת לקו 200",
+      "checks": [
+       "y",
+       "y",
+       "y",
+       "n"
+      ]
+     }
+    },
+    "XLC": {
+     "name_he": "תקשורת",
+     "index_sym": "SRTS",
+     "close": 398.79,
+     "perf": {
+      "1d": -1.11,
+      "1w": -8.49,
+      "1m": -15.19,
+      "3m": -8.64,
+      "6m": -19.88,
+      "ytd": -11.85,
+      "1y": -7.54
+     },
+     "rank": {
+      "1w": 11,
+      "1m": 11,
+      "3m": 11,
+      "6m": 11,
+      "1y": 11
+     },
+     "rank_gap": 0,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 454.91,
+      "ma50": 460.0912,
+      "ma100": 459.8017,
+      "ma200": 461.5249
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 508.66,
+     "off_hi52": -21.6,
+     "pct_above_ma5": 48,
+     "pct_above_ma20": 43,
+     "pct_above_ma50": 19,
+     "pct_above_ma100": 33,
+     "pct_above_ma200": 33,
+     "pct_above_ma50_prev": 29,
+     "breadth_delta_wow": -10,
+     "breadth_direction": "falling",
+     "crs_val": 0.0526,
+     "crs_ma": 0.0589,
+     "crs_gap_pct": -10.72,
+     "crs_gap_pct_5d_ago": -5.55,
+     "crs_state": "falling",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 11,
+      "breadth": 2,
+      "highs_lows": null,
+      "crs": 0,
+      "signals": null,
+      "raw": 13,
+      "max": 70
+     },
+     "rotation_score": 19,
+     "rotation_score_prev": 20,
+     "quadrant": "lagging",
+     "quadrant_prev": "lagging",
+     "flags": [],
+     "industries_note": "<span dir=\"ltr\">−8.5%</span> בשבוע ו-<span dir=\"ltr\">−15.2%</span> בחודש, מקום 11 בכל האופקים, רוחב 19%, 14% מתחת לקו 200.",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "נשבר — הכי חלשה",
+      "checks": [
+       "n",
+       "n",
+       "n",
+       "n"
+      ]
+     }
+    }
+   },
+   "intermarket": {
+    "data": {
+     "us10y": {
+      "close": 4.92,
+      "1d": -1.2,
+      "1w": -1.2,
+      "1m": -6.99,
+      "3m": 5.58,
+      "ma20": 5.117,
+      "ma50": 5.0078,
+      "ma200": 4.5444,
+      "hi52": 5.31,
+      "lo52": 3.96,
+      "off_hi52": -7.34,
+      "sym": "TNX"
+     },
+     "dxy": {
+      "close": 101.88,
+      "1d": -0.16,
+      "1w": 0.07,
+      "1m": 0.42,
+      "3m": 2.02,
+      "ma20": 102.051,
+      "ma50": 100.8178,
+      "ma200": 99.6457,
+      "hi52": 102.59,
+      "lo52": 96.21,
+      "off_hi52": -0.69,
+      "sym": "DXY"
+     },
+     "oil": {
+      "close": 104.12,
+      "1d": 2.08,
+      "1w": 0.82,
+      "1m": 17.76,
+      "3m": 36.78,
+      "ma20": 96.41,
+      "ma50": 91.0444,
+      "ma200": 77.6143,
+      "hi52": 104.12,
+      "lo52": 55.76,
+      "off_hi52": 0.0,
+      "sym": "CLZ26"
+     },
+     "gold": {
+      "close": 3898.9,
+      "1d": -3.29,
+      "1w": -2.72,
+      "1m": -6.87,
+      "3m": -6.29,
+      "ma20": 4115.04,
+      "ma50": 4294.798,
+      "ma200": 4591.7405,
+      "hi52": 5508.6,
+      "lo52": 3898.9,
+      "off_hi52": -29.22,
+      "sym": "GCZ26"
+     }
+    },
+    "read_he": "הבין-שוקי מאשר: ריבית יורדת + נפט בשיא + זהב בשפל + דולר חזק = אנרגיה וצריכה בסיסית, הגנה בריבית ולא בזהב. מה שמסתייג: הנפט חד מדי, והדולר החזק לא תומך בחומרים."
+   },
+   "radar": {
+    "breadth": "26/116 קבוצות עם שינוי אלפא חיובי; מפת חום 71/116 חיוביות בחודש",
+    "inflows": [
+     {
+      "industry": "Oil - Refining and Marketing",
+      "alpha_chg": 6.74,
+      "alpha": 86.42
+     },
+     {
+      "industry": "Oil Field Machinery & Equip",
+      "alpha_chg": 4.89,
+      "alpha": 15.95
+     },
+     {
+      "industry": "Waste Removal Svcs",
+      "alpha_chg": 2.39,
+      "alpha": -17.07
+     },
+     {
+      "industry": "Chemical - Diversified",
+      "alpha_chg": 2.24,
+      "alpha": 8.42
+     },
+     {
+      "industry": "Consumer Prdts - Misc Discr",
+      "alpha_chg": 1.77,
+      "alpha": -1.8
+     },
+     {
+      "industry": "Insurance - Brokers",
+      "alpha_chg": 1.29,
+      "alpha": -7.39
+     },
+     {
+      "industry": "Oil - US Exploration & Product",
+      "alpha_chg": 1.28,
+      "alpha": 35.68
+     },
+     {
+      "industry": "Beverages - Alcohol",
+      "alpha_chg": 1.19,
+      "alpha": -0.33
+     },
+     {
+      "industry": "Medical - Generic Drugs",
+      "alpha_chg": 1.16,
+      "alpha": 12.54
+     },
+     {
+      "industry": "Transportation - Truck",
+      "alpha_chg": 1.14,
+      "alpha": 13.99
+     }
+    ],
+    "outflows": [
+     {
+      "industry": "Electronics - Semiconductors",
+      "alpha_chg": -9.78,
+      "alpha": -9.26
+     },
+     {
+      "industry": "Computer - Integrated Systems",
+      "alpha_chg": -9.55,
+      "alpha": 22.57
+     },
+     {
+      "industry": "Semi Analog & Mixed",
+      "alpha_chg": -8.59,
+      "alpha": 28.93
+     },
+     {
+      "industry": "Communications Components",
+      "alpha_chg": -8.29,
+      "alpha": 9.06
+     },
+     {
+      "industry": "Medical Information Systems",
+      "alpha_chg": -8.17,
+      "alpha": -5.84
+     },
+     {
+      "industry": "Containers - Paper Products",
+      "alpha_chg": -7.8,
+      "alpha": 12.11
+     },
+     {
+      "industry": "Transportation - Ship",
+      "alpha_chg": -7.44,
+      "alpha": 41.73
+     },
+     {
+      "industry": "Mining - Silver",
+      "alpha_chg": -7.2,
+      "alpha": -20.35
+     },
+     {
+      "industry": "Mining - Gold",
+      "alpha_chg": -7.16,
+      "alpha": -9.02
+     },
+     {
+      "industry": "Finance - Investment Brokers",
+      "alpha_chg": -6.18,
+      "alpha": -1.16
+     }
+    ]
+   },
+   "earnings_season": {
+    "week_of_season": 4,
+    "peak_week": false,
+    "next_week_frozen": [
+     "XLK",
+     "XLY",
+     "XLV",
+     "XLE",
+     "XLI",
+     "XLF",
+     "XLU"
+    ],
+    "caution": [
+     "XLRE (O ביום שני)",
+     "XLP (EL ביום שני)"
+    ],
+    "reactions": {
+     "XLK": "המשך — MSFT/NOW/KLAC/INTC: סקטור −1.8%, רוחב 47→39; אינטל −29% ביום שישי",
+     "XLC": "המשך — GOOGL/TMUS/VZ: סקטור −8.5%, רוחב 29→19",
+     "XLY": "ניקוי — AMZN: סקטור +1.0%, רוחב 51→62",
+     "XLV": "אישור — LLY/MRK/ABBV: סקטור +3.1% (אבל רוחב 85→75)",
+     "XLE": "אישור — XOM/CVX: סקטור +1.0%, רוחב 86 יציב",
+     "XLB": "אישור — LIN/FCX/NUE: סקטור +2.0%, רוחב 65→73",
+     "XLI": "ניקוי — CAT/BA/GEV/GD: סקטור +1.7%, רוחב 48→60",
+     "XLF": "אישור — V/MA/SPGI: סקטור +1.1%, רוחב 47→58",
+     "XLP": "אישור — KO/CL: סקטור +1.6%, רוחב 76→79"
+    },
+    "reactions_note": "מבחן תגובה בדוח 7.11: XLK (AAPL/AMD/QCOM/ARM), XLV (PFE/AMGN/VRTX/CVS/NVO), XLE (COP/EOG/CNQ/SU/MPC), XLI (ETN/EMR/PH/BA), XLY (BKNG/MCD/ABNB/MELI/UBER), XLU (SO/DUK/ETR), XLF (BRK)",
+    "macro_next_week": "שבוע ללא החלטת פד; מאקרו לפי לוח האתר"
+   },
+   "recommendations": [
+    {
+     "action": "hold_quarter",
+     "sector": "XLE",
+     "trigger": "מחזיקים רבע; הגדלה לשליש לא לפני 6.11, אחרי COP/EOG/CNQ/SU. ביטול: נפט <96 או סגירה שבועית <1005",
+     "confidence": "medium"
+    },
+    {
+     "action": "hold_add_after_earnings",
+     "sector": "XLV",
+     "trigger": "מחזיקים שליש; שליש שני מ-4.11 אחרי PFE/AMGN/VRTX בסגירה >2090. ביטול: סגירה שבועית <2007",
+     "confidence": "medium"
+    },
+    {
+     "action": "enter_third_on_pullback",
+     "sector": "XLP",
+     "trigger": "שליש ראשון (אם טרם בוצע) בנסיגה לאזור 963 או שבוע שני >1000. ביטול: סגירה שבועית <940",
+     "confidence": "medium"
+    },
+    {
+     "action": "enter_third",
+     "sector": "XLB",
+     "trigger": "שליש ראשון מיום שני בסגירה >644. ביטול: סגירה שבועית <641",
+     "confidence": "medium"
+    },
+    {
+     "action": "watch_week2",
+     "sector": "XLF",
+     "trigger": "שבוע ראשון מעל ממוצע 50. כניסה מוקדם ביותר בסגירה שבועית 6.11: >930 + רוחב>35. ביטול <920",
+     "confidence": "medium"
+    },
+    {
+     "action": "radar_bounce",
+     "sector": "XLU",
+     "trigger": "מועמדות: סגירה שבועית >449 + שבוע שני",
+     "confidence": "low"
+    },
+    {
+     "action": "radar_bounce",
+     "sector": "XLRE",
+     "trigger": "מועמדות: סגירה שבועית ברורה >276 (קו 200) + רוחב>40 + שבוע שני. ביטול: TNX >5.12",
+     "confidence": "low"
+    },
+    {
+     "action": "radar_improver",
+     "sector": "XLY",
+     "trigger": "סגירה שבועית >1886 (קו 200) + שבוע שני; לא לפני BKNG/MCD/ABNB",
+     "confidence": "low"
+    },
+    {
+     "action": "radar_improver",
+     "sector": "XLI",
+     "trigger": "סגירה שבועית >1466 (קו 200) + שבוע שני; לא לפני ETN/EMR/PH",
+     "confidence": "low"
+    },
+    {
+     "action": "stay_out",
+     "sector": "XLK",
+     "trigger": "חזרה: סגירה שבועית >7141 (ממוצע 20) + רוחב>50 + עוצמה מול המדד חוצה מלמטה; לא לפני אפל/AMD",
+     "confidence": "high"
+    },
+    {
+     "action": "avoid",
+     "sector": "XLC",
+     "trigger": "חזרה למכ\"ם: סגירה >455 (ממוצע 20) + רוחב>35",
+     "confidence": "high"
+    }
+   ],
+   "signals": {
+    "distribution": [
+     "XLC: −8.5% בשבוע, מקום 11 בכל האופקים, רוחב 19%",
+     "XLK: רוחב 47→39; שבבים (−9.8) ומערכות מחשוב (−9.6) מובילים את היציאות במכ\"ם, אינטל −29% ביום שישי",
+     "זהב: שפל שנתי, 29% מתחת לשיא; כורי זהב וכסף יוצאים (−7.2)",
+     "רוחב הבריאות ירד 85→75 בזמן שהמחיר עלה"
+    ],
+    "accumulation": [
+     "XLE: שיא שנתי, רוחב 86%, זיקוק (+6.7) וציוד שדות (+4.9) נכנסים",
+     "XLB: רוחב 65→73, עוצמה מול המדד עולה, שבוע שלישי מעל הממוצעים",
+     "XLF: סגירה ראשונה מעל ממוצע 50, רוחב 47→58",
+     "XLI: רוחב 48→60 והעוצמה מול המדד מתהפכת למעלה — עדיין מתחת לקו 200"
+    ]
+   },
+   "notes": "שבוע 14 — S&P −0.57% ל-7,580 (שישי −1.8%, 3% מהשיא) אבל רוחב 58→60. ריבית 4.92, נפט 104 (שיא), זהב 3,899 (שפל), דולר 101.9. התקשורת −8.5% (רוחב 19), הטכנולוגיה −1.8% (רוחב 39, שבבים ומערכות מחשוב מובילים יציאות; בחוץ). אנרגיה +1.0% לשיא 1,076, רוחב 86 — רבע פוזיציה מוחזק, הגדלה אחרי COP/EOG 5.11. בריאות +3.1% — שליש שני מ-4.11 אחרי PFE/AMGN, אבל רוחב 85→75. בסיסית: שליש ראשון בנסיגה/שבוע שני. חומרים: ההקפאה שוחררה, שליש ראשון מיום שני מעל 644. פיננסים: שבוע ראשון מעל ממוצע 50, מחכים לשני. נדל\"ן (275.07), מחזורית, תעשייה ותשתיות — ריבאונדים סביב קו 200. מאזן: 9 נכונות, 2 חלקיות, 0 פספוסים. שבוע הבא: דוחות כבדים (אפל, AMD, PFE, נובו, COP, EOG).",
+   "lessons": [
+    "רמה עגולה שנמצאת צמוד לקו 200 (275 מול 276 בנדל\"ן) לא מגדירה \"מעל הקו\" — מנסחים את התנאי מול הקו עצמו.",
+    "רוחב שיורד בזמן שהמחיר עולה (בריאות 85→75) הוא סיבה לדחות הגדלה, גם כשהטריגר המחירי נורה."
+   ],
+   "earnings_next_week": [
+    {
+     "date": "2026-11-02",
+     "dow": "שני",
+     "tickers": [
+      [
+       "AAPL",
+       "after"
+      ],
+      [
+       "BRK.A",
+       ""
+      ],
+      [
+       "BRK.B",
+       ""
+      ],
+      [
+       "PLTR",
+       "after"
+      ],
+      [
+       "VRTX",
+       "after"
+      ],
+      [
+       "MAR",
+       "before"
+      ],
+      [
+       "WMB",
+       "after"
+      ],
+      [
+       "FANG",
+       "after"
+      ],
+      [
+       "O",
+       "after"
+      ],
+      [
+       "ETR",
+       "before"
+      ],
+      [
+       "IDXX",
+       "before"
+      ],
+      [
+       "EL",
+       "before"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-03",
+     "dow": "שלישי",
+     "tickers": [
+      [
+       "AMD",
+       "after"
+      ],
+      [
+       "AMGN",
+       "after"
+      ],
+      [
+       "ANET",
+       "after"
+      ],
+      [
+       "SHOP",
+       "before"
+      ],
+      [
+       "PFE",
+       "before"
+      ],
+      [
+       "ETN",
+       "before"
+      ],
+      [
+       "MPC",
+       "before"
+      ],
+      [
+       "BKNG",
+       "after"
+      ],
+      [
+       "SU",
+       "after"
+      ],
+      [
+       "RACE",
+       "before"
+      ],
+      [
+       "ITUB",
+       "after"
+      ],
+      [
+       "ET",
+       "before"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-04",
+     "dow": "רביעי",
+     "tickers": [
+      [
+       "ARM",
+       "after"
+      ],
+      [
+       "MCD",
+       "before"
+      ],
+      [
+       "NVO",
+       "before"
+      ],
+      [
+       "QCOM",
+       "after"
+      ],
+      [
+       "UBER",
+       "before"
+      ],
+      [
+       "MCK",
+       "after"
+      ],
+      [
+       "CVS",
+       "before"
+      ],
+      [
+       "EMR",
+       "before"
+      ],
+      [
+       "DDOG",
+       "before"
+      ],
+      [
+       "MELI",
+       ""
+      ],
+      [
+       "MSI",
+       "after"
+      ],
+      [
+       "APP",
+       "after"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-05",
+     "dow": "חמישי",
+     "tickers": [
+      [
+       "TM",
+       ""
+      ],
+      [
+       "COP",
+       "before"
+      ],
+      [
+       "CNQ",
+       "before"
+      ],
+      [
+       "PH",
+       "before"
+      ],
+      [
+       "SO",
+       "before"
+      ],
+      [
+       "SOJD",
+       "before"
+      ],
+      [
+       "SOJE",
+       "before"
+      ],
+      [
+       "NET",
+       "after"
+      ],
+      [
+       "DUK",
+       "before"
+      ],
+      [
+       "ABNB",
+       "after"
+      ],
+      [
+       "EOG",
+       "after"
+      ],
+      [
+       "NGG",
+       "before"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-06",
+     "dow": "שישי",
+     "tickers": [
+      [
+       "ENB",
+       "before"
+      ],
+      [
+       "MRNA",
+       "before"
+      ],
+      [
+       "BAM",
+       "before"
+      ],
+      [
+       "HUM",
+       "before"
+      ],
+      [
+       "VST",
+       "before"
+      ],
+      [
+       "ONC",
+       ""
+      ],
+      [
+       "PPL",
+       ""
+      ],
+      [
+       "BIP",
+       "before"
+      ],
+      [
+       "CHTR",
+       "before"
+      ],
+      [
+       "CHTRP",
+       "before"
+      ],
+      [
+       "PAA",
+       "before"
+      ],
+      [
+       "BEN",
        "before"
       ]
      ]
