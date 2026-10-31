@@ -389,13 +389,14 @@
     });
   }
 
-  function render(sym, el, bars, meta, fund) {
+  function render(sym, el, bars, meta, fund, note) {
     var r;
     try { r = window.TAEngine.analyze(bars, { symbol: sym }); }
     catch (e) { el.innerHTML = '<div class="ta-msg">הניתוח נכשל: ' + esc(e.message) + "</div>"; return; }
     if (r.status !== "ANALYZED") { el.innerHTML = '<div class="ta-msg">אין די נתונים לניתוח (' + r.available_bars + " נרות, נדרשים " + r.required_bars + ")</div>"; return; }
     var p = r.presentation, lastBar = bars[bars.length - 1], h = [];
     h.push('<div class="ta">');
+    if (note) h.push('<div class="ta-banner">⚠️ ' + esc(note) + "</div>");
     if (r.is_provisional) h.push('<div class="ta-banner">⏳ ' + esc(r.message) + "</div>");
     h.push('<div class="ta-tiles">' + tile("מגמה ראשית", p.hierarchy.primary, tone(r.trend.state), "ציון " + r.scores.trend) + tile("מצב בינוני", p.hierarchy.intermediate, tone(r.trend_hierarchy.intermediate.state)) +
       tile("מצב קצר", p.hierarchy.short, tone(r.trend_hierarchy.short.state)) + tile("סטטוס", p.action, tone(r.decision.action), r.entry.entry != null ? "כניסה מעל " + f2(r.entry.entry) + " · ביטול " + f2(r.entry.invalidation) : "") + "</div>");
@@ -442,23 +443,43 @@
     ensureEngine(function (err) {
       if (err || !window.TAEngine) { el.innerHTML = '<div class="ta-msg">טעינת מנוע הניתוח נכשלה</div>'; return; }
       loadBars(sym, function (d) {
+        // np173 (31.10.2026, איציק: OII "לא מראה את הימים האחרונים ואין ניתוח פונדמנטלי"): מניה שיצאה מהיקום של
+        // fetch_bars נשארת ב-data/bars עד 45 יום עם נרות קפואים, ובלי רשומה ב-fundamentals.json. נרות שמפגרים אחרי
+        // הנר האחרון של SPY = ישנים → נרות טריים מהמתווך (שכבה 2); נכשל → הישנים, עם הערה. יסודות חסרים → מהסורק.
+        var ref = IDX && IDX.symbols && IDX.symbols.SPY && IDX.symbols.SPY.last;
+        var stale = !!(d && ref && d.last < ref);
+        function useProxy(pd) {
+          var pb = pd.bars.slice();
+          liveBar(sym, function (lb) {
+            if (lb && lb.date > pb[pb.length - 1].date) pb.push(lb);
+            loadFund(function (fund) { scanFund(sym, fund, function (fo) { render(sym, el, pb, pd, fo); }); });
+          });
+        }
+        function useLocal(note) {
+          var bars = d.bars.slice();
+          // נר חי מעל נרות ישנים היה יוצר קפיצה של ימים — רק כשהנרות עדכניים
+          var go = function (lb) {
+            if (lb && lb.date > bars[bars.length - 1].date) bars.push(lb);
+            loadFund(function (fund) { scanFund(sym, fund, function (fo) { render(sym, el, bars, d, fo, note); }); });
+          };
+          if (stale) go(null); else liveBar(sym, go);
+        }
         if (!d) {
           // np157: יש מתווך נרות (שכבה 2)? → המנוע המלא; אחרת ניתוח מקוצר מהסורק (np156)
           proxyBars(sym, function (pd) {
             if (!pd) { loadFund(function (fund) { quickRender(sym, el, fund); }); return; }
-            var pb = pd.bars.slice();
-            liveBar(sym, function (lb) {
-              if (lb && lb.date > pb[pb.length - 1].date) pb.push(lb);
-              loadFund(function (fund) { scanFund(sym, fund, function (fo) { render(sym, el, pb, pd, fo); }); });
-            });
+            useProxy(pd);
           });
           return;
         }
-        var bars = d.bars.slice();
-        liveBar(sym, function (lb) {
-          if (lb && lb.date > bars[bars.length - 1].date) bars.push(lb);
-          loadFund(function (fund) { render(sym, el, bars, d, fund); });
-        });
+        if (stale) {
+          proxyBars(sym, function (pd) {
+            if (pd && pd.last > d.last) useProxy(pd);
+            else useLocal("המניה כבר לא במעקב היומי של האתר — הנרות עד " + d.last + ", ונרות עדכניים לא נטענו כרגע.");
+          });
+          return;
+        }
+        useLocal();
       });
     });
   };
