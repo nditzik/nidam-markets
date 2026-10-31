@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np167";
+  var TA_VER = "np168";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4272,7 +4272,7 @@
       return '<div class="cs-src"><b>' + esc(x[0]) + "</b><span>" + x[1] + "</span></div>";
     }).join("");
     el.innerHTML = '<div class="board cs-board">' +
-      '<section class="pan"' + bdSpan(12) + ">" + panHd("סיכום · הכל מסכים", '<span class="mute">נכון לסגירת יום ' + wd + ' <span class="num" dir="ltr">' + insDm(d.asOf) + "</span></span>") +
+      '<section class="pan"' + bdSpan(12) + ">" + panHd("סיכום · מניות שכמה מערכות בחרו", '<span class="mute">נכון לסגירת יום ' + wd + ' <span class="num" dir="ltr">' + insDm(d.asOf) + "</span></span>") +
       '<div class="pb"><p class="cs-h">' + (d.n
         ? (d.n > (d.rows || []).length ? "המובילות מתוך " : "") + d.n + " מניות שנבחרו על ידי " + d.minN + " מערכות ומעלה באתר"
         : "השבוע אין מניה ש-" + d.minN + " מערכות באתר בחרו בה") + "</p>" +
