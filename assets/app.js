@@ -491,7 +491,7 @@
     ((REPD && REPD.reports) || []).forEach(function (r) { push("דוחות", "reports", r.title + " (" + r.ticker + ")"); });
     ((TRAD && TRAD.reports) || []).forEach(function (r) { push("הצעות לטרייד", "trades", r.title); });
     ((INSD && INSD.reports) || []).forEach(function (r) { push("Insider", "insider", r.title + " " + (r.tickers || []).join(" ")); });
-    ((INSDD && INSDD.rows) || []).forEach(function (r) { push("Insider", "insider", r.t + " · " + r.co + " · " + r.role + " " + insMoney(r.value)); });
+    ((INSDD && (INSDD.views && INSDD.views.week ? INSDD.views.week.rows : INSDD.rows)) || []).forEach(function (r) { push("Insider", "insider", r.t + " · " + r.co + " · " + r.role + " " + insMoney(r.value)); });
     if (BRIEF) ["morning", "afternoon"].forEach(function (k) {
       var s = BRIEF[k] || {};
       (s.headlines || []).forEach(function (h) { push("תדרוך", "briefing", h); });
@@ -690,7 +690,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np165";
+  var TA_VER = "np166";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4258,7 +4258,7 @@
   /* ===== רכישות פנים · אתמול (30.10.2026, np163) — data/insider_daily.json (build_insider_daily.py) =====
      מוקאפ שאושר: https://claude.ai/artifact/Tfb2A52gWP9oXDeKM43gCd. הכל מהקובץ; הגרף בשורה הפתוחה
      נבנה מ-data/bars/<SYM>.json בלחיצה (עצלתי). עברית רק ב-HTML מחוץ ל-SVG. */
-  var INSDD = null, INSD_BARS = {};
+  var INSDD = null, INSD_BARS = {}, INS_VIEW = null, INS_ROWS = [];
   function insMoney(v) {
     if (v == null || isNaN(v)) return "—";
     var a = Math.abs(v);
@@ -4281,10 +4281,22 @@
   function insDailyHtml() {
     var d = INSDD;
     if (!d || !d.rows) return "";
-    var sm = d.summary || {}, rows = d.rows || [];
+    // np166 (31.10.2026, איציק: "הדוח של 29 נעלם"): תצוגה לכל יום דיווח + "כל השבוע" (ברירת המחדל)
+    var order = d.viewOrder || [d.day], views = d.views || {};
+    if (!INS_VIEW || !views[INS_VIEW]) INS_VIEW = order[0];
+    var v = views[INS_VIEW] || d, wk = INS_VIEW === "week";
+    var sm = v.summary || {}, rows = v.rows || [];
+    INS_ROWS = rows;
+    var chips = order.length > 1 ? '<div class="chips bd-chips rep-arch ins-vws">' + order.map(function (k) {
+      var on = k === INS_VIEW;
+      return '<button type="button" class="tag ins-vw' + (on ? " on" : "") + '" data-k="' + esc(k) + '" aria-pressed="' + on + '">' +
+        (k === "week" ? "כל השבוע" : '<span class="num" dir="ltr">' + insDm(k) + "</span>") + "</button>";
+    }).join("") + "</div>" : "";
+    var when = wk ? '<span class="num" dir="ltr">' + insDm(v.from) + "–" + insDm(v.to) + "</span>"
+      : '<span class="num" dir="ltr">' + esc(secDate(v.day || d.day)) + "</span>";
     var head = '<section class="pan ins-head"' + bdSpan(12) + ">" +
-      panHd("רכישות פנים · אתמול", '<span class="mute">דיווחי Form 4 שהוגשו ב-<span class="num" dir="ltr">' + esc(secDate(d.day)) + "</span> · רק קניות בשוק הפתוח, מכספם של המנהלים</span>") +
-      '<div class="pb">' + (d.lead ? '<p class="ins-lead">' + esc(d.lead) + "</p>" : "") +
+      panHd("רכישות פנים · " + (wk ? "השבוע" : insDm(v.day || d.day)), '<span class="mute">דיווחי Form 4 שהוגשו ב-' + when + " · רק קניות בשוק הפתוח, מכספם של המנהלים</span>") +
+      '<div class="pb">' + chips + (v.lead ? '<p class="ins-lead">' + esc(v.lead) + "</p>" : "") +
       '<div class="tiles">' +
         bdTile("רכישות", String(sm.n || 0), sm.excluded ? "ועוד " + sm.excluded + " מחוץ לספירה" : "") +
         bdTile("סכום כולל", insMoney(sm.total), sm.top ? "הגדולה: " + esc(sm.top.t) + " " + insMoney(sm.top.v) : "") +
@@ -4301,7 +4313,8 @@
       return '<tr class="ins-row' + (r.excluded ? " ex" : "") + (h ? " has" : "") + '" data-i="' + i + '">' +
         '<td class="c-tk"><b class="num tk" dir="ltr">' + tvLink(r.t) + '</b><div class="s mute" dir="ltr">' + esc(r.co || "") + "</div></td>" +
         '<td class="c-who"><b>' + esc(r.role || "") + '</b><div class="s mute" dir="ltr">' + esc(r.who || "") + "</div></td>" +
-        '<td class="c-val"><b class="num" dir="ltr">' + insMoney(r.value) + '</b><div class="s mute">ב-<span class="num">' + insDm(r.trade) + "</span></div></td>" +
+        '<td class="c-val"><b class="num" dir="ltr">' + insMoney(r.value) + '</b><div class="s mute">ב-<span class="num">' + insDm(r.trade) + "</span>" +
+          (wk && r.filed ? ' · דווח <span class="num">' + insDm(r.filed) + "</span>" : "") + "</div></td>" +
         '<td class="c-px" data-l="קנה ב-"><span class="num" dir="ltr">' + fmt(r.price) + "</span>" + (r.since != null ? '<span class="s mute">עד עכשיו <b class="num ' + insCls(r.since) + '" dir="ltr">' + insPct(r.since) + "</b></span>" : "") + "</td>" +
         '<td class="c-hold" data-l="אחזקה"><span class="num" dir="ltr">' + insQty(r.before) + " → " + insQty(r.after) + "</span>" + (r.holdPct != null ? ' <span class="num s mute" dir="ltr">' + insPct(r.holdPct, 0) + "</span>" : "") + "</td>" +
         '<td class="c-hi" data-l="מהשיא"><span class="num" dir="ltr">' + insPct(r.offHi) + "</span>" + rng + "</td>" +
@@ -4316,12 +4329,12 @@
       '<div class="pb ins-tw"><table class="bd-tbl ins-tbl"><thead><tr><th>מניה</th><th>מי קנה</th><th>סכום</th><th>קנה ב- · עד עכשיו</th><th>האחזקה שלו</th><th>מהשיא השנתי</th><th>שווי</th><th>למה זה מעניין</th><th></th></tr></thead><tbody>' + tb + "</tbody></table>" +
       '<p class="mute s ins-foot">הפס ב"מהשיא": שמאל = השפל השנתי, ימין = השיא, הנקודה = הסגירה האחרונה.' +
       (ck.received ? " בדיקת הנתונים: " + ck.received + " עסקאות בהיסטוריה" + (ck.invalid ? ", " + ck.invalid + " נפסלו כי המחיר לא תואם למניה הרגילה באותו יום" : ", כולן תאמו את המחיר באותו יום") + "." : "") + "</p></div></section>";
-    var hl = (d.highlights || []).map(function (x) {
+    var hl = (v.highlights || []).map(function (x) {
       return '<div class="ins-hl"><div class="s mute">' + esc(x.k) + '</div><b class="num tk" dir="ltr">' + tvLink(x.t) + "</b><p>" + esc(x.txt) + "</p></div>";
     }).join("");
-    var site = (d.siteHits || []).length
-      ? "גם באתר: " + d.siteHits.map(function (t) { return '<b class="num" dir="ltr">' + esc(t) + "</b>"; }).join(" · ") + " — התג בשורה."
-      : "אף אחת מהן לא בנבחרות, במועמדים או במומנטום היום.";
+    var site = (v.siteHits || []).length
+      ? "גם באתר: " + v.siteHits.map(function (t) { return '<b class="num" dir="ltr">' + esc(t) + "</b>"; }).join(" · ") + " — התג בשורה."
+      : "אף אחת מהן לא בנבחרות, במועמדים או במומנטום.";
     var hlPan = '<section class="pan"' + bdSpan(7) + ">" + panHd("מה בולט", "") + '<div class="pb"><div class="ins-hls">' + hl + "</div>" +
       '<div class="ins-site"><b>חיתוך עם האתר:</b> <span>' + site + "</span></div></div></section>";
     var tr = (d.track || []).slice(0, 10).map(function (b) {
@@ -4405,9 +4418,18 @@
   }
   function bindInsDaily(el) {
     if (!INSDD) return;
+    el.querySelectorAll(".ins-vw").forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (b.dataset.k === INS_VIEW) return;
+        INS_VIEW = b.dataset.k;
+        renderInsider();
+        var c = document.querySelector("#panel-insider .ins-vw.on");
+        if (c) c.focus();
+      });
+    });
     el.querySelectorAll(".ins-open").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        var tr = btn.closest("tr"), i = +tr.dataset.i, r = INSDD.rows[i];
+        var tr = btn.closest("tr"), i = +tr.dataset.i, r = INS_ROWS[i];
         var det = el.querySelector('.ins-det[data-i="' + i + '"]');
         if (!det || !r) return;
         var open = det.hidden;

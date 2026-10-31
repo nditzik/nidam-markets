@@ -32,6 +32,7 @@ FUND_RE = re.compile(r"\b(FUND|ETF|ETN|ACQUISITION\s+CORP|SPAC|PORTFOLIO|MUNICIP
 HORIZONS = (5, 20, 60)
 TRACK_DAYS = 120          # כמה זמן קנייה נשארת במעקב (ימים קלנדריים מיום הדיווח)
 HIST_MONTHS = 24
+WEEK_DAYS = 5            # "כל השבוע" = ימי הדיווח ב-5 ימי המסחר האחרונים
 
 
 def num(x):
@@ -145,7 +146,8 @@ def nice(s):
 
 
 def name_key(s):
-    return re.sub(r"[^a-z]", "", (s or "").lower())
+    """בלי תלות בסדר: 'Michael P Lyons' (קובץ 28.10) = 'Lyons Michael P.' (Form 4) — TFC הופיעה פעמיים."""
+    return "".join(sorted(re.findall(r"[a-z]+", (s or "").lower())))
 
 
 def load_days(root):
@@ -185,7 +187,8 @@ def main(root=ROOT, now=None):
 
     # --- היומן: כל הקניות מכל הימים ---
     buys, seen = [], set()
-    for day, rows, _ in days:
+    # מהחדש לישן: אותה עסקה בשני קבצים (TFC — 28.10 בלי Filing Date, 29.10 עם) נשמרת מהקובץ החדש והמלא
+    for day, rows, _ in sorted(days, key=lambda x: x[0], reverse=True):
         for r in rows:
             t = (r.get("Ticker") or "").strip().upper()
             if not t:
@@ -258,8 +261,15 @@ def main(root=ROOT, now=None):
 
     # יום בלי דיווחים (קובץ ריק בסוף שבוע/חג) לא מחליף את הרשימה האחרונה שיש בה רכישות
     latest = max([d for d, rows, _ in days if rows] or [d for d, _, _ in days])
+    # 31.10.2026 (איציק: "הדוח של 29 נעלם"): לא רק היום האחרון — כל יום דיווח ב-5 ימי המסחר
+    # האחרונים נשמר כתצוגה משלו, ועוד תצוגת "כל השבוע" שמאחדת אותם
+    week_span = [d for d in spy_days if d <= latest][-WEEK_DAYS:]
+    if latest not in week_span:
+        week_span = (week_span + [latest])[-WEEK_DAYS:]
+    view_days = sorted({b["day"] for b in buys if b["day"] in week_span} | {latest}, reverse=True)
+    shown = [b for b in buys if b["day"] in view_days]
     today = [b for b in buys if b["day"] == latest]
-    counted = [b for b in today if not b.get("excluded")]
+    counted_all = [b for b in shown if not b.get("excluded")]
 
     # --- ההיסטוריה ---
     hist = load_history(root, days)
@@ -287,7 +297,7 @@ def main(root=ROOT, now=None):
         by_t.setdefault(x["t"], []).append(x)
 
     hist_out = {}
-    for b in counted:
+    for b in counted_all:
         tx = sorted(by_t.get(b["t"], []), key=lambda x: x["trade"])
         has_hist = any(x["t"] == b["t"] for x in hist if x["type"] in ("P", "S") and not (x["type"] == "P" and x["trade"] == b["trade"] and name_key(x["who"]) == name_key(b["who"])))
         P = [x for x in tx if x["type"] == "P"]
@@ -354,7 +364,7 @@ def main(root=ROOT, now=None):
     picks = {(p.get("sym") or p.get("symbol") or "").upper() for p in (load_json(os.path.join(root, "data", "picks.json"), {}).get("picks") or [])}
     cands = {(c.get("symbol") or "").upper() for c in (load_json(os.path.join(root, "data", "candidates.json"), {}).get("candidates") or [])}
     moms = {(s.get("symbol") or "").upper() for s in (load_json(os.path.join(root, "data", "momentum.json"), {}).get("stocks") or [])}
-    for b in today:
+    for b in shown:
         tags = []
         if b.get("excluded") == "fund":
             tags.append({"k": "dim", "txt": "קרן · לא נספרת"})
@@ -378,8 +388,6 @@ def main(root=ROOT, now=None):
                 if b["t"] in s:
                     tags.append({"k": "site", "txt": lab})
         b["tags"] = tags
-    site_hits = sorted({b["t"] for b in counted if any(t["k"] == "site" for t in b["tags"])})
-
     # --- מה בולט: עד 3, לפי עדיפות ---
     def score(b):
         s = (b["value"] or 0) / 1e6
@@ -417,15 +425,39 @@ def main(root=ROOT, now=None):
             txt += " אחרי %d הקניות הקודמות בחברה: %s%.1f%% בממוצע תוך 20 יום." % (h["stats"]["pastN"], "+" if h["stats"]["pastAvg"] >= 0 else "−", abs(h["stats"]["pastAvg"]))
         return {"t": b["t"], "k": k, "txt": txt}
 
-    ranked = sorted(counted, key=score, reverse=True)
-    highlights = [hl(b) for b in ranked[:3]]
+    def slim(b):
+        keys = ("t", "co", "who", "role", "ceo", "filed", "trade", "tradeTo", "parts", "shares", "price", "value", "before", "after", "holdPct",
+                "cap", "offHi", "offLo", "cluster", "clusterN", "url", "since", "sinceAt", "res", "elapsed", "excluded", "tags", "hist")
+        return {k: b[k] for k in keys if k in b and b[k] is not None}
 
-    # --- משפט פתיחה ---
-    lead = []
-    for b in ranked[:2]:
-        co = b["co"].title() if b["co"].isupper() else b["co"]
-        lead.append("%s (%s): %s קנה ב-%s%s." % (co, b["t"], b["role"], money(b["value"]),
-                                              (" — " + b["ctx"][0]["txt"]) if b.get("ctx") else ""))
+    def view(sel):
+        """תצוגה אחת (יום דיווח או כל השבוע): הסיכום, משפט הפתיחה, השורות, מה בולט, חיתוך עם האתר."""
+        counted = [b for b in sel if not b.get("excluded")]
+        ranked = sorted(counted, key=score, reverse=True)
+        lead = []
+        for b in ranked[:2]:
+            co = b["co"].title() if b["co"].isupper() else b["co"]
+            lead.append("%s (%s): %s קנה ב-%s%s." % (co, b["t"], b["role"], money(b["value"]),
+                                                  (" — " + b["ctx"][0]["txt"]) if b.get("ctx") else ""))
+        return {
+            "summary": {"n": len(counted), "total": round(sum(b["value"] or 0 for b in counted)),
+                        "excluded": len(sel) - len(counted), "ceo": sum(1 for b in counted if b["ceo"]),
+                        "ceoWho": [b["t"] for b in counted if b["ceo"]][:3],
+                        "clusters": sum(1 for b in counted if b["cluster"] and b["clusterN"] >= 2),
+                        "clusterWho": [b["t"] for b in counted if b["cluster"] and b["clusterN"] >= 2][:3],
+                        "top": {"t": ranked[0]["t"], "v": ranked[0]["value"]} if ranked else None},
+            "lead": " ".join(lead),
+            "rows": [slim(b) for b in sorted(sel, key=lambda b: (bool(b.get("excluded")), -(b["value"] or 0)))],
+            "highlights": [hl(b) for b in ranked[:3]],
+            "siteHits": sorted({b["t"] for b in counted if any(t["k"] == "site" for t in b["tags"])}),
+        }
+
+    views = {d: dict(view([b for b in shown if b["day"] == d]), day=d) for d in view_days}
+    order = list(view_days)
+    if len(view_days) > 1:
+        views["week"] = dict(view(shown), **{"from": min(week_span), "to": max(week_span), "days": len(view_days)})
+        order = ["week"] + order
+    cur = views[latest]
 
     # --- 20 ימי מסחר אחרונים ---
     span = [d for d in spy_days if d <= latest][-19:]
@@ -448,23 +480,13 @@ def main(root=ROOT, now=None):
             agg[str(h)] = {"n": len(r), "ret": round(sum(x["ret"] for x in r) / len(r), 2),
                            "ex": round(sum(x["ex"] for x in r) / len(r), 2), "win": sum(1 for x in r if x["ex"] > 0)}
 
-    def slim(b):
-        keys = ("t", "co", "who", "role", "ceo", "filed", "trade", "tradeTo", "parts", "shares", "price", "value", "before", "after", "holdPct",
-                "cap", "offHi", "offLo", "cluster", "clusterN", "url", "since", "sinceAt", "res", "elapsed", "excluded", "tags", "hist")
-        return {k: b[k] for k in keys if k in b and b[k] is not None}
-
     universe = sorted({b["t"] for b in buys if b["filed"] >= tcut and b.get("excluded") != "fund"})
     out = {
         "day": latest,
-        "summary": {"n": len(counted), "total": round(sum(b["value"] or 0 for b in counted)),
-                    "excluded": len(today) - len(counted), "ceo": sum(1 for b in counted if b["ceo"]),
-                    "ceoWho": [b["t"] for b in counted if b["ceo"]][:3],
-                    "clusters": sum(1 for b in counted if b["cluster"] and b["clusterN"] >= 2),
-                    "clusterWho": [b["t"] for b in counted if b["cluster"] and b["clusterN"] >= 2][:3],
-                    "top": {"t": ranked[0]["t"], "v": ranked[0]["value"]} if ranked else None},
-        "lead": " ".join(lead),
-        "rows": [slim(b) for b in sorted(today, key=lambda b: (bool(b.get("excluded")), -(b["value"] or 0)))],
-        "highlights": highlights, "siteHits": site_hits,
+        # היום האחרון גם בשורש (החיפוש באתר ותאימות לאחור); התצוגות המלאות ב-views לפי viewOrder
+        "summary": cur["summary"], "lead": cur["lead"], "rows": cur["rows"],
+        "highlights": cur["highlights"], "siteHits": cur["siteHits"],
+        "views": views, "viewOrder": order,
         "history": hist_out, "check": check,
         "days": strip, "firstDay": min(have),
         "track": [slim(b) for b in track[:60]], "trackAgg": agg,
@@ -473,8 +495,8 @@ def main(root=ROOT, now=None):
     }
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
-    print("build_insider_daily: day=%s rows=%d counted=%d history=%d check=%s track=%d"
-          % (latest, len(today), len(counted), len(hist_out), {k: check[k] for k in ("received", "valid", "invalid", "unchecked")}, len(track)))
+    print("build_insider_daily: day=%s views=%s rows=%d counted=%d history=%d check=%s track=%d"
+          % (latest, order, len(today), cur["summary"]["n"], len(hist_out), {k: check[k] for k in ("received", "valid", "invalid", "unchecked")}, len(track)))
     return 0
 
 
