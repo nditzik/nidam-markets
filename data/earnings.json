@@ -177,17 +177,6 @@
             "baseDate": "2026-10-28"
           },
           {
-            "ticker": "GOOGL",
-            "name": "Alphabet Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOGL.png",
-            "chg": -12.64,
-            "price": 283.82,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
             "ticker": "GOOGM",
             "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
             "when": "after",
@@ -204,6 +193,17 @@
             "status": "final",
             "chg": -8.77,
             "price": 42.53,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
+          },
+          {
+            "ticker": "GOOGL",
+            "name": "Alphabet Inc. Class A",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/GOOGL.png",
+            "chg": -12.64,
+            "price": 283.82,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -277,8 +277,8 @@
         "COP",
         "CNQ",
         "PH",
-        "SO",
-        "SOJD"
+        "SOJD",
+        "SOJE"
       ]
     },
     {
@@ -573,12 +573,6 @@
           "logo": "data/earnings/logos/PH.png"
         },
         {
-          "ticker": "SO",
-          "name": "Southern Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SO.png"
-        },
-        {
           "ticker": "SOJD",
           "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
           "when": "before",
@@ -589,6 +583,12 @@
           "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
           "when": "before",
           "logo": "data/earnings/logos/SOJE.png"
+        },
+        {
+          "ticker": "SO",
+          "name": "Southern Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SO.png"
         },
         {
           "ticker": "NET",
@@ -705,8 +705,8 @@
   ],
   "window": {
     "AAPL": "2026-11-02",
-    "BRK.A": "2026-11-02",
     "BRK.B": "2026-11-02",
+    "BRK.A": "2026-11-02",
     "PLTR": "2026-11-02",
     "VRTX": "2026-11-02",
     "MAR": "2026-11-02",
@@ -720,8 +720,8 @@
     "UI": "2026-11-02",
     "ON": "2026-11-02",
     "RYAAY": "2026-11-02",
-    "FOXA": "2026-11-02",
     "FOX": "2026-11-02",
+    "FOXA": "2026-11-02",
     "ROKU": "2026-11-02",
     "L": "2026-11-02",
     "SBAC": "2026-11-02",
@@ -757,9 +757,9 @@
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
     "SYY": "2026-11-03",
-    "PFH": "2026-11-03",
     "PRU": "2026-11-03",
     "PRS": "2026-11-03",
+    "PFH": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "FISV": "2026-11-03",
@@ -768,8 +768,8 @@
     "CPNG": "2026-11-03",
     "IFF": "2026-11-03",
     "BNTX": "2026-11-03",
-    "SMCIP": "2026-11-03",
     "SMCI": "2026-11-03",
+    "SMCIP": "2026-11-03",
     "SWKS": "2026-11-03",
     "BR": "2026-11-03",
     "OVV": "2026-11-03",
@@ -842,8 +842,8 @@
     "CW": "2026-11-04",
     "HST": "2026-11-04",
     "CRL": "2026-11-04",
-    "NWSA": "2026-11-04",
     "NWS": "2026-11-04",
+    "NWSA": "2026-11-04",
     "W": "2026-11-04",
     "PAAS": "2026-11-04",
     "PFGC": "2026-11-04",
@@ -855,9 +855,9 @@
     "COP": "2026-11-05",
     "CNQ": "2026-11-05",
     "PH": "2026-11-05",
-    "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
+    "SO": "2026-11-05",
     "NET": "2026-11-05",
     "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
@@ -878,8 +878,8 @@
     "ROK": "2026-11-05",
     "TEAM": "2026-11-05",
     "ED": "2026-11-05",
-    "MCHPP": "2026-11-05",
     "MCHP": "2026-11-05",
+    "MCHPP": "2026-11-05",
     "LYV": "2026-11-05",
     "AU": "2026-11-05",
     "KMB": "2026-11-05",
@@ -899,8 +899,8 @@
     "GH": "2026-11-05",
     "RL": "2026-11-05",
     "TPR": "2026-11-05",
-    "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
+    "FWONA": "2026-11-05",
     "USFD": "2026-11-05",
     "STE": "2026-11-05",
     "VTRS": "2026-11-05",
@@ -930,7 +930,7 @@
     "TU": "2026-11-06"
   },
   "_meta": {
-    "updatedAt": "31/10/2026 11:31",
+    "updatedAt": "31/10/2026 11:46",
     "source": "tradingview"
   }
 }
