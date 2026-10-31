@@ -782,6 +782,15 @@ figure{margin:10px 0;overflow-x:auto}
 figcaption{font-size:12px;color:var(--text-3);text-align:center}
 .foot{font-size:12px;color:var(--text-3);text-align:center;padding:4px 0 0}
 @media (max-width:860px){.dials,.chg,.acts{grid-template-columns:repeat(2,minmax(0,1fr))}.mkt{grid-template-columns:repeat(2,minmax(0,1fr))}.mkt>div:nth-child(3){border-inline-start:0}.mkt>div:nth-child(n+3){border-top:1px solid var(--border)}}
+@media (max-width:600px){.main{min-width:0}.main thead{display:none}
+.main tbody tr{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px 8px;padding:14px}
+.main tbody th,.main tbody td{padding:0;min-width:0}
+.main tbody th{grid-column:span 8;order:0}.main td.stc{grid-column:span 4;justify-self:end;order:0}
+.main td.vd{grid-column:1 / -1;order:1;min-width:0}
+.main td.rc{grid-column:span 4;order:2}.main .relw,.main .bw{min-width:0}
+.main td.ck{grid-column:span 3;order:3;width:auto;display:grid;justify-items:center;gap:4px;border-top:1px solid var(--border);padding-top:8px}
+.main td.rc::before,.main td.ck::before{content:attr(data-l);display:block;font-size:11px;line-height:1.3;color:var(--text-3)}
+.main td.rc::before{margin-bottom:4px}.main td.ck::before{text-align:center}}
 @media (max-width:560px){h1{font-size:22px}.dials,.chg,.acts,.nums{grid-template-columns:1fr}.nums>div{border-inline-start:0}.nums>div+div{border-top:1px solid var(--border)}.ph .sub{display:none}body{padding:12px 12px 40px}}
 """
 
@@ -907,15 +916,15 @@ def render_html_v2(w, nar):
     for k in order:
         d, v = S[k], V.get(k) or {}
         chk = (v.get("checks") or ["n0"] * 4)[:4]
-        cells = "".join(f'<td class="ck"><span class="ci {V2_CHK[c][1]}" title="{V2_CHK_HEAD[i]} {V2_CHK[c][2]}">{V2_CHK[c][0]}</span></td>'
+        cells = "".join(f'<td class="ck" data-l="{V2_CHK_HEAD[i]}"><span class="ci {V2_CHK[c][1]}" title="{V2_CHK_HEAD[i]} {V2_CHK[c][2]}">{V2_CHK[c][0]}</span></td>'
                         for i, c in enumerate(chk) if c in V2_CHK)
         br, brp = d["pct_above_ma50"], d["pct_above_ma50_prev"]
         st = v.get("status", "out")
         rows += (f'<tr><th scope="row"><b>{e(d["name_he"])}</b><small>{k}</small></th>'
-                 f'<td><span class="st st-{e(st)}">{V2_STATUS.get(st, st)}</span></td>'
-                 f'<td><div class="relw">{_sn(rel[k][0])}{_rel_bar(rel[k][0], sc_w)}</div></td>'
-                 f'<td><div class="relw">{_sn(rel[k][1])}{_rel_bar(rel[k][1], sc_m)}</div></td>'
-                 f'<td><div class="bw"><span class="bt"><i style="width:{br}%"></i><em style="left:{brp if brp is not None else br}%"></em></span><span class="bn num">{brp if brp is not None else "—"}→{br}</span></div></td>'
+                 f'<td class="stc"><span class="st st-{e(st)}">{V2_STATUS.get(st, st)}</span></td>'
+                 f'<td class="rc" data-l="השבוע מול המדד"><div class="relw">{_sn(rel[k][0])}{_rel_bar(rel[k][0], sc_w)}</div></td>'
+                 f'<td class="rc" data-l="החודש מול המדד"><div class="relw">{_sn(rel[k][1])}{_rel_bar(rel[k][1], sc_m)}</div></td>'
+                 f'<td class="rc" data-l="רוחב · מעל ממוצע 50"><div class="bw"><span class="bt"><i style="width:{br}%"></i><em style="left:{brp if brp is not None else br}%"></em></span><span class="bn num">{brp if brp is not None else "—"}→{br}</span></div></td>'
                  f'{cells}<td class="vd"><span class="vt vt-{e(v.get("cls", "bounce"))}">{v.get("verdict", "")}</span><p>{v.get("note", "")}</p></td></tr>')
     H.append(f'''<section class="pan"><div class="ph"><span class="stp">2</span><h2>11 הסקטורים בטבלה אחת</h2><span class="sub">ממוין לפי פסק הדין · מול המדד = תשואת מדד הסקטור פחות S&amp;P 500</span></div>
 <div class="tw"><table class="main"><thead><tr><th>סקטור</th><th>מצב</th><th>השבוע מול המדד</th><th>החודש מול המדד</th><th>רוחב · מעל ממוצע 50</th>{"".join(f'<th class="ck">{h}</th>' for h in V2_CHK_HEAD)}<th>פסק דין</th></tr></thead><tbody>{rows}</tbody></table></div>
