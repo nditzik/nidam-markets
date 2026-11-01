@@ -1,7 +1,48 @@
 {
-  "today": "2026-11-01",
-  "todayCount": 0,
-  "todayBig": [],
+  "today": "2026-11-02",
+  "todayCount": 30,
+  "todayBig": [
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "capB": 5029.6
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1162.2
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "capB": 1162.2
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Inc. Class A",
+      "capB": 442.4
+    },
+    {
+      "ticker": "VRTX",
+      "name": "Vertex Pharmaceuticals Incorporated",
+      "capB": 141.7
+    },
+    {
+      "ticker": "MAR",
+      "name": "Marriott International, Inc. Class A",
+      "capB": 104.1
+    },
+    {
+      "ticker": "WMB",
+      "name": "Williams Companies, Inc.",
+      "capB": 90.9
+    },
+    {
+      "ticker": "FANG",
+      "name": "Diamondback Energy, Inc.",
+      "capB": 59.4
+    }
+  ],
   "reactions": {
     "days": [
       {
@@ -222,23 +263,83 @@
       }
     ]
   },
-  "reporting": [],
-  "more": 0,
-  "upcoming": [
+  "reporting": [
     {
-      "date": "2026-11-02",
-      "label": "2/11",
-      "dow": "ב׳",
-      "count": 30,
-      "tickers": [
-        "AAPL",
-        "BRK.A",
-        "BRK.B",
-        "PLTR",
-        "VRTX",
-        "MAR"
-      ]
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/AAPL.png"
     },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Inc. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/PLTR.png"
+    },
+    {
+      "ticker": "VRTX",
+      "name": "Vertex Pharmaceuticals Incorporated",
+      "when": "after",
+      "logo": "data/earnings/logos/VRTX.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "MAR",
+      "name": "Marriott International, Inc. Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/MAR.png"
+    },
+    {
+      "ticker": "WMB",
+      "name": "Williams Companies, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/WMB.png"
+    },
+    {
+      "ticker": "FANG",
+      "name": "Diamondback Energy, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/FANG.png"
+    },
+    {
+      "ticker": "O",
+      "name": "Realty Income Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/O.png"
+    },
+    {
+      "ticker": "ETR",
+      "name": "Entergy Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/ETR.png"
+    },
+    {
+      "ticker": "IDXX",
+      "name": "IDEXX Laboratories, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/IDXX.png"
+    },
+    {
+      "ticker": "EL",
+      "name": "Estee Lauder Companies Inc. Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/EL.png"
+    }
+  ],
+  "more": 18,
+  "upcoming": [
     {
       "date": "2026-11-03",
       "label": "3/11",
@@ -894,8 +995,8 @@
     "ZTS": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
-    "DTE": "2026-11-05",
     "DTK": "2026-11-05",
+    "DTE": "2026-11-05",
     "GPN": "2026-11-05",
     "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
@@ -932,10 +1033,27 @@
     "PAA": "2026-11-06",
     "BEN": "2026-11-06",
     "EMA": "2026-11-06",
-    "TU": "2026-11-06"
+    "TU": "2026-11-06",
+    "CEG": "2026-11-09",
+    "KKR": "2026-11-09",
+    "OXY": "2026-11-09",
+    "B": "2026-11-09",
+    "FERG": "2026-11-09",
+    "SKYD": "2026-11-09",
+    "IX": "2026-11-09",
+    "TTWO": "2026-11-09",
+    "RKLB": "2026-11-09",
+    "BAP": "2026-11-09",
+    "ROIV": "2026-11-09",
+    "NRG": "2026-11-09",
+    "KSPI": "2026-11-09",
+    "RBA": "2026-11-09",
+    "ASTS": "2026-11-09",
+    "SGI": "2026-11-09",
+    "CNH": "2026-11-09"
   },
   "_meta": {
-    "updatedAt": "01/11/2026 23:46",
+    "updatedAt": "02/11/2026 00:01",
     "source": "tradingview"
   }
 }
