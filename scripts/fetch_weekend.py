@@ -44,6 +44,9 @@ XYZ = [
     ("meta", "Meta", "META", "META"),
     ("amzn", "Amazon", "AMZN", "AMZN"),
     ("pltr", "Palantir", "PLTR", "PLTR"),   # 13.9.2026 ערב — "כדי שיהיה סימטרי" (9 אריחים, 3×3)
+    # 1.11.2026, איציק: "הוסף את NOW ואת DWC". סמל שלא קיים ב-xyz פשוט מדולג (ראו xyzMissing ב-_meta)
+    ("now", "ServiceNow", "NOW", "NOW"),
+    ("dwc", "DWC", "DWC", "DWC"),
 ]
 CRYPTO = [("btc", "ביטקוין", "BTC", "BTC-USD"), ("eth", "את'ריום", "ETH", "ETH-USD")]
 THIN_USDC = 1_000_000          # מתחת לזה האריח מסומן "מחזור דק"
@@ -171,8 +174,12 @@ def main():
     if not items:
         print("[keep] אין נתונים — הקובץ הקיים נשאר.")
         return 0 if os.path.exists(OUT) else 1
+    missing = [h for _, _, h, _ in XYZ if xyz and h not in xyz]
+    if missing:
+        print("[info] לא נסחרים ב-xyz: " + ", ".join(missing))
     payload = {"mode": mode, "items": items,
-               "_meta": {"updatedAt": israel_stamp(), "source": "hyperliquid+yahoo"}}
+               "_meta": {"updatedAt": israel_stamp(), "source": "hyperliquid+yahoo",
+                         "xyzMissing": missing, "xyzNames": sorted(xyz.keys())}}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1)
