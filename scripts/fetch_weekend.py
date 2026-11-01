@@ -44,9 +44,9 @@ XYZ = [
     ("meta", "Meta", "META", "META"),
     ("amzn", "Amazon", "AMZN", "AMZN"),
     ("pltr", "Palantir", "PLTR", "PLTR"),   # 13.9.2026 ערב — "כדי שיהיה סימטרי" (9 אריחים, 3×3)
-    # 1.11.2026, איציק: "הוסף את NOW ואת DWC". סמל שלא קיים ב-xyz פשוט מדולג (ראו xyzMissing ב-_meta)
+    # 1.11.2026, איציק: "הוסף את NOW ואת WDC". סמל שלא קיים ב-xyz פשוט מדולג (ראו xyzMissing ב-_meta)
     ("now", "ServiceNow", "NOW", "NOW"),
-    ("dwc", "DWC", "DWC", "DWC"),
+    ("wdc", "Western Digital", "WDC", "WDC"),
 ]
 CRYPTO = [("btc", "ביטקוין", "BTC", "BTC-USD"), ("eth", "את'ריום", "ETH", "ETH-USD")]
 THIN_USDC = 1_000_000          # מתחת לזה האריח מסומן "מחזור דק"
