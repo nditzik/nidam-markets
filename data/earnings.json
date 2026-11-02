@@ -5,42 +5,42 @@
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
-      "capB": 4970.1
+      "capB": 4977.3
     },
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1180.9
+      "capB": 1181.5
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1177.3
+      "capB": 1176.9
     },
     {
       "ticker": "PLTR",
       "name": "Palantir Technologies Inc. Class A",
-      "capB": 443.8
+      "capB": 443.5
     },
     {
       "ticker": "VRTX",
       "name": "Vertex Pharmaceuticals Incorporated",
-      "capB": 142.1
+      "capB": 142.4
     },
     {
       "ticker": "MAR",
       "name": "Marriott International, Inc. Class A",
-      "capB": 108.0
+      "capB": 108.6
     },
     {
       "ticker": "WMB",
       "name": "Williams Companies, Inc.",
-      "capB": 88.9
+      "capB": 88.8
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings, Inc.",
-      "capB": 67.4
+      "capB": 66.4
     }
   ],
   "reactions": {
@@ -378,8 +378,8 @@
         "COP",
         "PH",
         "CNQ",
-        "SOJD",
-        "SOJE"
+        "SO",
+        "SOJD"
       ]
     },
     {
@@ -673,6 +673,12 @@
           "logo": "data/earnings/logos/CNQ.png"
         },
         {
+          "ticker": "SO",
+          "name": "Southern Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SO.png"
+        },
+        {
           "ticker": "SOJD",
           "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
           "when": "before",
@@ -683,12 +689,6 @@
           "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
           "when": "before",
           "logo": "data/earnings/logos/SOJE.png"
-        },
-        {
-          "ticker": "SO",
-          "name": "Southern Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SO.png"
         },
         {
           "ticker": "ABNB",
@@ -831,8 +831,8 @@
     "VNOM": "2026-11-02",
     "CRBG": "2026-11-02",
     "PKX": "2026-11-02",
-    "CHKP": "2026-11-02",
     "EQH": "2026-11-02",
+    "CHKP": "2026-11-02",
     "NBIX": "2026-11-02",
     "TEM": "2026-11-02",
     "AMD": "2026-11-03",
@@ -855,8 +855,8 @@
     "TEVA": "2026-11-03",
     "XYZ": "2026-11-03",
     "WAT": "2026-11-03",
-    "ALAB": "2026-11-03",
     "AIG": "2026-11-03",
+    "ALAB": "2026-11-03",
     "YUM": "2026-11-03",
     "PRU": "2026-11-03",
     "SYY": "2026-11-03",
@@ -876,10 +876,10 @@
     "BR": "2026-11-03",
     "FIS": "2026-11-03",
     "TOST": "2026-11-03",
-    "DD": "2026-11-03",
     "OVV": "2026-11-03",
-    "BALL": "2026-11-03",
+    "DD": "2026-11-03",
     "LDOS": "2026-11-03",
+    "BALL": "2026-11-03",
     "ZBRA": "2026-11-03",
     "RVTY": "2026-11-03",
     "DT": "2026-11-03",
@@ -934,15 +934,15 @@
     "PTC": "2026-11-04",
     "PR": "2026-11-04",
     "RGLD": "2026-11-04",
-    "CDW": "2026-11-04",
     "CRCL": "2026-11-04",
+    "CDW": "2026-11-04",
     "WES": "2026-11-04",
-    "ITT": "2026-11-04",
     "ZBH": "2026-11-04",
+    "ITT": "2026-11-04",
     "CF": "2026-11-04",
     "CW": "2026-11-04",
-    "APA": "2026-11-04",
     "HST": "2026-11-04",
+    "APA": "2026-11-04",
     "CRL": "2026-11-04",
     "NWS": "2026-11-04",
     "NWSA": "2026-11-04",
@@ -958,9 +958,9 @@
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
+    "SO": "2026-11-05",
     "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
-    "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
     "NET": "2026-11-05",
@@ -981,8 +981,8 @@
     "BDX": "2026-11-05",
     "ROK": "2026-11-05",
     "TEAM": "2026-11-05",
-    "MCHP": "2026-11-05",
     "ED": "2026-11-05",
+    "MCHP": "2026-11-05",
     "LYV": "2026-11-05",
     "MCHPP": "2026-11-05",
     "AU": "2026-11-05",
@@ -1002,10 +1002,10 @@
     "RL": "2026-11-05",
     "CIB": "2026-11-05",
     "TPR": "2026-11-05",
-    "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
-    "USFD": "2026-11-05",
+    "FWONA": "2026-11-05",
     "GH": "2026-11-05",
+    "USFD": "2026-11-05",
     "STE": "2026-11-05",
     "VTRS": "2026-11-05",
     "EVRG": "2026-11-05",
@@ -1052,7 +1052,7 @@
     "CNH": "2026-11-09"
   },
   "_meta": {
-    "updatedAt": "02/11/2026 18:31",
+    "updatedAt": "02/11/2026 18:46",
     "source": "tradingview"
   }
 }
