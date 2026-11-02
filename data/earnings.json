@@ -5,37 +5,37 @@
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
-      "capB": 4933.0
+      "capB": 4924.5
     },
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1186.7
+      "capB": 1188.8
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1182.7
+      "capB": 1185.9
     },
     {
       "ticker": "PLTR",
       "name": "Palantir Technologies Inc. Class A",
-      "capB": 443.1
+      "capB": 442.7
     },
     {
       "ticker": "VRTX",
       "name": "Vertex Pharmaceuticals Incorporated",
-      "capB": 141.1
+      "capB": 139.4
     },
     {
       "ticker": "MAR",
       "name": "Marriott International, Inc. Class A",
-      "capB": 107.9
+      "capB": 108.4
     },
     {
       "ticker": "WMB",
       "name": "Williams Companies, Inc.",
-      "capB": 88.2
+      "capB": 88.0
     },
     {
       "ticker": "LITE",
@@ -535,17 +535,17 @@
           "logo": "data/earnings/logos/BKNG.png"
         },
         {
-          "ticker": "SU",
-          "name": "Suncor Energy Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/SU.png"
-        },
-        {
           "ticker": "RACE",
           "name": "Ferrari NV",
           "when": "before",
           "logo": "data/earnings/logos/RACE.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "SU",
+          "name": "Suncor Energy Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SU.png"
         },
         {
           "ticker": "ITUB",
@@ -830,11 +830,11 @@
     "TSEM": "2026-11-02",
     "VNOM": "2026-11-02",
     "CRBG": "2026-11-02",
-    "CHKP": "2026-11-02",
     "PKX": "2026-11-02",
-    "TEM": "2026-11-02",
+    "CHKP": "2026-11-02",
     "EQH": "2026-11-02",
     "NBIX": "2026-11-02",
+    "TEM": "2026-11-02",
     "JAZZ": "2026-11-02",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
@@ -844,8 +844,8 @@
     "ETN": "2026-11-03",
     "MPC": "2026-11-03",
     "BKNG": "2026-11-03",
-    "SU": "2026-11-03",
     "RACE": "2026-11-03",
+    "SU": "2026-11-03",
     "ITUB": "2026-11-03",
     "APO": "2026-11-03",
     "ET": "2026-11-03",
@@ -861,8 +861,8 @@
     "ALAB": "2026-11-03",
     "PRU": "2026-11-03",
     "SYY": "2026-11-03",
-    "PRS": "2026-11-03",
     "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
     "FISV": "2026-11-03",
@@ -890,8 +890,8 @@
     "IT": "2026-11-03",
     "AIZ": "2026-11-03",
     "UNM": "2026-11-03",
-    "SUN": "2026-11-03",
     "OHI": "2026-11-03",
+    "SUN": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "QCOM": "2026-11-04",
@@ -937,8 +937,8 @@
     "RGLD": "2026-11-04",
     "CDW": "2026-11-04",
     "CRCL": "2026-11-04",
-    "WES": "2026-11-04",
     "ZBH": "2026-11-04",
+    "WES": "2026-11-04",
     "ITT": "2026-11-04",
     "CF": "2026-11-04",
     "CW": "2026-11-04",
@@ -959,8 +959,8 @@
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
     "NET": "2026-11-05",
@@ -994,24 +994,24 @@
     "MTD": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
-    "DTK": "2026-11-05",
     "DTE": "2026-11-05",
+    "DTK": "2026-11-05",
     "GPN": "2026-11-05",
     "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
-    "CIB": "2026-11-05",
     "RL": "2026-11-05",
+    "CIB": "2026-11-05",
     "TPR": "2026-11-05",
     "FWONA": "2026-11-05",
-    "GH": "2026-11-05",
     "FWONK": "2026-11-05",
+    "GH": "2026-11-05",
     "USFD": "2026-11-05",
     "STE": "2026-11-05",
     "VTRS": "2026-11-05",
     "EVRG": "2026-11-05",
     "BCE": "2026-11-05",
-    "MTSI": "2026-11-05",
     "U": "2026-11-05",
+    "MTSI": "2026-11-05",
     "RGA": "2026-11-05",
     "JHX": "2026-11-05",
     "SBS": "2026-11-05",
@@ -1052,7 +1052,7 @@
     "CNH": "2026-11-09"
   },
   "_meta": {
-    "updatedAt": "02/11/2026 20:16",
+    "updatedAt": "02/11/2026 20:31",
     "source": "tradingview"
   }
 }
