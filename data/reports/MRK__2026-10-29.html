@@ -1,0 +1,446 @@
+<title>MRK דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .logo{height:76px;width:auto;background:#fff;border-radius:10px;padding:8px 12px;margin-bottom:20px;display:inline-block}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="Merck">
+    <div class="eyebrow">Merck &amp; Co., Inc. · NYSE: MRK · תוצאות רבעון שלישי 2026</div>
+    <h1>מרק עקפה את התחזיות, הציגה תוצאות מבטיחות לתרופות שאמורות להחליף את קיטרודה, והזהירה ש-2027 תהיה "שנת השקעה"</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-29 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת האנליסטים</span>
+      <span>עודכן: 2.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>מרק היא אחת מחברות התרופות הגדולות בעולם, וחצי מהמכירות שלה מגיעות מתרופה אחת: קיטרודה</h2>
+  <p class="lead">Merck (מחוץ לארה"ב ולקנדה היא נקראת MSD) מוכרת תרופות, חיסונים ותרופות לבעלי חיים בכ-$67 מיליארד בשנה. מוצר הדגל שלה הוא <strong>KEYTRUDA</strong>, תרופת אימונותרפיה שמשחררת את "הבלמים" של מערכת החיסון כדי שתתקוף תאי סרטן. היא התרופה הנמכרת בעולם: $8.6B ברבעון, כמחצית ממכירות החברה.</p>
+  <p class="body" style="margin-top:14px">הבעיה: הפטנט העיקרי של קיטרודה פג ב-2028. בנוסף, החוק האמריקאי (IRA) יאפשר לממשלה לקבוע לה מחיר. זה נקרא "צוק הפטנטים", וכל האסטרטגיה של מרק היא למצוא תרופות שימלאו את החור. בשנתיים האחרונות היא רכשה חברות (Verona, Cidara, Terns ו-Prometheus), חתמה על רישוי תרופות מסין, ומשקיעה כ-$18B בשנה במחקר ופיתוח.</p>
+  <p class="body">מנועים נוספים: <strong>GARDASIL</strong> (חיסון נגד HPV, ‏$2B ברבעון), <strong>WINREVAIR</strong> (תרופה חדשה ליתר לחץ דם ריאתי, הצומחת הכי מהר), ו<strong>בריאות בעלי חיים</strong> ($1.7B, כולל Bravecto לכלבים ולחתולים).</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>Bristol-Myers Squibb ו-Roche</h3>
+      <p>מתחרות ישירות באימונותרפיה: Opdivo של BMS ו-Tecentriq של Roche. גם להן יש צוק פטנטים. קיטרודה מובילה בהפרש גדול בזכות מספר ההתוויות.</p>
+    </div>
+    <div class="col">
+      <h3>AstraZeneca, Pfizer, Gilead</h3>
+      <p>מתחרות בתרופות ADC, "טילים מונחים" שמובילים כימותרפיה ישר לתא הסרטני. Trodelvy של Gilead ו-Datroway של AstraZeneca מתחרות ב-sac-TMT של מרק. פייזר מתחרה גם בחיסונים.</p>
+    </div>
+    <div class="col">
+      <h3>Summit/Akeso ו-BioNTech</h3>
+      <p>תרופות "דו-ספציפיות" חדשות (PD-1/VEGF) שמאיימות להחליף את קיטרודה בסרטן ריאה. מרק פיתחה גרסה משלה (MK-2010), שרכשה ברישוי מסין.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון טוב מהצפוי ותחזית מוגברת, אבל חלק מהעקיפה הוא זמני, ו-2027 תהיה שנה של צמיחה צנועה</h2>
+  <p class="lead">המכירות הגיעו ל-$18.1B (+5%), הרבה מעל הצפי ($17.3B). הרווח המנוקה למניה, $2.49, ירד 3% משנה שעברה, אבל עבר בהרבה את הצפי ($2.09). הרווח כולל חיוב חד-פעמי של 12 סנט על רישוי תרופה מסין. החברה הצרה את טווח התחזית השנתית והעלתה את האמצע שלו, למכירות של $66.8–$67.3B ולרווח של $2.77–$2.82 למניה.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>כ-$550M מהמכירות ברבעון הם "תזמון": לקוחות קנו מוקדם יותר. $250M מזה יתקזזו כבר ברבעון הרביעי, והשאר ב-2027. וחשוב יותר, ההנהלה אמרה במפורש ש-2027 תהיה "שנת השקעה": צמיחה מתונה במכירות, ירידה של יותר מ-$2B בהכנסות מתרופות שהפטנט שלהן פג, ועלייה בהוצאות. השוק דווקא שמח: המניה עלתה 6% ביומיים. המשקיעים מסתכלים על הצנרת, לא על הרבעון.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>מכירות מעל הצפי, רווח למניה נמוך מאשתקד בגלל השקעה כבדה במחקר</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$18.1B</div><div class="l">מכירות</div><div class="d up">+5% · הצפי: $17.3B</div></div>
+    <div class="kpi"><div class="v num">$2.49</div><div class="l">רווח מנוקה למניה</div><div class="d down">‏−3% · הצפי: $2.09</div></div>
+    <div class="kpi"><div class="v num">$8.6B</div><div class="l">KEYTRUDA</div><div class="d up">+6% · מתוכם $830M בהזרקה תת-עורית</div></div>
+    <div class="kpi"><div class="v num">$694M</div><div class="l">WINREVAIR</div><div class="d up">+93% · כמעט פי 2</div></div>
+    <div class="kpi"><div class="v num">81.4%</div><div class="l">רווחיות גולמית (מנוקה)</div><div class="d down">‏−0.5 נק'</div></div>
+    <div class="kpi"><div class="v num">$4.5B</div><div class="l">מחקר ופיתוח</div><div class="d up">+13% · כולל $400M חד-פעמי</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הרווח הרשמי (GAAP) היה $2.04 למניה, לעומת $2.32 אשתקד. הפער מהרווח המנוקה נובע מהפחתה של נכסים מרכישות ($1.2B) ומעלויות ארגון מחדש ($0.6B). שיעור המס ברבעון היה נמוך במיוחד (10.9%), בזכות פריטים חד-פעמיים, וזה עזר לרווח. המכפיל הרשמי (P/E) נראה מנופח, כ-120, כי השנה נרשמו חיובים של כ-$15B על רכישות. במונחים מנוקים, ובלי החיובים החד-פעמיים, הרווח השנתי קרוב ל-$9 למניה.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מה צומח ומה מתכווץ</div>
+  <h2>התרופות החדשות צומחות מהר, אבל הישנות מאבדות פטנטים. זה המרוץ של מרק עד 2028</h2>
+  <p class="body">בגרף: צמיחת המכירות של המוצרים המרכזיים ברבעון לעומת אשתקד (בנטרול שערי מטבע). בירוק התרופות שצומחות, באדום אלה שמאבדות מכירות בגלל תחרות מגנריקה.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 840 400" role="img" aria-label="צמיחת מכירות לפי מוצר">
+<line x1="509" y1="15" x2="509" y2="368" stroke="var(--muted)"/>
+<line x1="379" y1="15" x2="379" y2="368" stroke="var(--rule)" stroke-dasharray="3 4"/>
+<line x1="639" y1="15" x2="639" y2="368" stroke="var(--rule)" stroke-dasharray="3 4"/>
+<line x1="769" y1="15" x2="769" y2="368" stroke="var(--rule)" stroke-dasharray="3 4"/>
+<g font-size="12" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed"><text x="379" y="388">−50%</text><text x="509" y="388">0%</text><text x="639" y="388">+50%</text><text x="769" y="388">+100%</text></g>
+<text x="318" y="38" font-size="14" fill="var(--fg)" text-anchor="start">יתר לחץ דם ריאתי · WINREVAIR</text>
+<rect x="509" y="22" width="244" height="22" fill="var(--pos)"/>
+<text x="759" y="38" font-size="14" font-weight="700" fill="var(--pos)" text-anchor="start" direction="ltr" unicode-bidi="embed">+94%</text>
+<text x="318" y="73" font-size="14" fill="var(--fg)" text-anchor="start">סרטן כליה · WELIREG</text>
+<rect x="509" y="57" width="151" height="22" fill="var(--pos)"/>
+<text x="666" y="73" font-size="14" font-weight="700" fill="var(--pos)" text-anchor="start" direction="ltr" unicode-bidi="embed">+58%</text>
+<text x="318" y="108" font-size="14" fill="var(--fg)" text-anchor="start">מניעת זיהום בהשתלות · PREVYMIS</text>
+<rect x="509" y="92" width="81" height="22" fill="var(--pos)"/>
+<text x="596" y="108" font-size="14" font-weight="700" fill="var(--pos)" text-anchor="start" direction="ltr" unicode-bidi="embed">+31%</text>
+<text x="318" y="143" font-size="14" fill="var(--fg)" text-anchor="start">חיסון נגד סרטן צוואר הרחם · GARDASIL</text>
+<rect x="509" y="127" width="36" height="22" fill="var(--pos)"/>
+<text x="551" y="143" font-size="14" font-weight="700" fill="var(--pos)" text-anchor="start" direction="ltr" unicode-bidi="embed">+14%</text>
+<text x="318" y="178" font-size="14" fill="var(--fg)" text-anchor="start">סרטן · Lenvima</text>
+<rect x="509" y="162" width="29" height="22" fill="var(--pos)"/>
+<text x="544" y="178" font-size="14" font-weight="700" fill="var(--pos)" text-anchor="start" direction="ltr" unicode-bidi="embed">+11%</text>
+<text x="318" y="213" font-size="14" fill="var(--fg)" text-anchor="start">חיסון פנאומוקוק · CAPVAXIVE</text>
+<rect x="509" y="197" width="18" height="22" fill="var(--pos)"/>
+<text x="533" y="213" font-size="14" font-weight="700" fill="var(--pos)" text-anchor="start" direction="ltr" unicode-bidi="embed">+7%</text>
+<text x="318" y="248" font-size="14" fill="var(--fg)" text-anchor="start">סרטן · KEYTRUDA</text>
+<rect x="509" y="232" width="16" height="22" fill="var(--pos)"/>
+<text x="531" y="248" font-size="14" font-weight="700" fill="var(--pos)" text-anchor="start" direction="ltr" unicode-bidi="embed">+6%</text>
+<text x="318" y="283" font-size="14" fill="var(--fg)" text-anchor="start">סרטן · Lynparza</text>
+<rect x="491" y="267" width="18" height="22" fill="var(--neg)"/>
+<text x="515" y="283" font-size="14" font-weight="700" fill="var(--neg)" text-anchor="start" direction="ltr" unicode-bidi="embed">−7%</text>
+<text x="318" y="318" font-size="14" fill="var(--fg)" text-anchor="start">סוכרת · JANUVIA/JANUMET</text>
+<rect x="408" y="302" width="101" height="22" fill="var(--neg)"/>
+<text x="515" y="318" font-size="14" font-weight="700" fill="var(--neg)" text-anchor="start" direction="ltr" unicode-bidi="embed">−39%</text>
+<text x="318" y="353" font-size="14" fill="var(--fg)" text-anchor="start">הרדמה · BRIDION</text>
+<rect x="335" y="337" width="174" height="22" fill="var(--neg)"/>
+<text x="515" y="353" font-size="14" font-weight="700" fill="var(--neg)" text-anchor="start" direction="ltr" unicode-bidi="embed">−67%</text>
+</svg>
+    <figcaption>צמיחת מכירות לפי מוצר, Q3 2026 לעומת Q3 2025, בנטרול שערי מטבע. מקור: הודעת החברה, 29.10.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>קיטרודה: עדיין צומחת, לאט יותר</h3>
+      <p>‏+6%, בזכות שימוש בשלבים מוקדמים של המחלה (סרטן שד, צוואר הרחם, ראש-צוואר ושלפוחית). הגרסה החדשה, בהזרקה תת-עורית (QLEX), הגיעה ל-$830M. היא חשובה, כי עליה יש הגנת פטנט ארוכה יותר. היעד: 30%–40% מהשימוש בארה"ב עד סוף 2027.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המוצרים החדשים</h3>
+      <p>WINREVAIR כמעט הוכפלה, וכ-1,600 מטופלים חדשים קיבלו מרשם ברבעון. WELIREG (+58%), ו-OHTUVAYRE (מחלת ריאות, מרכישת Verona) הוסיפה $184M. LIPFENDRA, כדור חדש להורדת כולסטרול, השיגה 11 אלף מרשמים מ-6,500 רופאים ברבעון הראשון שלה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>הפטנטים שנגמרו</h3>
+      <p>BRIDION (תרופה להתאוששות מהרדמה) צנחה 67% אחרי כניסת גנריקה. JANUVIA לסוכרת ירדה 39%. ב-2027 צפויה ירידה של יותר מ-$2B בהכנסות מ-BRIDION, מ-JANUVIA ומ-Adempas. זה טעימה ממה שיקרה לקיטרודה אחרי 2028.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · הצנרת: הסיבה שהמניה עלתה</div>
+  <h2>שלוש תוצאות מכנס ESMO הגדילו את הסיכוי שמרק תעבור את "צוק קיטרודה" בשלום</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>תרופה</th><th>מה היא</th><th>התוצאה</th><th>השלב הבא</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><strong>sac-TMT</strong></td><td>ADC, "טיל מונחה" נגד סרטן (ברישוי מ-Kelun הסינית)</td><td>בסרטן רחם מתקדם: הפחתה של 32% בסיכון למוות, וכ-7 חודשים יותר חיים בממוצע לעומת כימותרפיה</td><td>FDA בבדיקה מזורזת. תאריך יעד: 15.6.2027, ומרק מקווה לאישור מוקדם יותר</td></tr>
+        <tr class="hl"><td><strong>intismeran</strong></td><td>חיסון mRNA מותאם אישית נגד סרטן (עם Moderna)</td><td>במלנומה אחרי ניתוח: הפחתה של 42% בסיכון לחזרת המחלה או למוות, בתוספת לקיטרודה</td><td>הגשה ל-FDA. פרופסור אנטוני ריבאס כינה זאת "ציון דרך בפיתוח תרופות לסרטן"</td></tr>
+        <tr><td><strong>KEYTRUDA</strong></td><td>לבד, בסרטן רחם מסוג dMMR</td><td>הפחתה של 43% בסיכון להתקדמות המחלה או למוות לעומת כימותרפיה</td><td>הרחבת התוויה</td></tr>
+        <tr><td><strong>tulisokibart</strong></td><td>נוגדן נגד TL1A (מחלות דלקתיות)</td><td>הצלחה בשלב 2b במחלת עור דלקתית (HS)</td><td>שלב 3. תוצאות בקוליטיס כיבית "בקרוב"</td></tr>
+        <tr><td><strong>remigromig</strong></td><td>מנגנון חדש למחלת עיניים סוכרתית</td><td>יעילות לא נחותה מהטיפול הקיים אחרי שנה</td><td>ניסוי שני (BAROLO) ב-2027</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>החיסון המותאם אישית הוא אולי החדשות הגדולות של השנה בתעשייה: זו הפעם הראשונה שחיסון טיפולי נגד סרטן מצליח בשלב 3. אם הוא יעבוד גם בסרטן ריאה, כליה ושלפוחית (ניסויים נמשכים), זה שוק של עשרות מיליארדים. המנכ"ל, רוב דייוויס, אמר שהפרופיל המסחרי של החיסון "חזק יותר ממה שציפינו", ושהחברה צפויה להעלות את היעד של $70B מכירות מהתרופות החדשות באמצע שנות ה-2030.</p>
+  </div>
+  <p class="body">לא הכול הצליח: מרק ו-Daiichi Sankyo משכו את הבקשה לאישור מואץ של I-DXd לסרטן ריאה מסוג תאים קטנים. ובאירופה, צו מניעה זמני בהולנד עוצר את מכירת קיטרודה בהזרקה תת-עורית בשש מדינות, בגלל תביעת פטנט על רכיב בתרופה.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>2026 מוגברת. 2027: צמיחה מתונה, הוצאות גבוהות יותר, ותחתית רדודה אחרי 2028</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית חדשה 2026</th><th>תחזית קודמת</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>מכירות</td><td class="n">$66.8–$67.3B</td><td class="n">$66.3–$67.3B</td><td>צמיחה של 3%–4%</td></tr>
+        <tr class="hl"><td>רווח מנוקה למניה</td><td class="n">$2.77–$2.82</td><td class="n">$2.66–$2.76</td><td>כולל חיובים חד-פעמיים של $6.05 למניה</td></tr>
+        <tr><td>הוצאות תפעול</td><td class="n">$42.4–$42.9B</td><td class="n">$42.0–$42.7B</td><td>כולל $15.1B חיובים על רכישות (Cidara, Terns, SciBrunch)</td></tr>
+        <tr><td>שיעור מס</td><td class="n">32%–33%</td><td class="n">35%–36%</td><td>גבוה בגלל חיובים שאינם מוכרים במס</td></tr>
+        <tr><td>קניית מניות</td><td colspan="3">כ-$3B בשנה</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body"><strong>2027 לפי סמנכ"לית הכספים, קרוליין ליצ'פילד:</strong> צמיחה "מתונה" במכירות. ירידה של יותר מ-$2B מגנריקה. צמיחה איטית יותר בקיטרודה, שהגיעה לשיא בחלק מההתוויות, ובנוסף לחץ על מחירים בגרמניה. ההוצאות יעלו בשיעור של "חד-ספרתי בינוני עד גבוה". הרווחיות הגולמית תשתפר, כי תמלוג שמרק משלמת על קיטרודה יסתיים. ליצ'פילד הודתה ש"רבים מהאנליסטים עוד לא עדכנו" את התחזיות שלהם בהתאם.</p>
+  <ul class="tl">
+    <li><div class="when">ברבעון הקרוב</div><div class="what">תוצאות שלב 3 של tulisokibart בקוליטיס כיבית</div></li>
+    <li><div class="when">מרץ–אפריל 2027</div><div class="what">החלטות FDA על ENFLONSIA (RSV בתינוקות) ועל IDVYNSO (HIV)</div></li>
+    <li><div class="when">מחצית ראשונה 2027</div><div class="what">ניסויי שלב 3 של sac-TMT עם MK-2010 בסרטן ריאה; תוצאות BAROLO</div></li>
+    <li><div class="when">יוני 2027</div><div class="what">תאריך היעד לאישור sac-TMT בסרטן רחם</div></li>
+    <li><div class="when">2028</div><div class="what">פקיעת הפטנט העיקרי של קיטרודה בארה"ב</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: הצנרת מוכחת, היעד יעלה, 2027 היא השקעה, והירידה אחרי קיטרודה תהיה "גבעה", לא צוק</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"גבעה, לא צוק"</h3>
+      <p>ליצ'פילד: "אנחנו רואים את פקיעת הפטנט של קיטרודה כגבעה על ההכנסות הכוללות, ואחריה נחזור במהירות לצמיחה חזקה". לדבריה, תהיה "ירידה רדודה" במכירות בתקופה הראשונה, ואחריה חזרה לצמיחה.</p>
+    </div>
+    <div class="col">
+      <h3>"נעלה את היעד של $70 מיליארד"</h3>
+      <p>דייוויס: היעד המקורי למכירות מהתרופות החדשות באמצע שנות ה-2030 לא כלל את רכישת Prometheus ולא את MK-2010 (PD-1/VEGF), וגם הניח פרופיל חלש יותר לחיסון הסרטן. כל אלה מוסיפים.</p>
+    </div>
+    <div class="col">
+      <h3>"נמשיך לרכוש"</h3>
+      <p>מרק שומרת על "גמישות פיננסית" לעסקאות נוספות, תוך שמירה על דירוג אשראי חזק. השנה היא כבר רשמה חיובים של כ-$15B על רכישות ורישוי, והוצאות הריבית שלה עלו בגלל ההלוואות למימון.</p>
+    </div>
+    <div class="col">
+      <h3>"אנחנו בטוחים בפטנטים של QLEX"</h3>
+      <p>על צו המניעה בהולנד: "זה רק צו זמני עד הדיון, לא החלטה לגופו של עניין". המדינות שנפגעו (איטליה, צרפת, בלגיה ועוד) הן "שווקים קטנים בנפח", לפי ההנהלה.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>אנליסט JPMorgan שאל אם ההוצאה הגבוהה על מחקר "מקדימה את התחתית של הרווחים", כלומר אם 2027 היא הנקודה הנמוכה. ליצ'פילד לא נתנה מספר. היא אמרה שהרווחים "כנראה יתנהגו כמו ההכנסות": ירידה רדודה ואז צמיחה. בפועל, מרק מבקשת מהמשקיעים סבלנות של שנתיים-שלוש, עם רווחים שלא צומחים, בתמורה לצנרת שמתחילה להוכיח את עצמה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים כמעט לא שאלו על הרבעון. 10 מתוך 11 השאלות עסקו בצנרת וב-2027</h2>
+  <p class="body">שאלה אחת עסקה בתחזית ל-2027, ושאלה אחת ב-QLEX באירופה. כל השאר עסקו בתרופות בפיתוח: sac-TMT, החיסון, תרופות ל-KRAS, TL1A, WINREVAIR ו-LIPFENDRA. השוק כבר לא שופט את מרק לפי קיטרודה, אלא לפי מה שיבוא אחריה.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>חיסון הסרטן (Evercore, Morgan Stanley): האם הוא יעבוד גם בסרטנים אחרים, כמו כליה וריאה, ולא רק במלנומה? דין לי, ראש המחקר, נזהר: "אני לא רוצה להקדים את הנתונים". יש 4 ניסויי שלב 3 ו-5 ניסויי שלב 2 בדרך.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>$550M של "תזמון רכישות", כ-3% מהמכירות. בלי זה, הצמיחה הייתה כ-1% בלבד. מצד שני, גם בלי התזמון המכירות היו מעל הצפי ($17.5B מול $17.3B). ליצ'פילד פירטה את כל הסכומים, וזה מעיד על שקיפות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>2027. ליצ'פילד לא ניסתה לייפות: "עוד שנה של השקעה", מכירות מתונות, יותר מ-$2B בגנריקה, הוצאות גבוהות יותר וריבית גבוהה יותר. היא גם אמרה במפורש שהאנליסטים צריכים לעדכן את התחזיות שלהם.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>LIPFENDRA. אנליסט TD Cowen שאל כמה היא מכרה וכמה מהמרשמים הם בחינם. התשובה: "לא ניתן נתונים ספציפיים". החברה נתנה רק את מספר המרשמים (11 אלף). במילים אחרות, ההכנסות כנראה עדיין נמוכות, בגלל קופונים ודוגמיות חינם.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"זה ציון דרך בפיתוח תרופות לסרטן" (אנטוני ריבאס, מומחה למלנומה, כפי שציטט דין לי). כשראש המחקר של חברה מצטט מומחה חיצוני כדי לחזק את הנתונים שלה, הוא מבקש מהשוק לשים לב.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>מרק קיבלה מימון מ-Blackstone, שהפחית $200M מהוצאות המחקר ברבעון. כך היא מממנת חלק מהפיתוח של sac-TMT עם כסף חיצוני, תמורת תמלוגים. זה סימן שגם לחברה בגודל כזה תקציב המחקר לחוץ.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>מרק עוברת ממשקיעים שקונים "את קיטרודה" למשקיעים שקונים "את מה שאחרי קיטרודה". הרבעון הזה סיפק את הראיות הקליניות החזקות ביותר עד כה שהמעבר אפשרי. המחיר: שנתיים של רווחים שלא צומחים, ותלות בהצלחה של עוד כמה ניסויים גדולים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · איך השוק הגיב</div>
+  <h2>עלייה של 6% ביומיים, ושורה של העלאות במחירי היעד</h2>
+  <p class="body">לפני הדוח (28.10) המניה סגרה בכ-$140.9. ביום הדוח (29.10) היא עלתה 3.8%, ל-$146.34, ולמחרת עוד 2.3%, ל-$149.75. שווי השוק: כ-$370 מיליארד. השיא של 52 השבועות האחרונים: $156.92. השפל: $82.01. כלומר, המניה כמעט הוכפלה בשנה.</p>
+  <p class="body">JPMorgan העלה את מחיר היעד מ-$165 ל-$175 (משקל יתר). BofA העלה מ-$163 ל-$165 (קנייה) ו-Guggenheim מ-$170 ל-$171 (קנייה). BofA ציין שמרק עלתה יותר משאר ענף התרופות, וזה מעיד שהמניה נסחרת לפי הצנרת ולא לפי התוצאות. הקונצנזוס: "קנייה מתונה", עם מחיר יעד ממוצע של כ-$153.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>עלייה של 6% אחרי דוח שכלל אזהרה על 2027 אומרת שהשוק כבר תמחר שנה חלשה, ועכשיו קונה את הסיפור של אחרי 2028. אחרי שהמניה כמעט הוכפלה, הרבה אופטימיות כבר במחיר. המחיר הנוכחי קרוב לממוצע של יעדי האנליסטים. כל תוצאה שלילית בניסוי גדול עלולה להוריד את המניה בחדות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: התרופות החדשות צריכות להחליף יותר מ-$30 מיליארד בשנה של קיטרודה, בזמן</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>צוק קיטרודה</h3><p>פקיעת הפטנט ב-2028 וקביעת מחיר ממשלתית (IRA). כמחצית מהמכירות בסיכון. ההנהלה מדברת על "גבעה", אבל אין עדיין מספרים.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>כישלון קליני</h3><p>רוב הערך של המניה נשען על ניסויים שעוד לא הסתיימו: החיסון בסרטנים אחרים, sac-TMT בריאה, ו-TL1A. כל כישלון גדול יפגע בתזה.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תחרות מ-PD-1/VEGF</h3><p>תרופות דו-ספציפיות של Summit/Akeso ושל BioNTech מאיימות להחליף את קיטרודה בסרטן ריאה עוד לפני 2028. למרק יש גרסה משלה, אבל היא מאחור.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>חיסונים</h3><p>"עלייה בהססנות מחיסונים וירידה בשימוש", לפי ליצ'פילד. ירידה בהתחסנות נגד פנאומוקוק בארה"ב. ייתכנו גם שינויים במדיניות החיסונים הפדרלית.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>חוב ורכישות</h3><p>הוצאות הריבית עלו מאוד בגלל רכישות בהיקף של כ-$15B השנה. עוד רכישות גדולות יגדילו את החוב ואת הסיכון לשלם ביוקר.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>פטנט QLEX באירופה</h3><p>צו מניעה זמני בשש מדינות. ההנהלה אומרת שההשפעה זניחה, אבל ההצלחה של QLEX חשובה להארכת חיי קיטרודה.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>קיטרודה</strong></td><td>עדיין צומחת 6%. QLEX (תת-עורית) עם פטנט ארוך יותר, ויעד של 30%–40% מהשימוש בארה"ב. רווחיות תשתפר עם סיום תמלוג.</td><td>"מגיעה לשיא" בחלק מההתוויות. פקיעת פטנט ב-2028, קביעת מחיר, לחץ בגרמניה. צו מניעה ל-QLEX באירופה.</td></tr>
+        <tr><td><strong>אונקולוגיה חדשה</strong></td><td>sac-TMT: כ-7 חודשים יותר חיים. חיסון mRNA: הצלחה ראשונה בשלב 3. MK-2010 (PD-1/VEGF) לא נכלל ביעדים.</td><td>תחרות קשה מ-AstraZeneca, Gilead ו-Summit. החיסון הוכח רק במלנומה, ותוצאות בסרטנים אחרים עוד רחוקות.</td></tr>
+        <tr><td><strong>תרופות חדשות</strong></td><td>WINREVAIR כמעט פי 2, WELIREG ‏+58%, LIPFENDRA ("פוטנציאל של מיליארדים"), OHTUVAYRE, ENFLONSIA.</td><td>חלק מהצמיחה של WINREVAIR הוא מלאי שיתקזז. ההכנסות של LIPFENDRA לא נחשפו, וכיסוי ביטוחי רק ב-2027–2028.</td></tr>
+        <tr><td><strong>חיסונים</strong></td><td>GARDASIL ‏+14% בזכות רכישה גדולה של ה-CDC. CAPVAXIVE צומח בעולם.</td><td>$250M מרכישת ה-CDC יתקזזו ב-2027. הססנות מחיסונים בארה"ב. ירידה ב-CAPVAXIVE בארה"ב.</td></tr>
+        <tr><td><strong>2027</strong></td><td>"שנת השקעה" שמאיצה את הצנרת. רבים מהאנליסטים עוד לא עדכנו, כך שהציפיות עוד עשויות להתאים את עצמן ולפנות מקום להפתעות.</td><td>צמיחה מתונה, הוצאות עולות, יותר מ-$2B גנריקה. הרווח למניה עלול לא לצמוח.</td></tr>
+        <tr><td><strong>רכישות</strong></td><td>מרק קונה מוקדם: Verona, Cidara, Terns ו-Prometheus. עסקאות רישוי מסין זולות יחסית.</td><td>חיובים של כ-$15B השנה. ריבית עולה. סיכון לשלם ביוקר על נכסים לא מוכחים.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>יעדי מחיר עולים (JPMorgan ‏$175). BofA מעריך מכפיל של 15 על הרווחים.</td><td>המניה כמעט הוכפלה בשנה, וקרובה ליעד הממוצע ($153). הרבה אופטימיות כבר במחיר.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת ש-2027 תיראה חלשה בתוצאות, ושהקטליזטורים הקרובים הם קליניים: TL1A בקוליטיס, אישור sac-TMT, והגשת החיסון. משקיע לטווח ארוך מהמר על כך שהצנרת תחליף את קיטרודה. כדאי לעקוב אחרי שלושה דברים: המכירות של QLEX, תוצאות החיסון בסרטנים נוספים, וההשקה של LIPFENDRA.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>אימונותרפיה (PD-1)</dt><dd>תרופה שמשחררת את הבלמים של מערכת החיסון כדי שתתקוף את הסרטן. קיטרודה היא הדוגמה המובילה.</dd>
+    <dt>LOE (פקיעת בלעדיות)</dt><dd>Loss of Exclusivity: הרגע שבו הפטנט פג ומתחרים יכולים למכור גרסה זולה (גנריקה או ביוסימילר).</dd>
+    <dt>IRA</dt><dd>חוק אמריקאי שמאפשר לממשלה לנהל משא ומתן על מחירי תרופות יקרות ב-Medicare.</dd>
+    <dt>ADC</dt><dd>Antibody-Drug Conjugate: נוגדן שמוביל כימותרפיה ישר לתא הסרטני, כמו "טיל מונחה". sac-TMT הוא כזה.</dd>
+    <dt>חיסון טיפולי מותאם אישית</dt><dd>חיסון mRNA שנבנה לפי המוטציות של הגידול של כל מטופל, ומלמד את מערכת החיסון לזהות אותו.</dd>
+    <dt>PD-1/VEGF</dt><dd>תרופה "דו-ספציפית" שמשחררת את מערכת החיסון וגם חוסמת את אספקת הדם לגידול. האיום הגדול על קיטרודה.</dd>
+    <dt>שלב 3</dt><dd>הניסוי הקליני האחרון והגדול לפני בקשת אישור. הצלחה בו מגדילה מאוד את הסיכוי לאישור.</dd>
+    <dt>PDUFA</dt><dd>התאריך שבו ה-FDA אמור להחליט אם לאשר תרופה.</dd>
+    <dt>תזמון רכישות</dt><dd>כשלקוחות (סיטונאים או ממשלה) קונים מראש. מגדיל את המכירות ברבעון אחד ומקטין אותן ברבעון הבא.</dd>
+    <dt>QLEX / תת-עורי</dt><dd>קיטרודה בזריקה מתחת לעור במקום עירוי לווריד: כמה דקות במקום חצי שעה, ופטנט ארוך יותר.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Merck — הודעה לעיתונות על תוצאות Q3 2026 (29.10.2026); תמלול שיחת האנליסטים (StockOracle / FactSet, 29.10.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: MarketBeat, Investing.com, Blockonomi (29–30.10.2026). מחיר הסגירה ב-28.10 הוא חישוב לפי מחיר הסגירה ב-29.10 והשינוי היומי. הלוגו נלקח מהודעת החברה.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>

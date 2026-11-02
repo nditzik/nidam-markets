@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/11/2026 10:16",
+  "updatedAt": "02/11/2026 10:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -3925,12 +3925,12 @@
    "when": "after"
   },
   {
-   "sym": "CPRT",
+   "sym": "CSCO",
    "date": "2026-11-18",
    "when": null
   },
   {
-   "sym": "CSCO",
+   "sym": "CPRT",
    "date": "2026-11-18",
    "when": null
   },
@@ -3970,14 +3970,14 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": null
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   }
  ],
  "recent": [
@@ -4130,7 +4130,11 @@
     "logo": "data/reports/logos/MRK.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/MRK__2026-10-29.html",
+    "date": "2026-10-29",
+    "title": "MRK דוח רבעון Q3 2026"
+   },
    "consensus": {
     "eps": 2.08726,
     "epsLow": 1.8,
