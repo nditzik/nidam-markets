@@ -192,7 +192,9 @@ def main():
     end = str(monday + timedelta(6))
     econ = [e for e in (load("econ.json") or {}).get("events", []) if e.get("actual") is None and str(monday) <= str(e.get("date", ""))[:10] <= end]
     earn = load("earnings.json") or {}
-    out["calendar"] = {"macro": econ, "earnings": [u for u in earn.get("upcoming", []) if str(monday) <= u.get("date", "") <= end],
+    # 2.11.2026 (איציק: "אין התייחסות לבחירות האמצע"): אירועים מיוחדים (בחירות וכו') מ-data/special_events.json
+    special = [e for e in (load("special_events.json") or {}).get("events", []) if str(monday) <= str(e.get("date", "")) <= end]
+    out["calendar"] = {"macro": econ, "special": special, "earnings": [u for u in earn.get("upcoming", []) if str(monday) <= u.get("date", "") <= end],
                        "note": "יומן המאקרו כאן חלקי (אירועים מרכזיים בלבד) — להשלים בחיפוש: נאומי פד, נתונים משניים, פגישות מדיניות"}
     br = load("briefing.json") or {}
     out["weekend"] = {
