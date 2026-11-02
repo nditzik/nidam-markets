@@ -5,27 +5,27 @@
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
-      "capB": 4921.1
+      "capB": 4917.4
     },
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1190.5
+      "capB": 1190.0
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1187.5
+      "capB": 1188.2
     },
     {
       "ticker": "PLTR",
       "name": "Palantir Technologies Inc. Class A",
-      "capB": 440.5
+      "capB": 439.4
     },
     {
       "ticker": "VRTX",
       "name": "Vertex Pharmaceuticals Incorporated",
-      "capB": 140.4
+      "capB": 140.6
     },
     {
       "ticker": "MAR",
@@ -35,12 +35,12 @@
     {
       "ticker": "WMB",
       "name": "Williams Companies, Inc.",
-      "capB": 87.9
+      "capB": 88.0
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings, Inc.",
-      "capB": 62.8
+      "capB": 62.6
     }
   ],
   "reactions": {
@@ -292,8 +292,8 @@
       "tickers": [
         "ARM",
         "MCD",
-        "QCOM",
         "NVO",
+        "QCOM",
         "UBER",
         "MCK"
       ]
@@ -510,16 +510,16 @@
           "logo": "data/earnings/logos/MCD.png"
         },
         {
-          "ticker": "QCOM",
-          "name": "QUALCOMM Incorporated",
-          "when": "after",
-          "logo": "data/earnings/logos/QCOM.png"
-        },
-        {
           "ticker": "NVO",
           "name": "Novo Nordisk A/S Sponsored ADR Class B",
           "when": "before",
           "logo": "data/earnings/logos/NVO.png"
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QUALCOMM Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/QCOM.png"
         },
         {
           "ticker": "UBER",
@@ -760,10 +760,10 @@
     "TSEM": "2026-11-02",
     "VNOM": "2026-11-02",
     "CRBG": "2026-11-02",
+    "TEM": "2026-11-02",
     "NBIX": "2026-11-02",
     "EQH": "2026-11-02",
     "CHKP": "2026-11-02",
-    "TEM": "2026-11-02",
     "JAZZ": "2026-11-02",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
@@ -823,8 +823,8 @@
     "SUN": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
-    "QCOM": "2026-11-04",
     "NVO": "2026-11-04",
+    "QCOM": "2026-11-04",
     "UBER": "2026-11-04",
     "MCK": "2026-11-04",
     "CVS": "2026-11-04",
@@ -880,8 +880,8 @@
     "PAAS": "2026-11-04",
     "PFGC": "2026-11-04",
     "W": "2026-11-04",
-    "FICO": "2026-11-04",
     "TRMB": "2026-11-04",
+    "FICO": "2026-11-04",
     "FLUT": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
@@ -913,8 +913,8 @@
     "ED": "2026-11-05",
     "MCHPP": "2026-11-05",
     "MCHP": "2026-11-05",
-    "AU": "2026-11-05",
     "LYV": "2026-11-05",
+    "AU": "2026-11-05",
     "KMB": "2026-11-05",
     "AXON": "2026-11-05",
     "GMAB": "2026-11-05",
@@ -925,12 +925,12 @@
     "PBA": "2026-11-05",
     "DTE": "2026-11-05",
     "DTK": "2026-11-05",
-    "VRSK": "2026-11-05",
     "GPN": "2026-11-05",
+    "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
-    "RL": "2026-11-05",
     "CIB": "2026-11-05",
     "TPR": "2026-11-05",
+    "RL": "2026-11-05",
     "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
     "GH": "2026-11-05",
@@ -981,7 +981,7 @@
     "ASTS": "2026-11-09"
   },
   "_meta": {
-    "updatedAt": "02/11/2026 21:16",
+    "updatedAt": "02/11/2026 21:31",
     "source": "tradingview"
   }
 }
