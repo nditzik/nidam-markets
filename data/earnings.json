@@ -1,46 +1,46 @@
 {
   "today": "2026-11-02",
-  "todayCount": 31,
+  "todayCount": 30,
   "todayBig": [
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
-      "capB": 4937.6
+      "capB": 4952.0
     },
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1186.8
+      "capB": 1193.3
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1183.6
+      "capB": 1191.3
     },
     {
       "ticker": "PLTR",
       "name": "Palantir Technologies Inc. Class A",
-      "capB": 431.0
+      "capB": 428.6
     },
     {
       "ticker": "VRTX",
       "name": "Vertex Pharmaceuticals Incorporated",
-      "capB": 138.5
+      "capB": 140.2
     },
     {
       "ticker": "MAR",
       "name": "Marriott International, Inc. Class A",
-      "capB": 108.5
+      "capB": 108.6
     },
     {
       "ticker": "WMB",
       "name": "Williams Companies, Inc.",
-      "capB": 88.0
+      "capB": 87.1
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings, Inc.",
-      "capB": 62.3
+      "capB": 62.0
     }
   ],
   "reactions": {
@@ -256,25 +256,25 @@
       "logo": "data/earnings/logos/O.png"
     },
     {
-      "ticker": "ETR",
-      "name": "Entergy Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/ETR.png"
-    },
-    {
       "ticker": "IDXX",
       "name": "IDEXX Laboratories, Inc.",
       "when": "before",
       "logo": "data/earnings/logos/IDXX.png"
+    },
+    {
+      "ticker": "ETR",
+      "name": "Entergy Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/ETR.png"
     }
   ],
-  "more": 19,
+  "more": 18,
   "upcoming": [
     {
       "date": "2026-11-03",
       "label": "3/11",
       "dow": "ג׳",
-      "count": 56,
+      "count": 55,
       "tickers": [
         "AMD",
         "AMGN",
@@ -332,7 +332,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 31,
+      "total": 30,
       "companies": [
         {
           "ticker": "AAPL",
@@ -396,16 +396,16 @@
           "logo": "data/earnings/logos/O.png"
         },
         {
-          "ticker": "ETR",
-          "name": "Entergy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/ETR.png"
-        },
-        {
           "ticker": "IDXX",
           "name": "IDEXX Laboratories, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/IDXX.png"
+        },
+        {
+          "ticker": "ETR",
+          "name": "Entergy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/ETR.png"
         }
       ]
     },
@@ -413,7 +413,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 56,
+      "total": 55,
       "companies": [
         {
           "ticker": "AMD",
@@ -465,17 +465,17 @@
           "logo": "data/earnings/logos/BKNG.png"
         },
         {
-          "ticker": "SU",
-          "name": "Suncor Energy Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/SU.png"
-        },
-        {
           "ticker": "RACE",
           "name": "Ferrari NV",
           "when": "before",
           "logo": "data/earnings/logos/RACE.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "SU",
+          "name": "Suncor Energy Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SU.png"
         },
         {
           "ticker": "ITUB",
@@ -484,11 +484,10 @@
           "logo": "data/earnings/logos/ITUB.png"
         },
         {
-          "ticker": "ET",
-          "name": "Energy Transfer LP",
+          "ticker": "APO",
+          "name": "Apollo Global Management Inc",
           "when": "before",
-          "logo": "data/earnings/logos/ET.png",
-          "logoBg": "dark"
+          "logo": "data/earnings/logos/APO.png"
         }
       ]
     },
@@ -745,8 +744,8 @@
     "LITE": "2026-11-02",
     "FANG": "2026-11-02",
     "O": "2026-11-02",
-    "ETR": "2026-11-02",
     "IDXX": "2026-11-02",
+    "ETR": "2026-11-02",
     "EL": "2026-11-02",
     "PEG": "2026-11-02",
     "UI": "2026-11-02",
@@ -761,11 +760,10 @@
     "TSEM": "2026-11-02",
     "VNOM": "2026-11-02",
     "CRBG": "2026-11-02",
-    "NBIX": "2026-11-02",
     "EQH": "2026-11-02",
-    "TEM": "2026-11-02",
+    "NBIX": "2026-11-02",
     "CHKP": "2026-11-02",
-    "JAZZ": "2026-11-02",
+    "TEM": "2026-11-02",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
     "ANET": "2026-11-03",
@@ -774,11 +772,11 @@
     "ETN": "2026-11-03",
     "MPC": "2026-11-03",
     "BKNG": "2026-11-03",
-    "SU": "2026-11-03",
     "RACE": "2026-11-03",
+    "SU": "2026-11-03",
     "ITUB": "2026-11-03",
-    "ET": "2026-11-03",
     "APO": "2026-11-03",
+    "ET": "2026-11-03",
     "MPLX": "2026-11-03",
     "AME": "2026-11-03",
     "TRI": "2026-11-03",
@@ -804,8 +802,8 @@
     "SMCIP": "2026-11-03",
     "BR": "2026-11-03",
     "FIS": "2026-11-03",
-    "SMCI": "2026-11-03",
     "SWKS": "2026-11-03",
+    "SMCI": "2026-11-03",
     "TOST": "2026-11-03",
     "DD": "2026-11-03",
     "OVV": "2026-11-03",
@@ -821,7 +819,6 @@
     "AIZ": "2026-11-03",
     "UNM": "2026-11-03",
     "OHI": "2026-11-03",
-    "SUN": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "NVO": "2026-11-04",
@@ -867,8 +864,8 @@
     "RGLD": "2026-11-04",
     "CDW": "2026-11-04",
     "ZBH": "2026-11-04",
-    "WES": "2026-11-04",
     "CRCL": "2026-11-04",
+    "WES": "2026-11-04",
     "CF": "2026-11-04",
     "ITT": "2026-11-04",
     "CW": "2026-11-04",
@@ -877,8 +874,8 @@
     "NWS": "2026-11-04",
     "NWSA": "2026-11-04",
     "CRL": "2026-11-04",
-    "PAAS": "2026-11-04",
     "SWK": "2026-11-04",
+    "PAAS": "2026-11-04",
     "PFGC": "2026-11-04",
     "FICO": "2026-11-04",
     "W": "2026-11-04",
@@ -889,8 +886,8 @@
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
     "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
     "NET": "2026-11-05",
@@ -906,21 +903,21 @@
     "CAH": "2026-11-05",
     "SRE": "2026-11-05",
     "NTRA": "2026-11-05",
-    "BDX": "2026-11-05",
     "WPM": "2026-11-05",
+    "BDX": "2026-11-05",
     "DVN": "2026-11-05",
     "ROK": "2026-11-05",
     "TEAM": "2026-11-05",
     "ED": "2026-11-05",
     "MCHPP": "2026-11-05",
-    "MCHP": "2026-11-05",
-    "AU": "2026-11-05",
     "LYV": "2026-11-05",
+    "AU": "2026-11-05",
+    "MCHP": "2026-11-05",
     "KMB": "2026-11-05",
     "GMAB": "2026-11-05",
     "AXON": "2026-11-05",
-    "IRM": "2026-11-05",
     "ZTS": "2026-11-05",
+    "IRM": "2026-11-05",
     "MTD": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
@@ -929,11 +926,11 @@
     "GPN": "2026-11-05",
     "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
-    "CIB": "2026-11-05",
     "TPR": "2026-11-05",
+    "CIB": "2026-11-05",
     "RL": "2026-11-05",
-    "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
+    "FWONA": "2026-11-05",
     "GH": "2026-11-05",
     "USFD": "2026-11-05",
     "STE": "2026-11-05",
@@ -982,7 +979,7 @@
     "ASTS": "2026-11-09"
   },
   "_meta": {
-    "updatedAt": "02/11/2026 23:01",
+    "updatedAt": "02/11/2026 23:16",
     "source": "tradingview"
   }
 }
