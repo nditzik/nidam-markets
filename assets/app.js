@@ -265,7 +265,8 @@
       var val = e.actual != null
         ? 'בפועל <b class="num ' + cls + '" dir="ltr">' + esc(e.actual) + "</b>" + (e.forecast ? ' · צפי <span class="num" dir="ltr">' + esc(e.forecast) + "</span>" : "")
         : (e.forecast ? 'צפי <span class="num" dir="ltr">' + esc(e.forecast) + "</span>" : "") + (e.previous ? ' · קודם <span class="num" dir="ltr">' + esc(e.previous) + "</span>" : "");
-      return '<div class="e"><span class="tag macro">מאקרו' + (e.ilTime ? ' <span class="num" dir="ltr">' + esc(e.ilTime) + "</span>" : "") + "</span> " + esc(e.he) + "</div>" +
+      if (e.special) val = "";
+      return '<div class="e"><span class="tag macro">' + (e.special ? "אירוע" : "מאקרו") + (e.ilTime ? ' <span class="num" dir="ltr">' + esc(e.ilTime) + "</span>" : "") + "</span> " + esc(e.he) + "</div>" +
         (val ? '<div class="mute s">' + val + "</div>" : "");
     }
     function earnLine(cell) {
@@ -296,9 +297,10 @@
           (c0.macro.length ? '<span class="tag macro">' + esc(c0.macro[0].he) + (c0.macro[0].ilTime ? ' <span class="num" dir="ltr">' + esc(c0.macro[0].ilTime) + "</span>" : "") + "</span>" : "") +
           ((c0.earn || []).length ? '<span class="tag earn">' + (c0.count || c0.earn.length) + " מדווחות</span>" : "") + bdGo("weekcal", "כל האירועים") + "</div>" +
         '<div class="ev"><div>' + (earnLine(c0) ? '<h3><span class="tag earn">דוחות</span>היום</h3>' + earnLine(c0).replace('<span class="tag earn">דוחות</span> ', "") : "") + prepCard + "</div>" +
-        "<div>" + (c0.macro.length ? '<h3><span class="tag macro">מאקרו</span>' + (c0.macro[0].ilTime ? '<span class="num" dir="ltr">' + esc(c0.macro[0].ilTime) + "</span> · " : "") + "שעון ישראל</h3>" +
+        "<div>" + c0.macro.filter(function (e) { return e.special; }).map(function (e) { return '<h3><span class="tag macro">אירוע</span>' + esc(e.he) + "</h3>" + (e.note ? '<p class="mute s">' + esc(e.note) + "</p>" : ""); }).join("") +
+          (c0.macro.some(function (e) { return !e.special; }) ? '<h3><span class="tag macro">מאקרו</span>' + (c0.macro.filter(function (e) { return !e.special; })[0].ilTime ? '<span class="num" dir="ltr">' + esc(c0.macro.filter(function (e) { return !e.special; })[0].ilTime) + "</span> · " : "") + "שעון ישראל</h3>" +
           '<div class="mrows"><div class="mrow mute"><span>נתון</span><span class="num">צפי</span><span class="num">קודם</span><span class="num">בפועל</span></div>' +
-          c0.macro.slice(0, 5).map(function (e) { var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : ""; return '<div class="mrow"><span>' + esc(e.he) + '</span><span class="num" dir="ltr">' + esc(e.forecast || "—") + '</span><span class="num" dir="ltr">' + esc(e.previous || "—") + '</span><span class="num ' + cls + '" dir="ltr">' + esc(e.actual != null ? e.actual : "—") + "</span></div>"; }).join("") + "</div>" : "") +
+          c0.macro.filter(function (e) { return !e.special; }).slice(0, 5).map(function (e) { var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : ""; return '<div class="mrow"><span>' + esc(e.he) + '</span><span class="num" dir="ltr">' + esc(e.forecast || "—") + '</span><span class="num" dir="ltr">' + esc(e.previous || "—") + '</span><span class="num ' + cls + '" dir="ltr">' + esc(e.actual != null ? e.actual : "—") + "</span></div>"; }).join("") + "</div>" : "") +
           (nextDays ? '<div class="nx"><b>אחר כך השבוע</b>' + nextDays + "</div>" : "") + "</div></div>";
       el.classList.add("event");
       return;
@@ -500,6 +502,7 @@
     ((NEWS && NEWS.news) || []).forEach(function (n) { push("חדשות", "home", n.titleEn || n.title); });
     ((PULSE_X && PULSE_X.items) || []).forEach(function (it) { push("בזק מהרשת", "home", it.text + " · " + it.source); });
     ((ECON && ECON.events) || []).forEach(function (e) {
+      if (e.special) { push("אירוע", "weekcal", e.he + " (" + e.ilDate + ")" + (e.note ? " · " + e.note : "")); return; }
       push("מאקרו", "home", e.he + " (" + e.ilDate + ") · צפי " + (e.forecast || "—") + (e.actual ? " · בפועל " + e.actual : ""));
     });
     if (CA) {
@@ -690,7 +693,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np173";
+  var TA_VER = "np174";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1381,12 +1384,28 @@
 
   /* 📊 נתוני מאקרו — צפי מול בפועל (data/econ.json, ליבה בלבד) */
   var ECON = null;
+  // np174 (2.11.2026, איציק: "אין שום התייחסות לבחירות האמצע"): data/special_events.json = אירועים שאינם
+  // מאקרו ואינם דוחות (בחירות…). נכנסים ל-ECON עם special:true — כך היומן בבית, "השבוע הקרוב" ו"היום ביומן"
+  // מציגים אותם עם תג "אירוע" (יום אירוע = מסגרת מודגשת). טבלת המאקרו מקבלת את הרשימה הגולמית בלבד.
+  // אירוע שתאריכו עבר (שעון ישראל) לא נכנס.
+  function withSpecialEvents(econ, sp) {
+    var raw = (econ && econ.events) || [];
+    var today = ilNowParts().iso;
+    var extra = ((sp && sp.events) || []).filter(function (e) { return e.date && e.date >= today; }).map(function (e) {
+      return { date: e.date + "T" + (e.utc || "12:00"), ilDate: parseInt(e.date.slice(8), 10) + "." + parseInt(e.date.slice(5, 7), 10), ilTime: e.ilTime || "",
+        he: e.he, period: "", forecast: null, previous: null, actual: null, surprise: null, special: true, note: e.note || "" };
+    });
+    var all = raw.concat(extra).sort(function (a, b) { return String(a.date) < String(b.date) ? -1 : String(a.date) > String(b.date) ? 1 : 0; });
+    var out = {}; Object.keys(econ || {}).forEach(function (k) { out[k] = econ[k]; }); out.events = all;
+    return out;
+  }
   function renderEcon() {
     var el = document.getElementById("home-econ");
     if (!el || !ECON || !(ECON.events || []).length) return;
+    var evRaw = ECON.events.filter(function (e) { return !e.special; });   // np174: בלי אירועים מיוחדים — זו טבלת צפי מול בפועל
     // np120: טבלה אחת בפאנל "מאקרו · צפי מול בפועל" בטאב היומן — הבאים בתור ואז מה שפורסם
-    var released = ECON.events.filter(function (e) { return e.actual != null; }).slice(-6).reverse();
-    var upcoming = ECON.events.filter(function (e) { return e.actual == null; }).slice(0, 8);
+    var released = evRaw.filter(function (e) { return e.actual != null; }).slice(-6).reverse();
+    var upcoming = evRaw.filter(function (e) { return e.actual == null; }).slice(0, 8);
     function row(e) {
       var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : "";
       return "<tr><td class=\"num\" dir=\"ltr\">" + esc(e.ilDate) + (e.ilTime ? " · " + esc(e.ilTime) : "") + "</td><td>" + esc(e.he) + (e.period ? ' <span class="mute s">' + esc(e.period) + "</span>" : "") + "</td>" +
@@ -1863,7 +1882,7 @@
       var today = evs.filter(function (e) { return e.ilDate === dm && String(e.date).slice(0, 4) === t.iso.slice(0, 4); });
       if (today.length) today.slice(0, 3).forEach(function (e) {
         var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : "";
-        rows += row('<span dir="ltr">' + esc(e.ilTime || "") + "</span> · מאקרו", esc(e.he) +
+        rows += row((e.ilTime ? '<span dir="ltr">' + esc(e.ilTime) + "</span> · " : "") + (e.special ? "אירוע" : "מאקרו"), esc(e.he) +
           (e.actual != null ? ' <b class="num ' + cls + '" dir="ltr">' + esc(e.actual) + "</b>" + (e.forecast ? ' <small>צפי <span dir="ltr">' + esc(e.forecast) + "</span></small>" : "")
             : (e.forecast ? ' <small>צפי <span dir="ltr">' + esc(e.forecast) + "</span></small>" : "")), true);
       });
@@ -3196,7 +3215,7 @@
     var cols = week.map(function (day) {
       var mac = (ecoBy[day.date] || []).slice(0, 3).map(function (e) {
         var cls = e.surprise === "good" ? "up" : e.surprise === "bad" ? "down" : "";
-        return '<div class="wkm"><span class="tag macro">מאקרו' + (e.ilTime ? ' <span class="num" dir="ltr">' + esc(e.ilTime) + "</span>" : "") + "</span> " + esc(e.he) +
+        return '<div class="wkm"><span class="tag macro">' + (e.special ? "אירוע" : "מאקרו") + (e.ilTime ? ' <span class="num" dir="ltr">' + esc(e.ilTime) + "</span>" : "") + "</span> " + esc(e.he) +
           ' <span class="mute">' + (e.actual != null ? 'בפועל <b class="num ' + cls + '" dir="ltr">' + esc(e.actual) + "</b>" : (e.forecast ? 'צפי <span class="num" dir="ltr">' + esc(e.forecast) + "</span>" : "")) + "</span></div>";
       }).join("");
       var tiles = day.companies.map(function (c) {
@@ -5066,8 +5085,8 @@
       fetchJSON("data/morning.json")
         .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); renderNewsSiblings(); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "📊", "Barchart — בקרוב", ""); });
-      fetchJSON("data/econ.json")
-        .then(function (d) { if (!freshD("econ", d)) return; ECON = d; renderEcon(); refreshLeadAgenda(); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); })
+      Promise.all([fetchJSON("data/econ.json"), fetchJSON("data/special_events.json").catch(function () { return null; })])
+        .then(function (r) { if (!freshD("econ", r)) return; ECON = withSpecialEvents(r[0], r[1]); renderEcon(); refreshLeadAgenda(); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); })
         .catch(function () {});
       // הניתוח היומי של Claude — מוצג בבית (תקציר) ובטאב מדדים (מלא)
       fetchJSON("data/claude_analysis.json")

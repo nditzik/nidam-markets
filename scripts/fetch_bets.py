@@ -232,8 +232,94 @@ def cuts_label(title):
     return f"{n} הורדות"
 
 
+# 2.11.2026 (איציק: "אין התייחסות לבחירות האמצע"; "את ההימורים להוריד אחרי תוצאות הבחירות"):
+# מי ישלוט בבית הנבחרים ובסנאט — Polymarket. מוצג רק עד MIDTERM_UNTIL (שעון ישראל) ורק כל עוד השוק פתוח.
+# ה-slug לא ידוע מראש (אין רשת בסנדבוקס) — קודם ניחושים, ואז חיפוש ציבורי; מה שנמצא נרשם ב-midtermSrc.
+MIDTERM_UNTIL = "2026-11-04"
+MIDTERM = [
+    ("house", "שליטה בבית הנבחרים · בחירות האמצע 3.11", ["which-party-will-win-the-house-in-2026", "house-of-representatives-2026", "which-party-wins-the-house-in-2026", "balance-of-power-2026-midterms"], "house"),
+    ("senate", "שליטה בסנאט · בחירות האמצע 3.11", ["which-party-will-win-the-senate-in-2026", "senate-2026", "which-party-wins-the-senate-in-2026"], "senate"),
+]
+PARTY_HE = (("democrat", "הדמוקרטים"), ("republican", "הרפובליקנים"), ("gop", "הרפובליקנים"))
+
+
+def party_he(text):
+    t = (text or "").lower()
+    for k, he in PARTY_HE:
+        if k in t:
+            return he
+    return None
+
+
+def find_midterm_event(slugs, word):
+    for slug in slugs:
+        try:
+            ev = get_event(slug)
+            if ev and not ev.get("closed"):
+                return ev
+        except Exception:
+            pass
+    try:
+        q = urllib.request.quote(word + " 2026 midterm")
+        req = urllib.request.Request("https://gamma-api.polymarket.com/public-search?q=" + q, headers=UA)
+        with urllib.request.urlopen(req, timeout=20) as r:
+            res = json.loads(r.read().decode("utf-8"))
+        for ev in res.get("events") or []:
+            t = (ev.get("title") or "").lower()
+            if word in t and "2026" in t and not ev.get("closed") and any(x in t for x in ("win", "control", "party", "majority")):
+                # השוק המלא (עם markets) — לפי ה-slug
+                full = get_event(ev.get("slug")) if ev.get("slug") else None
+                if full and len(full.get("markets") or []) >= 1:
+                    return full
+    except Exception as e:
+        print(f"[warn] midterm search {word}: {e}")
+    return None
+
+
+def midterm_rows(today_il):
+    rows, src = [], {}
+    if today_il > MIDTERM_UNTIL:
+        return rows, src
+    for key, label, slugs, word in MIDTERM:
+        ev = find_midterm_event(slugs, word)
+        if not ev:
+            src[key] = None
+            continue
+        src[key] = ev.get("slug")
+        mk = [m for m in (ev.get("markets") or []) if not m.get("closed")]
+        dist = []
+        for m in mk:
+            p = yes_price(m)
+            he = party_he(m.get("groupItemTitle") or m.get("question") or "")
+            if p is not None and he:
+                dist.append({"label": he, "pct": round(p * 100), "chg": chg_pp(m), "_p": p})
+        if not dist and len(mk) == 1:   # שוק כן/לא יחיד ("Will Democrats win the House?")
+            m = mk[0]; p = yes_price(m); he = party_he(m.get("question") or ev.get("title"))
+            if p is not None and he:
+                other = "הרפובליקנים" if he == "הדמוקרטים" else "הדמוקרטים"
+                dist = [{"label": he, "pct": round(p * 100), "chg": chg_pp(m), "_p": p},
+                        {"label": other, "pct": round((1 - p) * 100), "chg": (-chg_pp(m) if chg_pp(m) is not None else None), "_p": 1 - p}]
+        if not dist:
+            src[key] = (ev.get("slug") or "") + " (no party markets)"
+            continue
+        dist.sort(key=lambda x: -x["_p"])
+        top = dist[0]
+        for x in dist:
+            x.pop("_p", None)
+        rows.append({"key": "midterm_" + key, "label": label, "sub": "ההימור המוביל: " + top["label"] + " ישלטו",
+                     "pct": top["pct"], "chg": top["chg"], "dist": dist,
+                     "url": "https://polymarket.com/event/" + ev.get("slug", "")})
+    return rows, src
+
+
 def main():
     rows = []
+    mid_src = {}
+    try:
+        today_il = (datetime.now(timezone.utc) + timedelta(hours=il_off())).strftime("%Y-%m-%d")
+        rows, mid_src = midterm_rows(today_il)
+    except Exception as e:
+        print(f"[warn] midterm: {e}")
     try:
         fed_slug, fed_month, fed_end = next_fed_event()
         ev = get_event(fed_slug)
@@ -311,6 +397,8 @@ def main():
         r.setdefault("src", "Polymarket")  # שורות Kalshi כבר קובעות src משלהן
 
     out = {"rows": rows, "source": "Polymarket"}
+    if mid_src:
+        out["midtermSrc"] = mid_src
     existing = {}
     if os.path.exists(OUT):
         try:
