@@ -1,40 +1,40 @@
 {
-  "generatedAt": "02/11/2026 23:52",
+  "generatedAt": "03/11/2026 00:01",
   "today": [
-    {
-      "label": "תדרוך בוקר",
-      "tab": "briefing",
-      "time": "06:03",
-      "arrived": true
-    },
-    {
-      "label": "Barchart טרום מסחר",
-      "tab": "morning",
-      "time": "14:50",
-      "arrived": true
-    },
-    {
-      "label": "תדרוך אחה\"צ",
-      "tab": "briefing",
-      "time": "19:37",
-      "arrived": true
-    },
     {
       "label": "מדדים",
       "tab": "indices",
-      "time": "23:51",
+      "time": "00:00",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "23:51",
+      "time": "00:00",
       "arrived": true
+    },
+    {
+      "label": "תדרוך בוקר",
+      "tab": "briefing",
+      "time": "06:03",
+      "arrived": false
+    },
+    {
+      "label": "תדרוך אחה\"צ",
+      "tab": "briefing",
+      "time": "19:37",
+      "arrived": false
     },
     {
       "label": "Barchart בוקר",
       "tab": "morning",
       "time": "06:06",
+      "arrived": false
+    },
+    {
+      "label": "Barchart טרום מסחר",
+      "tab": "morning",
+      "time": "14:50",
       "arrived": false
     },
     {
@@ -48,7 +48,7 @@
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "02/11/2026 23:51",
+      "updatedAt": "03/11/2026 00:00",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -56,7 +56,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "02/11/2026 23:51",
+      "updatedAt": "03/11/2026 00:00",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -73,7 +73,7 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "02/11/2026 14:50",
-      "ageHours": 9.0,
+      "ageHours": 9.2,
       "status": "ok",
       "detail": ""
     },
@@ -81,7 +81,7 @@
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "02/11/2026 19:45",
-      "ageHours": 4.1,
+      "ageHours": 4.3,
       "status": "ok",
       "detail": ""
     },
@@ -89,7 +89,7 @@
       "key": "candidates",
       "label": "מועמדים",
       "updatedAt": "31/10/2026 05:30",
-      "ageHours": 66.4,
+      "ageHours": 66.5,
       "status": "stale",
       "detail": ""
     }

@@ -1,50 +1,107 @@
 {
-  "today": "2026-11-02",
-  "todayCount": 30,
+  "today": "2026-11-03",
+  "todayCount": 55,
   "todayBig": [
     {
-      "ticker": "AAPL",
-      "name": "Apple Inc.",
-      "capB": 4937.5
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "capB": 762.1
     },
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1191.4
+      "ticker": "AMGN",
+      "name": "Amgen Inc.",
+      "capB": 251.6
     },
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1189.4
+      "ticker": "ANET",
+      "name": "Arista Networks Inc",
+      "capB": 207.0
     },
     {
-      "ticker": "PLTR",
-      "name": "Palantir Technologies Inc. Class A",
-      "capB": 428.6
+      "ticker": "SHOP",
+      "name": "Shopify, Inc. Class A",
+      "capB": 201.0
     },
     {
-      "ticker": "VRTX",
-      "name": "Vertex Pharmaceuticals Incorporated",
-      "capB": 140.2
+      "ticker": "PFE",
+      "name": "Pfizer Inc.",
+      "capB": 174.8
     },
     {
-      "ticker": "MAR",
-      "name": "Marriott International, Inc. Class A",
-      "capB": 108.6
+      "ticker": "ETN",
+      "name": "Eaton Corp. Plc",
+      "capB": 142.2
     },
     {
-      "ticker": "WMB",
-      "name": "Williams Companies, Inc.",
-      "capB": 87.1
+      "ticker": "MPC",
+      "name": "Marathon Petroleum Corporation",
+      "capB": 120.9
     },
     {
-      "ticker": "LITE",
-      "name": "Lumentum Holdings, Inc.",
-      "capB": 62.0
+      "ticker": "BKNG",
+      "name": "Booking Holdings Inc.",
+      "capB": 115.5
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-02",
+        "label": "2.11",
+        "items": [
+          {
+            "ticker": "AAPL",
+            "name": "Apple Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/AAPL.png"
+          },
+          {
+            "ticker": "PLTR",
+            "name": "Palantir Technologies Inc. Class A",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/PLTR.png"
+          },
+          {
+            "ticker": "VRTX",
+            "name": "Vertex Pharmaceuticals Incorporated",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/VRTX.png",
+            "logoBg": "dark"
+          },
+          {
+            "ticker": "MAR",
+            "name": "Marriott International, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/MAR.png",
+            "chg": 4.26,
+            "price": 416.3,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
+          },
+          {
+            "ticker": "WMB",
+            "name": "Williams Companies, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/WMB.png"
+          },
+          {
+            "ticker": "LITE",
+            "name": "Lumentum Holdings, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/LITE.png",
+            "chg": -18.59,
+            "price": 684.4,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
+          }
+        ]
+      },
       {
         "date": "2026-10-30",
         "label": "30.10",
@@ -117,173 +174,87 @@
             "baseDate": "2026-10-29"
           }
         ]
-      },
-      {
-        "date": "2026-10-29",
-        "label": "29.10",
-        "items": [
-          {
-            "ticker": "AMZN",
-            "name": "Amazon.com, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/AMZN.png",
-            "logoBg": "dark",
-            "chg": -1.41,
-            "price": 240.35,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
-            "ticker": "LLY",
-            "name": "Eli Lilly and Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/LLY.png",
-            "chg": 6.63,
-            "price": 1373.7,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "MA",
-            "name": "Mastercard Incorporated Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MA.png",
-            "chg": 4.16,
-            "price": 635.7,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "MRK",
-            "name": "Merck & Co., Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MRK.png",
-            "chg": 3.83,
-            "price": 146.33,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "INTC",
-            "name": "Intel Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/INTC.png",
-            "chg": -28.58,
-            "price": 65.76,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
-            "ticker": "SHEL",
-            "name": "Shell Plc Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SHEL.png",
-            "chg": 2.36,
-            "price": 107.67,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "AAPL",
-      "name": "Apple Inc.",
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/AAPL.png"
+      "logo": "data/earnings/logos/AMD.png"
     },
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.B.png"
-    },
-    {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.A.png"
-    },
-    {
-      "ticker": "PLTR",
-      "name": "Palantir Technologies Inc. Class A",
+      "ticker": "AMGN",
+      "name": "Amgen Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/PLTR.png"
+      "logo": "data/earnings/logos/AMGN.png"
     },
     {
-      "ticker": "VRTX",
-      "name": "Vertex Pharmaceuticals Incorporated",
+      "ticker": "ANET",
+      "name": "Arista Networks Inc",
       "when": "after",
-      "logo": "data/earnings/logos/VRTX.png",
+      "logo": "data/earnings/logos/ANET.png",
       "logoBg": "dark"
     },
     {
-      "ticker": "MAR",
-      "name": "Marriott International, Inc. Class A",
+      "ticker": "SHOP",
+      "name": "Shopify, Inc. Class A",
       "when": "before",
-      "logo": "data/earnings/logos/MAR.png"
+      "logo": "data/earnings/logos/SHOP.png"
     },
     {
-      "ticker": "WMB",
-      "name": "Williams Companies, Inc.",
+      "ticker": "PFE",
+      "name": "Pfizer Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/PFE.png"
+    },
+    {
+      "ticker": "ETN",
+      "name": "Eaton Corp. Plc",
+      "when": "before",
+      "logo": "data/earnings/logos/ETN.png"
+    },
+    {
+      "ticker": "MPC",
+      "name": "Marathon Petroleum Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/MPC.png"
+    },
+    {
+      "ticker": "BKNG",
+      "name": "Booking Holdings Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/WMB.png"
+      "logo": "data/earnings/logos/BKNG.png"
     },
     {
-      "ticker": "LITE",
-      "name": "Lumentum Holdings, Inc.",
+      "ticker": "RACE",
+      "name": "Ferrari NV",
       "when": "before",
-      "logo": "data/earnings/logos/LITE.png"
+      "logo": "data/earnings/logos/RACE.png",
+      "logoBg": "dark"
     },
     {
-      "ticker": "FANG",
-      "name": "Diamondback Energy, Inc.",
+      "ticker": "SU",
+      "name": "Suncor Energy Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/FANG.png"
+      "logo": "data/earnings/logos/SU.png"
     },
     {
-      "ticker": "O",
-      "name": "Realty Income Corporation",
+      "ticker": "ITUB",
+      "name": "Itau Unibanco Holding S.A. Sponsored ADR Pfd",
       "when": "after",
-      "logo": "data/earnings/logos/O.png"
+      "logo": "data/earnings/logos/ITUB.png"
     },
     {
-      "ticker": "IDXX",
-      "name": "IDEXX Laboratories, Inc.",
+      "ticker": "APO",
+      "name": "Apollo Global Management Inc",
       "when": "before",
-      "logo": "data/earnings/logos/IDXX.png"
-    },
-    {
-      "ticker": "ETR",
-      "name": "Entergy Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/ETR.png"
+      "logo": "data/earnings/logos/APO.png"
     }
   ],
-  "more": 18,
+  "more": 43,
   "upcoming": [
-    {
-      "date": "2026-11-03",
-      "label": "3/11",
-      "dow": "ג׳",
-      "count": 55,
-      "tickers": [
-        "AMD",
-        "AMGN",
-        "ANET",
-        "SHOP",
-        "PFE",
-        "ETN"
-      ]
-    },
     {
       "date": "2026-11-04",
       "label": "4/11",
@@ -734,36 +705,6 @@
     }
   ],
   "window": {
-    "AAPL": "2026-11-02",
-    "BRK.B": "2026-11-02",
-    "BRK.A": "2026-11-02",
-    "PLTR": "2026-11-02",
-    "VRTX": "2026-11-02",
-    "MAR": "2026-11-02",
-    "WMB": "2026-11-02",
-    "LITE": "2026-11-02",
-    "FANG": "2026-11-02",
-    "O": "2026-11-02",
-    "IDXX": "2026-11-02",
-    "ETR": "2026-11-02",
-    "EL": "2026-11-02",
-    "PEG": "2026-11-02",
-    "UI": "2026-11-02",
-    "ON": "2026-11-02",
-    "RYAAY": "2026-11-02",
-    "FOX": "2026-11-02",
-    "FOXA": "2026-11-02",
-    "ROKU": "2026-11-02",
-    "L": "2026-11-02",
-    "SBAC": "2026-11-02",
-    "PS": "2026-11-02",
-    "TSEM": "2026-11-02",
-    "VNOM": "2026-11-02",
-    "CRBG": "2026-11-02",
-    "EQH": "2026-11-02",
-    "NBIX": "2026-11-02",
-    "CHKP": "2026-11-02",
-    "TEM": "2026-11-02",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
     "ANET": "2026-11-03",
@@ -976,10 +917,20 @@
     "RBA": "2026-11-09",
     "SGI": "2026-11-09",
     "CNH": "2026-11-09",
-    "ASTS": "2026-11-09"
+    "ASTS": "2026-11-09",
+    "SONY": "2026-11-10",
+    "PBR": "2026-11-10",
+    "SE": "2026-11-10",
+    "VOD": "2026-11-10",
+    "ALC": "2026-11-10",
+    "EC": "2026-11-10",
+    "VG": "2026-11-10",
+    "CRWV": "2026-11-10",
+    "BEKE": "2026-11-10",
+    "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "02/11/2026 23:52",
+    "updatedAt": "03/11/2026 00:01",
     "source": "tradingview"
   }
 }
