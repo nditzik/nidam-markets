@@ -1,41 +1,41 @@
 {
   "today": "2026-11-02",
-  "todayCount": 30,
+  "todayCount": 31,
   "todayBig": [
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
-      "capB": 4976.3
+      "capB": 4966.5
     },
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1176.1
+      "capB": 1176.0
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1173.3
+      "capB": 1173.1
     },
     {
       "ticker": "PLTR",
       "name": "Palantir Technologies Inc. Class A",
-      "capB": 441.8
+      "capB": 443.8
     },
     {
       "ticker": "VRTX",
       "name": "Vertex Pharmaceuticals Incorporated",
-      "capB": 143.0
+      "capB": 142.8
     },
     {
       "ticker": "MAR",
       "name": "Marriott International, Inc. Class A",
-      "capB": 109.5
+      "capB": 108.2
     },
     {
       "ticker": "WMB",
       "name": "Williams Companies, Inc.",
-      "capB": 89.9
+      "capB": 89.5
     },
     {
       "ticker": "FANG",
@@ -207,17 +207,6 @@
             "baseDate": "2026-10-28"
           },
           {
-            "ticker": "GOOGL",
-            "name": "Alphabet Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOGL.png",
-            "chg": -12.64,
-            "price": 283.82,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
             "ticker": "GOOG",
             "name": "Alphabet Inc. Class C",
             "when": "after",
@@ -225,6 +214,17 @@
             "logo": "data/earnings/logos/GOOG.png",
             "chg": -12.29,
             "price": 282.32,
+            "reactDate": "2026-10-29",
+            "baseDate": "2026-10-28"
+          },
+          {
+            "ticker": "GOOGL",
+            "name": "Alphabet Inc. Class A",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/GOOGL.png",
+            "chg": -12.64,
+            "price": 283.82,
             "reactDate": "2026-10-29",
             "baseDate": "2026-10-28"
           },
@@ -338,7 +338,7 @@
       "logo": "data/earnings/logos/EL.png"
     }
   ],
-  "more": 18,
+  "more": 19,
   "upcoming": [
     {
       "date": "2026-11-03",
@@ -402,7 +402,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 30,
+      "total": 31,
       "companies": [
         {
           "ticker": "AAPL",
@@ -623,16 +623,16 @@
           "logo": "data/earnings/logos/MELI.png"
         },
         {
-          "ticker": "DDOG",
-          "name": "Datadog, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/DDOG.png"
-        },
-        {
           "ticker": "MSI",
           "name": "Motorola Solutions, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/MSI.png"
+        },
+        {
+          "ticker": "DDOG",
+          "name": "Datadog, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/DDOG.png"
         },
         {
           "ticker": "APP",
@@ -716,10 +716,10 @@
           "logo": "data/earnings/logos/MNST.png"
         },
         {
-          "ticker": "EOG",
-          "name": "EOG Resources, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/EOG.png"
+          "ticker": "NGG",
+          "name": "National Grid plc Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/NGG.png"
         }
       ]
     },
@@ -834,6 +834,7 @@
     "EQH": "2026-11-02",
     "NBIX": "2026-11-02",
     "CHKP": "2026-11-02",
+    "TEM": "2026-11-02",
     "JAZZ": "2026-11-02",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
@@ -875,15 +876,15 @@
     "SWKS": "2026-11-03",
     "BR": "2026-11-03",
     "FIS": "2026-11-03",
-    "OVV": "2026-11-03",
     "TOST": "2026-11-03",
+    "OVV": "2026-11-03",
     "DD": "2026-11-03",
     "LDOS": "2026-11-03",
     "BALL": "2026-11-03",
     "RVTY": "2026-11-03",
     "ZBRA": "2026-11-03",
-    "DT": "2026-11-03",
     "TLN": "2026-11-03",
+    "DT": "2026-11-03",
     "YUMC": "2026-11-03",
     "ULS": "2026-11-03",
     "IT": "2026-11-03",
@@ -900,8 +901,8 @@
     "CVS": "2026-11-04",
     "EMR": "2026-11-04",
     "MELI": "2026-11-04",
-    "DDOG": "2026-11-04",
     "MSI": "2026-11-04",
+    "DDOG": "2026-11-04",
     "APP": "2026-11-04",
     "MFC": "2026-11-04",
     "ALL": "2026-11-04",
@@ -966,8 +967,8 @@
     "DUK": "2026-11-05",
     "NET": "2026-11-05",
     "MNST": "2026-11-05",
-    "EOG": "2026-11-05",
     "NGG": "2026-11-05",
+    "EOG": "2026-11-05",
     "CI": "2026-11-05",
     "SPG": "2026-11-05",
     "APD": "2026-11-05",
@@ -990,16 +991,16 @@
     "MCHPP": "2026-11-05",
     "KMB": "2026-11-05",
     "AXON": "2026-11-05",
-    "GMAB": "2026-11-05",
     "IRM": "2026-11-05",
-    "ZTS": "2026-11-05",
+    "GMAB": "2026-11-05",
     "MTD": "2026-11-05",
+    "ZTS": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
     "DTK": "2026-11-05",
     "DTE": "2026-11-05",
-    "GPN": "2026-11-05",
     "AFRM": "2026-11-05",
+    "GPN": "2026-11-05",
     "VRSK": "2026-11-05",
     "CIB": "2026-11-05",
     "RL": "2026-11-05",
@@ -1013,8 +1014,8 @@
     "EVRG": "2026-11-05",
     "BCE": "2026-11-05",
     "MTSI": "2026-11-05",
-    "RGA": "2026-11-05",
     "U": "2026-11-05",
+    "RGA": "2026-11-05",
     "JHX": "2026-11-05",
     "LAMR": "2026-11-05",
     "SBS": "2026-11-05",
@@ -1054,7 +1055,7 @@
     "CNH": "2026-11-09"
   },
   "_meta": {
-    "updatedAt": "02/11/2026 17:01",
+    "updatedAt": "02/11/2026 17:16",
     "source": "tradingview"
   }
 }
