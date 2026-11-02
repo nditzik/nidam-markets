@@ -1,46 +1,46 @@
 {
   "today": "2026-11-02",
-  "todayCount": 32,
+  "todayCount": 31,
   "todayBig": [
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
-      "capB": 4909.9
+      "capB": 4921.1
     },
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1189.2
+      "capB": 1190.5
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1186.4
+      "capB": 1187.5
     },
     {
       "ticker": "PLTR",
       "name": "Palantir Technologies Inc. Class A",
-      "capB": 440.8
+      "capB": 440.5
     },
     {
       "ticker": "VRTX",
       "name": "Vertex Pharmaceuticals Incorporated",
-      "capB": 139.9
+      "capB": 140.4
     },
     {
       "ticker": "MAR",
       "name": "Marriott International, Inc. Class A",
-      "capB": 108.4
+      "capB": 108.1
     },
     {
       "ticker": "WMB",
       "name": "Williams Companies, Inc.",
-      "capB": 88.3
+      "capB": 87.9
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings, Inc.",
-      "capB": 63.6
+      "capB": 62.8
     }
   ],
   "reactions": {
@@ -190,76 +190,6 @@
             "baseDate": "2026-10-28"
           }
         ]
-      },
-      {
-        "date": "2026-10-28",
-        "label": "28.10",
-        "items": [
-          {
-            "ticker": "MSFT",
-            "name": "Microsoft Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/MSFT.png",
-            "chg": -0.16,
-            "price": 530.14,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "GOOG",
-            "name": "Alphabet Inc. Class C",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOG.png",
-            "chg": -12.29,
-            "price": 282.32,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "GOOGL",
-            "name": "Alphabet Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/GOOGL.png",
-            "chg": -12.64,
-            "price": 283.82,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "GOOGM",
-            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-            "when": "after",
-            "status": "final",
-            "chg": -8.97,
-            "price": 42.53,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "GOOGN",
-            "name": "Alphabet Inc. Depository Shs Repr 1/20th Conv Pfd Registered Shs",
-            "when": "after",
-            "status": "final",
-            "chg": -8.77,
-            "price": 42.53,
-            "reactDate": "2026-10-29",
-            "baseDate": "2026-10-28"
-          },
-          {
-            "ticker": "GEV",
-            "name": "GE Vernova Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GEV.png",
-            "chg": -1.9,
-            "price": 878.03,
-            "reactDate": "2026-10-28",
-            "baseDate": "2026-10-27"
-          }
-        ]
       }
     ]
   },
@@ -338,7 +268,7 @@
       "logo": "data/earnings/logos/IDXX.png"
     }
   ],
-  "more": 20,
+  "more": 19,
   "upcoming": [
     {
       "date": "2026-11-03",
@@ -402,7 +332,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 32,
+      "total": 31,
       "companies": [
         {
           "ticker": "AAPL",
@@ -535,17 +465,17 @@
           "logo": "data/earnings/logos/BKNG.png"
         },
         {
+          "ticker": "SU",
+          "name": "Suncor Energy Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SU.png"
+        },
+        {
           "ticker": "RACE",
           "name": "Ferrari NV",
           "when": "before",
           "logo": "data/earnings/logos/RACE.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "SU",
-          "name": "Suncor Energy Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/SU.png"
         },
         {
           "ticker": "ITUB",
@@ -830,10 +760,9 @@
     "TSEM": "2026-11-02",
     "VNOM": "2026-11-02",
     "CRBG": "2026-11-02",
-    "PKX": "2026-11-02",
-    "CHKP": "2026-11-02",
     "NBIX": "2026-11-02",
     "EQH": "2026-11-02",
+    "CHKP": "2026-11-02",
     "TEM": "2026-11-02",
     "JAZZ": "2026-11-02",
     "AMD": "2026-11-03",
@@ -844,8 +773,8 @@
     "ETN": "2026-11-03",
     "MPC": "2026-11-03",
     "BKNG": "2026-11-03",
-    "RACE": "2026-11-03",
     "SU": "2026-11-03",
+    "RACE": "2026-11-03",
     "ITUB": "2026-11-03",
     "APO": "2026-11-03",
     "ET": "2026-11-03",
@@ -858,8 +787,8 @@
     "WAT": "2026-11-03",
     "AIG": "2026-11-03",
     "YUM": "2026-11-03",
-    "ALAB": "2026-11-03",
     "PRU": "2026-11-03",
+    "ALAB": "2026-11-03",
     "SYY": "2026-11-03",
     "PFH": "2026-11-03",
     "PRS": "2026-11-03",
@@ -890,8 +819,8 @@
     "IT": "2026-11-03",
     "AIZ": "2026-11-03",
     "UNM": "2026-11-03",
-    "SUN": "2026-11-03",
     "OHI": "2026-11-03",
+    "SUN": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "QCOM": "2026-11-04",
@@ -937,8 +866,8 @@
     "RGLD": "2026-11-04",
     "CDW": "2026-11-04",
     "CRCL": "2026-11-04",
-    "WES": "2026-11-04",
     "ZBH": "2026-11-04",
+    "WES": "2026-11-04",
     "ITT": "2026-11-04",
     "CF": "2026-11-04",
     "CW": "2026-11-04",
@@ -947,10 +876,10 @@
     "NWSA": "2026-11-04",
     "NWS": "2026-11-04",
     "CRL": "2026-11-04",
-    "PAAS": "2026-11-04",
     "SWK": "2026-11-04",
-    "W": "2026-11-04",
+    "PAAS": "2026-11-04",
     "PFGC": "2026-11-04",
+    "W": "2026-11-04",
     "FICO": "2026-11-04",
     "TRMB": "2026-11-04",
     "FLUT": "2026-11-04",
@@ -982,8 +911,8 @@
     "ROK": "2026-11-05",
     "TEAM": "2026-11-05",
     "ED": "2026-11-05",
-    "MCHP": "2026-11-05",
     "MCHPP": "2026-11-05",
+    "MCHP": "2026-11-05",
     "AU": "2026-11-05",
     "LYV": "2026-11-05",
     "KMB": "2026-11-05",
@@ -999,8 +928,8 @@
     "VRSK": "2026-11-05",
     "GPN": "2026-11-05",
     "AFRM": "2026-11-05",
-    "CIB": "2026-11-05",
     "RL": "2026-11-05",
+    "CIB": "2026-11-05",
     "TPR": "2026-11-05",
     "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
@@ -1010,8 +939,8 @@
     "VTRS": "2026-11-05",
     "EVRG": "2026-11-05",
     "BCE": "2026-11-05",
-    "U": "2026-11-05",
     "RGA": "2026-11-05",
+    "U": "2026-11-05",
     "MTSI": "2026-11-05",
     "JHX": "2026-11-05",
     "SBS": "2026-11-05",
@@ -1052,7 +981,7 @@
     "ASTS": "2026-11-09"
   },
   "_meta": {
-    "updatedAt": "02/11/2026 21:01",
+    "updatedAt": "02/11/2026 21:16",
     "source": "tradingview"
   }
 }
