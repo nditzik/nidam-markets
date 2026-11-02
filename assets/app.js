@@ -693,7 +693,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np174";
+  var TA_VER = "np175";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1133,6 +1133,9 @@
       }
     }
     el.innerHTML = txt ? '<span class="dm-hol">' + txt + "</span>" : "";
+    /* np175 (איציק): במחשב השורה יושבת מתחת לשעון, ממורכזת אליו; #np-daymeta נשאר לטלפון */
+    var el2 = document.getElementById("np-daymeta2");
+    if (el2) el2.innerHTML = el.innerHTML;
   }
   function startClock() {
     var timeEl = document.getElementById("clock-time");

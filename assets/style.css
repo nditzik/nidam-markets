@@ -2541,3 +2541,18 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .cs-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .cs-src { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
+
+/* ── np175 (2.11.2026, איציק): "יום ללא מסחר הבא" מתחת לשעון המסחר, משמאל, ממורכז אליו ──
+   עמודה אחת לשעון ולשורה; השורה בשורת-גריד בגובה 0 כך שהשעון נשאר מיושר לחיפוש ולטאבים,
+   והכותרת מקבלת ריווח תחתון במקום שורת np-hd2 (שנשארת לטלפון, שם השעון מוסתר). */
+.bd-sesswrap { display: grid; grid-template-rows: auto 0; justify-items: center; flex: none; }
+.np-daymeta2 { font-size: 12px; line-height: 1.3; color: var(--text-3); white-space: nowrap; padding-top: 5px; }
+.np-daymeta2:empty { display: none; }
+.bd-hd:has(.np-daymeta2:not(:empty)) { padding-bottom: 20px; }
+@media (min-width: 701px) { #np-hd2 { display: none !important; } }
+@media (max-width: 1160px) {
+  .bd-sesswrap { grid-template-rows: auto auto; }
+  .np-daymeta2 { padding-bottom: 6px; }
+  .bd-hd:has(.np-daymeta2:not(:empty)) { padding-bottom: 0; }
+}
+@media (max-width: 700px) { .np-daymeta2 { display: none; } .bd-sesswrap { grid-template-rows: auto; } }
