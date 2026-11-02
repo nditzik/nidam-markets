@@ -1,0 +1,459 @@
+<title>SNDK דוח רבעון Q1 FY27</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .logo{height:30px;width:auto;display:block;margin-bottom:24px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="Sandisk">
+    <div class="eyebrow">Sandisk Corporation · NASDAQ: SNDK · תוצאות רבעון ראשון, שנת כספים 2027</div>
+    <h1>הכנסות פי 4.8, רווחיות של 85% וספליט של 1:8. ובכל זאת המניה צנחה 18% ביומיים, כי השוק חושש שהשיא כבר מאחור</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-29 באוקטובר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026 (רבעון שהסתיים ב-2.10)</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת האנליסטים</span>
+      <span>עודכן: 1.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>סנדיסק מייצרת זיכרון פלאש (NAND), הרכיב שבו נשמר המידע בטלפונים, במחשבים, ועכשיו גם בשרתי הבינה המלאכותית</h2>
+  <p class="lead">Sandisk פוצלה מ-Western Digital בפברואר 2025 והפכה לחברה ציבורית עצמאית. היא מייצרת שבבי זיכרון פלאש מסוג NAND, שבניגוד לזיכרון ה-RAM שומרים את המידע גם כשהמכשיר כבוי. את השבבים היא מייצרת במפעלים משותפים עם Kioxia היפנית (Flash Ventures), ומוכרת אותם ככונני SSD, ככרטיסי זיכרון וכרכיבים ליצרני טלפונים ומחשבים.</p>
+  <p class="body" style="margin-top:14px">לחברה שלושה שווקים. <strong>מרכזי נתונים</strong> ($4.8B ברבעון, 44%): כונני SSD לשרתי AI של ענקיות הענן. <strong>Edge</strong> ($5.8B, 53%): זיכרון לטלפונים, למחשבים, לרכבים ולמכשירים חכמים. <strong>צרכנים</strong> ($0.4B, 4%): כרטיסי זיכרון, דיסקים ניידים והמותג המוכר SanDisk על מדפי החנויות.</p>
+  <p class="body">מה קרה? בינה מלאכותית צריכה כמויות עצומות של זיכרון, במיוחד כדי "לזכור" את ההקשר של שיחות ארוכות (KV cache). הביקוש התפוצץ, ההיצע לא הדביק את הקצב, והמחירים זינקו. תוך שנה הפכה סנדיסק מיצרנית סחורה עם רווחיות של 30% לאחת החברות הרווחיות בעולם.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>Samsung ו-SK Hynix</h3>
+      <p>שתי הענקיות הקוריאניות הן היצרניות הגדולות בעולם של NAND ושל DRAM. ל-SK Hynix יש גם את Solidigm (לשעבר עסקי הפלאש של אינטל), שחזקה בכונני QLC גדולים למרכזי נתונים.</p>
+    </div>
+    <div class="col">
+      <h3>Micron ו-Kioxia</h3>
+      <p>Micron האמריקאית מתחרה גם בפלאש וגם ב-HBM. Kioxia היפנית היא השותפה של סנדיסק בייצור (חולקות מפעלים), אבל גם מתחרה שלה במכירות.</p>
+    </div>
+    <div class="col">
+      <h3>YMTC הסינית</h3>
+      <p>יצרנית הפלאש הסינית מתקדמת טכנולוגית למרות הסנקציות האמריקאיות. לפי ה-Motley Fool, תחרות מסין היא אחד החששות שהפילו את המניה מהשיא.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון שובר שיאים מעל התחזיות, תחזית חזקה, קנייה של מניות ב-$5 מיליארד. אבל הצמיחה מאטה</h2>
+  <p class="lead">ההכנסות הגיעו ל-$11.0B, פי 4.8 משנה שעברה, ועלו 23% מהרבעון הקודם. הצפי היה $10.7B. מתוך כל דולר הכנסות נשארו 85 סנט רווח גולמי, ו-80 סנט רווח תפעולי. הרווח המנוקה למניה, $49.51, עבר את הצפי ($46.4–$46.7). לרבעון הבא החברה צופה הכנסות של $12.2–$12.6B ורווח של $55–$57 למניה, שוב מעל הצפי.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>הצמיחה מהרבעון הקודם מאטה: 97%, אחר כך 51%, אחר כך 23%, ובתחזית כ-12%. בשוק הזיכרון, שידוע במחזורים חדים, משקיעים מוכרים כשהצמיחה מאטה ולא מחכים לירידה עצמה. בנוסף, הרווחיות כבר 85%, ולא נשאר הרבה מקום לשיפור. התשובה של ההנהלה: חוזים ארוכי טווח (NBM), שמכסים כבר מחצית מהייצור השנה ושני שלישים בשנה הבאה, מבטיחים שהמחזור הפעם יהיה אחר.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>מספרים שלא רואים בדרך כלל בחברת שבבים בגודל כזה</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$11.0B</div><div class="l">הכנסות</div><div class="d up">+378% · +23% מהרבעון הקודם</div></div>
+    <div class="kpi"><div class="v num">$49.51</div><div class="l">רווח מנוקה למניה</div><div class="d up">לעומת $1.22 · הצפי: $46.4–$46.7</div></div>
+    <div class="kpi"><div class="v num">85.1%</div><div class="l">רווחיות גולמית</div><div class="d up">לעומת 29.9% אשתקד</div></div>
+    <div class="kpi"><div class="v num">80.4%</div><div class="l">רווחיות תפעולית</div><div class="d up">הוצאות: 4.7% מההכנסות</div></div>
+    <div class="kpi"><div class="v num">$5.7B</div><div class="l">תזרים חופשי מתואם</div><div class="d up">52% מההכנסות</div></div>
+    <div class="kpi"><div class="v num">$5.0B</div><div class="l">קניית מניות ברבעון</div><div class="d up">3.2M מניות · 4% בשני רבעונים</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הרווח הרשמי (GAAP) היה גבוה מהמנוקה: $8.1B, או $52.60 למניה. הסיבה היא רווח של $513M מעליית הערך של השקעה בחברת הזיכרון הטייוואנית Nanya, והרווח הזה מנוטרל ברווח המנוקה. כל הנתונים למניה בדוח הם לפני הספליט. אחרי הספליט (1:8), הרווח של $49.51 למניה שווה לכ-$6.19 למניה.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>מ-$2.3 מיליארד ל-$11 מיליארד ברבעון, בתוך שנה. מרכזי הנתונים צמחו פי 18</h2>
+  <p class="body">בגרף: ההכנסות בכל רבעון, במיליארדי דולרים. העמודה האחרונה היא אמצע התחזית לרבעון הבא. מתחת לכל עמודה: הרווח המנוקה למניה (לפני הספליט).</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 370" role="img" aria-label="הכנסות לפי רבעון">
+      <line x1="40" y1="300" x2="790" y2="300" stroke="var(--muted)"/>
+      <g fill="var(--accent)">
+        <rect x="60" y="255" width="80" height="45"/>
+        <rect x="185" y="241" width="80" height="59"/>
+        <rect x="310" y="185" width="80" height="115"/>
+        <rect x="435" y="127" width="80" height="173"/>
+        <rect x="560" y="87" width="80" height="213"/>
+      </g>
+      <rect x="685" y="60" width="80" height="240" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+      <g font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="100" y="246">$2.3B</text>
+        <text x="225" y="232">$3.0B</text>
+        <text x="350" y="176">$6.0B</text>
+        <text x="475" y="118">$9.0B</text>
+        <text x="600" y="78">$11.0B</text>
+        <text x="725" y="51" fill="var(--muted)">~$12.4B</text>
+      </g>
+      <g font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="100" y="322">Q1 FY26</text><text x="225" y="322">Q2 FY26</text><text x="350" y="322">Q3 FY26</text><text x="475" y="322">Q4 FY26</text><text x="600" y="322" font-weight="700">Q1 FY27</text><text x="725" y="322" fill="var(--muted)">Q2 FY27E</text>
+      </g>
+      <g font-size="13" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">
+        <text x="100" y="344">EPS $1.22</text><text x="225" y="344">EPS $6.20</text><text x="350" y="344">EPS $23.41</text><text x="475" y="344">EPS $39.25</text><text x="600" y="344">EPS $49.51</text><text x="725" y="344">EPS $55–57</text>
+      </g>
+    </svg>
+    <figcaption>הכנסות ורווח מנוקה למניה (לפני ספליט) לפי רבעון פיסקלי. Q1 FY27 = יולי–ספטמבר 2026. Q2 FY27E הוא אמצע תחזית החברה. מקור: הודעת החברה, תמלול השיחה ונתוני FactSet (StockOracle).</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>מרכזי נתונים: המנוע</h3>
+      <p>$4.8B ברבעון, לעומת $269M לפני שנה: פי 18. עלייה של 61% מהרבעון הקודם, מהר יותר מהשוק. בין הלקוחות: שלוש ענקיות ענן אמריקאיות. כונן ה-QLC הגדול של החברה (שם פנימי: "Stargate") עבר את כל ההסמכות והוא כבר בייצור מלא.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>Edge: יציב וגדול</h3>
+      <p>$5.8B (+7% מהרבעון הקודם). מכירות הטלפונים והמחשבים ירדו ביחידות, אבל בכל מכשיר יש יותר זיכרון. הצמיחה החזקה הגיעה מרכבים ומ-IoT. המנכ"ל, דייוויד גוקלר, מעריך שרכבים יהפכו לאחד השווקים הגדולים בתוך Edge.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>צרכנים: נפגע מהמחירים</h3>
+      <p>$397M, ירידה של 29% מהרבעון הקודם ו-39% משנה שעברה. הצרכנים לא מוכנים לשלם את המחירים החדשים על כרטיסי זיכרון ודיסקים ניידים. החברה מעבירה בכוונה את הייצור ללקוחות שמשלמים יותר.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · NBM: המודל העסקי החדש</div>
+  <h2>חוזים ארוכי טווח עם ערבויות פיננסיות, שאמורים להפוך את סנדיסק מחברת מחזורים לחברה יציבה</h2>
+  <p class="body">בעבר, יצרניות זיכרון מכרו לפי מחיר השוק היומי. כשהיה מחסור הן הרוויחו הון, וכשהיה עודף הן הפסידו. סנדיסק עוברת למודל חדש, "New Business Models" (NBM): הלקוח מתחייב לכמות ולמחיר מינימלי לכמה שנים (בממוצע ארבע שנים ומעלה, לפי ה-Motley Fool), ומפקיד ערבות בנקאית או מקדמה.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>נתון</th><th>ערך</th><th>משמעות</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>חלק מהייצור תחת NBM</td><td class="n">~50% בשנת הכספים 2027, ~⅔ ב-2028</td><td>"ונמשיך לעלות מעבר לשני שלישים" (סמנכ"ל הכספים, לואיס ויסוסו)</td></tr>
+        <tr><td>איכות הלקוחות</td><td class="n">95% בדירוג השקעה</td><td>החברות האלה מייצרות יחד כ-$130B תזרים מפעולות בשנה</td></tr>
+        <tr><td>צנרת חוזים</td><td>עולה על ההיצע עד סוף העשור</td><td>הלקוחות רוצים יותר ממה שסנדיסק יכולה לייצר</td></tr>
+        <tr><td>לקוחות חוזרים</td><td>כבר נחתם "סבב שני" עם לקוח גדול</td><td>גוקלר: "הלקוחות אומרים שהם העריכו בחסר את כמות הזיכרון שהם צריכים"</td></tr>
+        <tr><td>נחתמו ברבעון</td><td class="n">2 חוזים חדשים</td><td>הוכרזו כבר בשיחה הקודמת</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>אם המודל יעבוד, סנדיסק תיראה פחות כמו חברת סחורה ויותר כמו ספקית תשתית עם הכנסות חוזרות. במקרה כזה המניה ראויה למכפיל גבוה בהרבה מ-6–11 של היום. אנליסט Melius, בן רייטס, טוען שהמודל יכול להכפיל ואף לשלש את המכפיל. אבל זה עוד לא נבחן במחזור ירידה אמיתי. כמה מחויבים הלקוחות כשהשוק יתהפך? ערבות בנקאית היא הגנה חלקית, לא מלאה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · טכנולוגיה והחזר הון</div>
+  <h2>HBF הוא ההימור הבא, וכל המזומנים העודפים חוזרים לבעלי המניות</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>HBF: זיכרון פלאש מהיר במיוחד</h3>
+      <p>High Bandwidth Flash הוא סוג חדש של זיכרון שסנדיסק מפתחת. המטרה: מהירות קריאה דומה ל-HBM (הזיכרון היקר שיושב ליד מעבדי ה-GPU) עם קיבולת של פלאש. השבב הראשון יצא לייצור ברבעון, ודוגמאות ללקוחות צפויות ב-2027. HBF עוד לא נכלל בתחזיות ארוכות הטווח, ולכן הוא "אופציה חינם" למשקיע.</p>
+    </div>
+    <div class="col">
+      <h3>BiCS8, BiCS9, BiCS10</h3>
+      <p>דורות של טכנולוגיית הייצור. BiCS8 הוא הבסיס היום, BiCS9 מוסיף מהירות, ו-BiCS10 יביא שבב של 2 טרה-ביט. החברה לא מאיצה את המעבר בין הדורות: קצב הגידול בייצור נשאר "אמצע עד גבוה של העשרות" (15%–19%) בשנה. זו משמעת שמונעת הצפה של השוק.</p>
+    </div>
+    <div class="col">
+      <h3>100% מהמזומן העודף לבעלי המניות</h3>
+      <p>ברבעון נקנו מניות ב-$5B. בשני רבעונים נקנו 6 מיליון מניות, כ-4% מהחברה. לחברה אין חוב, ויש לה $5.1B מזומן. גוקלר: "נחזיר 100% מהמזומן העודף לבעלי המניות". אין כוונה לקחת חוב כדי לקנות עוד מניות.</p>
+    </div>
+    <div class="col">
+      <h3>ספליט 1:8</h3>
+      <p>כל בעל מניה יקבל עוד 7 מניות על כל מניה, ב-19 בנובמבר. המסחר במחיר המותאם יתחיל ב-20 בנובמבר. המטרה: להוריד את מחיר המניה מאזור $1,150 לכ-$145, כדי שגם עובדים ומשקיעים קטנים יוכלו לקנות. שווי החברה לא משתנה.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · התחזית</div>
+  <h2>רבעון שני: עוד שיא. רבעון שלישי: "תהיו שמרנים"</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית Q2 FY27 (אוק'–דצמ')</th><th>הצפי בשוק</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות</td><td class="n">$12.2–$12.6B</td><td class="n">$12.1B</td><td>+11%–14% מהרבעון הקודם</td></tr>
+        <tr><td>רווחיות גולמית</td><td class="n">84.5%–85.5%</td><td>—</td><td>כולל "עליות מחיר מתונות"</td></tr>
+        <tr><td>הוצאות תפעול</td><td class="n">$540–$560M</td><td>—</td><td>פחות מ-5% מההכנסות</td></tr>
+        <tr class="hl"><td>רווח למניה (לפני ספליט)</td><td class="n">$55–$57</td><td class="n">$52.72</td><td>אחרי ספליט: $6.88–$7.13</td></tr>
+        <tr><td>השקעות הון FY27</td><td>"אחוזים בודדים" מההכנסות</td><td>—</td><td>כ-$2.5–$3B לשנה</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body">ויסוסו הזהיר: "הרבעון השלישי (ינואר–מרץ) הוא בדרך כלל החלש שלנו. בשנה שעברה הכמויות ירדו 19% מהרבעון הקודם. הייתי שמרן". לגבי השוק כולו ב-2027, החברה צופה שהביקוש של מרכזי הנתונים לזיכרון יצמח כ-40% (אחרי הכפלה ב-2026), ושמרכזי הנתונים יהיו יותר מ-55% מהשוק.</p>
+  <ul class="tl">
+    <li><div class="when">9 בנובמבר</div><div class="what">תאריך הקובע לספליט</div></li>
+    <li><div class="when">20 בנובמבר</div><div class="what">תחילת מסחר במחיר מותאם לספליט (1:8)</div></li>
+    <li><div class="when">2027</div><div class="what">דוגמאות ראשונות של HBF ללקוחות; חוזי NBM נוספים</div></li>
+    <li><div class="when">עד 2030</div><div class="what">יעד המודל הפיננסי ארוך הטווח שהוצג ביום המשקיעים</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: AI צריך פלאש, הלקוחות רוצים עוד, אנחנו לא מציפים את השוק, והמזומן חוזר אליכם</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"הפלאש נכנס לכל שכבה של ה-AI"</h3>
+      <p>גוקלר: מרכזי הנתונים עלו מכ-20% מצריכת הפלאש בעולם בתחילת העשור לכמחצית היום. KV cache, ה"זיכרון העבודה" של מודלי AI, צפוי להיות שליש משוק הפלאש של מרכזי הנתונים עד סוף העשור.</p>
+    </div>
+    <div class="col">
+      <h3>"SLC יכול להחליף DRAM"</h3>
+      <p>לקוחות בודקים שימוש בפלאש במצב SLC (עמיד ומהיר יותר) במקום זיכרון DRAM, שעולה פי 20–40. אם זה יתפוס, הביקוש יגדל עוד יותר, כי "קצת SLC זה הרבה QLC": כל ביט של SLC צורך 3–4 ביטים של קיבולת.</p>
+    </div>
+    <div class="col">
+      <h3>"לא משנים את קצב הייצור"</h3>
+      <p>גם עם ביקוש שעולה על ההיצע, החברה לא מאיצה בנייה של קיבולת. הייצור יגדל ב-15%–19% בשנה. זה ההבדל מהמחזורים הקודמים, שבהם כל היצרניות הוסיפו קיבולת יחד והפילו את המחירים.</p>
+    </div>
+    <div class="col">
+      <h3>"שוק המחשבים בתחתית"</h3>
+      <p>מכירות המחשבים והטלפונים בירידה ביחידות, והרבעונים הנוכחיים הם "התחתית של ההשוואה השנתית". אבל ב-2027 צפויה צמיחה בכמות הזיכרון בכל המגזרים: מחשבים, טלפונים ומרכזי נתונים.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>ההנהלה לא סיפקה נתון על מחירים. היא אמרה רק ש-40% מהצמיחה ברבעון הגיעו ממחיר וש"עליות מחיר מתונות" צפויות. בשוק שבו הרווחיות כבר 85%, השאלה היא לא אם המחירים יעלו, אלא מתי הם יפסיקו לעלות. חוזי ה-NBM כוללים "מחיר מינימלי", כלומר רצפה. לא ברור כמה התקרה שלהם מגבילה את הרווח בשוק עולה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים לא שאלו אם הרבעון היה טוב. הם שאלו כמה זמן זה יכול להימשך</h2>
+  <p class="body">כמעט כל השאלות עסקו בעמידות: חוזי NBM, היצע מול ביקוש, SLC, HBF והמבנה ההוני. זו שיחה של חברה בשיא, שבה המשקיעים מחפשים סימנים לסוף המחזור.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>NBM: Melius, Cantor ו-Bank of America שאלו כמה חוזים עוד ייחתמו, מה המעמד של הערבויות ומי הלקוחות. התשובה: "הצנרת חזקה", "נחתום עוד ברבעונים הקרובים", ולקוחות חוזרים לסבב שני.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>פי 17–18: הצמיחה בהכנסות ממרכזי נתונים בשנה אחת. גוקלר עצמו אמר: "לא רואים פי 17 הרבה בעסק בגודל כזה". זה לא רק השוק: סנדיסק הגדילה את נתח השוק שלה בתחום.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>האזהרה על הרבעון השלישי. ויסוסו לא נתן תחזית, אבל אמר במפורש לאנליסט Goldman Sachs: "הייתי שמרן בצמיחה מהרבעון השני לשלישי". זה כנראה חלק מהסיבה לירידה של 13.5% ביום שאחרי.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>נתח שוק ומחירים. גוקלר סירב להציג יעד לנתח השוק במרכזי נתונים ("זה מוביל להחלטות מעוותות"). ויסוסו: "אנחנו בדרך כלל לא מפרקים" את הצמיחה למחיר ולכמות. בדיוק המספרים שהמשקיעים הכי רוצים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"הלקוחות אומרים לנו שהם העריכו בחסר את כמות הזיכרון שהם צריכים כדי להפעיל את התשתית שלהם" (גוקלר). אם זה נכון, המחסור רחוק מלהסתיים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>Goldman Sachs שאל על קניית מניות "במחיר מניה נמוך בהרבה היום". כלומר, גם האנליסטים רואים שהמניה ירדה בחדות מהשיא. התשובה: ממשיכים לקנות. החברה קונה מניות בכל רבעון בכ-$5B, והמחיר הנמוך הופך את הקנייה לאטרקטיבית יותר.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>העסק של סנדיסק מעולם לא היה חזק יותר: אין חוב, רווחיות של 80%, ולקוחות שמתחייבים לשנים קדימה. אבל המניה נסחרת לפי הצפי לסוף המחזור, לא לפי הרבעון. מי שמאמין שה-AI שינה את שוק הזיכרון לתמיד רואה מכפיל של 6 על הרווח הצפוי, וזה זול מאוד. מי שזוכר מחזורים קודמים רואה שיא רווחיות, ומשיא כזה בדרך כלל יורדים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · איך השוק הגיב</div>
+  <h2>ירידה של 18% ביומיים, למרות עקיפת תחזיות. המניה כבר יותר מ-50% מתחת לשיא של יוני</h2>
+  <p class="body">ב-29.10, יום הדוח, המניה ירדה עוד לפני הפרסום ב-5.3% וסגרה ב-$1,330.05. במסחר המאוחר אחרי הדוח היא ירדה ב-3.8% נוספים, וב-30.10 היא צנחה 13.5% וסגרה ב-$1,150.89. שווי השוק: כ-$166 מיליארד. השיא: $2,354 ביוני 2026, כלומר המניה ירדה יותר מ-50% מהשיא. ובכל זאת, היא עדיין גבוהה בכ-550% משנה שעברה, וביותר מ-3,000% מאז ההנפקה ב-2025.</p>
+  <p class="body">האנליסטים נשארו אופטימיים: 84% מ-25 אנליסטים ממליצים "קנייה". מחיר היעד הממוצע הוא כ-$2,143 (כ-85% מעל המחיר), ומחיר היעד הגבוה, של Melius, הוא $3,600. לפי Benzinga, JPMorgan רואה פוטנציאל עלייה של כ-69%.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>כשמניה יורדת 13% על דוח מצוין, השוק אומר: "הרבעון כבר לא חשוב, חשוב מה יקרה בעוד שנה". המכפיל, כ-11 על הרווח של 12 החודשים האחרונים וכ-6 על הרווח השנתי הצפוי (לפי ה-Motley Fool), מתמחר ירידה ברווחים. אם חוזי ה-NBM יוכיחו שהמחזור השתנה, המניה זולה מאוד. אם לא, הירידה רק התחילה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: שוק הזיכרון הוא מחזורי, ורווחיות של 85% היא כמעט בהגדרה שיא</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>מחזור הזיכרון</h3><p>בכל מחזור קודם, מחירים גבוהים הביאו לבנייה של קיבולת אצל כל היצרניות, ואחר כך לעודף ולקריסת מחירים. אם Samsung, SK Hynix או YMTC יגדילו ייצור, הרווחיות תיפגע.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>האטה בהשקעות AI</h3><p>יותר מ-55% מהשוק ב-2027 יהיה מרכזי נתונים. אם ענקיות הענן יאטו את ההשקעה בתשתיות AI, הביקוש לפלאש ירד מהר, וחלק מהחוזים עלולים להיבחן.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תחרות מסין</h3><p>YMTC מתקדמת טכנולוגית, וזה אחד החששות שהפילו את המניה. אם סין תציף את השוק בזיכרון זול, היא תלחץ על המחירים, לפחות בשווקי הצרכנים וה-Edge.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>אמינות חוזי NBM</h3><p>המודל לא נבחן בשוק יורד. ערבויות בנקאיות הן הגנה, אבל לקוח שרוצה לצאת מחוזה ימצא דרך לנהל משא ומתן מחדש.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>שוק הצרכנים והמחשבים</h3><p>ירידה של 39% בהכנסות מצרכנים. ירידה ביחידות של מחשבים וטלפונים. אינטל כבר הנמיכה את התחזית בגלל מחירי הזיכרון.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>תלות ב-Kioxia</h3><p>כל הייצור נעשה במפעלים משותפים ביפן. רעידת אדמה, בעיה טכנית או מחלוקת עם השותפה ישפיעו ישירות על ההיצע.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ביקוש</strong></td><td>AI צריך יותר ויותר זיכרון: KV cache, הסקה ממושכת, סוכנים. הצנרת עולה על ההיצע עד 2030, והלקוחות "העריכו בחסר".</td><td>הביקוש תלוי בקצב ההשקעה של כמה ענקיות ענן. האטה בהשקעה = ירידה חדה בביקוש.</td></tr>
+        <tr><td><strong>מחירים ורווחיות</strong></td><td>85% רווחיות גולמית, ו"עליות מחיר מתונות" צפויות להמשיך. חוזי NBM עם מחיר מינימלי.</td><td>85% זה כנראה שיא. הצמיחה מהרבעון הקודם מאטה: 97%, 51%, 23%, 12%.</td></tr>
+        <tr><td><strong>היצע</strong></td><td>משמעת: גידול של 15%–19% בייצור בלבד, השקעות הון נמוכות. החברה לא מציפה את השוק.</td><td>סנדיסק לא שולטת במתחרות. Samsung, SK Hynix ו-YMTC יכולות להחליט להגדיל ייצור.</td></tr>
+        <tr><td><strong>NBM</strong></td><td>⅔ מהייצור ב-2028 תחת חוזים. 95% מהלקוחות בדירוג השקעה. מודל שעשוי להצדיק מכפיל גבוה יותר.</td><td>לא נבחן במחזור ירידה. תקרות מחיר בחוזים עלולות להגביל את הרווח אם המחסור יימשך.</td></tr>
+        <tr><td><strong>טכנולוגיה</strong></td><td>HBF (דוגמאות ב-2027), SLC במקום DRAM, BiCS10. אף אחד מהם לא נכלל בתחזיות.</td><td>HBF הוא עדיין ניסוי. SK Hynix ו-Samsung מובילות ב-HBM ויכולות להתחרות גם כאן.</td></tr>
+        <tr><td><strong>החזר הון</strong></td><td>100% מהמזומן העודף לבעלי המניות. $5B לרבעון. Melius מעריך שאפשר לקנות מניות ב-$100B בשלוש שנים.</td><td>קניית מניות בשיא המחזור היא שימוש לא יעיל בכסף. ייתכן שעדיף לשמור מזומן לימים קשים.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>מכפיל של כ-6 על הרווח הצפוי. מחיר היעד הממוצע גבוה ב-85% מהמחיר. ירידה של 50% מהשיא.</td><td>מכפיל נמוך במניית זיכרון הוא בדרך כלל אזהרה, לא הזדמנות: השוק מתמחר ירידה ברווחים.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהמניה תנודתית מאוד: היא זזה 10%–15% ביום, והספליט ב-20 בנובמבר עשוי למשוך משקיעים קטנים. משקיע לטווח ארוך צריך לעקוב אחרי שלושה דברים: מחירי הפלאש בשוק, תוכניות ההשקעה של Samsung ו-SK Hynix, וכמה חוזי NBM חדשים נחתמים. אם המתחרות יגדילו ייצור, זה האות הראשון לסוף המחזור.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 13 -->
+<section>
+  <div class="sec-label">13 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>NAND / פלאש</dt><dd>זיכרון שאינו נמחק כשהחשמל כבה. נמצא בכל כונן SSD, טלפון וכרטיס זיכרון.</dd>
+    <dt>SSD</dt><dd>כונן אחסון שעשוי משבבי פלאש. מהיר בהרבה מדיסק קשיח מכני.</dd>
+    <dt>TLC / QLC / SLC</dt><dd>כמה ביטים נשמרים בכל תא זיכרון: 3, 4 או 1. QLC הוא הזול והצפוף, SLC הוא המהיר והעמיד.</dd>
+    <dt>HBM</dt><dd>High Bandwidth Memory: זיכרון DRAM מהיר מאוד שיושב ליד מעבד ה-GPU. יקר ונדיר.</dd>
+    <dt>HBF</dt><dd>High Bandwidth Flash: מוצר חדש של סנדיסק, פלאש במהירות שמתקרבת ל-HBM, עם קיבולת גדולה בהרבה.</dd>
+    <dt>KV cache</dt><dd>ה"זיכרון לטווח קצר" של מודל AI: ההקשר של השיחה שהמודל צריך לזכור כדי לענות.</dd>
+    <dt>NBM</dt><dd>New Business Model: חוזה רב-שנתי עם לקוח, כולל התחייבות לכמות, מחיר מינימלי וערבות פיננסית.</dd>
+    <dt>BiCS</dt><dd>שם טכנולוגיית הייצור של סנדיסק ו-Kioxia. כל דור (8, 9, 10) מוסיף שכבות, צפיפות ומהירות.</dd>
+    <dt>ספליט (פיצול מניות)</dt><dd>חלוקה של כל מניה לכמה מניות. במקרה הזה 1:8. מחיר המניה יורד בהתאם, ושווי ההחזקה לא משתנה.</dd>
+    <dt>Flash Ventures</dt><dd>המיזם המשותף של סנדיסק ו-Kioxia, שמפעיל את מפעלי הייצור ביפן.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Sandisk — הודעה לעיתונות על תוצאות הרבעון הראשון של שנת הכספים 2027 (29.10.2026); תמלול שיחת האנליסטים (StockOracle / FactSet, 29.10.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: The Motley Fool, BigGo Finance (Investing.com), Benzinga (29–31.10.2026). כל הנתונים למניה הם לפני הספליט (1:8). הלוגו נלקח מהודעת החברה.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>

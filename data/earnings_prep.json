@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "02/11/2026 09:16",
+  "updatedAt": "02/11/2026 09:32",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -3970,14 +3970,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   }
  ],
  "recent": [
@@ -4173,7 +4173,11 @@
     "logo": "data/reports/logos/SNDK.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/SNDK__2026-10-29.html",
+    "date": "2026-10-29",
+    "title": "SNDK דוח רבעון Q1 FY27"
+   },
    "consensus": {
     "eps": 46.40613,
     "epsLow": 44.05,
