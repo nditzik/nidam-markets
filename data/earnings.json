@@ -1,41 +1,41 @@
 {
   "today": "2026-11-03",
-  "todayCount": 54,
+  "todayCount": 58,
   "todayBig": [
-    {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1195.8
-    },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1195.8
+      "capB": 1194.1
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "capB": 1194.1
     },
     {
       "ticker": "AMD",
       "name": "Advanced Micro Devices, Inc.",
-      "capB": 795.7
+      "capB": 793.8
     },
     {
       "ticker": "AMGN",
       "name": "Amgen Inc.",
-      "capB": 249.9
+      "capB": 249.5
     },
     {
       "ticker": "ANET",
       "name": "Arista Networks Inc",
-      "capB": 213.5
+      "capB": 214.1
     },
     {
       "ticker": "SHOP",
       "name": "Shopify, Inc. Class A",
-      "capB": 185.8
+      "capB": 185.2
     },
     {
       "ticker": "PFE",
       "name": "Pfizer Inc.",
-      "capB": 172.3
+      "capB": 171.2
     },
     {
       "ticker": "ETN",
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AAPL.png",
-            "chg": -2.62,
-            "price": 329.44,
+            "chg": -2.22,
+            "price": 330.82,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PLTR.png",
-            "chg": -1.59,
-            "price": 175.51,
+            "chg": -1.67,
+            "price": 175.37,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/VRTX.png",
             "logoBg": "dark",
-            "chg": -3.74,
-            "price": 532.48,
+            "chg": -3.56,
+            "price": 533.48,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WMB.png",
-            "chg": 2.55,
-            "price": 73.0,
+            "chg": 2.53,
+            "price": 72.99,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -179,14 +179,13 @@
             "baseDate": "2026-10-29"
           },
           {
-            "ticker": "REGN",
-            "name": "Regeneron Pharmaceuticals, Inc.",
+            "ticker": "GD",
+            "name": "General Dynamics Corporation",
             "when": "before",
             "status": "final",
-            "logo": "data/earnings/logos/REGN.png",
-            "logoBg": "dark",
-            "chg": 13.33,
-            "price": 927.89,
+            "logo": "data/earnings/logos/GD.png",
+            "chg": 0.48,
+            "price": 372.59,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           }
@@ -196,16 +195,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.B.png"
-    },
-    {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
     },
     {
       "ticker": "AMD",
@@ -270,13 +269,13 @@
       "logo": "data/earnings/logos/SU.png"
     }
   ],
-  "more": 42,
+  "more": 46,
   "upcoming": [
     {
       "date": "2026-11-04",
       "label": "4/11",
       "dow": "ד׳",
-      "count": 62,
+      "count": 64,
       "tickers": [
         "ARM",
         "MCD",
@@ -290,7 +289,7 @@
       "date": "2026-11-05",
       "label": "5/11",
       "dow": "ה׳",
-      "count": 64,
+      "count": 68,
       "tickers": [
         "TM",
         "COP",
@@ -304,7 +303,7 @@
       "date": "2026-11-06",
       "label": "6/11",
       "dow": "ו׳",
-      "count": 13,
+      "count": 14,
       "tickers": [
         "ENB",
         "MRNA",
@@ -320,7 +319,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 28,
+      "total": 30,
       "companies": [
         {
           "ticker": "AAPL",
@@ -401,19 +400,19 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 54,
+      "total": 58,
       "companies": [
-        {
-          "ticker": "BRK.B",
-          "name": "Berkshire Hathaway Inc. Class B",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.B.png"
-        },
         {
           "ticker": "BRK.A",
           "name": "Berkshire Hathaway Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/BRK.A.png"
+        },
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.B.png"
         },
         {
           "ticker": "AMD",
@@ -483,7 +482,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 62,
+      "total": 64,
       "companies": [
         {
           "ticker": "ARM",
@@ -564,7 +563,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 64,
+      "total": 68,
       "companies": [
         {
           "ticker": "TM",
@@ -644,7 +643,7 @@
       "date": "2026-11-06",
       "dow": "שישי",
       "label": "6.11",
-      "total": 13,
+      "total": 14,
       "companies": [
         {
           "ticker": "ENB",
@@ -722,8 +721,8 @@
     }
   ],
   "window": {
-    "BRK.B": "2026-11-03",
     "BRK.A": "2026-11-03",
+    "BRK.B": "2026-11-03",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
     "ANET": "2026-11-03",
@@ -739,16 +738,16 @@
     "APO": "2026-11-03",
     "MPLX": "2026-11-03",
     "AME": "2026-11-03",
-    "TRI": "2026-11-03",
     "TEVA": "2026-11-03",
+    "TRI": "2026-11-03",
     "KDP": "2026-11-03",
     "XYZ": "2026-11-03",
     "WAT": "2026-11-03",
     "YUM": "2026-11-03",
     "AIG": "2026-11-03",
     "PRU": "2026-11-03",
-    "PRS": "2026-11-03",
     "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
     "ALAB": "2026-11-03",
     "SYY": "2026-11-03",
     "ADM": "2026-11-03",
@@ -776,6 +775,10 @@
     "YUMC": "2026-11-03",
     "ZBRA": "2026-11-03",
     "AIZ": "2026-11-03",
+    "UNM": "2026-11-03",
+    "OHI": "2026-11-03",
+    "SUN": "2026-11-03",
+    "DT": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "NVO": "2026-11-04",
@@ -821,9 +824,9 @@
     "RGLD": "2026-11-04",
     "CRCL": "2026-11-04",
     "CDW": "2026-11-04",
-    "CW": "2026-11-04",
     "ZBH": "2026-11-04",
     "ITT": "2026-11-04",
+    "CW": "2026-11-04",
     "WES": "2026-11-04",
     "CF": "2026-11-04",
     "HST": "2026-11-04",
@@ -835,15 +838,17 @@
     "SWK": "2026-11-04",
     "FICO": "2026-11-04",
     "W": "2026-11-04",
-    "TRMB": "2026-11-04",
     "PFGC": "2026-11-04",
+    "TRMB": "2026-11-04",
     "FLUT": "2026-11-04",
+    "COKE": "2026-11-04",
+    "MKSI": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
@@ -866,8 +871,8 @@
     "ROK": "2026-11-05",
     "TEAM": "2026-11-05",
     "ED": "2026-11-05",
-    "MCHP": "2026-11-05",
     "LYV": "2026-11-05",
+    "MCHP": "2026-11-05",
     "MCHPP": "2026-11-05",
     "AU": "2026-11-05",
     "KMB": "2026-11-05",
@@ -885,8 +890,8 @@
     "AFRM": "2026-11-05",
     "TPR": "2026-11-05",
     "CIB": "2026-11-05",
-    "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
+    "FWONA": "2026-11-05",
     "RL": "2026-11-05",
     "GH": "2026-11-05",
     "STE": "2026-11-05",
@@ -901,7 +906,11 @@
     "LAMR": "2026-11-05",
     "JHX": "2026-11-05",
     "HALO": "2026-11-05",
+    "CG": "2026-11-05",
     "SOLV": "2026-11-05",
+    "REGCO": "2026-11-05",
+    "REGCP": "2026-11-05",
+    "REG": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -915,6 +924,7 @@
     "PAA": "2026-11-06",
     "BEN": "2026-11-06",
     "EMA": "2026-11-06",
+    "TU": "2026-11-06",
     "CEG": "2026-11-09",
     "KKR": "2026-11-09",
     "B": "2026-11-09",
@@ -936,8 +946,8 @@
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
-    "ALC": "2026-11-10",
     "VOD": "2026-11-10",
+    "ALC": "2026-11-10",
     "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
@@ -945,7 +955,7 @@
     "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 22:01",
+    "updatedAt": "03/11/2026 22:16",
     "source": "tradingview"
   }
 }
