@@ -1,0 +1,443 @@
+<title>PLTR דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .wordmark{font-size:28px;font-weight:700;letter-spacing:-.01em;color:#fff;direction:ltr;display:inline-block;margin-bottom:20px;border-bottom:3px solid #4cc3ff;padding-bottom:4px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="wordmark">Palantir</span>
+    <div class="eyebrow">Palantir Technologies Inc. · NASDAQ: PLTR · תוצאות רבעון שלישי 2026</div>
+    <h1>העסק כמעט הוכפל בשנה, והמגזר העסקי בארה"ב עקף לראשונה את הממשלה. אבל במחיר של כ-50 פעם ההכנסות, השוק מגיב בזהירות</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-2 בנובמבר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, מכתב המנכ"ל, מצגת המשקיעים, תמלול השיחה</span>
+      <span>עודכן: 3.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>פלנטיר מוכרת תוכנה שמחברת את כל המידע של ארגון למקום אחד, ומאפשרת לבינה מלאכותית לעבוד עליו בפועל</h2>
+  <p class="lead">Palantir נוסדה ב-2003 (בין המייסדים: פיטר ת'יל ואלכס קארפ, המנכ"ל), ובמשך שנים עבדה בעיקר עם סוכנויות ביון וצבא ארה"ב. המוצרים שלה לוקחים מידע מפוזר מעשרות מערכות (מלאי, ייצור, לקוחות, חיישנים), מארגנים אותו במודל אחד, ה-<strong>Ontology</strong>, ומאפשרים לקבל החלטות ולהפעיל פעולות על בסיסו.</p>
+  <p class="body" style="margin-top:14px">יש לה ארבע פלטפורמות: <strong>Gotham</strong> (ביון וצבא), <strong>Foundry</strong> (חברות עסקיות), <strong>Apollo</strong> (הפצת תוכנה), ו-<strong>AIP</strong>, פלטפורמת הבינה המלאכותית שהושקה ב-2023 ומנוע הצמיחה של היום. הרעיון: מודלי שפה כמו ChatGPT או Claude לא יודעים לעבוד לבד בתוך ארגון גדול. AIP מחברת אותם למידע ולתהליכים של הארגון, עם בקרות.</p>
+  <p class="body">המסר החדש של החברה הוא <strong>"Sovereign AI" (בינה מלאכותית ריבונית)</strong>: במקום לשלוח את המידע הרגיש לחברות כמו OpenAI או Anthropic, הלקוח מאמן מודלים פתוחים (כמו Nemotron של אנבידיה) על המידע שלו, בתוך פלנטיר, ונשאר הבעלים של היתרון שלו. לפי פלנטיר, המודלים האלה לרוב גם טובים יותר וגם זולים יותר במשימות ספציפיות.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>מעבדות ה-AI: OpenAI ו-Anthropic</h3>
+      <p>הן מוכרות ישירות לארגונים, ולפי קארפ כמחצית מלקוחות Anthropic עובדים איתה ישירות. מצד שני, הן גם שותפות: פלנטיר עובדת עם Anthropic במשרד המלחמה וב-AIG. קארפ מתאר את היחסים כ"סימביוזה".</p>
+    </div>
+    <div class="col">
+      <h3>ענקיות התוכנה: Microsoft, Salesforce, SAP</h3>
+      <p>מציעות פלטפורמות נתונים וסוכני AI ללקוחות הקיימים שלהן. גם Snowflake ו-Databricks מתחרות בתחום הנתונים. היתרון של פלנטיר: Ontology, ומהנדסים שמטמיעים בשטח (FDE).</p>
+    </div>
+    <div class="col">
+      <h3>בממשלה: Anduril, ספקיות ביטחון ותיקות</h3>
+      <p>בתחום הביטחוני פלנטיר מתחרה ב-Anduril ובקבלניות ותיקות כמו Lockheed, RTX ו-L3Harris, שהן לעיתים גם לקוחות שלה. מערכת Maven שלה היא היום הבסיס של מערכת המודיעין והמטרות של צבא ארה"ב.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>צמיחה של 96%, רווחיות תפעולית של 62%, ותחזית שעוקפת את הציפיות בכ-$190 מיליון לרבעון הבא</h2>
+  <p class="lead">ההכנסות הגיעו ל-$2.31B, כמעט פי 2 משנה שעברה, מעל הצפי ($2.18B). המגזר העסקי בארה"ב צמח 148%, ל-$984M, ולראשונה בתולדות החברה עקף את הממשלה האמריקאית ($953M). הרווח הנקי: $1.13B, כמעט מחצית מההכנסות. התחזית לרבעון הרביעי, $2.65B, גבוהה בהרבה מהצפי (כ-$2.46B), והתחזית השנתית הועלתה ל-$8.53B (+91%).</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>מבחינת המספרים, זה אולי הרבעון הטוב ביותר של חברת תוכנה גדולה אי פעם: "Rule of 40" (צמיחה ועוד רווחיות) של 158%, כשמעל 40 נחשב מצוין. אבל המניה ירדה במסחר המאוחר. הסיבות: היא נסחרת בכ-50 פעם ההכנסות השנתיות, הדוח פורסם בשבוע של ירידות חדות במניות AI (Alphabet ואינטל), ובתוך הנתונים יש כמה סימנים שהצמיחה העתידית פחות מובטחת ממה שהכותרות מראות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>צמיחה של חברת סטארט-אפ, ברווחיות של מונופול</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$2.31B</div><div class="l">הכנסות</div><div class="d up">+96% · הצפי: $2.18B</div></div>
+    <div class="kpi"><div class="v num">$984M</div><div class="l">עסקי ארה"ב</div><div class="d up">+148% · +29% מהרבעון הקודם</div></div>
+    <div class="kpi"><div class="v num">$0.44</div><div class="l">רווח למניה</div><div class="d up">פי 2.4 · הצפי: $0.41</div></div>
+    <div class="kpi"><div class="v num">62%</div><div class="l">רווחיות תפעולית מנוקה</div><div class="d up">לעומת 51% אשתקד</div></div>
+    <div class="kpi"><div class="v num">$1.22B</div><div class="l">תזרים חופשי</div><div class="d up">53% מההכנסות</div></div>
+    <div class="kpi"><div class="v num">165%</div><div class="l">שימור הכנסות נטו (NDR)</div><div class="d up">+8 נק' מהרבעון הקודם</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הפעם הרווח הרשמי (GAAP) והמנוקה שווים, $0.44 למניה. הרווחיות התפעולית הרשמית היא 47%. הפער מהרווחיות המנוקה (62%) הוא בעיקר תגמול במניות לעובדים: $319M ברבעון, כמעט פי 2 מאשתקד. ל-NDR של 165% המשמעות היא שלקוח קיים משלם היום בממוצע 65% יותר מלפני שנה. לחברה יש $10.4B מזומן ואין לה חוב.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>הצמיחה מאיצה כבר שישה רבעונים ברציפות, והתחזית לרבעון הרביעי מוסיפה עוד 15%</h2>
+  <p class="body">בגרף: ההכנסות בכל רבעון, במיליארדי דולרים. העמודה האחרונה היא אמצע התחזית לרבעון הרביעי. מתחת לכל עמודה: הצמיחה לעומת אותו רבעון בשנה הקודמת.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 370" role="img" aria-label="הכנסות לפי רבעון">
+<line x1="40" y1="300" x2="790" y2="300" stroke="var(--muted)"/>
+<rect x="60" y="193" width="80" height="107" fill="var(--accent)"/>
+<text x="100" y="184" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$1.18B</text>
+<text x="100" y="322" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q3'25</text>
+<text x="100" y="344" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+63%</text>
+<rect x="185" y="173" width="80" height="127" fill="var(--accent)"/>
+<text x="225" y="164" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$1.41B</text>
+<text x="225" y="322" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q4'25</text>
+<text x="225" y="344" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+70%</text>
+<rect x="310" y="152" width="80" height="148" fill="var(--accent)"/>
+<text x="350" y="143" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$1.63B</text>
+<text x="350" y="322" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q1'26</text>
+<text x="350" y="344" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+85%</text>
+<rect x="435" y="125" width="80" height="175" fill="var(--accent)"/>
+<text x="475" y="116" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$1.94B</text>
+<text x="475" y="322" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q2'26</text>
+<text x="475" y="344" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+93%</text>
+<rect x="560" y="91" width="80" height="209" fill="var(--accent)"/>
+<text x="600" y="82" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$2.31B</text>
+<text x="600" y="322" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed" font-weight="700">Q3'26</text>
+<text x="600" y="344" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+96%</text>
+<rect x="685" y="60" width="80" height="240" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="725" y="51" font-size="15" font-weight="700" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">~$2.65B</text>
+<text x="725" y="322" font-size="14" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q4'26E</text>
+<text x="725" y="344" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">~+88%</text>
+</svg>
+    <figcaption>הכנסות לפי רבעון וצמיחה שנתית. Q4'26E הוא אמצע תחזית החברה. מקור: מצגת המשקיעים והודעת החברה, 2.11.2026.</figcaption>
+  </figure>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מגזר</th><th>Q3 2026</th><th>צמיחה שנתית</th><th>צמיחה מהרבעון הקודם</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>עסקי ארה"ב</td><td class="n">$984M</td><td class="n">+148%</td><td class="n">+29%</td></tr>
+        <tr class="hl"><td>ממשלת ארה"ב</td><td class="n">$953M</td><td class="n">+96%</td><td class="n">+18%</td></tr>
+        <tr><td>ממשלות בעולם</td><td class="n">$192M</td><td class="n">+31%</td><td class="n">+6%</td></tr>
+        <tr><td>עסקי בעולם</td><td class="n">$184M</td><td class="n">+21%</td><td class="n">+1%</td></tr>
+        <tr><td><strong>סה"כ</strong></td><td class="n"><strong>$2,313M</strong></td><td class="n"><strong>+96%</strong></td><td class="n"><strong>+20%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>עסקי ארה"ב: המנוע</h3>
+      <p>$587M הכנסות נוספות בשנה אחת. 686 לקוחות עסקיים בארה"ב (+29%), וכל אחד משלם בממוצע 88% יותר מלפני שנה. דוגמאות: חברת חומרים תעשייתיים שעברה מפיילוט של $3M לחוזה של $29M בשנה, וחברת ספורט שעברה מ-$1.6M ל-$21M.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>ממשלת ארה"ב: עדיין צומחת מהר</h3>
+      <p>‏+96%. ל-Maven, מערכת המודיעין של הצבא, יש יותר מ-100 אלף משתמשים, והיא זמינה עכשיו לכל זרועות הצבא. הצבא הזמין 8 מערכות TITAN (תחנת קרקע מבוססת AI). גם ה-FAA (מינהל התעופה) משתמש ב-AIP לבטיחות טיסות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>העולם: הרבה פחות מרשים</h3>
+      <p>מחוץ לארה"ב הצמיחה היא 21%–31%. במגזר העסקי הבינלאומי היא כמעט אפסית מהרבעון הקודם (+1%). קארפ על אירופה: "עדיף שלא נדבר על זה". 84% מההכנסות כבר מגיעות מארה"ב.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · הנתונים שמאחורי הכותרות</div>
+  <h2>ההכנסות מאיצות, אבל ההזמנות החדשות כמעט לא צומחות. ההנהלה מסבירה: חוזים קצרים יותר</h2>
+  <p class="body">ההכנסות של היום הן תוצאה של חוזים שנחתמו בעבר. כדי להעריך את הצמיחה העתידית, כדאי להסתכל על החוזים החדשים. כאן התמונה פחות חדה:</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>Q3 2026</th><th>שינוי</th><th>מה זה אומר</th></tr></thead>
+      <tbody>
+        <tr><td>ערך חוזים שנחתמו (TCV)</td><td class="n">$2.92B</td><td class="n">+6% בשנה</td><td>הכנסות +96%, חוזים חדשים +6%</td></tr>
+        <tr><td>TCV עסקי בארה"ב</td><td class="n">$1.46B</td><td class="n">+11% בשנה</td><td>ב-12 החודשים האחרונים: +62%</td></tr>
+        <tr><td>התחייבויות ביצוע (RPO)</td><td class="n">$4.88B</td><td class="n">ללא שינוי מהרבעון הקודם</td><td>+88% בשנה, אבל נעצר ברבעון</td></tr>
+        <tr><td>ערך חוזים שנותר, עסקי ארה"ב</td><td class="n">$6.52B</td><td class="n">+4% מהרבעון הקודם</td><td>+79% בשנה</td></tr>
+        <tr><td>Billings (חשבוניות)</td><td class="n">$2.45B</td><td class="n">+100% בשנה</td><td>תומך בצמיחה בטווח הקצר</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>סמנכ"ל הכספים, דייב גלייזר, הסביר שנחתמו "כמה עסקאות של 8 ספרות שהיו קצרות מהרגיל", כי לקוחות מאמצים במהירות את ה-AI הריבוני, ושעם הזמן "גם המשך וגם הגודל של החוזים יגדלו". זה הגיוני: חוזה של שנה במקום שלוש מוריד את ה-TCV גם אם ההכנסה השנתית זהה. אבל זה גם אומר שללקוחות קל יותר לצאת. אם ההזמנות לא יאיצו ברבעונים הבאים, הצמיחה בהכנסות תתחיל להאט.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>התחזית השנתית הועלתה ב-9 נקודות צמיחה בבת אחת</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית חדשה</th><th>תחזית קודמת / צפי</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות Q4</td><td class="n">$2.649–$2.653B</td><td class="n">צפי: ~$2.46B</td><td>+88% בשנה, +15% מהרבעון</td></tr>
+        <tr><td>רווח תפעולי מנוקה Q4</td><td class="n">$1.640–$1.644B</td><td>—</td><td>רווחיות של כ-62%</td></tr>
+        <tr class="hl"><td>הכנסות 2026</td><td class="n">$8.530–$8.534B</td><td class="n">עד $8.2B</td><td>+91% (במקום +82%)</td></tr>
+        <tr class="hl"><td>עסקי ארה"ב 2026</td><td class="n">מעל $3.559B</td><td>—</td><td>+143% לפחות</td></tr>
+        <tr><td>רווח תפעולי מנוקה 2026</td><td class="n">$5.245–$5.249B</td><td>—</td><td>רווחיות של כ-61%</td></tr>
+        <tr><td>תזרים חופשי 2026</td><td class="n">$4.8–$5.0B</td><td>—</td><td>הועלה</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body">שימו לב לטווחים הצרים מאוד ($4 מיליון בלבד ברבעון של $2.65B). זו מסורת של פלנטיר: היא נותנת תחזית "שמרנית" ועוקפת אותה כמעט תמיד. ברבעון השלישי התחזית הייתה $2.16B, והתוצאה $2.31B.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מה ההנהלה אמרה בשיחה ובמכתב</div>
+  <h2>ארבעה מסרים: יש מנצחים ומפסידים, הביקוש "בלתי ניתן להשביע", המעבדות לא מבינות ארגונים, ואנחנו רוצים את כל השוק</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"מנצחים ומפסידים, ושום דבר באמצע"</h3>
+      <p>קארפ במכתב: "כל ענף בעולם, מבנקים ועד חברות ביטוח, בתי חולים ואפילו משרדי עורכי דין, ייבנה מחדש או יידחק הצידה". לדבריו, תהליך מכירה שלקח בעבר חודשים ושנים לוקח עכשיו "ימים ושבועות".</p>
+    </div>
+    <div class="col">
+      <h3>"אנחנו לא יכולים לספק את הביקוש"</h3>
+      <p>קארפ: "אנחנו לא צריכים את אלה שעוד לא השתכנעו". האתגר הפנימי הוא "למצוא משאבים" כדי להתמקד בלקוחות שכבר רוצים. עסקאות שהתחילו פעם ב-$250 אלף מתחילות היום ב-$25 מיליון.</p>
+    </div>
+    <div class="col">
+      <h3>"יחידת הבסיס היא תהליך עבודה, לא עובד"</h3>
+      <p>שיאם סנקר (מנהל הטכנולוגיה): המעבדות טועות כשהן חושבות שמספיק להפוך כל עובד ליעיל יותר. הערך האמיתי נוצר כשמטמיעים AI בתהליכים שלמים. דוגמה: ב-L3Harris מודל פתוח שאומן תוך 48 שעות עקף מודל מוביל והוזיל עלויות ב-95%.</p>
+    </div>
+    <div class="col">
+      <h3>"לקחת את כל השוק"</h3>
+      <p>קארפ: "זו כוונתנו הנחרצת לקחת את כל השוק, את כולו". הוא גם הגדיר את פלנטיר כ"חלוצת תנועה אמיתית נגד מלחמה": כלים חזקים מרתיעים יריבים מלפתוח במלחמה.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>אף מספר בשיחה לא דיבר על 2027, וההנהלה לא התייחסה לשווי של המניה. קארפ אמר שהשווי של המגזר העסקי לבדו "כנראה מצדיק את השווי הנוכחי". בנוסף, השיחה כללה שלוש שאלות בלבד מאנליסטים, ואף אחת מהן לא עסקה ב-TCV, ב-RPO או בחוזים הקצרים יותר.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>שלוש שאלות בלבד מאנליסטים, ושלושתן על חזון ולא על מספרים</h2>
+  <p class="body">השיחה של פלנטיר שונה מכל שיחת משקיעים אחרת. רוב הזמן מוקדש לנאומים של ההנהלה, ושלושת האנליסטים (דן אייבס, D.A. Davidson ו-Deutsche Bank) שאלו על מחנות AI, על Anthropic ועל "תנועה נגד מלחמה". אין שאלות על מרווחים, על תחזית או על הזמנות.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>"AI ריבוני" (Sovereign AI): כמעט כל דובר חזר על המונח. הוא הושק לפני רבעון אחד בלבד, וההנהלה כבר מציגה אותו כ"מהפכה הגדולה של הדור". הדוגמאות: NVIDIA, L3Harris, Tampa General ו-McCarthy.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>+29% ברבעון אחד בעסקי ארה"ב. קארפ: "זה היה קצב צמיחה שנתי מדהים לכל חברת תוכנה ציבורית באמריקה". בנוסף: 20 הלקוחות הגדולים משלמים בממוצע $146M בשנה כל אחד, עלייה של 76%.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>על Anthropic. קארפ שיבח את דריו אמודאי ("מאנשי העסקים החשובים בדור") וכינה את היחסים "סימביוזה": המעבדות מגדילות את השוק, ופלנטיר משרתת את הלקוחות שצריכים הטמעה אמיתית. תשובה מפוכחת לחשש מתחרות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>החוזים הקצרים. גלייזר הזכיר את זה במשפט אחד בדברי הפתיחה ("קצרים מהרגיל"), ואף אחד לא שאל. מצד שני, זה המדד שהכי מעניין משקיעים שחוששים מהאטה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"יש שתי דרכים לקרוא את המספרים שלנו. אחת: אנחנו פשוט נפלאים במה שאנחנו עושים. השנייה: אנחנו ייחודיים מאוד והשוק מתפוצץ סביבנו. אני הרבה יותר במחנה השני" (קארפ). הודאה כנה: חלק גדול מהצמיחה הוא גל של השוק.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>הוצאות התפעול צמחו 53% בשנה (20% ברבעון), והתגמול במניות כמעט הוכפל. החברה מגייסת אגרסיבית. כל עוד ההכנסות צומחות 96%, זה לא מורגש. אבל אם הצמיחה תאט, הרווחיות תיפגע מהר.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>העסק של פלנטיר מעולם לא היה חזק יותר, וקשה למצוא חברה בגודל כזה עם צמיחה ורווחיות כאלה. אבל השיחה עצמה מראה שפלנטיר היא גם "מניית אמונה": המשקיעים קונים את החזון של קארפ, והאנליסטים לא לוחצים על פרטים. למשקיע זה אומר להסתכל בעצמו על הנתונים הקשים, ההזמנות וה-RPO, כי בשיחה לא ידברו עליהם.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · איך השוק הגיב</div>
+  <h2>עלייה של 1.5% מיד אחרי הדוח, ואז ירידה של כ-3% במסחר המאוחר, בתוך ירידות חדות במניות AI</h2>
+  <p class="body">ב-2.11 המניה סגרה סביב $179, ירידה של כ-2.6% במהלך היום, לפני הדוח. מיד אחרי הדוח היא עלתה כ-1.5%, ואז התהפכה וירדה כ-3% במסחר המאוחר. שווי השוק: כ-$430 מיליארד. מתחילת השנה המניה ירדה כ-5%, למרות שההכנסות כמעט הוכפלו. המסחר הרגיל של 3.11 עוד לא התחיל בזמן כתיבת הדוח.</p>
+  <p class="body">ההקשר חשוב: הדוח פורסם בשבוע קשה למניות AI. Alphabet רשמה את הירידה היומית הגדולה בתולדותיה, אינטל צנחה כ-29% בשבוע, ומדד נאסד"ק ירד 4% בחמישה ימים. לפי Stocktwits, המשקיעים הקטנים עדיין אופטימיים, אבל מודאגים יותר ויותר מהתמחור.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>בשווי של כ-$430B, המניה נסחרת בכ-50 פעם ההכנסות של 2026, ובכ-80 פעם הרווח התפעולי המנוקה השנתי (חישוב לפי התחזית). מכפילים כאלה דורשים צמיחה של 50%+ בשנה במשך כמה שנים. כשמניה עולה רק 1.5% על דוח כזה, וגם זה נמחק, זה סימן שהשוק כבר מתמחר את רוב החדשות הטובות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: התמחור. כל האטה בצמיחה, גם קטנה, עלולה להוריד את המניה בחדות</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>תמחור קיצוני</h3><p>כ-50 פעם ההכנסות. גם אם החברה תמשיך לצמוח 50% בשנה, יעברו שנים עד שהמכפיל ייראה סביר. כל מפולת במניות AI פוגעת בפלנטיר יותר מבחברות אחרות.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>האטה בהזמנות</h3><p>TCV ‏+6%, RPO ללא שינוי מהרבעון הקודם, וחוזים קצרים יותר. אם ההזמנות לא יאיצו, הצמיחה בהכנסות תאט בתוך כמה רבעונים.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תחרות מהמעבדות</h3><p>OpenAI ו-Anthropic בונות כלים ארגוניים בעצמן. Anthropic בתהליך הנפקה (S-1). אם הן יפתרו את בעיית ההטמעה בעצמן, היתרון של פלנטיר יקטן.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תלות בממשלה ובפוליטיקה</h3><p>כ-41% מההכנסות מממשלת ארה"ב. החברה קרובה מאוד לממשל הנוכחי ולמשרד המלחמה. שינוי פוליטי, קיצוצים או ביקורת ציבורית עלולים לפגוע.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תגמול במניות ודילול</h3><p>$319M ברבעון, כמעט פי 2 מאשתקד. בעלי המניות מדוללים בהדרגה, ואין תוכנית משמעותית לקניית מניות שתקזז את זה.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>תלות במנכ"ל</h3><p>קארפ הוא הפנים של החברה והחזון שלה. הסגנון הקיצוני שלו מושך משקיעים קטנים, אבל מרחיק חלק מהמשקיעים המוסדיים והלקוחות באירופה.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>צמיחה</strong></td><td>+96%, מאיצה כבר שישה רבעונים. עסקי ארה"ב +148%. התחזית ל-2026 עלתה מ-82% ל-91%.</td><td>חלק מהצמיחה הוא "גל השוק", לפי קארפ עצמו. כשהגל יירגע, הצמיחה תאט.</td></tr>
+        <tr><td><strong>רווחיות</strong></td><td>62% מנוקה, 47% רשמית, תזרים חופשי של 53%. "Rule of 40" של 158%, מהגבוהים בין 100 החברות הגדולות בעולם, אחרי יצרניות שבבים כמו Nvidia ו-Micron.</td><td>הוצאות +53% ותגמול במניות כמעט פי 2. ברווחיות כזו אין הרבה מקום להשתפר.</td></tr>
+        <tr><td><strong>לקוחות</strong></td><td>NDR של 165%: לקוחות קיימים מגדילים הוצאה ב-65%. מעבר מהיר מפיילוט לחוזה. "מי שהולך לפלנטיר לא חוזר".</td><td>חוזים קצרים יותר = קל יותר לעזוב. TCV +6% בלבד.</td></tr>
+        <tr><td><strong>AI ריבוני</strong></td><td>מסר שמתאים לחשש של ארגונים מלתת את המידע שלהם למעבדות. מודלים פתוחים זולים ב-95% עם ביצועים טובים יותר.</td><td>מושג בן רבעון אחד. המעבדות יכולות להציע אימון פרטי משלהן.</td></tr>
+        <tr><td><strong>ממשלה</strong></td><td>Maven היא הבסיס של צבא ארה"ב, עם יותר מ-100 אלף משתמשים. TITAN עוברת לייצור. ביקוש לבינה מלאכותית ביטחונית.</td><td>תלות במדיניות ובתקציבים. חשיפה פוליטית גבוהה, וחולשה באירופה.</td></tr>
+        <tr><td><strong>מאזן</strong></td><td>$10.4B מזומן, אפס חוב, תזרים של כ-$5B בשנה. גמישות מלאה.</td><td>אין קניית מניות או דיבידנד משמעותיים. בעלי המניות נהנים רק מעליית מחיר.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>אם הצמיחה תימשך ב-50%+ למשך כמה שנים, המכפילים יירדו מהר. ירידה של כ-5% השנה למרות הכפלת העסק.</td><td>כ-50 פעם ההכנסות. מניה עם תנודתיות גבוהה מאוד, שתלויה בסנטימנט כלפי AI.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהמניה זזה לפי הסנטימנט כלפי AI כולו, לא לפי הדוח. ירידות במניות כמו Alphabet או Nvidia יגררו גם אותה. משקיע לטווח ארוך צריך לעקוב אחרי שלושה מדדים ברבעון הבא: ה-TCV (האם ההזמנות מאיצות), ה-RPO (האם חזר לצמוח), ומשך החוזים החדשים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>Ontology</dt><dd>ה"מפה" הדיגיטלית של הארגון: כל הנתונים, הקשרים והפעולות במקום אחד. הבסיס של כל מוצרי פלנטיר.</dd>
+    <dt>AIP</dt><dd>Artificial Intelligence Platform: הפלטפורמה שמחברת מודלי שפה לנתונים ולתהליכים של הארגון.</dd>
+    <dt>Sovereign AI</dt><dd>"בינה מלאכותית ריבונית": הארגון מאמן מודלים משלו על המידע שלו, בלי לשלוח אותו לחברות חיצוניות.</dd>
+    <dt>מודל פתוח (Open-weight)</dt><dd>מודל AI שהמשקלות שלו זמינים לכולם, כמו Nemotron של אנבידיה, שהלקוח יכול להוריד ולאמן בעצמו.</dd>
+    <dt>Rule of 40</dt><dd>צמיחה ועוד רווחיות תפעולית. מעל 40% נחשב מצוין לחברת תוכנה. אצל פלנטיר: 96% ועוד 62% = 158%.</dd>
+    <dt>NDR</dt><dd>Net Dollar Retention: כמה לקוחות קיימים משלמים היום לעומת לפני שנה. 165% = עלייה של 65%.</dd>
+    <dt>TCV</dt><dd>Total Contract Value: הערך הכולל של חוזים שנחתמו ברבעון, לאורך כל חייהם.</dd>
+    <dt>RPO</dt><dd>Remaining Performance Obligations: הכנסות עתידיות מחוזים חתומים שאי אפשר לבטל.</dd>
+    <dt>Maven</dt><dd>מערכת המודיעין והמטרות מבוססת AI של צבא ארה"ב, שפלנטיר בנתה.</dd>
+    <dt>Bootcamp / AgentCamp</dt><dd>סדנה של כמה ימים שבה פלנטיר בונה עם הלקוח פתרון אמיתי על הנתונים שלו. השיטה העיקרית שלה לגייס לקוחות.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Palantir — הודעה לעיתונות על תוצאות Q3 2026, מכתב המנכ"ל לבעלי המניות ומצגת המשקיעים (2.11.2026); תמלול שיחת המשקיעים (StockOracle / FactSet, 2.11.2026); נתוני מסחר וצפי אנליסטים: Fortune, Stocktwits, MarketBeat (2.11.2026). מכפילי השווי והחלוקה הבינלאומית לפי מגזר בשנה הקודמת הם חישוב לפי נתוני החברה ושווי השוק המדווח. המסחר הרגיל של 3.11 טרם התחיל בעת כתיבת הדוח. לא נמצא לוגו בקבצים שצורפו, ולכן שם החברה מוצג כטקסט.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>

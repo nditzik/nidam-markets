@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "03/11/2026 13:46",
+  "updatedAt": "03/11/2026 14:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -3475,14 +3475,14 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": null
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   },
   {
    "sym": "MU",
@@ -3542,7 +3542,11 @@
     "logo": "data/reports/logos/PLTR.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/PLTR__2026-11-02.html",
+    "date": "2026-11-02",
+    "title": "PLTR דוח רבעון Q3 2026"
+   },
    "consensus": {
     "eps": 0.40705,
     "epsLow": 0.38,

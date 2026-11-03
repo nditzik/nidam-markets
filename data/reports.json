@@ -1,6 +1,20 @@
 {
   "reports": [
     {
+      "file": "data/reports/PLTR__2026-11-02.html",
+      "ticker": "PLTR",
+      "date": "2026-11-02",
+      "title": "PLTR דוח רבעון Q3 2026",
+      "logo": "data/reports/logos/PLTR.png",
+      "added": "2026-11-03T12:00:53",
+      "season": {
+        "q": 3,
+        "year": 2026,
+        "key": "2026-3",
+        "label": "רבעון 3 2026"
+      }
+    },
+    {
       "file": "data/reports/CVX_2026-10-30.html",
       "ticker": "CVX",
       "date": "2026-10-30",
@@ -692,7 +706,7 @@
     }
   ],
   "_meta": {
-    "updatedAt": "03/11/2026 13:45",
+    "updatedAt": "03/11/2026 14:01",
     "source": "nidam-reports"
   }
 }
