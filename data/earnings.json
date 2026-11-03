@@ -75,8 +75,12 @@
             "ticker": "MAR",
             "name": "Marriott International, Inc. Class A",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/MAR.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MAR.png",
+            "chg": 4.26,
+            "price": 416.3,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
           },
           {
             "ticker": "WMB",
@@ -89,8 +93,12 @@
             "ticker": "LITE",
             "name": "Lumentum Holdings, Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/LITE.png"
+            "status": "final",
+            "logo": "data/earnings/logos/LITE.png",
+            "chg": -18.59,
+            "price": 684.4,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
           }
         ]
       },
@@ -721,8 +729,8 @@
     "YUM": "2026-11-03",
     "PRU": "2026-11-03",
     "SYY": "2026-11-03",
-    "PRS": "2026-11-03",
     "PFH": "2026-11-03",
+    "PRS": "2026-11-03",
     "ALAB": "2026-11-03",
     "ADM": "2026-11-03",
     "FTS": "2026-11-03",
@@ -923,7 +931,7 @@
     "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 04:16",
+    "updatedAt": "03/11/2026 04:31",
     "source": "tradingview"
   }
 }
