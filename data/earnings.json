@@ -1,50 +1,111 @@
 {
-  "today": "2026-11-03",
-  "todayCount": 57,
+  "today": "2026-11-04",
+  "todayCount": 65,
   "todayBig": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1193.3
+      "ticker": "ARM",
+      "name": "ARM Holdings PLC Sponsored ADR",
+      "capB": 209.4
     },
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1192.8
+      "ticker": "MCD",
+      "name": "McDonald's Corporation",
+      "capB": 186.1
     },
     {
-      "ticker": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
-      "capB": 790.0
+      "ticker": "NVO",
+      "name": "Novo Nordisk A/S Sponsored ADR Class B",
+      "capB": 178.8
     },
     {
-      "ticker": "AMGN",
-      "name": "Amgen Inc.",
-      "capB": 249.4
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "capB": 175.6
     },
     {
-      "ticker": "ANET",
-      "name": "Arista Networks Inc",
-      "capB": 214.3
+      "ticker": "UBER",
+      "name": "Uber Technologies, Inc.",
+      "capB": 136.0
     },
     {
-      "ticker": "SHOP",
-      "name": "Shopify, Inc. Class A",
-      "capB": 183.4
+      "ticker": "CVS",
+      "name": "CVS Health Corporation",
+      "capB": 116.9
     },
     {
-      "ticker": "PFE",
-      "name": "Pfizer Inc.",
-      "capB": 171.0
+      "ticker": "MCK",
+      "name": "McKesson Corporation",
+      "capB": 116.5
     },
     {
-      "ticker": "ETN",
-      "name": "Eaton Corp. Plc",
-      "capB": 152.1
+      "ticker": "EMR",
+      "name": "Emerson Electric Co.",
+      "capB": 92.8
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-03",
+        "label": "3.11",
+        "items": [
+          {
+            "ticker": "AMD",
+            "name": "Advanced Micro Devices, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/AMD.png"
+          },
+          {
+            "ticker": "AMGN",
+            "name": "Amgen Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/AMGN.png"
+          },
+          {
+            "ticker": "ANET",
+            "name": "Arista Networks Inc",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/ANET.png",
+            "logoBg": "dark"
+          },
+          {
+            "ticker": "SHOP",
+            "name": "Shopify, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SHOP.png",
+            "chg": -8.74,
+            "price": 142.57,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "PFE",
+            "name": "Pfizer Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PFE.png",
+            "chg": -2.18,
+            "price": 30.0,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "ETN",
+            "name": "Eaton Corp. Plc",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/ETN.png",
+            "chg": 7.0,
+            "price": 391.7,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          }
+        ]
+      },
       {
         "date": "2026-11-02",
         "label": "2.11",
@@ -117,174 +178,86 @@
             "baseDate": "2026-10-30"
           }
         ]
-      },
-      {
-        "date": "2026-10-30",
-        "label": "30.10",
-        "items": [
-          {
-            "ticker": "XOM",
-            "name": "Exxonmobil Holdings Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/XOM.png",
-            "chg": 2.16,
-            "price": 187.25,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
-            "ticker": "ABBV",
-            "name": "AbbVie, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/ABBV.png",
-            "logoBg": "dark",
-            "chg": 1.41,
-            "price": 294.89,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
-            "ticker": "CVX",
-            "name": "Chevron Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CVX.png",
-            "chg": 1.75,
-            "price": 235.52,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
-            "ticker": "AZN",
-            "name": "AstraZeneca PLC",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/AZN.png",
-            "chg": 7.02,
-            "price": 186.65,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
-            "ticker": "BP",
-            "name": "BP PLC Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BP.png",
-            "chg": 0.08,
-            "price": 50.39,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          },
-          {
-            "ticker": "GD",
-            "name": "General Dynamics Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GD.png",
-            "chg": 0.48,
-            "price": 372.59,
-            "reactDate": "2026-10-30",
-            "baseDate": "2026-10-29"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.A.png"
-    },
-    {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.B.png"
-    },
-    {
-      "ticker": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
+      "ticker": "ARM",
+      "name": "ARM Holdings PLC Sponsored ADR",
       "when": "after",
-      "logo": "data/earnings/logos/AMD.png"
+      "logo": "data/earnings/logos/ARM.png"
     },
     {
-      "ticker": "AMGN",
-      "name": "Amgen Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/AMGN.png"
+      "ticker": "MCD",
+      "name": "McDonald's Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/MCD.png"
     },
     {
-      "ticker": "ANET",
-      "name": "Arista Networks Inc",
+      "ticker": "NVO",
+      "name": "Novo Nordisk A/S Sponsored ADR Class B",
+      "when": "before",
+      "logo": "data/earnings/logos/NVO.png"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
       "when": "after",
-      "logo": "data/earnings/logos/ANET.png",
+      "logo": "data/earnings/logos/QCOM.png"
+    },
+    {
+      "ticker": "UBER",
+      "name": "Uber Technologies, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/UBER.png"
+    },
+    {
+      "ticker": "CVS",
+      "name": "CVS Health Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/CVS.png"
+    },
+    {
+      "ticker": "MCK",
+      "name": "McKesson Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/MCK.png"
+    },
+    {
+      "ticker": "EMR",
+      "name": "Emerson Electric Co.",
+      "when": "before",
+      "logo": "data/earnings/logos/EMR.png"
+    },
+    {
+      "ticker": "MELI",
+      "name": "MercadoLibre, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/MELI.png"
+    },
+    {
+      "ticker": "APP",
+      "name": "AppLovin Corp. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/APP.png",
       "logoBg": "dark"
     },
     {
-      "ticker": "SHOP",
-      "name": "Shopify, Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/SHOP.png"
-    },
-    {
-      "ticker": "PFE",
-      "name": "Pfizer Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/PFE.png"
-    },
-    {
-      "ticker": "ETN",
-      "name": "Eaton Corp. Plc",
-      "when": "before",
-      "logo": "data/earnings/logos/ETN.png"
-    },
-    {
-      "ticker": "MPC",
-      "name": "Marathon Petroleum Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/MPC.png"
-    },
-    {
-      "ticker": "BKNG",
-      "name": "Booking Holdings Inc.",
+      "ticker": "MSI",
+      "name": "Motorola Solutions, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/BKNG.png"
+      "logo": "data/earnings/logos/MSI.png"
     },
     {
-      "ticker": "RACE",
-      "name": "Ferrari NV",
+      "ticker": "DDOG",
+      "name": "Datadog, Inc. Class A",
       "when": "before",
-      "logo": "data/earnings/logos/RACE.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "SU",
-      "name": "Suncor Energy Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/SU.png"
+      "logo": "data/earnings/logos/DDOG.png"
     }
   ],
-  "more": 45,
+  "more": 53,
   "upcoming": [
-    {
-      "date": "2026-11-04",
-      "label": "4/11",
-      "dow": "ד׳",
-      "count": 65,
-      "tickers": [
-        "ARM",
-        "MCD",
-        "NVO",
-        "QCOM",
-        "UBER",
-        "CVS"
-      ]
-    },
     {
       "date": "2026-11-05",
       "label": "5/11",
@@ -721,63 +694,6 @@
     }
   ],
   "window": {
-    "BRK.A": "2026-11-03",
-    "BRK.B": "2026-11-03",
-    "AMD": "2026-11-03",
-    "AMGN": "2026-11-03",
-    "ANET": "2026-11-03",
-    "SHOP": "2026-11-03",
-    "PFE": "2026-11-03",
-    "ETN": "2026-11-03",
-    "MPC": "2026-11-03",
-    "BKNG": "2026-11-03",
-    "RACE": "2026-11-03",
-    "SU": "2026-11-03",
-    "ITUB": "2026-11-03",
-    "ET": "2026-11-03",
-    "APO": "2026-11-03",
-    "MPLX": "2026-11-03",
-    "AME": "2026-11-03",
-    "TEVA": "2026-11-03",
-    "TRI": "2026-11-03",
-    "KDP": "2026-11-03",
-    "XYZ": "2026-11-03",
-    "WAT": "2026-11-03",
-    "YUM": "2026-11-03",
-    "AIG": "2026-11-03",
-    "PRU": "2026-11-03",
-    "PFH": "2026-11-03",
-    "PRS": "2026-11-03",
-    "ALAB": "2026-11-03",
-    "SYY": "2026-11-03",
-    "ADM": "2026-11-03",
-    "UI": "2026-11-03",
-    "FISV": "2026-11-03",
-    "FTS": "2026-11-03",
-    "CPNG": "2026-11-03",
-    "PHG": "2026-11-03",
-    "EXPD": "2026-11-03",
-    "IFF": "2026-11-03",
-    "BNTX": "2026-11-03",
-    "BR": "2026-11-03",
-    "DD": "2026-11-03",
-    "SMCI": "2026-11-03",
-    "FIS": "2026-11-03",
-    "SWKS": "2026-11-03",
-    "SMCIP": "2026-11-03",
-    "TOST": "2026-11-03",
-    "OVV": "2026-11-03",
-    "RVTY": "2026-11-03",
-    "LDOS": "2026-11-03",
-    "TLN": "2026-11-03",
-    "BALL": "2026-11-03",
-    "YUMC": "2026-11-03",
-    "ULS": "2026-11-03",
-    "ZBRA": "2026-11-03",
-    "AIZ": "2026-11-03",
-    "UNM": "2026-11-03",
-    "OHI": "2026-11-03",
-    "SUN": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "NVO": "2026-11-04",
@@ -847,8 +763,8 @@
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
@@ -952,10 +868,16 @@
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
     "BEKE": "2026-11-10",
-    "VIV": "2026-11-10"
+    "VIV": "2026-11-10",
+    "VYLR": "2026-11-11",
+    "HMC": "2026-11-11",
+    "FNV": "2026-11-11",
+    "ECHO": "2026-11-11",
+    "GIB": "2026-11-11",
+    "ASND": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 23:46",
+    "updatedAt": "04/11/2026 00:01",
     "source": "tradingview"
   }
 }
