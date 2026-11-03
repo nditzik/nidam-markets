@@ -1,6 +1,6 @@
 {
   "today": "2026-11-03",
-  "todayCount": 55,
+  "todayCount": 56,
   "todayBig": [
     {
       "ticker": "AMD",
@@ -253,7 +253,7 @@
       "logo": "data/earnings/logos/APO.png"
     }
   ],
-  "more": 43,
+  "more": 44,
   "upcoming": [
     {
       "date": "2026-11-04",
@@ -303,25 +303,13 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 30,
+      "total": 27,
       "companies": [
         {
           "ticker": "AAPL",
           "name": "Apple Inc.",
           "when": "after",
           "logo": "data/earnings/logos/AAPL.png"
-        },
-        {
-          "ticker": "BRK.B",
-          "name": "Berkshire Hathaway Inc. Class B",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.B.png"
-        },
-        {
-          "ticker": "BRK.A",
-          "name": "Berkshire Hathaway Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.A.png"
         },
         {
           "ticker": "PLTR",
@@ -377,6 +365,18 @@
           "name": "Entergy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/ETR.png"
+        },
+        {
+          "ticker": "EL",
+          "name": "Estee Lauder Companies Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/EL.png"
+        },
+        {
+          "ticker": "PEG",
+          "name": "Public Service Enterprise Group Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/PEG.png"
         }
       ]
     },
@@ -384,7 +384,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 55,
+      "total": 56,
       "companies": [
         {
           "ticker": "AMD",
@@ -760,6 +760,7 @@
     "AIZ": "2026-11-03",
     "UNM": "2026-11-03",
     "OHI": "2026-11-03",
+    "SUN": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "NVO": "2026-11-04",
@@ -930,7 +931,7 @@
     "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 02:01",
+    "updatedAt": "03/11/2026 02:16",
     "source": "tradingview"
   }
 }
