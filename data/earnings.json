@@ -5,22 +5,22 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1197.5
+      "capB": 1196.6
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1196.3
+      "capB": 1195.8
     },
     {
       "ticker": "AMD",
       "name": "Advanced Micro Devices, Inc.",
-      "capB": 797.7
+      "capB": 798.8
     },
     {
       "ticker": "AMGN",
       "name": "Amgen Inc.",
-      "capB": 251.8
+      "capB": 250.8
     },
     {
       "ticker": "ANET",
@@ -30,17 +30,17 @@
     {
       "ticker": "SHOP",
       "name": "Shopify, Inc. Class A",
-      "capB": 186.5
+      "capB": 187.4
     },
     {
       "ticker": "PFE",
       "name": "Pfizer Inc.",
-      "capB": 173.9
+      "capB": 174.5
     },
     {
       "ticker": "ETN",
       "name": "Eaton Corp. Plc",
-      "capB": 150.9
+      "capB": 150.6
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AAPL.png",
-            "chg": -2.23,
-            "price": 330.76,
+            "chg": -2.15,
+            "price": 331.04,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PLTR.png",
-            "chg": -2.65,
-            "price": 173.62,
+            "chg": -2.83,
+            "price": 173.3,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/VRTX.png",
             "logoBg": "dark",
-            "chg": -3.21,
-            "price": 535.38,
+            "chg": -3.28,
+            "price": 534.99,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WMB.png",
-            "chg": 2.82,
-            "price": 73.2,
+            "chg": 2.67,
+            "price": 73.09,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -289,7 +289,7 @@
       "date": "2026-11-05",
       "label": "5/11",
       "dow": "ה׳",
-      "count": 65,
+      "count": 64,
       "tickers": [
         "TM",
         "COP",
@@ -319,7 +319,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 27,
+      "total": 28,
       "companies": [
         {
           "ticker": "AAPL",
@@ -539,17 +539,17 @@
           "logo": "data/earnings/logos/MELI.png"
         },
         {
-          "ticker": "MSI",
-          "name": "Motorola Solutions, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/MSI.png"
-        },
-        {
           "ticker": "APP",
           "name": "AppLovin Corp. Class A",
           "when": "after",
           "logo": "data/earnings/logos/APP.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "MSI",
+          "name": "Motorola Solutions, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/MSI.png"
         },
         {
           "ticker": "DDOG",
@@ -563,7 +563,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 65,
+      "total": 64,
       "companies": [
         {
           "ticker": "TM",
@@ -738,8 +738,8 @@
     "APO": "2026-11-03",
     "MPLX": "2026-11-03",
     "AME": "2026-11-03",
-    "TRI": "2026-11-03",
     "TEVA": "2026-11-03",
+    "TRI": "2026-11-03",
     "KDP": "2026-11-03",
     "WAT": "2026-11-03",
     "XYZ": "2026-11-03",
@@ -760,8 +760,8 @@
     "IFF": "2026-11-03",
     "BNTX": "2026-11-03",
     "BR": "2026-11-03",
-    "SMCI": "2026-11-03",
     "DD": "2026-11-03",
+    "SMCI": "2026-11-03",
     "FIS": "2026-11-03",
     "SWKS": "2026-11-03",
     "SMCIP": "2026-11-03",
@@ -785,8 +785,8 @@
     "CVS": "2026-11-04",
     "EMR": "2026-11-04",
     "MELI": "2026-11-04",
-    "MSI": "2026-11-04",
     "APP": "2026-11-04",
+    "MSI": "2026-11-04",
     "DDOG": "2026-11-04",
     "MFC": "2026-11-04",
     "ALL": "2026-11-04",
@@ -801,13 +801,13 @@
     "MDLN": "2026-11-04",
     "RVMD": "2026-11-04",
     "COHR": "2026-11-04",
-    "MLM": "2026-11-04",
     "RPRX": "2026-11-04",
+    "MLM": "2026-11-04",
     "TKO": "2026-11-04",
     "EXPE": "2026-11-04",
     "NTR": "2026-11-04",
-    "SN": "2026-11-04",
     "TS": "2026-11-04",
+    "SN": "2026-11-04",
     "ATO": "2026-11-04",
     "KHC": "2026-11-04",
     "CPAY": "2026-11-04",
@@ -842,8 +842,8 @@
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
@@ -858,8 +858,8 @@
     "TRP": "2026-11-05",
     "TRGP": "2026-11-05",
     "CAH": "2026-11-05",
-    "SRE": "2026-11-05",
     "NTRA": "2026-11-05",
+    "SRE": "2026-11-05",
     "BDX": "2026-11-05",
     "WPM": "2026-11-05",
     "DVN": "2026-11-05",
@@ -871,10 +871,10 @@
     "AU": "2026-11-05",
     "MCHPP": "2026-11-05",
     "KMB": "2026-11-05",
-    "IRM": "2026-11-05",
     "ZTS": "2026-11-05",
-    "AXON": "2026-11-05",
+    "IRM": "2026-11-05",
     "MTD": "2026-11-05",
+    "AXON": "2026-11-05",
     "GMAB": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
@@ -885,8 +885,8 @@
     "AFRM": "2026-11-05",
     "CIB": "2026-11-05",
     "FWONA": "2026-11-05",
-    "TPR": "2026-11-05",
     "FWONK": "2026-11-05",
+    "TPR": "2026-11-05",
     "RL": "2026-11-05",
     "GH": "2026-11-05",
     "STE": "2026-11-05",
@@ -901,7 +901,6 @@
     "SBS": "2026-11-05",
     "JHX": "2026-11-05",
     "HALO": "2026-11-05",
-    "CG": "2026-11-05",
     "SOLV": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
@@ -931,8 +930,8 @@
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
     "SGI": "2026-11-09",
-    "ASTS": "2026-11-09",
     "CNH": "2026-11-09",
+    "ASTS": "2026-11-09",
     "SONY": "2026-11-10",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
@@ -946,7 +945,7 @@
     "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 18:46",
+    "updatedAt": "03/11/2026 19:01",
     "source": "tradingview"
   }
 }
