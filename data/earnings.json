@@ -53,23 +53,35 @@
             "ticker": "AAPL",
             "name": "Apple Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/AAPL.png"
+            "status": "live",
+            "logo": "data/earnings/logos/AAPL.png",
+            "chg": -2.31,
+            "price": 330.49,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "PLTR",
             "name": "Palantir Technologies Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/PLTR.png"
+            "status": "live",
+            "logo": "data/earnings/logos/PLTR.png",
+            "chg": -4.82,
+            "price": 169.75,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "VRTX",
             "name": "Vertex Pharmaceuticals Incorporated",
             "when": "after",
-            "status": "pending",
+            "status": "live",
             "logo": "data/earnings/logos/VRTX.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": 0.9,
+            "price": 558.13,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "MAR",
@@ -86,8 +98,12 @@
             "ticker": "WMB",
             "name": "Williams Companies, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WMB.png"
+            "status": "live",
+            "logo": "data/earnings/logos/WMB.png",
+            "chg": -1.97,
+            "price": 69.79,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "LITE",
@@ -746,8 +762,8 @@
     "BR": "2026-11-03",
     "FIS": "2026-11-03",
     "SWKS": "2026-11-03",
-    "SMCI": "2026-11-03",
     "SMCIP": "2026-11-03",
+    "SMCI": "2026-11-03",
     "TOST": "2026-11-03",
     "DD": "2026-11-03",
     "OVV": "2026-11-03",
@@ -872,8 +888,8 @@
     "TPR": "2026-11-05",
     "CIB": "2026-11-05",
     "RL": "2026-11-05",
-    "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
+    "FWONA": "2026-11-05",
     "GH": "2026-11-05",
     "USFD": "2026-11-05",
     "STE": "2026-11-05",
@@ -897,8 +913,8 @@
     "ONC": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTR": "2026-11-06",
     "CHTRP": "2026-11-06",
+    "CHTR": "2026-11-06",
     "PAA": "2026-11-06",
     "BEN": "2026-11-06",
     "EMA": "2026-11-06",
@@ -932,7 +948,7 @@
     "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 16:16",
+    "updatedAt": "03/11/2026 16:31",
     "source": "tradingview"
   }
 }
