@@ -150,6 +150,31 @@ def name_key(s):
     return "".join(sorted(re.findall(r"[a-z]+", (s or "").lower())))
 
 
+def joint_dedupe(rows):
+    """הגשה משותפת (3.11.2026, ROL): אותה עסקה מדווחת בכמה טפסי Form 4 — אחד לכל ישות בקבוצה
+    (LOR Inc + R. Randall Rollins Voting Trust: אותן מניות, אותו מחיר, אותה החזקה אחרי). זו קנייה אחת:
+    שורה אחת עם כל השמות (`coFilers`), ובלי לספור אותה פעמיים באשכול/ברקורד."""
+    out, idx = [], {}
+    for b in rows:
+        k = (b["t"], b.get("trade"), b.get("type", "P"), b.get("shares"), b.get("price"), b.get("after"))
+        if b.get("shares") is None or b.get("after") is None or k not in idx:
+            if b.get("shares") is not None and b.get("after") is not None:
+                idx[k] = b
+            out.append(b)
+            continue
+        m = idx[k]
+        if name_key(m["who"]) == name_key(b["who"]):
+            out.append(b)          # אותו אדם — לא הגשה משותפת (המיזוג לפי יום מטפל)
+            continue
+        m.setdefault("coFilers", [m["who"]]).append(b["who"])
+        m["who"] = " · ".join(re.sub(r"\s+U/A\b.*$", "", w) for w in m["coFilers"])   # "Voting Trust U/A dated…" → "Voting Trust"
+        if m.get("clusterN"):
+            m["clusterN"] = max(1, m["clusterN"] - 1)
+            if m["clusterN"] < 2:
+                m["cluster"] = False
+    return out
+
+
 def load_days(root):
     out = []
     for path in sorted(glob.glob(os.path.join(root, "data", "insider_daily", "????-??-??", "buys.csv"))):
@@ -171,8 +196,9 @@ def load_history(root, days):
             tx[k] = {"t": t, "who": nice(r.get("Insider")), "role": (r.get("Role") or "").strip(),
                      "trade": (r.get("Trade Date") or "").strip(), "filed": (r.get("Filing Date") or "").strip(),
                      "type": k[3], "shares": num(r.get("Shares")), "price": num(r.get("Price")),
-                     "value": num(r.get("Value")), "plan": (r.get("10b5-1") or "").strip().lower() == "yes"}
-    return list(tx.values())
+                     "value": num(r.get("Value")), "plan": (r.get("10b5-1") or "").strip().lower() == "yes",
+                     "after": num(r.get("Holdings After"))}
+    return joint_dedupe(list(tx.values()))
 
 
 def main(root=ROOT, now=None):
@@ -216,6 +242,8 @@ def main(root=ROOT, now=None):
                 b["excluded"] = "offering" if bar and b["price"] < bar[3] else "price"
             b["priceCheck"] = ok
             buys.append(b)
+
+    buys = joint_dedupe(buys)
 
     # אותו קונה, אותה מניה, אותו יום דיווח = שורה אחת (Form 4 אחד עם כמה עסקאות; LYCA 30.10)
     merged, idx = [], {}
