@@ -3,13 +3,13 @@
   "todayCount": 57,
   "todayBig": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1193.1
-    },
-    {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1193.3
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
       "capB": 1192.8
     },
     {
@@ -195,16 +195,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.B.png"
-    },
-    {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
     },
     {
       "ticker": "AMD",
@@ -403,16 +403,16 @@
       "total": 57,
       "companies": [
         {
-          "ticker": "BRK.B",
-          "name": "Berkshire Hathaway Inc. Class B",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.B.png"
-        },
-        {
           "ticker": "BRK.A",
           "name": "Berkshire Hathaway Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/BRK.A.png"
+        },
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.B.png"
         },
         {
           "ticker": "AMD",
@@ -721,8 +721,8 @@
     }
   ],
   "window": {
-    "BRK.B": "2026-11-03",
     "BRK.A": "2026-11-03",
+    "BRK.B": "2026-11-03",
     "AMD": "2026-11-03",
     "AMGN": "2026-11-03",
     "ANET": "2026-11-03",
@@ -775,8 +775,8 @@
     "ULS": "2026-11-03",
     "ZBRA": "2026-11-03",
     "AIZ": "2026-11-03",
-    "OHI": "2026-11-03",
     "UNM": "2026-11-03",
+    "OHI": "2026-11-03",
     "SUN": "2026-11-03",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
@@ -908,8 +908,8 @@
     "HALO": "2026-11-05",
     "CG": "2026-11-05",
     "SOLV": "2026-11-05",
-    "REGCP": "2026-11-05",
     "REGCO": "2026-11-05",
+    "REGCP": "2026-11-05",
     "REG": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
@@ -955,7 +955,7 @@
     "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 23:16",
+    "updatedAt": "03/11/2026 23:31",
     "source": "tradingview"
   }
 }
