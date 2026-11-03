@@ -1,6 +1,20 @@
 {
   "reports": [
     {
+      "file": "data/reports/AAPL__2026-11-02.html",
+      "ticker": "AAPL",
+      "date": "2026-11-02",
+      "title": "AAPL דוח רבעון Q4 FY26",
+      "logo": "data/reports/logos/AAPL.png",
+      "added": "2026-11-03T12:30:44",
+      "season": {
+        "q": 3,
+        "year": 2026,
+        "key": "2026-3",
+        "label": "רבעון 3 2026"
+      }
+    },
+    {
       "file": "data/reports/PLTR__2026-11-02.html",
       "ticker": "PLTR",
       "date": "2026-11-02",
@@ -706,7 +720,7 @@
     }
   ],
   "_meta": {
-    "updatedAt": "03/11/2026 14:15",
+    "updatedAt": "03/11/2026 14:30",
     "source": "nidam-reports"
   }
 }

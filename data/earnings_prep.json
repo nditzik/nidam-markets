@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "03/11/2026 14:16",
+  "updatedAt": "03/11/2026 14:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -3430,12 +3430,12 @@
  ],
  "later": [
   {
-   "sym": "CSCO",
+   "sym": "CPRT",
    "date": "2026-11-18",
    "when": null
   },
   {
-   "sym": "CPRT",
+   "sym": "CSCO",
    "date": "2026-11-18",
    "when": null
   },
@@ -3475,14 +3475,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   },
   {
    "sym": "MU",
@@ -3503,7 +3503,11 @@
     "logo": "data/reports/logos/AAPL.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/AAPL__2026-11-02.html",
+    "date": "2026-11-02",
+    "title": "AAPL דוח רבעון Q4 FY26"
+   },
    "consensus": {
     "eps": 1.98895,
     "epsLow": 1.93,
