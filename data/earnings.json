@@ -5,42 +5,42 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1193.2
+      "capB": 1192.9
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1192.0
+      "capB": 1191.2
     },
     {
       "ticker": "AMD",
       "name": "Advanced Micro Devices, Inc.",
-      "capB": 794.2
+      "capB": 796.2
     },
     {
       "ticker": "AMGN",
       "name": "Amgen Inc.",
-      "capB": 249.5
+      "capB": 249.4
     },
     {
       "ticker": "ANET",
       "name": "Arista Networks Inc",
-      "capB": 213.2
+      "capB": 212.9
     },
     {
       "ticker": "SHOP",
       "name": "Shopify, Inc. Class A",
-      "capB": 185.4
+      "capB": 185.2
     },
     {
       "ticker": "PFE",
       "name": "Pfizer Inc.",
-      "capB": 170.8
+      "capB": 170.7
     },
     {
       "ticker": "ETN",
       "name": "Eaton Corp. Plc",
-      "capB": 152.0
+      "capB": 152.8
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AAPL.png",
-            "chg": -2.16,
-            "price": 331.0,
+            "chg": -2.14,
+            "price": 331.08,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PLTR.png",
-            "chg": -1.46,
-            "price": 175.74,
+            "chg": -1.39,
+            "price": 175.85,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/VRTX.png",
             "logoBg": "dark",
-            "chg": -4.19,
-            "price": 529.96,
+            "chg": -4.2,
+            "price": 529.9,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -100,8 +100,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WMB.png",
-            "chg": 2.61,
-            "price": 73.05,
+            "chg": 2.09,
+            "price": 72.68,
             "reactDate": "2026-11-03",
             "baseDate": "2026-11-02"
           },
@@ -179,14 +179,13 @@
             "baseDate": "2026-10-29"
           },
           {
-            "ticker": "REGN",
-            "name": "Regeneron Pharmaceuticals, Inc.",
+            "ticker": "GD",
+            "name": "General Dynamics Corporation",
             "when": "before",
             "status": "final",
-            "logo": "data/earnings/logos/REGN.png",
-            "logoBg": "dark",
-            "chg": 13.33,
-            "price": 927.89,
+            "logo": "data/earnings/logos/GD.png",
+            "chg": 0.48,
+            "price": 372.59,
             "reactDate": "2026-10-30",
             "baseDate": "2026-10-29"
           }
@@ -769,9 +768,9 @@
     "TOST": "2026-11-03",
     "RVTY": "2026-11-03",
     "OVV": "2026-11-03",
-    "BALL": "2026-11-03",
     "LDOS": "2026-11-03",
     "TLN": "2026-11-03",
+    "BALL": "2026-11-03",
     "YUMC": "2026-11-03",
     "ULS": "2026-11-03",
     "ZBRA": "2026-11-03",
@@ -801,8 +800,8 @@
     "CVE": "2026-11-04",
     "EW": "2026-11-04",
     "VMRK": "2026-11-04",
-    "SLF": "2026-11-04",
     "MDLN": "2026-11-04",
+    "SLF": "2026-11-04",
     "RVMD": "2026-11-04",
     "COHR": "2026-11-04",
     "MLM": "2026-11-04",
@@ -811,8 +810,8 @@
     "EXPE": "2026-11-04",
     "NTR": "2026-11-04",
     "TS": "2026-11-04",
-    "ATO": "2026-11-04",
     "SN": "2026-11-04",
+    "ATO": "2026-11-04",
     "KHC": "2026-11-04",
     "CPAY": "2026-11-04",
     "ES": "2026-11-04",
@@ -824,9 +823,9 @@
     "PR": "2026-11-04",
     "RGLD": "2026-11-04",
     "CRCL": "2026-11-04",
-    "CDW": "2026-11-04",
     "ZBH": "2026-11-04",
     "ITT": "2026-11-04",
+    "CDW": "2026-11-04",
     "CW": "2026-11-04",
     "WES": "2026-11-04",
     "CF": "2026-11-04",
@@ -908,8 +907,8 @@
     "LAMR": "2026-11-05",
     "JHX": "2026-11-05",
     "HALO": "2026-11-05",
-    "SOLV": "2026-11-05",
     "CG": "2026-11-05",
+    "SOLV": "2026-11-05",
     "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
     "REG": "2026-11-05",
@@ -942,14 +941,14 @@
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
     "SGI": "2026-11-09",
-    "ASTS": "2026-11-09",
     "CNH": "2026-11-09",
+    "ASTS": "2026-11-09",
     "SONY": "2026-11-10",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
-    "ALC": "2026-11-10",
     "VOD": "2026-11-10",
+    "ALC": "2026-11-10",
     "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
@@ -957,7 +956,7 @@
     "VIV": "2026-11-10"
   },
   "_meta": {
-    "updatedAt": "03/11/2026 22:31",
+    "updatedAt": "03/11/2026 22:46",
     "source": "tradingview"
   }
 }
