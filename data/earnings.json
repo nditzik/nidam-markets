@@ -5,12 +5,12 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1228.9
+      "capB": 1229.3
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1226.4
+      "capB": 1228.1
     },
     {
       "ticker": "ARM",
@@ -20,7 +20,7 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 196.5
+      "capB": 196.9
     },
     {
       "ticker": "QCOM",
@@ -35,12 +35,12 @@
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 145.9
+      "capB": 146.2
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 120.9
+      "capB": 120.7
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": -0.09,
-            "price": 483.47,
+            "chg": -0.5,
+            "price": 481.49,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 3.83,
-            "price": 478.92,
+            "chg": 3.52,
+            "price": 477.5,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 5.9,
-            "price": 179.94,
+            "chg": 5.34,
+            "price": 178.99,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -761,12 +761,12 @@
     "HST": "2026-11-04",
     "WES": "2026-11-04",
     "PFGC": "2026-11-04",
-    "W": "2026-11-04",
     "CW": "2026-11-04",
-    "NWSA": "2026-11-04",
+    "W": "2026-11-04",
     "CF": "2026-11-04",
-    "NWS": "2026-11-04",
     "PAAS": "2026-11-04",
+    "NWS": "2026-11-04",
+    "NWSA": "2026-11-04",
     "CRL": "2026-11-04",
     "APA": "2026-11-04",
     "FICO": "2026-11-04",
@@ -779,8 +779,8 @@
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "ABNB": "2026-11-05",
     "SO": "2026-11-05",
     "CNQ": "2026-11-05",
@@ -821,8 +821,8 @@
     "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
     "GPN": "2026-11-05",
-    "TPR": "2026-11-05",
     "FWONK": "2026-11-05",
+    "TPR": "2026-11-05",
     "FWONA": "2026-11-05",
     "RL": "2026-11-05",
     "CIB": "2026-11-05",
@@ -843,8 +843,8 @@
     "HALO": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
-    "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
+    "REGCO": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
@@ -902,7 +902,7 @@
     "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 20:31",
+    "updatedAt": "04/11/2026 20:46",
     "source": "tradingview"
   }
 }
