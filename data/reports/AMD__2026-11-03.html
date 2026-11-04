@@ -1,0 +1,464 @@
+<title>AMD דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .wordmark{font-size:28px;font-weight:700;letter-spacing:-.01em;color:#fff;direction:ltr;display:inline-block;margin-bottom:20px;border-bottom:3px solid #4cc3ff;padding-bottom:4px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="wordmark">AMD</span>
+    <div class="eyebrow">Advanced Micro Devices · NASDAQ: AMD · תוצאות רבעון שלישי 2026</div>
+    <h1>מרכזי הנתונים כמעט הוכפלו, התחזית לרבעון הבא מזנקת 27%, ו-AMD צופה צמיחה של יותר מ-80% ב-2027. המניה קפצה כ-8% במסחר המאוחר</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-3 בנובמבר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת המשקיעים (Investing.com)</span>
+      <span>עודכן: 4.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>AMD מתכננת מעבדים ושבבי AI. היא המתחרה העיקרית של אנבידיה בשבבי בינה מלאכותית, ושל אינטל במעבדים</h2>
+  <p class="lead">AMD (Advanced Micro Devices) לא מייצרת שבבים בעצמה. היא מתכננת אותם, ו-TSMC מייצרת. בהנהגת המנכ"לית ליסה סו, החברה הפכה ממתחרה חלשה של אינטל לאחת החברות החשובות בתעשיית ה-AI.</p>
+  <p class="body" style="margin-top:14px">לחברה שלושה מגזרים. <strong>מרכזי נתונים</strong> ($8.5B, 64% מההכנסות): מעבדי שרתים <strong>EPYC</strong>, ומאיצי AI <strong>Instinct</strong> (MI450), שמתחרים במעבדים הגרפיים של אנבידיה. החידוש: <strong>Helios</strong>, ארון שרת שלם (rack) עם 72 מאיצים, כמו ה-NVL72 של אנבידיה. <strong>מחשבים ומשחקים</strong> ($3.7B): מעבדי Ryzen למחשבים, כרטיסי מסך Radeon, ושבבים לקונסולות Xbox ו-PlayStation. <strong>Embedded</strong> ($1.1B): שבבים לתעשייה, לרכב, לתקשורת ולביטחון (בעיקר מרכישת Xilinx).</p>
+  <p class="body">לקוחות ה-AI המרכזיים: Anthropic, ‏Meta, ‏Microsoft, ‏OpenAI ו-Oracle. עם OpenAI נחתם ב-2025 הסכם גדול, שבמסגרתו OpenAI מקבלת אופציות (warrants) לרכוש מניות AMD אם היא תקנה כמויות גדולות של שבבים.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>Nvidia</h3>
+      <p>השולטת בשוק מאיצי ה-AI, עם נתח של יותר מ-80% ותוכנת CUDA שכל המפתחים מכירים. AMD היא האלטרנטיבה העיקרית, וענקיות ה-AI רוצות שתי ספקיות כדי לא להיות תלויות באחת.</p>
+    </div>
+    <div class="col">
+      <h3>Intel ו-ARM</h3>
+      <p>במעבדי שרתים AMD לוקחת נתח מאינטל כבר שנים. מעבדי ARM (Graviton של אמזון, Axion של גוגל, Grace של אנבידיה) הם האיום החדש. במחשבים אישיים אינטל עדיין גדולה יותר.</p>
+    </div>
+    <div class="col">
+      <h3>שבבים מותאמים (ASIC)</h3>
+      <p>Google (TPU), Amazon (Trainium), Broadcom ו-Marvell בונים שבבי AI ייעודיים ללקוחות גדולים. גם OpenAI פיתחה שבב משלה, ובחרה במעבדי EPYC של AMD לנהל אותו.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון שיא, תחזית מזנקת, ותחזית ל-2027 שכפולה מהיעד ארוך הטווח של החברה</h2>
+  <p class="lead">ההכנסות הגיעו לשיא של $13.4B (+45%), מעל הצפי ($13.06B). הרווח המנוקה למניה, $2.09, עלה 74% ועבר את הצפי ($1.94). מרכזי הנתונים צמחו 97%, ל-$8.5B. לרבעון הרביעי AMD צופה $17B (+66%), כולל זינוק של כ-50% במרכזי הנתונים ברבעון אחד.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>הבשורה הגדולה היא 2027: צמיחה של יותר מ-80% בהכנסות, יותר מפי 2 מהיעד ארוך הטווח שהוצג לפני שנה. מכירות מעבדי השרתים צפויות להכפיל את עצמן, ומכירות ה-AI צפויות לצמוח מהר עוד יותר. מרכזי הנתונים יהיו יותר מ-80% מההכנסות. ליסה סו: "הביקוש גבוה מההיצע". זו הסיבה שהמניה, שירדה כ-29% מהשיא בשבועות שלפני הדוח, קפצה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>הרווח צומח מהר יותר מההכנסות, אבל התזרים החופשי צנח בגלל השקעה במלאי</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$13.4B</div><div class="l">הכנסות</div><div class="d up">+45% · הצפי: $13.06B</div></div>
+    <div class="kpi"><div class="v num">$8.5B</div><div class="l">מרכזי נתונים</div><div class="d up">+97% · 64% מההכנסות</div></div>
+    <div class="kpi"><div class="v num">$2.09</div><div class="l">רווח מנוקה למניה</div><div class="d up">+74% · הצפי: $1.94</div></div>
+    <div class="kpi"><div class="v num">29%</div><div class="l">רווחיות תפעולית (מנוקה)</div><div class="d up">+5 נק' בשנה</div></div>
+    <div class="kpi"><div class="v num">56%</div><div class="l">רווחיות גולמית (מנוקה)</div><div class="d up">+2 נק'</div></div>
+    <div class="kpi"><div class="v num">$554M</div><div class="l">תזרים חופשי</div><div class="d down">4% מההכנסות · לעומת $1.5B</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הרווח הרשמי (GAAP) היה $1.46 למניה. הפער הגדול נובע בעיקר מחיוב חשבונאי של $1.1B, ללא השפעה על המזומן, על האופציות שניתנו ל-OpenAI: ככל שמחיר המניה עולה, שווי האופציות עולה, וההפרש נרשם כהוצאה. ההנהלה הזהירה שהחיוב הזה "צפוי לגדול" ברבעונים הבאים. כשהתנאים יתקיימו, האופציות גם ידללו את בעלי המניות.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>מרכזי הנתונים הופכים מחצי מהעסק לשלושה רבעים ממנו, בתוך שנה וחצי</h2>
+  <p class="body">בגרף: ההכנסות בכל רבעון לפי מגזר, במיליארדי דולרים. העמודה האחרונה היא הערכה שלנו לרבעון הרביעי, לפי התחזית של ההנהלה למגזרים (מרכזי נתונים כ-+50%, מחשבים ומשחקים יותר מ-‏−20%, Embedded צמיחה דו-ספרתית).</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 380" role="img" aria-label="הכנסות לפי מגזר">
+<rect x="776" y="12" width="14" height="14" fill="var(--accent)"/><text x="768" y="24" font-size="13" fill="var(--fg)" text-anchor="start">מרכזי נתונים</text>
+<rect x="606" y="12" width="14" height="14" fill="#9aa5b8"/><text x="598" y="24" font-size="13" fill="var(--fg)" text-anchor="start">מחשבים ומשחקים</text>
+<rect x="436" y="12" width="14" height="14" fill="#e3a21a"/><text x="428" y="24" font-size="13" fill="var(--fg)" text-anchor="start">Embedded</text>
+<line x1="60" y1="320" x2="790" y2="320" stroke="var(--muted)"/>
+<rect x="110" y="259" width="100" height="61" fill="var(--accent)"/>
+<text x="160" y="294" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$4.3B</text>
+<rect x="110" y="202" width="100" height="57" fill="#9aa5b8"/>
+<text x="160" y="235" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$4.0B</text>
+<rect x="110" y="189" width="100" height="12" fill="#e3a21a"/>
+<text x="160" y="181" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$9.2B</text>
+<text x="160" y="342" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q3'25</text>
+<text x="160" y="362" font-size="12" fill="var(--muted)" text-anchor="middle">מרכזי נתונים: 47%</text>
+<rect x="285" y="225" width="100" height="95" fill="var(--accent)"/>
+<text x="335" y="278" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$6.7B</text>
+<rect x="285" y="171" width="100" height="54" fill="#9aa5b8"/>
+<text x="335" y="203" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.8B</text>
+<rect x="285" y="157" width="100" height="14" fill="#e3a21a"/>
+<text x="335" y="149" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$11.5B</text>
+<text x="335" y="342" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q2'26</text>
+<text x="335" y="362" font-size="12" fill="var(--muted)" text-anchor="middle">מרכזי נתונים: 58%</text>
+<rect x="460" y="199" width="100" height="121" fill="var(--accent)"/>
+<text x="510" y="265" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$8.5B</text>
+<rect x="460" y="147" width="100" height="53" fill="#9aa5b8"/>
+<text x="510" y="178" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.7B</text>
+<rect x="460" y="131" width="100" height="16" fill="#e3a21a"/>
+<text x="510" y="123" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$13.4B</text>
+<text x="510" y="342" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q3'26</text>
+<text x="510" y="362" font-size="12" fill="var(--muted)" text-anchor="middle">מרכזי נתונים: 64%</text>
+<rect x="635" y="139" width="100" height="181" fill="var(--accent)" fill-opacity="0.45" stroke="var(--accent)" stroke-dasharray="4 3"/>
+<text x="685" y="235" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$12.8B</text>
+<rect x="635" y="98" width="100" height="42" fill="#9aa5b8" fill-opacity="0.45" stroke="#9aa5b8" stroke-dasharray="4 3"/>
+<text x="685" y="123" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.0B</text>
+<rect x="635" y="80" width="100" height="18" fill="#e3a21a" fill-opacity="0.45" stroke="#e3a21a" stroke-dasharray="4 3"/>
+<text x="685" y="72" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">~$17B</text>
+<text x="685" y="342" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q4'26E</text>
+<text x="685" y="362" font-size="12" fill="var(--muted)" text-anchor="middle">מרכזי נתונים: 75%</text>
+</svg>
+    <figcaption>הכנסות לפי מגזר. Q4'26E היא הערכה לפי התחזית הכוללת (~$17B) ותחזית המגזרים של ההנהלה, ולא נתון רשמי. מקור: הודעת החברה ותמלול השיחה, 3.11.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>מעבדי שרתים: הפתעת סוכני ה-AI</h3>
+      <p>מכירות השרתים לענן ולארגונים יותר מהוכפלו. הסיבה החדשה: סוכני AI (agents) שרצים ברציפות וצורכים הרבה כוח מעבד. ליסה סו: "סוכנים אישיים וארגוניים הופכים לאפליקציית הקילר הבאה של המעבדים". הדור החדש, Venice, התחיל להימכר, עם "הביקוש החזק ביותר אי פעם לדור EPYC".</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>מאיצי AI: Helios יוצא לדרך</h3>
+      <p>ברבעון השלישי נשלחו לראשונה ארונות Helios עם MI455X ללקוחות. Anthropic, ‏Meta, ‏Microsoft, ‏OpenAI ו-Oracle כבר מריצים עליהם מודלים. ברבעון הרביעי עסקי ה-AI יעקפו לראשונה את עסקי המעבדים, ו"בהרבה". הדור הבא, MI500, נמצא בעבודה עם כמה מעבדות לפריסות של "כמה ג'יגה-וואט".</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>מה חלש: מחשבים ומשחקים</h3>
+      <p>מחשבים: +7% בשנה, אבל ‏−4% מהרבעון הקודם, כי מחירי הזיכרון מייקרים מחשבים ומורידים ביקוש. משחקים: ‏−40%, בגלל סוף מחזור הקונסולות. ברבעון הרביעי צפויה ירידה של יותר מ-20% במגזר, ו-AMD צופה ירידה דו-ספרתית בשוק המחשבים ב-2027.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · הכסף: מלאי, חוב ואופציות</div>
+  <h2>כדי לממן את הצמיחה AMD קונה מלאי, לוקחת חוב, ומשלמת ב-OpenAI במניות עתידיות</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>נתון</th><th>Q3 2026</th><th>שינוי</th><th>משמעות</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>מלאי</td><td class="n">$11.5B</td><td class="n">+$3B ברבעון</td><td>קנייה מראש של רכיבים לרמפה של 2027</td></tr>
+        <tr class="hl"><td>תזרים חופשי</td><td class="n">$554M</td><td class="n">‏−64% בשנה</td><td>המלאי והלקוחות "בלעו" את המזומן</td></tr>
+        <tr><td>השקעות הון</td><td class="n">$648M</td><td class="n">פי 2.5 בשנה</td><td>כולל קיבולת ייעודית למרכזי נתונים</td></tr>
+        <tr><td>חוב</td><td class="n">$7.1B</td><td class="n">+$3.9B</td><td>הנפקת אג"ח של $4.75B באוגוסט</td></tr>
+        <tr><td>מזומן והשקעות</td><td class="n">$15.8B</td><td class="n">+$2.7B</td><td>מאזן חזק</td></tr>
+        <tr><td>אופציות OpenAI</td><td class="n">חיוב של $1.1B</td><td>"צפוי לגדול"</td><td>ללא השפעה על המזומן, אבל דילול עתידי</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>רמפה כזו דורשת הרבה הון חוזר: לקנות זיכרון HBM, פרוסות סיליקון ואריזה מתקדמת לפני שהלקוח משלם. סמנכ"לית הכספים, ג'ין הו, אמרה שהחברה "תמשיך להשקיע במלאי ובקיבולת" גם ב-2027. כלומר, התזרים החופשי יישאר נמוך ביחס לרווחים לזמן מה. בנוסף, AMD "משקיעה באופן סלקטיבי" עם לקוחות כדי להבטיח מרכזי נתונים מראש, צעד שמזכיר את המימון שאנבידיה נותנת ללקוחותיה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>רבעון רביעי: +66%. 2027: יותר מ-80%. רווחיות תפעולית שתמשיך לעלות</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות Q4 2026</td><td class="n">~$17B (±3%)</td><td>+66% בשנה, +27% מהרבעון</td></tr>
+        <tr><td>מרכזי נתונים Q4</td><td class="n">~+50% מהרבעון</td><td>ה-AI יעקוף את המעבדים</td></tr>
+        <tr><td>מחשבים ומשחקים Q4</td><td class="n">ירידה של יותר מ-20%</td><td>מחירי זיכרון</td></tr>
+        <tr><td>רווחיות גולמית Q4</td><td class="n">~55%</td><td>ירידה קלה. מאיצי AI רווחיים פחות ממעבדים</td></tr>
+        <tr><td>הוצאות תפעול Q4</td><td class="n">~$3.75B</td><td>+5% בלבד מהרבעון</td></tr>
+        <tr class="hl"><td>הכנסות 2027</td><td class="n">יותר מ-+80%</td><td>פי 2 מהיעד ארוך הטווח</td></tr>
+        <tr><td>שרתים 2027</td><td class="n">~פי 2</td><td>הועלה מ-+70%</td></tr>
+        <tr><td>AI 2027</td><td>"הרבה יותר מפי 2"</td><td>מהר יותר מהתחזית לפני 90 יום</td></tr>
+        <tr><td>הוצאות תפעול 2027</td><td>פחות מחצי מקצב צמיחת ההכנסות</td><td>"הרחבה משמעותית מאוד" של הרווחיות</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="tl">
+    <li><div class="when">סוף 2026</div><div class="what">סגירת רכישות Taalas (שבבי הסקה) ו-World Labs (פיי-פיי לי מצטרפת כמדענית ראשית)</div></li>
+    <li><div class="when">רבעון רביעי 2026</div><div class="what">מערכות OEM ראשונות של Venice ו-Helion; Helios גם אצל HPE, ‏Dell, ‏Lenovo ו-Supermicro</div></li>
+    <li><div class="when">תחילת 2027</div><div class="what">ענקיות הענן משיקות שרתי Venice ללקוחות</div></li>
+    <li><div class="when">מחצית שנייה 2027</div><div class="what">מחשב-העל LUMI-AI באירופה (MI430X)</div></li>
+    <li><div class="when">2028 ואילך</div><div class="what">MI500 ו-MI600, פריסות של כמה ג'יגה-וואט עם מעבדות AI</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: הביקוש עולה על ההיצע, מעבדים חוזרים לאופנה, הרווחיות תעלה, ו-2027 תהיה שנת פריצה</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"הביקוש גבוה מההיצע"</h3>
+      <p>ליסה סו: "אבטחנו את הפרוסות, המצעים, האריזה המתקדמת והזיכרון" לצמיחה של 2027, ו"יש הזדמנות טובה" להשיג עוד. גם תחזית ההכפלה בשרתים "לא עונה על כל הביקוש".</p>
+    </div>
+    <div class="col">
+      <h3>"הסוכנים הם אפליקציית הקילר של המעבדים"</h3>
+      <p>שוק מעבדי השרתים צפוי לצמוח ב-50% בשנה בממוצע, ל-$220B עד 2030. שלושה מנועים: ענן וארגונים רגילים, סוכני AI, ומעבדים שמנהלים מאיצים (head nodes). AMD מעריכה שהיא לוקחת נתח בכל שלושתם.</p>
+    </div>
+    <div class="col">
+      <h3>"עלויות הזיכרון יחולקו עם הלקוחות"</h3>
+      <p>מחירי HBM ורכיבים אחרים עולים. ליסה סו: "אנחנו עובדים עם הלקוחות כדי שהעלויות יחולקו". המדד שחשוב ללקוחות הוא עלות לטוקן, ו-AMD טוענת שהיא עדיין זולה יותר.</p>
+    </div>
+    <div class="col">
+      <h3>"מינוף תפעולי משמעותי"</h3>
+      <p>ג'ין הו: ההוצאות ב-2027 יצמחו בפחות מחצי מקצב ההכנסות. כלומר, אם ההכנסות יצמחו 80%, ההוצאות יצמחו פחות מ-40%, והרווח התפעולי יקפוץ.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>AMD לא נתנה טווח לרווחיות הגולמית ב-2027. ג'ין הו הסבירה ש"אין לי את הנראות", כי הכול תלוי בתמהיל בין AI למעבדים. בנוסף, ההנהלה סירבה לפרט מתי האופציות של OpenAI ידללו את המניה ("נספק הנחיה ב-2027"). שני הנתונים האלה, רווחיות ודילול, הם בדיוק מה שקובע כמה מהצמיחה תגיע לבעלי המניות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים לא שאלו אם יש ביקוש. הם שאלו אם יש מספיק רכיבים, ומי יממן את מרכזי הנתונים</h2>
+  <p class="body">שמונה אנליסטים שאלו על היצע, על מימון הלקוחות, על תחרות מול שבבים מותאמים, על עלויות HBM, על רווחיות, על אופציות ועל המחשבים האישיים. הטון היה חיובי מאוד, אבל השאלות חשפו את החששות של השוק.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>היצע: Barclays, ‏Morgan Stanley ו-BofA שאלו אם יש מספיק פרוסות, אריזה וזיכרון לצמיחה של 80%. התשובה החוזרת: "הביקוש גבוה מההיצע", ואנחנו עובדים להשיג עוד.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>+80% ב-2027, יותר מפי 2 מהיעד ארוך הטווח שהוצג ביום המשקיעים בנובמבר 2025 (צמיחה של יותר מ-35% בשנה). חברה בגודל של כ-$50B הכנסות שנתיות שצופה כמעט הכפלה היא אירוע נדיר.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>מחשבים אישיים. ליסה סו לא ניסתה לייפות: השוק ירד, הצרכנים רגישים למחיר, ו-2027 תהיה שנה של ירידה דו-ספרתית. AMD תתמקד בארגונים ובמחשבים יקרים, ותעביר את קווי הייצור למרכזי נתונים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>מימון הלקוחות. BofA שאל אם ללקוחות יש כסף, חשמל ומבנים לכ-3 ג'יגה-וואט של שבבי AMD, ואם AMD תיתן "ערבויות לערך שייר" כמו המתחרות. התשובה: "אנחנו משקיעים באופן סלקטיבי ואסטרטגי". בלי מספרים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"מהנדס אחד השתמש ב-Claude כדי להפעיל את המודל האחרון שלהם על ארונות MI355X בסוף שבוע אחד" (ליסה סו, על Anthropic). אם מודלי AI יודעים להתאים את עצמם לשבבי AMD, היתרון של תוכנת CUDA של אנבידיה נשחק.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>OpenAI בחרה במעבדי EPYC לנהל את השבב המותאם שלה. כלומר, גם כשלקוח עובר משבבי AMD לשבב משלו, AMD ממשיכה להרוויח מהמעבד שמנהל אותו. מעבדי השרת הם "גידור" של AMD נגד המעבר לשבבים מותאמים.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>AMD עברה מ"אלטרנטיבה זולה לאנבידיה" לספקית מרכזית של תשתית AI, עם שני מנועים: מאיצים ומעבדים. הסיכון עבר מ"האם יש ביקוש" ל"האם אפשר לספק אותו", ול"כמה ממנו יגיע לבעלי המניות" אחרי מלאי, חוב ואופציות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · איך השוק הגיב</div>
+  <h2>עלייה של כ-12% מהסגירה של 2.11 ועד המסחר המאוחר, אחרי ירידה של כ-29% מהשיא</h2>
+  <p class="body">לפני יום הדוח (2.11) המניה סגרה ב-$466.84. ב-3.11 היא עלתה 3.65% במסחר הרגיל, ל-$483.90, ואחרי הדוח קפצה עוד 7.5% במסחר המאוחר, ל-$520.40. במסחר המוקדם של 4.11 היא נסחרה סביב $507–$519 (+5% עד +7%). שווי השוק: כ-$760–$820 מיליארד. טווח 52 השבועות: $188–$659. בשבועות שלפני הדוח המניה ירדה כ-29% מהשיא, בתוך מכירות רחבות במניות שבבים.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>בית השקעות</th><th>המלצה</th><th>מחיר יעד</th></tr></thead>
+      <tbody>
+        <tr><td>Baird</td><td>תשואת יתר</td><td class="n">$1,250 (הגבוה בשוק)</td></tr>
+        <tr><td>Stifel</td><td>קנייה</td><td class="n">$700 ← $725</td></tr>
+        <tr><td>KeyBanc</td><td>משקל יתר</td><td class="n">$725</td></tr>
+        <tr><td>Goldman Sachs</td><td>קנייה</td><td class="n">$700</td></tr>
+        <tr><td>Bernstein / Jefferies</td><td>תשואת יתר / קנייה</td><td class="n">$650</td></tr>
+        <tr><td>BofA</td><td>קנייה</td><td class="n">$720 ← $650 (הורדה בגלל ירידת מכפילים בענף)</td></tr>
+        <tr><td>Truist</td><td>קנייה</td><td class="n">$594 ← $605</td></tr>
+        <tr><td>Morgan Stanley</td><td>—</td><td class="n">$510 ← $550</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>בניגוד ל-Palantir ול-Apple השבוע, כאן השוק תגמל דוח טוב. הסיבה: המניה כבר ירדה כ-29% מהשיא, והתחזית ל-2027 הפתיעה בגודלה. עם זאת, המניה תנודתית מאוד (בטא של כ-2.5), וכל ידיעה על מחסור ברכיבים או על האטה בהשקעות AI תזיז אותה בחדות לשני הכיוונים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: התלות בהוצאות AI של כמה לקוחות ענק, וביכולת שלהם לממן אותן</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>ריכוזיות לקוחות</h3><p>חלק גדול מהצמיחה תלוי ב-5–6 לקוחות (OpenAI, ‏Meta, ‏Microsoft, ‏Oracle, ‏Anthropic). קיצוץ אצל אחד מהם, או קשיי מימון, ייפגעו ישירות בתחזית.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>היצע ורכיבים</h3><p>"הביקוש גבוה מההיצע". מחסור ב-HBM, ב-DDR5 או באריזה מתקדמת (TSMC) עלול לעכב את הרמפה. מחירי הזיכרון גם מכבידים על הרווחיות.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תחרות: Nvidia ו-ASIC</h3><p>אנבידיה עדיין שולטת ומממנת לקוחות. גוגל, אמזון וברודקום בונים שבבים מותאמים. AMD צריכה להוכיח שהיא זולה יותר לכל טוקן.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>אופציות OpenAI ודילול</h3><p>חיוב חשבונאי שהולך וגדל, ודילול עתידי כשהתנאים יתקיימו. ההנהלה עדיין לא כימתה את הדילול.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>תזרים ומלאי</h3><p>תזרים חופשי של 4% בלבד ברבעון. מלאי של $11.5B, וחוב שגדל. אם הביקוש יאט, מלאי כזה עלול להפוך לבעיה.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>מחשבים ומשחקים</h3><p>ירידה של יותר מ-20% ברבעון הבא, ושנה חלשה ב-2027. המגזר קטן ביחס לעסק, אבל יכאב.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>מאיצי AI</strong></td><td>Helios יצא לדרך, וחמש מעבדות וענקיות ענן כבר מריצות עליו. ברבעון הרביעי ה-AI יעקוף את המעבדים. MI500 בעבודה לפריסות של כמה ג'יגה-וואט.</td><td>Nvidia עדיין דומיננטית. הרמפה תלויה בכמה לקוחות ובמימון שלהם.</td></tr>
+        <tr><td><strong>מעבדי שרתים</strong></td><td>פי 2 ב-2027. סוכני AI יוצרים ביקוש חדש. Venice עם "הביקוש החזק ביותר". שוק של $220B עד 2030.</td><td>מעבדי ARM של הענקיות. היצע מוגבל. ייתכן שהביקוש לסוכנים מוגזם.</td></tr>
+        <tr><td><strong>רווחיות</strong></td><td>הוצאות שצומחות בפחות מחצי מההכנסות. רווחיות תפעולית שעולה מ-24% ל-29%, ותמשיך לעלות.</td><td>מאיצי AI מורידים את הרווחיות הגולמית. אין תחזית רווחיות ל-2027. עלויות HBM.</td></tr>
+        <tr><td><strong>תוכנה</strong></td><td>ROCm 10, ומודלי AI שמתאימים את עצמם לשבבי AMD. היתרון של CUDA נשחק.</td><td>CUDA עדיין סטנדרט. מפתחים רבים לא יעברו בקלות.</td></tr>
+        <tr><td><strong>הון</strong></td><td>$15.8B מזומן. רכישות אסטרטגיות (Taalas, ‏World Labs). השקעה עם ספקים ולקוחות.</td><td>תזרים חופשי של 4%, חוב שהוכפל, מלאי עולה, ודילול מאופציות.</td></tr>
+        <tr><td><strong>Embedded</strong></td><td>+29%, רבעון רביעי של האצה. זכיות תכנון של יותר מ-$18B. רווחיות של 41%.</td><td>מגזר קטן (8%). עונתיות ברבעון הראשון.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>ירידה של כ-29% מהשיא לפני הדוח. יעדי מחיר של $550–$1,250. צמיחה של 80% מצדיקה מכפיל גבוה.</td><td>בטא של כ-2.5. שווי של כ-$800B מגלם הצלחה. כל אכזבה תעלה ביוקר.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהמניה זזה עם כל סקטור השבבים וה-AI, ושהיא כבר קפצה על הדוח. משקיע לטווח ארוך צריך לעקוב אחרי שלושה דברים: ביצוע הרבעון הרביעי (+50% במרכזי נתונים), התחזית הרשמית ל-2027 בפברואר, והתזרים החופשי. אם התזרים יחזור לעלות, זה סימן שהרמפה "בשלה".</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>EPYC</dt><dd>מעבדי השרתים של AMD. Turin הוא הדור הנוכחי, Venice הדור החדש.</dd>
+    <dt>Instinct (MI450 / MI455X)</dt><dd>מאיצי ה-AI של AMD, שמתחרים במעבדים הגרפיים של אנבידיה (Blackwell ו-Rubin).</dd>
+    <dt>Helios</dt><dd>ארון שרת שלם (rack) של AMD עם 72 מאיצים, מעבדים ורשת. נמכר כמוצר מוכן.</dd>
+    <dt>Helion</dt><dd>תבנית לארון של מעבדי Venice בלבד, או בשילוב מאיצים, לסוכני AI.</dd>
+    <dt>סוכן AI (Agent)</dt><dd>תוכנה מבוססת AI שמבצעת משימות לבד וברציפות. צורכת הרבה כוח מעבד.</dd>
+    <dt>HBM</dt><dd>זיכרון מהיר מאוד שיושב ליד מאיץ ה-AI. יקר ובמחסור.</dd>
+    <dt>ASIC</dt><dd>שבב שתוכנן במיוחד ללקוח אחד ולמשימה אחת, כמו ה-TPU של גוגל.</dd>
+    <dt>Warrants (אופציות)</dt><dd>זכות לרכוש מניות במחיר קבוע בעתיד. AMD נתנה כאלה ל-OpenAI בתמורה להתחייבות לרכישות.</dd>
+    <dt>ROCm</dt><dd>התוכנה של AMD לפיתוח AI, המקבילה ל-CUDA של אנבידיה.</dd>
+    <dt>TCO / עלות לטוקן</dt><dd>העלות הכוללת של הפעלת מודל AI, כולל חומרה, חשמל ותחזוקה, לכל יחידת פלט.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> AMD — הודעה לעיתונות על תוצאות Q3 2026 (3.11.2026); תמלול שיחת המשקיעים וסיכום התגובה בשוק (Investing.com, 3.11.2026); יעדי מחיר ותגובת השוק: Finbold, Tradingpedia (4.11.2026). חלוקת התחזית לרבעון הרביעי לפי מגזר היא הערכה שלנו לפי הנחיות ההנהלה. היעד ארוך הטווח (יותר מ-35% בשנה) מבוסס על יום המשקיעים של AMD בנובמבר 2025. לא נמצא לוגו בקבצים שצורפו, ולכן שם החברה מוצג כטקסט.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
