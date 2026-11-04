@@ -5,12 +5,12 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1232.1
+      "capB": 1233.3
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1230.8
+      "capB": 1232.2
     },
     {
       "ticker": "ARM",
@@ -20,7 +20,7 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 197.4
+      "capB": 198.0
     },
     {
       "ticker": "NVO",
@@ -30,17 +30,17 @@
     {
       "ticker": "QCOM",
       "name": "QUALCOMM Incorporated",
-      "capB": 177.2
+      "capB": 176.3
     },
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 145.5
+      "capB": 145.2
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 121.1
+      "capB": 120.9
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": -0.53,
-            "price": 481.32,
+            "chg": -0.75,
+            "price": 480.27,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 3.47,
-            "price": 477.28,
+            "chg": 3.35,
+            "price": 476.7,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 5.93,
-            "price": 179.99,
+            "chg": 5.52,
+            "price": 179.29,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -179,15 +179,15 @@
             "baseDate": "2026-11-02"
           },
           {
-            "ticker": "IDXX",
-            "name": "IDEXX Laboratories, Inc.",
-            "when": "before",
+            "ticker": "O",
+            "name": "Realty Income Corporation",
+            "when": "after",
             "status": "final",
-            "logo": "data/earnings/logos/IDXX.png",
-            "chg": 21.85,
-            "price": 671.64,
-            "reactDate": "2026-11-02",
-            "baseDate": "2026-10-30"
+            "logo": "data/earnings/logos/O.png",
+            "chg": -0.14,
+            "price": 57.5,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           }
         ]
       }
@@ -338,16 +338,16 @@
           "logo": "data/earnings/logos/WMB.png"
         },
         {
-          "ticker": "IDXX",
-          "name": "IDEXX Laboratories, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/IDXX.png"
-        },
-        {
           "ticker": "O",
           "name": "Realty Income Corporation",
           "when": "after",
           "logo": "data/earnings/logos/O.png"
+        },
+        {
+          "ticker": "IDXX",
+          "name": "IDEXX Laboratories, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/IDXX.png"
         },
         {
           "ticker": "LITE",
@@ -801,8 +801,8 @@
     "BDX": "2026-11-05",
     "NTRA": "2026-11-05",
     "SRE": "2026-11-05",
-    "DVN": "2026-11-05",
     "ROK": "2026-11-05",
+    "DVN": "2026-11-05",
     "TEAM": "2026-11-05",
     "AU": "2026-11-05",
     "ED": "2026-11-05",
@@ -815,15 +815,15 @@
     "AXON": "2026-11-05",
     "GMAB": "2026-11-05",
     "AEE": "2026-11-05",
-    "PBA": "2026-11-05",
     "DTE": "2026-11-05",
+    "PBA": "2026-11-05",
     "DTK": "2026-11-05",
     "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
     "GPN": "2026-11-05",
     "TPR": "2026-11-05",
-    "FWONK": "2026-11-05",
     "FWONA": "2026-11-05",
+    "FWONK": "2026-11-05",
     "RL": "2026-11-05",
     "CIB": "2026-11-05",
     "STE": "2026-11-05",
@@ -903,7 +903,7 @@
     "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 21:31",
+    "updatedAt": "04/11/2026 21:46",
     "source": "tradingview"
   }
 }
