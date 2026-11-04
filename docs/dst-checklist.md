@@ -18,7 +18,7 @@
 | רוטינה | trigger | cron קיץ | cron חורף | שעון ישראל (לא משתנה) |
 |---|---|---|---|---|
 | nidam-daily-market-analysis | trig_01QxCeHkMGrGcXk4Uhk4mCBv | `0 3-8 * * 1-6` | `0 4-9 * * 1-6` | 06:00–11:00, ב'–ש' |
-| nidam-daily-market-analysis-retry | trig_01W8FY5Nu76pEBUvBnAePBNr | `30 3-9 * * 1-6` | `30 4-10 * * 1-6` | 06:30–12:30, ב'–ש' |
+| nidam-daily-market-analysis-retry | trig_01W8FY5Nu76pEBUvBnAePBNr | — | — | ✅ **מ-4.11.2026 `CRON_TZ=Asia/Jerusalem 30 6-22 * * 1-6`** — 06:30–22:30 שעון ישראל, ב'–ש'; לא זזה במעבר, אין מה לשנות |
 | nidam-weekly-narrative | trig_016VP2ucQCPd2y4e2jbkSUyT | `0 4-11 * * 6,0,1` | `0 5-12 * * 6,0,1` | 07:00–14:00, שבת/א'/ב' |
 | nidam-preview-sun-mon | trig_01Ktgp3bjzo8rhp2eNNbuwvR | `45 4,11 * * 0,1` | `45 5,12 * * 0,1` ✅ 25.10.2026 | 07:45 + 14:45, א'/ב' — **חובה**: הצפי נכתב רק אחרי 14:00 |
 | nidam-rotation-weekly | trig_01PBFS69zLJY5iv6rBgkxz6p | `0 6 * * 6` | `0 7 * * 6` | 09:00, שבת (נוצרה ב-UI 10.10.2026 — ה-UI מאפשר שעה אחת; גרוק מעלה ~06:00) |
