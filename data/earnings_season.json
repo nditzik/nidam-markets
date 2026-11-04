@@ -179,50 +179,50 @@
   }
  ],
  "total": 460,
- "reported": 355,
+ "reported": 368,
  "members": 504,
  "board": {
-  "reported": 355,
-  "epsN": 353,
-  "epsBeat": 295,
+  "reported": 368,
+  "epsN": 366,
+  "epsBeat": 308,
   "epsBeatPct": 84,
-  "revN": 354,
-  "revBeat": 257,
+  "revN": 367,
+  "revBeat": 268,
   "revBeatPct": 73,
-  "reactBeat": 0.54,
-  "reactBeatN": 264,
-  "reactMiss": -1.67,
-  "reactMissN": 55,
+  "reactBeat": 0.69,
+  "reactBeatN": 292,
+  "reactMiss": -1.54,
+  "reactMissN": 58,
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 80,
-    "beat": 58
+    "n": 83,
+    "beat": 61
    },
    {
     "name": "תעשייה",
-    "n": 67,
-    "beat": 59
+    "n": 70,
+    "beat": 62
    },
    {
     "name": "טכנולוגיה",
-    "n": 65,
-    "beat": 58
+    "n": 66,
+    "beat": 59
    },
    {
     "name": "בריאות",
-    "n": 39,
-    "beat": 37
+    "n": 40,
+    "beat": 38
    },
    {
     "name": "צריכה מחזורית",
-    "n": 33,
-    "beat": 24
+    "n": 36,
+    "beat": 27
    },
    {
     "name": "חומרים",
-    "n": 22,
-    "beat": 15
+    "n": 23,
+    "beat": 16
    },
    {
     "name": "תשתיות",
@@ -257,6 +257,11 @@
     "eps": -2.2
    },
    {
+    "sym": "FIS",
+    "react": -23.67,
+    "eps": 0.6
+   },
+   {
     "sym": "IDXX",
     "react": 21.85,
     "eps": 7.6
@@ -270,16 +275,11 @@
     "sym": "FTNT",
     "react": -20.09,
     "eps": 5.8
-   },
-   {
-    "sym": "GEN",
-    "react": 15.81,
-    "eps": 3.0
    }
   ]
  },
  "_meta": {
-  "updatedAt": "04/11/2026 23:16",
+  "updatedAt": "04/11/2026 23:32",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
