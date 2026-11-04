@@ -1,21 +1,21 @@
 {
   "today": "2026-11-04",
-  "todayCount": 69,
+  "todayCount": 70,
   "todayBig": [
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1193.3
+      "capB": 1192.9
     },
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1192.8
+      "capB": 1192.9
     },
     {
       "ticker": "ARM",
       "name": "ARM Holdings PLC Sponsored ADR",
-      "capB": 209.4
+      "capB": 215.5
     },
     {
       "ticker": "MCD",
@@ -256,7 +256,7 @@
       "logoBg": "dark"
     }
   ],
-  "more": 57,
+  "more": 58,
   "upcoming": [
     {
       "date": "2026-11-05",
@@ -268,8 +268,8 @@
         "COP",
         "PH",
         "CNQ",
-        "SOJD",
-        "SOJE"
+        "SO",
+        "SOJD"
       ]
     },
     {
@@ -456,7 +456,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 69,
+      "total": 70,
       "companies": [
         {
           "ticker": "BRK.A",
@@ -564,6 +564,12 @@
           "logo": "data/earnings/logos/CNQ.png"
         },
         {
+          "ticker": "SO",
+          "name": "Southern Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SO.png"
+        },
+        {
           "ticker": "SOJD",
           "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
           "when": "before",
@@ -574,12 +580,6 @@
           "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
           "when": "before",
           "logo": "data/earnings/logos/SOJE.png"
-        },
-        {
-          "ticker": "SO",
-          "name": "Southern Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SO.png"
         },
         {
           "ticker": "ABNB",
@@ -669,15 +669,15 @@
           "logo": "data/earnings/logos/BIP.png"
         },
         {
-          "ticker": "CHTRP",
-          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-          "when": "before"
-        },
-        {
           "ticker": "CHTR",
           "name": "Charter Communications, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/CHTR.png"
+        },
+        {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
         },
         {
           "ticker": "PAA",
@@ -728,9 +728,9 @@
     "EXPE": "2026-11-04",
     "NTR": "2026-11-04",
     "UI": "2026-11-04",
-    "TS": "2026-11-04",
     "SN": "2026-11-04",
     "ATO": "2026-11-04",
+    "TS": "2026-11-04",
     "KHC": "2026-11-04",
     "CPAY": "2026-11-04",
     "ES": "2026-11-04",
@@ -764,13 +764,14 @@
     "MKSI": "2026-11-04",
     "CDE": "2026-11-04",
     "COKE": "2026-11-04",
+    "SITM": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
-    "SOJD": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SO": "2026-11-05",
+    "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
     "NET": "2026-11-05",
@@ -782,6 +783,7 @@
     "APD": "2026-11-05",
     "CMI": "2026-11-05",
     "TRP": "2026-11-05",
+    "KMB": "2026-11-05",
     "TRGP": "2026-11-05",
     "CAH": "2026-11-05",
     "NTRA": "2026-11-05",
@@ -793,10 +795,9 @@
     "TEAM": "2026-11-05",
     "ED": "2026-11-05",
     "MCHP": "2026-11-05",
-    "LYV": "2026-11-05",
     "MCHPP": "2026-11-05",
+    "LYV": "2026-11-05",
     "AU": "2026-11-05",
-    "KMB": "2026-11-05",
     "IRM": "2026-11-05",
     "ZTS": "2026-11-05",
     "MTD": "2026-11-05",
@@ -809,8 +810,8 @@
     "GPN": "2026-11-05",
     "VRSK": "2026-11-05",
     "AFRM": "2026-11-05",
-    "TPR": "2026-11-05",
     "CIB": "2026-11-05",
+    "TPR": "2026-11-05",
     "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
     "GH": "2026-11-05",
@@ -823,15 +824,15 @@
     "MTSI": "2026-11-05",
     "U": "2026-11-05",
     "RGA": "2026-11-05",
-    "SBS": "2026-11-05",
     "LAMR": "2026-11-05",
     "JHX": "2026-11-05",
+    "SBS": "2026-11-05",
     "HALO": "2026-11-05",
     "CG": "2026-11-05",
     "SOLV": "2026-11-05",
+    "REG": "2026-11-05",
     "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
-    "REG": "2026-11-05",
     "CPT": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
@@ -841,8 +842,8 @@
     "ONC": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTRP": "2026-11-06",
     "CHTR": "2026-11-06",
+    "CHTRP": "2026-11-06",
     "PAA": "2026-11-06",
     "BEN": "2026-11-06",
     "EMA": "2026-11-06",
@@ -875,6 +876,7 @@
     "CRWV": "2026-11-10",
     "BEKE": "2026-11-10",
     "VIV": "2026-11-10",
+    "EMBJ": "2026-11-10",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
     "FNV": "2026-11-11",
@@ -882,7 +884,7 @@
     "ASND": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 11:31",
+    "updatedAt": "04/11/2026 12:01",
     "source": "tradingview"
   }
 }
