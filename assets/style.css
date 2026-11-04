@@ -2556,3 +2556,20 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .bd-hd:has(.np-daymeta2:not(:empty)) { padding-bottom: 0; }
 }
 @media (max-width: 700px) { .np-daymeta2 { display: none; } .bd-sesswrap { grid-template-rows: auto; } }
+
+/* np179 (4.11.2026) — פס המבזק בעברית: משפט "why", נתוני מאקרו מתורגמים, מקורות באנגלית מקופלים */
+.fl-why { color: var(--text-soft); }
+.fl-mac { display: block; }
+.fl-mac .num { font-family: var(--font-mono, inherit); }
+.fl-vd { font-weight: 700; color: var(--text-soft); }
+.fl-vd.up { color: var(--up); }
+.fl-vd.down { color: var(--down); }
+.fl-exp { display: block; font-size: .74rem; color: var(--text-3); margin-top: 1px; }
+.fl-en { font-size: .76rem; color: var(--text-3); margin-top: 2px; }
+.fl-en summary { cursor: pointer; color: var(--accent); font-weight: 600; list-style: none; }
+.fl-en summary::-webkit-details-marker { display: none; }
+.fl-en summary::before { content: "⌄ "; }
+.fl-en[open] summary::before { content: "⌃ "; }
+.fl-en .fl-ev { display: block; text-align: left; color: var(--text-3); margin-top: 3px; text-decoration: none; }
+.fl-why2 { display: block; margin-bottom: 4px; }
+.fl-detail[hidden] { display: none; }   /* np179: display:flex דרס את hidden — הפירוט היה פתוח תמיד */

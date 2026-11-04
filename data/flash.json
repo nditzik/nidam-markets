@@ -14,28 +14,11 @@
     "econ": [],
     "pulse": [
       {
-        "text": "‼ BREAKING: US ISM SERVICES PMI ACTUAL 54.5 (FORECAST 54.8, PREVIOUS 54.9) $MACRO",
-        "source": "FinancialJuice",
-        "time": "17:00",
-        "link": "https://t.me/FinancialJuice/144766"
-      },
-      {
-        "text": "US ISM SERVICES EMPLOYMENT ACTUAL 51.4 (FORECAST 50, PREVIOUS 50.1) $MACRO",
-        "source": "FinancialJuice",
-        "time": "17:00",
-        "link": "https://t.me/FinancialJuice/144765"
-      },
-      {
-        "text": "US ISM SERVICES PRICES PAID ACTUAL 73 (FORECAST 74.6, PREVIOUS 74.0) $MACRO",
-        "source": "FinancialJuice",
-        "time": "17:00",
-        "link": "https://t.me/FinancialJuice/144764"
-      },
-      {
         "text": "BREAKING: US markets post massive gains across the board in their initial reaction to the US Midterm Election results: 1. S&P 500: +1.7% 2. Dow Jones: +2.4% 3. Nasdaq…",
         "source": "@KobeissiLetter",
         "time": "16:53",
-        "link": "https://t.me/thekobeissiletter/8513"
+        "link": "https://t.me/thekobeissiletter/8513",
+        "lang": "en"
       }
     ],
     "news": [
@@ -57,10 +40,68 @@
         "time": "16:59",
         "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1PakppelN6NzhTSlNfa1RNSnBoTFBpRzVWN1pzN0FrSHJ0Mm5PY2Jwb0pzajMxWmkxNlI5MjlIY085YlFGbGFQWE43bnNuMVBGcnkxLUNQYlh4S3pGMHhfLVpSYjh6Nkt4WjBicnJ6TQ?oc=5"
       }
+    ],
+    "macro": [
+      {
+        "he": "מדד מנהלי הרכש בשירותים (ISM)",
+        "explain": "סקר חודשי בחברות שירותים, כשני שלישים מהכלכלה האמריקאית; מעל 50 = צמיחה",
+        "kind": "growth",
+        "fam": "ism_s",
+        "us": true,
+        "country": "",
+        "actual": "54.5",
+        "forecast": "54.8",
+        "previous": "54.9",
+        "verdict": "חלש מהצפי",
+        "tone": -1,
+        "known": true,
+        "src": "US ISM SERVICES PMI",
+        "time": "17:00",
+        "source": "FinancialJuice"
+      },
+      {
+        "he": "רכיב התעסוקה במדד השירותים (ISM)",
+        "explain": "מעל 50 = החברות מגייסות עובדים",
+        "kind": "growth",
+        "fam": "ism_s",
+        "us": true,
+        "country": "",
+        "actual": "51.4",
+        "forecast": "50",
+        "previous": "50.1",
+        "verdict": "חזק מהצפי",
+        "tone": 1,
+        "known": true,
+        "src": "US ISM SERVICES EMPLOYMENT",
+        "time": "17:00",
+        "source": "FinancialJuice"
+      },
+      {
+        "he": "רכיב המחירים במדד השירותים (ISM)",
+        "explain": "כמה החברות משלמות על תשומות — סימן מוקדם לאינפלציה",
+        "kind": "infl",
+        "fam": "ism_s",
+        "us": true,
+        "country": "",
+        "actual": "73",
+        "forecast": "74.6",
+        "previous": "74.0",
+        "verdict": "נמוך מהצפי, פחות לחץ אינפלציוני",
+        "tone": 1,
+        "known": true,
+        "src": "US ISM SERVICES PRICES PAID",
+        "time": "17:00",
+        "source": "FinancialJuice"
+      }
+    ],
+    "topics": [
+      "הבחירות בארה\"ב",
+      "אג\"ח ותשואות"
     ]
   },
   "_meta": {
-    "updatedAt": "04/11/2026 17:02",
+    "updatedAt": "04/11/2026 19:17",
     "source": "detect_flash"
-  }
+  },
+  "why": "באותן דקות פורסם מדד מנהלי הרכש בשירותים (ISM): 54.5 מול צפי 54.8 (חלש מהצפי); רכיב המחירים נמוך מהצפי, פחות לחץ אינפלציוני"
 }

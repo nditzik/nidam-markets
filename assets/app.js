@@ -698,7 +698,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np178";
+  var TA_VER = "np179";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1194,6 +1194,45 @@
   var PULSE_X = null;
   /* פס מבזק שוק — תנועה חדה תוך-יומית (data/flash.json), מוצג עד 3 שעות מהאירוע */
   var FLASH_TTL_MS = 3 * 60 * 60 * 1000;
+  /* np179 (4.11.2026, איציק: "ההתראה באנגלית ללא הסבר"): detect_flash כותב why (משפט בעברית),
+     evidence.macro (נתוני מאקרו מתורגמים: he/actual/forecast/verdict/explain/tone/us) ו-lang לכל פריט בזק.
+     כותרות באנגלית יורדות לשורה מקופלת "מקורות באנגלית". flash.json ישן (בלי macro) — כמו קודם. */
+  function flashParts(d) {
+    var ev = d.evidence || {}, bits = [], en = [];
+    var tone = function (t) { return t > 0 ? " up" : t < 0 ? " down" : ""; };
+    (ev.econ || []).forEach(function (e) {
+      bits.push('<span class="fl-ev">📊 <b>' + esc(e.he) + "</b>: בפועל " + '<b class="num" dir="ltr">' + esc(e.actual) + "</b> מול צפי " +
+        '<span class="num" dir="ltr">' + esc(e.forecast) + "</span> (" + esc(e.ilTime) + ")</span>");
+    });
+    var mac = ev.macro;
+    if (mac) {
+      mac.slice(0, 5).forEach(function (t) {
+        bits.push('<span class="fl-ev fl-mac">📊 <b>' + esc(t.he) + "</b>: " + '<b class="num" dir="ltr">' + esc(t.actual) + "</b>" +
+          (t.forecast ? ' מול צפי <span class="num" dir="ltr">' + esc(t.forecast) + "</span>" : "") +
+          (t.verdict ? ' · <span class="fl-vd' + tone(t.tone) + '">' + esc(t.verdict) + "</span>" : "") +
+          (t.explain ? '<span class="fl-exp">' + esc(t.explain) + "</span>" : "") + "</span>");
+      });
+      (ev.pulse || []).forEach(function (p) {
+        if (p.lang === "he") bits.push('<span class="fl-ev">💬 ' + esc(String(p.text).slice(0, 140)) + " · " + esc(p.source) + "</span>");
+        else en.push('<span class="fl-ev" dir="ltr">' + esc(String(p.text).slice(0, 140)) + " · " + esc(p.source) + "</span>");
+      });
+      (ev.news || []).forEach(function (n) { en.push('<a class="fl-ev" dir="ltr" href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title) + " · " + esc(n.source) + "</a>"); });
+      if (ev.topics && ev.topics.length) bits.push('<span class="fl-ev">📰 בחדשות באותן דקות: <b>' + ev.topics.map(esc).join(" · ") + "</b></span>");
+    } else {
+      (ev.pulse || []).slice(0, 3).forEach(function (p) {
+        bits.push('<span class="fl-ev" dir="auto">💬 ' + esc(String(p.text).slice(0, 110)) + " · " + esc(p.source) + "</span>");
+      });
+      if (!bits.length) (ev.news || []).slice(0, 2).forEach(function (n) {
+        bits.push('<span class="fl-ev" dir="ltr">📰 ' + esc(n.title) + " · " + esc(n.source) + "</span>");
+      });
+    }
+    var enHtml = en.length ? '<details class="fl-en"><summary>מקורות באנגלית (' + en.length + ")</summary>" + en.join("") + "</details>" : "";
+    return { bits: bits, en: enHtml, why: d.why || "" };
+  }
+  function flashMove(d) {
+    var w = d.windowMin || 30;
+    return esc(d.label || "") + " " + (d.pct < 0 ? "ירד" : "עלה") + " " + Math.abs(d.pct).toFixed(1) + "% " + (w === 30 ? "בחצי שעה" : "ב-" + w + " דק'");
+  }
   function renderFlash(d) {
     FLASHD = d || FLASHD;
     renderNewsSiblings();
@@ -1204,28 +1243,18 @@
     if (!d || isNaN(ts) || Date.now() - ts > FLASH_TTL_MS) { wrap.hidden = true; return; }
     var down = d.pct < 0;
     wrap.className = down ? "fl-down" : "fl-up";
-    var ev = d.evidence || {};
-    var bits = [];
-    (ev.econ || []).forEach(function (e) {
-      bits.push('<span class="fl-ev">📊 ' + esc(e.he) + ": בפועל " + esc(e.actual) +
-        " מול צפי " + esc(e.forecast) + " (" + esc(e.ilTime) + ")</span>");
-    });
-    (ev.pulse || []).slice(0, 3).forEach(function (p) {
-      bits.push('<span class="fl-ev" dir="auto">💬 ' + esc(String(p.text).slice(0, 110)) +
-        " · " + esc(p.source) + "</span>");
-    });
-    if (!bits.length) (ev.news || []).slice(0, 2).forEach(function (n) {
-      bits.push('<span class="fl-ev" dir="ltr">📰 ' + esc(n.title) + " · " + esc(n.source) + "</span>");
-    });
-    var detail = bits.length
-      ? '<div class="fl-detail" id="fl-detail" hidden>' + bits.join("") +
+    var P = flashParts(d), bits = P.bits;
+    var detail = bits.length || P.en
+      ? '<div class="fl-detail" id="fl-detail" hidden>' + bits.join("") + P.en +
         '<span class="fl-note">מה שהתפרסם סביב אותן דקות — לא בהכרח הסיבה.</span></div>'
       : "";
     el.innerHTML =
-      '<span class="fl-head">⚡ <b>תנועה חדה:</b> ' + (down ? "ירידה" : "עלייה") + " של " +
-      Math.abs(d.pct).toFixed(1) + "% ב-" + (d.windowMin || 30) + " דק' (" + esc(d.label || "") +
-      ') · <span class="num" dir="ltr">' + esc(d.time || "") + "</span>" +
-      (bits.length ? ' · <button class="fl-toggle" id="fl-toggle" type="button">מה קרה? ⌄</button>' : "") +
+      '<span class="fl-head">⚡ ' + (P.why
+        ? "<b>" + flashMove(d) + "</b>"
+        : "<b>תנועה חדה:</b> " + (down ? "ירידה" : "עלייה") + " של " + Math.abs(d.pct).toFixed(1) + "% ב-" + (d.windowMin || 30) + " דק' (" + esc(d.label || "") + ")") +
+      ' · <span class="num" dir="ltr">' + esc(d.time || "") + "</span>" +
+      (P.why ? '<span class="fl-why"> · ' + esc(P.why) + "</span>" : "") +
+      (detail ? ' · <button class="fl-toggle" id="fl-toggle" type="button">מה קרה? ⌄</button>' : "") +
       "</span>" + detail;
     wrap.hidden = false;
     var t = document.getElementById("fl-toggle");
@@ -1235,6 +1264,7 @@
       t.textContent = dt && dt.hidden ? "מה קרה? ⌄" : "סגור ⌃";
     });
   }
+
 
   var PULSE_X_ALL = false;   // "כל העדכונים" — הרחבה במקום (4 ↔ כל הרשימה)
   function renderPulseX() {
@@ -4926,10 +4956,8 @@
       var f = FLASHD;
       if (!f || f.pct == null) ef.innerHTML = "";
       else {
-        var ev = f.evidence || {}, lines = [];
-        (ev.econ || []).forEach(function (e) { lines.push("📊 " + esc(e.he) + ": בפועל " + esc(e.actual) + " מול צפי " + esc(e.forecast) + " (" + esc(e.ilTime) + ")"); });
-        (ev.pulse || []).slice(0, 3).forEach(function (p) { lines.push('<span dir="auto">💬 ' + esc(String(p.text).slice(0, 120)) + " · " + esc(p.source) + "</span>"); });
-        (ev.news || []).slice(0, 2).forEach(function (n) { lines.push('<span dir="auto">📰 ' + esc(n.title) + " · " + esc(n.source) + "</span>"); });
+        var FP = flashParts(f), lines = (FP.why ? ['<b class="fl-why2">' + esc(FP.why) + "</b>"] : []).concat(FP.bits);
+        if (FP.en) lines.push(FP.en);
         var fresh = f.ts && Date.now() - Date.parse(f.ts) < FLASH_TTL_MS;
         ef.innerHTML = panHd("מבזק ⚡ · " + (fresh ? "תנועה חדה עכשיו" : "המבזק האחרון"), '<span class="mute">ספייק של 0.5%+ ב-' + (f.windowMin || 30) + " דקות · מציג מה התפרסם באותן דקות, לא סיבתיות</span>") +
           '<div class="flash"><div><div class="big num ' + (f.pct < 0 ? "down" : "up") + '" dir="ltr">' + (f.pct > 0 ? "+" : "") + Number(f.pct).toFixed(2) + '%</div><div class="mute s">' + esc(f.label || f.symbol || "") + ' · <span class="num" dir="ltr">' + esc(f.date || "") + " " + esc(f.time || "") + "</span>" + (f.session ? " · " + esc(f.session) : "") + "</div></div>" +
