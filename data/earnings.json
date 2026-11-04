@@ -5,12 +5,12 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1208.0
+      "capB": 1213.3
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1206.8
+      "capB": 1212.3
     },
     {
       "ticker": "ARM",
@@ -20,12 +20,12 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 193.2
+      "capB": 195.0
     },
     {
       "ticker": "QCOM",
       "name": "QUALCOMM Incorporated",
-      "capB": 183.4
+      "capB": 183.8
     },
     {
       "ticker": "NVO",
@@ -35,12 +35,12 @@
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 140.3
+      "capB": 145.3
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 118.4
+      "capB": 117.5
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": 3.33,
-            "price": 500.0,
+            "chg": 1.84,
+            "price": 492.78,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 2.53,
-            "price": 472.92,
+            "chg": 0.94,
+            "price": 465.6,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 9.9,
-            "price": 186.74,
+            "chg": 9.71,
+            "price": 186.4,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -255,17 +255,17 @@
       "logo": "data/earnings/logos/EMR.png"
     },
     {
-      "ticker": "MELI",
-      "name": "MercadoLibre, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/MELI.png"
-    },
-    {
       "ticker": "APP",
       "name": "AppLovin Corp. Class A",
       "when": "after",
       "logo": "data/earnings/logos/APP.png",
       "logoBg": "dark"
+    },
+    {
+      "ticker": "MELI",
+      "name": "MercadoLibre, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/MELI.png"
     }
   ],
   "more": 58,
@@ -274,7 +274,7 @@
       "date": "2026-11-05",
       "label": "5/11",
       "dow": "ה׳",
-      "count": 72,
+      "count": 73,
       "tickers": [
         "TM",
         "COP",
@@ -288,7 +288,7 @@
       "date": "2026-11-06",
       "label": "6/11",
       "dow": "ו׳",
-      "count": 15,
+      "count": 14,
       "tickers": [
         "ENB",
         "MRNA",
@@ -385,7 +385,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 59,
+      "total": 60,
       "companies": [
         {
           "ticker": "AMD",
@@ -530,17 +530,17 @@
           "logo": "data/earnings/logos/EMR.png"
         },
         {
-          "ticker": "MELI",
-          "name": "MercadoLibre, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/MELI.png"
-        },
-        {
           "ticker": "APP",
           "name": "AppLovin Corp. Class A",
           "when": "after",
           "logo": "data/earnings/logos/APP.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "MELI",
+          "name": "MercadoLibre, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/MELI.png"
         }
       ]
     },
@@ -548,7 +548,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 72,
+      "total": 73,
       "companies": [
         {
           "ticker": "TM",
@@ -628,7 +628,7 @@
       "date": "2026-11-06",
       "dow": "שישי",
       "label": "6.11",
-      "total": 15,
+      "total": 14,
       "companies": [
         {
           "ticker": "ENB",
@@ -716,8 +716,8 @@
     "MCK": "2026-11-04",
     "CVS": "2026-11-04",
     "EMR": "2026-11-04",
-    "MELI": "2026-11-04",
     "APP": "2026-11-04",
+    "MELI": "2026-11-04",
     "MSI": "2026-11-04",
     "MFC": "2026-11-04",
     "DDOG": "2026-11-04",
@@ -734,53 +734,53 @@
     "RVMD": "2026-11-04",
     "COHR": "2026-11-04",
     "MLM": "2026-11-04",
-    "RPRX": "2026-11-04",
     "EXPE": "2026-11-04",
+    "RPRX": "2026-11-04",
     "CHT": "2026-11-04",
     "TKO": "2026-11-04",
-    "UI": "2026-11-04",
     "NTR": "2026-11-04",
-    "SN": "2026-11-04",
+    "UI": "2026-11-04",
     "KHC": "2026-11-04",
-    "ATO": "2026-11-04",
+    "SN": "2026-11-04",
     "TS": "2026-11-04",
+    "ATO": "2026-11-04",
     "CPAY": "2026-11-04",
     "ES": "2026-11-04",
     "UTHR": "2026-11-04",
     "Q": "2026-11-04",
     "GFS": "2026-11-04",
-    "TPL": "2026-11-04",
     "PTC": "2026-11-04",
     "ZBH": "2026-11-04",
-    "RGLD": "2026-11-04",
+    "TPL": "2026-11-04",
     "CDW": "2026-11-04",
-    "PR": "2026-11-04",
+    "RGLD": "2026-11-04",
     "CRCL": "2026-11-04",
+    "PR": "2026-11-04",
     "ITT": "2026-11-04",
     "WES": "2026-11-04",
+    "SWK": "2026-11-04",
     "HST": "2026-11-04",
     "CW": "2026-11-04",
-    "SWK": "2026-11-04",
     "CF": "2026-11-04",
-    "W": "2026-11-04",
     "PFGC": "2026-11-04",
+    "W": "2026-11-04",
     "NWS": "2026-11-04",
-    "PAAS": "2026-11-04",
     "NWSA": "2026-11-04",
+    "PAAS": "2026-11-04",
     "CRL": "2026-11-04",
     "FICO": "2026-11-04",
     "APA": "2026-11-04",
-    "CDE": "2026-11-04",
+    "FIS": "2026-11-04",
     "FLUT": "2026-11-04",
+    "CDE": "2026-11-04",
     "COKE": "2026-11-04",
     "MKSI": "2026-11-04",
     "SITM": "2026-11-04",
-    "TRMB": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "CNQ": "2026-11-05",
     "ABNB": "2026-11-05",
     "SO": "2026-11-05",
@@ -792,8 +792,8 @@
     "EOG": "2026-11-05",
     "SPG": "2026-11-05",
     "APD": "2026-11-05",
-    "CMI": "2026-11-05",
     "KMB": "2026-11-05",
+    "CMI": "2026-11-05",
     "TRP": "2026-11-05",
     "TRGP": "2026-11-05",
     "CAH": "2026-11-05",
@@ -802,33 +802,33 @@
     "NTRA": "2026-11-05",
     "SRE": "2026-11-05",
     "DVN": "2026-11-05",
-    "ROK": "2026-11-05",
     "TEAM": "2026-11-05",
-    "AU": "2026-11-05",
+    "ROK": "2026-11-05",
     "ED": "2026-11-05",
-    "LYV": "2026-11-05",
+    "AU": "2026-11-05",
     "MCHP": "2026-11-05",
+    "LYV": "2026-11-05",
     "MCHPP": "2026-11-05",
     "ZTS": "2026-11-05",
-    "MTD": "2026-11-05",
-    "IRM": "2026-11-05",
     "AXON": "2026-11-05",
+    "IRM": "2026-11-05",
+    "MTD": "2026-11-05",
     "GMAB": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
     "DTK": "2026-11-05",
     "DTE": "2026-11-05",
+    "AFRM": "2026-11-05",
     "VRSK": "2026-11-05",
     "GPN": "2026-11-05",
-    "AFRM": "2026-11-05",
-    "TPR": "2026-11-05",
     "CIB": "2026-11-05",
+    "TPR": "2026-11-05",
     "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
-    "STE": "2026-11-05",
     "RL": "2026-11-05",
-    "GH": "2026-11-05",
+    "STE": "2026-11-05",
     "USFD": "2026-11-05",
+    "GH": "2026-11-05",
     "VTRS": "2026-11-05",
     "BCE": "2026-11-05",
     "EVRG": "2026-11-05",
@@ -842,12 +842,13 @@
     "CG": "2026-11-05",
     "HALO": "2026-11-05",
     "REG": "2026-11-05",
-    "CPT": "2026-11-05",
     "REGCP": "2026-11-05",
     "REGCO": "2026-11-05",
+    "CPT": "2026-11-05",
     "TIGO": "2026-11-05",
-    "IONQ": "2026-11-05",
     "BSY": "2026-11-05",
+    "IONQ": "2026-11-05",
+    "AKAM": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -862,7 +863,6 @@
     "BEN": "2026-11-06",
     "EMA": "2026-11-06",
     "TU": "2026-11-06",
-    "ELAN": "2026-11-06",
     "KKR": "2026-11-09",
     "CEG": "2026-11-09",
     "B": "2026-11-09",
@@ -894,7 +894,6 @@
     "BEKE": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
-    "ONON": "2026-11-10",
     "VYLR": "2026-11-11",
     "FNV": "2026-11-11",
     "HMC": "2026-11-11",
@@ -903,7 +902,7 @@
     "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 17:01",
+    "updatedAt": "04/11/2026 17:31",
     "source": "tradingview"
   }
 }
