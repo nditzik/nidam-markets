@@ -3,14 +3,14 @@
   "todayCount": 75,
   "todayBig": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1239.6
-    },
-    {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1238.3
+      "capB": 1241.5
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "capB": 1241.2
     },
     {
       "ticker": "ARM",
@@ -20,7 +20,12 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 197.3
+      "capB": 197.6
+    },
+    {
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "capB": 179.2
     },
     {
       "ticker": "NVO",
@@ -28,19 +33,14 @@
       "capB": 178.8
     },
     {
-      "ticker": "QCOM",
-      "name": "QUALCOMM Incorporated",
-      "capB": 177.0
-    },
-    {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 144.1
+      "capB": 143.3
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 124.4
+      "capB": 125.0
     }
   ],
   "reactions": {
@@ -53,10 +53,10 @@
             "ticker": "AMD",
             "name": "Advanced Micro Devices, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": -0.61,
-            "price": 480.94,
+            "chg": 1.01,
+            "price": 488.78,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -64,10 +64,10 @@
             "ticker": "AMGN",
             "name": "Amgen Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 3.97,
-            "price": 479.55,
+            "chg": 3.73,
+            "price": 478.48,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -75,11 +75,11 @@
             "ticker": "ANET",
             "name": "Arista Networks Inc",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 4.98,
-            "price": 178.38,
+            "chg": 5.05,
+            "price": 178.49,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -195,16 +195,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.B.png"
-    },
-    {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
     },
     {
       "ticker": "ARM",
@@ -219,16 +219,16 @@
       "logo": "data/earnings/logos/MCD.png"
     },
     {
-      "ticker": "NVO",
-      "name": "Novo Nordisk A/S Sponsored ADR Class B",
-      "when": "before",
-      "logo": "data/earnings/logos/NVO.png"
-    },
-    {
       "ticker": "QCOM",
       "name": "QUALCOMM Incorporated",
       "when": "after",
       "logo": "data/earnings/logos/QCOM.png"
+    },
+    {
+      "ticker": "NVO",
+      "name": "Novo Nordisk A/S Sponsored ADR Class B",
+      "when": "before",
+      "logo": "data/earnings/logos/NVO.png"
     },
     {
       "ticker": "UBER",
@@ -274,7 +274,7 @@
       "date": "2026-11-05",
       "label": "5/11",
       "dow": "ה׳",
-      "count": 76,
+      "count": 77,
       "tickers": [
         "TM",
         "COP",
@@ -470,16 +470,16 @@
       "total": 75,
       "companies": [
         {
-          "ticker": "BRK.B",
-          "name": "Berkshire Hathaway Inc. Class B",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.B.png"
-        },
-        {
           "ticker": "BRK.A",
           "name": "Berkshire Hathaway Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/BRK.A.png"
+        },
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.B.png"
         },
         {
           "ticker": "ARM",
@@ -494,16 +494,16 @@
           "logo": "data/earnings/logos/MCD.png"
         },
         {
-          "ticker": "NVO",
-          "name": "Novo Nordisk A/S Sponsored ADR Class B",
-          "when": "before",
-          "logo": "data/earnings/logos/NVO.png"
-        },
-        {
           "ticker": "QCOM",
           "name": "QUALCOMM Incorporated",
           "when": "after",
           "logo": "data/earnings/logos/QCOM.png"
+        },
+        {
+          "ticker": "NVO",
+          "name": "Novo Nordisk A/S Sponsored ADR Class B",
+          "when": "before",
+          "logo": "data/earnings/logos/NVO.png"
         },
         {
           "ticker": "UBER",
@@ -548,7 +548,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 76,
+      "total": 77,
       "companies": [
         {
           "ticker": "TM",
@@ -706,12 +706,12 @@
     }
   ],
   "window": {
-    "BRK.B": "2026-11-04",
     "BRK.A": "2026-11-04",
+    "BRK.B": "2026-11-04",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
-    "NVO": "2026-11-04",
     "QCOM": "2026-11-04",
+    "NVO": "2026-11-04",
     "UBER": "2026-11-04",
     "MCK": "2026-11-04",
     "CVS": "2026-11-04",
@@ -721,8 +721,8 @@
     "MSI": "2026-11-04",
     "MFC": "2026-11-04",
     "GWW": "2026-11-04",
-    "DDOG": "2026-11-04",
     "ALL": "2026-11-04",
+    "DDOG": "2026-11-04",
     "COR": "2026-11-04",
     "MET": "2026-11-04",
     "AFL": "2026-11-04",
@@ -753,8 +753,8 @@
     "PTC": "2026-11-04",
     "ZBH": "2026-11-04",
     "RGLD": "2026-11-04",
-    "CRCL": "2026-11-04",
     "TPL": "2026-11-04",
+    "CRCL": "2026-11-04",
     "PR": "2026-11-04",
     "ITT": "2026-11-04",
     "HST": "2026-11-04",
@@ -763,8 +763,8 @@
     "PFGC": "2026-11-04",
     "PAAS": "2026-11-04",
     "NWS": "2026-11-04",
-    "W": "2026-11-04",
     "NWSA": "2026-11-04",
+    "W": "2026-11-04",
     "CF": "2026-11-04",
     "CW": "2026-11-04",
     "CRL": "2026-11-04",
@@ -798,8 +798,8 @@
     "SPG": "2026-11-05",
     "APD": "2026-11-05",
     "KMB": "2026-11-05",
-    "CMI": "2026-11-05",
     "TRP": "2026-11-05",
+    "CMI": "2026-11-05",
     "TRGP": "2026-11-05",
     "CAH": "2026-11-05",
     "WPM": "2026-11-05",
@@ -848,8 +848,8 @@
     "HALO": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
-    "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
+    "REGCO": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
@@ -857,6 +857,7 @@
     "AHR": "2026-11-05",
     "AKAM": "2026-11-05",
     "MAIR": "2026-11-05",
+    "GMED": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -884,13 +885,13 @@
     "RKLB": "2026-11-09",
     "BAP": "2026-11-09",
     "ROIV": "2026-11-09",
-    "NRG": "2026-11-09",
-    "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
+    "KSPI": "2026-11-09",
+    "NRG": "2026-11-09",
     "SGI": "2026-11-09",
     "CNH": "2026-11-09",
-    "ASTS": "2026-11-09",
     "JBS": "2026-11-09",
+    "ASTS": "2026-11-09",
     "EQX": "2026-11-09",
     "SONY": "2026-11-10",
     "PBR": "2026-11-10",
@@ -913,7 +914,7 @@
     "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 22:47",
+    "updatedAt": "04/11/2026 23:02",
     "source": "tradingview"
   }
 }
