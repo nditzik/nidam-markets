@@ -1,6 +1,6 @@
 {
   "today": "2026-11-04",
-  "todayCount": 65,
+  "todayCount": 66,
   "todayBig": [
     {
       "ticker": "ARM",
@@ -75,22 +75,34 @@
             "ticker": "SHOP",
             "name": "Shopify, Inc. Class A",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/SHOP.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SHOP.png",
+            "chg": -8.74,
+            "price": 142.57,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "PFE",
             "name": "Pfizer Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/PFE.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PFE.png",
+            "chg": -2.18,
+            "price": 30.0,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "ETN",
             "name": "Eaton Corp. Plc",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/ETN.png"
+            "status": "final",
+            "logo": "data/earnings/logos/ETN.png",
+            "chg": 7.0,
+            "price": 391.7,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           }
         ]
       },
@@ -102,23 +114,35 @@
             "ticker": "AAPL",
             "name": "Apple Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/AAPL.png"
+            "status": "final",
+            "logo": "data/earnings/logos/AAPL.png",
+            "chg": -1.9,
+            "price": 331.9,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "PLTR",
             "name": "Palantir Technologies Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/PLTR.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PLTR.png",
+            "chg": -1.65,
+            "price": 175.4,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "VRTX",
             "name": "Vertex Pharmaceuticals Incorporated",
             "when": "after",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/VRTX.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -4.05,
+            "price": 530.76,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "MAR",
@@ -135,8 +159,12 @@
             "ticker": "WMB",
             "name": "Williams Companies, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WMB.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WMB.png",
+            "chg": 1.8,
+            "price": 72.47,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           },
           {
             "ticker": "LITE",
@@ -228,7 +256,7 @@
       "logo": "data/earnings/logos/DDOG.png"
     }
   ],
-  "more": 53,
+  "more": 54,
   "upcoming": [
     {
       "date": "2026-11-05",
@@ -345,7 +373,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 55,
+      "total": 54,
       "companies": [
         {
           "ticker": "AMD",
@@ -428,7 +456,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 65,
+      "total": 66,
       "companies": [
         {
           "ticker": "ARM",
@@ -732,6 +760,7 @@
     "MKSI": "2026-11-04",
     "CDE": "2026-11-04",
     "COKE": "2026-11-04",
+    "SITM": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
@@ -797,8 +826,8 @@
     "HALO": "2026-11-05",
     "CG": "2026-11-05",
     "SOLV": "2026-11-05",
-    "REGCP": "2026-11-05",
     "REGCO": "2026-11-05",
+    "REGCP": "2026-11-05",
     "REG": "2026-11-05",
     "CPT": "2026-11-05",
     "ENB": "2026-11-06",
@@ -850,7 +879,7 @@
     "ASND": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 04:16",
+    "updatedAt": "04/11/2026 04:31",
     "source": "tradingview"
   }
 }
