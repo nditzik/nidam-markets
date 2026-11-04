@@ -5,12 +5,12 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1233.3
+      "capB": 1236.4
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1232.2
+      "capB": 1234.8
     },
     {
       "ticker": "ARM",
@@ -20,7 +20,7 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 198.0
+      "capB": 198.5
     },
     {
       "ticker": "NVO",
@@ -30,17 +30,17 @@
     {
       "ticker": "QCOM",
       "name": "QUALCOMM Incorporated",
-      "capB": 176.3
+      "capB": 175.2
     },
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 145.2
+      "capB": 144.7
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 120.9
+      "capB": 121.1
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": -0.75,
-            "price": 480.27,
+            "chg": -0.45,
+            "price": 481.73,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 3.35,
-            "price": 476.7,
+            "chg": 3.17,
+            "price": 475.86,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 5.52,
-            "price": 179.29,
+            "chg": 5.12,
+            "price": 178.61,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -279,9 +279,9 @@
         "TM",
         "COP",
         "PH",
+        "SO",
         "SOJD",
-        "SOJE",
-        "SO"
+        "SOJE"
       ]
     },
     {
@@ -569,6 +569,12 @@
           "logo": "data/earnings/logos/PH.png"
         },
         {
+          "ticker": "SO",
+          "name": "Southern Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SO.png"
+        },
+        {
           "ticker": "SOJD",
           "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
           "when": "before",
@@ -579,12 +585,6 @@
           "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
           "when": "before",
           "logo": "data/earnings/logos/SOJE.png"
-        },
-        {
-          "ticker": "SO",
-          "name": "Southern Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SO.png"
         },
         {
           "ticker": "ABNB",
@@ -750,8 +750,8 @@
     "Q": "2026-11-04",
     "GFS": "2026-11-04",
     "CDW": "2026-11-04",
-    "ZBH": "2026-11-04",
     "PTC": "2026-11-04",
+    "ZBH": "2026-11-04",
     "RGLD": "2026-11-04",
     "TPL": "2026-11-04",
     "CRCL": "2026-11-04",
@@ -765,8 +765,8 @@
     "PAAS": "2026-11-04",
     "CF": "2026-11-04",
     "W": "2026-11-04",
-    "NWSA": "2026-11-04",
     "NWS": "2026-11-04",
+    "NWSA": "2026-11-04",
     "CRL": "2026-11-04",
     "APA": "2026-11-04",
     "FICO": "2026-11-04",
@@ -779,9 +779,9 @@
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJE": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SO": "2026-11-05",
+    "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "ABNB": "2026-11-05",
     "CNQ": "2026-11-05",
     "DUK": "2026-11-05",
@@ -903,7 +903,7 @@
     "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 21:46",
+    "updatedAt": "04/11/2026 21:57",
     "source": "tradingview"
   }
 }
