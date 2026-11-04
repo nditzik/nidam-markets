@@ -5,12 +5,12 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1228.7
+      "capB": 1228.3
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1226.8
+      "capB": 1227.2
     },
     {
       "ticker": "ARM",
@@ -35,12 +35,12 @@
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 146.5
+      "capB": 146.2
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 119.7
+      "capB": 120.0
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": 0.63,
-            "price": 486.93,
+            "chg": 0.66,
+            "price": 487.07,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 3.74,
-            "price": 478.49,
+            "chg": 3.7,
+            "price": 478.31,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 5.1,
-            "price": 178.57,
+            "chg": 5.39,
+            "price": 179.07,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -344,16 +344,16 @@
           "logo": "data/earnings/logos/O.png"
         },
         {
-          "ticker": "LITE",
-          "name": "Lumentum Holdings, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/LITE.png"
-        },
-        {
           "ticker": "IDXX",
           "name": "IDEXX Laboratories, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/IDXX.png"
+        },
+        {
+          "ticker": "LITE",
+          "name": "Lumentum Holdings, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/LITE.png"
         },
         {
           "ticker": "ETR",
@@ -749,8 +749,8 @@
     "UTHR": "2026-11-04",
     "Q": "2026-11-04",
     "GFS": "2026-11-04",
-    "ZBH": "2026-11-04",
     "PTC": "2026-11-04",
+    "ZBH": "2026-11-04",
     "RGLD": "2026-11-04",
     "CDW": "2026-11-04",
     "TPL": "2026-11-04",
@@ -762,8 +762,8 @@
     "WES": "2026-11-04",
     "PFGC": "2026-11-04",
     "W": "2026-11-04",
-    "CW": "2026-11-04",
     "CF": "2026-11-04",
+    "CW": "2026-11-04",
     "PAAS": "2026-11-04",
     "NWS": "2026-11-04",
     "NWSA": "2026-11-04",
@@ -845,8 +845,8 @@
     "CPT": "2026-11-05",
     "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
-    "TIGO": "2026-11-05",
     "BSY": "2026-11-05",
+    "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
@@ -902,7 +902,7 @@
     "ASND": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 19:25",
+    "updatedAt": "04/11/2026 19:32",
     "source": "tradingview"
   }
 }
