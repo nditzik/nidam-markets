@@ -249,24 +249,30 @@
     return { medium_weak: mediumWeak, clear_break: clearBreak, damaged: damaged, at_risk: structure.at_risk && !damaged };
   }
   var PRIMARY_HE = { DAMAGED: "המגמה נפגעה", AT_RISK: "מבנה מגמה בסיכון", STRONG_UP: "מגמת עלייה חזקה", WEAKENING_UP: "מגמת עלייה שנחלשת", UP: "מגמת עלייה", DOWN: "מגמת ירידה", STRONG_DOWN: "מגמת ירידה חזקה", REVERSAL_ATTEMPT: "ניסיון היפוך", RANGE: "דשדוש" };
-  function primaryTrend(structure, ma, integ) {
+  function primaryTrend(structure, ma, integ, close) {
     var intactUp = structure.state === "UP" || (!!structure.protected_low && !integ.damaged && structure.state !== "DOWN");
+    // np178 (4.11.2026, איציק — TMO): מבנה יורד שהמחיר כבר סוגר מעל השיא האחרון שלו = נשבר כלפי מעלה.
+    // תוספת על המפרט: בלעדיה עלייה רצופה בלי תיקון של 3 ATR משאירה "מגמת ירידה" מאביב (TMO 435→698).
+    var ceil = structure.state === "DOWN" && structure.highs.length ? last(structure.highs) : null;
+    var downBroken = !!(ceil && close != null && close > ceil.price);
     var state;
     if (integ.damaged) state = "DAMAGED";
     else if (integ.at_risk) state = "AT_RISK";
     else if (intactUp && ma.bullish && ma.order.complete && ma.order.positive_fraction >= 2 / 3 && structure.state === "UP") state = "STRONG_UP";
     else if (intactUp && integ.medium_weak) state = "WEAKENING_UP";
     else if (intactUp) state = "UP";
+    else if (downBroken) state = ma.bullish ? "UP" : "REVERSAL_ATTEMPT";
     else if (structure.state === "DOWN") state = "DOWN";
     else if (structure.higher_low && ma.bullish) state = "REVERSAL_ATTEMPT";
     else if (ma.bullish) state = "UP";
     else if (ma.bearish && structure.lower_low) state = "DOWN";
     else state = "RANGE";
-    var sp = structure.state === "UP" ? 100 : structure.state === "DOWN" ? 0 : 50;
+    var sp = structure.state === "UP" ? 100 : structure.state === "DOWN" ? (downBroken ? 50 : 0) : 50;
     if (intactUp && structure.state === "MIXED") sp = 80;
     var score = W([{ v: sp, w: 65 }, { v: ma.score, w: 35 }]);
     if (state === "AT_RISK") score = Math.min(score, 55); if (state === "DAMAGED") score = Math.min(score, 30);
-    return { state: state, label: PRIMARY_HE[state], score: score, intact_up: intactUp, reasons: structure.reasons.concat(ma.reasons), available_averages: ma.long_available, components: { structure: sp, averages: ma.score } };
+    var sReasons = downBroken ? structure.reasons.concat(["המחיר נסגר מעל השיא האחרון של המבנה היורד (" + fmt2(ceil.price) + " מתאריך " + ceil.date + ") — הירידה נשברה כלפי מעלה"]) : structure.reasons;
+    return { state: state, label: PRIMARY_HE[state], score: score, intact_up: intactUp, reasons: sReasons.concat(ma.reasons), available_averages: ma.long_available, components: { structure: sp, averages: ma.score } };
   }
   var INTER_HE = { AT_RISK: "המבנה הבינוני בסיכון", WEAKNESS: "חולשה בטווח הבינוני", PRESERVED: "מגמת העלייה נשמרת", REVERSAL_ATTEMPT: "ניסיון היפוך", MIXED: "מבנה ביניים מעורב" };
   function intermediateTrend(structure, integ, primary) {
@@ -874,7 +880,7 @@
     var ma = analyzeMA(bars, ind);
     var pStruct = classifyStructure(bars, ind, 3, 6, 252), iStruct = classifyStructure(bars, ind, 1.75, 4, 90);
     var pInteg = integrate(pStruct, ma, ind), iInteg = integrate(iStruct, ma, ind);
-    var primary = primaryTrend(pStruct, ma, pInteg), intermediate = intermediateTrend(iStruct, iInteg, primary);
+    var primary = primaryTrend(pStruct, ma, pInteg, C), intermediate = intermediateTrend(iStruct, iInteg, primary);
     var breakout = analyzeBreakout(bars, ind, iStruct, iInteg);
     var range10 = maxArr(ind.H.slice(Math.max(0, N - 10))) - minArr(ind.L.slice(Math.max(0, N - 10))), rangeAtr = atr ? range10 / atr : 0;
     var pstruct = { higher_high: pStruct.higher_high, higher_low: pStruct.higher_low, lower_high: pStruct.lower_high, lower_low: pStruct.lower_low, broken: pStruct.at_risk, breakout: breakout.state === "CONFIRMED" || breakout.state === "GAP_BREAKOUT", failed_breakout: breakout.state === "FAILED",
