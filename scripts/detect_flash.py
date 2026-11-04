@@ -26,6 +26,7 @@ from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו 
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import send, load
+from macro_he import translate, line_he, topics_he, is_hebrew
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -144,24 +145,91 @@ def gather_evidence():
     return ev
 
 
+# 4.11.2026 (איציק: "ההתראה באנגלית ללא הסבר"): נתוני מאקרו מהבזק מתורגמים לעברית
+# (macro_he.py), שאר הפריטים מסומנים he/en, ונבנה משפט "why" לשורה הראשית בעברית.
+ECON_FAM = {"nfp": ("תעסוקה", "אבטלה"), "cpi": ("CPI",), "ppi": ("PPI",), "pce": ("PCE",),
+            "gdp": ('תמ"ג',), "rate": ("ריבית",)}
+
+
+def enrich(flash):
+    ev = flash.setdefault("evidence", {})
+    econ = ev.get("econ") or []
+    if "macro" in ev:   # כבר תורגם — רק לבנות מחדש את המשפט (אידמפוטנטי)
+        flash["why"] = why_he(econ, ev["macro"], ev.get("topics") or [])
+        return flash
+    econ_he = " ".join(str(e.get("he") or "") for e in econ)
+    macro, rest, seen = [], [], set()
+    for p in ev.get("pulse") or []:
+        t = translate(p.get("text"))
+        if t:
+            if t["src"] in seen:
+                continue
+            seen.add(t["src"])
+            if econ and any(k in econ_he for k in ECON_FAM.get(t["fam"], ())):
+                continue
+            t.update({"time": p.get("time"), "source": p.get("source")})
+            macro.append(t)
+        else:
+            q = dict(p)
+            q["lang"] = "he" if is_hebrew(p.get("text")) else "en"
+            rest.append(q)
+    macro.sort(key=lambda t: 0 if t["us"] else 1)
+    ev["macro"] = macro
+    ev["pulse"] = rest
+    ev["topics"] = topics_he([p.get("text") for p in rest if p.get("lang") == "en"] +
+                             [n.get("title") for n in ev.get("news") or []])
+    flash["why"] = why_he(econ, macro, ev["topics"])
+    return flash
+
+
+def why_he(econ, macro, topics):
+    if econ:
+        e = econ[0]
+        return f"באותן דקות פורסם {e.get('he')}: {e.get('actual')} מול צפי {e.get('forecast')}"
+    us = [t for t in macro if t["us"] and t["known"]]
+    if us:
+        head = next((t for t in us if not t["he"].startswith("רכיב")), us[0])
+        s = f"באותן דקות פורסם {head['he']}: {head['actual']}"
+        if head.get("forecast"):
+            s += f" מול צפי {head['forecast']}"
+        if head.get("verdict"):
+            s += f" ({head['verdict']})"
+        comp = next((t for t in us if t is not head and t["fam"] == head["fam"] and t["kind"] == "infl" and t.get("verdict")), None)
+        if comp:
+            s += f"; רכיב המחירים {comp['verdict']}"
+        return s
+    if topics:
+        return "באותן דקות דיווחים על: " + " · ".join(topics)
+    return "לא אותר פרסום בולט באותן דקות — ייתכן מהלך טכני"
+
+
 def compose_tg(flash):
+    enrich(flash) if "why" not in flash else None
     arrow = "📉 ירידה" if flash["pct"] < 0 else "📈 עלייה"
     lines = [f"⚡ <b>תנועה חדה בשוק</b> — {arrow} של {abs(flash['pct']):.1f}% "
              f"ב-{WINDOW_MIN} דקות ({flash['label']}, {flash['session']})"]
+    if flash.get("why"):
+        lines.append(flash["why"])
     ev = flash.get("evidence", {})
     if ev.get("econ"):
         lines.append("")
         lines.append("📊 <b>פרסומי מאקרו בחלון הזמן</b> (הגורם הסביר):")
         for e in ev["econ"]:
             lines.append(f"▸ {e['he']}: בפועל {e['actual']} מול צפי {e['forecast']} ({e['ilTime']})")
-    if ev.get("pulse"):
+    mac = [t for t in ev.get("macro") or [] if t["us"]][:4]
+    if mac:
         lines.append("")
-        lines.append("💬 <b>מהרשת בדקות האחרונות</b>:")
-        for p in ev["pulse"][:3]:
-            lines.append(f"▸ {p['text'][:120]} ({p['source']} · {p['time']})")
-    if not ev.get("econ") and not ev.get("pulse"):
-        lines.append("לא אותר פרסום בולט בחלון הזמן — ייתכן מהלך טכני.")
+        lines.append("📊 <b>נתונים שפורסמו באותן דקות</b>:")
+        for t in mac:
+            lines.append("▸ " + line_he(t))
+    heb = [p for p in ev.get("pulse") or [] if p.get("lang") == "he"][:3]
+    if heb:
+        lines.append("")
+        lines.append("💬 <b>מהרשת</b>:")
+        for p in heb:
+            lines.append(f"▸ {p['text'][:140]} ({p['source']} · {p['time']})")
     lines.append("")
+    lines.append("מה שהתפרסם באותן דקות — לא בהכרח הסיבה.")
     lines.append(f'🔗 <a href="{SITE}">The Daily Edge</a>')
     return "\n".join(lines)
 
@@ -174,6 +242,11 @@ def write_flash(flash):
 
 
 def main():
+    if "--enrich" in sys.argv:   # תרגום flash.json קיים (בלי מדידה ובלי טלגרם)
+        f = load(OUT)
+        if f and f.get("evidence"):
+            write_flash(enrich(f))
+        return 0
     test = "--test" in sys.argv
     ses = session()
     if test and not ses:
@@ -223,6 +296,7 @@ def main():
         "symbol": sym, "label": label, "session": ses_name, "price": m["price"],
         "evidence": gather_evidence(),
     }
+    enrich(flash)
     write_flash(flash)
 
     if not test:
