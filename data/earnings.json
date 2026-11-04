@@ -3,14 +3,14 @@
   "todayCount": 75,
   "todayBig": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1241.5
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1241.2
+      "capB": 1242.1
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1240.4
     },
     {
       "ticker": "ARM",
@@ -20,12 +20,12 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 197.6
+      "capB": 198.3
     },
     {
       "ticker": "QCOM",
       "name": "QUALCOMM Incorporated",
-      "capB": 179.2
+      "capB": 184.9
     },
     {
       "ticker": "NVO",
@@ -35,12 +35,12 @@
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 143.3
+      "capB": 142.7
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 125.0
+      "capB": 124.8
     }
   ],
   "reactions": {
@@ -78,8 +78,8 @@
             "status": "final",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 5.05,
-            "price": 178.49,
+            "chg": 5.04,
+            "price": 178.48,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -179,15 +179,15 @@
             "baseDate": "2026-11-02"
           },
           {
-            "ticker": "O",
-            "name": "Realty Income Corporation",
-            "when": "after",
+            "ticker": "LITE",
+            "name": "Lumentum Holdings, Inc.",
+            "when": "before",
             "status": "final",
-            "logo": "data/earnings/logos/O.png",
-            "chg": -0.14,
-            "price": 57.5,
-            "reactDate": "2026-11-03",
-            "baseDate": "2026-11-02"
+            "logo": "data/earnings/logos/LITE.png",
+            "chg": -18.59,
+            "price": 684.4,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
           }
         ]
       }
@@ -195,16 +195,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.A.png"
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
       "when": "",
       "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
     },
     {
       "ticker": "ARM",
@@ -338,16 +338,16 @@
           "logo": "data/earnings/logos/WMB.png"
         },
         {
-          "ticker": "O",
-          "name": "Realty Income Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/O.png"
-        },
-        {
           "ticker": "LITE",
           "name": "Lumentum Holdings, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/LITE.png"
+        },
+        {
+          "ticker": "O",
+          "name": "Realty Income Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/O.png"
         },
         {
           "ticker": "IDXX",
@@ -470,16 +470,16 @@
       "total": 75,
       "companies": [
         {
-          "ticker": "BRK.A",
-          "name": "Berkshire Hathaway Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.A.png"
-        },
-        {
           "ticker": "BRK.B",
           "name": "Berkshire Hathaway Inc. Class B",
           "when": "",
           "logo": "data/earnings/logos/BRK.B.png"
+        },
+        {
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
         },
         {
           "ticker": "ARM",
@@ -706,8 +706,8 @@
     }
   ],
   "window": {
-    "BRK.A": "2026-11-04",
     "BRK.B": "2026-11-04",
+    "BRK.A": "2026-11-04",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "QCOM": "2026-11-04",
@@ -734,8 +734,8 @@
     "RVMD": "2026-11-04",
     "MLM": "2026-11-04",
     "RPRX": "2026-11-04",
-    "EXPE": "2026-11-04",
     "COHR": "2026-11-04",
+    "EXPE": "2026-11-04",
     "CHT": "2026-11-04",
     "TKO": "2026-11-04",
     "NTR": "2026-11-04",
@@ -749,8 +749,8 @@
     "UTHR": "2026-11-04",
     "Q": "2026-11-04",
     "GFS": "2026-11-04",
-    "CDW": "2026-11-04",
     "PTC": "2026-11-04",
+    "CDW": "2026-11-04",
     "ZBH": "2026-11-04",
     "RGLD": "2026-11-04",
     "TPL": "2026-11-04",
@@ -767,10 +767,10 @@
     "W": "2026-11-04",
     "CF": "2026-11-04",
     "CW": "2026-11-04",
-    "CRL": "2026-11-04",
     "APA": "2026-11-04",
-    "FICO": "2026-11-04",
+    "CRL": "2026-11-04",
     "FIS": "2026-11-04",
+    "FICO": "2026-11-04",
     "CDE": "2026-11-04",
     "FLUT": "2026-11-04",
     "COKE": "2026-11-04",
@@ -784,8 +784,8 @@
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "CNQ": "2026-11-05",
@@ -827,9 +827,9 @@
     "AFRM": "2026-11-05",
     "GPN": "2026-11-05",
     "TPR": "2026-11-05",
-    "RL": "2026-11-05",
     "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
+    "RL": "2026-11-05",
     "CIB": "2026-11-05",
     "STE": "2026-11-05",
     "USFD": "2026-11-05",
@@ -838,13 +838,13 @@
     "EVRG": "2026-11-05",
     "BCE": "2026-11-05",
     "U": "2026-11-05",
-    "RGA": "2026-11-05",
     "MTSI": "2026-11-05",
+    "RGA": "2026-11-05",
     "JHX": "2026-11-05",
     "LAMR": "2026-11-05",
     "SBS": "2026-11-05",
-    "SOLV": "2026-11-05",
     "CG": "2026-11-05",
+    "SOLV": "2026-11-05",
     "HALO": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
@@ -885,8 +885,8 @@
     "RKLB": "2026-11-09",
     "BAP": "2026-11-09",
     "ROIV": "2026-11-09",
-    "RBA": "2026-11-09",
     "KSPI": "2026-11-09",
+    "RBA": "2026-11-09",
     "NRG": "2026-11-09",
     "SGI": "2026-11-09",
     "CNH": "2026-11-09",
@@ -914,7 +914,7 @@
     "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 23:02",
+    "updatedAt": "04/11/2026 23:16",
     "source": "tradingview"
   }
 }
