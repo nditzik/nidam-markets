@@ -377,6 +377,11 @@
     if (!el) return;
     var rows = (d && d.rows) || [];
     if (!rows.length) { el.innerHTML = ""; return; }
+    /* np177 (4.11.2026, איציק): אחרי הבחירות — בבית תמהיל בורסה וכלכלה: הפד, יעד ה-S&P, אינפלציה, מיתון.
+       שורות אירוע זמניות (midterm_*) נשארות ראשונות כל עוד fetch_bets מחזיר אותן; השאר לפי HOME_BETS ואז לפי הסדר. */
+    var HOME_BETS = ["fed_next", "spx_eoy", "cpi_next", "recession"];
+    var pri = function (r) { var k = String(r.key || ""); if (/^midterm_/.test(k)) return -1; var i = HOME_BETS.indexOf(k); return i < 0 ? 99 : i; };
+    rows = rows.map(function (r, i) { return { r: r, i: i }; }).sort(function (a, b) { return pri(a.r) - pri(b.r) || a.i - b.i; }).map(function (x) { return x.r; });
     el.innerHTML = '<div class="ph"><h2>מה השווקים מהמרים</h2><span class="mute">Polymarket · Kalshi</span></div><div class="pb bd-bts">' + rows.slice(0, 4).map(function (r) {
       var lab = String(r.label || "").split(" · ")[0], sub = String(r.sub || "").replace("ההימור המוביל: ", "");
       return '<div class="bt"><div class="r"><span>' + esc(lab) + ": <b>" + esc(sub) + '</b></span><span class="num" dir="ltr">' + esc(r.pct) + "%" + (r.chg ? ' <small class="' + (r.chg > 0 ? "up" : "down") + '">' + (r.chg > 0 ? "+" : "−") + Math.abs(r.chg) + "</small>" : "") + "</span></div>" +
@@ -693,7 +698,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np176";
+  var TA_VER = "np177";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
