@@ -1,16 +1,16 @@
 {
   "today": "2026-11-04",
-  "todayCount": 71,
+  "todayCount": 74,
   "todayBig": [
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1236.9
+      "capB": 1238.4
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1236.0
+      "capB": 1236.5
     },
     {
       "ticker": "ARM",
@@ -20,7 +20,7 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 198.6
+      "capB": 197.4
     },
     {
       "ticker": "NVO",
@@ -30,17 +30,17 @@
     {
       "ticker": "QCOM",
       "name": "QUALCOMM Incorporated",
-      "capB": 176.0
+      "capB": 175.9
     },
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 143.2
+      "capB": 143.4
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 123.6
+      "capB": 122.8
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": -0.19,
-            "price": 483.0,
+            "chg": 0.08,
+            "price": 484.27,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 3.87,
-            "price": 479.13,
+            "chg": 4.15,
+            "price": 480.42,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 4.95,
-            "price": 178.32,
+            "chg": 5.57,
+            "price": 179.38,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -268,27 +268,27 @@
       "logo": "data/earnings/logos/MELI.png"
     }
   ],
-  "more": 59,
+  "more": 62,
   "upcoming": [
     {
       "date": "2026-11-05",
       "label": "5/11",
       "dow": "ה׳",
-      "count": 75,
+      "count": 76,
       "tickers": [
         "TM",
         "COP",
         "PH",
-        "SO",
         "SOJD",
-        "SOJE"
+        "SOJE",
+        "SO"
       ]
     },
     {
       "date": "2026-11-06",
       "label": "6/11",
       "dow": "ו׳",
-      "count": 15,
+      "count": 16,
       "tickers": [
         "ENB",
         "MRNA",
@@ -304,7 +304,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 33,
+      "total": 34,
       "companies": [
         {
           "ticker": "AAPL",
@@ -344,16 +344,16 @@
           "logo": "data/earnings/logos/O.png"
         },
         {
-          "ticker": "IDXX",
-          "name": "IDEXX Laboratories, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/IDXX.png"
-        },
-        {
           "ticker": "LITE",
           "name": "Lumentum Holdings, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/LITE.png"
+        },
+        {
+          "ticker": "IDXX",
+          "name": "IDEXX Laboratories, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/IDXX.png"
         },
         {
           "ticker": "ETR",
@@ -467,7 +467,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 71,
+      "total": 74,
       "companies": [
         {
           "ticker": "BRK.B",
@@ -548,7 +548,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 75,
+      "total": 76,
       "companies": [
         {
           "ticker": "TM",
@@ -569,12 +569,6 @@
           "logo": "data/earnings/logos/PH.png"
         },
         {
-          "ticker": "SO",
-          "name": "Southern Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SO.png"
-        },
-        {
           "ticker": "SOJD",
           "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
           "when": "before",
@@ -585,6 +579,12 @@
           "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
           "when": "before",
           "logo": "data/earnings/logos/SOJE.png"
+        },
+        {
+          "ticker": "SO",
+          "name": "Southern Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SO.png"
         },
         {
           "ticker": "ABNB",
@@ -628,7 +628,7 @@
       "date": "2026-11-06",
       "dow": "שישי",
       "label": "6.11",
-      "total": 15,
+      "total": 16,
       "companies": [
         {
           "ticker": "ENB",
@@ -721,9 +721,9 @@
     "MSI": "2026-11-04",
     "MFC": "2026-11-04",
     "GWW": "2026-11-04",
+    "DDOG": "2026-11-04",
     "ALL": "2026-11-04",
     "COR": "2026-11-04",
-    "DDOG": "2026-11-04",
     "MET": "2026-11-04",
     "AFL": "2026-11-04",
     "EW": "2026-11-04",
@@ -749,8 +749,8 @@
     "UTHR": "2026-11-04",
     "Q": "2026-11-04",
     "GFS": "2026-11-04",
-    "ZBH": "2026-11-04",
     "CDW": "2026-11-04",
+    "ZBH": "2026-11-04",
     "PTC": "2026-11-04",
     "RGLD": "2026-11-04",
     "TPL": "2026-11-04",
@@ -764,25 +764,28 @@
     "PAAS": "2026-11-04",
     "CW": "2026-11-04",
     "NWS": "2026-11-04",
-    "W": "2026-11-04",
     "NWSA": "2026-11-04",
     "CF": "2026-11-04",
+    "W": "2026-11-04",
     "CRL": "2026-11-04",
-    "FICO": "2026-11-04",
     "APA": "2026-11-04",
     "FIS": "2026-11-04",
+    "FICO": "2026-11-04",
     "CDE": "2026-11-04",
     "FLUT": "2026-11-04",
     "COKE": "2026-11-04",
     "MKSI": "2026-11-04",
     "TRMB": "2026-11-04",
     "SITM": "2026-11-04",
+    "PAYC": "2026-11-04",
+    "WTS": "2026-11-04",
+    "FIG": "2026-11-04",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SO": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
+    "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "CNQ": "2026-11-05",
     "DUK": "2026-11-05",
@@ -852,6 +855,7 @@
     "IONQ": "2026-11-05",
     "AHR": "2026-11-05",
     "AKAM": "2026-11-05",
+    "MAIR": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -867,6 +871,7 @@
     "EMA": "2026-11-06",
     "TU": "2026-11-06",
     "ELAN": "2026-11-06",
+    "FRHC": "2026-11-06",
     "KKR": "2026-11-09",
     "CEG": "2026-11-09",
     "B": "2026-11-09",
@@ -907,7 +912,7 @@
     "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 22:16",
+    "updatedAt": "04/11/2026 22:31",
     "source": "tradingview"
   }
 }
