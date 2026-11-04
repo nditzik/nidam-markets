@@ -5,12 +5,12 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1227.8
+      "capB": 1227.4
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1226.3
+      "capB": 1226.5
     },
     {
       "ticker": "ARM",
@@ -20,12 +20,12 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 196.6
+      "capB": 196.7
     },
     {
       "ticker": "QCOM",
       "name": "QUALCOMM Incorporated",
-      "capB": 180.5
+      "capB": 180.4
     },
     {
       "ticker": "NVO",
@@ -35,12 +35,12 @@
     {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 144.5
+      "capB": 145.5
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 120.4
+      "capB": 120.9
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": 0.7,
-            "price": 487.27,
+            "chg": -0.25,
+            "price": 482.7,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 4.01,
-            "price": 479.77,
+            "chg": 3.95,
+            "price": 479.47,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 5.55,
-            "price": 179.35,
+            "chg": 5.8,
+            "price": 179.76,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -179,15 +179,15 @@
             "baseDate": "2026-11-02"
           },
           {
-            "ticker": "O",
-            "name": "Realty Income Corporation",
-            "when": "after",
+            "ticker": "IDXX",
+            "name": "IDEXX Laboratories, Inc.",
+            "when": "before",
             "status": "final",
-            "logo": "data/earnings/logos/O.png",
-            "chg": -0.14,
-            "price": 57.5,
-            "reactDate": "2026-11-03",
-            "baseDate": "2026-11-02"
+            "logo": "data/earnings/logos/IDXX.png",
+            "chg": 21.85,
+            "price": 671.64,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
           }
         ]
       }
@@ -338,16 +338,16 @@
           "logo": "data/earnings/logos/WMB.png"
         },
         {
-          "ticker": "O",
-          "name": "Realty Income Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/O.png"
-        },
-        {
           "ticker": "IDXX",
           "name": "IDEXX Laboratories, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/IDXX.png"
+        },
+        {
+          "ticker": "O",
+          "name": "Realty Income Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/O.png"
         },
         {
           "ticker": "LITE",
@@ -385,7 +385,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 60,
+      "total": 59,
       "companies": [
         {
           "ticker": "AMD",
@@ -749,9 +749,9 @@
     "UTHR": "2026-11-04",
     "Q": "2026-11-04",
     "GFS": "2026-11-04",
+    "CDW": "2026-11-04",
     "ZBH": "2026-11-04",
     "PTC": "2026-11-04",
-    "CDW": "2026-11-04",
     "RGLD": "2026-11-04",
     "TPL": "2026-11-04",
     "CRCL": "2026-11-04",
@@ -761,12 +761,12 @@
     "HST": "2026-11-04",
     "WES": "2026-11-04",
     "PFGC": "2026-11-04",
-    "CW": "2026-11-04",
     "W": "2026-11-04",
+    "CW": "2026-11-04",
     "PAAS": "2026-11-04",
-    "NWS": "2026-11-04",
-    "NWSA": "2026-11-04",
     "CF": "2026-11-04",
+    "NWSA": "2026-11-04",
+    "NWS": "2026-11-04",
     "CRL": "2026-11-04",
     "FICO": "2026-11-04",
     "APA": "2026-11-04",
@@ -830,8 +830,8 @@
     "USFD": "2026-11-05",
     "GH": "2026-11-05",
     "VTRS": "2026-11-05",
-    "BCE": "2026-11-05",
     "EVRG": "2026-11-05",
+    "BCE": "2026-11-05",
     "U": "2026-11-05",
     "RGA": "2026-11-05",
     "JHX": "2026-11-05",
@@ -843,8 +843,8 @@
     "HALO": "2026-11-05",
     "REG": "2026-11-05",
     "CPT": "2026-11-05",
-    "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
+    "REGCO": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
@@ -899,10 +899,11 @@
     "FNV": "2026-11-11",
     "HMC": "2026-11-11",
     "GIB": "2026-11-11",
-    "ASND": "2026-11-11"
+    "ASND": "2026-11-11",
+    "SMMT": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 20:01",
+    "updatedAt": "04/11/2026 20:16",
     "source": "tradingview"
   }
 }
