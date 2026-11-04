@@ -5,12 +5,12 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1218.9
+      "capB": 1223.0
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1217.3
+      "capB": 1222.5
     },
     {
       "ticker": "ARM",
@@ -20,12 +20,7 @@
     {
       "ticker": "MCD",
       "name": "McDonald's Corporation",
-      "capB": 195.8
-    },
-    {
-      "ticker": "QCOM",
-      "name": "QUALCOMM Incorporated",
-      "capB": 179.7
+      "capB": 195.1
     },
     {
       "ticker": "NVO",
@@ -33,14 +28,19 @@
       "capB": 178.8
     },
     {
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "capB": 177.6
+    },
+    {
       "ticker": "UBER",
       "name": "Uber Technologies, Inc.",
-      "capB": 146.3
+      "capB": 147.7
     },
     {
       "ticker": "MCK",
       "name": "McKesson Corporation",
-      "capB": 119.0
+      "capB": 119.5
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMD.png",
-            "chg": 0.17,
-            "price": 484.72,
+            "chg": 0.63,
+            "price": 486.94,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMGN.png",
-            "chg": 2.81,
-            "price": 474.23,
+            "chg": 2.6,
+            "price": 473.23,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -78,8 +78,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ANET.png",
             "logoBg": "dark",
-            "chg": 5.8,
-            "price": 179.76,
+            "chg": 6.73,
+            "price": 181.35,
             "reactDate": "2026-11-04",
             "baseDate": "2026-11-03"
           },
@@ -179,15 +179,15 @@
             "baseDate": "2026-11-02"
           },
           {
-            "ticker": "LITE",
-            "name": "Lumentum Holdings, Inc.",
-            "when": "before",
+            "ticker": "O",
+            "name": "Realty Income Corporation",
+            "when": "after",
             "status": "final",
-            "logo": "data/earnings/logos/LITE.png",
-            "chg": -18.59,
-            "price": 684.4,
-            "reactDate": "2026-11-02",
-            "baseDate": "2026-10-30"
+            "logo": "data/earnings/logos/O.png",
+            "chg": -0.14,
+            "price": 57.5,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
           }
         ]
       }
@@ -219,16 +219,16 @@
       "logo": "data/earnings/logos/MCD.png"
     },
     {
-      "ticker": "QCOM",
-      "name": "QUALCOMM Incorporated",
-      "when": "after",
-      "logo": "data/earnings/logos/QCOM.png"
-    },
-    {
       "ticker": "NVO",
       "name": "Novo Nordisk A/S Sponsored ADR Class B",
       "when": "before",
       "logo": "data/earnings/logos/NVO.png"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "when": "after",
+      "logo": "data/earnings/logos/QCOM.png"
     },
     {
       "ticker": "UBER",
@@ -338,16 +338,16 @@
           "logo": "data/earnings/logos/WMB.png"
         },
         {
-          "ticker": "LITE",
-          "name": "Lumentum Holdings, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/LITE.png"
-        },
-        {
           "ticker": "O",
           "name": "Realty Income Corporation",
           "when": "after",
           "logo": "data/earnings/logos/O.png"
+        },
+        {
+          "ticker": "LITE",
+          "name": "Lumentum Holdings, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/LITE.png"
         },
         {
           "ticker": "IDXX",
@@ -494,16 +494,16 @@
           "logo": "data/earnings/logos/MCD.png"
         },
         {
-          "ticker": "QCOM",
-          "name": "QUALCOMM Incorporated",
-          "when": "after",
-          "logo": "data/earnings/logos/QCOM.png"
-        },
-        {
           "ticker": "NVO",
           "name": "Novo Nordisk A/S Sponsored ADR Class B",
           "when": "before",
           "logo": "data/earnings/logos/NVO.png"
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QUALCOMM Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/QCOM.png"
         },
         {
           "ticker": "UBER",
@@ -587,16 +587,16 @@
           "logo": "data/earnings/logos/ABNB.png"
         },
         {
-          "ticker": "CNQ",
-          "name": "Canadian Natural Resources Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/CNQ.png"
-        },
-        {
           "ticker": "SO",
           "name": "Southern Company",
           "when": "before",
           "logo": "data/earnings/logos/SO.png"
+        },
+        {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "DUK",
@@ -710,8 +710,8 @@
     "BRK.A": "2026-11-04",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
-    "QCOM": "2026-11-04",
     "NVO": "2026-11-04",
+    "QCOM": "2026-11-04",
     "UBER": "2026-11-04",
     "MCK": "2026-11-04",
     "CVS": "2026-11-04",
@@ -749,24 +749,24 @@
     "UTHR": "2026-11-04",
     "Q": "2026-11-04",
     "GFS": "2026-11-04",
-    "PTC": "2026-11-04",
     "ZBH": "2026-11-04",
-    "TPL": "2026-11-04",
+    "PTC": "2026-11-04",
     "RGLD": "2026-11-04",
     "CDW": "2026-11-04",
+    "TPL": "2026-11-04",
     "PR": "2026-11-04",
     "CRCL": "2026-11-04",
     "SWK": "2026-11-04",
-    "ITT": "2026-11-04",
     "HST": "2026-11-04",
+    "ITT": "2026-11-04",
     "WES": "2026-11-04",
     "PFGC": "2026-11-04",
     "CF": "2026-11-04",
     "CW": "2026-11-04",
     "NWS": "2026-11-04",
     "NWSA": "2026-11-04",
-    "PAAS": "2026-11-04",
     "W": "2026-11-04",
+    "PAAS": "2026-11-04",
     "FICO": "2026-11-04",
     "CRL": "2026-11-04",
     "APA": "2026-11-04",
@@ -779,11 +779,11 @@
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "ABNB": "2026-11-05",
-    "CNQ": "2026-11-05",
     "SO": "2026-11-05",
+    "CNQ": "2026-11-05",
     "DUK": "2026-11-05",
     "MNST": "2026-11-05",
     "NET": "2026-11-05",
@@ -799,8 +799,8 @@
     "CAH": "2026-11-05",
     "WPM": "2026-11-05",
     "BDX": "2026-11-05",
-    "NTRA": "2026-11-05",
     "SRE": "2026-11-05",
+    "NTRA": "2026-11-05",
     "DVN": "2026-11-05",
     "ROK": "2026-11-05",
     "TEAM": "2026-11-05",
@@ -810,23 +810,23 @@
     "MCHPP": "2026-11-05",
     "MCHP": "2026-11-05",
     "ZTS": "2026-11-05",
-    "MTD": "2026-11-05",
     "IRM": "2026-11-05",
+    "MTD": "2026-11-05",
     "AXON": "2026-11-05",
     "GMAB": "2026-11-05",
     "AEE": "2026-11-05",
-    "PBA": "2026-11-05",
     "DTE": "2026-11-05",
+    "PBA": "2026-11-05",
     "DTK": "2026-11-05",
     "VRSK": "2026-11-05",
-    "GPN": "2026-11-05",
     "AFRM": "2026-11-05",
+    "GPN": "2026-11-05",
     "TPR": "2026-11-05",
+    "CIB": "2026-11-05",
     "FWONA": "2026-11-05",
     "FWONK": "2026-11-05",
-    "CIB": "2026-11-05",
-    "RL": "2026-11-05",
     "STE": "2026-11-05",
+    "RL": "2026-11-05",
     "USFD": "2026-11-05",
     "GH": "2026-11-05",
     "VTRS": "2026-11-05",
@@ -843,11 +843,11 @@
     "HALO": "2026-11-05",
     "REG": "2026-11-05",
     "CPT": "2026-11-05",
-    "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
+    "REGCO": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
-    "IONQ": "2026-11-05",
+    "TXRH": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -878,8 +878,8 @@
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
     "SGI": "2026-11-09",
-    "ASTS": "2026-11-09",
     "CNH": "2026-11-09",
+    "ASTS": "2026-11-09",
     "JBS": "2026-11-09",
     "EQX": "2026-11-09",
     "SONY": "2026-11-10",
@@ -894,15 +894,15 @@
     "BEKE": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
+    "ONON": "2026-11-10",
     "VYLR": "2026-11-11",
     "FNV": "2026-11-11",
     "HMC": "2026-11-11",
     "GIB": "2026-11-11",
-    "ASND": "2026-11-11",
-    "SMMT": "2026-11-11"
+    "ASND": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 18:01",
+    "updatedAt": "04/11/2026 18:16",
     "source": "tradingview"
   }
 }
