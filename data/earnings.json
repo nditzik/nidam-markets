@@ -1,7 +1,17 @@
 {
   "today": "2026-11-04",
-  "todayCount": 66,
+  "todayCount": 69,
   "todayBig": [
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1193.3
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "capB": 1192.8
+    },
     {
       "ticker": "ARM",
       "name": "ARM Holdings PLC Sponsored ADR",
@@ -31,16 +41,6 @@
       "ticker": "CVS",
       "name": "CVS Health Corporation",
       "capB": 116.9
-    },
-    {
-      "ticker": "MCK",
-      "name": "McKesson Corporation",
-      "capB": 116.5
-    },
-    {
-      "ticker": "EMR",
-      "name": "Emerson Electric Co.",
-      "capB": 92.8
     }
   ],
   "reactions": {
@@ -183,6 +183,18 @@
   },
   "reporting": [
     {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
       "ticker": "ARM",
       "name": "ARM Holdings PLC Sponsored ADR",
       "when": "after",
@@ -242,21 +254,9 @@
       "when": "after",
       "logo": "data/earnings/logos/APP.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "MSI",
-      "name": "Motorola Solutions, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/MSI.png"
-    },
-    {
-      "ticker": "DDOG",
-      "name": "Datadog, Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/DDOG.png"
     }
   ],
-  "more": 54,
+  "more": 57,
   "upcoming": [
     {
       "date": "2026-11-05",
@@ -373,7 +373,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 56,
+      "total": 54,
       "companies": [
         {
           "ticker": "AMD",
@@ -456,8 +456,20 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 66,
+      "total": 69,
       "companies": [
+        {
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
+        },
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.B.png"
+        },
         {
           "ticker": "ARM",
           "name": "ARM Holdings PLC Sponsored ADR",
@@ -518,18 +530,6 @@
           "when": "after",
           "logo": "data/earnings/logos/APP.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "MSI",
-          "name": "Motorola Solutions, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/MSI.png"
-        },
-        {
-          "ticker": "DDOG",
-          "name": "Datadog, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/DDOG.png"
         }
       ]
     },
@@ -695,6 +695,8 @@
     }
   ],
   "window": {
+    "BRK.A": "2026-11-04",
+    "BRK.B": "2026-11-04",
     "ARM": "2026-11-04",
     "MCD": "2026-11-04",
     "NVO": "2026-11-04",
@@ -737,6 +739,7 @@
     "GFS": "2026-11-04",
     "TPL": "2026-11-04",
     "PTC": "2026-11-04",
+    "FIS": "2026-11-04",
     "PR": "2026-11-04",
     "RGLD": "2026-11-04",
     "CRCL": "2026-11-04",
@@ -765,8 +768,8 @@
     "COP": "2026-11-05",
     "PH": "2026-11-05",
     "CNQ": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "DUK": "2026-11-05",
@@ -826,8 +829,8 @@
     "HALO": "2026-11-05",
     "CG": "2026-11-05",
     "SOLV": "2026-11-05",
-    "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
+    "REGCO": "2026-11-05",
     "REG": "2026-11-05",
     "CPT": "2026-11-05",
     "ENB": "2026-11-06",
@@ -879,7 +882,7 @@
     "ASND": "2026-11-11"
   },
   "_meta": {
-    "updatedAt": "04/11/2026 07:16",
+    "updatedAt": "04/11/2026 07:33",
     "source": "tradingview"
   }
 }

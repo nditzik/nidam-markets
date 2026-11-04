@@ -55,9 +55,10 @@
   {
    "mon": "2026-11-02",
    "label": "2.11",
-   "n": 144,
+   "n": 145,
    "tickers": [
     "AAPL",
+    "BRK.B",
     "AMD",
     "PLTR",
     "NVO"
@@ -177,17 +178,17 @@
    ]
   }
  ],
- "total": 457,
- "reported": 335,
+ "total": 458,
+ "reported": 334,
  "members": 504,
  "board": {
-  "reported": 335,
-  "epsN": 334,
-  "epsBeat": 276,
+  "reported": 334,
+  "epsN": 333,
+  "epsBeat": 277,
   "epsBeatPct": 83,
-  "revN": 334,
-  "revBeat": 239,
-  "revBeatPct": 72,
+  "revN": 333,
+  "revBeat": 238,
+  "revBeatPct": 71,
   "reactBeat": 0.54,
   "reactBeatN": 264,
   "reactMiss": -1.67,
@@ -205,12 +206,12 @@
    },
    {
     "name": "טכנולוגיה",
-    "n": 58,
+    "n": 57,
     "beat": 51
    },
    {
     "name": "בריאות",
-    "n": 38,
+    "n": 37,
     "beat": 35
    },
    {
@@ -225,8 +226,8 @@
    },
    {
     "name": "תשתיות",
-    "n": 18,
-    "beat": 15
+    "n": 19,
+    "beat": 16
    },
    {
     "name": "צריכה בסיסית",
@@ -278,7 +279,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "04/11/2026 05:32",
+  "updatedAt": "04/11/2026 07:33",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
