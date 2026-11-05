@@ -1,0 +1,430 @@
+<title>UBER דוח רבעון Q3 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .wordmark{font-size:28px;font-weight:700;letter-spacing:-.01em;color:#fff;direction:ltr;display:inline-block;margin-bottom:20px;border-bottom:3px solid #4cc3ff;padding-bottom:4px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="wordmark">Uber</span>
+    <div class="eyebrow">Uber Technologies, Inc. · NYSE: UBER · תוצאות רבעון שלישי 2026</div>
+    <h1>המשלוחים מאיצים, הרווח צומח 35%, אבל חסרים נהגים, והתחזית לרווח נמוכה מהצפי. המניה עלתה כ-5%–7% אחרי ירידה של 28% בשנה</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-4 בנובמבר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת המשקיעים</span>
+      <span>עודכן: 5.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>אובר היא פלטפורמה שמחברת בין 215 מיליון לקוחות בחודש לנהגים, לשליחים ולמסעדות, ולוקחת עמלה על כל עסקה</h2>
+  <p class="lead">Uber לא מחזיקה מכוניות ולא מעסיקה נהגים. היא מפעילה אפליקציה שמתאימה בין ביקוש להיצע, ולוקחת עמלה (take rate). לחברה שלושה מגזרים: <strong>ניידות</strong> (Mobility: נסיעות, $29.5B הזמנות ברבעון), <strong>משלוחים</strong> (Delivery: Uber Eats, סופרמרקטים וחנויות, $28.5B), ו<strong>הובלה</strong> (Freight: התאמה בין משאיות למטענים, $1.8B).</p>
+  <p class="body" style="margin-top:14px">שני מדדים חשובים: <strong>הזמנות ברוטו</strong> (Gross Bookings), כל הכסף שעובר בפלטפורמה ($59.8B ברבעון), ו<strong>הכנסות</strong>, החלק שאובר לוקחת לעצמה ($14.8B). האתגר הגדול של העשור: <strong>רכבים אוטונומיים</strong> (AV). אם רובוטקסי יחליפו נהגים, מי ישלוט בשוק, אובר או החברות שבונות את הרכבים (Waymo, Tesla)? האסטרטגיה של אובר: להיות הפלטפורמה שכל יצרניות הרובוטקסי משתמשות בה.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>DoorDash ו-Instacart</h3>
+      <p>DoorDash מובילה במשלוחי מזון בארה"ב, ו-Instacart במשלוחים מסופרמרקטים. השתיים בדרך למיזוג, שייצור מתחרה ענקית לאובר במשלוחים. אובר צומחת 40% בסופרמרקטים, וקונה את Delivery Hero הגרמנית.</p>
+    </div>
+    <div class="col">
+      <h3>Lyft ו-Waymo</h3>
+      <p>Lyft היא המתחרה הישירה בנסיעות בארה"ב, קטנה בהרבה. Waymo (של Alphabet) מפעילה רובוטקסי משלה, וגם דרך אובר בכמה ערים. לפי ה-Financial Times, Waymo בוחנת סיום של השותפות עם אובר.</p>
+    </div>
+    <div class="col">
+      <h3>Tesla ומתחרות בעולם</h3>
+      <p>Tesla בונה רשת רובוטקסי משלה. בעולם אובר מתחרה ב-DiDi (סין ואמריקה הלטינית), Grab (דרום-מזרח אסיה) ו-Bolt (אירופה). בברזיל ובהודו נהגי אופנועים עוברים לחברות משלוחים מתחרות.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון חמישי ברציפות עם צמיחה של 20% בהזמנות, ורווחיות בשיא. אבל הנסיעות מאטות בגלל מחסור בנהגים</h2>
+  <p class="lead">ההזמנות ברוטו צמחו 20%, ל-$59.8B. הרווח המנוקה למניה, $0.88, עלה 35% ועבר מעט את הצפי ($0.86–$0.87). הרווח התפעולי המנוקה הגיע לשיא של 3.9% מההזמנות. התזרים החופשי ב-12 החודשים האחרונים: $10.4B, שיא. המשלוחים היו הכוכב, עם צמיחה של 23%.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>הנסיעות צמחו פחות מהצפוי. הביקוש חזק, אבל חסרים נהגים: מחירי הדלק עלו בגלל המלחמה במזרח התיכון, וזה פוגע במיוחד בברזיל ובהודו, ובנוסף מדיניות ההגירה מצמצמת את מספר הנהגים בארה"ב ובקנדה. אובר תשקיע בגיוס נהגים, וזה יכביד על הרווח ברבעון הרביעי. התחזית לרווח למניה ($0.95–$0.99) נמוכה מהצפי ($1.06). ובכל זאת, המניה עלתה, כי היא כבר ירדה 28% בשנה האחרונה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>הרווח צומח פי 2 מההכנסות, והתזרים חזק</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$59.8B</div><div class="l">הזמנות ברוטו</div><div class="d up">+20% · חמישה רבעונים ברציפות</div></div>
+    <div class="kpi"><div class="v num">$14.8B</div><div class="l">הכנסות</div><div class="d up">+10% · הצפי: $14.65B</div></div>
+    <div class="kpi"><div class="v num">$0.88</div><div class="l">רווח מנוקה למניה</div><div class="d up">+35% · הצפי: $0.86–$0.87</div></div>
+    <div class="kpi"><div class="v num">$2.3B</div><div class="l">רווח תפעולי מנוקה</div><div class="d up">+38% · 3.9% מההזמנות</div></div>
+    <div class="kpi"><div class="v num">215M</div><div class="l">לקוחות פעילים בחודש</div><div class="d up">+14% · 4.1 מיליארד נסיעות</div></div>
+    <div class="kpi"><div class="v num">$2.5B</div><div class="l">תזרים חופשי</div><div class="d up">+14% · $10.4B ב-12 חודשים</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הרווח הרשמי (GAAP) היה $0.25 למניה, לעומת $3.11 אשתקד. שני המספרים מעוותים: ברבעון המקביל נרשם רווח חד-פעמי של $4.9B מהטבת מס, והפעם נרשם הפסד של $476M מירידת ערך של השקעות בחברות אחרות. ההכנסות צמחו רק 10%, כי שינויים במודל העסקי (בעיקר במדינות שבהן אובר מעבירה חלק מהעלויות לשותפים) גרעו 8 נקודות מהצמיחה. הצמיחה בהזמנות היא מדד טוב יותר לגודל העסק.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>המשלוחים כמעט השוו את הנסיעות בגודל, והרווח בשניהם צומח מהר</h2>
+  <p class="body">בגרף: הזמנות ברוטו לפי מגזר, ברבעון השלישי של 2025 לעומת הרבעון השלישי של 2026, במיליארדי דולרים. מתחת: צמיחה (בניידות ובמשלוחים בנטרול מטבע) והרווח התפעולי של המגזר.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 390" role="img" aria-label="הזמנות ברוטו לפי מגזר">
+<rect x="776" y="12" width="14" height="14" fill="#9aa5b8"/><text x="768" y="24" font-size="13" fill="var(--fg)" text-anchor="start">Q3 2025</text>
+<rect x="660" y="12" width="14" height="14" fill="var(--accent)"/><text x="652" y="24" font-size="13" fill="var(--fg)" text-anchor="start">Q3 2026</text>
+<line x1="40" y1="300" x2="790" y2="300" stroke="var(--muted)"/>
+<rect x="685" y="116" width="80" height="184" fill="#9aa5b8"/>
+<text x="725" y="108" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$25.1B</text>
+<rect x="595" y="84" width="80" height="216" fill="var(--accent)"/>
+<text x="635" y="76" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$29.5B</text>
+<text x="680" y="324" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle">ניידות (Mobility)</text>
+<text x="680" y="345" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+17%</text>
+<text x="680" y="366" font-size="12" fill="var(--muted)" text-anchor="middle">רווח תפעולי: <tspan direction="ltr" unicode-bidi="embed">$1.86B → $2.36B</tspan></text>
+<rect x="435" y="129" width="80" height="171" fill="#9aa5b8"/>
+<text x="475" y="121" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$23.3B</text>
+<rect x="345" y="91" width="80" height="209" fill="var(--accent)"/>
+<text x="385" y="83" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$28.5B</text>
+<text x="430" y="324" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle">משלוחים (Delivery)</text>
+<text x="430" y="345" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+23%</text>
+<text x="430" y="366" font-size="12" fill="var(--muted)" text-anchor="middle">רווח תפעולי: <tspan direction="ltr" unicode-bidi="embed">$0.81B → $1.06B</tspan></text>
+<rect x="185" y="290" width="80" height="10" fill="#9aa5b8"/>
+<text x="225" y="282" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$1.3B</text>
+<rect x="95" y="287" width="80" height="13" fill="var(--accent)"/>
+<text x="135" y="279" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$1.8B</text>
+<text x="180" y="324" font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle">הובלה (Freight)</text>
+<text x="180" y="345" font-size="13" fill="var(--pos)" text-anchor="middle" direction="ltr" unicode-bidi="embed">+35%</text>
+<text x="180" y="366" font-size="12" fill="var(--muted)" text-anchor="middle">הפסד תפעולי: <tspan direction="ltr" unicode-bidi="embed">$40M → $33M</tspan></text>
+</svg>
+    <figcaption>הזמנות ברוטו לפי מגזר ורווח תפעולי מגזרי (מנוקה). מקור: הודעת החברה, 4.11.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>משלוחים: מאיצים</h3>
+      <p>‏+23%, והצמיחה האורגנית מאיצה כבר שני רבעונים. סופרמרקטים וחנויות: קצב שנתי של $15B, בצמיחה של 40%. Costco הצטרפה בכל ארה"ב. המנויים (Uber One, כ-55 מיליון) מהווים 70% מהזמנות המשלוחים. הרווח התפעולי עלה 30%.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>ניידות: ביקוש חזק, היצע חלש</h3>
+      <p>‏+17% בהזמנות, פחות מהצפוי. הרווח התפעולי עלה 27%, לרווחיות של 8% מההזמנות. "Premium" צמח 35%, ונסיעות עסקיות (Uber for Business) כמעט 50%. בארה"ב יש שיפור בקליפורניה בזכות ירידה בעלויות הביטוח.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>רכבים אוטונומיים: מניסויים למסחר</h3>
+      <p>כ-700 רכבים ללא נהג באובר עד סוף 2026, ויותר מ-2,000 בסוף 2027. השותפות: Waymo, ‏WeRide, ‏Baidu, ואחר כך Zoox ו-Motional בלאס וגאס, Nuro, ‏Pony ו-Momenta. המטרה: "עשרות אלפים" ב-2028. רכב אוטונומי באובר מבצע כ-30% יותר נסיעות ביום מאשר ברשת עצמאית.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · מחסור הנהגים</div>
+  <h2>"בעיה טובה": יש יותר נוסעים מנהגים. אבל הפתרון עולה כסף</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>הגורם</th><th>איפה</th><th>מה אובר עושה</th></tr></thead>
+      <tbody>
+        <tr><td>מחירי דלק גבוהים (המלחמה במזרח התיכון)</td><td>ברזיל, הודו, שווקים מתפתחים</td><td>תמריצים לנהגים</td></tr>
+        <tr><td>מדיניות הגירה</td><td>ארה"ב, קנדה</td><td>גיוס ושימור נהגים</td></tr>
+        <tr><td>תחרות על שליחי אופנועים</td><td>ברזיל</td><td>תמריצים לשליחים</td></tr>
+        <tr><td>עונת שיא (ספטמבר–דצמבר)</td><td>כל השווקים</td><td>הסטת תמריצים מנוסעים לנהגים</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>לפי 24/7 Wall St., המלחמה גרעה כ-0.75 נקודות מצמיחת הנסיעות ברבעון השלישי, ועלולה לגרוע עוד נקודה ברבעון הרביעי. הפתרון של אובר: להעביר כסף מהנחות לנוסעים לבונוסים לנהגים. זה אומר מחירים גבוהים יותר לנוסעים, שעלולים לפגוע בביקוש. החדשות הטובות: באוקטובר שעות הנהגים כבר צמחו מהר יותר, כולל בברזיל ובהודו.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>הזמנות בקצב יציב, ורווח שצומח יותר מ-35%, אבל פחות ממה שהשוק קיווה</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית Q4 2026</th><th>הצפי בשוק</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הזמנות ברוטו</td><td class="n">$63.25–$65.25B</td><td class="n">~$64.4B</td><td>+18%–22% בנטרול מטבע</td></tr>
+        <tr class="hl"><td>רווח מנוקה למניה</td><td class="n">$0.95–$0.99</td><td class="n">~$1.06</td><td>+34%–39%, אבל מתחת לצפי</td></tr>
+        <tr><td>EBITDA מתואם</td><td class="n">$3.13–$3.23B</td><td>—</td><td>—</td></tr>
+        <tr><td>מטבע</td><td>כ-1 נק' רוח נגדית</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="tl">
+    <li><div class="when">נובמבר 2026</div><div class="what">Zoox משיקה באובר בלאס וגאס; Motional ללא נהג זמן קצר אחר כך</div></li>
+    <li><div class="when">סוף 2026</div><div class="what">כ-700 רכבים ללא נהג; הודעות על מימון צי ותשתיות</div></li>
+    <li><div class="when">2027</div><div class="what">Nuro בקליפורניה וביוסטון; Avride בטקסס; Pony ו-Momenta בעולם. יותר מ-2,000 רכבים</div></li>
+    <li><div class="when">2028 ואילך</div><div class="what">"עשרות אלפי" רכבים אוטונומיים, במימון חיצוני</div></li>
+    <li><div class="when">ממתין</div><div class="what">סגירת רכישת Delivery Hero</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: הביקוש לא הבעיה, האוטונומי עובר למסחר, הרכישות נעצרות, ו-AI לא יגנוב לנו לקוחות</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"בעיה טובה"</h3>
+      <p>סמנכ"ל הכספים, בלאג'י קרישנמורתי: "בקנה המידה שלנו, אנחנו עדיין נתקלים במגבלות היצע ולא במגבלות ביקוש". רק 10% מהאוכלוסייה הרלוונטית בעשרת השווקים הגדולים משתמשת באובר, כך שיש עוד הרבה מקום לגדול.</p>
+    </div>
+    <div class="col">
+      <h3>"מימון חיצוני לרכבים האוטונומיים"</h3>
+      <p>בהתחלה אובר תחזיק רכבים אוטונומיים במאזן שלה, ובטווח הארוך המימון יגיע "מהון של צד שלישי". הטיעון: רכב ברשת של אובר מנוצל יותר, ולכן קל יותר לממן אותו. המנכ"ל, דארה חוסרושאהי: "ערך השייר של רכבים אוטונומיים עוד לא מבוסס".</p>
+    </div>
+    <div class="col">
+      <h3>"פחות רכישות, יותר קניית מניות"</h3>
+      <p>אחרי Delivery Hero, ‏Trendyol, ‏Blacklane, ‏EZCater ו-SpotHero, ב-2027 אובר תתמקד בשילוב החברות שנרכשו, בצמיחה אורגנית, ברכבים אוטונומיים ובקניית מניות. ההתחייבות לאקוסיסטם האוטונומי: עד $10B.</p>
+    </div>
+    <div class="col">
+      <h3>"לא נהיה תלויים בגוגל של העולם"</h3>
+      <p>על סוכני AI (ChatGPT ודומיו): "עבדתי בתעשיית התיירות, והיינו תלויים בגוגל. אני לא רוצה לחזור לשם". 75% מהנסיעות מוזמנות בלחיצה אחת. אובר מנהלת משא ומתן עם "כל חברת AI", אבל בשבוע של ליל כל הקדושים הגיעו מסוכני AI רק כ-500 הזמנות אוכל ו-4 נסיעות, מתוך 320 מיליון.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>אף אנליסט לא שאל על הדיווח ב-FT ש-Waymo בוחנת סיום של השותפות, וההנהלה לא התייחסה אליו. Waymo היא מפעילת הרובוטקסי המובילה בארה"ב. אם היא תעזוב, אובר תישען על שותפות שעדיין לא הוכיחו את עצמן בקנה מידה. ההנהלה גם הודתה ש-Waymo ו-Tesla מבצעות "נמוך בעשרות" נסיעות ליום לרכב בערים החדשות שלהן, לעומת "גבוה בעשרים" באובר. כלומר, היא מציגה את הרשת שלה כיתרון שקשה לוותר עליו.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים שאלו על רכבים אוטונומיים, נהגים ותחרות. השאלה הגדולה: מה עמדת אובר מול העתיד</h2>
+  <p class="body">תשעה אנליסטים שאלו. שלוש שאלות עסקו ברכבים אוטונומיים (מימון, קצב, כלכלה), שתיים במחסור בנהגים ובמרווחים, שתיים בסופרמרקטים ובמיזוג DoorDash–Instacart, אחת במגמות בארה"ב ואחת בסוכני AI. אף אחד לא שאל על Waymo.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>רכבים אוטונומיים: Goldman Sachs (מימון), ‏Citi (קצב והתפרסות גיאוגרפית), ‏Wolfe (כלכלה). המשקיעים מנסים להבין אם אובר תהיה המנצחת או המפסידה של הרובוטקסי. ההנהלה ענתה בביטחון, אבל כמעט בלי מספרים כספיים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>4 נסיעות. זה כל מה שהגיע מסוכני AI בשבוע שבו אובר ביצעה 320 מיליון נסיעות והזמנות. זה עונה על החשש שעוזרי AI ישתלטו על הקשר עם הלקוח. לפחות כרגע, זה לא קורה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>על מיזוג DoorDash–Instacart. חוסרושאהי: "לא חושב שזה ישפיע עלינו יותר מדי", וסוחרים כבר "פונים אלינו כי הם לא רוצים להיות תלויים בפלטפורמה אחת". הוא גם רמז שהרשויות עשויות לעצור את המיזוג.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>מימון הרכבים האוטונומיים. קרישנמורתי: "אנחנו עוד לא מוכנים לומר הרבה על המבנים". היה רק רמז להסכם של $1B עם Santander כתבנית. כמה הון ייכנס, באיזו תשואה ובאיזה סיכון? לא נאמר.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"עבדתי בתעשיית התיירות, והיינו תלויים בגוגל של העולם. אני לא רוצה לחזור לשם" (חוסרושאהי, לשעבר מנכ"ל Expedia). זו האסטרטגיה כולה: לשמור על הקשר הישיר עם הלקוח, מול AI, מול Waymo ומול כל מתווך.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>ג'יל הייזלבייקר, נשיאה ומנהלת קשרי ממשל כבר 10 שנים, עוזבת ל-OpenAI. חוסרושאהי כינה את זה "ניצחון גדול בשבילם". OpenAI היא גם שותפה פוטנציאלית בסוכני AI, וגם מתחרה פוטנציאלית על הקשר עם הלקוח.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>העסק של אובר חזק ורווחי, עם צמיחה של 20% ורווח שצומח 35%. אבל המניה נסחרת לפי הפחד מהעתיד: רובוטקסי שייקחו את הנהגים, Waymo שתעזוב, ו-AI שיתווך בין הלקוח לאפליקציה. בשיחה ההנהלה ענתה על חלק מהחששות (AI, DoorDash) ולא על אחרים (מימון רכבים אוטונומיים, Waymo).</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · איך השוק הגיב</div>
+  <h2>עלייה של כ-5%–7% ביום הדוח, למרות תחזית רווח חלשה</h2>
+  <p class="body">לפני הדוח (3.11) המניה סגרה ב-$66.60, קרוב לשפל השנתי ($64.04). ב-4.11 היא עלתה ל-$70–$71.4 במהלך המסחר (+5% עד +7%), עם שיא יומי של $72.50. שווי השוק: כ-$145 מיליארד. בשנה האחרונה המניה ירדה כ-28%, וטווח 52 השבועות הוא $64.04–$95.44. גם Lyft (‏+11%) ו-DoorDash (‏+7%) עלו באותו יום.</p>
+  <p class="body">BTIG הוריד את מחיר היעד מ-$100 ל-$90 ושמר על "קנייה". מחיר היעד הממוצע של האנליסטים הוא כ-$102.6, כ-45% מעל המחיר. 35 מתוך 42 אנליסטים ממליצים "קנייה". המכפיל על הרווח של 12 החודשים האחרונים: כ-15.6, לפי MarketBeat.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>כשמניה עולה למרות תחזית רווח שמתחת לצפי, זה סימן שהפסימיות כבר הייתה במחיר. מכפיל של כ-16 על רווחים שצומחים ב-35% הוא זול לחברת טכנולוגיה. השאלה היא אם השוק צודק שהרובוטקסי יפגעו באובר. אם אובר תוכיח שהיא הפלטפורמה של הרובוטקסי, יש לה הרבה מקום לעלות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: רובוטקסי שיפעלו בלי אובר, ויהפכו את הרשת שלה למיותרת</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>רכבים אוטונומיים</h3><p>אם Waymo, ‏Tesla או אחרות יבנו רשתות משלהן בהיקף גדול, היתרון של אובר (רשת נהגים וביקוש) ייחלש. הדיווח על Waymo מחריף את החשש.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>מחסור בנהגים</h3><p>דלק יקר, הגירה ותחרות. ההשקעה בתמריצים פוגעת ברווחיות או מעלה את המחירים לנוסעים.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>מיזוג DoorDash–Instacart</h3><p>מתחרה ענקית במשלוחים, ובמיוחד בסופרמרקטים, שהוא מנוע הצמיחה המהיר של אובר.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>הון לרכבים אוטונומיים</h3><p>התחייבות של עד $10B, רכבים במאזן בשלב הראשון, וחוב שעלה ל-$15.7B. אם המודל לא יעבוד, ההשקעה תיפגע.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>רכישות ושילוב</h3><p>Delivery Hero, ‏Trendyol, ‏EZCater ועוד. הרבה עסקאות בבת אחת, והסיכון בשילוב גבוה.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>רגולציה ונהגים</h3><p>מעמד הנהגים (עצמאים או עובדים) נבחן במדינות רבות. שינוי עלול לייקר את המודל.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>רכבים אוטונומיים</strong></td><td>אובר מחברת את כולן: Waymo, ‏Zoox, ‏Nuro, ‏Baidu, ‏WeRide ועוד. 30% יותר ניצול ברשת שלה. 700 רכבים ב-2026, ו-2,000 ב-2027.</td><td>Waymo בוחנת עזיבה. Tesla בונה לבד. ייתכן שהיצרניות לא יצטרכו את אובר.</td></tr>
+        <tr><td><strong>משלוחים</strong></td><td>+23% ומאיצים. סופרמרקטים: $15B בצמיחה של 40%. שוק של $10 טריליון. Delivery Hero מרחיבה את הנוכחות הגיאוגרפית.</td><td>מיזוג DoorDash–Instacart. מחסור בשליחים.</td></tr>
+        <tr><td><strong>ניידות</strong></td><td>ביקוש חזק. Premium ‏+35%, נסיעות עסקיות ‏+50%. רק 10% חדירה בערים הגדולות.</td><td>מחסור בנהגים, דלק יקר, ותמריצים שעולים כסף.</td></tr>
+        <tr><td><strong>רווחיות</strong></td><td>רווח תפעולי מנוקה +38%, ורווח למניה +35%. תזרים חופשי של $10.4B בשנה.</td><td>התחזית לרבעון הרביעי מתחת לצפי. השקעה בנהגים.</td></tr>
+        <tr><td><strong>AI</strong></td><td>קשר ישיר עם הלקוח, הזמנה בלחיצה אחת. סוכני AI כמעט לא תופסים. עוזר קניות מכפיל את גודל הסל.</td><td>בעתיד עוזרי AI עשויים לתווך ולגבות עמלה.</td></tr>
+        <tr><td><strong>הון</strong></td><td>$10.1B מזומן. קניית מניות. מעבר משלב הרכישות לשלב השילוב.</td><td>החוב עלה ב-$5B מתחילת השנה. התחייבות של עד $10B לרכבים אוטונומיים.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>מכפיל של כ-16, ירידה של 28% בשנה, יעד ממוצע של כ-$103 (כ-45% מעל המחיר).</td><td>השוק מתמחר את סיכון הרובוטקסי, ואולי בצדק.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לעקוב אחרי ההיצע של הנהגים ברבעון הרביעי ואחרי כל חדשה על Waymo. משקיע לטווח ארוך צריך לעקוב אחרי שלושה דברים: הניצולת והכלכלה של הרכבים האוטונומיים באובר, מימון הצי במודל חיצוני, וההחלטה של הרשויות על מיזוג DoorDash–Instacart.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>הזמנות ברוטו (Gross Bookings)</dt><dd>כל הכסף שעובר בפלטפורמה: מחיר הנסיעה, ההזמנה, המסים והעמלות, לפני התשלום לנהגים ולמסעדות.</dd>
+    <dt>Take rate</dt><dd>האחוז מההזמנות ברוטו שאובר מקבלת כהכנסה.</dd>
+    <dt>MAPCs</dt><dd>לקוחות פעילים בחודש שהזמינו לפחות נסיעה אחת או משלוח אחד. 215 מיליון.</dd>
+    <dt>רכב אוטונומי (AV)</dt><dd>רכב שנוסע בלי נהג אנושי, כמו הרובוטקסי של Waymo.</dd>
+    <dt>מודל היברידי</dt><dd>רשת שבה רכבים אוטונומיים ונהגים אנושיים פועלים יחד באותה אפליקציה, וכך מגיעים לניצול גבוה יותר.</dd>
+    <dt>1P (First Party)</dt><dd>כשיצרנית הרובוטקסי מפעילה רשת משלה, בלי פלטפורמה חיצונית כמו אובר.</dd>
+    <dt>Uber One</dt><dd>מנוי חודשי עם הנחות על נסיעות ומשלוחים. כ-55 מיליון מנויים.</dd>
+    <dt>מסחר מהיר / Dark store</dt><dd>מחסן קטן בעיר שמספק מוצרי צריכה תוך 15–30 דקות.</dd>
+    <dt>שווקים דלילים (Sparse)</dt><dd>אזורים פרבריים וכפריים עם מעט נהגים ומשתמשים, שבהם יש לאובר עוד הרבה מקום לגדול.</dd>
+    <dt>רווח תפעולי מנוקה</dt><dd>הרווח מהפעילות, בלי חיובים חד-פעמיים ובלי הפחתות. אובר עברה להשתמש בו במקום EBITDA.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Uber — הודעה לעיתונות על תוצאות Q3 2026 (4.11.2026); תמלול שיחת המשקיעים (StockOracle / FactSet, 4.11.2026); נתוני מסחר, צפי אנליסטים ויעדי מחיר: 24/7 Wall St., MarketBeat (4.11.2026). הדיווח על Waymo מבוסס על ה-Financial Times, כפי שצוטט ב-24/7 Wall St. מחיר הסגירה הסופי של 4.11 לא היה זמין בעת כתיבת הדוח. לא נמצא לוגו בקבצים שצורפו, ולכן שם החברה מוצג כטקסט.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>

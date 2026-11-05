@@ -1,7 +1,17 @@
 {
   "today": "2026-11-05",
-  "todayCount": 78,
+  "todayCount": 80,
   "todayBig": [
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "capB": 1240.1
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1239.8
+    },
     {
       "ticker": "TM",
       "name": "Toyota Motor Corp. Sponsored ADR",
@@ -31,16 +41,6 @@
       "ticker": "SO",
       "name": "Southern Company",
       "capB": 107.1
-    },
-    {
-      "ticker": "ABNB",
-      "name": "Airbnb, Inc. Class A",
-      "capB": 105.6
-    },
-    {
-      "ticker": "CNQ",
-      "name": "Canadian Natural Resources Limited",
-      "capB": 102.3
     }
   ],
   "reactions": {
@@ -255,6 +255,18 @@
   },
   "reporting": [
     {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
       "ticker": "TM",
       "name": "Toyota Motor Corp. Sponsored ADR",
       "when": "",
@@ -313,21 +325,9 @@
       "name": "Monster Beverage Corporation",
       "when": "after",
       "logo": "data/earnings/logos/MNST.png"
-    },
-    {
-      "ticker": "NET",
-      "name": "Cloudflare Inc Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/NET.png"
-    },
-    {
-      "ticker": "NGG",
-      "name": "National Grid plc Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/NGG.png"
     }
   ],
-  "more": 66,
+  "more": 68,
   "upcoming": [
     {
       "date": "2026-11-06",
@@ -430,7 +430,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 63,
+      "total": 62,
       "companies": [
         {
           "ticker": "AMD",
@@ -593,8 +593,20 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 78,
+      "total": 80,
       "companies": [
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.B.png"
+        },
+        {
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
+        },
         {
           "ticker": "TM",
           "name": "Toyota Motor Corp. Sponsored ADR",
@@ -654,18 +666,6 @@
           "name": "Monster Beverage Corporation",
           "when": "after",
           "logo": "data/earnings/logos/MNST.png"
-        },
-        {
-          "ticker": "NET",
-          "name": "Cloudflare Inc Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/NET.png"
-        },
-        {
-          "ticker": "NGG",
-          "name": "National Grid plc Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/NGG.png"
         }
       ]
     },
@@ -751,6 +751,8 @@
     }
   ],
   "window": {
+    "BRK.B": "2026-11-05",
+    "BRK.A": "2026-11-05",
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
@@ -788,6 +790,7 @@
     "IRM": "2026-11-05",
     "MTD": "2026-11-05",
     "AXON": "2026-11-05",
+    "UI": "2026-11-05",
     "GMAB": "2026-11-05",
     "AEE": "2026-11-05",
     "DTE": "2026-11-05",
@@ -817,8 +820,8 @@
     "HALO": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
-    "REGCP": "2026-11-05",
     "REGCO": "2026-11-05",
+    "REGCP": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
@@ -828,7 +831,6 @@
     "MAIR": "2026-11-05",
     "GMED": "2026-11-05",
     "SUZ": "2026-11-05",
-    "FNF": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -895,7 +897,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 07:16",
+    "updatedAt": "05/11/2026 07:31",
     "source": "tradingview"
   }
 }
