@@ -5,17 +5,17 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1230.5
+      "capB": 1226.4
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1228.0
+      "capB": 1224.6
     },
     {
       "ticker": "COP",
       "name": "ConocoPhillips",
-      "capB": 165.1
+      "capB": 164.5
     },
     {
       "ticker": "SONY",
@@ -25,7 +25,7 @@
     {
       "ticker": "PH",
       "name": "Parker-Hannifin Corporation",
-      "capB": 114.2
+      "capB": 113.7
     },
     {
       "ticker": "SOJD",
@@ -40,7 +40,7 @@
     {
       "ticker": "SO",
       "name": "Southern Company",
-      "capB": 106.7
+      "capB": 106.8
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TM.png",
-            "chg": 9.74,
-            "price": 218.88,
+            "chg": 9.8,
+            "price": 219.01,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ARM.png",
-            "chg": -12.54,
-            "price": 167.74,
+            "chg": -11.76,
+            "price": 169.25,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/QCOM.png",
-            "chg": -8.91,
-            "price": 157.76,
+            "chg": -8.09,
+            "price": 159.18,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -315,12 +315,6 @@
       "logo": "data/earnings/logos/SO.png"
     },
     {
-      "ticker": "ABNB",
-      "name": "Airbnb, Inc. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/ABNB.png"
-    },
-    {
       "ticker": "CNQ",
       "name": "Canadian Natural Resources Limited",
       "when": "before",
@@ -331,6 +325,12 @@
       "name": "Duke Energy Corporation",
       "when": "before",
       "logo": "data/earnings/logos/DUK.png"
+    },
+    {
+      "ticker": "ABNB",
+      "name": "Airbnb, Inc. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/ABNB.png"
     },
     {
       "ticker": "MNST",
@@ -401,16 +401,16 @@
           "logo": "data/earnings/logos/O.png"
         },
         {
-          "ticker": "IDXX",
-          "name": "IDEXX Laboratories, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/IDXX.png"
-        },
-        {
           "ticker": "ETR",
           "name": "Entergy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/ETR.png"
+        },
+        {
+          "ticker": "IDXX",
+          "name": "IDEXX Laboratories, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/IDXX.png"
         },
         {
           "ticker": "FANG",
@@ -656,12 +656,6 @@
           "logo": "data/earnings/logos/SO.png"
         },
         {
-          "ticker": "ABNB",
-          "name": "Airbnb, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/ABNB.png"
-        },
-        {
           "ticker": "CNQ",
           "name": "Canadian Natural Resources Limited",
           "when": "before",
@@ -672,6 +666,12 @@
           "name": "Duke Energy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/DUK.png"
+        },
+        {
+          "ticker": "ABNB",
+          "name": "Airbnb, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ABNB.png"
         },
         {
           "ticker": "MNST",
@@ -771,9 +771,9 @@
     "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
     "SO": "2026-11-05",
-    "ABNB": "2026-11-05",
     "CNQ": "2026-11-05",
     "DUK": "2026-11-05",
+    "ABNB": "2026-11-05",
     "MNST": "2026-11-05",
     "NGG": "2026-11-05",
     "NET": "2026-11-05",
@@ -792,8 +792,8 @@
     "SRE": "2026-11-05",
     "DVN": "2026-11-05",
     "TEAM": "2026-11-05",
-    "AU": "2026-11-05",
     "ED": "2026-11-05",
+    "AU": "2026-11-05",
     "LYV": "2026-11-05",
     "ROK": "2026-11-05",
     "MCHPP": "2026-11-05",
@@ -826,8 +826,8 @@
     "JHX": "2026-11-05",
     "SBS": "2026-11-05",
     "LAMR": "2026-11-05",
-    "MTSI": "2026-11-05",
     "SOLV": "2026-11-05",
+    "MTSI": "2026-11-05",
     "CG": "2026-11-05",
     "HALO": "2026-11-05",
     "REGCP": "2026-11-05",
@@ -853,8 +853,8 @@
     "DDS": "2026-11-05",
     "WMS": "2026-11-05",
     "OSCR": "2026-11-05",
-    "ARW": "2026-11-05",
     "FROG": "2026-11-05",
+    "ARW": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -921,7 +921,7 @@
     "HBM": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 22:31",
+    "updatedAt": "05/11/2026 22:46",
     "source": "tradingview"
   }
 }
