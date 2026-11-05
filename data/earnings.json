@@ -1,50 +1,122 @@
 {
-  "today": "2026-11-05",
-  "todayCount": 93,
+  "today": "2026-11-06",
+  "todayCount": 16,
   "todayBig": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1225.5
+      "ticker": "ENB",
+      "name": "Enbridge Inc.",
+      "capB": 109.1
     },
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1222.0
+      "ticker": "MRNA",
+      "name": "Moderna, Inc.",
+      "capB": 96.4
     },
     {
-      "ticker": "COP",
-      "name": "ConocoPhillips",
-      "capB": 162.7
+      "ticker": "BAM",
+      "name": "Brookfield Asset Management Ltd. Class A",
+      "capB": 85.9
     },
     {
-      "ticker": "SONY",
-      "name": "Sony Group Corporation Sponsored ADR",
-      "capB": 147.1
+      "ticker": "HUM",
+      "name": "Humana Inc.",
+      "capB": 49.4
     },
     {
-      "ticker": "PH",
-      "name": "Parker-Hannifin Corporation",
-      "capB": 112.5
+      "ticker": "ONC",
+      "name": "BeOne Medicines Ltd. Sponsored ADR",
+      "capB": 43.3
     },
     {
-      "ticker": "SO",
-      "name": "Southern Company",
-      "capB": 107.4
+      "ticker": "VST",
+      "name": "Vistra Corp.",
+      "capB": 37.9
     },
     {
-      "ticker": "SOJD",
-      "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
-      "capB": 107.1
+      "ticker": "PPL",
+      "name": "PPL Corporation",
+      "capB": 27.1
     },
     {
-      "ticker": "SOJE",
-      "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
-      "capB": 107.1
+      "ticker": "BIP",
+      "name": "Brookfield Infrastructure Partners L.P.",
+      "capB": 24.5
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-05",
+        "label": "5.11",
+        "items": [
+          {
+            "ticker": "COP",
+            "name": "ConocoPhillips",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/COP.png",
+            "chg": -1.08,
+            "price": 135.46,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "SONY",
+            "name": "Sony Group Corporation Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SONY.png",
+            "chg": 6.13,
+            "price": 27.54,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "PH",
+            "name": "Parker-Hannifin Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PH.png",
+            "chg": -1.97,
+            "price": 892.29,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "SO",
+            "name": "Southern Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SO.png",
+            "chg": 0.24,
+            "price": 93.34,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "SOJD",
+            "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SOJD.png",
+            "chg": -1.2,
+            "price": 17.36,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "SOJE",
+            "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SOJE.png",
+            "chg": -1.29,
+            "price": 15.35,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          }
+        ]
+      },
       {
         "date": "2026-11-04",
         "label": "4.11",
@@ -189,173 +261,85 @@
             "baseDate": "2026-11-02"
           }
         ]
-      },
-      {
-        "date": "2026-11-02",
-        "label": "2.11",
-        "items": [
-          {
-            "ticker": "AAPL",
-            "name": "Apple Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/AAPL.png",
-            "chg": -1.9,
-            "price": 331.9,
-            "reactDate": "2026-11-03",
-            "baseDate": "2026-11-02"
-          },
-          {
-            "ticker": "PLTR",
-            "name": "Palantir Technologies Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/PLTR.png",
-            "chg": -1.65,
-            "price": 175.4,
-            "reactDate": "2026-11-03",
-            "baseDate": "2026-11-02"
-          },
-          {
-            "ticker": "VRTX",
-            "name": "Vertex Pharmaceuticals Incorporated",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/VRTX.png",
-            "logoBg": "dark",
-            "chg": -4.05,
-            "price": 530.76,
-            "reactDate": "2026-11-03",
-            "baseDate": "2026-11-02"
-          },
-          {
-            "ticker": "MAR",
-            "name": "Marriott International, Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MAR.png",
-            "chg": 4.26,
-            "price": 416.3,
-            "reactDate": "2026-11-02",
-            "baseDate": "2026-10-30"
-          },
-          {
-            "ticker": "WMB",
-            "name": "Williams Companies, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/WMB.png",
-            "chg": 1.8,
-            "price": 72.47,
-            "reactDate": "2026-11-03",
-            "baseDate": "2026-11-02"
-          },
-          {
-            "ticker": "O",
-            "name": "Realty Income Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/O.png",
-            "chg": -0.14,
-            "price": 57.5,
-            "reactDate": "2026-11-03",
-            "baseDate": "2026-11-02"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
+      "ticker": "ENB",
+      "name": "Enbridge Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/ENB.png"
+    },
+    {
+      "ticker": "MRNA",
+      "name": "Moderna, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/MRNA.png"
+    },
+    {
+      "ticker": "BAM",
+      "name": "Brookfield Asset Management Ltd. Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/BAM.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "HUM",
+      "name": "Humana Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/HUM.png"
+    },
+    {
+      "ticker": "ONC",
+      "name": "BeOne Medicines Ltd. Sponsored ADR",
       "when": "",
-      "logo": "data/earnings/logos/BRK.B.png"
+      "logo": "data/earnings/logos/ONC.png"
     },
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
+      "ticker": "VST",
+      "name": "Vistra Corp.",
+      "when": "before",
+      "logo": "data/earnings/logos/VST.png"
+    },
+    {
+      "ticker": "PPL",
+      "name": "PPL Corporation",
       "when": "",
-      "logo": "data/earnings/logos/BRK.A.png"
+      "logo": "data/earnings/logos/PPL.png"
     },
     {
-      "ticker": "COP",
-      "name": "ConocoPhillips",
+      "ticker": "BIP",
+      "name": "Brookfield Infrastructure Partners L.P.",
       "when": "before",
-      "logo": "data/earnings/logos/COP.png"
+      "logo": "data/earnings/logos/BIP.png"
     },
     {
-      "ticker": "SONY",
-      "name": "Sony Group Corporation Sponsored ADR",
+      "ticker": "CHTR",
+      "name": "Charter Communications, Inc. Class A",
       "when": "before",
-      "logo": "data/earnings/logos/SONY.png"
+      "logo": "data/earnings/logos/CHTR.png"
     },
     {
-      "ticker": "PH",
-      "name": "Parker-Hannifin Corporation",
+      "ticker": "CHTRP",
+      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+      "when": "before"
+    },
+    {
+      "ticker": "PAA",
+      "name": "Plains All American Pipeline, L.P.",
       "when": "before",
-      "logo": "data/earnings/logos/PH.png"
+      "logo": "data/earnings/logos/PAA.png"
     },
     {
-      "ticker": "SO",
-      "name": "Southern Company",
+      "ticker": "BEN",
+      "name": "Franklin Templeton, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/SO.png"
-    },
-    {
-      "ticker": "SOJD",
-      "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
-      "when": "before",
-      "logo": "data/earnings/logos/SOJD.png"
-    },
-    {
-      "ticker": "SOJE",
-      "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
-      "when": "before",
-      "logo": "data/earnings/logos/SOJE.png"
-    },
-    {
-      "ticker": "ABNB",
-      "name": "Airbnb, Inc. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/ABNB.png"
-    },
-    {
-      "ticker": "DUK",
-      "name": "Duke Energy Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/DUK.png"
-    },
-    {
-      "ticker": "CNQ",
-      "name": "Canadian Natural Resources Limited",
-      "when": "before",
-      "logo": "data/earnings/logos/CNQ.png"
-    },
-    {
-      "ticker": "MNST",
-      "name": "Monster Beverage Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/MNST.png"
+      "logo": "data/earnings/logos/BEN.png"
     }
   ],
-  "more": 81,
-  "upcoming": [
-    {
-      "date": "2026-11-06",
-      "label": "6/11",
-      "dow": "ו׳",
-      "count": 16,
-      "tickers": [
-        "ENB",
-        "MRNA",
-        "BAM",
-        "HUM",
-        "ONC",
-        "VST"
-      ]
-    }
-  ],
+  "more": 4,
+  "upcoming": [],
   "week": [
     {
       "date": "2026-11-02",
@@ -763,99 +747,6 @@
     }
   ],
   "window": {
-    "BRK.B": "2026-11-05",
-    "BRK.A": "2026-11-05",
-    "COP": "2026-11-05",
-    "SONY": "2026-11-05",
-    "PH": "2026-11-05",
-    "SO": "2026-11-05",
-    "SOJD": "2026-11-05",
-    "SOJE": "2026-11-05",
-    "ABNB": "2026-11-05",
-    "DUK": "2026-11-05",
-    "CNQ": "2026-11-05",
-    "MNST": "2026-11-05",
-    "NET": "2026-11-05",
-    "NGG": "2026-11-05",
-    "CI": "2026-11-05",
-    "EOG": "2026-11-05",
-    "SPG": "2026-11-05",
-    "APD": "2026-11-05",
-    "KMB": "2026-11-05",
-    "TRP": "2026-11-05",
-    "CAH": "2026-11-05",
-    "CMI": "2026-11-05",
-    "WPM": "2026-11-05",
-    "TRGP": "2026-11-05",
-    "BDX": "2026-11-05",
-    "NTRA": "2026-11-05",
-    "SRE": "2026-11-05",
-    "DVN": "2026-11-05",
-    "TEAM": "2026-11-05",
-    "ED": "2026-11-05",
-    "AU": "2026-11-05",
-    "LYV": "2026-11-05",
-    "ROK": "2026-11-05",
-    "MCHPP": "2026-11-05",
-    "MCHP": "2026-11-05",
-    "ZTS": "2026-11-05",
-    "MTD": "2026-11-05",
-    "GMAB": "2026-11-05",
-    "IRM": "2026-11-05",
-    "AEE": "2026-11-05",
-    "UI": "2026-11-05",
-    "AXON": "2026-11-05",
-    "DTK": "2026-11-05",
-    "DTE": "2026-11-05",
-    "PBA": "2026-11-05",
-    "VRSK": "2026-11-05",
-    "FWONA": "2026-11-05",
-    "TPR": "2026-11-05",
-    "FWONK": "2026-11-05",
-    "GPN": "2026-11-05",
-    "CIB": "2026-11-05",
-    "AFRM": "2026-11-05",
-    "USFD": "2026-11-05",
-    "RL": "2026-11-05",
-    "VTRS": "2026-11-05",
-    "U": "2026-11-05",
-    "GH": "2026-11-05",
-    "BCE": "2026-11-05",
-    "EVRG": "2026-11-05",
-    "RGA": "2026-11-05",
-    "JHX": "2026-11-05",
-    "SBS": "2026-11-05",
-    "LAMR": "2026-11-05",
-    "SOLV": "2026-11-05",
-    "MTSI": "2026-11-05",
-    "CG": "2026-11-05",
-    "REGCO": "2026-11-05",
-    "REGCP": "2026-11-05",
-    "CPT": "2026-11-05",
-    "REG": "2026-11-05",
-    "HALO": "2026-11-05",
-    "BSY": "2026-11-05",
-    "TIGO": "2026-11-05",
-    "TXRH": "2026-11-05",
-    "AHR": "2026-11-05",
-    "SUZ": "2026-11-05",
-    "DKNG": "2026-11-05",
-    "FNF": "2026-11-05",
-    "TECH": "2026-11-05",
-    "IONQ": "2026-11-05",
-    "AKAM": "2026-11-05",
-    "GMED": "2026-11-05",
-    "GSAT": "2026-11-05",
-    "MAIR": "2026-11-05",
-    "MOG.B": "2026-11-05",
-    "IAG": "2026-11-05",
-    "MOG.A": "2026-11-05",
-    "DDS": "2026-11-05",
-    "WMS": "2026-11-05",
-    "FROG": "2026-11-05",
-    "OSCR": "2026-11-05",
-    "ARW": "2026-11-05",
-    "NVMI": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -920,10 +811,13 @@
     "WSM": "2026-11-12",
     "BSP": "2026-11-12",
     "CBRS": "2026-11-12",
-    "HBM": "2026-11-12"
+    "HBM": "2026-11-12",
+    "MUFG": "2026-11-13",
+    "SMFG": "2026-11-13",
+    "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 23:46",
+    "updatedAt": "06/11/2026 00:01",
     "source": "tradingview"
   }
 }
