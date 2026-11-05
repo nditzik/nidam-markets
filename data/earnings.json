@@ -3,19 +3,19 @@
   "todayCount": 85,
   "todayBig": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1234.5
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1233.8
+      "capB": 1236.7
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1236.0
     },
     {
       "ticker": "COP",
       "name": "ConocoPhillips",
-      "capB": 165.7
+      "capB": 166.1
     },
     {
       "ticker": "SONY",
@@ -25,12 +25,12 @@
     {
       "ticker": "PH",
       "name": "Parker-Hannifin Corporation",
-      "capB": 114.0
+      "capB": 114.5
     },
     {
       "ticker": "SO",
       "name": "Southern Company",
-      "capB": 108.6
+      "capB": 108.5
     },
     {
       "ticker": "SOJD",
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TM.png",
-            "chg": 10.29,
-            "price": 219.98,
+            "chg": 10.03,
+            "price": 219.46,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ARM.png",
-            "chg": -11.85,
-            "price": 169.07,
+            "chg": -11.97,
+            "price": 168.85,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/QCOM.png",
-            "chg": -10.12,
-            "price": 155.66,
+            "chg": -10.05,
+            "price": 155.78,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -267,16 +267,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.A.png"
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
       "when": "",
       "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
     },
     {
       "ticker": "COP",
@@ -315,16 +315,16 @@
       "logo": "data/earnings/logos/SOJE.png"
     },
     {
-      "ticker": "DUK",
-      "name": "Duke Energy Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/DUK.png"
-    },
-    {
       "ticker": "CNQ",
       "name": "Canadian Natural Resources Limited",
       "when": "before",
       "logo": "data/earnings/logos/CNQ.png"
+    },
+    {
+      "ticker": "DUK",
+      "name": "Duke Energy Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/DUK.png"
     },
     {
       "ticker": "ABNB",
@@ -608,16 +608,16 @@
       "total": 85,
       "companies": [
         {
-          "ticker": "BRK.A",
-          "name": "Berkshire Hathaway Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.A.png"
-        },
-        {
           "ticker": "BRK.B",
           "name": "Berkshire Hathaway Inc. Class B",
           "when": "",
           "logo": "data/earnings/logos/BRK.B.png"
+        },
+        {
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
         },
         {
           "ticker": "COP",
@@ -656,16 +656,16 @@
           "logo": "data/earnings/logos/SOJE.png"
         },
         {
-          "ticker": "DUK",
-          "name": "Duke Energy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/DUK.png"
-        },
-        {
           "ticker": "CNQ",
           "name": "Canadian Natural Resources Limited",
           "when": "before",
           "logo": "data/earnings/logos/CNQ.png"
+        },
+        {
+          "ticker": "DUK",
+          "name": "Duke Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DUK.png"
         },
         {
           "ticker": "ABNB",
@@ -763,16 +763,16 @@
     }
   ],
   "window": {
-    "BRK.A": "2026-11-05",
     "BRK.B": "2026-11-05",
+    "BRK.A": "2026-11-05",
     "COP": "2026-11-05",
     "SONY": "2026-11-05",
     "PH": "2026-11-05",
     "SO": "2026-11-05",
     "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
-    "DUK": "2026-11-05",
     "CNQ": "2026-11-05",
+    "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
     "MNST": "2026-11-05",
     "NGG": "2026-11-05",
@@ -792,8 +792,8 @@
     "NTRA": "2026-11-05",
     "DVN": "2026-11-05",
     "TEAM": "2026-11-05",
-    "ED": "2026-11-05",
     "AU": "2026-11-05",
+    "ED": "2026-11-05",
     "ROK": "2026-11-05",
     "LYV": "2026-11-05",
     "MCHPP": "2026-11-05",
@@ -808,8 +808,8 @@
     "DTK": "2026-11-05",
     "DTE": "2026-11-05",
     "PBA": "2026-11-05",
-    "VRSK": "2026-11-05",
     "FWONA": "2026-11-05",
+    "VRSK": "2026-11-05",
     "TPR": "2026-11-05",
     "FWONK": "2026-11-05",
     "GPN": "2026-11-05",
@@ -832,8 +832,8 @@
     "CG": "2026-11-05",
     "REGCP": "2026-11-05",
     "REGCO": "2026-11-05",
-    "CPT": "2026-11-05",
     "REG": "2026-11-05",
+    "CPT": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
@@ -912,7 +912,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 20:16",
+    "updatedAt": "05/11/2026 20:31",
     "source": "tradingview"
   }
 }
