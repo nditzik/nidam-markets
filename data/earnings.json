@@ -3,19 +3,19 @@
   "todayCount": 86,
   "todayBig": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1251.1
-    },
-    {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1249.6
+      "capB": 1250.8
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "capB": 1249.9
     },
     {
       "ticker": "COP",
       "name": "ConocoPhillips",
-      "capB": 168.9
+      "capB": 167.3
     },
     {
       "ticker": "SONY",
@@ -25,12 +25,12 @@
     {
       "ticker": "PH",
       "name": "Parker-Hannifin Corporation",
-      "capB": 118.1
+      "capB": 116.9
     },
     {
       "ticker": "SO",
       "name": "Southern Company",
-      "capB": 108.8
+      "capB": 109.5
     },
     {
       "ticker": "SOJD",
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TM.png",
-            "chg": 9.99,
-            "price": 219.38,
+            "chg": 9.79,
+            "price": 218.98,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ARM.png",
-            "chg": -11.52,
-            "price": 169.7,
+            "chg": -11.26,
+            "price": 170.2,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/QCOM.png",
-            "chg": -8.94,
-            "price": 157.71,
+            "chg": -9.85,
+            "price": 156.13,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -267,16 +267,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway Inc. Class B",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.B.png"
-    },
-    {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
     },
     {
       "ticker": "COP",
@@ -594,10 +594,10 @@
           "logo": "data/earnings/logos/MSI.png"
         },
         {
-          "ticker": "MFC",
-          "name": "Manulife Financial Corporation",
+          "ticker": "MELI",
+          "name": "MercadoLibre, Inc.",
           "when": "after",
-          "logo": "data/earnings/logos/MFC.png"
+          "logo": "data/earnings/logos/MELI.png"
         }
       ]
     },
@@ -608,16 +608,16 @@
       "total": 86,
       "companies": [
         {
-          "ticker": "BRK.B",
-          "name": "Berkshire Hathaway Inc. Class B",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.B.png"
-        },
-        {
           "ticker": "BRK.A",
           "name": "Berkshire Hathaway Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/BRK.A.png"
+        },
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.B.png"
         },
         {
           "ticker": "COP",
@@ -737,15 +737,15 @@
           "logo": "data/earnings/logos/BIP.png"
         },
         {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
+        },
+        {
           "ticker": "CHTR",
           "name": "Charter Communications, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/CHTR.png"
-        },
-        {
-          "ticker": "CHTRP",
-          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-          "when": "before"
         },
         {
           "ticker": "PAA",
@@ -763,8 +763,8 @@
     }
   ],
   "window": {
-    "BRK.B": "2026-11-05",
     "BRK.A": "2026-11-05",
+    "BRK.B": "2026-11-05",
     "COP": "2026-11-05",
     "SONY": "2026-11-05",
     "PH": "2026-11-05",
@@ -792,8 +792,8 @@
     "NTRA": "2026-11-05",
     "DVN": "2026-11-05",
     "TEAM": "2026-11-05",
-    "ROK": "2026-11-05",
     "ED": "2026-11-05",
+    "ROK": "2026-11-05",
     "AU": "2026-11-05",
     "LYV": "2026-11-05",
     "MCHPP": "2026-11-05",
@@ -802,8 +802,8 @@
     "MTD": "2026-11-05",
     "AXON": "2026-11-05",
     "IRM": "2026-11-05",
-    "UI": "2026-11-05",
     "GMAB": "2026-11-05",
+    "UI": "2026-11-05",
     "AEE": "2026-11-05",
     "PBA": "2026-11-05",
     "DTK": "2026-11-05",
@@ -829,8 +829,8 @@
     "MTSI": "2026-11-05",
     "SOLV": "2026-11-05",
     "HALO": "2026-11-05",
-    "CG": "2026-11-05",
     "BSY": "2026-11-05",
+    "CG": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
     "REGCO": "2026-11-05",
@@ -840,15 +840,15 @@
     "AHR": "2026-11-05",
     "SUZ": "2026-11-05",
     "FNF": "2026-11-05",
-    "AKAM": "2026-11-05",
     "DKNG": "2026-11-05",
-    "IONQ": "2026-11-05",
-    "GMED": "2026-11-05",
+    "AKAM": "2026-11-05",
     "TECH": "2026-11-05",
+    "GMED": "2026-11-05",
     "MAIR": "2026-11-05",
+    "IONQ": "2026-11-05",
     "GSAT": "2026-11-05",
-    "MOG.B": "2026-11-05",
     "MOG.A": "2026-11-05",
+    "MOG.B": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -857,8 +857,8 @@
     "VST": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTR": "2026-11-06",
     "CHTRP": "2026-11-06",
+    "CHTR": "2026-11-06",
     "PAA": "2026-11-06",
     "BEN": "2026-11-06",
     "EMA": "2026-11-06",
@@ -873,8 +873,8 @@
     "SKYD": "2026-11-09",
     "TTWO": "2026-11-09",
     "IX": "2026-11-09",
-    "RKLB": "2026-11-09",
     "BAP": "2026-11-09",
+    "RKLB": "2026-11-09",
     "ROIV": "2026-11-09",
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
@@ -913,7 +913,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 17:16",
+    "updatedAt": "05/11/2026 17:31",
     "source": "tradingview"
   }
 }
