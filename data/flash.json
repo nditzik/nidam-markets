@@ -1,107 +1,77 @@
 {
-  "ts": "2026-11-04T15:02:06+00:00",
-  "date": "04/11/2026",
-  "time": "17:02",
-  "dir": "up",
-  "pct": 0.59,
+  "ts": "2026-11-05T15:03:10+00:00",
+  "date": "05/11/2026",
+  "time": "17:03",
+  "dir": "down",
+  "pct": -1.38,
   "windowMin": 30,
-  "level": 0.5,
+  "level": 1.25,
   "symbol": "SPY",
   "label": "S&P 500",
   "session": "מסחר",
-  "price": 767.88,
+  "price": 752.7,
   "evidence": {
     "econ": [],
     "pulse": [
       {
-        "text": "BREAKING: US markets post massive gains across the board in their initial reaction to the US Midterm Election results: 1. S&P 500: +1.7% 2. Dow Jones: +2.4% 3. Nasdaq…",
+        "text": "BREAKING: US technology stocks collapse at the open, erasing -$1.3 trillion in market cap in 30 minutes, with dozens of names down 10% or more. Tech Stocks Today: 1.…",
         "source": "@KobeissiLetter",
-        "time": "16:53",
-        "link": "https://t.me/thekobeissiletter/8513",
+        "time": "16:59",
+        "link": "https://t.me/thekobeissiletter/8530",
+        "lang": "en"
+      },
+      {
+        "text": "UBS cuts ARM Holdings' target price to $270 from $320. $ARM",
+        "source": "FinancialJuice",
+        "time": "16:57",
+        "link": "https://t.me/FinancialJuice/145082",
+        "lang": "en"
+      },
+      {
+        "text": "Fed's Hammack: Use of stablecoins by AI agents would be a big shift",
+        "source": "FinancialJuice",
+        "time": "16:51",
+        "link": "https://t.me/FinancialJuice/145081",
+        "lang": "en"
+      },
+      {
+        "text": "BREAKING: AMD stock, $AMD, falls over -11% as the selloff in chip stocks after the US Midterm election gains momentum. The stock is now down -35% from its October 6th…",
+        "source": "@KobeissiLetter",
+        "time": "16:43",
+        "link": "https://t.me/thekobeissiletter/8529",
         "lang": "en"
       }
     ],
     "news": [
       {
-        "title": "Wall Street’s Reckoning Looms as Democrats Take Over Congress",
+        "title": "RBC Hires Gaut From Mizuho to Head Strategic Equity Dealmaking",
         "source": "Bloomberg",
-        "time": "16:32",
-        "link": "https://www.bloomberg.com/news/articles/2026-11-04/wall-street-s-reckoning-looms-as-democrats-take-over-congress"
+        "time": "16:49",
+        "link": "https://www.bloomberg.com/news/articles/2026-11-05/rbc-hires-gaut-from-mizuho-to-head-strategic-equity-dealmaking"
       },
       {
-        "title": "10-year Treasury yield slips after Democrats win House and Senate majorities",
+        "title": "Barkin sees interest rate hikes ahead, but at a gradual pace",
         "source": "CNBC",
-        "time": "16:53",
-        "link": "https://www.cnbc.com/2026/11/03/treasury-yields-fall-as-democrats-win-big-in-us-midterm-elections.html"
+        "time": "17:00",
+        "link": "https://www.cnbc.com/2026/11/05/barkin-sees-interest-rate-hikes-ahead-but-at-a-gradual-pace.html"
       },
       {
-        "title": "Stock market after midterms: S&P 500 returns since 1950",
-        "source": "qz.com",
-        "time": "16:59",
-        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1PakppelN6NzhTSlNfa1RNSnBoTFBpRzVWN1pzN0FrSHJ0Mm5PY2Jwb0pzajMxWmkxNlI5MjlIY085YlFGbGFQWE43bnNuMVBGcnkxLUNQYlh4S3pGMHhfLVpSYjh6Nkt4WjBicnJ6TQ?oc=5"
+        "title": "Stock Market Rotation: Gold Soars, Energy Falls, Tech Struggles",
+        "source": "Investing.com",
+        "time": "16:55",
+        "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPV2g1V1VvNkpSTXZnVXBkS2Zvd3NzQ3lCZlFuQmxiVHdpQWlDMmdIWDhlcW1FQW9IU2lBbHdZMG01V1NwNXNLYjZnN3o5ajhhRGhuYTVreVA4eHdnQ292SjRveS03ZGFGNlFoNkRYdkdzY1JuWkJsMWFjSWc1cUVLeEt1MHJqb09adTFrRUdLS3NQLTVBNnpEdEV1amtKYjBCYUtNZlRPVnY?oc=5"
       }
     ],
-    "macro": [
-      {
-        "he": "מדד מנהלי הרכש בשירותים (ISM)",
-        "explain": "סקר חודשי בחברות שירותים, כשני שלישים מהכלכלה האמריקאית; מעל 50 = צמיחה",
-        "kind": "growth",
-        "fam": "ism_s",
-        "us": true,
-        "country": "",
-        "actual": "54.5",
-        "forecast": "54.8",
-        "previous": "54.9",
-        "verdict": "חלש מהצפי",
-        "tone": -1,
-        "known": true,
-        "src": "US ISM SERVICES PMI",
-        "time": "17:00",
-        "source": "FinancialJuice"
-      },
-      {
-        "he": "רכיב התעסוקה במדד השירותים (ISM)",
-        "explain": "מעל 50 = החברות מגייסות עובדים",
-        "kind": "growth",
-        "fam": "ism_s",
-        "us": true,
-        "country": "",
-        "actual": "51.4",
-        "forecast": "50",
-        "previous": "50.1",
-        "verdict": "חזק מהצפי",
-        "tone": 1,
-        "known": true,
-        "src": "US ISM SERVICES EMPLOYMENT",
-        "time": "17:00",
-        "source": "FinancialJuice"
-      },
-      {
-        "he": "רכיב המחירים במדד השירותים (ISM)",
-        "explain": "כמה החברות משלמות על תשומות — סימן מוקדם לאינפלציה",
-        "kind": "infl",
-        "fam": "ism_s",
-        "us": true,
-        "country": "",
-        "actual": "73",
-        "forecast": "74.6",
-        "previous": "74.0",
-        "verdict": "נמוך מהצפי, פחות לחץ אינפלציוני",
-        "tone": 1,
-        "known": true,
-        "src": "US ISM SERVICES PRICES PAID",
-        "time": "17:00",
-        "source": "FinancialJuice"
-      }
-    ],
+    "macro": [],
     "topics": [
-      "הבחירות בארה\"ב",
-      "אג\"ח ותשואות"
+      "הפד והריבית",
+      "AI ושבבים",
+      "הבחירות בארה\"ב"
     ]
   },
+  "why": "באותן דקות דיווחים על: הפד והריבית · AI ושבבים · הבחירות בארה\"ב",
   "_meta": {
-    "updatedAt": "04/11/2026 19:17",
+    "updatedAt": "05/11/2026 17:03",
     "source": "detect_flash"
-  },
-  "why": "באותן דקות פורסם מדד מנהלי הרכש בשירותים (ISM): 54.5 מול צפי 54.8 (חלש מהצפי); רכיב המחירים נמוך מהצפי, פחות לחץ אינפלציוני"
+  }
 }
