@@ -257,6 +257,15 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   const pool = Array.from(new Set(Object.keys(momBy).concat(Object.keys(candBy)))).filter(s => !SKIP.has(s)).sort();
   const earnWin = earn.window || {};
   const earnCut = addDays(asOf, 7);
+  // np182 (איציק): לוח הדיווחים של האתר = רק חברות מעל $1B. מועד הדוח מנתוני היסודות (הסורק,
+  // כולל חברות קטנות) תופס את מה שהלוח לא רואה — WNC/VGZ נכנסו ודיווחו תוך יומיים-חמישה.
+  const fundSyms = (readJSON(path.join(ROOT, "data", "fundamentals.json"), {}).symbols) || {};
+  const nextEarn = sym => {
+    const w = earnWin[sym];
+    if (w && w <= earnCut) return w;
+    const f = fundSyms[sym] && fundSyms[sym].scanEarn && fundSyms[sym].scanEarn.date;
+    return (f && f >= asOf && f <= earnCut) ? f : null;
+  };
   const today = new Date().toISOString().slice(0, 10);
   const spyIdx = {}; spy.forEach((b, i) => { spyIdx[b.date] = i; });
 
@@ -267,7 +276,8 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
     scanned++;
     let r; try { r = T.analyze(bars, { symbol: sym }); } catch (e) { continue; }
     if (r.decision.action !== "PRICE_CONFIRMED_BUY") continue;
-    if (earnWin[sym] && earnWin[sym] <= earnCut) { excluded.push({ sym, reason: "מדווחת ב-" + earnWin[sym] }); continue; }
+    const ne = nextEarn(sym);
+    if (ne) { excluded.push({ sym, reason: "מדווחת ב-" + ne }); continue; }
     // רקורד היסטורי (מטמון שבועי)
     let h = ledger.hist[sym];
     if (!h || !h.computedAt || addDays(h.computedAt, HIST_TTL_DAYS) < today) { h = history(sym, bars, spy); ledger.hist[sym] = h; }
