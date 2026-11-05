@@ -60,12 +60,8 @@
             "ticker": "MCD",
             "name": "McDonald's Corporation",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MCD.png",
-            "chg": 6.53,
-            "price": 280.22,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "status": "pending",
+            "logo": "data/earnings/logos/MCD.png"
           },
           {
             "ticker": "QCOM",
@@ -78,23 +74,15 @@
             "ticker": "NVO",
             "name": "Novo Nordisk A/S Sponsored ADR Class B",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/NVO.png",
-            "chg": 4.95,
-            "price": 42.18,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "status": "pending",
+            "logo": "data/earnings/logos/NVO.png"
           },
           {
             "ticker": "UBER",
             "name": "Uber Technologies, Inc.",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/UBER.png",
-            "chg": 4.91,
-            "price": 69.87,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "status": "pending",
+            "logo": "data/earnings/logos/UBER.png"
           },
           {
             "ticker": "MCK",
@@ -113,35 +101,23 @@
             "ticker": "AMD",
             "name": "Advanced Micro Devices, Inc.",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/AMD.png",
-            "chg": 1.01,
-            "price": 488.78,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "status": "pending",
+            "logo": "data/earnings/logos/AMD.png"
           },
           {
             "ticker": "AMGN",
             "name": "Amgen Inc.",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/AMGN.png",
-            "chg": 3.73,
-            "price": 478.48,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "status": "pending",
+            "logo": "data/earnings/logos/AMGN.png"
           },
           {
             "ticker": "ANET",
             "name": "Arista Networks Inc",
             "when": "after",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/ANET.png",
-            "logoBg": "dark",
-            "chg": 5.04,
-            "price": 178.48,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "logoBg": "dark"
           },
           {
             "ticker": "SHOP",
@@ -754,8 +730,8 @@
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "CNQ": "2026-11-05",
@@ -895,7 +871,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 02:46",
+    "updatedAt": "05/11/2026 03:01",
     "source": "tradingview"
   }
 }
