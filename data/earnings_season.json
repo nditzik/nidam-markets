@@ -178,20 +178,20 @@
   }
  ],
  "total": 460,
- "reported": 402,
+ "reported": 407,
  "members": 504,
  "board": {
-  "reported": 402,
-  "epsN": 399,
-  "epsBeat": 337,
+  "reported": 407,
+  "epsN": 404,
+  "epsBeat": 341,
   "epsBeatPct": 84,
-  "revN": 398,
-  "revBeat": 291,
+  "revN": 403,
+  "revBeat": 295,
   "revBeatPct": 73,
-  "reactBeat": 0.7,
-  "reactBeatN": 291,
-  "reactMiss": -1.54,
-  "reactMissN": 58,
+  "reactBeat": 0.42,
+  "reactBeatN": 334,
+  "reactMiss": -1.43,
+  "reactMissN": 60,
   "sectors": [
    {
     "name": "פיננסים",
@@ -205,8 +205,8 @@
    },
    {
     "name": "טכנולוגיה",
-    "n": 70,
-    "beat": 63
+    "n": 72,
+    "beat": 64
    },
    {
     "name": "בריאות",
@@ -215,8 +215,8 @@
    },
    {
     "name": "צריכה מחזורית",
-    "n": 38,
-    "beat": 28
+    "n": 39,
+    "beat": 29
    },
    {
     "name": "חומרים",
@@ -235,8 +235,8 @@
    },
    {
     "name": "אנרגיה",
-    "n": 10,
-    "beat": 10
+    "n": 12,
+    "beat": 12
    },
    {
     "name": "תקשורת",
@@ -245,6 +245,11 @@
    }
   ],
   "movers": [
+   {
+    "sym": "APP",
+    "react": 31.04,
+    "eps": 6.6
+   },
    {
     "sym": "INTC",
     "react": -28.58,
@@ -269,16 +274,11 @@
     "sym": "FFIV",
     "react": -20.43,
     "eps": 3.9
-   },
-   {
-    "sym": "FTNT",
-    "react": -20.09,
-    "eps": 5.8
    }
   ]
  },
  "_meta": {
-  "updatedAt": "05/11/2026 23:16",
+  "updatedAt": "05/11/2026 23:32",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
