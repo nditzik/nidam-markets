@@ -1,6 +1,6 @@
 {
   "today": "2026-11-05",
-  "todayCount": 82,
+  "todayCount": 78,
   "todayBig": [
     {
       "ticker": "TM",
@@ -50,6 +50,13 @@
         "label": "4.11",
         "items": [
           {
+            "ticker": "ARM",
+            "name": "ARM Holdings PLC Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/ARM.png"
+          },
+          {
             "ticker": "MCD",
             "name": "McDonald's Corporation",
             "when": "before",
@@ -95,17 +102,6 @@
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/MCK.png"
-          },
-          {
-            "ticker": "CVS",
-            "name": "CVS Health Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CVS.png",
-            "chg": -12.53,
-            "price": 79.96,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
           }
         ]
       },
@@ -331,7 +327,7 @@
       "logo": "data/earnings/logos/NGG.png"
     }
   ],
-  "more": 70,
+  "more": 66,
   "upcoming": [
     {
       "date": "2026-11-06",
@@ -353,7 +349,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 36,
+      "total": 34,
       "companies": [
         {
           "ticker": "AAPL",
@@ -434,7 +430,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 66,
+      "total": 63,
       "companies": [
         {
           "ticker": "AMD",
@@ -516,8 +512,14 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 55,
+      "total": 74,
       "companies": [
+        {
+          "ticker": "ARM",
+          "name": "ARM Holdings PLC Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/ARM.png"
+        },
         {
           "ticker": "MCD",
           "name": "McDonald's Corporation",
@@ -568,6 +570,12 @@
           "logoBg": "dark"
         },
         {
+          "ticker": "MELI",
+          "name": "MercadoLibre, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/MELI.png"
+        },
+        {
           "ticker": "MSI",
           "name": "Motorola Solutions, Inc.",
           "when": "after",
@@ -578,19 +586,6 @@
           "name": "Manulife Financial Corporation",
           "when": "after",
           "logo": "data/earnings/logos/MFC.png"
-        },
-        {
-          "ticker": "GWW",
-          "name": "W.W. Grainger, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/GWW.png"
-        },
-        {
-          "ticker": "ALL",
-          "name": "Allstate Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/ALL.png",
-          "logoBg": "dark"
         }
       ]
     },
@@ -598,7 +593,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 82,
+      "total": 78,
       "companies": [
         {
           "ticker": "TM",
@@ -759,8 +754,8 @@
     "TM": "2026-11-05",
     "COP": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "CNQ": "2026-11-05",
@@ -806,7 +801,6 @@
     "FWONK": "2026-11-05",
     "RL": "2026-11-05",
     "CIB": "2026-11-05",
-    "STE": "2026-11-05",
     "USFD": "2026-11-05",
     "GH": "2026-11-05",
     "VTRS": "2026-11-05",
@@ -835,9 +829,6 @@
     "GMED": "2026-11-05",
     "SUZ": "2026-11-05",
     "FNF": "2026-11-05",
-    "DKNG": "2026-11-05",
-    "WMS": "2026-11-05",
-    "FROG": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -891,7 +882,6 @@
     "HMC": "2026-11-11",
     "GIB": "2026-11-11",
     "ASND": "2026-11-11",
-    "SMMT": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -905,7 +895,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 02:31",
+    "updatedAt": "05/11/2026 02:46",
     "source": "tradingview"
   }
 }
