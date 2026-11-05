@@ -5,17 +5,17 @@
     {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1226.4
+      "capB": 1227.1
     },
     {
       "ticker": "BRK.A",
       "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1224.6
+      "capB": 1225.8
     },
     {
       "ticker": "COP",
       "name": "ConocoPhillips",
-      "capB": 164.5
+      "capB": 164.0
     },
     {
       "ticker": "SONY",
@@ -40,7 +40,7 @@
     {
       "ticker": "SO",
       "name": "Southern Company",
-      "capB": 106.8
+      "capB": 107.0
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TM.png",
-            "chg": 9.8,
-            "price": 219.01,
+            "chg": 9.65,
+            "price": 218.71,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -64,10 +64,10 @@
             "ticker": "ARM",
             "name": "ARM Holdings PLC Sponsored ADR",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/ARM.png",
-            "chg": -11.76,
-            "price": 169.25,
+            "chg": -13.08,
+            "price": 166.72,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -97,10 +97,10 @@
             "ticker": "QCOM",
             "name": "QUALCOMM Incorporated",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/QCOM.png",
-            "chg": -8.09,
-            "price": 159.18,
+            "chg": -9.49,
+            "price": 156.75,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -315,16 +315,16 @@
       "logo": "data/earnings/logos/SO.png"
     },
     {
-      "ticker": "CNQ",
-      "name": "Canadian Natural Resources Limited",
-      "when": "before",
-      "logo": "data/earnings/logos/CNQ.png"
-    },
-    {
       "ticker": "DUK",
       "name": "Duke Energy Corporation",
       "when": "before",
       "logo": "data/earnings/logos/DUK.png"
+    },
+    {
+      "ticker": "CNQ",
+      "name": "Canadian Natural Resources Limited",
+      "when": "before",
+      "logo": "data/earnings/logos/CNQ.png"
     },
     {
       "ticker": "ABNB",
@@ -656,16 +656,16 @@
           "logo": "data/earnings/logos/SO.png"
         },
         {
-          "ticker": "CNQ",
-          "name": "Canadian Natural Resources Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/CNQ.png"
-        },
-        {
           "ticker": "DUK",
           "name": "Duke Energy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/DUK.png"
+        },
+        {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "ABNB",
@@ -771,12 +771,12 @@
     "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
     "SO": "2026-11-05",
-    "CNQ": "2026-11-05",
     "DUK": "2026-11-05",
+    "CNQ": "2026-11-05",
     "ABNB": "2026-11-05",
     "MNST": "2026-11-05",
-    "NGG": "2026-11-05",
     "NET": "2026-11-05",
+    "NGG": "2026-11-05",
     "CI": "2026-11-05",
     "EOG": "2026-11-05",
     "SPG": "2026-11-05",
@@ -792,8 +792,8 @@
     "SRE": "2026-11-05",
     "DVN": "2026-11-05",
     "TEAM": "2026-11-05",
-    "ED": "2026-11-05",
     "AU": "2026-11-05",
+    "ED": "2026-11-05",
     "LYV": "2026-11-05",
     "ROK": "2026-11-05",
     "MCHPP": "2026-11-05",
@@ -826,12 +826,12 @@
     "JHX": "2026-11-05",
     "SBS": "2026-11-05",
     "LAMR": "2026-11-05",
-    "SOLV": "2026-11-05",
     "MTSI": "2026-11-05",
+    "SOLV": "2026-11-05",
     "CG": "2026-11-05",
     "HALO": "2026-11-05",
-    "REGCP": "2026-11-05",
     "REGCO": "2026-11-05",
+    "REGCP": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
     "BSY": "2026-11-05",
@@ -841,19 +841,19 @@
     "SUZ": "2026-11-05",
     "DKNG": "2026-11-05",
     "FNF": "2026-11-05",
-    "TECH": "2026-11-05",
     "IONQ": "2026-11-05",
+    "TECH": "2026-11-05",
     "AKAM": "2026-11-05",
+    "GSAT": "2026-11-05",
     "MAIR": "2026-11-05",
     "GMED": "2026-11-05",
-    "GSAT": "2026-11-05",
     "MOG.B": "2026-11-05",
     "IAG": "2026-11-05",
     "MOG.A": "2026-11-05",
     "DDS": "2026-11-05",
     "WMS": "2026-11-05",
-    "OSCR": "2026-11-05",
     "FROG": "2026-11-05",
+    "OSCR": "2026-11-05",
     "ARW": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
@@ -879,8 +879,8 @@
     "SKYD": "2026-11-09",
     "TTWO": "2026-11-09",
     "IX": "2026-11-09",
-    "BAP": "2026-11-09",
     "RKLB": "2026-11-09",
+    "BAP": "2026-11-09",
     "ROIV": "2026-11-09",
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
@@ -891,6 +891,7 @@
     "EQX": "2026-11-09",
     "ASTS": "2026-11-09",
     "AMG": "2026-11-09",
+    "LINE": "2026-11-09",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
@@ -921,7 +922,7 @@
     "HBM": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 22:46",
+    "updatedAt": "05/11/2026 23:01",
     "source": "tradingview"
   }
 }
