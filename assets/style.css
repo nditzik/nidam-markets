@@ -2573,3 +2573,8 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .fl-en .fl-ev { display: block; text-align: left; color: var(--text-3); margin-top: 3px; text-decoration: none; }
 .fl-why2 { display: block; margin-bottom: 4px; }
 .fl-detail[hidden] { display: none; }   /* np179: display:flex דרס את hidden — הפירוט היה פתוח תמיד */
+/* np181 — היסטוריית הנבחרות כתיק אמיתי: אזור הכניסה ההדרגתית */
+.pk-cum .rmp { fill: var(--track); opacity: .55; }
+.pk-cum-lg i.rmp { width: 12px; height: 10px; background: var(--track); opacity: .8; }
+.pk-cum-note { font-size: 12px; line-height: 1.5; color: var(--text-3); margin: 0 0 6px; }
+.pk-cum-note b { color: var(--text-soft); font-weight: 600; }
