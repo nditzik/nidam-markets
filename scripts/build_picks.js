@@ -171,6 +171,7 @@ function main() {
     console.log(`[nochange] picks: המהדורה של ${asOf} כבר קיימת (המאגר לא השתנה)`);
   }
   updateLedger(ledger, spy);
+  ledger.portfolio = portfolio(ledger, spy);
   ledger._meta = { updatedAt: ilStamp(), source: "build_picks" };
   fs.writeFileSync(LEDGER, JSON.stringify(ledger, null, 1), "utf8");
   return 0;
@@ -405,6 +406,56 @@ function updateLedger(ledger, spy) {
     });
   });
   if (filled) console.log(`[ledger] נמדדו ${filled} תוצאות חדשות`);
+}
+
+/* ---- תיק אמיתי (5.11.2026, איציק: "הסכום המצטבר מייצר אשליה — הנבחרות טסות והשוק יורד") ----
+   במקום לחבר תשואות של מהדורות חופפות: הכסף מחולק ל-h חלקים שווים; בכל יום מסחר החלק שתורו
+   קונה את מהדורת אותו יום (משקל שווה למניות, בסגירה), מחזיק h ימים ומוכר בסגירה — ובאותו רגע
+   קונה את המהדורה של היום. מהדורה ריקה/חסרה = החלק נשאר במזומן. מולו: S&P 500 (SPY) קנייה והחזקה
+   מאותה סגירה. בימים הראשונים (rampEnd) התיק עוד לא מושקע במלואו. */
+function portfolio(ledger, spy) {
+  const eds = ledger.editions || [];
+  if (!eds.length) return null;
+  const byDate = {}; eds.forEach(e => { byDate[e.date] = e; });
+  const si0 = spy.findIndex(b => b.date === eds[0].date);
+  if (si0 < 0) return null;
+  const dates = spy.slice(si0).map(b => b.date);
+  // שווי סל המהדורה ביום k אחרי הכניסה (1 = יום הכניסה)
+  const basket = (e, k) => {
+    if (!e || !e.symbols || !e.symbols.length) return null;
+    if (k === 0) return 1;
+    const v = [];
+    e.symbols.forEach(s => { const p = ((e.results || {})[s.sym] || {}).path || []; if (p.length >= k) v.push(1 + p[k - 1][0] / 100); });
+    return v.length ? v.reduce((a, x) => a + x, 0) / v.length : null;
+  };
+  const out = {};
+  HORIZONS.forEach(h => {
+    const sleeves = Array.from({ length: h }, () => ({ cash: 1 / h, ed: null, at: -1, val: 1 / h, last: 1 }));
+    const pf = [], mkt = [];
+    let peak = 1, dd = 0;
+    dates.forEach((d, t) => {
+      const sl = sleeves[t % h];
+      // מכירה של מה שהחלק החזיק (עבר h ימים), ואז קנייה של מהדורת היום
+      if (sl.ed) {   // מכירה בסגירת היום — לשערך קודם ליום ה-h (לא לשווי של אתמול)
+        const b = basket(sl.ed, t - sl.at); if (b != null) sl.last = b;
+        sl.cash = sl.base * sl.last; sl.ed = null;
+      }
+      const e = byDate[d];
+      if (e && e.symbols && e.symbols.length) { sl.ed = e; sl.at = t; sl.base = sl.cash; sl.last = 1; }
+      // שערוך כל החלקים לסגירת היום
+      let total = 0;
+      sleeves.forEach(x => {
+        if (x.ed) { const b = basket(x.ed, t - x.at); if (b != null) x.last = b; x.val = x.base * x.last; }
+        else x.val = x.cash;
+        total += x.val;
+      });
+      peak = Math.max(peak, total); dd = Math.min(dd, total / peak - 1);
+      pf.push(+((total - 1) * 100).toFixed(2));
+      mkt.push(+((spy[si0 + t].close / spy[si0].close - 1) * 100).toFixed(2));
+    });
+    out[h] = { dates, pf, mkt, rampEnd: dates[Math.min(h - 1, dates.length - 1)], maxDD: +(dd * 100).toFixed(1) };
+  });
+  return out;
 }
 
 function sigHe(s) {

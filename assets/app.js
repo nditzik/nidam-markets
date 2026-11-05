@@ -703,7 +703,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np180";
+  var TA_VER = "np181";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4115,23 +4115,36 @@
       return '<button type="button" class="tag pk-hist-tab' + (k === h ? " on" : "") + '" data-h="' + k + '" aria-pressed="' + (k === h) + '">אחרי ' + k + (k === 5 ? " ימים" : "") + "</button>";
     }).join("") + "</div>";
     if (!closed.length) return '<div class="pk-rec-h"><b>ההיסטוריה</b></div>' + chips + '<p class="mute s" style="margin:0">עוד אין מהדורות שסיימו ' + h + " ימים.</p>";
-    // (1) קו מצטבר
-    var cp = 0, cm = 0, pts = [[0, 0, null]];
-    closed.forEach(function (e) { cp += e.avg[h].ret; cm += (e.avg[h].spy != null ? e.avg[h].spy : 0); pts.push([cp, cm, e.date]); });
-    var W = 520, Hh = 150, padL = 8, padR = 56, padT = 10, padB = 22;
-    var vals = pts.map(function (q) { return q[0]; }).concat(pts.map(function (q) { return q[1]; }));
-    var top = Math.max(1, Math.max.apply(null, vals)), bot = Math.min(-1, Math.min.apply(null, vals));
-    var X = function (i) { return padL + i / (pts.length - 1) * (W - padL - padR); }, Y = function (v) { return padT + (top - v) / (top - bot) * (Hh - padT - padB); };
-    var line = function (k) { return pts.map(function (q, i) { return (i ? "L" : "M") + X(i).toFixed(1) + "," + Y(q[k]).toFixed(1); }).join(" "); };
-    var last = pts[pts.length - 1], first = closed[0].date, lastD = closed[closed.length - 1].date;
-    var dots = pts.map(function (q, i) { return i ? '<circle class="pk-cum-d" cx="' + X(i).toFixed(1) + '" cy="' + Y(q[0]).toFixed(1) + '" r="2.5"><title>מהדורת ' + bdDM(q[2]) + ": הנבחרות " + pkPct(q[0]) + " · השוק " + pkPct(q[1]) + "</title></circle>" : ""; }).join("");
-    var svg = '<svg class="pk-cum" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="תשואה מצטברת של המהדורות מול השוק">' +
-      '<line class="z" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + Y(0).toFixed(1) + '" y2="' + Y(0).toFixed(1) + '"/>' +
-      '<path class="mk" d="' + line(1) + '"/><path class="pk" d="' + line(0) + '"/>' + dots +
-      '<text class="lb pk" x="' + (W - padR + 6) + '" y="' + (Y(last[0]) + 4).toFixed(1) + '">' + pkPct(last[0]) + "</text>" +
-      '<text class="lb mk" x="' + (W - padR + 6) + '" y="' + (Y(last[1]) + (Math.abs(Y(last[1]) - Y(last[0])) < 12 ? (Y(last[1]) >= Y(last[0]) ? 14 : -8) : 4)).toFixed(1) + '">' + pkPct(last[1]) + "</text>" +
-      '<text class="ax" x="' + padL + '" y="' + (Hh - 6) + '">' + bdDM(first) + '</text><text class="ax" x="' + (W - padR) + '" y="' + (Hh - 6) + '" text-anchor="end">' + bdDM(lastD) + "</text></svg>";
-    var legend = '<div class="pk-cum-lg"><span><i class="pk"></i> הנבחרות</span><span><i class="mk"></i> השוק באותם ימים</span><span class="mute">סכום תשואות ' + closed.length + ' המהדורות שנסגרו, שקול למהדורה</span></div>';
+    // (1) np181 (5.11.2026, איציק: "הסכום המצטבר מייצר אשליה — הנבחרות טסות והשוק יורד"):
+    // תיק אמיתי מ-build_picks (ledger.portfolio[h]) — הכסף ב-h חלקים, כל יום חלק אחד קונה את מהדורת היום
+    // ומחזיק h ימים; מולו S&P 500 קנייה והחזקה מאותו יום. ציר = ימי מסחר אמיתיים. בלי portfolio — לא מציירים.
+    var P = PICKL && PICKL.portfolio && PICKL.portfolio[h];
+    var svg = "", legend = "";
+    if (P && P.dates && P.dates.length > 1) {
+      var n = P.dates.length, W = 520, Hh = 150, padL = 8, padR = 56, padT = 10, padB = 22;
+      var vals = P.pf.concat(P.mkt);
+      var top = Math.max(1, Math.max.apply(null, vals)), bot = Math.min(-1, Math.min.apply(null, vals));
+      var X = function (i) { return padL + i / (n - 1) * (W - padL - padR); }, Y = function (v) { return padT + (top - v) / (top - bot) * (Hh - padT - padB); };
+      var line = function (a) { return a.map(function (v, i) { return (i ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" "); };
+      var ri = P.dates.indexOf(P.rampEnd), lastP = P.pf[n - 1], lastM = P.mkt[n - 1];
+      var ramp = ri > 0 ? '<rect class="rmp" x="' + X(0).toFixed(1) + '" y="' + padT + '" width="' + (X(ri) - X(0)).toFixed(1) + '" height="' + (Hh - padT - padB) + '"/>' : "";
+      var dots = P.pf.map(function (v, i) { return '<circle class="pk-cum-d" cx="' + X(i).toFixed(1) + '" cy="' + Y(v).toFixed(1) + '" r="2.2"><title>' + bdDM(P.dates[i]) + ": התיק " + pkPct(v) + " · S&P 500 " + pkPct(P.mkt[i]) + "</title></circle>"; }).join("");
+      var gap = Math.abs(Y(lastM) - Y(lastP)) < 12 ? (Y(lastM) >= Y(lastP) ? 14 : -8) : 4;
+      svg = '<svg class="pk-cum" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="תיק הנבחרות מול S&P 500">' + ramp +
+        '<line class="z" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + Y(0).toFixed(1) + '" y2="' + Y(0).toFixed(1) + '"/>' +
+        '<path class="mk" d="' + line(P.mkt) + '"/><path class="pk" d="' + line(P.pf) + '"/>' + dots +
+        '<text class="lb pk" x="' + (W - padR + 6) + '" y="' + (Y(lastP) + 4).toFixed(1) + '">' + pkPct(lastP) + "</text>" +
+        '<text class="lb mk" x="' + (W - padR + 6) + '" y="' + (Y(lastM) + gap).toFixed(1) + '">' + pkPct(lastM) + "</text>" +
+        '<text class="ax" x="' + padL + '" y="' + (Hh - 6) + '">' + bdDM(P.dates[0]) + '</text><text class="ax" x="' + (W - padR) + '" y="' + (Hh - 6) + '" text-anchor="end">' + bdDM(P.dates[n - 1]) + "</text></svg>";
+      legend = '<div class="pk-cum-lg"><span><i class="pk"></i> תיק הנבחרות</span><span><i class="mk"></i> S&amp;P 500 (קנייה והחזקה)</span>' +
+        (ri > 0 ? '<span><i class="rmp"></i> כניסה הדרגתית (עד <bdi dir="ltr">' + bdDM(P.rampEnd) + "</bdi>)</span>" : "") + "</div>" +
+        '<p class="pk-cum-note">הכסף מחולק ל-<b class="num">' + h + '</b> חלקים שווים: כל יום חלק אחד קונה את מהדורת היום ומוכר אחרי <b class="num">' + h + "</b> ימים" +
+        (ri > 0 ? ", ולכן עד <bdi dir=\"ltr\">" + bdDM(P.rampEnd) + "</bdi> התיק עוד לא מושקע במלואו" : "") +
+        '. הירידה הגדולה בדרך: <bdi dir="ltr">' + pkPct(P.maxDD) + "</bdi>.</p>";
+    }
+    var avgP = closed.reduce(function (a, e) { return a + e.avg[h].ret; }, 0) / closed.length;
+    var avgM = closed.reduce(function (a, e) { return a + (e.avg[h].spy != null ? e.avg[h].spy : 0); }, 0) / closed.length;
+    var perEd = '<div class="pk-wins">מהדורה ממוצעת אחרי <span class="num">' + h + '</span> ימים: <b><bdi dir="ltr">' + pkPct(avgP) + '</bdi></b> · השוק באותם ימים <bdi dir="ltr">' + pkPct(avgM) + "</bdi></div>";
     // (2) הבטחה מול ביצוע
     var rs = []; closed.forEach(function (e) { (e.symbols || []).forEach(function (s_) { var r = e.results && e.results[s_.sym]; if (r && r[h]) rs.push(r[h]); }); });
     var liveAvg = rs.length ? rs.reduce(function (a, r) { return a + r.ret; }, 0) / rs.length : null, liveWin = rs.length ? Math.round(rs.filter(function (r) { return r.ret > 0; }).length / rs.length * 100) : null;
@@ -4144,7 +4157,7 @@
     var wins = '<div class="pk-wins">ניצחו את השוק ב-<b class="num">' + won + '</b> מתוך <b class="num">' + closed.length + "</b> מהדורות שנסגרו" +
       (best ? ' · הטובה: <span class="num" dir="ltr">' + bdDM(best.date) + '</span> <bdi dir="ltr">' + pkPct(best.avg[h].excess) + "</bdi> ביחס לשוק" : "") +
       (worst && worst !== best ? ' · הגרועה: <span class="num" dir="ltr">' + bdDM(worst.date) + '</span> <bdi dir="ltr">' + pkPct(worst.avg[h].excess) + "</bdi>" : "") + "</div>";
-    return '<div class="pk-rec-h"><b>ההיסטוריה</b> — אם היית קונה כל מהדורה באותו סכום ומוכר אחרי ' + h + ' ימים</div>' + chips + svg + legend + wins + promise;
+    return '<div class="pk-rec-h"><b>ההיסטוריה</b> — תיק אמיתי: אם היית משקיע בכל מהדורה ומוכר אחרי ' + h + ' ימים</div>' + chips + svg + legend + wins + perEd + promise;
   }
   function pkLedgerRecord() {
     var eds = (PICKL && PICKL.editions) || [];
