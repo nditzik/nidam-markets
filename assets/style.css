@@ -1722,9 +1722,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
 /* ── רצועת הציטוטים (Quotes) + מפת החום ── */
 #ticker-wrap { background: var(--surface); border-bottom: 1px solid var(--border); margin: 0; }
-.bd-quotes { display: grid; grid-template-columns: repeat(9, minmax(max-content, 1fr)); padding: 0; border: 0; font-size: 14px; overflow-x: auto; scrollbar-width: none; }
+.bd-quotes { display: grid; grid-template-columns: repeat(10, minmax(max-content, 1fr)); padding: 0; border: 0; font-size: 14px; overflow-x: auto; scrollbar-width: none; }
 .bd-quotes::-webkit-scrollbar { display: none; }
-.bd-q { padding: 8px 12px; border-inline-start: 1px solid var(--border); display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.bd-q { padding: 8px 10px; border-inline-start: 1px solid var(--border); display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .bd-q:first-child { border-inline-start: 0; }
 .bd-q .l { font-size: 12px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .bd-q .v { display: flex; gap: 6px; align-items: baseline; font-size: 15px; white-space: nowrap; }

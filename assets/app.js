@@ -109,8 +109,9 @@
     // np117: רצועת לוח — 8 תאים שווים (ספר הסגנון, רכיב Quotes). לפני הפתיחה החוזים ראשונים.
     var by = {}; data.items.forEach(function (it) { by[it.key] = it; });
     // np159 (איציק): 9 תאים בשורה אחת. np160 (איציק): סדר קבוע בכל שעות היום — החוזים מימין, אחריהם SPY ו-QQQ
-    var order = ["es", "nq", "spy", "qqq", "iwm", "vix", "tnx", "usdils", "dxy"];
-    var cells = order.map(function (k) { return by[k]; }).filter(Boolean).slice(0, 9);
+    // np180 (5.11.2026, איציק): ברנט — תא עשירי אחרי האג"ח (הנפט הוא מניע מרכזי בשבועות האחרונים)
+    var order = ["es", "nq", "spy", "qqq", "iwm", "vix", "tnx", "brent", "usdils", "dxy"];
+    var cells = order.map(function (k) { return by[k]; }).filter(Boolean).slice(0, 10);
     el.innerHTML = cells.map(function (it) {
       var c = it.chg, cls = c > 0 ? "up" : (c < 0 ? "down" : "");
       return '<div class="bd-q"><span class="l">' + esc(it.label) + (it.key === "vix" ? " " + vlDot(data && data.vixLight) : "") + "</span>" +
@@ -140,7 +141,11 @@
        { "ES1!": "es", "NQ1!": "nq" }],
       ["https://scanner.tradingview.com/forex/scan",
        { symbols: { tickers: ["FX_IDC:USDILS"] }, columns: ["name", "close", "change"] },
-       { USDILS: "usdils" }]
+       { USDILS: "usdils" }],
+      // np180: ברנט בבקשה נפרדת — סמל שגוי לא יפיל את החוזים; כשל = נשאר ערך השרת (Yahoo BZ=F, 15 דק')
+      ["https://scanner.tradingview.com/futures/scan",
+       { symbols: { tickers: ["ICEEUR:BRN1!"] }, columns: ["name", "close", "change"] },
+       { "BRN1!": "brent" }]
     ];
     var byKey = {};
     TICKD.items.forEach(function (it) { byKey[it.key] = it; });
@@ -698,7 +703,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np179";
+  var TA_VER = "np180";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
