@@ -1,51 +1,903 @@
 {
   "today": "2026-11-05",
-  "todayCount": 0,
-  "todayBig": [],
-  "reactions": null,
-  "reporting": [],
-  "more": 0,
-  "upcoming": [],
+  "todayCount": 80,
+  "todayBig": [
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "capB": 1240.1
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1239.8
+    },
+    {
+      "ticker": "COP",
+      "name": "ConocoPhillips",
+      "capB": 164.5
+    },
+    {
+      "ticker": "PH",
+      "name": "Parker-Hannifin Corporation",
+      "capB": 114.8
+    },
+    {
+      "ticker": "SOJD",
+      "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
+      "capB": 107.8
+    },
+    {
+      "ticker": "SOJE",
+      "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
+      "capB": 107.8
+    },
+    {
+      "ticker": "SO",
+      "name": "Southern Company",
+      "capB": 107.1
+    },
+    {
+      "ticker": "ABNB",
+      "name": "Airbnb, Inc. Class A",
+      "capB": 105.6
+    }
+  ],
+  "reactions": {
+    "days": [
+      {
+        "date": "2026-11-04",
+        "label": "4.11",
+        "items": [
+          {
+            "ticker": "TM",
+            "name": "Toyota Motor Corp. Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/TM.png"
+          },
+          {
+            "ticker": "ARM",
+            "name": "ARM Holdings PLC Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/ARM.png"
+          },
+          {
+            "ticker": "MCD",
+            "name": "McDonald's Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/MCD.png",
+            "chg": 6.53,
+            "price": 280.22,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          },
+          {
+            "ticker": "QCOM",
+            "name": "QUALCOMM Incorporated",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/QCOM.png"
+          },
+          {
+            "ticker": "NVO",
+            "name": "Novo Nordisk A/S Sponsored ADR Class B",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/NVO.png",
+            "chg": 4.95,
+            "price": 42.18,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          },
+          {
+            "ticker": "UBER",
+            "name": "Uber Technologies, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/UBER.png",
+            "chg": 4.91,
+            "price": 69.87,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-03",
+        "label": "3.11",
+        "items": [
+          {
+            "ticker": "AMD",
+            "name": "Advanced Micro Devices, Inc.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/AMD.png",
+            "chg": 1.01,
+            "price": 488.78,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          },
+          {
+            "ticker": "AMGN",
+            "name": "Amgen Inc.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/AMGN.png",
+            "chg": 3.73,
+            "price": 478.48,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          },
+          {
+            "ticker": "ANET",
+            "name": "Arista Networks Inc",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/ANET.png",
+            "logoBg": "dark",
+            "chg": 5.04,
+            "price": 178.48,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          },
+          {
+            "ticker": "SHOP",
+            "name": "Shopify, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SHOP.png",
+            "chg": -8.74,
+            "price": 142.57,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "PFE",
+            "name": "Pfizer Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PFE.png",
+            "chg": -2.18,
+            "price": 30.0,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "ETN",
+            "name": "Eaton Corp. Plc",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/ETN.png",
+            "chg": 7.0,
+            "price": 391.7,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "label": "2.11",
+        "items": [
+          {
+            "ticker": "AAPL",
+            "name": "Apple Inc.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/AAPL.png",
+            "chg": -1.9,
+            "price": 331.9,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "PLTR",
+            "name": "Palantir Technologies Inc. Class A",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/PLTR.png",
+            "chg": -1.65,
+            "price": 175.4,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "VRTX",
+            "name": "Vertex Pharmaceuticals Incorporated",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/VRTX.png",
+            "logoBg": "dark",
+            "chg": -4.05,
+            "price": 530.76,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "MAR",
+            "name": "Marriott International, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/MAR.png",
+            "chg": 4.26,
+            "price": 416.3,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
+          },
+          {
+            "ticker": "WMB",
+            "name": "Williams Companies, Inc.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/WMB.png",
+            "chg": 1.8,
+            "price": 72.47,
+            "reactDate": "2026-11-03",
+            "baseDate": "2026-11-02"
+          },
+          {
+            "ticker": "LITE",
+            "name": "Lumentum Holdings, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/LITE.png",
+            "chg": -18.59,
+            "price": 684.4,
+            "reactDate": "2026-11-02",
+            "baseDate": "2026-10-30"
+          }
+        ]
+      }
+    ]
+  },
+  "reporting": [
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
+    },
+    {
+      "ticker": "COP",
+      "name": "ConocoPhillips",
+      "when": "before",
+      "logo": "data/earnings/logos/COP.png"
+    },
+    {
+      "ticker": "PH",
+      "name": "Parker-Hannifin Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/PH.png"
+    },
+    {
+      "ticker": "SOJD",
+      "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
+      "when": "before",
+      "logo": "data/earnings/logos/SOJD.png"
+    },
+    {
+      "ticker": "SOJE",
+      "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
+      "when": "before",
+      "logo": "data/earnings/logos/SOJE.png"
+    },
+    {
+      "ticker": "SO",
+      "name": "Southern Company",
+      "when": "before",
+      "logo": "data/earnings/logos/SO.png"
+    },
+    {
+      "ticker": "ABNB",
+      "name": "Airbnb, Inc. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/ABNB.png"
+    },
+    {
+      "ticker": "CNQ",
+      "name": "Canadian Natural Resources Limited",
+      "when": "before",
+      "logo": "data/earnings/logos/CNQ.png"
+    },
+    {
+      "ticker": "DUK",
+      "name": "Duke Energy Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/DUK.png"
+    },
+    {
+      "ticker": "MNST",
+      "name": "Monster Beverage Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/MNST.png"
+    },
+    {
+      "ticker": "NET",
+      "name": "Cloudflare Inc Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/NET.png"
+    }
+  ],
+  "more": 68,
+  "upcoming": [
+    {
+      "date": "2026-11-06",
+      "label": "6/11",
+      "dow": "ו׳",
+      "count": 16,
+      "tickers": [
+        "ENB",
+        "MRNA",
+        "BAM",
+        "HUM",
+        "VST",
+        "ONC"
+      ]
+    }
+  ],
   "week": [
     {
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 0,
-      "companies": []
+      "total": 34,
+      "companies": [
+        {
+          "ticker": "AAPL",
+          "name": "Apple Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/AAPL.png"
+        },
+        {
+          "ticker": "PLTR",
+          "name": "Palantir Technologies Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/PLTR.png"
+        },
+        {
+          "ticker": "VRTX",
+          "name": "Vertex Pharmaceuticals Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/VRTX.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "MAR",
+          "name": "Marriott International, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/MAR.png"
+        },
+        {
+          "ticker": "WMB",
+          "name": "Williams Companies, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/WMB.png"
+        },
+        {
+          "ticker": "LITE",
+          "name": "Lumentum Holdings, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/LITE.png"
+        },
+        {
+          "ticker": "O",
+          "name": "Realty Income Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/O.png"
+        },
+        {
+          "ticker": "IDXX",
+          "name": "IDEXX Laboratories, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/IDXX.png"
+        },
+        {
+          "ticker": "ETR",
+          "name": "Entergy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/ETR.png"
+        },
+        {
+          "ticker": "FANG",
+          "name": "Diamondback Energy, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/FANG.png"
+        },
+        {
+          "ticker": "EL",
+          "name": "Estee Lauder Companies Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/EL.png"
+        },
+        {
+          "ticker": "PEG",
+          "name": "Public Service Enterprise Group Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/PEG.png"
+        }
+      ]
     },
     {
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 0,
-      "companies": []
+      "total": 64,
+      "companies": [
+        {
+          "ticker": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/AMD.png"
+        },
+        {
+          "ticker": "AMGN",
+          "name": "Amgen Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/AMGN.png"
+        },
+        {
+          "ticker": "ANET",
+          "name": "Arista Networks Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/ANET.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "SHOP",
+          "name": "Shopify, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/SHOP.png"
+        },
+        {
+          "ticker": "PFE",
+          "name": "Pfizer Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/PFE.png"
+        },
+        {
+          "ticker": "ETN",
+          "name": "Eaton Corp. Plc",
+          "when": "before",
+          "logo": "data/earnings/logos/ETN.png"
+        },
+        {
+          "ticker": "BKNG",
+          "name": "Booking Holdings Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/BKNG.png"
+        },
+        {
+          "ticker": "MPC",
+          "name": "Marathon Petroleum Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/MPC.png"
+        },
+        {
+          "ticker": "RACE",
+          "name": "Ferrari NV",
+          "when": "before",
+          "logo": "data/earnings/logos/RACE.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "SU",
+          "name": "Suncor Energy Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SU.png"
+        },
+        {
+          "ticker": "ITUB",
+          "name": "Itau Unibanco Holding S.A. Sponsored ADR Pfd",
+          "when": "after",
+          "logo": "data/earnings/logos/ITUB.png"
+        },
+        {
+          "ticker": "APO",
+          "name": "Apollo Global Management Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/APO.png"
+        }
+      ]
     },
     {
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 0,
-      "companies": []
+      "total": 76,
+      "companies": [
+        {
+          "ticker": "TM",
+          "name": "Toyota Motor Corp. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/TM.png"
+        },
+        {
+          "ticker": "ARM",
+          "name": "ARM Holdings PLC Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/ARM.png"
+        },
+        {
+          "ticker": "MCD",
+          "name": "McDonald's Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/MCD.png"
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QUALCOMM Incorporated",
+          "when": "after",
+          "logo": "data/earnings/logos/QCOM.png"
+        },
+        {
+          "ticker": "NVO",
+          "name": "Novo Nordisk A/S Sponsored ADR Class B",
+          "when": "before",
+          "logo": "data/earnings/logos/NVO.png"
+        },
+        {
+          "ticker": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/UBER.png"
+        },
+        {
+          "ticker": "MCK",
+          "name": "McKesson Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/MCK.png"
+        },
+        {
+          "ticker": "CVS",
+          "name": "CVS Health Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/CVS.png"
+        },
+        {
+          "ticker": "EMR",
+          "name": "Emerson Electric Co.",
+          "when": "before",
+          "logo": "data/earnings/logos/EMR.png"
+        },
+        {
+          "ticker": "APP",
+          "name": "AppLovin Corp. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/APP.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "MELI",
+          "name": "MercadoLibre, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/MELI.png"
+        },
+        {
+          "ticker": "MSI",
+          "name": "Motorola Solutions, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/MSI.png"
+        }
+      ]
     },
     {
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 0,
-      "companies": []
+      "total": 80,
+      "companies": [
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway Inc. Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.B.png"
+        },
+        {
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
+        },
+        {
+          "ticker": "COP",
+          "name": "ConocoPhillips",
+          "when": "before",
+          "logo": "data/earnings/logos/COP.png"
+        },
+        {
+          "ticker": "PH",
+          "name": "Parker-Hannifin Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/PH.png"
+        },
+        {
+          "ticker": "SOJD",
+          "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
+          "when": "before",
+          "logo": "data/earnings/logos/SOJD.png"
+        },
+        {
+          "ticker": "SOJE",
+          "name": "Southern Co 4.2 % Notes 2020-15.10.60 Global Series 2020C Deferrable",
+          "when": "before",
+          "logo": "data/earnings/logos/SOJE.png"
+        },
+        {
+          "ticker": "SO",
+          "name": "Southern Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SO.png"
+        },
+        {
+          "ticker": "ABNB",
+          "name": "Airbnb, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ABNB.png"
+        },
+        {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
+        },
+        {
+          "ticker": "DUK",
+          "name": "Duke Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DUK.png"
+        },
+        {
+          "ticker": "MNST",
+          "name": "Monster Beverage Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/MNST.png"
+        },
+        {
+          "ticker": "NET",
+          "name": "Cloudflare Inc Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/NET.png"
+        }
+      ]
     },
     {
       "date": "2026-11-06",
       "dow": "שישי",
       "label": "6.11",
-      "total": 0,
-      "companies": []
+      "total": 16,
+      "companies": [
+        {
+          "ticker": "ENB",
+          "name": "Enbridge Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/ENB.png"
+        },
+        {
+          "ticker": "MRNA",
+          "name": "Moderna, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/MRNA.png"
+        },
+        {
+          "ticker": "BAM",
+          "name": "Brookfield Asset Management Ltd. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/BAM.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "HUM",
+          "name": "Humana Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/HUM.png"
+        },
+        {
+          "ticker": "VST",
+          "name": "Vistra Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/VST.png"
+        },
+        {
+          "ticker": "ONC",
+          "name": "BeOne Medicines Ltd. Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/ONC.png"
+        },
+        {
+          "ticker": "PPL",
+          "name": "PPL Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/PPL.png"
+        },
+        {
+          "ticker": "BIP",
+          "name": "Brookfield Infrastructure Partners L.P.",
+          "when": "before",
+          "logo": "data/earnings/logos/BIP.png"
+        },
+        {
+          "ticker": "CHTR",
+          "name": "Charter Communications, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/CHTR.png"
+        },
+        {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
+        },
+        {
+          "ticker": "PAA",
+          "name": "Plains All American Pipeline, L.P.",
+          "when": "before",
+          "logo": "data/earnings/logos/PAA.png"
+        },
+        {
+          "ticker": "BEN",
+          "name": "Franklin Templeton, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BEN.png"
+        }
+      ]
     }
   ],
-  "window": {},
+  "window": {
+    "BRK.B": "2026-11-05",
+    "BRK.A": "2026-11-05",
+    "COP": "2026-11-05",
+    "PH": "2026-11-05",
+    "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
+    "SO": "2026-11-05",
+    "ABNB": "2026-11-05",
+    "CNQ": "2026-11-05",
+    "DUK": "2026-11-05",
+    "MNST": "2026-11-05",
+    "NET": "2026-11-05",
+    "NGG": "2026-11-05",
+    "CI": "2026-11-05",
+    "EOG": "2026-11-05",
+    "SPG": "2026-11-05",
+    "APD": "2026-11-05",
+    "KMB": "2026-11-05",
+    "TRP": "2026-11-05",
+    "CMI": "2026-11-05",
+    "TRGP": "2026-11-05",
+    "CAH": "2026-11-05",
+    "WPM": "2026-11-05",
+    "BDX": "2026-11-05",
+    "NTRA": "2026-11-05",
+    "SRE": "2026-11-05",
+    "ROK": "2026-11-05",
+    "DVN": "2026-11-05",
+    "TEAM": "2026-11-05",
+    "AU": "2026-11-05",
+    "ED": "2026-11-05",
+    "LYV": "2026-11-05",
+    "MCHPP": "2026-11-05",
+    "MCHP": "2026-11-05",
+    "ZTS": "2026-11-05",
+    "IRM": "2026-11-05",
+    "MTD": "2026-11-05",
+    "AXON": "2026-11-05",
+    "UI": "2026-11-05",
+    "GMAB": "2026-11-05",
+    "AEE": "2026-11-05",
+    "DTE": "2026-11-05",
+    "PBA": "2026-11-05",
+    "DTK": "2026-11-05",
+    "VRSK": "2026-11-05",
+    "AFRM": "2026-11-05",
+    "GPN": "2026-11-05",
+    "TPR": "2026-11-05",
+    "FWONA": "2026-11-05",
+    "FWONK": "2026-11-05",
+    "RL": "2026-11-05",
+    "CIB": "2026-11-05",
+    "USFD": "2026-11-05",
+    "GH": "2026-11-05",
+    "VTRS": "2026-11-05",
+    "EVRG": "2026-11-05",
+    "BCE": "2026-11-05",
+    "U": "2026-11-05",
+    "MTSI": "2026-11-05",
+    "RGA": "2026-11-05",
+    "JHX": "2026-11-05",
+    "LAMR": "2026-11-05",
+    "SBS": "2026-11-05",
+    "CG": "2026-11-05",
+    "SOLV": "2026-11-05",
+    "HALO": "2026-11-05",
+    "CPT": "2026-11-05",
+    "REG": "2026-11-05",
+    "REGCO": "2026-11-05",
+    "REGCP": "2026-11-05",
+    "BSY": "2026-11-05",
+    "TIGO": "2026-11-05",
+    "TXRH": "2026-11-05",
+    "IONQ": "2026-11-05",
+    "AHR": "2026-11-05",
+    "AKAM": "2026-11-05",
+    "MAIR": "2026-11-05",
+    "GMED": "2026-11-05",
+    "SUZ": "2026-11-05",
+    "FNF": "2026-11-05",
+    "ENB": "2026-11-06",
+    "MRNA": "2026-11-06",
+    "BAM": "2026-11-06",
+    "HUM": "2026-11-06",
+    "VST": "2026-11-06",
+    "ONC": "2026-11-06",
+    "PPL": "2026-11-06",
+    "BIP": "2026-11-06",
+    "CHTR": "2026-11-06",
+    "CHTRP": "2026-11-06",
+    "PAA": "2026-11-06",
+    "BEN": "2026-11-06",
+    "EMA": "2026-11-06",
+    "TU": "2026-11-06",
+    "ELAN": "2026-11-06",
+    "FRHC": "2026-11-06",
+    "KKR": "2026-11-09",
+    "CEG": "2026-11-09",
+    "B": "2026-11-09",
+    "OXY": "2026-11-09",
+    "FERG": "2026-11-09",
+    "SKYD": "2026-11-09",
+    "TTWO": "2026-11-09",
+    "IX": "2026-11-09",
+    "RKLB": "2026-11-09",
+    "BAP": "2026-11-09",
+    "ROIV": "2026-11-09",
+    "KSPI": "2026-11-09",
+    "RBA": "2026-11-09",
+    "NRG": "2026-11-09",
+    "SGI": "2026-11-09",
+    "CNH": "2026-11-09",
+    "JBS": "2026-11-09",
+    "ASTS": "2026-11-09",
+    "EQX": "2026-11-09",
+    "SONY": "2026-11-10",
+    "PBR": "2026-11-10",
+    "TDG": "2026-11-10",
+    "SE": "2026-11-10",
+    "ALC": "2026-11-10",
+    "VOD": "2026-11-10",
+    "EC": "2026-11-10",
+    "VG": "2026-11-10",
+    "CRWV": "2026-11-10",
+    "BEKE": "2026-11-10",
+    "VIV": "2026-11-10",
+    "EMBJ": "2026-11-10",
+    "ONON": "2026-11-10",
+    "VYLR": "2026-11-11",
+    "FNV": "2026-11-11",
+    "HMC": "2026-11-11",
+    "GIB": "2026-11-11",
+    "ASND": "2026-11-11",
+    "CSCO": "2026-11-12",
+    "AMAT": "2026-11-12",
+    "BN": "2026-11-12",
+    "ROST": "2026-11-12",
+    "NTES": "2026-11-12",
+    "NU": "2026-11-12",
+    "NBIS": "2026-11-12",
+    "JD": "2026-11-12",
+    "WSM": "2026-11-12",
+    "BSP": "2026-11-12",
+    "CBRS": "2026-11-12"
+  },
   "_meta": {
-    "updatedAt": "05/11/2026 10:01",
-    "source": "earnings.csv"
+    "updatedAt": "05/11/2026 10:16",
+    "source": "tradingview"
   }
 }
