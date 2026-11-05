@@ -1,6 +1,6 @@
 {
   "today": "2026-11-05",
-  "todayCount": 80,
+  "todayCount": 81,
   "todayBig": [
     {
       "ticker": "BRK.B",
@@ -16,6 +16,11 @@
       "ticker": "COP",
       "name": "ConocoPhillips",
       "capB": 164.5
+    },
+    {
+      "ticker": "SONY",
+      "name": "Sony Group Corporation Sponsored ADR",
+      "capB": 148.0
     },
     {
       "ticker": "PH",
@@ -36,11 +41,6 @@
       "ticker": "SO",
       "name": "Southern Company",
       "capB": 107.1
-    },
-    {
-      "ticker": "ABNB",
-      "name": "Airbnb, Inc. Class A",
-      "capB": 105.6
     }
   ],
   "reactions": {
@@ -273,6 +273,12 @@
       "logo": "data/earnings/logos/COP.png"
     },
     {
+      "ticker": "SONY",
+      "name": "Sony Group Corporation Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/SONY.png"
+    },
+    {
       "ticker": "PH",
       "name": "Parker-Hannifin Corporation",
       "when": "before",
@@ -319,15 +325,9 @@
       "name": "Monster Beverage Corporation",
       "when": "after",
       "logo": "data/earnings/logos/MNST.png"
-    },
-    {
-      "ticker": "NET",
-      "name": "Cloudflare Inc Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/NET.png"
     }
   ],
-  "more": 68,
+  "more": 69,
   "upcoming": [
     {
       "date": "2026-11-06",
@@ -593,7 +593,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 80,
+      "total": 81,
       "companies": [
         {
           "ticker": "BRK.B",
@@ -612,6 +612,12 @@
           "name": "ConocoPhillips",
           "when": "before",
           "logo": "data/earnings/logos/COP.png"
+        },
+        {
+          "ticker": "SONY",
+          "name": "Sony Group Corporation Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/SONY.png"
         },
         {
           "ticker": "PH",
@@ -660,12 +666,6 @@
           "name": "Monster Beverage Corporation",
           "when": "after",
           "logo": "data/earnings/logos/MNST.png"
-        },
-        {
-          "ticker": "NET",
-          "name": "Cloudflare Inc Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/NET.png"
         }
       ]
     },
@@ -754,9 +754,10 @@
     "BRK.B": "2026-11-05",
     "BRK.A": "2026-11-05",
     "COP": "2026-11-05",
+    "SONY": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJD": "2026-11-05",
     "SOJE": "2026-11-05",
+    "SOJD": "2026-11-05",
     "SO": "2026-11-05",
     "ABNB": "2026-11-05",
     "CNQ": "2026-11-05",
@@ -819,8 +820,8 @@
     "HALO": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
-    "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
+    "REGCO": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
@@ -866,7 +867,6 @@
     "JBS": "2026-11-09",
     "ASTS": "2026-11-09",
     "EQX": "2026-11-09",
-    "SONY": "2026-11-10",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
@@ -897,7 +897,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 11:16",
+    "updatedAt": "05/11/2026 11:31",
     "source": "tradingview"
   }
 }
