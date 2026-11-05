@@ -3,19 +3,19 @@
   "todayCount": 86,
   "todayBig": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1250.8
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1249.9
+      "capB": 1244.7
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1243.2
     },
     {
       "ticker": "COP",
       "name": "ConocoPhillips",
-      "capB": 167.3
+      "capB": 168.2
     },
     {
       "ticker": "SONY",
@@ -25,12 +25,12 @@
     {
       "ticker": "PH",
       "name": "Parker-Hannifin Corporation",
-      "capB": 116.9
+      "capB": 116.6
     },
     {
       "ticker": "SO",
       "name": "Southern Company",
-      "capB": 109.5
+      "capB": 109.4
     },
     {
       "ticker": "SOJD",
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TM.png",
-            "chg": 9.79,
-            "price": 218.98,
+            "chg": 9.29,
+            "price": 217.98,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ARM.png",
-            "chg": -11.26,
-            "price": 170.2,
+            "chg": -12.79,
+            "price": 167.27,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/QCOM.png",
-            "chg": -9.85,
-            "price": 156.13,
+            "chg": -12.84,
+            "price": 150.96,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -267,16 +267,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.A.png"
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
       "when": "",
       "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
     },
     {
       "ticker": "COP",
@@ -608,16 +608,16 @@
       "total": 86,
       "companies": [
         {
-          "ticker": "BRK.A",
-          "name": "Berkshire Hathaway Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.A.png"
-        },
-        {
           "ticker": "BRK.B",
           "name": "Berkshire Hathaway Inc. Class B",
           "when": "",
           "logo": "data/earnings/logos/BRK.B.png"
+        },
+        {
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
         },
         {
           "ticker": "COP",
@@ -763,8 +763,8 @@
     }
   ],
   "window": {
-    "BRK.A": "2026-11-05",
     "BRK.B": "2026-11-05",
+    "BRK.A": "2026-11-05",
     "COP": "2026-11-05",
     "SONY": "2026-11-05",
     "PH": "2026-11-05",
@@ -783,8 +783,8 @@
     "APD": "2026-11-05",
     "KMB": "2026-11-05",
     "TRP": "2026-11-05",
-    "CAH": "2026-11-05",
     "CMI": "2026-11-05",
+    "CAH": "2026-11-05",
     "TRGP": "2026-11-05",
     "WPM": "2026-11-05",
     "BDX": "2026-11-05",
@@ -803,8 +803,8 @@
     "AXON": "2026-11-05",
     "IRM": "2026-11-05",
     "GMAB": "2026-11-05",
-    "UI": "2026-11-05",
     "AEE": "2026-11-05",
+    "UI": "2026-11-05",
     "PBA": "2026-11-05",
     "DTK": "2026-11-05",
     "DTE": "2026-11-05",
@@ -824,31 +824,31 @@
     "BCE": "2026-11-05",
     "RGA": "2026-11-05",
     "JHX": "2026-11-05",
-    "LAMR": "2026-11-05",
     "SBS": "2026-11-05",
-    "MTSI": "2026-11-05",
+    "LAMR": "2026-11-05",
     "SOLV": "2026-11-05",
+    "MTSI": "2026-11-05",
     "HALO": "2026-11-05",
     "BSY": "2026-11-05",
-    "CG": "2026-11-05",
     "CPT": "2026-11-05",
     "REG": "2026-11-05",
-    "REGCO": "2026-11-05",
     "REGCP": "2026-11-05",
+    "REGCO": "2026-11-05",
+    "CG": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
     "AHR": "2026-11-05",
     "SUZ": "2026-11-05",
     "FNF": "2026-11-05",
     "DKNG": "2026-11-05",
-    "AKAM": "2026-11-05",
     "TECH": "2026-11-05",
+    "AKAM": "2026-11-05",
     "GMED": "2026-11-05",
     "MAIR": "2026-11-05",
     "IONQ": "2026-11-05",
     "GSAT": "2026-11-05",
-    "MOG.A": "2026-11-05",
     "MOG.B": "2026-11-05",
+    "MOG.A": "2026-11-05",
     "ENB": "2026-11-06",
     "MRNA": "2026-11-06",
     "BAM": "2026-11-06",
@@ -913,7 +913,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 17:31",
+    "updatedAt": "05/11/2026 17:46",
     "source": "tradingview"
   }
 }
