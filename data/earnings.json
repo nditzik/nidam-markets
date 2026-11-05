@@ -3,19 +3,19 @@
   "todayCount": 86,
   "todayBig": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "capB": 1230.5
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
-      "capB": 1227.0
+      "capB": 1228.0
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "capB": 1226.7
     },
     {
       "ticker": "COP",
       "name": "ConocoPhillips",
-      "capB": 165.1
+      "capB": 164.8
     },
     {
       "ticker": "SONY",
@@ -25,7 +25,7 @@
     {
       "ticker": "PH",
       "name": "Parker-Hannifin Corporation",
-      "capB": 114.3
+      "capB": 115.9
     },
     {
       "ticker": "SOJD",
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TM.png",
-            "chg": 10.12,
-            "price": 219.64,
+            "chg": 10.13,
+            "price": 219.66,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ARM.png",
-            "chg": -11.14,
-            "price": 170.43,
+            "chg": -11.3,
+            "price": 170.12,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/QCOM.png",
-            "chg": -8.18,
-            "price": 159.02,
+            "chg": -8.55,
+            "price": 158.38,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
           },
@@ -267,16 +267,16 @@
   },
   "reporting": [
     {
-      "ticker": "BRK.A",
-      "name": "Berkshire Hathaway Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/BRK.A.png"
-    },
-    {
       "ticker": "BRK.B",
       "name": "Berkshire Hathaway Inc. Class B",
       "when": "",
       "logo": "data/earnings/logos/BRK.B.png"
+    },
+    {
+      "ticker": "BRK.A",
+      "name": "Berkshire Hathaway Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/BRK.A.png"
     },
     {
       "ticker": "COP",
@@ -321,16 +321,16 @@
       "logo": "data/earnings/logos/CNQ.png"
     },
     {
-      "ticker": "DUK",
-      "name": "Duke Energy Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/DUK.png"
-    },
-    {
       "ticker": "ABNB",
       "name": "Airbnb, Inc. Class A",
       "when": "after",
       "logo": "data/earnings/logos/ABNB.png"
+    },
+    {
+      "ticker": "DUK",
+      "name": "Duke Energy Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/DUK.png"
     },
     {
       "ticker": "MNST",
@@ -524,7 +524,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 85,
+      "total": 84,
       "companies": [
         {
           "ticker": "TM",
@@ -608,16 +608,16 @@
       "total": 86,
       "companies": [
         {
-          "ticker": "BRK.A",
-          "name": "Berkshire Hathaway Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/BRK.A.png"
-        },
-        {
           "ticker": "BRK.B",
           "name": "Berkshire Hathaway Inc. Class B",
           "when": "",
           "logo": "data/earnings/logos/BRK.B.png"
+        },
+        {
+          "ticker": "BRK.A",
+          "name": "Berkshire Hathaway Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/BRK.A.png"
         },
         {
           "ticker": "COP",
@@ -662,16 +662,16 @@
           "logo": "data/earnings/logos/CNQ.png"
         },
         {
-          "ticker": "DUK",
-          "name": "Duke Energy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/DUK.png"
-        },
-        {
           "ticker": "ABNB",
           "name": "Airbnb, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/ABNB.png"
+        },
+        {
+          "ticker": "DUK",
+          "name": "Duke Energy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DUK.png"
         },
         {
           "ticker": "MNST",
@@ -763,20 +763,20 @@
     }
   ],
   "window": {
-    "BRK.A": "2026-11-05",
     "BRK.B": "2026-11-05",
+    "BRK.A": "2026-11-05",
     "COP": "2026-11-05",
     "SONY": "2026-11-05",
     "PH": "2026-11-05",
-    "SOJE": "2026-11-05",
     "SOJD": "2026-11-05",
+    "SOJE": "2026-11-05",
     "SO": "2026-11-05",
     "CNQ": "2026-11-05",
-    "DUK": "2026-11-05",
     "ABNB": "2026-11-05",
+    "DUK": "2026-11-05",
     "MNST": "2026-11-05",
-    "NGG": "2026-11-05",
     "NET": "2026-11-05",
+    "NGG": "2026-11-05",
     "CI": "2026-11-05",
     "EOG": "2026-11-05",
     "SPG": "2026-11-05",
@@ -794,17 +794,17 @@
     "TEAM": "2026-11-05",
     "AU": "2026-11-05",
     "ED": "2026-11-05",
-    "LYV": "2026-11-05",
     "ROK": "2026-11-05",
+    "LYV": "2026-11-05",
     "MCHPP": "2026-11-05",
     "MCHP": "2026-11-05",
     "ZTS": "2026-11-05",
     "MTD": "2026-11-05",
     "GMAB": "2026-11-05",
-    "IRM": "2026-11-05",
-    "AEE": "2026-11-05",
-    "UI": "2026-11-05",
     "AXON": "2026-11-05",
+    "IRM": "2026-11-05",
+    "UI": "2026-11-05",
+    "AEE": "2026-11-05",
     "DTK": "2026-11-05",
     "DTE": "2026-11-05",
     "PBA": "2026-11-05",
@@ -832,18 +832,18 @@
     "CG": "2026-11-05",
     "REGCP": "2026-11-05",
     "REGCO": "2026-11-05",
-    "REG": "2026-11-05",
     "CPT": "2026-11-05",
+    "REG": "2026-11-05",
     "BSY": "2026-11-05",
     "TIGO": "2026-11-05",
     "TXRH": "2026-11-05",
     "AHR": "2026-11-05",
     "SUZ": "2026-11-05",
+    "IONQ": "2026-11-05",
     "FNF": "2026-11-05",
-    "TECH": "2026-11-05",
     "DKNG": "2026-11-05",
     "AKAM": "2026-11-05",
-    "IONQ": "2026-11-05",
+    "TECH": "2026-11-05",
     "MAIR": "2026-11-05",
     "GSAT": "2026-11-05",
     "GMED": "2026-11-05",
@@ -873,8 +873,8 @@
     "SKYD": "2026-11-09",
     "TTWO": "2026-11-09",
     "IX": "2026-11-09",
-    "BAP": "2026-11-09",
     "RKLB": "2026-11-09",
+    "BAP": "2026-11-09",
     "ROIV": "2026-11-09",
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
@@ -913,7 +913,7 @@
     "CBRS": "2026-11-12"
   },
   "_meta": {
-    "updatedAt": "05/11/2026 21:46",
+    "updatedAt": "05/11/2026 22:01",
     "source": "tradingview"
   }
 }
