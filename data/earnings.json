@@ -5,22 +5,22 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.3
+      "capB": 106.2
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 105.1
+      "capB": 103.9
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 85.7
+      "capB": 86.0
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 51.8
+      "capB": 52.4
     },
     {
       "ticker": "ONC",
@@ -30,7 +30,7 @@
     {
       "ticker": "VST",
       "name": "Vistra Corp.",
-      "capB": 42.1
+      "capB": 41.9
     },
     {
       "ticker": "PPL",
@@ -40,7 +40,7 @@
     {
       "ticker": "BIP",
       "name": "Brookfield Infrastructure Partners L.P.",
-      "capB": 25.5
+      "capB": 25.6
     }
   ],
   "reactions": {
@@ -86,12 +86,23 @@
             "ticker": "ABNB",
             "name": "Airbnb, Inc. Class A",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 12.37,
-            "price": 191.17,
+            "chg": 11.67,
+            "price": 189.99,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "CNQ",
+            "name": "Canadian Natural Resources Limited",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CNQ.png",
+            "chg": -1.45,
+            "price": 48.92,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "DUK",
@@ -103,17 +114,6 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "MNST",
-            "name": "Monster Beverage Corporation",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/MNST.png",
-            "chg": -4.08,
-            "price": 45.88,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -589,7 +589,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 47,
+      "total": 48,
       "companies": [
         {
           "ticker": "COP",
@@ -616,6 +616,12 @@
           "logo": "data/earnings/logos/ABNB.png"
         },
         {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
+        },
+        {
           "ticker": "DUK",
           "name": "Duke Energy Corporation",
           "when": "before",
@@ -634,16 +640,16 @@
           "logo": "data/earnings/logos/NGG.png"
         },
         {
-          "ticker": "EOG",
-          "name": "EOG Resources, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/EOG.png"
-        },
-        {
           "ticker": "CI",
           "name": "Cigna Group",
           "when": "before",
           "logo": "data/earnings/logos/CI.png"
+        },
+        {
+          "ticker": "EOG",
+          "name": "EOG Resources, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/EOG.png"
         },
         {
           "ticker": "SPG",
@@ -656,12 +662,6 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
-        },
-        {
-          "ticker": "KMB",
-          "name": "Kimberly-Clark Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -796,8 +796,8 @@
     "PRAX": "2026-11-09",
     "SANM": "2026-11-09",
     "CWEN": "2026-11-09",
-    "QLYS": "2026-11-09",
     "IONS": "2026-11-09",
+    "QLYS": "2026-11-09",
     "HRB": "2026-11-09",
     "IMVT": "2026-11-09",
     "CWST": "2026-11-09",
@@ -852,8 +852,8 @@
     "CIG": "2026-11-12",
     "KOD": "2026-11-12",
     "M": "2026-11-12",
-    "FPS": "2026-11-12",
     "NIQ": "2026-11-12",
+    "FPS": "2026-11-12",
     "MBGL": "2026-11-12",
     "OCTV": "2026-11-12",
     "MWH": "2026-11-12",
@@ -863,7 +863,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 22:46",
+    "updatedAt": "06/11/2026 23:01",
     "source": "tradingview"
   }
 }
