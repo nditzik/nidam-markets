@@ -73,28 +73,61 @@ def fmt_val(v, unit):
     return s + unit
 
 
+POLL_TRIES, POLL_SEC, POLL_WINDOW_MIN = 4, 30, 20
+
+
+def fetch_rows(frm, to):
+    err = None
+    for attempt, tmo in enumerate((20, 30, 40), 1):
+        try:
+            req = urllib.request.Request(API.format(frm, to), headers=UA)
+            with urllib.request.urlopen(req, timeout=tmo) as r:
+                d = json.loads(r.read().decode("utf-8"))
+            return d.get("result") or []
+        except Exception as e:
+            err = e
+            print(f"[warn] משיכת היומן נכשלה (ניסיון {attempt}/3): {e}")
+            if attempt < 3:
+                time.sleep(4)
+    print(f"[warn] משיכת היומן נכשלה בכל הניסיונות: {err}")
+    return None
+
+
+def pending(rows, now):
+    """אירועי ליבה שמועדם עבר לפני פחות מ-POLL_WINDOW_MIN דקות ועדיין בלי actual."""
+    out = []
+    for x in rows:
+        if (x.get("title") or "") not in TRACK or x.get("actual") is not None:
+            continue
+        try:
+            t = datetime.strptime((x.get("date") or "")[:19], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if timedelta(0) <= now - t <= timedelta(minutes=POLL_WINDOW_MIN):
+            out.append(TRACK[x["title"]][0])
+    return out
+
+
 def main():
     now = datetime.now(timezone.utc)
     frm = (now - timedelta(days=PAST_DAYS)).strftime("%Y-%m-%dT00:00:00.000Z")
     to = (now + timedelta(days=AHEAD_DAYS)).strftime("%Y-%m-%dT00:00:00.000Z")
     # 6.11.2026: ברגע הפרסום (NFP 15:30) היומן של TradingView עמוס — שתי ריצות ברצף נפלו על
     # "read operation timed out" אחרי 25 שנ', ו"בפועל" לא נכנס חצי שעה. שלושה ניסיונות, זמן עולה.
-    rows, err = None, None
-    for attempt, tmo in enumerate((20, 30, 40), 1):
-        try:
-            req = urllib.request.Request(API.format(frm, to), headers=UA)
-            with urllib.request.urlopen(req, timeout=tmo) as r:
-                d = json.loads(r.read().decode("utf-8"))
-            rows = d.get("result") or []
-            break
-        except Exception as e:
-            err = e
-            print(f"[warn] משיכת היומן נכשלה (ניסיון {attempt}/3): {e}")
-            if attempt < 3:
-                time.sleep(4)
+    rows = fetch_rows(frm, to)
     if rows is None:
-        print(f"[warn] משיכת היומן נכשלה בכל הניסיונות: {err}")
         return 0 if os.path.exists(OUT) else 1
+    # ...ואחרי שהיומן עונה: אירוע ליבה שמועדו עבר לפני פחות מ-20 דק' ועדיין בלי "בפועל" —
+    # מחכים בתוך הריצה (עד 4×30 שנ'), כדי שהריצה של 15:45 תביא את הנתון לפני רוטינת 15:50.
+    for poll in range(1, POLL_TRIES + 1):
+        pend = pending(rows, datetime.now(timezone.utc))
+        if not pend:
+            break
+        print(f"[wait] {', '.join(pend)} — פורסם ועדיין בלי 'בפועל', ממתין {POLL_SEC} שנ' ({poll}/{POLL_TRIES})")
+        time.sleep(POLL_SEC)
+        again = fetch_rows(frm, to)
+        if again is not None:
+            rows = again
 
     events = []
     for x in rows:
