@@ -85,11 +85,11 @@
             "logo": "data/earnings/logos/DUK.png"
           },
           {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
+            "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/CNQ.png"
+            "logo": "data/earnings/logos/MNST.png"
           }
         ]
       },
@@ -553,7 +553,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 53,
+      "total": 52,
       "companies": [
         {
           "ticker": "COP",
@@ -584,12 +584,6 @@
           "name": "Duke Energy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/DUK.png"
-        },
-        {
-          "ticker": "CNQ",
-          "name": "Canadian Natural Resources Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "MNST",
@@ -626,6 +620,12 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
+        },
+        {
+          "ticker": "KMB",
+          "name": "Kimberly-Clark Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -792,7 +792,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 03:46",
+    "updatedAt": "06/11/2026 04:01",
     "source": "tradingview"
   }
 }
