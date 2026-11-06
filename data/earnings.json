@@ -5,22 +5,22 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.6
+      "capB": 106.9
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 102.5
+      "capB": 104.5
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 85.3
+      "capB": 85.4
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 50.9
+      "capB": 51.0
     },
     {
       "ticker": "ONC",
@@ -30,17 +30,17 @@
     {
       "ticker": "VST",
       "name": "Vistra Corp.",
-      "capB": 41.2
+      "capB": 41.6
     },
     {
       "ticker": "PPL",
       "name": "PPL Corporation",
-      "capB": 27.4
+      "capB": 27.3
     },
     {
       "ticker": "BIP",
       "name": "Brookfield Infrastructure Partners L.P.",
-      "capB": 25.4
+      "capB": 25.3
     }
   ],
   "reactions": {
@@ -88,8 +88,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 10.94,
-            "price": 188.74,
+            "chg": 11.62,
+            "price": 189.9,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/MNST.png",
-            "chg": -3.58,
-            "price": 46.12,
+            "chg": -3.35,
+            "price": 46.23,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
           }
@@ -315,15 +315,15 @@
       "logo": "data/earnings/logos/BIP.png"
     },
     {
+      "ticker": "CHTRP",
+      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+      "when": "before"
+    },
+    {
       "ticker": "CHTR",
       "name": "Charter Communications, Inc. Class A",
       "when": "before",
       "logo": "data/earnings/logos/CHTR.png"
-    },
-    {
-      "ticker": "CHTRP",
-      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-      "when": "before"
     },
     {
       "ticker": "BEN",
@@ -385,16 +385,16 @@
           "logo": "data/earnings/logos/O.png"
         },
         {
-          "ticker": "ETR",
-          "name": "Entergy Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/ETR.png"
-        },
-        {
           "ticker": "IDXX",
           "name": "IDEXX Laboratories, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/IDXX.png"
+        },
+        {
+          "ticker": "ETR",
+          "name": "Entergy Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/ETR.png"
         },
         {
           "ticker": "FANG",
@@ -508,7 +508,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 124,
+      "total": 125,
       "companies": [
         {
           "ticker": "TM",
@@ -721,15 +721,15 @@
           "logo": "data/earnings/logos/BIP.png"
         },
         {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
+        },
+        {
           "ticker": "CHTR",
           "name": "Charter Communications, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/CHTR.png"
-        },
-        {
-          "ticker": "CHTRP",
-          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-          "when": "before"
         },
         {
           "ticker": "BEN",
@@ -755,8 +755,8 @@
     "VST": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTR": "2026-11-06",
     "CHTRP": "2026-11-06",
+    "CHTR": "2026-11-06",
     "BEN": "2026-11-06",
     "PAA": "2026-11-06",
     "EMA": "2026-11-06",
@@ -786,8 +786,8 @@
     "EQX": "2026-11-09",
     "ASTS": "2026-11-09",
     "AMG": "2026-11-09",
-    "LINE": "2026-11-09",
     "TGTX": "2026-11-09",
+    "LINE": "2026-11-09",
     "TIMB": "2026-11-09",
     "ONTO": "2026-11-09",
     "ZETA": "2026-11-09",
@@ -800,6 +800,7 @@
     "CWST": "2026-11-09",
     "IMVT": "2026-11-09",
     "TTD": "2026-11-09",
+    "HIMS": "2026-11-09",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
@@ -844,13 +845,12 @@
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "KOD": "2026-11-12",
-    "MBGL": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 18:31",
+    "updatedAt": "06/11/2026 18:46",
     "source": "tradingview"
   }
 }
