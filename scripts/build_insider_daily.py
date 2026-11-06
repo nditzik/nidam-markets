@@ -35,6 +35,27 @@ HIST_MONTHS = 24
 WEEK_DAYS = 5            # "כל השבוע" = ימי הדיווח ב-5 ימי המסחר האחרונים
 
 
+_FUND_CAPS = None
+
+
+def fix_cap(t, cap):
+    """שווי השוק מהבוט לא תמיד נכון (5.11.2026: GLXY "1298" במקום מיליארדים → "חברה קטנה";
+    PAM ‏$88B — כנראה בפסו). שווי מהסורק (fundamentals.json) גובר; שווי מתחת ל-$10M = לא ידוע."""
+    global _FUND_CAPS
+    if _FUND_CAPS is None:
+        try:
+            with open(os.path.join(ROOT, "data", "fundamentals.json"), encoding="utf-8") as fh:
+                _FUND_CAPS = {k: v.get("cap") for k, v in (json.load(fh).get("symbols") or {}).items()}
+        except Exception:
+            _FUND_CAPS = {}
+    fc = _FUND_CAPS.get(t)
+    if fc:
+        return fc
+    if cap is not None and cap < 1e7:
+        return None
+    return cap
+
+
 def num(x):
     try:
         s = str(x).replace(",", "").replace("$", "").replace("%", "").strip()
@@ -229,7 +250,7 @@ def main(root=ROOT, now=None):
                  "filed": (r.get("Filing Date") or day).strip(), "trade": (r.get("Trade Date") or "").strip(), "day": day,
                  "shares": num(r.get("Shares")), "price": num(r.get("Price")), "value": num(r.get("Value")),
                  "before": num(r.get("Holdings Before")), "after": num(r.get("Holdings After")),
-                 "holdPct": num(r.get("Holdings Change %")), "cap": num(r.get("Market Cap")),
+                 "holdPct": num(r.get("Holdings Change %")), "cap": fix_cap(t, num(r.get("Market Cap"))),
                  "lastClose": num(r.get("Last Close")), "offHi": num(r.get("% From 52W High")),
                  "offLo": num(r.get("% From 52W Low")), "cluster": (r.get("Cluster (30d)") or "").lower() == "yes",
                  "clusterN": int(num(r.get("Cluster Count")) or 0), "url": (r.get("Form 4 URL") or "").strip()}
