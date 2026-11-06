@@ -5,22 +5,22 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.2
+      "capB": 106.3
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 104.6
+      "capB": 103.7
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 86.3
+      "capB": 86.2
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 51.5
+      "capB": 51.7
     },
     {
       "ticker": "ONC",
@@ -35,12 +35,12 @@
     {
       "ticker": "PPL",
       "name": "PPL Corporation",
-      "capB": 27.3
+      "capB": 27.2
     },
     {
       "ticker": "BIP",
       "name": "Brookfield Infrastructure Partners L.P.",
-      "capB": 25.5
+      "capB": 25.4
     }
   ],
   "reactions": {
@@ -88,21 +88,10 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 12.27,
-            "price": 191.0,
+            "chg": 12.16,
+            "price": 190.82,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
-          },
-          {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CNQ.png",
-            "chg": -1.45,
-            "price": 48.92,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
           },
           {
             "ticker": "DUK",
@@ -114,6 +103,17 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/MNST.png",
+            "chg": -3.59,
+            "price": 46.12,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -315,15 +315,15 @@
       "logo": "data/earnings/logos/BIP.png"
     },
     {
-      "ticker": "CHTRP",
-      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-      "when": "before"
-    },
-    {
       "ticker": "CHTR",
       "name": "Charter Communications, Inc. Class A",
       "when": "before",
       "logo": "data/earnings/logos/CHTR.png"
+    },
+    {
+      "ticker": "CHTRP",
+      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+      "when": "before"
     },
     {
       "ticker": "BEN",
@@ -589,7 +589,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 48,
+      "total": 47,
       "companies": [
         {
           "ticker": "COP",
@@ -614,12 +614,6 @@
           "name": "Airbnb, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/ABNB.png"
-        },
-        {
-          "ticker": "CNQ",
-          "name": "Canadian Natural Resources Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "DUK",
@@ -662,6 +656,12 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
+        },
+        {
+          "ticker": "KMB",
+          "name": "Kimberly-Clark Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -721,15 +721,15 @@
           "logo": "data/earnings/logos/BIP.png"
         },
         {
-          "ticker": "CHTRP",
-          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-          "when": "before"
-        },
-        {
           "ticker": "CHTR",
           "name": "Charter Communications, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/CHTR.png"
+        },
+        {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
         },
         {
           "ticker": "BEN",
@@ -755,8 +755,8 @@
     "VST": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTRP": "2026-11-06",
     "CHTR": "2026-11-06",
+    "CHTRP": "2026-11-06",
     "BEN": "2026-11-06",
     "PAA": "2026-11-06",
     "EMA": "2026-11-06",
@@ -798,8 +798,8 @@
     "HRB": "2026-11-09",
     "CWST": "2026-11-09",
     "IMVT": "2026-11-09",
-    "TTD": "2026-11-09",
     "HIMS": "2026-11-09",
+    "TTD": "2026-11-09",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
@@ -827,8 +827,8 @@
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
-    "ROST": "2026-11-12",
     "NTES": "2026-11-12",
+    "ROST": "2026-11-12",
     "NU": "2026-11-12",
     "NBIS": "2026-11-12",
     "WSM": "2026-11-12",
@@ -837,8 +837,8 @@
     "HBM": "2026-11-12",
     "STN": "2026-11-12",
     "ARWR": "2026-11-12",
-    "TWST": "2026-11-12",
     "ELPC": "2026-11-12",
+    "TWST": "2026-11-12",
     "ANDG": "2026-11-12",
     "CGON": "2026-11-12",
     "CIG": "2026-11-12",
@@ -850,7 +850,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 21:01",
+    "updatedAt": "06/11/2026 21:16",
     "source": "tradingview"
   }
 }
