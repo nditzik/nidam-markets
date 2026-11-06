@@ -258,6 +258,12 @@ jobs:
         continue-on-error: true
         run: python scripts/build_sector_rs.py
 
+      # --- ימים חריגים — מה קרה אחר כך (6.11.2026, np182): כל נפילה של 3%+ ב-S&P מאז 2000 →
+      #     data/unusual_days.json. בסיס Barchart (data/history/barchart) + history.json/indices.json לימים החדשים ---
+      - name: Build unusual days (what happened after)
+        continue-on-error: true
+        run: python scripts/build_unusual_days.py
+
       # --- יסודות החברה לחלון הניתוח הטכני (26.10.2026): Yahoo quoteSummary, מניה פעם ב-7 ימים, עד 60 לריצה ---
       - name: Build fundamentals (יסודות החברה)
         continue-on-error: true

@@ -2578,3 +2578,47 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .pk-cum-lg i.rmp { width: 12px; height: 10px; background: var(--track); opacity: .8; }
 .pk-cum-note { font-size: 12px; line-height: 1.5; color: var(--text-3); margin: 0 0 6px; }
 .pk-cum-note b { color: var(--text-soft); font-weight: 600; }
+
+/* np182 — ימים חריגים: מה קרה אחר כך (טאב השוק) */
+.ud { display: flex; flex-direction: column; gap: 14px; }
+.ud .num { font-family: var(--mono); }
+.ud-now { background: var(--warn-soft); border-radius: var(--radius); padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+.ud-now-h { font-weight: 600; color: var(--warn); font-size: 15px; }
+.ud-now-f { display: flex; flex-wrap: wrap; gap: 6px 20px; color: var(--text-soft); font-size: 14px; }
+.ud-seg { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.ud-seg button { min-height: 44px; padding: 8px 14px; border-radius: var(--radius); font: inherit; font-size: 14px; cursor: pointer;
+  background: var(--surface); color: var(--text-soft); border: 1px solid var(--border); }
+.ud-seg button.on { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+.ud-seg .mute { font-size: 13px; }
+.ud-tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.ud-t { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ud-t .l { font-size: 13px; font-weight: 600; color: var(--text-3); }
+.ud-t .v { font-size: 20px; font-weight: 700; color: var(--text); }
+.ud-t .s { font-size: 14px; color: var(--text-soft); }
+.ud-dots { position: relative; height: 24px; background: var(--surface-2); border-radius: var(--radius-sm); margin-top: 2px; }
+.ud-dots b { position: absolute; left: 50%; top: 3px; bottom: 3px; width: 1px; background: var(--text-3); }
+.ud-dots i { position: absolute; top: 7px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; opacity: .8; }
+.ud-dots i.u { background: var(--up); }
+.ud-dots i.d { background: var(--down); }
+.ud-mm { display: flex; justify-content: space-between; gap: 6px; font-size: 12px; color: var(--text-3); }
+.ud-path { margin: 0; padding-top: 12px; border-top: 1px solid var(--border); color: var(--text-soft); font-size: 15px; }
+.ud-path > b:first-child { color: var(--text); }
+.ud-tbl td, .ud-tbl th { white-space: nowrap; }
+.ud-tbl td:nth-child(2) { white-space: normal; min-width: 170px; color: var(--text-soft); }
+.ud-tbl tr.me td { background: var(--warn-soft); font-weight: 600; }
+.ud-cards { display: none; }
+.ud-exp p { margin: 0 14px 10px; line-height: 1.6; color: var(--text-soft); }
+@media (max-width: 1100px) { .ud-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  .ud-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .ud-t .v { font-size: 17px; }
+  .ud-seg button { width: 100%; text-align: right; }
+  .ud-tblw { display: none; }
+  .ud-cards { display: flex; flex-direction: column; }
+  .ud-c { display: flex; flex-direction: column; gap: 4px; padding: 12px 4px; border-bottom: 1px solid var(--border); }
+  .ud-c.me { background: var(--warn-soft); padding: 12px 10px; border-radius: var(--radius); }
+  .ud-c1 { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+  .ud-c2 { font-size: 13px; color: var(--text-soft); }
+  .ud-c3 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px 4px; font-size: 12px; color: var(--text-3); margin-top: 4px; }
+  .ud-c4 { font-size: 12px; color: var(--text-3); }
+}
