@@ -5,22 +5,22 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.4
+      "capB": 106.3
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 106.2
+      "capB": 105.0
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 85.8
+      "capB": 86.1
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 51.2
+      "capB": 51.7
     },
     {
       "ticker": "ONC",
@@ -30,12 +30,12 @@
     {
       "ticker": "VST",
       "name": "Vistra Corp.",
-      "capB": 41.7
+      "capB": 42.0
     },
     {
       "ticker": "PPL",
       "name": "PPL Corporation",
-      "capB": 27.3
+      "capB": 27.2
     },
     {
       "ticker": "BIP",
@@ -88,21 +88,10 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 11.27,
-            "price": 189.3,
+            "chg": 11.78,
+            "price": 190.17,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
-          },
-          {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CNQ.png",
-            "chg": -1.45,
-            "price": 48.92,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
           },
           {
             "ticker": "DUK",
@@ -114,6 +103,17 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/MNST.png",
+            "chg": -3.18,
+            "price": 46.31,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -315,15 +315,15 @@
       "logo": "data/earnings/logos/BIP.png"
     },
     {
-      "ticker": "CHTRP",
-      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-      "when": "before"
-    },
-    {
       "ticker": "CHTR",
       "name": "Charter Communications, Inc. Class A",
       "when": "before",
       "logo": "data/earnings/logos/CHTR.png"
+    },
+    {
+      "ticker": "CHTRP",
+      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+      "when": "before"
     },
     {
       "ticker": "BEN",
@@ -508,7 +508,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 124,
+      "total": 125,
       "companies": [
         {
           "ticker": "TM",
@@ -589,7 +589,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 48,
+      "total": 47,
       "companies": [
         {
           "ticker": "COP",
@@ -614,12 +614,6 @@
           "name": "Airbnb, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/ABNB.png"
-        },
-        {
-          "ticker": "CNQ",
-          "name": "Canadian Natural Resources Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "DUK",
@@ -662,6 +656,12 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
+        },
+        {
+          "ticker": "KMB",
+          "name": "Kimberly-Clark Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -721,15 +721,15 @@
           "logo": "data/earnings/logos/BIP.png"
         },
         {
-          "ticker": "CHTRP",
-          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-          "when": "before"
-        },
-        {
           "ticker": "CHTR",
           "name": "Charter Communications, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/CHTR.png"
+        },
+        {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
         },
         {
           "ticker": "BEN",
@@ -755,8 +755,8 @@
     "VST": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTRP": "2026-11-06",
     "CHTR": "2026-11-06",
+    "CHTRP": "2026-11-06",
     "BEN": "2026-11-06",
     "PAA": "2026-11-06",
     "EMA": "2026-11-06",
@@ -781,8 +781,8 @@
     "RBA": "2026-11-09",
     "SGI": "2026-11-09",
     "CNH": "2026-11-09",
-    "EQX": "2026-11-09",
     "JBS": "2026-11-09",
+    "EQX": "2026-11-09",
     "ASTS": "2026-11-09",
     "AMG": "2026-11-09",
     "TGTX": "2026-11-09",
@@ -796,8 +796,8 @@
     "QLYS": "2026-11-09",
     "IONS": "2026-11-09",
     "HRB": "2026-11-09",
-    "CWST": "2026-11-09",
     "IMVT": "2026-11-09",
+    "CWST": "2026-11-09",
     "TTD": "2026-11-09",
     "HIMS": "2026-11-09",
     "PBR": "2026-11-10",
@@ -850,7 +850,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 19:16",
+    "updatedAt": "06/11/2026 19:32",
     "source": "tradingview"
   }
 }
