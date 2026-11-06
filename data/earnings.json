@@ -5,22 +5,22 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.7
+      "capB": 106.4
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 105.4
+      "capB": 106.2
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 85.5
+      "capB": 85.8
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 50.8
+      "capB": 51.2
     },
     {
       "ticker": "ONC",
@@ -88,10 +88,21 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 11.75,
-            "price": 190.13,
+            "chg": 11.27,
+            "price": 189.3,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "CNQ",
+            "name": "Canadian Natural Resources Limited",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CNQ.png",
+            "chg": -1.45,
+            "price": 48.92,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "DUK",
@@ -103,17 +114,6 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "MNST",
-            "name": "Monster Beverage Corporation",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/MNST.png",
-            "chg": -3.71,
-            "price": 46.06,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -326,16 +326,16 @@
       "logo": "data/earnings/logos/CHTR.png"
     },
     {
-      "ticker": "PAA",
-      "name": "Plains All American Pipeline, L.P.",
-      "when": "before",
-      "logo": "data/earnings/logos/PAA.png"
-    },
-    {
       "ticker": "BEN",
       "name": "Franklin Templeton, Inc.",
       "when": "before",
       "logo": "data/earnings/logos/BEN.png"
+    },
+    {
+      "ticker": "PAA",
+      "name": "Plains All American Pipeline, L.P.",
+      "when": "before",
+      "logo": "data/earnings/logos/PAA.png"
     }
   ],
   "more": 6,
@@ -508,7 +508,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 126,
+      "total": 124,
       "companies": [
         {
           "ticker": "TM",
@@ -589,7 +589,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 47,
+      "total": 48,
       "companies": [
         {
           "ticker": "COP",
@@ -616,6 +616,12 @@
           "logo": "data/earnings/logos/ABNB.png"
         },
         {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
+        },
+        {
           "ticker": "DUK",
           "name": "Duke Energy Corporation",
           "when": "before",
@@ -634,16 +640,16 @@
           "logo": "data/earnings/logos/NGG.png"
         },
         {
-          "ticker": "EOG",
-          "name": "EOG Resources, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/EOG.png"
-        },
-        {
           "ticker": "CI",
           "name": "Cigna Group",
           "when": "before",
           "logo": "data/earnings/logos/CI.png"
+        },
+        {
+          "ticker": "EOG",
+          "name": "EOG Resources, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/EOG.png"
         },
         {
           "ticker": "SPG",
@@ -656,12 +662,6 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
-        },
-        {
-          "ticker": "KMB",
-          "name": "Kimberly-Clark Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -732,16 +732,16 @@
           "logo": "data/earnings/logos/CHTR.png"
         },
         {
-          "ticker": "PAA",
-          "name": "Plains All American Pipeline, L.P.",
-          "when": "before",
-          "logo": "data/earnings/logos/PAA.png"
-        },
-        {
           "ticker": "BEN",
           "name": "Franklin Templeton, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/BEN.png"
+        },
+        {
+          "ticker": "PAA",
+          "name": "Plains All American Pipeline, L.P.",
+          "when": "before",
+          "logo": "data/earnings/logos/PAA.png"
         }
       ]
     }
@@ -757,8 +757,8 @@
     "BIP": "2026-11-06",
     "CHTRP": "2026-11-06",
     "CHTR": "2026-11-06",
-    "PAA": "2026-11-06",
     "BEN": "2026-11-06",
+    "PAA": "2026-11-06",
     "EMA": "2026-11-06",
     "TU": "2026-11-06",
     "ELAN": "2026-11-06",
@@ -781,8 +781,8 @@
     "RBA": "2026-11-09",
     "SGI": "2026-11-09",
     "CNH": "2026-11-09",
-    "JBS": "2026-11-09",
     "EQX": "2026-11-09",
+    "JBS": "2026-11-09",
     "ASTS": "2026-11-09",
     "AMG": "2026-11-09",
     "TGTX": "2026-11-09",
@@ -837,19 +837,20 @@
     "HBM": "2026-11-12",
     "STN": "2026-11-12",
     "ARWR": "2026-11-12",
-    "ELPC": "2026-11-12",
     "TWST": "2026-11-12",
+    "ELPC": "2026-11-12",
     "ANDG": "2026-11-12",
     "CGON": "2026-11-12",
     "CIG": "2026-11-12",
-    "M": "2026-11-12",
     "KOD": "2026-11-12",
+    "M": "2026-11-12",
+    "NIQ": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 19:01",
+    "updatedAt": "06/11/2026 19:16",
     "source": "tradingview"
   }
 }
