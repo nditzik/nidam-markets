@@ -53,22 +53,34 @@
             "ticker": "COP",
             "name": "ConocoPhillips",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/COP.png"
+            "status": "final",
+            "logo": "data/earnings/logos/COP.png",
+            "chg": -1.08,
+            "price": 135.46,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "SONY",
             "name": "Sony Group Corporation Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/SONY.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SONY.png",
+            "chg": 6.13,
+            "price": 27.54,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "PH",
             "name": "Parker-Hannifin Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/PH.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PH.png",
+            "chg": -1.97,
+            "price": 892.29,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "ABNB",
@@ -81,15 +93,19 @@
             "ticker": "DUK",
             "name": "Duke Energy Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/DUK.png"
+            "status": "final",
+            "logo": "data/earnings/logos/DUK.png",
+            "chg": 0.38,
+            "price": 130.08,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
+            "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/CNQ.png"
+            "logo": "data/earnings/logos/MNST.png"
           }
         ]
       },
@@ -101,15 +117,23 @@
             "ticker": "TM",
             "name": "Toyota Motor Corp. Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TM.png",
+            "chg": 9.35,
+            "price": 218.11,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "ARM",
             "name": "ARM Holdings PLC Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/ARM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/ARM.png",
+            "chg": -13.08,
+            "price": 166.72,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "MCD",
@@ -137,8 +161,12 @@
             "ticker": "QCOM",
             "name": "QUALCOMM Incorporated",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/QCOM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/QCOM.png",
+            "chg": -9.49,
+            "price": 156.75,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "UBER",
@@ -553,7 +581,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 53,
+      "total": 52,
       "companies": [
         {
           "ticker": "COP",
@@ -584,12 +612,6 @@
           "name": "Duke Energy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/DUK.png"
-        },
-        {
-          "ticker": "CNQ",
-          "name": "Canadian Natural Resources Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "MNST",
@@ -626,6 +648,12 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
+        },
+        {
+          "ticker": "KMB",
+          "name": "Kimberly-Clark Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -792,7 +820,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 04:16",
+    "updatedAt": "06/11/2026 04:31",
     "source": "tradingview"
   }
 }
