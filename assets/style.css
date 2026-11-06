@@ -2620,5 +2620,6 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .ud-c1 { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
   .ud-c2 { font-size: 13px; color: var(--text-soft); }
   .ud-c3 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px 4px; font-size: 12px; color: var(--text-3); margin-top: 4px; }
+  .ud-c3 > * { text-align: right; }   /* np184: b dir=ltr בתא גריד נצמד שמאלה — יישור מתחת לתווית */
   .ud-c4 { font-size: 12px; color: var(--text-3); }
 }
