@@ -363,6 +363,15 @@ jobs:
         run: python scripts/relay_rotation_mail.py
         continue-on-error: true
 
+      # --- היסטוריה ארוכה מ-Barchart מהמייל (6.11.2026): "History – …" עם hist_*.csv
+      #     → data/history/barchart/ (רוחב S5TH/S5FI/S5TW מ-2007, SPX/VIX מ-2000). ראו relay_history_mail.py ---
+      - name: Relay long history CSVs from mail
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/relay_history_mail.py
+        continue-on-error: true
+
       # --- מבזק שוק: תנועה חדה תוך-יומית (ספייק 30 דק') + ראיות "מה קרה" ---
       - name: Detect market flash
         env:
