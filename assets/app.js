@@ -703,7 +703,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np181";
+  var TA_VER = "np182";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2856,6 +2856,86 @@
   }
   function renderBreadthPeaks() { var el = document.getElementById("bp-slot"); if (el && INDD) el.innerHTML = bpPan(INDD); }
 
+  /* ---- np182 (6.11.2026, איציק): "ימים חריגים — מה קרה אחר כך". data/unusual_days.json (build_unusual_days.py):
+     כל נפילה של 3%+ ב-S&P 500 מאז 2000 (היום הראשון ברצף), מה קרה אחרי יום/שבוע/חודש/חצי שנה/שנה והשפל
+     בחודש שאחרי. "דומים" = הסגירה הקודמת עד 5% מתחת לשיא השנה. מוקאפ https://claude.ai/artifact/4ksCBHgTdmRJUb1tUWT9kv ---- */
+  var UD = null, UD_G = "near";
+  var UD_H = [["יום אחרי", 6], ["שבוע אחרי", 7], ["חודש אחרי", 8], ["חצי שנה אחרי", 9], ["שנה אחרי", 10]];
+  function udPct(v) { return v == null ? "?" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1) + "%"; }
+  function udNum(v, cls) { return '<b class="num ' + (cls == null ? (v == null ? "mute" : v > 0 ? "up" : v < 0 ? "down" : "") : cls) + '" dir="ltr">' + udPct(v) + "</b>"; }
+  function udDmy(d) { var p = String(d).split("-"); return +p[2] + "." + +p[1] + "." + p[0]; }
+  function udMedian(xs) { var a = xs.slice().sort(function (x, y) { return x - y; }), n = a.length; return n % 2 ? a[(n - 1) / 2] : (a[n / 2 - 1] + a[n / 2]) / 2; }
+  function unusualHtml(u) {
+    var L = u.latest || {}, near = u.nearPct == null ? -5 : u.nearPct;
+    var hist = (u.rows || []).filter(function (r) { return r[0] !== L.d; });
+    var nearRows = hist.filter(function (r) { return r[4] >= near; });
+    var sel = UD_G === "near" ? nearRows : hist;
+    var cur = (u.rows || []).filter(function (r) { return r[0] === L.d; })[0];
+    var when = L.since === 0 ? "יום המסחר האחרון, " + udDmy(L.d) + ", היה יום כזה" : "היום החריג האחרון: " + udDmy(L.d) + " (לפני " + L.since + " ימי מסחר" + (L.laterDrops ? ", ועוד " + L.laterDrops + " נפילות של 3% מאז" : "") + ")";
+    var now = '<div class="ud-now"><div class="ud-now-h">' + esc(when) + "</div><div class=\"ud-now-f\">" +
+      "<span>S&amp;P 500 " + udNum(L.ch, "down") + "</span>" +
+      (L.vix != null ? '<span>VIX <b class="num" dir="ltr">' + L.vix.toFixed(1) + "</b>" + (L.vch != null ? " (" + udNum(L.vch, L.vch > 0 ? "down" : "up") + " ביום)" : "") + "</span>" : "") +
+      "<span>לפני הנפילה <b class=\"num\" dir=\"ltr\">" + Math.abs(L.offPrev).toFixed(1) + "%</b> מתחת לשיא</span>" +
+      (L.br != null ? '<span><b class="num" dir="ltr">' + L.br + "%</b> מהמניות מעל ממוצע 200</span>" : "") +
+      "<span>" + (L.above200 ? "המדד מעל ממוצע 200 (המגמה הארוכה עולה)" : "המדד מתחת לממוצע 200") + "</span>" +
+      (cur && cur[6] != null ? "<span>מאז: יום " + udNum(cur[6]) + (cur[7] != null ? " · שבוע " + udNum(cur[7]) : "") + (cur[8] != null ? " · חודש " + udNum(cur[8]) : "") + "</span>" : "") +
+      "</div></div>";
+    var seg = '<div class="ud-seg">' +
+      '<button type="button" data-g="near"' + (UD_G === "near" ? ' class="on" aria-pressed="true"' : ' aria-pressed="false"') + ">" + (L.near ? "דומים — " : "") + "נפילה מקרוב לשיא (" + nearRows.length + ")</button>" +
+      '<button type="button" data-g="all"' + (UD_G === "all" ? ' class="on" aria-pressed="true"' : ' aria-pressed="false"') + ">כל הנפילות של 3% ומעלה (" + hist.length + ")</button>" +
+      '<span class="mute">' + (UD_G === "near" ? "נפילה כשהמדד היה עד " + Math.abs(near) + "% מתחת לשיא השנה" + (L.near ? " — כמו " + udDmy(L.d) : "") : "כולל נפילות בתוך שווקים דוביים (2001–2003, 2008–2009, 2022)") + "</span></div>";
+    var tiles = '<div class="ud-tiles">' + UD_H.map(function (h) {
+      var xs = sel.filter(function (r) { return r[h[1]] != null; });
+      if (!xs.length) return "";
+      var vals = xs.map(function (r) { return r[h[1]]; }), m = udMedian(vals);
+      var lim = Math.max(5, Math.ceil(Math.max.apply(null, vals.map(Math.abs))));
+      var dots = xs.map(function (r) {
+        var v = r[h[1]];
+        return '<i class="' + (v > 0 ? "u" : "d") + '" style="left:' + ((v + lim) / (2 * lim) * 100).toFixed(1) + '%" title="' + esc(udDmy(r[0]) + ": " + udPct(v)) + '"></i>';
+      }).join("");
+      return '<div class="ud-t"><div class="l">' + h[0] + '</div><div class="v">עלה ב-<span class="num">' + vals.filter(function (v) { return v > 0; }).length + '</span> מתוך <span class="num">' + vals.length + "</span></div>" +
+        '<div class="s">חציון ' + udNum(m) + '</div><div class="ud-dots" dir="ltr" aria-hidden="true"><b></b>' + dots + "</div>" +
+        '<div class="ud-mm"><span>הגרוע ' + udNum(Math.min.apply(null, vals), "down") + "</span><span>הטוב " + udNum(Math.max.apply(null, vals), "up") + "</span></div></div>";
+    }).join("") + "</div>";
+    var dd = sel.filter(function (r) { return r[11] != null; });
+    var deep = dd.filter(function (r) { return r[11] <= -5; });
+    var worst = dd.slice().sort(function (a, b) { return a[11] - b[11]; })[0];
+    var path = worst ? '<p class="ud-path"><b>בדרך:</b> ב-<span class="num">' + deep.length + "</span> מתוך <span class=\"num\">" + dd.length + "</span> המקרים השוק ירד עוד 5% ומעלה בחודש שאחרי (הכי עמוק: <span class=\"num\">" + udDmy(worst[0]) + "</span>, " + udNum(worst[11], "down") + ")." +
+      (deep.length * 2 >= dd.length ? " הנפילה הראשונה הייתה לרוב רק ההתחלה." : "") + "</p>" : "";
+    var list = (cur ? [cur] : []).concat(sel.slice().reverse());
+    var trs = list.map(function (r) {
+      var me = cur && r[0] === cur[0];
+      return "<tr" + (me ? ' class="me"' : "") + '><td class="num" dir="ltr">' + udDmy(r[0]) + "</td><td>" + esc(r[12] || "") + "</td><td>" + udNum(r[1], "down") + '</td><td class="num" dir="ltr">' + (r[2] == null ? "—" : r[2].toFixed(1)) + "</td>" +
+        '<td class="num" dir="ltr">' + Math.abs(r[4]).toFixed(1) + '%</td><td class="num" dir="ltr">' + (r[5] == null ? "—" : r[5] + "%") + "</td>" +
+        UD_H.map(function (h) { return "<td>" + udNum(r[h[1]]) + "</td>"; }).join("") +
+        "<td>" + (r[11] == null ? '<span class="mute">?</span>' : udNum(r[11], r[11] <= -5 ? "down" : "")) + "</td></tr>";
+    }).join("");
+    var table = '<div class="tbl ud-tblw"><table class="bd-tbl ud-tbl"><thead><tr><th>יום</th><th>מה קרה</th><th>הנפילה</th><th>VIX</th><th>מתחת לשיא</th><th>מניות מעל 200</th><th>יום</th><th>שבוע</th><th>חודש</th><th>חצי שנה</th><th>שנה</th><th>השפל בחודש שאחרי</th></tr></thead><tbody>' + trs + "</tbody></table></div>";
+    var cards = '<div class="ud-cards">' + list.map(function (r) {
+      var me = cur && r[0] === cur[0];
+      return '<div class="ud-c' + (me ? " me" : "") + '"><div class="ud-c1"><b class="num" dir="ltr">' + udDmy(r[0]) + "</b>" + udNum(r[1], "down") + "</div>" +
+        (r[12] ? '<div class="ud-c2">' + esc(r[12]) + "</div>" : "") +
+        '<div class="ud-c3"><span>יום</span><span>שבוע</span><span>חודש</span><span>חצי שנה</span><span>שנה</span>' + UD_H.map(function (h) { return udNum(r[h[1]]); }).join("") + "</div>" +
+        '<div class="ud-c4">השפל בחודש שאחרי ' + (r[11] == null ? "?" : udNum(r[11], r[11] <= -5 ? "down" : "")) + (r[2] != null ? ' · VIX <span class="num">' + r[2].toFixed(1) + "</span>" : "") + "</div></div>";
+    }).join("") + "</div>";
+    var exp = '<details class="bd-exp"><summary>איך זה מחושב</summary><div class="ud-exp">' +
+      "<p>יום חריג = S&amp;P 500 ירד 3% ומעלה בסגירה. מכל רצף נספר רק היום הראשון (21 ימי מסחר בלי יום כזה לפני), אחרת 2008 לבדה ממלאת את הרשימה. \"נפילה מקרוב לשיא\" = הסגירה שלפני הנפילה הייתה עד 5% מתחת לשיא של השנה — לא בתוך שוק דובי.</p>" +
+      "<p>התשואות מסגירת יום הנפילה: יום = יום המסחר הבא, שבוע = 5 ימי מסחר, חודש = 21, חצי שנה = 126, שנה = 252. \"השפל בחודש שאחרי\" = הנקודה הנמוכה ביותר ב-21 הימים שאחרי, ביחס לסגירה של יום הנפילה. אחוז המניות מעל ממוצע 200 קיים מ-2007. בכל אריח הנקודות בסולם משלו (הגרוע והטוב מתחת).</p>" +
+      "<p>מקור: Barchart (S&amp;P 500, VIX ורוחב מ-2000/2007) והדשבורד לימים האחרונים. זה מה שקרה בעבר, לא תחזית — המדגם קטן וכל מקרה קרה בנסיבות אחרות.</p></div></details>";
+    return panHd("ימים חריגים — מה קרה אחר כך", '<span class="mute">S&amp;P 500 מאז ' + esc(String(u.first || "2000").slice(0, 4)) + " · נפילה של 3% ומעלה ביום</span>") +
+      '<div class="pb ud">' + now + seg + tiles + path + table + cards + exp + "</div>";
+  }
+  function renderUnusual() {
+    var el = document.getElementById("ud-slot");
+    if (!el) return;
+    if (!UD || !(UD.rows || []).length) { el.style.display = "none"; return; }
+    el.style.display = "";
+    el.innerHTML = unusualHtml(UD);
+    el.querySelectorAll(".ud-seg button").forEach(function (b) {
+      b.addEventListener("click", function () { UD_G = b.dataset.g; renderUnusual(); });
+    });
+  }
+
   function renderIndicesDetail(el, d) {
     // np120 (עיצוב מחדש שלב 6 חלק 2): טאב השוק כרשת פאנלים לפי מוקאפ שלב 5 —
     // המד | ציר הזמן → הניתוח היומי → סיכום השבוע | הצפי → ההימור נטו | הכסף הגדול →
@@ -2919,6 +2999,7 @@
       (big ? '<section class="pan"' + bdSpan(6) + ">" + panHd("הכסף הגדול היום במניות", '<span class="mute">' + (bt.prints ? '<span class="num">' + esc(String(bt.prints)) + "</span> העסקאות הגדולות · " : "") + '<span class="num">' + esc(String(bt.symbols || "")) + "</span> מניות</span>") + '<div class="pb">' + bare(big) + "</div></section>" : "") +
       '<section class="pan" id="bp-slot"' + bdSpan(7) + ">" + bpPan(d) + "</section>" +
       (conclRows || concl ? '<section class="pan"' + bdSpan(5) + ">" + panHd("מנוע המסקנות", '<span class="mute">' + esc(c.headline || "") + "</span>") + '<div class="pb bd-sents">' + conclRows + concl + "</div></section>" : "") +
+      '<section class="pan" id="ud-slot"' + bdSpan(12) + "></section>" +
       (ai ? '<section class="pan"' + bdSpan(6) + ">" + panHd("ניתוח לפי תחום", '<span class="mute">מנוע הכללים</span>') + '<div class="pb">' + bare(ai) + "</div></section>" : "") +
       '<section class="pan"' + bdSpan(ai ? 6 : 12) + ">" + panHd("תמונת מצב", tradeDate ? '<span class="mute">יום המסחר <span class="num" dir="ltr">' + esc(tradeDate) + "</span></span>" : "") +
         '<div class="pb">' + verdict + '<div class="tiles">' + scoreTiles + '</div><div class="tiles">' + mktTiles + "</div>" + (backg ? '<div class="bd-backg">' + backg + "</div>" : "") + "</div></section>" +
@@ -2932,6 +3013,7 @@
     setTimeout(renderOptVsPrice, 0);   // ה-figure של הגרף נכנס ל-DOM רק בהמשך הפונקציה
     if (WEEKLY) renderWeekly(WEEKLY);
     renderForecastPan();
+    renderUnusual();
   }
 
 
@@ -5070,6 +5152,10 @@
       // np141: חוזק יחסי של הסקטורים מתעודות הסל (build_sector_rs.py) — הגלגל, הבית וטאב השוק
       fetchJSON("data/sector_rs.json")
         .then(function (d) { if (!freshD("sectorrs", d)) return; SRS = d; renderHomeAround(); refreshRotationWheel(); if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD); })
+        .catch(function () {});
+      // np182: ימים חריגים — מה קרה אחר כך (build_unusual_days.py)
+      fetchJSON("data/unusual_days.json")
+        .then(function (d) { if (!freshD("unusual", d)) return; UD = d; renderUnusual(); })
         .catch(function () {});
       // סיכום השבוע (11.9.2026): נבנה ע"י build_weekly.py כשסגירת שישי נקלטת,
       // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
