@@ -703,7 +703,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np184";
+  var TA_VER = "np185";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2888,13 +2888,21 @@
       var xs = sel.filter(function (r) { return r[h[1]] != null; });
       if (!xs.length) return "";
       var vals = xs.map(function (r) { return r[h[1]]; }), m = udMedian(vals);
+      // np185: ממוצע ליד החציון. פער של 1.5 נק' ויותר → המקרה הקיצוני בכיוון הממוצע; מוצג רק אם בלעדיו
+      // נסגרים 60%+ מהפער (מקרה אחד מושך, לא כמה)
+      var avg = vals.reduce(function (a, v) { return a + v; }, 0) / vals.length, pull = null, wo = null;
+      if (vals.length > 2 && Math.abs(avg - m) >= 1.5) {
+        xs.forEach(function (r) { if (!pull || (avg < m ? r[h[1]] < pull[h[1]] : r[h[1]] > pull[h[1]])) pull = r; });
+        wo = (avg * vals.length - pull[h[1]]) / (vals.length - 1);
+        if ((wo - avg) / (m - avg) < 0.6) pull = null;
+      }
       var lim = Math.max(5, Math.ceil(Math.max.apply(null, vals.map(Math.abs))));
       var dots = xs.map(function (r) {
         var v = r[h[1]];
         return '<i class="' + (v > 0 ? "u" : "d") + '" style="left:' + ((v + lim) / (2 * lim) * 100).toFixed(1) + '%" title="' + esc(udDmy(r[0]) + ": " + udPct(v)) + '"></i>';
       }).join("");
       return '<div class="ud-t"><div class="l">' + h[0] + '</div><div class="v">עלה ב-<span class="num">' + vals.filter(function (v) { return v > 0; }).length + '</span> מתוך <span class="num">' + vals.length + "</span></div>" +
-        '<div class="s">חציון ' + udNum(m) + '</div><div class="ud-dots" dir="ltr" aria-hidden="true"><b></b>' + dots + "</div>" +
+        '<div class="s">חציון ' + udNum(m) + '</div><div class="s2">ממוצע ' + udNum(Math.round(avg * 10) / 10) + "</div>" + (pull ? '<div class="s2" title="' + esc("המקרה של " + udDmy(pull[0]) + " (" + udPct(pull[h[1]]) + ") מושך את הממוצע; בלעדיו הממוצע " + udPct(Math.round(wo * 10) / 10)) + '">בלי <bdi class="num">' + udDmy(pull[0]) + "</bdi>: " + udNum(Math.round(wo * 10) / 10) + "</div>" : "") + '<div class="ud-dots" dir="ltr" aria-hidden="true"><b></b>' + dots + "</div>" +
         '<div class="ud-mm"><span>הגרוע ' + udNum(Math.min.apply(null, vals), "down") + "</span><span>הטוב " + udNum(Math.max.apply(null, vals), "up") + "</span></div></div>";
     }).join("") + "</div>";
     var dd = sel.filter(function (r) { return r[11] != null; });
@@ -2920,7 +2928,7 @@
     }).join("") + "</div>";
     var exp = '<details class="bd-exp"><summary>איך זה מחושב</summary><div class="ud-exp">' +
       "<p>יום חריג = S&amp;P 500 ירד 3% ומעלה בסגירה. מכל רצף נספר רק היום הראשון (21 ימי מסחר בלי יום כזה לפני), אחרת 2008 לבדה ממלאת את הרשימה. \"נפילה מקרוב לשיא\" = הסגירה שלפני הנפילה הייתה עד 5% מתחת לשיא של השנה — לא בתוך שוק דובי.</p>" +
-      "<p>התשואות מסגירת יום הנפילה: יום = יום המסחר הבא, שבוע = 5 ימי מסחר, חודש = 21, חצי שנה = 126, שנה = 252. \"השפל בחודש שאחרי\" = הנקודה הנמוכה ביותר ב-21 הימים שאחרי, ביחס לסגירה של יום הנפילה. אחוז המניות מעל ממוצע 200 קיים מ-2007. בכל אריח הנקודות בסולם משלו (הגרוע והטוב מתחת).</p>" +
+      "<p>התשואות מסגירת יום הנפילה: יום = יום המסחר הבא, שבוע = 5 ימי מסחר, חודש = 21, חצי שנה = 126, שנה = 252. \"השפל בחודש שאחרי\" = הנקודה הנמוכה ביותר ב-21 הימים שאחרי, ביחס לסגירה של יום הנפילה. אחוז המניות מעל ממוצע 200 קיים מ-2007. בכל אריח הנקודות בסולם משלו (הגרוע והטוב מתחת). החציון = המקרה האמצעי; הממוצע מושפע ממקרים קיצוניים, ולכן כשהפער ביניהם 1.5 נקודות ויותר ומקרה אחד אחראי לרובו, מתחת לממוצע מופיע הממוצע בלי המקרה הזה.</p>" +
       "<p>מקור: Barchart (S&amp;P 500, VIX ורוחב מ-2000/2007) והדשבורד לימים האחרונים. זה מה שקרה בעבר, לא תחזית — המדגם קטן וכל מקרה קרה בנסיבות אחרות.</p></div></details>";
     return panHd("ימים חריגים — מה קרה אחר כך", '<span class="mute">S&amp;P 500 מאז ' + esc(String(u.first || "2000").slice(0, 4)) + " · נפילה של 3% ומעלה ביום</span>") +
       '<div class="pb ud">' + now + seg + tiles + path + table + cards + exp + "</div>";
