@@ -5,17 +5,17 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.5
+      "capB": 106.6
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 103.3
+      "capB": 102.5
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 85.2
+      "capB": 85.3
     },
     {
       "ticker": "HUM",
@@ -30,12 +30,12 @@
     {
       "ticker": "VST",
       "name": "Vistra Corp.",
-      "capB": 41.1
+      "capB": 41.2
     },
     {
       "ticker": "PPL",
       "name": "PPL Corporation",
-      "capB": 27.3
+      "capB": 27.4
     },
     {
       "ticker": "BIP",
@@ -88,8 +88,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 10.24,
-            "price": 187.55,
+            "chg": 10.94,
+            "price": 188.74,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/MNST.png",
-            "chg": -3.69,
-            "price": 46.06,
+            "chg": -3.58,
+            "price": 46.12,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
           }
@@ -385,16 +385,16 @@
           "logo": "data/earnings/logos/O.png"
         },
         {
-          "ticker": "IDXX",
-          "name": "IDEXX Laboratories, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/IDXX.png"
-        },
-        {
           "ticker": "ETR",
           "name": "Entergy Corporation",
           "when": "before",
           "logo": "data/earnings/logos/ETR.png"
+        },
+        {
+          "ticker": "IDXX",
+          "name": "IDEXX Laboratories, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/IDXX.png"
         },
         {
           "ticker": "FANG",
@@ -800,7 +800,6 @@
     "CWST": "2026-11-09",
     "IMVT": "2026-11-09",
     "TTD": "2026-11-09",
-    "HIMS": "2026-11-09",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
@@ -838,19 +837,20 @@
     "HBM": "2026-11-12",
     "STN": "2026-11-12",
     "ARWR": "2026-11-12",
-    "TWST": "2026-11-12",
     "ELPC": "2026-11-12",
+    "TWST": "2026-11-12",
     "ANDG": "2026-11-12",
     "CGON": "2026-11-12",
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "KOD": "2026-11-12",
+    "MBGL": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 18:16",
+    "updatedAt": "06/11/2026 18:31",
     "source": "tradingview"
   }
 }
