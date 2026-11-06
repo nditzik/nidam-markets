@@ -1,6 +1,6 @@
 {
   "today": "2026-11-06",
-  "todayCount": 18,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "ENB",
@@ -15,12 +15,12 @@
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 86.0
+      "capB": 85.7
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 51.4
+      "capB": 51.8
     },
     {
       "ticker": "ONC",
@@ -30,7 +30,7 @@
     {
       "ticker": "VST",
       "name": "Vistra Corp.",
-      "capB": 41.8
+      "capB": 42.0
     },
     {
       "ticker": "PPL",
@@ -40,7 +40,7 @@
     {
       "ticker": "BIP",
       "name": "Brookfield Infrastructure Partners L.P.",
-      "capB": 25.4
+      "capB": 25.3
     }
   ],
   "reactions": {
@@ -88,10 +88,21 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 12.53,
-            "price": 191.44,
+            "chg": 12.41,
+            "price": 191.24,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "CNQ",
+            "name": "Canadian Natural Resources Limited",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CNQ.png",
+            "chg": -1.45,
+            "price": 48.92,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "DUK",
@@ -103,17 +114,6 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "MNST",
-            "name": "Monster Beverage Corporation",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/MNST.png",
-            "chg": -3.63,
-            "price": 46.1,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -338,14 +338,14 @@
       "logo": "data/earnings/logos/PAA.png"
     }
   ],
-  "more": 6,
+  "more": 8,
   "upcoming": [],
   "week": [
     {
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 50,
+      "total": 54,
       "companies": [
         {
           "ticker": "AAPL",
@@ -426,7 +426,7 @@
       "date": "2026-11-03",
       "dow": "שלישי",
       "label": "3.11",
-      "total": 91,
+      "total": 97,
       "companies": [
         {
           "ticker": "AMD",
@@ -508,7 +508,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 125,
+      "total": 138,
       "companies": [
         {
           "ticker": "TM",
@@ -589,7 +589,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 47,
+      "total": 48,
       "companies": [
         {
           "ticker": "COP",
@@ -614,6 +614,12 @@
           "name": "Airbnb, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/ABNB.png"
+        },
+        {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "DUK",
@@ -656,12 +662,6 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
-        },
-        {
-          "ticker": "KMB",
-          "name": "Kimberly-Clark Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -669,7 +669,7 @@
       "date": "2026-11-06",
       "dow": "שישי",
       "label": "6.11",
-      "total": 18,
+      "total": 20,
       "companies": [
         {
           "ticker": "ENB",
@@ -765,6 +765,8 @@
     "FRHC": "2026-11-06",
     "MSGK": "2026-11-06",
     "FLR": "2026-11-06",
+    "ESNT": "2026-11-06",
+    "WULF": "2026-11-06",
     "RDNT": "2026-11-08",
     "CEG": "2026-11-09",
     "KKR": "2026-11-09",
@@ -801,6 +803,8 @@
     "CWST": "2026-11-09",
     "TTD": "2026-11-09",
     "HIMS": "2026-11-09",
+    "IFS": "2026-11-09",
+    "WTM": "2026-11-09",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
@@ -813,6 +817,8 @@
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
     "KT": "2026-11-10",
+    "SRRK": "2026-11-10",
+    "COGT": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -825,6 +831,7 @@
     "OR": "2026-11-11",
     "UGP": "2026-11-11",
     "ICL": "2026-11-11",
+    "ENS": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -845,13 +852,17 @@
     "CIG": "2026-11-12",
     "KOD": "2026-11-12",
     "M": "2026-11-12",
+    "FPS": "2026-11-12",
     "NIQ": "2026-11-12",
+    "MBGL": "2026-11-12",
+    "OCTV": "2026-11-12",
+    "MWH": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 22:01",
+    "updatedAt": "06/11/2026 22:16",
     "source": "tradingview"
   }
 }
