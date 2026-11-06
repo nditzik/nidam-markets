@@ -5,22 +5,22 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.3
+      "capB": 106.2
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 103.7
+      "capB": 103.5
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 86.2
+      "capB": 86.1
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 51.7
+      "capB": 51.4
     },
     {
       "ticker": "ONC",
@@ -30,17 +30,17 @@
     {
       "ticker": "VST",
       "name": "Vistra Corp.",
-      "capB": 41.6
+      "capB": 41.5
     },
     {
       "ticker": "PPL",
       "name": "PPL Corporation",
-      "capB": 27.2
+      "capB": 27.1
     },
     {
       "ticker": "BIP",
       "name": "Brookfield Infrastructure Partners L.P.",
-      "capB": 25.4
+      "capB": 25.5
     }
   ],
   "reactions": {
@@ -88,10 +88,21 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 12.16,
-            "price": 190.82,
+            "chg": 12.38,
+            "price": 191.2,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "CNQ",
+            "name": "Canadian Natural Resources Limited",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CNQ.png",
+            "chg": -1.45,
+            "price": 48.92,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           },
           {
             "ticker": "DUK",
@@ -103,17 +114,6 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "MNST",
-            "name": "Monster Beverage Corporation",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/MNST.png",
-            "chg": -3.59,
-            "price": 46.12,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -345,7 +345,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 50,
+      "total": 49,
       "companies": [
         {
           "ticker": "AAPL",
@@ -589,7 +589,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 47,
+      "total": 48,
       "companies": [
         {
           "ticker": "COP",
@@ -614,6 +614,12 @@
           "name": "Airbnb, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/ABNB.png"
+        },
+        {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
         },
         {
           "ticker": "DUK",
@@ -656,12 +662,6 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
-        },
-        {
-          "ticker": "KMB",
-          "name": "Kimberly-Clark Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -774,8 +774,8 @@
     "TTWO": "2026-11-09",
     "IX": "2026-11-09",
     "RKLB": "2026-11-09",
-    "BAP": "2026-11-09",
     "ROIV": "2026-11-09",
+    "BAP": "2026-11-09",
     "NRG": "2026-11-09",
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
@@ -793,11 +793,11 @@
     "PRAX": "2026-11-09",
     "SANM": "2026-11-09",
     "CWEN": "2026-11-09",
-    "IONS": "2026-11-09",
     "QLYS": "2026-11-09",
+    "IONS": "2026-11-09",
     "HRB": "2026-11-09",
-    "CWST": "2026-11-09",
     "IMVT": "2026-11-09",
+    "CWST": "2026-11-09",
     "HIMS": "2026-11-09",
     "TTD": "2026-11-09",
     "PBR": "2026-11-10",
@@ -850,7 +850,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 21:16",
+    "updatedAt": "06/11/2026 21:31",
     "source": "tradingview"
   }
 }
