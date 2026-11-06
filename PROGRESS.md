@@ -9,6 +9,9 @@
 - סעיף 8 (מה החברה עושה): 31 משפטים חדשים (ALTO, AMCR, AVO, BRBS, CAAP, CHYM, CXT, ECPG, EWTX, FBLA, HALO, HQI, JCTC, KTB, LAKE, LILAK, LQDT, MRVL, PAYC, PRVA, QLYS, RLJ, SEZL, TASK, TRC, TRI, UCB, VALU, WAY, WST, ZGN) + build_fundamentals.py (בלי רשת — הסורק נכשל אבל הסנכרון מ-blurbs עבד, without blurb=0).
 - ⏳ פתוח: לעקוב אחרי תגובת השוק לדוח התעסוקה אחה"צ ואחרי המשך המכירה בשבבים באסיה.
 
+## 6.11.2026 (שישי, סשן) — np183: "ימים חריגים" כלשונית-משנה משלה (איציק: "טאב נפרד")
+- השוק = מדדים · סקטורים · **ימים חריגים** (`#unusual`); הפאנל ירד מטאב המדדים. צילום מחשב/טלפון.
+
 ## 6.11.2026 (שישי, סשן) — היסטוריה ארוכה לפיצ'ר "ימים חריגים — מה קרה בעבר" (איציק)
 - איציק ביקש השוואה להיסטוריה מ-2000 בימים חריגים. גרוק הוריד מ-Barchart ושלח "History – Breadth 2000" (10:35): hist_S5TH/S5FI/S5TW (רוחב, מ-2007 — אין לפני כן ב-Barchart), hist_SPX/hist_VIX (מ-2000).
 - `scripts/relay_history_mail.py` (צעד ב-update.yml אחרי relay הרוטציה): hist_*.csv → `data/history/barchart/` (ממוין, בלי שורת Barchart, ≥250 שורות; קובץ קיים מוחלף רק בחדש/ארוך יותר; state `data/_history_relay_state.json`).

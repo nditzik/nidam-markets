@@ -32,7 +32,7 @@
   // נשארו בשמות הישנים (indices, sectors, weekcal, prep, reports, picks, candidates, momentum, trades,
   // insider, briefing, morning, world) — הסטטיסטיקה רציפה. "movers" (הבולטות) חדש — ירד מהבית.
   var GROUPS = {
-    market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"]], def: "indices" },
+    market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"], ["unusual", "ימים חריגים"]], def: "indices" },
     calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["after", "אחרי הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
     stocks:   { subs: [["consensus", "סיכום"], ["analyze", "נתח מניה"], ["picks", "הנבחרות"], ["candidates", "מועמדים"], ["momentum", "מומנטום"], ["trades", "הצעות לטרייד"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
     news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" }
@@ -703,7 +703,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np182";
+  var TA_VER = "np183";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2999,7 +2999,6 @@
       (big ? '<section class="pan"' + bdSpan(6) + ">" + panHd("הכסף הגדול היום במניות", '<span class="mute">' + (bt.prints ? '<span class="num">' + esc(String(bt.prints)) + "</span> העסקאות הגדולות · " : "") + '<span class="num">' + esc(String(bt.symbols || "")) + "</span> מניות</span>") + '<div class="pb">' + bare(big) + "</div></section>" : "") +
       '<section class="pan" id="bp-slot"' + bdSpan(7) + ">" + bpPan(d) + "</section>" +
       (conclRows || concl ? '<section class="pan"' + bdSpan(5) + ">" + panHd("מנוע המסקנות", '<span class="mute">' + esc(c.headline || "") + "</span>") + '<div class="pb bd-sents">' + conclRows + concl + "</div></section>" : "") +
-      '<section class="pan" id="ud-slot"' + bdSpan(12) + "></section>" +
       (ai ? '<section class="pan"' + bdSpan(6) + ">" + panHd("ניתוח לפי תחום", '<span class="mute">מנוע הכללים</span>') + '<div class="pb">' + bare(ai) + "</div></section>" : "") +
       '<section class="pan"' + bdSpan(ai ? 6 : 12) + ">" + panHd("תמונת מצב", tradeDate ? '<span class="mute">יום המסחר <span class="num" dir="ltr">' + esc(tradeDate) + "</span></span>" : "") +
         '<div class="pb">' + verdict + '<div class="tiles">' + scoreTiles + '</div><div class="tiles">' + mktTiles + "</div>" + (backg ? '<div class="bd-backg">' + backg + "</div>" : "") + "</div></section>" +
@@ -3013,7 +3012,6 @@
     setTimeout(renderOptVsPrice, 0);   // ה-figure של הגרף נכנס ל-DOM רק בהמשך הפונקציה
     if (WEEKLY) renderWeekly(WEEKLY);
     renderForecastPan();
-    renderUnusual();
   }
 
 
