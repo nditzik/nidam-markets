@@ -1,57 +1,150 @@
-<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
-body{margin:0;background:#edf1f5;color:#182331;font-family:Arial,"Helvetica Neue",sans-serif;direction:rtl}.wrap{max-width:790px;margin:auto;padding:16px}.hero{background:linear-gradient(135deg,#071b2d,#103c54 67%,#08766c);color:#fff;border-radius:18px;padding:28px}.eyebrow{font-size:12px;letter-spacing:1px;color:#91e1d7}.hero h1{margin:8px 0;font-size:31px}.hero p{margin:4px 0;color:#d8e5ec}.badge{display:inline-block;margin-top:14px;padding:7px 12px;background:#dff8f3;color:#075d55;border-radius:999px;font-weight:bold;font-size:13px}.card{background:#fff;border:1px solid #d9e2e8;border-radius:14px;padding:20px;margin-top:14px;box-shadow:0 3px 12px rgba(18,38,58,.05)}h2{font-size:20px;color:#0b3049;margin:0 0 12px;border-bottom:2px solid #0b766f;padding-bottom:8px}h3{font-size:18px;margin:0 0 8px;color:#102f47}.new{border-right:4px solid #0f9b91;background:#f1fbf9;padding:13px 15px;border-radius:9px;margin:8px 0}.alert{border-right:4px solid #d89b2b;background:#fff8ea;padding:14px 16px;border-radius:9px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{background:#f5f8fa;border-radius:10px;padding:12px}.metric b{display:block;color:#0b3049;font-size:14px}.up{color:#08796f}.down{color:#b33e45}.story{padding:17px 0;border-bottom:1px solid #e5eaee}.story:last-child{border-bottom:0}.why{background:#f4f7f9;border-right:3px solid #d7a33c;padding:10px 12px;margin-top:9px;border-radius:8px}.src{font-size:12px;color:#64727e;margin-top:9px;line-height:1.5}.src a{color:#08796f;text-decoration:none}p{line-height:1.62;margin:7px 0}ul{padding-right:20px;margin:7px 0}li{line-height:1.55;margin:7px 0}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:10px 7px;border-bottom:1px solid #e3e8ec;text-align:right}th{background:#f2f6f8;color:#0b3049}.bottom{background:#0b3049;color:#fff;border-radius:14px;padding:20px;margin-top:14px}.bottom b{color:#90e1d7}.foot{font-size:12px;color:#697781;text-align:center;line-height:1.5;padding:16px}@media(max-width:600px){.wrap{padding:8px}.hero{padding:21px}.hero h1{font-size:25px}.card{padding:15px}.grid{grid-template-columns:1fr 1fr}th,td{font-size:12px;padding:8px 4px}}</style></head><body><div class="wrap">
-<div class="hero"><div class="eyebrow">MORNING INVESTOR BRIEF</div><h1>📈 תדרוך משקיעים – בוקר</h1><p>5 בנובמבר 2026 · 05:58 שעון ישראל</p><span class="badge">סנטימנט: חיובי במדדים · רוטציה חדה מתחת לפני השטח</span></div>
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  body{margin:0;background:#eef2f6;color:#17202a;font-family:Arial,"Noto Sans Hebrew",sans-serif;direction:rtl}
+  .wrap{max-width:720px;margin:0 auto;padding:18px}
+  .hero{background:linear-gradient(135deg,#071c33,#123e5f);color:#fff;border-radius:18px;padding:28px 24px;box-shadow:0 8px 22px rgba(7,28,51,.18)}
+  h1{margin:0 0 8px;font-size:30px;line-height:1.25}.stamp{color:#c9d8e6;font-size:14px}
+  .section{background:#fff;border:1px solid #dfe6ec;border-radius:14px;margin-top:16px;padding:20px;box-shadow:0 3px 12px rgba(20,38,55,.05)}
+  h2{font-size:20px;color:#0b3954;margin:0 0 14px;border-bottom:2px solid #d7a849;padding-bottom:8px}
+  h3{font-size:18px;margin:0 0 8px;color:#102f46}.meta{font-size:12px;color:#667786;margin-bottom:10px}
+  p{font-size:15px;line-height:1.65;margin:8px 0}.impact{background:#f3f7fa;border-right:4px solid #d7a849;padding:10px 12px;border-radius:8px}
+  ul{margin:0;padding-right:20px}li{margin:8px 0;line-height:1.55}
+  a{color:#0b6ea8;text-decoration:none;font-weight:700}.story{padding:16px 0;border-bottom:1px solid #e5eaef}.story:last-child{border-bottom:0;padding-bottom:0}
+  .ticker{font-family:Arial,sans-serif;direction:ltr;unicode-bidi:embed;background:#e9f0f5;color:#0b3954;border-radius:5px;padding:2px 6px;font-size:12px;font-weight:700}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;overflow:hidden;border:1px solid #dfe6ec;border-radius:10px}
+  th{background:#0b3954;color:#fff;padding:10px;text-align:right}td{padding:10px;border-bottom:1px solid #e6ebef}tr:last-child td{border-bottom:0}.neg{color:#a61b1b;font-weight:700}.pos{color:#137a4b;font-weight:700}
+  .callout{background:#fff8e6;border:1px solid #ecd79e;border-radius:12px;padding:14px;margin-top:12px}
+  .footer{font-size:12px;color:#6d7b86;text-align:center;padding:18px 10px 6px}
+  @media(max-width:560px){.wrap{padding:10px}.hero{padding:22px 18px}h1{font-size:25px}.section{padding:16px}table{font-size:12px}th,td{padding:8px 6px}}
+</style>
+</head>
+<body><div class="wrap">
+  <div class="hero">
+    <h1>📈 תדרוך משקיעים – בוקר</h1>
+    <div class="stamp">יום שישי, 6 בנובמבר 2026 · 06:07 שעון ישראל</div>
+  </div>
 
-<div class="card"><h2>🆕 חדש מאז התדרוך הקודם</h2>
-<div class="new">הראלי התרחב עד הסגירה: Dow ‏+3.03%, S&amp;P 500 ‏+1.58%, Nasdaq ‏+1.44%; ה־VIX נפל ל־16.61.</div>
-<div class="new">Brent צנח 8.7% ל־94.62 דולר והמשיך הבוקר ל־93.65 דולר, על רקע ירידה בתמחור סיכון ההסלמה מול איראן.</div>
-<div class="new">Qualcomm ‏(QCOM) ירדה ביותר מ־6% במסחר המאוחר: הכנסות הסמארטפונים נפלו 26%, למרות תחזית חזקה לדאטה־סנטר.</div>
-<div class="new">באסיה: KOSPI ירד כ־4% וטאיוואן כ־1.8%, כאשר השוק מתמחר אפשרות להאטה זמנית בבניית דאטה־סנטרים בארה״ב.</div></div>
+  <div class="section">
+    <h2>🆕 חדש מאז התדרוך הקודם</h2>
+    <ul>
+      <li>הירידות שנראו בחוזים הפכו למפולת רחבה: <b>S&amp;P 500 איבד 4.36%</b>, נאסד״ק 5.52% ומדד השבבים 12.2%.</li>
+      <li>הלחץ התפשט לאסיה: הקוספי ירד ביותר מ־8% והמסחר הופסק זמנית; ניקיי ירד ביותר מ־5% בפתיחה.</li>
+      <li>הכסף עבר לאג״ח ולמטבעות מקלט; תשואת אג״ח ארה״ב ל־10 שנים ירדה ל־4.84%.</li>
+      <li><span class="ticker">NET</span> פרסמה האצה בצמיחה ותחזית חזקה; <span class="ticker">MCHP</span> הכתה את הרבעון אך התחזית אכזבה.</li>
+      <li>תביעות אבטלה ירדו ל־189 אלף והפריון עלה 3.6%; דוח התעסוקה יתפרסם היום ב־15:30 בישראל.</li>
+    </ul>
+  </div>
 
-<div class="card"><h2>🌍 אירועים גיאופוליטיים והשפעתם על השוק</h2><p>ההתפתחות המהותית היא שינוי חד בפרמיית הסיכון של הנפט. לאחר שהדמוקרטים קיבלו שליטה בשני בתי הקונגרס, השוק מעריך שלנשיא טראמפ יהיה תמריץ גדול יותר לחפש מוצא מדיני מהמלחמה מול איראן. זרימת הנפט דרך מצר הורמוז התאוששה קרוב לרמות שלפני המלחמה — אם כי בעלות גבוהה יותר.</p><div class="alert"><b>למשקיע:</b> ירידת נפט מתמשכת מקלה על אינפלציה, אג״ח, תעופה וצריכה; היא פוגעת יחסית באנרגיה ובתזרים של מפיקות. אי־הוודאות המדינית עדיין גבוהה.</div><div class="src"><a href="https://www.reuters.com/business/energy/oil-falls-fourth-day-expectations-lower-risk-iran-war-escalation-2026-11-05/">Reuters · פורסם 5.11.2026</a></div></div>
+  <div class="section">
+    <h2>🌍 אירועים גיאופוליטיים והשפעתם על השוק</h2>
+    <p>נפט ברנט עלה ל־99.86 דולר ו־WTI ל־91.62 דולר בבוקר אסיה, לאחר דיווחים על תקיפות נוספות של מכליות במפרץ ובמצרי הורמוז. אף שהנפט עדיין בדרך לירידה שבועית חדה, הפגיעה בתנועת הספנות משמרת פרמיית סיכון באינפלציה, בחברות תעופה ובתעשיות עתירות אנרגיה.</p>
+    <p><a href="https://www.reuters.com/business/energy/oil-set-sharp-weekly-drop-middle-east-supply-concerns-provide-floor-2026-11-06/">Reuters · פורסם 6.11.2026</a></p>
+  </div>
 
-<div class="card"><h2>🌐 תמונת מצב ב־30 שניות</h2><div class="grid">
-<div class="metric"><b>S&amp;P 500</b>7,688.62 <span class="up">+1.58%</span></div>
-<div class="metric"><b>Nasdaq</b>25,736.51 <span class="up">+1.44%</span></div>
-<div class="metric"><b>Dow</b>53,356.12 <span class="up">+3.03%</span></div>
-<div class="metric"><b>Russell 2000</b>2,856.95 <span class="up">+1.58%</span></div>
-<div class="metric"><b>אג״ח ארה״ב 10Y</b>4.87% · ירידה נוספת הבוקר</div>
-<div class="metric"><b>VIX</b>16.61 <span class="down">כ־20%−</span></div>
-<div class="metric"><b>Brent</b>$93.65 <span class="down">1.03%− הבוקר</span></div>
-<div class="metric"><b>WTI</b>$86.98 <span class="down">1.29%− הבוקר</span></div></div>
-<p><b>קריאת שוק:</b> חיובי במדדים הרחבים ובאג״ח, אך שלילי בשבבים, דאטה־סנטרים ואנרגיה. זהו שוק של רוטציה, לא Risk-on אחיד.</p><div class="src"><a href="https://apnews.com/article/c0be7ca45b5875abe758e0570cb9a265">AP · סגירת 4.11.2026</a> · <a href="https://www.reuters.com/business/energy/global-markets-global-markets-2026-11-05/">Reuters · מסחר אסיה 5.11.2026</a></div></div>
+  <div class="section">
+    <h2>🌐 תמונת מצב ב־30 שניות</h2>
+    <table role="presentation">
+      <tr><th>נכס</th><th>רמה</th><th>שינוי / זמן</th></tr>
+      <tr><td>S&amp;P 500</td><td>7,353.73</td><td class="neg">−4.36%</td></tr>
+      <tr><td>Nasdaq</td><td>24,315.00</td><td class="neg">−5.52%</td></tr>
+      <tr><td>Dow</td><td>51,523.06</td><td class="neg">−3.44%</td></tr>
+      <tr><td>Russell 2000</td><td>2,729.89</td><td class="neg">−4.4%</td></tr>
+      <tr><td>אג״ח ארה״ב 10 שנים</td><td>4.84%</td><td>בוקר אסיה</td></tr>
+      <tr><td>Brent / WTI</td><td>$99.86 / $91.62</td><td class="pos">+1.6% / +1.22%</td></tr>
+      <tr><td>VIX</td><td>28.18</td><td class="neg">+69.66%</td></tr>
+    </table>
+    <div class="callout"><b>סנטימנט:</b> Risk-off חד. מכירות כפויות וחשש מהגבלת בניית מרכזי נתונים פוגעים בטכנולוגיה ובשבבים; אג״ח, ין ופרנק שווייצרי נהנים מביקוש למקלט.</div>
+    <p style="font-size:12px"><a href="https://apnews.com/article/afe254c608c3d1fe2ea792812ba9765a">מדדי המניות: AP</a> · <a href="https://www.cboe.com/tradable-products/vix">VIX: Cboe</a> · <a href="https://www.reuters.com/world/asia-pacific/dollar-holds-yen-gains-equity-rout-saps-risk-appetite-ahead-payrolls-2026-11-06/">תשואות ומט״ח: Reuters</a> · <a href="https://www.reuters.com/business/energy/oil-set-sharp-weekly-drop-middle-east-supply-concerns-provide-floor-2026-11-06/">נפט: Reuters</a></p>
+  </div>
 
-<div class="card"><h2>📰 הידיעות המרכזיות</h2>
-<div class="story"><h3>1. וול סטריט: הוודאות הפוליטית ניצחה את החשש הראשוני</h3><p>לאחר שהדמוקרטים זכו בשליטה בבית הנבחרים ובסנאט והנשיא טראמפ קיבל את התוצאה, המדדים סגרו בעליות חדות. מניות צריכה הובילו, בעוד אנרגיה הייתה בין הסקטורים החלשים.</p><div class="why"><b>למה זה חשוב:</b> צריכה, חברות תלויות־ריבית ואנרגיה נקייה נהנות יחסית; אנרגיה, ביטחון וחלק מתשתיות ה־AI נפגעות. ירידת התשואות תומכת במכפילים, אך ההובלה הטכנולוגית צרה יותר.</div><div class="src"><a href="https://www.reuters.com/business/us-stock-index-futures-steady-democrats-seize-congress-2026-11-04/">Reuters · אירוע ופרסום 4.11.2026</a> · <a href="https://apnews.com/article/c0be7ca45b5875abe758e0570cb9a265">AP</a></div></div>
+  <div class="section">
+    <h2>📰 הידיעות המרכזיות</h2>
 
-<div class="story"><h3>2. נפט: הירידה היומית החדה הופכת לאירוע מאקרו</h3><p>Brent סגר בירידה של 8.7% ב־94.62 דולר ו־WTI ירד 8.3% ל־88.12 דולר. הבוקר Brent נסחר סביב 93.65 דולר ו־WTI סביב 86.98 דולר.</p><div class="why"><b>למה זה חשוב:</b> ירידת נפט היא גורם דיסאינפלציוני שמסייע לאג״ח, תעופה, תחבורה וצרכן; היא לוחצת על מפיקות ונותני שירותי קידוח. הקטליזטור הבא הוא כל אות דיפלומטי או צבאי חדש.</div><div class="src"><a href="https://www.reuters.com/business/energy/oil-falls-fourth-day-expectations-lower-risk-iran-war-escalation-2026-11-05/">Reuters · פורסם 5.11.2026; מחירי סגירת 4.11 ומסחר מוקדם 5.11</a></div></div>
+    <div class="story">
+      <h3>1. מימוש ה־AI הפך למפולת שוק רחבה</h3>
+      <div class="meta">פורסם: 5–6.11.2026 · מועד האירוע: סגירת 5.11</div>
+      <p>ה־S&amp;P 500 ירד 4.36%, נאסד״ק 5.52%, דאו 3.44% וראסל 2000 4.4%. מדד השבבים של פילדלפיה צנח 12.2%, וטכנולוגיה ירדה 7.3%. החשש המרכזי הוא שרוב דמוקרטי בקונגרס יגביר פיקוח על AI ובניית מרכזי נתונים; מינוף ומכירות כפויות העמיקו את המהלך.</p>
+      <p class="impact"><b>למה זה חשוב:</b> שרשרת ה־AI — שבבים, זיכרון, ציוד חשמל וקירור — חשופה להמשך הורדת מכפילים. מנגד, ירידת התשואות עשויה לסייע לנכסים ארוכי־מח״מ אם הלחץ יתייצב.</p>
+      <p><a href="https://apnews.com/article/afe254c608c3d1fe2ea792812ba9765a">AP · נתוני הסגירה</a> · <a href="https://www.reuters.com/commentary/reuters-open-interest/global-markets-trading-day-graphic-2026-11-05/">Reuters · שבבים ורוחב השוק</a></p>
+    </div>
 
-<div class="story"><h3>3. אסיה: חשש ממגבלות דאטה־סנטר מכה בשבבים</h3><p>KOSPI ירד כ־4%, מדד טאיוואן כ־1.8% ו־Nikkei כ־0.5%. מועמדים שקראו להקפאת בניית דאטה־סנטרים ניצחו בטקסס ובג׳ורג׳יה, והמשקיעים מתמחרים עיכוב אפשרי בהיתרים, חשמל ומים.</p><div class="why"><b>למה זה חשוב:</b> יצרניות שבבים, זיכרון, ציוד חשמל וקירור חשופות לקצב ההקמה. רוב האנליסטים עדיין צופים האטה זמנית ולא פגיעה בביקוש הסופי ל־AI; NVDA, AVGO, MU, VRT ו־ANET הם מבחן מפתח.</div><div class="src"><a href="https://www.reuters.com/business/energy/global-markets-global-markets-2026-11-05/">Reuters · אירוע ופרסום 5.11.2026</a></div></div>
+    <div class="story">
+      <h3>2. אפקט ההדבקה הגיע לאסיה</h3>
+      <div class="meta">פורסם ומתרחש: 6.11.2026</div>
+      <p>הניקיי ירד ביותר מ־5% בפתיחה, והקוספי צנח מעל 8% והפעיל מפסק מסחר. Samsung Electronics (קוריאה, KRX: 005930; אין ADR אמריקאי רשמי) ו־SK hynix (קוריאה, KRX: 000660; אין ADR אמריקאי רשמי) נפגעו במיוחד, לאחר שהנאסד״ק נכנס לטריטוריית תיקון.</p>
+      <p class="impact"><b>למה זה חשוב:</b> ירידות חדות באסיה מחזקות את הסיכון לפתיחה תנודתית נוספת בארה״ב ומכבידות על ספקי זיכרון, ציוד שבבים ומרכזי נתונים. סקטורים דפנסיביים עשויים להציג עמידות יחסית.</p>
+      <p><a href="https://www.reuters.com/world/asia-pacific/analysts-investors-react-ai-market-rout-2026-11-06/">Reuters · תגובת השווקים באסיה</a></p>
+    </div>
 
-<div class="story"><h3>4. Qualcomm: הדאטה־סנטר מבטיח, הליבה נחלשת</h3><p>Qualcomm ‏(NASDAQ: QCOM) דיווחה על הכנסות non-GAAP של 10.44 מיליארד דולר ורווח של 2.17 דולר למניה, מעט מעל הצפי. הכנסות שבבי הסמארטפונים ירדו 26% ל־5.14 מיליארד דולר והחמיצו את התחזית; המניה ירדה ביותר מ־6% במסחר המאוחר.</p><p>החברה צופה הכנסות רבעוניות של 10.4–11.2 מיליארד דולר ומכירות דאטה־סנטר של 650 מיליון דולר, מעל צפי של כ־539 מיליון. היא חתמה גם על הסכם רב־שנתי עם SpaceX עבור Starlink Mobile.</p><div class="why"><b>למה זה חשוב:</b> הפוטנציאל הוא גיוון לרכב, IoT ודאטה־סנטר; הסיכון הוא שחולשת המכשירים, אובדן הכנסות Apple ‏(AAPL) ולחץ מרווחים יקדימו את קצב הצמיחה החדש.</div><div class="src"><a href="https://investor.qualcomm.com/files/content_files/FY2026-4th-Quarter-Earnings-Release.pdf">Qualcomm IR · אירוע ופרסום 4.11.2026</a> · <a href="https://www.reuters.com/business/media-telecom/qualcomm-forecasts-upbeat-sales-strength-non-smartphone-segments-2026-11-04/">Reuters</a></div></div>
+    <div class="story">
+      <h3>3. אג״ח ומטבעות מקלט מאותתים על מעבר חד לסיכון נמוך</h3>
+      <div class="meta">פורסם ומתרחש: 6.11.2026 בבוקר אסיה</div>
+      <p>תשואת אג״ח ארה״ב ל־10 שנים ירדה ל־4.84% ותשואת השנתיים ל־4.47%. הין התחזק ל־157.40 לדולר בשיא הבוקר, ומדד הדולר נותר סביב 101.55.</p>
+      <p class="impact"><b>למה זה חשוב:</b> השוק דחה חלק מהציפיות להעלאת ריבית בדצמבר. דוח תעסוקה חזק מהצפוי עלול להפוך חלק מירידת התשואות; דוח חלש עשוי להעמיק את המעבר לאג״ח אך גם לאותת על סיכון לצמיחה.</p>
+      <p><a href="https://www.reuters.com/world/asia-pacific/dollar-holds-yen-gains-equity-rout-saps-risk-appetite-ahead-payrolls-2026-11-06/">Reuters · אג״ח, דולר ומטבעות מקלט</a></p>
+    </div>
 
-<div class="story"><h3>5. ADP ו־ISM: שוק עבודה יציב, אינפלציית שירותים עקשנית</h3><p>התעסוקה הפרטית גדלה באוקטובר ב־86 אלף משרות, מעל צפי של 69 אלף. ISM שירותים ירד קלות ל־54.5 מ־54.9, אך נשאר בהתרחבות; רכיב התעסוקה עלה ל־51.4 ורכיב המחירים נשאר גבוה ב־73.0.</p><div class="why"><b>למה זה חשוב:</b> הנתונים תומכים בצמיחה וברווחים, אך אינם נותנים לפד סיבה למהר להקל. ירידת הנפט פועלת דיסאינפלציונית; מחירי השירותים ושרשראות האספקה פועלים בכיוון ההפוך.</div><div class="src"><a href="https://www.reuters.com/business/us-private-payrolls-rise-october-adp-says-2026-11-04/">Reuters/ADP · פורסם 4.11.2026; נתוני אוקטובר</a> · <a href="https://www.reuters.com/world/us/us-services-sector-activity-cools-slightly-october-inflation-remains-elevated-2026-11-04/">Reuters/ISM</a></div></div>
+    <div class="story">
+      <h3>4. שוק העבודה: פיטורים נמוכים ופריון חזק לפני הדוח הרשמי</h3>
+      <div class="meta">פורסם: 5.11.2026 · נתונים לשבוע שהסתיים 31.10 ולרבעון השלישי</div>
+      <p>תביעות האבטלה הראשוניות ירדו ב־6,000 ל־189 אלף — שפל של 57 שנה — לעומת תחזית 196 אלף. הפריון העסקי הלא־חקלאי עלה בקצב שנתי של 3.6%, ועלות העבודה ליחידה ירדה 0.7%.</p>
+      <p class="impact"><b>למה זה חשוב:</b> שילוב של שוק עבודה עמיד ועלויות עבודה מתמתנות חיובי לרווחיות, אך עשוי להשאיר את הפד דרוך מול אינפלציה. הרגישים ביותר: בנקים, צריכה מחזורית, נדל״ן ומניות צמיחה.</p>
+      <p><a href="https://www.dol.gov/index.php/newsroom/releases?agency=All&amp;page=0&amp;state=All&amp;topic=All&amp;year=all">משרד העבודה · תביעות אבטלה</a> · <a href="https://www.bls.gov/news.release/archives/prod2_11052026.htm">BLS · פריון ועלות עבודה</a></p>
+    </div>
 
-<div class="story"><h3>6. סחר: הגירעון הצטמצם, אך היבוא קבע שיא</h3><p>גירעון הסחר הצטמצם בספטמבר ב־0.7% ל־105 מיליארד דולר, טוב מצפי של 108 מיליארד. היבוא עלה 1.2% לשיא של 426.6 מיליארד דולר והיצוא עלה 1.9%.</p><div class="why"><b>למה זה חשוב:</b> היבוא הגבוה מאשר ביקוש מקומי עמיד, אך הסחר ממשיך לגרוע מהתמ״ג. קמעונאות, לוגיסטיקה ונמלים נהנים מהיקף הפעילות; הדולר והתעריפים נשארים משתני סיכון.</div><div class="src"><a href="https://www.investing.com/news/economic-indicators/us-trade-deficit-narrows-slightly-in-september-imports-race-to-record-high-4999565">Reuters · פורסם 4.11.2026; נתוני ספטמבר</a></div></div>
-</div>
+    <div class="story">
+      <h3>5. Cloudflare <span class="ticker">NYSE: NET</span>: האצה בצמיחה והעלאת תחזית</h3>
+      <div class="meta">פורסם: 5.11.2026 לאחר הסגירה · רבעון שהסתיים 30.9.2026</div>
+      <p>ההכנסות עלו 39% ל־782.5 מיליון דולר; EPS מתואם היה 0.38 דולר ו־cRPO צמח 37%. החברה צופה ברבעון הרביעי הכנסות של 845–846 מיליון דולר. המניה עלתה כ־12.5% במסחר המאוחר לאחר ירידה של 8.3% ביום המסחר.</p>
+      <p class="impact"><b>למה זה חשוב:</b> התוצאות מציגות ביקוש חזק לאבטחת ענן ותשתית אינטרנט גם ביום של מכירת AI חריפה. הקטליזטור הוא המשך צמיחת הזמנות; הסיכון הוא שחיקת המרווח הגולמי והערכת שווי גבוהה.</p>
+      <p><a href="https://www.cloudflare.com/press/press-releases/2026/cloudflare-announces-third-quarter-2026-financial-results/">Cloudflare · דוח ותשקיף תחזית</a></p>
+    </div>
 
-<div class="card"><h2>📅 יומן השוק להיום</h2><table><tr><th>ניו יורק</th><th>ישראל</th><th>אירוע</th></tr>
-<tr><td>08:30</td><td>15:30</td><td>תביעות אבטלה שבועיות</td></tr>
-<tr><td>08:30</td><td>15:30</td><td>פריון ועלות עבודה ליחידה — אומדן ראשוני Q3</td></tr>
-<tr><td>09:30</td><td>16:30</td><td>פתיחת וול סטריט</td></tr>
-<tr><td>10:00</td><td>17:00</td><td>מדד לחץ שרשראות האספקה הגלובליות — NY Fed</td></tr>
-<tr><td>11:30</td><td>18:30</td><td>Weekly Economic Index</td></tr>
-<tr><td>12:00</td><td>19:00</td><td>ConocoPhillips ‏(NYSE: COP) — שיחת דוחות; פרסום לפני הפתיחה</td></tr>
-<tr><td>17:00</td><td>00:00</td><td>Cloudflare ‏(NYSE: NET) ו־Microchip ‏(NASDAQ: MCHP) — שיחות דוחות</td></tr></table>
-<div class="src"><a href="https://www.newyorkfed.org/research/calendars/i-nov26.html">NY Fed</a> · <a href="https://www.bls.gov/schedule/2026/home.htm">BLS</a> · <a href="https://www.conocophillips.com/investor-relations/">ConocoPhillips IR</a> · <a href="https://www.cloudflare.net/news/news-details/2026/Cloudflare-Announces-Date-of-Third-Quarter-2026-Financial-Results/default.aspx">Cloudflare IR</a> · <a href="https://ir.microchip.com/">Microchip IR</a></div></div>
+    <div class="story">
+      <h3>6. Microchip <span class="ticker">NASDAQ: MCHP</span>: רבעון חזק, תחזית זהירה</h3>
+      <div class="meta">פורסם: 5.11.2026 לאחר הסגירה · רבעון פיסקלי שני 2027</div>
+      <p>המכירות הגיעו ל־1.622 מיליארד דולר, עלייה של 42.2% משנה קודמת ו־9.2% מרבעון קודם; EPS מתואם היה 0.97 דולר. עם זאת, אמצע תחזית ההכנסות לרבעון הבא — כ־1.606 מיליארד דולר — היה נמוך מציפיות השוק, והמניה ירדה במסחר המאוחר.</p>
+      <p class="impact"><b>למה זה חשוב:</b> תוצאות טובות בתעשייה ובמרכזי נתונים מלמדות על מחזור התאוששות, אך התחזית מדגישה רגישות למלאים ולביקוש. החברה דיווחה גם על התארכות זמני אספקה והידוק הקצאות קיבולת.</p>
+      <p><a href="https://ir.microchip.com/news-events/press-releases/detail/1426/microchip-technology-announces-financial-results-for-second-quarter-of-fiscal-year-2027">Microchip · דוח רשמי</a></p>
+    </div>
 
-<div class="card"><h2>🎯 מה הייתי עוקב אחריו היום</h2><ul>
-<li>האם הראלי הרחב בארה״ב שורד את החולשה בשבבים באסיה.</li>
-<li>תגובת QCOM: האם הירידה נשארת ממוקדת בסמארטפונים או מתפשטת לשבבים.</li>
-<li>Brent סביב 93–94 דולר: שבירה נוספת עשויה להוריד ציפיות אינפלציה ותשואות.</li>
-<li>תביעות אבטלה ועלות העבודה: הפתעה חזקה עלולה להחזיר לחץ לעליית ריבית בדצמבר.</li>
-<li>NVDA, AVGO, MU, VRT ו־ANET כמבחן לתמחור סיכון הרגולציה על דאטה־סנטרים.</li></ul></div>
+    <div class="story">
+      <h3>7. הנפט מתקן מעלה, אך השבוע נותר שלילי מאוד</h3>
+      <div class="meta">פורסם ומתרחש: 6.11.2026</div>
+      <p>ברנט עלה 1.6% ל־99.86 דולר ו־WTI 1.22% ל־91.62 דולר, לאחר יום שני של התאוששות. התקיפות על מכליות והזרימה הנמוכה מהרגיל במצרי הורמוז מגבילות את הירידה, אף שהשוק עדיין מתמחר אפשרות להפחתת הסלמה לאחר בחירות האמצע.</p>
+      <p class="impact"><b>למה זה חשוב:</b> אנרגיה ויצרניות נפט נהנות מתמיכת סיכון אספקה; חברות תעופה, כימיה וצריכה חשופות לעלויות. התנודתיות בנפט נשארת משתנה מרכזי לציפיות האינפלציה.</p>
+      <p><a href="https://www.reuters.com/business/energy/oil-set-sharp-weekly-drop-middle-east-supply-concerns-provide-floor-2026-11-06/">Reuters · נפט ומצרי הורמוז</a></p>
+    </div>
+  </div>
 
-<div class="bottom"><b>שורה תחתונה למשקיע</b><p>הכותרת הרחבה חיובית — ירידת נפט, תשואות נמוכות יותר וראלי במדדים — אבל מתחת לפני השטח השוק מעניש חשיפה ישירה להקמת דאטה־סנטרים ולסמארטפונים. היום חשוב להבחין בין ראלי מאקרו רחב לבין חולשה מבנית נקודתית בשרשרת ה־AI; דוח התעסוקה של יום שישי נשאר הקטליזטור הגדול הבא.</p></div>
-<div class="foot">אין באמור המלצת קנייה או מכירה. הנתונים משקפים מידע זמין נכון ל־05:58 שעון ישראל.</div>
+  <div class="section">
+    <h2>📅 יומן השוק להיום</h2>
+    <table role="presentation">
+      <tr><th>ישראל</th><th>ניו יורק</th><th>אירוע</th></tr>
+      <tr><td>15:00</td><td>08:00</td><td>Moderna <span class="ticker">MRNA</span> — שיחת תוצאות רבעון שלישי</td></tr>
+      <tr><td>15:30</td><td>08:30</td><td>דוח התעסוקה לאוקטובר — קונצנזוס כ־65 אלף משרות, אבטלה 4.2%</td></tr>
+      <tr><td>17:00</td><td>10:00</td><td>אומדן מוקדם של סנטימנט צרכנים, אוניברסיטת מישיגן</td></tr>
+      <tr><td>19:15</td><td>12:15</td><td>מישל באומן, סגנית יו״ר הפד לפיקוח</td></tr>
+      <tr><td>22:00</td><td>15:00</td><td>אשראי צרכני בארה״ב</td></tr>
+    </table>
+    <p style="font-size:12px"><a href="https://www.bls.gov/schedule/2026/11_sched_list.htm">BLS · לוח פרסומים</a> · <a href="https://www.federalreserve.gov/newsevents/2026-november.htm">Federal Reserve · לוח אירועים</a> · <a href="https://investors.modernatx.com/">Moderna Investor Relations</a></p>
+  </div>
+
+  <div class="section">
+    <h2>🎯 מה הייתי עוקב אחריו היום</h2>
+    <ul>
+      <li>האם דוח התעסוקה מייצב את התשואות או מחזיר תמחור של העלאת ריבית.</li>
+      <li>האם SOX ומניות הזיכרון מצליחות להתבסס אחרי מכירה חריגה.</li>
+      <li>VIX סביב 28 — האם הוא נסוג מתחת ל־25 או ממשיך לטפס.</li>
+      <li>רוחב השוק: האם הלחץ נשאר בטכנולוגיה או מתפשט שוב לכל 11 הסקטורים.</li>
+      <li>תנועת הנפט ומצרי הורמוז כערוץ לאינפלציה ולסנטימנט.</li>
+    </ul>
+    <div class="callout"><b>שורה תחתונה למשקיע:</b> השוק נכנס לבוקר של Risk-off מובהק, עם תיקון עמוק ב־AI, הדבקה גלובלית ועלייה חדה בתנודתיות. דוח התעסוקה ב־15:30 הוא האירוע המרכזי: הוא יקבע אם ירידת התשואות מספקת בלם למכירות או שהשוק נדרש לתמחור מחדש נוסף.</div>
+  </div>
+
+  <div class="footer">המידע מיועד לעדכון כללי בלבד ואינו מהווה ייעוץ השקעות או הוראת קנייה/מכירה.</div>
 </div></body></html>
