@@ -5,22 +5,22 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.1
+      "capB": 106.2
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 103.7
+      "capB": 103.6
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 85.9
+      "capB": 86.0
     },
     {
       "ticker": "HUM",
       "name": "Humana Inc.",
-      "capB": 51.3
+      "capB": 51.4
     },
     {
       "ticker": "ONC",
@@ -40,7 +40,7 @@
     {
       "ticker": "BIP",
       "name": "Brookfield Infrastructure Partners L.P.",
-      "capB": 25.5
+      "capB": 25.4
     }
   ],
   "reactions": {
@@ -88,8 +88,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 12.21,
-            "price": 190.9,
+            "chg": 12.8,
+            "price": 191.9,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
           },
@@ -110,7 +110,7 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/MNST.png",
-            "chg": -3.63,
+            "chg": -3.61,
             "price": 46.1,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
@@ -315,15 +315,15 @@
       "logo": "data/earnings/logos/BIP.png"
     },
     {
+      "ticker": "CHTRP",
+      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+      "when": "before"
+    },
+    {
       "ticker": "CHTR",
       "name": "Charter Communications, Inc. Class A",
       "when": "before",
       "logo": "data/earnings/logos/CHTR.png"
-    },
-    {
-      "ticker": "CHTRP",
-      "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-      "when": "before"
     },
     {
       "ticker": "BEN",
@@ -345,7 +345,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 50,
+      "total": 49,
       "companies": [
         {
           "ticker": "AAPL",
@@ -508,7 +508,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 125,
+      "total": 126,
       "companies": [
         {
           "ticker": "TM",
@@ -721,15 +721,15 @@
           "logo": "data/earnings/logos/BIP.png"
         },
         {
+          "ticker": "CHTRP",
+          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
+          "when": "before"
+        },
+        {
           "ticker": "CHTR",
           "name": "Charter Communications, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/CHTR.png"
-        },
-        {
-          "ticker": "CHTRP",
-          "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-          "when": "before"
         },
         {
           "ticker": "BEN",
@@ -755,8 +755,8 @@
     "VST": "2026-11-06",
     "PPL": "2026-11-06",
     "BIP": "2026-11-06",
-    "CHTR": "2026-11-06",
     "CHTRP": "2026-11-06",
+    "CHTR": "2026-11-06",
     "BEN": "2026-11-06",
     "PAA": "2026-11-06",
     "EMA": "2026-11-06",
@@ -796,8 +796,8 @@
     "QLYS": "2026-11-09",
     "IONS": "2026-11-09",
     "HRB": "2026-11-09",
-    "IMVT": "2026-11-09",
     "CWST": "2026-11-09",
+    "IMVT": "2026-11-09",
     "TTD": "2026-11-09",
     "HIMS": "2026-11-09",
     "PBR": "2026-11-10",
@@ -850,7 +850,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 21:38",
+    "updatedAt": "06/11/2026 21:46",
     "source": "tradingview"
   }
 }
