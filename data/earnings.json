@@ -126,6 +126,17 @@
             "baseDate": "2026-11-05"
           },
           {
+            "ticker": "CNQ",
+            "name": "Canadian Natural Resources Limited",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CNQ.png",
+            "chg": -1.45,
+            "price": 48.92,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
             "ticker": "DUK",
             "name": "Duke Energy Corporation",
             "when": "before",
@@ -135,17 +146,6 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "MNST",
-            "name": "Monster Beverage Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/MNST.png",
-            "chg": -4.41,
-            "price": 45.72,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -258,7 +258,7 @@
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 14,
+      "count": 13,
       "tickers": [
         "FNV",
         "VYLR",
@@ -461,7 +461,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 14,
+      "total": 13,
       "companies": [
         {
           "ticker": "FNV",
@@ -712,7 +712,6 @@
     "UGP": "2026-11-11",
     "ICL": "2026-11-11",
     "ENS": "2026-11-11",
-    "ERAS": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -744,7 +743,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "07/11/2026 00:46",
+    "updatedAt": "07/11/2026 01:01",
     "source": "tradingview"
   }
 }
