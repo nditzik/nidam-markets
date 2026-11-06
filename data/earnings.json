@@ -5,17 +5,17 @@
     {
       "ticker": "ENB",
       "name": "Enbridge Inc.",
-      "capB": 106.5
+      "capB": 106.3
     },
     {
       "ticker": "MRNA",
       "name": "Moderna, Inc.",
-      "capB": 105.6
+      "capB": 105.1
     },
     {
       "ticker": "BAM",
       "name": "Brookfield Asset Management Ltd. Class A",
-      "capB": 85.6
+      "capB": 85.7
     },
     {
       "ticker": "HUM",
@@ -30,7 +30,7 @@
     {
       "ticker": "VST",
       "name": "Vistra Corp.",
-      "capB": 42.0
+      "capB": 42.1
     },
     {
       "ticker": "PPL",
@@ -88,21 +88,10 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ABNB.png",
-            "chg": 12.13,
-            "price": 190.76,
+            "chg": 12.37,
+            "price": 191.17,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
-          },
-          {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CNQ.png",
-            "chg": -1.45,
-            "price": 48.92,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
           },
           {
             "ticker": "DUK",
@@ -114,6 +103,17 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/MNST.png",
+            "chg": -4.08,
+            "price": 45.88,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -345,7 +345,7 @@
       "date": "2026-11-02",
       "dow": "שני",
       "label": "2.11",
-      "total": 55,
+      "total": 56,
       "companies": [
         {
           "ticker": "AAPL",
@@ -508,7 +508,7 @@
       "date": "2026-11-04",
       "dow": "רביעי",
       "label": "4.11",
-      "total": 138,
+      "total": 140,
       "companies": [
         {
           "ticker": "TM",
@@ -589,7 +589,7 @@
       "date": "2026-11-05",
       "dow": "חמישי",
       "label": "5.11",
-      "total": 48,
+      "total": 47,
       "companies": [
         {
           "ticker": "COP",
@@ -616,12 +616,6 @@
           "logo": "data/earnings/logos/ABNB.png"
         },
         {
-          "ticker": "CNQ",
-          "name": "Canadian Natural Resources Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/CNQ.png"
-        },
-        {
           "ticker": "DUK",
           "name": "Duke Energy Corporation",
           "when": "before",
@@ -640,16 +634,16 @@
           "logo": "data/earnings/logos/NGG.png"
         },
         {
-          "ticker": "CI",
-          "name": "Cigna Group",
-          "when": "before",
-          "logo": "data/earnings/logos/CI.png"
-        },
-        {
           "ticker": "EOG",
           "name": "EOG Resources, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/EOG.png"
+        },
+        {
+          "ticker": "CI",
+          "name": "Cigna Group",
+          "when": "before",
+          "logo": "data/earnings/logos/CI.png"
         },
         {
           "ticker": "SPG",
@@ -662,6 +656,12 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
+        },
+        {
+          "ticker": "KMB",
+          "name": "Kimberly-Clark Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -857,12 +857,13 @@
     "MBGL": "2026-11-12",
     "OCTV": "2026-11-12",
     "MWH": "2026-11-12",
+    "FIGR": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 22:31",
+    "updatedAt": "06/11/2026 22:46",
     "source": "tradingview"
   }
 }
