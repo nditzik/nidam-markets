@@ -101,11 +101,15 @@
             "baseDate": "2026-11-04"
           },
           {
-            "ticker": "MNST",
-            "name": "Monster Beverage Corporation",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/MNST.png"
+            "ticker": "CNQ",
+            "name": "Canadian Natural Resources Limited",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/CNQ.png",
+            "chg": -1.45,
+            "price": 48.92,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           }
         ]
       },
@@ -614,6 +618,12 @@
           "logo": "data/earnings/logos/DUK.png"
         },
         {
+          "ticker": "CNQ",
+          "name": "Canadian Natural Resources Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/CNQ.png"
+        },
+        {
           "ticker": "MNST",
           "name": "Monster Beverage Corporation",
           "when": "after",
@@ -648,12 +658,6 @@
           "name": "Air Products and Chemicals, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/APD.png"
-        },
-        {
-          "ticker": "KMB",
-          "name": "Kimberly-Clark Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/KMB.png"
         }
       ]
     },
@@ -839,7 +843,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "06/11/2026 14:20",
+    "updatedAt": "06/11/2026 14:31",
     "source": "tradingview"
   }
 }
