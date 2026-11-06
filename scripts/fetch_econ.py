@@ -15,6 +15,7 @@ PCE ליבה, ריבית הפד, תמ"ג. כיוון-ההפתעה קובע צב�
 import json
 import os
 import sys
+import time
 import urllib.request
 from datetime import datetime, timezone, timedelta
 from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
@@ -76,13 +77,23 @@ def main():
     now = datetime.now(timezone.utc)
     frm = (now - timedelta(days=PAST_DAYS)).strftime("%Y-%m-%dT00:00:00.000Z")
     to = (now + timedelta(days=AHEAD_DAYS)).strftime("%Y-%m-%dT00:00:00.000Z")
-    try:
-        req = urllib.request.Request(API.format(frm, to), headers=UA)
-        with urllib.request.urlopen(req, timeout=25) as r:
-            d = json.loads(r.read().decode("utf-8"))
-        rows = d.get("result") or []
-    except Exception as e:
-        print(f"[warn] משיכת היומן נכשלה: {e}")
+    # 6.11.2026: ברגע הפרסום (NFP 15:30) היומן של TradingView עמוס — שתי ריצות ברצף נפלו על
+    # "read operation timed out" אחרי 25 שנ', ו"בפועל" לא נכנס חצי שעה. שלושה ניסיונות, זמן עולה.
+    rows, err = None, None
+    for attempt, tmo in enumerate((20, 30, 40), 1):
+        try:
+            req = urllib.request.Request(API.format(frm, to), headers=UA)
+            with urllib.request.urlopen(req, timeout=tmo) as r:
+                d = json.loads(r.read().decode("utf-8"))
+            rows = d.get("result") or []
+            break
+        except Exception as e:
+            err = e
+            print(f"[warn] משיכת היומן נכשלה (ניסיון {attempt}/3): {e}")
+            if attempt < 3:
+                time.sleep(4)
+    if rows is None:
+        print(f"[warn] משיכת היומן נכשלה בכל הניסיונות: {err}")
         return 0 if os.path.exists(OUT) else 1
 
     events = []
