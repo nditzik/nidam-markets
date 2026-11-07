@@ -190,10 +190,6 @@ jobs:
         run: python scripts/score_forecast.py
         continue-on-error: true
 
-      # --- דוחות קניות של בעלי עניין (nidam-reports/insider) → טאב Insider ---
-      - name: Fetch insider reports
-        run: python scripts/fetch_insider.py
-        continue-on-error: true
       # --- רכישות פנים · אתמול (30.10.2026): מייל "Insider Buys – DD.MM.YYYY" של גרוק → data/insider_daily/<יום>/ ---
       - name: Relay insider buys from mail
         env:
