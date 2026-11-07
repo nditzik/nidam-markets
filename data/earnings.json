@@ -1,6 +1,6 @@
 {
-  "today": "2026-11-07",
-  "todayCount": 0,
+  "today": "2026-11-08",
+  "todayCount": 1,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -92,17 +92,6 @@
             "baseDate": "2026-11-05"
           },
           {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CNQ.png",
-            "chg": -1.45,
-            "price": 48.92,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
             "ticker": "DUK",
             "name": "Duke Energy Corporation",
             "when": "before",
@@ -112,6 +101,17 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/MNST.png",
+            "chg": -4.41,
+            "price": 45.72,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -189,14 +189,21 @@
       }
     ]
   },
-  "reporting": [],
+  "reporting": [
+    {
+      "ticker": "RDNT",
+      "name": "RadNet, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/RDNT.png"
+    }
+  ],
   "more": 0,
   "upcoming": [
     {
       "date": "2026-11-09",
       "label": "9/11",
       "dow": "ב׳",
-      "count": 40,
+      "count": 41,
       "tickers": [
         "CEG",
         "KKR",
@@ -238,7 +245,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 30,
+      "count": 31,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -265,7 +272,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 40,
+      "total": 41,
       "companies": [
         {
           "ticker": "CEG",
@@ -507,7 +514,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 30,
+      "total": 31,
       "companies": [
         {
           "ticker": "CSCO",
@@ -653,6 +660,7 @@
     "NOVT": "2026-11-09",
     "AAON": "2026-11-09",
     "DFTX": "2026-11-09",
+    "KGS": "2026-11-09",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
@@ -715,12 +723,13 @@
     "HTFL": "2026-11-12",
     "ARX": "2026-11-12",
     "DPC": "2026-11-12",
+    "XE": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "07/11/2026 23:46",
+    "updatedAt": "08/11/2026 00:01",
     "source": "tradingview"
   }
 }
