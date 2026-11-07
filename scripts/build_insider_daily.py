@@ -32,6 +32,7 @@ FUND_RE = re.compile(r"\b(FUND|ETF|ETN|ACQUISITION\s+CORP|SPAC|PORTFOLIO|MUNICIP
 HORIZONS = (5, 20, 60)
 TRACK_DAYS = 120          # כמה זמן קנייה נשארת במעקב (ימים קלנדריים מיום הדיווח)
 HIST_MONTHS = 24
+REPEAT_DAYS = 30          # "קנו שוב · 30 יום" (7.11.2026, איציק): חברות עם 2+ קניות בחודש, גם בשבועות שונים
 WEEK_DAYS = 5            # "כל השבוע" = ימי הדיווח ב-5 ימי המסחר האחרונים
 
 
@@ -417,6 +418,11 @@ def main(root=ROOT, now=None):
     wk_n = {}
     for b in counted_all:
         wk_n[b["t"]] = wk_n.get(b["t"], 0) + 1
+    rcut = (now - timedelta(days=REPEAT_DAYS)).strftime("%Y-%m-%d")
+    buys30 = [b for b in buys if not b.get("excluded") and b["filed"] >= rcut]
+    m_n = {}
+    for b in buys30:
+        m_n[b["t"]] = m_n.get(b["t"], 0) + 1
     for b in shown:
         tags = []
         if b.get("excluded") == "fund":
@@ -429,7 +435,9 @@ def main(root=ROOT, now=None):
             if b["ceo"]:
                 tags.append({"k": "ceo", "txt": 'מנכ"ל'})
             if wk_n.get(b["t"], 0) >= 2:
-                tags.append({"k": "rep", "txt": "×%d השבוע" % wk_n[b["t"]]})
+                tags.append({"k": "rep", "txt": "×%d ב-5 ימים" % wk_n[b["t"]]})
+            elif m_n.get(b["t"], 0) >= 2:
+                tags.append({"k": "rep", "txt": "×%d ב-30 יום" % m_n[b["t"]]})
             tags += b.get("ctx") or []
             if not b.get("ctx") and b["holdPct"] is not None and b["holdPct"] >= 100:
                 tags.append({"k": "big", "txt": "הכפיל אחזקה" if b["holdPct"] < 300 else "פי %d באחזקה" % round(1 + b["holdPct"] / 100)})
@@ -536,7 +544,8 @@ def main(root=ROOT, now=None):
                         "who": [{"r": b["role"], "v": round(b["value"] or 0), "d": b["filed"]} for b in bs],
                         "days": sorted({b["filed"] for b in bs}),
                         "since": last.get("since"), "clusterN": max(b["clusterN"] or 0 for b in bs),
-                        "site": [x["txt"] for x in bs[0]["tags"] if x["k"] == "site"]})
+                        "site": [x["txt"] for x in (bs[0].get("tags") or []) if x["k"] == "site"],
+                        "recent": any(b["day"] in week_span for b in bs)})
         return sorted(out, key=lambda r: (-r["n"], -r["total"]))
 
     views = {d: dict(view([b for b in shown if b["day"] == d]), day=d) for d in view_days}
@@ -577,6 +586,7 @@ def main(root=ROOT, now=None):
         "history": hist_out, "check": check,
         "days": strip, "firstDay": min(have),
         "track": [trk(b) for b in track], "trackAgg": agg,
+        "repeat30": {"items": repeat(buys30), "from": max(rcut, min(have)), "days": REPEAT_DAYS},
         "universe": universe,
         "_meta": {"updatedAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "source": "grok mail → data/insider_daily", "ver": 1},
     }
