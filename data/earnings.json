@@ -12,15 +12,23 @@
             "ticker": "MRNA",
             "name": "Moderna, Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/MRNA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MRNA.png",
+            "chg": 5.27,
+            "price": 254.19,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           },
           {
             "ticker": "VST",
             "name": "Vistra Corp.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/VST.png"
+            "status": "final",
+            "logo": "data/earnings/logos/VST.png",
+            "chg": 10.55,
+            "price": 124.8,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           },
           {
             "ticker": "BEN",
@@ -87,8 +95,12 @@
             "ticker": "ABNB",
             "name": "Airbnb, Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/ABNB.png"
+            "status": "final",
+            "logo": "data/earnings/logos/ABNB.png",
+            "chg": 11.67,
+            "price": 189.99,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           },
           {
             "ticker": "DUK",
@@ -710,7 +722,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "07/11/2026 04:31",
+    "updatedAt": "07/11/2026 04:46",
     "source": "tradingview"
   }
 }
