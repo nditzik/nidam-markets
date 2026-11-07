@@ -371,6 +371,11 @@ def digest(w):
     s.append("תחתונות: " + " · ".join(f"{x['name']} {x['perf']:+.1f}" for x in h["bottom"]))
     s.append("מדדי הסקטור במפה: " + " · ".join(f"{x['name'].replace('Indices S&P 500 ', '')} {x['perf']:+.1f}" for x in h["sector_rows"]))
     s.append("\nדוחות בשבוע הבא: " + " | ".join(f"{x['date']} ({x['dow']}): " + ", ".join(t for t, _ in x["tickers"]) for x in w["earnings_next_week"]))
+    nx = next_sector(w)
+    if nx:
+        s.append("\nהסקטור הבא (חמשת הסימנים: רוחב · CRS · דירוג · מחיר · מאקרו — המאקרו לפי ה-checks שתכתוב):")
+        for x in nx:
+            s.append(f"  {x['k']} {x['name']}: " + " ".join("✓" if v == 1 else "◐" if v == 0.5 else "✗" if v == 0 else "?" for v in x["signs"]) + f" = {x['score']:g} (בלי מאקרו) · חסר: {', '.join(x['missing']) or '—'}")
     pw = w["prev_week"]
     if pw.get("recommendations"):
         s.append("\nהקריאות של שבוע שעבר (לדין וחשבון):")
@@ -534,6 +539,42 @@ def crs_spark(ser, w=220, h=60):
     p2 = " ".join(pt(i, t[2]) for i, t in enumerate(ser))
     return (f'<svg viewBox="0 0 {w} {h}" width="{w}" height="{h}" style="direction:ltr;display:inline-block">'
             f'<polyline points="{p2}" fill="none" stroke="#9aa5b1" stroke-width="1.5"/><polyline points="{p1}" fill="none" stroke="#0b5394" stroke-width="2"/></svg>')
+
+
+# "הסקטור הבא" (7.11.2026, איציק: "חסר לי המלצות איך מוצאים את הסקטור הבא") — חמישה סימנים מוקדמים,
+# רק במפגרים שמתחילים להסתובב: לא מוחזק, ודירוג חצי שנה 5 ומטה (מי שכבר מוביל חצי שנה אינו "הבא").
+NEXT_SIGNS = ["הרוחב מתעורר", "ה-CRS מתהפך", "הדירוג משתפר", "המחיר מעל הקווים", "המאקרו בעד"]
+
+
+def next_sector(w, verdicts=None):
+    """→ רשימה ממוינת: {k, name, signs[5] (1/0.5/0), score, missing[], confirm, tier}. verdicts (אופציונלי) = לסימן המאקרו."""
+    S = w["sectors"]
+    out = []
+    for k in ORDER:
+        d = S[k]
+        v = (verdicts or {}).get(k) or {}
+        if v.get("status") == "held" or d["rank"]["6m"] <= 4:
+            continue
+        g, g5, st = d["crs_gap_pct"], d["crs_gap_pct_5d_ago"], d["crs_state"]
+        db = d.get("breadth_delta_wow") or 0
+        prev = d.get("pct_above_ma50_prev")
+        br = 1 if db >= 10 or (prev is not None and prev < 50 <= d["pct_above_ma50"]) else (0.5 if db >= 5 else 0)
+        crs = 1 if st == "inflecting_up" or (st == "rising" and g > g5) else (0.5 if st == "rising" or (st == "falling_narrowing" and g - g5 >= 3) else 0)
+        rk = 1 if (d.get("rank_gap") or 0) >= 2 else (0.5 if (d.get("rank_gap") or 0) == 1 else 0)
+        ma50, ma200 = d["ma"]["ma50"], d["ma"]["ma200"]
+        px = 1 if d["close"] > ma50 and d["close"] > ma200 else (0.5 if d["close"] > ma50 or d["close"] > ma200 else 0)
+        mc = v.get("checks", [None])[0] if v.get("checks") else None
+        mac = {"y": 1, "p": 0.5}.get(mc, 0) if mc else None   # None = לא ידוע (בלי narrative)
+        signs = [br, crs, rk, px, mac]
+        score = sum(x for x in signs if x is not None)
+        miss = [NEXT_SIGNS[i] + (" (חלקי)" if x == 0.5 else "") for i, x in enumerate(signs) if x is not None and x < 1 and not (i == 4 and mc == "n0")]
+        confirm = (f"שבוע שני של סגירה מעל ממוצע 200 ({ma200:,.0f}) והרוחב מעל 50%" if d["close"] > ma200
+                   else f"סגירה שבועית מעל ממוצע 200 ({ma200:,.0f}), ואז שבוע שני של אישור")
+        tier = "lead" if score >= 4 else ("watch" if score >= 2 else "early")
+        out.append({"k": k, "name": d["name_he"], "signs": signs, "score": score, "missing": miss, "confirm": confirm,
+                    "tier": tier, "macroNa": mc == "n0"})
+    out.sort(key=lambda x: (-x["score"], -(S[x["k"]].get("breadth_delta_wow") or 0)))
+    return out
 
 
 def rank_cell(v, extra=""):
@@ -755,6 +796,23 @@ tbody tr:last-child{border-bottom:0}
 .crf{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 8px;font-size:12px;color:var(--text-3)}
 .crs-read{padding:12px 14px 0;font-size:14px;line-height:1.55;color:var(--text)}
 .crs-how{padding:0 14px 14px;font-size:12px;line-height:1.5;color:var(--text-3)}
+.nxg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding:14px}
+.nx{border:1px solid var(--border);border-radius:4px;padding:12px;display:grid;gap:8px;align-content:start;min-width:0;border-inline-start:3px solid var(--text-3)}
+.nx-lead{border-inline-start-color:var(--up)} .nx-watch{border-inline-start-color:var(--state-fill)}
+.nx-h{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.nx-h b{font-weight:600;font-size:15px}
+.nx-h small{font:12px var(--mono);color:var(--text-3)}
+.nx-sc{margin-inline-start:auto;font-weight:600;font-size:15px}
+.nx-t{font-size:12px;font-weight:600;color:var(--text-soft);border:1px solid var(--border);border-radius:3px;padding:0 6px}
+.nx-lead .nx-t{color:var(--up);border-color:var(--up)}
+.nx-sg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;text-align:center}
+.nx-s{display:grid;justify-items:center;gap:3px}
+.nx-s small{font-size:11px;line-height:1.25;color:var(--text-3)}
+.nx-r{font-size:13px;line-height:1.5;color:var(--text-soft)}
+.nx-r b{font-weight:600;color:var(--text)}
+details.nx-how{margin:0 14px 14px;border:1px solid var(--border);border-radius:4px}
+details.nx-how summary{cursor:pointer;min-height:44px;display:flex;align-items:center;padding:0 12px;font-size:13px;font-weight:600;color:var(--text-soft)}
+details.nx-how .pb{padding:0 12px 12px}
 .legend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-3)}
 .legend span{display:inline-flex;align-items:center;gap:5px}
 .legend .ci{width:18px;height:18px;font-size:11px}
@@ -996,6 +1054,30 @@ def render_html_v2(w, nar):
     nums = "".join(f'<div><div class="l">{e(x.get("label", ""))}</div><span class="v">{e(x.get("value", ""))}</span><div class="s">{x.get("note", "")}</div></div>' for x in (nar.get("three_numbers") or [])[:3])
     H.append(f'<section class="pan"><div class="ph"><span class="stp">4</span><h2>מה עושים השבוע</h2><span class="sub">רק סקטורים שיש בהם פעולה · פעולה · טריגר · ביטול</span></div>{frozen}<div class="acts">{acts}</div>'
              + (f'<div class="nums">{nums}</div>' if nums else "") + "</section>")
+    # ---- 5 · הסקטור הבא (7.11.2026)
+    nx = next_sector(w, V)
+    if nx:
+        TIER = {"lead": ("מועמד מוביל", "lead"), "watch": ("רשימת מעקב", "watch"), "early": ("עוד מוקדם", "early")}
+        ncards = ""
+        for x in nx:
+            sg = "".join(f'<span class="nx-s" title="{NEXT_SIGNS[i]}"><span class="ci {"none" if (v is None or (i == 4 and x["macroNa"])) else ("ok" if v == 1 else "part" if v == 0.5 else "no")}">'
+                         f'{"–" if (v is None or (i == 4 and x["macroNa"])) else ("✓" if v == 1 else "◐" if v == 0.5 else "✗")}</span><small>{NEXT_SIGNS[i]}</small></span>'
+                         for i, v in enumerate(x["signs"]))
+            tl, tc = TIER[x["tier"]]
+            ncards += (f'<div class="nx nx-{tc}"><div class="nx-h"><b>{e(x["name"])}</b><small>{x["k"]}</small><span class="nx-sc num">{x["score"]:g}/5</span><span class="nx-t">{tl}</span></div>'
+                       f'<div class="nx-sg">{sg}</div>'
+                       + (f'<div class="nx-r"><b>מה חסר:</b> {e(", ".join(x["missing"]))}</div>' if x["missing"] else '<div class="nx-r"><b>מה חסר:</b> כלום</div>')
+                       + (f'<div class="nx-r"><b>מה יאשר:</b> {e(x["confirm"])}</div>' if x["tier"] != "early" else "") + "</div>")
+        H.append(f'<section class="pan"><div class="ph"><span class="stp">5</span><h2>הסקטור הבא</h2><span class="sub">מפגרים שמתחילים להסתובב · חמישה סימנים מוקדמים</span></div>'
+                 + (f'<p class="crs-read">{nar["next_read"]}</p>' if nar.get("next_read") else "")
+                 + f'<div class="nxg">{ncards}</div>'
+                 '<details class="nx-how"><summary>איך מוצאים את הסקטור הבא</summary><div class="pb">'
+                 '<p><b>איפה מחפשים:</b> רק בסקטורים שלא מוחזקים ושלא מובילים כבר חצי שנה (דירוג חצי שנה 5 ומטה) — הבא הוא בדרך כלל מפגר שמתחיל להסתובב, לא מוביל קיים.</p>'
+                 '<p><b>חמשת הסימנים, בסדר שבו הם בדרך כלל מופיעים:</b> (1) <b>הרוחב מתעורר</b> — אחוז המניות מעל ממוצע 50 קופץ ב-10 נקודות ומעלה בשבוע או חוצה את 50% (הכסף נכנס קודם לרוב המניות, לא רק לענקיות); '
+                 '(2) <b>ה-CRS מתהפך</b> — הקו הכחול חוצה מעלה את הממוצע שלו, או עולה כשהפער מתרחב; (3) <b>הדירוג משתפר</b> — הדירוג החודשי טוב בשני מקומות לפחות מדירוג חצי השנה; '
+                 '(4) <b>המחיר מעל הקווים</b> — סגירה מעל ממוצע 50, ועדיף גם מעל ממוצע 200; (5) <b>המאקרו בעד</b> — ריבית השוק, הנפט או הדולר עובדים לטובת הסקטור.</p>'
+                 '<p><b>הכלל:</b> 4–5 סימנים = מועמד מוביל; 2–3 = רשימת מעקב; פחות = עוד מוקדם. נכנסים רק אחרי שבוע שני של אישור (כלל השבועיים), ולא בשבוע שלפני דוחות כבדים בסקטור. ◐ = חלקי (למשל רוחב שעלה 5–9 נקודות, מחיר מעל אחד הקווים בלבד); – = לא רלוונטי או לא ידוע.</p>'
+                 '</div></details></section>')
     # ---- נספחים מקופלים
     acc = nar.get("accountability") or []
     if acc:
