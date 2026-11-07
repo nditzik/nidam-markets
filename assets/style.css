@@ -2647,3 +2647,7 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 /* np189 — צ'יפי התאריכים גם מעל "כל הרכישות" */
 .ins-vws-pb { padding-bottom: 0; }
 .ins-vws-pb .ins-vws { margin: 0; }
+
+/* np190 — "קנו שוב": בורר 5 ימי מסחר | 30 יום */
+.ins-rep-seg { display: flex; gap: 6px; margin: 0 0 10px; flex-wrap: wrap; }
+.ins-rep-seg .tag.on { background: var(--accent-soft); color: var(--accent); border-color: transparent; font-weight: 600; }

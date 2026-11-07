@@ -702,7 +702,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np189";
+  var TA_VER = "np190";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4465,7 +4465,7 @@
   /* ===== רכישות פנים · אתמול (30.10.2026, np163) — data/insider_daily.json (build_insider_daily.py) =====
      מוקאפ שאושר: https://claude.ai/artifact/Tfb2A52gWP9oXDeKM43gCd. הכל מהקובץ; הגרף בשורה הפתוחה
      נבנה מ-data/bars/<SYM>.json בלחיצה (עצלתי). עברית רק ב-HTML מחוץ ל-SVG. */
-  var INSDD = null, INSD_BARS = {}, INS_VIEW = null, INS_ROWS = [];
+  var INSDD = null, INSD_BARS = {}, INS_VIEW = null, INS_ROWS = [], INS_REP = "5";
   function insMoney(v) {
     if (v == null || isNaN(v)) return "—";
     var a = Math.abs(v);
@@ -4497,12 +4497,12 @@
     var chips = order.length > 1 ? '<div class="chips bd-chips rep-arch ins-vws">' + order.map(function (k) {
       var on = k === INS_VIEW;
       return '<button type="button" class="tag ins-vw' + (on ? " on" : "") + '" data-k="' + esc(k) + '" aria-pressed="' + on + '">' +
-        (k === "week" ? "כל השבוע" : '<span class="num" dir="ltr">' + insDm(k) + "</span>") + "</button>";
+        (k === "week" ? "5 ימי מסחר" : '<span class="num" dir="ltr">' + insDm(k) + "</span>") + "</button>";
     }).join("") + "</div>" : "";
     var when = wk ? '<span class="num" dir="ltr">' + insDm(v.from) + "–" + insDm(v.to) + "</span>"
       : '<span class="num" dir="ltr">' + esc(secDate(v.day || d.day)) + "</span>";
     var head = '<section class="pan ins-head"' + bdSpan(12) + ">" +
-      panHd("רכישות פנים · " + (wk ? "השבוע" : insDm(v.day || d.day)), '<span class="mute">דיווחי Form 4 שהוגשו ב-' + when + " · רק קניות בשוק הפתוח, מכספם של המנהלים</span>") +
+      panHd("רכישות פנים · " + (wk ? "5 ימי מסחר" : insDm(v.day || d.day)), '<span class="mute">דיווחי Form 4 שהוגשו ב-' + when + " · רק קניות בשוק הפתוח, מכספם של המנהלים</span>") +
       '<div class="pb">' + chips + (v.lead ? '<p class="ins-lead">' + esc(v.lead) + "</p>" : "") +
       '<div class="tiles">' +
         bdTile("רכישות", String(sm.n || 0), sm.excluded ? "ועוד " + sm.excluded + " מחוץ לספירה" : "") +
@@ -4534,7 +4534,7 @@
     var ck = d.check || {};
     // np189 (7.11.2026, איציק: "תחזיר את הטאבים של כל הרכישות לפי התאריכים"): אותם צ'יפים גם מעל הטבלה —
     // מאז np187 "חזרו השבוע" מפריד בין הראש (שם הצ'יפים) לטבלה
-    var table = '<section class="pan"' + bdSpan(12) + ">" + panHd("כל הרכישות · " + (wk ? "השבוע" : insDm(v.day || d.day)) + " · " + rows.length, '<span class="mute">לפי סכום · "היסטוריה" פותחת שנתיים של קניות ומכירות בחברה</span>') +
+    var table = '<section class="pan"' + bdSpan(12) + ">" + panHd("כל הרכישות · " + (wk ? "5 ימי מסחר" : insDm(v.day || d.day)) + " · " + rows.length, '<span class="mute">לפי סכום · "היסטוריה" פותחת שנתיים של קניות ומכירות בחברה</span>') +
       (chips ? '<div class="pb ins-vws-pb">' + chips + "</div>" : "") +
       '<div class="pb ins-tw"><table class="bd-tbl ins-tbl"><thead><tr><th>מניה</th><th>מי קנה</th><th>סכום</th><th>קנה ב- · עד עכשיו</th><th>האחזקה שלו (מניות)</th><th>מהשיא השנתי</th><th>שווי</th><th>למה זה מעניין</th><th></th></tr></thead><tbody>' + tb + "</tbody></table>" +
       '<p class="mute s ins-foot">הפס ב"מהשיא": שמאל = השפל השנתי, ימין = השיא, הנקודה = הסגירה האחרונה.' +
@@ -4586,28 +4586,40 @@
     var hist = '<section class="pan"' + bdSpan(12) + ">" + panHd("היסטוריה · 20 ימי מסחר", '<span class="mute">סכום הרכישות שנספרו בכל יום דיווח</span>') +
       '<div class="pb"><div class="ins-days" aria-hidden="true">' + strip + "</div>" +
       '<p class="mute s">היומן מתחיל ב-<span class="num">' + insDm(d.firstDay) + "</span> ומתמלא יום אחרי יום: כל בוקר עמודה חדשה, וכל רכישה נכנסת למעקב.</p></div></section>";
-    // np187 (7.11.2026, איציק: "יש מניות שחזרו מספר פעמים השבוע"): חברות עם 2+ קניות בתצוגה
-    var rep = v.repeat || [], repPan = "";
-    if (rep.length) {
+    // np187 (7.11.2026, איציק: "יש מניות שחזרו מספר פעמים השבוע"): חברות עם 2+ קניות בתצוגה.
+    // np190 (איציק: "כן"): "קנו שוב" עם בורר 5 ימי מסחר | 30 יום — ב-30 יום גם קניות בשבועות שונים (repeat30)
+    var r30 = d.repeat30 || null, m30 = INS_REP === "30" && r30;
+    var rep = m30 ? (r30.items || []) : (v.repeat || []), repPan = "";
+    var wkFrom = (views.week && views.week.from) || d.day;
+    if (rep.length || (r30 && (r30.items || []).length)) {
       var cards = rep.map(function (r) {
         var rc = {}, ro = [];
         (r.who || []).forEach(function (w) { if (!rc[w.r]) { rc[w.r] = 0; ro.push(w.r); } rc[w.r]++; });
         var roles = ro.map(function (x) { return (rc[x] > 1 ? rc[x] + " " : "") + x; }).join(" · ");
         var dys = (r.days || []).map(insDm).join(" · ");
+        var still = m30 && r.recent && (r.days || [])[0] < wkFrom;
         return '<div class="ins-rep">' +
           '<div class="ins-rep-h"><b class="num tk" dir="ltr">' + tvLink(r.t) + '</b><span class="ins-rep-n num" dir="ltr">×' + r.n + "</span></div>" +
           '<div class="s mute ins-rep-co" dir="ltr">' + esc(r.co || "") + "</div>" +
           "<p>" + (r.buyers > 1 ? r.buyers + " קונים" : "אותו קונה " + r.n + " פעמים") + " · " + insMoney(r.total) + "</p>" +
           '<p class="s">' + esc(roles) + "</p>" +
-          '<p class="s mute">' + (wk ? "דווח ב-" + '<span class="num">' + dys + "</span>" : "באותו יום") +
+          '<p class="s mute">' + (wk || m30 ? "דווח ב-" + '<span class="num">' + dys + "</span>" : "באותו יום") +
           (r.since != null ? ' · מאז: <b class="num ' + insCls(r.since) + '" dir="ltr">' + insPct(r.since) + "</b>" : "") + "</p>" +
-          ((r.site || []).length ? '<div class="ins-tags">' + r.site.map(function (x) { return '<span class="ins-tag site">' + esc(x) + "</span>"; }).join("") + "</div>" : "") +
+          ((still || (r.site || []).length) ? '<div class="ins-tags">' + (still ? '<span class="ins-tag rep">עדיין קונים</span>' : "") +
+            (r.site || []).map(function (x) { return '<span class="ins-tag site">' + esc(x) + "</span>"; }).join("") + "</div>" : "") +
           "</div>";
       }).join("");
+      var seg = r30 ? '<div class="ins-rep-seg" role="group" aria-label="תקופה">' + [["5", wk ? "5 ימי מסחר" : insDm(v.day || d.day)], ["30", "30 יום"]].map(function (x) {
+        var on = (INS_REP === "30") === (x[0] === "30");
+        return '<button type="button" class="tag ins-rep-b' + (on ? " on" : "") + '" data-r="' + x[0] + '" aria-pressed="' + on + '">' + x[1] + "</button>";
+      }).join("") + "</div>" : "";
+      var c30 = new Date(d.day + "T12:00:00Z"); c30.setUTCDate(c30.getUTCDate() - 30);
+      var sub = m30 ? "יותר מקנייה אחת באותה חברה ב-30 הימים האחרונים" + (r30.from && r30.from > c30.toISOString().slice(0, 10) ? " (היומן מתחיל ב-" + insDm(r30.from) + ")" : "")
+        : wk ? "יותר מקנייה אחת באותה חברה ב-5 ימי המסחר האחרונים" : "יותר מקנייה אחת באותה חברה ביום הזה";
       repPan = '<section class="pan"' + bdSpan(12) + ">" +
-        panHd((wk ? "חזרו השבוע · " : "כמה קונים באותה חברה · ") + rep.length + (rep.length === 1 ? " חברה" : " חברות"),
-          '<span class="mute">' + (wk ? "יותר מקנייה אחת באותה חברה ב-5 ימי המסחר האחרונים" : "יותר מקנייה אחת באותה חברה ביום הזה") + " · \"מאז\" מהמחיר בקנייה האחרונה</span>") +
-        '<div class="pb"><div class="ins-reps">' + cards + "</div></div></section>";
+        panHd("קנו שוב · " + rep.length + (rep.length === 1 ? " חברה" : " חברות"),
+          '<span class="mute">' + sub + " · \"מאז\" מהמחיר בקנייה האחרונה</span>") +
+        '<div class="pb">' + seg + (rep.length ? '<div class="ins-reps">' + cards + "</div>" : '<p class="mute">אין חברה עם יותר מקנייה אחת ' + (wk ? "ב-5 ימי המסחר האחרונים" : "ביום הזה") + ".</p>") + "</div></section>";
     }
     return head + repPan + table + hlPan + trPan + hist;
   }
@@ -4664,6 +4676,15 @@
   }
   function bindInsDaily(el) {
     if (!INSDD) return;
+    el.querySelectorAll(".ins-rep-b").forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (b.dataset.r === INS_REP) return;
+        INS_REP = b.dataset.r;
+        renderInsider();
+        var c = document.querySelector("#panel-insider .ins-rep-b.on");
+        if (c) c.focus();
+      });
+    });
     el.querySelectorAll(".ins-vw").forEach(function (b) {
       b.addEventListener("click", function () {
         if (b.dataset.k === INS_VIEW) return;
@@ -5035,11 +5056,11 @@
       var irep = (iv && iv.repeat) || [], itop = ((iv && iv.rows) || []).filter(function (r) { return !r.excluded; }).slice(0, 5);
       ei.innerHTML = !iv
         ? panHd("Insider", "", bdGo("insider", "הכל")) + '<div class="pb mute">טוען…</div>'
-        : panHd("Insider · רכישות פנים " + (iv.from ? "השבוע" : insDm(iv.day || INSDD.day)), '<span class="mute">' + (ism.n || 0) + " רכישות · " + insMoney(ism.total) + "</span>", bdGo("insider", "הכל")) +
+        : panHd("Insider · רכישות פנים · " + (iv.from ? "5 ימי מסחר" : insDm(iv.day || INSDD.day)), '<span class="mute">' + (ism.n || 0) + " רכישות · " + insMoney(ism.total) + "</span>", bdGo("insider", "הכל")) +
           '<div class="pb bd-sents">' + itop.map(function (r) {
             return '<div class="sent"><b class="num tk" dir="ltr">' + tvLink(r.t) + "</b><span>" + esc((r.role || "") + " · " + insMoney(r.value)) + "</span></div>";
           }).join("") +
-          (irep.length ? '<p class="mute s" style="margin:6px 0 0">חזרו השבוע: ' + irep.slice(0, 5).map(function (r) { return '<b class="num" dir="ltr">' + esc(r.t) + " ×" + r.n + "</b>"; }).join(" · ") + "</p>" : "") + "</div>";
+          (irep.length ? '<p class="mute s" style="margin:6px 0 0">קנו שוב: ' + irep.slice(0, 5).map(function (r) { return '<b class="num" dir="ltr">' + esc(r.t) + " ×" + r.n + "</b>"; }).join(" · ") + "</p>" : "") + "</div>";
     }
   }
   /* הפאנלים האחים בטאב חדשות: בזק מהרשת · Barchart · חדשות RSS · המבזק האחרון */
