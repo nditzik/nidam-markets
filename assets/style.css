@@ -2651,3 +2651,8 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 /* np190 — "קנו שוב": בורר 5 ימי מסחר | 30 יום */
 .ins-rep-seg { display: flex; gap: 6px; margin: 0 0 10px; flex-wrap: wrap; }
 .ins-rep-seg .tag.on { background: var(--accent-soft); color: var(--accent); border-color: transparent; font-weight: 600; }
+
+/* np191 — צ'יפי ימים ישנים (לפני חלון 5 ימי המסחר) אחרי קו מפריד */
+.ins-vw-sep { flex: 0 0 1px; align-self: stretch; background: var(--border); margin: 2px 4px; }
+.ins-vw.old:not(.on) { color: var(--text-3); }
+.ins-vws.rep-arch { flex-wrap: wrap; overflow: visible; }

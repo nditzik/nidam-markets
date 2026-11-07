@@ -702,7 +702,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np190";
+  var TA_VER = "np191";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4494,9 +4494,12 @@
     var v = views[INS_VIEW] || d, wk = INS_VIEW === "week";
     var sm = v.summary || {}, rows = v.rows || [];
     INS_ROWS = rows;
+    // np191 (איציק: "נעלמו ימי המסחר שלפני"): צ'יפ לכל יום דיווח ב-20 ימי מסחר; הימים שלפני חלון ה-5 אחרי קו מפריד
+    var wkFrom0 = views.week && views.week.from, sepDone = false;
     var chips = order.length > 1 ? '<div class="chips bd-chips rep-arch ins-vws">' + order.map(function (k) {
-      var on = k === INS_VIEW;
-      return '<button type="button" class="tag ins-vw' + (on ? " on" : "") + '" data-k="' + esc(k) + '" aria-pressed="' + on + '">' +
+      var on = k === INS_VIEW, old = k !== "week" && wkFrom0 && k < wkFrom0;
+      var sep = old && !sepDone ? (sepDone = true, '<span class="ins-vw-sep" aria-hidden="true"></span>') : "";
+      return sep + '<button type="button" class="tag ins-vw' + (on ? " on" : "") + (old ? " old" : "") + '" data-k="' + esc(k) + '" aria-pressed="' + on + '"' + (old ? ' title="לפני חלון 5 ימי המסחר"' : "") + ">" +
         (k === "week" ? "5 ימי מסחר" : '<span class="num" dir="ltr">' + insDm(k) + "</span>") + "</button>";
     }).join("") + "</div>" : "";
     var when = wk ? '<span class="num" dir="ltr">' + insDm(v.from) + "–" + insDm(v.to) + "</span>"

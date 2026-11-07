@@ -33,6 +33,7 @@ HORIZONS = (5, 20, 60)
 TRACK_DAYS = 120          # כמה זמן קנייה נשארת במעקב (ימים קלנדריים מיום הדיווח)
 HIST_MONTHS = 24
 REPEAT_DAYS = 30          # "קנו שוב · 30 יום" (7.11.2026, איציק): חברות עם 2+ קניות בחודש, גם בשבועות שונים
+DAY_VIEWS = 20            # 7.11.2026 (איציק: "נעלמו ימי המסחר שלפני"): צ'יפ לכל יום דיווח ב-20 ימי המסחר האחרונים
 WEEK_DAYS = 5            # "כל השבוע" = ימי הדיווח ב-5 ימי המסחר האחרונים
 
 
@@ -316,7 +317,8 @@ def main(root=ROOT, now=None):
     week_span = [d for d in spy_days if d <= latest][-WEEK_DAYS:]
     if latest not in week_span:
         week_span = (week_span + [latest])[-WEEK_DAYS:]
-    view_days = sorted({b["day"] for b in buys if b["day"] in week_span} | {latest}, reverse=True)
+    day_span = [d for d in spy_days if d <= latest][-DAY_VIEWS:]
+    view_days = sorted({b["day"] for b in buys if b["day"] in day_span or b["day"] in week_span} | {latest}, reverse=True)
     shown = [b for b in buys if b["day"] in view_days]
     today = [b for b in buys if b["day"] == latest]
     counted_all = [b for b in shown if not b.get("excluded")]
@@ -417,7 +419,8 @@ def main(root=ROOT, now=None):
     # 7.11.2026 (איציק: "יש מניות שחזרו מספר פעמים השבוע"): כמה קניות נספרו בכל חברה בתצוגת השבוע
     wk_n = {}
     for b in counted_all:
-        wk_n[b["t"]] = wk_n.get(b["t"], 0) + 1
+        if b["day"] in week_span:
+            wk_n[b["t"]] = wk_n.get(b["t"], 0) + 1
     rcut = (now - timedelta(days=REPEAT_DAYS)).strftime("%Y-%m-%d")
     buys30 = [b for b in buys if not b.get("excluded") and b["filed"] >= rcut]
     m_n = {}
@@ -551,7 +554,8 @@ def main(root=ROOT, now=None):
     views = {d: dict(view([b for b in shown if b["day"] == d]), day=d) for d in view_days}
     order = list(view_days)
     if len(view_days) > 1:
-        views["week"] = dict(view(shown), **{"from": min(week_span), "to": max(week_span), "days": len(view_days)})
+        wk_sel = [b for b in shown if b["day"] in week_span]
+        views["week"] = dict(view(wk_sel), **{"from": min(week_span), "to": max(week_span), "days": len({b["day"] for b in wk_sel})})
         order = ["week"] + order
     cur = views[latest]
 
