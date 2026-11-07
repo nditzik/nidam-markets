@@ -703,7 +703,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np186";
+  var TA_VER = "np187";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4519,7 +4519,7 @@
         bdTile("רכישות", String(sm.n || 0), sm.excluded ? "ועוד " + sm.excluded + " מחוץ לספירה" : "") +
         bdTile("סכום כולל", insMoney(sm.total), sm.top ? "הגדולה: " + esc(sm.top.t) + " " + insMoney(sm.top.v) : "") +
         bdTile('מנכ"לים שקנו', String(sm.ceo || 0), (sm.ceoWho || []).join(" · ")) +
-        bdTile("אשכולות (2+ קונים ב-30 יום)", String(sm.clusters || 0), (sm.clusterWho || []).join(" · ")) +
+        bdTile("חברות באשכול (2+ קונים ב-30 יום)", String(sm.clusters || 0), (sm.clusterWho || []).join(" · ")) +
       "</div></div></section>";
     var tb = rows.map(function (r, i) {
       var h = r.hist && d.history && d.history[r.t];
@@ -4594,7 +4594,30 @@
     var hist = '<section class="pan"' + bdSpan(12) + ">" + panHd("היסטוריה · 20 ימי מסחר", '<span class="mute">סכום הרכישות שנספרו בכל יום דיווח</span>') +
       '<div class="pb"><div class="ins-days" aria-hidden="true">' + strip + "</div>" +
       '<p class="mute s">היומן מתחיל ב-<span class="num">' + insDm(d.firstDay) + "</span> ומתמלא יום אחרי יום: כל בוקר עמודה חדשה, וכל רכישה נכנסת למעקב.</p></div></section>";
-    return head + table + hlPan + trPan + hist;
+    // np187 (7.11.2026, איציק: "יש מניות שחזרו מספר פעמים השבוע"): חברות עם 2+ קניות בתצוגה
+    var rep = v.repeat || [], repPan = "";
+    if (rep.length) {
+      var cards = rep.map(function (r) {
+        var rc = {}, ro = [];
+        (r.who || []).forEach(function (w) { if (!rc[w.r]) { rc[w.r] = 0; ro.push(w.r); } rc[w.r]++; });
+        var roles = ro.map(function (x) { return (rc[x] > 1 ? rc[x] + " " : "") + x; }).join(" · ");
+        var dys = (r.days || []).map(insDm).join(" · ");
+        return '<div class="ins-rep">' +
+          '<div class="ins-rep-h"><b class="num tk" dir="ltr">' + tvLink(r.t) + '</b><span class="ins-rep-n num" dir="ltr">×' + r.n + "</span></div>" +
+          '<div class="s mute ins-rep-co" dir="ltr">' + esc(r.co || "") + "</div>" +
+          "<p>" + (r.buyers > 1 ? r.buyers + " קונים" : "אותו קונה " + r.n + " פעמים") + " · " + insMoney(r.total) + "</p>" +
+          '<p class="s">' + esc(roles) + "</p>" +
+          '<p class="s mute">' + (wk ? "דווח ב-" + '<span class="num">' + dys + "</span>" : "באותו יום") +
+          (r.since != null ? ' · מאז: <b class="num ' + insCls(r.since) + '" dir="ltr">' + insPct(r.since) + "</b>" : "") + "</p>" +
+          ((r.site || []).length ? '<div class="ins-tags">' + r.site.map(function (x) { return '<span class="ins-tag site">' + esc(x) + "</span>"; }).join("") + "</div>" : "") +
+          "</div>";
+      }).join("");
+      repPan = '<section class="pan"' + bdSpan(12) + ">" +
+        panHd((wk ? "חזרו השבוע · " : "כמה קונים באותה חברה · ") + rep.length + (rep.length === 1 ? " חברה" : " חברות"),
+          '<span class="mute">' + (wk ? "יותר מקנייה אחת באותה חברה ב-5 ימי המסחר האחרונים" : "יותר מקנייה אחת באותה חברה ביום הזה") + " · \"מאז\" מהמחיר בקנייה האחרונה</span>") +
+        '<div class="pb"><div class="ins-reps">' + cards + "</div></div></section>";
+    }
+    return head + repPan + table + hlPan + trPan + hist;
   }
   function insDailyHow() {
     return '<ul class="ins-how"><li>כל בוקר ב-05:00 הבוט סורק את דיווחי Form 4 של אתמול ב-SEC ושולח קובץ במייל; האתר קולט אותו תוך רבע שעה.</li>' +
