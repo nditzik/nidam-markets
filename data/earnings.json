@@ -26,15 +26,23 @@
             "ticker": "BEN",
             "name": "Franklin Templeton, Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/BEN.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BEN.png",
+            "chg": 4.72,
+            "price": 33.73,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           },
           {
             "ticker": "VEON",
             "name": "VEON Ltd. Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/VEON.png"
+            "status": "final",
+            "logo": "data/earnings/logos/VEON.png",
+            "chg": 2.96,
+            "price": 77.57,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -97,8 +105,12 @@
             "ticker": "MNST",
             "name": "Monster Beverage Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/MNST.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MNST.png",
+            "chg": -4.41,
+            "price": 45.72,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       },
@@ -698,7 +710,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "07/11/2026 03:31",
+    "updatedAt": "07/11/2026 03:46",
     "source": "tradingview"
   }
 }
