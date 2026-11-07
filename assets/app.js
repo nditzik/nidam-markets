@@ -702,7 +702,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np188";
+  var TA_VER = "np189";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4532,7 +4532,10 @@
         (h ? '<tr class="ins-det" data-i="' + i + '" hidden><td colspan="9"></td></tr>' : "");
     }).join("");
     var ck = d.check || {};
-    var table = '<section class="pan"' + bdSpan(12) + ">" + panHd("כל הרכישות", '<span class="mute">לפי סכום · "היסטוריה" פותחת שנתיים של קניות ומכירות בחברה</span>') +
+    // np189 (7.11.2026, איציק: "תחזיר את הטאבים של כל הרכישות לפי התאריכים"): אותם צ'יפים גם מעל הטבלה —
+    // מאז np187 "חזרו השבוע" מפריד בין הראש (שם הצ'יפים) לטבלה
+    var table = '<section class="pan"' + bdSpan(12) + ">" + panHd("כל הרכישות · " + (wk ? "השבוע" : insDm(v.day || d.day)) + " · " + rows.length, '<span class="mute">לפי סכום · "היסטוריה" פותחת שנתיים של קניות ומכירות בחברה</span>') +
+      (chips ? '<div class="pb ins-vws-pb">' + chips + "</div>" : "") +
       '<div class="pb ins-tw"><table class="bd-tbl ins-tbl"><thead><tr><th>מניה</th><th>מי קנה</th><th>סכום</th><th>קנה ב- · עד עכשיו</th><th>האחזקה שלו (מניות)</th><th>מהשיא השנתי</th><th>שווי</th><th>למה זה מעניין</th><th></th></tr></thead><tbody>' + tb + "</tbody></table>" +
       '<p class="mute s ins-foot">הפס ב"מהשיא": שמאל = השפל השנתי, ימין = השיא, הנקודה = הסגירה האחרונה.' +
       (ck.received ? " בדיקת הנתונים: " + ck.received + " עסקאות בהיסטוריה" + (ck.invalid ? ", " + ck.invalid + " נפסלו כי המחיר לא תואם למניה הרגילה באותו יום" : ", כולן תאמו את המחיר באותו יום") + "." : "") + "</p></div></section>";

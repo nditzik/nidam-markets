@@ -2643,3 +2643,7 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .ins-tag.rep { background: var(--accent); color: var(--surface); border-color: var(--accent); font-weight: 600; }
 @media (max-width: 1100px) { .ins-reps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .ins-reps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* np189 — צ'יפי התאריכים גם מעל "כל הרכישות" */
+.ins-vws-pb { padding-bottom: 0; }
+.ins-vws-pb .ins-vws { margin: 0; }
