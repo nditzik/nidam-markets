@@ -708,7 +708,7 @@ a{color:var(--accent)}
 .de b,.cg .so b,.frozen b,.act .v b{font-weight:600}
 .tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
-.main{min-width:860px}
+.main{min-width:980px}
 thead th{font-size:12px;font-weight:500;color:var(--text-3);text-align:start;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap}
 thead th.ck{text-align:center;padding:8px 4px;font-size:11px;line-height:1.3;white-space:normal;width:64px}
 tbody th{text-align:start;padding:10px 14px 10px 10px;font-weight:400;vertical-align:top}
@@ -738,6 +738,23 @@ tbody tr:last-child{border-bottom:0}
 .vt{display:inline-block;font-weight:600;font-size:13px;padding-inline-start:10px;border-inline-start:3px solid var(--text-3);line-height:1.3}
 .vt-ok{border-color:var(--up)} .vt-warm{border-color:var(--state-fill)} .vt-bounce{border-color:var(--text-3)} .vt-broken{border-color:var(--down)}
 .vd p{font-size:13px;color:var(--text-soft);margin-top:4px;line-height:1.45}
+.crw{display:grid;gap:3px;min-width:110px}
+.crs-sv{display:block;width:100%;height:34px;direction:ltr}
+.crs-sv polyline{fill:none;vector-effect:non-scaling-stroke}
+.crs-ma{stroke:var(--text-3);stroke-width:1.2}
+.crs-l{stroke:var(--accent);stroke-width:2}
+.crs-st{font-size:12px;line-height:1.3;color:var(--text-soft)}
+.crs-st.up{color:var(--up)} .crs-st.dn{color:var(--down)}
+.crb{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;padding:14px}
+.crt{border:1px solid var(--border);border-radius:4px;padding:10px 12px;display:grid;gap:6px;min-width:0}
+.crt .crs-sv{height:56px}
+.crh{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.crh b{font-weight:600;font-size:14px}
+.crh small{font:12px var(--mono);color:var(--text-3)}
+.crh .crs-st{margin-inline-start:auto}
+.crf{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 8px;font-size:12px;color:var(--text-3)}
+.crs-read{padding:12px 14px 0;font-size:14px;line-height:1.55;color:var(--text)}
+.crs-how{padding:0 14px 14px;font-size:12px;line-height:1.5;color:var(--text-3)}
 .legend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-3)}
 .legend span{display:inline-flex;align-items:center;gap:5px}
 .legend .ci{width:18px;height:18px;font-size:11px}
@@ -800,6 +817,26 @@ V2_CHK_HEAD = ["מאקרו תומך?", "חזק מול המדד?", "רוחב מא
 V2_CLS_ORDER = {"ok": 0, "warm": 1, "bounce": 2, "broken": 3}
 V2_KIND = {"exit": "exit", "enter": "enter", "hold": "hold", "watch": "watch"}
 V2_REQUIRED = ("headline", "dek", "macro_effect", "verdicts", "changes", "actions")
+
+# CRS בגוף הדוח (7.11.2026, איציק: "אין התייחסות ל-CRS") — עמודה בטבלה הראשית + לוח 11 גרפים.
+CRS_SHORT = {"inflecting_up": "חצה מעלה השבוע", "rising": "מעל הממוצע ועולה", "flat": "על הממוצע",
+             "inflecting_down": "מעל, מתגלגל מטה", "falling": "מתחת ויורד", "falling_narrowing": "מתחת, הפער מצטמצם"}
+CRS_TONE = {"inflecting_up": "up", "rising": "up", "flat": "fl", "inflecting_down": "dn", "falling": "dn", "falling_narrowing": "fl"}
+
+
+def _crs_svg(ser, w=120, h=34, days=65):
+    """CRS (כחול) מול ממוצע 21 (אפור), 3 חודשים; צבעים מהטוקנים של הדף (כהה/בהיר)."""
+    ser = [t for t in (ser or [])[-days:] if t[2]]
+    if len(ser) < 5:
+        return ""
+    vals = [t[1] for t in ser] + [t[2] for t in ser]
+    lo, hi = min(vals), max(vals)
+    rng = (hi - lo) or 1
+
+    def pts(j):
+        return " ".join(f"{i / (len(ser) - 1) * (w - 4) + 2:.1f},{h - 2 - (t[j] - lo) / rng * (h - 4):.1f}" for i, t in enumerate(ser))
+    return (f'<svg class="crs-sv" viewBox="0 0 {w} {h}" preserveAspectRatio="none" aria-hidden="true">'
+            f'<polyline class="crs-ma" points="{pts(2)}"/><polyline class="crs-l" points="{pts(1)}"/></svg>')
 
 
 def _sn(v, d=2, pct=True):
@@ -924,11 +961,24 @@ def render_html_v2(w, nar):
                  f'<td class="stc"><span class="st st-{e(st)}">{V2_STATUS.get(st, st)}</span></td>'
                  f'<td class="rc" data-l="השבוע מול המדד"><div class="relw">{_sn(rel[k][0])}{_rel_bar(rel[k][0], sc_w)}</div></td>'
                  f'<td class="rc" data-l="החודש מול המדד"><div class="relw">{_sn(rel[k][1])}{_rel_bar(rel[k][1], sc_m)}</div></td>'
+                 f'<td class="rc crs" data-l="CRS · עוצמה מול המדד"><div class="crw">{_crs_svg(d.get("crs_series"))}<span class="crs-st {CRS_TONE.get(d["crs_state"], "fl")}">{CRS_SHORT.get(d["crs_state"], "")}</span></div></td>'
                  f'<td class="rc" data-l="רוחב · מעל ממוצע 50"><div class="bw"><span class="bt"><i style="width:{br}%"></i><em style="left:{brp if brp is not None else br}%"></em></span><span class="bn num">{brp if brp is not None else "—"}→{br}</span></div></td>'
                  f'{cells}<td class="vd"><span class="vt vt-{e(v.get("cls", "bounce"))}">{v.get("verdict", "")}</span><p>{v.get("note", "")}</p></td></tr>')
     H.append(f'''<section class="pan"><div class="ph"><span class="stp">2</span><h2>11 הסקטורים בטבלה אחת</h2><span class="sub">ממוין לפי פסק הדין · מול המדד = תשואת מדד הסקטור פחות S&amp;P 500</span></div>
-<div class="tw"><table class="main"><thead><tr><th>סקטור</th><th>מצב</th><th>השבוע מול המדד</th><th>החודש מול המדד</th><th>רוחב · מעל ממוצע 50</th>{"".join(f'<th class="ck">{h}</th>' for h in V2_CHK_HEAD)}<th>פסק דין</th></tr></thead><tbody>{rows}</tbody></table></div>
-<div class="legend"><span><i class="ci ok">✓</i> כן</span><span><i class="ci part">◐</i> חלקי / מתהפך</span><span><i class="ci no">✗</i> לא</span><span><i class="ci none">–</i> לא רלוונטי</span><span>רוחב: הפס = עכשיו, הקו הענברי = לפני שבוע</span><span>"שבועיים רצופים" = כלל השבועיים: מחיר מעל/מתחת לקו המפתח בשתי סגירות שבועיות</span></div></section>''')
+<div class="tw"><table class="main"><thead><tr><th>סקטור</th><th>מצב</th><th>השבוע מול המדד</th><th>החודש מול המדד</th><th>CRS · עוצמה מול המדד</th><th>רוחב · מעל ממוצע 50</th>{"".join(f'<th class="ck">{h}</th>' for h in V2_CHK_HEAD)}<th>פסק דין</th></tr></thead><tbody>{rows}</tbody></table></div>
+<div class="legend"><span><i class="ci ok">✓</i> כן</span><span><i class="ci part">◐</i> חלקי / מתהפך</span><span><i class="ci no">✗</i> לא</span><span><i class="ci none">–</i> לא רלוונטי</span><span>CRS: כחול = מחיר הסקטור חלקי S&amp;P 500, אפור = הממוצע שלו ל-21 יום (3 חודשים)</span><span>רוחב: הפס = עכשיו, הקו הענברי = לפני שבוע</span><span>"שבועיים רצופים" = כלל השבועיים: מחיר מעל/מתחת לקו המפתח בשתי סגירות שבועיות</span></div></section>''')
+    # ---- לוח ה-CRS (7.11.2026)
+    tiles = ""
+    for k in sorted(ORDER, key=lambda k: -(S[k].get("crs_gap_pct") or 0)):
+        d = S[k]
+        tiles += (f'<div class="crt"><div class="crh"><b>{e(d["name_he"])}</b><small>{k}</small><span class="crs-st {CRS_TONE.get(d["crs_state"], "fl")}">{CRS_SHORT.get(d["crs_state"], "")}</span></div>'
+                  f'{_crs_svg(d.get("crs_series"), 220, 56)}'
+                  f'<div class="crf"><span>פער מהממוצע {_sn(d["crs_gap_pct"])}</span><span>לפני 5 ימים {_sn(d["crs_gap_pct_5d_ago"])}</span></div></div>')
+    crs_read = nar.get("crs_read", "")
+    H.append(f'<section class="pan"><div class="ph"><h2>CRS — עוצמה מול המדד, 3 חודשים</h2><span class="sub">ממוין מהחזק לחלש · כחול מעל אפור = הסקטור מנצח את S&amp;P 500</span></div>'
+             + (f'<p class="crs-read">{crs_read}</p>' if crs_read else "")
+             + f'<div class="crb">{tiles}</div>'
+             f'<p class="crs-how">CRS = מחיר מדד הסקטור חלקי S&amp;P 500. כשהקו הכחול מעל האפור (הממוצע שלו ל-21 יום), הסקטור חזק מהשוק; חצייה של הקו האפור = שינוי כיוון. "פער מהממוצע" = כמה הקו הכחול מעל או מתחת לאפור עכשיו ולפני 5 ימי מסחר. ציון גבוה בלי אישור CRS לא נחשב מאושר (וטו העוצמה מול השוק).</p></section>')
     # ---- 3 · מה השתנה
     cards = "".join(f'<div class="cg"><div class="cause"><b>הסיבה:</b> {c.get("cause", "")}</div><h3>{c.get("title", "")}</h3><p>{c.get("text", "")}</p>'
                     + (f'<div class="so"><b>אבל:</b> {c["but"]}</div>' if c.get("but") else "") + "</div>" for c in nar["changes"][:3])
