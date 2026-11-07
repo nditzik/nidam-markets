@@ -9,17 +9,6 @@
         "label": "6.11",
         "items": [
           {
-            "ticker": "ENB",
-            "name": "Enbridge Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/ENB.png",
-            "chg": -2.54,
-            "price": 46.89,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
-          },
-          {
             "ticker": "MRNA",
             "name": "Moderna, Inc.",
             "when": "before",
@@ -27,29 +16,6 @@
             "logo": "data/earnings/logos/MRNA.png",
             "chg": 5.27,
             "price": 254.19,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
-          },
-          {
-            "ticker": "BAM",
-            "name": "Brookfield Asset Management Ltd. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BAM.png",
-            "logoBg": "dark",
-            "chg": 0.93,
-            "price": 52.95,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
-          },
-          {
-            "ticker": "HUM",
-            "name": "Humana Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/HUM.png",
-            "chg": 5.33,
-            "price": 433.74,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
           },
@@ -65,13 +31,24 @@
             "baseDate": "2026-11-05"
           },
           {
-            "ticker": "BIP",
-            "name": "Brookfield Infrastructure Partners L.P.",
+            "ticker": "BEN",
+            "name": "Franklin Templeton, Inc.",
             "when": "before",
             "status": "final",
-            "logo": "data/earnings/logos/BIP.png",
-            "chg": 4.34,
-            "price": 39.45,
+            "logo": "data/earnings/logos/BEN.png",
+            "chg": 4.72,
+            "price": 33.73,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "VEON",
+            "name": "VEON Ltd. Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VEON.png",
+            "chg": 2.96,
+            "price": 77.57,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
           }
@@ -244,7 +221,7 @@
       "date": "2026-11-10",
       "label": "10/11",
       "dow": "ג׳",
-      "count": 14,
+      "count": 15,
       "tickers": [
         "PBR",
         "TDG",
@@ -379,7 +356,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 14,
+      "total": 15,
       "companies": [
         {
           "ticker": "PBR",
@@ -699,6 +676,7 @@
     "KT": "2026-11-10",
     "SRRK": "2026-11-10",
     "COGT": "2026-11-10",
+    "ATAT": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -744,7 +722,7 @@
     "MFG": "2026-11-13"
   },
   "_meta": {
-    "updatedAt": "07/11/2026 02:01",
+    "updatedAt": "07/11/2026 02:16",
     "source": "tradingview"
   }
 }
