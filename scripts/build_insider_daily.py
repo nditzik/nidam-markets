@@ -479,6 +479,11 @@ def main(root=ROOT, now=None):
                 "cap", "offHi", "offLo", "cluster", "clusterN", "url", "since", "sinceAt", "res", "elapsed", "excluded", "tags", "hist")
         return {k: b[k] for k in keys if k in b and b[k] is not None}
 
+    def trk(b):
+        """שורת מעקב מקוצרת — כל הקניות של TRACK_DAYS (7.11.2026: הרשימה נחתכה ב-60 והממוצעים חושבו מהשורות שנחתכו)."""
+        keys = ("t", "who", "role", "ceo", "filed", "price", "value", "since", "sinceAt", "res", "elapsed")
+        return {k: b[k] for k in keys if k in b and b[k] is not None}
+
     def view(sel):
         """תצוגה אחת (יום דיווח או כל השבוע): הסיכום, משפט הפתיחה, השורות, מה בולט, חיתוך עם האתר."""
         counted = [b for b in sel if not b.get("excluded")]
@@ -538,7 +543,7 @@ def main(root=ROOT, now=None):
         "views": views, "viewOrder": order,
         "history": hist_out, "check": check,
         "days": strip, "firstDay": min(have),
-        "track": [slim(b) for b in track[:60]], "trackAgg": agg,
+        "track": [trk(b) for b in track], "trackAgg": agg,
         "universe": universe,
         "_meta": {"updatedAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "source": "grok mail → data/insider_daily", "ver": 1},
     }
