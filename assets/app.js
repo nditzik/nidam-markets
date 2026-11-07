@@ -703,7 +703,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np185";
+  var TA_VER = "np186";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4555,23 +4555,36 @@
       : "אף אחת מהן לא בנבחרות, במועמדים או במומנטום.";
     var hlPan = '<section class="pan"' + bdSpan(7) + ">" + panHd("מה בולט", "") + '<div class="pb"><div class="ins-hls">' + hl + "</div>" +
       '<div class="ins-site"><b>חיתוך עם האתר:</b> <span>' + site + "</span></div></div></section>";
-    var tr = (d.track || []).slice(0, 10).map(function (b) {
-      var cells = [5, 20, 60].map(function (hz) {
-        var x = b.res && b.res[hz];
-        if (x) return '<td><b class="num ' + insCls(x.ret) + '" dir="ltr" title="S&amp;P באותם ימים ' + insPct(x.spy) + '">' + insPct(x.ret) + "</b></td>";
-        var left = hz - (b.elapsed || 0);
-        return '<td class="mute s">' + (left > 0 && left <= hz ? "בעוד " + left : "—") + "</td>";
+    // np186: כל הקניות במעקב, מקובצות לפי יום הדיווח (עד np185 רק 10 האחרונות — והממוצע חושב מהשורות שלא הוצגו)
+    var trAll = d.track || [], trDays = [];
+    trAll.forEach(function (b) {
+      var g = trDays[trDays.length - 1];
+      if (!g || g.d !== b.filed) trDays.push(g = { d: b.filed, rows: [] });
+      g.rows.push(b);
+    });
+    var tr = trDays.map(function (g) {
+      var r5 = g.rows.filter(function (b) { return b.res && b.res[5]; });
+      var gx = r5.length ? r5.reduce(function (s, b) { return s + b.res[5].ex; }, 0) / r5.length : null;
+      var sub = '<tr class="ins-trk-d"><td colspan="5">דווח ב-<span class="num">' + insDm(g.d) + "</span> · " + g.rows.length + (g.rows.length === 1 ? " רכישה" : " רכישות") +
+        (gx != null ? ' · אחרי 5 ימים מול השוק <b class="num ' + insCls(gx) + '" dir="ltr">' + insPct(gx) + "</b>" : "") + "</td></tr>";
+      return sub + g.rows.map(function (b) {
+        var cells = [5, 20, 60].map(function (hz) {
+          var x = b.res && b.res[hz];
+          if (x) return '<td><b class="num ' + insCls(x.ret) + '" dir="ltr" title="S&amp;P באותם ימים ' + insPct(x.spy) + " · מול השוק " + insPct(x.ex) + '">' + insPct(x.ret) + "</b></td>";
+          var left = hz - (b.elapsed || 0);
+          return '<td class="mute s">' + (left > 0 && left <= hz ? "בעוד " + left : "—") + "</td>";
+        }).join("");
+        return '<tr><td><b class="num" dir="ltr" title="' + esc((b.who || "") + (b.role ? " · " + b.role : "")) + '">' + esc(b.t) + "</b></td>" +
+          '<td><b class="num ' + insCls(b.since) + '" dir="ltr">' + insPct(b.since) + "</b></td>" + cells + "</tr>";
       }).join("");
-      return '<tr><td><b class="num" dir="ltr">' + esc(b.t) + '</b> <span class="mute s num">' + insDm(b.filed) + "</span></td>" +
-        '<td><b class="num ' + insCls(b.since) + '" dir="ltr">' + insPct(b.since) + "</b></td>" + cells + "</tr>";
     }).join("");
     var agg = d.trackAgg || {}, aggTxt = [5, 20, 60].filter(function (h) { return agg[h]; }).map(function (h) {
       var a = agg[h];
       return "אחרי " + h + " ימים: " + insPct(a.ret) + " בממוצע, מול השוק " + insPct(a.ex) + " (" + a.win + " מתוך " + a.n + " ניצחו)";
     }).join(" · ");
-    var trPan = '<section class="pan"' + bdSpan(5) + ">" + panHd("המעקב · מה קרה אחרי הקנייה", '<span class="mute">"עד עכשיו" מהמחיר שהמנהל שילם; 5/20/60 מיום הדיווח</span>') +
-      '<div class="pb"><table class="bd-tbl ins-trk"><thead><tr><th>מניה</th><th>עד עכשיו</th><th>5 ימים</th><th>20 יום</th><th>60 יום</th></tr></thead><tbody>' + tr + "</tbody></table>" +
-      '<p class="mute s">' + (aggTxt || "הממוצעים ייכנסו כשהקניות הראשונות ישלימו 5 ימי מסחר.") + "</p></div></section>";
+    var trPan = '<section class="pan"' + bdSpan(5) + ">" + panHd("המעקב · " + trAll.length + " רכישות", '<span class="mute">"עד עכשיו" מהמחיר שהמנהל שילם; 5/20/60 מיום הדיווח</span>') +
+      '<div class="pb"><p class="ins-trk-agg">' + (aggTxt || "הממוצעים ייכנסו כשהקניות הראשונות ישלימו 5 ימי מסחר.") + "</p>" +
+      '<div class="ins-trk-w"><table class="bd-tbl ins-trk"><thead><tr><th>מניה</th><th>עד עכשיו</th><th>5 ימים</th><th>20 יום</th><th>60 יום</th></tr></thead><tbody>' + tr + "</tbody></table></div></div></section>";
     var days = d.days || [], mx = Math.max.apply(null, days.map(function (x) { return x.v || 0; }).concat([1]));
     var strip = days.map(function (x, i) {
       var hpx = x.v ? Math.max(6, Math.round(84 * x.v / mx)) : 84;
