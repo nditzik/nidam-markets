@@ -413,6 +413,10 @@ def main(root=ROOT, now=None):
     picks = {(p.get("sym") or p.get("symbol") or "").upper() for p in (load_json(os.path.join(root, "data", "picks.json"), {}).get("picks") or [])}
     cands = {(c.get("symbol") or "").upper() for c in (load_json(os.path.join(root, "data", "candidates.json"), {}).get("candidates") or [])}
     moms = {(s.get("symbol") or "").upper() for s in (load_json(os.path.join(root, "data", "momentum.json"), {}).get("stocks") or [])}
+    # 7.11.2026 (איציק: "יש מניות שחזרו מספר פעמים השבוע"): כמה קניות נספרו בכל חברה בתצוגת השבוע
+    wk_n = {}
+    for b in counted_all:
+        wk_n[b["t"]] = wk_n.get(b["t"], 0) + 1
     for b in shown:
         tags = []
         if b.get("excluded") == "fund":
@@ -424,6 +428,8 @@ def main(root=ROOT, now=None):
         else:
             if b["ceo"]:
                 tags.append({"k": "ceo", "txt": 'מנכ"ל'})
+            if wk_n.get(b["t"], 0) >= 2:
+                tags.append({"k": "rep", "txt": "×%d השבוע" % wk_n[b["t"]]})
             tags += b.get("ctx") or []
             if not b.get("ctx") and b["holdPct"] is not None and b["holdPct"] >= 100:
                 tags.append({"k": "big", "txt": "הכפיל אחזקה" if b["holdPct"] < 300 else "פי %d באחזקה" % round(1 + b["holdPct"] / 100)})
@@ -488,6 +494,10 @@ def main(root=ROOT, now=None):
         """תצוגה אחת (יום דיווח או כל השבוע): הסיכום, משפט הפתיחה, השורות, מה בולט, חיתוך עם האתר."""
         counted = [b for b in sel if not b.get("excluded")]
         ranked = sorted(counted, key=score, reverse=True)
+        clu = {}
+        for b in counted:
+            if b["cluster"] and b["clusterN"] >= 2:
+                clu[b["t"]] = max(clu.get(b["t"], 0), b["clusterN"])
         lead = []
         for b in ranked[:2]:
             co = b["co"].title() if b["co"].isupper() else b["co"]
@@ -497,14 +507,37 @@ def main(root=ROOT, now=None):
             "summary": {"n": len(counted), "total": round(sum(b["value"] or 0 for b in counted)),
                         "excluded": len(sel) - len(counted), "ceo": sum(1 for b in counted if b["ceo"]),
                         "ceoWho": [b["t"] for b in counted if b["ceo"]][:3],
-                        "clusters": sum(1 for b in counted if b["cluster"] and b["clusterN"] >= 2),
-                        "clusterWho": [b["t"] for b in counted if b["cluster"] and b["clusterN"] >= 2][:3],
+                        # חברות, לא שורות (עד 7.11.2026 נספרה כל קנייה — 29 "אשכולות" ב-14 חברות)
+                        "clusters": len(clu),
+                        "clusterWho": [t for t, _ in sorted(clu.items(), key=lambda x: -x[1])][:3],
                         "top": {"t": ranked[0]["t"], "v": ranked[0]["value"]} if ranked else None},
             "lead": " ".join(lead),
             "rows": [slim(b) for b in sorted(sel, key=lambda b: (bool(b.get("excluded")), -(b["value"] or 0)))],
             "highlights": [hl(b) for b in ranked[:3]],
             "siteHits": sorted({b["t"] for b in counted if any(t["k"] == "site" for t in b["tags"])}),
+            "repeat": repeat(counted),
         }
+
+    def repeat(counted):
+        """חברות עם 2+ קניות בתצוגה — מי קנה, כמה, באילו ימים, ומה המניה עשתה מאז הקנייה האחרונה."""
+        by = {}
+        for b in counted:
+            by.setdefault(b["t"], []).append(b)
+        out = []
+        for t, bs in by.items():
+            if len(bs) < 2:
+                continue
+            bs = sorted(bs, key=lambda b: -(b["value"] or 0))
+            last = max(bs, key=lambda b: (b["filed"], b["trade"]))
+            buyers = {name_key(b["who"]) for b in bs}
+            co = bs[0]["co"].title() if bs[0]["co"].isupper() else bs[0]["co"]
+            out.append({"t": t, "co": co, "n": len(bs), "buyers": len(buyers),
+                        "total": round(sum(b["value"] or 0 for b in bs)), "ceo": any(b["ceo"] for b in bs),
+                        "who": [{"r": b["role"], "v": round(b["value"] or 0), "d": b["filed"]} for b in bs],
+                        "days": sorted({b["filed"] for b in bs}),
+                        "since": last.get("since"), "clusterN": max(b["clusterN"] or 0 for b in bs),
+                        "site": [x["txt"] for x in bs[0]["tags"] if x["k"] == "site"]})
+        return sorted(out, key=lambda r: (-r["n"], -r["total"]))
 
     views = {d: dict(view([b for b in shown if b["day"] == d]), day=d) for d in view_days}
     order = list(view_days)

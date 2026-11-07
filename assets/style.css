@@ -2630,3 +2630,16 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .ins-trk-w { max-height: 460px; overflow-y: auto; }
 .ins-trk thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
 .ins-trk tr.ins-trk-d td { background: var(--track); color: var(--text-soft); font-size: 12px; padding-block: 4px; white-space: normal; }
+
+/* np187 — "חזרו השבוע" ברכישות פנים */
+.ins-reps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.ins-rep { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.ins-rep p { margin: 4px 0 0; }
+.ins-rep-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.ins-rep-h .tk a.tv { font-size: 16px; }
+.ins-rep-n { font-size: 18px; font-weight: 700; color: var(--accent); }
+.ins-rep-co { text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ins-rep .ins-tags { margin-top: 6px; }
+.ins-tag.rep { background: var(--accent); color: var(--surface); border-color: var(--accent); font-weight: 600; }
+@media (max-width: 1100px) { .ins-reps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .ins-reps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
