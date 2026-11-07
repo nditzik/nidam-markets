@@ -502,7 +502,6 @@
     });
     ((REPD && REPD.reports) || []).forEach(function (r) { push("דוחות", "reports", r.title + " (" + r.ticker + ")"); });
     ((TRAD && TRAD.reports) || []).forEach(function (r) { push("הצעות לטרייד", "trades", r.title); });
-    ((INSD && INSD.reports) || []).forEach(function (r) { push("Insider", "insider", r.title + " " + (r.tickers || []).join(" ")); });
     ((INSDD && (INSDD.views && INSDD.views.week ? INSDD.views.week.rows : INSDD.rows)) || []).forEach(function (r) { push("Insider", "insider", r.t + " · " + r.co + " · " + r.role + " " + insMoney(r.value)); });
     if (BRIEF) ["morning", "afternoon"].forEach(function (k) {
       var s = BRIEF[k] || {};
@@ -703,7 +702,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np187";
+  var TA_VER = "np188";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -3917,8 +3916,6 @@
     bindRepChips(view, "sec-tab", showSector);
   }
 
-  /* טאב "Insider" (20.9.2026) — דוחות קניות של בעלי עניין מ-nidam-reports/insider.
-     כמו סקטורים: הדוח האחרון מוצג, הקודמים נשמרים כצ'יפים (scripts/fetch_insider.py ממזג היסטוריה). */
   /* ---------- לקראת הדוח (2.10.2026, np103, איציק — אושר במוקאפ JPM) ----------
      data/earnings_prep.json = המספרים (scripts/build_earnings_prep.py, כל רבע שעה): חברות שיש להן ניתוח
      דוח קודם באתר ומדווחות בשבועיים הקרובים — צפי אנליסטים, היסטוריית הפתעות + תגובת המניה, מחירי יעד,
@@ -4413,7 +4410,6 @@
     });
     renderStockSiblings();
   }
-  var INSD = null;
   /* ===== סיכום · הכל מסכים (31.10.2026, np167, איציק) — data/consensus.json (build_consensus.py) =====
      מוקאפ שאושר (הגרסה הפשוטה): https://claude.ai/artifact/KU3hNTXbgPJdBtEBcT2r2K — מניות ששלוש מערכות ומעלה
      באתר בחרו בהן: מי בחר (במילים + התאריך), ומשפט למה. בלי טבלה ובלי ציון. */
@@ -4457,20 +4453,13 @@
       '<div class="pb">' + srcRows + '<p class="mute s cs-foot">מתעדכן לבד בכל ריצה של האתר, כשהקבצים החדשים מגיעים. זו הצלבה בין מערכות, לא המלצה.</p></div></section></div>';
   }
 
-  function renderInsider(el, d) {
-    if (d) INSD = d;
+  // np188 (7.11.2026, איציק): הדוחות החודשיים (ספטמבר/אוקטובר, data/insider.json) הוסרו — הטאב = רכישות הפנים היומיות בלבד
+  function renderInsider(el) {
     el = el || document.getElementById("panel-insider");
-    if (!el) return;
-    var reps = (INSD && INSD.reports) || [];
-    if (!reps.length && !INSDD) {
-      emptyPanel(el, "🕵️", "Insider — בקרוב", "הדוח הראשון בדרך.");
-      return;
-    }
+    if (!el || !INSDD) return;
     el.innerHTML = '<div class="board">' + insDailyHtml() +
-      (reps.length ? '<section class="pan" id="ins-view"' + bdSpan(12) + "></section>" : "") +
       '<section class="pan"' + bdSpan(12) + '><details class="bd-exp"><summary>איך זה עובד</summary>' + tabIntro("insider") + insDailyHow() + "</details></section></div>";
     bindInsDaily(el);
-    if (reps.length) showInsider(0);
   }
 
   /* ===== רכישות פנים · אתמול (30.10.2026, np163) — data/insider_daily.json (build_insider_daily.py) =====
@@ -4702,22 +4691,6 @@
       });
     });
   }
-  function showInsider(i) {
-    var view = document.getElementById("ins-view");
-    if (!view || !INSD) return;
-    var r = (INSD.reports || [])[i];
-    if (!r) return;
-    var reps = INSD.reports || [];
-    var tks = (r.tickers || []).map(function (t) {
-      return '<a class="tag" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(t) + '/" target="_blank" rel="noopener"><b class="num">' + esc(t) + "</b></a>";
-    }).join("");
-    view.innerHTML = panHd("Insider · " + esc(r.title || "קניות של בעלי עניין"), '<span class="mute">' + (r.range ? esc(r.range) + " · " : "") + 'הופק ב-<span class="num" dir="ltr">' + esc(secDate(r.date)) + "</span></span>", repFull(r.file)) +
-      ((reps.length > 1 || tks) ? '<div class="pb">' + repChips("ins-tab", reps, function (x) { return secDate(x.date); }, i) +
-        (tks ? '<div class="rep-tks"><span class="mute s">המניות בדוח</span><div class="chips bd-chips">' + tks + "</div></div>" : "") + "</div>" : "") +
-      repFrame(r.file, INSD._meta, r.title);
-    bindRepChips(view, "ins-tab", showInsider);
-  }
-
   /* טאב "הצעות לטרייד" — דוחות Four Pillars וכד', כמו סקטורים (יומי במקום שבועי) */
   function renderTrades(el, d) {
     TRAD = d;
@@ -5054,12 +5027,16 @@
           }).join("") + "</div>" : '<div class="pb mute">' + (TRAD.method ? '<a href="' + esc(TRAD.method.url) + '" target="_blank" rel="noopener">📚 ' + esc(TRAD.method.title) + "</a>" : "הדוח המלא בלשונית הצעות לטרייד.") + "</div>");
     }
     if (ei) {
-      var ir = INSD && (INSD.reports || [])[0];
-      ei.innerHTML = !ir
-        ? panHd("Insider", "", bdGo("insider", "הדוח")) + '<div class="pb mute">' + (INSD ? "אין דוח." : "טוען…") + "</div>"
-        : panHd("Insider · " + esc(ir.title || "קניות של בעלי עניין"), '<span class="mute num" dir="ltr">' + esc(secDate(ir.date)) + "</span>", bdGo("insider", "הדוח")) +
-          '<div class="pb">' + (ir.range ? '<p class="mute" style="margin:0">' + esc(ir.range) + "</p>" : "") +
-          ((ir.tickers || []).length ? '<div class="chips bd-chips">' + ir.tickers.map(function (tk) { return '<a class="tag" dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(tk) + '/" target="_blank" rel="noopener"><b class="num">' + esc(tk) + "</b></a>"; }).join("") + "</div>" : "") + "</div>";
+      // np188: הדוח החודשי הוסר — הפאנל מציג את רכישות הפנים של השבוע מהדוח היומי
+      var iv = INSDD && (INSDD.views && INSDD.views.week || INSDD), ism = (iv && iv.summary) || {};
+      var irep = (iv && iv.repeat) || [], itop = ((iv && iv.rows) || []).filter(function (r) { return !r.excluded; }).slice(0, 5);
+      ei.innerHTML = !iv
+        ? panHd("Insider", "", bdGo("insider", "הכל")) + '<div class="pb mute">טוען…</div>'
+        : panHd("Insider · רכישות פנים " + (iv.from ? "השבוע" : insDm(iv.day || INSDD.day)), '<span class="mute">' + (ism.n || 0) + " רכישות · " + insMoney(ism.total) + "</span>", bdGo("insider", "הכל")) +
+          '<div class="pb bd-sents">' + itop.map(function (r) {
+            return '<div class="sent"><b class="num tk" dir="ltr">' + tvLink(r.t) + "</b><span>" + esc((r.role || "") + " · " + insMoney(r.value)) + "</span></div>";
+          }).join("") +
+          (irep.length ? '<p class="mute s" style="margin:6px 0 0">חזרו השבוע: ' + irep.slice(0, 5).map(function (r) { return '<b class="num" dir="ltr">' + esc(r.t) + " ×" + r.n + "</b>"; }).join(" · ") + "</p>" : "") + "</div>";
     }
   }
   /* הפאנלים האחים בטאב חדשות: בזק מהרשת · Barchart · חדשות RSS · המבזק האחרון */
@@ -5241,12 +5218,9 @@
       fetchJSON("data/forecasts.json")
         .then(function (d) { if (!freshD("forecasts", d)) return; FCAST = d; if (INDD) renderLead(); renderForecastPan(); })
         .catch(function () {});
-      fetchJSON("data/insider.json")
-        .then(function (d) { if (!freshD("insider", d)) return; renderInsider(document.getElementById("panel-insider"), d); renderStockSiblings(); noteSig("insider", d); })
-        .catch(function () { if (!("insider" in DAILY_SIGS) && !INSDD) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
       fetchJSON("data/insider_daily.json")
-        .then(function (d) { if (!freshD("insdd", d)) return; INSDD = d; renderInsider(); })
-        .catch(function () {});
+        .then(function (d) { if (!freshD("insdd", d)) return; INSDD = d; renderInsider(); renderStockSiblings(); noteSig("insider", { day: d.day, views: d.viewOrder }); })
+        .catch(function () { if (!INSDD) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
       fetchJSON("data/consensus.json")
         .then(function (d) { if (!freshD("cons", d)) return; CONSD = d; renderConsensus(); noteSig("consensus", d); })
         .catch(function () { if (!CONSD) renderConsensus(); });

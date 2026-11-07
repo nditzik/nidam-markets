@@ -91,9 +91,6 @@ def universe():
     # רכישות פנים (30.10.2026): כל מניה שקנו בה ב-120 הימים האחרונים — למעקב 5/20/60 ולבדיקת המחיר
     for t in (load(os.path.join(DATA, "insider_daily.json"), {}).get("universe") or []):
         add(t)
-    for r in (load(os.path.join(DATA, "insider.json"), {}).get("reports") or []):
-        for t in (r.get("tickers") or []):
-            add(t)
     # הצעות לטרייד: הטיקרים מטבלאות 6 הדוחות האחרונים; ניתוח דוחות: הטיקר של כל דוח
     for r in (load(os.path.join(DATA, "trades.json"), {}).get("reports") or [])[:6]:
         for p in (r.get("picks") or []):
