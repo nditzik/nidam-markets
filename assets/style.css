@@ -2624,3 +2624,9 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .ud-c3 > * { text-align: right; }   /* np184: b dir=ltr בתא גריד נצמד שמאלה — יישור מתחת לתווית */
   .ud-c4 { font-size: 12px; color: var(--text-3); }
 }
+
+/* np186 — המעקב ברכישות פנים: כל הקניות, מקובצות לפי יום הדיווח, בתוך גלילה */
+.ins-trk-agg { margin: 0 0 8px; font-size: 13px; }
+.ins-trk-w { max-height: 460px; overflow-y: auto; }
+.ins-trk thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.ins-trk tr.ins-trk-d td { background: var(--track); color: var(--text-soft); font-size: 12px; padding-block: 4px; white-space: normal; }
