@@ -1,7 +1,48 @@
 {
-  "today": "2026-11-08",
-  "todayCount": 1,
-  "todayBig": [],
+  "today": "2026-11-09",
+  "todayCount": 41,
+  "todayBig": [
+    {
+      "ticker": "CEG",
+      "name": "Constellation Energy Corporation",
+      "capB": 88.6
+    },
+    {
+      "ticker": "KKR",
+      "name": "KKR & Co Inc",
+      "capB": 86.6
+    },
+    {
+      "ticker": "B",
+      "name": "Barrick Mining Corporation",
+      "capB": 66.8
+    },
+    {
+      "ticker": "OXY",
+      "name": "Occidental Petroleum Corporation",
+      "capB": 56.4
+    },
+    {
+      "ticker": "FERG",
+      "name": "Ferguson Enterprises Inc.",
+      "capB": 45.2
+    },
+    {
+      "ticker": "SKYD",
+      "name": "Skydance Corporation Class B",
+      "capB": 40.4
+    },
+    {
+      "ticker": "TTWO",
+      "name": "Take-Two Interactive Software, Inc.",
+      "capB": 40.2
+    },
+    {
+      "ticker": "IX",
+      "name": "ORIX Corporation Sponsored ADR",
+      "capB": 37.5
+    }
+  ],
   "reactions": {
     "days": [
       {
@@ -92,17 +133,6 @@
             "baseDate": "2026-11-05"
           },
           {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CNQ.png",
-            "chg": -1.45,
-            "price": 48.92,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
             "ticker": "DUK",
             "name": "Duke Energy Corporation",
             "when": "before",
@@ -112,78 +142,17 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
-          }
-        ]
-      },
-      {
-        "date": "2026-11-04",
-        "label": "4.11",
-        "items": [
+          },
           {
-            "ticker": "TM",
-            "name": "Toyota Motor Corp. Sponsored ADR",
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
             "when": "after",
             "status": "final",
-            "logo": "data/earnings/logos/TM.png",
-            "chg": 9.35,
-            "price": 218.11,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "ARM",
-            "name": "ARM Holdings PLC Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/ARM.png",
-            "chg": -13.08,
-            "price": 166.72,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "MCD",
-            "name": "McDonald's Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MCD.png",
-            "chg": 6.53,
-            "price": 280.22,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
-          },
-          {
-            "ticker": "NVO",
-            "name": "Novo Nordisk A/S Sponsored ADR Class B",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/NVO.png",
-            "chg": 4.95,
-            "price": 42.18,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
-          },
-          {
-            "ticker": "QCOM",
-            "name": "QUALCOMM Incorporated",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/QCOM.png",
-            "chg": -9.49,
-            "price": 156.75,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "UBER",
-            "name": "Uber Technologies, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/UBER.png",
-            "chg": 4.91,
-            "price": 69.87,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "logo": "data/earnings/logos/MNST.png",
+            "chg": -4.41,
+            "price": 45.72,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       }
@@ -191,28 +160,80 @@
   },
   "reporting": [
     {
-      "ticker": "RDNT",
-      "name": "RadNet, Inc.",
+      "ticker": "CEG",
+      "name": "Constellation Energy Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/CEG.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "KKR",
+      "name": "KKR & Co Inc",
+      "when": "before",
+      "logo": "data/earnings/logos/KKR.png"
+    },
+    {
+      "ticker": "B",
+      "name": "Barrick Mining Corporation",
+      "when": "before",
+      "logo": "data/earnings/logos/B.png"
+    },
+    {
+      "ticker": "OXY",
+      "name": "Occidental Petroleum Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/OXY.png"
+    },
+    {
+      "ticker": "FERG",
+      "name": "Ferguson Enterprises Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/FERG.png"
+    },
+    {
+      "ticker": "SKYD",
+      "name": "Skydance Corporation Class B",
+      "when": ""
+    },
+    {
+      "ticker": "TTWO",
+      "name": "Take-Two Interactive Software, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/TTWO.png"
+    },
+    {
+      "ticker": "IX",
+      "name": "ORIX Corporation Sponsored ADR",
       "when": "",
-      "logo": "data/earnings/logos/RDNT.png"
+      "logo": "data/earnings/logos/IX.png"
+    },
+    {
+      "ticker": "RKLB",
+      "name": "Rocket Lab Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/RKLB.png"
+    },
+    {
+      "ticker": "ROIV",
+      "name": "Roivant Sciences Ltd.",
+      "when": "before",
+      "logo": "data/earnings/logos/ROIV.png"
+    },
+    {
+      "ticker": "BAP",
+      "name": "Credicorp Ltd.",
+      "when": "after",
+      "logo": "data/earnings/logos/BAP.png"
+    },
+    {
+      "ticker": "NRG",
+      "name": "NRG Energy, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/NRG.png"
     }
   ],
-  "more": 0,
+  "more": 29,
   "upcoming": [
-    {
-      "date": "2026-11-09",
-      "label": "9/11",
-      "dow": "ב׳",
-      "count": 41,
-      "tickers": [
-        "CEG",
-        "KKR",
-        "B",
-        "OXY",
-        "FERG",
-        "SKYD"
-      ]
-    },
     {
       "date": "2026-11-10",
       "label": "10/11",
@@ -619,7 +640,6 @@
     }
   ],
   "window": {
-    "RDNT": "2026-11-08",
     "CEG": "2026-11-09",
     "KKR": "2026-11-09",
     "B": "2026-11-09",
@@ -726,10 +746,19 @@
     "XE": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
-    "MFG": "2026-11-13"
+    "MFG": "2026-11-13",
+    "BIDU": "2026-11-16",
+    "TSN": "2026-11-16",
+    "BEKE": "2026-11-16",
+    "HTHT": "2026-11-16",
+    "KEP": "2026-11-16",
+    "ARMK": "2026-11-16",
+    "XPEV": "2026-11-16",
+    "ACM": "2026-11-16",
+    "POWL": "2026-11-16"
   },
   "_meta": {
-    "updatedAt": "08/11/2026 23:46",
+    "updatedAt": "09/11/2026 00:01",
     "source": "tradingview"
   }
 }
