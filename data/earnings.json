@@ -155,6 +155,78 @@
             "baseDate": "2026-11-05"
           }
         ]
+      },
+      {
+        "date": "2026-11-04",
+        "label": "4.11",
+        "items": [
+          {
+            "ticker": "TM",
+            "name": "Toyota Motor Corp. Sponsored ADR",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/TM.png",
+            "chg": 9.35,
+            "price": 218.11,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "ARM",
+            "name": "ARM Holdings PLC Sponsored ADR",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/ARM.png",
+            "chg": -13.08,
+            "price": 166.72,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "MCD",
+            "name": "McDonald's Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/MCD.png",
+            "chg": 6.53,
+            "price": 280.22,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          },
+          {
+            "ticker": "NVO",
+            "name": "Novo Nordisk A/S Sponsored ADR Class B",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/NVO.png",
+            "chg": 4.95,
+            "price": 42.18,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          },
+          {
+            "ticker": "QCOM",
+            "name": "QUALCOMM Incorporated",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/QCOM.png",
+            "chg": -9.49,
+            "price": 156.75,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "UBER",
+            "name": "Uber Technologies, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/UBER.png",
+            "chg": 4.91,
+            "price": 69.87,
+            "reactDate": "2026-11-04",
+            "baseDate": "2026-11-03"
+          }
+        ]
       }
     ]
   },
@@ -758,7 +830,7 @@
     "POWL": "2026-11-16"
   },
   "_meta": {
-    "updatedAt": "09/11/2026 02:01",
+    "updatedAt": "09/11/2026 02:16",
     "source": "tradingview"
   }
 }
