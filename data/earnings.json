@@ -40,7 +40,7 @@
     {
       "ticker": "IX",
       "name": "ORIX Corporation Sponsored ADR",
-      "capB": 37.5
+      "capB": 35.5
     }
   ],
   "reactions": {
@@ -133,17 +133,6 @@
             "baseDate": "2026-11-05"
           },
           {
-            "ticker": "CNQ",
-            "name": "Canadian Natural Resources Limited",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CNQ.png",
-            "chg": -1.45,
-            "price": 48.92,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
             "ticker": "DUK",
             "name": "Duke Energy Corporation",
             "when": "before",
@@ -153,78 +142,17 @@
             "price": 130.08,
             "reactDate": "2026-11-05",
             "baseDate": "2026-11-04"
-          }
-        ]
-      },
-      {
-        "date": "2026-11-04",
-        "label": "4.11",
-        "items": [
+          },
           {
-            "ticker": "TM",
-            "name": "Toyota Motor Corp. Sponsored ADR",
+            "ticker": "MNST",
+            "name": "Monster Beverage Corporation",
             "when": "after",
             "status": "final",
-            "logo": "data/earnings/logos/TM.png",
-            "chg": 9.35,
-            "price": 218.11,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "ARM",
-            "name": "ARM Holdings PLC Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/ARM.png",
-            "chg": -13.08,
-            "price": 166.72,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "MCD",
-            "name": "McDonald's Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/MCD.png",
-            "chg": 6.53,
-            "price": 280.22,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
-          },
-          {
-            "ticker": "NVO",
-            "name": "Novo Nordisk A/S Sponsored ADR Class B",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/NVO.png",
-            "chg": 4.95,
-            "price": 42.18,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
-          },
-          {
-            "ticker": "QCOM",
-            "name": "QUALCOMM Incorporated",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/QCOM.png",
-            "chg": -9.49,
-            "price": 156.75,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "UBER",
-            "name": "Uber Technologies, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/UBER.png",
-            "chg": 4.91,
-            "price": 69.87,
-            "reactDate": "2026-11-04",
-            "baseDate": "2026-11-03"
+            "logo": "data/earnings/logos/MNST.png",
+            "chg": -4.41,
+            "price": 45.72,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
           }
         ]
       }
@@ -276,7 +204,7 @@
     {
       "ticker": "IX",
       "name": "ORIX Corporation Sponsored ADR",
-      "when": "",
+      "when": "before",
       "logo": "data/earnings/logos/IX.png"
     },
     {
@@ -298,10 +226,10 @@
       "logo": "data/earnings/logos/BAP.png"
     },
     {
-      "ticker": "NRG",
-      "name": "NRG Energy, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/NRG.png"
+      "ticker": "CIB",
+      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+      "when": "",
+      "logo": "data/earnings/logos/CIB.png"
     }
   ],
   "more": 29,
@@ -315,8 +243,8 @@
         "PBR",
         "TDG",
         "SE",
-        "VOD",
         "ALC",
+        "VOD",
         "EC"
       ]
     },
@@ -412,7 +340,7 @@
         {
           "ticker": "IX",
           "name": "ORIX Corporation Sponsored ADR",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/IX.png"
         },
         {
@@ -434,10 +362,10 @@
           "logo": "data/earnings/logos/BAP.png"
         },
         {
-          "ticker": "NRG",
-          "name": "NRG Energy, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/NRG.png"
+          "ticker": "CIB",
+          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+          "when": "",
+          "logo": "data/earnings/logos/CIB.png"
         }
       ]
     },
@@ -466,17 +394,17 @@
           "logo": "data/earnings/logos/SE.png"
         },
         {
-          "ticker": "VOD",
-          "name": "Vodafone Group Public Limited Company Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/VOD.png"
-        },
-        {
           "ticker": "ALC",
           "name": "Alcon AG",
           "when": "after",
           "logo": "data/earnings/logos/ALC.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "VOD",
+          "name": "Vodafone Group Public Limited Company Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/VOD.png"
         },
         {
           "ticker": "EC",
@@ -590,16 +518,16 @@
           "logo": "data/earnings/logos/OR.png"
         },
         {
-          "ticker": "UGP",
-          "name": "Ultrapar Participacoes S.A. Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/UGP.png"
-        },
-        {
           "ticker": "ICL",
           "name": "ICL Group Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/ICL.png"
+        },
+        {
+          "ticker": "UGP",
+          "name": "Ultrapar Participacoes S.A. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/UGP.png"
         }
       ]
     },
@@ -723,6 +651,7 @@
     "RKLB": "2026-11-09",
     "ROIV": "2026-11-09",
     "BAP": "2026-11-09",
+    "CIB": "2026-11-09",
     "NRG": "2026-11-09",
     "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
@@ -752,12 +681,11 @@
     "NOVT": "2026-11-09",
     "AAON": "2026-11-09",
     "DFTX": "2026-11-09",
-    "KGS": "2026-11-09",
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
-    "VOD": "2026-11-10",
     "ALC": "2026-11-10",
+    "VOD": "2026-11-10",
     "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
@@ -768,9 +696,9 @@
     "SRRK": "2026-11-10",
     "COGT": "2026-11-10",
     "ATAT": "2026-11-10",
+    "LEGN": "2026-11-10",
     "ALH": "2026-11-10",
     "MRCY": "2026-11-10",
-    "LEGN": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -781,8 +709,8 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
-    "UGP": "2026-11-11",
     "ICL": "2026-11-11",
+    "UGP": "2026-11-11",
     "ENS": "2026-11-11",
     "ERAS": "2026-11-11",
     "CSCO": "2026-11-12",
@@ -798,8 +726,8 @@
     "HBM": "2026-11-12",
     "STN": "2026-11-12",
     "ARWR": "2026-11-12",
-    "TWST": "2026-11-12",
     "ELPC": "2026-11-12",
+    "TWST": "2026-11-12",
     "ANDG": "2026-11-12",
     "CGON": "2026-11-12",
     "CIG": "2026-11-12",
@@ -820,8 +748,8 @@
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
     "BIDU": "2026-11-16",
-    "TSN": "2026-11-16",
     "BEKE": "2026-11-16",
+    "TSN": "2026-11-16",
     "HTHT": "2026-11-16",
     "KEP": "2026-11-16",
     "ARMK": "2026-11-16",
@@ -830,7 +758,7 @@
     "POWL": "2026-11-16"
   },
   "_meta": {
-    "updatedAt": "09/11/2026 15:01",
+    "updatedAt": "09/11/2026 15:12",
     "source": "tradingview"
   }
 }
