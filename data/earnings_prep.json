@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "10/11/2026 01:01",
+  "updatedAt": "10/11/2026 01:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 642.0
     }
    ],
-   "yahooDate": "2026-11-12",
-   "analystsAt": "2026-11-09T23:01+00:00",
    "price": {
     "close": 370.55,
     "date": "2026-11-09",
@@ -483,6 +481,8 @@
      "spy": -3.2
     }
    },
+   "analystsAt": "2026-11-09T23:01+00:00",
+   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "09/11 22:46",
     "price": 373.11,
@@ -1126,8 +1126,6 @@
      "ptPrev": 0.0
     }
    ],
-   "yahooDate": "2026-11-12",
-   "analystsAt": "2026-11-09T23:01+00:00",
    "price": {
     "close": 5.97,
     "date": "2026-11-09",
@@ -1462,6 +1460,8 @@
      "spy": -2.6
     }
    },
+   "analystsAt": "2026-11-09T23:01+00:00",
+   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "09/11 22:46",
     "price": 6.035,
@@ -3029,6 +3029,24 @@
    ],
    "actions": [
     {
+     "date": "2026-11-09",
+     "firm": "UBS",
+     "action": "main",
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 149.0,
+     "ptPrev": 130.0
+    },
+    {
+     "date": "2026-11-09",
+     "firm": "JP Morgan",
+     "action": "main",
+     "grade": "Overweight",
+     "from": "Overweight",
+     "pt": 145.0,
+     "ptPrev": 125.0
+    },
+    {
      "date": "2026-10-20",
      "firm": "Evercore ISI Group",
      "action": "main",
@@ -3063,31 +3081,15 @@
      "from": "Buy",
      "pt": 132.0,
      "ptPrev": 132.0
-    },
-    {
-     "date": "2026-09-10",
-     "firm": "BTIG",
-     "action": "reit",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 140.0,
-     "ptPrev": 140.0
-    },
-    {
-     "date": "2026-08-31",
-     "firm": "Tigress Financial",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 155.0,
-     "ptPrev": 155.0
     }
    ],
+   "yahooDate": "2026-11-19",
+   "analystsAt": "2026-11-09T23:16+00:00",
    "price": {
-    "close": 124.44,
+    "close": 125.66,
     "date": "2026-11-09",
     "high52": 134.2,
-    "ma50": 112.91,
+    "ma50": 112.93,
     "series": [
      [
       "2026-07-20",
@@ -3407,17 +3409,16 @@
      ],
      [
       "2026-11-09",
-      124.44
+      125.66
      ]
     ],
-    "off52": -7.3,
+    "off52": -6.4,
     "since": {
      "from": "2026-08-19",
-     "chg": 8.9
+     "chg": 9.9,
+     "spy": -2.1
     }
    },
-   "analystsAt": "2026-11-09T17:16+00:00",
-   "yahooDate": "2026-11-19",
    "options": {
     "asOf": "09/11 22:46",
     "price": 125.73,
@@ -3572,8 +3573,6 @@
      "ptPrev": 70.0
     }
    ],
-   "yahooDate": "2026-11-23",
-   "analystsAt": "2026-11-09T23:01+00:00",
    "price": {
     "close": 37.79,
     "date": "2026-11-09",
@@ -3908,6 +3907,8 @@
      "spy": -2.2
     }
    },
+   "analystsAt": "2026-11-09T23:01+00:00",
+   "yahooDate": "2026-11-23",
    "options": {
     "asOf": "09/11 22:46",
     "price": 37.895,
@@ -3974,12 +3975,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   }
