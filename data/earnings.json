@@ -5,17 +5,17 @@
     {
       "ticker": "CEG",
       "name": "Constellation Energy Corporation",
-      "capB": 95.4
+      "capB": 95.9
     },
     {
       "ticker": "KKR",
       "name": "KKR & Co Inc",
-      "capB": 88.4
+      "capB": 88.8
     },
     {
       "ticker": "B",
       "name": "Barrick Mining Corporation",
-      "capB": 69.0
+      "capB": 69.5
     },
     {
       "ticker": "OXY",
@@ -25,22 +25,22 @@
     {
       "ticker": "FERG",
       "name": "Ferguson Enterprises Inc.",
-      "capB": 50.5
+      "capB": 50.4
     },
     {
       "ticker": "SKYD",
       "name": "Skydance Corporation Class B",
-      "capB": 42.5
+      "capB": 42.4
     },
     {
       "ticker": "TTWO",
       "name": "Take-Two Interactive Software, Inc.",
-      "capB": 40.1
+      "capB": 39.9
     },
     {
-      "ticker": "RKLB",
-      "name": "Rocket Lab Corporation",
-      "capB": 35.6
+      "ticker": "IX",
+      "name": "ORIX Corporation Sponsored ADR",
+      "capB": 35.5
     }
   ],
   "reactions": {
@@ -236,16 +236,16 @@
       "logo": "data/earnings/logos/TTWO.png"
     },
     {
-      "ticker": "RKLB",
-      "name": "Rocket Lab Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/RKLB.png"
-    },
-    {
       "ticker": "IX",
       "name": "ORIX Corporation Sponsored ADR",
       "when": "",
       "logo": "data/earnings/logos/IX.png"
+    },
+    {
+      "ticker": "RKLB",
+      "name": "Rocket Lab Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/RKLB.png"
     },
     {
       "ticker": "ROIV",
@@ -286,7 +286,7 @@
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 10,
+      "count": 9,
       "tickers": [
         "FNV",
         "VYLR",
@@ -372,16 +372,16 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
-          "ticker": "RKLB",
-          "name": "Rocket Lab Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/RKLB.png"
-        },
-        {
           "ticker": "IX",
           "name": "ORIX Corporation Sponsored ADR",
           "when": "",
           "logo": "data/earnings/logos/IX.png"
+        },
+        {
+          "ticker": "RKLB",
+          "name": "Rocket Lab Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/RKLB.png"
         },
         {
           "ticker": "ROIV",
@@ -489,7 +489,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 10,
+      "total": 9,
       "companies": [
         {
           "ticker": "FNV",
@@ -544,12 +544,6 @@
           "name": "OR Royalties Inc.",
           "when": "after",
           "logo": "data/earnings/logos/OR.png"
-        },
-        {
-          "ticker": "ICL",
-          "name": "ICL Group Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/ICL.png"
         }
       ]
     },
@@ -669,13 +663,13 @@
     "FERG": "2026-11-09",
     "SKYD": "2026-11-09",
     "TTWO": "2026-11-09",
-    "RKLB": "2026-11-09",
     "IX": "2026-11-09",
+    "RKLB": "2026-11-09",
     "ROIV": "2026-11-09",
     "BAP": "2026-11-09",
     "NRG": "2026-11-09",
-    "KSPI": "2026-11-09",
     "RBA": "2026-11-09",
+    "KSPI": "2026-11-09",
     "CNH": "2026-11-09",
     "SGI": "2026-11-09",
     "ASTS": "2026-11-09",
@@ -684,19 +678,19 @@
     "FRHC": "2026-11-09",
     "MOG.A": "2026-11-09",
     "MOG.B": "2026-11-09",
-    "DDS": "2026-11-09",
     "AMG": "2026-11-09",
+    "DDS": "2026-11-09",
     "ONTO": "2026-11-09",
     "LINE": "2026-11-09",
     "PRAX": "2026-11-09",
-    "TGTX": "2026-11-09",
     "TIMB": "2026-11-09",
+    "TGTX": "2026-11-09",
     "ZETA": "2026-11-09",
     "SANM": "2026-11-09",
     "IMVT": "2026-11-09",
-    "TTD": "2026-11-09",
     "CWEN": "2026-11-09",
     "QLYS": "2026-11-09",
+    "TTD": "2026-11-09",
     "HRB": "2026-11-09",
     "CWST": "2026-11-09",
     "PBR": "2026-11-10",
@@ -720,7 +714,6 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
-    "ICL": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -754,7 +747,7 @@
     "ACM": "2026-11-16"
   },
   "_meta": {
-    "updatedAt": "09/11/2026 18:16",
+    "updatedAt": "09/11/2026 18:32",
     "source": "tradingview"
   }
 }
