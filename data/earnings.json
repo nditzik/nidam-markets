@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 14,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -109,6 +109,45 @@
             "logo": "data/earnings/logos/TTWO.png"
           }
         ]
+      },
+      {
+        "date": "2026-11-06",
+        "label": "6.11",
+        "items": [
+          {
+            "ticker": "MRNA",
+            "name": "Moderna, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/MRNA.png",
+            "chg": 5.27,
+            "price": 254.19,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "VST",
+            "name": "Vistra Corp.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VST.png",
+            "chg": 10.55,
+            "price": 124.8,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "BEN",
+            "name": "Franklin Templeton, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BEN.png",
+            "chg": 4.72,
+            "price": 33.73,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
+          }
+        ]
       }
     ]
   },
@@ -188,7 +227,7 @@
       "logo": "data/earnings/logos/KT.png"
     }
   ],
-  "more": 2,
+  "more": 8,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -208,7 +247,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 26,
+      "count": 31,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -235,7 +274,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 43,
+      "total": 41,
       "companies": [
         {
           "ticker": "CEG",
@@ -282,7 +321,7 @@
         {
           "ticker": "IX",
           "name": "ORIX Corporation Sponsored ADR",
-          "when": "before",
+          "when": "",
           "logo": "data/earnings/logos/IX.png"
         },
         {
@@ -304,10 +343,10 @@
           "logo": "data/earnings/logos/BAP.png"
         },
         {
-          "ticker": "CIB",
-          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
-          "when": "",
-          "logo": "data/earnings/logos/CIB.png"
+          "ticker": "NRG",
+          "name": "NRG Energy, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/NRG.png"
         }
       ]
     },
@@ -315,7 +354,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 14,
+      "total": 20,
       "companies": [
         {
           "ticker": "PBR",
@@ -477,7 +516,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 26,
+      "total": 31,
       "companies": [
         {
           "ticker": "CSCO",
@@ -596,6 +635,12 @@
     "KT": "2026-11-10",
     "SRRK": "2026-11-10",
     "COGT": "2026-11-10",
+    "ATAT": "2026-11-10",
+    "MRCY": "2026-11-10",
+    "ALH": "2026-11-10",
+    "LEGN": "2026-11-10",
+    "QBTS": "2026-11-10",
+    "RGTI": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -636,6 +681,11 @@
     "OCTV": "2026-11-12",
     "MWH": "2026-11-12",
     "FIGR": "2026-11-12",
+    "HTFL": "2026-11-12",
+    "DPC": "2026-11-12",
+    "GFF": "2026-11-12",
+    "XE": "2026-11-12",
+    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -647,6 +697,7 @@
     "KEP": "2026-11-16",
     "XPEV": "2026-11-16",
     "ACM": "2026-11-16",
+    "POWL": "2026-11-16",
     "NVDA": "2026-11-17",
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
@@ -659,10 +710,12 @@
     "QXO": "2026-11-17",
     "TME": "2026-11-17",
     "BLTE": "2026-11-17",
-    "DLB": "2026-11-17"
+    "DLB": "2026-11-17",
+    "SR": "2026-11-17",
+    "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 00:31",
+    "updatedAt": "10/11/2026 00:37",
     "source": "tradingview"
   }
 }
