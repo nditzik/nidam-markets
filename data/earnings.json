@@ -5,12 +5,12 @@
     {
       "ticker": "CEG",
       "name": "Constellation Energy Corporation",
-      "capB": 91.1
+      "capB": 92.2
     },
     {
       "ticker": "KKR",
       "name": "KKR & Co Inc",
-      "capB": 87.1
+      "capB": 87.8
     },
     {
       "ticker": "B",
@@ -20,22 +20,22 @@
     {
       "ticker": "OXY",
       "name": "Occidental Petroleum Corporation",
-      "capB": 55.9
+      "capB": 55.8
     },
     {
       "ticker": "FERG",
       "name": "Ferguson Enterprises Inc.",
-      "capB": 49.8
+      "capB": 50.1
     },
     {
       "ticker": "SKYD",
       "name": "Skydance Corporation Class B",
-      "capB": 41.7
+      "capB": 41.8
     },
     {
       "ticker": "TTWO",
       "name": "Take-Two Interactive Software, Inc.",
-      "capB": 40.4
+      "capB": 39.9
     },
     {
       "ticker": "IX",
@@ -115,6 +115,78 @@
             "price": 592.84,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-05",
+        "label": "5.11",
+        "items": [
+          {
+            "ticker": "COP",
+            "name": "ConocoPhillips",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/COP.png",
+            "chg": -1.08,
+            "price": 135.46,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "SONY",
+            "name": "Sony Group Corporation Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SONY.png",
+            "chg": 6.13,
+            "price": 27.54,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "PH",
+            "name": "Parker-Hannifin Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PH.png",
+            "chg": -1.97,
+            "price": 892.29,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "ABNB",
+            "name": "Airbnb, Inc. Class A",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/ABNB.png",
+            "chg": 11.67,
+            "price": 189.99,
+            "reactDate": "2026-11-06",
+            "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "SO",
+            "name": "Southern Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SO.png",
+            "chg": 0.24,
+            "price": 93.34,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
+          },
+          {
+            "ticker": "SOJD",
+            "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SOJD.png",
+            "chg": -1.2,
+            "price": 17.36,
+            "reactDate": "2026-11-05",
+            "baseDate": "2026-11-04"
           }
         ]
       }
@@ -602,8 +674,8 @@
     "ROIV": "2026-11-09",
     "BAP": "2026-11-09",
     "NRG": "2026-11-09",
-    "RBA": "2026-11-09",
     "KSPI": "2026-11-09",
+    "RBA": "2026-11-09",
     "CNH": "2026-11-09",
     "SGI": "2026-11-09",
     "EQX": "2026-11-09",
@@ -618,8 +690,8 @@
     "LINE": "2026-11-09",
     "TGTX": "2026-11-09",
     "TIMB": "2026-11-09",
-    "ZETA": "2026-11-09",
     "PRAX": "2026-11-09",
+    "ZETA": "2026-11-09",
     "SANM": "2026-11-09",
     "IMVT": "2026-11-09",
     "CWEN": "2026-11-09",
@@ -664,10 +736,10 @@
     "ELPC": "2026-11-12",
     "ANDG": "2026-11-12",
     "ARWR": "2026-11-12",
+    "KOD": "2026-11-12",
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "FPS": "2026-11-12",
-    "KOD": "2026-11-12",
     "NIQ": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
@@ -682,7 +754,7 @@
     "ACM": "2026-11-16"
   },
   "_meta": {
-    "updatedAt": "09/11/2026 17:01",
+    "updatedAt": "09/11/2026 17:16",
     "source": "tradingview"
   }
 }
