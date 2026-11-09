@@ -1,41 +1,41 @@
 {
   "today": "2026-11-09",
-  "todayCount": 40,
+  "todayCount": 37,
   "todayBig": [
     {
       "ticker": "CEG",
       "name": "Constellation Energy Corporation",
-      "capB": 97.1
+      "capB": 97.4
     },
     {
       "ticker": "KKR",
       "name": "KKR & Co Inc",
-      "capB": 88.3
+      "capB": 88.6
     },
     {
       "ticker": "B",
       "name": "Barrick Mining Corporation",
-      "capB": 69.5
+      "capB": 69.8
     },
     {
       "ticker": "OXY",
       "name": "Occidental Petroleum Corporation",
-      "capB": 55.9
+      "capB": 55.8
     },
     {
       "ticker": "FERG",
       "name": "Ferguson Enterprises Inc.",
-      "capB": 50.9
+      "capB": 51.1
     },
     {
       "ticker": "SKYD",
       "name": "Skydance Corporation Class B",
-      "capB": 42.6
+      "capB": 42.3
     },
     {
       "ticker": "TTWO",
       "name": "Take-Two Interactive Software, Inc.",
-      "capB": 39.7
+      "capB": 39.4
     },
     {
       "ticker": "IX",
@@ -117,78 +117,6 @@
             "baseDate": "2026-11-05"
           }
         ]
-      },
-      {
-        "date": "2026-11-05",
-        "label": "5.11",
-        "items": [
-          {
-            "ticker": "COP",
-            "name": "ConocoPhillips",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/COP.png",
-            "chg": -1.08,
-            "price": 135.46,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "SONY",
-            "name": "Sony Group Corporation Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SONY.png",
-            "chg": 6.13,
-            "price": 27.54,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "PH",
-            "name": "Parker-Hannifin Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/PH.png",
-            "chg": -1.97,
-            "price": 892.29,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "ABNB",
-            "name": "Airbnb, Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/ABNB.png",
-            "chg": 11.67,
-            "price": 189.99,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
-          },
-          {
-            "ticker": "SO",
-            "name": "Southern Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SO.png",
-            "chg": 0.24,
-            "price": 93.34,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          },
-          {
-            "ticker": "SOJD",
-            "name": "Southern Company 4.95 % Notes 2020-30.01.80 Global Series 2020A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SOJD.png",
-            "chg": -1.2,
-            "price": 17.36,
-            "reactDate": "2026-11-05",
-            "baseDate": "2026-11-04"
-          }
-        ]
       }
     ]
   },
@@ -238,7 +166,7 @@
     {
       "ticker": "IX",
       "name": "ORIX Corporation Sponsored ADR",
-      "when": "before",
+      "when": "",
       "logo": "data/earnings/logos/IX.png"
     },
     {
@@ -260,13 +188,13 @@
       "logo": "data/earnings/logos/BAP.png"
     },
     {
-      "ticker": "CIB",
-      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
-      "when": "",
-      "logo": "data/earnings/logos/CIB.png"
+      "ticker": "NRG",
+      "name": "NRG Energy, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/NRG.png"
     }
   ],
-  "more": 28,
+  "more": 25,
   "upcoming": [
     {
       "date": "2026-11-10",
@@ -327,7 +255,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 40,
+      "total": 37,
       "companies": [
         {
           "ticker": "CEG",
@@ -374,7 +302,7 @@
         {
           "ticker": "IX",
           "name": "ORIX Corporation Sponsored ADR",
-          "when": "before",
+          "when": "",
           "logo": "data/earnings/logos/IX.png"
         },
         {
@@ -396,10 +324,10 @@
           "logo": "data/earnings/logos/BAP.png"
         },
         {
-          "ticker": "CIB",
-          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
-          "when": "",
-          "logo": "data/earnings/logos/CIB.png"
+          "ticker": "NRG",
+          "name": "NRG Energy, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/NRG.png"
         }
       ]
     },
@@ -667,7 +595,6 @@
     "RKLB": "2026-11-09",
     "ROIV": "2026-11-09",
     "BAP": "2026-11-09",
-    "CIB": "2026-11-09",
     "NRG": "2026-11-09",
     "RBA": "2026-11-09",
     "KSPI": "2026-11-09",
@@ -683,13 +610,11 @@
     "AMG": "2026-11-09",
     "ONTO": "2026-11-09",
     "LINE": "2026-11-09",
+    "PRAX": "2026-11-09",
     "TGTX": "2026-11-09",
     "TIMB": "2026-11-09",
-    "PRAX": "2026-11-09",
     "ZETA": "2026-11-09",
     "SANM": "2026-11-09",
-    "IBRX": "2026-11-09",
-    "SLAB": "2026-11-09",
     "TTD": "2026-11-09",
     "CWEN": "2026-11-09",
     "IMVT": "2026-11-09",
@@ -734,9 +659,9 @@
     "ANDG": "2026-11-12",
     "ARWR": "2026-11-12",
     "FPS": "2026-11-12",
+    "M": "2026-11-12",
     "KOD": "2026-11-12",
     "CIG": "2026-11-12",
-    "M": "2026-11-12",
     "NIQ": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
@@ -751,7 +676,7 @@
     "ACM": "2026-11-16"
   },
   "_meta": {
-    "updatedAt": "09/11/2026 20:01",
+    "updatedAt": "09/11/2026 20:32",
     "source": "tradingview"
   }
 }
