@@ -5,17 +5,17 @@
     {
       "ticker": "CEG",
       "name": "Constellation Energy Corporation",
-      "capB": 97.4
+      "capB": 97.0
     },
     {
       "ticker": "KKR",
       "name": "KKR & Co Inc",
-      "capB": 88.6
+      "capB": 88.4
     },
     {
       "ticker": "B",
       "name": "Barrick Mining Corporation",
-      "capB": 69.8
+      "capB": 69.9
     },
     {
       "ticker": "OXY",
@@ -30,12 +30,12 @@
     {
       "ticker": "SKYD",
       "name": "Skydance Corporation Class B",
-      "capB": 42.3
+      "capB": 42.8
     },
     {
       "ticker": "TTWO",
       "name": "Take-Two Interactive Software, Inc.",
-      "capB": 39.4
+      "capB": 39.2
     },
     {
       "ticker": "IX",
@@ -214,7 +214,7 @@
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 9,
+      "count": 10,
       "tickers": [
         "FNV",
         "VYLR",
@@ -417,7 +417,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 9,
+      "total": 10,
       "companies": [
         {
           "ticker": "FNV",
@@ -472,6 +472,12 @@
           "name": "OR Royalties Inc.",
           "when": "after",
           "logo": "data/earnings/logos/OR.png"
+        },
+        {
+          "ticker": "ICL",
+          "name": "ICL Group Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/ICL.png"
         }
       ]
     },
@@ -610,13 +616,13 @@
     "AMG": "2026-11-09",
     "ONTO": "2026-11-09",
     "LINE": "2026-11-09",
-    "PRAX": "2026-11-09",
     "TGTX": "2026-11-09",
+    "PRAX": "2026-11-09",
     "TIMB": "2026-11-09",
     "ZETA": "2026-11-09",
     "SANM": "2026-11-09",
-    "TTD": "2026-11-09",
     "CWEN": "2026-11-09",
+    "TTD": "2026-11-09",
     "IMVT": "2026-11-09",
     "QLYS": "2026-11-09",
     "HRB": "2026-11-09",
@@ -643,6 +649,7 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
+    "ICL": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -676,7 +683,7 @@
     "ACM": "2026-11-16"
   },
   "_meta": {
-    "updatedAt": "09/11/2026 20:32",
+    "updatedAt": "09/11/2026 20:46",
     "source": "tradingview"
   }
 }
