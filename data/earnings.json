@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 14,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -16,6 +16,11 @@
       "ticker": "SE",
       "name": "Sea Limited Sponsored ADR Class A",
       "capB": 47.2
+    },
+    {
+      "ticker": "HMC",
+      "name": "Honda Motor Co., Ltd. Sponsored ADR",
+      "capB": 46.4
     },
     {
       "ticker": "ALC",
@@ -36,11 +41,6 @@
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
       "capB": 29.5
-    },
-    {
-      "ticker": "CRWV",
-      "name": "CoreWeave, Inc. Class A",
-      "capB": 27.0
     }
   ],
   "reactions": {
@@ -73,6 +73,17 @@
             "baseDate": "2026-11-06"
           },
           {
+            "ticker": "B",
+            "name": "Barrick Mining Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/B.png",
+            "chg": 4.22,
+            "price": 42.27,
+            "reactDate": "2026-11-09",
+            "baseDate": "2026-11-06"
+          },
+          {
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
@@ -91,18 +102,10 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "TTWO",
-            "name": "Take-Two Interactive Software, Inc.",
+            "ticker": "SKYD",
+            "name": "Skydance Corporation Class B",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TTWO.png"
-          },
-          {
-            "ticker": "RKLB",
-            "name": "Rocket Lab Corporation",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/RKLB.png"
+            "status": "pending"
           }
         ]
       }
@@ -126,6 +129,12 @@
       "name": "Sea Limited Sponsored ADR Class A",
       "when": "before",
       "logo": "data/earnings/logos/SE.png"
+    },
+    {
+      "ticker": "HMC",
+      "name": "Honda Motor Co., Ltd. Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/HMC.png"
     },
     {
       "ticker": "ALC",
@@ -159,6 +168,12 @@
       "logo": "data/earnings/logos/CRWV.png"
     },
     {
+      "ticker": "CIB",
+      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+      "when": "",
+      "logo": "data/earnings/logos/CIB.png"
+    },
+    {
       "ticker": "VIV",
       "name": "Telefonica Brasil SA Sponsored ADR",
       "when": "after",
@@ -169,42 +184,29 @@
       "name": "Embraer S.A. Sponsored ADR",
       "when": "before",
       "logo": "data/earnings/logos/EMBJ.png"
-    },
-    {
-      "ticker": "ONON",
-      "name": "On Holding AG Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/ONON.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "FRHC",
-      "name": "Freedom Holding Corp.",
-      "when": "",
-      "logo": "data/earnings/logos/FRHC.png"
     }
   ],
-  "more": 2,
+  "more": 8,
   "upcoming": [
     {
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 11,
+      "count": 10,
       "tickers": [
         "FNV",
         "VYLR",
-        "HMC",
         "GIB",
         "TTEK",
-        "CAE"
+        "CAE",
+        "CTVA"
       ]
     },
     {
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 22,
+      "count": 20,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -231,7 +233,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 21,
+      "total": 36,
       "companies": [
         {
           "ticker": "CEG",
@@ -245,6 +247,12 @@
           "name": "KKR & Co Inc",
           "when": "before",
           "logo": "data/earnings/logos/KKR.png"
+        },
+        {
+          "ticker": "B",
+          "name": "Barrick Mining Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/B.png"
         },
         {
           "ticker": "OXY",
@@ -261,7 +269,7 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": ""
+          "when": "after"
         },
         {
           "ticker": "TTWO",
@@ -270,40 +278,34 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
+          "ticker": "IX",
+          "name": "ORIX Corporation Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/IX.png"
+        },
+        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
         },
         {
+          "ticker": "ROIV",
+          "name": "Roivant Sciences Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/ROIV.png"
+        },
+        {
+          "ticker": "BAP",
+          "name": "Credicorp Ltd.",
+          "when": "after",
+          "logo": "data/earnings/logos/BAP.png"
+        },
+        {
           "ticker": "NRG",
           "name": "NRG Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NRG.png"
-        },
-        {
-          "ticker": "RBA",
-          "name": "RB Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/RBA.png"
-        },
-        {
-          "ticker": "ASTS",
-          "name": "AST SpaceMobile, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/ASTS.png"
-        },
-        {
-          "ticker": "QXO",
-          "name": "QXO, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/QXO.png"
-        },
-        {
-          "ticker": "JBS",
-          "name": "JBS N.V. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/JBS.png"
         }
       ]
     },
@@ -311,7 +313,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 14,
+      "total": 20,
       "companies": [
         {
           "ticker": "PBR",
@@ -330,6 +332,12 @@
           "name": "Sea Limited Sponsored ADR Class A",
           "when": "before",
           "logo": "data/earnings/logos/SE.png"
+        },
+        {
+          "ticker": "HMC",
+          "name": "Honda Motor Co., Ltd. Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/HMC.png"
         },
         {
           "ticker": "ALC",
@@ -363,6 +371,12 @@
           "logo": "data/earnings/logos/CRWV.png"
         },
         {
+          "ticker": "CIB",
+          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+          "when": "",
+          "logo": "data/earnings/logos/CIB.png"
+        },
+        {
           "ticker": "VIV",
           "name": "Telefonica Brasil SA Sponsored ADR",
           "when": "after",
@@ -373,19 +387,6 @@
           "name": "Embraer S.A. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/EMBJ.png"
-        },
-        {
-          "ticker": "ONON",
-          "name": "On Holding AG Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/ONON.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
         }
       ]
     },
@@ -393,7 +394,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 11,
+      "total": 10,
       "companies": [
         {
           "ticker": "FNV",
@@ -405,12 +406,6 @@
           "ticker": "VYLR",
           "name": "Vylor Inc",
           "when": "after"
-        },
-        {
-          "ticker": "HMC",
-          "name": "Honda Motor Co., Ltd. Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/HMC.png"
         },
         {
           "ticker": "GIB",
@@ -467,7 +462,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 22,
+      "total": 20,
       "companies": [
         {
           "ticker": "CSCO",
@@ -575,20 +570,25 @@
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
+    "HMC": "2026-11-10",
     "ALC": "2026-11-10",
     "VOD": "2026-11-10",
     "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
+    "CIB": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
     "FRHC": "2026-11-10",
+    "MOG.A": "2026-11-10",
+    "MOG.B": "2026-11-10",
+    "DDS": "2026-11-10",
     "KT": "2026-11-10",
+    "SLAB": "2026-11-10",
     "SRRK": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
-    "HMC": "2026-11-11",
     "GIB": "2026-11-11",
     "TTEK": "2026-11-11",
     "CAE": "2026-11-11",
@@ -617,8 +617,6 @@
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "NIQ": "2026-11-12",
-    "MBGL": "2026-11-12",
-    "OCTV": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -644,7 +642,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 14:16",
+    "updatedAt": "10/11/2026 14:31",
     "source": "tradingview"
   }
 }
