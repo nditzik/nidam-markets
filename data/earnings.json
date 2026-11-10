@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 13,
+  "todayCount": 18,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -18,6 +18,11 @@
       "capB": 47.2
     },
     {
+      "ticker": "HMC",
+      "name": "Honda Motor Co., Ltd. Sponsored ADR",
+      "capB": 46.4
+    },
+    {
       "ticker": "ALC",
       "name": "Alcon AG",
       "capB": 37.5
@@ -26,11 +31,6 @@
       "ticker": "VOD",
       "name": "Vodafone Group Public Limited Company Sponsored ADR",
       "capB": 36.4
-    },
-    {
-      "ticker": "EC",
-      "name": "Ecopetrol SA Sponsored ADR",
-      "capB": 32.3
     },
     {
       "ticker": "VG",
@@ -102,11 +102,10 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "TTWO",
-            "name": "Take-Two Interactive Software, Inc.",
+            "ticker": "SKYD",
+            "name": "Skydance Corporation Class B",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TTWO.png"
+            "status": "pending"
           }
         ]
       }
@@ -132,6 +131,12 @@
       "logo": "data/earnings/logos/SE.png"
     },
     {
+      "ticker": "HMC",
+      "name": "Honda Motor Co., Ltd. Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/HMC.png"
+    },
+    {
       "ticker": "ALC",
       "name": "Alcon AG",
       "when": "after",
@@ -145,12 +150,6 @@
       "logo": "data/earnings/logos/VOD.png"
     },
     {
-      "ticker": "EC",
-      "name": "Ecopetrol SA Sponsored ADR",
-      "when": "after",
-      "logo": "data/earnings/logos/EC.png"
-    },
-    {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
       "when": "before",
@@ -161,6 +160,12 @@
       "name": "CoreWeave, Inc. Class A",
       "when": "after",
       "logo": "data/earnings/logos/CRWV.png"
+    },
+    {
+      "ticker": "CIB",
+      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+      "when": "",
+      "logo": "data/earnings/logos/CIB.png"
     },
     {
       "ticker": "VIV",
@@ -180,28 +185,22 @@
       "when": "before",
       "logo": "data/earnings/logos/ONON.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "KT",
-      "name": "KT Corporation Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/KT.png"
     }
   ],
-  "more": 1,
+  "more": 6,
   "upcoming": [
     {
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 11,
+      "count": 10,
       "tickers": [
         "FNV",
         "VYLR",
-        "HMC",
         "GIB",
         "TTEK",
-        "CAE"
+        "CAE",
+        "CTVA"
       ]
     },
     {
@@ -215,7 +214,7 @@
         "BN",
         "NU",
         "NBIS",
-        "WSM"
+        "EC"
       ]
     },
     {
@@ -235,7 +234,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 31,
+      "total": 36,
       "companies": [
         {
           "ticker": "CEG",
@@ -271,7 +270,7 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": ""
+          "when": "after"
         },
         {
           "ticker": "TTWO",
@@ -298,16 +297,16 @@
           "logo": "data/earnings/logos/ROIV.png"
         },
         {
+          "ticker": "BAP",
+          "name": "Credicorp Ltd.",
+          "when": "after",
+          "logo": "data/earnings/logos/BAP.png"
+        },
+        {
           "ticker": "NRG",
           "name": "NRG Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NRG.png"
-        },
-        {
-          "ticker": "RBA",
-          "name": "RB Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/RBA.png"
         }
       ]
     },
@@ -315,7 +314,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 13,
+      "total": 18,
       "companies": [
         {
           "ticker": "PBR",
@@ -336,6 +335,12 @@
           "logo": "data/earnings/logos/SE.png"
         },
         {
+          "ticker": "HMC",
+          "name": "Honda Motor Co., Ltd. Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/HMC.png"
+        },
+        {
           "ticker": "ALC",
           "name": "Alcon AG",
           "when": "after",
@@ -349,12 +354,6 @@
           "logo": "data/earnings/logos/VOD.png"
         },
         {
-          "ticker": "EC",
-          "name": "Ecopetrol SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/EC.png"
-        },
-        {
           "ticker": "VG",
           "name": "Venture Global, Inc. Class A",
           "when": "before",
@@ -365,6 +364,12 @@
           "name": "CoreWeave, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/CRWV.png"
+        },
+        {
+          "ticker": "CIB",
+          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+          "when": "",
+          "logo": "data/earnings/logos/CIB.png"
         },
         {
           "ticker": "VIV",
@@ -384,12 +389,6 @@
           "when": "before",
           "logo": "data/earnings/logos/ONON.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "KT",
-          "name": "KT Corporation Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/KT.png"
         }
       ]
     },
@@ -397,7 +396,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 11,
+      "total": 10,
       "companies": [
         {
           "ticker": "FNV",
@@ -409,12 +408,6 @@
           "ticker": "VYLR",
           "name": "Vylor Inc",
           "when": "after"
-        },
-        {
-          "ticker": "HMC",
-          "name": "Honda Motor Co., Ltd. Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/HMC.png"
         },
         {
           "ticker": "GIB",
@@ -504,6 +497,12 @@
           "logo": "data/earnings/logos/NBIS.png"
         },
         {
+          "ticker": "EC",
+          "name": "Ecopetrol SA Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/EC.png"
+        },
+        {
           "ticker": "WSM",
           "name": "Williams-Sonoma, Inc.",
           "when": "",
@@ -539,12 +538,6 @@
           "name": "Twist Bioscience Corp.",
           "when": "before",
           "logo": "data/earnings/logos/TWST.png"
-        },
-        {
-          "ticker": "STN",
-          "name": "Stantec Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/STN.png"
         }
       ]
     },
@@ -579,19 +572,23 @@
     "PBR": "2026-11-10",
     "TDG": "2026-11-10",
     "SE": "2026-11-10",
+    "HMC": "2026-11-10",
     "ALC": "2026-11-10",
     "VOD": "2026-11-10",
-    "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
+    "CIB": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
+    "MOG.A": "2026-11-10",
+    "MOG.B": "2026-11-10",
+    "DDS": "2026-11-10",
     "KT": "2026-11-10",
+    "SLAB": "2026-11-10",
     "SRRK": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
-    "HMC": "2026-11-11",
     "GIB": "2026-11-11",
     "TTEK": "2026-11-11",
     "CAE": "2026-11-11",
@@ -605,6 +602,7 @@
     "BN": "2026-11-12",
     "NU": "2026-11-12",
     "NBIS": "2026-11-12",
+    "EC": "2026-11-12",
     "WSM": "2026-11-12",
     "BSP": "2026-11-12",
     "CBRS": "2026-11-12",
@@ -620,7 +618,6 @@
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "NIQ": "2026-11-12",
-    "MBGL": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -647,7 +644,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 15:01",
+    "updatedAt": "10/11/2026 15:16",
     "source": "tradingview"
   }
 }
