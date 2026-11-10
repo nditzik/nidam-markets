@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 19,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -33,14 +33,14 @@
       "capB": 36.4
     },
     {
+      "ticker": "EC",
+      "name": "Ecopetrol SA Sponsored ADR",
+      "capB": 32.3
+    },
+    {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
       "capB": 29.5
-    },
-    {
-      "ticker": "CRWV",
-      "name": "CoreWeave, Inc. Class A",
-      "capB": 27.0
     }
   ],
   "reactions": {
@@ -150,6 +150,12 @@
       "logo": "data/earnings/logos/VOD.png"
     },
     {
+      "ticker": "EC",
+      "name": "Ecopetrol SA Sponsored ADR",
+      "when": "after",
+      "logo": "data/earnings/logos/EC.png"
+    },
+    {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
       "when": "before",
@@ -178,16 +184,9 @@
       "name": "Embraer S.A. Sponsored ADR",
       "when": "before",
       "logo": "data/earnings/logos/EMBJ.png"
-    },
-    {
-      "ticker": "ONON",
-      "name": "On Holding AG Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/ONON.png",
-      "logoBg": "dark"
     }
   ],
-  "more": 7,
+  "more": 8,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -207,14 +206,14 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 21,
+      "count": 20,
       "tickers": [
         "CSCO",
         "AMAT",
         "BN",
         "NU",
         "NBIS",
-        "EC"
+        "WSM"
       ]
     },
     {
@@ -314,7 +313,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 19,
+      "total": 20,
       "companies": [
         {
           "ticker": "PBR",
@@ -354,6 +353,12 @@
           "logo": "data/earnings/logos/VOD.png"
         },
         {
+          "ticker": "EC",
+          "name": "Ecopetrol SA Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/EC.png"
+        },
+        {
           "ticker": "VG",
           "name": "Venture Global, Inc. Class A",
           "when": "before",
@@ -382,13 +387,6 @@
           "name": "Embraer S.A. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/EMBJ.png"
-        },
-        {
-          "ticker": "ONON",
-          "name": "On Holding AG Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/ONON.png",
-          "logoBg": "dark"
         }
       ]
     },
@@ -464,7 +462,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 21,
+      "total": 20,
       "companies": [
         {
           "ticker": "CSCO",
@@ -495,12 +493,6 @@
           "name": "Nebius Group N.V. Class A",
           "when": "before",
           "logo": "data/earnings/logos/NBIS.png"
-        },
-        {
-          "ticker": "EC",
-          "name": "Ecopetrol SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/EC.png"
         },
         {
           "ticker": "WSM",
@@ -538,6 +530,12 @@
           "name": "Twist Bioscience Corp.",
           "when": "before",
           "logo": "data/earnings/logos/TWST.png"
+        },
+        {
+          "ticker": "STN",
+          "name": "Stantec Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/STN.png"
         }
       ]
     },
@@ -575,6 +573,7 @@
     "HMC": "2026-11-10",
     "ALC": "2026-11-10",
     "VOD": "2026-11-10",
+    "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
     "CIB": "2026-11-10",
@@ -603,7 +602,6 @@
     "BN": "2026-11-12",
     "NU": "2026-11-12",
     "NBIS": "2026-11-12",
-    "EC": "2026-11-12",
     "WSM": "2026-11-12",
     "CBRS": "2026-11-12",
     "ASND": "2026-11-12",
@@ -643,7 +641,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 16:02",
+    "updatedAt": "10/11/2026 16:16",
     "source": "tradingview"
   }
 }
