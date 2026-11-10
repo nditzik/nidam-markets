@@ -1,16 +1,22 @@
 {
-  "generatedAt": "10/11/2026 05:31",
+  "generatedAt": "10/11/2026 05:51",
   "today": [
     {
       "label": "מדדים",
       "tab": "indices",
-      "time": "05:30",
+      "time": "05:45",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "05:30",
+      "time": "05:45",
+      "arrived": true
+    },
+    {
+      "label": "מועמדים",
+      "tab": "candidates",
+      "time": "05:45",
       "arrived": true
     },
     {
@@ -36,28 +42,22 @@
       "tab": "morning",
       "time": "14:57",
       "arrived": false
-    },
-    {
-      "label": "מועמדים",
-      "tab": "candidates",
-      "time": "05:45",
-      "arrived": false
     }
   ],
   "sources": [
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "10/11/2026 05:30",
-      "ageHours": 0.0,
+      "updatedAt": "10/11/2026 05:45",
+      "ageHours": 0.1,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "10/11/2026 05:30",
-      "ageHours": 0.0,
+      "updatedAt": "10/11/2026 05:45",
+      "ageHours": 0.1,
       "status": "ok",
       "detail": ""
     },
@@ -73,7 +73,7 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "09/11/2026 14:57",
-      "ageHours": 14.6,
+      "ageHours": 14.9,
       "status": "ok",
       "detail": ""
     },
@@ -81,16 +81,16 @@
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "09/11/2026 15:11",
-      "ageHours": 14.3,
+      "ageHours": 14.7,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "מועמדים",
-      "updatedAt": "07/11/2026 05:45",
-      "ageHours": 71.8,
-      "status": "stale",
+      "updatedAt": "10/11/2026 05:45",
+      "ageHours": 0.1,
+      "status": "ok",
       "detail": ""
     }
   ]
