@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 19,
+  "todayCount": 18,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -73,17 +73,6 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "B",
-            "name": "Barrick Mining Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/B.png",
-            "chg": 4.22,
-            "price": 42.27,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
-          },
-          {
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
@@ -102,10 +91,18 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "SKYD",
-            "name": "Skydance Corporation Class B",
+            "ticker": "TTWO",
+            "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
-            "status": "pending"
+            "status": "pending",
+            "logo": "data/earnings/logos/TTWO.png"
+          },
+          {
+            "ticker": "RKLB",
+            "name": "Rocket Lab Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/RKLB.png"
           }
         ]
       }
@@ -162,12 +159,6 @@
       "logo": "data/earnings/logos/CRWV.png"
     },
     {
-      "ticker": "CIB",
-      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
-      "when": "",
-      "logo": "data/earnings/logos/CIB.png"
-    },
-    {
       "ticker": "VIV",
       "name": "Telefonica Brasil SA Sponsored ADR",
       "when": "after",
@@ -185,22 +176,28 @@
       "when": "before",
       "logo": "data/earnings/logos/ONON.png",
       "logoBg": "dark"
+    },
+    {
+      "ticker": "FRHC",
+      "name": "Freedom Holding Corp.",
+      "when": "",
+      "logo": "data/earnings/logos/FRHC.png"
     }
   ],
-  "more": 7,
+  "more": 6,
   "upcoming": [
     {
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 10,
+      "count": 12,
       "tickers": [
         "FNV",
         "VYLR",
         "HMC",
         "GIB",
-        "TTEK",
-        "CAE"
+        "ASND",
+        "TTEK"
       ]
     },
     {
@@ -234,7 +231,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 36,
+      "total": 21,
       "companies": [
         {
           "ticker": "CEG",
@@ -248,12 +245,6 @@
           "name": "KKR & Co Inc",
           "when": "before",
           "logo": "data/earnings/logos/KKR.png"
-        },
-        {
-          "ticker": "B",
-          "name": "Barrick Mining Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/B.png"
         },
         {
           "ticker": "OXY",
@@ -270,7 +261,7 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": "after"
+          "when": ""
         },
         {
           "ticker": "TTWO",
@@ -279,34 +270,40 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
-          "ticker": "IX",
-          "name": "ORIX Corporation Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/IX.png"
-        },
-        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
         },
         {
-          "ticker": "ROIV",
-          "name": "Roivant Sciences Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/ROIV.png"
-        },
-        {
-          "ticker": "BAP",
-          "name": "Credicorp Ltd.",
-          "when": "after",
-          "logo": "data/earnings/logos/BAP.png"
-        },
-        {
           "ticker": "NRG",
           "name": "NRG Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NRG.png"
+        },
+        {
+          "ticker": "RBA",
+          "name": "RB Global, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/RBA.png"
+        },
+        {
+          "ticker": "ASTS",
+          "name": "AST SpaceMobile, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ASTS.png"
+        },
+        {
+          "ticker": "QXO",
+          "name": "QXO, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/QXO.png"
+        },
+        {
+          "ticker": "JBS",
+          "name": "JBS N.V. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/JBS.png"
         }
       ]
     },
@@ -314,7 +311,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 19,
+      "total": 18,
       "companies": [
         {
           "ticker": "PBR",
@@ -366,12 +363,6 @@
           "logo": "data/earnings/logos/CRWV.png"
         },
         {
-          "ticker": "CIB",
-          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
-          "when": "",
-          "logo": "data/earnings/logos/CIB.png"
-        },
-        {
           "ticker": "VIV",
           "name": "Telefonica Brasil SA Sponsored ADR",
           "when": "after",
@@ -389,6 +380,12 @@
           "when": "before",
           "logo": "data/earnings/logos/ONON.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "",
+          "logo": "data/earnings/logos/FRHC.png"
         }
       ]
     },
@@ -396,7 +393,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 10,
+      "total": 12,
       "companies": [
         {
           "ticker": "FNV",
@@ -420,6 +417,12 @@
           "name": "CGI Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/GIB.png"
+        },
+        {
+          "ticker": "ASND",
+          "name": "Ascendis Pharma A/S",
+          "when": "",
+          "logo": "data/earnings/logos/ASND.png"
         },
         {
           "ticker": "TTEK",
@@ -457,6 +460,12 @@
           "name": "ICL Group Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/ICL.png"
+        },
+        {
+          "ticker": "UGP",
+          "name": "Ultrapar Participacoes S.A. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/UGP.png"
         }
       ]
     },
@@ -516,12 +525,6 @@
           "logo": "data/earnings/logos/CBRS.png"
         },
         {
-          "ticker": "ASND",
-          "name": "Ascendis Pharma A/S",
-          "when": "before",
-          "logo": "data/earnings/logos/ASND.png"
-        },
-        {
           "ticker": "HBM",
           "name": "Hudbay Minerals Inc",
           "when": "before",
@@ -538,6 +541,12 @@
           "name": "Stantec Inc",
           "when": "after",
           "logo": "data/earnings/logos/STN.png"
+        },
+        {
+          "ticker": "ELPC",
+          "name": "Companhia Paranaense de Energia Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/ELPC.png"
         }
       ]
     },
@@ -577,7 +586,6 @@
     "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
-    "CIB": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
@@ -586,18 +594,20 @@
     "MOG.B": "2026-11-10",
     "DDS": "2026-11-10",
     "KT": "2026-11-10",
-    "SLAB": "2026-11-10",
     "SRRK": "2026-11-10",
+    "COGT": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
     "GIB": "2026-11-11",
+    "ASND": "2026-11-11",
     "TTEK": "2026-11-11",
     "CAE": "2026-11-11",
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
     "ICL": "2026-11-11",
+    "UGP": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -606,7 +616,6 @@
     "WSM": "2026-11-12",
     "BSP": "2026-11-12",
     "CBRS": "2026-11-12",
-    "ASND": "2026-11-12",
     "HBM": "2026-11-12",
     "TWST": "2026-11-12",
     "STN": "2026-11-12",
@@ -618,6 +627,7 @@
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "NIQ": "2026-11-12",
+    "MBGL": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -643,7 +653,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 13:16",
+    "updatedAt": "10/11/2026 13:31",
     "source": "tradingview"
   }
 }
