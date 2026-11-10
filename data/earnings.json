@@ -5,7 +5,7 @@
     {
       "ticker": "PBR",
       "name": "Petroleo Brasileiro SA Sponsored ADR",
-      "capB": 112.7
+      "capB": 112.2
     },
     {
       "ticker": "TDG",
@@ -15,7 +15,7 @@
     {
       "ticker": "SE",
       "name": "Sea Limited Sponsored ADR Class A",
-      "capB": 45.9
+      "capB": 47.2
     },
     {
       "ticker": "ALC",
@@ -25,12 +25,12 @@
     {
       "ticker": "VOD",
       "name": "Vodafone Group Public Limited Company Sponsored ADR",
-      "capB": 36.0
+      "capB": 36.4
     },
     {
       "ticker": "EC",
       "name": "Ecopetrol SA Sponsored ADR",
-      "capB": 32.9
+      "capB": 32.3
     },
     {
       "ticker": "VG",
@@ -193,21 +193,21 @@
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 10,
+      "count": 9,
       "tickers": [
         "FNV",
         "VYLR",
         "HMC",
         "GIB",
-        "ASND",
-        "TTEK"
+        "TTEK",
+        "CAE"
       ]
     },
     {
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 19,
+      "count": 20,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -396,7 +396,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 10,
+      "total": 9,
       "companies": [
         {
           "ticker": "FNV",
@@ -420,12 +420,6 @@
           "name": "CGI Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/GIB.png"
-        },
-        {
-          "ticker": "ASND",
-          "name": "Ascendis Pharma A/S",
-          "when": "",
-          "logo": "data/earnings/logos/ASND.png"
         },
         {
           "ticker": "TTEK",
@@ -464,7 +458,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 19,
+      "total": 20,
       "companies": [
         {
           "ticker": "CSCO",
@@ -516,6 +510,12 @@
           "logo": "data/earnings/logos/CBRS.png"
         },
         {
+          "ticker": "ASND",
+          "name": "Ascendis Pharma A/S",
+          "when": "before",
+          "logo": "data/earnings/logos/ASND.png"
+        },
+        {
           "ticker": "HBM",
           "name": "Hudbay Minerals Inc",
           "when": "before",
@@ -532,12 +532,6 @@
           "name": "Stantec Inc",
           "when": "after",
           "logo": "data/earnings/logos/STN.png"
-        },
-        {
-          "ticker": "ELPC",
-          "name": "Companhia Paranaense de Energia Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/ELPC.png"
         }
       ]
     },
@@ -592,7 +586,6 @@
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
     "GIB": "2026-11-11",
-    "ASND": "2026-11-11",
     "TTEK": "2026-11-11",
     "CAE": "2026-11-11",
     "CTVA": "2026-11-11",
@@ -606,6 +599,7 @@
     "WSM": "2026-11-12",
     "BSP": "2026-11-12",
     "CBRS": "2026-11-12",
+    "ASND": "2026-11-12",
     "HBM": "2026-11-12",
     "TWST": "2026-11-12",
     "STN": "2026-11-12",
@@ -639,10 +633,11 @@
     "ZTO": "2026-11-17",
     "QXO": "2026-11-17",
     "TME": "2026-11-17",
-    "BLTE": "2026-11-17"
+    "BLTE": "2026-11-17",
+    "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 11:31",
+    "updatedAt": "10/11/2026 11:46",
     "source": "tradingview"
   }
 }
