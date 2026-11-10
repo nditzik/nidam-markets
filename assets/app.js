@@ -150,7 +150,20 @@
     var byKey = {};
     TICKD.items.forEach(function (it) { byKey[it.key] = it; });
     var ses = jsSession();
-    reqs.forEach(function (r) {
+    // np193 (10.11.2026): הסורק של TradingView היה קפוא על סגירת אתמול במניות ובתעודות סל (SPY ‎+2.37%‎ כשהיה ‎−0.3%‎).
+    // SPY/QQQ/IWM/VIX/DXY קודם מ-Yahoo דרך ה-Worker (/quotes, מטמון דקה); הסורק רק כשה-Worker לא עונה.
+    var YQK = { SPY: "spy", QQQ: "qqq", IWM: "iwm", "^VIX": "vix", "DX-Y.NYB": "dxy" };
+    var amer = reqs.shift();
+    yqLive(Object.keys(YQK)).then(function (q) {
+      Object.keys(YQK).forEach(function (s) {
+        var it = byKey[YQK[s]], v = yqPick(q[s], ses);
+        if (!it || !v) return;
+        it.price = v[0]; if (v[1] != null) it.chg = Math.round(v[1] * 100) / 100;
+      });
+      renderMarketTicker(document.getElementById("ticker"), TICKD);
+    }).catch(function () { scanTicker([amer]); });
+    scanTicker(reqs);
+    function scanTicker(list) { list.forEach(function (r) {
       fetch(r[0], { method: "POST", body: JSON.stringify(r[1]) })
         .then(function (x) { return x.json(); })
         .then(function (d) {
@@ -169,7 +182,23 @@
           renderMarketTicker(document.getElementById("ticker"), TICKD);
         })
         .catch(function () {});
-    });
+    }); }
+  }
+  // np193: מחירים חיים מ-Yahoo דרך ה-Worker של איציק (docs/cloudflare/bars-worker.js, GET /quotes)
+  function yqLive(syms) {
+    var base = window.__barsProxy || "";
+    if (!base) return Promise.reject(new Error("no proxy"));
+    var ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var to = ctl ? setTimeout(function () { ctl.abort(); }, 6000) : null;
+    return fetch(base.replace(/\/$/, "") + "/quotes?s=" + syms.map(encodeURIComponent).join(","), ctl ? { signal: ctl.signal } : {})
+      .then(function (r) { if (to) clearTimeout(to); if (!r.ok) throw new Error("quotes " + r.status); return r.json(); })
+      .then(function (d) { if (!d || !d.quotes || !Object.keys(d.quotes).length) throw new Error("empty"); return d.quotes; });
+  }
+  // לפני הפתיחה/אחרי הסגירה — מחיר הפרה/אפטר אם יש (כמו בסורק); אחרת המסחר הרציף האחרון
+  function yqPick(q, ses) {
+    if (!q || q.price == null) return null;
+    if ((ses === "pre" || ses === "post") && q.extChg != null) return [q.ext, q.extChg];
+    return [q.price, q.chg];
   }
 
   /* מפת חום סקטוריאלית חיה — 11 תעודות סקטור SPDR, ברייל מתחת למד (עדכון כל דקה) */
@@ -181,6 +210,16 @@
   var HEAT = {};
   function refreshHeat() {
     if (!document.getElementById("np-heat")) return;
+    var ses = jsSession();
+    // np193: קודם Yahoo דרך ה-Worker; הסורק של TradingView רק כשה-Worker לא עונה
+    var etfs = SECTOR_ETFS.map(function (s) { return s[0]; }).concat(["SPY"]);
+    yqLive(etfs).then(function (q) {
+      etfs.forEach(function (s) { var v = yqPick(q[s], ses); if (v && v[1] != null) HEAT[s] = Math.round(v[1] * 100) / 100; });
+      renderHeat();
+      if (typeof renderRotationWheel === "function" && document.getElementById("rw-svg")) renderRotationWheel();
+    }).catch(heatScan);
+  }
+  function heatScan() {
     var ses = jsSession();
     fetch("https://scanner.tradingview.com/america/scan", {
       method: "POST",
@@ -702,7 +741,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np192";
+  var TA_VER = "np193";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
