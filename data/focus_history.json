@@ -1,66 +1,6 @@
 {
  "entries": [
   {
-   "date": "2026-08-13",
-   "symbols": [
-    {
-     "sym": "TFX",
-     "ref": 137.37
-    },
-    {
-     "sym": "INVH",
-     "ref": 30.3
-    },
-    {
-     "sym": "HWM",
-     "ref": 282.82
-    },
-    {
-     "sym": "CARS",
-     "ref": 12.55
-    },
-    {
-     "sym": "KNTK",
-     "ref": 51.66
-    },
-    {
-     "sym": "APD",
-     "ref": 305.52
-    }
-   ],
-   "result": {
-    "date_next": "2026-08-14",
-    "per": [
-     {
-      "sym": "TFX",
-      "pct": -0.15
-     },
-     {
-      "sym": "INVH",
-      "pct": -0.03
-     },
-     {
-      "sym": "HWM",
-      "pct": 2.25
-     },
-     {
-      "sym": "CARS",
-      "pct": -1.35
-     },
-     {
-      "sym": "KNTK",
-      "pct": 3.45
-     },
-     {
-      "sym": "APD",
-      "pct": 1.13
-     }
-    ],
-    "avg": 0.88,
-    "spx": -0.17
-   }
-  },
-  {
    "date": "2026-08-14",
    "symbols": [
     {
@@ -3079,11 +3019,55 @@
      "sym": "DHR",
      "ref": 230.25
     }
+   ],
+   "result": {
+    "date_next": "2026-11-09",
+    "per": [
+     {
+      "sym": "VRSN",
+      "pct": -0.92
+     },
+     {
+      "sym": "RVTY",
+      "pct": 3.62
+     },
+     {
+      "sym": "ELF",
+      "pct": 2.76
+     },
+     {
+      "sym": "DHR",
+      "pct": 2.12
+     }
+    ],
+    "avg": 1.89,
+    "spx": 2.35
+   }
+  },
+  {
+   "date": "2026-11-09",
+   "symbols": [
+    {
+     "sym": "VRSN",
+     "ref": 305.84
+    },
+    {
+     "sym": "RVTY",
+     "ref": 160.72
+    },
+    {
+     "sym": "ELF",
+     "ref": 119.35
+    },
+    {
+     "sym": "DHR",
+     "ref": 235.12
+    }
    ]
   }
  ],
  "_meta": {
-  "updatedAt": "07/11/2026 05:48",
+  "updatedAt": "10/11/2026 05:31",
   "source": "focus archive"
  }
 }

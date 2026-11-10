@@ -42,7 +42,7 @@
   {
    "mon": "2026-10-26",
    "label": "26.10",
-   "n": 171,
+   "n": 172,
    "tickers": [
     "MSFT",
     "GOOGL",
@@ -55,7 +55,7 @@
   {
    "mon": "2026-11-02",
    "label": "2.11",
-   "n": 139,
+   "n": 140,
    "tickers": [
     "AAPL",
     "AMD",
@@ -176,25 +176,30 @@
    ]
   }
  ],
- "total": 453,
- "reported": 416,
+ "total": 455,
+ "reported": 424,
  "members": 504,
  "board": {
-  "reported": 416,
-  "epsN": 412,
-  "epsBeat": 349,
+  "reported": 424,
+  "epsN": 419,
+  "epsBeat": 355,
   "epsBeatPct": 85,
-  "revN": 412,
-  "revBeat": 303,
-  "revBeatPct": 74,
-  "reactBeat": 0.44,
-  "reactBeatN": 348,
+  "revN": 420,
+  "revBeat": 307,
+  "revBeatPct": 73,
+  "reactBeat": 0.49,
+  "reactBeatN": 353,
   "reactMiss": -1.57,
   "reactMissN": 63,
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 89,
+    "n": 90,
+    "beat": 67
+   },
+   {
+    "name": "טכנולוגיה",
+    "n": 74,
     "beat": 66
    },
    {
@@ -203,24 +208,19 @@
     "beat": 66
    },
    {
-    "name": "טכנולוגיה",
-    "n": 72,
-    "beat": 64
-   },
-   {
     "name": "בריאות",
-    "n": 48,
+    "n": 49,
     "beat": 46
    },
    {
     "name": "צריכה מחזורית",
-    "n": 39,
-    "beat": 29
+    "n": 40,
+    "beat": 30
    },
    {
     "name": "תשתיות",
-    "n": 28,
-    "beat": 25
+    "n": 30,
+    "beat": 27
    },
    {
     "name": "חומרים",
@@ -277,7 +277,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "07/11/2026 15:02",
+  "updatedAt": "10/11/2026 07:01",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
