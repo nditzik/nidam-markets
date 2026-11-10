@@ -7,14 +7,22 @@
 // תשובה:  {"symbol":"AAPL","bars":[["2026-10-26",343.9,347.09,341.03,343.91,42205799],…],"source":"yahoo"}
 // מטמון: שעה בקצה של Cloudflare (נרות יומיים לא משתנים מהר), כך שגם הרבה מבקרים = מעט בקשות ל-Yahoo.
 // הגבלה: רק סמלים של 1–6 אותיות (עם . או -), ורק לאתר עצמו (ORIGINS). בלי מפתחות, בלי מידע אישי.
+//
+// 10.11.2026 — גם מתווך לסורק של TradingView: מאותו בוקר הסורק מחזיר לבקשה מהדפדפן (מאתר אחר) את נתוני
+// הסגירה של אתמול למניות ותעודות סל, בזמן שבקשה משרת מקבלת נתון של היום. לכן:
+//   POST /scan?m=america|futures|forex   (גוף = אותו JSON שהאתר שולח לסורק, text/plain) → התשובה של הסורק כמו שהיא
+//   GET  /scan-test?s=SPY                 → {"s":"SPY","close":…,"change":…} — בדיקה בעין מהדפדפן
+// מטמון 30 שניות בקצה לכל גוף בקשה (הרבה מבקרים באותה דקה = בקשה אחת לסורק).
 
 const ORIGINS = ["https://nditzik.github.io", "http://localhost:8765", "http://127.0.0.1:8765"];
 const SYM_RE = /^[A-Z][A-Z.\-]{0,6}$/;
+const SCAN_MARKETS = ["america", "futures", "forex"];
+const SCAN_TTL = 30;
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
 function cors(origin) {
   const allow = ORIGINS.includes(origin) ? origin : ORIGINS[0];
-  return { "Access-Control-Allow-Origin": allow, "Access-Control-Allow-Methods": "GET, OPTIONS", "Vary": "Origin" };
+  return { "Access-Control-Allow-Origin": allow, "Access-Control-Allow-Methods": "GET, POST, OPTIONS", "Vary": "Origin" };
 }
 function json(body, status, origin, maxAge) {
   return new Response(JSON.stringify(body), {
@@ -31,6 +39,7 @@ export default {
     const url = new URL(request.url);
     const origin = request.headers.get("Origin") || "";
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(origin) });
+    if (url.pathname === "/scan" || url.pathname === "/scan-test") return scan(request, url, origin, ctx);
     if (url.pathname !== "/bars") return json({ error: "not found" }, 404, origin);
     const sym = (url.searchParams.get("s") || "").trim().toUpperCase().replace(/\./g, "-");
     if (!SYM_RE.test(sym)) return json({ error: "bad symbol" }, 400, origin);
@@ -73,3 +82,51 @@ export default {
     return resp;
   },
 };
+
+// ---- מתווך לסורק של TradingView (10.11.2026) ----
+async function sha(text) {
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
+async function scan(request, url, origin, ctx) {
+  let market, body, test = null;
+  if (url.pathname === "/scan-test") {
+    test = (url.searchParams.get("s") || "SPY").trim().toUpperCase();
+    if (!SYM_RE.test(test)) return json({ error: "bad symbol" }, 400, origin);
+    market = "america";
+    body = JSON.stringify({ symbols: { tickers: ["AMEX:" + test, "NASDAQ:" + test, "NYSE:" + test] }, columns: ["name", "close", "change"] });
+  } else {
+    if (request.method !== "POST") return json({ error: "POST only" }, 405, origin);
+    market = url.searchParams.get("m") || "america";
+    if (!SCAN_MARKETS.includes(market)) return json({ error: "bad market" }, 400, origin);
+    body = await request.text();
+    if (!body || body.length > 8000) return json({ error: "bad body" }, 400, origin);
+    try { JSON.parse(body); } catch (e) { return json({ error: "bad json" }, 400, origin); }
+  }
+  const cache = caches.default;
+  const key = new Request("https://scan.cache/" + market + "/" + (await sha(body)));
+  let text = null;
+  const hit = await cache.match(key);
+  if (hit) text = await hit.text();
+  else {
+    try {
+      const r = await fetch("https://scanner.tradingview.com/" + market + "/scan", {
+        method: "POST",
+        headers: { "User-Agent": UA, "Content-Type": "text/plain;charset=UTF-8", "Accept": "application/json" },
+        body,
+      });
+      text = await r.text();
+      if (!r.ok) return json({ error: "scanner " + r.status, detail: text.slice(0, 200) }, 502, origin);
+    } catch (e) {
+      return json({ error: "scanner unreachable" }, 502, origin);
+    }
+    ctx.waitUntil(cache.put(key, new Response(text, { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=" + SCAN_TTL } })));
+  }
+  if (test) {
+    let row = null;
+    try { row = (JSON.parse(text).data || [])[0]; } catch (e) {}
+    if (!row) return json({ error: "not found", s: test }, 404, origin);
+    return json({ s: test, close: row.d[1], change: row.d[2], at: new Date().toISOString() }, 200, origin);
+  }
+  return new Response(text, { status: 200, headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...cors(origin) } });
+}
