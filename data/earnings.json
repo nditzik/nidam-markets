@@ -1,50 +1,85 @@
 {
-  "today": "2026-11-10",
-  "todayCount": 19,
+  "today": "2026-11-11",
+  "todayCount": 11,
   "todayBig": [
     {
-      "ticker": "PBR",
-      "name": "Petroleo Brasileiro SA Sponsored ADR",
-      "capB": 112.2
+      "ticker": "FNV",
+      "name": "Franco-Nevada Corporation",
+      "capB": 49.3
     },
     {
-      "ticker": "TDG",
-      "name": "TransDigm Group Incorporated",
-      "capB": 67.7
-    },
-    {
-      "ticker": "SE",
-      "name": "Sea Limited Sponsored ADR Class A",
-      "capB": 47.2
-    },
-    {
-      "ticker": "HMC",
-      "name": "Honda Motor Co., Ltd. Sponsored ADR",
-      "capB": 46.4
-    },
-    {
-      "ticker": "ALC",
-      "name": "Alcon AG",
-      "capB": 37.0
-    },
-    {
-      "ticker": "VOD",
-      "name": "Vodafone Group Public Limited Company Sponsored ADR",
-      "capB": 36.4
-    },
-    {
-      "ticker": "VG",
-      "name": "Venture Global, Inc. Class A",
-      "capB": 30.0
-    },
-    {
-      "ticker": "CRWV",
-      "name": "CoreWeave, Inc. Class A",
-      "capB": 26.9
+      "ticker": "VYLR",
+      "name": "Vylor Inc",
+      "capB": 48.4
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-10",
+        "label": "10.11",
+        "items": [
+          {
+            "ticker": "PBR",
+            "name": "Petroleo Brasileiro SA Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/PBR.png"
+          },
+          {
+            "ticker": "TDG",
+            "name": "TransDigm Group Incorporated",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TDG.png",
+            "chg": 0.55,
+            "price": 1225.54,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
+          },
+          {
+            "ticker": "SE",
+            "name": "Sea Limited Sponsored ADR Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/SE.png",
+            "chg": -1.49,
+            "price": 76.8,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
+          },
+          {
+            "ticker": "HMC",
+            "name": "Honda Motor Co., Ltd. Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/HMC.png",
+            "chg": -2.68,
+            "price": 34.88,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
+          },
+          {
+            "ticker": "ALC",
+            "name": "Alcon AG",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/ALC.png",
+            "logoBg": "dark"
+          },
+          {
+            "ticker": "VOD",
+            "name": "Vodafone Group Public Limited Company Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VOD.png",
+            "chg": -1.21,
+            "price": 15.5,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
+          }
+        ]
+      },
       {
         "date": "2026-11-09",
         "label": "9.11",
@@ -122,96 +157,74 @@
   },
   "reporting": [
     {
-      "ticker": "PBR",
-      "name": "Petroleo Brasileiro SA Sponsored ADR",
+      "ticker": "FNV",
+      "name": "Franco-Nevada Corporation",
       "when": "after",
-      "logo": "data/earnings/logos/PBR.png"
+      "logo": "data/earnings/logos/FNV.png"
     },
     {
-      "ticker": "TDG",
-      "name": "TransDigm Group Incorporated",
+      "ticker": "VYLR",
+      "name": "Vylor Inc",
+      "when": "after"
+    },
+    {
+      "ticker": "GIB",
+      "name": "CGI Inc. Class A",
       "when": "before",
-      "logo": "data/earnings/logos/TDG.png"
+      "logo": "data/earnings/logos/GIB.png"
     },
     {
-      "ticker": "SE",
-      "name": "Sea Limited Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/SE.png"
-    },
-    {
-      "ticker": "HMC",
-      "name": "Honda Motor Co., Ltd. Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/HMC.png"
-    },
-    {
-      "ticker": "ALC",
-      "name": "Alcon AG",
+      "ticker": "TTEK",
+      "name": "Tetra Tech, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/ALC.png",
-      "logoBg": "dark"
+      "logo": "data/earnings/logos/TTEK.png"
     },
     {
-      "ticker": "VOD",
-      "name": "Vodafone Group Public Limited Company Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/VOD.png"
-    },
-    {
-      "ticker": "VG",
-      "name": "Venture Global, Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/VG.png"
-    },
-    {
-      "ticker": "CRWV",
-      "name": "CoreWeave, Inc. Class A",
+      "ticker": "CAE",
+      "name": "CAE Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/CRWV.png"
+      "logo": "data/earnings/logos/CAE.png"
     },
     {
-      "ticker": "VIV",
-      "name": "Telefonica Brasil SA Sponsored ADR",
+      "ticker": "CTVA",
+      "name": "Corteva Inc",
       "when": "after",
-      "logo": "data/earnings/logos/VIV.png"
+      "logo": "data/earnings/logos/CTVA.png"
     },
     {
-      "ticker": "EMBJ",
-      "name": "Embraer S.A. Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/EMBJ.png"
-    },
-    {
-      "ticker": "ONON",
-      "name": "On Holding AG Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/ONON.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "MOG.A",
-      "name": "Moog Inc. Class A",
+      "ticker": "NIO",
+      "name": "NIO Inc. Sponsored ADR Class A",
       "when": "",
-      "logo": "data/earnings/logos/MOG.A.png"
+      "logo": "data/earnings/logos/NIO.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "OR",
+      "name": "OR Royalties Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/OR.png"
+    },
+    {
+      "ticker": "ICL",
+      "name": "ICL Group Ltd.",
+      "when": "before",
+      "logo": "data/earnings/logos/ICL.png"
+    },
+    {
+      "ticker": "UGP",
+      "name": "Ultrapar Participacoes S.A. Sponsored ADR",
+      "when": "after",
+      "logo": "data/earnings/logos/UGP.png"
+    },
+    {
+      "ticker": "ENS",
+      "name": "EnerSys",
+      "when": "after",
+      "logo": "data/earnings/logos/ENS.png"
     }
   ],
-  "more": 7,
+  "more": 0,
   "upcoming": [
-    {
-      "date": "2026-11-11",
-      "label": "11/11",
-      "dow": "ד׳",
-      "count": 10,
-      "tickers": [
-        "FNV",
-        "VYLR",
-        "GIB",
-        "TTEK",
-        "CAE",
-        "CTVA"
-      ]
-    },
     {
       "date": "2026-11-12",
       "label": "12/11",
@@ -405,7 +418,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 10,
+      "total": 11,
       "companies": [
         {
           "ticker": "FNV",
@@ -466,6 +479,12 @@
           "name": "Ultrapar Participacoes S.A. Sponsored ADR",
           "when": "after",
           "logo": "data/earnings/logos/UGP.png"
+        },
+        {
+          "ticker": "ENS",
+          "name": "EnerSys",
+          "when": "after",
+          "logo": "data/earnings/logos/ENS.png"
         }
       ]
     },
@@ -578,25 +597,6 @@
     }
   ],
   "window": {
-    "PBR": "2026-11-10",
-    "TDG": "2026-11-10",
-    "SE": "2026-11-10",
-    "HMC": "2026-11-10",
-    "ALC": "2026-11-10",
-    "VOD": "2026-11-10",
-    "VG": "2026-11-10",
-    "CRWV": "2026-11-10",
-    "VIV": "2026-11-10",
-    "EMBJ": "2026-11-10",
-    "ONON": "2026-11-10",
-    "MOG.A": "2026-11-10",
-    "FRHC": "2026-11-10",
-    "MOG.B": "2026-11-10",
-    "DDS": "2026-11-10",
-    "KT": "2026-11-10",
-    "SLAB": "2026-11-10",
-    "MANE": "2026-11-10",
-    "SRRK": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "GIB": "2026-11-11",
@@ -607,6 +607,7 @@
     "OR": "2026-11-11",
     "ICL": "2026-11-11",
     "UGP": "2026-11-11",
+    "ENS": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -652,10 +653,21 @@
     "ZTO": "2026-11-17",
     "TME": "2026-11-17",
     "BLTE": "2026-11-17",
-    "DLB": "2026-11-17"
+    "DLB": "2026-11-17",
+    "PANW": "2026-11-18",
+    "TJX": "2026-11-18",
+    "LOW": "2026-11-18",
+    "TGT": "2026-11-18",
+    "P": "2026-11-18",
+    "CPRT": "2026-11-18",
+    "WWD": "2026-11-18",
+    "UGI": "2026-11-18",
+    "GLBE": "2026-11-18",
+    "CPA": "2026-11-18",
+    "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 23:46",
+    "updatedAt": "11/11/2026 00:01",
     "source": "tradingview"
   }
 }
