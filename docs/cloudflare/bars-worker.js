@@ -8,14 +8,21 @@
 // מטמון: שעה בקצה של Cloudflare (נרות יומיים לא משתנים מהר), כך שגם הרבה מבקרים = מעט בקשות ל-Yahoo.
 // הגבלה: רק סמלים של 1–6 אותיות (עם . או -), ורק לאתר עצמו (ORIGINS). בלי מפתחות, בלי מידע אישי.
 //
-// 10.11.2026 — גם מתווך לסורק של TradingView: מאותו בוקר הסורק מחזיר לבקשה מהדפדפן (מאתר אחר) את נתוני
-// הסגירה של אתמול למניות ותעודות סל, בזמן שבקשה משרת מקבלת נתון של היום. לכן:
+// 10.11.2026 — גם מתווך לסורק של TradingView (נשאר לשימוש עתידי; ב-10.11 הסורק היה קפוא על סגירת אתמול
+// למניות ותעודות סל לכל פונה — גם לשרת וגם ל-Worker הזה, לכן המחירים החיים עברו ל-/quotes מ-Yahoo):
 //   POST /scan?m=america|futures|forex   (גוף = אותו JSON שהאתר שולח לסורק, text/plain) → התשובה של הסורק כמו שהיא
 //   GET  /scan-test?s=SPY                 → {"s":"SPY","close":…,"change":…} — בדיקה בעין מהדפדפן
 // מטמון 30 שניות בקצה לכל גוף בקשה (הרבה מבקרים באותה דקה = בקשה אחת לסורק).
+//
+//   GET /quotes?s=SPY,QQQ,^VIX,XLK…      → {"quotes":{"SPY":{price,chg,prev,t,ext,extChg,et}},"source":"yahoo"}
+// מחירים חיים מ-Yahoo (גרף v8, יום אחד, נרות 5 דק' כולל פרה/אפטר) — עד 20 סמלים, מטמון 60 שניות לכל סמל.
+// chg = מחיר המסחר הרציף האחרון מול הסגירה הקודמת (כמו fetch_market.py); ext = הנר האחרון אחרי המסחר הרציף
+// (פרה-מרקט/אפטר-מרקט), extChg = מולו מחיר המסחר הרציף האחרון.
 
 const ORIGINS = ["https://nditzik.github.io", "http://localhost:8765", "http://127.0.0.1:8765"];
 const SYM_RE = /^[A-Z][A-Z.\-]{0,6}$/;
+const Q_RE = /^[\^A-Z0-9][A-Z0-9.\-=^]{0,11}$/;
+const Q_TTL = 60;
 const SCAN_MARKETS = ["america", "futures", "forex"];
 const SCAN_TTL = 30;
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
@@ -39,6 +46,7 @@ export default {
     const url = new URL(request.url);
     const origin = request.headers.get("Origin") || "";
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(origin) });
+    if (url.pathname === "/quotes") return quotes(url, origin, ctx);
     if (url.pathname === "/scan" || url.pathname === "/scan-test") return scan(request, url, origin, ctx);
     if (url.pathname !== "/bars") return json({ error: "not found" }, 404, origin);
     const sym = (url.searchParams.get("s") || "").trim().toUpperCase().replace(/\./g, "-");
@@ -131,4 +139,40 @@ async function scan(request, url, origin, ctx) {
     return json({ s: test, close: row.d[1], change: row.d[2], at: new Date().toISOString() }, 200, origin);
   }
   return new Response(text, { status: 200, headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...cors(origin) } });
+}
+
+// ---- מחירים חיים מ-Yahoo (10.11.2026) ----
+async function quoteOne(sym, ctx) {
+  const cache = caches.default;
+  const key = new Request("https://quote.cache/" + encodeURIComponent(sym));
+  const hit = await cache.match(key);
+  if (hit) { try { return await hit.json(); } catch (e) {} }
+  const u = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(sym) + "?range=1d&interval=5m&includePrePost=true";
+  let d;
+  try {
+    const r = await fetch(u, { headers: { "User-Agent": UA, "Accept": "application/json" } });
+    if (!r.ok) return null;
+    d = await r.json();
+  } catch (e) { return null; }
+  const res = d && d.chart && d.chart.result && d.chart.result[0], m = res && res.meta;
+  if (!m || m.regularMarketPrice == null) return null;
+  const price = m.regularMarketPrice, prev = m.chartPreviousClose != null ? m.chartPreviousClose : m.previousClose;
+  const out = { price, prev, chg: prev ? Math.round((price / prev - 1) * 10000) / 100 : null, t: m.regularMarketTime || null, ext: null, extChg: null, et: null };
+  const ts = res.timestamp || [], cl = (res.indicators && res.indicators.quote && res.indicators.quote[0] && res.indicators.quote[0].close) || [];
+  for (let i = ts.length - 1; i >= 0; i--) {
+    if (cl[i] == null) continue;
+    if (out.t && ts[i] > out.t + 60) { out.ext = Math.round(cl[i] * 10000) / 10000; out.et = ts[i]; out.extChg = Math.round((cl[i] / price - 1) * 10000) / 100; }
+    break;
+  }
+  ctx.waitUntil(cache.put(key, new Response(JSON.stringify(out), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=" + Q_TTL } })));
+  return out;
+}
+async function quotes(url, origin, ctx) {
+  const syms = (url.searchParams.get("s") || "").toUpperCase().split(",").map((x) => x.trim()).filter(Boolean);
+  if (!syms.length || syms.length > 20 || syms.some((x) => !Q_RE.test(x))) return json({ error: "bad symbols" }, 400, origin);
+  const got = await Promise.all(syms.map((x) => quoteOne(x, ctx)));
+  const q = {};
+  syms.forEach((x, i) => { if (got[i]) q[x] = got[i]; });
+  if (!Object.keys(q).length) return json({ error: "yahoo unavailable" }, 502, origin);
+  return json({ quotes: q, source: "yahoo", at: new Date().toISOString() }, 200, origin);
 }
