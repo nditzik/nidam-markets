@@ -127,8 +127,8 @@
       .then(function (d) { TICKD = d; renderMarketTicker(el, d); refreshTickerLive(); if (INDD) { renderLead(); renderBreadthPeaks(); } })
       .catch(function () {});
   }
-  /* עדכון חי מהסורק של TradingView (CORS פתוח כ-simple request) — מחירים כל דקה;
-     הגרפים-המיניים נשארים מהשרת (15 דק'). tnx לא זמין בסורק ונשאר בקצב השרת. */
+  /* עדכון חי כל דקה — Yahoo דרך ה-Worker (np193/np194) + הסורק של TradingView לחוזים ולדולר/שקל (CORS פתוח כ-simple request);
+     הגרפים-המיניים נשארים מהשרת (15 דק'). */
   function refreshTickerLive() {
     if (!TICKD) return;
     var reqs = [
@@ -151,17 +151,22 @@
     TICKD.items.forEach(function (it) { byKey[it.key] = it; });
     var ses = jsSession();
     // np193 (10.11.2026): הסורק של TradingView היה קפוא על סגירת אתמול במניות ובתעודות סל (SPY ‎+2.37%‎ כשהיה ‎−0.3%‎).
-    // SPY/QQQ/IWM/VIX/DXY קודם מ-Yahoo דרך ה-Worker (/quotes, מטמון דקה); הסורק רק כשה-Worker לא עונה.
-    var YQK = { SPY: "spy", QQQ: "qqq", IWM: "iwm", "^VIX": "vix", "DX-Y.NYB": "dxy" };
-    var amer = reqs.shift();
+    // np194 (איציק: "גם אג"ח, ברנט, דולר"): בקשה אחת ל-Yahoo דרך ה-Worker (/quotes, מטמון דקה) לכל הרצועה.
+    // ראשי מ-Yahoo: SPY/QQQ/IWM/VIX/DXY + אג"ח 10Y (לא היה בסורק — עד עכשיו 15 דק' מהקובץ) + ברנט.
+    // גיבוי מ-Yahoo: החוזים ודולר/שקל — הסורק נשאר ראשי שם (חי), Yahoo נכנס רק כשהוא לא ענה.
+    var YQK = { SPY: "spy", QQQ: "qqq", IWM: "iwm", "^VIX": "vix", "DX-Y.NYB": "dxy", "^TNX": "tnx", "BZ=F": "brent", "ES=F": "es", "NQ=F": "nq", "ILS=X": "usdils" };
+    var Y_BACKUP = { es: 1, nq: 1, usdils: 1 }, yOk = {}, sOk = {};
+    var onFail = reqs.filter(function (r) { return /america|BRN1/.test(JSON.stringify(r)); });
+    reqs = reqs.filter(function (r) { return onFail.indexOf(r) < 0; });
     yqLive(Object.keys(YQK)).then(function (q) {
       Object.keys(YQK).forEach(function (s) {
-        var it = byKey[YQK[s]], v = yqPick(q[s], ses);
-        if (!it || !v) return;
+        var k = YQK[s], it = byKey[k], v = yqPick(q[s], ses);
+        if (!it || !v || (Y_BACKUP[k] && sOk[k])) return;
+        if (!Y_BACKUP[k]) yOk[k] = 1;
         it.price = v[0]; if (v[1] != null) it.chg = Math.round(v[1] * 100) / 100;
       });
       renderMarketTicker(document.getElementById("ticker"), TICKD);
-    }).catch(function () { scanTicker([amer]); });
+    }).catch(function () { scanTicker(onFail); });
     scanTicker(reqs);
     function scanTicker(list) { list.forEach(function (r) {
       fetch(r[0], { method: "POST", body: JSON.stringify(r[1]) })
@@ -169,7 +174,8 @@
         .then(function (d) {
           (d.data || []).forEach(function (row) {
             var v = row.d, key = r[2][v[0]], it = key && byKey[key];
-            if (!it) return;
+            if (!it || yOk[key]) return;
+            sOk[key] = 1;
             var px = v[1], chg = v[2];
             // מניות/קרנות מחוץ לשעות המסחר — מחיר פרה/אפטר אם קיים
             if (v.length > 3) {
@@ -741,7 +747,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np193";
+  var TA_VER = "np194";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
