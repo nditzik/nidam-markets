@@ -73,17 +73,6 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "B",
-            "name": "Barrick Mining Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/B.png",
-            "chg": 4.22,
-            "price": 42.27,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
-          },
-          {
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
@@ -102,10 +91,18 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "SKYD",
-            "name": "Skydance Corporation Class B",
+            "ticker": "TTWO",
+            "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
-            "status": "pending"
+            "status": "pending",
+            "logo": "data/earnings/logos/TTWO.png"
+          },
+          {
+            "ticker": "RKLB",
+            "name": "Rocket Lab Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/RKLB.png"
           }
         ]
       },
@@ -246,7 +243,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 31,
+      "count": 32,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -273,7 +270,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 32,
+      "total": 25,
       "companies": [
         {
           "ticker": "CEG",
@@ -287,12 +284,6 @@
           "name": "KKR & Co Inc",
           "when": "before",
           "logo": "data/earnings/logos/KKR.png"
-        },
-        {
-          "ticker": "B",
-          "name": "Barrick Mining Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/B.png"
         },
         {
           "ticker": "OXY",
@@ -309,7 +300,7 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": "after"
+          "when": ""
         },
         {
           "ticker": "TTWO",
@@ -318,22 +309,10 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
-          "ticker": "IX",
-          "name": "ORIX Corporation Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/IX.png"
-        },
-        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
-        },
-        {
-          "ticker": "BAP",
-          "name": "Credicorp Ltd.",
-          "when": "after",
-          "logo": "data/earnings/logos/BAP.png"
         },
         {
           "ticker": "NRG",
@@ -346,6 +325,24 @@
           "name": "RB Global, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/RBA.png"
+        },
+        {
+          "ticker": "ASTS",
+          "name": "AST SpaceMobile, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ASTS.png"
+        },
+        {
+          "ticker": "JBS",
+          "name": "JBS N.V. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/JBS.png"
+        },
+        {
+          "ticker": "ONTO",
+          "name": "Onto Innovation, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/ONTO.png"
         }
       ]
     },
@@ -515,7 +512,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 31,
+      "total": 32,
       "companies": [
         {
           "ticker": "CSCO",
@@ -686,6 +683,7 @@
     "GFF": "2026-11-12",
     "XE": "2026-11-12",
     "ARX": "2026-11-12",
+    "SKE": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -715,7 +713,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 06:01",
+    "updatedAt": "10/11/2026 06:16",
     "source": "tradingview"
   }
 }
