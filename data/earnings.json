@@ -87,8 +87,12 @@
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/OXY.png"
+            "status": "live",
+            "logo": "data/earnings/logos/OXY.png",
+            "chg": -1.79,
+            "price": 54.76,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           },
           {
             "ticker": "FERG",
@@ -105,7 +109,11 @@
             "ticker": "SKYD",
             "name": "Skydance Corporation Class B",
             "when": "after",
-            "status": "pending"
+            "status": "live",
+            "chg": -7.93,
+            "price": 8.01,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           }
         ]
       }
@@ -641,7 +649,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 16:16",
+    "updatedAt": "10/11/2026 16:31",
     "source": "tradingview"
   }
 }
