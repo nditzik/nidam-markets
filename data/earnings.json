@@ -10,7 +10,7 @@
     {
       "ticker": "TDG",
       "name": "TransDigm Group Incorporated",
-      "capB": 68.6
+      "capB": 68.4
     },
     {
       "ticker": "SE",
@@ -25,7 +25,7 @@
     {
       "ticker": "ALC",
       "name": "Alcon AG",
-      "capB": 37.8
+      "capB": 37.3
     },
     {
       "ticker": "VOD",
@@ -35,12 +35,12 @@
     {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
-      "capB": 29.9
+      "capB": 29.8
     },
     {
       "ticker": "CRWV",
       "name": "CoreWeave, Inc. Class A",
-      "capB": 26.1
+      "capB": 26.4
     }
   ],
   "reactions": {
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": 0.63,
-            "price": 56.11,
+            "chg": 0.49,
+            "price": 56.03,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTWO.png",
-            "chg": 7.44,
-            "price": 222.83,
+            "chg": 6.83,
+            "price": 221.57,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           }
@@ -456,16 +456,16 @@
           "logo": "data/earnings/logos/OR.png"
         },
         {
-          "ticker": "ICL",
-          "name": "ICL Group Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/ICL.png"
-        },
-        {
           "ticker": "UGP",
           "name": "Ultrapar Participacoes S.A. Sponsored ADR",
           "when": "after",
           "logo": "data/earnings/logos/UGP.png"
+        },
+        {
+          "ticker": "ICL",
+          "name": "ICL Group Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/ICL.png"
         }
       ]
     },
@@ -605,8 +605,8 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
-    "ICL": "2026-11-11",
     "UGP": "2026-11-11",
+    "ICL": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -654,7 +654,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 20:01",
+    "updatedAt": "10/11/2026 20:16",
     "source": "tradingview"
   }
 }
