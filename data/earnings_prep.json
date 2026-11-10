@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "10/11/2026 06:31",
+  "updatedAt": "10/11/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "Applied Materials, Inc.",
    "date": "2026-11-12",
    "when": "after",
-   "daysTo": 3,
+   "daysTo": 2,
    "report": {
     "file": "data/reports/AMAT__2026-08-14.html",
     "date": "2026-08-14",
@@ -147,6 +147,8 @@
      "ptPrev": 642.0
     }
    ],
+   "yahooDate": "2026-11-12",
+   "analystsAt": "2026-11-10T05:01+00:00",
    "price": {
     "close": 370.55,
     "date": "2026-11-09",
@@ -481,8 +483,6 @@
      "spy": -3.2
     }
    },
-   "analystsAt": "2026-11-09T23:01+00:00",
-   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "09/11 22:46",
     "price": 373.11,
@@ -501,7 +501,7 @@
    "name": "Cisco Systems, Inc.",
    "date": "2026-11-12",
    "when": "after",
-   "daysTo": 3,
+   "daysTo": 2,
    "report": {
     "file": "data/reports/CSCO__2026-08-13.html",
     "date": "2026-08-13",
@@ -991,7 +991,7 @@
    "name": "Ondas Inc.",
    "date": "2026-11-12",
    "when": "before",
-   "daysTo": 3,
+   "daysTo": 2,
    "report": {
     "file": "data/reports/ONDS__2026-08-14.html",
     "date": "2026-08-14",
@@ -1127,6 +1127,8 @@
      "ptPrev": 0.0
     }
    ],
+   "yahooDate": "2026-11-12",
+   "analystsAt": "2026-11-10T05:01+00:00",
    "price": {
     "close": 5.97,
     "date": "2026-11-09",
@@ -1461,8 +1463,6 @@
      "spy": -2.6
     }
    },
-   "analystsAt": "2026-11-09T23:01+00:00",
-   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "09/11 22:46",
     "price": 6.035,
@@ -1481,7 +1481,7 @@
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -1971,7 +1971,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 9,
+   "daysTo": 8,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -2461,7 +2461,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 9,
+   "daysTo": 8,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -2951,7 +2951,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 10,
+   "daysTo": 9,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -3441,7 +3441,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 14,
+   "daysTo": 13,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -3577,6 +3577,8 @@
      "ptPrev": 70.0
     }
    ],
+   "yahooDate": "2026-11-23",
+   "analystsAt": "2026-11-10T05:01+00:00",
    "price": {
     "close": 37.79,
     "date": "2026-11-09",
@@ -3911,8 +3913,6 @@
      "spy": -2.2
     }
    },
-   "analystsAt": "2026-11-09T23:01+00:00",
-   "yahooDate": "2026-11-23",
    "options": {
     "asOf": "09/11 22:46",
     "price": 37.895,
@@ -3954,14 +3954,14 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": null
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   },
   {
    "sym": "MU",
@@ -3979,12 +3979,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   }

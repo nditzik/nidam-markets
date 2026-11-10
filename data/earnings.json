@@ -102,10 +102,11 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "SKYD",
-            "name": "Skydance Corporation Class B",
+            "ticker": "TTWO",
+            "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
-            "status": "pending"
+            "status": "pending",
+            "logo": "data/earnings/logos/TTWO.png"
           }
         ]
       },
@@ -257,7 +258,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 30,
+      "count": 31,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -284,7 +285,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 44,
+      "total": 34,
       "companies": [
         {
           "ticker": "CEG",
@@ -320,7 +321,7 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": "after"
+          "when": ""
         },
         {
           "ticker": "TTWO",
@@ -341,12 +342,6 @@
           "logo": "data/earnings/logos/RKLB.png"
         },
         {
-          "ticker": "ROIV",
-          "name": "Roivant Sciences Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/ROIV.png"
-        },
-        {
           "ticker": "BAP",
           "name": "Credicorp Ltd.",
           "when": "after",
@@ -357,6 +352,12 @@
           "name": "NRG Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NRG.png"
+        },
+        {
+          "ticker": "RBA",
+          "name": "RB Global, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/RBA.png"
         }
       ]
     },
@@ -526,7 +527,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 30,
+      "total": 31,
       "companies": [
         {
           "ticker": "CSCO",
@@ -643,17 +644,17 @@
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
-    "DDS": "2026-11-10",
     "KT": "2026-11-10",
     "SLAB": "2026-11-10",
     "SRRK": "2026-11-10",
     "COGT": "2026-11-10",
-    "GGAL": "2026-11-10",
     "ATAT": "2026-11-10",
     "MRCY": "2026-11-10",
     "ALH": "2026-11-10",
-    "TEO": "2026-11-10",
     "LEGN": "2026-11-10",
+    "QBTS": "2026-11-10",
+    "RGTI": "2026-11-10",
+    "LQDA": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -698,6 +699,7 @@
     "DPC": "2026-11-12",
     "GFF": "2026-11-12",
     "XE": "2026-11-12",
+    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -727,7 +729,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 06:46",
+    "updatedAt": "10/11/2026 07:01",
     "source": "tradingview"
   }
 }
