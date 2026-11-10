@@ -10,7 +10,7 @@
     {
       "ticker": "TDG",
       "name": "TransDigm Group Incorporated",
-      "capB": 68.1
+      "capB": 68.4
     },
     {
       "ticker": "SE",
@@ -25,7 +25,7 @@
     {
       "ticker": "ALC",
       "name": "Alcon AG",
-      "capB": 36.7
+      "capB": 36.6
     },
     {
       "ticker": "VOD",
@@ -35,12 +35,12 @@
     {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
-      "capB": 29.8
+      "capB": 29.7
     },
     {
       "ticker": "CRWV",
       "name": "CoreWeave, Inc. Class A",
-      "capB": 26.2
+      "capB": 26.4
     }
   ],
   "reactions": {
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": 2.29,
-            "price": 57.03,
+            "chg": 1.71,
+            "price": 56.72,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTWO.png",
-            "chg": 7.81,
-            "price": 223.59,
+            "chg": 8.28,
+            "price": 224.58,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           }
@@ -288,16 +288,16 @@
           "when": "after"
         },
         {
-          "ticker": "IX",
-          "name": "ORIX Corporation Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/IX.png"
-        },
-        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
+        },
+        {
+          "ticker": "IX",
+          "name": "ORIX Corporation Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/IX.png"
         },
         {
           "ticker": "ROIV",
@@ -625,8 +625,8 @@
     "ARWR": "2026-11-12",
     "KOD": "2026-11-12",
     "CIG": "2026-11-12",
-    "M": "2026-11-12",
     "FPS": "2026-11-12",
+    "M": "2026-11-12",
     "NIQ": "2026-11-12",
     "MBGL": "2026-11-12",
     "MUFG": "2026-11-13",
@@ -653,7 +653,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 22:31",
+    "updatedAt": "10/11/2026 22:46",
     "source": "tradingview"
   }
 }
