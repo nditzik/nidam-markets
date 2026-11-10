@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 19,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -10,7 +10,7 @@
     {
       "ticker": "TDG",
       "name": "TransDigm Group Incorporated",
-      "capB": 68.4
+      "capB": 68.1
     },
     {
       "ticker": "SE",
@@ -35,12 +35,12 @@
     {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
-      "capB": 29.8
+      "capB": 29.7
     },
     {
       "ticker": "CRWV",
       "name": "CoreWeave, Inc. Class A",
-      "capB": 26.4
+      "capB": 26.3
     }
   ],
   "reactions": {
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": 0.49,
-            "price": 56.03,
+            "chg": 0.64,
+            "price": 56.12,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTWO.png",
-            "chg": 6.83,
-            "price": 221.57,
+            "chg": 7.69,
+            "price": 223.35,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           }
@@ -171,6 +171,12 @@
       "logo": "data/earnings/logos/CRWV.png"
     },
     {
+      "ticker": "CIB",
+      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+      "when": "",
+      "logo": "data/earnings/logos/CIB.png"
+    },
+    {
       "ticker": "VIV",
       "name": "Telefonica Brasil SA Sponsored ADR",
       "when": "after",
@@ -188,15 +194,9 @@
       "when": "before",
       "logo": "data/earnings/logos/ONON.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "FRHC",
-      "name": "Freedom Holding Corp.",
-      "when": "",
-      "logo": "data/earnings/logos/FRHC.png"
     }
   ],
-  "more": 7,
+  "more": 8,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -323,7 +323,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 19,
+      "total": 20,
       "companies": [
         {
           "ticker": "PBR",
@@ -375,6 +375,12 @@
           "logo": "data/earnings/logos/CRWV.png"
         },
         {
+          "ticker": "CIB",
+          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+          "when": "",
+          "logo": "data/earnings/logos/CIB.png"
+        },
+        {
           "ticker": "VIV",
           "name": "Telefonica Brasil SA Sponsored ADR",
           "when": "after",
@@ -392,12 +398,6 @@
           "when": "before",
           "logo": "data/earnings/logos/ONON.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
         }
       ]
     },
@@ -586,6 +586,7 @@
     "VOD": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
+    "CIB": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
@@ -624,8 +625,8 @@
     "ELPC": "2026-11-12",
     "ANDG": "2026-11-12",
     "ARWR": "2026-11-12",
-    "CIG": "2026-11-12",
     "KOD": "2026-11-12",
+    "CIG": "2026-11-12",
     "M": "2026-11-12",
     "FPS": "2026-11-12",
     "NIQ": "2026-11-12",
@@ -654,7 +655,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 20:16",
+    "updatedAt": "10/11/2026 20:31",
     "source": "tradingview"
   }
 }
