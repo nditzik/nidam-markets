@@ -10,7 +10,7 @@
     {
       "ticker": "TDG",
       "name": "TransDigm Group Incorporated",
-      "capB": 67.4
+      "capB": 68.4
     },
     {
       "ticker": "SE",
@@ -25,7 +25,7 @@
     {
       "ticker": "ALC",
       "name": "Alcon AG",
-      "capB": 37.5
+      "capB": 37.4
     },
     {
       "ticker": "VOD",
@@ -35,12 +35,12 @@
     {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
-      "capB": 29.5
+      "capB": 30.6
     },
     {
       "ticker": "CRWV",
       "name": "CoreWeave, Inc. Class A",
-      "capB": 27.9
+      "capB": 27.8
     }
   ],
   "reactions": {
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": -0.04,
-            "price": 55.74,
+            "chg": -0.48,
+            "price": 55.49,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -106,12 +106,13 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "SKYD",
-            "name": "Skydance Corporation Class B",
+            "ticker": "TTWO",
+            "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
             "status": "live",
-            "chg": -8.22,
-            "price": 7.99,
+            "logo": "data/earnings/logos/TTWO.png",
+            "chg": 8.05,
+            "price": 224.1,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           }
@@ -276,15 +277,15 @@
           "logo": "data/earnings/logos/FERG.png"
         },
         {
-          "ticker": "SKYD",
-          "name": "Skydance Corporation Class B",
-          "when": "after"
-        },
-        {
           "ticker": "TTWO",
           "name": "Take-Two Interactive Software, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/TTWO.png"
+        },
+        {
+          "ticker": "SKYD",
+          "name": "Skydance Corporation Class B",
+          "when": "after"
         },
         {
           "ticker": "IX",
@@ -455,16 +456,16 @@
           "logo": "data/earnings/logos/OR.png"
         },
         {
-          "ticker": "ICL",
-          "name": "ICL Group Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/ICL.png"
-        },
-        {
           "ticker": "UGP",
           "name": "Ultrapar Participacoes S.A. Sponsored ADR",
           "when": "after",
           "logo": "data/earnings/logos/UGP.png"
+        },
+        {
+          "ticker": "ICL",
+          "name": "ICL Group Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/ICL.png"
         }
       ]
     },
@@ -604,8 +605,8 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
-    "ICL": "2026-11-11",
     "UGP": "2026-11-11",
+    "ICL": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -651,7 +652,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 17:16",
+    "updatedAt": "10/11/2026 17:31",
     "source": "tradingview"
   }
 }
