@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 13,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -120,27 +120,6 @@
             "baseDate": "2026-11-05"
           },
           {
-            "ticker": "CHTR",
-            "name": "Charter Communications, Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CHTR.png",
-            "chg": -6.19,
-            "price": 118.07,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
-          },
-          {
-            "ticker": "CHTRP",
-            "name": "Charter Communications, Inc. Cum Red Pfd Shs Series A",
-            "when": "before",
-            "status": "final",
-            "chg": -0.64,
-            "price": 21.6,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
-          },
-          {
             "ticker": "BEN",
             "name": "Franklin Templeton, Inc.",
             "when": "before",
@@ -152,15 +131,11 @@
             "baseDate": "2026-11-05"
           },
           {
-            "ticker": "PAA",
-            "name": "Plains All American Pipeline, L.P.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/PAA.png",
-            "chg": -2.49,
-            "price": 23.92,
-            "reactDate": "2026-11-06",
-            "baseDate": "2026-11-05"
+            "ticker": "TECH",
+            "name": "Bio-Techne Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/TECH.png"
           }
         ]
       }
@@ -242,34 +217,34 @@
       "logo": "data/earnings/logos/KT.png"
     }
   ],
-  "more": 1,
+  "more": 8,
   "upcoming": [
     {
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 13,
+      "count": 14,
       "tickers": [
         "FNV",
         "VYLR",
         "HMC",
         "GIB",
-        "TTEK",
-        "CAE"
+        "ASND",
+        "TTEK"
       ]
     },
     {
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 24,
+      "count": 31,
       "tickers": [
         "CSCO",
         "AMAT",
         "BN",
-        "NU",
-        "NBIS",
-        "WSM"
+        "NTES",
+        "ROST",
+        "NU"
       ]
     },
     {
@@ -289,7 +264,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 37,
+      "total": 40,
       "companies": [
         {
           "ticker": "CEG",
@@ -369,7 +344,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 13,
+      "total": 20,
       "companies": [
         {
           "ticker": "PBR",
@@ -451,7 +426,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 13,
+      "total": 14,
       "companies": [
         {
           "ticker": "FNV",
@@ -475,6 +450,12 @@
           "name": "CGI Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/GIB.png"
+        },
+        {
+          "ticker": "ASND",
+          "name": "Ascendis Pharma A/S",
+          "when": "",
+          "logo": "data/earnings/logos/ASND.png"
         },
         {
           "ticker": "TTEK",
@@ -518,12 +499,6 @@
           "name": "Ultrapar Participacoes S.A. Sponsored ADR",
           "when": "after",
           "logo": "data/earnings/logos/UGP.png"
-        },
-        {
-          "ticker": "ENS",
-          "name": "EnerSys",
-          "when": "after",
-          "logo": "data/earnings/logos/ENS.png"
         }
       ]
     },
@@ -531,7 +506,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 24,
+      "total": 31,
       "companies": [
         {
           "ticker": "CSCO",
@@ -550,6 +525,18 @@
           "name": "Brookfield Corporation",
           "when": "before",
           "logo": "data/earnings/logos/BN.png"
+        },
+        {
+          "ticker": "NTES",
+          "name": "Netease Inc Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/NTES.png"
+        },
+        {
+          "ticker": "ROST",
+          "name": "Ross Stores, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/ROST.png"
         },
         {
           "ticker": "NU",
@@ -583,12 +570,6 @@
           "logo": "data/earnings/logos/CBRS.png"
         },
         {
-          "ticker": "ASND",
-          "name": "Ascendis Pharma A/S",
-          "when": "before",
-          "logo": "data/earnings/logos/ASND.png"
-        },
-        {
           "ticker": "HBM",
           "name": "Hudbay Minerals Inc",
           "when": "before",
@@ -599,12 +580,6 @@
           "name": "Twist Bioscience Corp.",
           "when": "before",
           "logo": "data/earnings/logos/TWST.png"
-        },
-        {
-          "ticker": "STN",
-          "name": "Stantec Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/STN.png"
         }
       ]
     },
@@ -649,10 +624,18 @@
     "ONON": "2026-11-10",
     "KT": "2026-11-10",
     "SRRK": "2026-11-10",
+    "COGT": "2026-11-10",
+    "ATAT": "2026-11-10",
+    "MRCY": "2026-11-10",
+    "ALH": "2026-11-10",
+    "LEGN": "2026-11-10",
+    "QBTS": "2026-11-10",
+    "RGTI": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
     "GIB": "2026-11-11",
+    "ASND": "2026-11-11",
     "TTEK": "2026-11-11",
     "CAE": "2026-11-11",
     "CTVA": "2026-11-11",
@@ -665,12 +648,13 @@
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
+    "NTES": "2026-11-12",
+    "ROST": "2026-11-12",
     "NU": "2026-11-12",
     "NBIS": "2026-11-12",
     "WSM": "2026-11-12",
     "BSP": "2026-11-12",
     "CBRS": "2026-11-12",
-    "ASND": "2026-11-12",
     "HBM": "2026-11-12",
     "TWST": "2026-11-12",
     "STN": "2026-11-12",
@@ -679,6 +663,7 @@
     "ARWR": "2026-11-12",
     "FPS": "2026-11-12",
     "KOD": "2026-11-12",
+    "CGON": "2026-11-12",
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "NIQ": "2026-11-12",
@@ -686,6 +671,11 @@
     "OCTV": "2026-11-12",
     "MWH": "2026-11-12",
     "FIGR": "2026-11-12",
+    "HTFL": "2026-11-12",
+    "DPC": "2026-11-12",
+    "GFF": "2026-11-12",
+    "XE": "2026-11-12",
+    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -715,7 +705,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 03:31",
+    "updatedAt": "10/11/2026 03:46",
     "source": "tradingview"
   }
 }
