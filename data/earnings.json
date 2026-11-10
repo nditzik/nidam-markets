@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 20,
+  "todayCount": 21,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -65,13 +65,6 @@
             "logo": "data/earnings/logos/KKR.png"
           },
           {
-            "ticker": "B",
-            "name": "Barrick Mining Corporation",
-            "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/B.png"
-          },
-          {
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
@@ -86,10 +79,18 @@
             "logo": "data/earnings/logos/FERG.png"
           },
           {
-            "ticker": "SKYD",
-            "name": "Skydance Corporation Class B",
+            "ticker": "TTWO",
+            "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
-            "status": "pending"
+            "status": "pending",
+            "logo": "data/earnings/logos/TTWO.png"
+          },
+          {
+            "ticker": "RKLB",
+            "name": "Rocket Lab Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/RKLB.png"
           }
         ]
       },
@@ -217,7 +218,7 @@
       "logo": "data/earnings/logos/KT.png"
     }
   ],
-  "more": 8,
+  "more": 9,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -264,7 +265,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 41,
+      "total": 34,
       "companies": [
         {
           "ticker": "CEG",
@@ -278,12 +279,6 @@
           "name": "KKR & Co Inc",
           "when": "before",
           "logo": "data/earnings/logos/KKR.png"
-        },
-        {
-          "ticker": "B",
-          "name": "Barrick Mining Corporation",
-          "when": "before",
-          "logo": "data/earnings/logos/B.png"
         },
         {
           "ticker": "OXY",
@@ -300,19 +295,13 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": "after"
+          "when": ""
         },
         {
           "ticker": "TTWO",
           "name": "Take-Two Interactive Software, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/TTWO.png"
-        },
-        {
-          "ticker": "IX",
-          "name": "ORIX Corporation Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/IX.png"
         },
         {
           "ticker": "RKLB",
@@ -337,6 +326,18 @@
           "name": "RB Global, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/RBA.png"
+        },
+        {
+          "ticker": "KSPI",
+          "name": "Kaspi.kz Joint Stock Company Sponsored ADR RegS",
+          "when": "before",
+          "logo": "data/earnings/logos/KSPI.png"
+        },
+        {
+          "ticker": "ASTS",
+          "name": "AST SpaceMobile, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ASTS.png"
         }
       ]
     },
@@ -344,7 +345,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 20,
+      "total": 21,
       "companies": [
         {
           "ticker": "PBR",
@@ -631,6 +632,7 @@
     "LEGN": "2026-11-10",
     "QBTS": "2026-11-10",
     "RGTI": "2026-11-10",
+    "LQDA": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -705,7 +707,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 04:01",
+    "updatedAt": "10/11/2026 04:16",
     "source": "tradingview"
   }
 }
