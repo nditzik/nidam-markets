@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "11/11/2026 01:01",
+  "updatedAt": "11/11/2026 01:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -143,8 +143,6 @@
      "ptPrev": 642.0
     }
    ],
-   "yahooDate": "2026-11-12",
-   "analystsAt": "2026-11-10T23:01+00:00",
    "price": {
     "close": 372.53,
     "date": "2026-11-10",
@@ -479,6 +477,8 @@
      "spy": -1.7
     }
    },
+   "analystsAt": "2026-11-10T23:01+00:00",
+   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "10/11 22:46",
     "price": 370.9,
@@ -1114,8 +1114,6 @@
      "ptPrev": 0.0
     }
    ],
-   "yahooDate": "2026-11-12",
-   "analystsAt": "2026-11-10T23:01+00:00",
    "price": {
     "close": 5.57,
     "date": "2026-11-10",
@@ -1450,6 +1448,8 @@
      "spy": 1.1
     }
    },
+   "analystsAt": "2026-11-10T23:01+00:00",
+   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "10/11 22:46",
     "price": 5.545,
@@ -3001,6 +3001,15 @@
    ],
    "actions": [
     {
+     "date": "2026-11-10",
+     "firm": "Mizuho",
+     "action": "main",
+     "grade": "Outperform",
+     "from": "Outperform",
+     "pt": 135.0,
+     "ptPrev": 125.0
+    },
+    {
      "date": "2026-11-09",
      "firm": "UBS",
      "action": "main",
@@ -3044,22 +3053,15 @@
      "from": "Outperform",
      "pt": 125.0,
      "ptPrev": 130.0
-    },
-    {
-     "date": "2026-09-10",
-     "firm": "DA Davidson",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 132.0,
-     "ptPrev": 132.0
     }
    ],
+   "yahooDate": "2026-11-19",
+   "analystsAt": "2026-11-10T23:16+00:00",
    "price": {
-    "close": 125.96,
+    "close": 125.55,
     "date": "2026-11-10",
     "high52": 134.2,
-    "ma50": 113.36,
+    "ma50": 113.35,
     "series": [
      [
       "2026-07-21",
@@ -3379,17 +3381,16 @@
      ],
      [
       "2026-11-10",
-      125.96
+      125.55
      ]
     ],
-    "off52": -6.1,
+    "off52": -6.4,
     "since": {
      "from": "2026-08-19",
-     "chg": 10.2
+     "chg": 9.8,
+     "spy": -2.5
     }
    },
-   "analystsAt": "2026-11-10T17:16+00:00",
-   "yahooDate": "2026-11-19",
    "options": {
     "asOf": "10/11 22:46",
     "price": 125.48,
@@ -3540,8 +3541,6 @@
      "ptPrev": 70.0
     }
    ],
-   "yahooDate": "2026-11-23",
-   "analystsAt": "2026-11-10T23:01+00:00",
    "price": {
     "close": 37.62,
     "date": "2026-11-10",
@@ -3876,6 +3875,8 @@
      "spy": -2.6
     }
    },
+   "analystsAt": "2026-11-10T23:01+00:00",
+   "yahooDate": "2026-11-23",
    "options": {
     "asOf": "10/11 22:46",
     "price": 37.5,
@@ -3942,12 +3943,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   }
