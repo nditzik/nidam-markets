@@ -53,35 +53,23 @@
             "ticker": "CEG",
             "name": "Constellation Energy Corporation",
             "when": "before",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/CEG.png",
-            "logoBg": "dark",
-            "chg": 10.46,
-            "price": 276.09,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
+            "logoBg": "dark"
           },
           {
             "ticker": "KKR",
             "name": "KKR & Co Inc",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/KKR.png",
-            "chg": 1.67,
-            "price": 98.09,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
+            "status": "pending",
+            "logo": "data/earnings/logos/KKR.png"
           },
           {
             "ticker": "B",
             "name": "Barrick Mining Corporation",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/B.png",
-            "chg": 4.22,
-            "price": 42.27,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
+            "status": "pending",
+            "logo": "data/earnings/logos/B.png"
           },
           {
             "ticker": "OXY",
@@ -94,12 +82,8 @@
             "ticker": "FERG",
             "name": "Ferguson Enterprises Inc.",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FERG.png",
-            "chg": 11.22,
-            "price": 259.93,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
+            "status": "pending",
+            "logo": "data/earnings/logos/FERG.png"
           },
           {
             "ticker": "TTWO",
@@ -151,12 +135,8 @@
             "ticker": "TECH",
             "name": "Bio-Techne Corporation",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/TECH.png",
-            "chg": 0.07,
-            "price": 72.83,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
+            "status": "pending",
+            "logo": "data/earnings/logos/TECH.png"
           }
         ]
       }
@@ -724,7 +704,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 02:46",
+    "updatedAt": "10/11/2026 03:01",
     "source": "tradingview"
   }
 }
