@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 18,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -102,10 +102,11 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "SKYD",
-            "name": "Skydance Corporation Class B",
+            "ticker": "TTWO",
+            "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
-            "status": "pending"
+            "status": "pending",
+            "logo": "data/earnings/logos/TTWO.png"
           }
         ]
       },
@@ -237,7 +238,7 @@
       "logo": "data/earnings/logos/KT.png"
     }
   ],
-  "more": 6,
+  "more": 8,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -257,7 +258,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 30,
+      "count": 31,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -284,7 +285,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 44,
+      "total": 40,
       "companies": [
         {
           "ticker": "CEG",
@@ -320,7 +321,7 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": "after"
+          "when": ""
         },
         {
           "ticker": "TTWO",
@@ -347,16 +348,16 @@
           "logo": "data/earnings/logos/ROIV.png"
         },
         {
-          "ticker": "BAP",
-          "name": "Credicorp Ltd.",
-          "when": "after",
-          "logo": "data/earnings/logos/BAP.png"
-        },
-        {
           "ticker": "NRG",
           "name": "NRG Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NRG.png"
+        },
+        {
+          "ticker": "RBA",
+          "name": "RB Global, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/RBA.png"
         }
       ]
     },
@@ -364,7 +365,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 18,
+      "total": 20,
       "companies": [
         {
           "ticker": "PBR",
@@ -526,7 +527,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 30,
+      "total": 31,
       "companies": [
         {
           "ticker": "CSCO",
@@ -649,6 +650,8 @@
     "MRCY": "2026-11-10",
     "ALH": "2026-11-10",
     "LEGN": "2026-11-10",
+    "QBTS": "2026-11-10",
+    "RGTI": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -693,6 +696,7 @@
     "DPC": "2026-11-12",
     "GFF": "2026-11-12",
     "XE": "2026-11-12",
+    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -722,7 +726,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 04:46",
+    "updatedAt": "10/11/2026 05:01",
     "source": "tradingview"
   }
 }
