@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 19,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -10,7 +10,7 @@
     {
       "ticker": "TDG",
       "name": "TransDigm Group Incorporated",
-      "capB": 68.3
+      "capB": 68.5
     },
     {
       "ticker": "SE",
@@ -33,14 +33,14 @@
       "capB": 36.4
     },
     {
-      "ticker": "VG",
-      "name": "Venture Global, Inc. Class A",
-      "capB": 30.5
+      "ticker": "EC",
+      "name": "Ecopetrol SA Sponsored ADR",
+      "capB": 32.3
     },
     {
-      "ticker": "CRWV",
-      "name": "CoreWeave, Inc. Class A",
-      "capB": 26.7
+      "ticker": "VG",
+      "name": "Venture Global, Inc. Class A",
+      "capB": 30.6
     }
   ],
   "reactions": {
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": 0.21,
-            "price": 55.88,
+            "chg": 0.42,
+            "price": 55.99,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTWO.png",
-            "chg": 7.95,
-            "price": 223.89,
+            "chg": 7.43,
+            "price": 222.82,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           }
@@ -159,6 +159,12 @@
       "logo": "data/earnings/logos/VOD.png"
     },
     {
+      "ticker": "EC",
+      "name": "Ecopetrol SA Sponsored ADR",
+      "when": "after",
+      "logo": "data/earnings/logos/EC.png"
+    },
+    {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
       "when": "before",
@@ -171,6 +177,12 @@
       "logo": "data/earnings/logos/CRWV.png"
     },
     {
+      "ticker": "CIB",
+      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+      "when": "",
+      "logo": "data/earnings/logos/CIB.png"
+    },
+    {
       "ticker": "VIV",
       "name": "Telefonica Brasil SA Sponsored ADR",
       "when": "after",
@@ -181,22 +193,9 @@
       "name": "Embraer S.A. Sponsored ADR",
       "when": "before",
       "logo": "data/earnings/logos/EMBJ.png"
-    },
-    {
-      "ticker": "ONON",
-      "name": "On Holding AG Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/ONON.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "FRHC",
-      "name": "Freedom Holding Corp.",
-      "when": "",
-      "logo": "data/earnings/logos/FRHC.png"
     }
   ],
-  "more": 7,
+  "more": 8,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -216,14 +215,14 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 22,
+      "count": 21,
       "tickers": [
         "CSCO",
         "AMAT",
         "BN",
         "NU",
         "NBIS",
-        "EC"
+        "WSM"
       ]
     },
     {
@@ -323,7 +322,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 19,
+      "total": 20,
       "companies": [
         {
           "ticker": "PBR",
@@ -363,6 +362,12 @@
           "logo": "data/earnings/logos/VOD.png"
         },
         {
+          "ticker": "EC",
+          "name": "Ecopetrol SA Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/EC.png"
+        },
+        {
           "ticker": "VG",
           "name": "Venture Global, Inc. Class A",
           "when": "before",
@@ -375,6 +380,12 @@
           "logo": "data/earnings/logos/CRWV.png"
         },
         {
+          "ticker": "CIB",
+          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+          "when": "",
+          "logo": "data/earnings/logos/CIB.png"
+        },
+        {
           "ticker": "VIV",
           "name": "Telefonica Brasil SA Sponsored ADR",
           "when": "after",
@@ -385,19 +396,6 @@
           "name": "Embraer S.A. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/EMBJ.png"
-        },
-        {
-          "ticker": "ONON",
-          "name": "On Holding AG Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/ONON.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
         }
       ]
     },
@@ -473,7 +471,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 22,
+      "total": 21,
       "companies": [
         {
           "ticker": "CSCO",
@@ -504,12 +502,6 @@
           "name": "Nebius Group N.V. Class A",
           "when": "before",
           "logo": "data/earnings/logos/NBIS.png"
-        },
-        {
-          "ticker": "EC",
-          "name": "Ecopetrol SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/EC.png"
         },
         {
           "ticker": "WSM",
@@ -547,6 +539,12 @@
           "name": "Hudbay Minerals Inc",
           "when": "before",
           "logo": "data/earnings/logos/HBM.png"
+        },
+        {
+          "ticker": "TWST",
+          "name": "Twist Bioscience Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/TWST.png"
         }
       ]
     },
@@ -584,8 +582,10 @@
     "HMC": "2026-11-10",
     "ALC": "2026-11-10",
     "VOD": "2026-11-10",
+    "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
+    "CIB": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
@@ -595,7 +595,6 @@
     "DDS": "2026-11-10",
     "KT": "2026-11-10",
     "SLAB": "2026-11-10",
-    "MANE": "2026-11-10",
     "SRRK": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
@@ -612,7 +611,6 @@
     "BN": "2026-11-12",
     "NU": "2026-11-12",
     "NBIS": "2026-11-12",
-    "EC": "2026-11-12",
     "WSM": "2026-11-12",
     "BSP": "2026-11-12",
     "CBRS": "2026-11-12",
@@ -626,8 +624,8 @@
     "ARWR": "2026-11-12",
     "CIG": "2026-11-12",
     "KOD": "2026-11-12",
-    "FPS": "2026-11-12",
     "M": "2026-11-12",
+    "FPS": "2026-11-12",
     "NIQ": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
@@ -643,8 +641,8 @@
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
     "VIK": "2026-11-17",
-    "JD": "2026-11-17",
     "ESLT": "2026-11-17",
+    "JD": "2026-11-17",
     "AS": "2026-11-17",
     "SQM": "2026-11-17",
     "ZTO": "2026-11-17",
@@ -654,7 +652,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 19:01",
+    "updatedAt": "10/11/2026 19:12",
     "source": "tradingview"
   }
 }
