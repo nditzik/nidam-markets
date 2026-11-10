@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 20,
+  "todayCount": 19,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -10,7 +10,7 @@
     {
       "ticker": "TDG",
       "name": "TransDigm Group Incorporated",
-      "capB": 68.4
+      "capB": 68.3
     },
     {
       "ticker": "SE",
@@ -25,7 +25,7 @@
     {
       "ticker": "ALC",
       "name": "Alcon AG",
-      "capB": 36.5
+      "capB": 36.8
     },
     {
       "ticker": "VOD",
@@ -35,12 +35,12 @@
     {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
-      "capB": 29.7
+      "capB": 29.6
     },
     {
       "ticker": "CRWV",
       "name": "CoreWeave, Inc. Class A",
-      "capB": 26.2
+      "capB": 26.4
     }
   ],
   "reactions": {
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": 1.94,
-            "price": 56.84,
+            "chg": 2.05,
+            "price": 56.9,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTWO.png",
-            "chg": 7.03,
-            "price": 221.98,
+            "chg": 7.0,
+            "price": 221.92,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           }
@@ -171,12 +171,6 @@
       "logo": "data/earnings/logos/CRWV.png"
     },
     {
-      "ticker": "CIB",
-      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
-      "when": "",
-      "logo": "data/earnings/logos/CIB.png"
-    },
-    {
       "ticker": "VIV",
       "name": "Telefonica Brasil SA Sponsored ADR",
       "when": "after",
@@ -194,9 +188,15 @@
       "when": "before",
       "logo": "data/earnings/logos/ONON.png",
       "logoBg": "dark"
+    },
+    {
+      "ticker": "MOG.A",
+      "name": "Moog Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/MOG.A.png"
     }
   ],
-  "more": 8,
+  "more": 7,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -323,7 +323,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 20,
+      "total": 19,
       "companies": [
         {
           "ticker": "PBR",
@@ -375,12 +375,6 @@
           "logo": "data/earnings/logos/CRWV.png"
         },
         {
-          "ticker": "CIB",
-          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
-          "when": "",
-          "logo": "data/earnings/logos/CIB.png"
-        },
-        {
           "ticker": "VIV",
           "name": "Telefonica Brasil SA Sponsored ADR",
           "when": "after",
@@ -398,6 +392,12 @@
           "when": "before",
           "logo": "data/earnings/logos/ONON.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "MOG.A",
+          "name": "Moog Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/MOG.A.png"
         }
       ]
     },
@@ -586,12 +586,11 @@
     "VOD": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
-    "CIB": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
-    "FRHC": "2026-11-10",
     "MOG.A": "2026-11-10",
+    "FRHC": "2026-11-10",
     "MOG.B": "2026-11-10",
     "DDS": "2026-11-10",
     "KT": "2026-11-10",
@@ -654,7 +653,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 21:01",
+    "updatedAt": "10/11/2026 21:16",
     "source": "tradingview"
   }
 }
