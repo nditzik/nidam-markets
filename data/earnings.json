@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 21,
+  "todayCount": 19,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -73,6 +73,17 @@
             "baseDate": "2026-11-06"
           },
           {
+            "ticker": "B",
+            "name": "Barrick Mining Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/B.png",
+            "chg": 4.22,
+            "price": 42.27,
+            "reactDate": "2026-11-09",
+            "baseDate": "2026-11-06"
+          },
+          {
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
@@ -96,13 +107,6 @@
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/TTWO.png"
-          },
-          {
-            "ticker": "RKLB",
-            "name": "Rocket Lab Corporation",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/RKLB.png"
           }
         ]
       },
@@ -142,6 +146,17 @@
             "price": 33.73,
             "reactDate": "2026-11-06",
             "baseDate": "2026-11-05"
+          },
+          {
+            "ticker": "TECH",
+            "name": "Bio-Techne Corporation",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/TECH.png",
+            "chg": 0.07,
+            "price": 72.83,
+            "reactDate": "2026-11-09",
+            "baseDate": "2026-11-06"
           }
         ]
       }
@@ -223,7 +238,7 @@
       "logo": "data/earnings/logos/KT.png"
     }
   ],
-  "more": 9,
+  "more": 7,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -243,7 +258,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 31,
+      "count": 30,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -270,7 +285,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 27,
+      "total": 42,
       "companies": [
         {
           "ticker": "CEG",
@@ -284,6 +299,12 @@
           "name": "KKR & Co Inc",
           "when": "before",
           "logo": "data/earnings/logos/KKR.png"
+        },
+        {
+          "ticker": "B",
+          "name": "Barrick Mining Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/B.png"
         },
         {
           "ticker": "OXY",
@@ -309,10 +330,22 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
+          "ticker": "IX",
+          "name": "ORIX Corporation Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/IX.png"
+        },
+        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
+        },
+        {
+          "ticker": "ROIV",
+          "name": "Roivant Sciences Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/ROIV.png"
         },
         {
           "ticker": "BAP",
@@ -325,24 +358,6 @@
           "name": "NRG Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NRG.png"
-        },
-        {
-          "ticker": "RBA",
-          "name": "RB Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/RBA.png"
-        },
-        {
-          "ticker": "ASTS",
-          "name": "AST SpaceMobile, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/ASTS.png"
-        },
-        {
-          "ticker": "EQX",
-          "name": "Equinox Gold Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/EQX.png"
         }
       ]
     },
@@ -350,7 +365,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 21,
+      "total": 19,
       "companies": [
         {
           "ticker": "PBR",
@@ -512,7 +527,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 31,
+      "total": 30,
       "companies": [
         {
           "ticker": "CSCO",
@@ -636,8 +651,6 @@
     "ALH": "2026-11-10",
     "LEGN": "2026-11-10",
     "QBTS": "2026-11-10",
-    "RGTI": "2026-11-10",
-    "LQDA": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -682,7 +695,6 @@
     "DPC": "2026-11-12",
     "GFF": "2026-11-12",
     "XE": "2026-11-12",
-    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -712,7 +724,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 02:31",
+    "updatedAt": "10/11/2026 02:46",
     "source": "tradingview"
   }
 }
