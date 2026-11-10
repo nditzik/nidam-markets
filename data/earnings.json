@@ -10,7 +10,7 @@
     {
       "ticker": "TDG",
       "name": "TransDigm Group Incorporated",
-      "capB": 68.2
+      "capB": 67.7
     },
     {
       "ticker": "SE",
@@ -25,7 +25,7 @@
     {
       "ticker": "ALC",
       "name": "Alcon AG",
-      "capB": 36.9
+      "capB": 37.0
     },
     {
       "ticker": "VOD",
@@ -35,12 +35,12 @@
     {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
-      "capB": 29.7
+      "capB": 30.0
     },
     {
       "ticker": "CRWV",
       "name": "CoreWeave, Inc. Class A",
-      "capB": 26.4
+      "capB": 26.9
     }
   ],
   "reactions": {
@@ -87,10 +87,10 @@
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": 2.03,
-            "price": 56.89,
+            "chg": 2.04,
+            "price": 56.9,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -216,7 +216,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 22,
+      "count": 23,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -473,7 +473,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 22,
+      "total": 23,
       "companies": [
         {
           "ticker": "CSCO",
@@ -629,6 +629,7 @@
     "FPS": "2026-11-12",
     "NIQ": "2026-11-12",
     "MBGL": "2026-11-12",
+    "OCTV": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -653,7 +654,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 23:01",
+    "updatedAt": "10/11/2026 23:16",
     "source": "tradingview"
   }
 }
