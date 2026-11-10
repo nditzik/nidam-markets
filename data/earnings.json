@@ -25,7 +25,7 @@
     {
       "ticker": "ALC",
       "name": "Alcon AG",
-      "capB": 36.8
+      "capB": 36.5
     },
     {
       "ticker": "VOD",
@@ -35,12 +35,12 @@
     {
       "ticker": "VG",
       "name": "Venture Global, Inc. Class A",
-      "capB": 29.8
+      "capB": 29.7
     },
     {
       "ticker": "CRWV",
       "name": "CoreWeave, Inc. Class A",
-      "capB": 26.4
+      "capB": 26.2
     }
   ],
   "reactions": {
@@ -89,8 +89,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OXY.png",
-            "chg": 1.14,
-            "price": 56.4,
+            "chg": 1.94,
+            "price": 56.84,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTWO.png",
-            "chg": 7.1,
-            "price": 222.13,
+            "chg": 7.03,
+            "price": 221.98,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
           }
@@ -243,7 +243,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 36,
+      "total": 37,
       "companies": [
         {
           "ticker": "CEG",
@@ -456,16 +456,16 @@
           "logo": "data/earnings/logos/OR.png"
         },
         {
-          "ticker": "UGP",
-          "name": "Ultrapar Participacoes S.A. Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/UGP.png"
-        },
-        {
           "ticker": "ICL",
           "name": "ICL Group Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/ICL.png"
+        },
+        {
+          "ticker": "UGP",
+          "name": "Ultrapar Participacoes S.A. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/UGP.png"
         }
       ]
     },
@@ -519,12 +519,6 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "BSP",
-          "name": "Bending Spoons S.p.A.",
-          "when": "",
-          "logo": "data/earnings/logos/BSP.png"
-        },
-        {
           "ticker": "CBRS",
           "name": "Cerebras Systems, Inc. Class A",
           "when": "after",
@@ -547,6 +541,12 @@
           "name": "Hudbay Minerals Inc",
           "when": "before",
           "logo": "data/earnings/logos/HBM.png"
+        },
+        {
+          "ticker": "TWST",
+          "name": "Twist Bioscience Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/TWST.png"
         }
       ]
     },
@@ -606,8 +606,8 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
-    "UGP": "2026-11-11",
     "ICL": "2026-11-11",
+    "UGP": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -615,7 +615,6 @@
     "NBIS": "2026-11-12",
     "EC": "2026-11-12",
     "WSM": "2026-11-12",
-    "BSP": "2026-11-12",
     "CBRS": "2026-11-12",
     "ASND": "2026-11-12",
     "KEP": "2026-11-12",
@@ -630,6 +629,7 @@
     "M": "2026-11-12",
     "FPS": "2026-11-12",
     "NIQ": "2026-11-12",
+    "MBGL": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -649,13 +649,12 @@
     "AS": "2026-11-17",
     "SQM": "2026-11-17",
     "ZTO": "2026-11-17",
-    "QXO": "2026-11-17",
     "TME": "2026-11-17",
     "BLTE": "2026-11-17",
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 20:46",
+    "updatedAt": "10/11/2026 21:01",
     "source": "tradingview"
   }
 }
