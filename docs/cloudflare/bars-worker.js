@@ -94,7 +94,9 @@ async function scan(request, url, origin, ctx) {
     test = (url.searchParams.get("s") || "SPY").trim().toUpperCase();
     if (!SYM_RE.test(test)) return json({ error: "bad symbol" }, 400, origin);
     market = "america";
-    body = JSON.stringify({ symbols: { tickers: ["AMEX:" + test, "NASDAQ:" + test, "NYSE:" + test] }, columns: ["name", "close", "change"] });
+    // כמו כרטיס החיפוש באתר: סינון לפי שם (סמל לא קיים ברשימת tickers מפיל את כל הבקשה)
+    body = JSON.stringify({ filter: [{ left: "name", operation: "in_range", right: [test.replace(/-/g, ".")] },
+      { left: "exchange", operation: "in_range", right: ["NASDAQ", "NYSE", "AMEX"] }], columns: ["name", "close", "change"], range: [0, 3] });
   } else {
     if (request.method !== "POST") return json({ error: "POST only" }, 405, origin);
     market = url.searchParams.get("m") || "america";
