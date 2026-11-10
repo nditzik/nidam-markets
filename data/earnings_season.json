@@ -55,9 +55,10 @@
   {
    "mon": "2026-11-02",
    "label": "2.11",
-   "n": 139,
+   "n": 145,
    "tickers": [
     "AAPL",
+    "BRK.B",
     "AMD",
     "PLTR",
     "NVO"
@@ -66,7 +67,7 @@
   {
    "mon": "2026-11-09",
    "label": "9.11",
-   "n": 12,
+   "n": 11,
    "tickers": [
     "CSCO",
     "ONDS"
@@ -75,7 +76,7 @@
   {
    "mon": "2026-11-16",
    "label": "16.11",
-   "n": 12,
+   "n": 13,
    "tickers": [
     "NVDA",
     "WMT",
@@ -85,7 +86,7 @@
   {
    "mon": "2026-11-23",
    "label": "23.11",
-   "n": 13,
+   "n": 12,
    "tickers": []
   }
  ],
@@ -176,31 +177,31 @@
    ]
   }
  ],
- "total": 454,
- "reported": 423,
+ "total": 459,
+ "reported": 429,
  "members": 504,
  "board": {
-  "reported": 423,
-  "epsN": 418,
-  "epsBeat": 354,
+  "reported": 429,
+  "epsN": 426,
+  "epsBeat": 360,
   "epsBeatPct": 85,
-  "revN": 419,
-  "revBeat": 307,
+  "revN": 427,
+  "revBeat": 313,
   "revBeatPct": 73,
-  "reactBeat": 0.49,
-  "reactBeatN": 353,
-  "reactMiss": -1.57,
-  "reactMissN": 63,
+  "reactBeat": 0.57,
+  "reactBeatN": 358,
+  "reactMiss": -1.64,
+  "reactMissN": 65,
   "sectors": [
    {
     "name": "פיננסים",
-    "n": 90,
-    "beat": 67
+    "n": 92,
+    "beat": 68
    },
    {
     "name": "טכנולוגיה",
-    "n": 74,
-    "beat": 65
+    "n": 75,
+    "beat": 66
    },
    {
     "name": "תעשייה",
@@ -209,18 +210,18 @@
    },
    {
     "name": "בריאות",
-    "n": 48,
-    "beat": 46
+    "n": 49,
+    "beat": 47
    },
    {
     "name": "צריכה מחזורית",
-    "n": 40,
+    "n": 41,
     "beat": 30
    },
    {
     "name": "תשתיות",
-    "n": 30,
-    "beat": 27
+    "n": 33,
+    "beat": 30
    },
    {
     "name": "חומרים",
@@ -270,14 +271,14 @@
     "eps": 7.6
    },
    {
-    "sym": "FFIV",
-    "react": -20.43,
-    "eps": 3.9
+    "sym": "EPAM",
+    "react": 20.63,
+    "eps": 3.1
    }
   ]
  },
  "_meta": {
-  "updatedAt": "10/11/2026 08:01",
+  "updatedAt": "10/11/2026 09:31",
   "source": "TradingView + S&P 500 watchlist"
  }
 }
