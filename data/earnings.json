@@ -91,17 +91,18 @@
             "baseDate": "2026-11-06"
           },
           {
-            "ticker": "SKYD",
-            "name": "Skydance Corporation Class B",
-            "when": "after",
-            "status": "pending"
-          },
-          {
             "ticker": "TTWO",
             "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/TTWO.png"
+          },
+          {
+            "ticker": "RKLB",
+            "name": "Rocket Lab Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/RKLB.png"
           }
         ]
       }
@@ -189,7 +190,7 @@
       "date": "2026-11-11",
       "label": "11/11",
       "dow": "ד׳",
-      "count": 11,
+      "count": 12,
       "tickers": [
         "FNV",
         "VYLR",
@@ -230,7 +231,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 25,
+      "total": 22,
       "companies": [
         {
           "ticker": "CEG",
@@ -260,19 +261,13 @@
         {
           "ticker": "SKYD",
           "name": "Skydance Corporation Class B",
-          "when": "after"
+          "when": ""
         },
         {
           "ticker": "TTWO",
           "name": "Take-Two Interactive Software, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/TTWO.png"
-        },
-        {
-          "ticker": "IX",
-          "name": "ORIX Corporation Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/IX.png"
         },
         {
           "ticker": "RKLB",
@@ -299,10 +294,16 @@
           "logo": "data/earnings/logos/CNH.png"
         },
         {
-          "ticker": "SGI",
-          "name": "Somnigroup International Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SGI.png"
+          "ticker": "ASTS",
+          "name": "AST SpaceMobile, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ASTS.png"
+        },
+        {
+          "ticker": "JBS",
+          "name": "JBS N.V. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/JBS.png"
         }
       ]
     },
@@ -392,7 +393,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 11,
+      "total": 12,
       "companies": [
         {
           "ticker": "FNV",
@@ -459,6 +460,12 @@
           "name": "ICL Group Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/ICL.png"
+        },
+        {
+          "ticker": "UGP",
+          "name": "Ultrapar Participacoes S.A. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/UGP.png"
         }
       ]
     },
@@ -600,6 +607,7 @@
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
     "ICL": "2026-11-11",
+    "UGP": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -645,7 +653,7 @@
     "DLB": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 10:46",
+    "updatedAt": "10/11/2026 11:01",
     "source": "tradingview"
   }
 }
