@@ -1,6 +1,6 @@
 {
   "today": "2026-11-10",
-  "todayCount": 21,
+  "todayCount": 23,
   "todayBig": [
     {
       "ticker": "PBR",
@@ -212,6 +212,12 @@
       "logo": "data/earnings/logos/CRWV.png"
     },
     {
+      "ticker": "CIB",
+      "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+      "when": "",
+      "logo": "data/earnings/logos/CIB.png"
+    },
+    {
       "ticker": "VIV",
       "name": "Telefonica Brasil SA Sponsored ADR",
       "when": "after",
@@ -229,15 +235,9 @@
       "when": "before",
       "logo": "data/earnings/logos/ONON.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "KT",
-      "name": "KT Corporation Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/KT.png"
     }
   ],
-  "more": 9,
+  "more": 11,
   "upcoming": [
     {
       "date": "2026-11-11",
@@ -257,7 +257,7 @@
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 31,
+      "count": 30,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -284,7 +284,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 34,
+      "total": 44,
       "companies": [
         {
           "ticker": "CEG",
@@ -341,6 +341,12 @@
           "logo": "data/earnings/logos/RKLB.png"
         },
         {
+          "ticker": "ROIV",
+          "name": "Roivant Sciences Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/ROIV.png"
+        },
+        {
           "ticker": "BAP",
           "name": "Credicorp Ltd.",
           "when": "after",
@@ -351,12 +357,6 @@
           "name": "NRG Energy, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/NRG.png"
-        },
-        {
-          "ticker": "RBA",
-          "name": "RB Global, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/RBA.png"
         }
       ]
     },
@@ -364,7 +364,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 21,
+      "total": 23,
       "companies": [
         {
           "ticker": "PBR",
@@ -416,6 +416,12 @@
           "logo": "data/earnings/logos/CRWV.png"
         },
         {
+          "ticker": "CIB",
+          "name": "Grupo Cibest S.A. Unsponsored ADR Pfd",
+          "when": "",
+          "logo": "data/earnings/logos/CIB.png"
+        },
+        {
           "ticker": "VIV",
           "name": "Telefonica Brasil SA Sponsored ADR",
           "when": "after",
@@ -433,12 +439,6 @@
           "when": "before",
           "logo": "data/earnings/logos/ONON.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "KT",
-          "name": "KT Corporation Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/KT.png"
         }
       ]
     },
@@ -526,7 +526,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 31,
+      "total": 30,
       "companies": [
         {
           "ticker": "CSCO",
@@ -639,19 +639,21 @@
     "EC": "2026-11-10",
     "VG": "2026-11-10",
     "CRWV": "2026-11-10",
+    "CIB": "2026-11-10",
     "VIV": "2026-11-10",
     "EMBJ": "2026-11-10",
     "ONON": "2026-11-10",
+    "DDS": "2026-11-10",
     "KT": "2026-11-10",
+    "SLAB": "2026-11-10",
     "SRRK": "2026-11-10",
     "COGT": "2026-11-10",
+    "GGAL": "2026-11-10",
     "ATAT": "2026-11-10",
     "MRCY": "2026-11-10",
     "ALH": "2026-11-10",
+    "TEO": "2026-11-10",
     "LEGN": "2026-11-10",
-    "QBTS": "2026-11-10",
-    "RGTI": "2026-11-10",
-    "LQDA": "2026-11-10",
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "HMC": "2026-11-11",
@@ -696,7 +698,6 @@
     "DPC": "2026-11-12",
     "GFF": "2026-11-12",
     "XE": "2026-11-12",
-    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -726,7 +727,7 @@
     "KLAR": "2026-11-17"
   },
   "_meta": {
-    "updatedAt": "10/11/2026 06:31",
+    "updatedAt": "10/11/2026 06:46",
     "source": "tradingview"
   }
 }
