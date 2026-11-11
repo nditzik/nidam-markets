@@ -5,7 +5,7 @@
     {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
-      "capB": 49.1
+      "capB": 49.2
     },
     {
       "ticker": "VYLR",
@@ -25,8 +25,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -0.98,
-            "price": 18.1,
+            "chg": -1.01,
+            "price": 18.09,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -64,18 +64,6 @@
             "baseDate": "2026-11-09"
           },
           {
-            "ticker": "ALC",
-            "name": "Alcon AG",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/ALC.png",
-            "logoBg": "dark",
-            "chg": -3.46,
-            "price": 71.5,
-            "reactDate": "2026-11-11",
-            "baseDate": "2026-11-10"
-          },
-          {
             "ticker": "VOD",
             "name": "Vodafone Group Public Limited Company Sponsored ADR",
             "when": "before",
@@ -85,6 +73,18 @@
             "price": 15.5,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
+          },
+          {
+            "ticker": "ALC",
+            "name": "Alcon AG",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/ALC.png",
+            "logoBg": "dark",
+            "chg": -3.42,
+            "price": 71.53,
+            "reactDate": "2026-11-11",
+            "baseDate": "2026-11-10"
           }
         ]
       },
@@ -376,17 +376,17 @@
           "logo": "data/earnings/logos/HMC.png"
         },
         {
+          "ticker": "VOD",
+          "name": "Vodafone Group Public Limited Company Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/VOD.png"
+        },
+        {
           "ticker": "ALC",
           "name": "Alcon AG",
           "when": "after",
           "logo": "data/earnings/logos/ALC.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "VOD",
-          "name": "Vodafone Group Public Limited Company Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/VOD.png"
         },
         {
           "ticker": "CRWV",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 19:16",
+    "updatedAt": "11/11/2026 19:21",
     "source": "tradingview"
   }
 }
