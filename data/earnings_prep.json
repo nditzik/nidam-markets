@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "11/11/2026 01:46",
+  "updatedAt": "11/11/2026 02:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -1547,6 +1547,15 @@
    "actions": [
     {
      "date": "2026-11-10",
+     "firm": "Citigroup",
+     "action": "main",
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 285.0,
+     "ptPrev": 315.0
+    },
+    {
+     "date": "2026-11-10",
      "firm": "Wells Fargo",
      "action": "main",
      "grade": "Overweight",
@@ -1589,22 +1598,15 @@
      "from": "Buy",
      "pt": 300.0,
      "ptPrev": 300.0
-    },
-    {
-     "date": "2026-10-01",
-     "firm": "Cantor Fitzgerald",
-     "action": "reit",
-     "grade": "Overweight",
-     "from": "Overweight",
-     "pt": 350.0,
-     "ptPrev": 350.0
     }
    ],
+   "yahooDate": "2026-11-17",
+   "analystsAt": "2026-11-11T00:01+00:00",
    "price": {
-    "close": 167.56,
+    "close": 168.89,
     "date": "2026-11-10",
     "high52": 239.24,
-    "ma50": 217.97,
+    "ma50": 218.0,
     "series": [
      [
       "2026-07-21",
@@ -1924,17 +1926,16 @@
      ],
      [
       "2026-11-10",
-      167.56
+      168.89
      ]
     ],
-    "off52": -30.0,
+    "off52": -29.4,
     "since": {
      "from": "2026-08-26",
-     "chg": -20.1
+     "chg": -19.4,
+     "spy": -2.1
     }
    },
-   "analystsAt": "2026-11-10T18:01+00:00",
-   "yahooDate": "2026-11-17",
    "options": {
     "asOf": "10/11 22:46",
     "price": 167.97,
@@ -2085,8 +2086,10 @@
      "ptPrev": 32.0
     }
    ],
+   "yahooDate": "2026-11-19",
+   "analystsAt": "2026-11-11T00:01+00:00",
    "price": {
-    "close": 32.48,
+    "close": 32.3,
     "date": "2026-11-10",
     "high52": 41.62,
     "ma50": 29.43,
@@ -2409,17 +2412,16 @@
      ],
      [
       "2026-11-10",
-      32.48
+      32.3
      ]
     ],
-    "off52": -22.0,
+    "off52": -22.4,
     "since": {
      "from": "2026-09-17",
-     "chg": 9.5
+     "chg": 8.9,
+     "spy": -1.7
     }
    },
-   "analystsAt": "2026-11-10T18:01+00:00",
-   "yahooDate": "2026-11-19",
    "options": {
     "asOf": "10/11 22:46",
     "price": 32.275,
@@ -3943,12 +3945,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   }
