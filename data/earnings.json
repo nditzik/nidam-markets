@@ -5,12 +5,12 @@
     {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
-      "capB": 49.2
+      "capB": 49.3
     },
     {
       "ticker": "VYLR",
       "name": "Vylor Inc",
-      "capB": 47.9
+      "capB": 47.7
     }
   ],
   "reactions": {
@@ -25,8 +25,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -1.42,
-            "price": 18.02,
+            "chg": -1.31,
+            "price": 18.04,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -81,8 +81,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -4.08,
-            "price": 71.04,
+            "chg": -4.06,
+            "price": 71.05,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           }
@@ -217,17 +217,17 @@
       "logo": "data/earnings/logos/CAE.png"
     },
     {
-      "ticker": "CTVA",
-      "name": "Corteva Inc",
-      "when": "after",
-      "logo": "data/earnings/logos/CTVA.png"
-    },
-    {
       "ticker": "NIO",
       "name": "NIO Inc. Sponsored ADR Class A",
       "when": "",
       "logo": "data/earnings/logos/NIO.png",
       "logoBg": "dark"
+    },
+    {
+      "ticker": "CTVA",
+      "name": "Corteva Inc",
+      "when": "after",
+      "logo": "data/earnings/logos/CTVA.png"
     },
     {
       "ticker": "OR",
@@ -269,7 +269,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 40,
+      "total": 41,
       "companies": [
         {
           "ticker": "CEG",
@@ -349,7 +349,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 20,
+      "total": 19,
       "companies": [
         {
           "ticker": "PBR",
@@ -486,17 +486,17 @@
           "logo": "data/earnings/logos/CAE.png"
         },
         {
-          "ticker": "CTVA",
-          "name": "Corteva Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/CTVA.png"
-        },
-        {
           "ticker": "NIO",
           "name": "NIO Inc. Sponsored ADR Class A",
           "when": "",
           "logo": "data/earnings/logos/NIO.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "CTVA",
+          "name": "Corteva Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/CTVA.png"
         },
         {
           "ticker": "OR",
@@ -624,8 +624,8 @@
     "TTEK": "2026-11-11",
     "DDS": "2026-11-11",
     "CAE": "2026-11-11",
-    "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
+    "CTVA": "2026-11-11",
     "OR": "2026-11-11",
     "UGP": "2026-11-11",
     "ERAS": "2026-11-11",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 18:01",
+    "updatedAt": "11/11/2026 18:16",
     "source": "tradingview"
   }
 }
