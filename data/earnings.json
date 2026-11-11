@@ -30,8 +30,12 @@
             "ticker": "TDG",
             "name": "TransDigm Group Incorporated",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/TDG.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TDG.png",
+            "chg": 0.55,
+            "price": 1225.54,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           },
           {
             "ticker": "SE",
@@ -44,8 +48,12 @@
             "ticker": "HMC",
             "name": "Honda Motor Co., Ltd. Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/HMC.png"
+            "status": "final",
+            "logo": "data/earnings/logos/HMC.png",
+            "chg": -2.68,
+            "price": 34.88,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           },
           {
             "ticker": "ALC",
@@ -59,8 +67,12 @@
             "ticker": "VOD",
             "name": "Vodafone Group Public Limited Company Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/VOD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/VOD.png",
+            "chg": -1.21,
+            "price": 15.5,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           }
         ]
       },
@@ -106,8 +118,12 @@
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/OXY.png"
+            "status": "final",
+            "logo": "data/earnings/logos/OXY.png",
+            "chg": 2.04,
+            "price": 56.9,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           },
           {
             "ticker": "FERG",
@@ -124,8 +140,12 @@
             "ticker": "TTWO",
             "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TTWO.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TTWO.png",
+            "chg": 8.31,
+            "price": 224.64,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           }
         ]
       }
@@ -643,7 +663,7 @@
     "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 03:31",
+    "updatedAt": "11/11/2026 03:46",
     "source": "tradingview"
   }
 }
