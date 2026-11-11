@@ -5,12 +5,12 @@
     {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
-      "capB": 49.0
+      "capB": 49.2
     },
     {
       "ticker": "VYLR",
       "name": "Vylor Inc",
-      "capB": 47.4
+      "capB": 48.0
     }
   ],
   "reactions": {
@@ -25,8 +25,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -2.32,
-            "price": 17.85,
+            "chg": -1.7,
+            "price": 17.97,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -70,8 +70,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -3.32,
-            "price": 71.6,
+            "chg": -4.23,
+            "price": 70.93,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -269,7 +269,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 40,
+      "total": 41,
       "companies": [
         {
           "ticker": "CEG",
@@ -349,7 +349,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 20,
+      "total": 21,
       "companies": [
         {
           "ticker": "PBR",
@@ -389,16 +389,16 @@
           "logo": "data/earnings/logos/VOD.png"
         },
         {
-          "ticker": "VG",
-          "name": "Venture Global, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/VG.png"
-        },
-        {
           "ticker": "CRWV",
           "name": "CoreWeave, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/CRWV.png"
+        },
+        {
+          "ticker": "VG",
+          "name": "Venture Global, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/VG.png"
         },
         {
           "ticker": "VIV",
@@ -653,8 +653,8 @@
     "M": "2026-11-12",
     "NIQ": "2026-11-12",
     "MBGL": "2026-11-12",
-    "OCTV": "2026-11-12",
     "MWH": "2026-11-12",
+    "OCTV": "2026-11-12",
     "FIGR": "2026-11-12",
     "HTFL": "2026-11-12",
     "MUFG": "2026-11-13",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 17:01",
+    "updatedAt": "11/11/2026 17:16",
     "source": "tradingview"
   }
 }
