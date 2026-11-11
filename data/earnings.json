@@ -1,6 +1,6 @@
 {
   "today": "2026-11-11",
-  "todayCount": 11,
+  "todayCount": 12,
   "todayBig": [
     {
       "ticker": "FNV",
@@ -19,13 +19,6 @@
         "date": "2026-11-10",
         "label": "10.11",
         "items": [
-          {
-            "ticker": "PBR",
-            "name": "Petroleo Brasileiro SA Sponsored ADR",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/PBR.png"
-          },
           {
             "ticker": "TDG",
             "name": "TransDigm Group Incorporated",
@@ -60,14 +53,6 @@
             "baseDate": "2026-11-09"
           },
           {
-            "ticker": "ALC",
-            "name": "Alcon AG",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/ALC.png",
-            "logoBg": "dark"
-          },
-          {
             "ticker": "VOD",
             "name": "Vodafone Group Public Limited Company Sponsored ADR",
             "when": "before",
@@ -77,6 +62,24 @@
             "price": 15.5,
             "reactDate": "2026-11-10",
             "baseDate": "2026-11-09"
+          },
+          {
+            "ticker": "VG",
+            "name": "Venture Global, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VG.png",
+            "chg": 1.69,
+            "price": 12.0,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
+          },
+          {
+            "ticker": "CRWV",
+            "name": "CoreWeave, Inc. Class A",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/CRWV.png"
           }
         ]
       },
@@ -221,6 +224,12 @@
       "name": "EnerSys",
       "when": "after",
       "logo": "data/earnings/logos/ENS.png"
+    },
+    {
+      "ticker": "ERAS",
+      "name": "Erasca, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/ERAS.png"
     }
   ],
   "more": 0,
@@ -336,14 +345,8 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 19,
+      "total": 12,
       "companies": [
-        {
-          "ticker": "PBR",
-          "name": "Petroleo Brasileiro SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/PBR.png"
-        },
         {
           "ticker": "TDG",
           "name": "TransDigm Group Incorporated",
@@ -361,13 +364,6 @@
           "name": "Honda Motor Co., Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/HMC.png"
-        },
-        {
-          "ticker": "ALC",
-          "name": "Alcon AG",
-          "when": "after",
-          "logo": "data/earnings/logos/ALC.png",
-          "logoBg": "dark"
         },
         {
           "ticker": "VOD",
@@ -388,12 +384,6 @@
           "logo": "data/earnings/logos/CRWV.png"
         },
         {
-          "ticker": "VIV",
-          "name": "Telefonica Brasil SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/VIV.png"
-        },
-        {
           "ticker": "EMBJ",
           "name": "Embraer S.A. Sponsored ADR",
           "when": "before",
@@ -407,10 +397,28 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "MOG.A",
-          "name": "Moog Inc. Class A",
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
           "when": "",
-          "logo": "data/earnings/logos/MOG.A.png"
+          "logo": "data/earnings/logos/FRHC.png"
+        },
+        {
+          "ticker": "SLAB",
+          "name": "Silicon Laboratories Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/SLAB.png"
+        },
+        {
+          "ticker": "MANE",
+          "name": "Veradermics, Incorporated",
+          "when": "before",
+          "logo": "data/earnings/logos/MANE.png"
+        },
+        {
+          "ticker": "SRRK",
+          "name": "Scholar Rock Holding Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/SRRK.png"
         }
       ]
     },
@@ -418,7 +426,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 11,
+      "total": 12,
       "companies": [
         {
           "ticker": "FNV",
@@ -485,6 +493,12 @@
           "name": "EnerSys",
           "when": "after",
           "logo": "data/earnings/logos/ENS.png"
+        },
+        {
+          "ticker": "ERAS",
+          "name": "Erasca, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/ERAS.png"
         }
       ]
     },
@@ -608,6 +622,7 @@
     "ICL": "2026-11-11",
     "UGP": "2026-11-11",
     "ENS": "2026-11-11",
+    "ERAS": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -654,6 +669,7 @@
     "TME": "2026-11-17",
     "BLTE": "2026-11-17",
     "DLB": "2026-11-17",
+    "SR": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -667,7 +683,7 @@
     "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 02:01",
+    "updatedAt": "11/11/2026 02:16",
     "source": "tradingview"
   }
 }
