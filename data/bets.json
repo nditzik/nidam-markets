@@ -16,7 +16,7 @@
         {
           "label": "העלאה של 50+ נ\"ב",
           "pct": 12,
-          "chg": 0.3
+          "chg": 0.5
         },
         {
           "label": "ללא שינוי",
@@ -40,8 +40,8 @@
       "key": "hike_again_2026",
       "label": "העלאת ריבית נוספת עד סוף 2026",
       "sub": "ההימור המוביל: תהיה העלאה נוספת",
-      "pct": 95,
-      "chg": -0.9,
+      "pct": 96,
+      "chg": 0.1,
       "url": "https://polymarket.com/event/another-fed-rate-hike-in-2026",
       "src": "Polymarket"
     },
@@ -49,8 +49,8 @@
       "key": "cpi_next",
       "label": "אינפלציה שנתית — נתון נובמבר · יתפרסם 10.12",
       "sub": "ההימור המוביל: תישאר מעל 3.7%",
-      "pct": 68,
-      "chg": 10,
+      "pct": 58,
+      "chg": 0,
       "src": "Kalshi",
       "url": "https://kalshi.com/markets/kxcpiyoy"
     },
@@ -174,7 +174,7 @@
       },
       {
         "d": "2026-11-11",
-        "pct": 95
+        "pct": 96
       }
     ],
     "cpi_next": [
@@ -208,7 +208,7 @@
       },
       {
         "d": "2026-11-11",
-        "pct": 68
+        "pct": 58
       }
     ],
     "recession": [
@@ -269,7 +269,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "11/11/2026 17:16",
+    "updatedAt": "11/11/2026 17:31",
     "source": "polymarket"
   }
 }
