@@ -3,14 +3,14 @@
   "todayCount": 16,
   "todayBig": [
     {
-      "ticker": "FNV",
-      "name": "Franco-Nevada Corporation",
-      "capB": 48.6
-    },
-    {
       "ticker": "VYLR",
       "name": "Vylor Inc",
-      "capB": 47.8
+      "capB": 48.1
+    },
+    {
+      "ticker": "FNV",
+      "name": "Franco-Nevada Corporation",
+      "capB": 48.0
     }
   ],
   "reactions": {
@@ -25,8 +25,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -2.19,
-            "price": 17.88,
+            "chg": -2.49,
+            "price": 17.83,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -70,8 +70,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -2.09,
-            "price": 72.51,
+            "chg": -2.17,
+            "price": 72.45,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -165,15 +165,15 @@
   },
   "reporting": [
     {
+      "ticker": "VYLR",
+      "name": "Vylor Inc",
+      "when": "after"
+    },
+    {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
       "when": "after",
       "logo": "data/earnings/logos/FNV.png"
-    },
-    {
-      "ticker": "VYLR",
-      "name": "Vylor Inc",
-      "when": "after"
     },
     {
       "ticker": "GIB",
@@ -349,7 +349,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 20,
+      "total": 21,
       "companies": [
         {
           "ticker": "PBR",
@@ -434,15 +434,15 @@
       "total": 16,
       "companies": [
         {
+          "ticker": "VYLR",
+          "name": "Vylor Inc",
+          "when": "after"
+        },
+        {
           "ticker": "FNV",
           "name": "Franco-Nevada Corporation",
           "when": "after",
           "logo": "data/earnings/logos/FNV.png"
-        },
-        {
-          "ticker": "VYLR",
-          "name": "Vylor Inc",
-          "when": "after"
         },
         {
           "ticker": "GIB",
@@ -615,8 +615,8 @@
     }
   ],
   "window": {
-    "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
+    "FNV": "2026-11-11",
     "GIB": "2026-11-11",
     "MOG.A": "2026-11-11",
     "FRHC": "2026-11-11",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 22:16",
+    "updatedAt": "11/11/2026 23:01",
     "source": "tradingview"
   }
 }
