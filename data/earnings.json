@@ -20,6 +20,13 @@
         "label": "10.11",
         "items": [
           {
+            "ticker": "PBR",
+            "name": "Petroleo Brasileiro SA Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/PBR.png"
+          },
+          {
             "ticker": "TDG",
             "name": "TransDigm Group Incorporated",
             "when": "before",
@@ -54,13 +61,6 @@
             "when": "before",
             "status": "pending",
             "logo": "data/earnings/logos/VOD.png"
-          },
-          {
-            "ticker": "VG",
-            "name": "Venture Global, Inc. Class A",
-            "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/VG.png"
           }
         ]
       },
@@ -312,8 +312,14 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 15,
+      "total": 16,
       "companies": [
+        {
+          "ticker": "PBR",
+          "name": "Petroleo Brasileiro SA Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/PBR.png"
+        },
         {
           "ticker": "TDG",
           "name": "TransDigm Group Incorporated",
@@ -377,16 +383,10 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
+          "ticker": "KT",
+          "name": "KT Corporation Sponsored ADR",
           "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
-          "ticker": "SLAB",
-          "name": "Silicon Laboratories Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/SLAB.png"
+          "logo": "data/earnings/logos/KT.png"
         }
       ]
     },
@@ -643,7 +643,7 @@
     "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 03:16",
+    "updatedAt": "11/11/2026 03:31",
     "source": "tradingview"
   }
 }
