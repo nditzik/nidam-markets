@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "11/11/2026 06:46",
+  "updatedAt": "11/11/2026 07:02",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "Applied Materials, Inc.",
    "date": "2026-11-12",
    "when": "after",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/AMAT__2026-08-14.html",
     "date": "2026-08-14",
@@ -143,6 +143,8 @@
      "ptPrev": 642.0
     }
    ],
+   "yahooDate": "2026-11-12",
+   "analystsAt": "2026-11-11T05:02+00:00",
    "price": {
     "close": 372.53,
     "date": "2026-11-10",
@@ -477,8 +479,6 @@
      "spy": -1.7
     }
    },
-   "analystsAt": "2026-11-10T23:01+00:00",
-   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "10/11 22:46",
     "price": 370.9,
@@ -497,7 +497,7 @@
    "name": "Cisco Systems, Inc.",
    "date": "2026-11-12",
    "when": "after",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/CSCO__2026-08-13.html",
     "date": "2026-08-13",
@@ -983,7 +983,7 @@
    "name": "Ondas Inc.",
    "date": "2026-11-12",
    "when": "before",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/ONDS__2026-08-14.html",
     "date": "2026-08-14",
@@ -1115,6 +1115,8 @@
      "ptPrev": 0.0
     }
    ],
+   "yahooDate": "2026-11-12",
+   "analystsAt": "2026-11-11T05:02+00:00",
    "price": {
     "close": 5.57,
     "date": "2026-11-10",
@@ -1449,8 +1451,6 @@
      "spy": 1.1
     }
    },
-   "analystsAt": "2026-11-10T23:01+00:00",
-   "yahooDate": "2026-11-12",
    "options": {
     "asOf": "10/11 22:46",
     "price": 5.545,
@@ -1469,7 +1469,7 @@
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -1955,7 +1955,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -2441,7 +2441,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -2927,7 +2927,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 9,
+   "daysTo": 8,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -3413,7 +3413,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 13,
+   "daysTo": 12,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -3545,6 +3545,8 @@
      "ptPrev": 70.0
     }
    ],
+   "yahooDate": "2026-11-23",
+   "analystsAt": "2026-11-11T05:02+00:00",
    "price": {
     "close": 37.62,
     "date": "2026-11-10",
@@ -3879,8 +3881,6 @@
      "spy": -2.6
     }
    },
-   "analystsAt": "2026-11-10T23:01+00:00",
-   "yahooDate": "2026-11-23",
    "options": {
     "asOf": "10/11 22:46",
     "price": 37.5,
@@ -3922,14 +3922,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   },
   {
    "sym": "MU",
@@ -3947,12 +3947,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   }
@@ -4563,53 +4563,6 @@
     "day": "2026-10-29",
     "move": -0.16,
     "close": 530.14
-   }
-  },
-  {
-   "sym": "SOFI",
-   "name": "SoFi Technologies Inc",
-   "date": "2026-10-27",
-   "when": "before",
-   "report": {
-    "file": "data/reports/SOFI__2026-07-30.html",
-    "date": "2026-07-30",
-    "title": "SoFi Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/SOFI.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/SOFI__2026-10-27.html",
-    "date": "2026-10-27",
-    "title": "SOFI דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 0.16752,
-    "epsLow": 0.15765,
-    "epsHigh": 0.18,
-    "epsN": 9,
-    "epsYearAgo": 0.1014,
-    "rev": 1264367430,
-    "revLow": 1210200000,
-    "revHigh": 1381000000,
-    "revN": 19,
-    "revYearAgo": 949626000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "27/10 16:17",
-    "price": 16.065,
-    "exp": "2026-10-30",
-    "strike": 16.0,
-    "pct": 5.26,
-    "earn": null,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 9.1,
-   "reaction": {
-    "day": "2026-10-27",
-    "move": 13.42,
-    "close": 16.4
    }
   }
  ]
