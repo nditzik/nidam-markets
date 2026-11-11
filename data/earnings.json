@@ -1,6 +1,6 @@
 {
   "today": "2026-11-11",
-  "todayCount": 15,
+  "todayCount": 14,
   "todayBig": [
     {
       "ticker": "FNV",
@@ -203,12 +203,6 @@
       "logo": "data/earnings/logos/DDS.png"
     },
     {
-      "ticker": "KT",
-      "name": "KT Corporation Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/KT.png"
-    },
-    {
       "ticker": "CAE",
       "name": "CAE Inc.",
       "when": "after",
@@ -226,9 +220,15 @@
       "when": "",
       "logo": "data/earnings/logos/NIO.png",
       "logoBg": "dark"
+    },
+    {
+      "ticker": "OR",
+      "name": "OR Royalties Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/OR.png"
     }
   ],
-  "more": 3,
+  "more": 2,
   "upcoming": [
     {
       "date": "2026-11-12",
@@ -261,7 +261,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 39,
+      "total": 40,
       "companies": [
         {
           "ticker": "CEG",
@@ -423,7 +423,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 15,
+      "total": 14,
       "companies": [
         {
           "ticker": "FNV",
@@ -472,12 +472,6 @@
           "logo": "data/earnings/logos/DDS.png"
         },
         {
-          "ticker": "KT",
-          "name": "KT Corporation Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/KT.png"
-        },
-        {
           "ticker": "CAE",
           "name": "CAE Inc.",
           "when": "after",
@@ -495,6 +489,12 @@
           "when": "",
           "logo": "data/earnings/logos/NIO.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "OR",
+          "name": "OR Royalties Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/OR.png"
         }
       ]
     },
@@ -615,7 +615,6 @@
     "TTEK": "2026-11-11",
     "MOG.B": "2026-11-11",
     "DDS": "2026-11-11",
-    "KT": "2026-11-11",
     "CAE": "2026-11-11",
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
@@ -681,7 +680,7 @@
     "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 08:46",
+    "updatedAt": "11/11/2026 09:02",
     "source": "tradingview"
   }
 }
