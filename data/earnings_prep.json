@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "11/11/2026 20:01",
+  "updatedAt": "11/11/2026 20:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -479,12 +479,12 @@
    "analystsAt": "2026-11-11T17:16+00:00",
    "yahooDate": "2026-11-12",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 402.26,
+    "asOf": "11/11 20:16",
+    "price": 402.29,
     "exp": "2026-11-13",
     "strike": 402.5,
-    "pct": 7.66,
-    "earn": 7.66,
+    "pct": 7.5,
+    "earn": 7.5,
     "preExp": null,
     "prePct": null
    },
@@ -965,12 +965,12 @@
    "analystsAt": "2026-11-11T14:16+00:00",
    "yahooDate": "2026-11-12",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 101.78,
+    "asOf": "11/11 20:16",
+    "price": 101.925,
     "exp": "2026-11-13",
     "strike": 102.0,
-    "pct": 9.01,
-    "earn": 9.01,
+    "pct": 8.95,
+    "earn": 8.95,
     "preExp": null,
     "prePct": null
    },
@@ -1450,12 +1450,12 @@
    "analystsAt": "2026-11-11T17:16+00:00",
    "yahooDate": "2026-11-12",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 5.81,
+    "asOf": "11/11 20:16",
+    "price": 5.795,
     "exp": "2026-11-13",
     "strike": 6.0,
-    "pct": 13.25,
-    "earn": 13.25,
+    "pct": 13.03,
+    "earn": 13.03,
     "preExp": null,
     "prePct": null
    },
@@ -1545,6 +1545,24 @@
    ],
    "actions": [
     {
+     "date": "2026-11-11",
+     "firm": "Morgan Stanley",
+     "action": "reit",
+     "grade": "Overweight",
+     "from": "Overweight",
+     "pt": 300.0,
+     "ptPrev": 300.0
+    },
+    {
+     "date": "2026-11-11",
+     "firm": "Baird",
+     "action": "down",
+     "grade": "Neutral",
+     "from": "Outperform",
+     "pt": 200.0,
+     "ptPrev": 500.0
+    },
+    {
      "date": "2026-11-10",
      "firm": "Citigroup",
      "action": "main",
@@ -1579,36 +1597,16 @@
      "from": "Buy",
      "pt": 300.0,
      "ptPrev": 300.0
-    },
-    {
-     "date": "2026-11-02",
-     "firm": "Melius Research",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 315.0,
-     "ptPrev": 420.0
-    },
-    {
-     "date": "2026-10-22",
-     "firm": "Needham",
-     "action": "reit",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 300.0,
-     "ptPrev": 300.0
     }
    ],
+   "yahooDate": "2026-11-17",
+   "analystsAt": "2026-11-11T18:16+00:00",
    "price": {
-    "close": 168.89,
-    "date": "2026-11-10",
+    "close": 176.73,
+    "date": "2026-11-11",
     "high52": 239.24,
-    "ma50": 218.0,
+    "ma50": 217.18,
     "series": [
-     [
-      "2026-07-21",
-      207.29
-     ],
      [
       "2026-07-22",
       212.06
@@ -1924,26 +1922,27 @@
      [
       "2026-11-10",
       168.89
+     ],
+     [
+      "2026-11-11",
+      176.73
      ]
     ],
-    "off52": -29.4,
+    "off52": -26.1,
     "since": {
      "from": "2026-08-26",
-     "chg": -19.4,
-     "spy": -2.1
+     "chg": -15.7
     }
    },
-   "analystsAt": "2026-11-11T12:03+00:00",
-   "yahooDate": "2026-11-17",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 176.4175,
+    "asOf": "11/11 20:16",
+    "price": 176.7475,
     "exp": "2026-11-18",
     "strike": 177.5,
-    "pct": 9.4,
-    "earn": 7.45,
+    "pct": 9.38,
+    "earn": 7.49,
     "preExp": "2026-11-16",
-    "prePct": 4.96
+    "prePct": 4.89
    },
    "avgMove": 4.2,
    "hasNote": true
@@ -2085,16 +2084,14 @@
      "ptPrev": 32.0
     }
    ],
+   "yahooDate": "2026-11-19",
+   "analystsAt": "2026-11-11T18:16+00:00",
    "price": {
-    "close": 32.3,
-    "date": "2026-11-10",
+    "close": 31.92,
+    "date": "2026-11-11",
     "high52": 41.62,
-    "ma50": 29.43,
+    "ma50": 29.42,
     "series": [
-     [
-      "2026-07-21",
-      27.17
-     ],
      [
       "2026-07-22",
       27.17
@@ -2410,23 +2407,24 @@
      [
       "2026-11-10",
       32.3
+     ],
+     [
+      "2026-11-11",
+      31.92
      ]
     ],
-    "off52": -22.4,
+    "off52": -23.3,
     "since": {
      "from": "2026-09-17",
-     "chg": 8.9,
-     "spy": -1.7
+     "chg": 7.6
     }
    },
-   "analystsAt": "2026-11-11T12:03+00:00",
-   "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 31.87,
+    "asOf": "11/11 20:16",
+    "price": 31.925,
     "exp": "2026-11-20",
     "strike": 32.5,
-    "pct": 6.04,
+    "pct": 5.95,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -2908,14 +2906,14 @@
    "analystsAt": "2026-11-11T14:16+00:00",
    "yahooDate": "2026-11-18",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 340.9199,
+    "asOf": "11/11 20:16",
+    "price": 340.925,
     "exp": "2026-11-20",
     "strike": 340.0,
-    "pct": 11.22,
-    "earn": 8.3,
+    "pct": 11.21,
+    "earn": 8.27,
     "preExp": "2026-11-13",
-    "prePct": 4.36
+    "prePct": 4.37
    },
    "avgMove": 1.2,
    "hasNote": true
@@ -3393,14 +3391,14 @@
    "analystsAt": "2026-11-11T17:16+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 124.51,
+    "asOf": "11/11 20:16",
+    "price": 124.495,
     "exp": "2026-11-20",
-    "strike": 125.0,
-    "pct": 6.39,
-    "earn": 5.58,
+    "strike": 124.0,
+    "pct": 6.35,
+    "earn": 5.54,
     "preExp": "2026-11-13",
-    "prePct": 1.8
+    "prePct": 1.79
    },
    "avgMove": 6.1,
    "hasNote": false
@@ -3878,14 +3876,14 @@
    "analystsAt": "2026-11-11T17:16+00:00",
    "yahooDate": "2026-11-23",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 37.84,
+    "asOf": "11/11 20:16",
+    "price": 37.79,
     "exp": "2026-11-27",
     "strike": 38.0,
-    "pct": 16.05,
-    "earn": 12.67,
+    "pct": 16.08,
+    "earn": 12.63,
     "preExp": "2026-11-20",
-    "prePct": 7.86
+    "prePct": 7.94
    },
    "avgMove": 8.5,
    "hasNote": false
@@ -4364,14 +4362,14 @@
    "analystsAt": "2026-11-11T14:01+00:00",
    "yahooDate": "2026-11-24",
    "options": {
-    "asOf": "11/11 20:01",
-    "price": 382.445,
+    "asOf": "11/11 20:16",
+    "price": 383.05,
     "exp": "2026-11-27",
-    "strike": 380.0,
-    "pct": 15.79,
-    "earn": 9.19,
+    "strike": 385.0,
+    "pct": 15.86,
+    "earn": 9.37,
     "preExp": "2026-11-20",
-    "prePct": 10.24
+    "prePct": 10.21
    },
    "avgMove": 19.1,
    "hasNote": false
@@ -4399,14 +4397,14 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": null
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   },
   {
    "sym": "MU",
@@ -4424,12 +4422,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
