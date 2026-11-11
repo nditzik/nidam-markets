@@ -1,6 +1,6 @@
 {
   "today": "2026-11-11",
-  "todayCount": 14,
+  "todayCount": 15,
   "todayBig": [
     {
       "ticker": "FNV",
@@ -180,6 +180,12 @@
       "logo": "data/earnings/logos/MOG.A.png"
     },
     {
+      "ticker": "FRHC",
+      "name": "Freedom Holding Corp.",
+      "when": "",
+      "logo": "data/earnings/logos/FRHC.png"
+    },
+    {
       "ticker": "TTEK",
       "name": "Tetra Tech, Inc.",
       "when": "after",
@@ -220,15 +226,9 @@
       "when": "",
       "logo": "data/earnings/logos/NIO.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "OR",
-      "name": "OR Royalties Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/OR.png"
     }
   ],
-  "more": 2,
+  "more": 3,
   "upcoming": [
     {
       "date": "2026-11-12",
@@ -423,7 +423,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 14,
+      "total": 15,
       "companies": [
         {
           "ticker": "FNV",
@@ -447,6 +447,12 @@
           "name": "Moog Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "TTEK",
@@ -489,12 +495,6 @@
           "when": "",
           "logo": "data/earnings/logos/NIO.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "OR",
-          "name": "OR Royalties Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/OR.png"
         }
       ]
     },
@@ -611,6 +611,7 @@
     "VYLR": "2026-11-11",
     "GIB": "2026-11-11",
     "MOG.A": "2026-11-11",
+    "FRHC": "2026-11-11",
     "TTEK": "2026-11-11",
     "MOG.B": "2026-11-11",
     "DDS": "2026-11-11",
@@ -680,7 +681,7 @@
     "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 07:02",
+    "updatedAt": "11/11/2026 07:16",
     "source": "tradingview"
   }
 }
