@@ -1,6 +1,6 @@
 {
   "today": "2026-11-11",
-  "todayCount": 11,
+  "todayCount": 14,
   "todayBig": [
     {
       "ticker": "FNV",
@@ -174,10 +174,33 @@
       "logo": "data/earnings/logos/GIB.png"
     },
     {
+      "ticker": "MOG.A",
+      "name": "Moog Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/MOG.A.png"
+    },
+    {
       "ticker": "TTEK",
       "name": "Tetra Tech, Inc.",
       "when": "after",
       "logo": "data/earnings/logos/TTEK.png"
+    },
+    {
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": ""
+    },
+    {
+      "ticker": "DDS",
+      "name": "Dillard's, Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/DDS.png"
+    },
+    {
+      "ticker": "KT",
+      "name": "KT Corporation Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/KT.png"
     },
     {
       "ticker": "CAE",
@@ -203,27 +226,9 @@
       "name": "OR Royalties Inc.",
       "when": "after",
       "logo": "data/earnings/logos/OR.png"
-    },
-    {
-      "ticker": "UGP",
-      "name": "Ultrapar Participacoes S.A. Sponsored ADR",
-      "when": "after",
-      "logo": "data/earnings/logos/UGP.png"
-    },
-    {
-      "ticker": "ENS",
-      "name": "EnerSys",
-      "when": "after",
-      "logo": "data/earnings/logos/ENS.png"
-    },
-    {
-      "ticker": "ERAS",
-      "name": "Erasca, Inc.",
-      "when": "",
-      "logo": "data/earnings/logos/ERAS.png"
     }
   ],
-  "more": 0,
+  "more": 2,
   "upcoming": [
     {
       "date": "2026-11-12",
@@ -336,7 +341,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 16,
+      "total": 15,
       "companies": [
         {
           "ticker": "PBR",
@@ -407,10 +412,10 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "KT",
-          "name": "KT Corporation Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/KT.png"
+          "ticker": "SLAB",
+          "name": "Silicon Laboratories Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SLAB.png"
         }
       ]
     },
@@ -418,7 +423,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 11,
+      "total": 14,
       "companies": [
         {
           "ticker": "FNV",
@@ -438,10 +443,33 @@
           "logo": "data/earnings/logos/GIB.png"
         },
         {
+          "ticker": "MOG.A",
+          "name": "Moog Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
           "ticker": "TTEK",
           "name": "Tetra Tech, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/TTEK.png"
+        },
+        {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": ""
+        },
+        {
+          "ticker": "DDS",
+          "name": "Dillard's, Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/DDS.png"
+        },
+        {
+          "ticker": "KT",
+          "name": "KT Corporation Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/KT.png"
         },
         {
           "ticker": "CAE",
@@ -467,24 +495,6 @@
           "name": "OR Royalties Inc.",
           "when": "after",
           "logo": "data/earnings/logos/OR.png"
-        },
-        {
-          "ticker": "UGP",
-          "name": "Ultrapar Participacoes S.A. Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/UGP.png"
-        },
-        {
-          "ticker": "ENS",
-          "name": "EnerSys",
-          "when": "after",
-          "logo": "data/earnings/logos/ENS.png"
-        },
-        {
-          "ticker": "ERAS",
-          "name": "Erasca, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/ERAS.png"
         }
       ]
     },
@@ -600,14 +610,17 @@
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "GIB": "2026-11-11",
+    "MOG.A": "2026-11-11",
     "TTEK": "2026-11-11",
+    "MOG.B": "2026-11-11",
+    "DDS": "2026-11-11",
+    "KT": "2026-11-11",
     "CAE": "2026-11-11",
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
     "UGP": "2026-11-11",
     "ENS": "2026-11-11",
-    "ERAS": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -667,7 +680,7 @@
     "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 06:16",
+    "updatedAt": "11/11/2026 06:32",
     "source": "tradingview"
   }
 }
