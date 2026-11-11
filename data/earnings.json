@@ -5,7 +5,7 @@
     {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
-      "capB": 49.0
+      "capB": 49.2
     },
     {
       "ticker": "VYLR",
@@ -25,8 +25,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -0.88,
-            "price": 18.12,
+            "chg": -1.42,
+            "price": 18.02,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -81,8 +81,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -4.17,
-            "price": 70.97,
+            "chg": -4.08,
+            "price": 71.04,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           }
@@ -182,16 +182,16 @@
       "logo": "data/earnings/logos/GIB.png"
     },
     {
-      "ticker": "FRHC",
-      "name": "Freedom Holding Corp.",
-      "when": "",
-      "logo": "data/earnings/logos/FRHC.png"
-    },
-    {
       "ticker": "MOG.A",
       "name": "Moog Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/MOG.A.png"
+    },
+    {
+      "ticker": "FRHC",
+      "name": "Freedom Holding Corp.",
+      "when": "",
+      "logo": "data/earnings/logos/FRHC.png"
     },
     {
       "ticker": "MOG.B",
@@ -451,16 +451,16 @@
           "logo": "data/earnings/logos/GIB.png"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "MOG.B",
@@ -618,8 +618,8 @@
     "FNV": "2026-11-11",
     "VYLR": "2026-11-11",
     "GIB": "2026-11-11",
-    "FRHC": "2026-11-11",
     "MOG.A": "2026-11-11",
+    "FRHC": "2026-11-11",
     "MOG.B": "2026-11-11",
     "TTEK": "2026-11-11",
     "DDS": "2026-11-11",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 17:46",
+    "updatedAt": "11/11/2026 18:01",
     "source": "tradingview"
   }
 }
