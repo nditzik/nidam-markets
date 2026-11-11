@@ -5,7 +5,7 @@
     {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
-      "capB": 48.8
+      "capB": 48.6
     },
     {
       "ticker": "VYLR",
@@ -25,7 +25,7 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -2.22,
+            "chg": -2.19,
             "price": 17.88,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
@@ -70,8 +70,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -2.28,
-            "price": 72.38,
+            "chg": -2.09,
+            "price": 72.51,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -199,16 +199,16 @@
       "when": ""
     },
     {
-      "ticker": "TTEK",
-      "name": "Tetra Tech, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/TTEK.png"
-    },
-    {
       "ticker": "DDS",
       "name": "Dillard's, Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/DDS.png"
+    },
+    {
+      "ticker": "TTEK",
+      "name": "Tetra Tech, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/TTEK.png"
     },
     {
       "ticker": "CAE",
@@ -468,16 +468,16 @@
           "when": ""
         },
         {
-          "ticker": "TTEK",
-          "name": "Tetra Tech, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/TTEK.png"
-        },
-        {
           "ticker": "DDS",
           "name": "Dillard's, Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/DDS.png"
+        },
+        {
+          "ticker": "TTEK",
+          "name": "Tetra Tech, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/TTEK.png"
         },
         {
           "ticker": "CAE",
@@ -621,8 +621,8 @@
     "MOG.A": "2026-11-11",
     "FRHC": "2026-11-11",
     "MOG.B": "2026-11-11",
-    "TTEK": "2026-11-11",
     "DDS": "2026-11-11",
+    "TTEK": "2026-11-11",
     "CAE": "2026-11-11",
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 22:01",
+    "updatedAt": "11/11/2026 22:16",
     "source": "tradingview"
   }
 }
