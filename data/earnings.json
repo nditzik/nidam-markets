@@ -5,12 +5,12 @@
     {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
-      "capB": 49.0
+      "capB": 48.9
     },
     {
       "ticker": "VYLR",
       "name": "Vylor Inc",
-      "capB": 47.9
+      "capB": 47.8
     }
   ],
   "reactions": {
@@ -25,8 +25,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -1.61,
-            "price": 17.99,
+            "chg": -2.05,
+            "price": 17.91,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -70,8 +70,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -2.59,
-            "price": 72.14,
+            "chg": -2.46,
+            "price": 72.24,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -269,7 +269,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 42,
+      "total": 40,
       "companies": [
         {
           "ticker": "CEG",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 21:16",
+    "updatedAt": "11/11/2026 21:31",
     "source": "tradingview"
   }
 }
