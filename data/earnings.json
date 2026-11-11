@@ -5,7 +5,7 @@
     {
       "ticker": "FNV",
       "name": "Franco-Nevada Corporation",
-      "capB": 49.3
+      "capB": 49.1
     },
     {
       "ticker": "VYLR",
@@ -25,8 +25,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -3.39,
-            "price": 17.66,
+            "chg": -2.93,
+            "price": 17.75,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -70,8 +70,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -2.48,
-            "price": 72.22,
+            "chg": -3.21,
+            "price": 71.68,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -194,15 +194,15 @@
       "logo": "data/earnings/logos/FRHC.png"
     },
     {
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": ""
+    },
+    {
       "ticker": "TTEK",
       "name": "Tetra Tech, Inc.",
       "when": "after",
       "logo": "data/earnings/logos/TTEK.png"
-    },
-    {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": ""
     },
     {
       "ticker": "DDS",
@@ -269,7 +269,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 40,
+      "total": 41,
       "companies": [
         {
           "ticker": "CEG",
@@ -309,15 +309,15 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
-          "ticker": "SKYD",
-          "name": "Skydance Corporation Class B",
-          "when": "after"
-        },
-        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
+        },
+        {
+          "ticker": "SKYD",
+          "name": "Skydance Corporation Class B",
+          "when": "after"
         },
         {
           "ticker": "IX",
@@ -389,16 +389,16 @@
           "logo": "data/earnings/logos/VOD.png"
         },
         {
-          "ticker": "VG",
-          "name": "Venture Global, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/VG.png"
-        },
-        {
           "ticker": "CRWV",
           "name": "CoreWeave, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/CRWV.png"
+        },
+        {
+          "ticker": "VG",
+          "name": "Venture Global, Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/VG.png"
         },
         {
           "ticker": "VIV",
@@ -420,10 +420,10 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "BMNP",
-          "name": "BitMine Immersion Technologies Inc Non-Cum.Perpetual Pfd Shs Series A",
+          "ticker": "BMNR",
+          "name": "BitMine Immersion Technologies Inc",
           "when": "",
-          "logo": "data/earnings/logos/BMNP.png"
+          "logo": "data/earnings/logos/BMNR.png"
         }
       ]
     },
@@ -463,15 +463,15 @@
           "logo": "data/earnings/logos/FRHC.png"
         },
         {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": ""
+        },
+        {
           "ticker": "TTEK",
           "name": "Tetra Tech, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/TTEK.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": ""
         },
         {
           "ticker": "DDS",
@@ -620,8 +620,8 @@
     "GIB": "2026-11-11",
     "MOG.A": "2026-11-11",
     "FRHC": "2026-11-11",
-    "TTEK": "2026-11-11",
     "MOG.B": "2026-11-11",
+    "TTEK": "2026-11-11",
     "DDS": "2026-11-11",
     "CAE": "2026-11-11",
     "CTVA": "2026-11-11",
@@ -646,15 +646,15 @@
     "STN": "2026-11-12",
     "ELPC": "2026-11-12",
     "ANDG": "2026-11-12",
+    "FPS": "2026-11-12",
     "ARWR": "2026-11-12",
     "KOD": "2026-11-12",
     "CIG": "2026-11-12",
     "M": "2026-11-12",
-    "FPS": "2026-11-12",
     "NIQ": "2026-11-12",
     "MBGL": "2026-11-12",
-    "OCTV": "2026-11-12",
     "MWH": "2026-11-12",
+    "OCTV": "2026-11-12",
     "FIGR": "2026-11-12",
     "HTFL": "2026-11-12",
     "MUFG": "2026-11-13",
@@ -672,8 +672,8 @@
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
     "VIK": "2026-11-17",
-    "ESLT": "2026-11-17",
     "JD": "2026-11-17",
+    "ESLT": "2026-11-17",
     "AS": "2026-11-17",
     "ZTO": "2026-11-17",
     "SQM": "2026-11-17",
@@ -697,7 +697,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 16:31",
+    "updatedAt": "11/11/2026 16:46",
     "source": "tradingview"
   }
 }
