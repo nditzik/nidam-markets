@@ -1,6 +1,6 @@
 {
   "today": "2026-11-11",
-  "todayCount": 12,
+  "todayCount": 11,
   "todayBig": [
     {
       "ticker": "FNV",
@@ -23,63 +23,44 @@
             "ticker": "TDG",
             "name": "TransDigm Group Incorporated",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/TDG.png",
-            "chg": 0.55,
-            "price": 1225.54,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
+            "status": "pending",
+            "logo": "data/earnings/logos/TDG.png"
           },
           {
             "ticker": "SE",
             "name": "Sea Limited Sponsored ADR Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/SE.png",
-            "chg": -1.49,
-            "price": 76.8,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
+            "status": "pending",
+            "logo": "data/earnings/logos/SE.png"
           },
           {
             "ticker": "HMC",
             "name": "Honda Motor Co., Ltd. Sponsored ADR",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/HMC.png",
-            "chg": -2.68,
-            "price": 34.88,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
+            "status": "pending",
+            "logo": "data/earnings/logos/HMC.png"
+          },
+          {
+            "ticker": "ALC",
+            "name": "Alcon AG",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/ALC.png",
+            "logoBg": "dark"
           },
           {
             "ticker": "VOD",
             "name": "Vodafone Group Public Limited Company Sponsored ADR",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VOD.png",
-            "chg": -1.21,
-            "price": 15.5,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
+            "status": "pending",
+            "logo": "data/earnings/logos/VOD.png"
           },
           {
             "ticker": "VG",
             "name": "Venture Global, Inc. Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VG.png",
-            "chg": 1.69,
-            "price": 12.0,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
-          },
-          {
-            "ticker": "CRWV",
-            "name": "CoreWeave, Inc. Class A",
-            "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/CRWV.png"
+            "logo": "data/earnings/logos/VG.png"
           }
         ]
       },
@@ -125,12 +106,8 @@
             "ticker": "OXY",
             "name": "Occidental Petroleum Corporation",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/OXY.png",
-            "chg": 2.04,
-            "price": 56.9,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
+            "status": "pending",
+            "logo": "data/earnings/logos/OXY.png"
           },
           {
             "ticker": "FERG",
@@ -147,12 +124,8 @@
             "ticker": "TTWO",
             "name": "Take-Two Interactive Software, Inc.",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/TTWO.png",
-            "chg": 8.31,
-            "price": 224.64,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
+            "status": "pending",
+            "logo": "data/earnings/logos/TTWO.png"
           }
         ]
       }
@@ -206,12 +179,6 @@
       "name": "OR Royalties Inc.",
       "when": "after",
       "logo": "data/earnings/logos/OR.png"
-    },
-    {
-      "ticker": "ICL",
-      "name": "ICL Group Ltd.",
-      "when": "before",
-      "logo": "data/earnings/logos/ICL.png"
     },
     {
       "ticker": "UGP",
@@ -345,7 +312,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 12,
+      "total": 15,
       "companies": [
         {
           "ticker": "TDG",
@@ -366,6 +333,13 @@
           "logo": "data/earnings/logos/HMC.png"
         },
         {
+          "ticker": "ALC",
+          "name": "Alcon AG",
+          "when": "after",
+          "logo": "data/earnings/logos/ALC.png",
+          "logoBg": "dark"
+        },
+        {
           "ticker": "VOD",
           "name": "Vodafone Group Public Limited Company Sponsored ADR",
           "when": "before",
@@ -382,6 +356,12 @@
           "name": "CoreWeave, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/CRWV.png"
+        },
+        {
+          "ticker": "VIV",
+          "name": "Telefonica Brasil SA Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/VIV.png"
         },
         {
           "ticker": "EMBJ",
@@ -405,20 +385,8 @@
         {
           "ticker": "SLAB",
           "name": "Silicon Laboratories Inc.",
-          "when": "",
+          "when": "after",
           "logo": "data/earnings/logos/SLAB.png"
-        },
-        {
-          "ticker": "MANE",
-          "name": "Veradermics, Incorporated",
-          "when": "before",
-          "logo": "data/earnings/logos/MANE.png"
-        },
-        {
-          "ticker": "SRRK",
-          "name": "Scholar Rock Holding Corp.",
-          "when": "before",
-          "logo": "data/earnings/logos/SRRK.png"
         }
       ]
     },
@@ -426,7 +394,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 12,
+      "total": 11,
       "companies": [
         {
           "ticker": "FNV",
@@ -475,12 +443,6 @@
           "name": "OR Royalties Inc.",
           "when": "after",
           "logo": "data/earnings/logos/OR.png"
-        },
-        {
-          "ticker": "ICL",
-          "name": "ICL Group Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/ICL.png"
         },
         {
           "ticker": "UGP",
@@ -619,7 +581,6 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
-    "ICL": "2026-11-11",
     "UGP": "2026-11-11",
     "ENS": "2026-11-11",
     "ERAS": "2026-11-11",
@@ -669,7 +630,6 @@
     "TME": "2026-11-17",
     "BLTE": "2026-11-17",
     "DLB": "2026-11-17",
-    "SR": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -683,7 +643,7 @@
     "NJR": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 02:46",
+    "updatedAt": "11/11/2026 03:01",
     "source": "tradingview"
   }
 }
