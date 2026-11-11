@@ -1,11 +1,11 @@
 {
   "today": "2026-11-11",
-  "todayCount": 16,
+  "todayCount": 17,
   "todayBig": [
     {
       "ticker": "VYLR",
       "name": "Vylor Inc",
-      "capB": 48.1
+      "capB": 48.2
     },
     {
       "ticker": "FNV",
@@ -23,10 +23,10 @@
             "ticker": "PBR",
             "name": "Petroleo Brasileiro SA Sponsored ADR",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/PBR.png",
-            "chg": -2.49,
-            "price": 17.83,
+            "chg": -2.52,
+            "price": 17.82,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -67,11 +67,11 @@
             "ticker": "ALC",
             "name": "Alcon AG",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/ALC.png",
             "logoBg": "dark",
-            "chg": -2.17,
-            "price": 72.45,
+            "chg": -2.16,
+            "price": 72.46,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
           },
@@ -236,13 +236,13 @@
       "logo": "data/earnings/logos/OR.png"
     }
   ],
-  "more": 4,
+  "more": 5,
   "upcoming": [
     {
       "date": "2026-11-12",
       "label": "12/11",
       "dow": "ה׳",
-      "count": 26,
+      "count": 27,
       "tickers": [
         "CSCO",
         "AMAT",
@@ -269,7 +269,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 41,
+      "total": 44,
       "companies": [
         {
           "ticker": "CEG",
@@ -431,7 +431,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 16,
+      "total": 17,
       "companies": [
         {
           "ticker": "VYLR",
@@ -510,7 +510,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 26,
+      "total": 27,
       "companies": [
         {
           "ticker": "CSCO",
@@ -627,10 +627,11 @@
     "CTVA": "2026-11-11",
     "NIO": "2026-11-11",
     "OR": "2026-11-11",
-    "ERAS": "2026-11-11",
     "UGP": "2026-11-11",
+    "ERAS": "2026-11-11",
     "ENS": "2026-11-11",
     "GGAL": "2026-11-11",
+    "TEO": "2026-11-11",
     "CSCO": "2026-11-12",
     "AMAT": "2026-11-12",
     "BN": "2026-11-12",
@@ -657,6 +658,7 @@
     "MWH": "2026-11-12",
     "FIGR": "2026-11-12",
     "HTFL": "2026-11-12",
+    "DPC": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -682,6 +684,7 @@
     "DLB": "2026-11-17",
     "SR": "2026-11-17",
     "KLAR": "2026-11-17",
+    "GFF": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -697,7 +700,7 @@
     "HAFN": "2026-11-18"
   },
   "_meta": {
-    "updatedAt": "11/11/2026 23:01",
+    "updatedAt": "11/11/2026 23:16",
     "source": "tradingview"
   }
 }
