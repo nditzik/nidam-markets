@@ -1,6 +1,6 @@
 {
   "today": "2026-11-12",
-  "todayCount": 28,
+  "todayCount": 29,
   "todayBig": [
     {
       "ticker": "CSCO",
@@ -50,19 +50,6 @@
         "label": "11.11",
         "items": [
           {
-            "ticker": "VYLR",
-            "name": "Vylor Inc",
-            "when": "after",
-            "status": "pending"
-          },
-          {
-            "ticker": "FNV",
-            "name": "Franco-Nevada Corporation",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/FNV.png"
-          },
-          {
             "ticker": "GIB",
             "name": "CGI Inc. Class A",
             "when": "before",
@@ -74,25 +61,11 @@
             "baseDate": "2026-11-10"
           },
           {
-            "ticker": "TTEK",
-            "name": "Tetra Tech, Inc.",
+            "ticker": "OR",
+            "name": "OR Royalties Inc.",
             "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/TTEK.png"
-          },
-          {
-            "ticker": "CAE",
-            "name": "CAE Inc.",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CAE.png"
-          },
-          {
-            "ticker": "CTVA",
-            "name": "Corteva Inc",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CTVA.png"
+            "logo": "data/earnings/logos/OR.png"
           }
         ]
       },
@@ -319,7 +292,7 @@
       "logo": "data/earnings/logos/STN.png"
     }
   ],
-  "more": 16,
+  "more": 17,
   "upcoming": [
     {
       "date": "2026-11-13",
@@ -500,19 +473,8 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 17,
+      "total": 3,
       "companies": [
-        {
-          "ticker": "VYLR",
-          "name": "Vylor Inc",
-          "when": "after"
-        },
-        {
-          "ticker": "FNV",
-          "name": "Franco-Nevada Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/FNV.png"
-        },
         {
           "ticker": "GIB",
           "name": "CGI Inc. Class A",
@@ -520,52 +482,10 @@
           "logo": "data/earnings/logos/GIB.png"
         },
         {
-          "ticker": "MOG.A",
-          "name": "Moog Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/MOG.A.png"
-        },
-        {
           "ticker": "FRHC",
           "name": "Freedom Holding Corp.",
           "when": "",
           "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": ""
-        },
-        {
-          "ticker": "DDS",
-          "name": "Dillard's, Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/DDS.png"
-        },
-        {
-          "ticker": "TTEK",
-          "name": "Tetra Tech, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/TTEK.png"
-        },
-        {
-          "ticker": "CAE",
-          "name": "CAE Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/CAE.png"
-        },
-        {
-          "ticker": "CTVA",
-          "name": "Corteva Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/CTVA.png"
-        },
-        {
-          "ticker": "NIO",
-          "name": "NIO Inc. Sponsored ADR Class A",
-          "when": "",
-          "logo": "data/earnings/logos/NIO.png",
-          "logoBg": "dark"
         },
         {
           "ticker": "OR",
@@ -579,7 +499,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 28,
+      "total": 29,
       "companies": [
         {
           "ticker": "CSCO",
@@ -712,6 +632,7 @@
     "HTFL": "2026-11-12",
     "DPC": "2026-11-12",
     "XE": "2026-11-12",
+    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -770,7 +691,7 @@
     "BBWI": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 02:01",
+    "updatedAt": "12/11/2026 02:16",
     "source": "tradingview"
   }
 }
