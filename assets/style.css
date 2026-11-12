@@ -2685,3 +2685,9 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .bd-story .st-live { margin-inline-start: 0; width: 100%; }
   .bd-story .st-tl li { grid-template-columns: 72px minmax(0, 1fr); }
 }
+
+/* np196 (איציק: "צבע שונה לכותרת, שיהיה בולט") — הכותרת על פס דיו (כמו לשונית "סיכום"), מתהפך במצב כהה */
+.bd-story .st-hero { background: var(--ink); color: var(--ink-text); border-radius: 10px; padding: 14px 18px 16px; margin: 0 0 12px; border-inline-start: 5px solid var(--accent); }
+.bd-story .st-hero .st-h { color: var(--ink-text); margin: 4px 0 0; font-size: 24px; }
+.bd-story .st-kick { font-size: 12px; font-weight: 600; letter-spacing: .02em; color: var(--ink-text); opacity: .75; }
+@media (max-width: 700px) { .bd-story .st-hero { padding: 12px 14px 14px; } .bd-story .st-hero .st-h { font-size: 20px; } }

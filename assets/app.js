@@ -433,7 +433,7 @@
     var srcs = (d.sources || []).map(function (x) { return '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + "</a>"; }).join(" · ");
     el.innerHTML = '<div class="ph"><h2>' + esc(d.kicker || "כתבה") + "</h2>" + (d.badge ? '<span class="pill state warn">' + esc(d.badge) + "</span>" : "") + '<span class="st-live">' + live + "</span></div>" +
       '<div class="pb st-body">' +
-        '<h3 class="st-h">' + esc(d.title) + "</h3>" +
+        '<div class="st-hero"><span class="st-kick">' + esc(d.kicker || "כתבה") + (d.collectedAt ? " · " + esc(d.collectedAt) : "") + '</span><h3 class="st-h">' + esc(d.title) + "</h3></div>" +
         (d.dek ? '<p class="st-dek">' + esc(d.dek) + "</p>" : "") +
         '<div class="st-cols"><div class="st-text">' + (d.paras || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</div>" +
           (nx ? '<aside class="st-next"><b>מה הלאה</b><ul>' + nx + "</ul></aside>" : "") + "</div>" +
@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np195";
+  var TA_VER = "np196";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
