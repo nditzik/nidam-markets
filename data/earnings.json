@@ -1,6 +1,6 @@
 {
   "today": "2026-11-12",
-  "todayCount": 29,
+  "todayCount": 35,
   "todayBig": [
     {
       "ticker": "CSCO",
@@ -307,19 +307,18 @@
       "logo": "data/earnings/logos/KEP.png"
     },
     {
-      "ticker": "HBM",
-      "name": "Hudbay Minerals Inc",
-      "when": "before",
-      "logo": "data/earnings/logos/HBM.png"
+      "ticker": "MOG.A",
+      "name": "Moog Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/MOG.A.png"
     },
     {
-      "ticker": "STN",
-      "name": "Stantec Inc",
-      "when": "after",
-      "logo": "data/earnings/logos/STN.png"
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": ""
     }
   ],
-  "more": 17,
+  "more": 23,
   "upcoming": [
     {
       "date": "2026-11-13",
@@ -555,7 +554,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 29,
+      "total": 35,
       "companies": [
         {
           "ticker": "CSCO",
@@ -619,16 +618,15 @@
           "logo": "data/earnings/logos/KEP.png"
         },
         {
-          "ticker": "HBM",
-          "name": "Hudbay Minerals Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/HBM.png"
+          "ticker": "MOG.A",
+          "name": "Moog Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/MOG.A.png"
         },
         {
-          "ticker": "STN",
-          "name": "Stantec Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/STN.png"
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": ""
         }
       ]
     },
@@ -670,10 +668,14 @@
     "CBRS": "2026-11-12",
     "ASND": "2026-11-12",
     "KEP": "2026-11-12",
+    "MOG.A": "2026-11-12",
+    "MOG.B": "2026-11-12",
     "HBM": "2026-11-12",
+    "DDS": "2026-11-12",
     "STN": "2026-11-12",
     "TWST": "2026-11-12",
     "ELPC": "2026-11-12",
+    "NIO": "2026-11-12",
     "FPS": "2026-11-12",
     "ANDG": "2026-11-12",
     "ARWR": "2026-11-12",
@@ -681,14 +683,16 @@
     "CIG": "2026-11-12",
     "M": "2026-11-12",
     "NIQ": "2026-11-12",
+    "ERAS": "2026-11-12",
     "MBGL": "2026-11-12",
     "OCTV": "2026-11-12",
     "MWH": "2026-11-12",
     "FIGR": "2026-11-12",
     "HTFL": "2026-11-12",
+    "GGAL": "2026-11-12",
     "DPC": "2026-11-12",
+    "TEO": "2026-11-12",
     "XE": "2026-11-12",
-    "ARX": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -747,7 +751,7 @@
     "BBWI": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 05:16",
+    "updatedAt": "12/11/2026 05:31",
     "source": "tradingview"
   }
 }
