@@ -5,27 +5,27 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 396.7
+      "capB": 392.1
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 313.5
+      "capB": 303.8
     },
     {
       "ticker": "BN",
       "name": "Brookfield Corporation",
-      "capB": 103.2
+      "capB": 103.9
     },
     {
       "ticker": "NU",
       "name": "Nu Holdings Ltd. Class A",
-      "capB": 59.5
+      "capB": 58.4
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 42.1
+      "capB": 32.9
     },
     {
       "ticker": "EC",
@@ -35,12 +35,12 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 30.9
+      "capB": 30.7
     },
     {
       "ticker": "CBRS",
       "name": "Cerebras Systems, Inc. Class A",
-      "capB": 22.6
+      "capB": 21.2
     }
   ],
   "reactions": {
@@ -54,8 +54,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": -0.19,
-            "price": 71.96,
+            "chg": -1.39,
+            "price": 71.1,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.5,
-            "price": 247.51,
+            "chg": -0.81,
+            "price": 246.75,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 10.21,
-            "price": 41.45,
+            "chg": 5.98,
+            "price": 39.86,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,8 +98,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 9.91,
-            "price": 30.1,
+            "chg": 5.18,
+            "price": 28.81,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CTVA.png",
-            "chg": -16.64,
-            "price": 10.12,
+            "chg": -20.3,
+            "price": 9.68,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -358,7 +358,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 54,
+      "total": 53,
       "companies": [
         {
           "ticker": "CEG",
@@ -478,16 +478,16 @@
           "logo": "data/earnings/logos/VOD.png"
         },
         {
-          "ticker": "CRWV",
-          "name": "CoreWeave, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CRWV.png"
-        },
-        {
           "ticker": "VG",
           "name": "Venture Global, Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/VG.png"
+        },
+        {
+          "ticker": "CRWV",
+          "name": "CoreWeave, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CRWV.png"
         },
         {
           "ticker": "VIV",
@@ -508,10 +508,11 @@
           "logo": "data/earnings/logos/BMNP.png"
         },
         {
-          "ticker": "BMNR",
-          "name": "BitMine Immersion Technologies Inc",
-          "when": "",
-          "logo": "data/earnings/logos/BMNR.png"
+          "ticker": "ONON",
+          "name": "On Holding AG Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/ONON.png",
+          "logoBg": "dark"
         }
       ]
     },
@@ -704,35 +705,35 @@
     "MOG.A": "2026-11-12",
     "FRHC": "2026-11-12",
     "MOG.B": "2026-11-12",
-    "HBM": "2026-11-12",
     "DDS": "2026-11-12",
+    "HBM": "2026-11-12",
     "STN": "2026-11-12",
     "ELPC": "2026-11-12",
-    "TWST": "2026-11-12",
     "NIO": "2026-11-12",
-    "FPS": "2026-11-12",
     "ANDG": "2026-11-12",
     "ARWR": "2026-11-12",
     "KOD": "2026-11-12",
     "CIG": "2026-11-12",
     "M": "2026-11-12",
-    "BLTE": "2026-11-12",
-    "NIQ": "2026-11-12",
-    "ERAS": "2026-11-12",
     "MBGL": "2026-11-12",
+    "TWST": "2026-11-12",
+    "FPS": "2026-11-12",
+    "BLTE": "2026-11-12",
     "OCTV": "2026-11-12",
-    "MWH": "2026-11-12",
+    "ERAS": "2026-11-12",
+    "NIQ": "2026-11-12",
     "FIGR": "2026-11-12",
+    "MWH": "2026-11-12",
     "GGAL": "2026-11-12",
     "HTFL": "2026-11-12",
-    "TEO": "2026-11-12",
     "DPC": "2026-11-12",
+    "TEO": "2026-11-12",
     "XE": "2026-11-12",
     "ARX": "2026-11-12",
     "DLO": "2026-11-12",
-    "LGN": "2026-11-12",
     "BRC": "2026-11-12",
-    "SKE": "2026-11-12",
+    "LGN": "2026-11-12",
+    "PBLS": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -748,8 +749,8 @@
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
     "VIK": "2026-11-17",
-    "JD": "2026-11-17",
     "ESLT": "2026-11-17",
+    "JD": "2026-11-17",
     "AS": "2026-11-17",
     "ZTO": "2026-11-17",
     "SQM": "2026-11-17",
@@ -795,7 +796,7 @@
     "MANU": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 16:31",
+    "updatedAt": "12/11/2026 16:46",
     "source": "tradingview"
   }
 }
