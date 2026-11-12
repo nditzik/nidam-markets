@@ -5,12 +5,12 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 401.4
+      "capB": 400.3
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 311.0
+      "capB": 310.1
     },
     {
       "ticker": "BN",
@@ -25,7 +25,7 @@
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 35.2
+      "capB": 35.0
     },
     {
       "ticker": "EC",
@@ -35,7 +35,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 30.0
+      "capB": 29.9
     },
     {
       "ticker": "CBRS",
@@ -54,8 +54,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": -0.32,
-            "price": 71.87,
+            "chg": -0.74,
+            "price": 71.57,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.49,
-            "price": 247.54,
+            "chg": -0.12,
+            "price": 248.47,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 4.13,
-            "price": 39.17,
+            "chg": 3.95,
+            "price": 39.1,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,19 +98,19 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 3.29,
-            "price": 28.29,
+            "chg": 3.09,
+            "price": 28.24,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
           {
-            "ticker": "CTVA",
-            "name": "Corteva Inc",
+            "ticker": "OR",
+            "name": "OR Royalties Inc.",
             "when": "after",
             "status": "live",
-            "logo": "data/earnings/logos/CTVA.png",
-            "chg": -19.4,
-            "price": 9.78,
+            "logo": "data/earnings/logos/OR.png",
+            "chg": -0.65,
+            "price": 35.37,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -357,7 +357,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 52,
+      "total": 53,
       "companies": [
         {
           "ticker": "CEG",
@@ -437,7 +437,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 25,
+      "total": 24,
       "companies": [
         {
           "ticker": "PBR",
@@ -550,16 +550,16 @@
           "logo": "data/earnings/logos/CAE.png"
         },
         {
-          "ticker": "CTVA",
-          "name": "Corteva Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/CTVA.png"
-        },
-        {
           "ticker": "OR",
           "name": "OR Royalties Inc.",
           "when": "after",
           "logo": "data/earnings/logos/OR.png"
+        },
+        {
+          "ticker": "CTVA",
+          "name": "Corteva Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/CTVA.png"
         },
         {
           "ticker": "UGP",
@@ -710,8 +710,8 @@
     "ANDG": "2026-11-12",
     "TWST": "2026-11-12",
     "FPS": "2026-11-12",
-    "KOD": "2026-11-12",
     "MBGL": "2026-11-12",
+    "KOD": "2026-11-12",
     "CIG": "2026-11-12",
     "ARWR": "2026-11-12",
     "M": "2026-11-12",
@@ -794,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 20:16",
+    "updatedAt": "12/11/2026 20:31",
     "source": "tradingview"
   }
 }
