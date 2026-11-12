@@ -1,6 +1,6 @@
 {
   "today": "2026-11-12",
-  "todayCount": 46,
+  "todayCount": 51,
   "todayBig": [
     {
       "ticker": "CSCO",
@@ -53,9 +53,9 @@
             "ticker": "VYLR",
             "name": "Vylor Inc",
             "when": "after",
-            "status": "live",
-            "chg": -0.07,
-            "price": 72.05,
+            "status": "final",
+            "chg": -0.06,
+            "price": 72.06,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -338,17 +338,18 @@
       "logo": "data/earnings/logos/MOG.A.png"
     }
   ],
-  "more": 34,
+  "more": 39,
   "upcoming": [
     {
       "date": "2026-11-13",
       "label": "13/11",
       "dow": "ו׳",
-      "count": 3,
+      "count": 4,
       "tickers": [
         "MUFG",
         "SMFG",
-        "MFG"
+        "MFG",
+        "ACCV"
       ]
     }
   ],
@@ -357,7 +358,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 61,
+      "total": 66,
       "companies": [
         {
           "ticker": "CEG",
@@ -437,7 +438,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 26,
+      "total": 28,
       "companies": [
         {
           "ticker": "PBR",
@@ -518,7 +519,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 12,
+      "total": 13,
       "companies": [
         {
           "ticker": "VYLR",
@@ -597,7 +598,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 46,
+      "total": 51,
       "companies": [
         {
           "ticker": "CSCO",
@@ -677,7 +678,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 3,
+      "total": 4,
       "companies": [
         {
           "ticker": "MUFG",
@@ -696,6 +697,11 @@
           "name": "Mizuho Financial Group Inc Sponsored ADR",
           "when": "",
           "logo": "data/earnings/logos/MFG.png"
+        },
+        {
+          "ticker": "ACCV",
+          "name": "Accelevation Holdings Corp. Class A",
+          "when": "before"
         }
       ]
     }
@@ -747,9 +753,15 @@
     "AYA": "2026-11-12",
     "LFTO": "2026-11-12",
     "ONDS": "2026-11-12",
+    "LUNR": "2026-11-12",
+    "YETI": "2026-11-12",
+    "DAC": "2026-11-12",
+    "CLBT": "2026-11-12",
+    "AVAH": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
+    "ACCV": "2026-11-13",
     "BIDU": "2026-11-16",
     "BEKE": "2026-11-16",
     "TSN": "2026-11-16",
@@ -758,6 +770,7 @@
     "XPEV": "2026-11-16",
     "ACM": "2026-11-16",
     "POWL": "2026-11-16",
+    "SA": "2026-11-16",
     "NVDA": "2026-11-17",
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
@@ -814,10 +827,11 @@
     "MANU": "2026-11-19",
     "HP": "2026-11-19",
     "POST": "2026-11-19",
-    "MMS": "2026-11-19"
+    "MMS": "2026-11-19",
+    "BULL": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 23:17",
+    "updatedAt": "12/11/2026 23:31",
     "source": "tradingview"
   }
 }
