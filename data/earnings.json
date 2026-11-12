@@ -5,12 +5,12 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 400.3
+      "capB": 400.2
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 310.1
+      "capB": 311.5
     },
     {
       "ticker": "BN",
@@ -20,12 +20,12 @@
     {
       "ticker": "NU",
       "name": "Nu Holdings Ltd. Class A",
-      "capB": 57.8
+      "capB": 57.9
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 35.0
+      "capB": 35.5
     },
     {
       "ticker": "EC",
@@ -35,12 +35,12 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.9
+      "capB": 29.8
     },
     {
       "ticker": "CBRS",
       "name": "Cerebras Systems, Inc. Class A",
-      "capB": 22.6
+      "capB": 22.7
     }
   ],
   "reactions": {
@@ -50,23 +50,23 @@
         "label": "11.11",
         "items": [
           {
-            "ticker": "VYLR",
-            "name": "Vylor Inc",
-            "when": "after",
-            "status": "live",
-            "chg": -0.74,
-            "price": 71.57,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
             "ticker": "FNV",
             "name": "Franco-Nevada Corporation",
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.12,
-            "price": 248.47,
+            "chg": -0.47,
+            "price": 247.59,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
+          },
+          {
+            "ticker": "VYLR",
+            "name": "Vylor Inc",
+            "when": "after",
+            "status": "live",
+            "chg": -1.01,
+            "price": 71.37,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 3.95,
-            "price": 39.1,
+            "chg": 3.54,
+            "price": 38.94,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,8 +98,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 3.09,
-            "price": 28.24,
+            "chg": 2.81,
+            "price": 28.16,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OR.png",
-            "chg": -0.65,
-            "price": 35.37,
+            "chg": -1.21,
+            "price": 35.17,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -357,7 +357,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 53,
+      "total": 52,
       "companies": [
         {
           "ticker": "CEG",
@@ -437,7 +437,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 24,
+      "total": 25,
       "companies": [
         {
           "ticker": "PBR",
@@ -521,15 +521,15 @@
       "total": 10,
       "companies": [
         {
-          "ticker": "VYLR",
-          "name": "Vylor Inc",
-          "when": "after"
-        },
-        {
           "ticker": "FNV",
           "name": "Franco-Nevada Corporation",
           "when": "after",
           "logo": "data/earnings/logos/FNV.png"
+        },
+        {
+          "ticker": "VYLR",
+          "name": "Vylor Inc",
+          "when": "after"
         },
         {
           "ticker": "GIB",
@@ -712,8 +712,8 @@
     "FPS": "2026-11-12",
     "MBGL": "2026-11-12",
     "KOD": "2026-11-12",
-    "CIG": "2026-11-12",
     "ARWR": "2026-11-12",
+    "CIG": "2026-11-12",
     "M": "2026-11-12",
     "BLTE": "2026-11-12",
     "FIGR": "2026-11-12",
@@ -728,8 +728,8 @@
     "XE": "2026-11-12",
     "ARX": "2026-11-12",
     "DLO": "2026-11-12",
-    "LGN": "2026-11-12",
     "BRC": "2026-11-12",
+    "LGN": "2026-11-12",
     "SKE": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
@@ -794,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 20:31",
+    "updatedAt": "12/11/2026 20:46",
     "source": "tradingview"
   }
 }
