@@ -1,50 +1,81 @@
 {
-  "today": "2026-11-12",
-  "todayCount": 51,
+  "today": "2026-11-13",
+  "todayCount": 4,
   "todayBig": [
     {
-      "ticker": "CSCO",
-      "name": "Cisco Systems, Inc.",
-      "capB": 401.6
+      "ticker": "MUFG",
+      "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
+      "capB": 246.6
     },
     {
-      "ticker": "AMAT",
-      "name": "Applied Materials, Inc.",
-      "capB": 302.3
+      "ticker": "SMFG",
+      "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
+      "capB": 156.1
     },
     {
-      "ticker": "BN",
-      "name": "Brookfield Corporation",
-      "capB": 102.1
-    },
-    {
-      "ticker": "NU",
-      "name": "Nu Holdings Ltd. Class A",
-      "capB": 57.1
-    },
-    {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Class A",
-      "capB": 35.0
-    },
-    {
-      "ticker": "EC",
-      "name": "Ecopetrol SA Sponsored ADR",
-      "capB": 31.5
-    },
-    {
-      "ticker": "WSM",
-      "name": "Williams-Sonoma, Inc.",
-      "capB": 29.5
-    },
-    {
-      "ticker": "CBRS",
-      "name": "Cerebras Systems, Inc. Class A",
-      "capB": 21.9
+      "ticker": "MFG",
+      "name": "Mizuho Financial Group Inc Sponsored ADR",
+      "capB": 123.2
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-12",
+        "label": "12.11",
+        "items": [
+          {
+            "ticker": "CSCO",
+            "name": "Cisco Systems, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/CSCO.png"
+          },
+          {
+            "ticker": "AMAT",
+            "name": "Applied Materials, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/AMAT.png"
+          },
+          {
+            "ticker": "BN",
+            "name": "Brookfield Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BN.png",
+            "chg": -1.0,
+            "price": 41.64,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
+          },
+          {
+            "ticker": "NU",
+            "name": "Nu Holdings Ltd. Class A",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/NU.png"
+          },
+          {
+            "ticker": "NBIS",
+            "name": "Nebius Group N.V. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/NBIS.png",
+            "chg": -16.84,
+            "price": 128.64,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
+          },
+          {
+            "ticker": "EC",
+            "name": "Ecopetrol SA Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/EC.png"
+          }
+        ]
+      },
       {
         "date": "2026-11-11",
         "label": "11.11",
@@ -188,171 +219,36 @@
             "baseDate": "2026-11-10"
           }
         ]
-      },
-      {
-        "date": "2026-11-09",
-        "label": "9.11",
-        "items": [
-          {
-            "ticker": "CEG",
-            "name": "Constellation Energy Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CEG.png",
-            "logoBg": "dark",
-            "chg": 10.46,
-            "price": 276.09,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
-          },
-          {
-            "ticker": "KKR",
-            "name": "KKR & Co Inc",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/KKR.png",
-            "chg": 1.67,
-            "price": 98.09,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
-          },
-          {
-            "ticker": "B",
-            "name": "Barrick Mining Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/B.png",
-            "chg": 4.22,
-            "price": 42.27,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
-          },
-          {
-            "ticker": "OXY",
-            "name": "Occidental Petroleum Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/OXY.png",
-            "chg": 2.04,
-            "price": 56.9,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
-          },
-          {
-            "ticker": "FERG",
-            "name": "Ferguson Enterprises Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FERG.png",
-            "chg": 11.22,
-            "price": 259.93,
-            "reactDate": "2026-11-09",
-            "baseDate": "2026-11-06"
-          },
-          {
-            "ticker": "TTWO",
-            "name": "Take-Two Interactive Software, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/TTWO.png",
-            "chg": 8.31,
-            "price": 224.64,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "CSCO",
-      "name": "Cisco Systems, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/CSCO.png"
-    },
-    {
-      "ticker": "AMAT",
-      "name": "Applied Materials, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/AMAT.png"
-    },
-    {
-      "ticker": "BN",
-      "name": "Brookfield Corporation",
-      "when": "before",
-      "logo": "data/earnings/logos/BN.png"
-    },
-    {
-      "ticker": "NU",
-      "name": "Nu Holdings Ltd. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/NU.png"
-    },
-    {
-      "ticker": "NBIS",
-      "name": "Nebius Group N.V. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/NBIS.png"
-    },
-    {
-      "ticker": "EC",
-      "name": "Ecopetrol SA Sponsored ADR",
-      "when": "after",
-      "logo": "data/earnings/logos/EC.png"
-    },
-    {
-      "ticker": "WSM",
-      "name": "Williams-Sonoma, Inc.",
+      "ticker": "MUFG",
+      "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
       "when": "",
-      "logo": "data/earnings/logos/WSM.png",
-      "logoBg": "dark"
+      "logo": "data/earnings/logos/MUFG.png"
     },
     {
-      "ticker": "CBRS",
-      "name": "Cerebras Systems, Inc. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/CBRS.png"
-    },
-    {
-      "ticker": "ASND",
-      "name": "Ascendis Pharma A/S",
-      "when": "before",
-      "logo": "data/earnings/logos/ASND.png"
-    },
-    {
-      "ticker": "KEP",
-      "name": "Korea Electric Power Corporation Sponsored ADR",
+      "ticker": "SMFG",
+      "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
       "when": "",
-      "logo": "data/earnings/logos/KEP.png"
+      "logo": "data/earnings/logos/SMFG.png"
     },
     {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": ""
-    },
-    {
-      "ticker": "MOG.A",
-      "name": "Moog Inc. Class A",
+      "ticker": "MFG",
+      "name": "Mizuho Financial Group Inc Sponsored ADR",
       "when": "",
-      "logo": "data/earnings/logos/MOG.A.png"
+      "logo": "data/earnings/logos/MFG.png"
+    },
+    {
+      "ticker": "ACCV",
+      "name": "Accelevation Holdings Corp. Class A",
+      "when": "before"
     }
   ],
-  "more": 39,
-  "upcoming": [
-    {
-      "date": "2026-11-13",
-      "label": "13/11",
-      "dow": "ו׳",
-      "count": 4,
-      "tickers": [
-        "MUFG",
-        "SMFG",
-        "MFG",
-        "ACCV"
-      ]
-    }
-  ],
+  "more": 0,
+  "upcoming": [],
   "week": [
     {
       "date": "2026-11-09",
@@ -707,57 +603,6 @@
     }
   ],
   "window": {
-    "CSCO": "2026-11-12",
-    "AMAT": "2026-11-12",
-    "BN": "2026-11-12",
-    "NU": "2026-11-12",
-    "NBIS": "2026-11-12",
-    "EC": "2026-11-12",
-    "WSM": "2026-11-12",
-    "CBRS": "2026-11-12",
-    "ASND": "2026-11-12",
-    "KEP": "2026-11-12",
-    "MOG.B": "2026-11-12",
-    "MOG.A": "2026-11-12",
-    "FRHC": "2026-11-12",
-    "HBM": "2026-11-12",
-    "DDS": "2026-11-12",
-    "STN": "2026-11-12",
-    "ELPC": "2026-11-12",
-    "NIO": "2026-11-12",
-    "TWST": "2026-11-12",
-    "ANDG": "2026-11-12",
-    "MBGL": "2026-11-12",
-    "KOD": "2026-11-12",
-    "FPS": "2026-11-12",
-    "CIG": "2026-11-12",
-    "ARWR": "2026-11-12",
-    "M": "2026-11-12",
-    "BLTE": "2026-11-12",
-    "FIGR": "2026-11-12",
-    "OCTV": "2026-11-12",
-    "NIQ": "2026-11-12",
-    "ERAS": "2026-11-12",
-    "MWH": "2026-11-12",
-    "HTFL": "2026-11-12",
-    "GGAL": "2026-11-12",
-    "DPC": "2026-11-12",
-    "TEO": "2026-11-12",
-    "XE": "2026-11-12",
-    "ARX": "2026-11-12",
-    "DLO": "2026-11-12",
-    "LGN": "2026-11-12",
-    "BRC": "2026-11-12",
-    "SKE": "2026-11-12",
-    "PBLS": "2026-11-12",
-    "AYA": "2026-11-12",
-    "LFTO": "2026-11-12",
-    "ONDS": "2026-11-12",
-    "LUNR": "2026-11-12",
-    "YETI": "2026-11-12",
-    "DAC": "2026-11-12",
-    "CLBT": "2026-11-12",
-    "AVAH": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
@@ -828,10 +673,13 @@
     "HP": "2026-11-19",
     "POST": "2026-11-19",
     "MMS": "2026-11-19",
-    "BULL": "2026-11-19"
+    "BULL": "2026-11-19",
+    "BSP": "2026-11-20",
+    "BJ": "2026-11-20",
+    "VFS": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 23:46",
+    "updatedAt": "13/11/2026 00:01",
     "source": "tradingview"
   }
 }
