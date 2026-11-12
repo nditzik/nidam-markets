@@ -401,6 +401,67 @@
       (led ? '<div class="led">' + led + "</div>" : "");
   }
 
+  /* ---- np195 (12.11.2026, איציק): כתבה / סיפור מתגלגל בבית — data/story.json (קובץ ידני) ----
+     מוצג מתחת לכותרת ולמד עד `until` (או active=false). המחירים של `live` חיים מ-Yahoo דרך ה-Worker (yqLive),
+     כדי שהכתבה לא תציג מספרים קפואים מרגע הכתיבה. ציר הזמן, הטבלה והשאלות — מקופלים. */
+  var STORY = null, STORY_T = null, STORY_SIG = "";
+  function storyOn(d) {
+    if (!d || !d.active || !d.title) return false;
+    if (d.until && Date.now() > Date.parse(d.until)) return false;
+    return true;
+  }
+  function renderHomeStory() {
+    var el = document.getElementById("home-story");
+    if (!el) return;
+    var d = STORY;
+    if (!storyOn(d)) { el.innerHTML = ""; return; }
+    var live = (d.live || []).map(function (x) {
+      return '<span class="st-q" data-sym="' + esc(x.sym) + '"><span class="l">' + esc(x.label) + '</span> <span class="num p" dir="ltr">…</span> <span class="num c" dir="ltr"></span></span>';
+    }).join("");
+    var tl = (d.timeline || []).map(function (x) {
+      var src = x.src ? (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.src) + "</a>" : esc(x.src)) : "";
+      return '<li class="' + (x.key ? "key" : "") + '"><span class="st-when num" dir="ltr">' + esc(x.d) + (x.t ? " " + esc(x.t) : "") + "</span>" +
+        "<span>" + esc(x.txt) + (src ? ' <span class="mute s">· ' + src + "</span>" : "") + "</span></li>";
+    }).join("");
+    var tb = d.table && d.table.rows ? '<div class="tbl"><table class="st-tbl"><thead><tr>' + d.table.head.map(function (h) { return '<th scope="col">' + esc(h) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      d.table.rows.map(function (r) {
+        var ch = String(r[2] || ""), cls = /^\+/.test(ch) ? "up" : /^[−-]/.test(ch) ? "down" : "";
+        return '<tr><td class="num" dir="ltr">' + esc(r[0]) + '</td><td class="num" dir="ltr">' + esc(r[1]) + '</td><td class="num ' + cls + '" dir="ltr">' + esc(ch) + "</td><td>" + esc(r[3] || "") + "</td></tr>";
+      }).join("") + "</tbody></table></div>" : "";
+    var nx = (d.next || []).map(function (x) { return '<li><span class="st-when num" dir="ltr">' + esc(x.d) + (x.t ? " " + esc(x.t) : "") + "</span><span>" + esc(x.txt) + "</span></li>"; }).join("");
+    var qs = (d.questions || []).map(function (q) { return "<li>" + esc(q) + "</li>"; }).join("");
+    var srcs = (d.sources || []).map(function (x) { return '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + "</a>"; }).join(" · ");
+    el.innerHTML = '<div class="ph"><h2>' + esc(d.kicker || "כתבה") + "</h2>" + (d.badge ? '<span class="pill state warn">' + esc(d.badge) + "</span>" : "") + '<span class="st-live">' + live + "</span></div>" +
+      '<div class="pb st-body">' +
+        '<div class="st-hero"><span class="st-kick">' + esc(d.kicker || "כתבה") + (d.collectedAt ? " · " + esc(d.collectedAt) : "") + '</span><h3 class="st-h">' + esc(d.title) + "</h3></div>" +
+        (d.dek ? '<p class="st-dek">' + esc(d.dek) + "</p>" : "") +
+        '<div class="st-cols"><div class="st-text">' + (d.paras || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</div>" +
+          (nx ? '<aside class="st-next"><b>מה הלאה</b><ul>' + nx + "</ul></aside>" : "") + "</div>" +
+        (tl ? '<details class="bd-exp st-more"><summary>ציר הזמן המלא (' + (d.timeline || []).length + ")</summary><ol class=\"st-tl\">" + tl + "</ol></details>" : "") +
+        (tb ? '<details class="bd-exp st-more"><summary>המניה, יום אחר יום</summary>' + tb + "</details>" : "") +
+        (qs ? '<details class="bd-exp st-more"><summary>שאלות פתוחות</summary><ul class="st-qs">' + qs + "</ul></details>" : "") +
+        '<p class="mute s st-foot">' + (srcs ? "מקורות: " + srcs + " · " : "") + (d.writtenBy ? esc(d.writtenBy) : "") + (d.collectedAt ? " · נאסף " + esc(d.collectedAt) : "") + " · לא המלצת השקעה</p>" +
+      "</div>";
+    storyLive();
+    if (!STORY_T) STORY_T = setInterval(storyLive, 60000);
+  }
+  function storyLive() {
+    var d = STORY;
+    if (!storyOn(d) || !(d.live || []).length) return;
+    var ses = jsSession();
+    yqLive(d.live.map(function (x) { return x.sym; })).then(function (q) {
+      d.live.forEach(function (x) {
+        var v = yqPick(q[x.sym], ses), el = document.querySelector('#home-story .st-q[data-sym="' + x.sym + '"]');
+        if (!v || !el) return;
+        var c = v[1];
+        el.querySelector(".p").textContent = Math.abs(v[0]) >= 1000 ? Number(v[0]).toLocaleString("en-US", { maximumFractionDigits: 2 }) : Number(v[0]).toFixed(2);
+        var ce = el.querySelector(".c");
+        ce.textContent = c == null ? "" : (c > 0 ? "+" : c < 0 ? "−" : "") + Math.abs(c).toFixed(2) + "%";
+        ce.className = "num c " + (c > 0 ? "up" : c < 0 ? "down" : "");
+      });
+    }).catch(function () {});
+  }
+
   /* ---- "מסביב": סקטורים (5 ימים מול S&P) | העולם | מה השווקים מהמרים ---- */
   function renderHomeAround() {
     var es = document.getElementById("home-sect"), ew = document.getElementById("home-world");
@@ -747,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np194";
+  var TA_VER = "np196";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -5314,6 +5375,8 @@
       fetchJSON("data/morning.json")
         .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); renderNewsSiblings(); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "📊", "Barchart — בקרוב", ""); });
+      // np195: רינדור רק כשהקובץ השתנה — אחרת הרענון של 5 דק' סוגר ציר זמן שהקורא פתח
+      fetchJSON("data/story.json").then(function (d) { var sg = JSON.stringify(d); if (sg === STORY_SIG && document.querySelector("#home-story .st-h")) return; STORY_SIG = sg; STORY = d; renderHomeStory(); }).catch(function () { if (STORY) { STORY = null; STORY_SIG = ""; renderHomeStory(); } });
       Promise.all([fetchJSON("data/econ.json"), fetchJSON("data/special_events.json").catch(function () { return null; })])
         .then(function (r) { if (!freshD("econ", r)) return; ECON = withSpecialEvents(r[0], r[1]); renderEcon(); refreshLeadAgenda(); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); })
         .catch(function () {});
