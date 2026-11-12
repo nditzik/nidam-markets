@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "12/11/2026 06:46",
+  "updatedAt": "12/11/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "Applied Materials, Inc.",
    "date": "2026-11-12",
    "when": "after",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/AMAT__2026-08-14.html",
     "date": "2026-08-14",
@@ -497,7 +497,7 @@
    "name": "Cisco Systems, Inc.",
    "date": "2026-11-12",
    "when": "after",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/CSCO__2026-08-13.html",
     "date": "2026-08-13",
@@ -983,7 +983,7 @@
    "name": "Ondas Inc.",
    "date": "2026-11-12",
    "when": "before",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/ONDS__2026-08-14.html",
     "date": "2026-08-14",
@@ -1469,7 +1469,7 @@
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -1955,7 +1955,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -2441,7 +2441,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -2927,7 +2927,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -3413,7 +3413,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 12,
+   "daysTo": 11,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -3899,7 +3899,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 13,
+   "daysTo": 12,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -4403,14 +4403,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   },
   {
    "sym": "MU",
@@ -4908,147 +4908,6 @@
     "day": "2026-10-30",
     "move": -13.47,
     "close": 1150.89
-   }
-  },
-  {
-   "sym": "GOOGL",
-   "name": "Alphabet Inc. Class A",
-   "date": "2026-10-28",
-   "when": "after",
-   "report": {
-    "file": "data/reports/alphabet__2026-07-30.html",
-    "date": "2026-07-30",
-    "title": "Alphabet Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/ALPHABET.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/alphabet__2026-10-28.html",
-    "date": "2026-10-28",
-    "title": "GOOGL דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 3.00777,
-    "epsLow": 2.25023,
-    "epsHigh": 3.63,
-    "epsN": 44,
-    "epsYearAgo": 2.87,
-    "rev": 127913936970,
-    "revLow": 123409000000,
-    "revHigh": 138676107980,
-    "revN": 41,
-    "revYearAgo": 102346000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "28/10 21:46",
-    "price": 324.71,
-    "exp": "2026-10-30",
-    "strike": 325.0,
-    "pct": 6.2,
-    "earn": 6.2,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 5.0,
-   "reaction": {
-    "day": "2026-10-29",
-    "move": -12.64,
-    "close": 283.82
-   }
-  },
-  {
-   "sym": "BSX",
-   "name": "Boston Scientific Corporation",
-   "date": "2026-10-28",
-   "when": "before",
-   "report": {
-    "file": "data/reports/BSX__2026-08-20.html",
-    "date": "2026-08-20",
-    "title": "Boston Scientific Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/BSX.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/BSX__2026-10-28.html",
-    "date": "2026-10-28",
-    "title": "BSX דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 0.72319,
-    "epsLow": 0.58,
-    "epsHigh": 0.82,
-    "epsN": 24,
-    "epsYearAgo": 0.75,
-    "rev": 5054249130,
-    "revLow": 4704800000,
-    "revHigh": 5304000000,
-    "revN": 24,
-    "revYearAgo": 5065000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "27/10 21:46",
-    "price": 44.97,
-    "exp": "2026-10-30",
-    "strike": 45.0,
-    "pct": 8.39,
-    "earn": null,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 7.6,
-   "reaction": {
-    "day": "2026-10-28",
-    "move": -5.84,
-    "close": 42.43
-   }
-  },
-  {
-   "sym": "MSFT",
-   "name": "Microsoft Corporation",
-   "date": "2026-10-28",
-   "when": "after",
-   "report": {
-    "file": "data/reports/MSFT__2026-07-30.html",
-    "date": "2026-07-30",
-    "title": "Microsoft FY26 Q4 – דוח מנהלים",
-    "logo": "data/reports/logos/MSFT.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/MSFT__2026-10-28.html",
-    "date": "2026-10-28",
-    "title": "MSFT דוח רבעון Q1 FY27"
-   },
-   "consensus": {
-    "eps": 4.72072,
-    "epsLow": 4.43,
-    "epsHigh": 4.86,
-    "epsN": 25,
-    "epsYearAgo": 4.13,
-    "rev": 90736182420,
-    "revLow": 89640000000,
-    "revHigh": 92655000000,
-    "revN": 38,
-    "revYearAgo": 77673000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "28/10 21:46",
-    "price": 529.44,
-    "exp": "2026-10-30",
-    "strike": 530.0,
-    "pct": 4.97,
-    "earn": 4.97,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 8.1,
-   "reaction": {
-    "day": "2026-10-29",
-    "move": -0.16,
-    "close": 530.14
    }
   }
  ]
