@@ -5,27 +5,27 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 397.4
+      "capB": 400.1
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 308.1
+      "capB": 313.0
     },
     {
       "ticker": "BN",
       "name": "Brookfield Corporation",
-      "capB": 102.0
+      "capB": 102.4
     },
     {
       "ticker": "NU",
       "name": "Nu Holdings Ltd. Class A",
-      "capB": 58.2
+      "capB": 58.6
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 34.2
+      "capB": 34.8
     },
     {
       "ticker": "EC",
@@ -35,12 +35,12 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 30.1
+      "capB": 30.0
     },
     {
       "ticker": "CBRS",
       "name": "Cerebras Systems, Inc. Class A",
-      "capB": 22.3
+      "capB": 22.9
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": 0.12,
-            "price": 249.07,
+            "chg": 0.5,
+            "price": 250.01,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": -0.78,
-            "price": 71.54,
+            "chg": -0.19,
+            "price": 71.96,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 4.13,
-            "price": 39.17,
+            "chg": 4.75,
+            "price": 39.4,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,8 +98,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 3.65,
-            "price": 28.39,
+            "chg": 3.98,
+            "price": 28.48,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OR.png",
-            "chg": 0.06,
-            "price": 35.62,
+            "chg": 1.35,
+            "price": 36.08,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -165,6 +165,17 @@
             "baseDate": "2026-11-09"
           },
           {
+            "ticker": "VOD",
+            "name": "Vodafone Group Public Limited Company Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VOD.png",
+            "chg": -1.21,
+            "price": 15.5,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
+          },
+          {
             "ticker": "ALC",
             "name": "Alcon AG",
             "when": "after",
@@ -175,17 +186,6 @@
             "price": 72.46,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
-          },
-          {
-            "ticker": "VOD",
-            "name": "Vodafone Group Public Limited Company Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VOD.png",
-            "chg": -1.21,
-            "price": 15.5,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
           }
         ]
       },
@@ -464,17 +464,17 @@
           "logo": "data/earnings/logos/HMC.png"
         },
         {
+          "ticker": "VOD",
+          "name": "Vodafone Group Public Limited Company Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/VOD.png"
+        },
+        {
           "ticker": "ALC",
           "name": "Alcon AG",
           "when": "after",
           "logo": "data/earnings/logos/ALC.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "VOD",
-          "name": "Vodafone Group Public Limited Company Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/VOD.png"
         },
         {
           "ticker": "VG",
@@ -709,18 +709,18 @@
     "NIO": "2026-11-12",
     "ANDG": "2026-11-12",
     "TWST": "2026-11-12",
+    "FPS": "2026-11-12",
     "KOD": "2026-11-12",
     "ARWR": "2026-11-12",
     "MBGL": "2026-11-12",
     "CIG": "2026-11-12",
-    "FPS": "2026-11-12",
     "M": "2026-11-12",
     "BLTE": "2026-11-12",
     "FIGR": "2026-11-12",
     "NIQ": "2026-11-12",
+    "MWH": "2026-11-12",
     "ERAS": "2026-11-12",
     "OCTV": "2026-11-12",
-    "MWH": "2026-11-12",
     "HTFL": "2026-11-12",
     "GGAL": "2026-11-12",
     "DPC": "2026-11-12",
@@ -765,8 +765,8 @@
     "CPRT": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
-    "GLBE": "2026-11-18",
     "SNEX": "2026-11-18",
+    "GLBE": "2026-11-18",
     "CPA": "2026-11-18",
     "NJR": "2026-11-18",
     "AVAL": "2026-11-18",
@@ -794,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 18:01",
+    "updatedAt": "12/11/2026 18:16",
     "source": "tradingview"
   }
 }
