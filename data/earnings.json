@@ -5,27 +5,27 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 399.9
+      "capB": 399.0
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 312.8
+      "capB": 309.3
     },
     {
       "ticker": "BN",
       "name": "Brookfield Corporation",
-      "capB": 102.8
+      "capB": 102.6
     },
     {
       "ticker": "NU",
       "name": "Nu Holdings Ltd. Class A",
-      "capB": 58.7
+      "capB": 58.5
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 35.0
+      "capB": 34.5
     },
     {
       "ticker": "EC",
@@ -40,7 +40,7 @@
     {
       "ticker": "CBRS",
       "name": "Cerebras Systems, Inc. Class A",
-      "capB": 22.9
+      "capB": 22.5
     }
   ],
   "reactions": {
@@ -50,23 +50,23 @@
         "label": "11.11",
         "items": [
           {
+            "ticker": "VYLR",
+            "name": "Vylor Inc",
+            "when": "after",
+            "status": "live",
+            "chg": 0.8,
+            "price": 72.68,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
+          },
+          {
             "ticker": "FNV",
             "name": "Franco-Nevada Corporation",
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": 0.37,
-            "price": 249.68,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "VYLR",
-            "name": "Vylor Inc",
-            "when": "after",
-            "status": "live",
-            "chg": 1.35,
-            "price": 73.07,
+            "chg": 0.36,
+            "price": 249.66,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 3.56,
-            "price": 38.95,
+            "chg": 4.47,
+            "price": 39.29,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,8 +98,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 2.76,
-            "price": 28.15,
+            "chg": 2.96,
+            "price": 28.2,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OR.png",
-            "chg": -0.03,
-            "price": 35.59,
+            "chg": -0.17,
+            "price": 35.54,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -165,17 +165,6 @@
             "baseDate": "2026-11-09"
           },
           {
-            "ticker": "VOD",
-            "name": "Vodafone Group Public Limited Company Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VOD.png",
-            "chg": -1.21,
-            "price": 15.5,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
-          },
-          {
             "ticker": "ALC",
             "name": "Alcon AG",
             "when": "after",
@@ -186,6 +175,17 @@
             "price": 72.46,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
+          },
+          {
+            "ticker": "VOD",
+            "name": "Vodafone Group Public Limited Company Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VOD.png",
+            "chg": -1.21,
+            "price": 15.5,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           }
         ]
       },
@@ -333,10 +333,9 @@
       "logo": "data/earnings/logos/MOG.A.png"
     },
     {
-      "ticker": "FRHC",
-      "name": "Freedom Holding Corp.",
-      "when": "",
-      "logo": "data/earnings/logos/FRHC.png"
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": ""
     }
   ],
   "more": 30,
@@ -465,17 +464,17 @@
           "logo": "data/earnings/logos/HMC.png"
         },
         {
-          "ticker": "VOD",
-          "name": "Vodafone Group Public Limited Company Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/VOD.png"
-        },
-        {
           "ticker": "ALC",
           "name": "Alcon AG",
           "when": "after",
           "logo": "data/earnings/logos/ALC.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "VOD",
+          "name": "Vodafone Group Public Limited Company Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/VOD.png"
         },
         {
           "ticker": "VG",
@@ -522,15 +521,15 @@
       "total": 10,
       "companies": [
         {
+          "ticker": "VYLR",
+          "name": "Vylor Inc",
+          "when": "after"
+        },
+        {
           "ticker": "FNV",
           "name": "Franco-Nevada Corporation",
           "when": "after",
           "logo": "data/earnings/logos/FNV.png"
-        },
-        {
-          "ticker": "VYLR",
-          "name": "Vylor Inc",
-          "when": "after"
         },
         {
           "ticker": "GIB",
@@ -656,10 +655,9 @@
           "logo": "data/earnings/logos/MOG.A.png"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": ""
         }
       ]
     },
@@ -702,8 +700,8 @@
     "ASND": "2026-11-12",
     "KEP": "2026-11-12",
     "MOG.A": "2026-11-12",
-    "FRHC": "2026-11-12",
     "MOG.B": "2026-11-12",
+    "FRHC": "2026-11-12",
     "HBM": "2026-11-12",
     "DDS": "2026-11-12",
     "STN": "2026-11-12",
@@ -767,8 +765,8 @@
     "CPRT": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
-    "SNEX": "2026-11-18",
     "GLBE": "2026-11-18",
+    "SNEX": "2026-11-18",
     "CPA": "2026-11-18",
     "NJR": "2026-11-18",
     "AVAL": "2026-11-18",
@@ -796,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 18:46",
+    "updatedAt": "12/11/2026 19:01",
     "source": "tradingview"
   }
 }
