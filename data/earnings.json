@@ -53,14 +53,22 @@
             "ticker": "VYLR",
             "name": "Vylor Inc",
             "when": "after",
-            "status": "pending"
+            "status": "live",
+            "chg": -0.19,
+            "price": 71.96,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "FNV",
             "name": "Franco-Nevada Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/FNV.png"
+            "status": "live",
+            "logo": "data/earnings/logos/FNV.png",
+            "chg": -0.5,
+            "price": 247.51,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "GIB",
@@ -77,22 +85,34 @@
             "ticker": "TTEK",
             "name": "Tetra Tech, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TTEK.png"
+            "status": "live",
+            "logo": "data/earnings/logos/TTEK.png",
+            "chg": 10.21,
+            "price": 41.45,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "CAE",
             "name": "CAE Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CAE.png"
+            "status": "live",
+            "logo": "data/earnings/logos/CAE.png",
+            "chg": 9.91,
+            "price": 30.1,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "CTVA",
             "name": "Corteva Inc",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CTVA.png"
+            "status": "live",
+            "logo": "data/earnings/logos/CTVA.png",
+            "chg": -16.64,
+            "price": 10.12,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           }
         ]
       },
@@ -775,7 +795,7 @@
     "MANU": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 16:16",
+    "updatedAt": "12/11/2026 16:31",
     "source": "tradingview"
   }
 }
