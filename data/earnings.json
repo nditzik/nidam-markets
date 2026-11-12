@@ -66,8 +66,12 @@
             "ticker": "GIB",
             "name": "CGI Inc. Class A",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/GIB.png"
+            "status": "final",
+            "logo": "data/earnings/logos/GIB.png",
+            "chg": -1.67,
+            "price": 81.13,
+            "reactDate": "2026-11-11",
+            "baseDate": "2026-11-10"
           },
           {
             "ticker": "TTEK",
@@ -100,8 +104,12 @@
             "ticker": "PBR",
             "name": "Petroleo Brasileiro SA Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/PBR.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PBR.png",
+            "chg": -2.52,
+            "price": 17.82,
+            "reactDate": "2026-11-11",
+            "baseDate": "2026-11-10"
           },
           {
             "ticker": "TDG",
@@ -140,9 +148,13 @@
             "ticker": "ALC",
             "name": "Alcon AG",
             "when": "after",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/ALC.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -2.16,
+            "price": 72.46,
+            "reactDate": "2026-11-11",
+            "baseDate": "2026-11-10"
           },
           {
             "ticker": "VOD",
@@ -735,7 +747,7 @@
     "BBWI": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 04:31",
+    "updatedAt": "12/11/2026 04:46",
     "source": "tradingview"
   }
 }
