@@ -5,17 +5,17 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 399.9
+      "capB": 401.1
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 309.1
+      "capB": 311.7
     },
     {
       "ticker": "BN",
       "name": "Brookfield Corporation",
-      "capB": 102.3
+      "capB": 102.4
     },
     {
       "ticker": "NU",
@@ -25,7 +25,7 @@
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 34.7
+      "capB": 35.2
     },
     {
       "ticker": "EC",
@@ -40,7 +40,7 @@
     {
       "ticker": "CBRS",
       "name": "Cerebras Systems, Inc. Class A",
-      "capB": 22.5
+      "capB": 22.8
     }
   ],
   "reactions": {
@@ -54,8 +54,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": 0.33,
-            "price": 72.34,
+            "chg": 0.13,
+            "price": 72.19,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.36,
-            "price": 247.88,
+            "chg": -0.77,
+            "price": 246.84,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 3.88,
-            "price": 39.07,
+            "chg": 4.19,
+            "price": 39.19,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,8 +98,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 3.18,
-            "price": 28.26,
+            "chg": 3.8,
+            "price": 28.43,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OR.png",
-            "chg": -0.67,
-            "price": 35.36,
+            "chg": -0.51,
+            "price": 35.42,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -437,7 +437,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 24,
+      "total": 25,
       "companies": [
         {
           "ticker": "PBR",
@@ -794,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 19:46",
+    "updatedAt": "12/11/2026 20:01",
     "source": "tradingview"
   }
 }
