@@ -5,17 +5,17 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 403.7
+      "capB": 403.0
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 302.1
+      "capB": 301.9
     },
     {
       "ticker": "BN",
       "name": "Brookfield Corporation",
-      "capB": 102.3
+      "capB": 102.2
     },
     {
       "ticker": "NU",
@@ -54,8 +54,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": -0.01,
-            "price": 72.09,
+            "chg": 0.04,
+            "price": 72.13,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": 0.07,
-            "price": 248.93,
+            "chg": -0.06,
+            "price": 248.61,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 4.81,
-            "price": 39.42,
+            "chg": 4.76,
+            "price": 39.4,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OR.png",
-            "chg": -1.49,
-            "price": 35.07,
+            "chg": -1.66,
+            "price": 35.01,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -437,7 +437,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 24,
+      "total": 25,
       "companies": [
         {
           "ticker": "PBR",
@@ -710,8 +710,8 @@
     "ANDG": "2026-11-12",
     "TWST": "2026-11-12",
     "FPS": "2026-11-12",
-    "MBGL": "2026-11-12",
     "KOD": "2026-11-12",
+    "MBGL": "2026-11-12",
     "ARWR": "2026-11-12",
     "CIG": "2026-11-12",
     "M": "2026-11-12",
@@ -794,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 22:16",
+    "updatedAt": "12/11/2026 22:17",
     "source": "tradingview"
   }
 }
