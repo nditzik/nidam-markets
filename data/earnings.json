@@ -5,12 +5,12 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 402.9
+      "capB": 401.8
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 303.2
+      "capB": 304.7
     },
     {
       "ticker": "BN",
@@ -20,12 +20,12 @@
     {
       "ticker": "NU",
       "name": "Nu Holdings Ltd. Class A",
-      "capB": 57.9
+      "capB": 57.6
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 34.7
+      "capB": 34.5
     },
     {
       "ticker": "EC",
@@ -40,7 +40,7 @@
     {
       "ticker": "CBRS",
       "name": "Cerebras Systems, Inc. Class A",
-      "capB": 22.6
+      "capB": 22.5
     }
   ],
   "reactions": {
@@ -54,8 +54,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": 0.1,
-            "price": 72.17,
+            "chg": 0.19,
+            "price": 72.24,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.31,
-            "price": 247.99,
+            "chg": -0.22,
+            "price": 248.21,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 3.51,
-            "price": 38.93,
+            "chg": 4.49,
+            "price": 39.3,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,8 +98,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 3.1,
-            "price": 28.24,
+            "chg": 3.3,
+            "price": 28.3,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OR.png",
-            "chg": -1.6,
-            "price": 35.03,
+            "chg": -1.43,
+            "price": 35.09,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -794,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 21:31",
+    "updatedAt": "12/11/2026 21:46",
     "source": "tradingview"
   }
 }
