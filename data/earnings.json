@@ -50,6 +50,19 @@
         "label": "11.11",
         "items": [
           {
+            "ticker": "VYLR",
+            "name": "Vylor Inc",
+            "when": "after",
+            "status": "pending"
+          },
+          {
+            "ticker": "FNV",
+            "name": "Franco-Nevada Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/FNV.png"
+          },
+          {
             "ticker": "GIB",
             "name": "CGI Inc. Class A",
             "when": "before",
@@ -61,11 +74,25 @@
             "baseDate": "2026-11-10"
           },
           {
-            "ticker": "OR",
-            "name": "OR Royalties Inc.",
+            "ticker": "TTEK",
+            "name": "Tetra Tech, Inc.",
             "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/OR.png"
+            "logo": "data/earnings/logos/TTEK.png"
+          },
+          {
+            "ticker": "CAE",
+            "name": "CAE Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/CAE.png"
+          },
+          {
+            "ticker": "CTVA",
+            "name": "Corteva Inc",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/CTVA.png"
           }
         ]
       },
@@ -473,8 +500,19 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 3,
+      "total": 9,
       "companies": [
+        {
+          "ticker": "VYLR",
+          "name": "Vylor Inc",
+          "when": "after"
+        },
+        {
+          "ticker": "FNV",
+          "name": "Franco-Nevada Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/FNV.png"
+        },
         {
           "ticker": "GIB",
           "name": "CGI Inc. Class A",
@@ -488,10 +526,34 @@
           "logo": "data/earnings/logos/FRHC.png"
         },
         {
+          "ticker": "TTEK",
+          "name": "Tetra Tech, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/TTEK.png"
+        },
+        {
+          "ticker": "CAE",
+          "name": "CAE Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/CAE.png"
+        },
+        {
+          "ticker": "CTVA",
+          "name": "Corteva Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/CTVA.png"
+        },
+        {
           "ticker": "OR",
           "name": "OR Royalties Inc.",
           "when": "after",
           "logo": "data/earnings/logos/OR.png"
+        },
+        {
+          "ticker": "ENS",
+          "name": "EnerSys",
+          "when": "after",
+          "logo": "data/earnings/logos/ENS.png"
         }
       ]
     },
@@ -691,7 +753,7 @@
     "BBWI": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 02:31",
+    "updatedAt": "12/11/2026 02:46",
     "source": "tradingview"
   }
 }
