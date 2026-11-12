@@ -5,22 +5,22 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 401.1
+      "capB": 401.4
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 311.7
+      "capB": 311.0
     },
     {
       "ticker": "BN",
       "name": "Brookfield Corporation",
-      "capB": 102.4
+      "capB": 102.5
     },
     {
       "ticker": "NU",
       "name": "Nu Holdings Ltd. Class A",
-      "capB": 57.9
+      "capB": 57.8
     },
     {
       "ticker": "NBIS",
@@ -40,7 +40,7 @@
     {
       "ticker": "CBRS",
       "name": "Cerebras Systems, Inc. Class A",
-      "capB": 22.8
+      "capB": 22.6
     }
   ],
   "reactions": {
@@ -54,8 +54,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": 0.13,
-            "price": 72.19,
+            "chg": -0.32,
+            "price": 71.87,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.77,
-            "price": 246.84,
+            "chg": -0.49,
+            "price": 247.54,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 4.19,
-            "price": 39.19,
+            "chg": 4.13,
+            "price": 39.17,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,19 +98,19 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 3.8,
-            "price": 28.43,
+            "chg": 3.29,
+            "price": 28.29,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
           {
-            "ticker": "OR",
-            "name": "OR Royalties Inc.",
+            "ticker": "CTVA",
+            "name": "Corteva Inc",
             "when": "after",
             "status": "live",
-            "logo": "data/earnings/logos/OR.png",
-            "chg": -0.51,
-            "price": 35.42,
+            "logo": "data/earnings/logos/CTVA.png",
+            "chg": -19.4,
+            "price": 9.78,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -165,6 +165,17 @@
             "baseDate": "2026-11-09"
           },
           {
+            "ticker": "VOD",
+            "name": "Vodafone Group Public Limited Company Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VOD.png",
+            "chg": -1.21,
+            "price": 15.5,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
+          },
+          {
             "ticker": "ALC",
             "name": "Alcon AG",
             "when": "after",
@@ -175,17 +186,6 @@
             "price": 72.46,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
-          },
-          {
-            "ticker": "VOD",
-            "name": "Vodafone Group Public Limited Company Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VOD.png",
-            "chg": -1.21,
-            "price": 15.5,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
           }
         ]
       },
@@ -327,15 +327,15 @@
       "logo": "data/earnings/logos/KEP.png"
     },
     {
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": ""
+    },
+    {
       "ticker": "MOG.A",
       "name": "Moog Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/MOG.A.png"
-    },
-    {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": ""
     }
   ],
   "more": 30,
@@ -464,17 +464,17 @@
           "logo": "data/earnings/logos/HMC.png"
         },
         {
+          "ticker": "VOD",
+          "name": "Vodafone Group Public Limited Company Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/VOD.png"
+        },
+        {
           "ticker": "ALC",
           "name": "Alcon AG",
           "when": "after",
           "logo": "data/earnings/logos/ALC.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "VOD",
-          "name": "Vodafone Group Public Limited Company Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/VOD.png"
         },
         {
           "ticker": "VG",
@@ -550,16 +550,16 @@
           "logo": "data/earnings/logos/CAE.png"
         },
         {
-          "ticker": "OR",
-          "name": "OR Royalties Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/OR.png"
-        },
-        {
           "ticker": "CTVA",
           "name": "Corteva Inc",
           "when": "after",
           "logo": "data/earnings/logos/CTVA.png"
+        },
+        {
+          "ticker": "OR",
+          "name": "OR Royalties Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/OR.png"
         },
         {
           "ticker": "UGP",
@@ -649,15 +649,15 @@
           "logo": "data/earnings/logos/KEP.png"
         },
         {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": ""
+        },
+        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/MOG.A.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": ""
         }
       ]
     },
@@ -699,8 +699,8 @@
     "CBRS": "2026-11-12",
     "ASND": "2026-11-12",
     "KEP": "2026-11-12",
-    "MOG.A": "2026-11-12",
     "MOG.B": "2026-11-12",
+    "MOG.A": "2026-11-12",
     "FRHC": "2026-11-12",
     "HBM": "2026-11-12",
     "DDS": "2026-11-12",
@@ -721,8 +721,8 @@
     "OCTV": "2026-11-12",
     "ERAS": "2026-11-12",
     "MWH": "2026-11-12",
-    "GGAL": "2026-11-12",
     "HTFL": "2026-11-12",
+    "GGAL": "2026-11-12",
     "DPC": "2026-11-12",
     "TEO": "2026-11-12",
     "XE": "2026-11-12",
@@ -794,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 20:01",
+    "updatedAt": "12/11/2026 20:16",
     "source": "tradingview"
   }
 }
