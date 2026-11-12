@@ -5,27 +5,27 @@
     {
       "ticker": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "capB": 400.6
+      "capB": 400.4
     },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
-      "capB": 309.5
+      "capB": 309.4
     },
     {
       "ticker": "BN",
       "name": "Brookfield Corporation",
-      "capB": 102.3
+      "capB": 102.4
     },
     {
       "ticker": "NU",
       "name": "Nu Holdings Ltd. Class A",
-      "capB": 57.9
+      "capB": 58.0
     },
     {
       "ticker": "NBIS",
       "name": "Nebius Group N.V. Class A",
-      "capB": 34.7
+      "capB": 34.6
     },
     {
       "ticker": "EC",
@@ -54,8 +54,8 @@
             "name": "Vylor Inc",
             "when": "after",
             "status": "live",
-            "chg": 0.4,
-            "price": 72.39,
+            "chg": 0.08,
+            "price": 72.15,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -65,8 +65,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.34,
-            "price": 247.93,
+            "chg": -0.37,
+            "price": 247.83,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -87,8 +87,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/TTEK.png",
-            "chg": 4.35,
-            "price": 39.24,
+            "chg": 3.78,
+            "price": 39.03,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -98,8 +98,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CAE.png",
-            "chg": 2.74,
-            "price": 28.14,
+            "chg": 2.81,
+            "price": 28.16,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -109,8 +109,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/OR.png",
-            "chg": -0.65,
-            "price": 35.37,
+            "chg": -0.74,
+            "price": 35.33,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -333,10 +333,9 @@
       "logo": "data/earnings/logos/MOG.A.png"
     },
     {
-      "ticker": "FRHC",
-      "name": "Freedom Holding Corp.",
-      "when": "",
-      "logo": "data/earnings/logos/FRHC.png"
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": ""
     }
   ],
   "more": 30,
@@ -656,10 +655,9 @@
           "logo": "data/earnings/logos/MOG.A.png"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": ""
         }
       ]
     },
@@ -702,8 +700,8 @@
     "ASND": "2026-11-12",
     "KEP": "2026-11-12",
     "MOG.A": "2026-11-12",
-    "FRHC": "2026-11-12",
     "MOG.B": "2026-11-12",
+    "FRHC": "2026-11-12",
     "HBM": "2026-11-12",
     "DDS": "2026-11-12",
     "STN": "2026-11-12",
@@ -730,8 +728,8 @@
     "XE": "2026-11-12",
     "ARX": "2026-11-12",
     "DLO": "2026-11-12",
-    "LGN": "2026-11-12",
     "BRC": "2026-11-12",
+    "LGN": "2026-11-12",
     "SKE": "2026-11-12",
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
@@ -796,7 +794,7 @@
     "HP": "2026-11-19"
   },
   "_meta": {
-    "updatedAt": "12/11/2026 19:31",
+    "updatedAt": "12/11/2026 19:41",
     "source": "tradingview"
   }
 }
