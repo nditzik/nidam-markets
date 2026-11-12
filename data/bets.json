@@ -2,29 +2,19 @@
   "rows": [
     {
       "key": "fed_next",
-      "slug": "fed-decision-in-december-20260729232808632",
-      "label": "החלטת הפד בדצמבר · 10.12",
-      "sub": "ההימור המוביל: העלאה של 25 נ\"ב",
-      "pct": 86,
-      "chg": 1.0,
+      "slug": "fed-decision-in-october-20260617190323537",
+      "label": "החלטת הפד באוקטובר · 28.10",
+      "sub": "ההימור המוביל: ללא שינוי",
+      "pct": 100,
+      "chg": 5.1,
       "dist": [
         {
-          "label": "העלאה של 25 נ\"ב",
-          "pct": 86,
-          "chg": 1.0
-        },
-        {
-          "label": "העלאה של 50+ נ\"ב",
-          "pct": 10,
-          "chg": -0.8
-        },
-        {
           "label": "ללא שינוי",
-          "pct": 4,
-          "chg": -0.4
+          "pct": 100,
+          "chg": 5.1
         }
       ],
-      "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+      "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
       "src": "Polymarket"
     },
     {
@@ -40,8 +30,8 @@
       "key": "hike_again_2026",
       "label": "העלאת ריבית נוספת עד סוף 2026",
       "sub": "ההימור המוביל: תהיה העלאה נוספת",
-      "pct": 97,
-      "chg": 1.3,
+      "pct": 96,
+      "chg": 1.1,
       "url": "https://polymarket.com/event/another-fed-rate-hike-in-2026",
       "src": "Polymarket"
     },
@@ -77,36 +67,8 @@
   "history": {
     "fed_next": [
       {
-        "d": "2026-11-05",
-        "pct": 64
-      },
-      {
-        "d": "2026-11-06",
-        "pct": 76
-      },
-      {
-        "d": "2026-11-07",
-        "pct": 76
-      },
-      {
-        "d": "2026-11-08",
-        "pct": 76
-      },
-      {
-        "d": "2026-11-09",
-        "pct": 80
-      },
-      {
-        "d": "2026-11-10",
-        "pct": 86
-      },
-      {
-        "d": "2026-11-11",
-        "pct": 86
-      },
-      {
         "d": "2026-11-12",
-        "pct": 86
+        "pct": 100
       }
     ],
     "cuts_2026": [
@@ -174,7 +136,7 @@
       },
       {
         "d": "2026-11-12",
-        "pct": 97
+        "pct": 96
       }
     ],
     "cpi_next": [
@@ -273,7 +235,7 @@
     ]
   },
   "_meta": {
-    "updatedAt": "12/11/2026 14:16",
+    "updatedAt": "12/11/2026 14:46",
     "source": "polymarket"
   }
 }
