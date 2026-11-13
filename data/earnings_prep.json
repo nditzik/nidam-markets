@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "13/11/2026 08:46",
+  "updatedAt": "13/11/2026 09:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -2969,14 +2969,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   },
   {
    "sym": "MU",
@@ -2994,12 +2994,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
@@ -3022,7 +3022,11 @@
     "logo": "data/reports/logos/AMAT.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/AMAT__2026-11-12.html",
+    "date": "2026-11-12",
+    "title": "AMAT דוח רבעון Q4 FY26"
+   },
    "consensus": {
     "eps": 4.0544,
     "epsLow": 4.02,
@@ -3061,7 +3065,11 @@
     "logo": "data/reports/logos/ONDS.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/ONDS__2026-11-12.html",
+    "date": "2026-11-12",
+    "title": "ONDS דוח רבעון Q3 2026"
+   },
    "consensus": {
     "eps": -0.09,
     "epsLow": -0.09,
