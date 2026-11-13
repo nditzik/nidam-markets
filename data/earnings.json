@@ -1,16 +1,11 @@
 {
   "today": "2026-11-13",
-  "todayCount": 14,
+  "todayCount": 16,
   "todayBig": [
     {
       "ticker": "MUFG",
       "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
-      "capB": 246.6
-    },
-    {
-      "ticker": "SMFG",
-      "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
-      "capB": 156.1
+      "capB": 246.2
     },
     {
       "ticker": "MFG",
@@ -20,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.5
+      "capB": 29.4
     }
   ],
   "reactions": {
@@ -33,15 +28,34 @@
             "ticker": "CSCO",
             "name": "Cisco Systems, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CSCO.png"
+            "status": "live",
+            "logo": "data/earnings/logos/CSCO.png",
+            "chg": -5.36,
+            "price": 96.54,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "AMAT",
             "name": "Applied Materials, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/AMAT.png"
+            "status": "live",
+            "logo": "data/earnings/logos/AMAT.png",
+            "chg": -6.58,
+            "price": 355.88,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
+          },
+          {
+            "ticker": "SMFG",
+            "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/SMFG.png",
+            "chg": 1.01,
+            "price": 24.61,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "BN",
@@ -58,26 +72,23 @@
             "ticker": "NU",
             "name": "Nu Holdings Ltd. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/NU.png"
-          },
-          {
-            "ticker": "NBIS",
-            "name": "Nebius Group N.V. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/NBIS.png",
-            "chg": -16.84,
-            "price": 128.64,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
+            "status": "live",
+            "logo": "data/earnings/logos/NU.png",
+            "chg": 9.17,
+            "price": 12.91,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "EC",
             "name": "Ecopetrol SA Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/EC.png"
+            "status": "live",
+            "logo": "data/earnings/logos/EC.png",
+            "chg": -1.21,
+            "price": 15.14,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           }
         ]
       },
@@ -86,16 +97,6 @@
         "label": "11.11",
         "items": [
           {
-            "ticker": "VYLR",
-            "name": "Vylor Inc",
-            "when": "after",
-            "status": "final",
-            "chg": -0.06,
-            "price": 72.06,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
             "ticker": "FNV",
             "name": "Franco-Nevada Corporation",
             "when": "after",
@@ -103,6 +104,16 @@
             "logo": "data/earnings/logos/FNV.png",
             "chg": -0.42,
             "price": 247.72,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
+          },
+          {
+            "ticker": "VYLR",
+            "name": "Vylor Inc",
+            "when": "after",
+            "status": "final",
+            "chg": -0.06,
+            "price": 72.06,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -201,17 +212,6 @@
             "baseDate": "2026-11-09"
           },
           {
-            "ticker": "VOD",
-            "name": "Vodafone Group Public Limited Company Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VOD.png",
-            "chg": -1.21,
-            "price": 15.5,
-            "reactDate": "2026-11-10",
-            "baseDate": "2026-11-09"
-          },
-          {
             "ticker": "ALC",
             "name": "Alcon AG",
             "when": "after",
@@ -222,6 +222,17 @@
             "price": 72.46,
             "reactDate": "2026-11-11",
             "baseDate": "2026-11-10"
+          },
+          {
+            "ticker": "VOD",
+            "name": "Vodafone Group Public Limited Company Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VOD.png",
+            "chg": -1.21,
+            "price": 15.5,
+            "reactDate": "2026-11-10",
+            "baseDate": "2026-11-09"
           }
         ]
       }
@@ -231,19 +242,13 @@
     {
       "ticker": "MUFG",
       "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
-      "when": "",
+      "when": "before",
       "logo": "data/earnings/logos/MUFG.png"
-    },
-    {
-      "ticker": "SMFG",
-      "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/SMFG.png"
     },
     {
       "ticker": "MFG",
       "name": "Mizuho Financial Group Inc Sponsored ADR",
-      "when": "",
+      "when": "before",
       "logo": "data/earnings/logos/MFG.png"
     },
     {
@@ -252,12 +257,6 @@
       "when": "",
       "logo": "data/earnings/logos/WSM.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "KEP",
-      "name": "Korea Electric Power Corporation Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/KEP.png"
     },
     {
       "ticker": "MOG.B",
@@ -269,6 +268,12 @@
       "name": "Moog Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/MOG.A.png"
+    },
+    {
+      "ticker": "FRHC",
+      "name": "Freedom Holding Corp.",
+      "when": "",
+      "logo": "data/earnings/logos/FRHC.png"
     },
     {
       "ticker": "NIO",
@@ -296,20 +301,26 @@
       "logo": "data/earnings/logos/BRC.png"
     },
     {
-      "ticker": "PHI",
-      "name": "PLDT, Inc. Sponsored ADR",
+      "ticker": "SKE",
+      "name": "Skeena Resources Limited",
       "when": "",
-      "logo": "data/earnings/logos/PHI.png"
+      "logo": "data/earnings/logos/SKE.png"
+    },
+    {
+      "ticker": "DAC",
+      "name": "Danaos Corporation",
+      "when": "",
+      "logo": "data/earnings/logos/DAC.png"
     }
   ],
-  "more": 2,
+  "more": 4,
   "upcoming": [],
   "week": [
     {
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 67,
+      "total": 79,
       "companies": [
         {
           "ticker": "CEG",
@@ -389,7 +400,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 30,
+      "total": 41,
       "companies": [
         {
           "ticker": "PBR",
@@ -416,17 +427,17 @@
           "logo": "data/earnings/logos/HMC.png"
         },
         {
-          "ticker": "VOD",
-          "name": "Vodafone Group Public Limited Company Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/VOD.png"
-        },
-        {
           "ticker": "ALC",
           "name": "Alcon AG",
           "when": "after",
           "logo": "data/earnings/logos/ALC.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "VOD",
+          "name": "Vodafone Group Public Limited Company Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/VOD.png"
         },
         {
           "ticker": "VG",
@@ -459,10 +470,11 @@
           "logo": "data/earnings/logos/BMNP.png"
         },
         {
-          "ticker": "BMNR",
-          "name": "BitMine Immersion Technologies Inc",
-          "when": "",
-          "logo": "data/earnings/logos/BMNR.png"
+          "ticker": "ONON",
+          "name": "On Holding AG Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/ONON.png",
+          "logoBg": "dark"
         }
       ]
     },
@@ -470,18 +482,18 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 13,
+      "total": 22,
       "companies": [
-        {
-          "ticker": "VYLR",
-          "name": "Vylor Inc",
-          "when": "after"
-        },
         {
           "ticker": "FNV",
           "name": "Franco-Nevada Corporation",
           "when": "after",
           "logo": "data/earnings/logos/FNV.png"
+        },
+        {
+          "ticker": "VYLR",
+          "name": "Vylor Inc",
+          "when": "after"
         },
         {
           "ticker": "GIB",
@@ -526,6 +538,12 @@
           "logo": "data/earnings/logos/ENS.png"
         },
         {
+          "ticker": "PHI",
+          "name": "PLDT, Inc. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/PHI.png"
+        },
+        {
           "ticker": "ECO",
           "name": "Okeanis Eco Tankers Corp.",
           "when": "after",
@@ -536,12 +554,6 @@
           "name": "Teekay Tankers Ltd Class A",
           "when": "after",
           "logo": "data/earnings/logos/TNK.png"
-        },
-        {
-          "ticker": "RUM",
-          "name": "RUM Group Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/RUM.png"
         }
       ]
     },
@@ -549,7 +561,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 41,
+      "total": 61,
       "companies": [
         {
           "ticker": "CSCO",
@@ -564,6 +576,12 @@
           "logo": "data/earnings/logos/AMAT.png"
         },
         {
+          "ticker": "SMFG",
+          "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/SMFG.png"
+        },
+        {
           "ticker": "BN",
           "name": "Brookfield Corporation",
           "when": "before",
@@ -576,16 +594,16 @@
           "logo": "data/earnings/logos/NU.png"
         },
         {
-          "ticker": "NBIS",
-          "name": "Nebius Group N.V. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/NBIS.png"
-        },
-        {
           "ticker": "EC",
           "name": "Ecopetrol SA Sponsored ADR",
           "when": "after",
           "logo": "data/earnings/logos/EC.png"
+        },
+        {
+          "ticker": "NBIS",
+          "name": "Nebius Group N.V. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/NBIS.png"
         },
         {
           "ticker": "CBRS",
@@ -600,28 +618,22 @@
           "logo": "data/earnings/logos/ASND.png"
         },
         {
-          "ticker": "HBM",
-          "name": "Hudbay Minerals Inc",
-          "when": "before",
-          "logo": "data/earnings/logos/HBM.png"
+          "ticker": "KEP",
+          "name": "Korea Electric Power Corporation Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/KEP.png"
         },
         {
-          "ticker": "DDS",
-          "name": "Dillard's, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/DDS.png"
+          "ticker": "QXO",
+          "name": "QXO, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/QXO.png"
         },
         {
           "ticker": "STN",
           "name": "Stantec Inc",
           "when": "after",
           "logo": "data/earnings/logos/STN.png"
-        },
-        {
-          "ticker": "ELPC",
-          "name": "Companhia Paranaense de Energia Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/ELPC.png"
         }
       ]
     },
@@ -629,24 +641,18 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 14,
+      "total": 16,
       "companies": [
         {
           "ticker": "MUFG",
           "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/MUFG.png"
-        },
-        {
-          "ticker": "SMFG",
-          "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/SMFG.png"
         },
         {
           "ticker": "MFG",
           "name": "Mizuho Financial Group Inc Sponsored ADR",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/MFG.png"
         },
         {
@@ -655,12 +661,6 @@
           "when": "",
           "logo": "data/earnings/logos/WSM.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "KEP",
-          "name": "Korea Electric Power Corporation Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/KEP.png"
         },
         {
           "ticker": "MOG.B",
@@ -672,6 +672,12 @@
           "name": "Moog Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "NIO",
@@ -699,38 +705,49 @@
           "logo": "data/earnings/logos/BRC.png"
         },
         {
-          "ticker": "PHI",
-          "name": "PLDT, Inc. Sponsored ADR",
+          "ticker": "SKE",
+          "name": "Skeena Resources Limited",
           "when": "",
-          "logo": "data/earnings/logos/PHI.png"
+          "logo": "data/earnings/logos/SKE.png"
+        },
+        {
+          "ticker": "DAC",
+          "name": "Danaos Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/DAC.png"
         }
       ]
     }
   ],
   "window": {
     "MUFG": "2026-11-13",
-    "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
     "WSM": "2026-11-13",
-    "KEP": "2026-11-13",
     "MOG.B": "2026-11-13",
     "MOG.A": "2026-11-13",
+    "FRHC": "2026-11-13",
     "NIO": "2026-11-13",
     "M": "2026-11-13",
     "GGAL": "2026-11-13",
     "BRC": "2026-11-13",
-    "PHI": "2026-11-13",
     "SKE": "2026-11-13",
     "DAC": "2026-11-13",
+    "SA": "2026-11-13",
+    "DRVN": "2026-11-13",
+    "CEPU": "2026-11-13",
+    "HUBG": "2026-11-13",
     "BIDU": "2026-11-16",
-    "BEKE": "2026-11-16",
     "TSN": "2026-11-16",
+    "BEKE": "2026-11-16",
     "HTHT": "2026-11-16",
     "ARMK": "2026-11-16",
     "XPEV": "2026-11-16",
     "ACM": "2026-11-16",
     "POWL": "2026-11-16",
-    "SA": "2026-11-16",
+    "PPTA": "2026-11-16",
+    "PAGS": "2026-11-16",
+    "INFQ": "2026-11-16",
+    "BXDC": "2026-11-16",
     "NVDA": "2026-11-17",
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
@@ -748,6 +765,10 @@
     "CAAP": "2026-11-17",
     "MNSO": "2026-11-17",
     "GBDC": "2026-11-17",
+    "MFP": "2026-11-17",
+    "ENR": "2026-11-17",
+    "WB": "2026-11-17",
+    "LUXE": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -760,7 +781,6 @@
     "SNEX": "2026-11-18",
     "CPA": "2026-11-18",
     "NJR": "2026-11-18",
-    "AVAL": "2026-11-18",
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
@@ -768,6 +788,8 @@
     "ZIM": "2026-11-18",
     "BLSH": "2026-11-18",
     "SBLK": "2026-11-18",
+    "PONY": "2026-11-18",
+    "JJSF": "2026-11-18",
     "WMT": "2026-11-19",
     "BABA": "2026-11-19",
     "PDD": "2026-11-19",
@@ -790,12 +812,15 @@
     "MMS": "2026-11-19",
     "BULL": "2026-11-19",
     "DAO": "2026-11-19",
+    "GLOB": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20"
+    "VFS": "2026-11-20",
+    "BKE": "2026-11-20",
+    "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 08:31",
+    "updatedAt": "13/11/2026 18:01",
     "source": "tradingview"
   }
 }
