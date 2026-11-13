@@ -8,11 +8,6 @@
       "capB": 246.6
     },
     {
-      "ticker": "SMFG",
-      "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
-      "capB": 156.1
-    },
-    {
       "ticker": "MFG",
       "name": "Mizuho Financial Group Inc Sponsored ADR",
       "capB": 123.2
@@ -44,6 +39,13 @@
             "logo": "data/earnings/logos/AMAT.png"
           },
           {
+            "ticker": "SMFG",
+            "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/SMFG.png"
+          },
+          {
             "ticker": "BN",
             "name": "Brookfield Corporation",
             "when": "before",
@@ -71,13 +73,6 @@
             "price": 128.64,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "EC",
-            "name": "Ecopetrol SA Sponsored ADR",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/EC.png"
           }
         ]
       },
@@ -235,12 +230,6 @@
       "logo": "data/earnings/logos/MUFG.png"
     },
     {
-      "ticker": "SMFG",
-      "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/SMFG.png"
-    },
-    {
       "ticker": "MFG",
       "name": "Mizuho Financial Group Inc Sponsored ADR",
       "when": "",
@@ -269,6 +258,12 @@
       "name": "Moog Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/MOG.A.png"
+    },
+    {
+      "ticker": "FRHC",
+      "name": "Freedom Holding Corp.",
+      "when": "",
+      "logo": "data/earnings/logos/FRHC.png"
     },
     {
       "ticker": "NIO",
@@ -549,7 +544,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 41,
+      "total": 42,
       "companies": [
         {
           "ticker": "CSCO",
@@ -562,6 +557,12 @@
           "name": "Applied Materials, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/AMAT.png"
+        },
+        {
+          "ticker": "SMFG",
+          "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/SMFG.png"
         },
         {
           "ticker": "BN",
@@ -616,12 +617,6 @@
           "name": "Stantec Inc",
           "when": "after",
           "logo": "data/earnings/logos/STN.png"
-        },
-        {
-          "ticker": "ELPC",
-          "name": "Companhia Paranaense de Energia Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/ELPC.png"
         }
       ]
     },
@@ -636,12 +631,6 @@
           "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
           "when": "",
           "logo": "data/earnings/logos/MUFG.png"
-        },
-        {
-          "ticker": "SMFG",
-          "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/SMFG.png"
         },
         {
           "ticker": "MFG",
@@ -672,6 +661,12 @@
           "name": "Moog Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "NIO",
@@ -709,12 +704,12 @@
   ],
   "window": {
     "MUFG": "2026-11-13",
-    "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
     "WSM": "2026-11-13",
     "KEP": "2026-11-13",
     "MOG.B": "2026-11-13",
     "MOG.A": "2026-11-13",
+    "FRHC": "2026-11-13",
     "NIO": "2026-11-13",
     "M": "2026-11-13",
     "GGAL": "2026-11-13",
@@ -792,11 +787,10 @@
     "DAO": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20",
-    "BKE": "2026-11-20"
+    "VFS": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 09:01",
+    "updatedAt": "13/11/2026 09:16",
     "source": "tradingview"
   }
 }
