@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 16,
+  "todayCount": 20,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.8
+      "capB": 29.9
     }
   ],
   "reactions": {
@@ -50,10 +50,10 @@
             "ticker": "SMFG",
             "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 1.48,
-            "price": 24.73,
+            "chg": 1.52,
+            "price": 24.74,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -72,10 +72,10 @@
             "ticker": "NU",
             "name": "Nu Holdings Ltd. Class A",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 11.67,
-            "price": 13.21,
+            "chg": 11.75,
+            "price": 13.22,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -83,7 +83,7 @@
             "ticker": "EC",
             "name": "Ecopetrol SA Sponsored ADR",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/EC.png",
             "chg": 0.72,
             "price": 15.43,
@@ -313,14 +313,14 @@
       "logo": "data/earnings/logos/DAC.png"
     }
   ],
-  "more": 4,
+  "more": 8,
   "upcoming": [],
   "week": [
     {
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 80,
+      "total": 95,
       "companies": [
         {
           "ticker": "CEG",
@@ -400,7 +400,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 43,
+      "total": 51,
       "companies": [
         {
           "ticker": "PBR",
@@ -482,7 +482,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 22,
+      "total": 30,
       "companies": [
         {
           "ticker": "VYLR",
@@ -561,7 +561,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 63,
+      "total": 74,
       "companies": [
         {
           "ticker": "CSCO",
@@ -641,7 +641,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 16,
+      "total": 20,
       "companies": [
         {
           "ticker": "MUFG",
@@ -736,6 +736,10 @@
     "DRVN": "2026-11-13",
     "CEPU": "2026-11-13",
     "HUBG": "2026-11-13",
+    "GHRS": "2026-11-13",
+    "INBX": "2026-11-13",
+    "GDRX": "2026-11-13",
+    "JBIO": "2026-11-13",
     "BIDU": "2026-11-16",
     "TSN": "2026-11-16",
     "BEKE": "2026-11-16",
@@ -748,6 +752,7 @@
     "PAGS": "2026-11-16",
     "INFQ": "2026-11-16",
     "BXDC": "2026-11-16",
+    "OMER": "2026-11-16",
     "NVDA": "2026-11-17",
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
@@ -770,6 +775,9 @@
     "WB": "2026-11-17",
     "LUXE": "2026-11-17",
     "OPRA": "2026-11-17",
+    "LZB": "2026-11-17",
+    "SLSR": "2026-11-17",
+    "OCSL": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -791,6 +799,10 @@
     "SBLK": "2026-11-18",
     "PONY": "2026-11-18",
     "JJSF": "2026-11-18",
+    "BRBR": "2026-11-18",
+    "UTI": "2026-11-18",
+    "NWCL": "2026-11-18",
+    "BORR": "2026-11-18",
     "WMT": "2026-11-19",
     "BABA": "2026-11-19",
     "PDD": "2026-11-19",
@@ -820,10 +832,11 @@
     "BJ": "2026-11-20",
     "VFS": "2026-11-20",
     "BKE": "2026-11-20",
-    "RLX": "2026-11-20"
+    "RLX": "2026-11-20",
+    "WRD": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 23:01",
+    "updatedAt": "13/11/2026 23:16",
     "source": "tradingview"
   }
 }
