@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.3
+      "capB": 29.2
     }
   ],
   "reactions": {
@@ -30,8 +30,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CSCO.png",
-            "chg": -4.61,
-            "price": 97.31,
+            "chg": -5.23,
+            "price": 96.67,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -41,8 +41,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMAT.png",
-            "chg": -5.64,
-            "price": 359.48,
+            "chg": -5.26,
+            "price": 360.91,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -52,7 +52,7 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 0.94,
+            "chg": 0.95,
             "price": 24.6,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
@@ -74,8 +74,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 7.14,
-            "price": 12.68,
+            "chg": 7.69,
+            "price": 12.74,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -85,8 +85,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/EC.png",
-            "chg": -0.55,
-            "price": 15.23,
+            "chg": -0.85,
+            "price": 15.19,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           }
@@ -97,6 +97,16 @@
         "label": "11.11",
         "items": [
           {
+            "ticker": "VYLR",
+            "name": "Vylor Inc",
+            "when": "after",
+            "status": "final",
+            "chg": -0.06,
+            "price": 72.06,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
+          },
+          {
             "ticker": "FNV",
             "name": "Franco-Nevada Corporation",
             "when": "after",
@@ -104,16 +114,6 @@
             "logo": "data/earnings/logos/FNV.png",
             "chg": -0.42,
             "price": 247.72,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "VYLR",
-            "name": "Vylor Inc",
-            "when": "after",
-            "status": "final",
-            "chg": -0.06,
-            "price": 72.06,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           },
@@ -485,15 +485,15 @@
       "total": 22,
       "companies": [
         {
+          "ticker": "VYLR",
+          "name": "Vylor Inc",
+          "when": "after"
+        },
+        {
           "ticker": "FNV",
           "name": "Franco-Nevada Corporation",
           "when": "after",
           "logo": "data/earnings/logos/FNV.png"
-        },
-        {
-          "ticker": "VYLR",
-          "name": "Vylor Inc",
-          "when": "after"
         },
         {
           "ticker": "GIB",
@@ -820,7 +820,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 17:16",
+    "updatedAt": "13/11/2026 17:31",
     "source": "tradingview"
   }
 }
