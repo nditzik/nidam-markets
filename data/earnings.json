@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.7
+      "capB": 29.8
     }
   ],
   "reactions": {
@@ -28,10 +28,10 @@
             "ticker": "CSCO",
             "name": "Cisco Systems, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/CSCO.png",
-            "chg": -6.25,
-            "price": 95.63,
+            "chg": -6.24,
+            "price": 95.64,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -39,10 +39,10 @@
             "ticker": "AMAT",
             "name": "Applied Materials, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/AMAT.png",
-            "chg": -3.06,
-            "price": 369.29,
+            "chg": -2.74,
+            "price": 370.5,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -52,8 +52,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 1.64,
-            "price": 24.77,
+            "chg": 1.48,
+            "price": 24.73,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -74,8 +74,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 10.65,
-            "price": 13.09,
+            "chg": 11.67,
+            "price": 13.21,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -85,8 +85,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/EC.png",
-            "chg": 0.82,
-            "price": 15.44,
+            "chg": 0.72,
+            "price": 15.43,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           }
@@ -320,7 +320,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 79,
+      "total": 80,
       "companies": [
         {
           "ticker": "CEG",
@@ -470,10 +470,11 @@
           "logo": "data/earnings/logos/BMNP.png"
         },
         {
-          "ticker": "BMNR",
-          "name": "BitMine Immersion Technologies Inc",
-          "when": "",
-          "logo": "data/earnings/logos/BMNR.png"
+          "ticker": "ONON",
+          "name": "On Holding AG Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/ONON.png",
+          "logoBg": "dark"
         }
       ]
     },
@@ -560,7 +561,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 61,
+      "total": 63,
       "companies": [
         {
           "ticker": "CSCO",
@@ -751,8 +752,8 @@
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
     "VIK": "2026-11-17",
-    "JD": "2026-11-17",
     "ESLT": "2026-11-17",
+    "JD": "2026-11-17",
     "AS": "2026-11-17",
     "ZTO": "2026-11-17",
     "SQM": "2026-11-17",
@@ -768,6 +769,7 @@
     "ENR": "2026-11-17",
     "WB": "2026-11-17",
     "LUXE": "2026-11-17",
+    "OPRA": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -812,6 +814,8 @@
     "BULL": "2026-11-19",
     "DAO": "2026-11-19",
     "GLOB": "2026-11-19",
+    "LQDT": "2026-11-19",
+    "TEN": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
     "VFS": "2026-11-20",
@@ -819,7 +823,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 22:46",
+    "updatedAt": "13/11/2026 23:01",
     "source": "tradingview"
   }
 }
