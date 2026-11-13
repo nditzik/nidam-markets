@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 15,
+  "todayCount": 16,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -297,7 +297,7 @@
       "logo": "data/earnings/logos/DAC.png"
     }
   ],
-  "more": 3,
+  "more": 4,
   "upcoming": [],
   "week": [
     {
@@ -465,7 +465,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 20,
+      "total": 22,
       "companies": [
         {
           "ticker": "VYLR",
@@ -521,6 +521,12 @@
           "logo": "data/earnings/logos/ENS.png"
         },
         {
+          "ticker": "PHI",
+          "name": "PLDT, Inc. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/PHI.png"
+        },
+        {
           "ticker": "ECO",
           "name": "Okeanis Eco Tankers Corp.",
           "when": "after",
@@ -531,12 +537,6 @@
           "name": "Teekay Tankers Ltd Class A",
           "when": "after",
           "logo": "data/earnings/logos/TNK.png"
-        },
-        {
-          "ticker": "RUM",
-          "name": "RUM Group Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/RUM.png"
         }
       ]
     },
@@ -624,7 +624,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 15,
+      "total": 16,
       "companies": [
         {
           "ticker": "MUFG",
@@ -718,6 +718,7 @@
     "SA": "2026-11-13",
     "DRVN": "2026-11-13",
     "CEPU": "2026-11-13",
+    "HUBG": "2026-11-13",
     "BIDU": "2026-11-16",
     "TSN": "2026-11-16",
     "BEKE": "2026-11-16",
@@ -749,6 +750,8 @@
     "GBDC": "2026-11-17",
     "MFP": "2026-11-17",
     "ENR": "2026-11-17",
+    "WB": "2026-11-17",
+    "LUXE": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -800,7 +803,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 14:46",
+    "updatedAt": "13/11/2026 15:01",
     "source": "tradingview"
   }
 }
