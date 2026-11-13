@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.6
+      "capB": 29.5
     }
   ],
   "reactions": {
@@ -30,8 +30,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CSCO.png",
-            "chg": -5.77,
-            "price": 96.12,
+            "chg": -5.74,
+            "price": 96.15,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -41,8 +41,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMAT.png",
-            "chg": -5.5,
-            "price": 360.0,
+            "chg": -5.12,
+            "price": 361.46,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -52,8 +52,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 0.94,
-            "price": 24.6,
+            "chg": 1.15,
+            "price": 24.65,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -74,21 +74,21 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 11.58,
-            "price": 13.2,
+            "chg": 11.54,
+            "price": 13.19,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
           {
-            "ticker": "EC",
-            "name": "Ecopetrol SA Sponsored ADR",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/EC.png",
-            "chg": -1.89,
-            "price": 15.03,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
+            "ticker": "NBIS",
+            "name": "Nebius Group N.V. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/NBIS.png",
+            "chg": -16.84,
+            "price": 128.64,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           }
         ]
       },
@@ -360,15 +360,15 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
-          "ticker": "SKYD",
-          "name": "Skydance Corporation Class B",
-          "when": "after"
-        },
-        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
+        },
+        {
+          "ticker": "SKYD",
+          "name": "Skydance Corporation Class B",
+          "when": "after"
         },
         {
           "ticker": "IX",
@@ -400,7 +400,7 @@
       "date": "2026-11-10",
       "dow": "שלישי",
       "label": "10.11",
-      "total": 42,
+      "total": 43,
       "companies": [
         {
           "ticker": "PBR",
@@ -594,16 +594,16 @@
           "logo": "data/earnings/logos/NU.png"
         },
         {
-          "ticker": "EC",
-          "name": "Ecopetrol SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/EC.png"
-        },
-        {
           "ticker": "NBIS",
           "name": "Nebius Group N.V. Class A",
           "when": "before",
           "logo": "data/earnings/logos/NBIS.png"
+        },
+        {
+          "ticker": "EC",
+          "name": "Ecopetrol SA Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/EC.png"
         },
         {
           "ticker": "CBRS",
@@ -820,7 +820,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 19:01",
+    "updatedAt": "13/11/2026 19:16",
     "source": "tradingview"
   }
 }
