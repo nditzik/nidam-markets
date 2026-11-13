@@ -28,22 +28,34 @@
             "ticker": "CSCO",
             "name": "Cisco Systems, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CSCO.png"
+            "status": "live",
+            "logo": "data/earnings/logos/CSCO.png",
+            "chg": -2.51,
+            "price": 99.45,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "AMAT",
             "name": "Applied Materials, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/AMAT.png"
+            "status": "live",
+            "logo": "data/earnings/logos/AMAT.png",
+            "chg": -2.21,
+            "price": 372.53,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "SMFG",
             "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/SMFG.png"
+            "status": "live",
+            "logo": "data/earnings/logos/SMFG.png",
+            "chg": 1.85,
+            "price": 24.82,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "BN",
@@ -60,8 +72,12 @@
             "ticker": "NU",
             "name": "Nu Holdings Ltd. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/NU.png"
+            "status": "live",
+            "logo": "data/earnings/logos/NU.png",
+            "chg": 3.63,
+            "price": 12.26,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "NBIS",
@@ -544,7 +560,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 59,
+      "total": 61,
       "companies": [
         {
           "ticker": "CSCO",
@@ -706,8 +722,8 @@
     "MUFG": "2026-11-13",
     "MFG": "2026-11-13",
     "WSM": "2026-11-13",
-    "MOG.A": "2026-11-13",
     "MOG.B": "2026-11-13",
+    "MOG.A": "2026-11-13",
     "FRHC": "2026-11-13",
     "NIO": "2026-11-13",
     "M": "2026-11-13",
@@ -803,7 +819,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 16:16",
+    "updatedAt": "13/11/2026 16:31",
     "source": "tradingview"
   }
 }
