@@ -544,7 +544,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 44,
+      "total": 46,
       "companies": [
         {
           "ticker": "CSCO",
@@ -601,6 +601,12 @@
           "logo": "data/earnings/logos/ASND.png"
         },
         {
+          "ticker": "KEP",
+          "name": "Korea Electric Power Corporation Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/KEP.png"
+        },
+        {
           "ticker": "HBM",
           "name": "Hudbay Minerals Inc",
           "when": "before",
@@ -611,12 +617,6 @@
           "name": "Dillard's, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/DDS.png"
-        },
-        {
-          "ticker": "STN",
-          "name": "Stantec Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/STN.png"
         }
       ]
     },
@@ -784,11 +784,10 @@
     "DAO": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20",
-    "BKE": "2026-11-20"
+    "VFS": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 11:16",
+    "updatedAt": "13/11/2026 11:31",
     "source": "tradingview"
   }
 }
