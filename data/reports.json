@@ -1,6 +1,20 @@
 {
   "reports": [
     {
+      "file": "data/reports/CSCO__2026-11-12.html",
+      "ticker": "CSCO",
+      "date": "2026-11-12",
+      "title": "CSCO דוח רבעון Q1 FY27",
+      "logo": "data/reports/logos/CSCO.png",
+      "added": "2026-11-13T14:45:42",
+      "season": {
+        "q": 3,
+        "year": 2026,
+        "key": "2026-3",
+        "label": "רבעון 3 2026"
+      }
+    },
+    {
       "file": "data/reports/AMAT__2026-11-12.html",
       "ticker": "AMAT",
       "date": "2026-11-12",
@@ -790,7 +804,7 @@
     }
   ],
   "_meta": {
-    "updatedAt": "13/11/2026 16:30",
+    "updatedAt": "13/11/2026 16:45",
     "source": "nidam-reports"
   }
 }

@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "13/11/2026 16:31",
+  "updatedAt": "13/11/2026 16:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,14 +484,14 @@
    "analystsAt": "2026-11-13T12:16+00:00",
    "yahooDate": "2026-11-17",
    "options": {
-    "asOf": "12/11 22:46",
-    "price": 164.5,
+    "asOf": "13/11 16:46",
+    "price": 163.63,
     "exp": "2026-11-18",
-    "strike": 165.0,
-    "pct": 9.41,
-    "earn": 6.93,
+    "strike": 162.5,
+    "pct": 9.3,
+    "earn": 5.37,
     "preExp": "2026-11-16",
-    "prePct": 5.2
+    "prePct": 5.37
    },
    "avgMove": 4.8,
    "hasNote": true
@@ -974,11 +974,11 @@
    "analystsAt": "2026-11-13T12:16+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "12/11 22:46",
-    "price": 31.915,
+    "asOf": "13/11 16:46",
+    "price": 32.105,
     "exp": "2026-11-20",
     "strike": 32.5,
-    "pct": 5.72,
+    "pct": 5.45,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -1127,16 +1127,14 @@
      "ptPrev": 404.0
     }
    ],
+   "yahooDate": "2026-11-18",
+   "analystsAt": "2026-11-13T14:46+00:00",
    "price": {
-    "close": 322.66,
-    "date": "2026-11-12",
+    "close": 323.2,
+    "date": "2026-11-13",
     "high52": 419.91,
-    "ma50": 367.7,
+    "ma50": 367.52,
     "series": [
-     [
-      "2026-07-23",
-      325.63
-     ],
      [
       "2026-07-24",
       323.79
@@ -1452,26 +1450,27 @@
      [
       "2026-11-12",
       322.66
+     ],
+     [
+      "2026-11-13",
+      323.2
      ]
     ],
-    "off52": -23.2,
+    "off52": -23.0,
     "since": {
      "from": "2026-09-01",
-     "chg": -10.9,
-     "spy": -0.6
+     "chg": -10.7
     }
    },
-   "analystsAt": "2026-11-13T08:46+00:00",
-   "yahooDate": "2026-11-18",
    "options": {
-    "asOf": "12/11 22:46",
-    "price": 321.23,
+    "asOf": "13/11 16:46",
+    "price": 323.2,
     "exp": "2026-11-20",
-    "strike": 320.0,
-    "pct": 11.28,
-    "earn": 8.93,
+    "strike": 325.0,
+    "pct": 11.82,
+    "earn": 10.69,
     "preExp": "2026-11-13",
-    "prePct": 3.08
+    "prePct": 2.52
    },
    "avgMove": 7.3,
    "hasNote": true
@@ -1954,14 +1953,14 @@
    "analystsAt": "2026-11-13T11:16+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "12/11 22:46",
-    "price": 126.225,
+    "asOf": "13/11 16:46",
+    "price": 127.735,
     "exp": "2026-11-20",
-    "strike": 126.0,
-    "pct": 6.3,
-    "earn": 5.7,
+    "strike": 128.0,
+    "pct": 6.26,
+    "earn": 5.64,
     "preExp": "2026-11-13",
-    "prePct": 1.2
+    "prePct": 1.36
    },
    "avgMove": 6.1,
    "hasNote": true
@@ -2444,14 +2443,14 @@
    "analystsAt": "2026-11-13T11:16+00:00",
    "yahooDate": "2026-11-23",
    "options": {
-    "asOf": "12/11 22:46",
-    "price": 35.335,
+    "asOf": "13/11 16:46",
+    "price": 35.635,
     "exp": "2026-11-27",
     "strike": 36.0,
-    "pct": 16.34,
-    "earn": 13.23,
+    "pct": 15.71,
+    "earn": 11.97,
     "preExp": "2026-11-20",
-    "prePct": 7.43
+    "prePct": 7.58
    },
    "avgMove": 15.6,
    "hasNote": false
@@ -2934,14 +2933,14 @@
    "analystsAt": "2026-11-13T14:16+00:00",
    "yahooDate": "2026-11-24",
    "options": {
-    "asOf": "12/11 22:46",
-    "price": 370.67,
+    "asOf": "13/11 16:46",
+    "price": 359.59,
     "exp": "2026-11-27",
-    "strike": 370.0,
-    "pct": 16.04,
-    "earn": 9.08,
+    "strike": 360.0,
+    "pct": 16.88,
+    "earn": 9.14,
     "preExp": "2026-11-20",
-    "prePct": 10.24
+    "prePct": 10.58
    },
    "avgMove": 19.1,
    "hasNote": false
@@ -2969,14 +2968,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   },
   {
    "sym": "MU",
@@ -3112,7 +3111,11 @@
     "logo": "data/reports/logos/CSCO.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/CSCO__2026-11-12.html",
+    "date": "2026-11-12",
+    "title": "CSCO דוח רבעון Q1 FY27"
+   },
    "consensus": {
     "eps": 1.32523,
     "epsLow": 1.30992,
