@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 9,
+  "todayCount": 10,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -16,6 +16,11 @@
       "ticker": "MFG",
       "name": "Mizuho Financial Group Inc Sponsored ADR",
       "capB": 123.2
+    },
+    {
+      "ticker": "WSM",
+      "name": "Williams-Sonoma, Inc.",
+      "capB": 29.5
     }
   ],
   "reactions": {
@@ -68,11 +73,11 @@
             "baseDate": "2026-11-11"
           },
           {
-            "ticker": "CBRS",
-            "name": "Cerebras Systems, Inc. Class A",
+            "ticker": "EC",
+            "name": "Ecopetrol SA Sponsored ADR",
             "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/CBRS.png"
+            "logo": "data/earnings/logos/EC.png"
           }
         ]
       },
@@ -240,6 +245,13 @@
       "name": "Mizuho Financial Group Inc Sponsored ADR",
       "when": "",
       "logo": "data/earnings/logos/MFG.png"
+    },
+    {
+      "ticker": "WSM",
+      "name": "Williams-Sonoma, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/WSM.png",
+      "logoBg": "dark"
     },
     {
       "ticker": "KEP",
@@ -558,11 +570,10 @@
           "logo": "data/earnings/logos/NBIS.png"
         },
         {
-          "ticker": "WSM",
-          "name": "Williams-Sonoma, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/WSM.png",
-          "logoBg": "dark"
+          "ticker": "EC",
+          "name": "Ecopetrol SA Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/EC.png"
         },
         {
           "ticker": "CBRS",
@@ -606,7 +617,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 9,
+      "total": 10,
       "companies": [
         {
           "ticker": "MUFG",
@@ -625,6 +636,13 @@
           "name": "Mizuho Financial Group Inc Sponsored ADR",
           "when": "",
           "logo": "data/earnings/logos/MFG.png"
+        },
+        {
+          "ticker": "WSM",
+          "name": "Williams-Sonoma, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/WSM.png",
+          "logoBg": "dark"
         },
         {
           "ticker": "KEP",
@@ -669,6 +687,7 @@
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
+    "WSM": "2026-11-13",
     "KEP": "2026-11-13",
     "MOG.B": "2026-11-13",
     "MOG.A": "2026-11-13",
@@ -749,7 +768,7 @@
     "BKE": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 07:01",
+    "updatedAt": "13/11/2026 07:16",
     "source": "tradingview"
   }
 }
