@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np197";
+  var TA_VER = "np198";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1369,10 +1369,14 @@
     var down = d.pct < 0;
     wrap.className = down ? "fl-down" : "fl-up";
     var P = flashParts(d), bits = P.bits, F = flashFollow(d);
-    var fuDet = F && (F.bits.length || F.en) ? '<span class="fl-sub">מה התפרסם מאז המבזק</span>' + F.bits.join("") + F.en : "";
-    var detail = bits.length || P.en || fuDet
-      ? '<div class="fl-detail" id="fl-detail" hidden>' + (fuDet && (bits.length || P.en) ? '<span class="fl-sub">באותן דקות</span>' : "") + bits.join("") + P.en + fuDet +
+    var detail = bits.length || P.en
+      ? '<div class="fl-detail" id="fl-detail" hidden>' + bits.join("") + P.en +
         '<span class="fl-note">מה שהתפרסם סביב אותן דקות — לא בהכרח הסיבה.</span></div>'
+      : "";
+    /* np198 (איציק: "גם בעדכון הנוסף את הידיעות כמו במקורי") — חלונית נפרדת לעדכון, נפתחת בלחיצה */
+    var fuDet = F && (F.bits.length || F.en)
+      ? '<div class="fl-detail" id="fl-detail2" hidden>' + F.bits.join("") + F.en +
+        '<span class="fl-note">מה שהתפרסם מאז המבזק — לא בהכרח הסיבה.</span></div>'
       : "";
     el.innerHTML =
       '<span class="fl-head">⚡ ' + (P.why
@@ -1381,13 +1385,17 @@
       ' · <span class="num" dir="ltr">' + esc(d.time || "") + "</span>" +
       (P.why ? '<span class="fl-why"> · ' + esc(P.why) + "</span>" : "") +
       (detail ? ' · <button class="fl-toggle" id="fl-toggle" type="button">מה קרה? ⌄</button>' : "") +
-      "</span>" + (F ? '<span class="fl-fu">' + F.head + (F.why ? '<span class="fl-why"> · ' + esc(F.why) + "</span>" : "") + "</span>" : "") + detail;
+      "</span>" + detail +
+      (F ? '<span class="fl-fu">' + F.head + (F.why ? '<span class="fl-why"> · ' + esc(F.why) + "</span>" : "") +
+        (fuDet ? ' · <button class="fl-toggle" id="fl-toggle2" type="button">מה התפרסם מאז? ⌄</button>' : "") + "</span>" + fuDet : "");
     wrap.hidden = false;
-    var t = document.getElementById("fl-toggle");
-    if (t) t.addEventListener("click", function () {
-      var dt = document.getElementById("fl-detail");
-      if (dt) dt.hidden = !dt.hidden;
-      t.textContent = dt && dt.hidden ? "מה קרה? ⌄" : "סגור ⌃";
+    [["fl-toggle", "fl-detail", "מה קרה? ⌄"], ["fl-toggle2", "fl-detail2", "מה התפרסם מאז? ⌄"]].forEach(function (x) {
+      var t = document.getElementById(x[0]);
+      if (t) t.addEventListener("click", function () {
+        var dt = document.getElementById(x[1]);
+        if (dt) dt.hidden = !dt.hidden;
+        t.textContent = dt && dt.hidden ? x[2] : "סגור ⌃";
+      });
     });
   }
 
