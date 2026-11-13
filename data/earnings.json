@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 14,
+  "todayCount": 12,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -243,12 +243,6 @@
       "logoBg": "dark"
     },
     {
-      "ticker": "KEP",
-      "name": "Korea Electric Power Corporation Sponsored ADR",
-      "when": "",
-      "logo": "data/earnings/logos/KEP.png"
-    },
-    {
       "ticker": "MOG.B",
       "name": "Moog Inc. Class B",
       "when": ""
@@ -291,13 +285,19 @@
       "logo": "data/earnings/logos/BRC.png"
     },
     {
-      "ticker": "PHI",
-      "name": "PLDT, Inc. Sponsored ADR",
+      "ticker": "SKE",
+      "name": "Skeena Resources Limited",
       "when": "",
-      "logo": "data/earnings/logos/PHI.png"
+      "logo": "data/earnings/logos/SKE.png"
+    },
+    {
+      "ticker": "DAC",
+      "name": "Danaos Corporation",
+      "when": "",
+      "logo": "data/earnings/logos/DAC.png"
     }
   ],
-  "more": 2,
+  "more": 0,
   "upcoming": [],
   "week": [
     {
@@ -544,7 +544,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 42,
+      "total": 44,
       "companies": [
         {
           "ticker": "CSCO",
@@ -624,7 +624,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 14,
+      "total": 12,
       "companies": [
         {
           "ticker": "MUFG",
@@ -644,12 +644,6 @@
           "when": "",
           "logo": "data/earnings/logos/WSM.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "KEP",
-          "name": "Korea Electric Power Corporation Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/KEP.png"
         },
         {
           "ticker": "MOG.B",
@@ -694,10 +688,16 @@
           "logo": "data/earnings/logos/BRC.png"
         },
         {
-          "ticker": "PHI",
-          "name": "PLDT, Inc. Sponsored ADR",
+          "ticker": "SKE",
+          "name": "Skeena Resources Limited",
           "when": "",
-          "logo": "data/earnings/logos/PHI.png"
+          "logo": "data/earnings/logos/SKE.png"
+        },
+        {
+          "ticker": "DAC",
+          "name": "Danaos Corporation",
+          "when": "",
+          "logo": "data/earnings/logos/DAC.png"
         }
       ]
     }
@@ -706,7 +706,6 @@
     "MUFG": "2026-11-13",
     "MFG": "2026-11-13",
     "WSM": "2026-11-13",
-    "KEP": "2026-11-13",
     "MOG.B": "2026-11-13",
     "MOG.A": "2026-11-13",
     "FRHC": "2026-11-13",
@@ -714,7 +713,6 @@
     "M": "2026-11-13",
     "GGAL": "2026-11-13",
     "BRC": "2026-11-13",
-    "PHI": "2026-11-13",
     "SKE": "2026-11-13",
     "DAC": "2026-11-13",
     "BIDU": "2026-11-16",
@@ -755,7 +753,6 @@
     "SNEX": "2026-11-18",
     "CPA": "2026-11-18",
     "NJR": "2026-11-18",
-    "AVAL": "2026-11-18",
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
@@ -787,10 +784,11 @@
     "DAO": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20"
+    "VFS": "2026-11-20",
+    "BKE": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 10:31",
+    "updatedAt": "13/11/2026 10:46",
     "source": "tradingview"
   }
 }
