@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.4
+      "capB": 29.5
     }
   ],
   "reactions": {
@@ -30,8 +30,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CSCO.png",
-            "chg": -5.7,
-            "price": 96.2,
+            "chg": -5.69,
+            "price": 96.21,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -41,8 +41,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMAT.png",
-            "chg": -7.12,
-            "price": 353.84,
+            "chg": -5.68,
+            "price": 359.33,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -52,8 +52,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 1.05,
-            "price": 24.62,
+            "chg": 1.15,
+            "price": 24.65,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -74,8 +74,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 10.23,
-            "price": 13.04,
+            "chg": 11.33,
+            "price": 13.17,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -85,8 +85,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/EC.png",
-            "chg": -1.37,
-            "price": 15.11,
+            "chg": -1.83,
+            "price": 15.04,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           }
@@ -360,15 +360,15 @@
           "logo": "data/earnings/logos/TTWO.png"
         },
         {
+          "ticker": "SKYD",
+          "name": "Skydance Corporation Class B",
+          "when": "after"
+        },
+        {
           "ticker": "RKLB",
           "name": "Rocket Lab Corporation",
           "when": "after",
           "logo": "data/earnings/logos/RKLB.png"
-        },
-        {
-          "ticker": "SKYD",
-          "name": "Skydance Corporation Class B",
-          "when": "after"
         },
         {
           "ticker": "IX",
@@ -630,10 +630,10 @@
           "logo": "data/earnings/logos/QXO.png"
         },
         {
-          "ticker": "DDS",
-          "name": "Dillard's, Inc. Class A",
+          "ticker": "STN",
+          "name": "Stantec Inc",
           "when": "after",
-          "logo": "data/earnings/logos/DDS.png"
+          "logo": "data/earnings/logos/STN.png"
         }
       ]
     },
@@ -784,8 +784,8 @@
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
-    "KLIC": "2026-11-18",
     "ZIM": "2026-11-18",
+    "KLIC": "2026-11-18",
     "BLSH": "2026-11-18",
     "SBLK": "2026-11-18",
     "PONY": "2026-11-18",
@@ -820,7 +820,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 18:16",
+    "updatedAt": "13/11/2026 18:31",
     "source": "tradingview"
   }
 }
