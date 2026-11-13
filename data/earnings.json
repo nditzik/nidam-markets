@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.8
+      "capB": 29.7
     }
   ],
   "reactions": {
@@ -30,8 +30,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CSCO.png",
-            "chg": -6.36,
-            "price": 95.52,
+            "chg": -6.25,
+            "price": 95.63,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -41,8 +41,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMAT.png",
-            "chg": -3.54,
-            "price": 367.46,
+            "chg": -3.06,
+            "price": 369.29,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -52,8 +52,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 1.78,
-            "price": 24.81,
+            "chg": 1.64,
+            "price": 24.77,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -74,21 +74,21 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 10.78,
-            "price": 13.1,
+            "chg": 10.65,
+            "price": 13.09,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
           {
-            "ticker": "NBIS",
-            "name": "Nebius Group N.V. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/NBIS.png",
-            "chg": -16.84,
-            "price": 128.64,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
+            "ticker": "EC",
+            "name": "Ecopetrol SA Sponsored ADR",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/EC.png",
+            "chg": 0.82,
+            "price": 15.44,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           }
         ]
       },
@@ -593,16 +593,16 @@
           "logo": "data/earnings/logos/NU.png"
         },
         {
-          "ticker": "NBIS",
-          "name": "Nebius Group N.V. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/NBIS.png"
-        },
-        {
           "ticker": "EC",
           "name": "Ecopetrol SA Sponsored ADR",
           "when": "after",
           "logo": "data/earnings/logos/EC.png"
+        },
+        {
+          "ticker": "NBIS",
+          "name": "Nebius Group N.V. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/NBIS.png"
         },
         {
           "ticker": "CBRS",
@@ -629,10 +629,10 @@
           "logo": "data/earnings/logos/QXO.png"
         },
         {
-          "ticker": "STN",
-          "name": "Stantec Inc",
+          "ticker": "DDS",
+          "name": "Dillard's, Inc. Class A",
           "when": "after",
-          "logo": "data/earnings/logos/STN.png"
+          "logo": "data/earnings/logos/DDS.png"
         }
       ]
     },
@@ -751,8 +751,8 @@
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
     "VIK": "2026-11-17",
-    "ESLT": "2026-11-17",
     "JD": "2026-11-17",
+    "ESLT": "2026-11-17",
     "AS": "2026-11-17",
     "ZTO": "2026-11-17",
     "SQM": "2026-11-17",
@@ -819,7 +819,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 22:31",
+    "updatedAt": "13/11/2026 22:46",
     "source": "tradingview"
   }
 }
