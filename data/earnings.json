@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.5
+      "capB": 29.3
     }
   ],
   "reactions": {
@@ -30,8 +30,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CSCO.png",
-            "chg": -5.36,
-            "price": 96.54,
+            "chg": -4.61,
+            "price": 97.31,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -41,8 +41,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMAT.png",
-            "chg": -4.18,
-            "price": 365.02,
+            "chg": -5.64,
+            "price": 359.48,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -52,8 +52,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 1.29,
-            "price": 24.68,
+            "chg": 0.94,
+            "price": 24.6,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -74,8 +74,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 7.4,
-            "price": 12.7,
+            "chg": 7.14,
+            "price": 12.68,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -85,7 +85,7 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/EC.png",
-            "chg": -0.59,
+            "chg": -0.55,
             "price": 15.23,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
@@ -470,10 +470,11 @@
           "logo": "data/earnings/logos/BMNP.png"
         },
         {
-          "ticker": "BMNR",
-          "name": "BitMine Immersion Technologies Inc",
-          "when": "",
-          "logo": "data/earnings/logos/BMNR.png"
+          "ticker": "ONON",
+          "name": "On Holding AG Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/ONON.png",
+          "logoBg": "dark"
         }
       ]
     },
@@ -819,7 +820,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 17:01",
+    "updatedAt": "13/11/2026 17:16",
     "source": "tradingview"
   }
 }
