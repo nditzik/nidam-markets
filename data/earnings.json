@@ -42,8 +42,12 @@
             "ticker": "BN",
             "name": "Brookfield Corporation",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/BN.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BN.png",
+            "chg": -1.0,
+            "price": 41.64,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "NU",
@@ -56,8 +60,12 @@
             "ticker": "NBIS",
             "name": "Nebius Group N.V. Class A",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/NBIS.png"
+            "status": "final",
+            "logo": "data/earnings/logos/NBIS.png",
+            "chg": -16.84,
+            "price": 128.64,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "EC",
@@ -76,14 +84,22 @@
             "ticker": "VYLR",
             "name": "Vylor Inc",
             "when": "after",
-            "status": "pending"
+            "status": "final",
+            "chg": -0.06,
+            "price": 72.06,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "FNV",
             "name": "Franco-Nevada Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/FNV.png"
+            "status": "final",
+            "logo": "data/earnings/logos/FNV.png",
+            "chg": -0.42,
+            "price": 247.72,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "GIB",
@@ -100,22 +116,34 @@
             "ticker": "TTEK",
             "name": "Tetra Tech, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/TTEK.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TTEK.png",
+            "chg": 4.84,
+            "price": 39.43,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "CAE",
             "name": "CAE Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CAE.png"
+            "status": "final",
+            "logo": "data/earnings/logos/CAE.png",
+            "chg": 2.77,
+            "price": 28.15,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           },
           {
             "ticker": "OR",
             "name": "OR Royalties Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/OR.png"
+            "status": "final",
+            "logo": "data/earnings/logos/OR.png",
+            "chg": -2.16,
+            "price": 34.83,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           }
         ]
       },
@@ -382,7 +410,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 13,
+      "total": 14,
       "companies": [
         {
           "ticker": "VYLR",
@@ -461,7 +489,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 41,
+      "total": 40,
       "companies": [
         {
           "ticker": "CSCO",
@@ -643,7 +671,7 @@
     "BKE": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 04:31",
+    "updatedAt": "13/11/2026 04:46",
     "source": "tradingview"
   }
 }
