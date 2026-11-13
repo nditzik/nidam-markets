@@ -525,7 +525,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 42,
+      "total": 44,
       "companies": [
         {
           "ticker": "CSCO",
@@ -564,6 +564,13 @@
           "logo": "data/earnings/logos/EC.png"
         },
         {
+          "ticker": "WSM",
+          "name": "Williams-Sonoma, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/WSM.png",
+          "logoBg": "dark"
+        },
+        {
           "ticker": "CBRS",
           "name": "Cerebras Systems, Inc. Class A",
           "when": "after",
@@ -592,12 +599,6 @@
           "name": "Stantec Inc",
           "when": "after",
           "logo": "data/earnings/logos/STN.png"
-        },
-        {
-          "ticker": "ELPC",
-          "name": "Companhia Paranaense de Energia Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/ELPC.png"
         }
       ]
     },
@@ -744,11 +745,10 @@
     "DAO": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20",
-    "BKE": "2026-11-20"
+    "VFS": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 05:47",
+    "updatedAt": "13/11/2026 06:01",
     "source": "tradingview"
   }
 }
