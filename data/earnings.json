@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 14,
+  "todayCount": 15,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -226,13 +226,13 @@
     {
       "ticker": "MUFG",
       "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
-      "when": "",
+      "when": "before",
       "logo": "data/earnings/logos/MUFG.png"
     },
     {
       "ticker": "MFG",
       "name": "Mizuho Financial Group Inc Sponsored ADR",
-      "when": "",
+      "when": "before",
       "logo": "data/earnings/logos/MFG.png"
     },
     {
@@ -297,14 +297,14 @@
       "logo": "data/earnings/logos/DAC.png"
     }
   ],
-  "more": 2,
+  "more": 3,
   "upcoming": [],
   "week": [
     {
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 77,
+      "total": 76,
       "companies": [
         {
           "ticker": "CEG",
@@ -544,7 +544,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 52,
+      "total": 54,
       "companies": [
         {
           "ticker": "CSCO",
@@ -607,16 +607,16 @@
           "logo": "data/earnings/logos/KEP.png"
         },
         {
+          "ticker": "QXO",
+          "name": "QXO, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/QXO.png"
+        },
+        {
           "ticker": "HBM",
           "name": "Hudbay Minerals Inc",
           "when": "before",
           "logo": "data/earnings/logos/HBM.png"
-        },
-        {
-          "ticker": "DDS",
-          "name": "Dillard's, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/DDS.png"
         }
       ]
     },
@@ -624,18 +624,18 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 14,
+      "total": 15,
       "companies": [
         {
           "ticker": "MUFG",
           "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/MUFG.png"
         },
         {
           "ticker": "MFG",
           "name": "Mizuho Financial Group Inc Sponsored ADR",
-          "when": "",
+          "when": "before",
           "logo": "data/earnings/logos/MFG.png"
         },
         {
@@ -715,6 +715,7 @@
     "BRC": "2026-11-13",
     "SKE": "2026-11-13",
     "DAC": "2026-11-13",
+    "SA": "2026-11-13",
     "DRVN": "2026-11-13",
     "CEPU": "2026-11-13",
     "BIDU": "2026-11-16",
@@ -725,7 +726,6 @@
     "XPEV": "2026-11-16",
     "ACM": "2026-11-16",
     "POWL": "2026-11-16",
-    "SA": "2026-11-16",
     "PPTA": "2026-11-16",
     "PAGS": "2026-11-16",
     "INFQ": "2026-11-16",
@@ -800,7 +800,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 14:16",
+    "updatedAt": "13/11/2026 14:29",
     "source": "tradingview"
   }
 }
