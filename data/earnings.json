@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 4,
+  "todayCount": 3,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -68,11 +68,11 @@
             "baseDate": "2026-11-11"
           },
           {
-            "ticker": "EC",
-            "name": "Ecopetrol SA Sponsored ADR",
+            "ticker": "CBRS",
+            "name": "Cerebras Systems, Inc. Class A",
             "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/EC.png"
+            "logo": "data/earnings/logos/CBRS.png"
           }
         ]
       },
@@ -240,11 +240,6 @@
       "name": "Mizuho Financial Group Inc Sponsored ADR",
       "when": "",
       "logo": "data/earnings/logos/MFG.png"
-    },
-    {
-      "ticker": "ACCV",
-      "name": "Accelevation Holdings Corp. Class A",
-      "when": "before"
     }
   ],
   "more": 0,
@@ -254,7 +249,7 @@
       "date": "2026-11-09",
       "dow": "שני",
       "label": "9.11",
-      "total": 66,
+      "total": 67,
       "companies": [
         {
           "ticker": "CEG",
@@ -415,7 +410,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 14,
+      "total": 13,
       "companies": [
         {
           "ticker": "VYLR",
@@ -471,12 +466,6 @@
           "logo": "data/earnings/logos/ENS.png"
         },
         {
-          "ticker": "PHI",
-          "name": "PLDT, Inc. Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/PHI.png"
-        },
-        {
           "ticker": "ECO",
           "name": "Okeanis Eco Tankers Corp.",
           "when": "after",
@@ -487,6 +476,12 @@
           "name": "Teekay Tankers Ltd Class A",
           "when": "after",
           "logo": "data/earnings/logos/TNK.png"
+        },
+        {
+          "ticker": "RUM",
+          "name": "RUM Group Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/RUM.png"
         }
       ]
     },
@@ -494,7 +489,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 52,
+      "total": 40,
       "companies": [
         {
           "ticker": "CSCO",
@@ -527,19 +522,6 @@
           "logo": "data/earnings/logos/NBIS.png"
         },
         {
-          "ticker": "EC",
-          "name": "Ecopetrol SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/EC.png"
-        },
-        {
-          "ticker": "WSM",
-          "name": "Williams-Sonoma, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/WSM.png",
-          "logoBg": "dark"
-        },
-        {
           "ticker": "CBRS",
           "name": "Cerebras Systems, Inc. Class A",
           "when": "after",
@@ -552,21 +534,34 @@
           "logo": "data/earnings/logos/ASND.png"
         },
         {
-          "ticker": "KEP",
-          "name": "Korea Electric Power Corporation Sponsored ADR",
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
           "when": "",
-          "logo": "data/earnings/logos/KEP.png"
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": ""
+          "ticker": "HBM",
+          "name": "Hudbay Minerals Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/HBM.png"
         },
         {
-          "ticker": "MOG.A",
-          "name": "Moog Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/MOG.A.png"
+          "ticker": "DDS",
+          "name": "Dillard's, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/DDS.png"
+        },
+        {
+          "ticker": "STN",
+          "name": "Stantec Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/STN.png"
+        },
+        {
+          "ticker": "TWST",
+          "name": "Twist Bioscience Corp.",
+          "when": "before",
+          "logo": "data/earnings/logos/TWST.png"
         }
       ]
     },
@@ -574,7 +569,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 4,
+      "total": 3,
       "companies": [
         {
           "ticker": "MUFG",
@@ -593,11 +588,6 @@
           "name": "Mizuho Financial Group Inc Sponsored ADR",
           "when": "",
           "logo": "data/earnings/logos/MFG.png"
-        },
-        {
-          "ticker": "ACCV",
-          "name": "Accelevation Holdings Corp. Class A",
-          "when": "before"
         }
       ]
     }
@@ -606,7 +596,6 @@
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
-    "ACCV": "2026-11-13",
     "BIDU": "2026-11-16",
     "BEKE": "2026-11-16",
     "TSN": "2026-11-16",
@@ -674,12 +663,14 @@
     "POST": "2026-11-19",
     "MMS": "2026-11-19",
     "BULL": "2026-11-19",
+    "DAO": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20"
+    "VFS": "2026-11-20",
+    "BKE": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 02:16",
+    "updatedAt": "13/11/2026 02:31",
     "source": "tradingview"
   }
 }
