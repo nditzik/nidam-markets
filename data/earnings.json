@@ -68,11 +68,11 @@
             "baseDate": "2026-11-11"
           },
           {
-            "ticker": "EC",
-            "name": "Ecopetrol SA Sponsored ADR",
+            "ticker": "CBRS",
+            "name": "Cerebras Systems, Inc. Class A",
             "when": "after",
             "status": "pending",
-            "logo": "data/earnings/logos/EC.png"
+            "logo": "data/earnings/logos/CBRS.png"
           }
         ]
       },
@@ -525,7 +525,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 44,
+      "total": 43,
       "companies": [
         {
           "ticker": "CSCO",
@@ -556,12 +556,6 @@
           "name": "Nebius Group N.V. Class A",
           "when": "before",
           "logo": "data/earnings/logos/NBIS.png"
-        },
-        {
-          "ticker": "EC",
-          "name": "Ecopetrol SA Sponsored ADR",
-          "when": "after",
-          "logo": "data/earnings/logos/EC.png"
         },
         {
           "ticker": "WSM",
@@ -599,6 +593,12 @@
           "name": "Stantec Inc",
           "when": "after",
           "logo": "data/earnings/logos/STN.png"
+        },
+        {
+          "ticker": "ELPC",
+          "name": "Companhia Paranaense de Energia Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/ELPC.png"
         }
       ]
     },
@@ -745,10 +745,11 @@
     "DAO": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20"
+    "VFS": "2026-11-20",
+    "BKE": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 06:46",
+    "updatedAt": "13/11/2026 07:01",
     "source": "tradingview"
   }
 }

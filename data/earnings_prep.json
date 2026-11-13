@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "13/11/2026 06:16",
+  "updatedAt": "13/11/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 5,
+   "daysTo": 4,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -501,7 +501,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -991,7 +991,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -1481,7 +1481,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -1971,7 +1971,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 11,
+   "daysTo": 10,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -2461,7 +2461,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 12,
+   "daysTo": 11,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -2969,14 +2969,14 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": null
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   },
   {
    "sym": "MU",
@@ -3411,190 +3411,6 @@
     "day": "2026-10-30",
     "move": 1.75,
     "close": 235.52
-   }
-  },
-  {
-   "sym": "AMZN",
-   "name": "Amazon.com, Inc.",
-   "date": "2026-10-29",
-   "when": "after",
-   "report": {
-    "file": "data/reports/AMZN__2026-07-31.html",
-    "date": "2026-07-31",
-    "title": "Amazon Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/AMZN.png",
-    "logoBg": "dark"
-   },
-   "newReport": {
-    "file": "data/reports/AMZN__2026-10-29.html",
-    "date": "2026-10-29",
-    "title": "AMZN דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 1.95944,
-    "epsLow": 1.72,
-    "epsHigh": 2.23,
-    "epsN": 46,
-    "epsYearAgo": 1.95,
-    "rev": 202264872830,
-    "revLow": 199369000000,
-    "revHigh": 205932000000,
-    "revN": 49,
-    "revYearAgo": 180169000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 245.14,
-    "exp": "2026-10-30",
-    "strike": 245.0,
-    "pct": 8.04,
-    "earn": 8.04,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 7.8,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": -1.41,
-    "close": 240.35
-   }
-  },
-  {
-   "sym": "CUBE",
-   "name": "CubeSmart",
-   "date": "2026-10-29",
-   "when": "after",
-   "report": {
-    "file": "data/reports/CUBE__2026-08-01.html",
-    "date": "2026-08-01",
-    "title": "CubeSmart Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/CUBE.png",
-    "logoBg": null
-   },
-   "newReport": null,
-   "consensus": {
-    "eps": 0.42104,
-    "epsLow": 0.3599,
-    "epsHigh": 0.56,
-    "epsN": 5,
-    "epsYearAgo": 0.36,
-    "rev": 290449760,
-    "revLow": 288283000,
-    "revHigh": 291538810,
-    "revN": 5,
-    "revYearAgo": 285080000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 41.165,
-    "exp": "2026-11-20",
-    "strike": 40.0,
-    "pct": 5.34,
-    "earn": null,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 1.8,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": 4.04,
-    "close": 42.74
-   }
-  },
-  {
-   "sym": "MRK",
-   "name": "Merck & Co., Inc.",
-   "date": "2026-10-29",
-   "when": null,
-   "report": {
-    "file": "data/reports/MRK__2026-08-04.html",
-    "date": "2026-08-04",
-    "title": "Merck Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/MRK.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/MRK__2026-10-29.html",
-    "date": "2026-10-29",
-    "title": "MRK דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 2.08726,
-    "epsLow": 1.8,
-    "epsHigh": 2.26,
-    "epsN": 18,
-    "epsYearAgo": 2.58,
-    "rev": 17325009230,
-    "revLow": 16898000000,
-    "revHigh": 17626000000,
-    "revN": 16,
-    "revYearAgo": 17276000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "28/10 21:46",
-    "price": 140.77,
-    "exp": "2026-10-30",
-    "strike": 141.0,
-    "pct": 4.23,
-    "earn": 4.23,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 1.1,
-   "reaction": {
-    "day": "2026-10-29",
-    "move": 3.83,
-    "close": 146.33
-   }
-  },
-  {
-   "sym": "SNDK",
-   "name": "Sandisk Corporation",
-   "date": "2026-10-29",
-   "when": "after",
-   "report": {
-    "file": "data/reports/SNDK__2026-08-05.html",
-    "date": "2026-08-05",
-    "title": "Sandisk FY2026 Q4 – דוח מנהלים",
-    "logo": "data/reports/logos/SNDK.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/SNDK__2026-10-29.html",
-    "date": "2026-10-29",
-    "title": "SNDK דוח רבעון Q1 FY27"
-   },
-   "consensus": {
-    "eps": 46.40613,
-    "epsLow": 44.05,
-    "epsHigh": 49.8,
-    "epsN": 18,
-    "epsYearAgo": 1.22,
-    "rev": 10700329480,
-    "revLow": 10360000000,
-    "revHigh": 11217000000,
-    "revN": 19,
-    "revYearAgo": 2308000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 1324.635,
-    "exp": "2026-10-30",
-    "strike": 1325.0,
-    "pct": 7.8,
-    "earn": 7.8,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 9.3,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": -13.47,
-    "close": 1150.89
    }
   }
  ]
