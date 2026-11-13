@@ -2691,3 +2691,10 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .bd-story .st-hero .st-h { color: var(--ink-text); margin: 4px 0 0; font-size: 24px; }
 .bd-story .st-kick { font-size: 12px; font-weight: 600; letter-spacing: .02em; color: var(--ink-text); opacity: .75; }
 @media (max-width: 700px) { .bd-story .st-hero { padding: 12px 14px 14px; } .bd-story .st-hero .st-h { font-size: 20px; } }
+
+/* np197 — מעקב 30 דק' אחרי המבזק (flash.followup) */
+.fl-fu { display: block; margin-top: 4px; padding-top: 4px; border-top: 1px dashed color-mix(in srgb, var(--text-3) 40%, transparent); font-size: .84rem; }
+.fx .fl-fu { margin-top: 8px; }
+.fl-fu-n.down { color: var(--down); }
+.fl-fu-n.up { color: var(--up); }
+.fl-sub { display: block; font-size: .74rem; font-weight: 700; color: var(--text-3); margin-top: 4px; }
