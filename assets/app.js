@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np196";
+  var TA_VER = "np197";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1327,7 +1327,7 @@
         else en.push('<span class="fl-ev" dir="ltr">' + esc(String(p.text).slice(0, 140)) + " · " + esc(p.source) + "</span>");
       });
       (ev.news || []).forEach(function (n) { en.push('<a class="fl-ev" dir="ltr" href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title) + " · " + esc(n.source) + "</a>"); });
-      if (ev.topics && ev.topics.length) bits.push('<span class="fl-ev">📰 בחדשות באותן דקות: <b>' + ev.topics.map(esc).join(" · ") + "</b></span>");
+      if (ev.topics && ev.topics.length) bits.push('<span class="fl-ev">📰 ' + (d.since ? "בחדשות מאז" : "בחדשות באותן דקות") + ": <b>" + ev.topics.map(esc).join(" · ") + "</b></span>");
     } else {
       (ev.pulse || []).slice(0, 3).forEach(function (p) {
         bits.push('<span class="fl-ev" dir="auto">💬 ' + esc(String(p.text).slice(0, 110)) + " · " + esc(p.source) + "</span>");
@@ -1338,6 +1338,21 @@
     }
     var enHtml = en.length ? '<details class="fl-en"><summary>מקורות באנגלית (' + en.length + ")</summary>" + en.join("") + "</details>" : "";
     return { bits: bits, en: enHtml, why: d.why || "" };
+  }
+  /* np197 (13.11.2026, איציק: "לבצע בדיקה נוספת אחרי חצי שעה לראות אם יש מידע נוסף"):
+     detect_flash כותב flash.followup 30+ דק' אחרי המבזק — המחיר מאז (המשיך/התאושש), VIX, אג"ח 10Y ומה שהתפרסם מאז. */
+  function flashFollow(d) {
+    var u = d && d.followup;
+    if (!u || u.pctSince == null) return null;
+    var cls = u.pctSince < 0 ? "down" : u.pctSince > 0 ? "up" : "";
+    var ctx = [];
+    if (u.vix) ctx.push('VIX <span class="num" dir="ltr">' + Number(u.vix.price).toFixed(2) + "</span>" + (u.vix.chg != null ? ' (<span class="num" dir="ltr">' + (u.vix.chg > 0 ? "+" : u.vix.chg < 0 ? "−" : "") + Math.abs(u.vix.chg).toFixed(1) + "%</span>)" : ""));
+    if (u.tnx) ctx.push('אג"ח 10 שנים <span class="num" dir="ltr">' + Number(u.tnx.price).toFixed(2) + "%</span>");
+    var head = "🕒 <b>עדכון " + '<span class="num" dir="ltr">' + esc(u.time || "") + "</span>" + " (" + (u.minutes || 30) + " דק' אחרי):</b> " +
+      '<b class="fl-fu-n ' + cls + '">' + esc(u.move || "") + "</b>" +
+      (ctx.length ? " · " + ctx.join(" · ") : "");
+    var P = flashParts({ evidence: u.evidence || {}, why: u.why, since: true });
+    return { head: head, why: u.why || "", bits: P.bits, en: P.en };
   }
   function flashMove(d) {
     var w = d.windowMin || 30;
@@ -1353,9 +1368,10 @@
     if (!d || isNaN(ts) || Date.now() - ts > FLASH_TTL_MS) { wrap.hidden = true; return; }
     var down = d.pct < 0;
     wrap.className = down ? "fl-down" : "fl-up";
-    var P = flashParts(d), bits = P.bits;
-    var detail = bits.length || P.en
-      ? '<div class="fl-detail" id="fl-detail" hidden>' + bits.join("") + P.en +
+    var P = flashParts(d), bits = P.bits, F = flashFollow(d);
+    var fuDet = F && (F.bits.length || F.en) ? '<span class="fl-sub">מה התפרסם מאז המבזק</span>' + F.bits.join("") + F.en : "";
+    var detail = bits.length || P.en || fuDet
+      ? '<div class="fl-detail" id="fl-detail" hidden>' + (fuDet && (bits.length || P.en) ? '<span class="fl-sub">באותן דקות</span>' : "") + bits.join("") + P.en + fuDet +
         '<span class="fl-note">מה שהתפרסם סביב אותן דקות — לא בהכרח הסיבה.</span></div>'
       : "";
     el.innerHTML =
@@ -1365,7 +1381,7 @@
       ' · <span class="num" dir="ltr">' + esc(d.time || "") + "</span>" +
       (P.why ? '<span class="fl-why"> · ' + esc(P.why) + "</span>" : "") +
       (detail ? ' · <button class="fl-toggle" id="fl-toggle" type="button">מה קרה? ⌄</button>' : "") +
-      "</span>" + detail;
+      "</span>" + (F ? '<span class="fl-fu">' + F.head + (F.why ? '<span class="fl-why"> · ' + esc(F.why) + "</span>" : "") + "</span>" : "") + detail;
     wrap.hidden = false;
     var t = document.getElementById("fl-toggle");
     if (t) t.addEventListener("click", function () {
@@ -5211,6 +5227,13 @@
       else {
         var FP = flashParts(f), lines = (FP.why ? ['<b class="fl-why2">' + esc(FP.why) + "</b>"] : []).concat(FP.bits);
         if (FP.en) lines.push(FP.en);
+        var FF = flashFollow(f);
+        if (FF) {
+          lines.push('<span class="fl-fu">' + FF.head + "</span>");
+          if (FF.why) lines.push('<b class="fl-why2">' + esc(FF.why) + "</b>");
+          lines = lines.concat(FF.bits);
+          if (FF.en) lines.push(FF.en);
+        }
         var fresh = f.ts && Date.now() - Date.parse(f.ts) < FLASH_TTL_MS;
         ef.innerHTML = panHd("מבזק ⚡ · " + (fresh ? "תנועה חדה עכשיו" : "המבזק האחרון"), '<span class="mute">ספייק של 0.5%+ ב-' + (f.windowMin || 30) + " דקות · מציג מה התפרסם באותן דקות, לא סיבתיות</span>") +
           '<div class="flash"><div><div class="big num ' + (f.pct < 0 ? "down" : "up") + '" dir="ltr">' + (f.pct > 0 ? "+" : "") + Number(f.pct).toFixed(2) + '%</div><div class="mute s">' + esc(f.label || f.symbol || "") + ' · <span class="num" dir="ltr">' + esc(f.date || "") + " " + esc(f.time || "") + "</span>" + (f.session ? " · " + esc(f.session) : "") + "</div></div>" +

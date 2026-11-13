@@ -15,6 +15,12 @@ detect_flash.py — מבזק שוק: זיהוי תנועה מהירה תוך-י�
 הגנות ספאם: מדרגות [0.75, 1.25, 2.0] לכל כיוון פעם ביום, תקרה 4 מבזקים/יום.
 state: data/_flash_state.json.
 בדיקה: python detect_flash.py --test  → כותב flash.json מדומה (בלי טלגרם).
+
+מעקב (13.11.2026, איציק: "לבצע בדיקה נוספת אחרי חצי שעה לראות אם יש מידע נוסף"):
+בכל ריצה, אם המבזק האחרון בן 30–120 דקות ועוד אין לו followup — נמדד המחיר מאז
+המבזק (המשיך / התאושש / כמעט לא זז, שפל ושיא בדרך), VIX ואג"ח 10 שנים מ-market.json,
+ומה שהתפרסם מאז רגע המבזק (מאקרו, בזק, חדשות — רק פריטים חדשים) → flash.json.followup.
+פעם אחת למבזק. רץ גם מחוץ לשעות המסחר (מבזק של 22:50 מקבל מעקב ב-23:20).
 """
 import json
 import os
@@ -41,6 +47,7 @@ MAX_PER_DAY = 4
 ECON_WIN_MIN = 75               # מאקרו שפורסם עד 75 דק' לפני הזיהוי
 PULSE_WIN_MIN = 100
 NEWS_WIN_MIN = 150
+FOLLOW_MIN, FOLLOW_MAX = 30, 120   # המעקב: מ-30 דק' אחרי המבזק, עד שעתיים (אחר כך כבר לא רלוונטי)
 
 
 def il_offset():
@@ -107,9 +114,14 @@ def parse_iso(s):
         return None
 
 
-def gather_evidence():
+def gather_evidence(since=None):
+    """since (datetime UTC) = רק פריטים שפורסמו אחרי הרגע הזה — למעקב אחרי המבזק."""
     now = datetime.now(timezone.utc)
     ev = {"econ": [], "pulse": [], "news": []}
+    def fresh(dt, win):
+        if since is not None:
+            return dt > since and dt <= now
+        return now - dt <= timedelta(minutes=win)
     econ = load(os.path.join(DATA, "econ.json")) or {}
     for e in econ.get("events", []):
         if e.get("actual") is None:
@@ -118,7 +130,7 @@ def gather_evidence():
         if not dt:
             continue
         dt = dt.replace(tzinfo=timezone.utc)   # econ.date נכתב כ-UTC נאיבי
-        if timedelta(0) <= now - dt <= timedelta(minutes=ECON_WIN_MIN):
+        if (dt > since and dt <= now) if since is not None else (timedelta(0) <= now - dt <= timedelta(minutes=ECON_WIN_MIN)):
             ev["econ"].append({
                 "he": e.get("he"), "ilTime": e.get("ilTime"),
                 "actual": e.get("actual"), "forecast": e.get("forecast"),
@@ -127,7 +139,7 @@ def gather_evidence():
     pulse = load(os.path.join(DATA, "pulse.json")) or {}
     for it in pulse.get("items", []):
         dt = parse_iso(it.get("dt"))
-        if dt and now - dt <= timedelta(minutes=PULSE_WIN_MIN):
+        if dt and fresh(dt, PULSE_WIN_MIN):
             ev["pulse"].append({"text": it.get("text", "")[:180],
                                 "source": it.get("source"), "time": it.get("time"),
                                 "link": it.get("link")})
@@ -136,7 +148,7 @@ def gather_evidence():
     news = load(os.path.join(DATA, "news.json")) or {}
     for it in news.get("news", []):
         dt = parse_iso(it.get("dt"))
-        if dt and now - dt <= timedelta(minutes=NEWS_WIN_MIN):
+        if dt and fresh(dt, NEWS_WIN_MIN):
             ev["news"].append({"title": it.get("titleEn") or it.get("title"),
                                "source": it.get("source"), "time": it.get("time"),
                                "link": it.get("link")})
@@ -203,6 +215,59 @@ def why_he(econ, macro, topics):
     return "לא אותר פרסום בולט באותן דקות — ייתכן מהלך טכני"
 
 
+def followup(now=None, fetch=None):
+    """מעקב 30 דק' אחרי המבזק — פעם אחת. True כשנכתב."""
+    f = load(OUT)
+    if not f or f.get("followup") or not f.get("ts") or f.get("price") in (None, 0):
+        return False
+    ts = parse_iso(f["ts"])
+    now = now or datetime.now(timezone.utc)
+    if not ts or not (timedelta(minutes=FOLLOW_MIN) <= now - ts <= timedelta(minutes=FOLLOW_MAX)):
+        return False
+    try:
+        pairs = (fetch or yahoo_1m)(f.get("symbol") or "SPY")
+    except Exception as e:
+        print(f"[warn] מעקב מבזק: משיכת נתוני דקה נכשלה: {e}")
+        return False
+    after = [(t, p) for t, p in pairs if t >= ts.timestamp() - 60]
+    if len(after) < 3:
+        return False
+    last = after[-1][1]
+    lo, hi = min(p for _, p in after), max(p for _, p in after)
+    base = float(f["price"])
+    since_pct = round((last / base - 1) * 100, 2)
+    mins = int((now - ts).total_seconds() // 60)
+    down = f.get("pct", 0) < 0
+    if abs(since_pct) < 0.15:
+        move = "כמעט לא זז מאז"
+    elif (since_pct < 0) == down:
+        move = ("המשיך לרדת" if down else "המשיך לעלות") + f" עוד {abs(since_pct):.2f}%"
+    else:
+        move = ("התאושש" if down else "החזיר") + f" {abs(since_pct):.2f}%"
+    ev = gather_evidence(since=ts)
+    tmp = enrich({"evidence": ev})
+    # במעקב החדשות קודמות לבזק (כותרת כמו "מחירי הסיטונאות עלו 6.5%" חשובה מ"הפד סיים לדבר")
+    tmp["evidence"]["topics"] = topics_he([n.get("title") for n in tmp["evidence"].get("news") or []] +
+                                          [p.get("text") for p in tmp["evidence"].get("pulse") or [] if p.get("lang") == "en"])
+    tmp["why"] = why_he(tmp["evidence"].get("econ") or [], tmp["evidence"].get("macro") or [], tmp["evidence"]["topics"])
+    fu = {"at": now.isoformat(timespec="seconds"),
+          "time": (now + timedelta(hours=il_off(now))).strftime("%H:%M"),
+          "minutes": mins, "price": round(last, 2), "pctSince": since_pct,
+          "lo": round(lo, 2), "hi": round(hi, 2),
+          "move": f"{f.get('label') or 'S&P 500'} {move}",
+          "evidence": tmp["evidence"]}
+    has_new = bool(ev.get("econ") or tmp["evidence"].get("macro") or tmp["evidence"].get("topics"))
+    fu["why"] = (tmp.get("why") or "").replace("באותן דקות", "מאז", 1) if has_new else "לא התפרסם מאז מידע בולט חדש"
+    mk = load(os.path.join(DATA, "market.json")) or {}
+    for it in mk.get("items") or []:
+        if it.get("key") in ("vix", "tnx") and it.get("price") is not None:
+            fu[it["key"]] = {"price": it["price"], "chg": it.get("chg")}
+    f["followup"] = fu
+    write_flash(f)
+    print(f"[ok] מעקב מבזק אחרי {mins} דק': {fu['move']} · {fu['why']}")
+    return True
+
+
 def compose_tg(flash):
     enrich(flash) if "why" not in flash else None
     arrow = "📉 ירידה" if flash["pct"] < 0 else "📈 עלייה"
@@ -248,6 +313,11 @@ def main():
             write_flash(enrich(f))
         return 0
     test = "--test" in sys.argv
+    if not test:
+        try:
+            followup()
+        except Exception as e:   # המעקב לעולם לא מפיל את הזיהוי
+            print(f"[warn] מעקב מבזק נכשל: {e}")
     ses = session()
     if test and not ses:
         ses = ("SPY", "S&P 500", "מסחר")

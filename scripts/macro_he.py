@@ -320,6 +320,7 @@ def line_he(t, with_explain=True):
 TOPICS = [
     (r"\bmidterm|\belection|\bcongress|\bsenate\b|\bhouse majorit|\bdemocrat|\brepublican|\bgop\b", "הבחירות בארה\"ב"),
     (r"\bfed\b|\bfomc\b|\bpowell\b|\brate cut|\brate hike|\bcentral bank", "הפד והריבית"),
+    (r"\binflation|\bcpi\b|\bppi\b|\bwholesale prices|\bconsumer prices|\bproducer prices", "אינפלציה"),
     (r"\btariff|\btrade war|\btrade deal|\bduties\b", "מכסים וסחר"),
     (r"\biran|\bisrael|\bhormuz|\bmissile|\bwar\b|\bukraine|\brussia|\bgaza|\bhezbollah|\bstrike on", "גיאופוליטיקה"),
     (r"\boil\b|\bopec|\bcrude|\bbrent\b|\bwti\b", "נפט"),
