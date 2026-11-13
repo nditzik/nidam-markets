@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 10,
+  "todayCount": 14,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -278,19 +278,31 @@
       "logoBg": "dark"
     },
     {
+      "ticker": "M",
+      "name": "Macy's, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/M.png"
+    },
+    {
       "ticker": "GGAL",
       "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
       "when": "",
       "logo": "data/earnings/logos/GGAL.png"
     },
     {
-      "ticker": "DAC",
-      "name": "Danaos Corporation",
+      "ticker": "BRC",
+      "name": "Brady Corporation Class A",
       "when": "",
-      "logo": "data/earnings/logos/DAC.png"
+      "logo": "data/earnings/logos/BRC.png"
+    },
+    {
+      "ticker": "PHI",
+      "name": "PLDT, Inc. Sponsored ADR",
+      "when": "",
+      "logo": "data/earnings/logos/PHI.png"
     }
   ],
-  "more": 0,
+  "more": 2,
   "upcoming": [],
   "week": [
     {
@@ -537,7 +549,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 43,
+      "total": 41,
       "companies": [
         {
           "ticker": "CSCO",
@@ -617,7 +629,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 10,
+      "total": 14,
       "companies": [
         {
           "ticker": "MUFG",
@@ -669,16 +681,28 @@
           "logoBg": "dark"
         },
         {
+          "ticker": "M",
+          "name": "Macy's, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/M.png"
+        },
+        {
           "ticker": "GGAL",
           "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
           "when": "",
           "logo": "data/earnings/logos/GGAL.png"
         },
         {
-          "ticker": "DAC",
-          "name": "Danaos Corporation",
+          "ticker": "BRC",
+          "name": "Brady Corporation Class A",
           "when": "",
-          "logo": "data/earnings/logos/DAC.png"
+          "logo": "data/earnings/logos/BRC.png"
+        },
+        {
+          "ticker": "PHI",
+          "name": "PLDT, Inc. Sponsored ADR",
+          "when": "",
+          "logo": "data/earnings/logos/PHI.png"
         }
       ]
     }
@@ -692,7 +716,11 @@
     "MOG.B": "2026-11-13",
     "MOG.A": "2026-11-13",
     "NIO": "2026-11-13",
+    "M": "2026-11-13",
     "GGAL": "2026-11-13",
+    "BRC": "2026-11-13",
+    "PHI": "2026-11-13",
+    "SKE": "2026-11-13",
     "DAC": "2026-11-13",
     "BIDU": "2026-11-16",
     "BEKE": "2026-11-16",
@@ -764,11 +792,10 @@
     "DAO": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "VFS": "2026-11-20",
-    "BKE": "2026-11-20"
+    "VFS": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 07:16",
+    "updatedAt": "13/11/2026 07:31",
     "source": "tradingview"
   }
 }
