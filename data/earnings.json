@@ -1,6 +1,6 @@
 {
   "today": "2026-11-13",
-  "todayCount": 3,
+  "todayCount": 4,
   "todayBig": [
     {
       "ticker": "MUFG",
@@ -50,13 +50,6 @@
             "baseDate": "2026-11-11"
           },
           {
-            "ticker": "NU",
-            "name": "Nu Holdings Ltd. Class A",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/NU.png"
-          },
-          {
             "ticker": "NBIS",
             "name": "Nebius Group N.V. Class A",
             "when": "before",
@@ -73,6 +66,17 @@
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/CBRS.png"
+          },
+          {
+            "ticker": "ASND",
+            "name": "Ascendis Pharma A/S",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/ASND.png",
+            "chg": 3.0,
+            "price": 267.07,
+            "reactDate": "2026-11-12",
+            "baseDate": "2026-11-11"
           }
         ]
       },
@@ -240,6 +244,11 @@
       "name": "Mizuho Financial Group Inc Sponsored ADR",
       "when": "",
       "logo": "data/earnings/logos/MFG.png"
+    },
+    {
+      "ticker": "ACCV",
+      "name": "Accelevation Holdings Corp. Class A",
+      "when": "before"
     }
   ],
   "more": 0,
@@ -410,7 +419,7 @@
       "date": "2026-11-11",
       "dow": "רביעי",
       "label": "11.11",
-      "total": 13,
+      "total": 14,
       "companies": [
         {
           "ticker": "VYLR",
@@ -489,7 +498,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 40,
+      "total": 36,
       "companies": [
         {
           "ticker": "CSCO",
@@ -508,12 +517,6 @@
           "name": "Brookfield Corporation",
           "when": "before",
           "logo": "data/earnings/logos/BN.png"
-        },
-        {
-          "ticker": "NU",
-          "name": "Nu Holdings Ltd. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/NU.png"
         },
         {
           "ticker": "NBIS",
@@ -552,16 +555,22 @@
           "logo": "data/earnings/logos/DDS.png"
         },
         {
-          "ticker": "STN",
-          "name": "Stantec Inc",
+          "ticker": "ELPC",
+          "name": "Companhia Paranaense de Energia Sponsored ADR",
           "when": "after",
-          "logo": "data/earnings/logos/STN.png"
+          "logo": "data/earnings/logos/ELPC.png"
         },
         {
           "ticker": "TWST",
           "name": "Twist Bioscience Corp.",
           "when": "before",
           "logo": "data/earnings/logos/TWST.png"
+        },
+        {
+          "ticker": "ANDG",
+          "name": "Andersen Group, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ANDG.png"
         }
       ]
     },
@@ -569,7 +578,7 @@
       "date": "2026-11-13",
       "dow": "שישי",
       "label": "13.11",
-      "total": 3,
+      "total": 4,
       "companies": [
         {
           "ticker": "MUFG",
@@ -588,6 +597,11 @@
           "name": "Mizuho Financial Group Inc Sponsored ADR",
           "when": "",
           "logo": "data/earnings/logos/MFG.png"
+        },
+        {
+          "ticker": "ACCV",
+          "name": "Accelevation Holdings Corp. Class A",
+          "when": "before"
         }
       ]
     }
@@ -596,6 +610,7 @@
     "MUFG": "2026-11-13",
     "SMFG": "2026-11-13",
     "MFG": "2026-11-13",
+    "ACCV": "2026-11-13",
     "BIDU": "2026-11-16",
     "BEKE": "2026-11-16",
     "TSN": "2026-11-16",
@@ -605,6 +620,7 @@
     "ACM": "2026-11-16",
     "POWL": "2026-11-16",
     "SA": "2026-11-16",
+    "PPTA": "2026-11-16",
     "NVDA": "2026-11-17",
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
@@ -670,7 +686,7 @@
     "BKE": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 02:31",
+    "updatedAt": "13/11/2026 02:46",
     "source": "tradingview"
   }
 }
