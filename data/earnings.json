@@ -461,7 +461,7 @@
       "date": "2026-11-12",
       "dow": "חמישי",
       "label": "12.11",
-      "total": 42,
+      "total": 41,
       "companies": [
         {
           "ticker": "CSCO",
@@ -512,12 +512,6 @@
           "logo": "data/earnings/logos/ASND.png"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
           "ticker": "HBM",
           "name": "Hudbay Minerals Inc",
           "when": "before",
@@ -534,6 +528,12 @@
           "name": "Stantec Inc",
           "when": "after",
           "logo": "data/earnings/logos/STN.png"
+        },
+        {
+          "ticker": "ELPC",
+          "name": "Companhia Paranaense de Energia Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/ELPC.png"
         }
       ]
     },
@@ -642,7 +642,7 @@
     "BKE": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 03:01",
+    "updatedAt": "13/11/2026 03:17",
     "source": "tradingview"
   }
 }
