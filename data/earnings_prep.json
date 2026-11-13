@@ -1,995 +1,17 @@
 {
  "_meta": {
-  "updatedAt": "12/11/2026 19:46",
+  "updatedAt": "13/11/2026 08:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
  },
  "items": [
   {
-   "sym": "AMAT",
-   "name": "Applied Materials, Inc.",
-   "date": "2026-11-12",
-   "when": "after",
-   "daysTo": 0,
-   "report": {
-    "file": "data/reports/AMAT__2026-08-14.html",
-    "date": "2026-08-14",
-    "title": "Applied Materials Q3 FY2026 – דוח מנהלים",
-    "logo": "data/reports/logos/AMAT.png",
-    "logoBg": null
-   },
-   "tvConsensus": {
-    "eps": 4.063745,
-    "rev": 10303798882
-   },
-   "consensus": {
-    "eps": 4.0544,
-    "epsLow": 4.02,
-    "epsHigh": 4.19,
-    "epsN": 26,
-    "epsYearAgo": 2.17,
-    "rev": 10297511440,
-    "revLow": 10249863940,
-    "revHigh": 10542000000,
-    "revN": 25,
-    "revYearAgo": 6800000000,
-    "quarterEnd": "2026-10-31"
-   },
-   "revisions": {
-    "up30": 0,
-    "down30": 2
-   },
-   "targets": {
-    "mean": 623.30554,
-    "high": 900.0,
-    "low": 358.0,
-    "n": 36
-   },
-   "recs": {
-    "strongBuy": 5,
-    "buy": 29,
-    "hold": 6,
-    "sell": 0,
-    "strongSell": 0
-   },
-   "history": [
-    {
-     "q": "2025-10-31",
-     "reported": "2025-11-13",
-     "actual": 2.17,
-     "est": 2.11,
-     "surprise": 2.8,
-     "day": "2025-11-14",
-     "move": 1.25
-    },
-    {
-     "q": "2026-01-31",
-     "reported": "2026-02-12",
-     "actual": 2.38,
-     "est": 2.19,
-     "surprise": 8.7,
-     "day": "2026-02-13",
-     "move": 8.08
-    },
-    {
-     "q": "2026-04-30",
-     "reported": "2026-05-14",
-     "actual": 2.86,
-     "est": 2.68,
-     "surprise": 6.7,
-     "day": "2026-05-15",
-     "move": -0.89
-    },
-    {
-     "q": "2026-07-31",
-     "reported": "2026-08-13",
-     "actual": 3.5,
-     "est": 3.38,
-     "surprise": 3.6,
-     "day": "2026-08-14",
-     "move": -5.12
-    }
-   ],
-   "actions": [
-    {
-     "date": "2026-11-09",
-     "firm": "B. Riley Securities",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 475.0,
-     "ptPrev": 700.0
-    },
-    {
-     "date": "2026-11-03",
-     "firm": "Morgan Stanley",
-     "action": "main",
-     "grade": "Equal-Weight",
-     "from": "Equal-Weight",
-     "pt": 538.0,
-     "ptPrev": 563.0
-    },
-    {
-     "date": "2026-10-16",
-     "firm": "Needham",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 580.0,
-     "ptPrev": 740.0
-    },
-    {
-     "date": "2026-10-15",
-     "firm": "Evercore ISI Group",
-     "action": "main",
-     "grade": "Outperform",
-     "from": "Outperform",
-     "pt": 590.0,
-     "ptPrev": 700.0
-    },
-    {
-     "date": "2026-10-14",
-     "firm": "RBC Capital",
-     "action": "reit",
-     "grade": "Outperform",
-     "from": "Outperform",
-     "pt": 600.0,
-     "ptPrev": 600.0
-    },
-    {
-     "date": "2026-09-28",
-     "firm": "Morgan Stanley",
-     "action": "main",
-     "grade": "Equal-Weight",
-     "from": "Equal-Weight",
-     "pt": 563.0,
-     "ptPrev": 642.0
-    }
-   ],
-   "price": {
-    "close": 389.91,
-    "date": "2026-11-12",
-    "high52": 723.0,
-    "ma50": 439.4,
-    "series": [
-     [
-      "2026-07-23",
-      562.8
-     ],
-     [
-      "2026-07-24",
-      536.25
-     ],
-     [
-      "2026-07-27",
-      516.89
-     ],
-     [
-      "2026-07-28",
-      476.46
-     ],
-     [
-      "2026-07-29",
-      436.45
-     ],
-     [
-      "2026-07-30",
-      501.77
-     ],
-     [
-      "2026-07-31",
-      507.67
-     ],
-     [
-      "2026-08-03",
-      518.21
-     ],
-     [
-      "2026-08-04",
-      546.62
-     ],
-     [
-      "2026-08-05",
-      534.24
-     ],
-     [
-      "2026-08-06",
-      527.48
-     ],
-     [
-      "2026-08-07",
-      539.14
-     ],
-     [
-      "2026-08-10",
-      522.12
-     ],
-     [
-      "2026-08-11",
-      525.61
-     ],
-     [
-      "2026-08-12",
-      548.15
-     ],
-     [
-      "2026-08-13",
-      534.54
-     ],
-     [
-      "2026-08-14",
-      507.18
-     ],
-     [
-      "2026-08-17",
-      535.31
-     ],
-     [
-      "2026-08-18",
-      514.33
-     ],
-     [
-      "2026-08-19",
-      496.17
-     ],
-     [
-      "2026-08-20",
-      496.21
-     ],
-     [
-      "2026-08-21",
-      492.32
-     ],
-     [
-      "2026-08-24",
-      484.19
-     ],
-     [
-      "2026-08-25",
-      480.04
-     ],
-     [
-      "2026-08-26",
-      479.76
-     ],
-     [
-      "2026-08-27",
-      482.36
-     ],
-     [
-      "2026-08-28",
-      461.67
-     ],
-     [
-      "2026-08-31",
-      458.39
-     ],
-     [
-      "2026-09-01",
-      441.85
-     ],
-     [
-      "2026-09-02",
-      438.46
-     ],
-     [
-      "2026-09-03",
-      435.91
-     ],
-     [
-      "2026-09-04",
-      454.71
-     ],
-     [
-      "2026-09-08",
-      472.79
-     ],
-     [
-      "2026-09-09",
-      468.85
-     ],
-     [
-      "2026-09-10",
-      454.01
-     ],
-     [
-      "2026-09-11",
-      456.49
-     ],
-     [
-      "2026-09-14",
-      424.21
-     ],
-     [
-      "2026-09-15",
-      421.17
-     ],
-     [
-      "2026-09-16",
-      415.38
-     ],
-     [
-      "2026-09-17",
-      417.4
-     ],
-     [
-      "2026-09-18",
-      444.57
-     ],
-     [
-      "2026-09-21",
-      464.24
-     ],
-     [
-      "2026-09-22",
-      472.46
-     ],
-     [
-      "2026-09-23",
-      474.38
-     ],
-     [
-      "2026-09-24",
-      474.25
-     ],
-     [
-      "2026-09-25",
-      485.0
-     ],
-     [
-      "2026-09-28",
-      486.76
-     ],
-     [
-      "2026-09-29",
-      512.01
-     ],
-     [
-      "2026-09-30",
-      511.38
-     ],
-     [
-      "2026-10-01",
-      529.3
-     ],
-     [
-      "2026-10-02",
-      540.04
-     ],
-     [
-      "2026-10-05",
-      542.28
-     ],
-     [
-      "2026-10-06",
-      530.27
-     ],
-     [
-      "2026-10-07",
-      520.65
-     ],
-     [
-      "2026-10-08",
-      509.57
-     ],
-     [
-      "2026-10-09",
-      507.03
-     ],
-     [
-      "2026-10-12",
-      497.53
-     ],
-     [
-      "2026-10-13",
-      464.24
-     ],
-     [
-      "2026-10-14",
-      446.63
-     ],
-     [
-      "2026-10-15",
-      430.01
-     ],
-     [
-      "2026-10-16",
-      409.29
-     ],
-     [
-      "2026-10-19",
-      413.11
-     ],
-     [
-      "2026-10-20",
-      404.98
-     ],
-     [
-      "2026-10-21",
-      408.94
-     ],
-     [
-      "2026-10-22",
-      375.58
-     ],
-     [
-      "2026-10-23",
-      377.24
-     ],
-     [
-      "2026-10-26",
-      387.59
-     ],
-     [
-      "2026-10-27",
-      395.93
-     ],
-     [
-      "2026-10-28",
-      416.0
-     ],
-     [
-      "2026-10-29",
-      421.66
-     ],
-     [
-      "2026-10-30",
-      390.09
-     ],
-     [
-      "2026-11-02",
-      374.53
-     ],
-     [
-      "2026-11-03",
-      381.92
-     ],
-     [
-      "2026-11-04",
-      369.4
-     ],
-     [
-      "2026-11-05",
-      319.25
-     ],
-     [
-      "2026-11-06",
-      332.72
-     ],
-     [
-      "2026-11-09",
-      370.55
-     ],
-     [
-      "2026-11-10",
-      372.53
-     ],
-     [
-      "2026-11-11",
-      395.08
-     ],
-     [
-      "2026-11-12",
-      389.91
-     ]
-    ],
-    "off52": -46.1,
-    "since": {
-     "from": "2026-08-13",
-     "chg": -27.1
-    }
-   },
-   "analystsAt": "2026-11-12T17:16+00:00",
-   "yahooDate": "2026-11-12",
-   "options": {
-    "asOf": "12/11 19:46",
-    "price": 392.78,
-    "exp": "2026-11-13",
-    "strike": 392.5,
-    "pct": 7.0,
-    "earn": 7.0,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 3.8,
-   "hasNote": true
-  },
-  {
-   "sym": "CSCO",
-   "name": "Cisco Systems, Inc.",
-   "date": "2026-11-12",
-   "when": "after",
-   "daysTo": 0,
-   "report": {
-    "file": "data/reports/CSCO__2026-08-13.html",
-    "date": "2026-08-13",
-    "title": "Cisco Q4 FY2026 – דוח מנהלים",
-    "logo": "data/reports/logos/CSCO.png",
-    "logoBg": null
-   },
-   "tvConsensus": {
-    "eps": 1.325853,
-    "rev": 18122843375
-   },
-   "consensus": {
-    "eps": 1.32523,
-    "epsLow": 1.30992,
-    "epsHigh": 1.34762,
-    "epsN": 24,
-    "epsYearAgo": 1.0,
-    "rev": 18130450990,
-    "revLow": 18017000000,
-    "revHigh": 18423000000,
-    "revN": 22,
-    "revYearAgo": 14883000000,
-    "quarterEnd": "2026-10-31"
-   },
-   "revisions": {
-    "up30": 1,
-    "down30": 1
-   },
-   "targets": {
-    "mean": 135.79167,
-    "high": 170.0,
-    "low": 110.0,
-    "n": 24
-   },
-   "recs": {
-    "strongBuy": 4,
-    "buy": 14,
-    "hold": 10,
-    "sell": 0,
-    "strongSell": 0
-   },
-   "history": [
-    {
-     "q": "2025-10-31",
-     "reported": "2025-11-12",
-     "actual": 0.81,
-     "est": 0.8,
-     "surprise": 1.2,
-     "day": "2025-11-13",
-     "move": 4.62
-    },
-    {
-     "q": "2026-01-31",
-     "reported": "2026-02-11",
-     "actual": 0.88,
-     "est": 0.82,
-     "surprise": 7.3,
-     "day": "2026-02-12",
-     "move": -12.32
-    },
-    {
-     "q": "2026-04-30",
-     "reported": "2026-05-13",
-     "actual": 0.9,
-     "est": 0.86,
-     "surprise": 4.7,
-     "day": "2026-05-14",
-     "move": 13.41
-    },
-    {
-     "q": "2026-07-31",
-     "reported": "2026-08-12",
-     "actual": 1.08,
-     "est": 0.99,
-     "surprise": 9.1,
-     "day": "2026-08-13",
-     "move": -8.4
-    }
-   ],
-   "actions": [
-    {
-     "date": "2026-11-05",
-     "firm": "Morgan Stanley",
-     "action": "down",
-     "grade": "Equal-Weight",
-     "from": "Overweight",
-     "pt": 120.0,
-     "ptPrev": 135.0
-    },
-    {
-     "date": "2026-09-30",
-     "firm": "Bernstein",
-     "action": "init",
-     "grade": "Market Perform",
-     "from": "",
-     "pt": 110.0,
-     "ptPrev": 0.0
-    },
-    {
-     "date": "2026-09-22",
-     "firm": "Piper Sandler",
-     "action": "main",
-     "grade": "Neutral",
-     "from": "Neutral",
-     "pt": 125.0,
-     "ptPrev": 132.0
-    },
-    {
-     "date": "2026-09-01",
-     "firm": "Deutsche Bank",
-     "action": "init",
-     "grade": "Buy",
-     "from": "Hold",
-     "pt": 135.0,
-     "ptPrev": 0.0
-    },
-    {
-     "date": "2026-08-14",
-     "firm": "HSBC",
-     "action": "down",
-     "grade": "Hold",
-     "from": "Buy",
-     "pt": 120.0,
-     "ptPrev": 137.0
-    },
-    {
-     "date": "2026-08-13",
-     "firm": "UBS",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 138.0,
-     "ptPrev": 132.0
-    }
-   ],
-   "price": {
-    "close": 100.76,
-    "date": "2026-11-12",
-    "high52": 130.0,
-    "ma50": 107.99,
-    "series": [
-     [
-      "2026-07-23",
-      112.76
-     ],
-     [
-      "2026-07-24",
-      114.17
-     ],
-     [
-      "2026-07-27",
-      114.57
-     ],
-     [
-      "2026-07-28",
-      115.58
-     ],
-     [
-      "2026-07-29",
-      112.48
-     ],
-     [
-      "2026-07-30",
-      113.56
-     ],
-     [
-      "2026-07-31",
-      115.99
-     ],
-     [
-      "2026-08-03",
-      115.86
-     ],
-     [
-      "2026-08-04",
-      121.74
-     ],
-     [
-      "2026-08-05",
-      121.5
-     ],
-     [
-      "2026-08-06",
-      120.88
-     ],
-     [
-      "2026-08-07",
-      121.43
-     ],
-     [
-      "2026-08-10",
-      122.57
-     ],
-     [
-      "2026-08-11",
-      120.43
-     ],
-     [
-      "2026-08-12",
-      123.88
-     ],
-     [
-      "2026-08-13",
-      113.47
-     ],
-     [
-      "2026-08-14",
-      111.68
-     ],
-     [
-      "2026-08-17",
-      112.9
-     ],
-     [
-      "2026-08-18",
-      111.61
-     ],
-     [
-      "2026-08-19",
-      110.55
-     ],
-     [
-      "2026-08-20",
-      109.59
-     ],
-     [
-      "2026-08-21",
-      111.04
-     ],
-     [
-      "2026-08-24",
-      110.23
-     ],
-     [
-      "2026-08-25",
-      111.11
-     ],
-     [
-      "2026-08-26",
-      112.36
-     ],
-     [
-      "2026-08-27",
-      112.15
-     ],
-     [
-      "2026-08-28",
-      109.93
-     ],
-     [
-      "2026-08-31",
-      110.49
-     ],
-     [
-      "2026-09-01",
-      109.74
-     ],
-     [
-      "2026-09-02",
-      109.46
-     ],
-     [
-      "2026-09-03",
-      108.61
-     ],
-     [
-      "2026-09-04",
-      109.2
-     ],
-     [
-      "2026-09-08",
-      109.17
-     ],
-     [
-      "2026-09-09",
-      109.43
-     ],
-     [
-      "2026-09-10",
-      107.44
-     ],
-     [
-      "2026-09-11",
-      112.13
-     ],
-     [
-      "2026-09-14",
-      110.06
-     ],
-     [
-      "2026-09-15",
-      110.07
-     ],
-     [
-      "2026-09-16",
-      107.74
-     ],
-     [
-      "2026-09-17",
-      110.24
-     ],
-     [
-      "2026-09-18",
-      109.51
-     ],
-     [
-      "2026-09-21",
-      111.46
-     ],
-     [
-      "2026-09-22",
-      106.44
-     ],
-     [
-      "2026-09-23",
-      106.43
-     ],
-     [
-      "2026-09-24",
-      106.97
-     ],
-     [
-      "2026-09-25",
-      106.7
-     ],
-     [
-      "2026-09-28",
-      106.74
-     ],
-     [
-      "2026-09-29",
-      106.94
-     ],
-     [
-      "2026-09-30",
-      107.63
-     ],
-     [
-      "2026-10-01",
-      108.76
-     ],
-     [
-      "2026-10-02",
-      112.2
-     ],
-     [
-      "2026-10-05",
-      112.82
-     ],
-     [
-      "2026-10-06",
-      117.94
-     ],
-     [
-      "2026-10-07",
-      117.39
-     ],
-     [
-      "2026-10-08",
-      114.89
-     ],
-     [
-      "2026-10-09",
-      118.39
-     ],
-     [
-      "2026-10-12",
-      115.34
-     ],
-     [
-      "2026-10-13",
-      115.07
-     ],
-     [
-      "2026-10-14",
-      113.64
-     ],
-     [
-      "2026-10-15",
-      109.85
-     ],
-     [
-      "2026-10-16",
-      107.39
-     ],
-     [
-      "2026-10-19",
-      106.5
-     ],
-     [
-      "2026-10-20",
-      106.71
-     ],
-     [
-      "2026-10-21",
-      107.26
-     ],
-     [
-      "2026-10-22",
-      104.89
-     ],
-     [
-      "2026-10-23",
-      106.5
-     ],
-     [
-      "2026-10-26",
-      110.24
-     ],
-     [
-      "2026-10-27",
-      111.38
-     ],
-     [
-      "2026-10-28",
-      110.29
-     ],
-     [
-      "2026-10-29",
-      108.59
-     ],
-     [
-      "2026-10-30",
-      104.51
-     ],
-     [
-      "2026-11-02",
-      101.61
-     ],
-     [
-      "2026-11-03",
-      102.97
-     ],
-     [
-      "2026-11-04",
-      103.61
-     ],
-     [
-      "2026-11-05",
-      95.72
-     ],
-     [
-      "2026-11-06",
-      93.85
-     ],
-     [
-      "2026-11-09",
-      98.65
-     ],
-     [
-      "2026-11-10",
-      98.15
-     ],
-     [
-      "2026-11-11",
-      100.76
-     ],
-     [
-      "2026-11-12",
-      100.76
-     ]
-    ],
-    "off52": -22.5,
-    "since": {
-     "from": "2026-08-12",
-     "chg": -18.7
-    }
-   },
-   "analystsAt": "2026-11-12T14:46+00:00",
-   "yahooDate": "2026-11-12",
-   "options": {
-    "asOf": "12/11 19:46",
-    "price": 101.88,
-    "exp": "2026-11-13",
-    "strike": 102.0,
-    "pct": 8.54,
-    "earn": 8.54,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 9.7,
-   "hasNote": true
-  },
-  {
    "sym": "NVDA",
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 5,
+   "daysTo": 4,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -998,19 +20,19 @@
     "logoBg": null
    },
    "tvConsensus": {
-    "eps": 2.468264,
-    "rev": 108672227985
+    "eps": 2.469571,
+    "rev": 108721745985
    },
    "consensus": {
-    "eps": 2.47507,
-    "epsLow": 2.34,
+    "eps": 2.47323,
+    "epsLow": 2.25754,
     "epsHigh": 2.7,
     "epsN": 44,
     "epsYearAgo": 1.3,
-    "rev": 109043188870,
-    "revLow": 104937000000,
+    "rev": 108813797290,
+    "revLow": 100481000000,
     "revHigh": 116251000000,
-    "revN": 45,
+    "revN": 46,
     "revYearAgo": 57006000000,
     "quarterEnd": "2026-10-31"
    },
@@ -1019,47 +41,51 @@
     "down30": 1
    },
    "targets": {
-    "mean": 309.71964,
+    "mean": 285.34528,
     "high": 515.0,
-    "low": 180.0,
-    "n": 56
+    "low": 174.0,
+    "n": 53
    },
    "recs": {
     "strongBuy": 10,
-    "buy": 45,
-    "hold": 6,
-    "sell": 1,
+    "buy": 38,
+    "hold": 13,
+    "sell": 0,
     "strongSell": 0
    },
    "history": [
     {
      "q": "2025-10-31",
-     "actual": 1.3,
-     "est": 1.25647,
-     "surprise": 3.5,
-     "day": "2025-11-21",
-     "move": -0.97
+     "reported": "2025-11-19",
+     "actual": 1.24,
+     "est": 1.18,
+     "surprise": 5.1,
+     "day": "2025-11-20",
+     "move": -3.15
     },
     {
      "q": "2026-01-31",
-     "actual": 1.62,
-     "est": 1.53812,
-     "surprise": 5.3,
+     "reported": "2026-02-25",
+     "actual": 1.57,
+     "est": 1.45,
+     "surprise": 8.3,
      "day": "2026-02-26",
      "move": -5.46
     },
     {
      "q": "2026-04-30",
+     "reported": "2026-05-20",
      "actual": 1.87,
-     "est": 1.77191,
-     "surprise": 5.5,
-     "day": "2026-05-29",
-     "move": -1.45
+     "est": 1.7,
+     "surprise": 10.0,
+     "day": "2026-05-21",
+     "move": -1.77
     },
     {
      "q": "2026-07-31",
+     "reported": "2026-08-26",
      "actual": 2.22,
-     "est": 2.09113,
+     "est": 2.09,
      "surprise": 6.2,
      "day": "2026-08-27",
      "move": 8.74
@@ -1068,69 +94,67 @@
    "actions": [
     {
      "date": "2026-11-12",
-     "firm": "Cantor Fitzgerald",
+     "firm": "Melius Research",
+     "action": "down",
+     "grade": "Hold",
+     "from": "Buy",
+     "pt": 185.0,
+     "ptPrev": 315.0
+    },
+    {
+     "date": "2026-11-12",
+     "firm": "DA Davidson",
      "action": "main",
-     "grade": "Overweight",
-     "from": "Overweight",
-     "pt": 250.0,
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 200.0,
+     "ptPrev": 300.0
+    },
+    {
+     "date": "2026-11-12",
+     "firm": "Craig-Hallum",
+     "action": "down",
+     "grade": "Hold",
+     "from": "Buy",
+     "pt": 180.0,
+     "ptPrev": 0.0
+    },
+    {
+     "date": "2026-11-12",
+     "firm": "B of A Securities",
+     "action": "main",
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 280.0,
      "ptPrev": 350.0
     },
     {
      "date": "2026-11-12",
-     "firm": "Evercore ISI Group",
-     "action": "down",
-     "grade": "In-Line",
+     "firm": "BMO Capital",
+     "action": "main",
+     "grade": "Outperform",
      "from": "Outperform",
-     "pt": 186.0,
-     "ptPrev": 465.0
+     "pt": 240.0,
+     "ptPrev": 340.0
     },
     {
      "date": "2026-11-12",
-     "firm": "Oppenheimer",
-     "action": "down",
-     "grade": "Perform",
-     "from": "Outperform",
-     "pt": 0.0,
-     "ptPrev": 0.0
-    },
-    {
-     "date": "2026-11-11",
-     "firm": "Morgan Stanley",
-     "action": "reit",
-     "grade": "Overweight",
-     "from": "Overweight",
-     "pt": 300.0,
-     "ptPrev": 300.0
-    },
-    {
-     "date": "2026-11-11",
      "firm": "Baird",
-     "action": "down",
+     "action": "reit",
      "grade": "Neutral",
-     "from": "Outperform",
+     "from": "Neutral",
      "pt": 200.0,
-     "ptPrev": 500.0
-    },
-    {
-     "date": "2026-11-10",
-     "firm": "Citigroup",
-     "action": "main",
-     "grade": "Buy",
-     "from": "Buy",
-     "pt": 285.0,
-     "ptPrev": 315.0
+     "ptPrev": 200.0
     }
    ],
+   "yahooDate": "2026-11-17",
+   "analystsAt": "2026-11-13T06:16+00:00",
    "price": {
-    "close": 173.73,
-    "date": "2026-11-11",
+    "close": 166.19,
+    "date": "2026-11-12",
     "high52": 239.24,
-    "ma50": 217.12,
+    "ma50": 215.96,
     "series": [
-     [
-      "2026-07-22",
-      212.06
-     ],
      [
       "2026-07-23",
       208.76
@@ -1446,28 +470,30 @@
      [
       "2026-11-11",
       173.73
+     ],
+     [
+      "2026-11-12",
+      166.19
      ]
     ],
-    "off52": -27.4,
+    "off52": -30.5,
     "since": {
      "from": "2026-08-26",
-     "chg": -17.1,
-     "spy": -0.8
+     "chg": -20.7,
+     "spy": -1.2
     }
    },
-   "analystsAt": "2026-11-12T12:16+00:00",
-   "yahooDate": "2026-11-17",
    "options": {
-    "asOf": "12/11 19:46",
-    "price": 165.925,
+    "asOf": "12/11 22:46",
+    "price": 164.5,
     "exp": "2026-11-18",
     "strike": 165.0,
-    "pct": 9.96,
-    "earn": 6.75,
+    "pct": 9.41,
+    "earn": 6.93,
     "preExp": "2026-11-16",
-    "prePct": 5.98
+    "prePct": 5.2
    },
-   "avgMove": 4.2,
+   "avgMove": 4.8,
    "hasNote": true
   },
   {
@@ -1475,7 +501,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -1520,35 +546,39 @@
    "history": [
     {
      "q": "2025-10-31",
+     "reported": "2025-11-20",
      "actual": 0.41,
-     "est": 0.39013,
-     "surprise": 5.1,
-     "day": "2025-12-19",
-     "move": -0.38
+     "est": 0.4,
+     "surprise": 2.5,
+     "day": "2025-11-21",
+     "move": -0.71
     },
     {
      "q": "2026-01-31",
+     "reported": "2026-02-19",
      "actual": 0.36,
-     "est": 0.39183,
-     "surprise": -8.1,
+     "est": 0.4,
+     "surprise": -10.0,
      "day": "2026-02-20",
      "move": -3.11
     },
     {
      "q": "2026-04-30",
+     "reported": "2026-05-21",
      "actual": 0.43,
-     "est": 0.40677,
-     "surprise": 5.7,
-     "day": "2026-06-18",
-     "move": 2.41
+     "est": 0.41,
+     "surprise": 4.9,
+     "day": "2026-05-21",
+     "move": 4.12
     },
     {
      "q": "2026-07-31",
+     "reported": "2026-09-10",
      "actual": 0.35,
-     "est": 0.38259,
-     "surprise": -8.5,
-     "day": "2026-09-18",
-     "move": -1.28
+     "est": 0.39,
+     "surprise": -10.3,
+     "day": "2026-09-11",
+     "move": -2.6
     }
    ],
    "actions": [
@@ -1607,16 +637,14 @@
      "ptPrev": 32.0
     }
    ],
+   "yahooDate": "2026-11-19",
+   "analystsAt": "2026-11-13T06:16+00:00",
    "price": {
-    "close": 32.17,
-    "date": "2026-11-11",
+    "close": 32.0,
+    "date": "2026-11-12",
     "high52": 41.62,
     "ma50": 29.42,
     "series": [
-     [
-      "2026-07-22",
-      27.17
-     ],
      [
       "2026-07-23",
       27.2
@@ -1932,28 +960,30 @@
      [
       "2026-11-11",
       32.17
+     ],
+     [
+      "2026-11-12",
+      32.0
      ]
     ],
-    "off52": -22.7,
+    "off52": -23.1,
     "since": {
-     "from": "2026-09-17",
-     "chg": 8.5,
-     "spy": -0.4
+     "from": "2026-09-10",
+     "chg": 4.1,
+     "spy": -0.1
     }
    },
-   "analystsAt": "2026-11-12T12:16+00:00",
-   "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "12/11 19:46",
-    "price": 32.245,
+    "asOf": "12/11 22:46",
+    "price": 31.915,
     "exp": "2026-11-20",
     "strike": 32.5,
-    "pct": 5.66,
+    "pct": 5.72,
     "earn": null,
     "preExp": null,
     "prePct": null
    },
-   "avgMove": 1.8,
+   "avgMove": 2.6,
    "hasNote": true
   },
   {
@@ -1961,7 +991,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -1970,7 +1000,7 @@
     "logoBg": null
    },
    "tvConsensus": {
-    "eps": 0.972021,
+    "eps": 0.972022,
     "rev": 3307041095
    },
    "consensus": {
@@ -2043,6 +1073,15 @@
    ],
    "actions": [
     {
+     "date": "2026-11-12",
+     "firm": "Jefferies",
+     "action": "main",
+     "grade": "Buy",
+     "from": "Buy",
+     "pt": 400.0,
+     "ptPrev": 450.0
+    },
+    {
      "date": "2026-10-15",
      "firm": "Citigroup",
      "action": "main",
@@ -2086,22 +1125,13 @@
      "from": "Buy",
      "pt": 425.0,
      "ptPrev": 404.0
-    },
-    {
-     "date": "2026-09-21",
-     "firm": "Morgan Stanley",
-     "action": "main",
-     "grade": "Overweight",
-     "from": "Overweight",
-     "pt": 410.0,
-     "ptPrev": 394.0
     }
    ],
    "price": {
-    "close": 320.0,
+    "close": 322.66,
     "date": "2026-11-12",
     "high52": 419.91,
-    "ma50": 367.65,
+    "ma50": 367.7,
     "series": [
      [
       "2026-07-23",
@@ -2421,26 +1451,27 @@
      ],
      [
       "2026-11-12",
-      320.0
+      322.66
      ]
     ],
-    "off52": -23.8,
+    "off52": -23.2,
     "since": {
      "from": "2026-09-01",
-     "chg": -11.6
+     "chg": -10.9,
+     "spy": -0.6
     }
    },
-   "analystsAt": "2026-11-12T14:46+00:00",
+   "analystsAt": "2026-11-13T02:46+00:00",
    "yahooDate": "2026-11-18",
    "options": {
-    "asOf": "12/11 19:46",
-    "price": 324.66,
+    "asOf": "12/11 22:46",
+    "price": 321.23,
     "exp": "2026-11-20",
-    "strike": 325.0,
-    "pct": 11.07,
-    "earn": 8.03,
+    "strike": 320.0,
+    "pct": 11.28,
+    "earn": 8.93,
     "preExp": "2026-11-13",
-    "prePct": 3.41
+    "prePct": 3.08
    },
    "avgMove": 7.3,
    "hasNote": true
@@ -2450,7 +1481,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -2587,7 +1618,7 @@
     }
    ],
    "price": {
-    "close": 126.06,
+    "close": 126.19,
     "date": "2026-11-12",
     "high52": 134.2,
     "ma50": 114.14,
@@ -2910,26 +1941,27 @@
      ],
      [
       "2026-11-12",
-      126.06
+      126.19
      ]
     ],
-    "off52": -6.1,
+    "off52": -6.0,
     "since": {
      "from": "2026-08-19",
-     "chg": 10.3
+     "chg": 10.4,
+     "spy": -1.6
     }
    },
-   "analystsAt": "2026-11-12T17:16+00:00",
+   "analystsAt": "2026-11-13T05:16+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "12/11 19:46",
-    "price": 125.96,
+    "asOf": "12/11 22:46",
+    "price": 126.225,
     "exp": "2026-11-20",
     "strike": 126.0,
-    "pct": 6.47,
-    "earn": 5.72,
+    "pct": 6.3,
+    "earn": 5.7,
     "preExp": "2026-11-13",
-    "prePct": 1.35
+    "prePct": 1.2
    },
    "avgMove": 6.1,
    "hasNote": true
@@ -2939,7 +1971,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 11,
+   "daysTo": 10,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -3076,7 +2108,7 @@
     }
    ],
    "price": {
-    "close": 35.46,
+    "close": 35.44,
     "date": "2026-11-12",
     "high52": 87.3,
     "ma50": 40.73,
@@ -3399,26 +2431,27 @@
      ],
      [
       "2026-11-12",
-      35.46
+      35.44
      ]
     ],
     "off52": -59.4,
     "since": {
      "from": "2026-08-05",
-     "chg": -23.8
+     "chg": -23.8,
+     "spy": -1.6
     }
    },
-   "analystsAt": "2026-11-12T17:16+00:00",
+   "analystsAt": "2026-11-13T05:16+00:00",
    "yahooDate": "2026-11-23",
    "options": {
-    "asOf": "12/11 19:46",
-    "price": 35.4299,
+    "asOf": "12/11 22:46",
+    "price": 35.335,
     "exp": "2026-11-27",
     "strike": 36.0,
-    "pct": 15.88,
-    "earn": 12.54,
+    "pct": 16.34,
+    "earn": 13.23,
     "preExp": "2026-11-20",
-    "prePct": 7.55
+    "prePct": 7.43
    },
    "avgMove": 15.6,
    "hasNote": false
@@ -3428,7 +2461,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 12,
+   "daysTo": 11,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -3898,17 +2931,17 @@
      "spy": -0.3
     }
    },
-   "analystsAt": "2026-11-12T14:01+00:00",
+   "analystsAt": "2026-11-13T02:02+00:00",
    "yahooDate": "2026-11-24",
    "options": {
-    "asOf": "12/11 19:46",
-    "price": 377.98,
+    "asOf": "12/11 22:46",
+    "price": 370.67,
     "exp": "2026-11-27",
-    "strike": 380.0,
-    "pct": 15.91,
-    "earn": 9.02,
+    "strike": 370.0,
+    "pct": 16.04,
+    "earn": 9.08,
     "preExp": "2026-11-20",
-    "prePct": 10.15
+    "prePct": 10.24
    },
    "avgMove": 19.1,
    "hasNote": false
@@ -3936,14 +2969,14 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": null
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   },
   {
    "sym": "MU",
@@ -3977,6 +3010,45 @@
   }
  ],
  "recent": [
+  {
+   "sym": "AMAT",
+   "name": "Applied Materials, Inc.",
+   "date": "2026-11-12",
+   "when": "after",
+   "report": {
+    "file": "data/reports/AMAT__2026-08-14.html",
+    "date": "2026-08-14",
+    "title": "Applied Materials Q3 FY2026 – דוח מנהלים",
+    "logo": "data/reports/logos/AMAT.png",
+    "logoBg": null
+   },
+   "newReport": null,
+   "consensus": {
+    "eps": 4.0544,
+    "epsLow": 4.02,
+    "epsHigh": 4.19,
+    "epsN": 26,
+    "epsYearAgo": 2.17,
+    "rev": 10297511440,
+    "revLow": 10249863940,
+    "revHigh": 10542000000,
+    "revN": 25,
+    "revYearAgo": 6800000000,
+    "quarterEnd": "2026-10-31"
+   },
+   "options": {
+    "asOf": "12/11 22:46",
+    "price": 377.98,
+    "exp": "2026-11-13",
+    "strike": 377.5,
+    "pct": 7.1,
+    "earn": 7.1,
+    "preExp": null,
+    "prePct": null
+   },
+   "avgMove": 3.8,
+   "reaction": null
+  },
   {
    "sym": "ONDS",
    "name": "Ondas Inc.",
@@ -4014,6 +3086,49 @@
     "prePct": null
    },
    "avgMove": 15.6,
+   "reaction": {
+    "day": "2026-11-12",
+    "move": -7.16,
+    "close": 5.32
+   }
+  },
+  {
+   "sym": "CSCO",
+   "name": "Cisco Systems, Inc.",
+   "date": "2026-11-12",
+   "when": "after",
+   "report": {
+    "file": "data/reports/CSCO__2026-08-13.html",
+    "date": "2026-08-13",
+    "title": "Cisco Q4 FY2026 – דוח מנהלים",
+    "logo": "data/reports/logos/CSCO.png",
+    "logoBg": null
+   },
+   "newReport": null,
+   "consensus": {
+    "eps": 1.32523,
+    "epsLow": 1.30992,
+    "epsHigh": 1.34762,
+    "epsN": 24,
+    "epsYearAgo": 1.0,
+    "rev": 18130450990,
+    "revLow": 18017000000,
+    "revHigh": 18423000000,
+    "revN": 22,
+    "revYearAgo": 14883000000,
+    "quarterEnd": "2026-10-31"
+   },
+   "options": {
+    "asOf": "12/11 22:46",
+    "price": 101.905,
+    "exp": "2026-11-13",
+    "strike": 102.0,
+    "pct": 8.49,
+    "earn": 8.49,
+    "preExp": null,
+    "prePct": null
+   },
+   "avgMove": 9.7,
    "reaction": null
   },
   {
@@ -4296,190 +3411,6 @@
     "day": "2026-10-30",
     "move": 1.75,
     "close": 235.52
-   }
-  },
-  {
-   "sym": "AMZN",
-   "name": "Amazon.com, Inc.",
-   "date": "2026-10-29",
-   "when": "after",
-   "report": {
-    "file": "data/reports/AMZN__2026-07-31.html",
-    "date": "2026-07-31",
-    "title": "Amazon Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/AMZN.png",
-    "logoBg": "dark"
-   },
-   "newReport": {
-    "file": "data/reports/AMZN__2026-10-29.html",
-    "date": "2026-10-29",
-    "title": "AMZN דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 1.95944,
-    "epsLow": 1.72,
-    "epsHigh": 2.23,
-    "epsN": 46,
-    "epsYearAgo": 1.95,
-    "rev": 202264872830,
-    "revLow": 199369000000,
-    "revHigh": 205932000000,
-    "revN": 49,
-    "revYearAgo": 180169000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 245.14,
-    "exp": "2026-10-30",
-    "strike": 245.0,
-    "pct": 8.04,
-    "earn": 8.04,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 7.8,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": -1.41,
-    "close": 240.35
-   }
-  },
-  {
-   "sym": "CUBE",
-   "name": "CubeSmart",
-   "date": "2026-10-29",
-   "when": "after",
-   "report": {
-    "file": "data/reports/CUBE__2026-08-01.html",
-    "date": "2026-08-01",
-    "title": "CubeSmart Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/CUBE.png",
-    "logoBg": null
-   },
-   "newReport": null,
-   "consensus": {
-    "eps": 0.42104,
-    "epsLow": 0.3599,
-    "epsHigh": 0.56,
-    "epsN": 5,
-    "epsYearAgo": 0.36,
-    "rev": 290449760,
-    "revLow": 288283000,
-    "revHigh": 291538810,
-    "revN": 5,
-    "revYearAgo": 285080000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 41.165,
-    "exp": "2026-11-20",
-    "strike": 40.0,
-    "pct": 5.34,
-    "earn": null,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 1.8,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": 4.04,
-    "close": 42.74
-   }
-  },
-  {
-   "sym": "MRK",
-   "name": "Merck & Co., Inc.",
-   "date": "2026-10-29",
-   "when": null,
-   "report": {
-    "file": "data/reports/MRK__2026-08-04.html",
-    "date": "2026-08-04",
-    "title": "Merck Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/MRK.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/MRK__2026-10-29.html",
-    "date": "2026-10-29",
-    "title": "MRK דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 2.08726,
-    "epsLow": 1.8,
-    "epsHigh": 2.26,
-    "epsN": 18,
-    "epsYearAgo": 2.58,
-    "rev": 17325009230,
-    "revLow": 16898000000,
-    "revHigh": 17626000000,
-    "revN": 16,
-    "revYearAgo": 17276000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "28/10 21:46",
-    "price": 140.77,
-    "exp": "2026-10-30",
-    "strike": 141.0,
-    "pct": 4.23,
-    "earn": 4.23,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 1.1,
-   "reaction": {
-    "day": "2026-10-29",
-    "move": 3.83,
-    "close": 146.33
-   }
-  },
-  {
-   "sym": "SNDK",
-   "name": "Sandisk Corporation",
-   "date": "2026-10-29",
-   "when": "after",
-   "report": {
-    "file": "data/reports/SNDK__2026-08-05.html",
-    "date": "2026-08-05",
-    "title": "Sandisk FY2026 Q4 – דוח מנהלים",
-    "logo": "data/reports/logos/SNDK.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/SNDK__2026-10-29.html",
-    "date": "2026-10-29",
-    "title": "SNDK דוח רבעון Q1 FY27"
-   },
-   "consensus": {
-    "eps": 46.40613,
-    "epsLow": 44.05,
-    "epsHigh": 49.8,
-    "epsN": 18,
-    "epsYearAgo": 1.22,
-    "rev": 10700329480,
-    "revLow": 10360000000,
-    "revHigh": 11217000000,
-    "revN": 19,
-    "revYearAgo": 2308000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 1324.635,
-    "exp": "2026-10-30",
-    "strike": 1325.0,
-    "pct": 7.8,
-    "earn": 7.8,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 9.3,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": -13.47,
-    "close": 1150.89
    }
   }
  ]
