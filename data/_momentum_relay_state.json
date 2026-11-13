@@ -39,26 +39,10 @@
   "<CAENV1ZgCXz+=FvTc-5c8g7vFGr00KcfZyNETjd_R2rHGOGKmfQ@mail.gmail.com>",
   "<CAENV1ZgUREE+X+m92WxrpU55_4RftQWQuWpsDVBVimqxu2K27w@mail.gmail.com>",
   "<CAENV1ZiB2kdHyWw8Ak+vpOCH6KwHg-ceniMYWyh9_S0uqs=KXQ@mail.gmail.com>",
-  "<CAENV1ZhWdH6U0gdzM2NV=Kuif=A0u3S30g_hjofC7kYW49zjgA@mail.gmail.com>"
+  "<CAENV1ZhWdH6U0gdzM2NV=Kuif=A0u3S30g_hjofC7kYW49zjgA@mail.gmail.com>",
+  "<CAENV1ZgkL2CX37HCJp2ZKbPp-YGDyo_=UDv3HD7gCkiBD_qYgQ@mail.gmail.com>"
  ],
  "log": [
-  {
-   "at": "2026-09-30T17:11:19Z",
-   "subject": "momentum – 30.09.2026",
-   "sent": "2026-09-30T13:43:38Z",
-   "files": {},
-   "skipped": [
-    "emac_buy_signal_2026-09-30.csv: הורד בזמן המסחר (יום חלקי)",
-    "ttm_squeeze_2026-09-30.csv: הורד בזמן המסחר (יום חלקי)",
-    "hot_prospects_2026-09-30.csv: הורד בזמן המסחר (יום חלקי)",
-    "nearing_6_month_highs_2026-09-30.csv: הורד בזמן המסחר (יום חלקי)",
-    "strength_and_direction_2026-09-30.csv: הורד בזמן המסחר (יום חלקי)"
-   ],
-   "rejected": "חסרים סורקים: Strength & Direction, Hot Prospects, 6 Month Highs, TTM Squeeze, eMACD",
-   "written": [],
-   "existing": [],
-   "ok": true
-  },
   {
    "at": "2026-09-30T17:11:19Z",
    "subject": "momentum TTM Triggered – 30.09.2026",
@@ -889,6 +873,29 @@
     "stocks-screener-nearing-6-month-highs-11-11-2026.csv",
     "ttm-squeeze-triggered-11-11-2026.csv",
     "emacd-new-buy-signals-stocks-11-11-2026.csv"
+   ],
+   "existing": [],
+   "ok": true
+  },
+  {
+   "at": "2026-11-13T03:32:04Z",
+   "subject": "momentum – 12.11.2026",
+   "sent": "2026-11-13T03:23:24Z",
+   "files": {
+    "macd_buy": 123,
+    "ttm_squeeze": 578,
+    "hot_prospects": 56,
+    "6m_high": 113,
+    "strength": 229
+   },
+   "skipped": [],
+   "rejected": null,
+   "written": [
+    "stocks-screener-strength-and-direction-11-12-2026.csv",
+    "stocks-screener-hot-prospects-11-12-2026.csv",
+    "stocks-screener-nearing-6-month-highs-11-12-2026.csv",
+    "ttm-squeeze-triggered-11-12-2026.csv",
+    "emacd-new-buy-signals-stocks-11-12-2026.csv"
    ],
    "existing": [],
    "ok": true
