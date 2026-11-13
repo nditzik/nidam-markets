@@ -15,7 +15,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 29.4
+      "capB": 29.5
     }
   ],
   "reactions": {
@@ -30,8 +30,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/CSCO.png",
-            "chg": -6.4,
-            "price": 95.48,
+            "chg": -6.16,
+            "price": 95.73,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -41,8 +41,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/AMAT.png",
-            "chg": -4.91,
-            "price": 362.23,
+            "chg": -4.33,
+            "price": 364.46,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -52,8 +52,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SMFG.png",
-            "chg": 1.31,
-            "price": 24.69,
+            "chg": 1.37,
+            "price": 24.7,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -74,8 +74,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NU.png",
-            "chg": 10.41,
-            "price": 13.06,
+            "chg": 10.31,
+            "price": 13.05,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
           },
@@ -307,10 +307,10 @@
       "logo": "data/earnings/logos/SKE.png"
     },
     {
-      "ticker": "DAC",
-      "name": "Danaos Corporation",
-      "when": "",
-      "logo": "data/earnings/logos/DAC.png"
+      "ticker": "SA",
+      "name": "Seabridge Gold Inc",
+      "when": "before",
+      "logo": "data/earnings/logos/SA.png"
     }
   ],
   "more": 4,
@@ -711,10 +711,10 @@
           "logo": "data/earnings/logos/SKE.png"
         },
         {
-          "ticker": "DAC",
-          "name": "Danaos Corporation",
-          "when": "",
-          "logo": "data/earnings/logos/DAC.png"
+          "ticker": "SA",
+          "name": "Seabridge Gold Inc",
+          "when": "before",
+          "logo": "data/earnings/logos/SA.png"
         }
       ]
     }
@@ -731,8 +731,8 @@
     "GGAL": "2026-11-13",
     "BRC": "2026-11-13",
     "SKE": "2026-11-13",
-    "DAC": "2026-11-13",
     "SA": "2026-11-13",
+    "DAC": "2026-11-13",
     "DRVN": "2026-11-13",
     "CEPU": "2026-11-13",
     "HUBG": "2026-11-13",
@@ -820,7 +820,7 @@
     "RLX": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "13/11/2026 20:16",
+    "updatedAt": "13/11/2026 20:31",
     "source": "tradingview"
   }
 }
