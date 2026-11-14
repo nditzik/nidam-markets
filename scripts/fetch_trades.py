@@ -11,6 +11,7 @@ fetch_trades.py — דוחות "הצעות לטרייד" (Four Pillars וכד') 
 עמידות: כשל משיכה → משאיר את הקיים.
 """
 import html as html_mod
+import report_banner
 import json
 import os
 import re
@@ -185,6 +186,7 @@ def main():
             print(f"[skip] {name}: {e}")
             continue
         stored = "trades-" + iso + ".html"   # שם בטוח-ל-URL גם כשהמקור בעברית
+        content = report_banner.inject(content, iso, report_banner.is_legacy("trades", iso))   # הבהרה בתוך הקובץ עצמו (14.11.2026)
         path = os.path.join(OUT_DIR, stored)
         old = None
         if os.path.exists(path):

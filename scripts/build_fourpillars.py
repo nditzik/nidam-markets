@@ -122,7 +122,7 @@ def flags(kind, s, earn_win, picks):
     if s["rsi"] is not None and s["rsi"] < 50 and kind != "phoenix":
         f.append("מד חום %.0f — המגמה עוד לא מאושרת" % s["rsi"])
     if s["offHi"] is not None and abs(s["offHi"]) >= 25:
-        f.append("%.0f%% מהשיא — מקום לרוץ, פחות אישור" % abs(s["offHi"]))
+        f.append("%.0f%% מתחת לשיא 52 שבועות" % abs(s["offHi"]))   # נתון בלבד (14.11.2026: בלי "מקום לרוץ")
     if kind == "phoenix" and s["ma100"] and s["last"] is not None and s["last"] <= s["ma100"]:
         f.append("מתחת לממוצע 100 (%.2f) — התבנית עוד לא הושלמה" % s["ma100"])
     if s["sym"] in earn_win:
@@ -141,7 +141,7 @@ def levels(kind, s):
     out = {"hi52": round(hi, 2) if hi else None, "ma100": s["ma100"]}
     if kind == "phoenix":
         out["trigger"] = s["ma100"]
-        out["triggerHe"] = "סגירה מעל ממוצע 100 (%s) והחזקה שבוע" % fmtn(s["ma100"])
+        out["triggerHe"] = "מחיר הסגירה מעל ממוצע 100 (%s)" % fmtn(s["ma100"])   # בלי "והחזקה שבוע" — לא כלל שהמודל מחשב
     else:
         out["trigger"] = out["hi52"]
         out["triggerHe"] = ("פריצת השיא %s בנפח" % fmtn(out["hi52"])) if s["offHi"] is not None and s["offHi"] < 0 else "החזקה מעל השיא שנפרץ"
@@ -270,6 +270,7 @@ GLOSS = [("ציון עוצמה (Weighted Alpha)", "בכמה המניה הכתה 
          ("קו המגמה (Trend Seeker)", "מערכת מגמה של Barchart; קנייה = המחיר מעל הקו העולה."),
          ("מד חום (RSI 14)", "50–65 בריא · מעל 70 חם מדי · מתחת ל-50 המגמה לא מאושרת."),
          ("שיאים בחודש", "כמה שיאים חדשים המניה עשתה החודש. הרבה = עלייה עקבית. המיון הראשי של השיטה."),
+         ("מרחק מהשיא", "כמה אחוזים המחיר מתחת לשיא 52 השבועות. זה נתון בלבד: מרחק גדול מהשיא אינו מעיד כשלעצמו על פוטנציאל התאוששות."),
          ("ציון ארבעת העמודים", "0–100: קריטריונים 40 · מד חום 15 · קרבה לשיא 15 · שיאים 15 · אימות חדשותי 15 (לא מבוצע כאן — הציון מנורמל). הציון מודד עמידה בתנאי הסריקה, לא הסתברות לרווח.")]
 
 
@@ -294,7 +295,7 @@ def row_html(k, s, note):
     bad = [c for c in s["checks"] if c["state"] != "ok"]                                 # בשורה רק מה שלא עבר
     chk = " · ".join('<span class="%s">%s %s</span>' % (c["state"], mark[c["state"]], e(c["label"])) for c in bad)
     chk = ('<div class="chk">%s</div>' % chk) if chk else ""
-    fl = "".join('<span class="flag%s">%s</span> ' % (" soft" if ("בנבחרות" in f or "אישור המחיר באתר" in f or "מקום לרוץ" in f) else "", e(f)) for f in s["flags"])
+    fl = "".join('<span class="flag%s">%s</span> ' % (" soft" if ("בנבחרות" in f or "אישור המחיר באתר" in f or "מתחת לשיא 52" in f) else "", e(f)) for f in s["flags"])
     lv = s["levels"]
     return ('<tr><td class="num">%d</td><td class="sym">%s</td><td class="nm">%s<small>%s</small></td>'
             '<td><span class="sc">%d<small> /100</small></span></td><td><span class="st st-%s" title="%s">%s</span>%s</td>'
@@ -343,7 +344,7 @@ def render(rep, notes):
     beta_note = "בשוק %s ממוצע 50 בטא גבוה %s" % ("מעל" if mk.get("aboveMa50") else "מתחת ל", "מקבל בונוס בדירוג" if mk.get("aboveMa50") else "מוריד את הדירוג") if mk.get("spy") else ""
     H = ['<header class="pan"><div class="head"><div class="kick"><span class="tag">סריקות ותבניות טכניות · ארבעת העמודים</span><span>סגירת יום %s · <span class="num">%s</span> · הורדה %s</span>%s</div><h1>%s</h1><p class="dek">%s</p></div><div class="mkt">%s</div></header>' %
          (dow, dmy(day), e(dmy((rep["meta"].get("downloadedAt") or "")[:10]) if rep["meta"].get("downloadedAt") else ""), ('<span class="tag" style="background:var(--warn-soft);color:var(--warn)">%s</span>' % e(beta_note)) if beta_note else "", e(head), e(dek), mkt_line)]
-    H.append('<section class="pan"><div class="ph"><h2>שישה מושגים בשורה</h2></div><div class="gloss">' + "".join("<div><b>%s</b> — %s</div>" % (e(a), e(b)) for a, b in GLOSS) + "</div></section>")
+    H.append('<section class="pan"><div class="ph"><h2>המושגים בדוח</h2></div><div class="gloss">' + "".join("<div><b>%s</b> — %s</div>" % (e(a), e(b)) for a, b in GLOSS) + "</div></section>")
     thead = "<thead><tr><th>#</th><th>מניה</th><th>שם</th><th>ציון</th><th>סטטוס</th><th>מחיר</th><th>5 ימים</th><th>עוצמה</th><th>חוות דעת</th><th>מד חום</th><th>שיאים בחודש</th><th>מרחק מהשיא</th><th>רמת התבנית</th><th>ממוצע 100</th><th>הערה</th></tr></thead>"
     for k in KINDS:
         items = rep["cats"][k]
@@ -373,7 +374,7 @@ def render(rep, notes):
     reds = []
     for k in KINDS:
         for s in rep["cats"][k]:
-            hard = [f for f in s["flags"] if "בנבחרות" not in f and "אישור המחיר באתר" not in f and "מקום לרוץ" not in f]
+            hard = [f for f in s["flags"] if "בנבחרות" not in f and "אישור המחיר באתר" not in f and "מתחת לשיא 52" not in f]
             if s["status"] == "fail":
                 hard.insert(0, "לא עומדת בקריטריונים של " + CAT[k]["he"])
             if hard:
@@ -497,6 +498,8 @@ def build(day):
     page, title = render(rep, notes)
     out = os.path.join(DATA, "trades", "trades-%s.html" % day)
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    import report_banner   # הבהרה בתוך הקובץ עצמו — הדוח נפתח גם בקישור ישיר (14.11.2026)
+    page = report_banner.inject(page, day, report_banner.is_legacy("trades", day))
     with open(out, "w", encoding="utf-8") as f:
         f.write(page)
     rep["notesAt"] = (notes or {}).get("writtenAt")

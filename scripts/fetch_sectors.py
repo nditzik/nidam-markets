@@ -11,6 +11,7 @@ fetch_sectors.py — דוח הרוטציה הסקטוריאלית השבועי �
 עמידות: כשל משיכה → משאיר את הקיים.
 """
 import json
+import report_banner
 import os
 import re
 import sys
@@ -95,6 +96,7 @@ def main():
         if iso in {r["date"] for r in local_reports()}:
             print(f"[local] {iso}: דוח אוטומטי קיים — העותק מ-nidam-reports לא נשמר")
             continue
+        content = report_banner.inject(content, iso, report_banner.is_legacy("sectors", iso))   # הבהרה בתוך הקובץ עצמו (14.11.2026)
         old = None
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:

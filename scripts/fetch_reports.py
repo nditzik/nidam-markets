@@ -9,6 +9,7 @@ fetch_reports.py — מושך ניתוחי דוחות (HTML) מהריפו הצי
 עמידות: כשל משיכה → משאיר את reports.json והקבצים הקיימים.
 """
 import json
+import report_banner
 import os
 import re
 import sys
@@ -185,6 +186,8 @@ def main():
             print(f"[skip] {name}: {e}")
             continue
         name = local_name(name)
+        _m = re.search(r"(\d{4}-\d{2}-\d{2})", name)
+        content = report_banner.inject(content, _m.group(1) if _m else None)   # הבהרה בתוך הקובץ עצמו (14.11.2026)
         # write file (content-aware)
         path = os.path.join(OUT_DIR, name)
         old = None
