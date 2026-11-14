@@ -94,7 +94,7 @@ def checks(kind, s):
         out.append(("חוות דעת מכירה", "ok" if side == "Sell" else "fail", s["opRaw"]))
         out.append(("קו המגמה בקנייה (המפתח)", "ok" if tr == "Buy" else "fail", tr or "—"))
         above = s["last"] is not None and s["ma100"] and s["last"] > s["ma100"]
-        out.append(("מעל ממוצע 100 (תנאי הכניסה)", "ok" if above else "warn", ("%.2f מול %.2f" % (s["last"], s["ma100"])) if s["ma100"] else "—"))
+        out.append(("מעל ממוצע 100 (תנאי התבנית)", "ok" if above else "warn", ("%.2f מול %.2f" % (s["last"], s["ma100"])) if s["ma100"] else "—"))
     return out
 
 
@@ -124,18 +124,19 @@ def flags(kind, s, earn_win, picks):
     if s["offHi"] is not None and abs(s["offHi"]) >= 25:
         f.append("%.0f%% מהשיא — מקום לרוץ, פחות אישור" % abs(s["offHi"]))
     if kind == "phoenix" and s["ma100"] and s["last"] is not None and s["last"] <= s["ma100"]:
-        f.append("מתחת לממוצע 100 (%.2f) — בלי כיבושו אין כניסה" % s["ma100"])
+        f.append("מתחת לממוצע 100 (%.2f) — התבנית עוד לא הושלמה" % s["ma100"])
     if s["sym"] in earn_win:
         f.append("מדווחת ב-%s" % earn_win[s["sym"]])
     if s["last"] is not None and s["last"] < 5:
         f.append("מחיר מתחת ל-$5")
     if s["sym"] in picks:
-        f.append("בנבחרות של האתר")
+        f.append("עמדה גם בתנאי אישור המחיר באתר")
     return f
 
 
 def levels(kind, s):
-    """טריגר = השיא (52 שבועות, נגזר מהמרחק) · קו ההוכחה/היציאה = ממוצע 100."""
+    """רמת התבנית = השיא (52 שבועות, נגזר מהמרחק) · קו הביטול של התבנית = ממוצע 100.
+    14.11.2026 (התאמה משפטית): הניסוח מתאר תנאים של המודל, לא הוראת כניסה/יציאה."""
     hi = s["last"] / (1 + s["offHi"] / 100) if s["last"] and s["offHi"] is not None and s["offHi"] < 0 else s["last"]
     out = {"hi52": round(hi, 2) if hi else None, "ma100": s["ma100"]}
     if kind == "phoenix":
@@ -144,7 +145,7 @@ def levels(kind, s):
     else:
         out["trigger"] = out["hi52"]
         out["triggerHe"] = ("פריצת השיא %s בנפח" % fmtn(out["hi52"])) if s["offHi"] is not None and s["offHi"] < 0 else "החזקה מעל השיא שנפרץ"
-    out["stopHe"] = ("יציאה בסגירה מתחת לממוצע 100 (%s)" % fmtn(s["ma100"])) if s["ma100"] else "יציאה לפי ממוצע 100"
+    out["stopHe"] = ("התבנית מתבטלת בסגירה מתחת לממוצע 100 (%s)" % fmtn(s["ma100"])) if s["ma100"] else "התבנית מתבטלת מתחת לממוצע 100"
     return out
 
 
@@ -265,11 +266,11 @@ td.nm{font-size:13px;min-width:110px} td.nm small{display:block;font-size:12px;c
 @media (max-width:560px){h1{font-size:20px}.mkt,.gloss{grid-template-columns:1fr}.ph .sub{display:none}body{padding:12px 12px 40px}}
 """
 GLOSS = [("ציון עוצמה (Weighted Alpha)", "בכמה המניה הכתה את השוק בשנה האחרונה, עם משקל עודף לחודשים האחרונים. S&P עומד בדרך כלל על 20–25."),
-         ("חוות דעת Barchart (Opinion)", "13 אינדיקטורים טכניים — כמה מהם בקנייה. 100% = כולם."),
+         ("חוות דעת Barchart (Opinion)", "דירוג טכני של Barchart (צד שלישי): 13 אינדיקטורים — כמה מהם מסומנים קנייה. 100% = כולם; זה לא 100% סיכוי להצלחה ולא המלצה של האתר."),
          ("קו המגמה (Trend Seeker)", "מערכת מגמה של Barchart; קנייה = המחיר מעל הקו העולה."),
          ("מד חום (RSI 14)", "50–65 בריא · מעל 70 חם מדי · מתחת ל-50 המגמה לא מאושרת."),
          ("שיאים בחודש", "כמה שיאים חדשים המניה עשתה החודש. הרבה = עלייה עקבית. המיון הראשי של השיטה."),
-         ("ציון ארבעת העמודים", "0–100: קריטריונים 40 · מד חום 15 · קרבה לשיא 15 · שיאים 15 · אימות חדשותי 15 (לא מבוצע כאן — הציון מנורמל)")]
+         ("ציון ארבעת העמודים", "0–100: קריטריונים 40 · מד חום 15 · קרבה לשיא 15 · שיאים 15 · אימות חדשותי 15 (לא מבוצע כאן — הציון מנורמל). הציון מודד עמידה בתנאי הסריקה, לא הסתברות לרווח.")]
 
 
 def e(x):
@@ -293,7 +294,7 @@ def row_html(k, s, note):
     bad = [c for c in s["checks"] if c["state"] != "ok"]                                 # בשורה רק מה שלא עבר
     chk = " · ".join('<span class="%s">%s %s</span>' % (c["state"], mark[c["state"]], e(c["label"])) for c in bad)
     chk = ('<div class="chk">%s</div>' % chk) if chk else ""
-    fl = "".join('<span class="flag%s">%s</span> ' % (" soft" if ("בנבחרות" in f or "מקום לרוץ" in f) else "", e(f)) for f in s["flags"])
+    fl = "".join('<span class="flag%s">%s</span> ' % (" soft" if ("בנבחרות" in f or "אישור המחיר באתר" in f or "מקום לרוץ" in f) else "", e(f)) for f in s["flags"])
     lv = s["levels"]
     return ('<tr><td class="num">%d</td><td class="sym">%s</td><td class="nm">%s<small>%s</small></td>'
             '<td><span class="sc">%d<small> /100</small></span></td><td><span class="st st-%s" title="%s">%s</span>%s</td>'
@@ -311,13 +312,13 @@ def template_note(k, s):
     lv = s["levels"]
     if s["status"] == "fail":
         bad = [c["label"] for c in s["checks"] if c["state"] == "fail"]
-        return "לא עומדת: " + ", ".join(bad) + " — כנראה הסריקה רצה עם הגדרות שונות. לא ברשימת המעקב."
+        return "לא עומדת: " + ", ".join(bad) + " — כנראה הסריקה רצה עם הגדרות שונות. לא נכללת בדירוג."
     parts = []
     if s["rsi"] is not None and s["rsi"] > 70:
-        parts.append("חמה מדי — לחכות לנשימה")
+        parts.append("מד חום גבוה — התבנית מתוחה")
     elif s["offHi"] is not None and abs(s["offHi"]) <= 8:
         parts.append("קרוב לשיא — מבחן הפריצה קרוב")
-    parts.append("טריגר: " + lv["triggerHe"])
+    parts.append("תנאי התבנית: " + lv["triggerHe"])
     parts.append(lv["stopHe"])
     return " · ".join(parts)
 
@@ -339,11 +340,11 @@ def render(rep, notes):
     mkt_line += ('<div><div class="l">VIX</div><span class="v num">%s</span><div class="s">רמזור %s · S&amp;P %s מהשיא</div></div>' % (fmtn(mk.get("vix"), 1), {"green": "ירוק", "yellow": "צהוב", "red": "אדום"}.get(mk.get("vixState"), "—"), pc(mk.get("spxOffHigh")))) if mk.get("vix") else ""
     mkt_line += '<div><div class="l">הסריקות</div><span class="v t">%d מניות · %d עומדות</span><div class="s">%s</div></div>' % (
         rep["total"], rep["passed"], " · ".join("%s %d" % (CAT[k]["he"], len(rep["cats"][k])) for k in KINDS))
-    beta_note = "בשוק %s ממוצע 50 בטא גבוה %s" % ("מעל" if mk.get("aboveMa50") else "מתחת ל", "מקבל בונוס" if mk.get("aboveMa50") else "נענש — עדיפות למניות רגועות") if mk.get("spy") else ""
-    H = ['<header class="pan"><div class="head"><div class="kick"><span class="tag">הצעות לטרייד · ארבעת העמודים</span><span>סגירת יום %s · <span class="num">%s</span> · הורדה %s</span>%s</div><h1>%s</h1><p class="dek">%s</p></div><div class="mkt">%s</div></header>' %
+    beta_note = "בשוק %s ממוצע 50 בטא גבוה %s" % ("מעל" if mk.get("aboveMa50") else "מתחת ל", "מקבל בונוס בדירוג" if mk.get("aboveMa50") else "מוריד את הדירוג") if mk.get("spy") else ""
+    H = ['<header class="pan"><div class="head"><div class="kick"><span class="tag">סריקות ותבניות טכניות · ארבעת העמודים</span><span>סגירת יום %s · <span class="num">%s</span> · הורדה %s</span>%s</div><h1>%s</h1><p class="dek">%s</p></div><div class="mkt">%s</div></header>' %
          (dow, dmy(day), e(dmy((rep["meta"].get("downloadedAt") or "")[:10]) if rep["meta"].get("downloadedAt") else ""), ('<span class="tag" style="background:var(--warn-soft);color:var(--warn)">%s</span>' % e(beta_note)) if beta_note else "", e(head), e(dek), mkt_line)]
     H.append('<section class="pan"><div class="ph"><h2>שישה מושגים בשורה</h2></div><div class="gloss">' + "".join("<div><b>%s</b> — %s</div>" % (e(a), e(b)) for a, b in GLOSS) + "</div></section>")
-    thead = "<thead><tr><th>#</th><th>מניה</th><th>שם</th><th>ציון</th><th>סטטוס</th><th>מחיר</th><th>5 ימים</th><th>עוצמה</th><th>חוות דעת</th><th>מד חום</th><th>שיאים בחודש</th><th>מרחק מהשיא</th><th>טריגר</th><th>ממוצע 100</th><th>הערה</th></tr></thead>"
+    thead = "<thead><tr><th>#</th><th>מניה</th><th>שם</th><th>ציון</th><th>סטטוס</th><th>מחיר</th><th>5 ימים</th><th>עוצמה</th><th>חוות דעת</th><th>מד חום</th><th>שיאים בחודש</th><th>מרחק מהשיא</th><th>רמת התבנית</th><th>ממוצע 100</th><th>הערה</th></tr></thead>"
     for k in KINDS:
         items = rep["cats"][k]
         okn = sum(1 for s in items if s["status"] != "fail")
@@ -364,15 +365,15 @@ def render(rep, notes):
         k, s = bysym[t["sym"]]
         lv = s["levels"]
         cards += ('<div class="tp"><div class="who"><b>%s</b><span class="num">%s</span><span class="st st-%s">%s · %d</span></div><p>%s</p>'
-                  '<div class="kv">טריגר <b>%s</b> · מחיר <b>%s</b> · מד חום <b>%s</b> · שיאים בחודש <b>%s</b> · %s</div></div>') % (
+                  '<div class="kv">רמת התבנית <b>%s</b> · מחיר <b>%s</b> · מד חום <b>%s</b> · שיאים בחודש <b>%s</b> · %s</div></div>') % (
             tv(s["sym"]), e(s["name"]), s["status"], e(CAT[k]["he"]), s["score"], e(t.get("text", "")), fmtn(lv["trigger"]), fmtn(s["last"]),
             "%.0f" % s["rsi"] if s["rsi"] is not None else "—", "%.0f" % s["nh"] if s["nh"] is not None else "—", e(lv["stopHe"]))
-    H.append('<section class="pan"><div class="ph"><h2>ניתוח פרטני — המובילות</h2><span class="sub">Watchlist + טריגר כניסה, לא "לקנות עכשיו"</span></div><div class="top">%s</div></section>' % (cards or '<div class="empty">אין מניות כשירות.</div>'))
+    H.append('<section class="pan"><div class="ph"><h2>ניתוח פרטני — הראשונות בדירוג</h2><span class="sub">תיאור התבנית ותנאי השלמתה לפי המודל — לא הוראת קנייה או מכירה</span></div><div class="top">%s</div></section>' % (cards or '<div class="empty">אין מניות כשירות.</div>'))
     # דגלים אדומים
     reds = []
     for k in KINDS:
         for s in rep["cats"][k]:
-            hard = [f for f in s["flags"] if "בנבחרות" not in f and "מקום לרוץ" not in f]
+            hard = [f for f in s["flags"] if "בנבחרות" not in f and "אישור המחיר באתר" not in f and "מקום לרוץ" not in f]
             if s["status"] == "fail":
                 hard.insert(0, "לא עומדת בקריטריונים של " + CAT[k]["he"])
             if hard:
@@ -380,10 +381,12 @@ def render(rep, notes):
     for r in (n.get("redFlags") or []):
         reds.append("<li>%s</li>" % e(r))
     H.append('<section class="pan"><div class="ph"><h2>דגלים אדומים</h2></div>' + (('<ul class="red">%s</ul>' % "".join(reds)) if reds else '<div class="empty">אין.</div>') + "</section>")
-    bottom = n.get("bottom") or ("לרשימת המעקב: " + " · ".join("<b>%s</b> (%s)" % (e(t["sym"]), e(bysym[t["sym"]][1]["levels"]["triggerHe"])) for t in top if t.get("sym") in bysym) + ". כניסה רק בטריגר, בשלישים, עם יציאה מתחת לממוצע 100.")
+    bottom = n.get("bottom") or ("במעקב לפי המודל: " + " · ".join("<b>%s</b> (%s)" % (e(t["sym"]), e(bysym[t["sym"]][1]["levels"]["triggerHe"])) for t in top if t.get("sym") in bysym) + ". התבנית מושלמת רק כשהתנאי מתקיים, ומתבטלת בסגירה מתחת לממוצע 100.")
     H.append('<section class="pan"><div class="ph"><h2>שורה תחתונה</h2></div><div class="bottom">%s</div></section>' % bottom)
-    H.append('<p class="foot">ניתוח טכני לצורכי לימוד — אינו המלצת השקעה. מקור: סורקי Barchart (Four Pillars), הורדה %s, נתוני סגירת %s. ציון ללא Trust &amp; Verify (אין רשת לרוטינה). המילים: %s.</p>' %
+    H.append('<p class="foot">מידע וניתוח כלליים לצורכי מחקר ולימוד. התוצאות מתארות עמידה בתנאים שהוגדרו במודל, ואינן קביעה בדבר כדאיות קנייה, מכירה או החזקה. הציונים אינם הסתברות לרווח, ודירוגי Buy/Sell הם דירוגים טכניים של Barchart (צד שלישי) ולא המלצה של האתר. התוכן אינו ייעוץ השקעות ואינו מותאם לאדם מסוים; השקעה כרוכה בסיכון להפסד. מקור: סורקי Barchart (Four Pillars), הורדה %s, נתוני סגירת %s. ציון ללא Trust &amp; Verify (אין רשת לרוטינה). המילים: %s.</p>' %
              (e(rep["meta"].get("downloadedAt", "")), e(dmy(day)), "רוטינת הבוקר (%s)" % e(n.get("writtenAt", "")) if n else "משפטי תבנית — ההערות ייכתבו בבוקר"))
+    if n.get("correction"):   # תיקון של פרסום קיים — מועד ומהות (14.11.2026)
+        H.append('<p class="foot">תיקון %s: %s</p>' % (e(n.get("correctedAt", "")), e(n["correction"])))
     title = "דוח ארבעת העמודים — %s" % dmy(day)
     page = ('<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>%s</title>\n'
             '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">\n'

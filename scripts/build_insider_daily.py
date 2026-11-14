@@ -450,7 +450,7 @@ def main(root=ROOT, now=None):
                 tags.append({"k": "low", "txt": "ליד השפל"})
             if b["cap"] is not None and b["cap"] < 3e8:
                 tags.append({"k": "dim", "txt": "חברה קטנה"})
-            for s, lab in ((picks, "✦ בנבחרות"), (cands, "מועמדת"), (moms, "מומנטום")):
+            for s, lab in ((picks, "✦ עמדה בתנאים"), (cands, "סריקת תיקון"), (moms, "מומנטום")):
                 if b["t"] in s:
                     tags.append({"k": "site", "txt": lab})
         b["tags"] = tags

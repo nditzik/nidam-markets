@@ -174,6 +174,37 @@
   }
   function pctS(v, sign) { return v == null ? "—" : ((sign && v > 0) ? "+" : "") + (Math.abs(v) >= 100 ? Math.round(v) : v.toFixed(Math.abs(v) < 10 ? 1 : 0)) + "%"; }
   function ftile(l, v, s, cls) { return '<div class="ta-ft"><div class="ta-ft-l">' + l + '</div><div class="ta-ft-v num' + (cls ? " " + cls : "") + '" dir="ltr">' + v + '</div>' + (s ? '<div class="ta-ft-s">' + s + "</div>" : "") + "</div>"; }
+  /* np199 (14.11.2026, התאמה משפטית): המנוע (ta_engine.js) הוא פורט מאומת של המפרט, והטקסטים שלו לא משתנים
+     (הבדיקה test_full.js משווה אותם). בשכבת התצוגה ניסוחי "כניסה/קנייה/להמתין" מוחלפים בתיאור של תבנית ותנאים. */
+  var NZ = [
+    ["התקבל אישור מחיר; יש לבחון את גודל הפוזיציה מול רמת הביטול ואת ההתנגדות הקרובה", "התקיימו תנאי אישור המחיר; רמת הביטול וההתנגדות הקרובה הן גבולות התבנית"],
+    ["טרם התקבל אישור מחיר לקנייה", "טרם התקיימו תנאי אישור המחיר"],
+    ["התקבל אישור מחיר לקנייה", "התקיימו תנאי אישור המחיר"],
+    ["תנאי המחיר לקנייה מתקיימים זמנית", "תנאי אישור המחיר מתקיימים זמנית"],
+    ["המניה מתוחה – לא לרדוף", "המניה מתוחה – רחוקה מהממוצעים"],
+    ["להמתין לתיקון לעבר התמיכה ולסימני חזרת קונים לפני בחינת כניסה", "התבנית תושלם רק אחרי תיקון לעבר התמיכה וסימני חזרת קונים"],
+    ["להמתין להתייצבות ולבנייה מחדש של תמיכה", "התבנית דורשת התייצבות ובנייה מחדש של תמיכה"],
+    ["נדרשת התייצבות ובנייה מחדש של תמיכה לפני בחינת כניסה", "נדרשת התייצבות ובנייה מחדש של תמיכה לפני שתיתכן תבנית"],
+    ["כדי לשקול כניסה נדרשים", "להשלמת התבנית נדרשים"],
+    ["להמתין לתיקון", "אין עדיין תיקון"], ["להמתין לאישור", "טרם התקבל אישור"],
+    ["כניסה אפשרית מעל ", "רמת אישור התבנית: מעל "], ["כניסה אפשרית", "תבנית אפשרית"], ["כניסה איכותית", "תבנית איכותית"],
+    ["מעקב לקראת כניסה", "במעקב – התבנית מתגבשת"], ["אין כרגע עסקה מעניינת", "אין כרגע תבנית"],
+    ["המלצה ואיכות הכניסה", "סטטוס ואיכות התבנית"], ["איכות נקודת הכניסה", "איכות התבנית"],
+    ["אין כרגע מחיר כניסה ורמת ביטול מבוססים להצגה", "אין כרגע רמת אישור ורמת ביטול מבוססות להצגה"],
+    ["נדרש גם לבחון את יתר תנאי הכניסה", "נדרש גם לבחון את יתר תנאי התבנית"],
+    ["אינה נותנת תמיכה ברורה לכניסה", "אינה נותנת תמיכה ברורה לתבנית"],
+    ["ובמיקום הכניסה", "ובמיקום המחיר"], ["מרחק סיכון ", "המרחק ביניהן "]
+  ];
+  var NZ_RE = [[/כניסה (\d[\d.,]*), ביטול /g, "רמת אישור $1, רמת ביטול "]];
+  function disclHtml(sym) {
+    var x = (window.__discl || {})[String(sym || "").toUpperCase()];
+    return x ? '<div class="ta-discl"><b>גילוי עניין אישי:</b> ' + esc(x.text) + (x.asOf ? ' <span class="mute">(עודכן ' + esc(x.asOf) + ")</span>" : "") + "</div>" : "";
+  }
+  function nz(html) {
+    NZ.forEach(function (p) { html = html.split(p[0]).join(p[1]); });
+    NZ_RE.forEach(function (p) { html = html.replace(p[0], p[1]); });
+    return html;
+  }
   function fundHtml(sym, f, lastClose) {
     if (!f || f.cap == null) return "";
     var q = f.quality || {}, price = lastClose || f.price;
@@ -200,11 +231,11 @@
     if (f.target != null && price) {
       var up = (f.target / price - 1) * 100, r = f.recs || {}, buy = (r.strongBuy || 0) + (r.buy || 0), tot = buy + (r.hold || 0) + (r.sell || 0) + (r.strongSell || 0);
       rows += '<div class="ta-fr"><span class="ta-fr-k">אנליסטים</span><span class="ta-fr-v">מחיר יעד ממוצע <b class="num" dir="ltr">$' + (f.target >= 100 ? Math.round(f.target) : f.target.toFixed(2)) + '</b> (<b class="num ' + (up >= 0 ? "up" : "down") + '" dir="ltr">' + (up >= 0 ? "+" : "") + up.toFixed(0) + "%</b> מהמחיר)" +
-        (tot ? ' · <b class="num" dir="ltr">' + buy + "</b> מתוך <b class=\"num\" dir=\"ltr\">" + tot + "</b> ממליצים קנייה" : (f.targetN ? ' · <b class="num" dir="ltr">' + f.targetN + "</b> אנליסטים" : "")) + "</span></div>";
+        (tot ? ' · <b class="num" dir="ltr">' + buy + "</b> מתוך <b class=\"num\" dir=\"ltr\">" + tot + "</b> בדירוג קנייה (דירוג האנליסטים, לא של האתר)" : (f.targetN ? ' · <b class="num" dir="ltr">' + f.targetN + "</b> אנליסטים" : "")) + "</span></div>";
     }
     if (f.divYield != null && f.divYield > 0) rows += '<div class="ta-fr"><span class="ta-fr-k">דיבידנד</span><span class="ta-fr-v">תשואה שנתית <b class="num" dir="ltr">' + f.divYield.toFixed(1) + "%</b></span></div>";
     var readS = f.read || "";
-    if (ne && ne.date) { var dd = Math.round((new Date(ne.date + "T12:00:00") - new Date(new Date().toDateString())) / 864e5); if (dd >= 0 && dd <= 7) readS += " הדוח " + (dd === 0 ? "היום" : dd === 1 ? "מחר" : "בעוד " + dd + " ימים") + ": כניסה טכנית עכשיו היא גם הימור על הדוח."; }
+    if (ne && ne.date) { var dd = Math.round((new Date(ne.date + "T12:00:00") - new Date(new Date().toDateString())) / 864e5); if (dd >= 0 && dd <= 7) readS += " הדוח " + (dd === 0 ? "היום" : dd === 1 ? "מחר" : "בעוד " + dd + " ימים") + ": התמונה הטכנית חשופה עכשיו גם לתוצאות הדוח."; }
     if (readS) rows += '<div class="ta-fr"><span class="ta-fr-k">קריאה</span><span class="ta-fr-v">' + esc(readS) + "</span></div>";
     return '<section class="ta-fund" aria-label="יסודות החברה"><div class="ta-fund-h"><h4>יסודות החברה</h4>' + (q.label ? '<span class="ta-fq ' + esc(q.q || "mid") + '">' + esc(q.label) + "</span>" : "") +
       '<span class="ta-fund-src">' + esc([f.name, f.industry].filter(Boolean).join(" · ")) + (f.at ? " · עודכן " + esc(f.at.slice(8, 10)) + "." + esc(f.at.slice(5, 7)) : "") + "</span></div>" +
@@ -351,8 +382,8 @@
         h.push(fundHtml(sym, f, close));
       }
       h.push('<div class="ta-qnext"><b>הניתוח המלא</b> — אריחי המגמה, תמיכות והתנגדויות על הגרף, מכונת הפריצה ו"אישור מחיר" — זמין למניות שבמעקב באתר. חיבור שמביא היסטוריה לכל טיקר יאפשר אותו גם כאן.</div>');
-      h.push('<div class="ta-foot">נתונים: סורק TradingView, נכון לרגע הפתיחה · תיאור טכני ופונדמנטלי בלבד, לא ייעוץ השקעות.</div></div>');
-      el.innerHTML = h.join("");
+      h.push('<div class="ta-foot">נתונים: סורק TradingView, נכון לרגע הפתיחה · תיאור טכני ופונדמנטלי של מצב המניה לפי כללי המודל — לא קביעה בדבר כדאיות קנייה, מכירה או החזקה ולא ייעוץ השקעות.</div></div>');
+      el.innerHTML = disclHtml(sym) + nz(h.join(""));
     }
     scanRow(tvSym, FCOLS, function (d) { F = d && num(d.market_cap_basic) != null ? parseFund(d) : null; if (F) F.exchange = d.exchange; done(); });
     scanRow(tvSym, TCOLS, function (d) { T = d; done(); });
@@ -399,13 +430,13 @@
     if (note) h.push('<div class="ta-banner">⚠️ ' + esc(note) + "</div>");
     if (r.is_provisional) h.push('<div class="ta-banner">⏳ ' + esc(r.message) + "</div>");
     h.push('<div class="ta-tiles">' + tile("מגמה ראשית", p.hierarchy.primary, tone(r.trend.state), "ציון " + r.scores.trend) + tile("מצב בינוני", p.hierarchy.intermediate, tone(r.trend_hierarchy.intermediate.state)) +
-      tile("מצב קצר", p.hierarchy.short, tone(r.trend_hierarchy.short.state)) + tile("סטטוס", p.action, tone(r.decision.action), r.entry.entry != null ? "כניסה מעל " + f2(r.entry.entry) + " · ביטול " + f2(r.entry.invalidation) : "") + "</div>");
+      tile("מצב קצר", p.hierarchy.short, tone(r.trend_hierarchy.short.state)) + tile("סטטוס", p.action, tone(r.decision.action), r.entry.entry != null ? "רמת אישור " + f2(r.entry.entry) + " · רמת ביטול " + f2(r.entry.invalidation) : "") + "</div>");
     h.push('<p class="ta-sum">' + esc(r.technical_opinion) + "</p>");
     h.push('<div class="ta-chart">' + chartSvg(bars, r, (el.clientWidth || 1000) - 44) + "</div>");
     h.push('<div class="ta-two"><section class="ta-sec"><h4>שבעת הציונים</h4>' +
       scoreBar("איכות המגמה", r.scores.trend) + scoreBar("עוצמת המומנטום", r.scores.momentum) + scoreBar("איכות התיקון", r.scores.pullback) + scoreBar("איכות אזור התמיכה", r.scores.support) +
-      scoreBar("איכות נקודת הכניסה", r.scores.entry) + scoreBar("מתיחות המחיר", r.scores.extension, true) + scoreBar("איכות המחזורים", r.scores.volume) +
-      '<div class="ta-fn">מתיחות: ציון גבוה = המחיר רחוק מהממוצעים (פחות טוב לכניסה).</div></section>');
+      scoreBar("איכות התבנית", r.scores.entry) + scoreBar("מתיחות המחיר", r.scores.extension, true) + scoreBar("איכות המחזורים", r.scores.volume) +
+      '<div class="ta-fn">מתיחות: ציון גבוה = המחיר רחוק מהממוצעים (התבנית פחות נקייה). הציונים מתארים עמידה בתנאי המודל ואינם הסתברות לרווח.</div></section>');
     h.push('<section class="ta-sec"><h4>מאזן הראיות</h4><div class="ta-ev"><div><b class="ta-good">מה תומך</b>' + list(r.confluence.supports) + '</div><div><b class="ta-bad">מה סותר או מגביל</b>' + list(r.confluence.contradicts) + '</div><div><b class="ta-mid">מה חסר או מעורב</b>' + list(r.confluence.missing) + "</div></div></section></div>");
     // np153: יסודות החברה — מעל "אינדיקטורים וממוצעים"
     h.push(fundHtml(sym, fund && fund.symbols && fund.symbols[sym], lastBar.close));
@@ -424,11 +455,11 @@
     h.push('<details class="ta-det"><summary>מבנה המחיר (שיאים ושפלים)</summary><p>' + esc(p.structure.sequence) + "</p>" + list(r.market_structure.reasons) + "<p><b>בינוני:</b> " + esc(p.hierarchy.intermediate) + "</p>" + list(r.trend_hierarchy.intermediate.reasons) + "</details>");
     h.push('<details class="ta-det"><summary>הנרות והתבניות</summary><p>' + esc(r.price_action.explanation) + "</p>" + list(r.price_action.sequence.reasons) +
       (r.price_action.tracking.length ? "<p><b>מעקב תבניות (10 נרות אחרונים):</b></p>" + list(r.price_action.tracking.map(function (t) { return t.explanation; })) : "") + "</details>");
-    h.push('<details class="ta-det"><summary>מה יאשר כניסה</summary><div class="ta-ev"><div><b class="ta-good">מתקיים</b>' + list(p.confirmation.positive) + '</div><div><b class="ta-mid">חסר</b>' + list(p.confirmation.missing) + '</div><div><b>אפשרויות למעקב</b>' + list(p.confirmation.alternatives) + "</div></div><div class=\"ta-fn\">" + esc(p.confirmation.note) + "</div>" +
-      "<p><b>הצעד הבא:</b> " + esc(p.next_step) + "</p><p><b>סיכון:</b> " + esc(p.risk) + "</p></details>");
-    h.push('<div class="ta-foot">נתונים: Yahoo Finance (נרות) · TradingView (יסודות החברה), ' + bars.length + " נרות יומיים, נר אחרון " + esc(lastBar.date) + (lastBar.is_partial ? " (מתהווה, מסורק TradingView)" : "") + " · מנוע: chart-price-action-v3 (כללים קבועים, ללא בינה מלאכותית) · תיאור טכני בלבד, לא ייעוץ השקעות.</div>");
+    h.push('<details class="ta-det"><summary>מה יאשר את התבנית לפי המודל</summary><div class="ta-ev"><div><b class="ta-good">מתקיים</b>' + list(p.confirmation.positive) + '</div><div><b class="ta-mid">חסר</b>' + list(p.confirmation.missing) + '</div><div><b>אפשרויות למעקב</b>' + list(p.confirmation.alternatives) + "</div></div><div class=\"ta-fn\">" + esc(p.confirmation.note) + "</div>" +
+      "<p><b>תנאים למעקב:</b> " + esc(p.next_step) + "</p><p><b>גבולות התבנית:</b> " + esc(p.risk) + "</p></details>");
+    h.push('<div class="ta-foot">נתונים: Yahoo Finance (נרות) · TradingView (יסודות החברה), ' + bars.length + " נרות יומיים, נר אחרון " + esc(lastBar.date) + (lastBar.is_partial ? " (מתהווה, מסורק TradingView)" : "") + " · מנוע: chart-price-action-v3 (כללים קבועים, ללא בינה מלאכותית) · תיאור טכני של מצב המניה לפי כללי המודל — לא קביעה בדבר כדאיות קנייה, מכירה או החזקה ולא ייעוץ השקעות.</div>");
     h.push("</div>");
-    el.innerHTML = h.join("");
+    el.innerHTML = disclHtml(sym) + nz(h.join(""));
   }
 
   function ensureEngine(cb) {

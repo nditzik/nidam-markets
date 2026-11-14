@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Daily Edge by NIDAM</title>
-  <meta name="description" content="The Daily Edge by NIDAM — השוק, כל יום, בשפה של משקיעים: תדריכים, מדדים, מומנטום, מועמדים למסחר וניתוחי דוחות." />
+  <meta name="description" content="The Daily Edge by NIDAM — השוק, כל יום, בשפה של משקיעים: תדריכים, מדדים, מומנטום, סריקות טכניות וניתוחי דוחות — מידע למחקר ולימוד." />
   <!-- Open Graph / share previews (Telegram, WhatsApp, etc.) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="The Daily Edge by NIDAM" />
   <meta property="og:title" content="The Daily Edge by NIDAM" />
-  <meta property="og:description" content="השוק, כל יום — בשפה של משקיעים. תדריכים, מדדים, מומנטום, מועמדים וניתוחי דוחות." />
+  <meta property="og:description" content="השוק, כל יום — בשפה של משקיעים. תדריכים, מדדים, מומנטום, סריקות טכניות וניתוחי דוחות." />
   <meta property="og:url" content="https://nditzik.github.io/nidam-markets/" />
   <meta property="og:image" content="https://nditzik.github.io/nidam-markets/assets/logo-full-light.png" />
   <meta property="og:locale" content="he_IL" />
@@ -26,11 +26,11 @@
        ומרנדר 🇮🇱 כאותיות "IL". Noto Color Emoji מספק אותם בכל מערכת;
        הפרמטר text= מצמצם את הגופן לתווי הדגלים שבשימוש בלבד (9.9.2026). -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%87%AE%F0%9F%87%B1%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%B0%F0%9F%87%B7%F0%9F%87%B9%F0%9F%87%BC%F0%9F%87%A8%F0%9F%87%B3%F0%9F%87%AD%F0%9F%87%B0%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%BA%F0%9F%87%B8%F0%9F%87%A8%F0%9F%87%A6&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=np198" />
+  <link rel="stylesheet" href="assets/style.css?v=np199" />
 </head>
 <body>
   <!-- np164: פתיח הלוגו — סינכרוני כדי שיכסה את המסך לפני הציור הראשון; רק בבית, פעם לביקור -->
-  <script src="assets/intro.js?v=np198"></script>
+  <script src="assets/intro.js?v=np199"></script>
   <a class="skip-link" href="#main">דלג לתוכן</a>
 
   <!-- np117: כותרת "לוח המסחר" — שורה אחת: לוגו · 6 טאבים · חיפוש · מצב כהה · טלגרם · שעון.
@@ -80,9 +80,10 @@
     <div class="wrap" id="np-heat-wrap"><div id="np-heat" aria-label="מפת חום סקטוריאלית"></div></div>
   </div>
 
-  <!-- הבהרה משפטית קצרה (np131, 11.10.2026): בכל הטאבים, מעל התוכן; נסגרת ל-30 יום במכשיר (localStorage) -->
+  <!-- הבהרה משפטית (np131 → np199, 14.11.2026): בכל הטאבים, מעל התוכן. סגירה מקטינה אותה לשורה קבועה עם קישור (לא מעלימה) ל-30 יום במכשיר -->
   <div id="legal-strip" class="wrap legal-strip" role="note" hidden>
-    <span>⚠️ המידע באתר הוא שיקוף נתונים וניתוח אוטומטי לצורכי מידע בלבד — לא ייעוץ השקעות ולא המלצה. <a href="legal.html">ההבהרה המלאה</a></span>
+    <span class="ls-full">⚠️ האתר מציג מידע וניתוחים כלליים לצורכי מחקר ולימוד. מפעיל האתר אינו בעל רישיון ייעוץ השקעות. התוכן אינו מותאם לנתוניך ולצרכיך ואינו תחליף לייעוץ השקעות אישי. הנתונים והניתוחים עשויים להיות מעוכבים או שגויים. השקעה כרוכה בסיכון להפסד. <a href="legal.html">הבהרות, סיכונים וגילוי עניין אישי</a></span>
+    <span class="ls-min">מידע כללי למחקר ולימוד — לא ייעוץ השקעות. <a href="legal.html">הבהרות, סיכונים וגילוי עניין אישי</a></span>
     <button type="button" id="legal-strip-x" aria-label="סגור את ההודעה">✕</button>
   </div>
 
@@ -101,7 +102,7 @@
       <aside id="lead-rail" class="pan np-rail bd-meter" aria-label="The Edge Meter"></aside>
       <section id="home-story" class="pan bd-story" aria-label="כתבה"></section>
       <section id="home-cal" class="pan bd-cal" aria-label="אירועים"></section>
-      <section id="home-picks" class="pan bd-picks" aria-label="הנבחרות"></section>
+      <section id="home-picks" class="pan bd-picks" aria-label="מניות שעמדו בתנאי הסריקה"></section>
       <section id="tri-brief" class="pan bd-brief" aria-label="התדרוך"></section>
       <section id="tri-x" class="pan bd-pulse" aria-label="בזק מהרשת"></section>
       <section id="home-sect" class="pan bd-sect" aria-label="סקטורים"></section>
@@ -145,14 +146,14 @@
       <div id="head-stamp" class="foot-stamp"></div>
       <div id="health" class="health" aria-label="מצב עדכון המקורות"></div>
       <p class="disclaimer legal-foot">
-        <b>הבהרה:</b> המידע באתר הוא שיקוף של נתוני שוק ושל ניתוחים שנוצרים באופן אוטומטי, לצורכי מידע ולימוד בלבד. הוא אינו מהווה ייעוץ השקעות, שיווק השקעות או המלצה לפעולה כלשהי, ואינו תחליף לייעוץ אישי המתחשב בנתוניו ובצרכיו של כל אדם. מפעיל האתר אינו בעל רישיון ייעוץ השקעות ועשוי להחזיק בניירות ערך המוזכרים. השקעה בשוק ההון כרוכה בסיכון; כל החלטה על בסיס המידע באתר היא באחריות המשתמש בלבד.
-        <a href="legal.html">ההבהרה המלאה ותנאי השימוש</a>
+        <b>הבהרה:</b> האתר מציג מידע וניתוחים כלליים לצורכי מחקר ולימוד. מפעיל האתר אינו בעל רישיון ייעוץ השקעות. התוכן אינו מותאם לנתוניך ולצרכיך ואינו תחליף לייעוץ השקעות אישי. הנתונים והניתוחים עשויים להיות מעוכבים או שגויים. השקעה כרוכה בסיכון להפסד. הסריקות, הציונים והסיווגים באתר מתארים עמידה בתנאים שהוגדרו במודל; הם אינם קביעה בדבר כדאיות קנייה, מכירה או החזקה, ואינם הסתברות לרווח. מפעיל האתר עשוי להחזיק בניירות ערך המוזכרים באתר.
+        <a href="legal.html">הבהרות, סיכונים וגילוי עניין אישי</a>
       </p>
       <p class="credit" dir="ltr">© <span id="year"></span> The Daily Edge by <span class="brand-name">Nidam</span></p>
     </div>
   </footer>
 
-  <script src="assets/app.js?v=np198"></script>
+  <script src="assets/app.js?v=np199"></script>
   <!-- GoatCounter — סטטיסטיקת מבקרים (פרטי, ללא עוגיות); דשבורד: nidam.goatcounter.com -->
   <script data-goatcounter="https://nidam.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>

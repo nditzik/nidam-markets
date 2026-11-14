@@ -435,6 +435,11 @@ jobs:
         run: python scripts/build_weekly.py
         continue-on-error: true
 
+      # --- בדיקת ניסוח (14.11.2026): מסמן לביקורת טקסטים שנשמעים כהמלצה/הוראת פעולה → data/advice_lint.json (לא חוסם) ---
+      - name: Lint advice wording
+        run: python scripts/lint_advice.py
+        continue-on-error: true
+
       # --- מחוון בריאות: חותמת טריות לכל מקור (רץ אחרון, לפני commit) ---
       - name: Build health status
         run: python scripts/build_health.py

@@ -118,7 +118,7 @@ def compose(today_str):
     if mom_n:
         sysbits.append("מומנטום %d" % mom_n)
     if cand_n:
-        sysbits.append("מועמדים %d" % cand_n)
+        sysbits.append("סריקת תיקון %d" % cand_n)
     if sysbits:
         lines.append("🎯 המערכות הבוקר: " + " · ".join(sysbits))
 
@@ -169,7 +169,7 @@ def main():
     gates = {
         "מדדים": updated_today(ind.get("_meta"), today_str),
         "מומנטום": updated_today(mom.get("_meta"), today_str),
-        "מועמדים": updated_today(cand.get("_meta"), today_str),
+        "סריקת תיקון": updated_today(cand.get("_meta"), today_str),
         "תדרוך בוקר": ((brief.get("morning") or {}).get("dateLabel") == today_str),
     }
     missing = [k for k, ok in gates.items() if not ok]

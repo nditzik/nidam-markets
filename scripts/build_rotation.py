@@ -869,7 +869,10 @@ figcaption{font-size:12px;color:var(--text-3);text-align:center}
 @media (max-width:560px){h1{font-size:22px}.dials,.chg,.acts,.nums{grid-template-columns:1fr}.nums>div{border-inline-start:0}.nums>div+div{border-top:1px solid var(--border)}.ph .sub{display:none}body{padding:12px 12px 40px}}
 """
 
-V2_STATUS = {"held": "מוחזק", "cand": "מועמד", "out": "בחוץ"}
+# 14.11.2026 (התאמה משפטית): הסטטוסים מתארים סיווג במודל, לא החזקה בתיק. "held" = מאושר במודל (שם המפתח נשאר לתאימות).
+V2_STATUS = {"held": "מאושר במודל", "cand": "בבחינה", "out": "מחוץ למודל"}
+# תוויות ישנות בשורות ה-actions של narrative.json → ניסוח של מצב ותנאים
+V2_ROW_LABEL = {"פעולה": "מצב במודל", "ביטול": "מה יבטל את הסיווג", "טריגר": "תנאי לשינוי", "למה": "הנימוק"}
 V2_CHK = {"y": ("✓", "ok", "כן"), "n": ("✗", "no", "לא"), "p": ("◐", "part", "חלקי / מתהפך"), "n0": ("–", "none", "לא רלוונטי")}
 V2_CHK_HEAD = ["מאקרו תומך?", "חזק מול המדד?", "רוחב מאשר?", "שבועיים רצופים?"]
 V2_CLS_ORDER = {"ok": 0, "warm": 1, "bounce": 2, "broken": 3}
@@ -1048,11 +1051,11 @@ def render_html_v2(w, nar):
         name = S[k]["name_he"] if k in S else a.get("sector", k)
         st = (V.get(k) or {}).get("status", "out")
         kind = V2_KIND.get(a.get("kind"), "hold")
-        rws = "".join(f'<span class="k">{e(lab)}</span><span class="v{" do" if i == 0 else ""}">{txt}</span>' for i, (lab, txt) in enumerate(a.get("rows", [])))
+        rws = "".join(f'<span class="k">{e(V2_ROW_LABEL.get(lab, lab))}</span><span class="v{" do" if i == 0 else ""}">{txt}</span>' for i, (lab, txt) in enumerate(a.get("rows", [])))
         acts += f'<div class="act {kind}"><div class="who"><b>{e(name)}</b><span class="st st-{e(st)}">{V2_STATUS.get(st, st)}</span></div>{rws}</div>'
     frozen = f'<div class="frozen">{nar["frozen_note"]}</div>' if nar.get("frozen_note") else ""
     nums = "".join(f'<div><div class="l">{e(x.get("label", ""))}</div><span class="v">{e(x.get("value", ""))}</span><div class="s">{x.get("note", "")}</div></div>' for x in (nar.get("three_numbers") or [])[:3])
-    H.append(f'<section class="pan"><div class="ph"><span class="stp">4</span><h2>מה עושים השבוע</h2><span class="sub">רק סקטורים שיש בהם פעולה · פעולה · טריגר · ביטול</span></div>{frozen}<div class="acts">{acts}</div>'
+    H.append(f'<section class="pan"><div class="ph"><span class="stp">4</span><h2>מצב הסקטורים במודל — ותנאים לשינוי</h2><span class="sub">רק סקטורים מאושרים או בבחינה · מצב · נימוק · מה ישנה את הסיווג</span></div>{frozen}<div class="acts">{acts}</div>'
              + (f'<div class="nums">{nums}</div>' if nums else "") + "</section>")
     # ---- 5 · הסקטור הבא (7.11.2026)
     nx = next_sector(w, V)
@@ -1072,11 +1075,11 @@ def render_html_v2(w, nar):
                  + (f'<p class="crs-read">{nar["next_read"]}</p>' if nar.get("next_read") else "")
                  + f'<div class="nxg">{ncards}</div>'
                  '<details class="nx-how"><summary>איך מוצאים את הסקטור הבא</summary><div class="pb">'
-                 '<p><b>איפה מחפשים:</b> רק בסקטורים שלא מוחזקים ושלא מובילים כבר חצי שנה (דירוג חצי שנה 5 ומטה) — הבא הוא בדרך כלל מפגר שמתחיל להסתובב, לא מוביל קיים.</p>'
+                 '<p><b>איפה מחפשים:</b> רק בסקטורים שאינם מאושרים כרגע במודל ושלא מובילים כבר חצי שנה (דירוג חצי שנה 5 ומטה) — הבא הוא בדרך כלל מפגר שמתחיל להסתובב, לא מוביל קיים.</p>'
                  '<p><b>חמשת הסימנים, בסדר שבו הם בדרך כלל מופיעים:</b> (1) <b>הרוחב מתעורר</b> — אחוז המניות מעל ממוצע 50 קופץ ב-10 נקודות ומעלה בשבוע או חוצה את 50% (הכסף נכנס קודם לרוב המניות, לא רק לענקיות); '
                  '(2) <b>ה-CRS מתהפך</b> — הקו הכחול חוצה מעלה את הממוצע שלו, או עולה כשהפער מתרחב; (3) <b>הדירוג משתפר</b> — הדירוג החודשי טוב בשני מקומות לפחות מדירוג חצי השנה; '
                  '(4) <b>המחיר מעל הקווים</b> — סגירה מעל ממוצע 50, ועדיף גם מעל ממוצע 200; (5) <b>המאקרו בעד</b> — ריבית השוק, הנפט או הדולר עובדים לטובת הסקטור.</p>'
-                 '<p><b>הכלל:</b> 4–5 סימנים = מועמד מוביל; 2–3 = רשימת מעקב; פחות = עוד מוקדם. נכנסים רק אחרי שבוע שני של אישור (כלל השבועיים), ולא בשבוע שלפני דוחות כבדים בסקטור. ◐ = חלקי (למשל רוחב שעלה 5–9 נקודות, מחיר מעל אחד הקווים בלבד); – = לא רלוונטי או לא ידוע.</p>'
+                 '<p><b>הכלל:</b> 4–5 סימנים = מועמד מוביל; 2–3 = רשימת מעקב; פחות = עוד מוקדם. הסיווג עולה ל"מאושר" רק אחרי שבוע שני של אישור (כלל השבועיים), ולא בשבוע שלפני דוחות כבדים בסקטור. ◐ = חלקי (למשל רוחב שעלה 5–9 נקודות, מחיר מעל אחד הקווים בלבד); – = לא רלוונטי או לא ידוע.</p>'
                  '</div></details></section>')
     # ---- נספחים מקופלים
     acc = nar.get("accountability") or []
@@ -1087,7 +1090,7 @@ def render_html_v2(w, nar):
         acc_rows = "".join(f'<tr><td>{a}</td><td>{b}</td><td class="r {rcls(c)}">{c}</td></tr>' for a, b, c in acc)
         n_ok = sum(1 for _, _, c in acc if rcls(c) == "ok"); n_p = sum(1 for _, _, c in acc if rcls(c) == "part"); n_m = len(acc) - n_ok - n_p
         H.append(f'<details class="pan"><summary>מאזן הדוח הקודם ({dmy(w["prev_week"]["date"]) if w["prev_week"].get("date") else "—"}) · {n_ok} נכונות · {n_p} חלקיות · {n_m} פספוסים</summary><div class="pb">'
-                 f'<div class="tw"><table class="acc"><thead><tr><th>כתבנו</th><th>קרה</th><th>מאזן</th></tr></thead><tbody>{acc_rows}</tbody></table></div>'
+                 f'<div class="tw"><table class="acc"><thead><tr><th>נכתב בדוח הקודם (ציטוט)</th><th>קרה</th><th>מאזן</th></tr></thead><tbody>{acc_rows}</tbody></table></div>'
                  + (f'<p><b>הלקח:</b> {nar["acc_summary"]}</p>' if nar.get("acc_summary") else "") + "</div></details>")
     r, hm = w["radar"], w["heatmap"]
     ind = "".join(f'<p><b>{e(a)}.</b> {d} <span class="small">({b}: {c})</span></p>' for a, b, c, d in nar.get("industries", []))
@@ -1122,11 +1125,12 @@ def render_html_v2(w, nar):
 <p class="small"><b>מכ"ם — שינוי אלפא בולט (קבוצות ≥10 מניות):</b> {radar_txt}.</p></div></details>''')
     lims = list(nar.get("limitations", []))
     H.append(f'''<details class="pan"><summary>איך הדוח בנוי · הכללים · מגבלות · מקורות</summary><div class="pb">
-<p><b>מול המדד</b> = תשואת מדד הסקטור (Barchart, משוקלל-שווי) פחות תשואת S&amp;P 500 באותו טווח. <b>רוחב</b> = אחוז מניות הסקטור מעל ממוצע 50 הימים. <b>ארבע הבדיקות</b> הן כללי השיטה: המאקרו (ריבית השוק / נפט / דולר) עובד בעד הסקטור; הסקטור חזק מהמדד בשבוע ובחודש והעוצמה מול השוק מעל הממוצע שלה; הרוחב מעל 50% ועולה; המחיר מעל (או מתחת) קו המפתח בשתי סגירות שבועיות רצופות. <b>פסק הדין</b> נגזר מהן ומכללי המשמעת: כלל השבועיים (כל כניסה אחרי שני שבועות אישור), היציאה המשולשת (רוחב + מחיר + שפל, לא עד בודד), כלל הדוחות (אין כניסה בשבוע שלפני דוח; פוזיציה לתוך דוח לא מוגדלת), כלל הפרבולה (מחיר רחוק מדי מממוצע 20 = נגיסה בלבד), וטו העוצמה מול השוק, והשבוע השני גם לטריגר.</p>
+<p><b>מול המדד</b> = תשואת מדד הסקטור (Barchart, משוקלל-שווי) פחות תשואת S&amp;P 500 באותו טווח. <b>רוחב</b> = אחוז מניות הסקטור מעל ממוצע 50 הימים. <b>ארבע הבדיקות</b> הן כללי השיטה: המאקרו (ריבית השוק / נפט / דולר) עובד בעד הסקטור; הסקטור חזק מהמדד בשבוע ובחודש והעוצמה מול השוק מעל הממוצע שלה; הרוחב מעל 50% ועולה; המחיר מעל (או מתחת) קו המפתח בשתי סגירות שבועיות רצופות. <b>פסק הדין</b> הוא סיווג של המודל, שנגזר מהן ומכללי השיטה: כלל השבועיים (סיווג "מאושר" רק אחרי שני שבועות אישור), הביטול המשולש (רוחב + מחיר + שפל, לא סימן בודד), כלל הדוחות (הסיווג לא משתנה בשבוע שלפני דוח כבד), כלל הפרבולה (מחיר רחוק מדי מממוצע 20 = רמת אישור חלקית בלבד), וטו העוצמה מול השוק, והשבוע השני גם לתנאי. "רמת אישור" (1–3) = כמה מתנאי המודל התקיימו; היא אינה הנחיה לגודל השקעה.</p>
 <p><b>מגבלות:</b> מחושב מקובצי CSV בלבד (16 קובצי היסטוריה יומית, טבלת הרוחב, המכ"ם ומפת החום); הציון מ-3 מתוך 5 רכיבים (אין שיאים/שפל ואין סקרינרים בסט הקבצים); מפת החום שווה-משקל ומדדי הסקטור משוקללי-שווי — הפער הוא מידע. {" ".join(lims)}</p>
 <p class="small"><b>מקורות:</b> Barchart — hist_*.csv ×16 (Daily, 2 Years, סגירה {dmy(fri)}), breadth.csv, industry-group-rankings.csv, heatmap.csv (1-Month, ≥10 מניות), במייל של גרוק → data/rotation/{w["date"]}. לוח הדוחות: TradingView דרך האתר. {nar.get("sources_extra", "")}</p>
 </div></details>''')
-    H.append(f'<p class="foot">שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · הופק {dmy(w["date"])} מקובצי CSV בלבד. ניתוח לצרכים חינוכיים — תיאור, לא ייעוץ השקעות.</p>')
+    H.append(f'<p class="foot">שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · הופק {dmy(w["date"])} מקובצי CSV בלבד. מידע וניתוח כלליים לצורכי מחקר ולימוד. הסיווגים (מאושר / מתחמם / ריבאונד / נשבר) ורמות האישור מתארים עמידה בתנאים שהוגדרו במודל, ואינם קביעה בדבר כדאיות קנייה, מכירה או החזקה ואינם הנחיה לגודל השקעה. הציונים אינם הסתברות לרווח. התוכן אינו ייעוץ השקעות ואינו מותאם לאדם מסוים; השקעה כרוכה בסיכון להפסד.</p>'
+             + (f'<p class="foot">תיקון {e(nar.get("correctedAt", ""))}: {e(nar["correction"])}</p>' if nar.get("correction") else ""))
     summ = json.dumps(summary_block(w, nar), ensure_ascii=False).replace("</", "<\\/")
     title = f"לאן זרם הכסף השבוע? | שבוע {week_no} | {dmy(w['date'])}"
     page = (f'<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>{e(title)}</title>\n'
