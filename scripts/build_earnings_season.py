@@ -29,9 +29,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 OUT = os.path.join(DATA, "earnings_season.json")
 SP_CACHE = os.path.join(DATA, "sp500.json")
-HOLDINGS = os.path.join(DATA, "holdings.txt")
+WATCH = os.path.join(DATA, "season_watch.txt")
 # הטיקרים בתוך עמודות הציר (np112, אושר במוקאפ 2): עד 5 לשבוע — חברות התחנות (חוץ מהבנקים, שהם
-# כותרת) ואחריהן הגדולות במדד מעל $300B, לפי שווי; ובנוסף מניות המעקב מ-data/holdings.txt, בלי הבלטה.
+# כותרת) ואחריהן הגדולות במדד מעל $300B, לפי שווי; ובנוסף מניות המעקב מ-data/season_watch.txt, בלי הבלטה.
 TOP_PER_WEEK = 5
 BIG_CAP_B = 300
 TV_SCAN = "https://scanner.tradingview.com/america/scan"
@@ -278,18 +278,18 @@ def main(fetch=None, now=None):
             mine.add(str(r["ticker"]).upper())
 
     # מי מדווחת בכל שבוע (3.10.2026, איציק: "הטיקרים בתוך העמודות") → weeks[].tickers
-    held = set()
+    watch = set()
     try:
-        with open(HOLDINGS, encoding="utf-8") as f:
+        with open(WATCH, encoding="utf-8") as f:
             for line in f:
-                held.update(x.strip().upper() for x in line.split("#")[0].replace(",", " ").split() if x.strip())
+                watch.update(x.strip().upper() for x in line.split("#")[0].replace(",", " ").split() if x.strip())
     except OSError:
         pass
     members = set(syms)
     xtra = getattr(tv_dates, "extra", {})
     ms_syms = {x for key, _, group in MILESTONES if key != "banks" for x in group}
     cand = [[] for _ in range(WEEKS)]
-    extra_held = [[] for _ in range(WEEKS)]
+    extra_watch = [[] for _ in range(WEEKS)]
     for sym in tv:                       # סדר הסורק = שווי יורד
         if sym == "GOOG":                # אותה חברה כמו GOOGL
             continue
@@ -298,14 +298,14 @@ def main(fetch=None, now=None):
             continue
         i = min(WEEKS - 1, (d - start).days // 7)
         cap = (xtra.get(sym) or {}).get("capB") or 0
-        if sym in held:
-            extra_held[i].append(sym)
+        if sym in watch:
+            extra_watch[i].append(sym)
         elif sym in members and (sym in ms_syms or cap >= BIG_CAP_B):
             cand[i].append((0 if sym in ms_syms else 1, -cap, sym))
     for i, w in enumerate(weeks):
         top = sorted(cand[i])[:TOP_PER_WEEK]
         caps = {s_: -c for _, c, s_ in top}
-        w["tickers"] = sorted(caps, key=lambda s_: -caps[s_]) + extra_held[i]
+        w["tickers"] = sorted(caps, key=lambda s_: -caps[s_]) + extra_watch[i]
     def mile_day(sym):
         """כמו season_day, אבל לתחנות מתקבל גם דוח מהשבועיים שלפני תחילת העונה (טסלה 2.10) —
         הוא מצויר בקצה הימני של הציר כתחנה שכבר עברה."""
