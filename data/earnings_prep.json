@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "13/11/2026 18:16",
+  "updatedAt": "14/11/2026 14:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 4,
+   "daysTo": 3,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -20,19 +20,19 @@
     "logoBg": null
    },
    "tvConsensus": {
-    "eps": 2.469566,
-    "rev": 108721753983
+    "eps": 2.471056,
+    "rev": 108849389565
    },
    "consensus": {
-    "eps": 2.47323,
+    "eps": 2.47121,
     "epsLow": 2.25754,
     "epsHigh": 2.7,
-    "epsN": 44,
+    "epsN": 43,
     "epsYearAgo": 1.3,
-    "rev": 108813797290,
+    "rev": 108731903900,
     "revLow": 100481000000,
     "revHigh": 116251000000,
-    "revN": 46,
+    "revN": 45,
     "revYearAgo": 57006000000,
     "quarterEnd": "2026-10-31"
    },
@@ -41,7 +41,7 @@
     "down30": 1
    },
    "targets": {
-    "mean": 285.34528,
+    "mean": 283.30756,
     "high": 515.0,
     "low": 174.0,
     "n": 53
@@ -148,15 +148,11 @@
     }
    ],
    "price": {
-    "close": 166.19,
-    "date": "2026-11-12",
+    "close": 162.85,
+    "date": "2026-11-13",
     "high52": 239.24,
-    "ma50": 215.96,
+    "ma50": 214.65,
     "series": [
-     [
-      "2026-07-23",
-      208.76
-     ],
      [
       "2026-07-24",
       206.84
@@ -472,26 +468,30 @@
      [
       "2026-11-12",
       166.19
+     ],
+     [
+      "2026-11-13",
+      162.85
      ]
     ],
-    "off52": -30.5,
+    "off52": -31.9,
     "since": {
      "from": "2026-08-26",
-     "chg": -20.7,
-     "spy": -1.2
+     "chg": -22.3,
+     "spy": -1.5
     }
    },
-   "analystsAt": "2026-11-13T12:16+00:00",
+   "analystsAt": "2026-11-14T12:16+00:00",
    "yahooDate": "2026-11-17",
    "options": {
-    "asOf": "13/11 18:16",
-    "price": 158.7201,
+    "asOf": "13/11 22:46",
+    "price": 162.28,
     "exp": "2026-11-18",
-    "strike": 157.5,
-    "pct": 9.4,
-    "earn": 7.48,
+    "strike": 162.5,
+    "pct": 8.95,
+    "earn": 7.15,
     "preExp": "2026-11-16",
-    "prePct": 4.03
+    "prePct": 3.81
    },
    "avgMove": 4.8,
    "hasNote": true
@@ -501,7 +501,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 5,
+   "daysTo": 4,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -638,15 +638,11 @@
     }
    ],
    "price": {
-    "close": 32.0,
-    "date": "2026-11-12",
+    "close": 31.83,
+    "date": "2026-11-13",
     "high52": 41.62,
-    "ma50": 29.42,
+    "ma50": 29.38,
     "series": [
-     [
-      "2026-07-23",
-      27.2
-     ],
      [
       "2026-07-24",
       27.94
@@ -962,23 +958,27 @@
      [
       "2026-11-12",
       32.0
+     ],
+     [
+      "2026-11-13",
+      31.83
      ]
     ],
-    "off52": -23.1,
+    "off52": -23.5,
     "since": {
      "from": "2026-09-10",
-     "chg": 4.1,
-     "spy": -0.1
+     "chg": 3.5,
+     "spy": -0.5
     }
    },
-   "analystsAt": "2026-11-13T12:16+00:00",
+   "analystsAt": "2026-11-14T12:16+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "13/11 18:16",
-    "price": 32.245,
+    "asOf": "13/11 22:46",
+    "price": 31.765,
     "exp": "2026-11-20",
     "strike": 32.5,
-    "pct": 5.97,
+    "pct": 5.04,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -991,7 +991,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 5,
+   "daysTo": 4,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -1128,10 +1128,10 @@
     }
    ],
    "price": {
-    "close": 323.2,
+    "close": 322.24,
     "date": "2026-11-13",
     "high52": 419.91,
-    "ma50": 367.52,
+    "ma50": 367.5,
     "series": [
      [
       "2026-07-24",
@@ -1451,26 +1451,27 @@
      ],
      [
       "2026-11-13",
-      323.2
+      322.24
      ]
     ],
-    "off52": -23.0,
+    "off52": -23.3,
     "since": {
      "from": "2026-09-01",
-     "chg": -10.7
+     "chg": -11.0,
+     "spy": -1.0
     }
    },
-   "analystsAt": "2026-11-13T14:46+00:00",
+   "analystsAt": "2026-11-14T08:47+00:00",
    "yahooDate": "2026-11-18",
    "options": {
-    "asOf": "13/11 18:16",
-    "price": 315.737,
+    "asOf": "13/11 22:46",
+    "price": 322.45,
     "exp": "2026-11-20",
-    "strike": 315.0,
-    "pct": 11.28,
-    "earn": 10.71,
+    "strike": 320.0,
+    "pct": 11.16,
+    "earn": 11.11,
     "preExp": "2026-11-13",
-    "prePct": 1.77
+    "prePct": 0.52
    },
    "avgMove": 7.3,
    "hasNote": true
@@ -1480,7 +1481,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -1510,7 +1511,7 @@
     "down30": 1
    },
    "targets": {
-    "mean": 129.9,
+    "mean": 130.4,
     "high": 155.0,
     "low": 81.0,
     "n": 40
@@ -1617,15 +1618,11 @@
     }
    ],
    "price": {
-    "close": 126.19,
-    "date": "2026-11-12",
+    "close": 128.09,
+    "date": "2026-11-13",
     "high52": 134.2,
-    "ma50": 114.14,
+    "ma50": 114.54,
     "series": [
-     [
-      "2026-07-23",
-      108.4
-     ],
      [
       "2026-07-24",
       109.47
@@ -1941,26 +1938,30 @@
      [
       "2026-11-12",
       126.19
+     ],
+     [
+      "2026-11-13",
+      128.09
      ]
     ],
-    "off52": -6.0,
+    "off52": -4.6,
     "since": {
      "from": "2026-08-19",
-     "chg": 10.4,
-     "spy": -1.6
+     "chg": 12.1,
+     "spy": -1.9
     }
    },
-   "analystsAt": "2026-11-13T11:16+00:00",
+   "analystsAt": "2026-11-14T11:16+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "13/11 18:16",
-    "price": 127.96,
+    "asOf": "13/11 22:46",
+    "price": 127.76,
     "exp": "2026-11-20",
     "strike": 128.0,
-    "pct": 6.31,
-    "earn": 6.17,
+    "pct": 6.24,
+    "earn": 6.21,
     "preExp": "2026-11-13",
-    "prePct": 0.66
+    "prePct": 0.31
    },
    "avgMove": 6.1,
    "hasNote": true
@@ -1970,7 +1971,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 10,
+   "daysTo": 9,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -1979,8 +1980,8 @@
     "logoBg": null
    },
    "tvConsensus": {
-    "eps": 0.075,
-    "rev": 774167399
+    "eps": 0.072727,
+    "rev": 774167386
    },
    "consensus": {
     "eps": 0.15691,
@@ -2107,15 +2108,11 @@
     }
    ],
    "price": {
-    "close": 35.44,
-    "date": "2026-11-12",
+    "close": 34.83,
+    "date": "2026-11-13",
     "high52": 87.3,
-    "ma50": 40.73,
+    "ma50": 40.59,
     "series": [
-     [
-      "2026-07-23",
-      40.57
-     ],
      [
       "2026-07-24",
       40.15
@@ -2431,26 +2428,30 @@
      [
       "2026-11-12",
       35.44
+     ],
+     [
+      "2026-11-13",
+      34.83
      ]
     ],
-    "off52": -59.4,
+    "off52": -60.1,
     "since": {
      "from": "2026-08-05",
-     "chg": -23.8,
-     "spy": -1.6
+     "chg": -25.1,
+     "spy": -2.0
     }
    },
-   "analystsAt": "2026-11-13T11:16+00:00",
+   "analystsAt": "2026-11-14T11:16+00:00",
    "yahooDate": "2026-11-23",
    "options": {
-    "asOf": "13/11 18:16",
-    "price": 34.85,
+    "asOf": "13/11 22:46",
+    "price": 35.035,
     "exp": "2026-11-27",
-    "strike": 34.0,
-    "pct": 15.57,
-    "earn": 12.01,
+    "strike": 36.0,
+    "pct": 16.06,
+    "earn": 13.04,
     "preExp": "2026-11-20",
-    "prePct": 7.39
+    "prePct": 6.99
    },
    "avgMove": 15.6,
    "hasNote": false
@@ -2460,7 +2461,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 11,
+   "daysTo": 10,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -2597,15 +2598,11 @@
     }
    ],
    "price": {
-    "close": 371.17,
-    "date": "2026-11-12",
+    "close": 344.53,
+    "date": "2026-11-13",
     "high52": 588.4,
-    "ma50": 496.94,
+    "ma50": 493.5,
     "series": [
-     [
-      "2026-07-23",
-      439.34
-     ],
      [
       "2026-07-24",
       437.5
@@ -2921,26 +2918,30 @@
      [
       "2026-11-12",
       371.17
+     ],
+     [
+      "2026-11-13",
+      344.53
      ]
     ],
-    "off52": -36.9,
+    "off52": -41.4,
     "since": {
      "from": "2026-09-01",
-     "chg": -12.7,
-     "spy": -0.6
+     "chg": -18.9,
+     "spy": -1.0
     }
    },
-   "analystsAt": "2026-11-13T14:16+00:00",
+   "analystsAt": "2026-11-14T08:31+00:00",
    "yahooDate": "2026-11-24",
    "options": {
-    "asOf": "13/11 18:16",
-    "price": 332.995,
+    "asOf": "13/11 22:46",
+    "price": 342.83,
     "exp": "2026-11-27",
-    "strike": 335.0,
-    "pct": 17.17,
-    "earn": 8.78,
+    "strike": 345.0,
+    "pct": 16.46,
+    "earn": 9.38,
     "preExp": "2026-11-20",
-    "prePct": 11.0
+    "prePct": 10.08
    },
    "avgMove": 19.1,
    "hasNote": false
@@ -2968,14 +2969,14 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": null
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   },
   {
    "sym": "MU",
@@ -3050,7 +3051,11 @@
     "prePct": null
    },
    "avgMove": 3.8,
-   "reaction": null
+   "reaction": {
+    "day": "2026-11-13",
+    "move": -2.74,
+    "close": 370.5
+   }
   },
   {
    "sym": "ONDS",
@@ -3140,7 +3145,11 @@
     "prePct": null
    },
    "avgMove": 9.7,
-   "reaction": null
+   "reaction": {
+    "day": "2026-11-13",
+    "move": -6.24,
+    "close": 95.64
+   }
   },
   {
    "sym": "NVO",
@@ -3375,53 +3384,6 @@
     "day": "2026-11-03",
     "move": -1.65,
     "close": 175.4
-   }
-  },
-  {
-   "sym": "CVX",
-   "name": "Chevron Corporation",
-   "date": "2026-10-30",
-   "when": "before",
-   "report": {
-    "file": "data/reports/CVX_2026-07-31.html",
-    "date": "2026-07-31",
-    "title": "Chevron Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/CVX.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/CVX_2026-10-30.html",
-    "date": "2026-10-30",
-    "title": "CVX דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 4.83298,
-    "epsLow": 3.61,
-    "epsHigh": 5.18,
-    "epsN": 22,
-    "epsYearAgo": 1.85,
-    "rev": 62203925160,
-    "revLow": 53773000000,
-    "revHigh": 67224000000,
-    "revN": 10,
-    "revYearAgo": 49726000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 230.65,
-    "exp": "2026-10-30",
-    "strike": 230.0,
-    "pct": 2.42,
-    "earn": 2.42,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 2.5,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": 1.75,
-    "close": 235.52
    }
   }
  ]
