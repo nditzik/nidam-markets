@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np201";
+  var TA_VER = "np202";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -860,10 +860,21 @@
     var wrap = document.getElementById("tvm-wrap");
     if (!wrap) return;
     wrap.querySelectorAll(".tvm-tab").forEach(function (b) { b.classList.toggle("is-on", b.dataset.view === view); });
-    var ta = wrap.querySelector("#tvm-ta"), tv = wrap.querySelector("#tvm-chart"), note = wrap.querySelector(".tvm-note");
-    ta.hidden = view !== "ta"; tv.hidden = view !== "tv"; if (note) note.hidden = view !== "tv";
+    var ta = wrap.querySelector("#tvm-ta"), tv = wrap.querySelector("#tvm-chart"), note = wrap.querySelector(".tvm-note"), hub = wrap.querySelector("#tvm-hub");
+    ta.hidden = view !== "ta"; tv.hidden = view !== "tv"; if (note) note.hidden = view !== "tv"; if (hub) hub.hidden = view !== "hub";
     if (view === "tv") mountTvWidget(sym);
-    else if (!ta.dataset.ready) {
+    else if (view === "hub") {       // np202: "תמונה מלאה" — מה שיש באתר על המניה (ta_ui.js: __hubRender)
+      if (hub && !hub.dataset.ready) {
+        hub.dataset.ready = "1";
+        ensureTaUi(function (err) {
+          var hb = document.getElementById("tvm-hub");
+          if (!hb) return;
+          if (err || !window.__hubRender) { hb.innerHTML = '<div class="ta-msg">הטעינה נכשלה</div>'; return; }
+          window.__hubRender(sym, hb);
+        });
+      }
+    }
+    else if (view === "ta" && !ta.dataset.ready) {
       ta.dataset.ready = "1";
       ensureTaUi(function (err) {
         var box = document.getElementById("tvm-ta");
@@ -881,13 +892,13 @@
       '<div class="tvm-box" role="dialog" aria-modal="true" aria-label="גרף ' + esc(sym) + '">' +
         '<div class="tvm-head">' +
           '<b class="tvm-sym" dir="ltr">' + esc(sym) + "</b>" +
-          '<div class="tvm-tabs" role="tablist"><button type="button" class="tvm-tab" data-view="ta">ניתוח טכני</button><button type="button" class="tvm-tab" data-view="tv">גרף TradingView</button></div>' +
+          '<div class="tvm-tabs" role="tablist"><button type="button" class="tvm-tab" data-view="hub">תמונה מלאה</button><button type="button" class="tvm-tab" data-view="ta">ניתוח טכני</button><button type="button" class="tvm-tab" data-view="tv">גרף TradingView</button></div>' +
           '<span class="tvm-note" hidden>ממוצעים <b style="color:#43a047">20</b> · <b style="color:#1e88e5">50</b> · <b style="color:#e53935">200</b> + ווליום</span>' +
           '<a class="tvm-full" href="https://www.tradingview.com/symbols/' + encodeURIComponent(sym) +
             '/" target="_blank" rel="noopener">פתיחה ב-TradingView</a>' +
           '<button class="tvm-x" type="button" aria-label="סגירה">✕</button>' +
         "</div>" +
-        '<div class="tvm-body"><div id="tvm-ta" class="tvm-ta" hidden></div><div id="tvm-chart" hidden><div class="tvm-load">טוען גרף…</div></div></div>' +
+        '<div class="tvm-body"><div id="tvm-hub" class="tvm-ta" hidden></div><div id="tvm-ta" class="tvm-ta" hidden></div><div id="tvm-chart" hidden><div class="tvm-load">טוען גרף…</div></div></div>' +
       "</div>";
     document.body.appendChild(wrap);
     document.body.style.overflow = "hidden";
@@ -895,9 +906,23 @@
     wrap.querySelector(".tvm-x").addEventListener("click", closeChart);
     wrap.querySelectorAll(".tvm-tab").forEach(function (b) { b.addEventListener("click", function () { showChartView(sym, b.dataset.view); }); });
     document.addEventListener("keydown", escChart);
-    // np156: ברירת המחדל תמיד "ניתוח טכני" — לסמל בלי נרות שמורים ta_ui מציג ניתוח מקוצר מהסורק
-    showChartView(sym, "ta");
+    // np202: כשיש על המניה משהו באתר (סריקה, דוח, רכישת מנהלים) החלון נפתח על "תמונה מלאה"; אחרת על "ניתוח טכני"
+    // כמו קודם (np156), ו"תמונה מלאה" עוברת להיות הלשונית השנייה. כשל בטעינה = ניתוח טכני.
+    wrap.dataset.sym = sym;
+    var hub0 = wrap.querySelector("#tvm-hub"); hub0.hidden = false; hub0.innerHTML = '<div class="ta-msg">טוען…</div>';   // עד שמתברר איזו לשונית נפתחת
+    ensureTaUi(function (err) {
+      var w = document.getElementById("tvm-wrap");
+      if (!w || w.dataset.sym !== sym) return;
+      if (err || !window.__hubHas) { showChartView(sym, "ta"); return; }
+      window.__hubHas(sym, function (has) {
+        var w2 = document.getElementById("tvm-wrap");
+        if (!w2 || w2.dataset.sym !== sym || w2.querySelector(".tvm-tab.is-on")) return;
+        if (!has) { var tabs = w2.querySelector(".tvm-tabs"), hb = tabs.querySelector('[data-view="hub"]'), tv = tabs.querySelector('[data-view="tv"]'); tabs.insertBefore(hb, tv); }
+        showChartView(sym, has ? "hub" : "ta");
+      });
+    });
   }
+  window.__closeChart = closeChart;
   document.addEventListener("click", function (e) {
     var t = e.target;
     var a = t && t.closest ? t.closest('a[href*="tradingview.com/symbols/"]') : null;
@@ -5105,6 +5130,86 @@
   /* ===================== לוח המסחר — גוף הטאבים (np120, עיצוב מחדש שלב 6 חלק 2) =====================
      עזרים משותפים לחמשת הטאבים + הפאנלים האחים (מניות/חדשות/העולם) שמתמלאים כשהנתונים שלהם מגיעים.
      כל טאב = <div class="board"> (רשת 12) של <section class="pan"> עם כותרת .ph וגוף .pb — כמו הבית. */
+  /* ───── np202 (15.11.2026, איציק — מוקאפ https://claude.ai/artifact/K4fWbmDqfLGStiz22dsGCD): "מה השתנה" בבית ─────
+     פאנל אחד בין הכותרת+המד לאירועים: השוואה ליום המסחר הקודם (שתי השורות האחרונות ב-history.json) + מה שהתפרסם
+     מאז אותה סגירה (מהדורת הרשימה, רכישות מנהלים, ארבעת העמודים, ניתוחי דוחות, דוח הסקטורים, סיכום השבוע).
+     במחשב פתוח; בטלפון מקופל לשורת סיכום (details) — איציק: "אפשרות 1". הבחירה נשמרת עד רענון הדף (WC_OPEN),
+     והרינדור חוזר רק כשהתוכן השתנה (WC_SIG), כדי שהרענון של 5 דק' לא יסגור פאנל שנפתח. */
+  var SECTD = null, WC_OPEN = null, WC_SIG = "";
+  var WC_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  function wcDm(iso) { var p = String(iso || "").slice(0, 10).split("-"); return p.length === 3 ? (+p[2]) + "." + (+p[1]) : ""; }
+  function wcNum(v, d) { return Number(v).toLocaleString("en-US", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); }
+  function wcRow(label, a, b, dec, asPct, note) {
+    if (a == null || b == null) return "";
+    var dv = asPct ? (a ? (b / a - 1) * 100 : 0) : b - a;
+    var flat = Math.abs(dv) < (asPct ? 0.005 : 0.5);
+    var ds = flat ? "0" : (dv > 0 ? "+" : "−") + (asPct ? Math.abs(dv).toFixed(2) + "%" : wcNum(Math.abs(dv), 0));
+    return '<div class="wc-r"><span class="wc-k">' + label + '</span><span class="wc-v"><span class="num wc-prev" dir="ltr">' + wcNum(a, dec) +
+      '</span> ← <b class="num" dir="ltr">' + wcNum(b, dec) + "</b>" + (note || "") + '</span><span class="num wc-d ' + (flat ? "" : dv > 0 ? "up" : "down") + '" dir="ltr">' + ds + "</span></div>";
+  }
+  function wcItem(title, date, text, go) {
+    return '<a class="wc-i" href="#' + go + '" onclick="__goTab(\'' + go + '\');return false"><span class="wc-ih"><b>' + title + '</b><span class="num mute" dir="ltr">' + wcDm(date) + "</span></span>" +
+      '<span class="wc-it">' + text + "</span></a>";
+  }
+  function renderHomeChanged() {
+    var el = document.getElementById("home-changed");
+    if (!el) return;
+    var days = (HIST && HIST.days) || [];
+    if (days.length < 2) { el.hidden = true; return; }
+    var a = days[days.length - 2], b = days[days.length - 1];
+    var wa = meterWord(a.combined), wb = meterWord(b.combined);
+    var mkt = wcRow("המד", a.combined, b.combined, 0, false, ' <span class="wc-state" style="color:' + wb[1] + '">' + (wa[0] === wb[0] ? "נשאר " + wb[0] : wa[0] + " ← " + wb[0]) + "</span>") +
+      wcRow("טכני", a.tech, b.tech, 0) + wcRow("רוחב", a.breadth, b.breadth, 0) + wcRow("אופציות", a.flow, b.flow, 0) +
+      wcRow("S&amp;P 500", a.spx, b.spx, 0, true) + wcRow("VIX", a.vix, b.vix, 2, true);
+    var lists = [], nNew = 0;
+    if (PICKD && PICKD.date > a.date) {
+      var nw = (PICKD.picks || []).filter(function (p) { return !p.since; }).map(function (p) { return p.sym; });
+      var prevEd = ((PICKL && PICKL.editions) || []).filter(function (e) { return e.date === a.date; })[0];
+      nNew = nw.length;
+      lists.push(wcItem("עומדות בתנאים", PICKD.date, nw.length
+        ? (nw.length === 1 ? "מניה חדשה אחת: " : nw.length + " מניות חדשות: ") + '<span class="num" dir="ltr">' + nw.map(esc).join(" · ") + "</span>" +
+          (prevEd && !(prevEd.symbols || []).length ? ". במהדורת " + wcDm(a.date) + " לא עמדה אף מניה בתנאים." : "")
+        : ((PICKD.picks || []).length ? "אין מניות חדשות במהדורה." : "אף מניה לא עמדה בתנאים במהדורה."), "picks"));
+    }
+    if (INSDD && INSDD.day > a.date && INSDD.summary && INSDD.summary.n) {
+      var sm = INSDD.summary;
+      lists.push(wcItem("רכישות מנהלים", INSDD.day, '<span class="num" dir="ltr">' + sm.n + "</span> רכישות שדווחו, בסך " +
+        '<span class="num" dir="ltr">$' + (sm.total >= 1e6 ? (sm.total / 1e6).toFixed(1) + "M" : Math.round(sm.total / 1e3) + "K") + "</span>" +
+        (sm.ceo ? '; <span class="num" dir="ltr">' + sm.ceo + "</span> מהן של מנכ\"לים." : "."), "insider"));
+    }
+    var tr0 = TRAD && TRAD.reports && TRAD.reports[0];
+    if (tr0 && tr0.date > a.date) lists.push(wcItem("ארבעת העמודים", tr0.date, "דוח חדש" + ((Array.isArray(tr0.picks) ? tr0.picks.length : +tr0.picks) ? ': <span class="num" dir="ltr">' + (Array.isArray(tr0.picks) ? tr0.picks.length : +tr0.picks) + "</span> מניות בסריקה." : "."), "trades"));
+    var docs = [];
+    ((REPD && REPD.reports) || []).filter(function (r) { return r.added && r.added.slice(0, 10) > a.date; })
+      .sort(function (x, y) { return x.added < y.added ? 1 : -1; }).slice(0, 4).forEach(function (r) {
+        docs.push('<a class="wc-n" href="#reports" onclick="if(window.__openReport)window.__openReport(\'' + esc(r.file) + '\');return false"><span><b class="num" dir="ltr">' + esc(r.ticker || "") +
+          '</b> · ניתוח הדוח הרבעוני</span><span class="num mute" dir="ltr">' + wcDm(r.added) + "</span></a>");
+      });
+    var sc0 = SECTD && SECTD.reports && SECTD.reports[0];
+    if (sc0 && sc0.date > a.date) {
+      var wkm = /שבוע (\d+)/.exec(sc0.title || "");
+      docs.push('<a class="wc-n" href="#sectors" onclick="__goTab(\'sectors\');return false"><span>דוח הסקטורים' + (wkm ? " · שבוע " + wkm[1] : "") + '</span><span class="num mute" dir="ltr">' + wcDm(sc0.date) + "</span></a>");
+    }
+    if (WEEKLY && WEEKLY.narrative && WEEKLY.weekOf > a.date) {
+      var wm = /^(\d{1,2})\/(\d{1,2})\//.exec(WEEKLY.narrative.writtenAt || "");
+      docs.push('<a class="wc-n" href="#indices" onclick="__goTab(\'indices\');return false"><span>סיכום השבוע</span><span class="num mute" dir="ltr">' + (wm ? (+wm[1]) + "." + (+wm[2]) : wcDm(WEEKLY.weekOf)) + "</span></a>");
+    }
+    var none = '<p class="wc-none">אין שינוי מאז הסגירה הקודמת.</p>';
+    var pd = new Date(a.date + "T12:00:00");
+    var sum = "המד " + a.combined + " ← " + b.combined + (nNew ? " · " + (nNew === 1 ? "מניה חדשה" : nNew + " מניות חדשות") : "") + (docs.length ? " · " + (docs.length === 1 ? "ניתוח חדש" : docs.length + " ניתוחים") : "");
+    var html = '<details class="wc"><summary class="ph"><h2>מה השתנה · מאז סגירת ' + WC_DOW[pd.getDay()] + ' <span class="num" dir="ltr">' + wcDm(a.date) + "</span></h2>" +
+      '<span class="mute wc-sub">מתעדכן לבד עם כל סגירה</span><span class="mute wc-sum">' + sum + '</span><i class="wc-chev" aria-hidden="true"></i></summary>' +
+      '<div class="wc-cols"><div class="wc-col"><h3>השוק</h3>' + mkt + '</div><div class="wc-col"><h3>הרשימות והסריקות</h3>' + (lists.join("") || none) +
+      '</div><div class="wc-col"><h3>ניתוחים חדשים</h3>' + (docs.join("") || none) + "</div></div></details>";
+    el.hidden = false;
+    if (html === WC_SIG && el.firstChild) return;
+    WC_SIG = html;
+    el.innerHTML = html;
+    var det = el.querySelector("details");
+    det.open = WC_OPEN != null ? WC_OPEN : !(window.matchMedia && window.matchMedia("(max-width: 700px)").matches);
+    det.addEventListener("toggle", function () { WC_OPEN = det.open; });
+  }
+
   function panHd(h2, extra, go) { return '<div class="ph"><h2>' + h2 + "</h2>" + (extra || "") + (go || "") + "</div>"; }
   function bdSpan(n) { return ' style="grid-column:span ' + n + '"'; }
   function bdTile(l, v, s, cls) {
@@ -5338,7 +5443,7 @@
       fetchJSON("data/history.json")
         .then(function (d) {
           if (!freshD("history", d)) return;
-          HIST = d; computeDiffs();
+          HIST = d; computeDiffs(); renderHomeChanged();
           renderLead();   // חצי השינוי-היומי ברייל + הספארקליין
           if (INDD) renderIndicesDetail(document.getElementById("panel-indices"), INDD);
           refreshRotationWheel();
@@ -5355,7 +5460,7 @@
       // סיכום השבוע (11.9.2026): נבנה ע"י build_weekly.py כשסגירת שישי נקלטת,
       // ומוצג בבית מערב שישי עד תחילת השבוע הבא; אחר-כך נעלם מעצמו
       fetchJSON("data/weekly.json")
-        .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); renderLead(); refreshRotationWheel(); })
+        .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); renderLead(); renderHomeChanged(); refreshRotationWheel(); })
         .catch(function () {});
       // עונת הדוחות (3.10.2026): ציר מתחת לכותרת, רק בזמן העונה
       fetchJSON("data/earnings_season.json")
@@ -5395,7 +5500,7 @@
         .then(function (d) { if (!freshD("forecasts", d)) return; FCAST = d; if (INDD) renderLead(); renderForecastPan(); })
         .catch(function () {});
       fetchJSON("data/insider_daily.json")
-        .then(function (d) { if (!freshD("insdd", d)) return; INSDD = d; renderInsider(); renderStockSiblings(); noteSig("insider", { day: d.day, views: d.viewOrder }); })
+        .then(function (d) { if (!freshD("insdd", d)) return; INSDD = d; renderInsider(); renderStockSiblings(); renderHomeChanged(); noteSig("insider", { day: d.day, views: d.viewOrder }); })
         .catch(function () { if (!INSDD) emptyPanel(document.getElementById("panel-insider"), "🕵️", "Insider — בקרוב", ""); });
       fetchJSON("data/consensus.json")
         .then(function (d) { if (!freshD("cons", d)) return; CONSD = d; renderConsensus(); noteSig("consensus", d); })
@@ -5406,10 +5511,10 @@
         .then(function (r) { if (!freshD("prep", r)) return; PREPD = r[0]; PREPN = r[1]; PREPR = r[2]; renderPrep(document.getElementById("panel-prep")); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("prep", r[1]); noteSig("after", r[2]); })
         .catch(function () { if (!PREPD) renderPrep(document.getElementById("panel-prep")); });
       Promise.all([fetchJSON("data/picks.json"), fetchJSON("data/picks_ledger.json").catch(function () { return null; })])
-        .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); renderHomePicks(); noteSig("picks", r[0]); })
+        .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); renderHomePicks(); renderHomeChanged(); noteSig("picks", r[0]); })
         .catch(function () { if (!PICKD) emptyPanel(document.getElementById("panel-picks"), "✦", "עומדות בתנאי הסריקה — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); });
       fetchJSON("data/sectors.json")
-        .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
+        .then(function (d) { if (!freshD("sectors", d)) return; SECTD = d; renderHomeChanged(); renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
         .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
       Promise.all([fetchJSON("data/world.json"), fetchJSON("data/weekend.json").catch(function () { return null; })])
         .then(function (r) { WKND = r[1]; WORLDD = r[0]; renderWorld(document.getElementById("panel-world"), r[0]); renderHomeAround(); })
@@ -5444,10 +5549,10 @@
         .then(function (d) { if (!freshD("candidates", d)) return; CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); renderStockSiblings(); noteSig("candidates", d); })
         .catch(function () { if (!CANDD) emptyPanel(document.getElementById("panel-candidates"), "🎯", "סריקת תיקון — בקרוב", ""); });
       fetchJSON("data/trades.json")
-        .then(function (d) { if (!freshD("trades", d)) return; renderTrades(document.getElementById("panel-trades"), d); renderStockSiblings(); noteSig("trades", d); })
+        .then(function (d) { if (!freshD("trades", d)) return; renderTrades(document.getElementById("panel-trades"), d); renderStockSiblings(); renderHomeChanged(); noteSig("trades", d); })
         .catch(function () { if (!("trades" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-trades"), "💡", "סריקת ארבעת העמודים — בקרוב", ""); });
       fetchJSON("data/reports.json")
-        .then(function (d) { if (!freshD("reports", d)) return; REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("reports", d); })
+        .then(function (d) { if (!freshD("reports", d)) return; REPD = d; renderReports(document.getElementById("panel-reports"), d); renderHomeChanged(); renderFocus(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("reports", d); })
         .catch(function () { if (!REPD) emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
       fetchJSON("data/_health.json")
         .then(function (d) {

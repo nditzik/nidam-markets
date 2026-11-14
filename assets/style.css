@@ -2714,3 +2714,87 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .bd-src { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 12px; line-height: 1.45; color: var(--text-3); }
 .site-footer .src-foot { max-width: 90ch; font-size: 12px; line-height: 1.6; color: var(--text-3); margin: 0 0 8px; }
 .site-footer .src-foot b { color: var(--text-soft); font-weight: 600; }
+
+/* ── np202 (15.11.2026): "מה השתנה" בבית (#home-changed) + "תמונה מלאה" בחלון המניה (.hub) ── */
+#panel-home .bd-changed { grid-column: span 12; }
+#home-changed[hidden] { display: none; }
+.wc > summary { list-style: none; cursor: pointer; }
+.wc > summary::-webkit-details-marker { display: none; }
+.wc:not([open]) > summary { border-bottom: 0; }
+.wc-sum { display: none; font-weight: 400; }
+.wc-chev { margin-inline-start: auto; width: 8px; height: 8px; border: solid var(--text-3); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); transition: transform .15s; flex: none; }
+.wc[open] .wc-chev { transform: rotate(-135deg); }
+.wc-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.wc-col { padding: 12px 14px; min-width: 0; }
+.wc-col + .wc-col { border-inline-start: 1px solid var(--border); }
+.wc-col h3 { margin: 0 0 6px; font: 600 12px/1.4 inherit; font-family: inherit; color: var(--text-3); }
+.wc-r { display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--border); font-size: 14px; }
+.wc-k { color: var(--text-soft); }
+.wc-prev { color: var(--text-3); }
+.wc-state { font-size: 12px; margin-inline-start: 4px; }
+.wc-d { font-size: 13px; color: var(--text-3); text-align: left; }
+.wc-d.up { color: var(--up); } .wc-d.down { color: var(--down); }
+.wc-i, .wc-n { display: flex; padding: 8px 0; border-top: 1px solid var(--border); color: var(--text); text-decoration: none; }
+.wc-i { flex-direction: column; gap: 2px; }
+.wc-ih, .wc-n { justify-content: space-between; align-items: baseline; gap: 8px; }
+.wc-ih { display: flex; }
+.wc-ih b { font-weight: 600; }
+.wc-it { font-size: 13px; color: var(--text-soft); line-height: 1.45; }
+.wc-n { font-size: 14px; }
+.wc-i:hover b, .wc-n:hover > span:first-child { color: var(--accent); }
+.wc-none { margin: 0; padding: 8px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-3); }
+@media (max-width: 900px) {
+  .wc-cols { grid-template-columns: minmax(0, 1fr); }
+  .wc-col + .wc-col { border-inline-start: 0; border-top: 1px solid var(--border); }
+}
+@media (max-width: 700px) {
+  .wc > summary { padding-top: 6px; padding-bottom: 6px; }
+  .wc-sub { display: none; }
+  .wc-sum { display: block; flex-basis: 100%; order: 3; font-size: 12px; }
+  .wc[open] .wc-sum { display: none; }
+  .wc-n { min-height: 44px; align-items: center; padding: 0; }
+}
+
+.hub-hd { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 4px; }
+.hub-hd b { font-size: 16px; font-weight: 600; }
+.hub-hd .num { font-size: 15px; }
+.hub-about { margin: 0 0 12px; font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+.hub-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 16px; }
+.hub-t { border: 1px solid var(--border); border-radius: var(--radius-sm, 4px); padding: 9px 11px; min-width: 0; }
+.hub-t-l { font-size: 12px; color: var(--text-3); }
+.hub-t-v { font-size: 16px; font-weight: 600; line-height: 1.35; margin-top: 1px; }
+.hub-t-s { font-size: 12px; color: var(--text-soft); margin-top: 1px; line-height: 1.4; }
+.hub-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: 0 0 8px; }
+.hub-h h4 { margin: 0; font-size: 13px; font-weight: 600; color: var(--text-soft); }
+.hub-h span { font-size: 12px; color: var(--text-3); }
+.hub-row { display: grid; grid-template-columns: 150px 56px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14px; }
+.hub-t .num, .hub-row .num, .hub-sec .num { white-space: nowrap; }
+.hub-row > b { font-weight: 600; }
+.hub-row > .num { font-size: 13px; color: var(--text-3); text-align: right; }
+.hub-row > span:nth-child(3) { color: var(--text-soft); line-height: 1.5; }
+.hub-row a, .hub-sec a { color: var(--accent); text-decoration: none; font-size: 13px; white-space: nowrap; }
+.hub-row a:hover, .hub-sec a:hover { text-decoration: underline; }
+.hub bdi.up { color: var(--up); } .hub bdi.down { color: var(--down); }
+.hub-miss { margin: 8px 0 0; font-size: 13px; color: var(--text-3); line-height: 1.5; }
+.hub-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.hub-sec { border: 1px solid var(--border); border-radius: var(--radius-sm, 4px); padding: 12px 14px; min-width: 0; font-size: 14px; }
+.hub-sec h4 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--text-soft); }
+.hub-sec h4 + h4, .hub-sec p + h4, .hub-sec div + h4 { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.hub-sec p { margin: 0; color: var(--text-soft); line-height: 1.5; }
+.hub-sec p.mute { font-size: 13px; color: var(--text-3); }
+.hub-it { padding: 8px 0; border-top: 1px solid var(--border); }
+.hub-it:first-of-type { border-top: 0; padding-top: 0; }
+.hub-it-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.hub-it-h a { font-size: 14px; font-weight: 600; white-space: normal; }
+.hub-it-h .num { font-size: 13px; color: var(--text-3); }
+.hub-it p { margin-top: 3px; font-size: 13px; }
+.hub-chip { font-size: 12px; color: var(--accent); background: var(--accent-soft); border-radius: 3px; padding: 1px 7px; }
+.hub-foot { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-3); line-height: 1.6; }
+.hub-foot a { color: var(--accent); }
+@media (max-width: 700px) {
+  .hub-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hub-row { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; }
+  .hub-row > span:nth-child(3) { grid-column: 1 / -1; order: 3; font-size: 13px; }
+  .hub-row > a { grid-column: 1 / -1; order: 4; min-height: 28px; }
+  .hub-two { grid-template-columns: minmax(0, 1fr); }
+}

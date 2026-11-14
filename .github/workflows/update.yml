@@ -283,6 +283,12 @@ jobs:
         continue-on-error: true
         run: python scripts/build_consensus.py
 
+      # --- "תמונה מלאה" בחלון המניה (np202, 15.11.2026): לכל מניה — באילו סריקות הופיעה, ניתוחי הדוחות
+      #     ורכישות מנהלים שדווחו → data/stock_hub.json. בלי רשת, מהקבצים שכבר נבנו. ---
+      - name: Build stock hub (תמונה מלאה)
+        continue-on-error: true
+        run: python scripts/build_stock_hub.py
+
       # --- לקראת הדוח (2.10.2026): חברות עם ניתוח קודם באתר שמדווחות בשבועיים הקרובים —
       #     צפי אנליסטים, תגובות קודמות, התזוזה שהאופציות מתמחרות → data/earnings_prep.json.
       #     המילים נכתבות ע"י הרוטינה היומית (scripts/prompts/earnings_prep.md). ---
