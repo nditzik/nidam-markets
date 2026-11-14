@@ -1,8 +1,8 @@
 {
-  "generatedAt": "14/11/2026 19:31",
+  "generatedAt": "14/11/2026 19:42",
   "today": [
     {
-      "label": "מועמדים",
+      "label": "סריקת תיקון",
       "tab": "candidates",
       "time": "05:31",
       "arrived": true
@@ -49,7 +49,7 @@
       "key": "indices",
       "label": "מדדים",
       "updatedAt": "14/11/2026 19:30",
-      "ageHours": 0.0,
+      "ageHours": 0.2,
       "status": "ok",
       "detail": ""
     },
@@ -57,7 +57,7 @@
       "key": "momentum",
       "label": "מומנטום",
       "updatedAt": "14/11/2026 19:30",
-      "ageHours": 0.0,
+      "ageHours": 0.2,
       "status": "ok",
       "detail": ""
     },
@@ -73,7 +73,7 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "11/11/2026 14:33",
-      "ageHours": 77.0,
+      "ageHours": 77.2,
       "status": "stale",
       "detail": ""
     },
@@ -81,17 +81,28 @@
       "key": "briefing",
       "label": "תדרוך משקיעים",
       "updatedAt": "14/11/2026 15:00",
-      "ageHours": 4.5,
+      "ageHours": 4.7,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
-      "label": "מועמדים",
+      "label": "סריקת תיקון",
       "updatedAt": "14/11/2026 05:31",
-      "ageHours": 14.0,
+      "ageHours": 14.2,
       "status": "ok",
       "detail": ""
+    },
+    {
+      "key": "advice",
+      "label": "בדיקת ניסוח",
+      "status": "ok",
+      "updatedAt": "14/11/2026 19:42",
+      "detail": "אין ניסוחים לביקורת"
     }
-  ]
+  ],
+  "adviceLint": {
+    "n": 0,
+    "items": []
+  }
 }

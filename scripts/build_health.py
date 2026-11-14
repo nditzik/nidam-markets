@@ -22,7 +22,7 @@ SOURCES = [
     ("morning", "morning.json:.", "Barchart בוקר"),          # ":." = החותמת מ-dateLabel+time של המהדורה עצמה (לא _meta, שמתרענן בכל ריצת IMAP)
     ("premkt", "morning.json:premkt", "Barchart טרום מסחר"),   # מקונן: אותו דבר על d.premkt
     ("briefing", "briefing.json", "תדרוך משקיעים"),
-    ("candidates", "candidates.json", "מועמדים"),
+    ("candidates", "candidates.json", "סריקת תיקון"),
 ]
 
 # ספי טריות (שעות) — סובלני לסופ"ש/לילה
@@ -90,7 +90,7 @@ def today_updates(today_str):
 
     for fname, label, tab in (("indices.json", "מדדים", "indices"),
                               ("momentum.json", "מומנטום", "momentum"),
-                              ("candidates.json", "מועמדים", "candidates")):
+                              ("candidates.json", "סריקת תיקון", "candidates")):
         d = _load(fname)
         if isinstance(d, dict) and d.get("_status") != "pending":
             arrived, t = _meta_today(d, today_str)
@@ -147,6 +147,22 @@ def main():
         entry["status"] = "ok" if age <= OK_H else ("stale" if age <= STALE_H else "down")
         out["sources"].append(entry)
         print(f"[health] {label}: {entry['status']} ({stamp}, {age:.1f}h)")
+
+    # בדיקת הניסוח (lint_advice.py, 14.11.2026): צ'יפ במחוון — ירוק כשאין ממצאים, צהוב כשיש ניסוחים לביקורת
+    lint = load(os.path.join(DATA, "advice_lint.json")) if "load" in globals() else None
+    if lint is None:
+        try:
+            with open(os.path.join(DATA, "advice_lint.json"), encoding="utf-8") as lf:
+                lint = json.load(lf)
+        except Exception:
+            lint = None
+    if lint is not None:
+        n = lint.get("n") or 0
+        first = "; ".join("%s: «%s»" % (i.get("where", ""), i.get("term", "")) for i in (lint.get("items") or [])[:3])
+        out["sources"].append({"key": "advice", "label": "בדיקת ניסוח", "status": "stale" if n else "ok",
+                               "updatedAt": (lint.get("_meta") or {}).get("updatedAt"),
+                               "detail": ("%d ניסוחים לביקורת — %s" % (n, first)) if n else "אין ניסוחים לביקורת"})
+        out["adviceLint"] = {"n": n, "items": (lint.get("items") or [])[:10]}
 
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)

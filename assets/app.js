@@ -34,7 +34,7 @@
   var GROUPS = {
     market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"], ["unusual", "ימים חריגים"]], def: "indices" },
     calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["after", "אחרי הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
-    stocks:   { subs: [["consensus", "סיכום"], ["analyze", "נתח מניה"], ["picks", "הנבחרות"], ["candidates", "מועמדים"], ["momentum", "מומנטום"], ["trades", "הצעות לטרייד"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
+    stocks:   { subs: [["consensus", "סיכום"], ["analyze", "נתח מניה"], ["picks", "עומדות בתנאים"], ["candidates", "סריקת תיקון"], ["momentum", "מומנטום"], ["trades", "ארבעת העמודים"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
     news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" }
   };
   var SUB2TOP = {}, LAST_SUB = {};
@@ -369,7 +369,7 @@
   /* ---- הנבחרות בבית: 5 הראשונות כטבלה (מחיר · יום · 60 יום · סטופ · מיקום · יעד · מקור · רקורד) + רצועת היומן ---- */
   function bdPickSpark(p) {
     var c = p.closes || []; if (c.length < 2) return "";
-    var lo_ = p.stop || p.sup, hi_ = p.target || p.res, W = 100, H = 34, pad = 2;
+    var lo_ = p.sup, hi_ = p.res, W = 100, H = 34, pad = 2;
     var vals = c.slice(); if (lo_) vals.push(lo_); if (hi_) vals.push(hi_);
     var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), rng = (hi - lo) || 1;
     var Y = function (v) { return pad + (H - 2 * pad) * (1 - (v - lo) / rng); };
@@ -384,7 +384,7 @@
     var el = document.getElementById("home-picks");
     if (!el) return;
     var d = PICKD;
-    if (!d || !d.picks) { el.innerHTML = '<div class="ph"><h2>הנבחרות</h2>' + bdGo("picks", "הנבחרות") + '</div><div class="pb mute">המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט.</div>'; return; }
+    if (!d || !d.picks) { el.innerHTML = '<div class="ph"><h2>עומדות בתנאי הסריקה</h2>' + bdGo("picks", "הרשימה") + '</div><div class="pb mute">המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט.</div>'; return; }
     var g = d.gate || {}, gw = g.combined != null ? meterWord(g.combined) : ["", ""];
     var gateCls = { defense: "bad", neutral: "warn", green: "good" }[g.state] || "";
     var rows = d.picks.slice(0, 5).map(pickRowHtml).join("");
@@ -393,11 +393,11 @@
       var v = a5 ? a5.excess : (c ? c.excess : null), lbl = a5 ? "5 ימים" : (c ? "יום " + c.day : "נבנתה היום");
       return '<div><span class="mute">מהדורת <span class="num" dir="ltr">' + bdDM(e.date) + "</span> · " + lbl + "</span><span>" + bdPct(v) + (v != null ? ' <span class="mute">מול S&amp;P</span>' : "") + "</span></div>";
     }).join("");
-    el.innerHTML = '<div class="ph"><h2>הנבחרות · אישור מחיר לקנייה · מהדורת <span class="num" dir="ltr">' + bdDM(d.date) + "</span></h2>" +
-        (g.label ? '<span class="pill state ' + gateCls + '">השוק ' + esc(g.label) + (g.maxPos ? ' · עד <span class="num">' + esc(g.maxPos) + "</span> פוזיציות" : "") + (g.sizing ? " · " + esc(g.sizing) + " גודל" : "") + "</span>" : "") +
-        bdGo("picks", "כל " + d.picks.length + " הנבחרות והיומן") + "</div>" +
-      (d.picks.length ? '<div class="tbl"><table><caption class="sr-only">הנבחרות של מהדורת ' + esc(bdDM(d.date)) + '</caption><thead><tr><th scope="col">מניה</th><th scope="col">מחיר</th><th scope="col">יום</th><th scope="col">60 יום</th><th scope="col">סטופ</th><th scope="col">מיקום בטווח</th><th scope="col">יעד</th><th scope="col">מקור</th><th scope="col">רקורד</th></tr></thead><tbody>' + rows + "</tbody></table></div>"
-        : '<div class="pb mute">אף מניה לא קיבלה היום אישור מחיר. זה קורה, ולא מחפשים תחליף.</div>') +
+    el.innerHTML = '<div class="ph"><h2>עומדות בתנאי הסריקה · מהדורת <span class="num" dir="ltr">' + bdDM(d.date) + "</span></h2>" +
+        (g.label ? '<span class="pill state ' + gateCls + '" title="מצב מד השוק — הקשר בלבד">השוק ' + esc(g.label) + "</span>" : "") +
+        bdGo("picks", "כל " + d.picks.length + " המניות והמעקב") + "</div>" +
+      (d.picks.length ? '<div class="tbl"><table><caption class="sr-only">מניות שעמדו בתנאי הסריקה, מהדורת ' + esc(bdDM(d.date)) + '</caption><thead><tr><th scope="col">מניה</th><th scope="col">מחיר</th><th scope="col">יום</th><th scope="col">60 יום</th><th scope="col">אזור תמיכה</th><th scope="col">מיקום בטווח</th><th scope="col">אזור התנגדות</th><th scope="col">מקור</th><th scope="col" title="כמה מההופעות הקודמות של המניה בסריקה הסתיימו בעלייה אחרי 10 ימי מסחר — בדיקה לאחור">בעבר, 10 ימים</th></tr></thead><tbody>' + rows + "</tbody></table></div>"
+        : '<div class="pb mute">אף מניה לא עמדה היום בתנאי הסריקה. זה קורה.</div>') +
       (led ? '<div class="led">' + led + "</div>" : "");
   }
 
@@ -568,7 +568,7 @@
     ((MOMD && MOMD.stocks) || []).forEach(function (s) { if (s.symbol === sym) st = s; });
     if (st) hits.push(["momentum", "מומנטום · " + st.signal_count + " סיגנלים · " + (st.change_pct > 0 ? "+" : "") + st.change_pct + "%"]);
     ((CANDD && CANDD.candidates) || []).forEach(function (c) {
-      if (c.symbol === sym) hits.push(["candidates", "מועמדת #" + c.rank + " · כניסה " + c.entry + " · יעד " + Math.round(c.target * 100) / 100]);
+      if (c.symbol === sym) hits.push(["candidates", "סריקת תיקון #" + c.rank + (c.setup ? " · " + c.setup : "")]);
     });
     var MVL = { gainers: "עולות", losers: "יורדות", active: "פעילות" };
     Object.keys(MVL).forEach(function (g) {
@@ -607,7 +607,7 @@
       (d.companies || []).forEach(function (c) { push("דיווחים", "weekcal", c.name + " (" + c.ticker + ") · " + d.label); });
     });
     ((REPD && REPD.reports) || []).forEach(function (r) { push("דוחות", "reports", r.title + " (" + r.ticker + ")"); });
-    ((TRAD && TRAD.reports) || []).forEach(function (r) { push("הצעות לטרייד", "trades", r.title); });
+    ((TRAD && TRAD.reports) || []).forEach(function (r) { push("ארבעת העמודים", "trades", r.title); });
     ((INSDD && (INSDD.views && INSDD.views.week ? INSDD.views.week.rows : INSDD.rows)) || []).forEach(function (r) { push("Insider", "insider", r.t + " · " + r.co + " · " + r.role + " " + insMoney(r.value)); });
     if (BRIEF) ["morning", "afternoon"].forEach(function (k) {
       var s = BRIEF[k] || {};
@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np198";
+  var TA_VER = "np199";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1127,12 +1127,20 @@
     var v = (meta && (meta.updatedAt || meta.fetchedAt)) || "";
     return esc(url) + "?v=" + encodeURIComponent(v);
   }
+  /* np199: גילוי עניין אישי — data/disclosures.json (קובץ ידני של המפעיל; ריק = לא מוצג דבר). נחשף ל-ta_ui דרך window.__discl */
+  window.__discl = {};
+  fetch("data/disclosures.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+    ((d && d.items) || []).forEach(function (x) { if (x && x.sym && x.text) window.__discl[String(x.sym).toUpperCase()] = x; });
+  }).catch(function () {});
+  /* np199 (14.11.2026, התאמה משפטית): שתי הבהרות מקומיות, ליד סריקות/ציונים וליד ביצועי עבר */
+  var SCAN_DISC = "התוצאות מתארות עמידה בתנאים שהוגדרו במודל, ואינן קביעה בדבר כדאיות קנייה, מכירה או החזקה. הציונים אינם הסתברות לרווח. הנתונים אינם מתחשבים במצבו, במטרותיו או ביכולתו לשאת הפסדים של משתמש מסוים.";
+  var PAST_DISC = "ביצועי עבר ותוצאות בדיקה לאחור אינם מבטיחים תוצאות עתידיות. התוצאות תלויות בתקופה, במדגם, בהנחות החישוב ובנתונים הזמינים.";
   /* per-tab explanation text (uniform style via .tab-intro) */
   var TAB_INTROS = {
     morning: "שתי מהדורות Barchart שאיציק מקבל: דוח יומי ב-06:00 (סיכום המסחר האחרון וההקשר שמסביבו), ועדכון טרום-מסחר ב-14:00 (חוזי המדדים, מוקדי השוק ותנועות בולטות לפני הפתיחה).",
-    insider: "כשמנכ\"ל, סמנכ\"ל כספים או דירקטור קונים את המניה של החברה שלהם בכסף פרטי, זה אחד האיתותים הנקיים בשוק: למכור יש הרבה סיבות, לקנות יש רק אחת. הדוח סורק את כל קניות בעלי העניין בארה\"ב, מסנן את המשמעותיות ובודק כל מועמדת מול ההיסטוריה של אותם קונים ומול הגרף. זה מידע להתרשמות, לא המלצה.",
-    candidates: "כל בוקר אנחנו סורקים מאות מניות מומנטום ומחפשים מניות שעשו תיקון קטן חזרה לממוצע ועכשיו חוזרות לעלות — קונים את התיקון, לא את השיא. המערכת מדרגת ומציגה את הטובות ביותר, עם מחיר כניסה, סטופ ויעד. לצורכי לימוד בלבד, לא המלצה.",
-    momentum: "בכל בוקר אנחנו סורקים את שוק המניות האמריקאי ומאתרים את המניות עם המומנטום הכי חזק — אלה שמופיעות במקביל בכמה סורקים טכניים (חוזק מגמה, שיא 6 חודשים, TTM Squeeze, MACD Buy). ככל שיש יותר סיגנלים למניה — הסיכוי להמשך תנועה חזקה גבוה יותר. הרשימה היא כלי סינון בלבד ולא המלצת השקעה."
+    insider: "דיווחי Form 4 על קניות של נושאי משרה, דירקטורים ובעלי מניות גדולים במניות החברה שלהם. רכישה כזו היא עובדה מדווחת, ואינה מלמדת לבדה על כדאיות השקעה. הדוח סורק את כל קניות בעלי העניין בארה\"ב, מסנן את המשמעותיות ובודק כל מועמדת מול ההיסטוריה של אותם קונים ומול הגרף. זה מידע להתרשמות, לא המלצה.",
+    candidates: "כל בוקר הסריקה עוברת על מאות מניות מומנטום ומאתרת מניות שתיקנו חזרה לממוצע נע ושהנר האחרון שלהן חזר לעלות (תבנית של תיקון במגמת עלייה). הרשימה מדורגת לפי כללי הסריקה. " + SCAN_DISC,
+    momentum: "בכל בוקר אנחנו סורקים את שוק המניות האמריקאי ומאתרים את המניות עם המומנטום הכי חזק — אלה שמופיעות במקביל בכמה סורקים טכניים (חוזק מגמה, שיא 6 חודשים, TTM Squeeze, MACD Buy). מניה שמופיעה בכמה סורקים עומדת ביותר תנאים טכניים במקביל; זה לא אומר שהסיכוי לעלייה גבוה יותר. הרשימה היא כלי סינון בלבד ולא המלצת השקעה."
   };
   function tabIntro(key) {
     var t = TAB_INTROS[key];
@@ -1143,10 +1151,10 @@
     '<div class="tab-intro intro-rich">' +
       "<h3>איך זה עובד</h3>" +
       "<p>כל בוקר המערכת אוספת את נתוני היום — מחירים, רוחב השוק, מדד הפחד (VIX) וזרימת האופציות — ומנתחת אותם אוטומטית. במקום ערימת מספרים, היא מפיקה שלושה דברים:<br>" +
-      "<b>ניתוח</b> (מה קרה) · <b>מסקנה</b> (מה זה אומר) · <b>המלצה</b> (מה לעשות).</p>" +
+      "<b>ניתוח</b> (מה קרה) · <b>מסקנה</b> (איך המודל מפרש את זה) · <b>תנאים למעקב</b> (מה ישנה את התמונה).</p>" +
       "<h3>מה חשוב לדעת על השוק</h3>" +
       '<p>השוק לא נע בקו ישר. מעל פני השטח יש "עלה או ירד" — אבל מתחת מסתתרת הבריאות האמיתית: האם העלייה רחבה (הרבה מניות עולות) או צרה (רק מעטות), האם הכסף הגדול קונה או נערך להגנה, וכמה פחד יש בשוק. המערכת מסתכלת על כל אלה יחד — ונותנת תמונה כנה, כולל רמת הביטחון שלה.</p>' +
-      '<p class="intro-disc">⚠️ <b>הסתייגות:</b> המידע כאן הוא לצורך מידע והתרשמות בלבד, ואינו ייעוץ השקעות או המלצה לפעולה. השקעה בשוק ההון כרוכה בסיכון. כל החלטה — באחריותך.</p>' +
+      '<p class="intro-disc">⚠️ <b>הבהרה:</b> הציונים והסיווגים מתארים עמידה בתנאים שהוגדרו במודל. ציון אינו הסתברות לרווח, והמידע אינו ייעוץ השקעות ואינו מותאם לאדם מסוים. השקעה כרוכה בסיכון להפסד.</p>' +
     "</div>";
   function emptyPanel(el, emoji, title, note) {
     el.innerHTML =
@@ -1518,7 +1526,7 @@
     el.innerHTML =
       '<section class="card focus-card">' +
         '<div class="split-head"><span class="split-title">🎯 מניות במוקד</span>' +
-          '<span class="split-sub">מחירים חיים · מומנטום ומועמדות במקביל' +
+          '<span class="split-sub">מחירים חיים · מומנטום וסריקת התיקון במקביל' +
             (INDD && INDD.date ? ' · נכון ליום המסחר <span dir="ltr">' + fmtTradeDate(INDD.date) + "</span>" : "") +
           "</span></div>" +
         '<div class="fc-grid">' +
@@ -1535,7 +1543,7 @@
             : "";
           var tags = [];
           if (h.mom != null) tags.push('<span class="fc-t">מומנטום · <b>' + h.mom + " סיגנלים</b></span>");
-          if (h.cand != null) tags.push('<span class="fc-t">מועמדת <b>#' + h.cand + "</b></span>");
+          if (h.cand != null) tags.push('<span class="fc-t">סריקת תיקון <b>#' + h.cand + "</b></span>");
           var iso = EARNW[h.sym];
           if (iso) { var m = /-(\d{2})-(\d{2})$/.exec(iso); if (m) tags.push('<span class="fc-t fc-warn">📅 מדווחת ' + (+m[2]) + "." + (+m[1]) + "</span>"); }
           if (repSet[h.sym]) tags.push('<button class="fc-t fc-rep" onclick="__goTab(\'reports\')">📑 ניתוח</button>');
@@ -1714,7 +1722,7 @@
         var c = x.chg > 0 ? "up" : x.chg < 0 ? "down" : "";
         var sym = (x.symbol || "").toUpperCase(), sys = [];
         if (momSet[sym]) sys.push("מומנטום");
-        if (candSet[sym]) sys.push("מועמדת");
+        if (candSet[sym]) sys.push("סריקת תיקון");
         var sysTag = sys.length ? '<span class="mv-in">' + sys.join(" · ") + "</span>" : "";
         return '<li><a class="mv-sym" target="_blank" rel="noopener" href="https://www.tradingview.com/symbols/' +
           encodeURIComponent(x.symbol) + '/" title="פתח ב-TradingView">' + esc(x.symbol) + "</a>" +
@@ -2339,7 +2347,7 @@
         // np132: action עם " · " = רשימת "למה לשים לב השבוע"; אחרת שורת "מה עושים" כמו קודם
         (eu.action ? (eu.action.indexOf(" · ") > 0
           ? '<p class="np-bottom np-watch-h">⚡ <b>למה לשים לב השבוע</b></p><ul class="np-watch">' + eu.action.split(" · ").map(function (x) { return "<li>" + esc(x.trim()) + "</li>"; }).join("") + "</ul>"
-          : '<p class="np-bottom">⚡ <b>מה עושים:</b> ' + esc(eu.action) + "</p>") : "") +
+          : '<p class="np-bottom">⚡ <b>למה לשים לב:</b> ' + esc(eu.action) + "</p>") : "") +
         (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
         ((eu.kind === "preview" && (eu.forecast || (FCAST && FCAST.current))) ? footPlain : foot);
       return;
@@ -2552,7 +2560,7 @@
           (nar.headline ? '<h3 class="wk-head">' + esc(nar.headline) + "</h3>" : "") +
           (nar.lead ? "<p class=\"wk-lead\">" + esc(nar.lead) + "</p>" : "") +
           [["מה הזיז את השוק", nar.news], ["לאן זרם הכסף", nar.sectors], ["הדוחות", nar.earnings], ["מאקרו", nar.macro],
-           ["הצפי שלנו מול מה שקרה", nar.forecast], ["הנבחרות", nar.picks], ["השבוע הבא", nar.lookahead]].map(function (p) {
+           ["הצפי שלנו מול מה שקרה", nar.forecast], ["הרשימה שעמדה בתנאים", nar.picks], ["השבוע הבא", nar.lookahead]].map(function (p) {
             return p[1] ? '<p class="wk-line"><b>' + p[0] + "</b> " + esc(p[1]) + "</p>" : "";
           }).join("") +
           (nar.version >= 2 && !nar.sectors ? '<p class="wk-line mute"><b>לאן זרם הכסף</b> דוח הסקטורים השבועי טרם הגיע — הסיכום ייכתב מחדש כשיגיע.</p>' : "") +
@@ -3092,7 +3100,7 @@
     }).join("");
     var r = c.recommendation || {};
     var concl = (c.conclusion ? '<p class="bd-concl">📌 ' + esc(c.conclusion) + "</p>" : "") +
-      (r.action ? '<div class="bd-reco"><p><b>מה עושים:</b> ' + esc(r.action) + "</p>" + (r.improve ? "<p><b>ישתפר אם:</b> " + esc(r.improve) + "</p>" : "") + (r.worsen ? "<p><b>יורע אם:</b> " + esc(r.worsen) + "</p>" : "") + "</div>" : "");
+      ((r.improve || r.worsen) ? '<div class="bd-reco"><p><b>תנאים לשינוי התמונה</b> (לפי המודל)</p>' + (r.improve ? "<p><b>ישתפר אם:</b> " + esc(r.improve) + "</p>" : "") + (r.worsen ? "<p><b>יורע אם:</b> " + esc(r.worsen) + "</p>" : "") + "</div>" : "");   // np199: r.action (הוראת פעולה מהדשבורד) לא מוצג
     var lightsMap = { trend: "מגמה", breadth: "רוחב", volatility: "תנודתיות", rotation: "רוטציה" };
     var lights = v.lights ? '<div class="lights">' + Object.keys(lightsMap).map(function (k) { return '<span class="light ' + esc(v.lights[k] || "") + '"><span class="dot"></span>' + lightsMap[k] + "</span>"; }).join("") + "</div>" : "";
     var scoreTiles = [["combined", "ציון משולב"], ["tech", "טכני"], ["breadth", "רוחב"], ["flow", "אופציות"]].map(function (p) {
@@ -3121,7 +3129,7 @@
       selling = '<p style="margin:0">' + esc(ro.stateLine || "") + "</p>" +
         '<div class="tbl"><table class="bd-tbl"><thead><tr><th>תאריך</th><th>שינוי %</th></tr></thead><tbody>' +
         ro.sellingDays.map(function (day) { return '<tr><td class="num" dir="ltr">' + esc(day.date) + '</td><td class="num down" dir="ltr">' + day.chg + "%</td></tr>"; }).join("") + "</tbody></table></div>" +
-        (ro.actionLine ? '<p class="stamp" style="margin:0">' + esc(ro.actionLine) + "</p>" : "");
+        '<p class="stamp" style="margin:0">יום מכירה = יום שבו S&amp;P 500 נסגר בירידה של יותר מ-0.5%. 4 ימים כאלה ומעלה ב-25 ימי מסחר מסומנים במודל כלחץ מכירות מצטבר.</p>';   // np199: ro.actionLine לא מוצג
     }
     var ai = aiBlocksHtml(d), flowQ = flowQuadHtml(d), ovp = optVsPriceHtml(d), big = bigTradesHtml(d), ca = claudeCardHtml(d), bt = d.bigTrades || {};
     var flowPill = s.flow != null ? '<span class="pill' + (fl.spxWarning && fl.spxWarning.active ? " state" : "") + '">ציון <span class="num">' + s.flow + "</span>" + (fl.spxWarning && fl.spxWarning.active ? " · אזהרת SPX" : "") + "</span>" : "";
@@ -3257,13 +3265,13 @@
       { key: "s4", emoji: "🔥", title: "4 סיגנלים", rows: base.filter(function (x) { return x.signal_count >= 4; }).sort(byAlpha) },
       { key: "s3", emoji: "⚡", title: "3 סיגנלים", rows: base.filter(function (x) { return x.signal_count === 3; }).sort(byAlpha) },
       { key: "s2", emoji: "✨", title: "2 סיגנלים", rows: base.filter(function (x) { return x.signal_count === 2; }).sort(byAlpha) },
-      { key: "dip", emoji: "📉", title: "כניסת דיפ", rows: base.filter(isDipEntry).sort(byAlpha) },
-      { key: "brk", emoji: "🚀", title: "כניסת פריצה", rows: base.filter(isBreakoutEntry).sort(byAlpha) },
+      { key: "dip", emoji: "📉", title: "תבנית דיפ", rows: base.filter(isDipEntry).sort(byAlpha) },
+      { key: "brk", emoji: "🚀", title: "תבנית פריצה", rows: base.filter(isBreakoutEntry).sort(byAlpha) },
       { key: "rev", emoji: "🔄", title: "מניות בהיפוך", rows: base.filter(isReversalEntry).sort(byAlpha) },
       // "מועמדים" (12.9.2026, בקשת איציק): כמו "מועמדות לטרייד" בדשבורד המומנטום —
       // Readiness ≥ 50 (מחושב ב-fetch_momentum.py, פורט של calcReadiness), עם ציון
       // קבצי ה-CSV שמהם כל מניה הגיעה (d._meta.files).
-      { key: "cand", emoji: "🎯", title: "מועמדים", cand: true,
+      { key: "cand", emoji: "🎯", title: "מוכנות גבוהה", cand: true,
         rows: pool.filter(function (x) { return (x.readiness || 0) >= 50; }).sort(function (a, b) { return (b.readiness - a.readiness) || ((b.wtd_alpha || 0) - (a.wtd_alpha || 0)); }).slice(0, 12) }   // 12 המובילות — כמו בדשבורד
     ];
     var firstNon = 0;
@@ -3309,7 +3317,7 @@
             '<td class="num">' + (dist == null ? "—" : '<span dir="ltr">' + (dist >= 0 ? "+" : "") + dist.toFixed(1) + "%</span>") + "</td>" +
             '<td class="sig-cell src-cell">' + srcChips(r.signals) + "</td></tr>";
         }).join("");
-        body = '<p class="stamp mom-note">כמו "מועמדות לטרייד" בדשבורד המומנטום: 12 המובילות עם Readiness ≥ 50 (RSI/Stoch בריאים, קרבה ל-MA50, נפח יחסי, סיגנלים, נר ירוק) · 🟢 70+ מוכנה · 🟡 50–69 מתקרבת · העמודה האחרונה: הסורקים (קבצי Barchart) שמהם המניה הגיעה</p>' +
+        body = '<p class="stamp mom-note">12 המניות עם ציון המוכנות (Readiness) הגבוה ביותר, 50 ומעלה. הציון מסכם תנאים טכניים (RSI/Stoch, קרבה ל-MA50, נפח יחסי, סיגנלים, נר ירוק) ואינו הסתברות לרווח · 🟢 70+ · 🟡 50–69 · העמודה האחרונה: הסורקים (קבצי Barchart) שמהם המניה הגיעה</p>' +
           '<div class="tbl"><table class="bd-tbl"><thead><tr>' +
           '<th class="num">Readiness</th><th>סימבול</th><th>שם</th><th class="num">מחיר</th><th class="num">שינוי</th><th class="num">RSI</th><th class="num">Stoch</th><th class="num">RVOL</th><th class="num">מ-MA50</th><th>מקור (קבצים)</th>' +
           "</tr></thead><tbody>" + crows + "</tbody></table></div>";
@@ -3352,7 +3360,7 @@
           bdTile("4 סיגנלים", String(n4), "בכל הסורקים") +
           bdTile("3 סיגנלים", String(n3), "") +
           bdTile("2 סיגנלים", String(n2), "") +
-          bdTile("מועמדות לטרייד", String(nCand), "Readiness 50 ומעלה") +
+          bdTile("מוכנות גבוהה", String(nCand), "Readiness 50 ומעלה") +
         "</div></div></section>" +
       '<section class="pan mom-pan"' + bdSpan(12) + '><div class="mom-hd">' + catHd(cats[firstNon]) + "</div>" +
         '<div class="pb mom-navwrap">' + nav + "</div>" + panels + "</section>" +
@@ -3625,7 +3633,7 @@
     var sub = "חוזים תמידיים של xyz על Hyperliquid · הפער מסגירת שישי · אינדיקציה, מחזור דק";
     return '<section class="wm-grp wk-grp"><h3 class="wm-rg">' + title + ' <span class="wm-rg-s">' + sub + "</span></h3>" +
       '<div class="wm-heat wk-heat">' + tiles + "</div>" +
-      (wk ? '<p class="wk-note">המחירים כאן הם חוזים על מחיר, לא מניות, במחזורים של מיליונים בודדים — מספיק לכיוון ולריכוז (מדד מול מניות ה-AI), לא לגודל התנועה. פערי סוף שבוע נסגרים לא פעם עד פתיחת החוזים בשיקגו (שני 01:00). עודכן ' + esc((w._meta || {}).updatedAt || "") + "</p>" : "") +
+      (wk ? '<p class="wk-note">המחירים כאן הם חוזים שנסחרים בזירה אחרת (Hyperliquid), במחזורים של מיליונים בודדים. הם אינם מחיר המניה או המדד הרשמי ואינם תחזית לפתיחת המסחר — אינדיקציה לכיוון ולריכוז (מדד מול מניות ה-AI) בלבד, לא לגודל התנועה. פערי סוף שבוע נסגרים לא פעם עד פתיחת החוזים בשיקגו (שני 01:00). עודכן ' + esc((w._meta || {}).updatedAt || "") + "</p>" : "") +
       "</section>";
   }
 
@@ -4008,8 +4016,14 @@
       return '<button type="button" class="tag ' + cls + (i === (sel || 0) ? " on" : "") + '" data-i="' + i + '" aria-pressed="' + (i === (sel || 0)) + '"><span class="num" dir="ltr">' + esc(lab(r)) + "</span></button>";
     }).join("") + "</div>";
   }
+  // np199: דוח שנכתב לפני התאמת הניסוח (14.11.2026) נשאר כמו שפורסם — עם פס שמסביר זאת
+  var REP_CUT = { sectors: "2026-11-14", trades: "2026-11-13" };
+  function repArchNote(file) {
+    var m = /(sectors|trades)-(\d{4}-\d{2}-\d{2})/.exec(file || "");
+    return m && m[2] < REP_CUT[m[1]] ? '<p class="rep-arch-note">ארכיון — הדוח מוצג כפי שפורסם, בנוסח שלפני 14.11.2026. ניסוחים של פעולה, כניסה או יציאה שמופיעים בו הם תיאור של כללי המודל באותה עת, לא המלצה.</p>' : "";
+  }
   function repFrame(file, meta, title) {
-    return '<div class="frame-scroll"><iframe class="brief-frame trd-frame rep-frame" src="' + bust(file, meta) + '" title="' + esc(title || "") +
+    return repArchNote(file) + '<div class="frame-scroll"><iframe class="brief-frame trd-frame rep-frame" src="' + bust(file, meta) + '" title="' + esc(title || "") +
       '" style="width:100%;min-height:640px" onload="__fitFrame(this)"></iframe></div>';
   }
   function repFull(file) { return '<a class="go" href="' + esc(file) + '" target="_blank" rel="noopener">מסך מלא</a>'; }
@@ -4343,18 +4357,18 @@
       var line = function (a) { return a.map(function (v, i) { return (i ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" "); };
       var ri = P.dates.indexOf(P.rampEnd), lastP = P.pf[n - 1], lastM = P.mkt[n - 1];
       var ramp = ri > 0 ? '<rect class="rmp" x="' + X(0).toFixed(1) + '" y="' + padT + '" width="' + (X(ri) - X(0)).toFixed(1) + '" height="' + (Hh - padT - padB) + '"/>' : "";
-      var dots = P.pf.map(function (v, i) { return '<circle class="pk-cum-d" cx="' + X(i).toFixed(1) + '" cy="' + Y(v).toFixed(1) + '" r="2.2"><title>' + bdDM(P.dates[i]) + ": התיק " + pkPct(v) + " · S&P 500 " + pkPct(P.mkt[i]) + "</title></circle>"; }).join("");
+      var dots = P.pf.map(function (v, i) { return '<circle class="pk-cum-d" cx="' + X(i).toFixed(1) + '" cy="' + Y(v).toFixed(1) + '" r="2.2"><title>' + bdDM(P.dates[i]) + ": הסל " + pkPct(v) + " · S&P 500 " + pkPct(P.mkt[i]) + "</title></circle>"; }).join("");
       var gap = Math.abs(Y(lastM) - Y(lastP)) < 12 ? (Y(lastM) >= Y(lastP) ? 14 : -8) : 4;
-      svg = '<svg class="pk-cum" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="תיק הנבחרות מול S&P 500">' + ramp +
+      svg = '<svg class="pk-cum" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="סל תיאורטי של הרשימה מול S&P 500">' + ramp +
         '<line class="z" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + Y(0).toFixed(1) + '" y2="' + Y(0).toFixed(1) + '"/>' +
         '<path class="mk" d="' + line(P.mkt) + '"/><path class="pk" d="' + line(P.pf) + '"/>' + dots +
         '<text class="lb pk" x="' + (W - padR + 6) + '" y="' + (Y(lastP) + 4).toFixed(1) + '">' + pkPct(lastP) + "</text>" +
         '<text class="lb mk" x="' + (W - padR + 6) + '" y="' + (Y(lastM) + gap).toFixed(1) + '">' + pkPct(lastM) + "</text>" +
         '<text class="ax" x="' + padL + '" y="' + (Hh - 6) + '">' + bdDM(P.dates[0]) + '</text><text class="ax" x="' + (W - padR) + '" y="' + (Hh - 6) + '" text-anchor="end">' + bdDM(P.dates[n - 1]) + "</text></svg>";
-      legend = '<div class="pk-cum-lg"><span><i class="pk"></i> תיק הנבחרות</span><span><i class="mk"></i> S&amp;P 500 (קנייה והחזקה)</span>' +
-        (ri > 0 ? '<span><i class="rmp"></i> כניסה הדרגתית (עד <bdi dir="ltr">' + bdDM(P.rampEnd) + "</bdi>)</span>" : "") + "</div>" +
-        '<p class="pk-cum-note">הכסף מחולק ל-<b class="num">' + h + '</b> חלקים שווים: כל יום חלק אחד קונה את מהדורת היום ומוכר אחרי <b class="num">' + h + "</b> ימים" +
-        (ri > 0 ? ", ולכן עד <bdi dir=\"ltr\">" + bdDM(P.rampEnd) + "</bdi> התיק עוד לא מושקע במלואו" : "") +
+      legend = '<div class="pk-cum-lg"><span><i class="pk"></i> סל תיאורטי של הרשימה</span><span><i class="mk"></i> S&amp;P 500 מאותו יום</span>' +
+        (ri > 0 ? '<span><i class="rmp"></i> בנייה הדרגתית (עד <bdi dir="ltr">' + bdDM(P.rampEnd) + "</bdi>)</span>" : "") + "</div>" +
+        '<p class="pk-cum-note">חישוב תיאורטי: סל שמחולק ל-<b class="num">' + h + '</b> חלקים שווים, כל יום חלק אחד עובר למהדורת היום ויוצא ממנה אחרי <b class="num">' + h + "</b> ימים, בלי עמלות, מיסים והחלקה" +
+        (ri > 0 ? ", ולכן עד <bdi dir=\"ltr\">" + bdDM(P.rampEnd) + "</bdi> הסל עוד לא מלא" : "") +
         '. הירידה הגדולה בדרך: <bdi dir="ltr">' + pkPct(P.maxDD) + "</bdi>.</p>";
     }
     var avgP = closed.reduce(function (a, e) { return a + e.avg[h].ret; }, 0) / closed.length;
@@ -4364,15 +4378,15 @@
     var rs = []; closed.forEach(function (e) { (e.symbols || []).forEach(function (s_) { var r = e.results && e.results[s_.sym]; if (r && r[h]) rs.push(r[h]); }); });
     var liveAvg = rs.length ? rs.reduce(function (a, r) { return a + r.ret; }, 0) / rs.length : null, liveWin = rs.length ? Math.round(rs.filter(function (r) { return r.ret > 0; }).length / rs.length * 100) : null;
     var btAvg = rec ? rec["avg" + h] : null, btWin = rec ? rec["win" + h] : null;
-    var promise = (btAvg != null || btWin != null) ? '<div class="pk-prom"><b>הבטחה מול ביצוע:</b> המבחן לאחור אמר ' + (btWin != null ? '<span class="num">' + btWin + "</span>% עלו" : "") + (btAvg != null ? (btWin != null ? " ו" : "") + 'ממוצע <bdi dir="ltr">' + pkPct(btAvg) + "</bdi>" : "") +
+    var promise = (btAvg != null || btWin != null) ? '<div class="pk-prom"><b>בדיקה לאחור מול מעקב בפועל:</b> הבדיקה לאחור הראתה ' + (btWin != null ? '<span class="num">' + btWin + "</span>% עלו" : "") + (btAvg != null ? (btWin != null ? " ו" : "") + 'ממוצע <bdi dir="ltr">' + pkPct(btAvg) + "</bdi>" : "") +
       " אחרי " + h + " ימים; בפועל עד כה " + (liveWin != null ? '<span class="num">' + liveWin + "</span>% ו" : "") + '<bdi dir="ltr">' + pkPct(liveAvg) + '</bdi> על <span class="num">' + rs.length + "</span> מניות. ככל שהמדגם גדל, המרחק בין השניים הוא התשובה לשאלה אם ההיסטוריה עוזרת.</div>" : "";
     // (3) ניצחונות לפי מהדורות
     var won = closed.filter(function (e) { return e.avg[h].excess > 0; }).length;
     var best = closed.slice().sort(function (a, b) { return b.avg[h].excess - a.avg[h].excess; })[0], worst = closed.slice().sort(function (a, b) { return a.avg[h].excess - b.avg[h].excess; })[0];
-    var wins = '<div class="pk-wins">ניצחו את השוק ב-<b class="num">' + won + '</b> מתוך <b class="num">' + closed.length + "</b> מהדורות שנסגרו" +
+    var wins = '<div class="pk-wins">עלו יותר מ-S&amp;P 500 ב-<b class="num">' + won + '</b> מתוך <b class="num">' + closed.length + "</b> מהדורות שנסגרו" +
       (best ? ' · הטובה: <span class="num" dir="ltr">' + bdDM(best.date) + '</span> <bdi dir="ltr">' + pkPct(best.avg[h].excess) + "</bdi> ביחס לשוק" : "") +
       (worst && worst !== best ? ' · הגרועה: <span class="num" dir="ltr">' + bdDM(worst.date) + '</span> <bdi dir="ltr">' + pkPct(worst.avg[h].excess) + "</bdi>" : "") + "</div>";
-    return '<div class="pk-rec-h"><b>ההיסטוריה</b> — תיק אמיתי: אם היית משקיע בכל מהדורה ומוכר אחרי ' + h + ' ימים</div>' + chips + svg + legend + wins + perEd + promise;
+    return '<div class="pk-rec-h"><b>ההיסטוריה</b> — חישוב תיאורטי: סל שמחליף כל מהדורה אחרי ' + h + ' ימים</div>' + chips + svg + legend + wins + perEd + promise;
   }
   function pkLedgerRecord() {
     var eds = (PICKL && PICKL.editions) || [];
@@ -4451,7 +4465,7 @@
       var dWon = doneEds.filter(function (e) { return e.avg[20].excess > 0; }).length, dAvg = avgOf("ret"), dEx = avgOf("excess");
       doneRow = '<tr class="pk-done-row"><td colspan="7"><button type="button" class="pk-done-btn" aria-expanded="' + PK_DONE_OPEN + '">' +
         '<span class="pk-done-t"><b class="num">' + doneEds.length + "</b> " + (doneEds.length === 1 ? "מהדורה שהסתיימה" : "מהדורות שהסתיימו") + " (20 ימים)</span>" +
-        '<span class="pk-done-s">ממוצע <b class="' + (dAvg > 0 ? "up" : dAvg < 0 ? "dn" : "") + '" dir="ltr">' + pkPct(dAvg) + '</b> · ביחס לשוק <bdi dir="ltr">' + pkPct(dEx) + "</bdi> · ניצחו את השוק ב-" +
+        '<span class="pk-done-s">ממוצע <b class="' + (dAvg > 0 ? "up" : dAvg < 0 ? "dn" : "") + '" dir="ltr">' + pkPct(dAvg) + '</b> · ביחס לשוק <bdi dir="ltr">' + pkPct(dEx) + "</bdi> · עלו יותר מהשוק ב-" +
         '<b class="num">' + dWon + "</b> מתוך " + '<b class="num">' + doneEds.length + "</b></span>" +
         '<span class="pk-done-go">' + (PK_DONE_OPEN ? "הסתר" : "הצג") + "</span></button></td></tr>";
     }
@@ -4459,12 +4473,12 @@
       var syms = (e.symbols || []).map(function (s) { return s.sym; });
       var old = isDone(e), hid = old && !PK_DONE_OPEN ? " hidden" : "";
       var main = (old && e === doneEds[doneEds.length - 1] ? doneRow : "") + '<tr class="pk-ed' + (old ? " pk-old" : "") + '" data-ed="' + i + '"' + hid + '><td><span dir="ltr">' + esc(secDate(e.date)) + "</span>" +
-        (e.spyEntry ? '<small class="pk-spy" dir="ltr" title="מחיר הכניסה של השוק — סגירת SPY ביום המהדורה">SPY ' + fmtNum(e.spyEntry, 2) + "</small>" : "") + "</td><td>" + syms.length + '<small class="pk-syms" dir="ltr">' + esc(syms.join(" ")) + "</small></td><td>" + esc(e.gateLabel || "") + "</td>" +
+        (e.spyEntry ? '<small class="pk-spy" dir="ltr" title="נקודת הייחוס של השוק — סגירת SPY ביום המהדורה">SPY ' + fmtNum(e.spyEntry, 2) + "</small>" : "") + "</td><td>" + syms.length + '<small class="pk-syms" dir="ltr">' + esc(syms.join(" ")) + "</small></td><td>" + esc(e.gateLabel || "") + "</td>" +
         spark(e.path) + H.map(function (h) { return cell(e.avg && e.avg[h], e.cur, h, true); }).join("") + "</tr>";
       var det = (e.symbols || []).map(function (s) {
         var rs = e.results && e.results[s.sym] || {};
         var stopped = H.some(function (h) { return rs[h] && rs[h].stopped; }) || (rs.cur && rs.cur.stopped);
-        return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + "</a>" + '<small class="pk-px-m">' + pxNow(s, rs, true) + "</small>" + (stopped ? '<small class="pk-stopped">נגעה בסטופ</small>' : "") + '</td><td>' + pxNow(s, rs) + "</td>" +
+        return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + "</a>" + '<small class="pk-px-m">' + pxNow(s, rs, true) + "</small>" + '</td><td>' + pxNow(s, rs) + "</td>" +
           spark(rs.path) + H.map(function (h) { return cell(rs[h], rs.cur, h); }).join("") + "</tr>";
       }).join("");
       return main + det;
@@ -4481,40 +4495,40 @@
     // np120: טאב מניות כרשת פאנלים — טבלת הנבחרות המלאה (כמו בבית, כל המניות) + רצועות הערות →
     // יומן ההכנות | הרקורד → מועמדים | מומנטום → הצעות לטרייד | Insider (הפאנלים האחים ב-renderStockSiblings)
     var d = PICKD, main;
-    if (!d || !d.picks) main = panHd("הנבחרות") + '<div class="pb mute">המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט.</div>';
+    if (!d || !d.picks) main = panHd("עומדות בתנאי הסריקה") + '<div class="pb mute">המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט.</div>';
     else {
       var g = d.gate || {}, r = d.record;
       var gateCls = { defense: "bad", neutral: "warn", green: "good" }[g.state] || "";
-      var rule = { defense: "עד 3 פוזיציות · חצי גודל · כניסה בשלישים · אופק 10 עד 20 יום", neutral: "עד 4 פוזיציות · שני שליש גודל · כניסה בשלישים · אופק 10 עד 20 יום", green: "עד 5 פוזיציות · גודל מלא · כניסה בשלישים · אופק 10 עד 20 יום" }[g.state] || "";
+      var rule = "המעקב מודד כל מניה 5, 10 ו-20 ימי מסחר אחרי המהדורה";
       var facts = [g.combined != null ? "ציון משולב <b class=\"num\">" + esc(g.combined) + "</b>" : "", g.breadth != null ? "רוחב <b class=\"num\">" + Math.round(g.breadth) + "%</b> מעל ממוצע 50" : "",
         g.sellDays != null ? "<b class=\"num\">" + esc(g.sellDays) + "</b> ימי מכירה בחודש" : "", g.flow != null ? "אופציות <b class=\"num\">" + esc(g.flow) + "</b>" : "",
         g.vix != null ? "VIX <b class=\"num\">" + Math.round(g.vix) + "</b> " + ({ green: "ירוק", yellow: "צהוב", red: "אדום" }[g.vixState] || "") : ""].filter(Boolean);
       var byGrp = {}; d.picks.forEach(function (p) { byGrp[p.grp] = (byGrp[p.grp] || 0) + 1; });
       var mix = Object.keys(byGrp).map(function (k) { return byGrp[k] + " " + (PK_GRP[k] || k); }).join(" · ");
-      var notes = (d.momOnly ? '<div class="pb mute s" style="padding-top:0">מהמומנטום בלבד: המועמדים לא הגיעו עד 08:00. כשיגיעו, המהדורה תיבנה מחדש משניהם.</div>' : "") +
+      var notes = (d.momOnly ? '<div class="pb mute s" style="padding-top:0">מהמומנטום בלבד: סריקת התיקון לא הגיעה עד 08:00. כשיגיעו, המהדורה תיבנה מחדש משניהם.</div>' : "") +
         (d.pending && d.pending.asOf > d.date ? '<div class="pb mute s" style="padding-top:0">מהדורת <span class="num" dir="ltr">' + esc(secDate(d.pending.asOf)) + "</span> ממתינה ל" + esc((d.pending.waiting || []).join(" ו")) + ".</div>" : "");
-      main = panHd('הנבחרות · אישור מחיר לקנייה · מהדורת <span class="num" dir="ltr">' + bdDM(d.date) + "</span>",
-          (g.label ? '<span class="pill state ' + gateCls + '">השוק ' + esc(g.label) + (g.maxPos ? ' · עד <span class="num">' + esc(g.maxPos) + "</span> פוזיציות" : "") + (g.sizing ? " · " + esc(g.sizing) + " גודל" : "") + "</span>" : "") +
+      main = panHd('עומדות בתנאי הסריקה · מהדורת <span class="num" dir="ltr">' + bdDM(d.date) + "</span>",
+          (g.label ? '<span class="pill state ' + gateCls + '" title="מצב מד השוק — הקשר בלבד">השוק ' + esc(g.label) + "</span>" : "") +
           (g.verdict ? '<span class="mute">' + esc(g.verdict) + "</span>" : "")) +
-        (d.picks.length ? picksTableHtml(d.picks) : '<div class="pb mute">אף מניה לא קיבלה היום אישור מחיר. זה קורה, ולא מחפשים תחליף.</div>') +
+        (d.picks.length ? picksTableHtml(d.picks) : '<div class="pb mute">אף מניה לא עמדה היום בתנאי הסריקה. זה קורה.</div>') +
         '<div class="led"><div><span class="mute">נפסלו</span><span>' + ((d.excluded || []).length ? d.excluded.map(function (x) { return '<b class="num" dir="ltr">' + esc(x.sym) + "</b> — " + esc(x.reason); }).join(" · ") : "אין") + "</span></div>" +
-          '<div><span class="mute">אופק</span><span>' + esc(rule || "10–20 יום · כניסה בשלישים · סטופ לא צמוד") + "</span></div>" +
-          '<div><span class="mute">המאגר</span><span>' + (d.momOnly ? "המומנטום בלבד" : "מועמדים ∪ מומנטום") + (d.poolSize ? ' · <span class="num">' + esc(d.poolSize) + "</span> מניות" : "") + (mix ? " · " + esc(mix) : "") + "</span></div>" +
+          '<div><span class="mute">חלון המדידה</span><span>' + esc(rule) + "</span></div>" +
+          '<div><span class="mute">המאגר</span><span>' + (d.momOnly ? "המומנטום בלבד" : "סריקת התיקון ∪ מומנטום") + (d.poolSize ? ' · <span class="num">' + esc(d.poolSize) + "</span> מניות" : "") + (mix ? " · " + esc(mix) : "") + "</span></div>" +
           '<div><span class="mute">מקור</span><span>' + (d.scanned ? 'נסרקו <span class="num">' + esc(d.scanned) + "</span> מניות" : "המנוע הטכני") + (facts.length ? " · " + facts.join(" · ") : "") + "</span></div></div>" + notes +
-        '<div class="led bd-how"><div><b>1. המאגר</b><span>סריקת המועמדים וסריקות המומנטום. רק מה שכבר באתר.</span></div>' +
-          '<div><b>2. השופט</b><span>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות עם "אישור מחיר לקנייה". "כניסה אפשרית" לא מספיק (נבדק לאחור: לא מנצח יום רגיל).' +
-            (rec ? ' <b>המבחן לאחור של האיתות</b> — <span class="num">' + esc(rec.symbols) + '</span> המניות שהגיעו אי-פעם לשלב הזה, שנה אחורה, <span class="num">' + esc(rec.n) + '</span> אישורים: ממוצע אחרי 5 ימים <b class="num" dir="ltr">' + pkPct(rec.avg5) + '</b> (<span class="num">' + esc(rec.win5) + '</span>% עלו), אחרי 10 <b class="num" dir="ltr">' + pkPct(rec.avg10) + '</b>' + (rec.excess10 != null ? ' (מול S&amp;P <bdi dir="ltr">' + pkPct(rec.excess10) + '</bdi>, <span class="num">' + esc(rec.win10) + '</span>% עלו)' : "") + ', אחרי 20 <b class="num" dir="ltr">' + pkPct(rec.avg20) + '</b>; ירידה ממוצעת בדרך <bdi dir="ltr">' + pkPct(rec.mae) + "</bdi>. מוטה לטובה: מניות שנבחרו במגמת עלייה." : "") + "</span></div>" +
-          '<div><b>3. הסינון</b><span>מדווחת בשבוע הקרוב יוצאת. מניה ששלושת האישורים הקודמים שלה נכשלו יוצאת.</span></div>' +
-          '<div><b>4. השער</b><span>מד השוק קובע כמה מותר: הגנה = עד 3 וחצי גודל. ירוק = עד 5.</span></div>' +
-          '<div><b>5. הסטופ והיעד</b><span>עזר בלבד, לא חלק מהמדידה. מניה מהסריקה — הסטופ והיעד של הסריקה. לשאר: סטופ 2.5 ATR מתחת לכניסה (במבחן לאחור נפגע ב-18% מהמקרים תוך 10 ימים ו-27% תוך 20, כמעט בלי לפגוע בתשואה; 1.5 ATR נפגע בחצי), יעד = ההתנגדות הקרובה אם היא לפחות פי 1.5 מהסיכון, אחרת פי 2 מהסיכון. היומן מודד בלי יציאה בסטופ.</span></div></div>' +
-        '<p class="stamp" style="margin:10px 14px">תיאור טכני של מצב המניות על פי נרות יומיים, לא ייעוץ השקעות. המספרים ההיסטוריים מבוססים על שנה אחת ועל מניות שנבחרו כשהן במגמת עלייה, ולכן מוטים לטובה. לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>';
+        '<div class="led bd-how"><div><b>1. המאגר</b><span>סריקת התיקון וסריקות המומנטום. רק מה שכבר באתר.</span></div>' +
+          '<div><b>2. התנאי</b><span>המנוע הטכני רץ על 500 נרות של כל מניה. נכנסות רק מניות שהתקיימו בהן תנאי אישור המחיר של המודל (נר חיובי שסגר מעל הגבוה הקודם, באזור תמיכה, במגמת עלייה). תבנית שעוד לא אושרה לא נכנסת.' +
+            (rec ? ' <b>בדיקה לאחור של התנאי</b> — <span class="num">' + esc(rec.symbols) + '</span> המניות שהגיעו אי-פעם לשלב הזה, שנה אחורה, <span class="num">' + esc(rec.n) + '</span> אישורים: ממוצע אחרי 5 ימים <b class="num" dir="ltr">' + pkPct(rec.avg5) + '</b> (<span class="num">' + esc(rec.win5) + '</span>% עלו), אחרי 10 <b class="num" dir="ltr">' + pkPct(rec.avg10) + '</b>' + (rec.excess10 != null ? ' (מול S&amp;P <bdi dir="ltr">' + pkPct(rec.excess10) + '</bdi>, <span class="num">' + esc(rec.win10) + '</span>% עלו)' : "") + ', אחרי 20 <b class="num" dir="ltr">' + pkPct(rec.avg20) + '</b>; ירידה ממוצעת בדרך <bdi dir="ltr">' + pkPct(rec.mae) + "</bdi>. זו בדיקה לאחור על שנה אחת, בלי עמלות ומיסים, ומוטה לטובה (מניות שכבר היו במגמת עלייה); אינה מבטיחה תוצאות עתידיות." : "") + "</span></div>" +
+          '<div><b>3. הסינון</b><span>מדווחת בשבוע הקרוב יוצאת. מניה ששלוש ההופעות הקודמות שלה הסתיימו בירידה יוצאת.</span></div>' +
+          '<div><b>4. ההקשר</b><span>מצב מד השוק (חיובי / זהיר / הגנתי) מוצג לצד הרשימה כהקשר בלבד. הוא לא מסנן מניות.</span></div>' +
+          '<div><b>5. הרמות</b><span>אזור תמיכה ואזור התנגדות = אזורי המחיר שהמנוע מזהה בנרות (אמצע האזור). תנודה יומית = התנועה היומית הממוצעת של המניה (ATR) באחוזים מהמחיר. אלה נתונים טכניים, לא תוכנית עסקה.</span></div></div>' +
+        '<p class="stamp" style="margin:10px 14px">' + SCAN_DISC + " לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>";
     }
     el.innerHTML = (d ? stamp(d._meta) : "") + '<div class="board">' +
       '<section class="pan bd-picks" id="pk-main"' + bdSpan(12) + ">" + main + "</section>" +
-      (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מהכניסה, ביחס ל-S&amp;P באותם ימים · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
-      (PICKL && (PICKL.editions || []).length ? '<section class="pan" style="grid-column:span 5;align-self:start">' + panHd("הרקורד", '<span class="mute">הנבחרות בפועל, מהיומן</span>') +
+      (d && PICKL && (PICKL.editions || []).length ? '<section class="pan"' + bdSpan(rec ? 7 : 12) + ">" + panHd("יומן ההכנות", '<span class="mute">כל המספרים מצטברים מסגירת יום המהדורה, ביחס ל-S&amp;P באותם ימים · לחיצה על מהדורה פותחת מניה-מניה</span>') + '<div class="pk-ledger-b">' + pkLedger(true) + "</div></section>" : "") +
+      (PICKL && (PICKL.editions || []).length ? '<section class="pan" style="grid-column:span 5;align-self:start">' + panHd("מעקב מאז הפרסום", '<span class="mute">מהיומן · לא בדיקה לאחור</span>') +
         '<div class="pb">' + pkLedgerRecord() +
-        '<p class="mute s" style="margin:8px 0 0">רק המניות שנכנסו לנבחרות, מהכניסה בסגירת יום המהדורה, בלי יציאה בסטופ (קנה והחזק). בכל עמודה נספרות רק מניות שסיימו את כל הימים שלה (5, 10 או 20 ימי מסחר) — מניה ביום 3 עדיין לא נספרת.</p>' +
+        '<p class="mute s" style="margin:8px 0 0">מעקב אחרי המניות שהופיעו ברשימה, מאז פרסום כל מהדורה: שינוי המחיר מסגירת יום המהדורה, שקול למניה, בלי עמלות, מיסים והחלקה ובלי שום יציאה בדרך. זה חישוב תיאורטי של רשימה, לא תיק שנוהל בפועל. בכל עמודה נספרות רק מניות שסיימו את כל הימים שלה (5, 10 או 20 ימי מסחר). ' + PAST_DISC + "</p>" +
         '<div id="pk-hist">' + pkLedgerHistory(rec) + "</div></div></section>" : "") +
       '<section class="pan" id="pk-cand"' + bdSpan(6) + '></section><section class="pan" id="pk-mom"' + bdSpan(6) + "></section>" +
       '<section class="pan" id="pk-trd"' + bdSpan(6) + '></section><section class="pan" id="pk-ins"' + bdSpan(6) + "></section></div>";
@@ -4563,24 +4577,24 @@
     function dn(iso) { return '<span class="num" dir="ltr">' + insDm(iso) + "</span>"; }
     function rg(a, b) { return '<span class="num" dir="ltr">' + insDm(a) + "–" + insDm(b) + "</span>"; }
     var srcRows = [
-      ["בנבחרות", sc.nb && "נכנסה למהדורה ב-" + rg(sc.nb.from, sc.nb.to) + " (שבועיים אחרונים). התאריך = המהדורה שבה נכנסה"],
-      ["מועמדת", sc.cand && "רשימת המועמדים, על סגירת " + dn(sc.cand.d)],
+      ["עמדה בתנאים", sc.nb && "הופיעה במהדורה ב-" + rg(sc.nb.from, sc.nb.to) + " (שבועיים אחרונים). התאריך = המהדורה הראשונה שבה הופיעה"],
+      ["סריקת תיקון", sc.cand && "תוצאות סריקת התיקון, על סגירת " + dn(sc.cand.d)],
       ["מומנטום", sc.mom && "קבצי " + dn(sc.mom.d) + " — שני סיגנלים ומעלה, או מוכנות 50 ומעלה"],
-      ["הצעות לטרייד", sc.fp && "הדוח של " + dn(sc.fp.d) + ", רק מניות שעברו את כל הבדיקות"],
+      ["ארבעת העמודים", sc.fp && "הדוח של " + dn(sc.fp.d) + ", רק מניות שעמדו בכל תנאי הסריקה"],
       ["מנהלים קנו", sc.ins && "קנייה בשוק הפתוח שדווחה ב-" + rg(sc.ins.from, sc.ins.to) + ". התאריך = יום הדיווח"],
-      ["סקטור מאושר / מתחמם", sc.sec && sc.sec.d && "דוח הרוטציה השבועי האחרון (" + dn(sc.sec.d) + ") — מתעדכן פעם בשבוע"]
+      ["הסקטור: מאושר / מתחמם במודל", sc.sec && sc.sec.d && "דוח הרוטציה השבועי האחרון (" + dn(sc.sec.d) + ") — מתעדכן פעם בשבוע"]
     ].filter(function (x) { return x[1]; }).map(function (x) {
       return '<div class="cs-src"><b>' + esc(x[0]) + "</b><span>" + x[1] + "</span></div>";
     }).join("");
     el.innerHTML = '<div class="board cs-board">' +
-      '<section class="pan"' + bdSpan(12) + ">" + panHd("סיכום · מניות שכמה מערכות בחרו", '<span class="mute">נכון לסגירת יום ' + wd + ' <span class="num" dir="ltr">' + insDm(d.asOf) + "</span></span>") +
+      '<section class="pan"' + bdSpan(12) + ">" + panHd("סיכום · מניות שהופיעו בכמה סריקות", '<span class="mute">נכון לסגירת יום ' + wd + ' <span class="num" dir="ltr">' + insDm(d.asOf) + "</span></span>") +
       '<div class="pb"><p class="cs-h">' + (d.n
-        ? (d.n > (d.rows || []).length ? "המובילות מתוך " : "") + d.n + " מניות שנבחרו על ידי " + d.minN + " מערכות ומעלה באתר"
-        : "השבוע אין מניה ש-" + d.minN + " מערכות באתר בחרו בה") + "</p>" +
-      '<p class="cs-dek">כל מערכת באתר בוחרת מניות לבד. כאן — המניות שכמה מהן הגיעו אליהן.</p>' +
+        ? (d.n > (d.rows || []).length ? "המובילות מתוך " : "") + d.n + " מניות שהופיעו ב-" + d.minN + " סריקות ומעלה באתר"
+        : "השבוע אין מניה שהופיעה ב-" + d.minN + " סריקות באתר") + "</p>" +
+      '<p class="cs-dek">כל סריקה באתר פועלת לפי כללים משלה. כאן — המניות שהופיעו בכמה מהן. הסריקות נשענות בחלקן על אותם נתוני מחיר, ולכן הופעה בכמה סריקות אינה בהכרח כמה ראיות עצמאיות.</p>' +
       (rows ? '<div class="cs-list">' + rows + "</div>" : "") + "</div></section>" +
       '<section class="pan"' + bdSpan(12) + ">" + panHd("מאיפה זה בא · ממתי עד מתי", "") +
-      '<div class="pb">' + srcRows + '<p class="mute s cs-foot">מתעדכן לבד בכל ריצה של האתר, כשהקבצים החדשים מגיעים. זו הצלבה בין מערכות, לא המלצה.</p></div></section></div>';
+      '<div class="pb">' + srcRows + '<p class="mute s cs-foot">מתעדכן לבד בכל ריצה של האתר, כשהקבצים החדשים מגיעים. ' + SCAN_DISC + "</p></div></section></div>";
   }
 
   // np188 (7.11.2026, איציק): הדוחות החודשיים (ספטמבר/אוקטובר, data/insider.json) הוסרו — הטאב = רכישות הפנים היומיות בלבד
@@ -4635,7 +4649,7 @@
     var when = wk ? '<span class="num" dir="ltr">' + insDm(v.from) + "–" + insDm(v.to) + "</span>"
       : '<span class="num" dir="ltr">' + esc(secDate(v.day || d.day)) + "</span>";
     var head = '<section class="pan ins-head"' + bdSpan(12) + ">" +
-      panHd("רכישות פנים · " + (wk ? "5 ימי מסחר" : insDm(v.day || d.day)), '<span class="mute">דיווחי Form 4 שהוגשו ב-' + when + " · רק קניות בשוק הפתוח, מכספם של המנהלים</span>") +
+      panHd("רכישות פנים · " + (wk ? "5 ימי מסחר" : insDm(v.day || d.day)), '<span class="mute">דיווחי Form 4 שהוגשו ב-' + when + " · רק קניות בשוק הפתוח (קוד P), כפי שדווחו</span>") +
       '<div class="pb">' + chips + (v.lead ? '<p class="ins-lead">' + esc(v.lead) + "</p>" : "") +
       '<div class="tiles">' +
         bdTile("רכישות", String(sm.n || 0), sm.excluded ? "ועוד " + sm.excluded + " מחוץ לספירה" : "") +
@@ -4668,7 +4682,7 @@
     // np189 (7.11.2026, איציק: "תחזיר את הטאבים של כל הרכישות לפי התאריכים"): אותם צ'יפים גם מעל הטבלה —
     // מאז np187 "חזרו השבוע" מפריד בין הראש (שם הצ'יפים) לטבלה
     var table = '<section class="pan"' + bdSpan(12) + ">" + panHd("כל הרכישות · " + (wk ? "5 ימי מסחר" : insDm(v.day || d.day)) + " · " + rows.length, '<span class="mute">לפי סכום · "היסטוריה" פותחת שנתיים של קניות ומכירות בחברה</span>') +
-      '<div class="pb ins-tw"><table class="bd-tbl ins-tbl"><thead><tr><th>מניה</th><th>מי קנה</th><th>סכום</th><th>קנה ב- · עד עכשיו</th><th>האחזקה שלו (מניות)</th><th>מהשיא השנתי</th><th>שווי</th><th>למה זה מעניין</th><th></th></tr></thead><tbody>' + tb + "</tbody></table>" +
+      '<div class="pb ins-tw"><table class="bd-tbl ins-tbl"><thead><tr><th>מניה</th><th>מי קנה</th><th>סכום</th><th>קנה ב- · עד עכשיו</th><th>האחזקה שלו (מניות)</th><th>מהשיא השנתי</th><th>שווי</th><th>מה בולט בנתונים</th><th></th></tr></thead><tbody>' + tb + "</tbody></table>" +
       '<p class="mute s ins-foot">הפס ב"מהשיא": שמאל = השפל השנתי, ימין = השיא, הנקודה = הסגירה האחרונה.' +
       (ck.received ? " בדיקת הנתונים: " + ck.received + " עסקאות בהיסטוריה" + (ck.invalid ? ", " + ck.invalid + " נפסלו כי המחיר לא תואם למניה הרגילה באותו יום" : ", כולן תאמו את המחיר באותו יום") + "." : "") + "</p></div></section>";
     var hl = (v.highlights || []).map(function (x) {
@@ -4676,7 +4690,7 @@
     }).join("");
     var site = (v.siteHits || []).length
       ? "גם באתר: " + v.siteHits.map(function (t) { return '<b class="num" dir="ltr">' + esc(t) + "</b>"; }).join(" · ") + " — התג בשורה."
-      : "אף אחת מהן לא בנבחרות, במועמדים או במומנטום.";
+      : "אף אחת מהן לא מופיעה בסריקות האחרות באתר.";
     var hlPan = '<section class="pan"' + bdSpan(7) + ">" + panHd("מה בולט", "") + '<div class="pb"><div class="ins-hls">' + hl + "</div>" +
       '<div class="ins-site"><b>חיתוך עם האתר:</b> <span>' + site + "</span></div></div></section>";
     // np186: כל הקניות במעקב, מקובצות לפי יום הדיווח (עד np185 רק 10 האחרונות — והממוצע חושב מהשורות שלא הוצגו)
@@ -4762,7 +4776,8 @@
       "<li>רק קנייה בשוק הפתוח (קוד P) — לא אופציות, לא מענקים, לא מכירות. קרנות סגורות, תעודות סל ו-SPAC מחוץ לספירה.</li>" +
       "<li>כל עסקה נבדקת מול טווח המחיר של המניה באותו יום; מחיר שלא תואם (למשל מניות בכורה) נפסל.</li>" +
       "<li>אשכול = שני קונים או יותר באותה חברה ב-30 יום. המעקב: 5/20/60 ימי מסחר מסגירת יום הדיווח, מול S&amp;P.</li>" +
-      "<li>תיאור של מה שהמנהלים עשו, לא המלצה.</li></ul>";
+      "<li>הקונה יכול להיות נושא משרה, דירקטור, בעל מניות גדול או ישות השקעה, וההחזקה יכולה להיות ישירה או עקיפה — התפקיד מופיע בכל שורה כפי שדווח.</li>" +
+      "<li>תיאור של עסקאות שדווחו. רכישה של בעל עניין אינה מלמדת לבדה על כדאיות השקעה.</li></ul>";
   }
   function insDetHtml(r) {
     var h = INSDD.history[r.t], st = h.stats || {};
@@ -4854,7 +4869,7 @@
     TRAD = d;
     var reps = (d && d.reports) || [];
     if (!reps.length) {
-      emptyPanel(el, "💡", "הצעות לטרייד — בקרוב", "הדוח הראשון בדרך.");
+      emptyPanel(el, "💡", "סריקת ארבעת העמודים — בקרוב", "הדוח הראשון בדרך.");
       return;
     }
     // מצגת הלימוד של השיטה (PDF) — שורה קבועה בראש הפאנל
@@ -4868,9 +4883,9 @@
     var r = (TRAD.reports || [])[i];
     if (!r) return;
     var reps = TRAD.reports || [], m = TRAD.method;
-    view.innerHTML = panHd("הצעות לטרייד · " + esc(r.title), '<span class="mute">סריקה יומית · נכון ל-<span class="num" dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span></span>", repFull(r.file)) +
+    view.innerHTML = panHd("סריקות ותבניות טכניות · " + esc(r.title), '<span class="mute">סריקה יומית · נכון ל-<span class="num" dir="ltr">' + esc(fmtTradeDate(r.date) || r.date) + "</span></span>", repFull(r.file)) +
       '<div class="pb">' + repChips("trd-tab", reps, function (x) { return fmtTradeDate(x.date) || x.date; }, i) +
-        (m ? '<a class="trd-method2" href="' + esc(m.url) + '" target="_blank" rel="noopener"><b>' + esc(m.title) + '</b> <span class="mute">· מצגת השיטה (PDF), מומלץ לקרוא לפני הסריקות</span></a>' : "") + "</div>" +
+        (m ? '<a class="trd-method2" href="' + esc(m.url) + '" target="_blank" rel="noopener"><b>' + esc(m.title) + '</b> <span class="mute">· מצגת השיטה (PDF), הסבר על הסריקות</span></a>' : "") + "</div>" +
       repFrame(r.file, TRAD._meta, r.title);
     bindRepChips(view, "trd-tab", showTrade);
   }
@@ -4945,13 +4960,13 @@
 
   function renderCandidates(el, d) {
     if (!d || d._status === "pending" || !d.candidates) {
-      emptyPanel(el, "🎯", "מועמדים — בקרוב", "הרשימה תופיע אחרי הסריקה הבאה.");
+      emptyPanel(el, "🎯", "סריקת תיקון — בקרוב", "הרשימה תופיע אחרי הסריקה הבאה.");
       return;
     }
     if (!d.candidates.length) {
       el.innerHTML = stamp(d._meta) +
-        '<div class="panel-empty"><span class="emoji">🎯</span><strong>אין מועמדים ל-<span dir="ltr">' +
-        esc(fmtTradeDate(d.date) || d.date || "") + "</span></strong><p style=\"margin:8px 0 0\">הסריקה לא מצאה איתותים היום.</p></div>";
+        '<div class="panel-empty"><span class="emoji">🎯</span><strong>אין תוצאות לסריקה של <span dir="ltr">' +
+        esc(fmtTradeDate(d.date) || d.date || "") + "</span></strong><p style=\"margin:8px 0 0\">אף מניה לא עמדה היום בתנאי הסריקה.</p></div>";
       return;
     }
     function n(v, dgts) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(dgts); }
@@ -4960,10 +4975,7 @@
         "<td>" + tvLink(c.symbol) + erBadge(c.symbol) + "</td>" +
         "<td>" + esc(c.setup || "") + "</td>" +
         '<td dir="ltr" class="num">' + n(c.entry, 2) + "</td>" +
-        '<td dir="ltr" class="num">' + n(c.stop, 2) + "</td>" +
-        '<td dir="ltr" class="num">' + n(c.target, 2) + "</td>" +
-        '<td dir="ltr" class="num ' + (c.risk_pct > 5 ? "down" : "") + '">' + n(c.risk_pct, 1) + "%</td>" +
-        '<td dir="ltr" class="num up">' + n(c.tp_pct, 1) + "%</td>" +
+        '<td dir="ltr" class="num">' + n(c.ext_atr, 2) + "</td>" +
         '<td dir="ltr" class="num">' + n(c.rvol, 2) + "</td>" +
         '<td dir="ltr" class="num ' + (c.hist_r >= 0 ? "up" : "down") + '">' + n(c.hist_r, 1) + "</td></tr>";
     }).join("");
@@ -4971,28 +4983,28 @@
     // שלב 7 (10.10.2026): פאנל ראשי (סגירה + 4 אריחים) · פאנל הטבלה · "איך זה עובד" מקופל
     var cs = d.candidates, tdy = candTradeDay(d), cloud = d._meta && d._meta.source === "nidam-cloud-scan";
     function med(arr) { arr = arr.filter(function (v) { return v != null && !isNaN(v); }).sort(function (a, b) { return a - b; }); return arr.length ? arr[Math.floor(arr.length / 2)] : null; }
-    var mRisk = med(cs.map(function (c) { return c.risk_pct; })), mTp = med(cs.map(function (c) { return c.tp_pct; }));
+    var mExt = med(cs.map(function (c) { return c.ext_atr; }));
     var posR = cs.filter(function (c) { return c.hist_r > 0; }).length;
     var runAt = d._meta && d._meta.updatedAt ? /(\d{1,2}\/\d{1,2})\/\d{4} (\d{1,2}:\d{2})/.exec(d._meta.updatedAt) : null;
     el.innerHTML = '<div class="board">' +
       '<section class="pan"' + bdSpan(12) + ">" +
-        panHd("מועמדים למסחר" + (tdy ? ' · סגירת <span class="num" dir="ltr">' + esc(fmtTradeDate(tdy)) + "</span>" : ""),
+        panHd("סריקת תיקון · תוצאות סריקה טכנית" + (tdy ? ' · סגירת <span class="num" dir="ltr">' + esc(fmtTradeDate(tdy)) + "</span>" : ""),
           '<span class="mute">' + (cloud ? "סריקה בענן" : "סריקת IBKR") + (runAt ? ' · רצה ב-<span class="num" dir="ltr">' + runAt[1].replace("/", ".") + '</span> בשעה <span class="num" dir="ltr">' + runAt[2] + "</span>" : "") + "</span>") +
         '<div class="pb"><div class="tiles">' +
-          bdTile("מועמדים", String(d.count || cs.length), d.shown && d.shown < d.count ? "מוצגים " + d.shown + " המובילים" : "") +
+          bdTile("עמדו בתנאים", String(d.count || cs.length), d.shown && d.shown < d.count ? "מוצגות " + d.shown + " הראשונות בדירוג" : "") +
           bdTile("נסרקו", cloud && d._meta.universe ? Number(d._meta.universe).toLocaleString("en-US") : "—", "מניות מומנטום") +
-          bdTile("סיכון חציוני", mRisk != null ? mRisk.toFixed(1) + "%" : "—", "מהכניסה עד הסטופ") +
-          bdTile("R היסטורי חיובי", '<span class="num">' + posR + '</span><small> מתוך ' + cs.length + "</small>", "ביצוע הסטאפ בשנתיים") +
+          bdTile("מתיחות חציונית", mExt != null ? mExt.toFixed(2) : "—", "מרחק מהממוצע, ביחידות ATR") +
+          bdTile("R היסטורי חיובי", '<span class="num">' + posR + '</span><small> מתוך ' + cs.length + "</small>", "בדיקה לאחור של התבנית, שנתיים") +
         "</div></div></section>" +
       '<section class="pan"' + bdSpan(12) + ">" +
-        panHd("הרשימה", '<span class="mute">לפי דירוג משולב · כניסה/סטופ/מטרה ברמות המערכת' + (mTp != null ? ' · יעד חציוני <span class="num" dir="ltr">' + mTp.toFixed(1) + "%</span>" : "") + "</span>") +
-        '<div class="tbl"><table class="bd-tbl"><caption class="sr-only">מועמדים למסחר</caption><thead><tr>' +
-        '<th scope="col">#</th><th scope="col">מניה</th><th scope="col">סטאפ</th>' +
-        '<th scope="col">כניסה</th><th scope="col">סטופ</th><th scope="col">מטרה</th>' +
-        '<th scope="col">סיכון</th><th scope="col">יעד</th><th scope="col">RVOL</th><th scope="col">R היסטורי</th>' +
+        panHd("הרשימה", '<span class="mute">לפי הדירוג המשולב של הסריקה · מחיר הייחוס = סגירת יום הסריקה</span>') +
+        '<div class="tbl"><table class="bd-tbl"><caption class="sr-only">תוצאות סריקת התיקון</caption><thead><tr>' +
+        '<th scope="col">#</th><th scope="col">מניה</th><th scope="col" title="הממוצע הנע שאליו המניה תיקנה">תבנית</th>' +
+        '<th scope="col">מחיר ייחוס</th><th scope="col" title="מרחק המחיר מהממוצע, ביחידות של תנודה יומית ממוצעת (ATR)">מתיחות (ATR)</th>' +
+        '<th scope="col" title="מחזור היום ביחס למחזור הממוצע">RVOL</th><th scope="col" title="בדיקה לאחור: התוצאה הממוצעת של אותה תבנית על המניה בשנתיים האחרונות, ביחידות של תנודתיות. אינה מבטיחה תוצאה עתידית">R היסטורי</th>' +
         "</tr></thead><tbody>" + rows + "</tbody></table></div></section>" +
       '<section class="pan"' + bdSpan(12) + '><details class="bd-exp"><summary>איך זה עובד</summary>' + tabIntro("candidates") +
-        '<p class="stamp" style="margin:0 14px 12px">' + (cloud ? "הסריקה רצה בענן אוטומטית אחרי שקובצי המומנטום מתעדכנים · " : "") + "R היסטורי = הביצוע של אותו סטאפ על המניה בשנתיים האחרונות, ביחידות של הסיכון (R) · לחיצה על טיקר פותחת את הניתוח הטכני</p></details></section>" +
+        '<p class="stamp" style="margin:0 14px 12px">' + (cloud ? "הסריקה רצה בענן אוטומטית אחרי שקובצי המומנטום מתעדכנים · " : "") + "R היסטורי = בדיקה לאחור של אותה תבנית על המניה בשנתיים האחרונות, ביחידות של תנודתיות (R), בלי עמלות ומיסים. " + PAST_DISC + " · לחיצה על טיקר פותחת את הניתוח הטכני</p></details></section>" +
       "</div>";
   }
 
@@ -5121,26 +5133,26 @@
     el.innerHTML = panHd("הצפי לשבוע", rec && rec.scored ? '<span class="mute">מאזן: <span class="num">' + rec.hits + '</span> מתוך <span class="num">' + rec.scored + '</span> פגיעות · <span class="num">' + (rec.inRange || 0) + "</span> בטווח</span>" : "") +
       '<div class="pb">' + (f ? forecastHtml(f) : "") + '<div id="fc-track-slot">' + track + "</div></div>";
   }
-  // np149 (איציק 24.10): סטופ ויעד לכל מניה (מהסריקה, או 2.5 ATR / התנגדות / 2R מ-build_picks) במקום תמיכה/התנגדות —
-  // הן בגרף. עזר למי שרוצה; היומן לא יוצא בסטופ. מהדורות ישנות בלי stop מחושב נופלות לתמיכה/התנגדות.
+  // np199 (14.11.2026, התאמה משפטית): בלי סטופ/יעד/סיכון-סיכוי — רק נתונים טכניים של המנוע: אזור התמיכה,
+  // אזור ההתנגדות והתנודה היומית הממוצעת (ATR). שדות stop/target במהדורות ישנות לא מוצגים.
   function pickRowHtml(p, i) {
-    var lo_ = p.stop || p.sup, hi_ = p.target || p.res, loL = p.stop ? (p.stopSrc || "סטופ") : "תמיכה", hiL = p.target ? (p.targetSrc || "יעד") : "התנגדות";
-    var riskPct = p.stop && p.price ? (p.price - p.stop) / p.price * 100 : null;
+    var lo_ = p.sup, hi_ = p.res;
     var pos = (lo_ && hi_) ? Math.max(0, Math.min(100, (p.price - lo_) / ((hi_ - lo_) || 1) * 100)) : null;
+    var atrPct = p.atr && p.price ? p.atr / p.price * 100 : null;
     var rec = p.rec || {}, dots = (rec.dots || []).map(function (x) { return '<i class="rd' + (x ? " w" : "") + '"></i>'; }).join("");
-    var src = (p.sources || []).map(function (s) { return '<span class="tag">' + esc(String(s.t || "").split(" #")[0]) + "</span>"; }).join(" ");
+    var src = (p.sources || []).map(function (s) { return '<span class="tag">' + esc(String(s.t || "").split(" #")[0].replace("מועמד", "סריקת תיקון")) + "</span>"; }).join(" ");
     return "<tr><td><a href=\"https://www.tradingview.com/symbols/" + encodeURIComponent(p.sym) + '/" class="tsym" target="_blank" rel="noopener"><span class="rank num">' + (i + 1) + "</span>" + esc(p.sym) + "</a>" +
         '<div class="mute nm">' + esc((p.name || "").replace(/ Inc\.?$| Corp.*$| and Company$|, Inc\.$/, "")) + (p.since ? ' · ברשימה מ-<span class="num" dir="ltr">' + esc(secDate(p.since)) + "</span>" : "") + "</div></td>" +
       '<td><span class="num" dir="ltr">' + fmtNum(p.price, 2) + "</span></td><td>" + bdPct(p.chg) + "</td>" +
       '<td class="sp-cell">' + bdPickSpark(p) + "</td>" +
-      '<td><span class="num down" dir="ltr">' + (lo_ != null ? fmtNum(lo_, 2) : "—") + '</span><div class="mute s"><bdi dir="ltr">' + esc(loL) + "</bdi>" + (riskPct != null ? ' · <bdi dir="ltr">−' + riskPct.toFixed(1) + "%</bdi>" : "") + "</div></td>" +
-      "<td>" + (pos != null ? '<div class="rng" role="img" aria-label="המחיר ב-' + pos.toFixed(0) + '% מהדרך בין סטופ ליעד"><b style="left:calc(' + pos.toFixed(0) + '% - 1px)"></b></div>' : "") + (p.rr != null ? '<div class="mute s">סיכון/סיכוי 1:<span class="num">' + esc(p.rr) + "</span></div>" : "") + "</td>" +
-      '<td><span class="num up" dir="ltr">' + (hi_ != null ? fmtNum(hi_, 2) : "—") + '</span><div class="mute s">' + esc(hiL) + (hi_ != null && p.price ? ' · <bdi dir="ltr">+' + ((hi_ / p.price - 1) * 100).toFixed(1) + "%</bdi>" : "") + "</div></td>" +
+      '<td><span class="num" dir="ltr">' + (lo_ != null ? fmtNum(lo_, 2) : "—") + "</span>" + (lo_ != null && p.price ? '<div class="mute s"><bdi dir="ltr">' + ((lo_ / p.price - 1) * 100).toFixed(1) + "%</bdi> מהמחיר</div>" : "") + "</td>" +
+      "<td>" + (pos != null ? '<div class="rng" role="img" aria-label="המחיר ב-' + pos.toFixed(0) + '% מהדרך בין אזור התמיכה לאזור ההתנגדות"><b style="left:calc(' + pos.toFixed(0) + '% - 1px)"></b></div>' : "") + (atrPct != null ? '<div class="mute s">תנודה יומית <bdi dir="ltr">±' + atrPct.toFixed(1) + "%</bdi></div>" : "") + "</td>" +
+      '<td><span class="num" dir="ltr">' + (hi_ != null ? fmtNum(hi_, 2) : "—") + "</span>" + (hi_ != null && p.price ? '<div class="mute s"><bdi dir="ltr">+' + ((hi_ / p.price - 1) * 100).toFixed(1) + "%</bdi> מהמחיר</div>" : "") + "</td>" +
       "<td>" + src + "</td>" +
-      "<td>" + dots + (rec.n ? '<div class="mute s"><span class="num">' + (rec.dots || []).reduce(function (a, b) { return a + b; }, 0) + "</span> מתוך <span class=\"num\">" + rec.n + "</span> עלו</div>" : '<div class="mute s">אישור ראשון</div>') + "</td></tr>";
+      "<td>" + dots + (rec.n ? '<div class="mute s"><span class="num">' + (rec.dots || []).reduce(function (a, b) { return a + b; }, 0) + "</span> מתוך <span class=\"num\">" + rec.n + "</span> עלו</div>" : '<div class="mute s">הופעה ראשונה</div>') + "</td></tr>";
   }
   function picksTableHtml(picks, cap) {
-    return '<div class="tbl"><table><caption class="sr-only">' + (cap || "הנבחרות") + '</caption><thead><tr><th scope="col">מניה</th><th scope="col">מחיר</th><th scope="col">יום</th><th scope="col">60 יום</th><th scope="col">סטופ</th><th scope="col">מיקום בטווח</th><th scope="col">יעד</th><th scope="col">מקור</th><th scope="col">רקורד</th></tr></thead><tbody>' +
+    return '<div class="tbl"><table><caption class="sr-only">' + (cap || "מניות שעמדו בתנאי הסריקה") + '</caption><thead><tr><th scope="col">מניה</th><th scope="col">מחיר</th><th scope="col">יום</th><th scope="col">60 יום</th><th scope="col">אזור תמיכה</th><th scope="col">מיקום בטווח</th><th scope="col">אזור התנגדות</th><th scope="col">מקור</th><th scope="col" title="כמה מההופעות הקודמות של המניה בסריקה הסתיימו בעלייה אחרי 10 ימי מסחר — בדיקה לאחור">בעבר, 10 ימים</th></tr></thead><tbody>' +
       picks.map(pickRowHtml).join("") + "</tbody></table></div>";
   }
   /* הפאנלים האחים בטאב מניות: מועמדים · מומנטום · הצעות לטרייד · Insider — תקצירים עם קישור ללשונית המלאה */
@@ -5150,13 +5162,13 @@
     if (ec) {
       var c = CANDD, rows = (c && c.candidates) || [], tdy = c && candTradeDay(c);
       ec.innerHTML = !rows.length
-        ? panHd("מועמדים למסחר", "", bdGo("candidates", "מועמדים")) + '<div class="pb mute">' + (c ? "אין מועמדים בסריקה האחרונה." : "טוען…") + "</div>"
-        : panHd("מועמדים למסחר" + (tdy ? ' · סגירת <span class="num" dir="ltr">' + esc(fmtTradeDate(tdy)) + "</span>" : ""),
-            '<span class="mute"><span class="num">' + (c.count || rows.length) + "</span> מועמדים" + (c._meta && c._meta.universe ? ' · נסרקו <span class="num">' + c._meta.universe + "</span> מניות בענן" : "") + "</span>", bdGo("candidates", "כל " + (c.shown || rows.length))) +
-          '<div class="tbl"><table class="bd-tbl"><thead><tr><th>#</th><th>מניה</th><th>סטאפ</th><th>כניסה</th><th>סטופ</th><th>יעד</th><th>סיכון</th><th>RVOL</th></tr></thead><tbody>' +
+        ? panHd("סריקת תיקון", "", bdGo("candidates", "הסריקה")) + '<div class="pb mute">' + (c ? "אף מניה לא עמדה בתנאים בסריקה האחרונה." : "טוען…") + "</div>"
+        : panHd("סריקת תיקון" + (tdy ? ' · סגירת <span class="num" dir="ltr">' + esc(fmtTradeDate(tdy)) + "</span>" : ""),
+            '<span class="mute"><span class="num">' + (c.count || rows.length) + "</span> עמדו בתנאים" + (c._meta && c._meta.universe ? ' · נסרקו <span class="num">' + c._meta.universe + "</span> מניות בענן" : "") + "</span>", bdGo("candidates", "כל " + (c.shown || rows.length))) +
+          '<div class="tbl"><table class="bd-tbl"><thead><tr><th>#</th><th>מניה</th><th>תבנית</th><th>מחיר ייחוס</th><th>מתיחות (ATR)</th><th>RVOL</th></tr></thead><tbody>' +
           rows.slice(0, 6).map(function (x) {
             return '<tr><td class="num mute">' + x.rank + "</td><td>" + tvLink(x.symbol) + erBadge(x.symbol) + '</td><td><span class="tag">' + esc(x.setup || "") + '</span></td><td class="num" dir="ltr">' + fmt(x.entry) +
-              '</td><td class="num down" dir="ltr">' + fmt(x.stop) + '</td><td class="num up" dir="ltr">' + fmt(x.target) + '</td><td class="num' + (x.risk_pct > 5 ? " down" : "") + '" dir="ltr">' + fmt(x.risk_pct, 1) + '%</td><td class="num" dir="ltr">' + fmt(x.rvol) + "</td></tr>";
+              '</td><td class="num" dir="ltr">' + fmt(x.ext_atr) + '</td><td class="num" dir="ltr">' + fmt(x.rvol) + "</td></tr>";
           }).join("") + "</tbody></table></div>";
     }
     if (em) {
@@ -5166,7 +5178,7 @@
       var fdate = (function () { var f = (md && md._meta && md._meta.files) || {}, k = Object.keys(f)[0], m = k && /(\d{2})-(\d{2})-(\d{4})\.csv$/.exec(f[k]); return m ? (+m[2]) + "." + (+m[1]) : ""; })();
       em.innerHTML = !top.length
         ? panHd("מומנטום", "", bdGo("momentum", "מומנטום")) + '<div class="pb mute">' + (md ? "אין מניות שעברו את פילטר הבסיס." : "טוען…") + "</div>"
-        : panHd("מומנטום" + (fdate ? ' · סורקי <span class="num" dir="ltr">' + fdate + "</span>" : ""), '<span class="mute"><span class="num">' + n3 + '</span> עם 3+ סיגנלים · <span class="num">' + n2 + '</span> עם 2 · <span class="num">' + Math.min(12, nc) + "</span> מועמדות לטרייד</span>", bdGo("momentum", "כל " + pool.length)) +
+        : panHd("מומנטום" + (fdate ? ' · סורקי <span class="num" dir="ltr">' + fdate + "</span>" : ""), '<span class="mute"><span class="num">' + n3 + '</span> עם 3+ סיגנלים · <span class="num">' + n2 + '</span> עם 2 · <span class="num">' + Math.min(12, nc) + "</span> במוכנות 50+</span>", bdGo("momentum", "כל " + pool.length)) +
           '<div class="tbl"><table class="bd-tbl"><thead><tr><th>מניה</th><th>מוכנות</th><th>סיגנלים</th><th>יום</th></tr></thead><tbody>' +
           top.map(function (s) {
             return "<tr><td>" + tvLink(s.symbol) + erBadge(s.symbol) + '<div class="mute s">' + esc((s.industry || "").slice(0, 28)) + '</div></td><td class="num" dir="ltr">' + (s.readiness != null ? s.readiness : "—") + "</td><td>" +
@@ -5178,11 +5190,11 @@
       // np151 (איציק): נציג מכל קטגוריה + המובילות של הדוח (build_fourpillars.featured) — לא חמש השורות הראשונות
       if (tr && tr.featured && tr.featured.length) pk = tr.featured;
       et.innerHTML = !tr
-        ? panHd("הצעות לטרייד", "", bdGo("trades", "הדוח")) + '<div class="pb mute">' + (TRAD ? "אין דוח." : "טוען…") + "</div>"
-        : panHd("הצעות לטרייד · " + esc(tr.title || "ארבעת העמודים"), '<span class="mute num" dir="ltr">' + esc(fmtTradeDate(tr.date) || tr.date || "") + "</span>", bdGo("trades", "הדוח")) +
+        ? panHd("ארבעת העמודים", "", bdGo("trades", "הדוח")) + '<div class="pb mute">' + (TRAD ? "אין דוח." : "טוען…") + "</div>"
+        : panHd("סריקות טכניות · " + esc(tr.title || "ארבעת העמודים"), '<span class="mute num" dir="ltr">' + esc(fmtTradeDate(tr.date) || tr.date || "") + "</span>", bdGo("trades", "הדוח")) +
           (pk.length ? '<div class="pb bd-sents">' + pk.slice(0, 5).map(function (p) {
             return '<div class="sent"><b class="num tk" dir="ltr">' + tvLink(p.ticker) + "</b><span><b>" + esc(p.cat || "") + "</b>" + (p.action ? " · " + esc(p.action) : "") + (p.lead ? ' <span class="tag">מובילה</span>' : "") + (p.note ? " — " + esc(p.note) : "") + "</span></div>";
-          }).join("") + "</div>" : '<div class="pb mute">' + (TRAD.method ? '<a href="' + esc(TRAD.method.url) + '" target="_blank" rel="noopener">📚 ' + esc(TRAD.method.title) + "</a>" : "הדוח המלא בלשונית הצעות לטרייד.") + "</div>");
+          }).join("") + "</div>" : '<div class="pb mute">' + (TRAD.method ? '<a href="' + esc(TRAD.method.url) + '" target="_blank" rel="noopener">📚 ' + esc(TRAD.method.title) + "</a>" : "הדוח המלא בלשונית ארבעת העמודים.") + "</div>");
     }
     if (ei) {
       // np188: הדוח החודשי הוסר — הפאנל מציג את רכישות הפנים של השבוע מהדוח היומי
@@ -5396,7 +5408,7 @@
         .catch(function () { if (!PREPD) renderPrep(document.getElementById("panel-prep")); });
       Promise.all([fetchJSON("data/picks.json"), fetchJSON("data/picks_ledger.json").catch(function () { return null; })])
         .then(function (r) { if (!freshD("picks", r[0])) return; PICKD = r[0]; PICKL = r[1]; renderPicks(document.getElementById("panel-picks")); renderHomePicks(); noteSig("picks", r[0]); })
-        .catch(function () { if (!PICKD) emptyPanel(document.getElementById("panel-picks"), "✦", "הנבחרות — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); });
+        .catch(function () { if (!PICKD) emptyPanel(document.getElementById("panel-picks"), "✦", "עומדות בתנאי הסריקה — בקרוב", "המהדורה הראשונה נבנית אחרי הריצה הבאה של הבוט."); });
       fetchJSON("data/sectors.json")
         .then(function (d) { if (!freshD("sectors", d)) return; renderSectors(document.getElementById("panel-sectors"), d); noteSig("sectors", d); })
         .catch(function () { if (!("sectors" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-sectors"), "🔄", "דוח סקטורים — בקרוב", ""); });
@@ -5431,10 +5443,10 @@
         .catch(function () {});
       fetchJSON("data/candidates.json")
         .then(function (d) { if (!freshD("candidates", d)) return; CANDD = d; renderCandidates(document.getElementById("panel-candidates"), d); renderFocus(); renderHomeSplit(); renderStockSiblings(); noteSig("candidates", d); })
-        .catch(function () { if (!CANDD) emptyPanel(document.getElementById("panel-candidates"), "🎯", "מועמדים — בקרוב", ""); });
+        .catch(function () { if (!CANDD) emptyPanel(document.getElementById("panel-candidates"), "🎯", "סריקת תיקון — בקרוב", ""); });
       fetchJSON("data/trades.json")
         .then(function (d) { if (!freshD("trades", d)) return; renderTrades(document.getElementById("panel-trades"), d); renderStockSiblings(); noteSig("trades", d); })
-        .catch(function () { if (!("trades" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-trades"), "💡", "הצעות לטרייד — בקרוב", ""); });
+        .catch(function () { if (!("trades" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-trades"), "💡", "סריקת ארבעת העמודים — בקרוב", ""); });
       fetchJSON("data/reports.json")
         .then(function (d) { if (!freshD("reports", d)) return; REPD = d; renderReports(document.getElementById("panel-reports"), d); renderFocus(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); noteSig("reports", d); })
         .catch(function () { if (!REPD) emptyPanel(document.getElementById("panel-reports"), "📑", "ניתוח דוחות — בקרוב", ""); });
@@ -5508,7 +5520,7 @@
     };
     var chips = d.sources.map(function (s) {
       var st = STAT[s.status] || STAT.down;
-      var when = s.updatedAt ? "עודכן " + s.updatedAt : (s.detail || st[1]);
+      var when = s.key === "advice" && s.detail ? s.detail : (s.updatedAt ? "עודכן " + s.updatedAt : (s.detail || st[1]));
       return '<span class="hchip ' + st[0] + '" title="' + esc(s.label + " — " + when) + '">' +
         '<span class="hdot"></span>' + esc(s.label) + "</span>";
     }).join("");
@@ -5525,12 +5537,13 @@
 (function () {
   var strip = document.getElementById("legal-strip"), x = document.getElementById("legal-strip-x");
   if (!strip) return;
-  var KEY = "np-legal-ack", DAYS = 30, ts = 0;
+  // np199: מפתח חדש (הנוסח התחלף — כולם רואים אותו שוב). סגירה = שורה קטנה קבועה עם קישור, לא העלמה.
+  var KEY = "np-legal-ack2", DAYS = 30, ts = 0;
   try { ts = parseInt(localStorage.getItem(KEY) || "0", 10) || 0; } catch (e) { ts = 0; }
-  if (Date.now() - ts < DAYS * 864e5) return;
   strip.hidden = false;
+  if (Date.now() - ts < DAYS * 864e5) { strip.classList.add("min"); return; }
   if (x) x.addEventListener("click", function () {
-    strip.hidden = true;
+    strip.classList.add("min");
     try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
   });
 })();

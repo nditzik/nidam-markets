@@ -225,26 +225,10 @@ function poolSignature() {
 
 const GATE_LABEL = { defense: "הגנתי", neutral: "זהיר", green: "חיובי" };
 
-// np149 (24.10.2026, איציק: "סטופ ויעד אך ורק בטבלה של הנבחרת היומית, כעזר"): סטופ ויעד לכל מניה.
-// מניה מהסריקה (מועמדים) שומרת את הסטופ והיעד של הסריקה. לשאר — מהמבחן לאחור על 398 האישורים
-// (scripts/tools/backtest_stops.js, out/stops_backtest.json): סטופ 2.5 ATR מתחת לכניסה נפגע ב-18% תוך 10 ימים
-// ו-27% תוך 20, ותשואת 20 הימים עם יציאה בו 4.5% מול 4.9% בלי סטופ; 1.5 ATR נפגע 40%/51% (3.1%), ותחתית אזור
-// התמיכה של המנוע צמודה מדי (45%/57%). יעד = תחתית אזור ההתנגדות אם היא לפחות 1.5 מהסיכון, אחרת
-// כניסה + 2× הסיכון (יעד 2R כמעט לא משנה את התוצאה: 4.45% מול 4.52%). היומן ממשיך למדוד בלי יציאה בסטופ
-// (איציק: "כאילו אין סטופ"); הסטופ הזה משמש רק לסימון "נגעה בסטופ".
-function stopTarget(r, c) {
-  const p = r.price, atr = r.atr;
-  if (c && c.stop != null && c.target != null) {
-    const risk = c.entry - c.stop;
-    return { stopSrc: "סריקה", targetSrc: "סריקה", rr: risk > 0 ? +((c.target - c.entry) / risk).toFixed(1) : null };
-  }
-  if (!atr || !p) return { stopSrc: null, targetSrc: null, rr: null };
-  const stop = +(p - 2.5 * atr).toFixed(2), risk = p - stop;
-  const resLow = r.levels.resistance && r.levels.resistance.low;
-  const useRes = resLow != null && resLow - p >= 1.5 * risk;
-  const target = +((useRes ? resLow : p + 2 * risk)).toFixed(2);
-  return { stop, target, stopSrc: "2.5 ATR", targetSrc: useRes ? "התנגדות" : "2R", rr: +((target - p) / risk).toFixed(1) };
-}
+// 14.11.2026 (התאמה משפטית): stopTarget() הוסר — האתר לא מפרסם סטופ, יעד, יחס סיכון/סיכוי או גודל פוזיציה.
+// המהדורה מציגה רק נתונים טכניים של המנוע (אזור תמיכה, אזור התנגדות, ATR). היומן ממשיך למדוד "כאילו אין סטופ";
+// השדה stopped בתוצאות = ירידה של 1.5 ATR ומעלה בדרך (תיאור, לא מוצג כסטופ). הבדיקה לאחור של np149
+// נשארת ב-scripts/tools/backtest_stops.js לשימוש פנימי.
 
 function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   const mom = readJSON(path.join(ROOT, "data", "momentum.json"), { stocks: [] });
@@ -282,10 +266,10 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
     let h = ledger.hist[sym];
     if (!h || !h.computedAt || addDays(h.computedAt, HIST_TTL_DAYS) < today) { h = history(sym, bars, spy); ledger.hist[sym] = h; }
     const last3 = (h.events || []).slice(-3);
-    if (last3.length === 3 && last3.every(e => e.r10 <= 0)) { excluded.push({ sym, reason: "שלושת האישורים הקודמים נכשלו" }); continue; }
+    if (last3.length === 3 && last3.every(e => e.r10 <= 0)) { excluded.push({ sym, reason: "שלוש ההופעות הקודמות הסתיימו בירידה" }); continue; }
     const m = momBy[sym], c = candBy[sym];
     const sources = [];
-    if (c) sources.push({ k: "cand", t: "מועמד #" + c.rank, sub: c.setup });
+    if (c) sources.push({ k: "cand", t: "סריקת תיקון #" + c.rank, sub: c.setup });
     if (m) sources.push({ k: "mom", t: "מומנטום", sub: (m.signals || []).map(sigHe).join(" · ") + (m.readiness != null ? " · מוכנות " + m.readiness : "") });
     const last = bars[bars.length - 1], before = bars[bars.length - 2];
     const vol20 = bars.slice(-21, -1).reduce((a, b) => a + b.volume, 0) / 20;
@@ -296,8 +280,6 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
       bo: r.breakout && r.breakout.state, boLabel: r.breakout && r.breakout.label,
       pb: r.pullback_quality.state, pbLabel: r.pullback_quality.label, ext: r.extension.state,
       sup: r.levels.support && r.levels.support.mid, res: r.levels.resistance && r.levels.resistance.mid, atr: r.atr,
-      entry: c ? +c.entry.toFixed(2) : null, stop: c ? +c.stop.toFixed(2) : null, target: c ? +c.target.toFixed(2) : null,
-      ...stopTarget(r, c),
       sources, closes: bars.slice(-60).map(b => b.close),
       rec: h.n ? { n: h.n, win10: h.win10, avg10: h.avg10, avg20: h.avg20, mae: h.mae, dots: h.events.map(e => e.r10 > 0 ? 1 : 0) } : null,
       since: null
@@ -313,8 +295,6 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   const state = ro.acute || (comb != null && comb < 45) ? "defense" : (comb >= 66 ? "green" : "neutral");
   const gate = {
     state, label: GATE_LABEL[state],
-    maxPos: { defense: 3, neutral: 4, green: 5 }[state],
-    sizing: { defense: "חצי גודל", neutral: "שני שליש", green: "גודל מלא" }[state],
     combined: sc.combined, breadth: ev.pctMa50, sellDays: (ro.sellingDays || []).length, flow: sc.flow,
     vix: vl.vix, vixState: vl.state, verdict: (ind.verdict || {}).headline || "", asOf: ind.date
   };
@@ -324,7 +304,7 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   const open = {};
   ledger.editions.forEach(e => { if (e.date !== asOf && (spyIdx[e.date] != null ? spyIdx[e.date] : -1) >= cutIdx) e.symbols.forEach(s => { open[s.sym] = open[s.sym] || e.date; }); });
   const fresh = [];
-  picks.forEach(p => { if (open[p.sym]) p.since = open[p.sym]; else fresh.push({ sym: p.sym, entry: p.price, stop: p.stop, atr: p.atr }); });
+  picks.forEach(p => { if (open[p.sym]) p.since = open[p.sym]; else fresh.push({ sym: p.sym, entry: p.price, atr: p.atr }); });
   // מהדורה של אותו יום שנבנית מחדש (המאגר התחלף בבוקר) מחליפה את רשימת המניות — עוד לא
   // נמדד עליה כלום, ומחיר הכניסה (סגירת אותו יום) זהה ממילא
   const ex = ledger.editions.find(e => e.date === asOf);
@@ -349,7 +329,7 @@ function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
   } : null;
 
   const out = { date: asOf, poolSig, momDay: momentumDay(), candDay: candidatesDay(), momOnly: !!momOnly, gate, record, picks, excluded, poolSize: pool.length, scanned,
-    _meta: { updatedAt: ilStamp(), source: "ta_engine · candidates+momentum", note: "אישור מחיר לקנייה מהמנוע הטכני על סגירת " + asOf } };
+    _meta: { updatedAt: ilStamp(), source: "ta_engine · candidates+momentum", note: "מניות שעמדו בתנאי אישור המחיר של המנוע הטכני על סגירת " + asOf } };
   fs.writeFileSync(OUT, JSON.stringify(out), "utf8");
   console.log(`[done] picks ${asOf}: ${picks.length} נבחרות מתוך ${scanned} (מאגר ${pool.length}) · שער ${gate.label} · נפסלו ${excluded.length}` +
     (excluded.length ? " — " + excluded.map(x => x.sym + " (" + x.reason + ")").join(", ") : ""));

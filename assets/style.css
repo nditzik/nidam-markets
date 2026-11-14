@@ -2698,3 +2698,14 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .fl-fu-n.down { color: var(--down); }
 .fl-fu-n.up { color: var(--up); }
 .fl-sub { display: block; font-size: .74rem; font-weight: 700; color: var(--text-3); margin-top: 4px; }
+
+/* np199 (14.11.2026) — ההבהרה העליונה: מצב מלא / מצב מוקטן קבוע (אחרי סגירה) */
+.legal-strip .ls-min { display: none; }
+.legal-strip.min { border-color: var(--border); background: transparent; color: var(--text-soft); padding: 4px 12px; font-size: 12px; }
+.legal-strip.min .ls-full, .legal-strip.min button { display: none; }
+.legal-strip.min .ls-min { display: inline; }
+.legal-strip a { white-space: normal; }
+/* פס "ארכיון" מעל דוח ישן שנפתח באתר */
+.rep-arch-note { margin: 0 14px 8px; padding: 6px 10px; border: 1px dashed var(--border); border-radius: 8px; font-size: 12px; color: var(--text-soft); }
+/* גילוי עניין אישי (data/disclosures.json) בחלון הניתוח */
+.ta-discl { margin: 0 0 10px; padding: 8px 12px; border: 1px solid var(--warn); border-radius: 8px; background: var(--warn-soft); font-size: 13px; }

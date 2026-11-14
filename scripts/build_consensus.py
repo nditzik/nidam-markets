@@ -155,25 +155,25 @@ def main(root=ROOT, now=None):
                 lab = 'המנכ"ל קנה' if x["ceo"] else ("בעל מניות גדול קנה" if "10%" in x["role"] else (x["role"] or "איש פנים") + " קנה")
                 why.append("%s ב-%s ב-%s." % (lab.replace(" קנה", "") + " קנה", money(x["value"]), dm(x["d"])))
             elif k == "nb":
-                lab = "בנבחרות"
-                why.append("נכנסה לנבחרות ב-%s." % dm(x["d"]))
+                lab = "עמדה בתנאים"
+                why.append("עמדה בתנאי אישור המחיר ב-%s." % dm(x["d"]))
             elif k == "cand":
-                lab = "מועמדת"
+                lab = "סריקת תיקון"
                 if x.get("rank"):
-                    why.append("מקום %d ברשימת המועמדים." % x["rank"])
+                    why.append("מקום %d בדירוג סריקת התיקון." % x["rank"])
             elif k == "fp":
-                lab = "הצעות לטרייד"
-                why.append('ב"%s" בהצעות לטרייד.' % x["cat"])
+                lab = "ארבעת העמודים"
+                why.append('ב"%s" בסריקת ארבעת העמודים.' % x["cat"])
             elif k == "mom":
                 lab = "מומנטום"
                 why.append("%d סיגנלי מומנטום." % x["n"] if x["n"] >= 2 else "מוכנות %d במומנטום." % (x.get("ready") or 0))
             else:
                 lab = "סקטור מתחמם" if x["warm"] else "סקטור מאושר"
-                why.append("ה%s %s בדוח הסקטורים." % (x["sec"], "מתחמם" if x["warm"] else "מאושר"))
+                why.append("ה%s מסווג %s במודל הסקטורים." % (x["sec"], "מתחמם" if x["warm"] else "מאושר"))
             who.append({"k": k, "l": lab, "d": x["d"]})
         note = []
         if w5 is not None and w5 >= 15:
-            note.append("עלתה %d%% בשבוע — רחוקה מנקודת כניסה." % round(w5))
+            note.append("עלתה %d%% בשבוע — מתוחה ביחס לממוצעים." % round(w5))
         if f.get("cap") is not None and f["cap"] < 3e8:
             note.append("חברה קטנה — תנודתית.")
         prio = (3 if "ins" in s else 0) + (2 if "nb" in s else 0) + (1 if "fp" in s else 0) - ((s.get("cand") or {}).get("rank") or 99) / 100
