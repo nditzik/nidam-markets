@@ -101,6 +101,22 @@ def today_updates(today_str):
     return items
 
 
+def advice_detail(lint, n, first):
+    """ניסוח מדויק לצ'יפ "בדיקת ניסוח" (14.11.2026): מה נבדק, מתי, מה נמצא, מה לא נכלל — לא הודעה גורפת."""
+    sc = lint.get("scope") or {}
+    ar = lint.get("archive") or {}
+    when = (lint.get("_meta") or {}).get("updatedAt") or ""
+    parts = ["בדיקה אוטומטית של ניסוח (לא בדיקה משפטית)",
+             "נבדקו %s פריטים ב-%s" % (sc.get("checked", "?"), when),
+             ("נמצאו %d ניסוחים לבדיקה: %s" % (n, first)) if n else "בתוכן המוצג כרגע לא נמצאו ניסוחים לבדיקה"]
+    if ar.get("files"):
+        parts.append("בארכיון הציבורי %d מתוך %d קבצים כוללים ניסוחי מסחר ישנים" % (ar.get("flagged") or 0, ar["files"]) if ar.get("flagged")
+                     else "בארכיון הציבורי (%d קבצים) לא נמצאו ניסוחים לבדיקה" % ar["files"])
+    if sc.get("excludes"):
+        parts.append("לא כולל: " + ", ".join(sc["excludes"]))
+    return " · ".join(parts)
+
+
 def main():
     now = israel_now().replace(tzinfo=None)
     today_str = now.strftime("%d/%m/%Y")
@@ -159,10 +175,10 @@ def main():
     if lint is not None:
         n = lint.get("n") or 0
         first = "; ".join("%s: «%s»" % (i.get("where", ""), i.get("term", "")) for i in (lint.get("items") or [])[:3])
-        out["sources"].append({"key": "advice", "label": "בדיקת ניסוח", "status": "stale" if n else "ok",
+        out["sources"].append({"key": "advice", "label": "בדיקת ניסוח", "status": "stale" if (n or ((lint.get("archive") or {}).get("flagged"))) else "ok",   # צהוב גם כשבארכיון הציבורי נשארו ניסוחי מסחר ישנים
                                "updatedAt": (lint.get("_meta") or {}).get("updatedAt"),
-                               "detail": ("%d ניסוחים לביקורת — %s" % (n, first)) if n else "אין ניסוחים לביקורת"})
-        out["adviceLint"] = {"n": n, "items": (lint.get("items") or [])[:10]}
+                               "detail": advice_detail(lint, n, first)})
+        out["adviceLint"] = {"n": n, "items": (lint.get("items") or [])[:10], "archive": lint.get("archive"), "scope": lint.get("scope")}
 
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)

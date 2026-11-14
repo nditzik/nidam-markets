@@ -1090,7 +1090,7 @@ def render_html_v2(w, nar):
         acc_rows = "".join(f'<tr><td>{a}</td><td>{b}</td><td class="r {rcls(c)}">{c}</td></tr>' for a, b, c in acc)
         n_ok = sum(1 for _, _, c in acc if rcls(c) == "ok"); n_p = sum(1 for _, _, c in acc if rcls(c) == "part"); n_m = len(acc) - n_ok - n_p
         H.append(f'<details class="pan"><summary>מאזן הדוח הקודם ({dmy(w["prev_week"]["date"]) if w["prev_week"].get("date") else "—"}) · {n_ok} נכונות · {n_p} חלקיות · {n_m} פספוסים</summary><div class="pb">'
-                 f'<div class="tw"><table class="acc"><thead><tr><th>נכתב בדוח הקודם (ציטוט)</th><th>קרה</th><th>מאזן</th></tr></thead><tbody>{acc_rows}</tbody></table></div>'
+                 f'<div class="tw"><table class="acc"><thead><tr><th>הסיווג והתנאים בדוח הקודם (תמצית)</th><th>קרה</th><th>מאזן</th></tr></thead><tbody>{acc_rows}</tbody></table></div>'
                  + (f'<p><b>הלקח:</b> {nar["acc_summary"]}</p>' if nar.get("acc_summary") else "") + "</div></details>")
     r, hm = w["radar"], w["heatmap"]
     ind = "".join(f'<p><b>{e(a)}.</b> {d} <span class="small">({b}: {c})</span></p>' for a, b, c, d in nar.get("industries", []))
@@ -1278,6 +1278,8 @@ def cmd_render(d):
     out_dir = os.path.join(DATA, "sectors")
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "sectors-" + d + ".html")
+    import report_banner   # הבהרה בתוך הקובץ עצמו — הדוח נפתח גם בקישור ישיר (14.11.2026)
+    page = report_banner.inject(page, d, report_banner.is_legacy("sectors", d))
     with open(out, "w", encoding="utf-8") as f:
         f.write(page)
     merge_history(history_record(w, nar))
