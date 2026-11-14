@@ -224,14 +224,14 @@
       "date": "2026-11-16",
       "label": "16/11",
       "dow": "ב׳",
-      "count": 18,
+      "count": 27,
       "tickers": [
+        "WSM",
         "BIDU",
         "TSN",
         "BEKE",
         "HTHT",
-        "ARMK",
-        "FRHC"
+        "ARMK"
       ]
     },
     {
@@ -296,8 +296,15 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 18,
+      "total": 27,
       "companies": [
+        {
+          "ticker": "WSM",
+          "name": "Williams-Sonoma, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/WSM.png",
+          "logoBg": "dark"
+        },
         {
           "ticker": "BIDU",
           "name": "Baidu, Inc. Sponsored ADR Class A",
@@ -329,6 +336,17 @@
           "logo": "data/earnings/logos/ARMK.png"
         },
         {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": ""
+        },
+        {
+          "ticker": "MOG.A",
+          "name": "Moog Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
           "ticker": "FRHC",
           "name": "Freedom Holding Corp.",
           "when": "",
@@ -349,28 +367,11 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "POWL",
-          "name": "Powell Industries, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/POWL.png"
-        },
-        {
-          "ticker": "GGAL",
-          "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
+          "ticker": "NIO",
+          "name": "NIO Inc. Sponsored ADR Class A",
           "when": "",
-          "logo": "data/earnings/logos/GGAL.png"
-        },
-        {
-          "ticker": "PPTA",
-          "name": "Perpetua Resources Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/PPTA.png"
-        },
-        {
-          "ticker": "PAGS",
-          "name": "PagSeguro Digital Ltd. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/PAGS.png"
+          "logo": "data/earnings/logos/NIO.png",
+          "logoBg": "dark"
         }
       ]
     },
@@ -662,21 +663,30 @@
     }
   ],
   "window": {
+    "WSM": "2026-11-16",
     "BIDU": "2026-11-16",
     "TSN": "2026-11-16",
     "BEKE": "2026-11-16",
     "HTHT": "2026-11-16",
     "ARMK": "2026-11-16",
+    "MOG.B": "2026-11-16",
+    "MOG.A": "2026-11-16",
     "FRHC": "2026-11-16",
     "XPEV": "2026-11-16",
     "ACM": "2026-11-16",
+    "NIO": "2026-11-16",
+    "M": "2026-11-16",
     "POWL": "2026-11-16",
     "GGAL": "2026-11-16",
+    "BRC": "2026-11-16",
+    "SKE": "2026-11-16",
+    "DAC": "2026-11-16",
     "PPTA": "2026-11-16",
     "PAGS": "2026-11-16",
     "INFQ": "2026-11-16",
     "DRVN": "2026-11-16",
     "BXDC": "2026-11-16",
+    "CEPU": "2026-11-16",
     "HUBG": "2026-11-16",
     "OMER": "2026-11-16",
     "GDRX": "2026-11-16",
@@ -763,7 +773,7 @@
     "WRD": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "14/11/2026 06:46",
+    "updatedAt": "14/11/2026 07:01",
     "source": "tradingview"
   }
 }

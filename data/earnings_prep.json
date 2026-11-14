@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "14/11/2026 06:46",
+  "updatedAt": "14/11/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 4,
+   "daysTo": 3,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -501,7 +501,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 5,
+   "daysTo": 4,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -991,7 +991,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 5,
+   "daysTo": 4,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -1481,7 +1481,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -1971,7 +1971,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 10,
+   "daysTo": 9,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -2461,7 +2461,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 11,
+   "daysTo": 10,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -2969,14 +2969,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   },
   {
    "sym": "MU",
@@ -3384,53 +3384,6 @@
     "day": "2026-11-03",
     "move": -1.65,
     "close": 175.4
-   }
-  },
-  {
-   "sym": "CVX",
-   "name": "Chevron Corporation",
-   "date": "2026-10-30",
-   "when": "before",
-   "report": {
-    "file": "data/reports/CVX_2026-07-31.html",
-    "date": "2026-07-31",
-    "title": "Chevron Q2 2026 – דוח מנהלים",
-    "logo": "data/reports/logos/CVX.png",
-    "logoBg": null
-   },
-   "newReport": {
-    "file": "data/reports/CVX_2026-10-30.html",
-    "date": "2026-10-30",
-    "title": "CVX דוח רבעון Q3 2026"
-   },
-   "consensus": {
-    "eps": 4.83298,
-    "epsLow": 3.61,
-    "epsHigh": 5.18,
-    "epsN": 22,
-    "epsYearAgo": 1.85,
-    "rev": 62203925160,
-    "revLow": 53773000000,
-    "revHigh": 67224000000,
-    "revN": 10,
-    "revYearAgo": 49726000000,
-    "quarterEnd": "2026-09-30"
-   },
-   "options": {
-    "asOf": "29/10 21:46",
-    "price": 230.65,
-    "exp": "2026-10-30",
-    "strike": 230.0,
-    "pct": 2.42,
-    "earn": 2.42,
-    "preExp": null,
-    "prePct": null
-   },
-   "avgMove": 2.5,
-   "reaction": {
-    "day": "2026-10-30",
-    "move": 1.75,
-    "close": 235.52
    }
   }
  ]
