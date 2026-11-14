@@ -36,6 +36,8 @@ HL = "https://api.hyperliquid.xyz/info"
 # (מפתח, תווית, סימבול xyz, סימבול Yahoo לסגירה)
 XYZ = [
     ("sp500", "S&P 500", "SP500", "^GSPC"),
+    # 14.11.2026, איציק: "גם את הנאסדק ליד ה-S&P 500" — XYZ100 = החוזה של xyz על נאסד"ק 100
+    ("nasdaq", "Nasdaq 100", "XYZ100", "^NDX"),
     ("nvda", "Nvidia", "NVDA", "NVDA"),
     ("msft", "Microsoft", "MSFT", "MSFT"),
     ("avgo", "Broadcom", "AVGO", "AVGO"),
@@ -48,6 +50,7 @@ XYZ = [
     ("now", "ServiceNow", "NOW", "NOW"),
     ("wdc", "Western Digital", "WDC", "WDC"),
 ]
+INDEX_KEYS = {"sp500", "nasdaq"}
 CRYPTO = [("btc", "ביטקוין", "BTC", "BTC-USD"), ("eth", "את'ריום", "ETH", "ETH-USD")]
 THIN_USDC = 1_000_000          # מתחת לזה האריח מסומן "מחזור דק"
 
@@ -149,8 +152,13 @@ def main():
         except Exception as e:
             print(f"[warn] {ysym}: {e}")
             ref, ref_lbl = None, None
+        kind = "index" if key in INDEX_KEYS else "stock"
+        # שפיות: חוזה מדד שרחוק יותר מ-15% מסגירת המדד הוא לא אותו מכשיר (סמל שגוי) — מדלגים
+        if kind == "index" and ref and abs(c["mark"] / ref - 1) > 0.15:
+            print(f"[warn] {hsym}: {c['mark']} רחוק מסגירת {ysym} ({ref}) — לא נכלל")
+            continue
         items.append({
-            "key": key, "label": label, "kind": "index" if key == "sp500" else "stock",
+            "key": key, "label": label, "kind": kind,
             "price": c["mark"], "ref": ref, "refLabel": ("סגירת " + ref_lbl) if ref_lbl else None,
             "chg": pct(c["mark"], ref), "chg24": pct(c["mark"], c["prev"]),
             "vol24": round(c["vol"] or 0), "thin": (c["vol"] or 0) < THIN_USDC, "source": "xyz",
