@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np203";
+  var TA_VER = "np204";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4314,7 +4314,7 @@
   // רק חברות שעוד לא דיווחו (items); חברה שדיווחה (recent) עוברת ללשונית-משנה משלה, "אחרי הדוח" (#panel-after).
   function epChips(list, done) {
     return '<div class="chips bd-chips ep-chips2">' + list.map(function (it) {
-      return '<a class="tag ep-chip2" href="#ep-' + esc(it.sym) + '" onclick="document.getElementById(\'ep-' + esc(it.sym) + '\').scrollIntoView({behavior:\'smooth\'});return false">' +
+      return '<a class="tag ep-chip2" href="#ep-' + esc(it.sym) + '" onclick="__epGo(\'' + esc(it.sym) + '\');return false">' +
         epLogo(it) + '<b class="num" dir="ltr">' + esc(it.sym) + "</b> <span class=\"mute\">" +
         (done ? "דיווחה " + epDate(it.date) + (it.newReport && it.newReport.file ? " · ניתוח חדש" : "") : epDow(it.date) + " " + epDate(it.date) + " · " + epWhen(it)) + "</span></a>";
     }).join("") + "</div>";
@@ -4332,14 +4332,30 @@
     el.innerHTML = '<div class="board ep-board">' + intro + items.map(epCard).join("") + "</div>";
     renderAfter(document.getElementById("panel-after"));
   }
+  // np204 (14.11.2026, איציק: "אחרי הדוח רק ל-8 מניות"): אחרי שבועיים הכרטיס לא נעלם — עובר ל"מוקדם יותר בעונה"
+  // (earnings_prep.json.older: חברות עם השוואה כתובה, עד הדוח הבא שלהן). מקופל; צ'יפ או קישור מחלון המניה פותחים אותו.
+  var EP_OLD_OPEN = false;
+  window.__epGo = function (sym) {
+    var c = document.getElementById("ep-" + sym);
+    if (!c) return false;
+    var d = c.closest ? c.closest("details") : null;
+    if (d && !d.open) { d.open = true; EP_OLD_OPEN = true; }
+    c.scrollIntoView({ behavior: "smooth", block: "start" });
+    return true;
+  };
   function renderAfter(el) {
     if (!el) return;
-    var recent = (PREPD && PREPD.recent) || [];
+    var recent = (PREPD && PREPD.recent) || [], older = (PREPD && PREPD.older) || [];
     var intro = '<section class="pan"' + bdSpan(12) + ">" +
-      panHd("אחרי הדוח · ההכנה מול מה שקרה", '<span class="mute">חברה עוברת לכאן כשהיא מדווחת, ונשארת שבועיים · הבדיקות שקבענו לפני הדוח, מה יצא בפועל, התחזית לפני ואחרי, וכמה המניה זזה מול מה שהאופציות תמחרו</span>') +
+      panHd("אחרי הדוח · ההכנה מול מה שקרה", '<span class="mute">חברה עוברת לכאן כשהיא מדווחת · שבועיים בראש הדף, ואחר כך ב"מוקדם יותר בעונה" עד הדוח הבא שלה · הבדיקות שקבענו לפני הדוח, מה יצא בפועל, התחזית לפני ואחרי</span>') +
       '<div class="pb">' + (recent.length ? epChips(recent, true) : '<span class="mute">אף חברה עם ניתוח באתר לא דיווחה בשבועיים האחרונים. ' + bdGo("prep", "לקראת הדוח") + "</span>") +
+      (older.length ? '<div class="ep-old-h">מוקדם יותר בעונה · <span class="num">' + older.length + "</span></div>" + epChips(older, true) : "") +
       "</div></section>";
-    el.innerHTML = '<div class="board ep-board">' + intro + recent.map(epReviewCard).join("") + "</div>";
+    var old = older.length ? '<details class="pan bd-exp ep-old"' + bdSpan(12) + (EP_OLD_OPEN ? " open" : "") + '><summary>מוקדם יותר בעונה · <span class="num">' + older.length +
+      '</span> חברות שדיווחו לפני יותר משבועיים</summary><div class="ep-old-b">' + older.map(epReviewCard).join("") + "</div></details>" : "";
+    el.innerHTML = '<div class="board ep-board">' + intro + recent.map(epReviewCard).join("") + old + "</div>";
+    var det = el.querySelector("details.ep-old");
+    if (det) det.addEventListener("toggle", function () { EP_OLD_OPEN = det.open; });
   }
 
   /* ---------- הנבחרות (30.9.2026, np93) ----------

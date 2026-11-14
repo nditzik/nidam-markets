@@ -39,6 +39,7 @@ TV_SCAN = "https://scanner.tradingview.com/america/scan"
 AHEAD_DAYS = 14          # חברה נכנסת כשהדוח בתוך שבועיים
 ANALYST_EVERY_H = 6      # רענון אנליסטים/נרות לכל חברה
 REVIEW_DAYS = 14         # "אחרי הדוח": כמה ימים הכרטיס נשאר אחרי יום הדוח (9.10.2026)
+OLDER_DAYS = 120         # np204: אחרי 14 יום הכרטיס עובר ל"מוקדם יותר בעונה" (older) — עד הדוח הבא של החברה
 SNAP = os.path.join(DATA, "_prep_snap.json")   # מה היה ידוע לפני הדוח (צפי, אופציות) — נשמר כשהחברה עוד ב-items
 VER = 3                  # שינוי מבנה → הרענון של 6 השעות מתאפס (v2: תאריכי Nasdaq; v3: יום תגובה לפי שעת הדוח)
 # חברות שנשמרות בשם ולא בטיקר (כמו LOGO_ALIAS ב-fetch_reports.py)
@@ -321,13 +322,17 @@ def react_after(sym, day, when):
     return None
 
 
-def recent_block(snap, items, latest, sym_of, today, now):
-    """חברות שהדוח שלהן עבר (עד REVIEW_DAYS): מה היה צפוי לפני (מהתמונה שנשמרה) + התגובה + הניתוח החדש, אם הגיע."""
+def recent_block(snap, items, latest, sym_of, today, now, lo=0, hi=REVIEW_DAYS, only=None):
+    """חברות שהדוח שלהן עבר (lo..hi ימים): מה היה צפוי לפני (מהתמונה שנשמרה) + התגובה + הניתוח החדש, אם הגיע.
+    only = {sym: forDate} — רק חברות שיש להן השוואה כתובה לאותו דוח (ל-older: בלי כרטיסים ריקים)."""
     live = {it["sym"] for it in items}
     out = []
     for sym, s in snap.items():
         d = date.fromisoformat(s["forDate"])
-        if sym in live or (today - d).days > REVIEW_DAYS or d > today:
+        age = (today - d).days
+        if sym in live or age > hi or age < lo or d > today:
+            continue
+        if only is not None and only.get(sym) != s["forDate"]:
             continue
         rep_t = next((t for t, v in sym_of.items() if v == sym), sym)
         nr = latest.get(rep_t) or {}
@@ -452,17 +457,21 @@ def main(fetch=None, now=None):
                            "consensus": it.get("consensus") or (s.get("consensus") if same else None),
                            "options": it.get("options") or (s.get("options") if same else None),
                            "avgMove": it.get("avgMove")}
-    for sym in [k for k, v in snap.items() if (today - date.fromisoformat(v["forDate"])).days > 45]:
+    for sym in [k for k, v in snap.items() if (today - date.fromisoformat(v["forDate"])).days > OLDER_DAYS]:
         del snap[sym]
     if json.dumps(snap, sort_keys=True) != snap0:
         with open(SNAP, "w", encoding="utf-8") as f:
             json.dump(snap, f, ensure_ascii=False, indent=1)
     recent = recent_block(snap, items, latest, sym_of, today, now)
+    # np204 (איציק: "אחרי הדוח רק ל-8 מניות"): אחרי שבועיים הכרטיס לא נעלם — עובר ל-older, עד הדוח הבא
+    rv_notes = load(os.path.join(DATA, "earnings_review_notes.json"), {}) or {}
+    older = recent_block(snap, items, latest, sym_of, today, now, lo=REVIEW_DAYS + 1, hi=OLDER_DAYS,
+                         only={k: (v or {}).get("forDate") for k, v in rv_notes.items()})
     out = {"_meta": {"updatedAt": now.astimezone(IL).strftime("%d/%m/%Y %H:%M"), "aheadDays": AHEAD_DAYS, "ver": VER,
                      "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"},
-           "items": items, "later": sorted(later, key=lambda x: x["date"])[:12], "recent": recent}
-    if not stale_ver and json.dumps([items, out["later"], recent], sort_keys=True) == \
-            json.dumps([prev.get("items", []), prev.get("later", []), prev.get("recent", [])], sort_keys=True):
+           "items": items, "later": sorted(later, key=lambda x: x["date"])[:12], "recent": recent, "older": older}
+    if not stale_ver and json.dumps([items, out["later"], recent, older], sort_keys=True) == \
+            json.dumps([prev.get("items", []), prev.get("later", []), prev.get("recent", []), prev.get("older", [])], sort_keys=True):
         print("[nochange]")
         return 0
     with open(OUT, "w", encoding="utf-8") as f:

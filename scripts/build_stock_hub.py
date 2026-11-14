@@ -175,7 +175,8 @@ def main(root=ROOT, now=None):
     review = load(os.path.join(data, "earnings_review_notes.json"), {}) or {}
     prep = load(os.path.join(data, "earnings_prep.json"), {}) or {}
     prep_notes = load(os.path.join(data, "earnings_prep_notes.json"), {}) or {}
-    after_live = {ALIAS.get((x.get("sym") or "").upper(), (x.get("sym") or "").upper()) for x in prep.get("recent") or []}
+    after_live = {ALIAS.get((x.get("sym") or "").upper(), (x.get("sym") or "").upper()) for x in (prep.get("recent") or []) + (prep.get("older") or [])
+                  if (review.get((x.get("sym") or "").upper()) or {}).get("forDate") == x.get("date")}
     for r in sorted(reps, key=lambda r: r.get("date") or "", reverse=True):
         sym = ALIAS.get((r.get("ticker") or "").upper(), (r.get("ticker") or "").upper())
         h = ent(sym)
@@ -185,7 +186,7 @@ def main(root=ROOT, now=None):
         rv = review.get(sym) or {}
         if rv.get("headline") and rv.get("forDate") and r.get("date") and abs((datetime.fromisoformat(rv["forDate"]) - datetime.fromisoformat(r["date"])).days) <= 4:
             item["review"] = re.sub(r"<[^>]+>", "", rv["headline"])
-            # הכרטיס בלשונית "אחרי הדוח" מוצג רק 14 יום (earnings_prep.recent) — קישור רק כשהוא שם
+            # קישור ללשונית "אחרי הדוח" רק כשהכרטיס באמת שם (recent = שבועיים, older = "מוקדם יותר בעונה")
             if sym in after_live:
                 item["after"] = 1
         h["rep"].append(item)

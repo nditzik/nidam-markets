@@ -2798,3 +2798,11 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .hub-row > a { grid-column: 1 / -1; order: 4; min-height: 28px; }
   .hub-two { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* np204 — "אחרי הדוח": מוקדם יותר בעונה (כרטיסים ישנים משבועיים, מקופלים) */
+.ep-old-h { margin: 12px 0 6px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; font-weight: 600; color: var(--text-soft); }
+.ep-board > details.ep-old { grid-column: 1 / -1; }
+.ep-old > summary { min-height: 44px; display: flex; align-items: center; gap: 4px; }
+.ep-old-b { display: flex; flex-direction: column; gap: 14px; padding: 0 14px 14px; }
+.ep-old-b > .ep-card { border-color: var(--border); }
+@media (max-width: 700px) { .ep-old-b { padding: 0 8px 10px; } }
