@@ -12,22 +12,34 @@
             "ticker": "MUFG",
             "name": "Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/MUFG.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MUFG.png",
+            "chg": 0.37,
+            "price": 21.83,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "MFG",
             "name": "Mizuho Financial Group Inc Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/MFG.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MFG.png",
+            "chg": 2.17,
+            "price": 10.34,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "SA",
             "name": "Seabridge Gold Inc",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/SA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SA.png",
+            "chg": 1.22,
+            "price": 24.87,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "GHRS",
@@ -35,6 +47,13 @@
             "when": "before",
             "status": "pending",
             "logo": "data/earnings/logos/GHRS.png"
+          },
+          {
+            "ticker": "INBX",
+            "name": "Inhibrx Biosciences, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/INBX.png"
           },
           {
             "ticker": "JBIO",
@@ -53,22 +72,34 @@
             "ticker": "CSCO",
             "name": "Cisco Systems, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/CSCO.png"
+            "status": "final",
+            "logo": "data/earnings/logos/CSCO.png",
+            "chg": -6.24,
+            "price": 95.64,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "AMAT",
             "name": "Applied Materials, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/AMAT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/AMAT.png",
+            "chg": -2.74,
+            "price": 370.5,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "SMFG",
             "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/SMFG.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SMFG.png",
+            "chg": 1.52,
+            "price": 24.74,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           },
           {
             "ticker": "BN",
@@ -92,8 +123,12 @@
             "ticker": "EC",
             "name": "Ecopetrol SA Sponsored ADR",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/EC.png"
+            "status": "final",
+            "logo": "data/earnings/logos/EC.png",
+            "chg": 0.72,
+            "price": 15.43,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           }
         ]
       },
@@ -711,7 +746,7 @@
     "WRD": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "14/11/2026 03:31",
+    "updatedAt": "14/11/2026 03:46",
     "source": "tradingview"
   }
 }
