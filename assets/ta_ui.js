@@ -538,7 +538,7 @@
     if (o.rep && o.rep.length) {
       rep += o.rep.map(function (x, i) {
         return '<div class="hub-it"><div class="hub-it-h"><a href="#reports" data-hub-rep="' + esc(x.file) + '">' + esc(x.title) + '</a><span class="num" dir="ltr">' + dmS(x.date) + "</span>" +
-          (x.after ? '<a class="hub-chip" href="#after" data-hub-go="after">אחרי הדוח</a>' : "") + "</div>" + (x.review && i === 0 ? "<p>" + esc(x.review) + "</p>" : "") + "</div>";
+          (x.after ? '<a class="hub-chip" href="#after" data-hub-go="after" data-hub-sym="' + esc(sym) + '">אחרי הדוח</a>' : "") + "</div>" + (x.review && i === 0 ? "<p>" + esc(x.review) + "</p>" : "") + "</div>";
       }).join("");
     } else rep += '<p class="mute">אין באתר ניתוח דוח של החברה.</p>';
     if (o.prep && o.prep.date) rep += '<div class="hub-it"><div class="hub-it-h"><a href="#prep" data-hub-go="prep">לקראת הדוח</a><span class="num" dir="ltr">' + dmS(o.prep.date) + "</span></div>" +
@@ -571,7 +571,11 @@
       var go = a.getAttribute("data-hub-go"), file = a.getAttribute("data-hub-rep");
       if (window.__closeChart) window.__closeChart();
       if (file && window.__openReport) window.__openReport(file);
-      else if (go && window.__goTab) window.__goTab(go);
+      else if (go && window.__goTab) {
+        window.__goTab(go);
+        var hs = a.getAttribute("data-hub-sym");      // np204: "אחרי הדוח" → ישר לכרטיס של החברה
+        if (hs && window.__epGo) setTimeout(function () { window.__epGo(hs); }, 350);
+      }
     };
   }
   window.__hubRender = function (sym, el) {
