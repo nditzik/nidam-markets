@@ -110,7 +110,7 @@ def advice_detail(lint, n, first):
              "נבדקו %s פריטים ב-%s" % (sc.get("checked", "?"), when),
              ("נמצאו %d ניסוחים לבדיקה: %s" % (n, first)) if n else "בתוכן המוצג כרגע לא נמצאו ניסוחים לבדיקה"]
     if ar.get("files"):
-        parts.append("בארכיון הציבורי %d מתוך %d קבצים כוללים ניסוחי מסחר ישנים" % (ar.get("flagged") or 0, ar["files"]) if ar.get("flagged")
+        parts.append("בארכיון הציבורי %d מתוך %d קבצים כוללים ניסוחי מסחר ישנים (מוצגים בנוסחם המקורי, מסומנים 'נוסח ארכיוני')" % (ar.get("flagged") or 0, ar["files"]) if ar.get("flagged")
                      else "בארכיון הציבורי (%d קבצים) לא נמצאו ניסוחים לבדיקה" % ar["files"])
     if sc.get("excludes"):
         parts.append("לא כולל: " + ", ".join(sc["excludes"]))
@@ -175,7 +175,7 @@ def main():
     if lint is not None:
         n = lint.get("n") or 0
         first = "; ".join("%s: «%s»" % (i.get("where", ""), i.get("term", "")) for i in (lint.get("items") or [])[:3])
-        out["sources"].append({"key": "advice", "label": "בדיקת ניסוח", "status": "stale" if (n or ((lint.get("archive") or {}).get("flagged"))) else "ok",   # צהוב גם כשבארכיון הציבורי נשארו ניסוחי מסחר ישנים
+        out["sources"].append({"key": "advice", "label": "בדיקת ניסוח", "status": "stale" if n else "ok",   # לפי התוכן הנוכחי בלבד; הארכיון נשאר בנוסחו (החלטת איציק 14.11.2026) ומדווח בפירוט
                                "updatedAt": (lint.get("_meta") or {}).get("updatedAt"),
                                "detail": advice_detail(lint, n, first)})
         out["adviceLint"] = {"n": n, "items": (lint.get("items") or [])[:10], "archive": lint.get("archive"), "scope": lint.get("scope")}
