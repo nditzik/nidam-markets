@@ -125,6 +125,8 @@ def main(force=False, fetch=None, now=None):
         stages[stage] = stages.get(stage, 0) + 1
     out["_meta"].update(basedOn=day, universe=len(universe), barsOk=ok,
                         note="סריקה בענן על נרות Yahoo — אותה לוגיקה כמו הסריקה של IBKR")
+    from strip_advice import strip_candidates   # 14.11.2026: בלי סטופ/יעד בקובץ שמתפרסם (הסריקה עצמה לא השתנתה)
+    strip_candidates(out)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     with open(STATE, "w", encoding="utf-8") as f:

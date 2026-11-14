@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np199";
+  var TA_VER = "np200";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2591,7 +2591,7 @@
         var integ = (b.title || "").indexOf("המשולבת") >= 0;
         return '<div class="ai-blk' + (integ ? " integ" : "") + '">' +
           '<div class="ai-blk-t">' + esc(b.title || "") + "</div>" +
-          (b.lines || []).map(function (l) { return "<p>" + escB(l) + "</p>"; }).join("") +
+          (b.lines || []).filter(function (l) { return !/^\s*המלצה\s*:|להחזיק קיים|להדק סטופ/.test(l); }).map(function (l) { return "<p>" + escB(l) + "</p>"; }).join("") +   // np200: בלי שורת "המלצה" של הדשבורד
         "</div>";
       }).join("") +
       (ai.watchFor ? '<p class="ai-blk-watch"><b>לעקוב:</b> ' + escB(ai.watchFor) + "</p>" : "") +
@@ -4477,7 +4477,6 @@
         spark(e.path) + H.map(function (h) { return cell(e.avg && e.avg[h], e.cur, h, true); }).join("") + "</tr>";
       var det = (e.symbols || []).map(function (s) {
         var rs = e.results && e.results[s.sym] || {};
-        var stopped = H.some(function (h) { return rs[h] && rs[h].stopped; }) || (rs.cur && rs.cur.stopped);
         return '<tr class="pk-det" data-ed="' + i + '" hidden><td></td><td><a dir="ltr" href="https://www.tradingview.com/symbols/' + encodeURIComponent(s.sym) + '/" target="_blank" rel="noopener">' + esc(s.sym) + "</a>" + '<small class="pk-px-m">' + pxNow(s, rs, true) + "</small>" + '</td><td>' + pxNow(s, rs) + "</td>" +
           spark(rs.path) + H.map(function (h) { return cell(rs[h], rs.cur, h); }).join("") + "</tr>";
       }).join("");

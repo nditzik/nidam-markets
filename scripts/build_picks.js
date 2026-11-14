@@ -226,8 +226,8 @@ function poolSignature() {
 const GATE_LABEL = { defense: "הגנתי", neutral: "זהיר", green: "חיובי" };
 
 // 14.11.2026 (התאמה משפטית): stopTarget() הוסר — האתר לא מפרסם סטופ, יעד, יחס סיכון/סיכוי או גודל פוזיציה.
-// המהדורה מציגה רק נתונים טכניים של המנוע (אזור תמיכה, אזור התנגדות, ATR). היומן ממשיך למדוד "כאילו אין סטופ";
-// השדה stopped בתוצאות = ירידה של 1.5 ATR ומעלה בדרך (תיאור, לא מוצג כסטופ). הבדיקה לאחור של np149
+// המהדורה מציגה רק נתונים טכניים של המנוע (אזור תמיכה, אזור התנגדות, ATR). היומן מודד קנה-והחזק תיאורטי; השדות
+// stop (למניה) ו-stopped (בתוצאות) הוסרו גם מהיומן — נשאר mae (הירידה המקסימלית בדרך). הבדיקה לאחור של np149
 // נשארת ב-scripts/tools/backtest_stops.js לשימוש פנימי.
 
 function buildEdition(asOf, spy, ledger, idx, poolSig, momOnly) {
@@ -359,7 +359,7 @@ function updateLedger(ledger, spy) {
           const r = (bars[bi + d].close / s.entry - 1) * 100, m = (spy[si + d].close / spy[si].close - 1) * 100;
           res.path.push([+r.toFixed(2), +(r - m).toFixed(2)]);
           if (d === maxD) res.cur = { day: d, close: +bars[bi + d].close.toFixed(2), ret: +r.toFixed(2), spy: +m.toFixed(2), excess: +(r - m).toFixed(2), mae: +((lo / s.entry - 1) * 100).toFixed(1),
-            stopped: s.stop != null ? lo < s.stop : (s.atr ? (s.entry - lo) / s.atr >= 1.5 : false), date: bars[bi + d].date };
+            date: bars[bi + d].date };
         }
       }
       need.forEach(h => {
@@ -368,7 +368,7 @@ function updateLedger(ledger, spy) {
         const ret = +((bars[bi + h].close / s.entry - 1) * 100).toFixed(2);
         const mkt = +((spy[si + h].close / spy[si].close - 1) * 100).toFixed(2);
         res[h] = { ret, spy: mkt, excess: +(ret - mkt).toFixed(2), mae: +((lo / s.entry - 1) * 100).toFixed(1),
-          stopped: s.stop != null ? lo < s.stop : (s.atr ? (s.entry - lo) / s.atr >= 1.5 : false), date: bars[bi + h].date };
+          date: bars[bi + h].date };
         filled++;
       });
     });

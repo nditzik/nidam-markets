@@ -80,6 +80,8 @@ def main():
     meta["source"] = "ibkr-swing-system"
     payload["_meta"] = meta
 
+    from strip_advice import strip_candidates   # 14.11.2026: בלי סטופ/יעד בקובץ שמתפרסם
+    strip_candidates(payload)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"[done] נכתב {OUT} ({payload.get('shown', '?')} מועמדים, {payload.get('date')})")
