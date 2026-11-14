@@ -693,7 +693,7 @@ def render_html(w, nar):
 <h3>ג. הכללים הקבועים</h3><ol class="small">{"".join(f"<li>{t}</li>" for t in rules)}</ol>
 <h3>ד. מגבלות השבוע</h3><ul class="small">{"".join(f"<li>{t}</li>" for t in lims)}</ul>
 <h3>ה. מקורות</h3><p class="small">Barchart: hist_*.csv ×16 (Daily, 2 Years, סגירה {dmy(fri)}), breadth.csv (Percentage of Large Cap Stocks Above Their Moving Averages), industry-group-rankings.csv, heatmap.csv (1-Month, ≥10 מניות) — תיקיית Rotation/{w["date"]} בדרייב. לוח הדוחות: TradingView דרך האתר. {nar.get("sources_extra", "")}</p>
-<div class="disc">דוח זה הוא ניתוח לצרכים חינוכיים בלבד ואינו ייעוץ השקעות. שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · הופק {dmy(w["date"])} מקובצי CSV בלבד.</div></div>''')
+<div class="disc">דוח זה הוא ניתוח לצרכים חינוכיים בלבד ואינו ייעוץ השקעות. שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · הופק {dmy(w["date"])} מקובצי נתונים של Barchart (מדדי הסקטור, רוחב, דירוג התעשיות) בעיבוד האתר.</div></div>''')
     title = f"לאן זרם הכסף השבוע? | שבוע {week_no} | {dmy(w['date'])}"
     return f'<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>{e(title)}</title>\n<style>{CSS}</style>\n</head>\n<body><div class="wrap">\n{"".join(H)}\n</div></body></html>', title
 
@@ -1129,7 +1129,7 @@ def render_html_v2(w, nar):
 <p><b>מגבלות:</b> מחושב מקובצי CSV בלבד (16 קובצי היסטוריה יומית, טבלת הרוחב, המכ"ם ומפת החום); הציון מ-3 מתוך 5 רכיבים (אין שיאים/שפל ואין סקרינרים בסט הקבצים); מפת החום שווה-משקל ומדדי הסקטור משוקללי-שווי — הפער הוא מידע. {" ".join(lims)}</p>
 <p class="small"><b>מקורות:</b> Barchart — hist_*.csv ×16 (Daily, 2 Years, סגירה {dmy(fri)}), breadth.csv, industry-group-rankings.csv, heatmap.csv (1-Month, ≥10 מניות), במייל של גרוק → data/rotation/{w["date"]}. לוח הדוחות: TradingView דרך האתר. {nar.get("sources_extra", "")}</p>
 </div></details>''')
-    H.append(f'<p class="foot">שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · הופק {dmy(w["date"])} מקובצי CSV בלבד. מידע וניתוח כלליים לצורכי מחקר ולימוד. הסיווגים (מאושר / מתחמם / ריבאונד / נשבר) ורמות האישור מתארים עמידה בתנאים שהוגדרו במודל, ואינם קביעה בדבר כדאיות קנייה, מכירה או החזקה ואינם הנחיה לגודל השקעה. הציונים אינם הסתברות לרווח. התוכן אינו ייעוץ השקעות ואינו מותאם לאדם מסוים; השקעה כרוכה בסיכון להפסד.</p>'
+    H.append(f'<p class="foot">שבוע {week_no} למעקב · שבוע המסחר {dm(prev_fri)}–{dmy(fri)} · הופק {dmy(w["date"])} מקובצי נתונים של Barchart (מדדי הסקטור, רוחב, דירוג התעשיות) בעיבוד האתר. מידע וניתוח כלליים לצורכי מחקר ולימוד. הסיווגים (מאושר / מתחמם / ריבאונד / נשבר) ורמות האישור מתארים עמידה בתנאים שהוגדרו במודל, ואינם קביעה בדבר כדאיות קנייה, מכירה או החזקה ואינם הנחיה לגודל השקעה. הציונים אינם הסתברות לרווח. התוכן אינו ייעוץ השקעות ואינו מותאם לאדם מסוים; השקעה כרוכה בסיכון להפסד.</p>'
              + (f'<p class="foot">תיקון {e(nar.get("correctedAt", ""))}: {e(nar["correction"])}</p>' if nar.get("correction") else ""))
     summ = json.dumps(summary_block(w, nar), ensure_ascii=False).replace("</", "<\\/")
     title = f"לאן זרם הכסף השבוע? | שבוע {week_no} | {dmy(w['date'])}"

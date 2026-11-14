@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np200";
+  var TA_VER = "np201";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2493,6 +2493,7 @@
       (e.nhCount != null ? '<div class="np-sub"><span>שיאים ושפלים 52ש׳</span><b class="np-nhnl">' +
         '<span class="up"><span class="num" dir="ltr">' + e.nhCount + '</span> שיאים</span><span class="np-sep">·</span>' +
         '<span class="down"><span class="num" dir="ltr">' + e.nlCount + '</span> שפלים</span></b></div>' : "") +
+      '<div class="bd-src">מקור הנתונים: Barchart (רשימת S&amp;P 500 וקובצי אופציות) · החישוב: מודל האתר</div>' +   // np201: ציון מקור
       "</div>";
   }
 
@@ -2631,7 +2632,7 @@
       cells.map(function (q) {
         return '<div class="fq-cell"><span class="fq-l">' + q[0] + '</span><b class="num ' + q[2] + '">' + m(q[1]) + "</b></div>";
       }).join("") + "</div>" +
-      '<p class="stamp" style="margin-bottom:0">קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" (v6, מ-19.9.2026) נבנה מכיוון הכסף הגדול ב-SPY בלבד, מול ההיסטוריה של עצמו; SPX משמש נורת אזהרה ומניות בודדות מוצגות בנפרד למטה. הריבועים כאן הם קניות ומכירות של הכסף הגדול ב-SPY. ' +
+      '<p class="stamp" style="margin-bottom:0"><b>מקור: Barchart Options Flow (SPY, SPX), בעיבוד האתר.</b> קנייה אגרסיבית של Calls ומכירת Puts = הימור שורי; קניית Puts ומכירת Calls = דובי. הציון בכרטיס "אופציות" (v6, מ-19.9.2026) נבנה מכיוון הכסף הגדול ב-SPY בלבד, מול ההיסטוריה של עצמו; SPX משמש נורת אזהרה ומניות בודדות מוצגות בנפרד למטה. הריבועים כאן הם קניות ומכירות של הכסף הגדול ב-SPY. ' +
         'הנתון מבוסס על עסקאות אופציות בולטות/גדולות בלבד (לא כל נפח המסחר היומי) — לכן עשוי להיות שונה ממדדי "דלתא" כוללי-שוק בכלים אחרים (כמו Barchart).</p>' +
       "</div>";
   }
@@ -2989,7 +2990,7 @@
       '<div class="bp-rows"><div class="bp-row bp-hdr"><span></span><span>מניות במגמת עלייה ביום השיא</span><span>התחתית בשנה שאחרי</span><span>שנה אחרי השיא</span></div>' +
         row({ when: "היום", p: p }, true) + '<div class="bp-sep"></div>' + BP_ROWS.map(function (r) { return row(r); }).join("") + "</div>" +
       '<p class="bp-take"><b>הלקח:</b> גם שיא רחב (ינואר 2022) נגמר בירידה, וגם שיאים צרים (2023, 2025) המשיכו לעלות. מה שהכריע הוא החודש שאחרי: אם תוך כחודש עוד מניות הצטרפו והאחוז קפץ מעל 65%, השוק המשיך לעלות. אם לא, הגיע תיקון.</p>' +
-      '<p class="stamp">נכון לסגירת <span dir="ltr">' + esc(fmtTradeDate(d.date)) + "</span> · התחתית = הנקודה הנמוכה ביותר של המדד בשנה שאחרי השיא, באחוזים מהשיא. נתוני העבר: חישוב על חברות המדד של היום מנרות 2005–2026 (חברות שיצאו מהמדד חסרות, ולכן העבר נראה מעט טוב יותר).</p></section>";
+      '<p class="stamp">נכון לסגירת <span dir="ltr">' + esc(fmtTradeDate(d.date)) + "</span> · התחתית = הנקודה הנמוכה ביותר של המדד בשנה שאחרי השיא, באחוזים מהשיא. האחוז של היום: רשימת S&amp;P 500 של Barchart. נתוני העבר: חישוב על חברות המדד של היום מנרות 2005–2026 (חברות שיצאו מהמדד חסרות, ולכן העבר נראה מעט טוב יותר).</p></section>";
   }
   function renderBreadthPeaks() { var el = document.getElementById("bp-slot"); if (el && INDD) el.innerHTML = bpPan(INDD); }
 
@@ -3151,7 +3152,7 @@
       (sectors ? '<section class="pan"' + bdSpan(selling ? 6 : 12) + ">" + panHd("רוטציה סקטוריאלית", '<span class="mute">כוח יחסי 20 יום מול S&amp;P</span>', '<a class="go" href="#sectors" onclick="__goTab(\'sectors\');return false">גלגל הרוטציה</a>') + '<div class="pb">' + sectors + "</div></section>" : "") +
       (selling ? '<section class="pan"' + bdSpan(sectors ? 6 : 12) + ">" + panHd("לחץ מכירות מוסדי", '<span class="mute">' + esc(ro.evidenceLine || "") + "</span>") + '<div class="pb">' + selling + "</div></section>" : "") +
       '<section class="pan"' + bdSpan(12) + '><details class="bd-exp"><summary>איך זה עובד</summary>' + INDICES_EXPLAINER + "</details>" +
-        '<p class="stamp" style="margin:0 14px 12px">מקור: <a href="https://nditzik.github.io/indexes-status/" target="_blank" rel="noopener">דשבורד המדדים המלא ↗</a></p></section>' +
+        '<p class="stamp" style="margin:0 14px 12px">מקור הנתונים: Barchart (רשימת מניות S&amp;P 500 וקובצי האופציות) · מחירים: Yahoo Finance. המד, הרוחב, הציונים והמסקנות מחושבים על ידי מודל האתר מהנתונים האלה.</p></section>' +
       "</div>";
     bindMeterTimeline(el); renderMeterTimeline(); renderSpark("-i");
     setTimeout(renderOptVsPrice, 0);   // ה-figure של הגרף נכנס ל-DOM רק בהמשך הפונקציה
@@ -3354,8 +3355,7 @@
     el.innerHTML = '<div class="board">' +
       '<section class="pan"' + bdSpan(12) + ">" +
         panHd("סורק מומנטום" + (fdate ? ' · סורקי <span class="num" dir="ltr">' + fdate + "</span>" : ""),
-          '<span class="mute"><span class="num">' + base.length + "</span> מניות איכות, 2 סיגנלים ומעלה אחרי פילטר הבסיס" + (upd ? ' · עודכן <span class="num" dir="ltr">' + upd[1] + "</span>" : "") + "</span>",
-          '<a class="go" href="https://nditzik.github.io/stocks-momentum/" target="_blank" rel="noopener">דשבורד המומנטום המלא</a>') +
+          '<span class="mute"><span class="num">' + base.length + "</span> מניות איכות, 2 סיגנלים ומעלה אחרי פילטר הבסיס" + (upd ? ' · עודכן <span class="num" dir="ltr">' + upd[1] + "</span>" : "") + ' · מקור: סורקי Barchart</span>') +
         '<div class="pb"><div class="tiles">' +
           bdTile("4 סיגנלים", String(n4), "בכל הסורקים") +
           bdTile("3 סיגנלים", String(n3), "") +
@@ -4520,7 +4520,7 @@
           '<div><b>3. הסינון</b><span>מדווחת בשבוע הקרוב יוצאת. מניה ששלוש ההופעות הקודמות שלה הסתיימו בירידה יוצאת.</span></div>' +
           '<div><b>4. ההקשר</b><span>מצב מד השוק (חיובי / זהיר / הגנתי) מוצג לצד הרשימה כהקשר בלבד. הוא לא מסנן מניות.</span></div>' +
           '<div><b>5. הרמות</b><span>אזור תמיכה ואזור התנגדות = אזורי המחיר שהמנוע מזהה בנרות (אמצע האזור). תנודה יומית = התנועה היומית הממוצעת של המניה (ATR) באחוזים מהמחיר. אלה נתונים טכניים, לא תוכנית עסקה.</span></div></div>' +
-        '<p class="stamp" style="margin:10px 14px">' + SCAN_DISC + " לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>";
+        '<p class="stamp" style="margin:10px 14px">' + SCAN_DISC + " מקור: המאגר ההתחלתי מסורקי Barchart, נרות מ-Yahoo Finance, הבדיקה של מודל האתר. לחיצה על הטיקר פותחת את הניתוח הטכני המלא.</p>";
     }
     el.innerHTML = (d ? stamp(d._meta) : "") + '<div class="board">' +
       '<section class="pan bd-picks" id="pk-main"' + bdSpan(12) + ">" + main + "</section>" +
@@ -4996,14 +4996,14 @@
           bdTile("R היסטורי חיובי", '<span class="num">' + posR + '</span><small> מתוך ' + cs.length + "</small>", "בדיקה לאחור של התבנית, שנתיים") +
         "</div></div></section>" +
       '<section class="pan"' + bdSpan(12) + ">" +
-        panHd("הרשימה", '<span class="mute">לפי הדירוג המשולב של הסריקה · מחיר הייחוס = סגירת יום הסריקה</span>') +
+        panHd("הרשימה", '<span class="mute">לפי הדירוג המשולב של הסריקה · מחיר הייחוס = סגירת יום הסריקה · מקור הרשימה: סורקי Barchart</span>') +
         '<div class="tbl"><table class="bd-tbl"><caption class="sr-only">תוצאות סריקת התיקון</caption><thead><tr>' +
         '<th scope="col">#</th><th scope="col">מניה</th><th scope="col" title="הממוצע הנע שאליו המניה תיקנה">תבנית</th>' +
         '<th scope="col">מחיר ייחוס</th><th scope="col" title="מרחק המחיר מהממוצע, ביחידות של תנודה יומית ממוצעת (ATR)">מתיחות (ATR)</th>' +
         '<th scope="col" title="מחזור היום ביחס למחזור הממוצע">RVOL</th><th scope="col" title="בדיקה לאחור: התוצאה הממוצעת של אותה תבנית על המניה בשנתיים האחרונות, ביחידות של תנודתיות. אינה מבטיחה תוצאה עתידית">R היסטורי</th>' +
         "</tr></thead><tbody>" + rows + "</tbody></table></div></section>" +
       '<section class="pan"' + bdSpan(12) + '><details class="bd-exp"><summary>איך זה עובד</summary>' + tabIntro("candidates") +
-        '<p class="stamp" style="margin:0 14px 12px">' + (cloud ? "הסריקה רצה בענן אוטומטית אחרי שקובצי המומנטום מתעדכנים · " : "") + "R היסטורי = בדיקה לאחור של אותה תבנית על המניה בשנתיים האחרונות, ביחידות של תנודתיות (R), בלי עמלות ומיסים. " + PAST_DISC + " · לחיצה על טיקר פותחת את הניתוח הטכני</p></details></section>" +
+        '<p class="stamp" style="margin:0 14px 12px">' + (cloud ? "הסריקה רצה בענן אוטומטית אחרי שקובצי המומנטום מתעדכנים · " : "") + "R היסטורי = בדיקה לאחור של אותה תבנית על המניה בשנתיים האחרונות, ביחידות של תנודתיות (R), בלי עמלות ומיסים. " + PAST_DISC + " · מקור: רשימת המניות ההתחלתית מסורקי Barchart, נרות מ-Yahoo Finance, הסריקה של האתר · לחיצה על טיקר פותחת את הניתוח הטכני</p></details></section>" +
       "</div>";
   }
 
