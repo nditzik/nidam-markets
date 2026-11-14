@@ -127,6 +127,8 @@ def main():
         "updatedAt": israel_now_str(),
         "source": "indexes-status",
     }
+    from strip_advice import strip_indices   # 14.11.2026: בלי הוראות פעולה גם בקובץ הגולמי
+    strip_indices(data)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
