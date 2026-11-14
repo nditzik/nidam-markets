@@ -468,6 +468,134 @@
     s.onerror = function () { cb(new Error("load")); };
     document.head.appendChild(s);
   }
+  /* ───── np202 (15.11.2026, איציק — מוקאפ https://claude.ai/artifact/K4fWbmDqfLGStiz22dsGCD): "תמונה מלאה" ─────
+     לשונית בחלון המניה שמרכזת את מה שכבר קיים באתר על המניה: באילו סריקות הופיעה, ניתוחי הדוחות, רכישות מנהלים.
+     הנתונים מ-data/stock_hub.json (scripts/build_stock_hub.py); האריחים מהמנוע (נרות סגורים) ומ-fundamentals.json.
+     החלון נפתח על הלשונית הזאת רק כשיש על המניה משהו באתר (window.__hubHas) — אחרת על "ניתוח טכני" כמו קודם. */
+  var HUBD = null, HUB_AT = 0;
+  var HUB_CHECKS = [["nb", "עומדות בתנאים", "picks", "הרשימה"], ["cand", "סריקת תיקון", "candidates", "סריקת תיקון"], ["mom", "מומנטום", "momentum", "מומנטום"],
+    ["fp", "ארבעת העמודים", "trades", "ארבעת העמודים"], ["ins", "רכישות מנהלים", "insider", "רכישות מנהלים"], ["sec", "הסקטור", "sectors", "דוח הסקטורים"]];
+  function loadHub(cb) {
+    var now = Date.now();
+    if (HUBD && now - HUB_AT < 600000) { cb(HUBD); return; }
+    fetch("data/stock_hub.json?v=" + Math.floor(now / 600000)).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { HUBD = d || { syms: {} }; HUB_AT = now; cb(HUBD); })
+      .catch(function () { cb(HUBD || { syms: {} }); });
+  }
+  function dmS(iso) { var p = String(iso || "").slice(0, 10).split("-"); return p.length === 3 ? (+p[2]) + "." + (+p[1]) : ""; }
+  function dmyS(iso) { var p = String(iso || "").slice(0, 10).split("-"); return p.length === 3 ? (+p[2]) + "." + (+p[1]) + "." + p[0] : ""; }
+  /* [[…]] בטקסט שהסקריפט כתב = קטע לטיני/מספרי → bdi מבודד; מספר חתום נצבע לפי הסימן */
+  function hubTxt(t) {
+    return esc(t).replace(/\[\[(.+?)\]\]/g, function (_, x) { return '<bdi class="num' + (/^[−-]/.test(x) ? " down" : /^\+/.test(x) ? " up" : "") + '" dir="ltr">' + x + "</bdi>"; });
+  }
+  function hubTile(l, v, s, ltr) { return '<div class="hub-t"><div class="hub-t-l">' + l + '</div><div class="hub-t-v' + (ltr ? ' num" dir="ltr" style="text-align:right' : "") + '">' + v + "</div>" + (s ? '<div class="hub-t-s">' + s + "</div>" : "") + "</div>"; }
+  function hubUsd(v) { return v >= 1e6 ? "$" + (v / 1e6).toFixed(2) + "M" : "$" + Math.round((v || 0) / 1e3) + "K"; }
+  window.__hubHas = function (sym, cb) {
+    loadHub(function (h) { var o = h.syms && h.syms[String(sym).toUpperCase()]; cb(!!(o && (o.n || (o.rep && o.rep.length) || (o.ins && o.ins.length)))); });
+  };
+  function hubDraw(sym, el, hub, f, r, lastBar) {
+    var o = (hub.syms && hub.syms[sym]) || { n: 0, app: [] }, src = hub.src || {}, h = ['<div class="ta hub">'];
+    var price = (lastBar && lastBar.close) || (f && f.price);
+    h.push('<div class="hub-hd"><b dir="ltr">' + esc((f && f.name) || sym) + "</b>" + (f && f.industry ? '<span class="mute">' + esc(f.industry) + "</span>" : "") +
+      (price ? '<span class="num" dir="ltr">$' + f2(price) + "</span>" : "") + (lastBar ? '<span class="mute">סגירת <span class="num" dir="ltr">' + dmS(lastBar.date) + "</span></span>" : "") + "</div>");
+    if (f && f.about) h.push('<p class="hub-about">' + esc(f.about) + "</p>");
+    // ארבעת האריחים: מגמה ומצב מהמנוע (נרות סגורים), יסודות והדוח הבא מ-fundamentals
+    var p = r && r.presentation, sup = r && r.levels && r.levels.support;
+    var ne = f && f.nextEarn, neT = "—", neS = "";
+    if (ne && ne.date) {
+      var days = Math.round((new Date(ne.date + "T12:00:00") - new Date(new Date().toDateString())) / 864e5);
+      neT = dmyS(ne.date);
+      neS = [ne.when === "after" ? "אחרי הסגירה" : ne.when === "before" ? "לפני הפתיחה" : "", days < 0 ? "" : days === 0 ? "היום" : days === 1 ? "מחר" : "בעוד " + days + " ימים"].filter(Boolean).join(" · ");
+    }
+    var pe = f && (f.fwdPe || f.pe);
+    h.push('<div class="hub-tiles">' +
+      hubTile("מגמה ראשית", p ? esc(p.hierarchy.primary) : "—", p ? "בטווח הבינוני: " + esc(p.hierarchy.intermediate) : 'בלשונית "ניתוח טכני"') +
+      hubTile("מצב נוכחי", p ? esc(p.state || p.hierarchy.short) : "—", sup ? 'אזור התמיכה <span class="num" dir="ltr">' + f2(sup.low) + "–" + f2(sup.high) + "</span>" : "") +
+      hubTile("יסודות החברה", f && f.quality && f.quality.label ? esc(f.quality.label) : "—", f && f.cap != null ? 'שווי <span class="num" dir="ltr">' + money(f.cap) + "</span>" +
+        (pe && pe > 0 ? " · " + (f.fwdPe ? "מכפיל קדימה " : "מכפיל רווח ") + '<span class="num" dir="ltr">' + (pe >= 100 ? Math.round(pe) : pe.toFixed(1)) + "</span>" : "") : "") +
+      hubTile("הדוח הבא", neT, neS, true) + "</div>");
+    // איפה המניה מופיעה באתר
+    var asOf = hub.asOf ? " · נכון לסגירת " + dmS(hub.asOf) : "";
+    h.push('<div class="hub-h"><h4>איפה המניה מופיעה באתר</h4><span>' + (o.n ? o.n + " מתוך " + HUB_CHECKS.length + " הבדיקות" : "לא מופיעה כרגע באף סריקה") + asOf + "</span></div>");
+    var byK = {}; (o.app || []).forEach(function (a) { byK[a.k] = a; });
+    var miss = [];
+    HUB_CHECKS.forEach(function (c) {
+      var a = byK[c[0]];
+      if (a) {
+        h.push('<div class="hub-row"><b>' + esc(a.l || c[1]) + '</b><span class="num" dir="ltr">' + dmS(a.d) + "</span><span>" + hubTxt(a.t) + '</span><a href="#' + c[2] + '" data-hub-go="' + c[2] + '">' + c[3] + "</a></div>");
+      } else if (c[0] === "sec") {
+        if (o.secOff) miss.push("הסקטור (" + esc(o.secOff) + ") לא מסווג מאושר או מתחמם");
+      } else if (c[0] === "ins") {
+        miss.push("רכישות מנהלים" + (src.ins && src.ins.from ? " (מאז " + dmS(src.ins.from) + ")" : ""));
+      } else {
+        var d = (src[c[0]] || {}).d;
+        miss.push(c[1] + (d ? " (" + dmS(d) + ")" : c[0] === "nb" ? " (20 ימי המסחר האחרונים)" : ""));
+      }
+    });
+    if (miss.length) h.push('<p class="hub-miss">' + (o.n ? "לא הופיעה ב: " : "נבדק: ") + miss.join(" · ") + "</p>");
+    // דוחות החברה | רכישות מנהלים + אנליסטים
+    var rep = '<section class="hub-sec"><h4>דוחות החברה באתר</h4>';
+    if (o.rep && o.rep.length) {
+      rep += o.rep.map(function (x, i) {
+        return '<div class="hub-it"><div class="hub-it-h"><a href="#reports" data-hub-rep="' + esc(x.file) + '">' + esc(x.title) + '</a><span class="num" dir="ltr">' + dmS(x.date) + "</span>" +
+          (x.review ? '<a class="hub-chip" href="#after" data-hub-go="after">אחרי הדוח</a>' : "") + "</div>" + (x.review && i === 0 ? "<p>" + esc(x.review) + "</p>" : "") + "</div>";
+      }).join("");
+    } else rep += '<p class="mute">אין באתר ניתוח דוח של החברה.</p>';
+    if (o.prep && o.prep.date) rep += '<div class="hub-it"><div class="hub-it-h"><a href="#prep" data-hub-go="prep">לקראת הדוח</a><span class="num" dir="ltr">' + dmS(o.prep.date) + "</span></div>" +
+      '<p class="mute">' + (o.prep.notes ? "ההכנה לדוח הקרוב כבר באתר." : "ההכנה תיכתב בבוקר שלפני שבוע הדוח.") + "</p></div>";
+    else if (ne && ne.date) rep += '<div class="hub-it"><p class="mute">הדוח הבא: <span class="num" dir="ltr">' + dmyS(ne.date) + "</span>" + (ne.when === "after" ? ", אחרי הסגירה" : ne.when === "before" ? ", לפני הפתיחה" : "") + " (לפי TradingView).</p></div>";
+    rep += "</section>";
+    var ins = '<section class="hub-sec"><h4>רכישות מנהלים</h4>';
+    if (o.ins && o.ins.length) {
+      ins += o.ins.map(function (x) {
+        return '<div class="hub-it"><div class="hub-it-h"><b dir="ltr">' + esc(x.who) + "</b><span>" + esc(x.role) + '</span><span class="num" dir="ltr">' + hubUsd(x.value) + "</span></div>" +
+          "<p>" + (x.trade ? 'העסקה <span class="num" dir="ltr">' + dmS(x.trade) + "</span> · " : "") + 'דווח <span class="num" dir="ltr">' + dmS(x.filed) + "</span>" +
+          (x.url ? ' · <a href="' + esc(x.url) + '" target="_blank" rel="noopener">הטופס המקורי (Form 4)</a>' : "") + "</p></div>";
+      }).join("");
+    } else ins += '<p class="mute">אין רכישות מדווחות של מנהלים' + (src.ins && src.ins.from ? " מאז תחילת המעקב (" + dmS(src.ins.from) + ")." : ".") + "</p>";
+    if (f && f.target != null && price) {
+      var rc = f.recs || {}, buy = (rc.strongBuy || 0) + (rc.buy || 0), tot = buy + (rc.hold || 0) + (rc.sell || 0) + (rc.strongSell || 0);
+      ins += '<h4>אנליסטים (נתון צד שלישי)</h4><p>מחיר יעד ממוצע <span class="num" dir="ltr">$' + f2(f.target) + "</span>" +
+        (tot ? ' · <span class="num" dir="ltr">' + buy + '</span> מתוך <span class="num" dir="ltr">' + tot + "</span> בדירוג קנייה" : "") + ". זה הדירוג של האנליסטים, לא של האתר.</p>";
+    }
+    ins += "</section>";
+    h.push('<div class="hub-two">' + rep + ins + "</div>");
+    h.push('<div class="hub-foot">הופעה בסריקה מתארת עמידה בתנאים שהוגדרו במודל, ואינה קביעה בדבר כדאיות קנייה, מכירה או החזקה. ביצועי עבר אינם מבטיחים תוצאות עתידיות.<br>' +
+      'מקורות: סורקי Barchart · Yahoo Finance (נרות) · TradingView (יסודות ומועד הדוח) · דיווחי Form 4 · חישובי האתר. <a href="legal.html" target="_blank" rel="noopener">הבהרות, סיכונים וגילוי עניין אישי</a></div>');
+    h.push("</div>");
+    el.innerHTML = disclHtml(sym) + nz(h.join(""));
+    el.onclick = function (e) {
+      var a = e.target && e.target.closest ? e.target.closest("[data-hub-go],[data-hub-rep]") : null;
+      if (!a) return;
+      e.preventDefault();
+      var go = a.getAttribute("data-hub-go"), file = a.getAttribute("data-hub-rep");
+      if (window.__closeChart) window.__closeChart();
+      if (file && window.__openReport) window.__openReport(file);
+      else if (go && window.__goTab) window.__goTab(go);
+    };
+  }
+  window.__hubRender = function (sym, el) {
+    sym = String(sym).toUpperCase();
+    el.innerHTML = '<div class="ta-msg">טוען…</div>';
+    loadHub(function (hub) {
+      loadFund(function (fund) {
+        scanFund(sym, fund, function (fo) {
+          var f = fo && fo.symbols && fo.symbols[sym];
+          ensureEngine(function (err) {
+            if (err) { hubDraw(sym, el, hub, f, null, null); return; }
+            loadBars(sym, function (d) {
+              var r = null, last = null;
+              try {
+                if (d && d.bars && d.bars.length) { r = window.TAEngine.analyze(d.bars, { symbol: sym }); last = d.bars[d.bars.length - 1]; if (r.status !== "ANALYZED") r = null; }
+              } catch (e) { r = null; }
+              hubDraw(sym, el, hub, f, r, last);
+            });
+          });
+        });
+      });
+    });
+  };
+
   window.__taHas = hasBars;
   window.__taRender = function (sym, el) {
     el.innerHTML = '<div class="ta-msg">טוען נתונים…</div>';

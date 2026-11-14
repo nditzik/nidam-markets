@@ -109,6 +109,10 @@ def targets():
     cs = load(os.path.join(DATA, "consensus.json"))
     if cs:
         out.append(("סיכום", {"why": [r.get("why") for r in cs.get("rows", [])]}, None))
+    hb = load(os.path.join(DATA, "stock_hub.json"))
+    if hb:   # "תמונה מלאה" בחלון המניה (np202): הטקסטים שהסקריפט מרכיב + כותרות "אחרי הדוח"
+        out.append(("חלון המניה", {"t": sorted({a.get("t") or "" for o in (hb.get("syms") or {}).values() for a in o.get("app") or []} |
+                                               {r.get("review") or "" for o in (hb.get("syms") or {}).values() for r in o.get("rep") or []})}, None))
     st = load(os.path.join(DATA, "story.json"))
     if st and st.get("active"):
         out.append(("הכתבה בבית", {k: st.get(k) for k in ("title", "dek", "paras", "next", "questions")}, None))
