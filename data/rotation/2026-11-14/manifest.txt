@@ -1,0 +1,43 @@
+Rotation data pull - 2026-11-14 (Saturday)
+Last trading day expected: 2026-11-13 (Friday)
+Source: Barchart.com
+Drive folder: Rotation/2026-11-14
+
+=== Files (name | data rows | last-row date) ===
+hist_CLF27.csv | 519 | 2026-11-13 | earliest 2024-10-22 | OK
+hist_DXY.csv | 519 | 2026-11-13 | earliest 2024-11-13 | OK
+hist_GCZ26.csv | 519 | 2026-11-13 | earliest 2024-10-22 | OK
+hist_SPX.csv | 519 | 2026-11-13 | earliest 2024-10-22 | OK
+hist_SRCD.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRCS.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SREN.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRFI.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRHC.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRIN.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRIT.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRMA.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRRE.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRTS.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_SRUT.csv | 519 | 2026-11-13 | earliest 2024-10-21 | OK
+hist_TNX.csv | 519 | 2026-11-13 | earliest 2024-10-25 | OK
+breadth.csv | 12 | 2026-11-13 (page header "Fri, Nov 13th, 2026") | OK (12 rows required)
+industry-group-rankings.csv | 170 | as of 11-13-2026 (Barchart footer) | OK (~170 expected)
+heatmap.csv | 170 | ~2026-11-13 (page as of Fri, Nov 13th, 2026) | OK (~170 expected)
+manifest.txt | this file | uploaded last
+
+=== Checks ===
+All 16 hist files: newest data row = 2026-11-13 (last trading day of the week).
+breadth.csv: 12 rows. heatmap.csv: 170 rows. industry-group-rankings.csv: 170 rows.
+
+=== Contracts ===
+WTI oil: CLF27 (Jan '27; expires 12/21/26). CLZ26 (Dec '26) expires 11/20/26, which is within the next 5 trading days (Mon 16–Fri 20 Nov), so the next contract was used.
+Gold: GCZ26 (Dec '26; expires 12/29/26).
+
+=== Notes ===
+- hist files: Daily, 2 Years, Barchart Download button; newest row first, Barchart footer line kept as-is.
+- industry-group-rankings.csv: downloaded via Barchart's Download control; footer as of 11-13-2026 10:13pm CST.
+- breadth.csv: page text of 'Percentage Of Large Cap Stocks Above Their Moving Averages' on stocks/market-performance.
+- heatmap.csv: page text from stocks/sectors/industry-heat-map, 1-Month range, 'Only show Industries with 10 or more Stocks' checked; all rows kept, no filtering.
+
+=== Missing / exceptions ===
+None.
