@@ -5,6 +5,9 @@
 
 
 
+## 14.11.2026 (שבת ערב, סשן) — שם הקובץ של מניות המעקב
+- איציק: "לא רלוונטי מה שאני מחזיק" → הקובץ הציבורי `data/holdings.txt` ("החזקות") נקרא עכשיו `data/season_watch.txt` — אותן חמש מניות מעקב לציר עונת הדוחות, בלי שינוי באתר. `build_earnings_season.py` עודכן (WATCH). השם הישן נשאר בהיסטוריית git בלבד.
+
 ## 14.11.2026 (שבת ערב, סשן) — np200: ניקוי קובצי הנתונים הגולמיים
 - איציק: "למה אני צריך לציין איזה מניות אני מחזיק? נראה לי שאין צורך. לגבי קובצי הנתונים הגולמיים מחק. דשבורד המדדים מקומי אצלי בלבד."
 - `scripts/strip_advice.py` (חדש) נקרא לפני הכתיבה ב-fetch_dashboards / scan_cloud / fetch_ibkr: `candidates.json` בלי stop/target/risk_pct/tp_pct; `indices.json` בלי recommendation.action, riskOff.actionLine ושורות "המלצה: …" ב-aiSummary (אחת מהן עוד הוצגה ב"ניתוח לפי תחום" — פספוס של np199, תוקן גם ב-`aiBlocksHtml`); `picks_ledger.json` בלי stop/stopped (build_picks.js לא כותב אותם יותר). הקבצים הקיימים נוקו. הסריקה (`scan_candidates.py`) לא השתנתה.
