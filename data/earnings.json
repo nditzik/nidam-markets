@@ -224,14 +224,14 @@
       "date": "2026-11-16",
       "label": "16/11",
       "dow": "ב׳",
-      "count": 13,
+      "count": 18,
       "tickers": [
         "BIDU",
         "TSN",
         "BEKE",
         "HTHT",
         "ARMK",
-        "XPEV"
+        "FRHC"
       ]
     },
     {
@@ -296,7 +296,7 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 13,
+      "total": 18,
       "companies": [
         {
           "ticker": "BIDU",
@@ -329,6 +329,12 @@
           "logo": "data/earnings/logos/ARMK.png"
         },
         {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "",
+          "logo": "data/earnings/logos/FRHC.png"
+        },
+        {
           "ticker": "XPEV",
           "name": "XPeng, Inc. ADR Sponsored Class A",
           "when": "before",
@@ -349,6 +355,12 @@
           "logo": "data/earnings/logos/POWL.png"
         },
         {
+          "ticker": "GGAL",
+          "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
+          "when": "",
+          "logo": "data/earnings/logos/GGAL.png"
+        },
+        {
           "ticker": "PPTA",
           "name": "Perpetua Resources Corp.",
           "when": "",
@@ -359,18 +371,6 @@
           "name": "PagSeguro Digital Ltd. Class A",
           "when": "after",
           "logo": "data/earnings/logos/PAGS.png"
-        },
-        {
-          "ticker": "INFQ",
-          "name": "Infleqtion, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/INFQ.png"
-        },
-        {
-          "ticker": "BXDC",
-          "name": "Blackstone Digital Infrastructure Trust, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BXDC.png"
         }
       ]
     },
@@ -667,14 +667,19 @@
     "BEKE": "2026-11-16",
     "HTHT": "2026-11-16",
     "ARMK": "2026-11-16",
+    "FRHC": "2026-11-16",
     "XPEV": "2026-11-16",
     "ACM": "2026-11-16",
     "POWL": "2026-11-16",
+    "GGAL": "2026-11-16",
     "PPTA": "2026-11-16",
     "PAGS": "2026-11-16",
     "INFQ": "2026-11-16",
+    "DRVN": "2026-11-16",
     "BXDC": "2026-11-16",
+    "HUBG": "2026-11-16",
     "OMER": "2026-11-16",
+    "GDRX": "2026-11-16",
     "NVDA": "2026-11-17",
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
@@ -758,7 +763,7 @@
     "WRD": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "14/11/2026 06:01",
+    "updatedAt": "14/11/2026 06:16",
     "source": "tradingview"
   }
 }
