@@ -403,8 +403,8 @@
 
   /* ---- np207 (15.11.2026, איציק): מגזין סוף השבוע — מחליף את "הכתבה בבית" (np195, data/story.json) ----
      data/magazine/index.json {current, issues[]} + data/magazine/<id>.json (קבצים ידניים; המבנה והכללים ב-docs/magazine.md).
-     בבית: #home-mag — פס דיו עם הכותרת, ארבעה מספרים, שני המועדים הבאים וכפתור אחד; בשבת ובראשון ראשון בדף (class mg-first),
-     בשאר השבוע מתחת לכותרת השוק ולמד. הכתבה המלאה: #panel-magazine (חדשות › מגזין סוף השבוע, hash #magazine).
+     בבית: #home-mag — פס דיו עם הכותרת, ארבעה מספרים, שני המועדים הבאים וכפתור אחד; תמיד מתחת לאירועים
+     (np208, איציק: "מתחת לאירועים ולא בראש" — גם בסוף השבוע). הכתבה המלאה: #panel-magazine (חדשות › מגזין סוף השבוע, hash #magazine).
      מידע בלבד: תג קבוע "מידע בלבד, לא המלצה" + הבהרה בתחתית; "מה ידוע, מה דווח ומה מוכחש" = כל טענה לצד המקור שלה.
      רינדור מחדש רק כשהקבצים השתנו (MAG_SIG) — כדי לא לסגור חלק שהקורא פתח. */
   var MAG = null, MAGA = {}, MAG_SIG = "", MAG_SEL = null, MAG_T = null, MAG_OPEN = {};
@@ -465,22 +465,17 @@
             : '<a class="mg-btn" href="#magazine" onclick="' + go + '">לקריאת הכתבה המלאה</a>') +
       "</div>";
   }
-  function magFirst() {   // בשבת ובראשון הכתבה ראשונה בבית
-    var el = document.getElementById("home-mag");
-    if (el) el.classList.toggle("mg-first", !!el.firstChild && weekendNow());
-  }
   function renderHomeMag() {
     var el = document.getElementById("home-mag");
     if (!el) return;
     var a = magCur();
-    if (!a || !a.title) { el.innerHTML = ""; magFirst(); return; }
+    if (!a || !a.title) { el.innerHTML = ""; return; }
     var nums = magNums(a), nx = magNextHtml(a, 2, true), go = "__goTab('magazine');return false";
     el.innerHTML = panHd("מגזין סוף השבוע", '<span class="mute">גיליון ' + esc(a.no) + " · " + magDate(a.date, false) + "</span>",
         '<a class="go" href="#magazine" onclick="' + go + '">' + ((MAG.issues || []).length > 1 ? "כל הגיליונות" : "הכתבה המלאה") + "</a>") +
       '<div class="pb mg-teaser">' + magHero(a, false) +
         '<div class="mg-side">' + (nums ? '<div><div class="mg-lab">במספרים</div>' + nums + "</div>" : "") +
           (nx ? '<div><div class="mg-lab">מה הלאה</div><ul class="mg-next">' + nx + "</ul></div>" : "") + "</div></div>";
-    magFirst();
   }
 
   // גרף הסגירות: LTR, המספרים ב-SVG, התווית העברית של יום האירוע בשכבת HTML מעל (WebKit הופך עברית ב-<text>)
@@ -656,7 +651,7 @@
       if (!ix || !ix.current) throw new Error("empty");
       return fetchJSON("data/magazine/" + encodeURIComponent(ix.current) + ".json").then(function (a) {
         var sg = JSON.stringify([ix, a]);
-        if (sg === MAG_SIG && document.querySelector("#panel-magazine .mg-hero")) { magFirst(); return; }
+        if (sg === MAG_SIG && document.querySelector("#panel-magazine .mg-hero")) return;
         MAG_SIG = sg; MAG = ix; MAGA = {}; MAGA[ix.current] = a;
         if (MAG_SEL && MAG_SEL !== ix.current) MAG_SEL = null;
         renderHomeMag(); renderMagazine();
@@ -1011,7 +1006,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np207";
+  var TA_VER = "np208";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
