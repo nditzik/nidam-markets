@@ -1,5 +1,5 @@
 {
-  "today": "2026-11-14",
+  "today": "2026-11-15",
   "todayCount": 0,
   "todayBig": [],
   "reactions": {
@@ -224,14 +224,14 @@
       "date": "2026-11-16",
       "label": "16/11",
       "dow": "ב׳",
-      "count": 26,
+      "count": 24,
       "tickers": [
-        "WSM",
         "BIDU",
         "TSN",
         "BEKE",
         "HTHT",
-        "ARMK"
+        "ARMK",
+        "MOG.B"
       ]
     },
     {
@@ -266,7 +266,7 @@
       "date": "2026-11-19",
       "label": "19/11",
       "dow": "ה׳",
-      "count": 25,
+      "count": 26,
       "tickers": [
         "WMT",
         "BABA",
@@ -280,14 +280,14 @@
       "date": "2026-11-20",
       "label": "20/11",
       "dow": "ו׳",
-      "count": 6,
+      "count": 7,
       "tickers": [
         "BSP",
         "BJ",
+        "FRO",
         "VFS",
         "BKE",
-        "RLX",
-        "WRD"
+        "RLX"
       ]
     }
   ],
@@ -296,15 +296,8 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 26,
+      "total": 24,
       "companies": [
-        {
-          "ticker": "WSM",
-          "name": "Williams-Sonoma, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/WSM.png",
-          "logoBg": "dark"
-        },
         {
           "ticker": "BIDU",
           "name": "Baidu, Inc. Sponsored ADR Class A",
@@ -372,6 +365,12 @@
           "when": "",
           "logo": "data/earnings/logos/NIO.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "M",
+          "name": "Macy's, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/M.png"
         }
       ]
     },
@@ -540,7 +539,7 @@
       "date": "2026-11-19",
       "dow": "חמישי",
       "label": "19.11",
-      "total": 25,
+      "total": 26,
       "companies": [
         {
           "ticker": "WMT",
@@ -585,6 +584,13 @@
           "logo": "data/earnings/logos/KEYS.png"
         },
         {
+          "ticker": "WSM",
+          "name": "Williams-Sonoma, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/WSM.png",
+          "logoBg": "dark"
+        },
+        {
           "ticker": "WMG",
           "name": "Warner Music Group Corp. Class A",
           "when": "before",
@@ -607,12 +613,6 @@
           "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/YMM.png"
-        },
-        {
-          "ticker": "GAP",
-          "name": "Gap, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/GAP.png"
         }
       ]
     },
@@ -620,7 +620,7 @@
       "date": "2026-11-20",
       "dow": "שישי",
       "label": "20.11",
-      "total": 6,
+      "total": 7,
       "companies": [
         {
           "ticker": "BSP",
@@ -633,6 +633,12 @@
           "name": "BJ's Wholesale Club Holdings, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/BJ.png"
+        },
+        {
+          "ticker": "FRO",
+          "name": "Frontline Plc",
+          "when": "before",
+          "logo": "data/earnings/logos/FRO.png"
         },
         {
           "ticker": "VFS",
@@ -663,7 +669,6 @@
     }
   ],
   "window": {
-    "WSM": "2026-11-16",
     "BIDU": "2026-11-16",
     "TSN": "2026-11-16",
     "BEKE": "2026-11-16",
@@ -680,7 +685,6 @@
     "POWL": "2026-11-16",
     "BRC": "2026-11-16",
     "SKE": "2026-11-16",
-    "DAC": "2026-11-16",
     "PAGS": "2026-11-16",
     "INFQ": "2026-11-16",
     "DRVN": "2026-11-16",
@@ -746,6 +750,7 @@
     "NTES": "2026-11-19",
     "ROST": "2026-11-19",
     "KEYS": "2026-11-19",
+    "WSM": "2026-11-19",
     "WMG": "2026-11-19",
     "FUTU": "2026-11-19",
     "ESTC": "2026-11-19",
@@ -766,13 +771,14 @@
     "TEN": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
+    "FRO": "2026-11-20",
     "VFS": "2026-11-20",
     "BKE": "2026-11-20",
     "RLX": "2026-11-20",
     "WRD": "2026-11-20"
   },
   "_meta": {
-    "updatedAt": "14/11/2026 21:16",
+    "updatedAt": "15/11/2026 06:16",
     "source": "tradingview"
   }
 }
