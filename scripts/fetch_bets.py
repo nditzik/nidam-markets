@@ -52,30 +52,73 @@ def get_event(slug):
 
 
 MONTH_HE = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"]
-FED_FALLBACK = "fed-decision-in-october-20260617190323537"
+# הידוע האחרון (נראה ב-bets.json עד 12.11.2026). משמש רק כשכל החיפושים נכשלו, ורק כל עוד הישיבה לא עברה.
+FED_FALLBACK = ("fed-decision-in-december-20260729232808632", "דצמבר", "2026-12-10")
+FED_DIAG = {}
+GAMMA = "https://gamma-api.polymarket.com/"
 
 
-def next_fed_event():
-    """ישיבת הפד הקרובה (20.9.2026): במקום slug קבוע שמתיישן אחרי כל ישיבה (ספטמבר נשאר תקוע על 100%),
-    מאתרים את אירוע "Fed Decision in <Month>?" הפתוח עם תאריך הסיום הקרוב ביותר. כשל → ה-slug האחרון הידוע."""
+def _gamma(path):
+    req = urllib.request.Request(GAMMA + path, headers=UA)
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def _fed_cands(evs, today):
     import re
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    try:
-        req = urllib.request.Request("https://gamma-api.polymarket.com/events?closed=false&limit=100&tag_slug=fed-rates", headers=UA)
-        with urllib.request.urlopen(req, timeout=20) as r:
-            evs = json.loads(r.read().decode("utf-8"))
-        cands = []
-        for e in evs:
-            m = re.match(r"fed decision in (\w+)\?", (e.get("title") or "").strip().lower())
-            end = (e.get("endDate") or "")[:10]
-            if m and m.group(1) in MONTH_EN and end >= today:
-                cands.append((end, e["slug"], MONTH_EN.index(m.group(1))))
-        if cands:
-            end, slug, mi = min(cands)
-            return slug, MONTH_HE[mi], end
-    except Exception as e:
-        print(f"[warn] next fed lookup: {e}")
-    return FED_FALLBACK, "אוקטובר", "2026-10-28"
+    out = []
+    for e in evs or []:
+        m = re.match(r"fed decision in (\w+)\??", (e.get("title") or "").strip().lower())
+        end = (e.get("endDate") or "")[:10]
+        if m and m.group(1) in MONTH_EN and end >= today and not e.get("closed") and e.get("slug"):
+            out.append((end, e["slug"], MONTH_EN.index(m.group(1))))
+    return out
+
+
+def next_fed_event(fetch=None, today=None):
+    """ישיבת הפד הקרובה: אירוע "Fed Decision in <Month>?" הפתוח עם תאריך הסיום הקרוב ביותר.
+    15.11.2026: מ-13.11 החיפוש היחיד (100 האירועים הראשונים בתג fed-rates) חזר ריק, והנפילה הייתה slug קבוע של
+    אוקטובר — האתר והכותרת הציגו "החלטת הפד באוקטובר · ללא שינוי 100%" שבועיים אחרי הישיבה. מעכשיו: כמה
+    חיפושים (התג, התג ממוין לפי תאריך סיום, דפים נוספים, חיפוש ציבורי לפי שם החודש), נפילה ל-slug הידוע האחרון
+    רק כל עוד הישיבה שלו לא עברה, ואחרת None — בלי שורה עדיף על ישיבה שכבר הוכרעה. FED_DIAG נכתב ל-bets.json."""
+    fetch = fetch or _gamma
+    today = today or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    base = "events?closed=false&limit=100&tag_slug=fed-rates"
+    tries = [("tag", base),
+             ("ordered", base + "&order=endDate&ascending=true&end_date_min=" + today + "T00:00:00Z"),
+             ("page2", base + "&offset=100"), ("page3", base + "&offset=200"), ("page4", base + "&offset=300")]
+    errs = []
+    for via, path in tries:
+        try:
+            evs = fetch(path)
+            cands = _fed_cands(evs, today)
+            if cands:
+                end, slug, mi = min(cands)
+                FED_DIAG.update({"via": via, "cands": len(cands)})
+                return slug, MONTH_HE[mi], end
+            if via == "tag" and len(evs or []) < 100:
+                errs.append("tag: %d events, no match" % len(evs or []))
+        except Exception as e:
+            errs.append("%s: %s" % (via, str(e)[:60]))
+    # חיפוש ציבורי לפי שם החודש — החודש הנוכחי ושלושת הבאים
+    m0 = int(today[5:7]) - 1
+    for k in range(4):
+        name = MONTH_EN[(m0 + k) % 12]
+        try:
+            res = fetch("public-search?q=" + urllib.request.quote("fed decision in " + name))
+            cands = _fed_cands((res or {}).get("events") if isinstance(res, dict) else res, today)
+            if cands:
+                end, slug, mi = min(cands)
+                FED_DIAG.update({"via": "search", "cands": len(cands)})
+                return slug, MONTH_HE[mi], end
+        except Exception as e:
+            errs.append("search %s: %s" % (name, str(e)[:60]))
+    print("[warn] next fed lookup: " + " | ".join(errs[:6]))
+    if FED_FALLBACK[2] >= today:
+        FED_DIAG.update({"via": "fallback", "cands": 0, "err": errs[:3]})
+        return FED_FALLBACK
+    FED_DIAG.update({"via": "none", "cands": 0, "err": errs[:3]})
+    return None
 
 
 def yes_price(m):
@@ -321,8 +364,12 @@ def main():
     except Exception as e:
         print(f"[warn] midterm: {e}")
     try:
-        fed_slug, fed_month, fed_end = next_fed_event()
-        ev = get_event(fed_slug)
+        nf = next_fed_event()
+        fed_slug, fed_month, fed_end = nf if nf else (None, None, None)
+        ev = get_event(fed_slug) if fed_slug else None
+        if ev and ev.get("closed"):          # ישיבה שכבר הוכרעה — לא מציגים
+            FED_DIAG["closed"] = True
+            ev = None
         best = leading(ev.get("markets")) if ev else None
         if best:
             m, p = best
@@ -399,6 +446,8 @@ def main():
     out = {"rows": rows, "source": "Polymarket"}
     if mid_src:
         out["midtermSrc"] = mid_src
+    if FED_DIAG:
+        out["fedLookup"] = dict(FED_DIAG)
     existing = {}
     if os.path.exists(OUT):
         try:
