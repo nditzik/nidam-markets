@@ -1,7 +1,18 @@
 {
-  "today": "2026-11-15",
-  "todayCount": 0,
-  "todayBig": [],
+  "today": "2026-11-16",
+  "todayCount": 24,
+  "todayBig": [
+    {
+      "ticker": "BIDU",
+      "name": "Baidu, Inc. Sponsored ADR Class A",
+      "capB": 25.1
+    },
+    {
+      "ticker": "TSN",
+      "name": "Tyson Foods, Inc. Class A",
+      "capB": 20.3
+    }
+  ],
   "reactions": {
     "days": [
       {
@@ -217,23 +228,84 @@
       }
     ]
   },
-  "reporting": [],
-  "more": 0,
-  "upcoming": [
+  "reporting": [
     {
-      "date": "2026-11-16",
-      "label": "16/11",
-      "dow": "ב׳",
-      "count": 24,
-      "tickers": [
-        "BIDU",
-        "TSN",
-        "BEKE",
-        "HTHT",
-        "ARMK",
-        "MOG.B"
-      ]
+      "ticker": "BIDU",
+      "name": "Baidu, Inc. Sponsored ADR Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/BIDU.png"
     },
+    {
+      "ticker": "TSN",
+      "name": "Tyson Foods, Inc. Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/TSN.png"
+    },
+    {
+      "ticker": "BEKE",
+      "name": "KE Holdings, Inc. Sponsored ADR Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/BEKE.png"
+    },
+    {
+      "ticker": "HTHT",
+      "name": "H World Group Limited Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/HTHT.png"
+    },
+    {
+      "ticker": "ARMK",
+      "name": "Aramark",
+      "when": "before",
+      "logo": "data/earnings/logos/ARMK.png"
+    },
+    {
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": ""
+    },
+    {
+      "ticker": "MOG.A",
+      "name": "Moog Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/MOG.A.png"
+    },
+    {
+      "ticker": "FRHC",
+      "name": "Freedom Holding Corp.",
+      "when": "",
+      "logo": "data/earnings/logos/FRHC.png"
+    },
+    {
+      "ticker": "ACM",
+      "name": "AECOM",
+      "when": "after",
+      "logo": "data/earnings/logos/ACM.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "XPEV",
+      "name": "XPeng, Inc. ADR Sponsored Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/XPEV.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "NIO",
+      "name": "NIO Inc. Sponsored ADR Class A",
+      "when": "",
+      "logo": "data/earnings/logos/NIO.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "M",
+      "name": "Macy's, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/M.png"
+    }
+  ],
+  "more": 12,
+  "upcoming": [
     {
       "date": "2026-11-17",
       "label": "17/11",
@@ -775,10 +847,20 @@
     "VFS": "2026-11-20",
     "BKE": "2026-11-20",
     "RLX": "2026-11-20",
-    "WRD": "2026-11-20"
+    "WRD": "2026-11-20",
+    "HPE": "2026-11-23",
+    "A": "2026-11-23",
+    "ZM": "2026-11-23",
+    "TCOM": "2026-11-23",
+    "SYM": "2026-11-23",
+    "J": "2026-11-23",
+    "SMTC": "2026-11-23",
+    "AMTM": "2026-11-23",
+    "DAC": "2026-11-23",
+    "CDLR": "2026-11-23"
   },
   "_meta": {
-    "updatedAt": "15/11/2026 23:46",
+    "updatedAt": "16/11/2026 00:01",
     "source": "tradingview"
   }
 }
