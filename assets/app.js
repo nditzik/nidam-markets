@@ -35,7 +35,7 @@
     market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"], ["unusual", "ימים חריגים"]], def: "indices" },
     calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["after", "אחרי הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
     stocks:   { subs: [["consensus", "סיכום"], ["analyze", "נתח מניה"], ["picks", "עומדות בתנאים"], ["candidates", "סריקת תיקון"], ["momentum", "מומנטום"], ["trades", "ארבעת העמודים"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
-    news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"]], def: "briefing" }
+    news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"], ["magazine", "מגזין סוף השבוע"]], def: "briefing" }
   };
   var SUB2TOP = {}, LAST_SUB = {};
   Object.keys(GROUPS).forEach(function (g) { GROUPS[g].subs.forEach(function (s) { SUB2TOP[s[0]] = g; }); });
@@ -401,65 +401,268 @@
       (led ? '<div class="led">' + led + "</div>" : "");
   }
 
-  /* ---- np195 (12.11.2026, איציק): כתבה / סיפור מתגלגל בבית — data/story.json (קובץ ידני) ----
-     מוצג מתחת לכותרת ולמד עד `until` (או active=false). המחירים של `live` חיים מ-Yahoo דרך ה-Worker (yqLive),
-     כדי שהכתבה לא תציג מספרים קפואים מרגע הכתיבה. ציר הזמן, הטבלה והשאלות — מקופלים. */
-  var STORY = null, STORY_T = null, STORY_SIG = "";
-  function storyOn(d) {
-    if (!d || !d.active || !d.title) return false;
-    if (d.until && Date.now() > Date.parse(d.until)) return false;
-    return true;
+  /* ---- np207 (15.11.2026, איציק): מגזין סוף השבוע — מחליף את "הכתבה בבית" (np195, data/story.json) ----
+     data/magazine/index.json {current, issues[]} + data/magazine/<id>.json (קבצים ידניים; המבנה והכללים ב-docs/magazine.md).
+     בבית: #home-mag — פס דיו עם הכותרת, ארבעה מספרים, שני המועדים הבאים וכפתור אחד; בשבת ובראשון ראשון בדף (class mg-first),
+     בשאר השבוע מתחת לכותרת השוק ולמד. הכתבה המלאה: #panel-magazine (חדשות › מגזין סוף השבוע, hash #magazine).
+     מידע בלבד: תג קבוע "מידע בלבד, לא המלצה" + הבהרה בתחתית; "מה ידוע, מה דווח ומה מוכחש" = כל טענה לצד המקור שלה.
+     רינדור מחדש רק כשהקבצים השתנו (MAG_SIG) — כדי לא לסגור חלק שהקורא פתח. */
+  var MAG = null, MAGA = {}, MAG_SIG = "", MAG_SEL = null, MAG_T = null, MAG_OPEN = {};
+  var MAG_DOW = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  // טקסט רץ: escape + בידוד של צירופים כמו "8-K" (מספר-מקף-לטינית מתהפך בתוך משפט עברי)
+  function magTx(t) { return esc(t).replace(/(^|[^\w.])(\d+-[A-Za-z]+)(?![\w-])/g, "$1<bdi>$2</bdi>"); }
+  function magCur() { return (MAG && MAG.current && MAGA[MAG.current]) || null; }
+  function magPhone() { return !!(window.matchMedia && window.matchMedia("(max-width: 700px)").matches); }
+  function magDate(iso, year) {
+    var p = String(iso || "").split("-");
+    if (p.length < 3) return "";
+    var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+    return MAG_DOW[d.getUTCDay()] + ' <span class="num" dir="ltr">' + (+p[2]) + "." + (+p[1]) + (year ? "." + p[0] : "") + "</span>";
   }
-  function renderHomeStory() {
-    var el = document.getElementById("home-story");
-    if (!el) return;
-    var d = STORY;
-    if (!storyOn(d)) { el.innerHTML = ""; return; }
-    var live = (d.live || []).map(function (x) {
-      return '<span class="st-q" data-sym="' + esc(x.sym) + '"><span class="l">' + esc(x.label) + '</span> <span class="num p" dir="ltr">…</span> <span class="num c" dir="ltr"></span></span>';
+  function magMin(a) {   // זמן קריאה: מילים בכל חלקי הכתבה ÷ 200
+    var t = [a.title, a.dek].concat(a.brief || [], a.questions || []);
+    (a.sections || []).forEach(function (s) { t = t.concat(s.paras || []); });
+    (a.known || []).forEach(function (k) { (k.items || []).forEach(function (i) { t.push(i.t, i.src); }); });
+    (a.timeline || []).forEach(function (x) { t.push(x.txt); });
+    return Math.max(1, Math.round(t.join(" ").split(/\s+/).length / 200));
+  }
+  function magWhen(x, a) {   // סוף הטווח של מועד ב"מה הלאה" ("17.11", "16–20.11") → ISO; השנה מתאריך הגיליון
+    var m = /(\d{1,2})\.(\d{1,2})\s*$/.exec(String(x.d || ""));
+    if (!m) return null;
+    var y = +String(a.date).slice(0, 4), mo = +m[2];
+    if (mo < +String(a.date).slice(5, 7) - 6) y++;
+    return y + "-" + ("0" + mo).slice(-2) + "-" + ("0" + m[1]).slice(-2);
+  }
+  function magNextHtml(a, max, futureOnly) {
+    var today = ilNowParts().iso;
+    var rows = (a.next || []).map(function (x) { var w = magWhen(x, a); return { x: x, past: !!(w && w < today) }; });
+    if (futureOnly) rows = rows.filter(function (r) { return !r.past; });
+    if (max) rows = rows.slice(0, max);
+    return rows.map(function (r) {
+      return '<li class="' + (r.past ? "past" : "") + '"><span class="mg-when"><b class="num" dir="ltr">' + esc(r.x.d) + "</b>" +
+        (r.x.t ? '<span class="num" dir="ltr">' + esc(r.x.t) + "</span>" : "") + "</span><span>" + magTx(r.x.txt) + "</span></li>";
     }).join("");
-    var tl = (d.timeline || []).map(function (x) {
-      var src = x.src ? (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.src) + "</a>" : esc(x.src)) : "";
-      return '<li class="' + (x.key ? "key" : "") + '"><span class="st-when num" dir="ltr">' + esc(x.d) + (x.t ? " " + esc(x.t) : "") + "</span>" +
-        "<span>" + esc(x.txt) + (src ? ' <span class="mute s">· ' + src + "</span>" : "") + "</span></li>";
-    }).join("");
-    var tb = d.table && d.table.rows ? '<div class="tbl"><table class="st-tbl"><thead><tr>' + d.table.head.map(function (h) { return '<th scope="col">' + esc(h) + "</th>"; }).join("") + "</tr></thead><tbody>" +
-      d.table.rows.map(function (r) {
-        var ch = String(r[2] || ""), cls = /^\+/.test(ch) ? "up" : /^[−-]/.test(ch) ? "down" : "";
-        return '<tr><td class="num" dir="ltr">' + esc(r[0]) + '</td><td class="num" dir="ltr">' + esc(r[1]) + '</td><td class="num ' + cls + '" dir="ltr">' + esc(ch) + "</td><td>" + esc(r[3] || "") + "</td></tr>";
-      }).join("") + "</tbody></table></div>" : "";
-    var nx = (d.next || []).map(function (x) { return '<li><span class="st-when num" dir="ltr">' + esc(x.d) + (x.t ? " " + esc(x.t) : "") + "</span><span>" + esc(x.txt) + "</span></li>"; }).join("");
-    var qs = (d.questions || []).map(function (q) { return "<li>" + esc(q) + "</li>"; }).join("");
-    var srcs = (d.sources || []).map(function (x) { return x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + "</a>" : esc(x.name); }).join(" · ");   // np206: מקור בלי קישור = טקסט
-    el.innerHTML = '<div class="ph"><h2>' + esc(d.kicker || "כתבה") + "</h2>" + (d.badge ? '<span class="pill state warn">' + esc(d.badge) + "</span>" : "") + '<span class="st-live">' + live + "</span></div>" +
-      '<div class="pb st-body">' +
-        '<div class="st-hero"><span class="st-kick">' + esc(d.kicker || "כתבה") + (d.collectedAt ? " · " + esc(d.collectedAt) : "") + '</span><h3 class="st-h">' + esc(d.title) + "</h3></div>" +
-        (d.dek ? '<p class="st-dek">' + esc(d.dek) + "</p>" : "") +
-        '<div class="st-cols"><div class="st-text">' + (d.paras || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</div>" +
-          (nx ? '<aside class="st-next"><b>מה הלאה</b><ul>' + nx + "</ul></aside>" : "") + "</div>" +
-        (tl ? '<details class="bd-exp st-more"><summary>ציר הזמן המלא (' + (d.timeline || []).length + ")</summary><ol class=\"st-tl\">" + tl + "</ol></details>" : "") +
-        (tb ? '<details class="bd-exp st-more"><summary>המניה, יום אחר יום</summary>' + tb + "</details>" : "") +
-        (qs ? '<details class="bd-exp st-more"><summary>שאלות פתוחות</summary><ul class="st-qs">' + qs + "</ul></details>" : "") +
-        '<p class="mute s st-foot">' + (srcs ? "מקורות: " + srcs + " · " : "") + (d.writtenBy ? esc(d.writtenBy) : "") + (d.collectedAt ? " · נאסף " + esc(d.collectedAt) : "") + " · לא המלצת השקעה</p>" +
+  }
+  function magNums(a) {
+    return (a.numbers || []).length ? '<div class="tiles t2 mg-nums">' + a.numbers.map(function (n) {
+      return bdTile(esc(n.label), esc(n.v), n.sub ? esc(n.sub) : "", n.dir === "up" ? "up" : n.dir === "down" ? "down" : "");
+    }).join("") + "</div>" : "";
+  }
+  function magHero(a, full) {
+    var n = (a.sources || []).length, meta = [];
+    if (full) meta.push("פורסם " + magDate(a.date, true));
+    if (a.updatedLabel) meta.push("עודכן " + esc(a.updatedLabel));
+    meta.push(magMin(a) + " דקות קריאה");
+    if (n) meta.push(n + " מקורות");
+    var go = "__goTab('magazine');return false";
+    return '<div class="mg-hero">' +
+      '<div class="mg-tags"><span class="mg-tag fill">' + esc(a.kindLabel || "כתבה") + (a.sym ? ' · <span class="num" dir="ltr">' + esc(a.sym) + "</span>" : "") + "</span>" +
+        '<span class="mg-tag">מידע בלבד, לא המלצה</span>' + (a.tags || []).map(function (t) { return '<span class="mg-tag">' + esc(t) + "</span>"; }).join("") + "</div>" +
+      (full ? '<h2 class="mg-h">' + esc(a.title) + "</h2>" : '<h3 class="mg-h">' + esc(a.title) + "</h3>") +
+      (a.dek ? '<p class="mg-dek">' + magTx(a.dek) + "</p>" : "") +
+      '<div class="mg-meta">' + meta.join(" · ") + "</div>" +
+      (full ? (a.collectedBy ? '<div class="mg-meta">' + esc(a.collectedBy) + "</div>" : "")
+            : '<a class="mg-btn" href="#magazine" onclick="' + go + '">לקריאת הכתבה המלאה</a>') +
       "</div>";
-    storyLive();
-    if (!STORY_T) STORY_T = setInterval(storyLive, 60000);
   }
-  function storyLive() {
-    var d = STORY;
-    if (!storyOn(d) || !(d.live || []).length) return;
-    var ses = jsSession();
-    yqLive(d.live.map(function (x) { return x.sym; })).then(function (q) {
-      d.live.forEach(function (x) {
-        var v = yqPick(q[x.sym], ses), el = document.querySelector('#home-story .st-q[data-sym="' + x.sym + '"]');
-        if (!v || !el) return;
-        var c = v[1];
+  function magFirst() {   // בשבת ובראשון הכתבה ראשונה בבית
+    var el = document.getElementById("home-mag");
+    if (el) el.classList.toggle("mg-first", !!el.firstChild && weekendNow());
+  }
+  function renderHomeMag() {
+    var el = document.getElementById("home-mag");
+    if (!el) return;
+    var a = magCur();
+    if (!a || !a.title) { el.innerHTML = ""; magFirst(); return; }
+    var nums = magNums(a), nx = magNextHtml(a, 2, true), go = "__goTab('magazine');return false";
+    el.innerHTML = panHd("מגזין סוף השבוע", '<span class="mute">גיליון ' + esc(a.no) + " · " + magDate(a.date, false) + "</span>",
+        '<a class="go" href="#magazine" onclick="' + go + '">' + ((MAG.issues || []).length > 1 ? "כל הגיליונות" : "הכתבה המלאה") + "</a>") +
+      '<div class="pb mg-teaser">' + magHero(a, false) +
+        '<div class="mg-side">' + (nums ? '<div><div class="mg-lab">במספרים</div>' + nums + "</div>" : "") +
+          (nx ? '<div><div class="mg-lab">מה הלאה</div><ul class="mg-next">' + nx + "</ul></div>" : "") + "</div></div>";
+    magFirst();
+  }
+
+  // גרף הסגירות: LTR, המספרים ב-SVG, התווית העברית של יום האירוע בשכבת HTML מעל (WebKit הופך עברית ב-<text>)
+  function magChart(tb) {
+    var skip = tb.chartSkip || [];
+    var pts = (tb.rows || []).filter(function (r) { return skip.indexOf(r[0]) < 0 && !isNaN(parseFloat(r[1])); })
+      .map(function (r) { return { d: r[0], v: parseFloat(r[1]), s: r[1] }; });
+    if (pts.length < 3) return "";
+    var ph = magPhone(), W = ph ? 360 : 640, H = ph ? 200 : 190, L = 34, R = 14, T = 28, B = 38;
+    var vs = pts.map(function (p) { return p.v; }), lo = Math.min.apply(null, vs), hi = Math.max.apply(null, vs);
+    var pad = (hi - lo) * 0.2 || 1; lo -= pad; hi += pad;
+    function X(i) { return L + 14 + i * (W - L - R - 28) / (pts.length - 1); }
+    function Y(v) { return T + (hi - v) * (H - T - B) / (hi - lo); }
+    var raw = (hi - lo) / 3, p10 = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), f = raw / p10, step = (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p10;
+    var grid = "", g;
+    for (g = Math.ceil(lo / step) * step; g <= hi; g += step) {
+      grid += '<line class="mg-ch-grid" x1="' + (L + 2) + '" x2="' + (W - R + 6) + '" y1="' + Y(g).toFixed(1) + '" y2="' + Y(g).toFixed(1) + '"/>' +
+        '<text class="mg-ch-tx" x="' + (L - 2) + '" y="' + (Y(g) + 4).toFixed(1) + '" text-anchor="end">' + Math.round(g) + "</text>";
+    }
+    var poly = pts.map(function (p, i) { return X(i).toFixed(1) + "," + Y(p.v).toFixed(1); }).join(" ");
+    var area = X(0).toFixed(1) + "," + (H - B) + " " + poly + " " + X(pts.length - 1).toFixed(1) + "," + (H - B);
+    var mk = tb.mark || null, mi = -1, dots = "", iMax = vs.indexOf(Math.max.apply(null, vs)), iMin = vs.indexOf(Math.min.apply(null, vs));
+    pts.forEach(function (p, i) { if (mk && mk.d === p.d) mi = i; });
+    pts.forEach(function (p, i) {
+      var last = i === pts.length - 1, x = X(i), y = Y(p.v);
+      var show = !ph || i === 0 || last || i === iMax || i === iMin || i === mi;
+      var dip = i > 0 && !last && p.v < pts[i - 1].v && p.v < pts[i + 1].v && i !== mi;
+      dots += '<circle class="mg-ch-dot' + (last ? " last" : "") + '" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (last ? 4.5 : 3) + '"/>' +
+        (show ? '<text class="mg-ch-val' + (last ? " last" : "") + '" x="' + x.toFixed(1) + '" y="' + (dip ? y + 17 : y - 9).toFixed(1) + '" text-anchor="middle">' + esc(p.s) + "</text>" : "") +
+        '<text class="mg-ch-tx" x="' + x.toFixed(1) + '" y="' + (H - B + 18) + '" text-anchor="middle">' + esc(p.d) + "</text>";
+    });
+    var mark = "", lab = "";
+    if (mi >= 0) {
+      var my = Y(pts[mi].v) - 24;
+      if (my > 20) mark = '<line class="mg-ch-mark" x1="' + X(mi).toFixed(1) + '" x2="' + X(mi).toFixed(1) + '" y1="18" y2="' + my.toFixed(1) + '"/>';
+      lab = '<span class="mg-ch-lab" dir="rtl" style="left:' + (X(mi) * 100 / W).toFixed(1) + '%">' + esc(mk.label || "") + "</span>";
+    }
+    return '<div class="mg-chart"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="מחירי הסגירה, ' + esc(pts[0].d) + " עד " + esc(pts[pts.length - 1].d) + '">' +
+      grid + '<polygon class="mg-ch-area" points="' + area + '"/>' + mark + '<polyline class="mg-ch-line" points="' + poly + '"/>' + dots + "</svg>" + lab + "</div>";
+  }
+  function magPan(key, title, sub, body, fold) {
+    if (!body) return "";
+    var hd = "<h2>" + title + "</h2>" + (sub ? '<span class="mute">' + sub + "</span>" : "");
+    return fold
+      ? '<details class="pan mg-p mg-fold" id="mg-s-' + key + '" data-k="' + key + '"><summary class="ph">' + hd + '</summary><div class="pb">' + body + "</div></details>"
+      : '<section class="pan mg-p" id="mg-s-' + key + '"><div class="ph">' + hd + '</div><div class="pb">' + body + "</div></section>";
+  }
+  function magMore(label, html) { return '<details class="bd-exp mg-more"><summary>' + label + "</summary>" + html + "</details>"; }
+  function renderMagazine() {
+    var el = document.getElementById("panel-magazine");
+    if (!el) return;
+    if (!MAG || !(MAG.issues || []).length) { emptyPanel(el, "📰", "מגזין סוף השבוע — בקרוב", "הגיליון הראשון יעלה בשבת בבוקר."); return; }
+    var id = MAG_SEL && MAGA[MAG_SEL] ? MAG_SEL : MAG.current, a = MAGA[id];
+    if (!a) return;
+    function srcOf(x) { return x.src ? (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.src) + "</a>" : esc(x.src)) : ""; }
+    function tlRow(x) {
+      return '<li class="' + (x.key ? "key" : "") + '"><span class="mg-when"><b class="num" dir="ltr">' + esc(x.d) + "</b>" + (x.t ? '<span class="num" dir="ltr">' + esc(x.t) + "</span>" : "") +
+        '</span><span><span class="mg-tx">' + magTx(x.txt) + "</span>" + (x.src ? '<span class="mg-src">' + srcOf(x) + "</span>" : "") + "</span></li>";
+    }
+    var toc = [];
+    function sec(key, title, sub, body, fold) { var h = magPan(key, title, sub, body, fold); if (h) toc.push([key, title]); return h; }
+
+    var brief = (a.brief || []).length ? '<ol class="mg-brief">' + a.brief.map(function (t, i) { return '<li><span class="num">' + (i + 1) + "</span><span>" + magTx(t) + "</span></li>"; }).join("") + "</ol>" : "";
+    var story = (a.sections || []).length ? '<div class="mg-story">' + a.sections.map(function (s) {
+      return "<div>" + (s.h ? "<h3>" + esc(s.h) + "</h3>" : "") + (s.paras || []).map(function (p) { return "<p>" + magTx(p) + "</p>"; }).join("") + "</div>";
+    }).join("") + "</div>" : "";
+    var MK = { ok: "✓", part: "◐", no: "✗" };
+    var known = (a.known || []).length ? '<div class="mg-known">' + a.known.map(function (k) {
+      return '<div class="mg-k"><div class="mg-kh"><span class="mg-mark" aria-hidden="true">' + (MK[k.mark] || "·") + "</span>" + esc(k.head) + "</div>" +
+        (k.items || []).map(function (i) { return '<div class="mg-ki"><div>' + magTx(i.t) + '</div><div class="mg-src">' + magTx(i.src || "") + "</div></div>"; }).join("") + "</div>";
+    }).join("") + "</div>" : "";
+    var tb = a.table, stock = "";
+    if (tb && (tb.rows || []).length) {
+      stock = magChart(tb) + '<div class="tbl"><table class="bd-tbl mg-tbl"><thead><tr>' + (tb.head || []).map(function (h) { return '<th scope="col">' + esc(h) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+        tb.rows.map(function (r) {
+          var ch = String(r[2] || ""), cls = /^\+/.test(ch) ? "up" : /^[−-]/.test(ch) ? "down" : "";
+          return '<tr><td class="num" dir="ltr">' + esc(r[0]) + '</td><td class="num" dir="ltr">' + esc(r[1]) + '</td><td class="num ' + cls + '" dir="ltr">' + esc(ch) + '</td><td class="mg-what">' + magTx(r[3] || "") + "</td></tr>";
+        }).join("") + "</tbody></table></div>" + (tb.note ? '<p class="mg-note">' + esc(tb.note) + "</p>" : "");
+    }
+    var tl = a.timeline || [], tops = tl.filter(function (x) { return x.top; });
+    if (!tops.length) tops = tl.filter(function (x) { return x.key; });
+    if (!tops.length) tops = tl.slice(-5);
+    var tlHtml = tl.length ? '<ol class="mg-tl">' + tops.map(tlRow).join("") + "</ol>" +
+      (tl.length > tops.length ? magMore("כל " + tl.length + " האירועים, לפי הסדר", '<ol class="mg-tl">' + tl.map(tlRow).join("") + "</ol>") : "") : "";
+    var tp = a.thirdParty, tpHtml = tp && (tp.items || []).length ? (tp.lead ? '<p class="mg-lead">' + esc(tp.lead) + "</p>" : "") +
+      '<div class="mg-tp">' + tp.items.map(function (x) { return '<div class="tile"><div class="mg-tpn">' + esc(x.name) + "</div><div>" + esc(x.text) + "</div>" + (x.sub ? '<div class="mg-src"><bdi>' + esc(x.sub) + "</bdi></div>" : "") + "</div>"; }).join("") + "</div>" +
+      (tp.note ? '<p class="mg-note">' + esc(tp.note) + "</p>" : "") : "";
+    var qs = a.questions || [];
+    function qRow(q) { return '<li><span class="mg-q" aria-hidden="true">?</span><span>' + magTx(q) + "</span></li>"; }
+    var qHtml = qs.length ? '<ul class="mg-qs">' + qs.slice(0, 4).map(qRow).join("") + "</ul>" +
+      (qs.length > 4 ? magMore("עוד " + (qs.length - 4) + " שאלות", '<ul class="mg-qs">' + qs.slice(4).map(qRow).join("") + "</ul>") : "") : "";
+    var ss = a.sources || [];
+    function sChip(x) { return x.url ? '<a class="tag" href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + "</a>" : '<span class="tag">' + esc(x.name) + "</span>"; }
+    var sHtml = ss.length ? '<div class="mg-srcs">' + ss.slice(0, 10).map(sChip).join("") + "</div>" +
+      (ss.length > 10 ? magMore("עוד " + (ss.length - 10) + " מקורות", '<div class="mg-srcs">' + ss.slice(10).map(sChip).join("") + "</div>") : "") : "";
+
+    var main = sec("brief", "בקצרה", "", brief) + sec("story", "מה קרה", "", story) +
+      sec("known", "מה ידוע, מה דווח ומה מוכחש", "כל טענה לצד המקור שלה", known) +
+      sec("stock", esc((tb && tb.title) || "המניה · יום אחר יום"), "", stock) +
+      sec("timeline", "ציר הזמן", tl.length + " אירועים · שעון ישראל", tlHtml, true) +
+      sec("third", esc((tp && tp.title) || "מה פרסמו אחרים"), "", tpHtml, true) +
+      sec("questions", "שאלות פתוחות", qs.length ? String(qs.length) : "", qHtml, true) +
+      sec("sources", "מקורות", ss.length ? String(ss.length) : "", sHtml, true);
+
+    var live = (a.live || []).map(function (x, i) {
+      return '<div class="mg-liv" data-sym="' + esc(x.sym) + '"><span>' + (i === 0 && a.sym === x.sym ? tvLink(x.sym) : esc(x.label)) + ' <span class="mute">עכשיו</span></span>' +
+        '<span><span class="num p" dir="ltr">…</span> <span class="num c" dir="ltr"></span></span></div>';
+    }).join("");
+    var nums = magNums(a);
+    var nx = magNextHtml(a, 0, false);
+    var others = (MAG.issues || []).filter(function (x) { return x.id !== id; });
+    var arch = others.length ? others.map(function (x) {
+      return '<button type="button" class="mg-iss" data-id="' + esc(x.id) + '"><span class="mute">גיליון ' + esc(x.no) + " · " + magDate(x.date, true) + (x.id === MAG.current ? " · הנוכחי" : "") + "</span><span>" + esc(x.title) + "</span></button>";
+    }).join("") : '<p class="mute mg-empty">זה הגיליון הראשון. הגיליונות הבאים יישמרו כאן, מהחדש לישן.</p>';
+    var corr = (a.corrections || []).map(function (c) { return '<p class="mg-note">תיקון <span class="num" dir="ltr">' + esc(c.at) + "</span>: " + esc(c.text) + "</p>"; }).join("");
+    var rail =
+      ((nums || live) ? '<section class="pan mg-p mg-r-nums">' + panHd("במספרים") + '<div class="pb">' + nums + (live ? '<div class="mg-live">' + live + '<div class="mg-src">מתעדכן כל דקה בשעות המסחר</div></div>' : "") + "</div></section>" : "") +
+      (nx ? '<section class="pan mg-p mg-r-next">' + panHd("מה הלאה", '<span class="mute">שעון ישראל</span>') + '<div class="pb"><ul class="mg-next">' + nx + "</ul></div></section>" : "") +
+      '<section class="pan mg-p mg-r-toc">' + panHd("בכתבה") + '<div class="pb">' + toc.map(function (t) { return '<button type="button" class="mg-toc" data-go="mg-s-' + t[0] + '">' + t[1] + "</button>"; }).join("") + "</div></section>" +
+      '<section class="pan mg-p mg-r-how">' + panHd("איך הכתבה נבנית") + '<div class="pb mg-how"><p>המידע נאסף אוטומטית ממקורות פומביים ונערך ב-<bdi style="white-space:nowrap">The Daily Edge</bdi>.</p>' +
+        "<p>כל טענה מיוחסת למקור. טענה שלא אושרה מסומנת כך, ואנשים פרטיים שנקשרו בטענות אינם מוזכרים בשמם.</p>" +
+        "<p>טעות שמתגלה מתוקנת, והתיקון מצוין בתחתית הכתבה עם תאריך.</p></div></section>" +
+      '<section class="pan mg-p mg-r-arch" id="mg-s-arch">' + panHd("גיליונות קודמים") + '<div class="pb">' + arch + "</div></section>";
+    var disc = '<div class="mg-disc mg-p"><b>מידע בלבד.</b> הכתבה מתארת אירועים ונתונים ממקורות פומביים, וכל טענה בה מיוחסת למקור שלה. ' +
+      "היא אינה המלצה לקנות, למכור או להחזיק נייר ערך, אינה ייעוץ השקעות ואינה מותאמת לאדם מסוים. מפעיל האתר עשוי להחזיק בניירות ערך הנזכרים. " +
+      '<a href="legal.html">ההבהרה המלאה</a>' + corr + "</div>";
+
+    el.innerHTML = '<div class="board mg-board">' +
+      '<div class="mg-crumb mute">מגזין סוף השבוע · גיליון ' + esc(a.no) + " · " + magDate(a.date, true) + (id !== MAG.current ? ' · <button type="button" class="mg-back" data-id="">לגיליון הנוכחי</button>' : "") + "</div>" +
+      magHero(a, true) + '<div class="mg-main">' + main + disc + '</div><aside class="mg-rail">' + rail + "</aside></div>";
+
+    var ph = magPhone();
+    el.querySelectorAll("details.mg-fold").forEach(function (d) {
+      var k = id + "|" + d.dataset.k;
+      d.open = MAG_OPEN[k] != null ? MAG_OPEN[k] : !ph;
+      d.addEventListener("toggle", function () { MAG_OPEN[k] = d.open; });
+    });
+    el.querySelectorAll(".mg-toc").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var t = document.getElementById(b.dataset.go);
+        if (!t) return;
+        if (t.tagName === "DETAILS") t.open = true;
+        t.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    el.querySelectorAll(".mg-iss, .mg-back").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var nid = b.dataset.id || MAG.current;
+        (MAGA[nid] ? Promise.resolve() : magLoad(nid)).then(function () { MAG_SEL = nid; renderMagazine(); window.scrollTo({ top: 0, behavior: "smooth" }); }).catch(function () {});
+      });
+    });
+    magLive();
+    if (!MAG_T) MAG_T = setInterval(magLive, 60000);
+  }
+  function magLive() {
+    var rows = document.querySelectorAll("#panel-magazine .mg-liv");
+    if (!rows.length) return;
+    var syms = [].map.call(rows, function (r) { return r.dataset.sym; }), ses = jsSession();
+    yqLive(syms).then(function (q) {
+      [].forEach.call(rows, function (el) {
+        var v = yqPick(q[el.dataset.sym], ses);
+        if (!v) return;
+        var c = v[1], ce = el.querySelector(".c");
         el.querySelector(".p").textContent = Math.abs(v[0]) >= 1000 ? Number(v[0]).toLocaleString("en-US", { maximumFractionDigits: 2 }) : Number(v[0]).toFixed(2);
-        var ce = el.querySelector(".c");
         ce.textContent = c == null ? "" : (c > 0 ? "+" : c < 0 ? "−" : "") + Math.abs(c).toFixed(2) + "%";
         ce.className = "num c " + (c > 0 ? "up" : c < 0 ? "down" : "");
       });
     }).catch(function () {});
+  }
+  function magLoad(id) { return fetchJSON("data/magazine/" + encodeURIComponent(id) + ".json").then(function (a) { MAGA[id] = a; return a; }); }
+  function loadMagazine() {
+    fetchJSON("data/magazine/index.json").then(function (ix) {
+      if (!ix || !ix.current) throw new Error("empty");
+      return fetchJSON("data/magazine/" + encodeURIComponent(ix.current) + ".json").then(function (a) {
+        var sg = JSON.stringify([ix, a]);
+        if (sg === MAG_SIG && document.querySelector("#panel-magazine .mg-hero")) { magFirst(); return; }
+        MAG_SIG = sg; MAG = ix; MAGA = {}; MAGA[ix.current] = a;
+        if (MAG_SEL && MAG_SEL !== ix.current) MAG_SEL = null;
+        renderHomeMag(); renderMagazine();
+        noteSig("magazine", { id: a.id, title: a.title, brief: a.brief, sections: a.sections, timeline: (a.timeline || []).length });
+      });
+    }).catch(function () { if (!MAG) { renderHomeMag(); renderMagazine(); } });
   }
 
   /* ---- "מסביב": סקטורים (5 ימים מול S&P) | העולם | מה השווקים מהמרים ---- */
@@ -808,7 +1011,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np206";
+  var TA_VER = "np207";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -5543,8 +5746,7 @@
       fetchJSON("data/morning.json")
         .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); renderNewsSiblings(); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "📊", "Barchart — בקרוב", ""); });
-      // np195: רינדור רק כשהקובץ השתנה — אחרת הרענון של 5 דק' סוגר ציר זמן שהקורא פתח
-      fetchJSON("data/story.json").then(function (d) { var sg = JSON.stringify(d); if (sg === STORY_SIG && document.querySelector("#home-story .st-h")) return; STORY_SIG = sg; STORY = d; renderHomeStory(); }).catch(function () { if (STORY) { STORY = null; STORY_SIG = ""; renderHomeStory(); } });
+      loadMagazine();   // np207: מגזין סוף השבוע (הבית + חדשות › מגזין)
       Promise.all([fetchJSON("data/econ.json"), fetchJSON("data/special_events.json").catch(function () { return null; })])
         .then(function (r) { if (!freshD("econ", r)) return; ECON = withSpecialEvents(r[0], r[1]); renderEcon(); refreshLeadAgenda(); renderHomeCal(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); })
         .catch(function () {});
