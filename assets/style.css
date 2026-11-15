@@ -2657,41 +2657,6 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .ins-vw.old:not(.on) { color: var(--text-3); }
 .ins-vws.rep-arch { flex-wrap: wrap; overflow: visible; }
 
-/* ── np195 (12.11.2026): כתבה / סיפור מתגלגל בבית (#home-story, data/story.json) ── */
-#panel-home .bd-story { grid-column: span 12; }
-.bd-story .ph { flex-wrap: wrap; gap: 8px 12px; }
-.bd-story .st-live { margin-inline-start: auto; display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; }
-.bd-story .st-q .l { color: var(--text-3); }
-.bd-story .st-h { font-size: 22px; line-height: 1.35; margin: 0 0 6px; font-weight: 700; }
-.bd-story .st-dek { font-size: 15px; color: var(--text-soft); margin: 0 0 12px; line-height: 1.6; }
-.bd-story .st-cols { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 20px; align-items: start; }
-.bd-story .st-text p { margin: 0 0 10px; line-height: 1.75; font-size: 14.5px; }
-.bd-story .st-next { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 13px; }
-.bd-story .st-next ul, .bd-story .st-qs { margin: 6px 0 0; padding: 0; list-style: none; }
-.bd-story .st-next li { display: grid; grid-template-columns: auto 1fr; gap: 8px; padding: 4px 0; border-top: 1px solid var(--border); }
-.bd-story .st-next li:first-child { border-top: 0; }
-.bd-story .st-when { color: var(--text-3); white-space: nowrap; text-align: right; }
-.bd-story .st-more { margin-top: 8px; }
-.bd-story .st-tl { list-style: none; margin: 8px 0 0; padding: 0; }
-.bd-story .st-tl li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px; padding: 6px 0; border-top: 1px solid var(--border); font-size: 13.5px; line-height: 1.6; }
-.bd-story .st-tl li.key { font-weight: 600; }
-.bd-story .st-tl li.key .st-when { color: var(--accent); }
-.bd-story .st-qs li { padding: 5px 0; border-top: 1px solid var(--border); font-size: 13.5px; line-height: 1.6; }
-.bd-story .st-tbl td, .bd-story .st-tbl th { font-size: 13px; }
-.bd-story .st-foot { margin: 10px 0 0; }
-@media (max-width: 700px) {
-  .bd-story .st-cols { grid-template-columns: minmax(0, 1fr); }
-  .bd-story .st-h { font-size: 19px; }
-  .bd-story .st-live { margin-inline-start: 0; width: 100%; }
-  .bd-story .st-tl li { grid-template-columns: 72px minmax(0, 1fr); }
-}
-
-/* np196 (איציק: "צבע שונה לכותרת, שיהיה בולט") — הכותרת על פס דיו (כמו לשונית "סיכום"), מתהפך במצב כהה */
-.bd-story .st-hero { background: var(--ink); color: var(--ink-text); border-radius: 10px; padding: 14px 18px 16px; margin: 0 0 12px; border-inline-start: 5px solid var(--accent); }
-.bd-story .st-hero .st-h { color: var(--ink-text); margin: 4px 0 0; font-size: 24px; }
-.bd-story .st-kick { font-size: 12px; font-weight: 600; letter-spacing: .02em; color: var(--ink-text); opacity: .75; }
-@media (max-width: 700px) { .bd-story .st-hero { padding: 12px 14px 14px; } .bd-story .st-hero .st-h { font-size: 20px; } }
-
 /* np197 — מעקב 30 דק' אחרי המבזק (flash.followup) */
 .fl-fu { display: block; margin-top: 4px; padding-top: 4px; border-top: 1px dashed color-mix(in srgb, var(--text-3) 40%, transparent); font-size: .84rem; }
 .fx .fl-fu { margin-top: 8px; }
@@ -2806,3 +2771,121 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .ep-old-b { display: flex; flex-direction: column; gap: 14px; padding: 0 14px 14px; }
 .ep-old-b > .ep-card { border-color: var(--border); }
 @media (max-width: 700px) { .ep-old-b { padding: 0 8px 10px; } }
+
+/* ── np207 (15.11.2026, איציק): מגזין סוף השבוע — #home-mag (בבית) + #panel-magazine (הכתבה המלאה).
+   מוקאפ https://claude.ai/artifact/82LJgEbAte3wReLGDxbdEj. מחליף את "הכתבה בבית" (np195/np196). ── */
+#panel-home .bd-mag { grid-column: span 12; }
+#panel-home .bd-mag.mg-first { order: -1; }   /* שבת וראשון: הכתבה ראשונה בדף */
+.mg-teaser { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 14px; align-items: stretch; }
+.mg-hero { background: var(--ink); color: var(--ink-text); border-radius: 6px; border-inline-start: 4px solid var(--accent); padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.mg-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.mg-tag { font-size: 12px; line-height: 20px; padding: 0 7px; border-radius: 3px; white-space: nowrap; border: 1px solid color-mix(in srgb, var(--ink-text) 35%, transparent); color: color-mix(in srgb, var(--ink-text) 80%, var(--ink)); }
+.mg-tag.fill { background: var(--ink-text); color: var(--ink); border-color: var(--ink-text); font-weight: 600; }
+.mg-h { margin: 0; font-size: 28px; line-height: 1.3; font-weight: 700; color: var(--ink-text); font-family: inherit; letter-spacing: 0; }
+.mg-dek { margin: 0; font-size: 16px; line-height: 1.6; color: color-mix(in srgb, var(--ink-text) 80%, var(--ink)); }
+.mg-meta { font-size: 12px; color: color-mix(in srgb, var(--ink-text) 72%, var(--ink)); }
+.mg-btn { align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border-radius: 4px; background: var(--ink-text); color: var(--ink); font-weight: 600; font-size: 14px; text-decoration: none; }
+.mg-btn:hover { text-decoration: underline; }
+.mg-btn:focus-visible, .mg-toc:focus-visible, .mg-iss:focus-visible, .mg-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mg-side { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.mg-lab { font-size: 12px; color: var(--text-3); margin-bottom: 6px; }
+.mg-nums .tile .s { font-size: 12px; color: var(--text-soft); }
+.mg-next { list-style: none; margin: 0; padding: 0; }
+.mg-next li, .mg-tl li { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 13px; line-height: 1.5; color: var(--text-soft); }
+.mg-next li:first-child, .mg-tl li:first-child { border-top: 0; }
+.mg-next li.past { color: var(--text-3); }
+.mg-next li.past .mg-when b { color: var(--text-3); font-weight: 400; }
+.mg-when { display: flex; flex-direction: column; min-width: 0; }
+.mg-when b { font-weight: 600; font-size: 13px; color: var(--text); text-align: right; }
+.mg-when span { font-size: 12px; color: var(--text-3); text-align: right; }
+
+.mg-board { align-items: start; }
+.mg-board > .mg-crumb, .mg-board > .mg-hero { grid-column: span 12; }
+.mg-crumb { font-size: 13px; }
+.mg-main { grid-column: span 8; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.mg-rail { grid-column: span 4; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.mg-fold > summary { cursor: pointer; list-style: none; }
+.mg-fold > summary::-webkit-details-marker { display: none; }
+.mg-fold > summary::after { content: "▾"; margin-inline-start: auto; color: var(--text-3); font-weight: 400; }
+.mg-fold:not([open]) > summary { border-bottom: 0; }
+.mg-fold:not([open]) > summary::after { content: "◂"; }
+.mg-more { margin-top: 4px; border-top: 1px solid var(--border); }
+.mg-more > summary { padding: 12px 0; color: var(--accent); font-weight: 500; }
+.mg-brief { list-style: none; margin: 0; padding: 0; }
+.mg-brief li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 10px; padding: 7px 0; border-top: 1px solid var(--border); font-size: 15px; line-height: 1.5; }
+.mg-brief li:first-child { border-top: 0; }
+.mg-brief .num { color: var(--text-3); font-size: 13px; line-height: 22px; }
+.mg-story { display: flex; flex-direction: column; gap: 18px; max-width: 720px; }
+.mg-story h3 { margin: 0 0 4px; font-size: 15px; line-height: 22px; font-weight: 600; font-family: inherit; color: var(--text); }
+.mg-story p { margin: 0 0 10px; font-size: 15px; line-height: 1.7; color: var(--text-soft); }
+.mg-story p:last-child { margin-bottom: 0; }
+.mg-known { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.mg-kh { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding-bottom: 8px; }
+.mg-mark { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border: 1px solid var(--border); border-radius: 3px; font-size: 12px; color: var(--text-soft); font-weight: 400; }
+.mg-ki { padding: 8px 0; border-top: 1px solid var(--border); font-size: 14px; line-height: 1.45; }
+.mg-src { display: block; font-size: 12px; color: var(--text-3); }
+.mg-src a { color: var(--accent); text-decoration: none; } .mg-src a:hover { text-decoration: underline; }
+.mg-chart { direction: ltr; position: relative; margin-bottom: 8px; }
+.mg-chart svg { display: block; width: 100%; height: auto; }
+.mg-ch-grid { stroke: var(--border); stroke-width: 1; }
+.mg-ch-tx { fill: var(--text-3); font-family: var(--mono); font-size: 11px; }
+.mg-ch-val { fill: var(--text); font-family: var(--mono); font-size: 11px; } .mg-ch-val.last { font-weight: 600; }
+.mg-ch-line { fill: none; stroke: var(--text); stroke-width: 1.6; stroke-linejoin: round; }
+.mg-ch-area { fill: var(--text-soft); opacity: .07; }
+.mg-ch-dot { fill: var(--surface); stroke: var(--text); stroke-width: 1.5; } .mg-ch-dot.last { fill: var(--text); }
+.mg-ch-mark { stroke: var(--text-soft); stroke-width: 1; stroke-dasharray: 3 3; }
+.mg-ch-lab { position: absolute; top: 0; transform: translateX(-50%); font-size: 12px; color: var(--text-soft); background: var(--surface); padding: 0 4px; white-space: nowrap; }
+.mg-tbl .mg-what { white-space: normal; color: var(--text-soft); }
+.mg-note { margin: 8px 0 0; font-size: 12px; color: var(--text-3); }
+.mg-lead { margin: 0 0 8px; font-size: 14px; color: var(--text-soft); }
+.mg-tl { list-style: none; margin: 0; padding: 0; }
+.mg-tl li { padding: 10px 0; }
+.mg-tl .mg-tx { display: block; font-size: 14px; color: var(--text); line-height: 1.55; }
+.mg-tl li.key .mg-tx { font-weight: 600; }
+.mg-tp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-size: 13px; color: var(--text-soft); }
+.mg-tpn { font-weight: 600; color: var(--text); }
+.mg-qs { list-style: none; margin: 0; padding: 0; }
+.mg-qs li { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 10px; padding: 9px 0; border-top: 1px solid var(--border); font-size: 14px; line-height: 1.55; color: var(--text-soft); }
+.mg-qs li:first-child { border-top: 0; }
+.mg-q { color: var(--text-3); }
+.mg-srcs { display: flex; flex-wrap: wrap; gap: 6px; }
+.mg-srcs .tag { line-height: 26px; padding: 0 9px; text-decoration: none; }
+.mg-srcs a.tag { color: var(--accent); } .mg-srcs a.tag:hover { text-decoration: underline; }
+.mg-more .mg-srcs, .mg-more .mg-qs, .mg-more .mg-tl { padding-bottom: 8px; }
+.mg-live { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
+.mg-liv { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--text-soft); }
+.mg-liv .p { font-size: 15px; color: var(--text); }
+.mg-toc, .mg-iss, .mg-back { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; color: var(--accent); text-align: start; }
+.mg-toc { display: flex; align-items: center; width: 100%; min-height: 36px; font-size: 13px; border-top: 1px solid var(--border); }
+.mg-toc:first-child { border-top: 0; }
+.mg-toc:hover, .mg-back:hover, .mg-iss:hover span:last-child { text-decoration: underline; }
+.mg-iss { display: flex; flex-direction: column; gap: 2px; width: 100%; padding: 10px 0; border-top: 1px solid var(--border); font-size: 13px; line-height: 1.45; }
+.mg-iss:first-child { border-top: 0; padding-top: 0; }
+.mg-iss .mute { font-size: 12px; }
+.mg-how { display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.55; color: var(--text-soft); }
+.mg-how p, .mg-empty { margin: 0; font-size: 13px; }
+.mg-disc { border: 1px solid var(--border); border-radius: var(--radius-sm, 6px); background: var(--surface-2); padding: 14px; font-size: 13px; line-height: 1.6; color: var(--text-soft); }
+.mg-disc b { font-weight: 600; color: var(--text); }
+@media (max-width: 1100px) {
+  .mg-teaser { grid-template-columns: minmax(0, 1fr); }
+  /* עמודה אחת: המספרים והמועדים עולים בין "בקצרה" לגוף הכתבה, תוכן העניינים יורד */
+  .mg-main, .mg-rail { display: contents; }
+  .mg-board > .mg-main > .mg-p, .mg-board > .mg-rail > .mg-p { grid-column: span 12; }
+  .mg-board > .mg-crumb { order: 0; } .mg-board > .mg-hero { order: 1; }
+  .mg-board #mg-s-brief { order: 2; } .mg-board > .mg-rail > .mg-r-nums { order: 3; } .mg-board #mg-s-story { order: 4; }
+  .mg-board #mg-s-known { order: 5; } .mg-board #mg-s-stock { order: 6; } .mg-board > .mg-rail > .mg-r-next { order: 7; }
+  .mg-board #mg-s-timeline { order: 8; } .mg-board #mg-s-third { order: 9; } .mg-board #mg-s-questions { order: 10; } .mg-board #mg-s-sources { order: 11; }
+  .mg-board > .mg-rail > .mg-r-how { order: 12; } .mg-board #mg-s-arch { order: 13; } .mg-board > .mg-main > .mg-disc { order: 14; }
+  .mg-board .mg-r-toc { display: none; }
+}
+@media (max-width: 700px) {
+  .mg-hero { padding: 14px 14px 16px; gap: 10px; }
+  .mg-h { font-size: 22px; } .mg-dek { font-size: 15px; }
+  .mg-btn { align-self: stretch; }
+  .mg-known { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .mg-tp { grid-template-columns: minmax(0, 1fr); }
+  .mg-nums .tile .v { font-size: 17px; }
+  .mg-brief li { font-size: 14px; }
+  .mg-next li, .mg-tl li { grid-template-columns: 64px minmax(0, 1fr); }
+  .mg-tbl th:nth-child(4), .mg-tbl td:nth-child(4) { display: none; }
+}

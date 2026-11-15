@@ -113,9 +113,11 @@ def targets():
     if hb:   # "תמונה מלאה" בחלון המניה (np202): הטקסטים שהסקריפט מרכיב + כותרות "אחרי הדוח"
         out.append(("חלון המניה", {"t": sorted({a.get("t") or "" for o in (hb.get("syms") or {}).values() for a in o.get("app") or []} |
                                                {r.get("review") or "" for o in (hb.get("syms") or {}).values() for r in o.get("rep") or []})}, None))
-    st = load(os.path.join(DATA, "story.json"))
-    if st and st.get("active"):
-        out.append(("הכתבה בבית", {k: st.get(k) for k in ("title", "dek", "paras", "next", "questions")}, None))
+    mg = load(os.path.join(DATA, "magazine", "index.json"))   # np207: מגזין סוף השבוע — הגיליון הנוכחי
+    if mg and mg.get("current"):
+        st = load(os.path.join(DATA, "magazine", "%s.json" % mg["current"]))
+        if st:
+            out.append(("מגזין סוף השבוע", {k: st.get(k) for k in ("title", "dek", "brief", "sections", "known", "numbers", "next", "questions", "thirdParty", "tags")}, None))
     for f, lab in (("earnings_prep_notes.json", "לקראת הדוח"), ("earnings_review_notes.json", "אחרי הדוח")):
         x = load(os.path.join(DATA, f))
         if x:
