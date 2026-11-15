@@ -430,7 +430,7 @@
       }).join("") + "</tbody></table></div>" : "";
     var nx = (d.next || []).map(function (x) { return '<li><span class="st-when num" dir="ltr">' + esc(x.d) + (x.t ? " " + esc(x.t) : "") + "</span><span>" + esc(x.txt) + "</span></li>"; }).join("");
     var qs = (d.questions || []).map(function (q) { return "<li>" + esc(q) + "</li>"; }).join("");
-    var srcs = (d.sources || []).map(function (x) { return '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + "</a>"; }).join(" · ");
+    var srcs = (d.sources || []).map(function (x) { return x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + "</a>" : esc(x.name); }).join(" · ");   // np206: מקור בלי קישור = טקסט
     el.innerHTML = '<div class="ph"><h2>' + esc(d.kicker || "כתבה") + "</h2>" + (d.badge ? '<span class="pill state warn">' + esc(d.badge) + "</span>" : "") + '<span class="st-live">' + live + "</span></div>" +
       '<div class="pb st-body">' +
         '<div class="st-hero"><span class="st-kick">' + esc(d.kicker || "כתבה") + (d.collectedAt ? " · " + esc(d.collectedAt) : "") + '</span><h3 class="st-h">' + esc(d.title) + "</h3></div>" +
@@ -808,7 +808,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np205";
+  var TA_VER = "np206";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
