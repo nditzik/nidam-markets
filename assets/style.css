@@ -2775,7 +2775,6 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 /* ── np207 (15.11.2026, איציק): מגזין סוף השבוע — #home-mag (בבית) + #panel-magazine (הכתבה המלאה).
    מוקאפ https://claude.ai/artifact/82LJgEbAte3wReLGDxbdEj. מחליף את "הכתבה בבית" (np195/np196). ── */
 #panel-home .bd-mag { grid-column: span 12; }
-#panel-home .bd-mag.mg-first { order: -1; }   /* שבת וראשון: הכתבה ראשונה בדף */
 .mg-teaser { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 14px; align-items: stretch; }
 .mg-hero { background: var(--ink); color: var(--ink-text); border-radius: 6px; border-inline-start: 4px solid var(--accent); padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .mg-tags { display: flex; flex-wrap: wrap; gap: 6px; }
