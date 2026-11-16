@@ -10,7 +10,7 @@
     {
       "ticker": "TSN",
       "name": "Tyson Foods, Inc. Class A",
-      "capB": 22.4
+      "capB": 22.3
     }
   ],
   "reactions": {
@@ -69,8 +69,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INBX.png",
-            "chg": -6.55,
-            "price": 77.84,
+            "chg": -5.19,
+            "price": 78.98,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           },
@@ -80,8 +80,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SLSR.png",
-            "chg": -4.42,
-            "price": 6.39,
+            "chg": -5.24,
+            "price": 6.33,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           }
@@ -526,10 +526,10 @@
           "logo": "data/earnings/logos/DLB.png"
         },
         {
-          "ticker": "SR",
-          "name": "Spire Inc.",
+          "ticker": "KLAR",
+          "name": "Klarna Group Plc",
           "when": "before",
-          "logo": "data/earnings/logos/SR.png"
+          "logo": "data/earnings/logos/KLAR.png"
         }
       ]
     },
@@ -588,16 +588,16 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
-          "ticker": "GLBE",
-          "name": "Global-e Online Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/GLBE.png"
-        },
-        {
           "ticker": "SNEX",
           "name": "StoneX Group Inc.",
           "when": "after",
           "logo": "data/earnings/logos/SNEX.png"
+        },
+        {
+          "ticker": "GLBE",
+          "name": "Global-e Online Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/GLBE.png"
         },
         {
           "ticker": "CPA",
@@ -791,8 +791,8 @@
     "SQM": "2026-11-17",
     "TME": "2026-11-17",
     "DLB": "2026-11-17",
-    "SR": "2026-11-17",
     "KLAR": "2026-11-17",
+    "SR": "2026-11-17",
     "GFF": "2026-11-17",
     "CAAP": "2026-11-17",
     "MNSO": "2026-11-17",
@@ -812,8 +812,8 @@
     "CPRT": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
-    "GLBE": "2026-11-18",
     "SNEX": "2026-11-18",
+    "GLBE": "2026-11-18",
     "CPA": "2026-11-18",
     "NJR": "2026-11-18",
     "HAFN": "2026-11-18",
@@ -876,7 +876,7 @@
     "CDLR": "2026-11-23"
   },
   "_meta": {
-    "updatedAt": "16/11/2026 17:01",
+    "updatedAt": "16/11/2026 17:16",
     "source": "tradingview"
   }
 }
