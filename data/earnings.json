@@ -10,7 +10,7 @@
     {
       "ticker": "TSN",
       "name": "Tyson Foods, Inc. Class A",
-      "capB": 20.3
+      "capB": 21.2
     }
   ],
   "reactions": {
@@ -69,8 +69,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INBX.png",
-            "chg": -3.06,
-            "price": 80.75,
+            "chg": -0.79,
+            "price": 82.64,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           },
@@ -80,8 +80,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SLSR.png",
-            "chg": -4.19,
-            "price": 6.4,
+            "chg": -3.74,
+            "price": 6.43,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           }
@@ -321,8 +321,8 @@
         "HD",
         "DIS",
         "VIK",
-        "ESLT",
-        "JD"
+        "JD",
+        "ESLT"
       ]
     },
     {
@@ -484,16 +484,16 @@
           "logo": "data/earnings/logos/VIK.png"
         },
         {
-          "ticker": "ESLT",
-          "name": "Elbit Systems Ltd",
-          "when": "",
-          "logo": "data/earnings/logos/ESLT.png"
-        },
-        {
           "ticker": "JD",
           "name": "JD.com, Inc. Sponsored ADR Class A",
           "when": "before",
           "logo": "data/earnings/logos/JD.png"
+        },
+        {
+          "ticker": "ESLT",
+          "name": "Elbit Systems Ltd",
+          "when": "",
+          "logo": "data/earnings/logos/ESLT.png"
         },
         {
           "ticker": "AS",
@@ -773,10 +773,10 @@
     "BRC": "2026-11-16",
     "SKE": "2026-11-16",
     "PAGS": "2026-11-16",
-    "INFQ": "2026-11-16",
     "DRVN": "2026-11-16",
-    "CEPU": "2026-11-16",
+    "INFQ": "2026-11-16",
     "BXDC": "2026-11-16",
+    "CEPU": "2026-11-16",
     "HUBG": "2026-11-16",
     "OMER": "2026-11-16",
     "GDRX": "2026-11-16",
@@ -784,8 +784,8 @@
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
     "VIK": "2026-11-17",
-    "ESLT": "2026-11-17",
     "JD": "2026-11-17",
+    "ESLT": "2026-11-17",
     "AS": "2026-11-17",
     "ZTO": "2026-11-17",
     "SQM": "2026-11-17",
@@ -819,8 +819,8 @@
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
-    "KLIC": "2026-11-18",
     "ZIM": "2026-11-18",
+    "KLIC": "2026-11-18",
     "BLSH": "2026-11-18",
     "SBLK": "2026-11-18",
     "PONY": "2026-11-18",
@@ -843,8 +843,8 @@
     "YMM": "2026-11-19",
     "GAP": "2026-11-19",
     "ESE": "2026-11-19",
-    "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
+    "ROAD": "2026-11-19",
     "BBWI": "2026-11-19",
     "MANU": "2026-11-19",
     "HP": "2026-11-19",
@@ -876,7 +876,7 @@
     "CDLR": "2026-11-23"
   },
   "_meta": {
-    "updatedAt": "16/11/2026 16:32",
+    "updatedAt": "16/11/2026 16:46",
     "source": "tradingview"
   }
 }
