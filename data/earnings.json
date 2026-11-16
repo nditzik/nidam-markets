@@ -1,20 +1,109 @@
 {
-  "today": "2026-11-16",
-  "todayCount": 22,
+  "today": "2026-11-17",
+  "todayCount": 24,
   "todayBig": [
     {
-      "ticker": "BIDU",
-      "name": "Baidu, Inc. Sponsored ADR Class A",
-      "capB": 25.1
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "capB": 3763.0
     },
     {
-      "ticker": "TSN",
-      "name": "Tyson Foods, Inc. Class A",
-      "capB": 22.0
+      "ticker": "HD",
+      "name": "Home Depot, Inc.",
+      "capB": 346.7
+    },
+    {
+      "ticker": "DIS",
+      "name": "Walt Disney Company",
+      "capB": 205.0
+    },
+    {
+      "ticker": "VIK",
+      "name": "Viking Holdings Ltd",
+      "capB": 40.3
+    },
+    {
+      "ticker": "JD",
+      "name": "JD.com, Inc. Sponsored ADR Class A",
+      "capB": 32.9
+    },
+    {
+      "ticker": "ESLT",
+      "name": "Elbit Systems Ltd",
+      "capB": 31.9
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-16",
+        "label": "16.11",
+        "items": [
+          {
+            "ticker": "BIDU",
+            "name": "Baidu, Inc. Sponsored ADR Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BIDU.png",
+            "chg": -5.37,
+            "price": 73.94,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
+          },
+          {
+            "ticker": "TSN",
+            "name": "Tyson Foods, Inc. Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TSN.png",
+            "chg": 8.72,
+            "price": 63.95,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
+          },
+          {
+            "ticker": "BEKE",
+            "name": "KE Holdings, Inc. Sponsored ADR Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BEKE.png",
+            "chg": 4.37,
+            "price": 18.64,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
+          },
+          {
+            "ticker": "HTHT",
+            "name": "H World Group Limited Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/HTHT.png",
+            "chg": 8.91,
+            "price": 54.88,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
+          },
+          {
+            "ticker": "ARMK",
+            "name": "Aramark",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/ARMK.png",
+            "chg": 2.65,
+            "price": 55.37,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
+          },
+          {
+            "ticker": "ACM",
+            "name": "AECOM",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/ACM.png",
+            "logoBg": "dark"
+          }
+        ]
+      },
       {
         "date": "2026-11-13",
         "label": "13.11",
@@ -158,173 +247,86 @@
             "baseDate": "2026-11-12"
           }
         ]
-      },
-      {
-        "date": "2026-11-11",
-        "label": "11.11",
-        "items": [
-          {
-            "ticker": "VYLR",
-            "name": "Vylor Inc",
-            "when": "after",
-            "status": "final",
-            "chg": -0.06,
-            "price": 72.06,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "FNV",
-            "name": "Franco-Nevada Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/FNV.png",
-            "chg": -0.42,
-            "price": 247.72,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "GIB",
-            "name": "CGI Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GIB.png",
-            "chg": -1.67,
-            "price": 81.13,
-            "reactDate": "2026-11-11",
-            "baseDate": "2026-11-10"
-          },
-          {
-            "ticker": "TTEK",
-            "name": "Tetra Tech, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/TTEK.png",
-            "chg": 4.84,
-            "price": 39.43,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "CAE",
-            "name": "CAE Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/CAE.png",
-            "chg": 2.77,
-            "price": 28.15,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "UGP",
-            "name": "Ultrapar Participacoes S.A. Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/UGP.png",
-            "chg": 3.68,
-            "price": 5.63,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "BIDU",
-      "name": "Baidu, Inc. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/BIDU.png"
-    },
-    {
-      "ticker": "TSN",
-      "name": "Tyson Foods, Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/TSN.png"
-    },
-    {
-      "ticker": "BEKE",
-      "name": "KE Holdings, Inc. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/BEKE.png"
-    },
-    {
-      "ticker": "HTHT",
-      "name": "H World Group Limited Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/HTHT.png"
-    },
-    {
-      "ticker": "ARMK",
-      "name": "Aramark",
-      "when": "before",
-      "logo": "data/earnings/logos/ARMK.png"
-    },
-    {
-      "ticker": "FRHC",
-      "name": "Freedom Holding Corp.",
-      "when": "",
-      "logo": "data/earnings/logos/FRHC.png"
-    },
-    {
-      "ticker": "ACM",
-      "name": "AECOM",
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
       "when": "after",
-      "logo": "data/earnings/logos/ACM.png",
-      "logoBg": "dark"
+      "logo": "data/earnings/logos/NVDA.png"
     },
     {
-      "ticker": "XPEV",
-      "name": "XPeng, Inc. ADR Sponsored Class A",
+      "ticker": "HD",
+      "name": "Home Depot, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/XPEV.png",
+      "logo": "data/earnings/logos/HD.png"
+    },
+    {
+      "ticker": "DIS",
+      "name": "Walt Disney Company",
+      "when": "before",
+      "logo": "data/earnings/logos/DIS.png",
       "logoBg": "dark"
     },
     {
-      "ticker": "NIO",
-      "name": "NIO Inc. Sponsored ADR Class A",
-      "when": "",
-      "logo": "data/earnings/logos/NIO.png",
-      "logoBg": "dark"
+      "ticker": "VIK",
+      "name": "Viking Holdings Ltd",
+      "when": "before",
+      "logo": "data/earnings/logos/VIK.png"
     },
     {
-      "ticker": "M",
-      "name": "Macy's, Inc.",
-      "when": "",
-      "logo": "data/earnings/logos/M.png"
+      "ticker": "JD",
+      "name": "JD.com, Inc. Sponsored ADR Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/JD.png"
     },
     {
-      "ticker": "POWL",
-      "name": "Powell Industries, Inc.",
+      "ticker": "ESLT",
+      "name": "Elbit Systems Ltd",
+      "when": "",
+      "logo": "data/earnings/logos/ESLT.png"
+    },
+    {
+      "ticker": "AS",
+      "name": "Amer Sports, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/AS.png"
+    },
+    {
+      "ticker": "ZTO",
+      "name": "ZTO Express (Cayman), Inc. Sponsored ADR Class A",
       "when": "after",
-      "logo": "data/earnings/logos/POWL.png"
+      "logo": "data/earnings/logos/ZTO.png"
     },
     {
-      "ticker": "GGAL",
-      "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
-      "when": "",
-      "logo": "data/earnings/logos/GGAL.png"
+      "ticker": "SQM",
+      "name": "Sociedad Quimica y Minera de Chile S.A. Sponsored ADR Pfd Series B",
+      "when": "after",
+      "logo": "data/earnings/logos/SQM.png"
+    },
+    {
+      "ticker": "TME",
+      "name": "Tencent Music Entertainment Group Sponsored ADR Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/TME.png"
+    },
+    {
+      "ticker": "DLB",
+      "name": "Dolby Laboratories, Inc. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/DLB.png"
+    },
+    {
+      "ticker": "SR",
+      "name": "Spire Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/SR.png"
     }
   ],
-  "more": 10,
+  "more": 12,
   "upcoming": [
-    {
-      "date": "2026-11-17",
-      "label": "17/11",
-      "dow": "ג׳",
-      "count": 24,
-      "tickers": [
-        "NVDA",
-        "HD",
-        "DIS",
-        "VIK",
-        "JD",
-        "ESLT"
-      ]
-    },
     {
       "date": "2026-11-18",
       "label": "18/11",
@@ -758,28 +760,6 @@
     }
   ],
   "window": {
-    "BIDU": "2026-11-16",
-    "TSN": "2026-11-16",
-    "BEKE": "2026-11-16",
-    "HTHT": "2026-11-16",
-    "ARMK": "2026-11-16",
-    "FRHC": "2026-11-16",
-    "ACM": "2026-11-16",
-    "XPEV": "2026-11-16",
-    "NIO": "2026-11-16",
-    "M": "2026-11-16",
-    "POWL": "2026-11-16",
-    "GGAL": "2026-11-16",
-    "BRC": "2026-11-16",
-    "SKE": "2026-11-16",
-    "PAGS": "2026-11-16",
-    "DRVN": "2026-11-16",
-    "INFQ": "2026-11-16",
-    "CEPU": "2026-11-16",
-    "BXDC": "2026-11-16",
-    "HUBG": "2026-11-16",
-    "OMER": "2026-11-16",
-    "GDRX": "2026-11-16",
     "NVDA": "2026-11-17",
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
@@ -872,10 +852,33 @@
     "SMTC": "2026-11-23",
     "AMTM": "2026-11-23",
     "DAC": "2026-11-23",
-    "CDLR": "2026-11-23"
+    "CDLR": "2026-11-23",
+    "DELL": "2026-11-24",
+    "ADI": "2026-11-24",
+    "MDT": "2026-11-24",
+    "ADSK": "2026-11-24",
+    "WDAY": "2026-11-24",
+    "DLTR": "2026-11-24",
+    "HPQ": "2026-11-24",
+    "BBY": "2026-11-24",
+    "NTNX": "2026-11-24",
+    "BURL": "2026-11-24",
+    "SJM": "2026-11-24",
+    "DKS": "2026-11-24",
+    "XP": "2026-11-24",
+    "DY": "2026-11-24",
+    "VIPS": "2026-11-24",
+    "ANF": "2026-11-24",
+    "BILI": "2026-11-24",
+    "AEO": "2026-11-24",
+    "KSS": "2026-11-24",
+    "AMBA": "2026-11-24",
+    "BBAR": "2026-11-24",
+    "KC": "2026-11-24",
+    "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "16/11/2026 23:46",
+    "updatedAt": "17/11/2026 00:01",
     "source": "tradingview"
   }
 }
