@@ -1,6 +1,6 @@
 {
   "today": "2026-11-16",
-  "todayCount": 24,
+  "todayCount": 22,
   "todayBig": [
     {
       "ticker": "BIDU",
@@ -71,15 +71,11 @@
             "logo": "data/earnings/logos/INBX.png"
           },
           {
-            "ticker": "JBIO",
-            "name": "Jade Biosciences, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/JBIO.png",
-            "chg": 1.7,
-            "price": 16.14,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
+            "ticker": "SLSR",
+            "name": "Solaris Resources Inc",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/SLSR.png"
           }
         ]
       },
@@ -260,17 +256,6 @@
       "logo": "data/earnings/logos/ARMK.png"
     },
     {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": ""
-    },
-    {
-      "ticker": "MOG.A",
-      "name": "Moog Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/MOG.A.png"
-    },
-    {
       "ticker": "FRHC",
       "name": "Freedom Holding Corp.",
       "when": "",
@@ -302,15 +287,27 @@
       "name": "Macy's, Inc.",
       "when": "",
       "logo": "data/earnings/logos/M.png"
+    },
+    {
+      "ticker": "GGAL",
+      "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
+      "when": "",
+      "logo": "data/earnings/logos/GGAL.png"
+    },
+    {
+      "ticker": "POWL",
+      "name": "Powell Industries, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/POWL.png"
     }
   ],
-  "more": 12,
+  "more": 10,
   "upcoming": [
     {
       "date": "2026-11-17",
       "label": "17/11",
       "dow": "ג׳",
-      "count": 25,
+      "count": 24,
       "tickers": [
         "NVDA",
         "HD",
@@ -352,14 +349,14 @@
       "date": "2026-11-20",
       "label": "20/11",
       "dow": "ו׳",
-      "count": 7,
+      "count": 9,
       "tickers": [
         "BSP",
         "BJ",
+        "MOG.B",
+        "MOG.A",
         "FRO",
-        "VFS",
-        "BKE",
-        "RLX"
+        "VFS"
       ]
     }
   ],
@@ -368,7 +365,7 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 24,
+      "total": 22,
       "companies": [
         {
           "ticker": "BIDU",
@@ -399,17 +396,6 @@
           "name": "Aramark",
           "when": "before",
           "logo": "data/earnings/logos/ARMK.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": ""
-        },
-        {
-          "ticker": "MOG.A",
-          "name": "Moog Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/MOG.A.png"
         },
         {
           "ticker": "FRHC",
@@ -443,6 +429,18 @@
           "name": "Macy's, Inc.",
           "when": "",
           "logo": "data/earnings/logos/M.png"
+        },
+        {
+          "ticker": "GGAL",
+          "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
+          "when": "",
+          "logo": "data/earnings/logos/GGAL.png"
+        },
+        {
+          "ticker": "POWL",
+          "name": "Powell Industries, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/POWL.png"
         }
       ]
     },
@@ -450,7 +448,7 @@
       "date": "2026-11-17",
       "dow": "שלישי",
       "label": "17.11",
-      "total": 25,
+      "total": 24,
       "companies": [
         {
           "ticker": "NVDA",
@@ -692,7 +690,7 @@
       "date": "2026-11-20",
       "dow": "שישי",
       "label": "20.11",
-      "total": 7,
+      "total": 9,
       "companies": [
         {
           "ticker": "BSP",
@@ -705,6 +703,17 @@
           "name": "BJ's Wholesale Club Holdings, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/BJ.png"
+        },
+        {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
+        },
+        {
+          "ticker": "MOG.A",
+          "name": "Moog Inc. Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/MOG.A.png"
         },
         {
           "ticker": "FRO",
@@ -746,8 +755,6 @@
     "BEKE": "2026-11-16",
     "HTHT": "2026-11-16",
     "ARMK": "2026-11-16",
-    "MOG.B": "2026-11-16",
-    "MOG.A": "2026-11-16",
     "FRHC": "2026-11-16",
     "ACM": "2026-11-16",
     "XPEV": "2026-11-16",
@@ -788,7 +795,6 @@
     "LUXE": "2026-11-17",
     "OPRA": "2026-11-17",
     "LZB": "2026-11-17",
-    "SLSR": "2026-11-17",
     "OCSL": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
@@ -843,6 +849,8 @@
     "TEN": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
+    "MOG.B": "2026-11-20",
+    "MOG.A": "2026-11-20",
     "FRO": "2026-11-20",
     "VFS": "2026-11-20",
     "BKE": "2026-11-20",
@@ -860,7 +868,7 @@
     "CDLR": "2026-11-23"
   },
   "_meta": {
-    "updatedAt": "16/11/2026 14:46",
+    "updatedAt": "16/11/2026 15:02",
     "source": "tradingview"
   }
 }
