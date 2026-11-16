@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "16/11/2026 17:16",
+  "updatedAt": "16/11/2026 17:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -484,14 +484,14 @@
    "analystsAt": "2026-11-16T12:17+00:00",
    "yahooDate": "2026-11-17",
    "options": {
-    "asOf": "16/11 17:16",
-    "price": 159.8046,
+    "asOf": "16/11 17:31",
+    "price": 159.74,
     "exp": "2026-11-18",
     "strike": 160.0,
-    "pct": 8.82,
-    "earn": 8.55,
+    "pct": 8.89,
+    "earn": 8.66,
     "preExp": "2026-11-16",
-    "prePct": 2.17
+    "prePct": 1.99
    },
    "avgMove": 4.8,
    "hasNote": true
@@ -974,11 +974,11 @@
    "analystsAt": "2026-11-16T12:17+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "16/11 17:16",
-    "price": 32.14,
+    "asOf": "16/11 17:31",
+    "price": 32.235,
     "exp": "2026-11-20",
     "strike": 32.5,
-    "pct": 4.59,
+    "pct": 4.58,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -1127,16 +1127,14 @@
      "ptPrev": 404.0
     }
    ],
+   "yahooDate": "2026-11-18",
+   "analystsAt": "2026-11-16T15:31+00:00",
    "price": {
-    "close": 322.24,
-    "date": "2026-11-13",
+    "close": 312.77,
+    "date": "2026-11-16",
     "high52": 419.91,
-    "ma50": 367.5,
+    "ma50": 367.09,
     "series": [
-     [
-      "2026-07-24",
-      323.79
-     ],
      [
       "2026-07-27",
       317.32
@@ -1452,23 +1450,24 @@
      [
       "2026-11-13",
       322.24
+     ],
+     [
+      "2026-11-16",
+      312.77
      ]
     ],
-    "off52": -23.3,
+    "off52": -25.5,
     "since": {
      "from": "2026-09-01",
-     "chg": -11.0,
-     "spy": -1.0
+     "chg": -13.6
     }
    },
-   "analystsAt": "2026-11-16T09:17+00:00",
-   "yahooDate": "2026-11-18",
    "options": {
-    "asOf": "16/11 17:16",
-    "price": 313.855,
+    "asOf": "16/11 17:31",
+    "price": 312.775,
     "exp": "2026-11-20",
-    "strike": 315.0,
-    "pct": 11.29,
+    "strike": 312.5,
+    "pct": 10.94,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -1954,11 +1953,11 @@
    "analystsAt": "2026-11-16T11:24+00:00",
    "yahooDate": "2026-11-19",
    "options": {
-    "asOf": "16/11 17:16",
-    "price": 128.715,
+    "asOf": "16/11 17:31",
+    "price": 128.8,
     "exp": "2026-11-20",
     "strike": 129.0,
-    "pct": 6.29,
+    "pct": 6.25,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -2444,14 +2443,14 @@
    "analystsAt": "2026-11-16T11:24+00:00",
    "yahooDate": "2026-11-23",
    "options": {
-    "asOf": "16/11 17:16",
-    "price": 34.79,
+    "asOf": "16/11 17:31",
+    "price": 34.3801,
     "exp": "2026-11-27",
-    "strike": 35.0,
-    "pct": 15.31,
-    "earn": 11.63,
+    "strike": 34.0,
+    "pct": 15.2,
+    "earn": 11.0,
     "preExp": "2026-11-20",
-    "prePct": 7.04
+    "prePct": 7.42
    },
    "avgMove": 15.6,
    "hasNote": false
@@ -2933,14 +2932,14 @@
    "analystsAt": "2026-11-16T14:32+00:00",
    "yahooDate": "2026-11-24",
    "options": {
-    "asOf": "16/11 17:16",
-    "price": 322.4,
+    "asOf": "16/11 17:31",
+    "price": 324.87,
     "exp": "2026-11-27",
-    "strike": 322.5,
-    "pct": 16.52,
-    "earn": 7.69,
+    "strike": 325.0,
+    "pct": 16.55,
+    "earn": 8.53,
     "preExp": "2026-11-20",
-    "prePct": 10.34
+    "prePct": 10.03
    },
    "avgMove": 19.1,
    "hasNote": false
@@ -2993,12 +2992,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
