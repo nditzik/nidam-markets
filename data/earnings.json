@@ -10,7 +10,7 @@
     {
       "ticker": "TSN",
       "name": "Tyson Foods, Inc. Class A",
-      "capB": 21.7
+      "capB": 21.8
     }
   ],
   "reactions": {
@@ -69,8 +69,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INBX.png",
-            "chg": -6.97,
-            "price": 77.5,
+            "chg": -6.66,
+            "price": 77.75,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           },
@@ -80,8 +80,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SLSR.png",
-            "chg": -7.34,
-            "price": 6.19,
+            "chg": -7.93,
+            "price": 6.15,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           }
@@ -218,13 +218,13 @@
             "baseDate": "2026-11-11"
           },
           {
-            "ticker": "OR",
-            "name": "OR Royalties Inc.",
+            "ticker": "UGP",
+            "name": "Ultrapar Participacoes S.A. Sponsored ADR",
             "when": "after",
             "status": "final",
-            "logo": "data/earnings/logos/OR.png",
-            "chg": -2.16,
-            "price": 34.83,
+            "logo": "data/earnings/logos/UGP.png",
+            "chg": 3.68,
+            "price": 5.63,
             "reactDate": "2026-11-12",
             "baseDate": "2026-11-11"
           }
@@ -526,10 +526,10 @@
           "logo": "data/earnings/logos/DLB.png"
         },
         {
-          "ticker": "KLAR",
-          "name": "Klarna Group Plc",
+          "ticker": "SR",
+          "name": "Spire Inc.",
           "when": "before",
-          "logo": "data/earnings/logos/KLAR.png"
+          "logo": "data/earnings/logos/SR.png"
         }
       ]
     },
@@ -791,8 +791,8 @@
     "SQM": "2026-11-17",
     "TME": "2026-11-17",
     "DLB": "2026-11-17",
-    "KLAR": "2026-11-17",
     "SR": "2026-11-17",
+    "KLAR": "2026-11-17",
     "GFF": "2026-11-17",
     "CAAP": "2026-11-17",
     "MNSO": "2026-11-17",
@@ -876,7 +876,7 @@
     "CDLR": "2026-11-23"
   },
   "_meta": {
-    "updatedAt": "16/11/2026 19:31",
+    "updatedAt": "16/11/2026 19:46",
     "source": "tradingview"
   }
 }
