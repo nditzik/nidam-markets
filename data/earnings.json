@@ -10,7 +10,7 @@
     {
       "ticker": "TSN",
       "name": "Tyson Foods, Inc. Class A",
-      "capB": 21.6
+      "capB": 21.7
     }
   ],
   "reactions": {
@@ -69,8 +69,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INBX.png",
-            "chg": -6.53,
-            "price": 77.86,
+            "chg": -6.97,
+            "price": 77.5,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           },
@@ -80,8 +80,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SLSR.png",
-            "chg": -8.01,
-            "price": 6.14,
+            "chg": -7.34,
+            "price": 6.19,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
           }
@@ -600,16 +600,16 @@
           "logo": "data/earnings/logos/SNEX.png"
         },
         {
-          "ticker": "CPA",
-          "name": "Copa Holdings, S.A. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CPA.png"
-        },
-        {
           "ticker": "NJR",
           "name": "New Jersey Resources Corporation",
           "when": "after",
           "logo": "data/earnings/logos/NJR.png"
+        },
+        {
+          "ticker": "CPA",
+          "name": "Copa Holdings, S.A. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CPA.png"
         }
       ]
     },
@@ -814,8 +814,8 @@
     "UGI": "2026-11-18",
     "GLBE": "2026-11-18",
     "SNEX": "2026-11-18",
-    "CPA": "2026-11-18",
     "NJR": "2026-11-18",
+    "CPA": "2026-11-18",
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
@@ -876,7 +876,7 @@
     "CDLR": "2026-11-23"
   },
   "_meta": {
-    "updatedAt": "16/11/2026 19:16",
+    "updatedAt": "16/11/2026 19:31",
     "source": "tradingview"
   }
 }
