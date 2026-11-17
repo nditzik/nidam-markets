@@ -317,24 +317,48 @@ def line_he(t, with_explain=True):
 
 
 # ── נושאים לכותרות שאינן מאקרו ──────────────────────────────────────
+# 17.11.2026 (איציק: "בעברית לא נכתב על תקלת התקשורת"): נוספו "תקלות מחשוב וסייבר" (לפני
+# גיאופוליטיקה, כדי ש-cyber attack לא ייספר כמלחמה) ו"נתוני מאקרו" (מכירות קמעונאיות, אבטלה…);
+# גיאופוליטיקה תופסת גם פיצוצים/תקיפות ומקבלת שם מקום: "גיאופוליטיקה (איראן)".
 TOPICS = [
     (r"\bmidterm|\belection|\bcongress|\bsenate\b|\bhouse majorit|\bdemocrat|\brepublican|\bgop\b", "הבחירות בארה\"ב"),
-    (r"\bfed\b|\bfomc\b|\bpowell\b|\brate cut|\brate hike|\bcentral bank", "הפד והריבית"),
+    (r"\bfed\b|\bfed's|\bfomc\b|\bpowell\b|\bwarsh\b|\brate cut|\brate hike|\bcentral bank", "הפד והריבית"),
     (r"\binflation|\bcpi\b|\bppi\b|\bwholesale prices|\bconsumer prices|\bproducer prices", "אינפלציה"),
-    (r"\btariff|\btrade war|\btrade deal|\bduties\b", "מכסים וסחר"),
-    (r"\biran|\bisrael|\bhormuz|\bmissile|\bwar\b|\bukraine|\brussia|\bgaza|\bhezbollah|\bstrike on", "גיאופוליטיקה"),
+    (r"\bretail sales|\bjobless|\bpayrolls|\bunemployment|\bgdp\b|\bconsumer spending|\bconsumer sentiment|\bism\b|\bpmi\b|\bhousing starts|\bdurable goods", "נתוני מאקרו"),
+    (r"\btariff|\btrade war|\btrade deal|\bduties\b|\bexport control", "מכסים וסחר"),
+    (r"\boutage|\bnetwork\b.{0,30}\bdown\b|\bcyber|\bhack|\bransomware|\bground stop|\bsystems?\b.{0,12}\b(?:failure|down)\b", "תקלות מחשוב וסייבר"),
+    (r"\biran|\bisrael|\bhormuz|\bqeshm|\bmissile|\bwar\b|\bukraine|\brussia|\bcrimea|\bgaza|\bhezbollah|\bstrike on|\bairstrike|\bexplosion|\bblast\b|\battack on|\bdrone strike|\bmilitary", "גיאופוליטיקה"),
     (r"\boil\b|\bopec|\bcrude|\bbrent\b|\bwti\b", "נפט"),
     (r"\btreasur|\byield|\bbond", "אג\"ח ותשואות"),
     (r"\btrump\b|\bwhite house", "הבית הלבן"),
     (r"\bchina\b|\bchinese\b|\bbeijing|\bxi\b", "סין"),
-    (r"\bnvidia|\bopenai|\banthropic|\bai\b|\bchip|\bsemiconductor", "AI ושבבים"),
+    (r"\bnvidia|\bopenai|\banthropic|\bai\b|\bchip|\bsemiconductor|\bamd\b|\bjensen huang", "AI ושבבים"),
     (r"\bearnings|\bguidance|\bquarterly results|\brevenue\b|\beps\b", "דוחות חברות"),
     (r"\bshutdown|\bdebt ceiling|\bdeficit|\bspending bill", "תקציב הממשל"),
     (r"\bdollar\b|\byen\b|\beuro\b|\bdxy\b", "מטבעות"),
     (r"\bbitcoin|\bcrypto", "קריפטו"),
 ]
 TOPICS_RE = [(re.compile(p, re.I), he) for p, he in TOPICS]
+PLACES = [
+    (re.compile(r"\biran|\bqeshm|\bhormuz|\btehran|\bhormozgan", re.I), "איראן"),
+    (re.compile(r"\bisrael|\bgaza|\bhezbollah|\blebanon|\bhamas", re.I), "ישראל והאזור"),
+    (re.compile(r"\bukraine|\brussia|\bcrimea|\bkyiv|\bmoscow|\bkremlin", re.I), "רוסיה–אוקראינה"),
+    (re.compile(r"\btaiwan", re.I), "טייוואן"),
+    (re.compile(r"\bvenezuela", re.I), "ונצואלה"),
+]
 HEB = re.compile(r"[֐-׿]")
+
+
+def topic_of(text):
+    """(תווית לתצוגה, תווית בסיס) של הנושא הראשון שמתאים, או (None, None)."""
+    t = str(text or "")
+    for rx, he in TOPICS_RE:
+        if rx.search(t):
+            if he == "גיאופוליטיקה":
+                place = next((p for prx, p in PLACES if prx.search(t)), None)
+                return (f"{he} ({place})" if place else he), he
+            return he, he
+    return None, None
 
 
 def is_hebrew(text):
@@ -345,8 +369,10 @@ def topics_he(texts, limit=3):
     out = []
     for t in texts:
         for rx, he in TOPICS_RE:
-            if rx.search(str(t or "")) and he not in out:
-                out.append(he)
+            if rx.search(str(t or "")):
+                lab = topic_of(t)[0] if he == "גיאופוליטיקה" else he
+                if lab not in out and not (he == "גיאופוליטיקה" and any(o.startswith(he) for o in out)):
+                    out.append(lab)
     return out[:limit]
 
 

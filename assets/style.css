@@ -2888,3 +2888,8 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .mg-next li, .mg-tl li { grid-template-columns: 64px minmax(0, 1fr); }
   .mg-tbl th:nth-child(4), .mg-tbl td:nth-child(4) { display: none; }
 }
+
+/* np209 (17.11.2026) — פירוט המבזק: הידיעות בעברית, מקור ושעה בשורה קטנה */
+.fl-detail a.fl-ev { color: var(--text-soft); text-decoration: none; }
+.fl-detail a.fl-ev:hover { text-decoration: underline; }
+.fl-src { color: var(--text-3); font-size: .9em; white-space: nowrap; }
