@@ -5,27 +5,27 @@
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
-      "capB": 3695.0
+      "capB": 3640.9
     },
     {
       "ticker": "HD",
       "name": "Home Depot, Inc.",
-      "capB": 341.6
+      "capB": 340.0
     },
     {
       "ticker": "DIS",
       "name": "Walt Disney Company",
-      "capB": 209.9
+      "capB": 208.2
     },
     {
       "ticker": "VIK",
       "name": "Viking Holdings Ltd",
-      "capB": 40.6
+      "capB": 40.1
     },
     {
       "ticker": "ESLT",
       "name": "Elbit Systems Ltd",
-      "capB": 34.5
+      "capB": 34.3
     },
     {
       "ticker": "JD",
@@ -95,14 +95,13 @@
             "baseDate": "2026-11-13"
           },
           {
-            "ticker": "ACM",
-            "name": "AECOM",
+            "ticker": "FRHC",
+            "name": "Freedom Holding Corp.",
             "when": "after",
             "status": "live",
-            "logo": "data/earnings/logos/ACM.png",
-            "logoBg": "dark",
-            "chg": 8.7,
-            "price": 78.81,
+            "logo": "data/earnings/logos/FRHC.png",
+            "chg": -0.43,
+            "price": 158.86,
             "reactDate": "2026-11-17",
             "baseDate": "2026-11-16"
           }
@@ -413,17 +412,17 @@
           "logo": "data/earnings/logos/ARMK.png"
         },
         {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
+        },
+        {
           "ticker": "ACM",
           "name": "AECOM",
           "when": "after",
           "logo": "data/earnings/logos/ACM.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "XPEV",
@@ -843,8 +842,8 @@
     "GAP": "2026-11-19",
     "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
-    "BBWI": "2026-11-19",
     "MANU": "2026-11-19",
+    "BBWI": "2026-11-19",
     "HP": "2026-11-19",
     "POST": "2026-11-19",
     "MMS": "2026-11-19",
@@ -899,7 +898,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 17:46",
+    "updatedAt": "17/11/2026 18:01",
     "source": "tradingview"
   }
 }
