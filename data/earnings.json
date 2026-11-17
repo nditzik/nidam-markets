@@ -347,7 +347,7 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 15,
+      "total": 13,
       "companies": [
         {
           "ticker": "BIDU",
@@ -378,12 +378,6 @@
           "name": "Aramark",
           "when": "before",
           "logo": "data/earnings/logos/ARMK.png"
-        },
-        {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "",
-          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "ACM",
@@ -422,6 +416,12 @@
           "name": "Infleqtion, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/INFQ.png"
+        },
+        {
+          "ticker": "BXDC",
+          "name": "Blackstone Digital Infrastructure Trust, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BXDC.png"
         }
       ]
     },
@@ -848,7 +848,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 03:01",
+    "updatedAt": "17/11/2026 03:16",
     "source": "tradingview"
   }
 }
