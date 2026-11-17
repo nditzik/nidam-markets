@@ -1,21 +1,6 @@
 {
- "n": 2,
- "items": [
-  {
-   "where": "ארבעת העמודים (HTML) 2026-11-16",
-   "path": "data/trades/trades-2026-11-16.html",
-   "rule": "הוראת פעולה",
-   "term": "לא להוסיף",
-   "text": "זהיר · יום סיכון — לא להוסיף חשיפה"
-  },
-  {
-   "where": "ארבעת העמודים (HTML) 2026-11-16",
-   "path": "data/trades/trades-2026-11-16.html",
-   "rule": "הוראת פעולה",
-   "term": "להוסיף חשיפה",
-   "text": "זהיר · יום סיכון — לא להוסיף חשיפה"
-  }
- ],
+ "n": 0,
+ "items": [],
  "archive": {
   "files": 125,
   "flagged": 70,
@@ -27,7 +12,7 @@
   }
  },
  "scope": {
-  "checked": 2797,
+  "checked": 2858,
   "archiveFiles": 125,
   "archiveBlocks": 15388,
   "includes": [
@@ -49,7 +34,7 @@
   "note": "בדיקת ניסוח אוטומטית לפי דפוסים — אינה בדיקה משפטית."
  },
  "_meta": {
-  "updatedAt": "17/11/2026 07:17",
+  "updatedAt": "17/11/2026 07:31",
   "source": "lint_advice",
   "rules": "scripts/prompts/_language.md"
  }
