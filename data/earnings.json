@@ -5,22 +5,22 @@
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
-      "capB": 3698.9
+      "capB": 3703.4
     },
     {
       "ticker": "HD",
       "name": "Home Depot, Inc.",
-      "capB": 338.8
+      "capB": 338.9
     },
     {
       "ticker": "DIS",
       "name": "Walt Disney Company",
-      "capB": 200.9
+      "capB": 201.9
     },
     {
       "ticker": "VIK",
       "name": "Viking Holdings Ltd",
-      "capB": 42.3
+      "capB": 42.2
     },
     {
       "ticker": "ESLT",
@@ -101,8 +101,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ACM.png",
             "logoBg": "dark",
-            "chg": 12.54,
-            "price": 81.6,
+            "chg": 11.12,
+            "price": 80.56,
             "reactDate": "2026-11-17",
             "baseDate": "2026-11-16"
           }
@@ -595,16 +595,16 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
-          "ticker": "SNEX",
-          "name": "StoneX Group Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/SNEX.png"
-        },
-        {
           "ticker": "GLBE",
           "name": "Global-e Online Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/GLBE.png"
+        },
+        {
+          "ticker": "SNEX",
+          "name": "StoneX Group Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SNEX.png"
         },
         {
           "ticker": "NJR",
@@ -811,8 +811,8 @@
     "CPRT": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
-    "SNEX": "2026-11-18",
     "GLBE": "2026-11-18",
+    "SNEX": "2026-11-18",
     "NJR": "2026-11-18",
     "CPA": "2026-11-18",
     "HAFN": "2026-11-18",
@@ -899,7 +899,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 22:46",
+    "updatedAt": "17/11/2026 23:01",
     "source": "tradingview"
   }
 }
