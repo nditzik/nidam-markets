@@ -1,34 +1,40 @@
 {
-  "generatedAt": "15/11/2026 20:16",
+  "generatedAt": "17/11/2026 08:47",
   "today": [
+    {
+      "label": "סריקת תיקון",
+      "tab": "candidates",
+      "time": "05:30",
+      "arrived": true
+    },
     {
       "label": "תדרוך בוקר",
       "tab": "briefing",
-      "time": "06:05",
+      "time": "06:07",
+      "arrived": true
+    },
+    {
+      "label": "מדדים",
+      "tab": "indices",
+      "time": "08:45",
+      "arrived": true
+    },
+    {
+      "label": "מומנטום",
+      "tab": "momentum",
+      "time": "08:45",
       "arrived": true
     },
     {
       "label": "תדרוך אחה\"צ",
       "tab": "briefing",
       "time": "15:03",
-      "arrived": true
-    },
-    {
-      "label": "מדדים",
-      "tab": "indices",
-      "time": "20:15",
-      "arrived": true
-    },
-    {
-      "label": "מומנטום",
-      "tab": "momentum",
-      "time": "20:15",
-      "arrived": true
+      "arrived": false
     },
     {
       "label": "Barchart בוקר",
       "tab": "morning",
-      "time": "05:58",
+      "time": "06:08",
       "arrived": false
     },
     {
@@ -36,19 +42,13 @@
       "tab": "morning",
       "time": "14:33",
       "arrived": false
-    },
-    {
-      "label": "סריקת תיקון",
-      "tab": "candidates",
-      "time": "05:31",
-      "arrived": false
     }
   ],
   "sources": [
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "15/11/2026 20:15",
+      "updatedAt": "17/11/2026 08:45",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -56,7 +56,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "15/11/2026 20:15",
+      "updatedAt": "17/11/2026 08:45",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -64,7 +64,7 @@
     {
       "key": "morning",
       "label": "Barchart בוקר",
-      "updatedAt": "2 הודעות — 15.11.2026 05:58",
+      "updatedAt": "34 הודעות — 17.11.2026 06:08",
       "ageHours": null,
       "status": "down",
       "detail": "אין חותמת"
@@ -73,39 +73,39 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "11/11/2026 14:33",
-      "ageHours": 101.7,
+      "ageHours": 138.2,
       "status": "down",
       "detail": ""
     },
     {
       "key": "briefing",
       "label": "תדרוך משקיעים",
-      "updatedAt": "15/11/2026 15:15",
-      "ageHours": 5.0,
+      "updatedAt": "17/11/2026 06:15",
+      "ageHours": 2.5,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "סריקת תיקון",
-      "updatedAt": "14/11/2026 05:31",
-      "ageHours": 38.8,
-      "status": "stale",
+      "updatedAt": "17/11/2026 05:30",
+      "ageHours": 3.3,
+      "status": "ok",
       "detail": ""
     },
     {
       "key": "advice",
       "label": "בדיקת ניסוח",
       "status": "ok",
-      "updatedAt": "15/11/2026 20:16",
-      "detail": "בדיקה אוטומטית של ניסוח (לא בדיקה משפטית) · נבדקו 2846 פריטים ב-15/11/2026 20:16 · בתוכן המוצג כרגע לא נמצאו ניסוחים לבדיקה · בארכיון הציבורי 70 מתוך 124 קבצים כוללים ניסוחי מסחר ישנים (מוצגים בנוסחם המקורי, מסומנים 'נוסח ארכיוני') · לא כולל: חלון הניתוח הטכני (נבנה בדפדפן), תדרוכי הבוקר ו-Barchart (תוכן צד שלישי), הודעות הטלגרם, טקסטים קבועים של האתר"
+      "updatedAt": "17/11/2026 08:47",
+      "detail": "בדיקה אוטומטית של ניסוח (לא בדיקה משפטית) · נבדקו 2858 פריטים ב-17/11/2026 08:47 · בתוכן המוצג כרגע לא נמצאו ניסוחים לבדיקה · בארכיון הציבורי 70 מתוך 125 קבצים כוללים ניסוחי מסחר ישנים (מוצגים בנוסחם המקורי, מסומנים 'נוסח ארכיוני') · לא כולל: חלון הניתוח הטכני (נבנה בדפדפן), תדרוכי הבוקר ו-Barchart (תוכן צד שלישי), הודעות הטלגרם, טקסטים קבועים של האתר"
     }
   ],
   "adviceLint": {
     "n": 0,
     "items": [],
     "archive": {
-      "files": 124,
+      "files": 125,
       "flagged": 70,
       "hits": 1208,
       "byKind": {
@@ -115,9 +115,9 @@
       }
     },
     "scope": {
-      "checked": 2846,
-      "archiveFiles": 124,
-      "archiveBlocks": 15239,
+      "checked": 2858,
+      "archiveFiles": 125,
+      "archiveBlocks": 15388,
       "includes": [
         "הניתוח היומי והעדכונים",
         "סיכום השבוע והצפי",
