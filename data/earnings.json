@@ -5,27 +5,27 @@
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
-      "capB": 3714.8
+      "capB": 3695.0
     },
     {
       "ticker": "HD",
       "name": "Home Depot, Inc.",
-      "capB": 343.5
+      "capB": 341.6
     },
     {
       "ticker": "DIS",
       "name": "Walt Disney Company",
-      "capB": 210.2
+      "capB": 209.9
     },
     {
       "ticker": "VIK",
       "name": "Viking Holdings Ltd",
-      "capB": 40.7
+      "capB": 40.6
     },
     {
       "ticker": "ESLT",
       "name": "Elbit Systems Ltd",
-      "capB": 34.3
+      "capB": 34.5
     },
     {
       "ticker": "JD",
@@ -95,13 +95,14 @@
             "baseDate": "2026-11-13"
           },
           {
-            "ticker": "FRHC",
-            "name": "Freedom Holding Corp.",
+            "ticker": "ACM",
+            "name": "AECOM",
             "when": "after",
             "status": "live",
-            "logo": "data/earnings/logos/FRHC.png",
-            "chg": -0.41,
-            "price": 158.88,
+            "logo": "data/earnings/logos/ACM.png",
+            "logoBg": "dark",
+            "chg": 8.7,
+            "price": 78.81,
             "reactDate": "2026-11-17",
             "baseDate": "2026-11-16"
           }
@@ -412,17 +413,17 @@
           "logo": "data/earnings/logos/ARMK.png"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
           "ticker": "ACM",
           "name": "AECOM",
           "when": "after",
           "logo": "data/earnings/logos/ACM.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "XPEV",
@@ -898,7 +899,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 17:31",
+    "updatedAt": "17/11/2026 17:46",
     "source": "tradingview"
   }
 }
