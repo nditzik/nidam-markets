@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "17/11/2026 06:46",
+  "updatedAt": "17/11/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "NVIDIA Corporation",
    "date": "2026-11-17",
    "when": "after",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/NVDA__2026-08-26.html",
     "date": "2026-08-26",
@@ -501,7 +501,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -991,7 +991,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -1481,7 +1481,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 3,
+   "daysTo": 2,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -1971,7 +1971,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -2461,7 +2461,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -3291,7 +3291,9 @@
     "move": 1.01,
     "close": 488.78
    }
-  },
+  }
+ ],
+ "older": [
   {
    "sym": "AAPL",
    "name": "Apple Inc.",
@@ -3385,9 +3387,7 @@
     "move": -1.65,
     "close": 175.4
    }
-  }
- ],
- "older": [
+  },
   {
    "sym": "CVX",
    "name": "Chevron Corporation",
