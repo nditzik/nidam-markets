@@ -1006,7 +1006,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np208";
+  var TA_VER = "np209";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1553,12 +1553,21 @@
           (t.verdict ? ' · <span class="fl-vd' + tone(t.tone) + '">' + esc(t.verdict) + "</span>" : "") +
           (t.explain ? '<span class="fl-exp">' + esc(t.explain) + "</span>" : "") + "</span>");
       });
+      /* np209 (17.11.2026, איציק: "בעברית לא נכתב על תקלת התקשורת, והמשפט סתמי"): detect_flash מתרגם
+         כל פריט (he, via — flash_he.py). בעברית: הידיעה עצמה; המקור האנגלי נשאר בשורה המקופלת. */
+      var nHe = 0;
       (ev.pulse || []).forEach(function (p) {
-        if (p.lang === "he") bits.push('<span class="fl-ev">💬 ' + esc(String(p.text).slice(0, 140)) + " · " + esc(p.source) + "</span>");
-        else en.push('<span class="fl-ev" dir="ltr">' + esc(String(p.text).slice(0, 140)) + " · " + esc(p.source) + "</span>");
+        var t = p.lang === "he" ? p.text : p.he;
+        if (t && nHe < 5) { nHe++; bits.push('<span class="fl-ev">💬 <bdi>' + esc(String(t).slice(0, 160)) + (p.via ? " (לפי " + esc(p.via) + ")" : "") + "</bdi>" +
+          ' <span class="fl-src">· <bdi>' + esc(p.source) + "</bdi>" + (p.time ? ' · <span class="num" dir="ltr">' + esc(p.time) + "</span>" : "") + "</span></span>"); }
+        if (p.lang !== "he") en.push('<span class="fl-ev" dir="ltr">' + esc(String(p.text).slice(0, 140)) + " · " + esc(p.source) + "</span>");
       });
-      (ev.news || []).forEach(function (n) { en.push('<a class="fl-ev" dir="ltr" href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title) + " · " + esc(n.source) + "</a>"); });
-      if (ev.topics && ev.topics.length) bits.push('<span class="fl-ev">📰 ' + (d.since ? "בחדשות מאז" : "בחדשות באותן דקות") + ": <b>" + ev.topics.map(esc).join(" · ") + "</b></span>");
+      (ev.news || []).forEach(function (n) {
+        if (n.he) { nHe++; bits.push('<a class="fl-ev" href="' + esc(n.link) + '" target="_blank" rel="noopener">📰 <bdi>' + esc(n.he) + "</bdi>" +
+          ' <span class="fl-src">· <bdi>' + esc(n.source) + "</bdi>" + (n.time ? ' · <span class="num" dir="ltr">' + esc(n.time) + "</span>" : "") + "</span></a>"); }
+        en.push('<a class="fl-ev" dir="ltr" href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title) + " · " + esc(n.source) + "</a>");
+      });
+      if (!nHe && ev.topics && ev.topics.length) bits.push('<span class="fl-ev">📰 ' + (d.since ? "בחדשות מאז" : "בחדשות באותן דקות") + ": <b>" + ev.topics.map(esc).join(" · ") + "</b></span>");
     } else {
       (ev.pulse || []).slice(0, 3).forEach(function (p) {
         bits.push('<span class="fl-ev" dir="auto">💬 ' + esc(String(p.text).slice(0, 110)) + " · " + esc(p.source) + "</span>");

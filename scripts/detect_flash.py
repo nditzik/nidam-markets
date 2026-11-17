@@ -33,6 +33,7 @@ from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notify_telegram import send, load
 from macro_he import translate, line_he, topics_he, is_hebrew
+import flash_he
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -142,16 +143,19 @@ def gather_evidence(since=None):
         if dt and fresh(dt, PULSE_WIN_MIN):
             ev["pulse"].append({"text": it.get("text", "")[:180],
                                 "source": it.get("source"), "time": it.get("time"),
-                                "link": it.get("link")})
+                                "dt": it.get("dt"), "link": it.get("link")})
         if len(ev["pulse"]) >= 4:
             break
     news = load(os.path.join(DATA, "news.json")) or {}
     for it in news.get("news", []):
         dt = parse_iso(it.get("dt"))
         if dt and fresh(dt, NEWS_WIN_MIN):
-            ev["news"].append({"title": it.get("titleEn") or it.get("title"),
-                               "source": it.get("source"), "time": it.get("time"),
-                               "link": it.get("link")})
+            q = {"title": it.get("titleEn") or it.get("title"),
+                 "source": it.get("source"), "time": it.get("time"),
+                 "dt": it.get("dt"), "link": it.get("link")}
+            if it.get("translated") and it.get("titleEn") and is_hebrew(it.get("title")):
+                q["he"] = it.get("title")   # כבר תורגם ע"י fetch_news
+            ev["news"].append(q)
         if len(ev["news"]) >= 3:
             break
     return ev
@@ -163,11 +167,23 @@ ECON_FAM = {"nfp": ("תעסוקה", "אבטלה"), "cpi": ("CPI",), "ppi": ("PPI
             "gdp": ('תמ"ג',), "rate": ("ריבית",)}
 
 
-def enrich(flash):
+def _lead_for(flash, ev, after=False):
+    """17.11.2026: הידיעות המובילות (flash_he) — בעברית, בלי הד של התנועה ובלי כתבות ישנות."""
+    at_time = flash.get("time")
+    at_day = None
+    ts = parse_iso(flash.get("ts")) if flash.get("ts") else None
+    if ts:
+        il = ts + timedelta(hours=il_off(ts))
+        at_day, at_time = il.strftime("%Y-%m-%d"), at_time or il.strftime("%H:%M")
+    return flash_he.lead(ev, at_time=at_time, at_day=at_day, after=after)
+
+
+def enrich(flash, tr=None, after=False):
     ev = flash.setdefault("evidence", {})
     econ = ev.get("econ") or []
-    if "macro" in ev:   # כבר תורגם — רק לבנות מחדש את המשפט (אידמפוטנטי)
-        flash["why"] = why_he(econ, ev["macro"], ev.get("topics") or [])
+    if "macro" in ev:   # כבר תורגם — רק להשלים עברית ולבנות מחדש את המשפט (אידמפוטנטי)
+        flash_he.add_he(ev, tr)
+        flash["why"] = why_he(econ, ev["macro"], ev.get("topics") or [], _lead_for(flash, ev, after))
         return flash
     econ_he = " ".join(str(e.get("he") or "") for e in econ)
     macro, rest, seen = [], [], set()
@@ -190,11 +206,12 @@ def enrich(flash):
     ev["pulse"] = rest
     ev["topics"] = topics_he([p.get("text") for p in rest if p.get("lang") == "en"] +
                              [n.get("title") for n in ev.get("news") or []])
-    flash["why"] = why_he(econ, macro, ev["topics"])
+    flash_he.add_he(ev, tr)
+    flash["why"] = why_he(econ, macro, ev["topics"], _lead_for(flash, ev, after))
     return flash
 
 
-def why_he(econ, macro, topics):
+def why_he(econ, macro, topics, lead=None):
     if econ:
         e = econ[0]
         return f"באותן דקות פורסם {e.get('he')}: {e.get('actual')} מול צפי {e.get('forecast')}"
@@ -210,6 +227,10 @@ def why_he(econ, macro, topics):
         if comp:
             s += f"; רכיב המחירים {comp['verdict']}"
         return s
+    if lead:   # 17.11.2026: הידיעות עצמן בעברית; בלי תרגום — הנושאים של הידיעות שעברו את הסינון
+        return flash_he.why_line(lead) or flash_he.topics_line(lead) or "באותן דקות דיווחים על: " + " · ".join(topics)
+    if lead is not None:   # היו ידיעות, אבל כולן הד של התנועה / תוכן שיווקי / כתבות ישנות
+        return "לא אותר פרסום בולט באותן דקות — ייתכן מהלך טכני"
     if topics:
         return "באותן דקות דיווחים על: " + " · ".join(topics)
     return "לא אותר פרסום בולט באותן דקות — ייתכן מהלך טכני"
@@ -245,18 +266,20 @@ def followup(now=None, fetch=None):
     else:
         move = ("התאושש" if down else "החזיר") + f" {abs(since_pct):.2f}%"
     ev = gather_evidence(since=ts)
-    tmp = enrich({"evidence": ev})
+    tmp = enrich({"evidence": ev, "ts": f.get("ts"), "time": f.get("time")}, after=True)
     # במעקב החדשות קודמות לבזק (כותרת כמו "מחירי הסיטונאות עלו 6.5%" חשובה מ"הפד סיים לדבר")
     tmp["evidence"]["topics"] = topics_he([n.get("title") for n in tmp["evidence"].get("news") or []] +
                                           [p.get("text") for p in tmp["evidence"].get("pulse") or [] if p.get("lang") == "en"])
-    tmp["why"] = why_he(tmp["evidence"].get("econ") or [], tmp["evidence"].get("macro") or [], tmp["evidence"]["topics"])
+    tmp["why"] = why_he(tmp["evidence"].get("econ") or [], tmp["evidence"].get("macro") or [], tmp["evidence"]["topics"],
+                        _lead_for(f, tmp["evidence"], after=True))
     fu = {"at": now.isoformat(timespec="seconds"),
           "time": (now + timedelta(hours=il_off(now))).strftime("%H:%M"),
           "minutes": mins, "price": round(last, 2), "pctSince": since_pct,
           "lo": round(lo, 2), "hi": round(hi, 2),
           "move": f"{f.get('label') or 'S&P 500'} {move}",
           "evidence": tmp["evidence"]}
-    has_new = bool(ev.get("econ") or tmp["evidence"].get("macro") or tmp["evidence"].get("topics"))
+    has_new = bool(ev.get("econ") or tmp["evidence"].get("macro") or tmp["evidence"].get("topics")) and \
+        not tmp["why"].startswith("לא אותר")
     fu["why"] = (tmp.get("why") or "").replace("באותן דקות", "מאז", 1) if has_new else "לא התפרסם מאז מידע בולט חדש"
     mk = load(os.path.join(DATA, "market.json")) or {}
     for it in mk.get("items") or []:
@@ -266,6 +289,18 @@ def followup(now=None, fetch=None):
     write_flash(f)
     print(f"[ok] מעקב מבזק אחרי {mins} דק': {fu['move']} · {fu['why']}")
     return True
+
+
+def refresh_followup(f, tr=None):
+    """--enrich: להשלים עברית ולבנות מחדש את משפט המעקב (בלי מדידה)."""
+    fu = f.get("followup")
+    if not fu or not fu.get("evidence"):
+        return f
+    ev = fu["evidence"]
+    flash_he.add_he(ev, tr)
+    why = why_he(ev.get("econ") or [], ev.get("macro") or [], ev.get("topics") or [], _lead_for(f, ev, after=True))
+    fu["why"] = why.replace("באותן דקות", "מאז", 1) if not why.startswith("לא אותר") else "לא התפרסם מאז מידע בולט חדש"
+    return f
 
 
 def compose_tg(flash):
@@ -287,12 +322,12 @@ def compose_tg(flash):
         lines.append("📊 <b>נתונים שפורסמו באותן דקות</b>:")
         for t in mac:
             lines.append("▸ " + line_he(t))
-    heb = [p for p in ev.get("pulse") or [] if p.get("lang") == "he"][:3]
+    heb = [p for p in ev.get("pulse") or [] if p.get("he")][:3]
     if heb:
         lines.append("")
         lines.append("💬 <b>מהרשת</b>:")
         for p in heb:
-            lines.append(f"▸ {p['text'][:140]} ({p['source']} · {p['time']})")
+            lines.append(f"▸ {p['he'][:140]} ({p['source']} · {p['time']})")
     lines.append("")
     lines.append("מה שהתפרסם באותן דקות — לא בהכרח הסיבה.")
     lines.append(f'🔗 <a href="{SITE}">The Daily Edge</a>')
@@ -310,7 +345,9 @@ def main():
     if "--enrich" in sys.argv:   # תרגום flash.json קיים (בלי מדידה ובלי טלגרם)
         f = load(OUT)
         if f and f.get("evidence"):
-            write_flash(enrich(f))
+            enrich(f)
+            refresh_followup(f)
+            write_flash(f)
         return 0
     test = "--test" in sys.argv
     if not test:
