@@ -337,7 +337,7 @@ def render(rep, notes):
     if mk.get("spy"):
         mkt_line = ('<div><div class="l">S&amp;P 500 (SPY) · %s</div><span class="v num">%s</span><div class="s">%s ממוצע 50 (%s) · %s ממוצע 20</div></div>' %
                     (e(dmy(mk.get("spyDate", day))), fmtn(mk["spy"]), "מעל" if mk.get("aboveMa50") else "מתחת ל", fmtn(mk["ma50"]), "מעל" if mk["spy"] > mk["ma20"] else "מתחת ל"))
-    mkt_line += ('<div><div class="l">מד השוק</div><span class="v num">%s</span><div class="s">%s · %s</div></div>' % (mk.get("meter", "—"), e(mk.get("gate", "")), e((mk.get("verdict") or "")[:60])) if mk.get("meter") is not None else "")
+    mkt_line += ('<div><div class="l">מד השוק</div><span class="v num">%s</span><div class="s">%s</div></div>' % (mk.get("meter", "—"), e(mk.get("gate", ""))) if mk.get("meter") is not None else "")
     mkt_line += ('<div><div class="l">VIX</div><span class="v num">%s</span><div class="s">רמזור %s · S&amp;P %s מהשיא</div></div>' % (fmtn(mk.get("vix"), 1), {"green": "ירוק", "yellow": "צהוב", "red": "אדום"}.get(mk.get("vixState"), "—"), pc(mk.get("spxOffHigh")))) if mk.get("vix") else ""
     mkt_line += '<div><div class="l">הסריקות</div><span class="v t">%d מניות · %d עומדות</span><div class="s">%s</div></div>' % (
         rep["total"], rep["passed"], " · ".join("%s %d" % (CAT[k]["he"], len(rep["cats"][k])) for k in KINDS))
