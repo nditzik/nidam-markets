@@ -375,7 +375,7 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 22,
+      "total": 13,
       "companies": [
         {
           "ticker": "BIDU",
@@ -428,29 +428,28 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "NIO",
-          "name": "NIO Inc. Sponsored ADR Class A",
-          "when": "",
-          "logo": "data/earnings/logos/NIO.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "M",
-          "name": "Macy's, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/M.png"
-        },
-        {
           "ticker": "POWL",
           "name": "Powell Industries, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/POWL.png"
         },
         {
-          "ticker": "GGAL",
-          "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
+          "ticker": "INFQ",
+          "name": "Infleqtion, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/INFQ.png"
+        },
+        {
+          "ticker": "CEPU",
+          "name": "Central Puerto SA Sponsored ADR",
           "when": "",
-          "logo": "data/earnings/logos/GGAL.png"
+          "logo": "data/earnings/logos/CEPU.png"
+        },
+        {
+          "ticker": "BXDC",
+          "name": "Blackstone Digital Infrastructure Trust, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BXDC.png"
         }
       ]
     },
@@ -878,7 +877,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 02:01",
+    "updatedAt": "17/11/2026 02:16",
     "source": "tradingview"
   }
 }
