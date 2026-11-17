@@ -5,32 +5,32 @@
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
-      "capB": 3763.0
+      "capB": 3777.4
     },
     {
       "ticker": "HD",
       "name": "Home Depot, Inc.",
-      "capB": 346.7
+      "capB": 336.8
     },
     {
       "ticker": "DIS",
       "name": "Walt Disney Company",
-      "capB": 205.0
+      "capB": 204.6
     },
     {
       "ticker": "VIK",
       "name": "Viking Holdings Ltd",
-      "capB": 40.3
+      "capB": 39.4
+    },
+    {
+      "ticker": "ESLT",
+      "name": "Elbit Systems Ltd",
+      "capB": 34.0
     },
     {
       "ticker": "JD",
       "name": "JD.com, Inc. Sponsored ADR Class A",
       "capB": 33.2
-    },
-    {
-      "ticker": "ESLT",
-      "name": "Elbit Systems Ltd",
-      "capB": 31.9
     }
   ],
   "reactions": {
@@ -101,8 +101,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ACM.png",
             "logoBg": "dark",
-            "chg": 13.81,
-            "price": 82.51,
+            "chg": 11.31,
+            "price": 80.7,
             "reactDate": "2026-11-17",
             "baseDate": "2026-11-16"
           }
@@ -281,16 +281,16 @@
       "logo": "data/earnings/logos/VIK.png"
     },
     {
-      "ticker": "JD",
-      "name": "JD.com, Inc. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/JD.png"
-    },
-    {
       "ticker": "ESLT",
       "name": "Elbit Systems Ltd",
       "when": "before",
       "logo": "data/earnings/logos/ESLT.png"
+    },
+    {
+      "ticker": "JD",
+      "name": "JD.com, Inc. Sponsored ADR Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/JD.png"
     },
     {
       "ticker": "AS",
@@ -420,6 +420,12 @@
           "logoBg": "dark"
         },
         {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
+        },
+        {
           "ticker": "XPEV",
           "name": "XPeng, Inc. ADR Sponsored Class A",
           "when": "before",
@@ -449,12 +455,6 @@
           "name": "PagSeguro Digital Ltd. Class A",
           "when": "after",
           "logo": "data/earnings/logos/PAGS.png"
-        },
-        {
-          "ticker": "INFQ",
-          "name": "Infleqtion, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/INFQ.png"
         }
       ]
     },
@@ -490,16 +490,16 @@
           "logo": "data/earnings/logos/VIK.png"
         },
         {
-          "ticker": "JD",
-          "name": "JD.com, Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/JD.png"
-        },
-        {
           "ticker": "ESLT",
           "name": "Elbit Systems Ltd",
           "when": "before",
           "logo": "data/earnings/logos/ESLT.png"
+        },
+        {
+          "ticker": "JD",
+          "name": "JD.com, Inc. Sponsored ADR Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/JD.png"
         },
         {
           "ticker": "AS",
@@ -607,16 +607,16 @@
           "logo": "data/earnings/logos/SNEX.png"
         },
         {
-          "ticker": "NJR",
-          "name": "New Jersey Resources Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NJR.png"
-        },
-        {
           "ticker": "CPA",
           "name": "Copa Holdings, S.A. Class A",
           "when": "after",
           "logo": "data/earnings/logos/CPA.png"
+        },
+        {
+          "ticker": "NJR",
+          "name": "New Jersey Resources Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NJR.png"
         }
       ]
     },
@@ -775,8 +775,8 @@
     "HD": "2026-11-17",
     "DIS": "2026-11-17",
     "VIK": "2026-11-17",
-    "JD": "2026-11-17",
     "ESLT": "2026-11-17",
+    "JD": "2026-11-17",
     "AS": "2026-11-17",
     "ZTO": "2026-11-17",
     "SQM": "2026-11-17",
@@ -784,8 +784,8 @@
     "NIO": "2026-11-17",
     "M": "2026-11-17",
     "DLB": "2026-11-17",
-    "SR": "2026-11-17",
     "KLAR": "2026-11-17",
+    "SR": "2026-11-17",
     "GGAL": "2026-11-17",
     "GFF": "2026-11-17",
     "CAAP": "2026-11-17",
@@ -793,8 +793,8 @@
     "MNSO": "2026-11-17",
     "GBDC": "2026-11-17",
     "MFP": "2026-11-17",
-    "DRVN": "2026-11-17",
     "ENR": "2026-11-17",
+    "DRVN": "2026-11-17",
     "CEPU": "2026-11-17",
     "HUBG": "2026-11-17",
     "WB": "2026-11-17",
@@ -813,8 +813,8 @@
     "UGI": "2026-11-18",
     "GLBE": "2026-11-18",
     "SNEX": "2026-11-18",
-    "NJR": "2026-11-18",
     "CPA": "2026-11-18",
+    "NJR": "2026-11-18",
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
@@ -824,8 +824,8 @@
     "BLSH": "2026-11-18",
     "PONY": "2026-11-18",
     "JJSF": "2026-11-18",
-    "UTI": "2026-11-18",
     "BRBR": "2026-11-18",
+    "UTI": "2026-11-18",
     "NWCL": "2026-11-18",
     "WMT": "2026-11-19",
     "BABA": "2026-11-19",
@@ -843,16 +843,16 @@
     "GAP": "2026-11-19",
     "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
-    "BBWI": "2026-11-19",
     "MANU": "2026-11-19",
+    "BBWI": "2026-11-19",
     "HP": "2026-11-19",
     "POST": "2026-11-19",
     "MMS": "2026-11-19",
     "BULL": "2026-11-19",
     "DAO": "2026-11-19",
     "GLOB": "2026-11-19",
-    "LQDT": "2026-11-19",
     "TEN": "2026-11-19",
+    "LQDT": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
     "MOG.B": "2026-11-20",
@@ -872,8 +872,8 @@
     "SMTC": "2026-11-23",
     "AMTM": "2026-11-23",
     "DAC": "2026-11-23",
-    "CENTA": "2026-11-23",
     "CENT": "2026-11-23",
+    "CENTA": "2026-11-23",
     "CDLR": "2026-11-23",
     "DELL": "2026-11-24",
     "ADI": "2026-11-24",
@@ -899,7 +899,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 16:31",
+    "updatedAt": "17/11/2026 16:46",
     "source": "tradingview"
   }
 }
