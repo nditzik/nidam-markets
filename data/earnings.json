@@ -5,17 +5,17 @@
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
-      "capB": 3640.9
+      "capB": 3722.9
     },
     {
       "ticker": "HD",
       "name": "Home Depot, Inc.",
-      "capB": 340.0
+      "capB": 339.7
     },
     {
       "ticker": "DIS",
       "name": "Walt Disney Company",
-      "capB": 208.2
+      "capB": 206.2
     },
     {
       "ticker": "VIK",
@@ -95,13 +95,14 @@
             "baseDate": "2026-11-13"
           },
           {
-            "ticker": "FRHC",
-            "name": "Freedom Holding Corp.",
+            "ticker": "ACM",
+            "name": "AECOM",
             "when": "after",
             "status": "live",
-            "logo": "data/earnings/logos/FRHC.png",
-            "chg": -0.43,
-            "price": 158.86,
+            "logo": "data/earnings/logos/ACM.png",
+            "logoBg": "dark",
+            "chg": 11.27,
+            "price": 80.67,
             "reactDate": "2026-11-17",
             "baseDate": "2026-11-16"
           }
@@ -412,17 +413,17 @@
           "logo": "data/earnings/logos/ARMK.png"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
           "ticker": "ACM",
           "name": "AECOM",
           "when": "after",
           "logo": "data/earnings/logos/ACM.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "XPEV",
@@ -795,9 +796,9 @@
     "DRVN": "2026-11-17",
     "ENR": "2026-11-17",
     "CEPU": "2026-11-17",
-    "HUBG": "2026-11-17",
     "WB": "2026-11-17",
     "LUXE": "2026-11-17",
+    "HUBG": "2026-11-17",
     "OPRA": "2026-11-17",
     "LZB": "2026-11-17",
     "GDRX": "2026-11-17",
@@ -823,8 +824,8 @@
     "BLSH": "2026-11-18",
     "PONY": "2026-11-18",
     "JJSF": "2026-11-18",
-    "BRBR": "2026-11-18",
     "UTI": "2026-11-18",
+    "BRBR": "2026-11-18",
     "NWCL": "2026-11-18",
     "WMT": "2026-11-19",
     "BABA": "2026-11-19",
@@ -898,7 +899,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 18:01",
+    "updatedAt": "17/11/2026 18:20",
     "source": "tradingview"
   }
 }
