@@ -1,6 +1,6 @@
 {
   "today": "2026-11-17",
-  "todayCount": 24,
+  "todayCount": 31,
   "todayBig": [
     {
       "ticker": "NVDA",
@@ -313,19 +313,20 @@
       "logo": "data/earnings/logos/TME.png"
     },
     {
-      "ticker": "DLB",
-      "name": "Dolby Laboratories, Inc. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/DLB.png"
+      "ticker": "NIO",
+      "name": "NIO Inc. Sponsored ADR Class A",
+      "when": "",
+      "logo": "data/earnings/logos/NIO.png",
+      "logoBg": "dark"
     },
     {
-      "ticker": "SR",
-      "name": "Spire Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/SR.png"
+      "ticker": "M",
+      "name": "Macy's, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/M.png"
     }
   ],
-  "more": 12,
+  "more": 19,
   "upcoming": [
     {
       "date": "2026-11-18",
@@ -457,7 +458,7 @@
       "date": "2026-11-17",
       "dow": "שלישי",
       "label": "17.11",
-      "total": 24,
+      "total": 31,
       "companies": [
         {
           "ticker": "NVDA",
@@ -521,16 +522,17 @@
           "logo": "data/earnings/logos/TME.png"
         },
         {
-          "ticker": "DLB",
-          "name": "Dolby Laboratories, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/DLB.png"
+          "ticker": "NIO",
+          "name": "NIO Inc. Sponsored ADR Class A",
+          "when": "",
+          "logo": "data/earnings/logos/NIO.png",
+          "logoBg": "dark"
         },
         {
-          "ticker": "SR",
-          "name": "Spire Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SR.png"
+          "ticker": "M",
+          "name": "Macy's, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/M.png"
         }
       ]
     },
@@ -769,19 +771,26 @@
     "ZTO": "2026-11-17",
     "SQM": "2026-11-17",
     "TME": "2026-11-17",
+    "NIO": "2026-11-17",
+    "M": "2026-11-17",
     "DLB": "2026-11-17",
     "SR": "2026-11-17",
+    "GGAL": "2026-11-17",
     "KLAR": "2026-11-17",
     "GFF": "2026-11-17",
     "CAAP": "2026-11-17",
+    "BRC": "2026-11-17",
     "MNSO": "2026-11-17",
     "GBDC": "2026-11-17",
     "MFP": "2026-11-17",
+    "DRVN": "2026-11-17",
     "ENR": "2026-11-17",
+    "HUBG": "2026-11-17",
     "WB": "2026-11-17",
     "LUXE": "2026-11-17",
     "OPRA": "2026-11-17",
     "LZB": "2026-11-17",
+    "GDRX": "2026-11-17",
     "OCSL": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
@@ -876,7 +885,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 05:31",
+    "updatedAt": "17/11/2026 05:46",
     "source": "tradingview"
   }
 }
