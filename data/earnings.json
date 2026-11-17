@@ -1,40 +1,109 @@
 {
-  "today": "2026-11-17",
-  "todayCount": 32,
+  "today": "2026-11-18",
+  "todayCount": 24,
   "todayBig": [
     {
-      "ticker": "NVDA",
-      "name": "NVIDIA Corporation",
-      "capB": 3746.6
+      "ticker": "PANW",
+      "name": "Palo Alto Networks, Inc.",
+      "capB": 253.2
     },
     {
-      "ticker": "HD",
-      "name": "Home Depot, Inc.",
-      "capB": 338.2
+      "ticker": "TJX",
+      "name": "TJX Companies Inc",
+      "capB": 142.8
     },
     {
-      "ticker": "DIS",
-      "name": "Walt Disney Company",
-      "capB": 201.9
+      "ticker": "LOW",
+      "name": "Lowe's Companies, Inc.",
+      "capB": 123.7
     },
     {
-      "ticker": "VIK",
-      "name": "Viking Holdings Ltd",
-      "capB": 42.1
+      "ticker": "TGT",
+      "name": "Target Corporation",
+      "capB": 72.5
     },
     {
-      "ticker": "ESLT",
-      "name": "Elbit Systems Ltd",
-      "capB": 33.8
+      "ticker": "P",
+      "name": "Everpure, Inc. Class A",
+      "capB": 33.9
     },
     {
-      "ticker": "JD",
-      "name": "JD.com, Inc. Sponsored ADR Class A",
-      "capB": 33.2
+      "ticker": "CPRT",
+      "name": "Copart, Inc.",
+      "capB": 29.1
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-17",
+        "label": "17.11",
+        "items": [
+          {
+            "ticker": "NVDA",
+            "name": "NVIDIA Corporation",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/NVDA.png"
+          },
+          {
+            "ticker": "HD",
+            "name": "Home Depot, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/HD.png",
+            "chg": -2.45,
+            "price": 339.01,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
+          },
+          {
+            "ticker": "DIS",
+            "name": "Walt Disney Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/DIS.png",
+            "logoBg": "dark",
+            "chg": -1.48,
+            "price": 116.94,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
+          },
+          {
+            "ticker": "VIK",
+            "name": "Viking Holdings Ltd",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/VIK.png",
+            "chg": 4.43,
+            "price": 94.28,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
+          },
+          {
+            "ticker": "ESLT",
+            "name": "Elbit Systems Ltd",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/ESLT.png",
+            "chg": 5.85,
+            "price": 720.53,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
+          },
+          {
+            "ticker": "JD",
+            "name": "JD.com, Inc. Sponsored ADR Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/JD.png",
+            "chg": -7.66,
+            "price": 25.43,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
+          }
+        ]
+      },
       {
         "date": "2026-11-16",
         "label": "16.11",
@@ -179,173 +248,85 @@
             "baseDate": "2026-11-12"
           }
         ]
-      },
-      {
-        "date": "2026-11-12",
-        "label": "12.11",
-        "items": [
-          {
-            "ticker": "CSCO",
-            "name": "Cisco Systems, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/CSCO.png",
-            "chg": -6.24,
-            "price": 95.64,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
-          },
-          {
-            "ticker": "AMAT",
-            "name": "Applied Materials, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/AMAT.png",
-            "chg": -2.74,
-            "price": 370.5,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
-          },
-          {
-            "ticker": "SMFG",
-            "name": "Sumitomo Mitsui Financial Group Inc Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/SMFG.png",
-            "chg": 1.52,
-            "price": 24.74,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
-          },
-          {
-            "ticker": "BN",
-            "name": "Brookfield Corporation",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BN.png",
-            "chg": -1.0,
-            "price": 41.64,
-            "reactDate": "2026-11-12",
-            "baseDate": "2026-11-11"
-          },
-          {
-            "ticker": "NU",
-            "name": "Nu Holdings Ltd. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/NU.png",
-            "chg": 11.75,
-            "price": 13.22,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
-          },
-          {
-            "ticker": "EC",
-            "name": "Ecopetrol SA Sponsored ADR",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/EC.png",
-            "chg": 0.72,
-            "price": 15.43,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
-          }
-        ]
       }
     ]
   },
   "reporting": [
     {
-      "ticker": "NVDA",
-      "name": "NVIDIA Corporation",
+      "ticker": "PANW",
+      "name": "Palo Alto Networks, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/NVDA.png"
+      "logo": "data/earnings/logos/PANW.png"
     },
     {
-      "ticker": "HD",
-      "name": "Home Depot, Inc.",
+      "ticker": "TJX",
+      "name": "TJX Companies Inc",
       "when": "before",
-      "logo": "data/earnings/logos/HD.png"
+      "logo": "data/earnings/logos/TJX.png"
     },
     {
-      "ticker": "DIS",
-      "name": "Walt Disney Company",
+      "ticker": "LOW",
+      "name": "Lowe's Companies, Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/DIS.png",
-      "logoBg": "dark"
+      "logo": "data/earnings/logos/LOW.png"
     },
     {
-      "ticker": "VIK",
-      "name": "Viking Holdings Ltd",
+      "ticker": "TGT",
+      "name": "Target Corporation",
       "when": "before",
-      "logo": "data/earnings/logos/VIK.png"
+      "logo": "data/earnings/logos/TGT.png"
     },
     {
-      "ticker": "ESLT",
-      "name": "Elbit Systems Ltd",
-      "when": "before",
-      "logo": "data/earnings/logos/ESLT.png"
-    },
-    {
-      "ticker": "JD",
-      "name": "JD.com, Inc. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/JD.png"
-    },
-    {
-      "ticker": "AS",
-      "name": "Amer Sports, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/AS.png"
-    },
-    {
-      "ticker": "ZTO",
-      "name": "ZTO Express (Cayman), Inc. Sponsored ADR Class A",
+      "ticker": "P",
+      "name": "Everpure, Inc. Class A",
       "when": "after",
-      "logo": "data/earnings/logos/ZTO.png"
+      "logo": "data/earnings/logos/P.png"
     },
     {
-      "ticker": "SQM",
-      "name": "Sociedad Quimica y Minera de Chile S.A. Sponsored ADR Pfd Series B",
-      "when": "after",
-      "logo": "data/earnings/logos/SQM.png"
-    },
-    {
-      "ticker": "TME",
-      "name": "Tencent Music Entertainment Group Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/TME.png"
-    },
-    {
-      "ticker": "NIO",
-      "name": "NIO Inc. Sponsored ADR Class A",
+      "ticker": "CPRT",
+      "name": "Copart, Inc.",
       "when": "",
-      "logo": "data/earnings/logos/NIO.png",
-      "logoBg": "dark"
+      "logo": "data/earnings/logos/CPRT.png"
     },
     {
-      "ticker": "M",
-      "name": "Macy's, Inc.",
-      "when": "",
-      "logo": "data/earnings/logos/M.png"
+      "ticker": "WWD",
+      "name": "Woodward, Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/WWD.png"
+    },
+    {
+      "ticker": "UGI",
+      "name": "UGI Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/UGI.png"
+    },
+    {
+      "ticker": "GLBE",
+      "name": "Global-e Online Ltd.",
+      "when": "before",
+      "logo": "data/earnings/logos/GLBE.png"
+    },
+    {
+      "ticker": "SNEX",
+      "name": "StoneX Group Inc.",
+      "when": "after",
+      "logo": "data/earnings/logos/SNEX.png"
+    },
+    {
+      "ticker": "NJR",
+      "name": "New Jersey Resources Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/NJR.png"
+    },
+    {
+      "ticker": "CPA",
+      "name": "Copa Holdings, S.A. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/CPA.png"
     }
   ],
-  "more": 20,
+  "more": 12,
   "upcoming": [
-    {
-      "date": "2026-11-18",
-      "label": "18/11",
-      "dow": "ד׳",
-      "count": 24,
-      "tickers": [
-        "PANW",
-        "TJX",
-        "LOW",
-        "TGT",
-        "P",
-        "CPRT"
-      ]
-    },
     {
       "date": "2026-11-19",
       "label": "19/11",
@@ -771,38 +752,6 @@
     }
   ],
   "window": {
-    "NVDA": "2026-11-17",
-    "HD": "2026-11-17",
-    "DIS": "2026-11-17",
-    "VIK": "2026-11-17",
-    "ESLT": "2026-11-17",
-    "JD": "2026-11-17",
-    "AS": "2026-11-17",
-    "ZTO": "2026-11-17",
-    "SQM": "2026-11-17",
-    "TME": "2026-11-17",
-    "NIO": "2026-11-17",
-    "M": "2026-11-17",
-    "DLB": "2026-11-17",
-    "KLAR": "2026-11-17",
-    "SR": "2026-11-17",
-    "GGAL": "2026-11-17",
-    "GFF": "2026-11-17",
-    "CAAP": "2026-11-17",
-    "BRC": "2026-11-17",
-    "MNSO": "2026-11-17",
-    "GBDC": "2026-11-17",
-    "MFP": "2026-11-17",
-    "ENR": "2026-11-17",
-    "DRVN": "2026-11-17",
-    "CEPU": "2026-11-17",
-    "WB": "2026-11-17",
-    "LUXE": "2026-11-17",
-    "HUBG": "2026-11-17",
-    "OPRA": "2026-11-17",
-    "LZB": "2026-11-17",
-    "GDRX": "2026-11-17",
-    "OCSL": "2026-11-17",
     "PANW": "2026-11-18",
     "TJX": "2026-11-18",
     "LOW": "2026-11-18",
@@ -896,10 +845,16 @@
     "AMBA": "2026-11-24",
     "KC": "2026-11-24",
     "BBAR": "2026-11-24",
-    "DRTS": "2026-11-24"
+    "DRTS": "2026-11-24",
+    "DE": "2026-11-25",
+    "LI": "2026-11-25",
+    "BZ": "2026-11-25",
+    "BMA": "2026-11-25",
+    "GDS": "2026-11-25",
+    "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 23:46",
+    "updatedAt": "18/11/2026 00:01",
     "source": "tradingview"
   }
 }
