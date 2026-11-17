@@ -5,27 +5,27 @@
     {
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
-      "capB": 3695.5
+      "capB": 3705.5
     },
     {
       "ticker": "HD",
       "name": "Home Depot, Inc.",
-      "capB": 338.9
+      "capB": 340.0
     },
     {
       "ticker": "DIS",
       "name": "Walt Disney Company",
-      "capB": 205.4
+      "capB": 207.4
     },
     {
       "ticker": "VIK",
       "name": "Viking Holdings Ltd",
-      "capB": 40.4
+      "capB": 40.9
     },
     {
       "ticker": "ESLT",
       "name": "Elbit Systems Ltd",
-      "capB": 34.2
+      "capB": 34.3
     },
     {
       "ticker": "JD",
@@ -101,8 +101,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ACM.png",
             "logoBg": "dark",
-            "chg": 11.16,
-            "price": 80.59,
+            "chg": 12.62,
+            "price": 81.65,
             "reactDate": "2026-11-17",
             "baseDate": "2026-11-16"
           }
@@ -595,16 +595,16 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
-          "ticker": "GLBE",
-          "name": "Global-e Online Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/GLBE.png"
-        },
-        {
           "ticker": "SNEX",
           "name": "StoneX Group Inc.",
           "when": "after",
           "logo": "data/earnings/logos/SNEX.png"
+        },
+        {
+          "ticker": "GLBE",
+          "name": "Global-e Online Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/GLBE.png"
         },
         {
           "ticker": "NJR",
@@ -811,8 +811,8 @@
     "CPRT": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
-    "GLBE": "2026-11-18",
     "SNEX": "2026-11-18",
+    "GLBE": "2026-11-18",
     "NJR": "2026-11-18",
     "CPA": "2026-11-18",
     "HAFN": "2026-11-18",
@@ -899,7 +899,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 19:01",
+    "updatedAt": "17/11/2026 19:20",
     "source": "tradingview"
   }
 }
