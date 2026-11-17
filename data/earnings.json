@@ -376,7 +376,7 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 13,
+      "total": 14,
       "companies": [
         {
           "ticker": "BIDU",
@@ -435,6 +435,12 @@
           "logo": "data/earnings/logos/POWL.png"
         },
         {
+          "ticker": "SKE",
+          "name": "Skeena Resources Limited",
+          "when": "after",
+          "logo": "data/earnings/logos/SKE.png"
+        },
+        {
           "ticker": "PAGS",
           "name": "PagSeguro Digital Ltd. Class A",
           "when": "after",
@@ -445,12 +451,6 @@
           "name": "Infleqtion, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/INFQ.png"
-        },
-        {
-          "ticker": "BXDC",
-          "name": "Blackstone Digital Infrastructure Trust, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BXDC.png"
         }
       ]
     },
@@ -895,7 +895,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 15:17",
+    "updatedAt": "17/11/2026 15:31",
     "source": "tradingview"
   }
 }
