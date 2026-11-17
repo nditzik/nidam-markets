@@ -43,56 +43,36 @@
             "ticker": "BIDU",
             "name": "Baidu, Inc. Sponsored ADR Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BIDU.png",
-            "chg": -5.37,
-            "price": 73.94,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/BIDU.png"
           },
           {
             "ticker": "TSN",
             "name": "Tyson Foods, Inc. Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/TSN.png",
-            "chg": 8.72,
-            "price": 63.95,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/TSN.png"
           },
           {
             "ticker": "BEKE",
             "name": "KE Holdings, Inc. Sponsored ADR Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BEKE.png",
-            "chg": 4.37,
-            "price": 18.64,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/BEKE.png"
           },
           {
             "ticker": "HTHT",
             "name": "H World Group Limited Sponsored ADR",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/HTHT.png",
-            "chg": 8.91,
-            "price": 54.88,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/HTHT.png"
           },
           {
             "ticker": "ARMK",
             "name": "Aramark",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/ARMK.png",
-            "chg": 2.65,
-            "price": 55.37,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/ARMK.png"
           },
           {
             "ticker": "ACM",
@@ -156,23 +136,15 @@
             "ticker": "INBX",
             "name": "Inhibrx Biosciences, Inc.",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/INBX.png",
-            "chg": -6.77,
-            "price": 77.66,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/INBX.png"
           },
           {
             "ticker": "SLSR",
             "name": "Solaris Resources Inc",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/SLSR.png",
-            "chg": -8.08,
-            "price": 6.14,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
+            "status": "pending",
+            "logo": "data/earnings/logos/SLSR.png"
           }
         ]
       },
@@ -375,7 +347,7 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 13,
+      "total": 15,
       "companies": [
         {
           "ticker": "BIDU",
@@ -428,28 +400,28 @@
           "logoBg": "dark"
         },
         {
+          "ticker": "XP",
+          "name": "XP Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/XP.png"
+        },
+        {
           "ticker": "POWL",
           "name": "Powell Industries, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/POWL.png"
         },
         {
+          "ticker": "PAGS",
+          "name": "PagSeguro Digital Ltd. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/PAGS.png"
+        },
+        {
           "ticker": "INFQ",
           "name": "Infleqtion, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/INFQ.png"
-        },
-        {
-          "ticker": "CEPU",
-          "name": "Central Puerto SA Sponsored ADR",
-          "when": "",
-          "logo": "data/earnings/logos/CEPU.png"
-        },
-        {
-          "ticker": "BXDC",
-          "name": "Blackstone Digital Infrastructure Trust, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BXDC.png"
         }
       ]
     },
@@ -864,7 +836,6 @@
     "BURL": "2026-11-24",
     "SJM": "2026-11-24",
     "DKS": "2026-11-24",
-    "XP": "2026-11-24",
     "DY": "2026-11-24",
     "VIPS": "2026-11-24",
     "ANF": "2026-11-24",
@@ -877,7 +848,7 @@
     "DRTS": "2026-11-24"
   },
   "_meta": {
-    "updatedAt": "17/11/2026 02:46",
+    "updatedAt": "17/11/2026 03:01",
     "source": "tradingview"
   }
 }
