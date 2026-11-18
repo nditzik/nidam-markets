@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "18/11/2026 06:46",
+  "updatedAt": "18/11/2026 07:02",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "Copart, Inc.",
    "date": "2026-11-18",
    "when": null,
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -501,7 +501,7 @@
    "name": "Palo Alto Networks, Inc.",
    "date": "2026-11-18",
    "when": "after",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/PANW__2026-09-03.html",
     "date": "2026-09-03",
@@ -991,7 +991,7 @@
    "name": "Walmart Inc.",
    "date": "2026-11-19",
    "when": "before",
-   "daysTo": 2,
+   "daysTo": 1,
    "report": {
     "file": "data/reports/WMT__2026-08-20.html",
     "date": "2026-08-20",
@@ -1481,7 +1481,7 @@
    "name": "Symbotic, Inc. Class A",
    "date": "2026-11-23",
    "when": "after",
-   "daysTo": 6,
+   "daysTo": 5,
    "report": {
     "file": "data/reports/SYM__2026-09-27.html",
     "date": "2026-09-27",
@@ -1971,7 +1971,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 7,
+   "daysTo": 6,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -2479,14 +2479,14 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": null
   },
   {
    "sym": "MU",
@@ -2532,7 +2532,11 @@
     "logo": "data/reports/logos/NVDA.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/NVDA__2026-11-17.html",
+    "date": "2026-11-17",
+    "title": "NVDA דוח רבעון Q3 FY27"
+   },
    "consensus": {
     "eps": 2.47071,
     "epsLow": 2.25754,
@@ -2793,7 +2797,9 @@
     "move": 4.91,
     "close": 69.87
    }
-  },
+  }
+ ],
+ "older": [
   {
    "sym": "AMD",
    "name": "Advanced Micro Devices, Inc.",
@@ -2840,9 +2846,7 @@
     "move": 1.01,
     "close": 488.78
    }
-  }
- ],
- "older": [
+  },
   {
    "sym": "AAPL",
    "name": "Apple Inc.",
