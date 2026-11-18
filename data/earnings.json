@@ -5,27 +5,27 @@
     {
       "ticker": "PANW",
       "name": "Palo Alto Networks, Inc.",
-      "capB": 267.4
+      "capB": 267.9
     },
     {
       "ticker": "TJX",
       "name": "TJX Companies Inc",
-      "capB": 157.3
+      "capB": 157.6
     },
     {
       "ticker": "LOW",
       "name": "Lowe's Companies, Inc.",
-      "capB": 123.3
+      "capB": 124.1
     },
     {
       "ticker": "TGT",
       "name": "Target Corporation",
-      "capB": 76.5
+      "capB": 76.7
     },
     {
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
-      "capB": 33.2
+      "capB": 32.9
     }
   ],
   "reactions": {
@@ -40,8 +40,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NVDA.png",
-            "chg": -2.38,
-            "price": 151.76,
+            "chg": -2.41,
+            "price": 151.71,
             "reactDate": "2026-11-18",
             "baseDate": "2026-11-17"
           },
@@ -225,17 +225,6 @@
             "baseDate": "2026-11-12"
           },
           {
-            "ticker": "INBX",
-            "name": "Inhibrx Biosciences, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/INBX.png",
-            "chg": -6.77,
-            "price": 77.66,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
-          },
-          {
             "ticker": "JBIO",
             "name": "Jade Biosciences, Inc.",
             "when": "before",
@@ -245,6 +234,17 @@
             "price": 16.14,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
+          },
+          {
+            "ticker": "INBX",
+            "name": "Inhibrx Biosciences, Inc.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/INBX.png",
+            "chg": -6.77,
+            "price": 77.66,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
           }
         ]
       }
@@ -667,16 +667,16 @@
           "logo": "data/earnings/logos/FUTU.png"
         },
         {
-          "ticker": "YMM",
-          "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/YMM.png"
-        },
-        {
           "ticker": "ESTC",
           "name": "Elastic NV",
           "when": "after",
           "logo": "data/earnings/logos/ESTC.png"
+        },
+        {
+          "ticker": "YMM",
+          "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/YMM.png"
         }
       ]
     },
@@ -765,14 +765,14 @@
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
-    "ZIM": "2026-11-18",
     "BRC": "2026-11-18",
+    "ZIM": "2026-11-18",
     "KLIC": "2026-11-18",
     "BLSH": "2026-11-18",
     "SBLK": "2026-11-18",
-    "PONY": "2026-11-18",
     "JJSF": "2026-11-18",
     "DRVN": "2026-11-18",
+    "PONY": "2026-11-18",
     "CEPU": "2026-11-18",
     "BRBR": "2026-11-18",
     "HUBG": "2026-11-18",
@@ -790,14 +790,14 @@
     "WSM": "2026-11-19",
     "WMG": "2026-11-19",
     "FUTU": "2026-11-19",
-    "YMM": "2026-11-19",
     "ESTC": "2026-11-19",
+    "YMM": "2026-11-19",
     "ESE": "2026-11-19",
     "GAP": "2026-11-19",
     "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
-    "BBWI": "2026-11-19",
     "MANU": "2026-11-19",
+    "BBWI": "2026-11-19",
     "POST": "2026-11-19",
     "HP": "2026-11-19",
     "MMS": "2026-11-19",
@@ -859,7 +859,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 19:02",
+    "updatedAt": "18/11/2026 19:16",
     "source": "tradingview"
   }
 }
