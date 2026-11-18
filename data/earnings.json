@@ -5,27 +5,27 @@
     {
       "ticker": "PANW",
       "name": "Palo Alto Networks, Inc.",
-      "capB": 272.4
+      "capB": 273.7
     },
     {
       "ticker": "TJX",
       "name": "TJX Companies Inc",
-      "capB": 158.3
+      "capB": 157.9
     },
     {
       "ticker": "LOW",
       "name": "Lowe's Companies, Inc.",
-      "capB": 124.8
+      "capB": 124.6
     },
     {
       "ticker": "TGT",
       "name": "Target Corporation",
-      "capB": 77.9
+      "capB": 77.8
     },
     {
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
-      "capB": 32.7
+      "capB": 32.6
     }
   ],
   "reactions": {
@@ -40,8 +40,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NVDA.png",
-            "chg": -2.09,
-            "price": 152.21,
+            "chg": -2.35,
+            "price": 151.81,
             "reactDate": "2026-11-18",
             "baseDate": "2026-11-17"
           },
@@ -328,17 +328,17 @@
           "logoBg": "dark"
         },
         {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
+        },
+        {
           "ticker": "XPEV",
           "name": "XPeng, Inc. ADR Sponsored Class A",
           "when": "before",
           "logo": "data/earnings/logos/XPEV.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "XP",
@@ -723,8 +723,8 @@
     "GAP": "2026-11-19",
     "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
-    "BBWI": "2026-11-19",
     "MANU": "2026-11-19",
+    "BBWI": "2026-11-19",
     "POST": "2026-11-19",
     "HP": "2026-11-19",
     "MMS": "2026-11-19",
@@ -764,8 +764,8 @@
     "DLTR": "2026-11-24",
     "HPQ": "2026-11-24",
     "BBY": "2026-11-24",
-    "BURL": "2026-11-24",
     "NTNX": "2026-11-24",
+    "BURL": "2026-11-24",
     "SJM": "2026-11-24",
     "DKS": "2026-11-24",
     "DY": "2026-11-24",
@@ -787,7 +787,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 21:01",
+    "updatedAt": "18/11/2026 21:16",
     "source": "tradingview"
   }
 }
