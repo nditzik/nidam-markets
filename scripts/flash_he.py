@@ -31,6 +31,16 @@ PREFIX = re.compile(r"^\s*(?:breaking|just in|alert|update|flash)\s*[:\-–]\s*"
 TICKERS = re.compile(r"^(?:\$[A-Z][A-Z.]{0,6}\s*)+[-–:]?\s*")
 TICKERS_ANY = re.compile(r"\s*\$[A-Z][A-Z.]{0,6}\b")
 HANDLE = re.compile(r"\s*@\w+\s*\|\s*source\s*$", re.I)
+# 18.11.2026: תווים נסתרים (Barchart כותב "@\u200bBarchart") — שרדו את התרגום כ-"\u200b\u200bבנושא"
+ZW = re.compile("[\u200b-\u200f\u202a-\u202e\u2060\ufeff\u00ad]")
+# חתימת מקור בסוף: "@Barchart • Nov 17, 2026" · "(@TheKobeissiLetter)"
+SIGN = re.compile(r"\s*(?:@\w+\s*[•·|]\s*[A-Z][a-z]{2}\.? \d{1,2},? \d{4}|\(@\w+\))\s*$")
+# מילים שמתרגם מכונה מתרגם מילולית ושגוי ("fallout" → "נשורת")
+GLOSS = [(re.compile(r"\bfallout\b", re.I), "repercussions")]
+# ראשי תיבות של 4+ אותיות שנשארים באותיות גדולות; קצרות (CEO, NSA, AMD) נשארות ממילא
+ACRO = set("NATO OPEC NYSE FOMC NASA IRNA TSMC ASML SPAC ETFS IPOS NFP APEC OECD USMCA CFTC FINRA NHTSA NOAA".split())
+# מילים של 3 אותיות שאינן ראשי תיבות
+WORD3 = set("OIL WAR TWO ONE SIX TEN BIG END NET FED GAS LAW TAX JOB BAN BID ACT AID ARM BOX CAR DEAL KEY MAN MEN PAY PUT RAN RUN SAW SEA SUN USE WIN WON YET AGO BAD FAR FEW LOT LED BUY DOW".split())
 VIA = re.compile(r"\s+[-–]\s+([A-Z][A-Za-z.&']{1,14}(?:\s[A-Z][A-Za-z.&']{1,14}){0,2})\.?\s*$")
 ECHO = re.compile(r"\b(?:u\.?s\.? stocks?|stocks?|dow(?: jones)?|s&p(?: 500)?|nasdaq|wall street|futures|equities|indexes|indices)\b"
                   r"[^.]{0,40}?\b(?:fall|falls|fell|drop|drops|dropped|slide|slides|extend|extends|down|lower|tumble|tumbles|plunge|"
@@ -62,11 +72,14 @@ def _is_caps(w):
 
 def clean(text):
     """פריט בזק → (טקסט נקי לתרגום, via או None)."""
-    t = EMOJI.sub("", str(text or "")).strip()
+    t = ZW.sub("", str(text or ""))
+    t = re.sub(r"\s+", " ", EMOJI.sub("", t)).strip()
     t = HANDLE.sub("", t).strip()
+    t = SIGN.sub("", t).strip()
     t = PREFIX.sub("", t).strip()
     t = TICKERS.sub("", t).strip()
     t = TICKERS_ANY.sub("", t).strip()
+    t = re.sub(r"\s*,(?:\s*,)+", ",", t)   # "Nvidia's, $NVDA, earnings" → "Nvidia's, earnings"
     words = t.split()
     # Walter Bloomberg: "כותרת באותיות גדולות + גוף רגיל שנחתך…" — רק הכותרת
     run = 0
@@ -82,10 +95,30 @@ def clean(text):
     t = re.sub(r"^-+\s*", "", t)
     words = t.split()
     if words and sum(_alpha(w) for w in words if _is_caps(w)) > 0.6 * max(1, sum(_alpha(w) for w in words)):
-        words = [w.lower() if _alpha(w) > 4 or re.sub(r"[^A-Za-z'’]", "", w).replace("’", "'").upper() in SMALL else w for w in words]
-        t = re.sub(r"\bi\b", "I", " ".join(words))
+        # כותרת באותיות גדולות → כותרת רגילה (Title Case, כמו כותרות Reuters/Bloomberg שהמתרגם מכיר):
+        # מילות קישור קטנות, ראשי תיבות נשארים, כל השאר באות גדולה אחת — כך שמות ("ANDY JASSY") נשארים שמות
+        # ולא "ANDY jassy" (18.11.2026), ו-NVIDIA לא הופכת ל-"nvidia" שהמתרגם משאיר באנגלית
+        out = []
+        for i, w in enumerate(words):
+            core = re.sub(r"[^A-Za-z'’]", "", w).replace("’", "'").upper()
+            base = re.sub(r"'S$", "", core)
+            n = len(re.sub(r"[^A-Z]", "", base))
+            if not _is_caps(w) or n == 0:
+                out.append(w)
+            elif core in SMALL and i > 0 and not re.search(r"[:.!?]$", words[i - 1]):
+                out.append(w.lower())
+            elif base in ACRO or (n <= 3 and core not in SMALL and base not in WORD3):
+                out.append(re.sub(r"['’]S\b", "'s", w))   # NSA'S → NSA's
+            else:
+                out.append(re.sub(r"[A-Za-z][A-Za-z'’]*", lambda m: m.group(0)[:1] + m.group(0)[1:].lower(), w))
+        t = re.sub(r"\bi\b", "I", " ".join(out))
         t = t[:1].upper() + t[1:]
-    return t.strip(" -–:\"'"), via
+    for rx, rep in GLOSS:
+        t = rx.sub(rep, t)
+    t = t.strip(" -–:\"'")
+    if t.count('"') % 2:
+        t += '…"'   # ציטוט שנחתך באמצע — לסגור, אחרת המרכאות פתוחות גם בעברית
+    return t, via
 
 
 def _default_tr(text):
@@ -116,7 +149,7 @@ def add_he(ev, tr=None, news_he=None):
             p["via"] = via
         h = tr(src) if src else None
         if h:
-            p["he"] = h.strip()
+            p["he"] = tidy_he(h)
     for n in ev.get("news") or []:
         if n.get("he"):
             continue
@@ -125,8 +158,16 @@ def add_he(ev, tr=None, news_he=None):
             continue
         h = (news_he or {}).get(title) or (tr(title) if title else None)
         if h:
-            n["he"] = h.strip()
+            n["he"] = tidy_he(h)
     return ev
+
+
+def tidy_he(h):
+    """תרגום → בלי תווים נסתרים, בלי חתימת מקור שנשארה ("@Barchart • 17 בנובמבר 2026"), רווח אחד."""
+    h = ZW.sub("", str(h or ""))
+    h = re.sub(r"\s*@\w+\s*[•·|].*$", "", h)
+    h = re.sub(r"\s*\(@\w+\)\s*$", "", h)
+    return re.sub(r"\s+", " ", h).strip()
 
 
 def _hm(s):
@@ -180,8 +221,13 @@ def _short(s, n=MAX_CHARS):
     s = re.sub(r"\s+", " ", str(s)).strip().rstrip(".")
     if len(s) <= n:
         return s
-    cut = s[:n].rsplit(" ", 1)[0]
-    return cut.rstrip(",;:–-") + "…"
+    cut = s[:n].rsplit(" ", 1)[0].rstrip(",;:–-") + "…"
+    return cut + '"' if _quotes(cut) % 2 else cut   # ציטוט שנחתך — לסגור את המרכאות
+
+
+def _quotes(s):
+    """מרכאות של ציטוט בלבד — לא גרשיים בתוך מילה (מנכ"ל, ארה"ב)."""
+    return len(re.findall(r'(?<![^\W\d_])"|"(?![^\W\d_])', s))
 
 
 def why_line(leads, prefix="באותן דקות"):
@@ -217,5 +263,9 @@ if __name__ == "__main__":
               "🚨 U.S. STOCKS EXTEND FALL, DOW JONES DOWN 1.00% @walter_bloomberg | Source",
               "🚨 $NVDA -JENSEN HUANG: \"I CREATED PROBLEMS FOR THE BOARD THAT I DEEPLY REGRET. I OWN MY MISTAKES COMPLETELY\" JENSEN HUANG: SINCE MY DEPARTURE, I’VE SEEN AN OUTPOURING OF…",
               "AMD CEO Su: AMD is ensuring it's in the room on chip export control talks. $AMD $NVDA",
-              "Japan's PM Takaichi and Trump hold talks in the Philippines - Kyodo."]:
+              "Japan's PM Takaichi and Trump hold talks in the Philippines - Kyodo.",
+              '🚨 AMAZON CEO ANDY JASSY, ON NVIDIA FALLOUT, SAYS NVIDIA "HAS BEEN A REALLY IMPORTANT PARTNER FOR A LONG TIME AND WILL BE FOR AS LONG AS I CAN FORESEE IN THE FUTURE" -…',
+              "JUST IN 🚨: Nvidia $NVDA Founder Jensen Huang would return as CEO if asked @\u200bBarchart • Nov 17, 2026",
+              "JUST IN 🚨: Extreme Fear returns to the Stock Market 👻😱 @\u200bBarchart • Nov 17, 2026",
+              "BREAKING: Nasdaq 100 futures extend gains to +1.3% in after hours trading in reaction to Nvidia's, $NVDA, earnings report. (@TheKobeissiLetter)"]:
         print(clean(s), "|", topic_of(s), "| echo" if ECHO.search(s) else "")
