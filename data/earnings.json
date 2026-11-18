@@ -5,27 +5,27 @@
     {
       "ticker": "PANW",
       "name": "Palo Alto Networks, Inc.",
-      "capB": 272.3
+      "capB": 271.6
     },
     {
       "ticker": "TJX",
       "name": "TJX Companies Inc",
-      "capB": 158.6
+      "capB": 158.4
     },
     {
       "ticker": "LOW",
       "name": "Lowe's Companies, Inc.",
-      "capB": 123.7
+      "capB": 123.4
     },
     {
       "ticker": "TGT",
       "name": "Target Corporation",
-      "capB": 77.5
+      "capB": 77.4
     },
     {
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
-      "capB": 33.4
+      "capB": 32.2
     }
   ],
   "reactions": {
@@ -40,8 +40,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NVDA.png",
-            "chg": -2.22,
-            "price": 152.01,
+            "chg": -2.39,
+            "price": 151.74,
             "reactDate": "2026-11-18",
             "baseDate": "2026-11-17"
           },
@@ -225,17 +225,6 @@
             "baseDate": "2026-11-12"
           },
           {
-            "ticker": "INBX",
-            "name": "Inhibrx Biosciences, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/INBX.png",
-            "chg": -6.77,
-            "price": 77.66,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
-          },
-          {
             "ticker": "JBIO",
             "name": "Jade Biosciences, Inc.",
             "when": "before",
@@ -245,6 +234,17 @@
             "price": 16.14,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
+          },
+          {
+            "ticker": "INBX",
+            "name": "Inhibrx Biosciences, Inc.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/INBX.png",
+            "chg": -6.77,
+            "price": 77.66,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
           }
         ]
       }
@@ -796,8 +796,8 @@
     "GAP": "2026-11-19",
     "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
-    "MANU": "2026-11-19",
     "BBWI": "2026-11-19",
+    "MANU": "2026-11-19",
     "POST": "2026-11-19",
     "HP": "2026-11-19",
     "MMS": "2026-11-19",
@@ -859,7 +859,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 19:46",
+    "updatedAt": "18/11/2026 20:01",
     "source": "tradingview"
   }
 }
