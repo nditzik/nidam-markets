@@ -50,57 +50,37 @@
             "ticker": "HD",
             "name": "Home Depot, Inc.",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/HD.png",
-            "chg": -2.45,
-            "price": 339.01,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
+            "status": "pending",
+            "logo": "data/earnings/logos/HD.png"
           },
           {
             "ticker": "DIS",
             "name": "Walt Disney Company",
             "when": "before",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/DIS.png",
-            "logoBg": "dark",
-            "chg": -1.48,
-            "price": 116.94,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
+            "logoBg": "dark"
           },
           {
             "ticker": "VIK",
             "name": "Viking Holdings Ltd",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VIK.png",
-            "chg": 4.43,
-            "price": 94.28,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
+            "status": "pending",
+            "logo": "data/earnings/logos/VIK.png"
           },
           {
             "ticker": "ESLT",
             "name": "Elbit Systems Ltd",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/ESLT.png",
-            "chg": 5.85,
-            "price": 720.53,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
+            "status": "pending",
+            "logo": "data/earnings/logos/ESLT.png"
           },
           {
             "ticker": "JD",
             "name": "JD.com, Inc. Sponsored ADR Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/JD.png",
-            "chg": -7.66,
-            "price": 25.43,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
+            "status": "pending",
+            "logo": "data/earnings/logos/JD.png"
           }
         ]
       },
@@ -167,13 +147,9 @@
             "ticker": "ACM",
             "name": "AECOM",
             "when": "after",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/ACM.png",
-            "logoBg": "dark",
-            "chg": 11.08,
-            "price": 80.53,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
+            "logoBg": "dark"
           }
         ]
       },
@@ -853,7 +829,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 02:46",
+    "updatedAt": "18/11/2026 03:01",
     "source": "tradingview"
   }
 }
