@@ -5,7 +5,7 @@
     {
       "ticker": "PANW",
       "name": "Palo Alto Networks, Inc.",
-      "capB": 273.7
+      "capB": 275.4
     },
     {
       "ticker": "TJX",
@@ -15,17 +15,17 @@
     {
       "ticker": "LOW",
       "name": "Lowe's Companies, Inc.",
-      "capB": 124.4
+      "capB": 125.1
     },
     {
       "ticker": "TGT",
       "name": "Target Corporation",
-      "capB": 75.9
+      "capB": 75.7
     },
     {
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
-      "capB": 33.0
+      "capB": 33.5
     }
   ],
   "reactions": {
@@ -38,10 +38,10 @@
             "ticker": "NVDA",
             "name": "NVIDIA Corporation",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/NVDA.png",
-            "chg": -2.92,
-            "price": 150.92,
+            "chg": -2.89,
+            "price": 150.96,
             "reactDate": "2026-11-18",
             "baseDate": "2026-11-17"
           },
@@ -764,8 +764,8 @@
     "DLTR": "2026-11-24",
     "HPQ": "2026-11-24",
     "BBY": "2026-11-24",
-    "NTNX": "2026-11-24",
     "BURL": "2026-11-24",
+    "NTNX": "2026-11-24",
     "SJM": "2026-11-24",
     "DKS": "2026-11-24",
     "DY": "2026-11-24",
@@ -787,7 +787,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 22:47",
+    "updatedAt": "18/11/2026 23:01",
     "source": "tradingview"
   }
 }
