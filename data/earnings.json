@@ -1,6 +1,6 @@
 {
   "today": "2026-11-18",
-  "todayCount": 32,
+  "todayCount": 31,
   "todayBig": [
     {
       "ticker": "PANW",
@@ -26,11 +26,6 @@
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
       "capB": 33.9
-    },
-    {
-      "ticker": "CPRT",
-      "name": "Copart, Inc.",
-      "capB": 29.1
     }
   ],
   "reactions": {
@@ -283,12 +278,6 @@
       "logo": "data/earnings/logos/P.png"
     },
     {
-      "ticker": "CPRT",
-      "name": "Copart, Inc.",
-      "when": "",
-      "logo": "data/earnings/logos/CPRT.png"
-    },
-    {
       "ticker": "WWD",
       "name": "Woodward, Inc.",
       "when": "after",
@@ -324,9 +313,15 @@
       "name": "Macy's, Inc.",
       "when": "",
       "logo": "data/earnings/logos/M.png"
+    },
+    {
+      "ticker": "NJR",
+      "name": "New Jersey Resources Corporation",
+      "when": "after",
+      "logo": "data/earnings/logos/NJR.png"
     }
   ],
-  "more": 20,
+  "more": 19,
   "upcoming": [
     {
       "date": "2026-11-19",
@@ -525,7 +520,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 32,
+      "total": 31,
       "companies": [
         {
           "ticker": "PANW",
@@ -556,12 +551,6 @@
           "name": "Everpure, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/P.png"
-        },
-        {
-          "ticker": "CPRT",
-          "name": "Copart, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/CPRT.png"
         },
         {
           "ticker": "WWD",
@@ -599,6 +588,12 @@
           "name": "Macy's, Inc.",
           "when": "",
           "logo": "data/earnings/logos/M.png"
+        },
+        {
+          "ticker": "NJR",
+          "name": "New Jersey Resources Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/NJR.png"
         }
       ]
     },
@@ -758,7 +753,6 @@
     "LOW": "2026-11-18",
     "TGT": "2026-11-18",
     "P": "2026-11-18",
-    "CPRT": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
     "GLBE": "2026-11-18",
@@ -813,8 +807,8 @@
     "TEN": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "MOG.A": "2026-11-20",
     "MOG.B": "2026-11-20",
+    "MOG.A": "2026-11-20",
     "FRO": "2026-11-20",
     "VFS": "2026-11-20",
     "IESC": "2026-11-20",
@@ -863,7 +857,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 13:16",
+    "updatedAt": "18/11/2026 13:31",
     "source": "tradingview"
   }
 }
