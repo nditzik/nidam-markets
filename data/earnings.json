@@ -1,31 +1,31 @@
 {
   "today": "2026-11-18",
-  "todayCount": 29,
+  "todayCount": 30,
   "todayBig": [
     {
       "ticker": "PANW",
       "name": "Palo Alto Networks, Inc.",
-      "capB": 253.2
+      "capB": 257.4
     },
     {
       "ticker": "TJX",
       "name": "TJX Companies Inc",
-      "capB": 142.8
+      "capB": 148.9
     },
     {
       "ticker": "LOW",
       "name": "Lowe's Companies, Inc.",
-      "capB": 123.7
+      "capB": 119.6
     },
     {
       "ticker": "TGT",
       "name": "Target Corporation",
-      "capB": 72.5
+      "capB": 72.9
     },
     {
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
-      "capB": 33.9
+      "capB": 34.9
     }
   ],
   "reactions": {
@@ -40,8 +40,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NVDA.png",
-            "chg": 1.96,
-            "price": 158.5,
+            "chg": -0.83,
+            "price": 154.16,
             "reactDate": "2026-11-18",
             "baseDate": "2026-11-17"
           },
@@ -225,17 +225,6 @@
             "baseDate": "2026-11-12"
           },
           {
-            "ticker": "INBX",
-            "name": "Inhibrx Biosciences, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/INBX.png",
-            "chg": -6.77,
-            "price": 77.66,
-            "reactDate": "2026-11-16",
-            "baseDate": "2026-11-13"
-          },
-          {
             "ticker": "JBIO",
             "name": "Jade Biosciences, Inc.",
             "when": "before",
@@ -245,6 +234,17 @@
             "price": 16.14,
             "reactDate": "2026-11-13",
             "baseDate": "2026-11-12"
+          },
+          {
+            "ticker": "INBX",
+            "name": "Inhibrx Biosciences, Inc.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/INBX.png",
+            "chg": -6.77,
+            "price": 77.66,
+            "reactDate": "2026-11-16",
+            "baseDate": "2026-11-13"
           }
         ]
       }
@@ -294,16 +294,16 @@
       "logo": "data/earnings/logos/UGI.png"
     },
     {
-      "ticker": "GLBE",
-      "name": "Global-e Online Ltd.",
-      "when": "before",
-      "logo": "data/earnings/logos/GLBE.png"
-    },
-    {
       "ticker": "SNEX",
       "name": "StoneX Group Inc.",
       "when": "after",
       "logo": "data/earnings/logos/SNEX.png"
+    },
+    {
+      "ticker": "GLBE",
+      "name": "Global-e Online Ltd.",
+      "when": "before",
+      "logo": "data/earnings/logos/GLBE.png"
     },
     {
       "ticker": "NJR",
@@ -324,7 +324,7 @@
       "logo": "data/earnings/logos/GGAL.png"
     }
   ],
-  "more": 17,
+  "more": 18,
   "upcoming": [
     {
       "date": "2026-11-19",
@@ -523,7 +523,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 29,
+      "total": 30,
       "companies": [
         {
           "ticker": "PANW",
@@ -568,16 +568,16 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
-          "ticker": "GLBE",
-          "name": "Global-e Online Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/GLBE.png"
-        },
-        {
           "ticker": "SNEX",
           "name": "StoneX Group Inc.",
           "when": "after",
           "logo": "data/earnings/logos/SNEX.png"
+        },
+        {
+          "ticker": "GLBE",
+          "name": "Global-e Online Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/GLBE.png"
         },
         {
           "ticker": "NJR",
@@ -667,16 +667,16 @@
           "logo": "data/earnings/logos/FUTU.png"
         },
         {
-          "ticker": "YMM",
-          "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/YMM.png"
-        },
-        {
           "ticker": "ESTC",
           "name": "Elastic NV",
           "when": "after",
           "logo": "data/earnings/logos/ESTC.png"
+        },
+        {
+          "ticker": "YMM",
+          "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/YMM.png"
         }
       ]
     },
@@ -757,28 +757,29 @@
     "P": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
-    "GLBE": "2026-11-18",
     "SNEX": "2026-11-18",
+    "GLBE": "2026-11-18",
     "NJR": "2026-11-18",
     "CPA": "2026-11-18",
     "GGAL": "2026-11-18",
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
-    "BRC": "2026-11-18",
     "ZIM": "2026-11-18",
+    "BRC": "2026-11-18",
     "KLIC": "2026-11-18",
-    "SBLK": "2026-11-18",
     "BLSH": "2026-11-18",
-    "PONY": "2026-11-18",
+    "SBLK": "2026-11-18",
     "DRVN": "2026-11-18",
-    "CEPU": "2026-11-18",
+    "PONY": "2026-11-18",
     "JJSF": "2026-11-18",
-    "HUBG": "2026-11-18",
+    "CEPU": "2026-11-18",
     "BRBR": "2026-11-18",
+    "HUBG": "2026-11-18",
     "UTI": "2026-11-18",
     "GDRX": "2026-11-18",
     "NWCL": "2026-11-18",
+    "BORR": "2026-11-18",
     "WMT": "2026-11-19",
     "BABA": "2026-11-19",
     "PDD": "2026-11-19",
@@ -789,8 +790,8 @@
     "WSM": "2026-11-19",
     "WMG": "2026-11-19",
     "FUTU": "2026-11-19",
-    "YMM": "2026-11-19",
     "ESTC": "2026-11-19",
+    "YMM": "2026-11-19",
     "ESE": "2026-11-19",
     "GAP": "2026-11-19",
     "ROAD": "2026-11-19",
@@ -824,16 +825,16 @@
     "SMTC": "2026-11-23",
     "AMTM": "2026-11-23",
     "DAC": "2026-11-23",
-    "CENT": "2026-11-23",
     "CENTA": "2026-11-23",
+    "CENT": "2026-11-23",
     "CDLR": "2026-11-23",
     "DELL": "2026-11-24",
     "ADI": "2026-11-24",
     "MDT": "2026-11-24",
     "ADSK": "2026-11-24",
     "WDAY": "2026-11-24",
-    "DLTR": "2026-11-24",
     "HPQ": "2026-11-24",
+    "DLTR": "2026-11-24",
     "BBY": "2026-11-24",
     "NTNX": "2026-11-24",
     "BURL": "2026-11-24",
@@ -858,7 +859,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 16:31",
+    "updatedAt": "18/11/2026 16:46",
     "source": "tradingview"
   }
 }
