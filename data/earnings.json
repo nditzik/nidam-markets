@@ -419,7 +419,7 @@
       "date": "2026-11-17",
       "dow": "שלישי",
       "label": "17.11",
-      "total": 23,
+      "total": 24,
       "companies": [
         {
           "ticker": "NVDA",
@@ -465,6 +465,12 @@
           "logo": "data/earnings/logos/AS.png"
         },
         {
+          "ticker": "ZTO",
+          "name": "ZTO Express (Cayman), Inc. Sponsored ADR Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ZTO.png"
+        },
+        {
           "ticker": "SQM",
           "name": "Sociedad Quimica y Minera de Chile S.A. Sponsored ADR Pfd Series B",
           "when": "after",
@@ -487,12 +493,6 @@
           "name": "Klarna Group Plc",
           "when": "before",
           "logo": "data/earnings/logos/KLAR.png"
-        },
-        {
-          "ticker": "SR",
-          "name": "Spire Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SR.png"
         }
       ]
     },
@@ -829,7 +829,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 03:46",
+    "updatedAt": "18/11/2026 04:01",
     "source": "tradingview"
   }
 }
