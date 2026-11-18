@@ -5,27 +5,27 @@
     {
       "ticker": "PANW",
       "name": "Palo Alto Networks, Inc.",
-      "capB": 257.4
+      "capB": 257.1
     },
     {
       "ticker": "TJX",
       "name": "TJX Companies Inc",
-      "capB": 148.9
+      "capB": 154.7
     },
     {
       "ticker": "LOW",
       "name": "Lowe's Companies, Inc.",
-      "capB": 119.6
+      "capB": 122.5
     },
     {
       "ticker": "TGT",
       "name": "Target Corporation",
-      "capB": 72.9
+      "capB": 76.1
     },
     {
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
-      "capB": 34.9
+      "capB": 33.4
     }
   ],
   "reactions": {
@@ -40,8 +40,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NVDA.png",
-            "chg": -0.83,
-            "price": 154.16,
+            "chg": -0.63,
+            "price": 154.48,
             "reactDate": "2026-11-18",
             "baseDate": "2026-11-17"
           },
@@ -225,17 +225,6 @@
             "baseDate": "2026-11-12"
           },
           {
-            "ticker": "JBIO",
-            "name": "Jade Biosciences, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/JBIO.png",
-            "chg": 1.7,
-            "price": 16.14,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
-          },
-          {
             "ticker": "INBX",
             "name": "Inhibrx Biosciences, Inc.",
             "when": "after",
@@ -245,6 +234,17 @@
             "price": 77.66,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
+          },
+          {
+            "ticker": "JBIO",
+            "name": "Jade Biosciences, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/JBIO.png",
+            "chg": 1.7,
+            "price": 16.14,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           }
         ]
       }
@@ -506,16 +506,16 @@
           "logo": "data/earnings/logos/TME.png"
         },
         {
-          "ticker": "DLB",
-          "name": "Dolby Laboratories, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/DLB.png"
-        },
-        {
           "ticker": "KLAR",
           "name": "Klarna Group Plc",
           "when": "before",
           "logo": "data/earnings/logos/KLAR.png"
+        },
+        {
+          "ticker": "DLB",
+          "name": "Dolby Laboratories, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/DLB.png"
         }
       ]
     },
@@ -667,16 +667,16 @@
           "logo": "data/earnings/logos/FUTU.png"
         },
         {
-          "ticker": "ESTC",
-          "name": "Elastic NV",
-          "when": "after",
-          "logo": "data/earnings/logos/ESTC.png"
-        },
-        {
           "ticker": "YMM",
           "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/YMM.png"
+        },
+        {
+          "ticker": "ESTC",
+          "name": "Elastic NV",
+          "when": "after",
+          "logo": "data/earnings/logos/ESTC.png"
         }
       ]
     },
@@ -765,11 +765,11 @@
     "HAFN": "2026-11-18",
     "GLNG": "2026-11-18",
     "JOYY": "2026-11-18",
-    "ZIM": "2026-11-18",
     "BRC": "2026-11-18",
+    "ZIM": "2026-11-18",
     "KLIC": "2026-11-18",
-    "BLSH": "2026-11-18",
     "SBLK": "2026-11-18",
+    "BLSH": "2026-11-18",
     "DRVN": "2026-11-18",
     "PONY": "2026-11-18",
     "JJSF": "2026-11-18",
@@ -778,8 +778,8 @@
     "HUBG": "2026-11-18",
     "UTI": "2026-11-18",
     "GDRX": "2026-11-18",
-    "NWCL": "2026-11-18",
     "BORR": "2026-11-18",
+    "NWCL": "2026-11-18",
     "WMT": "2026-11-19",
     "BABA": "2026-11-19",
     "PDD": "2026-11-19",
@@ -790,16 +790,16 @@
     "WSM": "2026-11-19",
     "WMG": "2026-11-19",
     "FUTU": "2026-11-19",
-    "ESTC": "2026-11-19",
     "YMM": "2026-11-19",
+    "ESTC": "2026-11-19",
     "ESE": "2026-11-19",
     "GAP": "2026-11-19",
     "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
-    "MANU": "2026-11-19",
     "BBWI": "2026-11-19",
-    "HP": "2026-11-19",
+    "MANU": "2026-11-19",
     "POST": "2026-11-19",
+    "HP": "2026-11-19",
     "MMS": "2026-11-19",
     "BULL": "2026-11-19",
     "DAO": "2026-11-19",
@@ -833,16 +833,16 @@
     "MDT": "2026-11-24",
     "ADSK": "2026-11-24",
     "WDAY": "2026-11-24",
-    "HPQ": "2026-11-24",
     "DLTR": "2026-11-24",
+    "HPQ": "2026-11-24",
     "BBY": "2026-11-24",
     "NTNX": "2026-11-24",
     "BURL": "2026-11-24",
     "SJM": "2026-11-24",
     "DKS": "2026-11-24",
     "DY": "2026-11-24",
-    "VIPS": "2026-11-24",
     "ANF": "2026-11-24",
+    "VIPS": "2026-11-24",
     "CMBT": "2026-11-24",
     "BILI": "2026-11-24",
     "AEO": "2026-11-24",
@@ -859,7 +859,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 16:46",
+    "updatedAt": "18/11/2026 17:01",
     "source": "tradingview"
   }
 }
