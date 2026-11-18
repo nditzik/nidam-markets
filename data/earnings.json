@@ -5,27 +5,27 @@
     {
       "ticker": "PANW",
       "name": "Palo Alto Networks, Inc.",
-      "capB": 267.9
+      "capB": 269.6
     },
     {
       "ticker": "TJX",
       "name": "TJX Companies Inc",
-      "capB": 157.6
+      "capB": 158.1
     },
     {
       "ticker": "LOW",
       "name": "Lowe's Companies, Inc.",
-      "capB": 124.1
+      "capB": 123.7
     },
     {
       "ticker": "TGT",
       "name": "Target Corporation",
-      "capB": 76.7
+      "capB": 76.8
     },
     {
       "ticker": "P",
       "name": "Everpure, Inc. Class A",
-      "capB": 32.9
+      "capB": 33.1
     }
   ],
   "reactions": {
@@ -40,8 +40,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/NVDA.png",
-            "chg": -2.41,
-            "price": 151.71,
+            "chg": -1.45,
+            "price": 153.2,
             "reactDate": "2026-11-18",
             "baseDate": "2026-11-17"
           },
@@ -225,17 +225,6 @@
             "baseDate": "2026-11-12"
           },
           {
-            "ticker": "JBIO",
-            "name": "Jade Biosciences, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/JBIO.png",
-            "chg": 1.7,
-            "price": 16.14,
-            "reactDate": "2026-11-13",
-            "baseDate": "2026-11-12"
-          },
-          {
             "ticker": "INBX",
             "name": "Inhibrx Biosciences, Inc.",
             "when": "after",
@@ -245,6 +234,17 @@
             "price": 77.66,
             "reactDate": "2026-11-16",
             "baseDate": "2026-11-13"
+          },
+          {
+            "ticker": "JBIO",
+            "name": "Jade Biosciences, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/JBIO.png",
+            "chg": 1.7,
+            "price": 16.14,
+            "reactDate": "2026-11-13",
+            "baseDate": "2026-11-12"
           }
         ]
       }
@@ -771,8 +771,8 @@
     "BLSH": "2026-11-18",
     "SBLK": "2026-11-18",
     "JJSF": "2026-11-18",
-    "DRVN": "2026-11-18",
     "PONY": "2026-11-18",
+    "DRVN": "2026-11-18",
     "CEPU": "2026-11-18",
     "BRBR": "2026-11-18",
     "HUBG": "2026-11-18",
@@ -859,7 +859,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 19:16",
+    "updatedAt": "18/11/2026 19:31",
     "source": "tradingview"
   }
 }
