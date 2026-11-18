@@ -38,8 +38,12 @@
             "ticker": "NVDA",
             "name": "NVIDIA Corporation",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/NVDA.png"
+            "status": "live",
+            "logo": "data/earnings/logos/NVDA.png",
+            "chg": 1.96,
+            "price": 158.5,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
           },
           {
             "ticker": "HD",
@@ -854,7 +858,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 16:16",
+    "updatedAt": "18/11/2026 16:31",
     "source": "tradingview"
   }
 }
