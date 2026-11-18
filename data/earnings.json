@@ -443,7 +443,7 @@
       "date": "2026-11-17",
       "dow": "שלישי",
       "label": "17.11",
-      "total": 32,
+      "total": 25,
       "companies": [
         {
           "ticker": "NVDA",
@@ -507,17 +507,16 @@
           "logo": "data/earnings/logos/TME.png"
         },
         {
-          "ticker": "NIO",
-          "name": "NIO Inc. Sponsored ADR Class A",
-          "when": "",
-          "logo": "data/earnings/logos/NIO.png",
-          "logoBg": "dark"
+          "ticker": "DLB",
+          "name": "Dolby Laboratories, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/DLB.png"
         },
         {
-          "ticker": "M",
-          "name": "Macy's, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/M.png"
+          "ticker": "KLAR",
+          "name": "Klarna Group Plc",
+          "when": "before",
+          "logo": "data/earnings/logos/KLAR.png"
         }
       ]
     },
@@ -854,7 +853,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 02:16",
+    "updatedAt": "18/11/2026 02:31",
     "source": "tradingview"
   }
 }
