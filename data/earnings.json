@@ -301,17 +301,17 @@
       "logo": "data/earnings/logos/UGI.png"
     },
     {
+      "ticker": "GLBE",
+      "name": "Global-e Online Ltd.",
+      "when": "before",
+      "logo": "data/earnings/logos/GLBE.png"
+    },
+    {
       "ticker": "NIO",
       "name": "NIO Inc. Sponsored ADR Class A",
       "when": "",
       "logo": "data/earnings/logos/NIO.png",
       "logoBg": "dark"
-    },
-    {
-      "ticker": "GLBE",
-      "name": "Global-e Online Ltd.",
-      "when": "before",
-      "logo": "data/earnings/logos/GLBE.png"
     },
     {
       "ticker": "SNEX",
@@ -350,8 +350,8 @@
       "tickers": [
         "BSP",
         "BJ",
-        "MOG.B",
         "MOG.A",
+        "MOG.B",
         "FRO",
         "VFS"
       ]
@@ -402,17 +402,17 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
           "ticker": "XPEV",
           "name": "XPeng, Inc. ADR Sponsored Class A",
           "when": "before",
           "logo": "data/earnings/logos/XPEV.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "XP",
@@ -576,17 +576,17 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
+          "ticker": "GLBE",
+          "name": "Global-e Online Ltd.",
+          "when": "before",
+          "logo": "data/earnings/logos/GLBE.png"
+        },
+        {
           "ticker": "NIO",
           "name": "NIO Inc. Sponsored ADR Class A",
           "when": "",
           "logo": "data/earnings/logos/NIO.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "GLBE",
-          "name": "Global-e Online Ltd.",
-          "when": "before",
-          "logo": "data/earnings/logos/GLBE.png"
         },
         {
           "ticker": "SNEX",
@@ -702,15 +702,15 @@
           "logo": "data/earnings/logos/BJ.png"
         },
         {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
-        },
-        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
         },
         {
           "ticker": "FRO",
@@ -761,8 +761,8 @@
     "CPRT": "2026-11-18",
     "WWD": "2026-11-18",
     "UGI": "2026-11-18",
-    "NIO": "2026-11-18",
     "GLBE": "2026-11-18",
+    "NIO": "2026-11-18",
     "SNEX": "2026-11-18",
     "M": "2026-11-18",
     "NJR": "2026-11-18",
@@ -778,8 +778,8 @@
     "BLSH": "2026-11-18",
     "PONY": "2026-11-18",
     "DRVN": "2026-11-18",
-    "JJSF": "2026-11-18",
     "CEPU": "2026-11-18",
+    "JJSF": "2026-11-18",
     "HUBG": "2026-11-18",
     "BRBR": "2026-11-18",
     "UTI": "2026-11-18",
@@ -852,8 +852,8 @@
     "AEO": "2026-11-24",
     "KSS": "2026-11-24",
     "AMBA": "2026-11-24",
-    "KC": "2026-11-24",
     "BBAR": "2026-11-24",
+    "KC": "2026-11-24",
     "DRTS": "2026-11-24",
     "DE": "2026-11-25",
     "LI": "2026-11-25",
@@ -863,7 +863,7 @@
     "IMKTA": "2026-11-25"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 11:31",
+    "updatedAt": "18/11/2026 11:46",
     "source": "tradingview"
   }
 }
