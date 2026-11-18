@@ -1,35 +1,110 @@
 {
-  "today": "2026-11-18",
-  "todayCount": 28,
+  "today": "2026-11-19",
+  "todayCount": 27,
   "todayBig": [
     {
-      "ticker": "PANW",
-      "name": "Palo Alto Networks, Inc.",
-      "capB": 278.3
+      "ticker": "WMT",
+      "name": "Walmart Inc.",
+      "capB": 1010.4
     },
     {
-      "ticker": "TJX",
-      "name": "TJX Companies Inc",
-      "capB": 154.3
+      "ticker": "BABA",
+      "name": "Alibaba Group Holding Limited Sponsored ADR",
+      "capB": 216.7
     },
     {
-      "ticker": "LOW",
-      "name": "Lowe's Companies, Inc.",
-      "capB": 125.0
+      "ticker": "PDD",
+      "name": "PDD Holdings Inc. Sponsored ADR Class A",
+      "capB": 110.2
     },
     {
-      "ticker": "TGT",
-      "name": "Target Corporation",
-      "capB": 75.4
+      "ticker": "INTU",
+      "name": "Intuit Inc.",
+      "capB": 83.7
     },
     {
-      "ticker": "P",
-      "name": "Everpure, Inc. Class A",
-      "capB": 33.6
+      "ticker": "NTES",
+      "name": "Netease Inc Sponsored ADR",
+      "capB": 77.0
+    },
+    {
+      "ticker": "ROST",
+      "name": "Ross Stores, Inc.",
+      "capB": 72.7
+    },
+    {
+      "ticker": "KEYS",
+      "name": "Keysight Technologies Inc",
+      "capB": 48.7
+    },
+    {
+      "ticker": "WSM",
+      "name": "Williams-Sonoma, Inc.",
+      "capB": 30.6
     }
   ],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-18",
+        "label": "18.11",
+        "items": [
+          {
+            "ticker": "PANW",
+            "name": "Palo Alto Networks, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/PANW.png"
+          },
+          {
+            "ticker": "TJX",
+            "name": "TJX Companies Inc",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TJX.png",
+            "chg": 8.05,
+            "price": 140.3,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
+          },
+          {
+            "ticker": "LOW",
+            "name": "Lowe's Companies, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/LOW.png",
+            "chg": 1.05,
+            "price": 222.78,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
+          },
+          {
+            "ticker": "TGT",
+            "name": "Target Corporation",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/TGT.png",
+            "chg": 4.01,
+            "price": 165.93,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
+          },
+          {
+            "ticker": "P",
+            "name": "Everpure, Inc. Class A",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/P.png"
+          },
+          {
+            "ticker": "WWD",
+            "name": "Woodward, Inc.",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/WWD.png"
+          }
+        ]
+      },
       {
         "date": "2026-11-17",
         "label": "17.11",
@@ -180,94 +255,81 @@
   },
   "reporting": [
     {
-      "ticker": "PANW",
-      "name": "Palo Alto Networks, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/PANW.png"
-    },
-    {
-      "ticker": "TJX",
-      "name": "TJX Companies Inc",
+      "ticker": "WMT",
+      "name": "Walmart Inc.",
       "when": "before",
-      "logo": "data/earnings/logos/TJX.png"
+      "logo": "data/earnings/logos/WMT.png"
     },
     {
-      "ticker": "LOW",
-      "name": "Lowe's Companies, Inc.",
+      "ticker": "BABA",
+      "name": "Alibaba Group Holding Limited Sponsored ADR",
       "when": "before",
-      "logo": "data/earnings/logos/LOW.png"
+      "logo": "data/earnings/logos/BABA.png"
     },
     {
-      "ticker": "TGT",
-      "name": "Target Corporation",
+      "ticker": "PDD",
+      "name": "PDD Holdings Inc. Sponsored ADR Class A",
       "when": "before",
-      "logo": "data/earnings/logos/TGT.png"
+      "logo": "data/earnings/logos/PDD.png"
     },
     {
-      "ticker": "P",
-      "name": "Everpure, Inc. Class A",
+      "ticker": "INTU",
+      "name": "Intuit Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/P.png"
+      "logo": "data/earnings/logos/INTU.png"
     },
     {
-      "ticker": "WWD",
-      "name": "Woodward, Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/WWD.png"
-    },
-    {
-      "ticker": "UGI",
-      "name": "UGI Corporation",
-      "when": "after",
-      "logo": "data/earnings/logos/UGI.png"
-    },
-    {
-      "ticker": "SNEX",
-      "name": "StoneX Group Inc.",
-      "when": "after",
-      "logo": "data/earnings/logos/SNEX.png"
-    },
-    {
-      "ticker": "GLBE",
-      "name": "Global-e Online Ltd.",
+      "ticker": "NTES",
+      "name": "Netease Inc Sponsored ADR",
       "when": "before",
-      "logo": "data/earnings/logos/GLBE.png"
+      "logo": "data/earnings/logos/NTES.png"
     },
     {
-      "ticker": "NJR",
-      "name": "New Jersey Resources Corporation",
+      "ticker": "ROST",
+      "name": "Ross Stores, Inc.",
       "when": "after",
-      "logo": "data/earnings/logos/NJR.png"
+      "logo": "data/earnings/logos/ROST.png"
     },
     {
-      "ticker": "CPA",
-      "name": "Copa Holdings, S.A. Class A",
+      "ticker": "KEYS",
+      "name": "Keysight Technologies Inc",
       "when": "after",
-      "logo": "data/earnings/logos/CPA.png"
+      "logo": "data/earnings/logos/KEYS.png"
     },
     {
-      "ticker": "GGAL",
-      "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
-      "when": "",
-      "logo": "data/earnings/logos/GGAL.png"
+      "ticker": "WSM",
+      "name": "Williams-Sonoma, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/WSM.png",
+      "logoBg": "dark"
+    },
+    {
+      "ticker": "WMG",
+      "name": "Warner Music Group Corp. Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/WMG.png"
+    },
+    {
+      "ticker": "FUTU",
+      "name": "Futu Holdings Ltd. Sponsored ADR Class A",
+      "when": "before",
+      "logo": "data/earnings/logos/FUTU.png"
+    },
+    {
+      "ticker": "ESTC",
+      "name": "Elastic NV",
+      "when": "after",
+      "logo": "data/earnings/logos/ESTC.png"
+    },
+    {
+      "ticker": "YMM",
+      "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
+      "when": "before",
+      "logo": "data/earnings/logos/YMM.png"
     }
   ],
-  "more": 16,
+  "more": 15,
   "upcoming": [
-    {
-      "date": "2026-11-19",
-      "label": "19/11",
-      "dow": "ה׳",
-      "count": 27,
-      "tickers": [
-        "WMT",
-        "BABA",
-        "PDD",
-        "INTU",
-        "NTES",
-        "ROST"
-      ]
-    },
     {
       "date": "2026-11-20",
       "label": "20/11",
@@ -678,34 +740,6 @@
     }
   ],
   "window": {
-    "PANW": "2026-11-18",
-    "TJX": "2026-11-18",
-    "LOW": "2026-11-18",
-    "TGT": "2026-11-18",
-    "P": "2026-11-18",
-    "WWD": "2026-11-18",
-    "UGI": "2026-11-18",
-    "SNEX": "2026-11-18",
-    "GLBE": "2026-11-18",
-    "NJR": "2026-11-18",
-    "CPA": "2026-11-18",
-    "GGAL": "2026-11-18",
-    "HAFN": "2026-11-18",
-    "GLNG": "2026-11-18",
-    "JOYY": "2026-11-18",
-    "BRC": "2026-11-18",
-    "ZIM": "2026-11-18",
-    "KLIC": "2026-11-18",
-    "BLSH": "2026-11-18",
-    "SBLK": "2026-11-18",
-    "JJSF": "2026-11-18",
-    "DRVN": "2026-11-18",
-    "PONY": "2026-11-18",
-    "BRBR": "2026-11-18",
-    "HUBG": "2026-11-18",
-    "UTI": "2026-11-18",
-    "GDRX": "2026-11-18",
-    "NWCL": "2026-11-18",
     "WMT": "2026-11-19",
     "BABA": "2026-11-19",
     "PDD": "2026-11-19",
@@ -783,10 +817,13 @@
     "BZ": "2026-11-25",
     "BMA": "2026-11-25",
     "GDS": "2026-11-25",
-    "IMKTA": "2026-11-25"
+    "IMKTA": "2026-11-25",
+    "MRVL": "2026-11-26",
+    "PD": "2026-11-26",
+    "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "18/11/2026 23:46",
+    "updatedAt": "19/11/2026 00:01",
     "source": "tradingview"
   }
 }
