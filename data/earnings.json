@@ -1,6 +1,6 @@
 {
   "today": "2026-11-19",
-  "todayCount": 30,
+  "todayCount": 29,
   "todayBig": [
     {
       "ticker": "WMT",
@@ -53,8 +53,12 @@
             "ticker": "PANW",
             "name": "Palo Alto Networks, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/PANW.png"
+            "status": "live",
+            "logo": "data/earnings/logos/PANW.png",
+            "chg": 6.85,
+            "price": 363.2,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "TJX",
@@ -93,15 +97,23 @@
             "ticker": "P",
             "name": "Everpure, Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/P.png"
+            "status": "live",
+            "logo": "data/earnings/logos/P.png",
+            "chg": 4.95,
+            "price": 105.72,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "WWD",
             "name": "Woodward, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WWD.png"
+            "status": "live",
+            "logo": "data/earnings/logos/WWD.png",
+            "chg": 5.2,
+            "price": 335.67,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           }
         ]
       },
@@ -328,7 +340,7 @@
       "logo": "data/earnings/logos/YMM.png"
     }
   ],
-  "more": 18,
+  "more": 17,
   "upcoming": [
     {
       "date": "2026-11-20",
@@ -513,7 +525,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 23,
+      "total": 24,
       "companies": [
         {
           "ticker": "PANW",
@@ -593,7 +605,7 @@
       "date": "2026-11-19",
       "dow": "חמישי",
       "label": "19.11",
-      "total": 30,
+      "total": 29,
       "companies": [
         {
           "ticker": "WMT",
@@ -757,7 +769,6 @@
     "GGAL": "2026-11-19",
     "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
-    "JOYY": "2026-11-19",
     "MANU": "2026-11-19",
     "BBWI": "2026-11-19",
     "POST": "2026-11-19",
@@ -825,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 16:16",
+    "updatedAt": "19/11/2026 16:31",
     "source": "tradingview"
   }
 }
