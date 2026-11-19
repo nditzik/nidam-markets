@@ -1,6 +1,6 @@
 {
   "today": "2026-11-19",
-  "todayCount": 27,
+  "todayCount": 26,
   "todayBig": [
     {
       "ticker": "WMT",
@@ -312,7 +312,7 @@
       "logo": "data/earnings/logos/YMM.png"
     }
   ],
-  "more": 15,
+  "more": 14,
   "upcoming": [
     {
       "date": "2026-11-20",
@@ -497,7 +497,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 19,
+      "total": 23,
       "companies": [
         {
           "ticker": "PANW",
@@ -536,6 +536,12 @@
           "logo": "data/earnings/logos/WWD.png"
         },
         {
+          "ticker": "UGI",
+          "name": "UGI Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/UGI.png"
+        },
+        {
           "ticker": "SNEX",
           "name": "StoneX Group Inc.",
           "when": "after",
@@ -554,23 +560,16 @@
           "logo": "data/earnings/logos/NJR.png"
         },
         {
+          "ticker": "CPA",
+          "name": "Copa Holdings, S.A. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CPA.png"
+        },
+        {
           "ticker": "HAFN",
           "name": "Hafnia Limited",
           "when": "before",
           "logo": "data/earnings/logos/HAFN.png"
-        },
-        {
-          "ticker": "GLNG",
-          "name": "Golar LNG Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/GLNG.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "JOYY",
-          "name": "JOYY, Inc. Sponsored ADR Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/JOYY.png"
         }
       ]
     },
@@ -578,7 +577,7 @@
       "date": "2026-11-19",
       "dow": "חמישי",
       "label": "19.11",
-      "total": 27,
+      "total": 26,
       "companies": [
         {
           "ticker": "WMT",
@@ -744,7 +743,6 @@
     "MANU": "2026-11-19",
     "BBWI": "2026-11-19",
     "POST": "2026-11-19",
-    "HP": "2026-11-19",
     "MMS": "2026-11-19",
     "BULL": "2026-11-19",
     "DAO": "2026-11-19",
@@ -808,7 +806,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 03:16",
+    "updatedAt": "19/11/2026 03:31",
     "source": "tradingview"
   }
 }
