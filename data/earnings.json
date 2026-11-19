@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 1000.9
+      "capB": 1001.3
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 81.4
+      "capB": 81.6
     },
     {
       "ticker": "NTES",
@@ -30,17 +30,17 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 70.4
+      "capB": 70.5
     },
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 48.0
+      "capB": 48.2
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 25.9
+      "capB": 26.1
     }
   ],
   "reactions": {
@@ -53,10 +53,10 @@
             "ticker": "PANW",
             "name": "Palo Alto Networks, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 6.14,
-            "price": 360.79,
+            "chg": 6.42,
+            "price": 361.73,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -97,10 +97,10 @@
             "ticker": "P",
             "name": "Everpure, Inc. Class A",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/P.png",
-            "chg": 6.27,
-            "price": 107.06,
+            "chg": 4.49,
+            "price": 105.26,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -108,10 +108,10 @@
             "ticker": "WWD",
             "name": "Woodward, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 5.15,
-            "price": 335.51,
+            "chg": 5.22,
+            "price": 335.72,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -350,8 +350,8 @@
       "tickers": [
         "BSP",
         "BJ",
-        "MOG.B",
         "MOG.A",
+        "MOG.B",
         "FRO",
         "IESC"
       ]
@@ -525,7 +525,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 24,
+      "total": 25,
       "companies": [
         {
           "ticker": "PANW",
@@ -701,15 +701,15 @@
           "logo": "data/earnings/logos/BJ.png"
         },
         {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
-        },
-        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
         },
         {
           "ticker": "FRO",
@@ -783,8 +783,8 @@
     "LQDT": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "MOG.B": "2026-11-20",
     "MOG.A": "2026-11-20",
+    "MOG.B": "2026-11-20",
     "FRO": "2026-11-20",
     "IESC": "2026-11-20",
     "VFS": "2026-11-20",
@@ -820,8 +820,8 @@
     "ANF": "2026-11-24",
     "BILI": "2026-11-24",
     "CMBT": "2026-11-24",
-    "AMBA": "2026-11-24",
     "KSS": "2026-11-24",
+    "AMBA": "2026-11-24",
     "BBAR": "2026-11-24",
     "KC": "2026-11-24",
     "DRTS": "2026-11-24",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 22:53",
+    "updatedAt": "19/11/2026 23:01",
     "source": "tradingview"
   }
 }
