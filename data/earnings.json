@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 997.7
+      "capB": 989.2
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 83.4
+      "capB": 83.3
     },
     {
       "ticker": "NTES",
@@ -30,17 +30,17 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 71.3
+      "capB": 71.4
     },
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 49.9
+      "capB": 49.8
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 27.7
+      "capB": 27.2
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 5.47,
-            "price": 358.51,
+            "chg": 6.07,
+            "price": 360.55,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 14.58,
-            "price": 115.43,
+            "chg": 15.04,
+            "price": 115.89,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 6.02,
-            "price": 338.29,
+            "chg": 5.48,
+            "price": 336.55,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -402,17 +402,17 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
-        },
-        {
           "ticker": "XPEV",
           "name": "XPeng, Inc. ADR Sponsored Class A",
           "when": "before",
           "logo": "data/earnings/logos/XPEV.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "XP",
@@ -816,8 +816,8 @@
     "SJM": "2026-11-24",
     "DKS": "2026-11-24",
     "DY": "2026-11-24",
-    "ANF": "2026-11-24",
     "VIPS": "2026-11-24",
+    "ANF": "2026-11-24",
     "BILI": "2026-11-24",
     "CMBT": "2026-11-24",
     "AMBA": "2026-11-24",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 18:16",
+    "updatedAt": "19/11/2026 18:31",
     "source": "tradingview"
   }
 }
