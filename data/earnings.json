@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 986.0
+      "capB": 989.1
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 84.8
+      "capB": 84.5
     },
     {
       "ticker": "NTES",
@@ -30,17 +30,17 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 71.8
+      "capB": 72.1
     },
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 49.8
+      "capB": 50.2
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 28.7
+      "capB": 28.6
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 6.92,
-            "price": 363.43,
+            "chg": 7.59,
+            "price": 365.73,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 11.07,
-            "price": 111.89,
+            "chg": 12.14,
+            "price": 112.97,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 5.75,
-            "price": 337.42,
+            "chg": 6.51,
+            "price": 339.84,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -353,7 +353,7 @@
         "MOG.A",
         "MOG.B",
         "FRO",
-        "VFS"
+        "IESC"
       ]
     }
   ],
@@ -718,16 +718,16 @@
           "logo": "data/earnings/logos/FRO.png"
         },
         {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd.",
-          "when": "",
-          "logo": "data/earnings/logos/VFS.png"
-        },
-        {
           "ticker": "IESC",
           "name": "IES Holdings, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/IESC.png"
+        },
+        {
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd.",
+          "when": "",
+          "logo": "data/earnings/logos/VFS.png"
         },
         {
           "ticker": "BKE",
@@ -769,8 +769,8 @@
     "GGAL": "2026-11-19",
     "VVV": "2026-11-19",
     "ROAD": "2026-11-19",
-    "MANU": "2026-11-19",
     "BBWI": "2026-11-19",
+    "MANU": "2026-11-19",
     "POST": "2026-11-19",
     "MMS": "2026-11-19",
     "BULL": "2026-11-19",
@@ -786,8 +786,8 @@
     "MOG.A": "2026-11-20",
     "MOG.B": "2026-11-20",
     "FRO": "2026-11-20",
-    "VFS": "2026-11-20",
     "IESC": "2026-11-20",
+    "VFS": "2026-11-20",
     "BKE": "2026-11-20",
     "RLX": "2026-11-20",
     "WRD": "2026-11-20",
@@ -820,8 +820,8 @@
     "VIPS": "2026-11-24",
     "CMBT": "2026-11-24",
     "BILI": "2026-11-24",
-    "KSS": "2026-11-24",
     "AMBA": "2026-11-24",
+    "KSS": "2026-11-24",
     "BBAR": "2026-11-24",
     "KC": "2026-11-24",
     "DRTS": "2026-11-24",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 16:46",
+    "updatedAt": "19/11/2026 17:01",
     "source": "tradingview"
   }
 }
