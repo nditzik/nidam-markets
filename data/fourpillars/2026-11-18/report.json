@@ -1,0 +1,1620 @@
+{
+ "tradeDay": "2026-11-18",
+ "meta": {
+  "tradeDay": "2026-11-18",
+  "subject": "Screeners – 19.11.2026",
+  "downloadedAt": "2026-11-19T04:27:00Z",
+  "files": {
+   "momentum": {
+    "src": "stocks-screener-4-technical-pillars-11-18-2026.csv",
+    "rows": 7
+   },
+   "phoenix": {
+    "src": "stocks-screener-phoenix-rising-11-18-2026.csv",
+    "rows": 6
+   },
+   "breakout": {
+    "src": "stocks-screener-breakout-candidates-11-18-2026.csv",
+    "rows": 19
+   }
+  },
+  "relayedAt": "2026-11-19T04:31:01Z"
+ },
+ "market": {
+  "spyDate": "2026-11-18",
+  "spy": 730.2,
+  "ma50": 762.51,
+  "ma20": 753.72,
+  "aboveMa50": false,
+  "meter": 38,
+  "meterDate": "2026-11-18",
+  "verdict": "חולשה מצטברת — להישאר בהגנה",
+  "gate": "הגנתי",
+  "vix": 24.56,
+  "vixState": "red",
+  "spxOffHigh": -6.33
+ },
+ "cats": {
+  "momentum": [
+   {
+    "sym": "CYRX",
+    "name": "Cryoport Inc",
+    "industry": "Medical Services",
+    "last": 20.17,
+    "d5": -0.39,
+    "nh": 9.0,
+    "trend": "Buy",
+    "opPct": 100,
+    "opSide": "Buy",
+    "opRaw": "100% Buy",
+    "alpha": 118.87,
+    "rsi": 62.23,
+    "ma100": 16.69,
+    "offHi": -7.39,
+    "m1": 19.77,
+    "m3": 33.66,
+    "y1": 140.41,
+    "score": 95,
+    "checks": [
+     {
+      "label": "עוצמה > 50",
+      "state": "ok",
+      "value": "119"
+     },
+     {
+      "label": "חוות דעת קנייה ≥ 99%",
+      "state": "ok",
+      "value": "100% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 21.78,
+     "ma100": 16.69,
+     "trigger": 21.78,
+     "triggerHe": "פריצת השיא 21.78 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (16.69)"
+    },
+    "rank": 1
+   },
+   {
+    "sym": "ARHS",
+    "name": "Arhaus Inc Cl A",
+    "industry": "Retail - Misc & Diversified",
+    "last": 13.81,
+    "d5": -0.75,
+    "nh": 13.0,
+    "trend": "Buy",
+    "opPct": 100,
+    "opSide": "Buy",
+    "opRaw": "100% Buy",
+    "alpha": 54.13,
+    "rsi": 61.53,
+    "ma100": 9.64,
+    "offHi": -8.97,
+    "m1": 39.07,
+    "m3": 37.69,
+    "y1": 55.69,
+    "score": 91,
+    "checks": [
+     {
+      "label": "עוצמה > 50",
+      "state": "ok",
+      "value": "54"
+     },
+     {
+      "label": "חוות דעת קנייה ≥ 99%",
+      "state": "ok",
+      "value": "100% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 15.17,
+     "ma100": 9.64,
+     "trigger": 15.17,
+     "triggerHe": "פריצת השיא 15.17 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (9.64)"
+    },
+    "rank": 2
+   },
+   {
+    "sym": "GCT",
+    "name": "Gigacloud Technology Inc Cl A",
+    "industry": "Technology Services",
+    "last": 65.3,
+    "d5": 0.63,
+    "nh": 6.0,
+    "trend": "Buy",
+    "opPct": 100,
+    "opSide": "Buy",
+    "opRaw": "100% Buy",
+    "alpha": 87.36,
+    "rsi": 61.13,
+    "ma100": 50.71,
+    "offHi": -3.12,
+    "m1": 13.86,
+    "m3": 33.08,
+    "y1": 107.7,
+    "score": 90,
+    "checks": [
+     {
+      "label": "עוצמה > 50",
+      "state": "ok",
+      "value": "87"
+     },
+     {
+      "label": "חוות דעת קנייה ≥ 99%",
+      "state": "ok",
+      "value": "100% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 67.4,
+     "ma100": 50.71,
+     "trigger": 67.4,
+     "triggerHe": "פריצת השיא 67.40 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (50.71)"
+    },
+    "rank": 3
+   },
+   {
+    "sym": "SG",
+    "name": "Sweetgreen Inc Cl A",
+    "industry": "Retail - Restaurants",
+    "last": 13.06,
+    "d5": 0.18,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 100,
+    "opSide": "Buy",
+    "opRaw": "100% Buy",
+    "alpha": 141.78,
+    "rsi": 68.17,
+    "ma100": 8.31,
+    "offHi": -5.98,
+    "m1": 30.08,
+    "m3": 124.4,
+    "y1": 119.5,
+    "score": 84,
+    "checks": [
+     {
+      "label": "עוצמה > 50",
+      "state": "ok",
+      "value": "142"
+     },
+     {
+      "label": "חוות דעת קנייה ≥ 99%",
+      "state": "ok",
+      "value": "100% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 13.89,
+     "ma100": 8.31,
+     "trigger": 13.89,
+     "triggerHe": "פריצת השיא 13.89 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (8.31)"
+    },
+    "rank": 4
+   },
+   {
+    "sym": "WWW",
+    "name": "Wolverine World Wide",
+    "industry": "Shoes and Related Apparel",
+    "last": 25.87,
+    "d5": 3.94,
+    "nh": 13.0,
+    "trend": "Buy",
+    "opPct": 100,
+    "opSide": "Buy",
+    "opRaw": "100% Buy",
+    "alpha": 76.08,
+    "rsi": 71.8,
+    "ma100": 19.76,
+    "offHi": -0.46,
+    "m1": 30.72,
+    "m3": 29.41,
+    "y1": 73.39,
+    "score": 82,
+    "checks": [
+     {
+      "label": "עוצמה > 50",
+      "state": "ok",
+      "value": "76"
+     },
+     {
+      "label": "חוות דעת קנייה ≥ 99%",
+      "state": "ok",
+      "value": "100% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [
+     "מד חום 72 — חם מדי, מהר מדי"
+    ],
+    "levels": {
+     "hi52": 25.99,
+     "ma100": 19.76,
+     "trigger": 25.99,
+     "triggerHe": "פריצת השיא 25.99 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (19.76)"
+    },
+    "rank": 5
+   },
+   {
+    "sym": "OSPN",
+    "name": "Onespan Inc",
+    "industry": "Internet - Software",
+    "last": 22.87,
+    "d5": 0.69,
+    "nh": 7.0,
+    "trend": "Buy",
+    "opPct": 100,
+    "opSide": "Buy",
+    "opRaw": "100% Buy",
+    "alpha": 95.51,
+    "rsi": 59.27,
+    "ma100": 17.62,
+    "offHi": -16.68,
+    "m1": 30.69,
+    "m3": 44.93,
+    "y1": 90.11,
+    "score": 82,
+    "checks": [
+     {
+      "label": "עוצמה > 50",
+      "state": "ok",
+      "value": "96"
+     },
+     {
+      "label": "חוות דעת קנייה ≥ 99%",
+      "state": "ok",
+      "value": "100% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 27.45,
+     "ma100": 17.62,
+     "trigger": 27.45,
+     "triggerHe": "פריצת השיא 27.45 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (17.62)"
+    },
+    "rank": 6
+   },
+   {
+    "sym": "SGRY",
+    "name": "Surgery Partners CS",
+    "industry": "Medical Services",
+    "last": 26.96,
+    "d5": 0.3,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 100,
+    "opSide": "Buy",
+    "opRaw": "100% Buy",
+    "alpha": 61.91,
+    "rsi": 88.05,
+    "ma100": 16.67,
+    "offHi": -0.97,
+    "m1": 84.53,
+    "m3": 89.33,
+    "y1": 77.6,
+    "score": 76,
+    "checks": [
+     {
+      "label": "עוצמה > 50",
+      "state": "ok",
+      "value": "62"
+     },
+     {
+      "label": "חוות דעת קנייה ≥ 99%",
+      "state": "ok",
+      "value": "100% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [
+     "מד חום 88 — חם מדי, מהר מדי"
+    ],
+    "levels": {
+     "hi52": 27.22,
+     "ma100": 16.67,
+     "trigger": 27.22,
+     "triggerHe": "פריצת השיא 27.22 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (16.67)"
+    },
+    "rank": 7
+   }
+  ],
+  "breakout": [
+   {
+    "sym": "LAMR",
+    "name": "Lamar Advertis A",
+    "industry": "REIT - Equity Trust Other",
+    "last": 157.74,
+    "d5": -4.88,
+    "nh": 10.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 20.57,
+    "rsi": 52.68,
+    "ma100": 153.79,
+    "offHi": -5.16,
+    "m1": 5.09,
+    "m3": 3.97,
+    "y1": 22.0,
+    "score": 93,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "21"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 166.32,
+     "ma100": 153.79,
+     "trigger": 166.32,
+     "triggerHe": "פריצת השיא 166.32 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (153.79)"
+    },
+    "rank": 1
+   },
+   {
+    "sym": "ELAN",
+    "name": "Elanco Animal Health Inc",
+    "industry": "Medical - Outpatient & Hm Care",
+    "last": 26.7,
+    "d5": 0.22,
+    "nh": 6.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 22.91,
+    "rsi": 63.8,
+    "ma100": 24.06,
+    "offHi": -4.57,
+    "m1": 13.38,
+    "m3": 12.94,
+    "y1": 24.82,
+    "score": 89,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "23"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 27.98,
+     "ma100": 24.06,
+     "trigger": 27.98,
+     "triggerHe": "פריצת השיא 27.98 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (24.06)"
+    },
+    "rank": 2
+   },
+   {
+    "sym": "TNL",
+    "name": "Travel + Leisure Co.",
+    "industry": "Leisure & Recreation Services",
+    "last": 79.83,
+    "d5": -0.22,
+    "nh": 14.0,
+    "trend": "Buy",
+    "opPct": 40,
+    "opSide": "Buy",
+    "opRaw": "40% Buy",
+    "alpha": 25.83,
+    "rsi": 68.64,
+    "ma100": 70.75,
+    "offHi": -1.44,
+    "m1": 23.59,
+    "m3": 10.48,
+    "y1": 29.11,
+    "score": 88,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "26"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "40% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 81.0,
+     "ma100": 70.75,
+     "trigger": 81.0,
+     "triggerHe": "פריצת השיא 81.00 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (70.75)"
+    },
+    "rank": 3
+   },
+   {
+    "sym": "VFC",
+    "name": "V.F. Corp",
+    "industry": "Textile - Apparel",
+    "last": 20.96,
+    "d5": 0.32,
+    "nh": 11.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 37.64,
+    "rsi": 69.51,
+    "ma100": 15.88,
+    "offHi": -5.88,
+    "m1": 24.39,
+    "m3": 46.47,
+    "y1": 43.96,
+    "score": 85,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "38"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 22.27,
+     "ma100": 15.88,
+     "trigger": 22.27,
+     "triggerHe": "פריצת השיא 22.27 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (15.88)"
+    },
+    "rank": 4
+   },
+   {
+    "sym": "TDOC",
+    "name": "Teladoc Health Inc",
+    "industry": "Medical Services",
+    "last": 8.06,
+    "d5": -0.88,
+    "nh": 11.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 13.53,
+    "rsi": 52.26,
+    "ma100": 7.28,
+    "offHi": -18.48,
+    "m1": 42.15,
+    "m3": 24.57,
+    "y1": 15.14,
+    "score": 85,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "14"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 9.89,
+     "ma100": 7.28,
+     "trigger": 9.89,
+     "triggerHe": "פריצת השיא 9.89 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (7.28)"
+    },
+    "rank": 5
+   },
+   {
+    "sym": "H",
+    "name": "Hyatt Hotels Corp",
+    "industry": "Hotels & Motels",
+    "last": 193.74,
+    "d5": 3.56,
+    "nh": 10.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 25.75,
+    "rsi": 67.0,
+    "ma100": 175.52,
+    "offHi": -6.34,
+    "m1": 14.55,
+    "m3": 8.4,
+    "y1": 29.75,
+    "score": 84,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "26"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 206.85,
+     "ma100": 175.52,
+     "trigger": 206.85,
+     "triggerHe": "פריצת השיא 206.85 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (175.52)"
+    },
+    "rank": 6
+   },
+   {
+    "sym": "OUT",
+    "name": "Outfront Media Inc",
+    "industry": "REIT - Equity Trust Other",
+    "last": 32.85,
+    "d5": -0.82,
+    "nh": 9.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 39.43,
+    "rsi": 58.16,
+    "ma100": 30.79,
+    "offHi": -6.04,
+    "m1": 8.13,
+    "m3": 9.57,
+    "y1": 47.57,
+    "score": 84,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "39"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [],
+    "levels": {
+     "hi52": 34.96,
+     "ma100": 30.79,
+     "trigger": 34.96,
+     "triggerHe": "פריצת השיא 34.96 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (30.79)"
+    },
+    "rank": 7
+   },
+   {
+    "sym": "SPG",
+    "name": "Simon Property Group",
+    "industry": "REIT - Equity Trust Retail",
+    "last": 231.38,
+    "d5": -3.37,
+    "nh": 16.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 27.49,
+    "rsi": 68.82,
+    "ma100": 216.66,
+    "offHi": -2.99,
+    "m1": 12.63,
+    "m3": 4.88,
+    "y1": 27.18,
+    "score": 83,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "27"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [],
+    "levels": {
+     "hi52": 238.51,
+     "ma100": 216.66,
+     "trigger": 238.51,
+     "triggerHe": "פריצת השיא 238.51 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (216.66)"
+    },
+    "rank": 8
+   },
+   {
+    "sym": "RCL",
+    "name": "Royal Caribbean Cruises Ltd",
+    "industry": "Leisure & Recreation Services",
+    "last": 320.65,
+    "d5": -14.53,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 23.59,
+    "rsi": 56.32,
+    "ma100": 289.75,
+    "offHi": -10.03,
+    "m1": 15.47,
+    "m3": 6.88,
+    "y1": 27.54,
+    "score": 82,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "24"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 356.4,
+     "ma100": 289.75,
+     "trigger": 356.4,
+     "triggerHe": "פריצת השיא 356.40 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (289.75)"
+    },
+    "rank": 9
+   },
+   {
+    "sym": "WRBY",
+    "name": "Warby Parker Inc Cl A",
+    "industry": "Consumer Prdts - Misc Staple",
+    "last": 28.22,
+    "d5": -1.93,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 16.16,
+    "rsi": 56.33,
+    "ma100": 25.98,
+    "offHi": -11.12,
+    "m1": 20.91,
+    "m3": 10.19,
+    "y1": 64.55,
+    "score": 82,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "16"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 31.75,
+     "ma100": 25.98,
+     "trigger": 31.75,
+     "triggerHe": "פריצת השיא 31.75 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (25.98)"
+    },
+    "rank": 10
+   },
+   {
+    "sym": "HRI",
+    "name": "Herc Holdings Inc",
+    "industry": "Transportation - Equip & Lease",
+    "last": 157.38,
+    "d5": -16.52,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Buy",
+    "opRaw": "56% Buy",
+    "alpha": 5.83,
+    "rsi": 52.63,
+    "ma100": 148.21,
+    "offHi": -16.44,
+    "m1": 29.46,
+    "m3": -5.66,
+    "y1": 30.13,
+    "score": 82,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "6"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "ok",
+      "value": "56% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 188.34,
+     "ma100": 148.21,
+     "trigger": 188.34,
+     "triggerHe": "פריצת השיא 188.34 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (148.21)"
+    },
+    "rank": 11
+   },
+   {
+    "sym": "PTLO",
+    "name": "Portillo's Inc",
+    "industry": "Retail - Restaurants",
+    "last": 6.49,
+    "d5": -0.6,
+    "nh": 11.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 43.39,
+    "rsi": 64.26,
+    "ma100": 4.66,
+    "offHi": -10.21,
+    "m1": 39.27,
+    "m3": 37.21,
+    "y1": 38.09,
+    "score": 77,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "43"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [],
+    "levels": {
+     "hi52": 7.23,
+     "ma100": 4.66,
+     "trigger": 7.23,
+     "triggerHe": "פריצת השיא 7.23 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (4.66)"
+    },
+    "rank": 12
+   },
+   {
+    "sym": "JXN",
+    "name": "Jackson Financial Inc Cl A",
+    "industry": "Insurance - Life",
+    "last": 132.6,
+    "d5": -6.84,
+    "nh": 10.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 37.48,
+    "rsi": 45.74,
+    "ma100": 129.73,
+    "offHi": -11.6,
+    "m1": 1.55,
+    "m3": -1.68,
+    "y1": 45.0,
+    "score": 67,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "37"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "מד חום 46 — המגמה עוד לא מאושרת"
+    ],
+    "levels": {
+     "hi52": 150.0,
+     "ma100": 129.73,
+     "trigger": 150.0,
+     "triggerHe": "פריצת השיא 150.00 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (129.73)"
+    },
+    "rank": 13
+   },
+   {
+    "sym": "SWKS",
+    "name": "Skyworks Solutions",
+    "industry": "Semi Radio Frequency",
+    "last": 82.43,
+    "d5": -5.21,
+    "nh": 10.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 35.12,
+    "rsi": 46.02,
+    "ma100": 74.86,
+    "offHi": -11.59,
+    "m1": 3.43,
+    "m3": 22.25,
+    "y1": 32.27,
+    "score": 67,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "35"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "מד חום 46 — המגמה עוד לא מאושרת"
+    ],
+    "levels": {
+     "hi52": 93.24,
+     "ma100": 74.86,
+     "trigger": 93.24,
+     "triggerHe": "פריצת השיא 93.24 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (74.86)"
+    },
+    "rank": 14
+   },
+   {
+    "sym": "IDXX",
+    "name": "Idexx Laboratories",
+    "industry": "Medical Instruments",
+    "last": 698.47,
+    "d5": -4.12,
+    "nh": 9.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 6.07,
+    "rsi": 67.89,
+    "ma100": 564.94,
+    "offHi": -9.29,
+    "m1": 24.65,
+    "m3": 26.23,
+    "y1": 4.22,
+    "score": 66,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "6"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [],
+    "levels": {
+     "hi52": 770.0,
+     "ma100": 564.94,
+     "trigger": 770.0,
+     "triggerHe": "פריצת השיא 770.00 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (564.94)"
+    },
+    "rank": 15
+   },
+   {
+    "sym": "JHX",
+    "name": "James Hardie Industries Se ADR",
+    "industry": "Building & Construction - Misc",
+    "last": 27.28,
+    "d5": -1.15,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 41.02,
+    "rsi": 49.93,
+    "ma100": 27.23,
+    "offHi": -13.2,
+    "m1": 5.65,
+    "m3": -6.86,
+    "y1": 53.0,
+    "score": 65,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "41"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "מד חום 50 — המגמה עוד לא מאושרת"
+    ],
+    "levels": {
+     "hi52": 31.43,
+     "ma100": 27.23,
+     "trigger": 31.43,
+     "triggerHe": "פריצת השיא 31.43 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (27.23)"
+    },
+    "rank": 16
+   },
+   {
+    "sym": "URI",
+    "name": "United Rentals",
+    "industry": "Building & Construction - Misc",
+    "last": 1088.3199,
+    "d5": -62.48,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": 31.46,
+    "rsi": 47.78,
+    "ma100": 1077.05,
+    "offHi": -9.47,
+    "m1": 5.7,
+    "m3": -2.51,
+    "y1": 35.96,
+    "score": 65,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "31"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "מד חום 48 — המגמה עוד לא מאושרת"
+    ],
+    "levels": {
+     "hi52": 1202.16,
+     "ma100": 1077.05,
+     "trigger": 1202.16,
+     "triggerHe": "פריצת השיא 1,202.16 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (1,077.05)"
+    },
+    "rank": 17
+   },
+   {
+    "sym": "MYGN",
+    "name": "Myriad Genetics Inc",
+    "industry": "Medical - Biomedical",
+    "last": 5.53,
+    "d5": -0.19,
+    "nh": 6.0,
+    "trend": "Buy",
+    "opPct": 80,
+    "opSide": "Buy",
+    "opRaw": "80% Buy",
+    "alpha": 6.77,
+    "rsi": 51.03,
+    "ma100": 4.61,
+    "offHi": -31.6,
+    "m1": 38.94,
+    "m3": 92.68,
+    "y1": -16.59,
+    "score": 63,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "7"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "80% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "32% מתחת לשיא 52 שבועות"
+    ],
+    "levels": {
+     "hi52": 8.08,
+     "ma100": 4.61,
+     "trigger": 8.08,
+     "triggerHe": "פריצת השיא 8.08 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (4.61)"
+    },
+    "rank": 18
+   },
+   {
+    "sym": "RDNT",
+    "name": "Radnet Inc",
+    "industry": "Medical - Outpatient & Hm Care",
+    "last": 71.82,
+    "d5": -6.26,
+    "nh": 9.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Buy",
+    "opRaw": "72% Buy",
+    "alpha": -4.83,
+    "rsi": 43.48,
+    "ma100": 71.11,
+    "offHi": -16.33,
+    "m1": 4.39,
+    "m3": -2.72,
+    "y1": -9.27,
+    "score": 57,
+    "checks": [
+     {
+      "label": "עוצמה בין 5- ל-50",
+      "state": "ok",
+      "value": "-5"
+     },
+     {
+      "label": "חוות דעת קנייה 30–80% (אידיאלי 40–70)",
+      "state": "warn",
+      "value": "72% Buy"
+     },
+     {
+      "label": "קו המגמה בקנייה",
+      "state": "ok",
+      "value": "Buy"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "מד חום 43 — המגמה עוד לא מאושרת"
+    ],
+    "levels": {
+     "hi52": 85.84,
+     "ma100": 71.11,
+     "trigger": 85.84,
+     "triggerHe": "פריצת השיא 85.84 בנפח",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (71.11)"
+    },
+    "rank": 19
+   }
+  ],
+  "phoenix": [
+   {
+    "sym": "LBTYA",
+    "name": "Liberty Global Ltd Ord A",
+    "industry": "Diversified Comm Services",
+    "last": 10.33,
+    "d5": -0.31,
+    "nh": 15.0,
+    "trend": "Buy",
+    "opPct": 40,
+    "opSide": "Sell",
+    "opRaw": "40% Sell",
+    "alpha": -15.03,
+    "rsi": 65.02,
+    "ma100": 9.9,
+    "offHi": -23.59,
+    "m1": 32.44,
+    "m3": -1.43,
+    "y1": -6.18,
+    "score": 81,
+    "checks": [
+     {
+      "label": "עוצמה מתחת ל-50",
+      "state": "ok",
+      "value": "-15"
+     },
+     {
+      "label": "חוות דעת מכירה",
+      "state": "ok",
+      "value": "40% Sell"
+     },
+     {
+      "label": "קו המגמה בקנייה (המפתח)",
+      "state": "ok",
+      "value": "Buy"
+     },
+     {
+      "label": "מעל ממוצע 100 (תנאי התבנית)",
+      "state": "ok",
+      "value": "10.33 מול 9.90"
+     }
+    ],
+    "status": "ok",
+    "flags": [],
+    "levels": {
+     "hi52": 13.52,
+     "ma100": 9.9,
+     "trigger": 9.9,
+     "triggerHe": "מחיר הסגירה מעל ממוצע 100 (9.90)",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (9.90)"
+    },
+    "rank": 1
+   },
+   {
+    "sym": "LULU",
+    "name": "Lululemon Athletica",
+    "industry": "Textile - Apparel",
+    "last": 110.78,
+    "d5": 3.33,
+    "nh": 10.0,
+    "trend": "Buy",
+    "opPct": 24,
+    "opSide": "Sell",
+    "opRaw": "24% Sell",
+    "alpha": -33.68,
+    "rsi": 58.54,
+    "ma100": 109.56,
+    "offHi": -50.98,
+    "m1": 14.09,
+    "m3": -6.92,
+    "y1": -32.44,
+    "score": 76,
+    "checks": [
+     {
+      "label": "עוצמה מתחת ל-50",
+      "state": "ok",
+      "value": "-34"
+     },
+     {
+      "label": "חוות דעת מכירה",
+      "state": "ok",
+      "value": "24% Sell"
+     },
+     {
+      "label": "קו המגמה בקנייה (המפתח)",
+      "state": "ok",
+      "value": "Buy"
+     },
+     {
+      "label": "מעל ממוצע 100 (תנאי התבנית)",
+      "state": "ok",
+      "value": "110.78 מול 109.56"
+     }
+    ],
+    "status": "ok",
+    "flags": [
+     "51% מתחת לשיא 52 שבועות"
+    ],
+    "levels": {
+     "hi52": 225.99,
+     "ma100": 109.56,
+     "trigger": 109.56,
+     "triggerHe": "מחיר הסגירה מעל ממוצע 100 (109.56)",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (109.56)"
+    },
+    "rank": 2
+   },
+   {
+    "sym": "CRK",
+    "name": "Comstock Resources",
+    "industry": "Oil - US Exploration & Product",
+    "last": 14.01,
+    "d5": -1.12,
+    "nh": 8.0,
+    "trend": "Buy",
+    "opPct": 24,
+    "opSide": "Sell",
+    "opRaw": "24% Sell",
+    "alpha": -37.12,
+    "rsi": 47.8,
+    "ma100": 13.86,
+    "offHi": -50.14,
+    "m1": 0.07,
+    "m3": 2.56,
+    "y1": -43.92,
+    "score": 65,
+    "checks": [
+     {
+      "label": "עוצמה מתחת ל-50",
+      "state": "ok",
+      "value": "-37"
+     },
+     {
+      "label": "חוות דעת מכירה",
+      "state": "ok",
+      "value": "24% Sell"
+     },
+     {
+      "label": "קו המגמה בקנייה (המפתח)",
+      "state": "ok",
+      "value": "Buy"
+     },
+     {
+      "label": "מעל ממוצע 100 (תנאי התבנית)",
+      "state": "ok",
+      "value": "14.01 מול 13.86"
+     }
+    ],
+    "status": "ok",
+    "flags": [
+     "50% מתחת לשיא 52 שבועות"
+    ],
+    "levels": {
+     "hi52": 28.1,
+     "ma100": 13.86,
+     "trigger": 13.86,
+     "triggerHe": "מחיר הסגירה מעל ממוצע 100 (13.86)",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (13.86)"
+    },
+    "rank": 3
+   },
+   {
+    "sym": "OSG",
+    "name": "Octave Specialty Group Inc",
+    "industry": "Insurance - Multi Line",
+    "last": 4.92,
+    "d5": -0.37,
+    "nh": 11.0,
+    "trend": "Buy",
+    "opPct": 48,
+    "opSide": "Sell",
+    "opRaw": "48% Sell",
+    "alpha": -40.59,
+    "rsi": 48.03,
+    "ma100": 5.05,
+    "offHi": -48.48,
+    "m1": 5.58,
+    "m3": 7.19,
+    "y1": -45.81,
+    "score": 62,
+    "checks": [
+     {
+      "label": "עוצמה מתחת ל-50",
+      "state": "ok",
+      "value": "-41"
+     },
+     {
+      "label": "חוות דעת מכירה",
+      "state": "ok",
+      "value": "48% Sell"
+     },
+     {
+      "label": "קו המגמה בקנייה (המפתח)",
+      "state": "ok",
+      "value": "Buy"
+     },
+     {
+      "label": "מעל ממוצע 100 (תנאי התבנית)",
+      "state": "warn",
+      "value": "4.92 מול 5.05"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "48% מתחת לשיא 52 שבועות",
+     "מתחת לממוצע 100 (5.05) — התבנית עוד לא הושלמה",
+     "מחיר מתחת ל-$5"
+    ],
+    "levels": {
+     "hi52": 9.55,
+     "ma100": 5.05,
+     "trigger": 5.05,
+     "triggerHe": "מחיר הסגירה מעל ממוצע 100 (5.05)",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (5.05)"
+    },
+    "rank": 4
+   },
+   {
+    "sym": "HLNE",
+    "name": "Hamilton Lane Inc Cl A",
+    "industry": "Finance - Investment Mgmt",
+    "last": 87.18,
+    "d5": -9.6,
+    "nh": 10.0,
+    "trend": "Buy",
+    "opPct": 72,
+    "opSide": "Sell",
+    "opRaw": "72% Sell",
+    "alpha": -26.84,
+    "rsi": 46.06,
+    "ma100": 90.9,
+    "offHi": -43.99,
+    "m1": 6.52,
+    "m3": -13.77,
+    "y1": -30.38,
+    "score": 61,
+    "checks": [
+     {
+      "label": "עוצמה מתחת ל-50",
+      "state": "ok",
+      "value": "-27"
+     },
+     {
+      "label": "חוות דעת מכירה",
+      "state": "ok",
+      "value": "72% Sell"
+     },
+     {
+      "label": "קו המגמה בקנייה (המפתח)",
+      "state": "ok",
+      "value": "Buy"
+     },
+     {
+      "label": "מעל ממוצע 100 (תנאי התבנית)",
+      "state": "warn",
+      "value": "87.18 מול 90.90"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "44% מתחת לשיא 52 שבועות",
+     "מתחת לממוצע 100 (90.90) — התבנית עוד לא הושלמה"
+    ],
+    "levels": {
+     "hi52": 155.65,
+     "ma100": 90.9,
+     "trigger": 90.9,
+     "triggerHe": "מחיר הסגירה מעל ממוצע 100 (90.90)",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (90.90)"
+    },
+    "rank": 5
+   },
+   {
+    "sym": "EYE",
+    "name": "National Vision Holdings Inc",
+    "industry": "Consumer Prdts - Misc Staple",
+    "last": 17.6,
+    "d5": -0.49,
+    "nh": 5.0,
+    "trend": "Buy",
+    "opPct": 56,
+    "opSide": "Sell",
+    "opRaw": "56% Sell",
+    "alpha": -30.67,
+    "rsi": 49.14,
+    "ma100": 18.43,
+    "offHi": -41.37,
+    "m1": 0.98,
+    "m3": -6.38,
+    "y1": -29.35,
+    "score": 55,
+    "checks": [
+     {
+      "label": "עוצמה מתחת ל-50",
+      "state": "ok",
+      "value": "-31"
+     },
+     {
+      "label": "חוות דעת מכירה",
+      "state": "ok",
+      "value": "56% Sell"
+     },
+     {
+      "label": "קו המגמה בקנייה (המפתח)",
+      "state": "ok",
+      "value": "Buy"
+     },
+     {
+      "label": "מעל ממוצע 100 (תנאי התבנית)",
+      "state": "warn",
+      "value": "17.60 מול 18.43"
+     }
+    ],
+    "status": "warn",
+    "flags": [
+     "41% מתחת לשיא 52 שבועות",
+     "מתחת לממוצע 100 (18.43) — התבנית עוד לא הושלמה"
+    ],
+    "levels": {
+     "hi52": 30.02,
+     "ma100": 18.43,
+     "trigger": 18.43,
+     "triggerHe": "מחיר הסגירה מעל ממוצע 100 (18.43)",
+     "stopHe": "התבנית מתבטלת בסגירה מתחת לממוצע 100 (18.43)"
+    },
+    "rank": 6
+   }
+  ]
+ },
+ "total": 32,
+ "passed": 32,
+ "builtAt": "2026-11-19T04:31:01Z",
+ "notesAt": null,
+ "featured": [
+  "CYRX",
+  "LAMR",
+  "LBTYA",
+  "ARHS",
+  "GCT"
+ ]
+}
