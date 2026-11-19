@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 996.8
+      "capB": 1002.0
     },
     {
       "ticker": "BABA",
@@ -35,12 +35,12 @@
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 48.2
+      "capB": 48.1
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 26.2
+      "capB": 25.9
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 5.63,
-            "price": 359.05,
+            "chg": 6.34,
+            "price": 361.46,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 4.49,
-            "price": 105.27,
+            "chg": 5.95,
+            "price": 106.73,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 4.3,
-            "price": 332.79,
+            "chg": 4.64,
+            "price": 333.87,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -350,8 +350,8 @@
       "tickers": [
         "BSP",
         "BJ",
-        "MOG.A",
         "MOG.B",
+        "MOG.A",
         "FRO",
         "IESC"
       ]
@@ -508,16 +508,16 @@
           "logo": "data/earnings/logos/SQM.png"
         },
         {
-          "ticker": "DLB",
-          "name": "Dolby Laboratories, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/DLB.png"
-        },
-        {
           "ticker": "SR",
           "name": "Spire Inc.",
           "when": "before",
           "logo": "data/earnings/logos/SR.png"
+        },
+        {
+          "ticker": "DLB",
+          "name": "Dolby Laboratories, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/DLB.png"
         }
       ]
     },
@@ -525,7 +525,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 23,
+      "total": 24,
       "companies": [
         {
           "ticker": "PANW",
@@ -701,15 +701,15 @@
           "logo": "data/earnings/logos/BJ.png"
         },
         {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
+        },
+        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MOG.A.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
         },
         {
           "ticker": "FRO",
@@ -783,8 +783,8 @@
     "GDRX": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "MOG.A": "2026-11-20",
     "MOG.B": "2026-11-20",
+    "MOG.A": "2026-11-20",
     "FRO": "2026-11-20",
     "IESC": "2026-11-20",
     "VFS": "2026-11-20",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 22:31",
+    "updatedAt": "19/11/2026 22:46",
     "source": "tradingview"
   }
 }
