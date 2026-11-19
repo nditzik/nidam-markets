@@ -23,8 +23,8 @@
    "tickers": [
     "JPM",
     "JNJ",
-    "UNH",
-    "BAC"
+    "BAC",
+    "UNH"
    ]
   },
   {
@@ -76,7 +76,7 @@
   {
    "mon": "2026-11-16",
    "label": "16.11",
-   "n": 14,
+   "n": 13,
    "tickers": [
     "NVDA",
     "WMT",
@@ -177,21 +177,21 @@
    ]
   }
  ],
- "total": 461,
- "reported": 438,
+ "total": 460,
+ "reported": 442,
  "members": 504,
  "board": {
-  "reported": 438,
-  "epsN": 436,
-  "epsBeat": 370,
+  "reported": 442,
+  "epsN": 440,
+  "epsBeat": 373,
   "epsBeatPct": 85,
-  "revN": 436,
-  "revBeat": 319,
+  "revN": 440,
+  "revBeat": 323,
   "revBeatPct": 73,
-  "reactBeat": 0.51,
-  "reactBeatN": 368,
-  "reactMiss": -1.64,
-  "reactMissN": 65,
+  "reactBeat": 0.52,
+  "reactBeatN": 371,
+  "reactMiss": -1.5,
+  "reactMissN": 66,
   "sectors": [
    {
     "name": "פיננסים",
@@ -200,8 +200,8 @@
    },
    {
     "name": "טכנולוגיה",
-    "n": 78,
-    "beat": 70
+    "n": 79,
+    "beat": 71
    },
    {
     "name": "תעשייה",
@@ -215,8 +215,8 @@
    },
    {
     "name": "צריכה מחזורית",
-    "n": 43,
-    "beat": 32
+    "n": 46,
+    "beat": 34
    },
    {
     "name": "תשתיות",
@@ -278,7 +278,7 @@
   ]
  },
  "_meta": {
-  "updatedAt": "17/11/2026 23:32",
+  "updatedAt": "18/11/2026 23:47",
   "source": "TradingView + S&P 500 watchlist"
  }
 }

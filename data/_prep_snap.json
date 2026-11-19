@@ -672,12 +672,12 @@
    "quarterEnd": "2026-10-31"
   },
   "options": {
-   "asOf": "17/11 22:46",
-   "price": 308.675,
+   "asOf": "18/11 22:47",
+   "price": 336.9,
    "exp": "2026-11-20",
-   "strike": 307.5,
-   "pct": 11.87,
-   "earn": null,
+   "strike": 337.5,
+   "pct": 10.77,
+   "earn": 10.77,
    "preExp": null,
    "prePct": null
   },
@@ -756,8 +756,8 @@
   "avgMove": 4.8
  },
  "CPRT": {
-  "forDate": "2026-11-18",
-  "when": null,
+  "forDate": "2026-12-01",
+  "when": "before",
   "name": "Copart, Inc.",
   "report": {
    "file": "data/reports/CPRT__2026-09-10.html",
@@ -780,16 +780,16 @@
    "quarterEnd": "2026-10-31"
   },
   "options": {
-   "asOf": "17/11 22:46",
-   "price": 31.57,
-   "exp": "2026-11-20",
+   "asOf": "18/11 22:47",
+   "price": 31.595,
+   "exp": "2026-12-18",
    "strike": 32.5,
-   "pct": 4.2,
+   "pct": 9.34,
    "earn": null,
-   "preExp": null,
-   "prePct": null
+   "preExp": "2026-11-20",
+   "prePct": 3.88
   },
-  "avgMove": 2.6
+  "avgMove": 2.3
  },
  "CSCO": {
   "forDate": "2026-11-12",
@@ -852,12 +852,12 @@
    "quarterEnd": "2026-10-31"
   },
   "options": {
-   "asOf": "17/11 22:46",
-   "price": 127.445,
+   "asOf": "18/11 22:47",
+   "price": 126.95,
    "exp": "2026-11-20",
    "strike": 127.0,
-   "pct": 7.0,
-   "earn": null,
+   "pct": 6.2,
+   "earn": 6.2,
    "preExp": null,
    "prePct": null
   },
@@ -888,14 +888,14 @@
    "quarterEnd": "2026-09-30"
   },
   "options": {
-   "asOf": "17/11 22:46",
-   "price": 33.2671,
+   "asOf": "18/11 22:47",
+   "price": 33.865,
    "exp": "2026-11-27",
-   "strike": 33.5,
-   "pct": 15.11,
-   "earn": 11.13,
+   "strike": 34.0,
+   "pct": 14.91,
+   "earn": 11.41,
    "preExp": "2026-11-20",
-   "prePct": 6.69
+   "prePct": 5.54
   },
   "avgMove": 15.6
  },
@@ -924,14 +924,14 @@
    "quarterEnd": "2026-10-31"
   },
   "options": {
-   "asOf": "17/11 22:46",
-   "price": 321.17,
+   "asOf": "18/11 22:47",
+   "price": 313.465,
    "exp": "2026-11-27",
-   "strike": 320.0,
-   "pct": 17.35,
-   "earn": 7.66,
+   "strike": 312.5,
+   "pct": 15.27,
+   "earn": 7.68,
    "preExp": "2026-11-20",
-   "prePct": 10.19
+   "prePct": 7.62
   },
   "avgMove": 19.1
  }
