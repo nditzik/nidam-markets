@@ -1,13 +1,7 @@
 {
   "today": "2026-11-20",
-  "todayCount": 10,
-  "todayBig": [
-    {
-      "ticker": "BSP",
-      "name": "Bending Spoons S.p.A.",
-      "capB": 27.4
-    }
-  ],
+  "todayCount": 9,
+  "todayBig": [],
   "reactions": {
     "days": [
       {
@@ -222,12 +216,6 @@
     ]
   },
   "reporting": [
-    {
-      "ticker": "BSP",
-      "name": "Bending Spoons S.p.A.",
-      "when": "before",
-      "logo": "data/earnings/logos/BSP.png"
-    },
     {
       "ticker": "BJ",
       "name": "BJ's Wholesale Club Holdings, Inc.",
@@ -533,7 +521,7 @@
       "date": "2026-11-19",
       "dow": "חמישי",
       "label": "19.11",
-      "total": 29,
+      "total": 30,
       "companies": [
         {
           "ticker": "WMT",
@@ -578,6 +566,12 @@
           "logo": "data/earnings/logos/KEYS.png"
         },
         {
+          "ticker": "BSP",
+          "name": "Bending Spoons S.p.A.",
+          "when": "after",
+          "logo": "data/earnings/logos/BSP.png"
+        },
+        {
           "ticker": "WSM",
           "name": "Williams-Sonoma, Inc.",
           "when": "before",
@@ -601,12 +595,6 @@
           "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/YMM.png"
-        },
-        {
-          "ticker": "ESTC",
-          "name": "Elastic NV",
-          "when": "after",
-          "logo": "data/earnings/logos/ESTC.png"
         }
       ]
     },
@@ -614,14 +602,8 @@
       "date": "2026-11-20",
       "dow": "שישי",
       "label": "20.11",
-      "total": 10,
+      "total": 9,
       "companies": [
-        {
-          "ticker": "BSP",
-          "name": "Bending Spoons S.p.A.",
-          "when": "before",
-          "logo": "data/earnings/logos/BSP.png"
-        },
         {
           "ticker": "BJ",
           "name": "BJ's Wholesale Club Holdings, Inc.",
@@ -680,7 +662,6 @@
     }
   ],
   "window": {
-    "BSP": "2026-11-20",
     "BJ": "2026-11-20",
     "MOG.B": "2026-11-20",
     "MOG.A": "2026-11-20",
@@ -736,7 +717,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 01:16",
+    "updatedAt": "20/11/2026 01:31",
     "source": "tradingview"
   }
 }
