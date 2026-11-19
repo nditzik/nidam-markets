@@ -513,7 +513,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 21,
+      "total": 19,
       "companies": [
         {
           "ticker": "PANW",
@@ -552,12 +552,6 @@
           "logo": "data/earnings/logos/WWD.png"
         },
         {
-          "ticker": "UGI",
-          "name": "UGI Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/UGI.png"
-        },
-        {
           "ticker": "SNEX",
           "name": "StoneX Group Inc.",
           "when": "after",
@@ -576,16 +570,23 @@
           "logo": "data/earnings/logos/NJR.png"
         },
         {
-          "ticker": "CPA",
-          "name": "Copa Holdings, S.A. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CPA.png"
-        },
-        {
           "ticker": "HAFN",
           "name": "Hafnia Limited",
           "when": "before",
           "logo": "data/earnings/logos/HAFN.png"
+        },
+        {
+          "ticker": "GLNG",
+          "name": "Golar LNG Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/GLNG.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "JOYY",
+          "name": "JOYY, Inc. Sponsored ADR Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/JOYY.png"
         }
       ]
     },
@@ -823,7 +824,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 02:31",
+    "updatedAt": "19/11/2026 02:46",
     "source": "tradingview"
   }
 }
