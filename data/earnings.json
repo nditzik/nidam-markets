@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 1004.8
+      "capB": 998.1
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 83.4
+      "capB": 83.0
     },
     {
       "ticker": "NTES",
@@ -30,17 +30,17 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 71.6
+      "capB": 71.4
     },
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 49.1
+      "capB": 48.9
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 26.5
+      "capB": 26.3
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 5.68,
-            "price": 359.23,
+            "chg": 5.85,
+            "price": 359.79,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 10.48,
-            "price": 111.3,
+            "chg": 10.02,
+            "price": 110.83,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 4.36,
-            "price": 332.98,
+            "chg": 4.22,
+            "price": 332.54,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -514,10 +514,10 @@
           "logo": "data/earnings/logos/DLB.png"
         },
         {
-          "ticker": "KLAR",
-          "name": "Klarna Group Plc",
+          "ticker": "SR",
+          "name": "Spire Inc.",
           "when": "before",
-          "logo": "data/earnings/logos/KLAR.png"
+          "logo": "data/earnings/logos/SR.png"
         }
       ]
     },
@@ -775,8 +775,8 @@
     "MMS": "2026-11-19",
     "BULL": "2026-11-19",
     "DAO": "2026-11-19",
-    "GLOB": "2026-11-19",
     "DRVN": "2026-11-19",
+    "GLOB": "2026-11-19",
     "HUBG": "2026-11-19",
     "TEN": "2026-11-19",
     "LQDT": "2026-11-19",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 19:46",
+    "updatedAt": "19/11/2026 20:01",
     "source": "tradingview"
   }
 }
