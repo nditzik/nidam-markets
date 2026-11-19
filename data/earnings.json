@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 1010.4
+      "capB": 986.0
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 83.7
+      "capB": 84.8
     },
     {
       "ticker": "NTES",
@@ -30,17 +30,17 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 72.7
+      "capB": 71.8
     },
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 48.7
+      "capB": 49.8
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 30.6
+      "capB": 28.7
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 6.85,
-            "price": 363.2,
+            "chg": 6.92,
+            "price": 363.43,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 4.95,
-            "price": 105.72,
+            "chg": 11.07,
+            "price": 111.89,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 5.2,
-            "price": 335.67,
+            "chg": 5.75,
+            "price": 337.42,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -402,17 +402,17 @@
           "logoBg": "dark"
         },
         {
+          "ticker": "FRHC",
+          "name": "Freedom Holding Corp.",
+          "when": "after",
+          "logo": "data/earnings/logos/FRHC.png"
+        },
+        {
           "ticker": "XPEV",
           "name": "XPeng, Inc. ADR Sponsored Class A",
           "when": "before",
           "logo": "data/earnings/logos/XPEV.png",
           "logoBg": "dark"
-        },
-        {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
-          "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
         },
         {
           "ticker": "XP",
@@ -570,16 +570,16 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
-          "ticker": "SNEX",
-          "name": "StoneX Group Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/SNEX.png"
-        },
-        {
           "ticker": "GLBE",
           "name": "Global-e Online Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/GLBE.png"
+        },
+        {
+          "ticker": "CPA",
+          "name": "Copa Holdings, S.A. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CPA.png"
         },
         {
           "ticker": "NJR",
@@ -588,10 +588,10 @@
           "logo": "data/earnings/logos/NJR.png"
         },
         {
-          "ticker": "CPA",
-          "name": "Copa Holdings, S.A. Class A",
+          "ticker": "SNEX",
+          "name": "StoneX Group Inc.",
           "when": "after",
-          "logo": "data/earnings/logos/CPA.png"
+          "logo": "data/earnings/logos/SNEX.png"
         },
         {
           "ticker": "HAFN",
@@ -767,8 +767,8 @@
     "ESE": "2026-11-19",
     "GAP": "2026-11-19",
     "GGAL": "2026-11-19",
-    "ROAD": "2026-11-19",
     "VVV": "2026-11-19",
+    "ROAD": "2026-11-19",
     "MANU": "2026-11-19",
     "BBWI": "2026-11-19",
     "POST": "2026-11-19",
@@ -778,9 +778,9 @@
     "GLOB": "2026-11-19",
     "DRVN": "2026-11-19",
     "HUBG": "2026-11-19",
-    "LQDT": "2026-11-19",
     "TEN": "2026-11-19",
     "GDRX": "2026-11-19",
+    "LQDT": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
     "MOG.A": "2026-11-20",
@@ -800,8 +800,8 @@
     "SMTC": "2026-11-23",
     "AMTM": "2026-11-23",
     "DAC": "2026-11-23",
-    "CENT": "2026-11-23",
     "CENTA": "2026-11-23",
+    "CENT": "2026-11-23",
     "CDLR": "2026-11-23",
     "DELL": "2026-11-24",
     "ADI": "2026-11-24",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 16:31",
+    "updatedAt": "19/11/2026 16:46",
     "source": "tradingview"
   }
 }
