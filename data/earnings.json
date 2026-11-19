@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 999.7
+      "capB": 996.8
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 81.1
+      "capB": 81.4
     },
     {
       "ticker": "NTES",
@@ -30,7 +30,7 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 70.1
+      "capB": 70.5
     },
     {
       "ticker": "KEYS",
@@ -40,7 +40,7 @@
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 25.8
+      "capB": 26.2
     }
   ],
   "reactions": {
@@ -56,7 +56,7 @@
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
             "chg": 5.63,
-            "price": 359.06,
+            "price": 359.05,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 6.3,
-            "price": 107.09,
+            "chg": 4.49,
+            "price": 105.27,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 4.98,
-            "price": 334.95,
+            "chg": 4.3,
+            "price": 332.79,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -508,16 +508,16 @@
           "logo": "data/earnings/logos/SQM.png"
         },
         {
-          "ticker": "SR",
-          "name": "Spire Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SR.png"
-        },
-        {
           "ticker": "DLB",
           "name": "Dolby Laboratories, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/DLB.png"
+        },
+        {
+          "ticker": "SR",
+          "name": "Spire Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/SR.png"
         }
       ]
     },
@@ -820,8 +820,8 @@
     "ANF": "2026-11-24",
     "BILI": "2026-11-24",
     "CMBT": "2026-11-24",
-    "KSS": "2026-11-24",
     "AMBA": "2026-11-24",
+    "KSS": "2026-11-24",
     "BBAR": "2026-11-24",
     "KC": "2026-11-24",
     "DRTS": "2026-11-24",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 22:16",
+    "updatedAt": "19/11/2026 22:31",
     "source": "tradingview"
   }
 }
