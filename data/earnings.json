@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 1001.3
+      "capB": 1000.0
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 81.6
+      "capB": 82.8
     },
     {
       "ticker": "NTES",
@@ -30,17 +30,17 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 70.5
+      "capB": 70.2
     },
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 48.2
+      "capB": 47.9
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 26.1
+      "capB": 26.0
     }
   ],
   "reactions": {
@@ -350,8 +350,8 @@
       "tickers": [
         "BSP",
         "BJ",
-        "MOG.A",
         "MOG.B",
+        "MOG.A",
         "FRO",
         "IESC"
       ]
@@ -508,16 +508,16 @@
           "logo": "data/earnings/logos/SQM.png"
         },
         {
-          "ticker": "SR",
-          "name": "Spire Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/SR.png"
-        },
-        {
           "ticker": "DLB",
           "name": "Dolby Laboratories, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/DLB.png"
+        },
+        {
+          "ticker": "SR",
+          "name": "Spire Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/SR.png"
         }
       ]
     },
@@ -525,7 +525,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 25,
+      "total": 24,
       "companies": [
         {
           "ticker": "PANW",
@@ -701,15 +701,15 @@
           "logo": "data/earnings/logos/BJ.png"
         },
         {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
+        },
+        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MOG.A.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
         },
         {
           "ticker": "FRO",
@@ -779,12 +779,12 @@
     "GLOB": "2026-11-19",
     "HUBG": "2026-11-19",
     "TEN": "2026-11-19",
-    "GDRX": "2026-11-19",
     "LQDT": "2026-11-19",
+    "GDRX": "2026-11-19",
     "BSP": "2026-11-20",
     "BJ": "2026-11-20",
-    "MOG.A": "2026-11-20",
     "MOG.B": "2026-11-20",
+    "MOG.A": "2026-11-20",
     "FRO": "2026-11-20",
     "IESC": "2026-11-20",
     "VFS": "2026-11-20",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 23:01",
+    "updatedAt": "19/11/2026 23:16",
     "source": "tradingview"
   }
 }
