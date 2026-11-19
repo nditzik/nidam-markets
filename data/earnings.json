@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 993.7
+      "capB": 996.8
     },
     {
       "ticker": "BABA",
@@ -35,12 +35,12 @@
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 50.0
+      "capB": 49.8
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 27.2
+      "capB": 26.6
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 6.09,
-            "price": 360.63,
+            "chg": 4.88,
+            "price": 356.52,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 14.19,
-            "price": 115.04,
+            "chg": 10.68,
+            "price": 111.5,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 5.36,
-            "price": 336.17,
+            "chg": 4.03,
+            "price": 331.92,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -353,7 +353,7 @@
         "MOG.A",
         "MOG.B",
         "FRO",
-        "VFS"
+        "IESC"
       ]
     }
   ],
@@ -508,16 +508,16 @@
           "logo": "data/earnings/logos/SQM.png"
         },
         {
-          "ticker": "KLAR",
-          "name": "Klarna Group Plc",
-          "when": "before",
-          "logo": "data/earnings/logos/KLAR.png"
-        },
-        {
           "ticker": "DLB",
           "name": "Dolby Laboratories, Inc. Class A",
           "when": "after",
           "logo": "data/earnings/logos/DLB.png"
+        },
+        {
+          "ticker": "KLAR",
+          "name": "Klarna Group Plc",
+          "when": "before",
+          "logo": "data/earnings/logos/KLAR.png"
         }
       ]
     },
@@ -525,7 +525,7 @@
       "date": "2026-11-18",
       "dow": "רביעי",
       "label": "18.11",
-      "total": 24,
+      "total": 25,
       "companies": [
         {
           "ticker": "PANW",
@@ -718,16 +718,16 @@
           "logo": "data/earnings/logos/FRO.png"
         },
         {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd.",
-          "when": "",
-          "logo": "data/earnings/logos/VFS.png"
-        },
-        {
           "ticker": "IESC",
           "name": "IES Holdings, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/IESC.png"
+        },
+        {
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd.",
+          "when": "",
+          "logo": "data/earnings/logos/VFS.png"
         },
         {
           "ticker": "BKE",
@@ -786,8 +786,8 @@
     "MOG.A": "2026-11-20",
     "MOG.B": "2026-11-20",
     "FRO": "2026-11-20",
-    "VFS": "2026-11-20",
     "IESC": "2026-11-20",
+    "VFS": "2026-11-20",
     "BKE": "2026-11-20",
     "RLX": "2026-11-20",
     "WRD": "2026-11-20",
@@ -818,8 +818,8 @@
     "DY": "2026-11-24",
     "VIPS": "2026-11-24",
     "ANF": "2026-11-24",
-    "BILI": "2026-11-24",
     "CMBT": "2026-11-24",
+    "BILI": "2026-11-24",
     "AMBA": "2026-11-24",
     "KSS": "2026-11-24",
     "BBAR": "2026-11-24",
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 18:46",
+    "updatedAt": "19/11/2026 19:01",
     "source": "tradingview"
   }
 }
