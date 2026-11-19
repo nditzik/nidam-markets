@@ -5,7 +5,7 @@
     {
       "ticker": "WMT",
       "name": "Walmart Inc.",
-      "capB": 1001.9
+      "capB": 999.7
     },
     {
       "ticker": "BABA",
@@ -20,7 +20,7 @@
     {
       "ticker": "INTU",
       "name": "Intuit Inc.",
-      "capB": 82.0
+      "capB": 81.1
     },
     {
       "ticker": "NTES",
@@ -30,17 +30,17 @@
     {
       "ticker": "ROST",
       "name": "Ross Stores, Inc.",
-      "capB": 71.1
+      "capB": 70.1
     },
     {
       "ticker": "KEYS",
       "name": "Keysight Technologies Inc",
-      "capB": 48.7
+      "capB": 48.2
     },
     {
       "ticker": "WSM",
       "name": "Williams-Sonoma, Inc.",
-      "capB": 25.6
+      "capB": 25.8
     }
   ],
   "reactions": {
@@ -55,8 +55,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/PANW.png",
-            "chg": 5.6,
-            "price": 358.96,
+            "chg": 5.63,
+            "price": 359.06,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -99,8 +99,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/P.png",
-            "chg": 6.48,
-            "price": 107.27,
+            "chg": 6.3,
+            "price": 107.09,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           },
@@ -110,8 +110,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WWD.png",
-            "chg": 4.69,
-            "price": 334.04,
+            "chg": 4.98,
+            "price": 334.95,
             "reactDate": "2026-11-19",
             "baseDate": "2026-11-18"
           }
@@ -836,7 +836,7 @@
     "REX": "2026-11-26"
   },
   "_meta": {
-    "updatedAt": "19/11/2026 22:01",
+    "updatedAt": "19/11/2026 22:16",
     "source": "tradingview"
   }
 }
