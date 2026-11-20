@@ -27,6 +27,13 @@
             "logo": "data/earnings/logos/BABA.png"
           },
           {
+            "ticker": "PDD",
+            "name": "PDD Holdings Inc. Sponsored ADR Class A",
+            "when": "before",
+            "status": "pending",
+            "logo": "data/earnings/logos/PDD.png"
+          },
+          {
             "ticker": "INTU",
             "name": "Intuit Inc.",
             "when": "after",
@@ -50,13 +57,6 @@
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/ROST.png"
-          },
-          {
-            "ticker": "KEYS",
-            "name": "Keysight Technologies Inc",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/KEYS.png"
           }
         ]
       },
@@ -511,7 +511,7 @@
       "date": "2026-11-19",
       "dow": "חמישי",
       "label": "19.11",
-      "total": 24,
+      "total": 25,
       "companies": [
         {
           "ticker": "WMT",
@@ -524,6 +524,12 @@
           "name": "Alibaba Group Holding Limited Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/BABA.png"
+        },
+        {
+          "ticker": "PDD",
+          "name": "PDD Holdings Inc. Sponsored ADR Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/PDD.png"
         },
         {
           "ticker": "INTU",
@@ -579,12 +585,6 @@
           "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/YMM.png"
-        },
-        {
-          "ticker": "ESTC",
-          "name": "Elastic NV",
-          "when": "after",
-          "logo": "data/earnings/logos/ESTC.png"
         }
       ]
     },
@@ -714,7 +714,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 04:46",
+    "updatedAt": "20/11/2026 05:01",
     "source": "tradingview"
   }
 }
