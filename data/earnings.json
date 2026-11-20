@@ -58,8 +58,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INTU.png",
-            "chg": -8.76,
-            "price": 282.85,
+            "chg": -8.54,
+            "price": 283.54,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
           },
@@ -69,8 +69,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ROST.png",
-            "chg": -2.87,
-            "price": 213.57,
+            "chg": -2.23,
+            "price": 214.98,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
           }
@@ -231,15 +231,15 @@
       "logo": "data/earnings/logos/BJ.png"
     },
     {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": "before"
-    },
-    {
       "ticker": "MOG.A",
       "name": "Moog Inc. Class A",
       "when": "before",
       "logo": "data/earnings/logos/MOG.A.png"
+    },
+    {
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": "before"
     },
     {
       "ticker": "FRO",
@@ -304,7 +304,7 @@
       "date": "2026-11-16",
       "dow": "שני",
       "label": "16.11",
-      "total": 15,
+      "total": 14,
       "companies": [
         {
           "ticker": "BIDU",
@@ -637,15 +637,15 @@
           "logo": "data/earnings/logos/BJ.png"
         },
         {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
-        },
-        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
         },
         {
           "ticker": "FRO",
@@ -707,8 +707,8 @@
   ],
   "window": {
     "BJ": "2026-11-20",
-    "MOG.B": "2026-11-20",
     "MOG.A": "2026-11-20",
+    "MOG.B": "2026-11-20",
     "FRO": "2026-11-20",
     "IESC": "2026-11-20",
     "VFS": "2026-11-20",
@@ -761,7 +761,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 19:01",
+    "updatedAt": "20/11/2026 19:16",
     "source": "tradingview"
   }
 }
