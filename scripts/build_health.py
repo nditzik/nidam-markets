@@ -7,6 +7,7 @@ build_health.py — מייצר data/_health.json: מחוון בריאות לכל
 משמש גם כ-heartbeat (generatedAt מתעדכן בכל ריצה).
 """
 import json
+import re
 import os
 from datetime import datetime, timezone, timedelta
 from iltime import il_off   # שעון ישראל אמיתי (zoneinfo), ראו iltime.py
@@ -34,6 +35,14 @@ def israel_now():
     now = datetime.now(timezone.utc)
     off = il_off(now)
     return now + timedelta(hours=off)
+
+
+def norm_day(label):
+    """dateLabel של מהדורה → "DD/MM/YYYY". 20.11.2026: נושא דוח Barchart הוא "דוח Barchart יומי — 32 הודעות — 20.11.2026",
+    ו-date_label לוקח את מה שאחרי המקף הראשון → "32 הודעות — 20.11.2026". מאז ~6.11 "Barchart בוקר" הוצג "לא הגיע"/down
+    בכל יום למרות שהמייל הגיע (אזעקת שווא)."""
+    m = re.search(r"(\d{1,2})[./](\d{1,2})[./](\d{4})", str(label or ""))
+    return "%02d/%02d/%s" % (int(m.group(1)), int(m.group(2)), m.group(3)) if m else label
 
 
 def parse_stamp(s):
@@ -82,11 +91,11 @@ def today_updates(today_str):
     m = _load("morning.json")
     if isinstance(m, dict) and m.get("_status") != "pending":
         items.append({"label": "Barchart בוקר", "tab": "morning",
-                      "time": m.get("time"), "arrived": m.get("dateLabel") == today_str})
+                      "time": m.get("time"), "arrived": norm_day(m.get("dateLabel")) == today_str})
         pk = m.get("premkt")
         if isinstance(pk, dict):
             items.append({"label": "Barchart טרום מסחר", "tab": "morning",
-                          "time": pk.get("time"), "arrived": pk.get("dateLabel") == today_str})
+                          "time": pk.get("time"), "arrived": norm_day(pk.get("dateLabel")) == today_str})
 
     for fname, label, tab in (("indices.json", "מדדים", "indices"),
                               ("momentum.json", "מומנטום", "momentum"),
@@ -148,7 +157,7 @@ def main():
 
         if nested:   # מהדורת Barchart: החותמת היא מועד המייל עצמו, לא ריצת ה-IMAP
             sub = (d if nested == "." else d.get(nested)) if isinstance(d, dict) else None
-            stamp = ("%s %s" % (sub.get("dateLabel"), sub.get("time"))) if isinstance(sub, dict) and sub.get("dateLabel") else None
+            stamp = ("%s %s" % (norm_day(sub.get("dateLabel")), sub.get("time"))) if isinstance(sub, dict) and sub.get("dateLabel") else None
         else:
             stamp = (d.get("_meta") or {}).get("updatedAt") if isinstance(d, dict) else None
         entry["updatedAt"] = stamp
