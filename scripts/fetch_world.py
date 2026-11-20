@@ -213,20 +213,29 @@ def changes(price, chg_1d, state, qdate, bars, prev_year):
     for k, (d, _) in enumerate(bars):
         if d == qdate:
             i = k
+    prev_used = None
     if state in ("live", "pre") or i is None:
         chg = chg_1d
         ref = price
+        # 20.11.2026 (איציק/גרוק): בזמן המסחר טאיוון הוצגה ‎−10.35% והאנג סנג ‎−4.08% במקום ‎−6.23% / ‎−2.14% —
+        # ה-chartPreviousClose של Yahoo בגרף 15 הדקות היה הסגירה של לפני יומיים. הבסיס עכשיו = הנר היומי
+        # האחרון שלפני תאריך הציטוט (כמו בשוק סגור); chartPreviousClose רק כשאין נרות.
+        before = [c for d, c in bars if qdate and d < qdate and c]
+        if before and price:
+            prev_used = before[-1]
+            chg = (price / prev_used - 1) * 100
         j = len(bars) if (i is None or bars[i][0] != qdate) else i
         if i is not None and state in ("live", "pre"):
             j = i          # הנר של היום הוא חלקי — הבסיס ל-5 ימים הוא 5 נרות לפניו
     else:
         # שוק סגור: השינוי של סשן המסחר האחרון (הנר של תאריך הציטוט מול הנר שלפניו)
         chg = (bars[i][1] / bars[i - 1][1] - 1) * 100 if i >= 1 and bars[i - 1][1] else chg_1d
+        prev_used = bars[i - 1][1] if i >= 1 else None
         ref = bars[i][1]
         j = i
     chg5 = (ref / bars[j - 5][1] - 1) * 100 if j >= 5 and bars[j - 5][1] else None
     ytd = (ref / prev_year - 1) * 100 if prev_year else None
-    return chg, chg5, ytd
+    return chg, chg5, ytd, prev_used
 
 
 # ⚠️ "0.00% ביום ללא מסחר" (11.9.2026): ביום שישי כל מדדי ת"א הראו 0.00% — הבורסה
@@ -248,7 +257,8 @@ def main():
                 bars, prev_year = daily(sym)
                 bars = sane_bars(bars)
                 qdate = datetime.fromtimestamp((ts or 0) + goff, timezone.utc).date().isoformat() if ts else ""
-                chg, chg5, ytd = changes(price, chg, state, qdate, bars, prev_year)
+                chg, chg5, ytd, p_used = changes(price, chg, state, qdate, bars, prev_year)
+                prev = p_used or prev
             except Exception as e:
                 print(f"[warn] {label}: נרות יומיים נכשלו — {e}")
             at = ""
