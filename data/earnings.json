@@ -1,9 +1,72 @@
 {
-  "today": "2026-11-20",
-  "todayCount": 12,
+  "today": "2026-11-21",
+  "todayCount": 0,
   "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-20",
+        "label": "20.11",
+        "items": [
+          {
+            "ticker": "BJ",
+            "name": "BJ's Wholesale Club Holdings, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BJ.png",
+            "chg": -5.35,
+            "price": 104.82,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
+          },
+          {
+            "ticker": "MOG.B",
+            "name": "Moog Inc. Class B",
+            "when": "before",
+            "status": "na"
+          },
+          {
+            "ticker": "MOG.A",
+            "name": "Moog Inc. Class A",
+            "when": "before",
+            "status": "na",
+            "logo": "data/earnings/logos/MOG.A.png"
+          },
+          {
+            "ticker": "FRO",
+            "name": "Frontline Plc",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/FRO.png",
+            "chg": 1.03,
+            "price": 45.21,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
+          },
+          {
+            "ticker": "IESC",
+            "name": "IES Holdings, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/IESC.png",
+            "chg": -6.49,
+            "price": 156.06,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
+          },
+          {
+            "ticker": "BKE",
+            "name": "Buckle, Inc.",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BKE.png",
+            "chg": 5.67,
+            "price": 44.15,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
+          }
+        ]
+      },
       {
         "date": "2026-11-19",
         "label": "19.11",
@@ -147,577 +210,290 @@
             "baseDate": "2026-11-18"
           }
         ]
-      },
-      {
-        "date": "2026-11-17",
-        "label": "17.11",
-        "items": [
-          {
-            "ticker": "NVDA",
-            "name": "NVIDIA Corporation",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/NVDA.png",
-            "chg": -2.89,
-            "price": 150.96,
-            "reactDate": "2026-11-18",
-            "baseDate": "2026-11-17"
-          },
-          {
-            "ticker": "HD",
-            "name": "Home Depot, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/HD.png",
-            "chg": -2.45,
-            "price": 339.01,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
-          },
-          {
-            "ticker": "DIS",
-            "name": "Walt Disney Company",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/DIS.png",
-            "logoBg": "dark",
-            "chg": -1.48,
-            "price": 116.94,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
-          },
-          {
-            "ticker": "VIK",
-            "name": "Viking Holdings Ltd",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/VIK.png",
-            "chg": 4.43,
-            "price": 94.28,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
-          },
-          {
-            "ticker": "ESLT",
-            "name": "Elbit Systems Ltd",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/ESLT.png",
-            "chg": 5.85,
-            "price": 720.53,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
-          },
-          {
-            "ticker": "JD",
-            "name": "JD.com, Inc. Sponsored ADR Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/JD.png",
-            "chg": -7.66,
-            "price": 25.43,
-            "reactDate": "2026-11-17",
-            "baseDate": "2026-11-16"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
+  "reporting": [],
+  "more": 0,
+  "upcoming": [
     {
-      "ticker": "BJ",
-      "name": "BJ's Wholesale Club Holdings, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/BJ.png"
+      "date": "2026-11-23",
+      "label": "23/11",
+      "dow": "ב׳",
+      "count": 11,
+      "tickers": [
+        "HPE",
+        "A",
+        "ZM",
+        "SYM",
+        "J",
+        "SMTC"
+      ]
     },
     {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": "before"
+      "date": "2026-11-24",
+      "label": "24/11",
+      "dow": "ג׳",
+      "count": 22,
+      "tickers": [
+        "DELL",
+        "ADI",
+        "MDT",
+        "ADSK",
+        "WDAY",
+        "DLTR"
+      ]
     },
     {
-      "ticker": "MOG.A",
-      "name": "Moog Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/MOG.A.png"
+      "date": "2026-11-25",
+      "label": "25/11",
+      "dow": "ד׳",
+      "count": 6,
+      "tickers": [
+        "DE",
+        "LI",
+        "BZ",
+        "BMA",
+        "GDS",
+        "IMKTA"
+      ]
     },
     {
-      "ticker": "FRO",
-      "name": "Frontline Plc",
-      "when": "before",
-      "logo": "data/earnings/logos/FRO.png"
-    },
-    {
-      "ticker": "IESC",
-      "name": "IES Holdings, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/IESC.png"
-    },
-    {
-      "ticker": "VFS",
-      "name": "VinFast Auto Ltd.",
-      "when": "",
-      "logo": "data/earnings/logos/VFS.png"
-    },
-    {
-      "ticker": "GGAL",
-      "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
-      "when": "",
-      "logo": "data/earnings/logos/GGAL.png"
-    },
-    {
-      "ticker": "BKE",
-      "name": "Buckle, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/BKE.png"
-    },
-    {
-      "ticker": "RLX",
-      "name": "RLX Technology, Inc. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/RLX.png",
-      "logoBg": "dark"
-    },
-    {
-      "ticker": "DRVN",
-      "name": "Driven Brands Holdings, Inc.",
-      "when": "",
-      "logo": "data/earnings/logos/DRVN.png"
-    },
-    {
-      "ticker": "HUBG",
-      "name": "Hub Group, Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/HUBG.png"
-    },
-    {
-      "ticker": "WRD",
-      "name": "WeRide Inc. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/WRD.png"
+      "date": "2026-11-27",
+      "label": "27/11",
+      "dow": "ו׳",
+      "count": 1,
+      "tickers": [
+        "CHA"
+      ]
     }
   ],
-  "more": 0,
-  "upcoming": [],
   "week": [
     {
-      "date": "2026-11-16",
+      "date": "2026-11-23",
       "dow": "שני",
-      "label": "16.11",
-      "total": 14,
+      "label": "23.11",
+      "total": 11,
       "companies": [
         {
-          "ticker": "BIDU",
-          "name": "Baidu, Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/BIDU.png"
-        },
-        {
-          "ticker": "TSN",
-          "name": "Tyson Foods, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/TSN.png"
-        },
-        {
-          "ticker": "BEKE",
-          "name": "KE Holdings, Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/BEKE.png"
-        },
-        {
-          "ticker": "HTHT",
-          "name": "H World Group Limited Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/HTHT.png"
-        },
-        {
-          "ticker": "ARMK",
-          "name": "Aramark",
-          "when": "before",
-          "logo": "data/earnings/logos/ARMK.png"
-        },
-        {
-          "ticker": "ACM",
-          "name": "AECOM",
+          "ticker": "HPE",
+          "name": "Hewlett Packard Enterprise Co.",
           "when": "after",
-          "logo": "data/earnings/logos/ACM.png",
+          "logo": "data/earnings/logos/HPE.png"
+        },
+        {
+          "ticker": "A",
+          "name": "Agilent Technologies, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/A.png"
+        },
+        {
+          "ticker": "ZM",
+          "name": "Zoom Communications, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/ZM.png",
           "logoBg": "dark"
         },
         {
-          "ticker": "FRHC",
-          "name": "Freedom Holding Corp.",
+          "ticker": "SYM",
+          "name": "Symbotic, Inc. Class A",
           "when": "after",
-          "logo": "data/earnings/logos/FRHC.png"
+          "logo": "data/earnings/logos/SYM.png"
         },
         {
-          "ticker": "XPEV",
-          "name": "XPeng, Inc. ADR Sponsored Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/XPEV.png",
-          "logoBg": "dark"
+          "ticker": "J",
+          "name": "Jacobs Solutions Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/J.png"
         },
         {
-          "ticker": "XP",
-          "name": "XP Inc. Class A",
+          "ticker": "SMTC",
+          "name": "Semtech Corporation",
           "when": "after",
-          "logo": "data/earnings/logos/XP.png"
+          "logo": "data/earnings/logos/SMTC.png"
         },
         {
-          "ticker": "POWL",
-          "name": "Powell Industries, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/POWL.png"
+          "ticker": "AMTM",
+          "name": "Amentum Holdings, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/AMTM.png"
         },
         {
-          "ticker": "SKE",
-          "name": "Skeena Resources Limited",
+          "ticker": "DAC",
+          "name": "Danaos Corporation",
           "when": "after",
-          "logo": "data/earnings/logos/SKE.png"
+          "logo": "data/earnings/logos/DAC.png"
         },
         {
-          "ticker": "PAGS",
-          "name": "PagSeguro Digital Ltd. Class A",
+          "ticker": "CENTA",
+          "name": "Central Garden & Pet Company Class A",
           "when": "after",
-          "logo": "data/earnings/logos/PAGS.png"
+          "logo": "data/earnings/logos/CENTA.png"
+        },
+        {
+          "ticker": "CENT",
+          "name": "Central Garden & Pet Company",
+          "when": "after",
+          "logo": "data/earnings/logos/CENT.png"
+        },
+        {
+          "ticker": "CDLR",
+          "name": "Cadeler PLC",
+          "when": "",
+          "logo": "data/earnings/logos/CDLR.png"
         }
       ]
     },
     {
-      "date": "2026-11-17",
+      "date": "2026-11-24",
       "dow": "שלישי",
-      "label": "17.11",
-      "total": 24,
+      "label": "24.11",
+      "total": 22,
       "companies": [
         {
-          "ticker": "NVDA",
-          "name": "NVIDIA Corporation",
+          "ticker": "DELL",
+          "name": "Dell Technologies, Inc. Class C",
           "when": "after",
-          "logo": "data/earnings/logos/NVDA.png"
+          "logo": "data/earnings/logos/DELL.png"
         },
         {
-          "ticker": "HD",
-          "name": "Home Depot, Inc.",
+          "ticker": "ADI",
+          "name": "Analog Devices, Inc.",
           "when": "before",
-          "logo": "data/earnings/logos/HD.png"
-        },
-        {
-          "ticker": "DIS",
-          "name": "Walt Disney Company",
-          "when": "before",
-          "logo": "data/earnings/logos/DIS.png",
+          "logo": "data/earnings/logos/ADI.png",
           "logoBg": "dark"
         },
         {
-          "ticker": "VIK",
-          "name": "Viking Holdings Ltd",
+          "ticker": "MDT",
+          "name": "Medtronic Plc",
           "when": "before",
-          "logo": "data/earnings/logos/VIK.png"
+          "logo": "data/earnings/logos/MDT.png"
         },
         {
-          "ticker": "ESLT",
-          "name": "Elbit Systems Ltd",
-          "when": "before",
-          "logo": "data/earnings/logos/ESLT.png"
-        },
-        {
-          "ticker": "JD",
-          "name": "JD.com, Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/JD.png"
-        },
-        {
-          "ticker": "AS",
-          "name": "Amer Sports, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/AS.png"
-        },
-        {
-          "ticker": "ZTO",
-          "name": "ZTO Express (Cayman), Inc. Sponsored ADR Class A",
+          "ticker": "ADSK",
+          "name": "Autodesk, Inc.",
           "when": "after",
-          "logo": "data/earnings/logos/ZTO.png"
+          "logo": "data/earnings/logos/ADSK.png",
+          "logoBg": "dark"
         },
         {
-          "ticker": "TME",
-          "name": "Tencent Music Entertainment Group Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/TME.png"
-        },
-        {
-          "ticker": "SQM",
-          "name": "Sociedad Quimica y Minera de Chile S.A. Sponsored ADR Pfd Series B",
+          "ticker": "WDAY",
+          "name": "Workday, Inc. Class A",
           "when": "after",
-          "logo": "data/earnings/logos/SQM.png"
+          "logo": "data/earnings/logos/WDAY.png"
         },
         {
-          "ticker": "DLB",
-          "name": "Dolby Laboratories, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/DLB.png"
-        },
-        {
-          "ticker": "SR",
-          "name": "Spire Inc.",
+          "ticker": "DLTR",
+          "name": "Dollar Tree, Inc.",
           "when": "before",
-          "logo": "data/earnings/logos/SR.png"
+          "logo": "data/earnings/logos/DLTR.png"
+        },
+        {
+          "ticker": "HPQ",
+          "name": "HP Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/HPQ.png"
+        },
+        {
+          "ticker": "BBY",
+          "name": "Best Buy Co., Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BBY.png"
+        },
+        {
+          "ticker": "BURL",
+          "name": "Burlington Stores, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/BURL.png"
+        },
+        {
+          "ticker": "NTNX",
+          "name": "Nutanix, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/NTNX.png"
+        },
+        {
+          "ticker": "SJM",
+          "name": "J.M. Smucker Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SJM.png"
+        },
+        {
+          "ticker": "DKS",
+          "name": "Dick's Sporting Goods, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/DKS.png"
         }
       ]
     },
     {
-      "date": "2026-11-18",
+      "date": "2026-11-25",
       "dow": "רביעי",
-      "label": "18.11",
-      "total": 24,
+      "label": "25.11",
+      "total": 6,
       "companies": [
         {
-          "ticker": "PANW",
-          "name": "Palo Alto Networks, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/PANW.png"
-        },
-        {
-          "ticker": "TJX",
-          "name": "TJX Companies Inc",
+          "ticker": "DE",
+          "name": "Deere & Company",
           "when": "before",
-          "logo": "data/earnings/logos/TJX.png"
+          "logo": "data/earnings/logos/DE.png"
         },
         {
-          "ticker": "LOW",
-          "name": "Lowe's Companies, Inc.",
+          "ticker": "LI",
+          "name": "Li Auto, Inc. Sponsored ADR Class A",
           "when": "before",
-          "logo": "data/earnings/logos/LOW.png"
+          "logo": "data/earnings/logos/LI.png",
+          "logoBg": "dark"
         },
         {
-          "ticker": "TGT",
-          "name": "Target Corporation",
+          "ticker": "BZ",
+          "name": "Kanzhun Ltd. Sponsored ADR",
           "when": "before",
-          "logo": "data/earnings/logos/TGT.png"
+          "logo": "data/earnings/logos/BZ.png"
         },
         {
-          "ticker": "P",
-          "name": "Everpure, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/P.png"
+          "ticker": "BMA",
+          "name": "Banco Macro SA Sponsored ADR Class B",
+          "when": "",
+          "logo": "data/earnings/logos/BMA.png"
         },
         {
-          "ticker": "WWD",
-          "name": "Woodward, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/WWD.png"
-        },
-        {
-          "ticker": "UGI",
-          "name": "UGI Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/UGI.png"
-        },
-        {
-          "ticker": "GLBE",
-          "name": "Global-e Online Ltd.",
+          "ticker": "GDS",
+          "name": "GDS Holdings Ltd. Sponsored ADR Class A",
           "when": "before",
-          "logo": "data/earnings/logos/GLBE.png"
+          "logo": "data/earnings/logos/GDS.png"
         },
         {
-          "ticker": "NJR",
-          "name": "New Jersey Resources Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/NJR.png"
-        },
-        {
-          "ticker": "CPA",
-          "name": "Copa Holdings, S.A. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CPA.png"
-        },
-        {
-          "ticker": "HAFN",
-          "name": "Hafnia Limited",
-          "when": "before",
-          "logo": "data/earnings/logos/HAFN.png"
-        },
-        {
-          "ticker": "SNEX",
-          "name": "StoneX Group Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/SNEX.png"
+          "ticker": "IMKTA",
+          "name": "Ingles Markets, Incorporated Class A",
+          "when": "",
+          "logo": "data/earnings/logos/IMKTA.png"
         }
       ]
     },
     {
-      "date": "2026-11-19",
+      "date": "2026-11-26",
       "dow": "חמישי",
-      "label": "19.11",
-      "total": 26,
-      "companies": [
-        {
-          "ticker": "WMT",
-          "name": "Walmart Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/WMT.png"
-        },
-        {
-          "ticker": "BABA",
-          "name": "Alibaba Group Holding Limited Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/BABA.png"
-        },
-        {
-          "ticker": "PDD",
-          "name": "PDD Holdings Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/PDD.png"
-        },
-        {
-          "ticker": "NTES",
-          "name": "Netease Inc Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/NTES.png"
-        },
-        {
-          "ticker": "INTU",
-          "name": "Intuit Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/INTU.png"
-        },
-        {
-          "ticker": "ROST",
-          "name": "Ross Stores, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/ROST.png"
-        },
-        {
-          "ticker": "KEYS",
-          "name": "Keysight Technologies Inc",
-          "when": "after",
-          "logo": "data/earnings/logos/KEYS.png"
-        },
-        {
-          "ticker": "BSP",
-          "name": "Bending Spoons S.p.A.",
-          "when": "after",
-          "logo": "data/earnings/logos/BSP.png"
-        },
-        {
-          "ticker": "WSM",
-          "name": "Williams-Sonoma, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/WSM.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "WMG",
-          "name": "Warner Music Group Corp. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/WMG.png"
-        },
-        {
-          "ticker": "FUTU",
-          "name": "Futu Holdings Ltd. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/FUTU.png"
-        },
-        {
-          "ticker": "YMM",
-          "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/YMM.png"
-        }
-      ]
+      "label": "26.11",
+      "total": 0,
+      "companies": []
     },
     {
-      "date": "2026-11-20",
+      "date": "2026-11-27",
       "dow": "שישי",
-      "label": "20.11",
-      "total": 12,
+      "label": "27.11",
+      "total": 1,
       "companies": [
         {
-          "ticker": "BJ",
-          "name": "BJ's Wholesale Club Holdings, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BJ.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
-        },
-        {
-          "ticker": "MOG.A",
-          "name": "Moog Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/MOG.A.png"
-        },
-        {
-          "ticker": "FRO",
-          "name": "Frontline Plc",
-          "when": "before",
-          "logo": "data/earnings/logos/FRO.png"
-        },
-        {
-          "ticker": "IESC",
-          "name": "IES Holdings, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/IESC.png"
-        },
-        {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd.",
+          "ticker": "CHA",
+          "name": "Chagee Holdings Limited Unsponsored ADR",
           "when": "",
-          "logo": "data/earnings/logos/VFS.png"
-        },
-        {
-          "ticker": "GGAL",
-          "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
-          "when": "",
-          "logo": "data/earnings/logos/GGAL.png"
-        },
-        {
-          "ticker": "BKE",
-          "name": "Buckle, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BKE.png"
-        },
-        {
-          "ticker": "RLX",
-          "name": "RLX Technology, Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/RLX.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "DRVN",
-          "name": "Driven Brands Holdings, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/DRVN.png"
-        },
-        {
-          "ticker": "HUBG",
-          "name": "Hub Group, Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/HUBG.png"
-        },
-        {
-          "ticker": "WRD",
-          "name": "WeRide Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/WRD.png"
+          "logo": "data/earnings/logos/CHA.png"
         }
       ]
     }
   ],
   "window": {
-    "BJ": "2026-11-20",
-    "MOG.B": "2026-11-20",
-    "MOG.A": "2026-11-20",
-    "FRO": "2026-11-20",
-    "IESC": "2026-11-20",
-    "VFS": "2026-11-20",
-    "GGAL": "2026-11-20",
-    "BKE": "2026-11-20",
-    "RLX": "2026-11-20",
-    "DRVN": "2026-11-20",
-    "HUBG": "2026-11-20",
-    "WRD": "2026-11-20",
     "HPE": "2026-11-23",
     "A": "2026-11-23",
     "ZM": "2026-11-23",
@@ -760,7 +536,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 23:46",
+    "updatedAt": "21/11/2026 00:03",
     "source": "tradingview"
   }
 }
