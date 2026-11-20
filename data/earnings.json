@@ -1,13 +1,7 @@
 {
   "today": "2026-11-20",
-  "todayCount": 15,
-  "todayBig": [
-    {
-      "ticker": "PDD",
-      "name": "PDD Holdings Inc. Sponsored ADR Class A",
-      "capB": 110.2
-    }
-  ],
+  "todayCount": 14,
+  "todayBig": [],
   "reactions": {
     "days": [
       {
@@ -29,8 +23,23 @@
             "ticker": "BABA",
             "name": "Alibaba Group Holding Limited Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/BABA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BABA.png",
+            "chg": -1.26,
+            "price": 83.31,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
+          },
+          {
+            "ticker": "PDD",
+            "name": "PDD Holdings Inc. Sponsored ADR Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/PDD.png",
+            "chg": 11.04,
+            "price": 86.0,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "INTU",
@@ -56,13 +65,6 @@
             "when": "after",
             "status": "pending",
             "logo": "data/earnings/logos/ROST.png"
-          },
-          {
-            "ticker": "KEYS",
-            "name": "Keysight Technologies Inc",
-            "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/KEYS.png"
           }
         ]
       },
@@ -74,8 +76,12 @@
             "ticker": "PANW",
             "name": "Palo Alto Networks, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/PANW.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PANW.png",
+            "chg": 6.42,
+            "price": 361.73,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "TJX",
@@ -114,8 +120,12 @@
             "ticker": "P",
             "name": "Everpure, Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/P.png"
+            "status": "final",
+            "logo": "data/earnings/logos/P.png",
+            "chg": 4.73,
+            "price": 105.5,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "WWD",
@@ -207,12 +217,6 @@
   },
   "reporting": [
     {
-      "ticker": "PDD",
-      "name": "PDD Holdings Inc. Sponsored ADR Class A",
-      "when": "",
-      "logo": "data/earnings/logos/PDD.png"
-    },
-    {
       "ticker": "BJ",
       "name": "BJ's Wholesale Club Holdings, Inc.",
       "when": "before",
@@ -277,9 +281,15 @@
       "name": "Hub Group, Inc. Class A",
       "when": "",
       "logo": "data/earnings/logos/HUBG.png"
+    },
+    {
+      "ticker": "TEN",
+      "name": "Tsakos Energy Navigation Limited",
+      "when": "",
+      "logo": "data/earnings/logos/TEN.png"
     }
   ],
-  "more": 3,
+  "more": 2,
   "upcoming": [],
   "week": [
     {
@@ -529,7 +539,7 @@
       "date": "2026-11-19",
       "dow": "חמישי",
       "label": "19.11",
-      "total": 24,
+      "total": 26,
       "companies": [
         {
           "ticker": "WMT",
@@ -542,6 +552,12 @@
           "name": "Alibaba Group Holding Limited Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/BABA.png"
+        },
+        {
+          "ticker": "PDD",
+          "name": "PDD Holdings Inc. Sponsored ADR Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/PDD.png"
         },
         {
           "ticker": "INTU",
@@ -597,12 +613,6 @@
           "name": "Full Truck Alliance Co. Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/YMM.png"
-        },
-        {
-          "ticker": "ESTC",
-          "name": "Elastic NV",
-          "when": "after",
-          "logo": "data/earnings/logos/ESTC.png"
         }
       ]
     },
@@ -610,14 +620,8 @@
       "date": "2026-11-20",
       "dow": "שישי",
       "label": "20.11",
-      "total": 15,
+      "total": 14,
       "companies": [
-        {
-          "ticker": "PDD",
-          "name": "PDD Holdings Inc. Sponsored ADR Class A",
-          "when": "",
-          "logo": "data/earnings/logos/PDD.png"
-        },
         {
           "ticker": "BJ",
           "name": "BJ's Wholesale Club Holdings, Inc.",
@@ -683,12 +687,17 @@
           "name": "Hub Group, Inc. Class A",
           "when": "",
           "logo": "data/earnings/logos/HUBG.png"
+        },
+        {
+          "ticker": "TEN",
+          "name": "Tsakos Energy Navigation Limited",
+          "when": "",
+          "logo": "data/earnings/logos/TEN.png"
         }
       ]
     }
   ],
   "window": {
-    "PDD": "2026-11-20",
     "BJ": "2026-11-20",
     "MOG.B": "2026-11-20",
     "MOG.A": "2026-11-20",
@@ -736,7 +745,6 @@
     "AMBA": "2026-11-24",
     "BBAR": "2026-11-24",
     "KC": "2026-11-24",
-    "DRTS": "2026-11-24",
     "DE": "2026-11-25",
     "LI": "2026-11-25",
     "BZ": "2026-11-25",
@@ -749,7 +757,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 07:01",
+    "updatedAt": "20/11/2026 08:31",
     "source": "tradingview"
   }
 }
