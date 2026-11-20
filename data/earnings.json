@@ -1,6 +1,6 @@
 {
   "today": "2026-11-20",
-  "todayCount": 13,
+  "todayCount": 12,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -231,15 +231,15 @@
       "logo": "data/earnings/logos/BJ.png"
     },
     {
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": "before"
+    },
+    {
       "ticker": "MOG.A",
       "name": "Moog Inc. Class A",
       "when": "before",
       "logo": "data/earnings/logos/MOG.A.png"
-    },
-    {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": "before"
     },
     {
       "ticker": "FRO",
@@ -297,7 +297,7 @@
       "logo": "data/earnings/logos/WRD.png"
     }
   ],
-  "more": 1,
+  "more": 0,
   "upcoming": [],
   "week": [
     {
@@ -518,16 +518,16 @@
           "logo": "data/earnings/logos/GLBE.png"
         },
         {
-          "ticker": "CPA",
-          "name": "Copa Holdings, S.A. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CPA.png"
-        },
-        {
           "ticker": "NJR",
           "name": "New Jersey Resources Corporation",
           "when": "after",
           "logo": "data/earnings/logos/NJR.png"
+        },
+        {
+          "ticker": "CPA",
+          "name": "Copa Holdings, S.A. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CPA.png"
         },
         {
           "ticker": "HAFN",
@@ -628,7 +628,7 @@
       "date": "2026-11-20",
       "dow": "שישי",
       "label": "20.11",
-      "total": 13,
+      "total": 12,
       "companies": [
         {
           "ticker": "BJ",
@@ -637,15 +637,15 @@
           "logo": "data/earnings/logos/BJ.png"
         },
         {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
+        },
+        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MOG.A.png"
-        },
-        {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
         },
         {
           "ticker": "FRO",
@@ -707,8 +707,8 @@
   ],
   "window": {
     "BJ": "2026-11-20",
-    "MOG.A": "2026-11-20",
     "MOG.B": "2026-11-20",
+    "MOG.A": "2026-11-20",
     "FRO": "2026-11-20",
     "IESC": "2026-11-20",
     "VFS": "2026-11-20",
@@ -718,7 +718,6 @@
     "DRVN": "2026-11-20",
     "HUBG": "2026-11-20",
     "WRD": "2026-11-20",
-    "GDRX": "2026-11-20",
     "HPE": "2026-11-23",
     "A": "2026-11-23",
     "ZM": "2026-11-23",
@@ -761,7 +760,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 23:01",
+    "updatedAt": "20/11/2026 23:16",
     "source": "tradingview"
   }
 }
