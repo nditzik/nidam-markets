@@ -45,22 +45,10 @@
   "<CAENV1ZjOoSRShaMLe9X2YeT5L=KfiPUv0w4Q+LVWRDcddrdhtw@mail.gmail.com>",
   "<CAENV1ZjCxPyuwAx1iEb2gByTfng-w-JiTh8rCJq1xut=NAp0BA@mail.gmail.com>",
   "<CAENV1ZjHiBWopL1P34DYOHW5kH-cgbfhvSDg4KdBTiNxjwRR9g@mail.gmail.com>",
-  "<CAENV1ZgYMfukrTA6rV-utWqs9U6rpFm1PBtuKqp4+pan-D65tA@mail.gmail.com>"
+  "<CAENV1ZgYMfukrTA6rV-utWqs9U6rpFm1PBtuKqp4+pan-D65tA@mail.gmail.com>",
+  "<CAENV1ZisFUXJekeGO30h_eXku0yJicPt00W8bBgg=Q_mdxsKFA@mail.gmail.com>"
  ],
  "log": [
-  {
-   "at": "2026-10-01T02:49:44Z",
-   "subject": "momentum TTM Triggered – 30.09.2026",
-   "sent": "2026-10-01T02:26:11Z",
-   "files": {
-    "ttm_squeeze": 875
-   },
-   "skipped": [],
-   "rejected": "חסרים סורקים: Strength & Direction, Hot Prospects, 6 Month Highs, eMACD",
-   "written": [],
-   "existing": [],
-   "ok": true
-  },
   {
    "at": "2026-10-01T02:49:44Z",
    "subject": "momentum – 30.09.2026",
@@ -945,6 +933,29 @@
     "stocks-screener-nearing-6-month-highs-11-18-2026.csv",
     "ttm-squeeze-triggered-11-18-2026.csv",
     "emacd-new-buy-signals-stocks-11-18-2026.csv"
+   ],
+   "existing": [],
+   "ok": true
+  },
+  {
+   "at": "2026-11-20T03:17:24Z",
+   "subject": "momentum – 19.11.2026",
+   "sent": "2026-11-20T03:12:07Z",
+   "files": {
+    "macd_buy": 51,
+    "ttm_squeeze": 433,
+    "hot_prospects": 13,
+    "6m_high": 94,
+    "strength": 242
+   },
+   "skipped": [],
+   "rejected": null,
+   "written": [
+    "stocks-screener-strength-and-direction-11-19-2026.csv",
+    "stocks-screener-hot-prospects-11-19-2026.csv",
+    "stocks-screener-nearing-6-month-highs-11-19-2026.csv",
+    "ttm-squeeze-triggered-11-19-2026.csv",
+    "emacd-new-buy-signals-stocks-11-19-2026.csv"
    ],
    "existing": [],
    "ok": true

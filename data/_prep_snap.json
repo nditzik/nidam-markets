@@ -780,14 +780,14 @@
    "quarterEnd": "2026-10-31"
   },
   "options": {
-   "asOf": "18/11 22:47",
-   "price": 31.595,
+   "asOf": "19/11 22:53",
+   "price": 30.945,
    "exp": "2026-12-18",
-   "strike": 32.5,
-   "pct": 9.34,
+   "strike": 30.0,
+   "pct": 9.86,
    "earn": null,
    "preExp": "2026-11-20",
-   "prePct": 3.88
+   "prePct": 3.96
   },
   "avgMove": 2.3
  },
@@ -852,12 +852,12 @@
    "quarterEnd": "2026-10-31"
   },
   "options": {
-   "asOf": "18/11 22:47",
-   "price": 126.95,
+   "asOf": "19/11 17:16",
+   "price": 125.82,
    "exp": "2026-11-20",
-   "strike": 127.0,
-   "pct": 6.2,
-   "earn": 6.2,
+   "strike": 126.0,
+   "pct": 2.25,
+   "earn": 2.25,
    "preExp": null,
    "prePct": null
   },
@@ -888,14 +888,14 @@
    "quarterEnd": "2026-09-30"
   },
   "options": {
-   "asOf": "18/11 22:47",
-   "price": 33.865,
+   "asOf": "19/11 22:53",
+   "price": 33.0,
    "exp": "2026-11-27",
-   "strike": 34.0,
-   "pct": 14.91,
-   "earn": 11.41,
+   "strike": 33.0,
+   "pct": 14.17,
+   "earn": 11.94,
    "preExp": "2026-11-20",
-   "prePct": 5.54
+   "prePct": 3.41
   },
   "avgMove": 15.6
  },
@@ -924,15 +924,51 @@
    "quarterEnd": "2026-10-31"
   },
   "options": {
-   "asOf": "18/11 22:47",
-   "price": 313.465,
+   "asOf": "19/11 22:53",
+   "price": 314.49,
    "exp": "2026-11-27",
-   "strike": 312.5,
-   "pct": 15.27,
-   "earn": 7.68,
+   "strike": 315.0,
+   "pct": 14.5,
+   "earn": 7.79,
    "preExp": "2026-11-20",
-   "prePct": 7.62
+   "prePct": 5.47
   },
   "avgMove": 19.1
+ },
+ "LULU": {
+  "forDate": "2026-12-03",
+  "when": null,
+  "name": "lululemon athletica inc.",
+  "report": {
+   "file": "data/reports/LULU__2026-09-03.html",
+   "date": "2026-09-03",
+   "title": "LULU Q2 FY2026",
+   "logo": "data/reports/logos/LULU.png",
+   "logoBg": null
+  },
+  "consensus": {
+   "eps": 1.04175,
+   "epsLow": 0.9,
+   "epsHigh": 1.66,
+   "epsN": 21,
+   "epsYearAgo": 2.59,
+   "rev": 2314401690,
+   "revLow": 2253000000,
+   "revHigh": 2381418150,
+   "revN": 26,
+   "revYearAgo": 2565920000,
+   "quarterEnd": "2026-10-31"
+  },
+  "options": {
+   "asOf": "19/11 22:53",
+   "price": 105.98,
+   "exp": "2026-12-04",
+   "strike": 106.0,
+   "pct": 7.67,
+   "earn": 3.39,
+   "preExp": "2026-11-27",
+   "prePct": 5.33
+  },
+  "avgMove": 9.8
  }
 }
