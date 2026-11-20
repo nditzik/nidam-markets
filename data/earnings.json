@@ -42,17 +42,6 @@
             "baseDate": "2026-11-18"
           },
           {
-            "ticker": "INTU",
-            "name": "Intuit Inc.",
-            "when": "after",
-            "status": "live",
-            "logo": "data/earnings/logos/INTU.png",
-            "chg": -8.88,
-            "price": 282.48,
-            "reactDate": "2026-11-20",
-            "baseDate": "2026-11-19"
-          },
-          {
             "ticker": "NTES",
             "name": "Netease Inc Sponsored ADR",
             "when": "before",
@@ -64,13 +53,24 @@
             "baseDate": "2026-11-18"
           },
           {
+            "ticker": "INTU",
+            "name": "Intuit Inc.",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/INTU.png",
+            "chg": -9.7,
+            "price": 279.94,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
+          },
+          {
             "ticker": "ROST",
             "name": "Ross Stores, Inc.",
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ROST.png",
-            "chg": -2.99,
-            "price": 213.3,
+            "chg": -2.93,
+            "price": 213.45,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
           }
@@ -512,16 +512,16 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
-          "ticker": "CPA",
-          "name": "Copa Holdings, S.A. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CPA.png"
-        },
-        {
           "ticker": "GLBE",
           "name": "Global-e Online Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/GLBE.png"
+        },
+        {
+          "ticker": "CPA",
+          "name": "Copa Holdings, S.A. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CPA.png"
         },
         {
           "ticker": "NJR",
@@ -568,16 +568,16 @@
           "logo": "data/earnings/logos/PDD.png"
         },
         {
-          "ticker": "INTU",
-          "name": "Intuit Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/INTU.png"
-        },
-        {
           "ticker": "NTES",
           "name": "Netease Inc Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/NTES.png"
+        },
+        {
+          "ticker": "INTU",
+          "name": "Intuit Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/INTU.png"
         },
         {
           "ticker": "ROST",
@@ -761,7 +761,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 18:02",
+    "updatedAt": "20/11/2026 18:16",
     "source": "tradingview"
   }
 }
