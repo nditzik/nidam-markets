@@ -19,6 +19,7 @@ import email
 import email.header
 import email.utils
 import imaplib
+import csv
 import json
 import os
 import re
@@ -107,6 +108,14 @@ def extract(msg):
     return files, skipped
 
 
+def _rows_in(path):
+    try:
+        with open(path, "r", encoding="utf-8-sig", newline="") as fh:
+            return max(0, sum(1 for _ in csv.reader(fh)) - 1)
+    except Exception:
+        return None
+
+
 def write_files(root, files, subj, sent, dry_run=False):
     """כותב את הקבצים; מחזיר רשימת (path, status)."""
     base = os.path.join(root, "data", "insider_daily")
@@ -131,6 +140,16 @@ def write_files(root, files, subj, sent, dry_run=False):
                 n += 1
         rel = os.path.relpath(path, root)
         if os.path.exists(path):
+            # 20.11.2026: גרוק שלח שוב את 19.11 עם "היסטוריה מלאה" (23 מתוך 23 מניות, 707 עסקאות) אחרי מייל
+            # ראשון עם היסטוריה ל-6 מניות בלבד (171 שורות). קובץ היסטוריה של אותו יום עם יותר שורות מחליף את הקיים;
+            # קובץ הרכישות (buys) לא נדרס לעולם.
+            old_rows = _rows_in(path) if f["kind"] == "history" and day else None
+            if old_rows is not None and f["rows"] > old_rows:
+                if not dry_run:
+                    with open(path, "wb") as fh:
+                        fh.write(f["data"])
+                out.append((rel, "replaced %d→%d rows" % (old_rows, f["rows"])))
+                continue
             out.append((rel, "existing"))
             continue
         if dry_run:
