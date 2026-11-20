@@ -58,8 +58,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/INTU.png",
-            "chg": -10.66,
-            "price": 276.98,
+            "chg": -10.97,
+            "price": 276.02,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
           },
@@ -69,8 +69,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/ROST.png",
-            "chg": -1.85,
-            "price": 215.82,
+            "chg": -1.86,
+            "price": 215.8,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
           }
@@ -231,15 +231,15 @@
       "logo": "data/earnings/logos/BJ.png"
     },
     {
-      "ticker": "MOG.B",
-      "name": "Moog Inc. Class B",
-      "when": "before"
-    },
-    {
       "ticker": "MOG.A",
       "name": "Moog Inc. Class A",
       "when": "before",
       "logo": "data/earnings/logos/MOG.A.png"
+    },
+    {
+      "ticker": "MOG.B",
+      "name": "Moog Inc. Class B",
+      "when": "before"
     },
     {
       "ticker": "FRO",
@@ -637,15 +637,15 @@
           "logo": "data/earnings/logos/BJ.png"
         },
         {
-          "ticker": "MOG.B",
-          "name": "Moog Inc. Class B",
-          "when": "before"
-        },
-        {
           "ticker": "MOG.A",
           "name": "Moog Inc. Class A",
           "when": "before",
           "logo": "data/earnings/logos/MOG.A.png"
+        },
+        {
+          "ticker": "MOG.B",
+          "name": "Moog Inc. Class B",
+          "when": "before"
         },
         {
           "ticker": "FRO",
@@ -707,8 +707,8 @@
   ],
   "window": {
     "BJ": "2026-11-20",
-    "MOG.B": "2026-11-20",
     "MOG.A": "2026-11-20",
+    "MOG.B": "2026-11-20",
     "FRO": "2026-11-20",
     "IESC": "2026-11-20",
     "VFS": "2026-11-20",
@@ -761,7 +761,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 21:46",
+    "updatedAt": "20/11/2026 22:01",
     "source": "tradingview"
   }
 }
