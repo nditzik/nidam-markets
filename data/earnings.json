@@ -45,8 +45,12 @@
             "ticker": "INTU",
             "name": "Intuit Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/INTU.png"
+            "status": "live",
+            "logo": "data/earnings/logos/INTU.png",
+            "chg": -5.53,
+            "price": 292.86,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
           },
           {
             "ticker": "NTES",
@@ -63,8 +67,12 @@
             "ticker": "ROST",
             "name": "Ross Stores, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/ROST.png"
+            "status": "live",
+            "logo": "data/earnings/logos/ROST.png",
+            "chg": -3.35,
+            "price": 212.52,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
           }
         ]
       },
@@ -753,7 +761,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 16:16",
+    "updatedAt": "20/11/2026 16:31",
     "source": "tradingview"
   }
 }
