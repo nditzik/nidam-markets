@@ -56,10 +56,10 @@
             "ticker": "INTU",
             "name": "Intuit Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/INTU.png",
-            "chg": -10.4,
-            "price": 277.79,
+            "chg": -12.77,
+            "price": 270.44,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
           },
@@ -67,10 +67,10 @@
             "ticker": "ROST",
             "name": "Ross Stores, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/ROST.png",
-            "chg": -2.44,
-            "price": 214.52,
+            "chg": -2.92,
+            "price": 213.46,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
           }
@@ -512,16 +512,16 @@
           "logo": "data/earnings/logos/UGI.png"
         },
         {
-          "ticker": "CPA",
-          "name": "Copa Holdings, S.A. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CPA.png"
-        },
-        {
           "ticker": "GLBE",
           "name": "Global-e Online Ltd.",
           "when": "before",
           "logo": "data/earnings/logos/GLBE.png"
+        },
+        {
+          "ticker": "CPA",
+          "name": "Copa Holdings, S.A. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CPA.png"
         },
         {
           "ticker": "NJR",
@@ -761,7 +761,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 22:46",
+    "updatedAt": "20/11/2026 23:01",
     "source": "tradingview"
   }
 }
