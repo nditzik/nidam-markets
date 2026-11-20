@@ -12,42 +12,58 @@
             "ticker": "WMT",
             "name": "Walmart Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/WMT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WMT.png",
+            "chg": -1.04,
+            "price": 126.04,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "BABA",
             "name": "Alibaba Group Holding Limited Sponsored ADR",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/BABA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BABA.png",
+            "chg": -1.26,
+            "price": 83.31,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "PDD",
             "name": "PDD Holdings Inc. Sponsored ADR Class A",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/PDD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PDD.png",
+            "chg": 11.04,
+            "price": 86.0,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "INTU",
             "name": "Intuit Inc.",
             "when": "after",
-            "status": "na",
+            "status": "pending",
             "logo": "data/earnings/logos/INTU.png"
           },
           {
             "ticker": "NTES",
             "name": "Netease Inc Sponsored ADR",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/NTES.png"
+            "status": "final",
+            "logo": "data/earnings/logos/NTES.png",
+            "chg": -11.39,
+            "price": 104.94,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "ROST",
             "name": "Ross Stores, Inc.",
             "when": "after",
-            "status": "na",
+            "status": "pending",
             "logo": "data/earnings/logos/ROST.png"
           }
         ]
@@ -60,43 +76,67 @@
             "ticker": "PANW",
             "name": "Palo Alto Networks, Inc.",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/PANW.png"
+            "status": "final",
+            "logo": "data/earnings/logos/PANW.png",
+            "chg": 6.42,
+            "price": 361.73,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "TJX",
             "name": "TJX Companies Inc",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/TJX.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TJX.png",
+            "chg": 8.05,
+            "price": 140.3,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
           },
           {
             "ticker": "LOW",
             "name": "Lowe's Companies, Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/LOW.png"
+            "status": "final",
+            "logo": "data/earnings/logos/LOW.png",
+            "chg": 1.05,
+            "price": 222.78,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
           },
           {
             "ticker": "TGT",
             "name": "Target Corporation",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/TGT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/TGT.png",
+            "chg": 4.01,
+            "price": 165.93,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
           },
           {
             "ticker": "P",
             "name": "Everpure, Inc. Class A",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/P.png"
+            "status": "final",
+            "logo": "data/earnings/logos/P.png",
+            "chg": 4.73,
+            "price": 105.5,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "WWD",
             "name": "Woodward, Inc.",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/WWD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WWD.png",
+            "chg": 5.22,
+            "price": 335.72,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           }
         ]
       },
@@ -108,44 +148,68 @@
             "ticker": "NVDA",
             "name": "NVIDIA Corporation",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/NVDA.png"
+            "status": "final",
+            "logo": "data/earnings/logos/NVDA.png",
+            "chg": -2.89,
+            "price": 150.96,
+            "reactDate": "2026-11-18",
+            "baseDate": "2026-11-17"
           },
           {
             "ticker": "HD",
             "name": "Home Depot, Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/HD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/HD.png",
+            "chg": -2.45,
+            "price": 339.01,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
           },
           {
             "ticker": "DIS",
             "name": "Walt Disney Company",
             "when": "before",
-            "status": "na",
+            "status": "final",
             "logo": "data/earnings/logos/DIS.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -1.48,
+            "price": 116.94,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
           },
           {
             "ticker": "VIK",
             "name": "Viking Holdings Ltd",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/VIK.png"
+            "status": "final",
+            "logo": "data/earnings/logos/VIK.png",
+            "chg": 4.43,
+            "price": 94.28,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
           },
           {
             "ticker": "ESLT",
             "name": "Elbit Systems Ltd",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/ESLT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/ESLT.png",
+            "chg": 5.85,
+            "price": 720.53,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
           },
           {
             "ticker": "JD",
             "name": "JD.com, Inc. Sponsored ADR Class A",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/JD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/JD.png",
+            "chg": -7.66,
+            "price": 25.43,
+            "reactDate": "2026-11-17",
+            "baseDate": "2026-11-16"
           }
         ]
       }
@@ -693,7 +757,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 08:16",
+    "updatedAt": "20/11/2026 08:31",
     "source": "tradingview"
   }
 }
