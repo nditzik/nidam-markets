@@ -1,6 +1,6 @@
 {
   "today": "2026-11-20",
-  "todayCount": 9,
+  "todayCount": 10,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -12,8 +12,12 @@
             "ticker": "WMT",
             "name": "Walmart Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/WMT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WMT.png",
+            "chg": -1.04,
+            "price": 126.04,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "BABA",
@@ -33,8 +37,12 @@
             "ticker": "NTES",
             "name": "Netease Inc Sponsored ADR",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/NTES.png"
+            "status": "final",
+            "logo": "data/earnings/logos/NTES.png",
+            "chg": -11.39,
+            "price": 104.94,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           },
           {
             "ticker": "ROST",
@@ -107,8 +115,12 @@
             "ticker": "WWD",
             "name": "Woodward, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WWD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WWD.png",
+            "chg": 5.22,
+            "price": 335.72,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           }
         ]
       },
@@ -228,6 +240,12 @@
       "name": "Buckle, Inc.",
       "when": "before",
       "logo": "data/earnings/logos/BKE.png"
+    },
+    {
+      "ticker": "DRVN",
+      "name": "Driven Brands Holdings, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/DRVN.png"
     },
     {
       "ticker": "RLX",
@@ -574,7 +592,7 @@
       "date": "2026-11-20",
       "dow": "שישי",
       "label": "20.11",
-      "total": 9,
+      "total": 10,
       "companies": [
         {
           "ticker": "BJ",
@@ -618,6 +636,12 @@
           "logo": "data/earnings/logos/BKE.png"
         },
         {
+          "ticker": "DRVN",
+          "name": "Driven Brands Holdings, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/DRVN.png"
+        },
+        {
           "ticker": "RLX",
           "name": "RLX Technology, Inc. Sponsored ADR Class A",
           "when": "before",
@@ -641,6 +665,7 @@
     "IESC": "2026-11-20",
     "VFS": "2026-11-20",
     "BKE": "2026-11-20",
+    "DRVN": "2026-11-20",
     "RLX": "2026-11-20",
     "WRD": "2026-11-20",
     "HPE": "2026-11-23",
@@ -689,7 +714,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "20/11/2026 04:16",
+    "updatedAt": "20/11/2026 04:31",
     "source": "tradingview"
   }
 }
