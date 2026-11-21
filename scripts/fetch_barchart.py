@@ -21,6 +21,7 @@ import email.header
 import email.utils
 import imaplib
 import json
+import re
 import os
 import sys
 from datetime import datetime, timezone, timedelta
@@ -52,6 +53,7 @@ NOTICE_MARK = "אין הודעות חדשות"
 # היום>") — אין קידומת קבועה ארוכה, רק המקטע הראשון היציב. עדיין אין תצפית
 # מספיקה על ימי סופ"ש/חג — אם יתברר שיש חיווי "אין הודעות" מקביל, להוסיף כאן.
 PREMKT_MARK = "טרום מסחר בוול סטריט"
+PREMKT_RE = re.compile(r"טרום[-\s\u2010-\u2015]?מסחר")
 
 
 def israel_stamp():
@@ -207,7 +209,9 @@ def run_imap():
                     notice = (h["date"],)
                 continue
             is_review = SUBJECT_MARK in subject
-            is_premkt = PREMKT_MARK in subject
+            # 21.11.2026: מ-12.11 הנושא הוא "סיכום טרום-מסחר (Barchart) | <תאריך>: <כותרת>" (במקום
+            # "טרום מסחר בוול סטריט | …") — המהדורה הגיעה כל יום, אבל האתר והבריאות הראו "לא הגיע מאז 11.11".
+            is_premkt = (PREMKT_MARK in subject or (PREMKT_RE.search(subject) is not None and "Barchart" in subject)) and not is_review
             if not (is_review or is_premkt):
                 continue
             msg = imap_util.full(imap, h["id"])
