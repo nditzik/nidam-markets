@@ -160,6 +160,13 @@ def main(now=None):
     latest = {"d": lt["d"], "ch": lt["ch"], "vix": lt["vix"], "vch": lt["vch"], "offPrev": lt["offPrev"],
               "br": lt["br"], "above200": lt["above200"], "since": len(D) - 1 - lt["idx"], "laterDrops": after,
               "near": lt["offPrev"] >= NEAR}
+    # 21.11.2026, איציק: 20.11 (S&P ‏−3.70%) לא נספר כמקרה חדש (רק 11 ימי מסחר אחרי 5.11) — מציגים אותו
+    # ברצועה בלי לשנות את הסטטיסטיקה: הנפילה האחרונה של 3%+ בתוך הרצף ומספרה הסידורי.
+    drops = [i for i in range(lt["idx"] + 1, len(D)) if (C[i] / C[i - 1] - 1) * 100 <= THRESH]
+    if drops:
+        j = drops[-1]
+        latest["lastDrop"] = {"d": D[j], "ch": round((C[j] / C[j - 1] - 1) * 100, 2), "since": len(D) - 1 - j,
+                              "n": len(drops) + 1, "gap": j - lt["idx"]}
     out = {"asOf": D[-1], "threshold": -3, "nearPct": NEAR, "horizons": H, "rows": out_rows, "latest": latest,
            "first": D[0], "brFirst": min(br) if br else None,
            "src": "Barchart ($SPX, $VIX, $S5TH) + דשבורד המדדים לימים האחרונים",

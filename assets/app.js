@@ -1006,7 +1006,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np209";
+  var TA_VER = "np210";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -3247,7 +3247,14 @@
     var sel = UD_G === "near" ? nearRows : hist;
     var cur = (u.rows || []).filter(function (r) { return r[0] === L.d; })[0];
     var when = L.since === 0 ? "יום המסחר האחרון, " + udDmy(L.d) + ", היה יום כזה" : "היום החריג האחרון: " + udDmy(L.d) + " (לפני " + L.since + " ימי מסחר" + (L.laterDrops ? ", ועוד " + L.laterDrops + " נפילות של 3% מאז" : "") + ")";
-    var now = '<div class="ud-now"><div class="ud-now-h">' + esc(when) + "</div><div class=\"ud-now-f\">" +
+    // np210 (21.11.2026, איציק): נפילה של 3%+ בתוך הרצף — מוצגת בפני עצמה, בלי להיספר כמקרה חדש
+    var whenHtml = esc(when), LD = L.lastDrop, ord = { 2: "השנייה", 3: "השלישית", 4: "הרביעית", 5: "החמישית" };
+    if (LD && LD.d !== L.d) {
+      whenHtml = esc(LD.since === 0 ? "יום המסחר האחרון, " + udDmy(LD.d) : "לפני " + LD.since + " ימי מסחר, " + udDmy(LD.d)) +
+        ": S&amp;P 500 ירד " + '<b class="num down" dir="ltr">' + Math.abs(LD.ch).toFixed(1) + "%</b> — " + esc((ord[LD.n] || ("מספר " + LD.n)) + " של 3% ומעלה בתוך " + LD.gap + " ימי מסחר.") +
+        '<span class="ud-now-s">' + esc("הנתונים שמתחת הם של " + udDmy(L.d) + ", היום שפתח את הרצף. הוא המקרה שבטבלה ובסטטיסטיקה; נפילות בתוך רצף לא נספרות כמקרה נפרד.") + "</span>";
+    }
+    var now = '<div class="ud-now"><div class="ud-now-h">' + whenHtml + "</div><div class=\"ud-now-f\">" +
       "<span>S&amp;P 500 " + udNum(L.ch, "down") + "</span>" +
       (L.vix != null ? '<span>VIX <b class="num" dir="ltr">' + L.vix.toFixed(1) + "</b>" + (L.vch != null ? " (" + udNum(L.vch, L.vch > 0 ? "down" : "up") + " ביום)" : "") + "</span>" : "") +
       "<span>לפני הנפילה <b class=\"num\" dir=\"ltr\">" + Math.abs(L.offPrev).toFixed(1) + "%</b> מתחת לשיא</span>" +

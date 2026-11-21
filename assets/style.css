@@ -2893,3 +2893,6 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .fl-detail a.fl-ev { color: var(--text-soft); text-decoration: none; }
 .fl-detail a.fl-ev:hover { text-decoration: underline; }
 .fl-src { color: var(--text-3); font-size: .9em; white-space: nowrap; }
+
+/* np210 (21.11.2026): נפילה בתוך רצף ברצועת "ימים חריגים" — שורת הסבר משנית */
+.ud-now-s { display: block; font-weight: 400; font-size: 13px; color: var(--text-soft); margin-top: 4px; }
