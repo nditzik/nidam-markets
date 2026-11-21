@@ -2,8 +2,8 @@
  "meta": {
   "version": 1,
   "created": "2026-08-01",
-  "last_updated": "2026-11-14",
-  "weeks_count": 16,
+  "last_updated": "2026-11-21",
+  "weeks_count": 17,
   "note": "שבועות 1-3 שוחזרו מהשיחה (22.8) לאחר איפוס סביבה — ערכי ליבה מלאים, פירוט חלקי",
   "weekly_checklist_v3": {
    "updated": "2026-09-19",
@@ -11271,6 +11271,1326 @@
       [
        "WRD",
        "before"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "data_date": "2026-11-20",
+   "source": "csv_drive_rotation_2026-11-21",
+   "spx_perf": {
+    "1w": -8.61,
+    "1m": -10.4,
+    "3m": -9.56,
+    "6m": -7.03,
+    "ytd": 0.95,
+    "1y": 5.68
+   },
+   "spx_levels": {
+    "close": 6910.39,
+    "ma20": 7499.2315,
+    "ma50": 7625.2564,
+    "ma200": 7346.8322,
+    "hi52": 7818.93,
+    "off_hi52": -11.62
+   },
+   "spx_breadth": {
+    "ma5": 6,
+    "ma20": 19,
+    "ma50": 43,
+    "ma100": 39,
+    "ma150": 45,
+    "ma200": 46
+   },
+   "week_no": 17,
+   "sectors": {
+    "XLK": {
+     "name_he": "טכנולוגיה",
+     "index_sym": "SRIT",
+     "close": 5645.44,
+     "perf": {
+      "1d": -7.11,
+      "1w": -12.16,
+      "1m": -18.99,
+      "3m": -17.21,
+      "6m": -15.26,
+      "ytd": -0.68,
+      "1y": 3.37
+     },
+     "rank": {
+      "1w": 11,
+      "1m": 11,
+      "3m": 11,
+      "6m": 10,
+      "1y": 8
+     },
+     "rank_gap": -1,
+     "rank_1m_wow": -1,
+     "ma": {
+      "ma20": 6516.7235,
+      "ma50": 6910.9728,
+      "ma100": 6850.3341,
+      "ma200": 6428.3758
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 7494.8,
+     "off_hi52": -24.68,
+     "pct_above_ma5": 3,
+     "pct_above_ma20": 3,
+     "pct_above_ma50": 12,
+     "pct_above_ma100": 15,
+     "pct_above_ma200": 29,
+     "pct_above_ma50_prev": 36,
+     "breadth_delta_wow": -24,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.8169,
+     "crs_ma": 0.8701,
+     "crs_gap_pct": -6.1,
+     "crs_gap_pct_5d_ago": -4.05,
+     "crs_state": "falling",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 6,
+      "breadth": 0,
+      "highs_lows": null,
+      "crs": 0,
+      "signals": null,
+      "raw": 6,
+      "max": 70
+     },
+     "rotation_score": 9,
+     "rotation_score_prev": 37,
+     "quadrant": "lagging",
+     "quadrant_prev": "lagging",
+     "flags": [],
+     "industries_note": "5,645 — <span dir=\"ltr\">−12.2%</span> בשבוע, <span dir=\"ltr\">−19.0%</span> בחודש, 12% מתחת לקו 200 (6,428) ו-24.7% מהשיא; רק 12% מהמניות מעל ממוצע 50. הסקטור היחיד שה-CRS שלו יורד (<span dir=\"ltr\">−6.1%</span> מתחת לממוצע).",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "נשבר — מוביל את הירידה",
+      "checks": [
+       "n",
+       "n",
+       "n",
+       "n"
+      ]
+     }
+    },
+    "XLV": {
+     "name_he": "בריאות",
+     "index_sym": "SRHC",
+     "close": 2063.44,
+     "perf": {
+      "1d": -0.18,
+      "1w": -6.19,
+      "1m": -1.5,
+      "3m": 2.81,
+      "6m": 20.45,
+      "ytd": 14.26,
+      "1y": 17.07
+     },
+     "rank": {
+      "1w": 4,
+      "1m": 4,
+      "3m": 2,
+      "6m": 1,
+      "1y": 3
+     },
+     "rank_gap": -3,
+     "rank_1m_wow": -3,
+     "ma": {
+      "ma20": 2148.0435,
+      "ma50": 2057.1002,
+      "ma100": 1996.8575,
+      "ma200": 1874.0989
+     },
+     "above_ma200": true,
+     "above_ma50": true,
+     "hi52": 2210.66,
+     "off_hi52": -6.66,
+     "pct_above_ma5": 0,
+     "pct_above_ma20": 17,
+     "pct_above_ma50": 50,
+     "pct_above_ma100": 60,
+     "pct_above_ma200": 80,
+     "pct_above_ma50_prev": 92,
+     "breadth_delta_wow": -42,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.2986,
+     "crs_ma": 0.286,
+     "crs_gap_pct": 4.41,
+     "crs_gap_pct_5d_ago": 3.65,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 1,
+      "breadth": 8,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 21,
+      "max": 70
+     },
+     "rotation_score": 30,
+     "rotation_score_prev": 53,
+     "quadrant": "weakening",
+     "quadrant_prev": "weakening",
+     "flags": [],
+     "industries_note": "2,063 — רק 0.3% מעל ממוצע 50 (2,057), אחרי <span dir=\"ltr\">−6.2%</span> בשבוע; הרוחב נחתך מ-92% ל-50%. ה-CRS עדיין מעל הממוצע (<span dir=\"ltr\">+4.4%</span>) — זה, והמחיר שמעל ממוצע 50, מה שמשאיר את הסיווג.",
+     "verdict": {
+      "status": "held",
+      "cls": "ok",
+      "verdict": "מאושר — רמה 2, צמוד לקו הביטול",
+      "checks": [
+       "n0",
+       "y",
+       "p",
+       "y"
+      ]
+     }
+    },
+    "XLF": {
+     "name_he": "פיננסים",
+     "index_sym": "SRFI",
+     "close": 907.08,
+     "perf": {
+      "1d": -1.77,
+      "1w": -6.94,
+      "1m": -2.07,
+      "3m": -4.07,
+      "6m": 5.72,
+      "ytd": -0.5,
+      "1y": 6.84
+     },
+     "rank": {
+      "1w": 6,
+      "1m": 5,
+      "3m": 5,
+      "6m": 2,
+      "1y": 5
+     },
+     "rank_gap": -3,
+     "rank_1m_wow": -2,
+     "ma": {
+      "ma20": 950.434,
+      "ma50": 928.9572,
+      "ma100": 939.1372,
+      "ma200": 897.7111
+     },
+     "above_ma200": true,
+     "above_ma50": false,
+     "hi52": 983.56,
+     "off_hi52": -7.78,
+     "pct_above_ma5": 5,
+     "pct_above_ma20": 26,
+     "pct_above_ma50": 45,
+     "pct_above_ma100": 42,
+     "pct_above_ma200": 50,
+     "pct_above_ma50_prev": 79,
+     "breadth_delta_wow": -34,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.1313,
+     "crs_ma": 0.1266,
+     "crs_gap_pct": 3.71,
+     "crs_gap_pct_5d_ago": 3.58,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 1,
+      "breadth": 4,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 17,
+      "max": 70
+     },
+     "rotation_score": 24,
+     "rotation_score_prev": 53,
+     "quadrant": "weakening",
+     "quadrant_prev": "weakening",
+     "flags": [],
+     "industries_note": "907 — סגירה שבועית מתחת לקו הביטול (930) ומתחת לממוצע 50 (929), והרוחב נחתך מ-79% ל-45%: שני תנאי הביטול התקיימו. ה-CRS עדיין מעל הממוצע (<span dir=\"ltr\">+3.7%</span>) — הירידה היא של השוק כולו, אבל הכלל הוא כלל.",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "נשבר — הסיווג בוטל",
+      "checks": [
+       "n",
+       "y",
+       "n",
+       "n"
+      ]
+     }
+    },
+    "XLY": {
+     "name_he": "צריכה מחזורית",
+     "index_sym": "SRCD",
+     "close": 1843.05,
+     "perf": {
+      "1d": -3.5,
+      "1w": -6.85,
+      "1m": -3.72,
+      "3m": -3.81,
+      "6m": -5.69,
+      "ytd": -4.43,
+      "1y": 3.11
+     },
+     "rank": {
+      "1w": 5,
+      "1m": 6,
+      "3m": 4,
+      "6m": 8,
+      "1y": 9
+     },
+     "rank_gap": 2,
+     "rank_1m_wow": -2,
+     "ma": {
+      "ma20": 1934.241,
+      "ma50": 1885.1928,
+      "ma100": 1893.8032,
+      "ma200": 1885.1204
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 2024.18,
+     "off_hi52": -8.95,
+     "pct_above_ma5": 4,
+     "pct_above_ma20": 23,
+     "pct_above_ma50": 62,
+     "pct_above_ma100": 47,
+     "pct_above_ma200": 43,
+     "pct_above_ma50_prev": 83,
+     "breadth_delta_wow": -21,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.2667,
+     "crs_ma": 0.2574,
+     "crs_gap_pct": 3.62,
+     "crs_gap_pct_5d_ago": 3.48,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 8,
+      "breadth": 8,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 28,
+      "max": 70
+     },
+     "rotation_score": 40,
+     "rotation_score_prev": 69,
+     "quadrant": "lagging",
+     "quadrant_prev": "improving",
+     "flags": [],
+     "industries_note": "1,843 — מתחת לקו הביטול (1,881) ומתחת לקו 200 ולממוצע 50 (1,885 שניהם); רוחב 83%→62%. דוחות הקמעונאות התקבלו ברובם בחיוב והסקטור ירד 6.9% — במבחן התגובה זו חלוקה. ה-CRS עדיין מעל הממוצע (<span dir=\"ltr\">+3.6%</span>).",
+     "verdict": {
+      "status": "out",
+      "cls": "bounce",
+      "verdict": "המועמדות ירדה — מתחת לקו 200",
+      "checks": [
+       "p",
+       "y",
+       "p",
+       "n"
+      ]
+     }
+    },
+    "XLP": {
+     "name_he": "צריכה בסיסית",
+     "index_sym": "SRCS",
+     "close": 1018.42,
+     "perf": {
+      "1d": 0.68,
+      "1w": -2.01,
+      "1m": 3.83,
+      "3m": 8.83,
+      "6m": 5.11,
+      "ytd": 17.75,
+      "1y": 18.29
+     },
+     "rank": {
+      "1w": 1,
+      "1m": 1,
+      "3m": 1,
+      "6m": 3,
+      "1y": 2
+     },
+     "rank_gap": 2,
+     "rank_1m_wow": 1,
+     "ma": {
+      "ma20": 1014.101,
+      "ma50": 967.1624,
+      "ma100": 952.6406,
+      "ma200": 949.2903
+     },
+     "above_ma200": true,
+     "above_ma50": true,
+     "hi52": 1042.8,
+     "off_hi52": -2.34,
+     "pct_above_ma5": 30,
+     "pct_above_ma20": 64,
+     "pct_above_ma50": 82,
+     "pct_above_ma100": 76,
+     "pct_above_ma200": 76,
+     "pct_above_ma50_prev": 88,
+     "breadth_delta_wow": -6,
+     "breadth_direction": "falling",
+     "crs_val": 0.1474,
+     "crs_ma": 0.1351,
+     "crs_gap_pct": 9.1,
+     "crs_gap_pct_5d_ago": 4.33,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 17,
+      "breadth": 17,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 46,
+      "max": 70
+     },
+     "rotation_score": 66,
+     "rotation_score_prev": 49,
+     "quadrant": "leading",
+     "quadrant_prev": "weakening",
+     "flags": [],
+     "industries_note": "הסקטור שירד הכי פחות (<span dir=\"ltr\">−2.0%</span>), 1,018 — מעל כל הממוצעים ו-2.3% מהשיא; רוחב 82%. ה-CRS (עוצמה מול המדד) התרחב ל-<span dir=\"ltr\">+9.1%</span> מעל הממוצע (היה <span dir=\"ltr\">+4.3%</span>) — הרחוק ביותר בשוק.",
+     "verdict": {
+      "status": "held",
+      "cls": "ok",
+      "verdict": "מאושר — רמה 1 מתוך 3",
+      "checks": [
+       "y",
+       "y",
+       "y",
+       "y"
+      ]
+     }
+    },
+    "XLE": {
+     "name_he": "אנרגיה",
+     "index_sym": "SREN",
+     "close": 926.73,
+     "perf": {
+      "1d": -0.36,
+      "1w": -7.01,
+      "1m": -11.29,
+      "3m": -4.76,
+      "6m": 1.93,
+      "ytd": 34.83,
+      "1y": 37.01
+     },
+     "rank": {
+      "1w": 7,
+      "1m": 9,
+      "3m": 6,
+      "6m": 4,
+      "1y": 1
+     },
+     "rank_gap": -5,
+     "rank_1m_wow": 0,
+     "ma": {
+      "ma20": 991.913,
+      "ma50": 992.6702,
+      "ma100": 955.6822,
+      "ma200": 913.6712
+     },
+     "above_ma200": true,
+     "above_ma50": false,
+     "hi52": 1076.5,
+     "off_hi52": -13.91,
+     "pct_above_ma5": 0,
+     "pct_above_ma20": 0,
+     "pct_above_ma50": 0,
+     "pct_above_ma100": 19,
+     "pct_above_ma200": 43,
+     "pct_above_ma50_prev": 43,
+     "breadth_delta_wow": -43,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.1341,
+     "crs_ma": 0.1326,
+     "crs_gap_pct": 1.14,
+     "crs_gap_pct_5d_ago": -1.44,
+     "crs_state": "inflecting_up",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 7,
+      "breadth": 0,
+      "highs_lows": null,
+      "crs": 15,
+      "signals": null,
+      "raw": 22,
+      "max": 70
+     },
+     "rotation_score": 31,
+     "rotation_score_prev": 24,
+     "quadrant": "weakening",
+     "quadrant_prev": "weakening",
+     "flags": [],
+     "industries_note": "927 — <span dir=\"ltr\">−7.0%</span>, מתחת לממוצע 20 ו-50 (992–993); אף מניה לא מעל ממוצע 50 (היה 43%). ה-CRS חצה מעלה את הממוצע (<span dir=\"ltr\">−1.4%</span> ← <span dir=\"ltr\">+1.1%</span>) רק כי המדד ירד יותר — סותר את הרוחב ואת הנפט, ולא נחשב אישור.",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "מחוץ למודל — רוחב אפס",
+      "checks": [
+       "n",
+       "p",
+       "n",
+       "n"
+      ]
+     }
+    },
+    "XLI": {
+     "name_he": "תעשייה",
+     "index_sym": "SRIN",
+     "close": 1321.32,
+     "perf": {
+      "1d": -3.13,
+      "1w": -7.41,
+      "1m": -6.41,
+      "3m": -13.02,
+      "6m": -8.49,
+      "ytd": 0.62,
+      "1y": 5.76
+     },
+     "rank": {
+      "1w": 8,
+      "1m": 7,
+      "3m": 9,
+      "6m": 9,
+      "1y": 7
+     },
+     "rank_gap": 2,
+     "rank_1m_wow": 1,
+     "ma": {
+      "ma20": 1411.0495,
+      "ma50": 1420.7974,
+      "ma100": 1472.9212,
+      "ma200": 1466.1526
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 1577.25,
+     "off_hi52": -16.23,
+     "pct_above_ma5": 2,
+     "pct_above_ma20": 12,
+     "pct_above_ma50": 35,
+     "pct_above_ma100": 34,
+     "pct_above_ma200": 40,
+     "pct_above_ma50_prev": 71,
+     "breadth_delta_wow": -36,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.1912,
+     "crs_ma": 0.1879,
+     "crs_gap_pct": 1.74,
+     "crs_gap_pct_5d_ago": 1.19,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 17,
+      "breadth": 4,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 33,
+      "max": 70
+     },
+     "rotation_score": 47,
+     "rotation_score_prev": 70,
+     "quadrant": "lagging",
+     "quadrant_prev": "improving",
+     "flags": [],
+     "industries_note": "1,321 — <span dir=\"ltr\">−7.4%</span>, עכשיו 9.9% מתחת לקו 200 (1,466); הרוחב נחתך מ-71% ל-35%. ה-CRS עדיין מעל הממוצע (<span dir=\"ltr\">+1.7%</span>), אבל המחיר התרחק מהקו במקום להתקרב אליו.",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "מפגרת — מתחת לכל הממוצעים",
+      "checks": [
+       "n",
+       "p",
+       "n",
+       "n"
+      ]
+     }
+    },
+    "XLB": {
+     "name_he": "חומרים",
+     "index_sym": "SRMA",
+     "close": 605.34,
+     "perf": {
+      "1d": -2.38,
+      "1w": -7.88,
+      "1m": -6.58,
+      "3m": -7.93,
+      "6m": -3.07,
+      "ytd": 5.38,
+      "1y": 13.33
+     },
+     "rank": {
+      "1w": 9,
+      "1m": 8,
+      "3m": 8,
+      "6m": 5,
+      "1y": 4
+     },
+     "rank_gap": -3,
+     "rank_1m_wow": -1,
+     "ma": {
+      "ma20": 652.325,
+      "ma50": 640.82,
+      "ma100": 645.1638,
+      "ma200": 643.6836
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 677.14,
+     "off_hi52": -10.6,
+     "pct_above_ma5": 4,
+     "pct_above_ma20": 0,
+     "pct_above_ma50": 38,
+     "pct_above_ma100": 29,
+     "pct_above_ma200": 42,
+     "pct_above_ma50_prev": 67,
+     "breadth_delta_wow": -29,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.0876,
+     "crs_ma": 0.0869,
+     "crs_gap_pct": 0.82,
+     "crs_gap_pct_5d_ago": 0.79,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 4,
+      "breadth": 4,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 20,
+      "max": 70
+     },
+     "rotation_score": 29,
+     "rotation_score_prev": 37,
+     "quadrant": "weakening",
+     "quadrant_prev": "lagging",
+     "flags": [],
+     "industries_note": "605 — <span dir=\"ltr\">−7.9%</span>, מתחת לקו הביטול (642), לממוצע 50 ולקו 200 (644); רוחב 67%→38%. ה-CRS כמעט על הממוצע (<span dir=\"ltr\">+0.8%</span>), הדולר צמוד לשיא והזהב בשפל שנתי.",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "נשבר — הסיווג בוטל",
+      "checks": [
+       "n",
+       "p",
+       "n",
+       "n"
+      ]
+     }
+    },
+    "XLRE": {
+     "name_he": "נדל\"ן",
+     "index_sym": "SRRE",
+     "close": 270.54,
+     "perf": {
+      "1d": -1.1,
+      "1w": -4.34,
+      "1m": 0.04,
+      "3m": -5.68,
+      "6m": -4.17,
+      "ytd": 6.08,
+      "1y": 6.38
+     },
+     "rank": {
+      "1w": 3,
+      "1m": 3,
+      "3m": 7,
+      "6m": 6,
+      "1y": 6
+     },
+     "rank_gap": 3,
+     "rank_1m_wow": 2,
+     "ma": {
+      "ma20": 278.4715,
+      "ma50": 271.7974,
+      "ma100": 278.3177,
+      "ma200": 277.0094
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 293.1,
+     "off_hi52": -7.7,
+     "pct_above_ma5": 0,
+     "pct_above_ma20": 3,
+     "pct_above_ma50": 47,
+     "pct_above_ma100": 27,
+     "pct_above_ma200": 27,
+     "pct_above_ma50_prev": 80,
+     "breadth_delta_wow": -33,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.0391,
+     "crs_ma": 0.0371,
+     "crs_gap_pct": 5.57,
+     "crs_gap_pct_5d_ago": 3.03,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 25,
+      "breadth": 4,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 41,
+      "max": 70
+     },
+     "rotation_score": 59,
+     "rotation_score_prev": 44,
+     "quadrant": "improving",
+     "quadrant_prev": "weakening",
+     "flags": [],
+     "industries_note": "תנאי הריבית התקיים (4.91% מתחת ל-4.99%), אבל המחיר חזר אל מתחת לקו 200 (270.5 מול 277) והרוחב נחתך מ-80% ל-47%. ה-CRS עולה (<span dir=\"ltr\">+5.6%</span>) — הסקטור ירד פחות מהמדד, לא עלה.",
+     "verdict": {
+      "status": "out",
+      "cls": "bounce",
+      "verdict": "מעקב — הריבית תומכת, המחיר נשבר",
+      "checks": [
+       "y",
+       "y",
+       "n",
+       "n"
+      ]
+     }
+    },
+    "XLU": {
+     "name_he": "תשתיות",
+     "index_sym": "SRUT",
+     "close": 432.22,
+     "perf": {
+      "1d": -0.76,
+      "1w": -3.17,
+      "1m": 1.63,
+      "3m": -2.45,
+      "6m": -4.17,
+      "ytd": -0.37,
+      "1y": -2.96
+     },
+     "rank": {
+      "1w": 2,
+      "1m": 2,
+      "3m": 3,
+      "6m": 7,
+      "1y": 10
+     },
+     "rank_gap": 5,
+     "rank_1m_wow": 4,
+     "ma": {
+      "ma20": 440.184,
+      "ma50": 425.6426,
+      "ma100": 436.9777,
+      "ma200": 449.6123
+     },
+     "above_ma200": false,
+     "above_ma50": true,
+     "hi52": 482.91,
+     "off_hi52": -10.5,
+     "pct_above_ma5": 16,
+     "pct_above_ma20": 35,
+     "pct_above_ma50": 81,
+     "pct_above_ma100": 48,
+     "pct_above_ma200": 39,
+     "pct_above_ma50_prev": 90,
+     "breadth_delta_wow": -9,
+     "breadth_direction": "falling",
+     "crs_val": 0.0625,
+     "crs_ma": 0.0586,
+     "crs_gap_pct": 6.66,
+     "crs_gap_pct_5d_ago": 2.83,
+     "crs_state": "rising",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 25,
+      "breadth": 17,
+      "highs_lows": null,
+      "crs": 12,
+      "signals": null,
+      "raw": 54,
+      "max": 70
+     },
+     "rotation_score": 77,
+     "rotation_score_prev": 53,
+     "quadrant": "improving",
+     "quadrant_prev": "lagging",
+     "flags": [],
+     "industries_note": "432 — מעל ממוצע 50 (426) אבל 3.9% מתחת לקו 200 (450); רוחב 81% והריבית ירדה מתחת ל-4.98%. ה-CRS התרחב ל-<span dir=\"ltr\">+6.7%</span> — עוצמה יחסית בשבוע של ירידות, בלי אישור במחיר.",
+     "verdict": {
+      "status": "out",
+      "cls": "bounce",
+      "verdict": "מעקב — מתחת לקו 200",
+      "checks": [
+       "y",
+       "y",
+       "y",
+       "n"
+      ]
+     }
+    },
+    "XLC": {
+     "name_he": "תקשורת",
+     "index_sym": "SRTS",
+     "close": 382.4,
+     "perf": {
+      "1d": -3.12,
+      "1w": -9.44,
+      "1m": -17.2,
+      "3m": -14.55,
+      "6m": -23.0,
+      "ytd": -15.47,
+      "1y": -9.55
+     },
+     "rank": {
+      "1w": 10,
+      "1m": 10,
+      "3m": 10,
+      "6m": 11,
+      "1y": 11
+     },
+     "rank_gap": 1,
+     "rank_1m_wow": 1,
+     "ma": {
+      "ma20": 410.716,
+      "ma50": 445.9962,
+      "ma100": 452.1214,
+      "ma200": 457.3164
+     },
+     "above_ma200": false,
+     "above_ma50": false,
+     "hi52": 508.66,
+     "off_hi52": -24.82,
+     "pct_above_ma5": 9,
+     "pct_above_ma20": 41,
+     "pct_above_ma50": 41,
+     "pct_above_ma100": 23,
+     "pct_above_ma200": 23,
+     "pct_above_ma50_prev": 59,
+     "breadth_delta_wow": -18,
+     "breadth_direction": "collapsing",
+     "crs_val": 0.0553,
+     "crs_ma": 0.0549,
+     "crs_gap_pct": 0.82,
+     "crs_gap_pct_5d_ago": -0.1,
+     "crs_state": "inflecting_up",
+     "new_highs_3m": null,
+     "new_lows_3m": null,
+     "bearish_div_count": null,
+     "bullish_div_count": null,
+     "squeeze_count": null,
+     "iv_rank": null,
+     "score_components": {
+      "rank_momentum": 17,
+      "breadth": 4,
+      "highs_lows": null,
+      "crs": 15,
+      "signals": null,
+      "raw": 36,
+      "max": 70
+     },
+     "rotation_score": 51,
+     "rotation_score_prev": 44,
+     "quadrant": "lagging",
+     "quadrant_prev": "lagging",
+     "flags": [],
+     "industries_note": "382 — <span dir=\"ltr\">−9.4%</span> בשבוע ו-<span dir=\"ltr\">−17.2%</span> בחודש, 14% מתחת לממוצע 50 (446); רוחב 59%→41%. ה-CRS חצה מעלה את הממוצע (<span dir=\"ltr\">+0.8%</span>) בזכות נפילת המדד בלבד — בלי מחיר מעל הקווים זו לא חצייה שנספרת.",
+     "verdict": {
+      "status": "out",
+      "cls": "broken",
+      "verdict": "נשבר — שפל חדש",
+      "checks": [
+       "n0",
+       "p",
+       "n",
+       "n"
+      ]
+     }
+    }
+   },
+   "intermarket": {
+    "data": {
+     "us10y": {
+      "close": 4.91,
+      "1d": -2.77,
+      "1w": -4.66,
+      "1m": -3.91,
+      "3m": 4.69,
+      "ma20": 4.982,
+      "ma50": 5.072,
+      "ma200": 4.6002,
+      "hi52": 5.31,
+      "lo52": 3.96,
+      "off_hi52": -7.53,
+      "sym": "TNX"
+     },
+     "dxy": {
+      "close": 103.81,
+      "1d": -0.08,
+      "1w": 0.39,
+      "1m": 2.07,
+      "3m": 4.98,
+      "ma20": 102.57,
+      "ma50": 101.8838,
+      "ma200": 100.0737,
+      "hi52": 103.89,
+      "lo52": 96.21,
+      "off_hi52": -0.08,
+      "sym": "DXY"
+     },
+     "oil": {
+      "close": 83.41,
+      "1d": 1.18,
+      "1w": -4.44,
+      "1m": -13.13,
+      "3m": 3.27,
+      "ma20": 90.2295,
+      "ma50": 90.3354,
+      "ma200": 78.4072,
+      "hi52": 102.21,
+      "lo52": 55.84,
+      "off_hi52": -18.39,
+      "sym": "CLF27"
+     },
+     "gold": {
+      "close": 3515.4,
+      "1d": -4.62,
+      "1w": -9.54,
+      "1m": -15.14,
+      "3m": -23.1,
+      "ma20": 3942.155,
+      "ma50": 4110.862,
+      "ma200": 4504.8705,
+      "hi52": 5508.6,
+      "lo52": 3515.4,
+      "off_hi52": -36.18,
+      "sym": "GCZ26"
+     }
+    },
+    "read_he": "הבין-שוקי מאשר את הטבלה: ריבית יורדת, דולר צמוד לשיא, נפט וזהב יורדים — תמונה של מכירה רחבה ובריחה לאג\"ח ולדולר, שבה הדפנסיביים יורדים הכי פחות. הזהב בשפל שנתי אומר שגם נכסי ההגנה המסורתיים נמכרים; לכן הביטחון בסיווגים המאושרים בינוני, ושום סיווג חדש לא נפתח."
+   },
+   "radar": {
+    "breadth": "8/114 קבוצות עם שינוי אלפא חיובי; מפת חום 30/114 חיוביות בחודש",
+    "inflows": [
+     {
+      "industry": "Hotels & Motels",
+      "alpha_chg": 4.98,
+      "alpha": 9.25
+     },
+     {
+      "industry": "Medical - Outpatient & Hm Care",
+      "alpha_chg": 1.42,
+      "alpha": 21.4
+     },
+     {
+      "industry": "Consumer Prdts - Misc Staple",
+      "alpha_chg": 1.05,
+      "alpha": -17.13
+     },
+     {
+      "industry": "Insurance - Proprty & Casualty",
+      "alpha_chg": 1.03,
+      "alpha": 16.74
+     },
+     {
+      "industry": "Consulting",
+      "alpha_chg": 0.71,
+      "alpha": 0.08
+     },
+     {
+      "industry": "Utility - Gas Distribution",
+      "alpha_chg": 0.48,
+      "alpha": -3.51
+     },
+     {
+      "industry": "Building - Residential & Comm",
+      "alpha_chg": 0.04,
+      "alpha": -28.34
+     },
+     {
+      "industry": "Finance - Sbic & Commercial",
+      "alpha_chg": 0.01,
+      "alpha": -20.99
+     },
+     {
+      "industry": "Finance - Mortgage & Rel Svs",
+      "alpha_chg": -0.06,
+      "alpha": -45.0
+     },
+     {
+      "industry": "Medical Services",
+      "alpha_chg": -0.07,
+      "alpha": 3.97
+     }
+    ],
+    "outflows": [
+     {
+      "industry": "Semi Analog & Mixed",
+      "alpha_chg": -12.49,
+      "alpha": 3.65
+     },
+     {
+      "industry": "Computer - Integrated Systems",
+      "alpha_chg": -11.95,
+      "alpha": -2.72
+     },
+     {
+      "industry": "Communications Components",
+      "alpha_chg": -10.49,
+      "alpha": -13.64
+     },
+     {
+      "industry": "Staffing",
+      "alpha_chg": -9.4,
+      "alpha": 14.18
+     },
+     {
+      "industry": "Electronics - Semiconductors",
+      "alpha_chg": -8.56,
+      "alpha": -21.3
+     },
+     {
+      "industry": "Steel - Producers",
+      "alpha_chg": -8.19,
+      "alpha": 0.47
+     },
+     {
+      "industry": "Mining - Silver",
+      "alpha_chg": -7.83,
+      "alpha": -39.3
+     },
+     {
+      "industry": "Electronics - Misc Components",
+      "alpha_chg": -7.63,
+      "alpha": -18.08
+     },
+     {
+      "industry": "Oil - Field Services",
+      "alpha_chg": -6.78,
+      "alpha": -24.81
+     },
+     {
+      "industry": "Wireless Equipment",
+      "alpha_chg": -6.49,
+      "alpha": -31.93
+     }
+    ]
+   },
+   "earnings_season": {
+    "week_of_season": 7,
+    "season_over": true,
+    "next_week_frozen": [],
+    "caution": [
+     "XLK (DELL, ADI, HPQ, ADSK, WDAY, HPE)",
+     "XLV (MDT, A)",
+     "XLI (DE, J)"
+    ],
+    "reactions": {
+     "XLK": "המשך — אחרי דוח NVDA: <span dir=\"ltr\">−12.2%</span>, רוחב 36→12, ה-CRS יורד",
+     "XLY": "חלוקה — דוחות הקמעונאות התקבלו ברובם בחיוב, הסקטור <span dir=\"ltr\">−6.9%</span>, רוחב 83→62, מתחת לקו 200",
+     "XLP": "אישור יחסי — אחרי WMT/TGT: <span dir=\"ltr\">−2.0%</span> (הירידה הקטנה בשוק), רוחב 88→82, CRS מתרחב",
+     "XLC": "המשך — אחרי DIS: <span dir=\"ltr\">−9.4%</span>, רוחב 59→41"
+    },
+    "reactions_note": "עונת דוחות Q3 הסתיימה; מבחני התגובה של השבוע האחרון נרשמו כאן.",
+    "macro_next_week": "לפי לוח האתר"
+   },
+   "recommendations": [
+    {
+     "action": "approved_level_1",
+     "sector": "XLP",
+     "trigger": "מאושר, רמת אישור 1 מתוך 3, בלי שינוי (−2.0%, רוחב 82, CRS +9.1). ביטול: סגירה שבועית <967 (ממוצע 50)",
+     "confidence": "medium"
+    },
+    {
+     "action": "approved_level_2",
+     "sector": "XLV",
+     "trigger": "מאושר, רמת אישור 2 מתוך 3, צמוד לקו הביטול (2063 מול 2057; רוחב 92→50). ביטול: סגירה שבועית <2057 (ממוצע 50) + רוחב<50",
+     "confidence": "low"
+    },
+    {
+     "action": "cancelled",
+     "sector": "XLF",
+     "trigger": "הסיווג בוטל (907<930, רוחב 79→45). חזרה לבחינה: סגירה שבועית >929 (ממוצע 50) + רוחב>50 + שבוע אישור",
+     "confidence": "medium"
+    },
+    {
+     "action": "cancelled",
+     "sector": "XLB",
+     "trigger": "הסיווג בוטל (605<642, רוחב 67→38, מתחת לקו 200). חזרה לבחינה: סגירה שבועית >644 (קו 200) + רוחב>50 + שבוע אישור",
+     "confidence": "high"
+    },
+    {
+     "action": "candidacy_cancelled",
+     "sector": "XLY",
+     "trigger": "המועמדות ירדה (1843<1881; מבחן תגובה: חלוקה). חזרה: סגירה שבועית >1885 (קו 200) + רוחב>75 + שבוע שני",
+     "confidence": "medium"
+    },
+    {
+     "action": "watch",
+     "sector": "XLU",
+     "trigger": "הקרובה ביותר (CRS +6.7, רוחב 81, ריבית <4.98). מועמדות: סגירה שבועית >450 (קו 200) + שבוע שני",
+     "confidence": "low"
+    },
+    {
+     "action": "watch",
+     "sector": "XLRE",
+     "trigger": "תנאי הריבית התקיים (4.91<4.99); חסר: סגירה שבועית >277 (קו 200) + רוחב>60 + שבוע שני",
+     "confidence": "low"
+    },
+    {
+     "action": "out_of_model",
+     "sector": "XLI",
+     "trigger": "מתחת לכל הממוצעים (1321, רוחב 35). חזרה למעקב: סגירה שבועית >1421 (ממוצע 50) + רוחב>50; מועמדות רק מעל 1466 (קו 200)",
+     "confidence": "high"
+    },
+    {
+     "action": "out_of_model",
+     "sector": "XLE",
+     "trigger": "רוחב 0, נפט 83. חזרה: סגירה שבועית >993 (ממוצע 50) + נפט >90 (ממוצע 20) + רוחב>50 + שבוע אישור. ה-CRS חצה מעלה — לא נספר בלי מחיר",
+     "confidence": "high"
+    },
+    {
+     "action": "out_of_model",
+     "sector": "XLK",
+     "trigger": "מוביל את הירידה (−12.2%, רוחב 12, CRS −6.1). חזרה: סגירה שבועית >6517 (ממוצע 20) + רוחב>50 + CRS חוצה מלמטה",
+     "confidence": "high"
+    },
+    {
+     "action": "out_of_model",
+     "sector": "XLC",
+     "trigger": "שפל חדש (382, רוחב 41). חזרה למעקב: סגירה שבועית >411 (ממוצע 20) + רוחב>50; ה-CRS חצה מעלה (+0.8) — לא נספר בלי מחיר",
+     "confidence": "high"
+    }
+   ],
+   "signals": {
+    "distribution": [
+     "S&P 500 <span dir=\"ltr\">−8.61%</span>, מתחת לקו 200; רוחב השוק 71→43, רק 19% מעל ממוצע 20",
+     "XLK: <span dir=\"ltr\">−12.2%</span>, רוחב 36→12, ה-CRS היחיד שיורד",
+     "XLF ו-XLB חצו את קו הביטול; רוחב 79→45 ו-67→38",
+     "XLY: דוחות חיוביים ברובם וסקטור יורד (<span dir=\"ltr\">−6.9%</span>) — חלוקה",
+     "XLE: רוחב 43→0; נפט <span dir=\"ltr\">−4.4%</span>",
+     "זהב בשפל שנתי (3,515), <span dir=\"ltr\">−9.5%</span> בשבוע",
+     "מכ\"ם: רק 8 מתוך 114 קבוצות עם זרימה חיובית"
+    ],
+    "accumulation": [
+     "XLP: הירידה הקטנה בשוק, CRS +4.3→+9.1, רוחב 82",
+     "XLU: רוחב 81, CRS +2.8→+6.7 — מתחת לקו 200",
+     "מכ\"ם: מלונות +5.0, טיפול אמבולטורי וביתי +1.4, ביטוח רכוש +1.0"
+    ]
+   },
+   "notes": "שבוע 17 — S&P −8.61% ל-6,910, תיקון (−11.6% מהשיא) ומתחת לקו 200 (7,347); רוחב 71→43. ריבית 4.91 (מתחת לממוצע 20/50), דולר 103.8 צמוד לשיא, נפט 83.4 (−4.4%), זהב 3,515 בשפל שנתי (−9.5%). כל 11 הסקטורים ירדו: טכנולוגיה −12.2 (רוחב 12, CRS יורד), תקשורת −9.4; בסיסית −2.0, תשתיות −3.2, נדל\"ן −4.3 בראש. הסיווג של פיננסים (907<930) ושל חומרים (605<642) בוטל; המועמדות של צריכה מחזורית ירדה (1,843<1,881; מבחן תגובה: חלוקה). נשארו מאושרים: בסיסית (רמה 1) ובריאות (רמה 2, 0.3% מעל ממוצע 50, רוחב 92→50). ה-CRS עולה ב-9 סקטורים וחצה מעלה באנרגיה ובתקשורת — אפקט של ירידת המדד, לא נספר בלי מחיר. הסקטור הבא: אין; הקרובה ביותר תשתיות (קו 200 ב-450). עונת הדוחות הסתיימה.",
+   "lessons": [
+    "CRS שמתגלגל מטה בכל הסקטורים המאושרים בבת אחת, כשהבין-שוקי סותר את הטבלה, הוא דגל על השוק כולו — רמת הביטחון של כל הסיווגים יורדת יחד, לא רק של הקרוב ביותר לקו הביטול.",
+    "בשבוע של ירידת מדד חדה בהובלת סקטור כבד אחד, ה-CRS של כמעט כל השאר עולה ואף חוצה מעלה; חצייה כזו נספרת רק עם מחיר מעל הקווים ורוחב שמתרחב."
+   ],
+   "earnings_next_week": [
+    {
+     "date": "2026-11-23",
+     "dow": "שני",
+     "tickers": [
+      [
+       "HPE",
+       "after"
+      ],
+      [
+       "A",
+       "after"
+      ],
+      [
+       "ZM",
+       "after"
+      ],
+      [
+       "SYM",
+       "after"
+      ],
+      [
+       "J",
+       "after"
+      ],
+      [
+       "SMTC",
+       "after"
+      ],
+      [
+       "AMTM",
+       ""
+      ],
+      [
+       "DAC",
+       "after"
+      ],
+      [
+       "CENTA",
+       "after"
+      ],
+      [
+       "CENT",
+       "after"
+      ],
+      [
+       "CDLR",
+       ""
+      ],
+      [
+       "DRVN",
+       ""
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-24",
+     "dow": "שלישי",
+     "tickers": [
+      [
+       "DELL",
+       "after"
+      ],
+      [
+       "ADI",
+       "before"
+      ],
+      [
+       "MDT",
+       "before"
+      ],
+      [
+       "ADSK",
+       "after"
+      ],
+      [
+       "WDAY",
+       "after"
+      ],
+      [
+       "DLTR",
+       "before"
+      ],
+      [
+       "HPQ",
+       "after"
+      ],
+      [
+       "BBY",
+       "before"
+      ],
+      [
+       "BURL",
+       "before"
+      ],
+      [
+       "NTNX",
+       "after"
+      ],
+      [
+       "SJM",
+       "before"
+      ],
+      [
+       "DKS",
+       "before"
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-25",
+     "dow": "רביעי",
+     "tickers": [
+      [
+       "DE",
+       "before"
+      ],
+      [
+       "LI",
+       "before"
+      ],
+      [
+       "BZ",
+       "before"
+      ],
+      [
+       "BMA",
+       ""
+      ],
+      [
+       "GDS",
+       "before"
+      ],
+      [
+       "IMKTA",
+       ""
+      ]
+     ]
+    },
+    {
+     "date": "2026-11-26",
+     "dow": "חמישי",
+     "tickers": []
+    },
+    {
+     "date": "2026-11-27",
+     "dow": "שישי",
+     "tickers": [
+      [
+       "CHA",
+       ""
       ]
      ]
     }
