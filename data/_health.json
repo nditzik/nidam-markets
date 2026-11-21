@@ -1,5 +1,5 @@
 {
-  "generatedAt": "20/11/2026 08:32",
+  "generatedAt": "21/11/2026 05:46",
   "today": [
     {
       "label": "סריקת תיקון",
@@ -8,33 +8,33 @@
       "arrived": true
     },
     {
-      "label": "תדרוך בוקר",
-      "tab": "briefing",
-      "time": "06:00",
-      "arrived": true
-    },
-    {
-      "label": "Barchart בוקר",
-      "tab": "morning",
-      "time": "06:08",
-      "arrived": true
-    },
-    {
       "label": "מדדים",
       "tab": "indices",
-      "time": "08:30",
+      "time": "05:45",
       "arrived": true
     },
     {
       "label": "מומנטום",
       "tab": "momentum",
-      "time": "08:30",
+      "time": "05:45",
       "arrived": true
+    },
+    {
+      "label": "תדרוך בוקר",
+      "tab": "briefing",
+      "time": "06:00",
+      "arrived": false
     },
     {
       "label": "תדרוך אחה\"צ",
       "tab": "briefing",
-      "time": "15:05",
+      "time": "14:58",
+      "arrived": false
+    },
+    {
+      "label": "Barchart בוקר",
+      "tab": "morning",
+      "time": "06:08",
       "arrived": false
     },
     {
@@ -48,7 +48,7 @@
     {
       "key": "indices",
       "label": "מדדים",
-      "updatedAt": "20/11/2026 08:30",
+      "updatedAt": "21/11/2026 05:45",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -56,7 +56,7 @@
     {
       "key": "momentum",
       "label": "מומנטום",
-      "updatedAt": "20/11/2026 08:30",
+      "updatedAt": "21/11/2026 05:45",
       "ageHours": 0.0,
       "status": "ok",
       "detail": ""
@@ -65,7 +65,7 @@
       "key": "morning",
       "label": "Barchart בוקר",
       "updatedAt": "20/11/2026 06:08",
-      "ageHours": 2.4,
+      "ageHours": 23.6,
       "status": "ok",
       "detail": ""
     },
@@ -73,23 +73,23 @@
       "key": "premkt",
       "label": "Barchart טרום מסחר",
       "updatedAt": "11/11/2026 14:33",
-      "ageHours": 210.0,
+      "ageHours": 231.2,
       "status": "down",
       "detail": ""
     },
     {
       "key": "briefing",
       "label": "תדרוך משקיעים",
-      "updatedAt": "20/11/2026 06:00",
-      "ageHours": 2.5,
+      "updatedAt": "20/11/2026 15:00",
+      "ageHours": 14.8,
       "status": "ok",
       "detail": ""
     },
     {
       "key": "candidates",
       "label": "סריקת תיקון",
-      "updatedAt": "20/11/2026 05:30",
-      "ageHours": 3.0,
+      "updatedAt": "21/11/2026 05:30",
+      "ageHours": 0.3,
       "status": "ok",
       "detail": ""
     },
@@ -97,8 +97,8 @@
       "key": "advice",
       "label": "בדיקת ניסוח",
       "status": "ok",
-      "updatedAt": "20/11/2026 08:32",
-      "detail": "בדיקה אוטומטית של ניסוח (לא בדיקה משפטית) · נבדקו 2814 פריטים ב-20/11/2026 08:32 · בתוכן המוצג כרגע לא נמצאו ניסוחים לבדיקה · בארכיון הציבורי 70 מתוך 129 קבצים כוללים ניסוחי מסחר ישנים (מוצגים בנוסחם המקורי, מסומנים 'נוסח ארכיוני') · לא כולל: חלון הניתוח הטכני (נבנה בדפדפן), תדרוכי הבוקר ו-Barchart (תוכן צד שלישי), הודעות הטלגרם, טקסטים קבועים של האתר"
+      "updatedAt": "21/11/2026 05:46",
+      "detail": "בדיקה אוטומטית של ניסוח (לא בדיקה משפטית) · נבדקו 2793 פריטים ב-21/11/2026 05:46 · בתוכן המוצג כרגע לא נמצאו ניסוחים לבדיקה · בארכיון הציבורי 70 מתוך 129 קבצים כוללים ניסוחי מסחר ישנים (מוצגים בנוסחם המקורי, מסומנים 'נוסח ארכיוני') · לא כולל: חלון הניתוח הטכני (נבנה בדפדפן), תדרוכי הבוקר ו-Barchart (תוכן צד שלישי), הודעות הטלגרם, טקסטים קבועים של האתר"
     }
   ],
   "adviceLint": {
@@ -115,7 +115,7 @@
       }
     },
     "scope": {
-      "checked": 2814,
+      "checked": 2793,
       "archiveFiles": 129,
       "archiveBlocks": 15981,
       "includes": [
