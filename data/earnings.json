@@ -20,17 +20,17 @@
             "baseDate": "2026-11-19"
           },
           {
-            "ticker": "MOG.B",
-            "name": "Moog Inc. Class B",
-            "when": "before",
-            "status": "na"
-          },
-          {
             "ticker": "MOG.A",
             "name": "Moog Inc. Class A",
             "when": "before",
             "status": "na",
             "logo": "data/earnings/logos/MOG.A.png"
+          },
+          {
+            "ticker": "MOG.B",
+            "name": "Moog Inc. Class B",
+            "when": "before",
+            "status": "na"
           },
           {
             "ticker": "FRO",
@@ -105,17 +105,6 @@
             "baseDate": "2026-11-18"
           },
           {
-            "ticker": "NTES",
-            "name": "Netease Inc Sponsored ADR",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/NTES.png",
-            "chg": -11.39,
-            "price": 104.94,
-            "reactDate": "2026-11-19",
-            "baseDate": "2026-11-18"
-          },
-          {
             "ticker": "INTU",
             "name": "Intuit Inc.",
             "when": "after",
@@ -136,6 +125,17 @@
             "price": 213.46,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
+          },
+          {
+            "ticker": "NTES",
+            "name": "Netease Inc Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/NTES.png",
+            "chg": -11.39,
+            "price": 104.94,
+            "reactDate": "2026-11-19",
+            "baseDate": "2026-11-18"
           }
         ]
       },
@@ -337,16 +337,16 @@
           "logo": "data/earnings/logos/DAC.png"
         },
         {
-          "ticker": "CENTA",
-          "name": "Central Garden & Pet Company Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CENTA.png"
-        },
-        {
           "ticker": "CENT",
           "name": "Central Garden & Pet Company",
           "when": "after",
           "logo": "data/earnings/logos/CENT.png"
+        },
+        {
+          "ticker": "CENTA",
+          "name": "Central Garden & Pet Company Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CENTA.png"
         }
       ]
     },
@@ -546,7 +546,7 @@
     "CHA": "2026-11-27"
   },
   "_meta": {
-    "updatedAt": "21/11/2026 11:46",
+    "updatedAt": "21/11/2026 12:04",
     "source": "tradingview"
   }
 }
