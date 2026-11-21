@@ -1,0 +1,429 @@
+<!--np-disc--><div id="np-disc" role="note" style="direction:rtl;text-align:right;font:13px/1.55 'IBM Plex Sans Hebrew',Arial,sans-serif;color:inherit;background:rgba(127,127,127,.12);border:1px solid rgba(127,127,127,.4);border-radius:6px;padding:10px 14px;margin:8px 8px 14px"><div style="margin:0"><b>הבהרה.</b> דוח זה מציג מידע וניתוחים כלליים לצורכי מחקר ולימוד. מפעיל האתר אינו בעל רישיון ייעוץ השקעות. התוכן אינו מותאם לנתוניך ולצרכיך ואינו תחליף לייעוץ השקעות אישי. הנתונים והניתוחים עשויים להיות מעוכבים או שגויים. השקעה כרוכה בסיכון להפסד. <a href="https://nditzik.github.io/nidam-markets/legal.html" target="_top" style="color:inherit;text-decoration:underline">הבהרות, סיכונים וגילוי עניין אישי</a></div><div style="margin:4px 0 0">הנתונים והניתוח מתייחסים למועד הפרסום (<span dir="ltr">22.7.2026</span>) ואינם תמונת מצב עדכנית.</div></div><!--/np-disc-->
+<title>NOW דוח רבעון Q2 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .logo{height:34px;width:auto;display:block;margin-bottom:24px;max-width:100%}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="ServiceNow">
+    <div class="eyebrow">ServiceNow, Inc. · NYSE: NOW · תוצאות רבעון שני 2026</div>
+    <h1>עקיפה בכל מדד, AI שעבר מיליארד דולר ומהפך לכיוון הסייבר. אחרי ירידה של 37% מתחילת השנה, המניה סוף-סוף קיבלה סיבה לעלות</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-22 ביולי 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: אפריל–יוני 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת המשקיעים</span>
+      <span>עודכן: 21.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>ServiceNow היא "מערכת ההפעלה" של המשרד האחורי בארגונים גדולים, ועכשיו רוצה להיות גם "מגדל הפיקוח" על ה-AI ועל הסייבר</h2>
+  <p class="lead">ServiceNow מוכרת לארגונים גדולים תוכנה בענן שמנהלת "זרימות עבודה". עובד מדווח על תקלה במחשב, מבקש הרשאה או צריך אישור רכש, והמערכת מנתבת את הבקשה, מתעדת אותה ודואגת שתטופל. החברה התחילה במחלקות המחשוב (IT), והתרחבה למשאבי אנוש, שירות לקוחות (CRM), ניהול סיכונים ואבטחת מידע. 98% מהלקוחות מחדשים את החוזה מדי שנה.</p>
+  <p class="body" style="margin-top:14px">ברבעון הזה ServiceNow השלימה את רכישת <strong>Armis</strong> (אבטחת מכשירים מחוברים, ששילמה עליה כ-$7.5B במזומן ברבעון), אחרי <strong>Veza</strong> (ניהול זהויות והרשאות) ו-<strong>Moveworks</strong> (עוזר AI לעובדים). המטרה: לחבר את "מגדל הפיקוח" שמנהל את כל סוכני ה-AI בארגון (AI Control Tower) לפלטפורמת אבטחה מלאה. לפי המנכ"ל ביל מקדרמוט, עסקי האבטחה של החברה כבר בהיקף של יותר ממיליארד דולר בשנה, השמיניים בגודלם בעולם הארגוני והמהירים ביותר בצמיחה.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>Salesforce ו-Microsoft</h3>
+      <p>Salesforce היא המתחרה העיקרית בשירות לקוחות וב-CRM, ומציעה תמחור לפי תוצאה בסוכני AI (Agentforce). ‏Microsoft מתחרה בכלים לעובדים (Copilot) ובניהול סוכנים, אבל היא גם שותפה.</p>
+    </div>
+    <div class="col">
+      <h3>Atlassian ו-Workday</h3>
+      <p>Atlassian מתחרה בניהול שירותי IT (Jira Service Management), במיוחד בחברות בינוניות. ‏Workday חזקה במשאבי אנוש, תחום שבו ServiceNow מנסה להיות "דלת הכניסה" לעובדים.</p>
+    </div>
+    <div class="col">
+      <h3>Palo Alto, ‏CrowdStrike וסטארט-אפים של AI</h3>
+      <p>הכניסה לסייבר מציבה את ServiceNow מול ענקיות האבטחה, שמקדרמוט קורא להן "חברים ושותפים". במקביל, סטארט-אפים של AI מבטיחים להחליף מערכות שירות ותיקות, וזה מקור החשש בשוק.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון חזק מכל הבחינות, אבל חלק מהעקיפה הוא הקדמת הכנסות, והתחזית השנתית עלתה רק מעט</h2>
+  <p class="lead">הכנסות המנויים הגיעו ל-$3.88B, צמיחה של 23% בנטרול מטבע, נקודה וחצי מעל הגבוה בטווח התחזית. ההכנסות הכוללות היו $3.99B (צפי: $3.93B). הרווח המתואם היה $0.90 למניה (צפי: $0.86). ההכנסות החתומות ל-12 החודשים הבאים (cRPO) עלו ב-21.5%, שתי נקודות מעל התחזית. הרווחיות התפעולית הייתה 29.5%, שלוש נקודות מעל התחזית. וה-ACV של מוצרי ה-AI (השווי השנתי של החוזים) עבר את רף המיליארד דולר.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>המשקיעים ברחו ממניות התוכנה ב-2026 מחשש ש-AI "יאכל" אותן: פחות עובדים אצל הלקוחות פירושו פחות רישיונות. הדוח הזה ענה על החשש במספרים. לקוחות קונים יותר AI, משלמים עליו 20%–30% יותר, ובוחרים בחוזים ארוכים יותר. עם זאת, כמחצית מהעקיפה בהכנסות הגיעה מהקדמת הכנסות מהממשל האמריקאי, מהרבעון השלישי לשני. לכן התחזית השנתית עלתה רק ב-$15M. זו "הסתייגות" שכדאי לזכור.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>עקיפה של הגבוה בטווח התחזית בכל מדד, וחוזים ארוכים יותר</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$3.99B</div><div class="l">הכנסות</div><div class="d up">+24% · הצפי: $3.93B</div></div>
+    <div class="kpi"><div class="v num">$0.90</div><div class="l">רווח מתואם למניה</div><div class="d up">הצפי: $0.86</div></div>
+    <div class="kpi"><div class="v num">$13.2B</div><div class="l">cRPO (חתום ל-12 חודשים)</div><div class="d up">+21.5% · 2 נק' מעל התחזית</div></div>
+    <div class="kpi"><div class="v num">29.5%</div><div class="l">רווחיות תפעולית</div><div class="d up">3 נק' מעל התחזית</div></div>
+    <div class="kpi"><div class="v num">&gt;$1B</div><div class="l">ACV של AI</div><div class="d up">יעד לסוף השנה: $1.5B</div></div>
+    <div class="kpi"><div class="v num">98%</div><div class="l">שיעור חידוש</div><div class="d up">658 לקוחות מעל $5M בשנה</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הפער בין הרווח המתואם לרווח החשבונאי גדול במיוחד ברבעון הזה. הרווח החשבונאי (GAAP) היה רק $0.29 למניה, והרווח התפעולי החשבונאי רק 4% מההכנסות. הסיבות: עלויות הרכישות (Armis ו-Veza) ותגמול במניות של $652M ברבעון. במאזן, המוניטין קפץ מ-$3.6B ל-$9.8B, והחוב לטווח ארוך עלה מ-$1.5B ל-$5.4B. ברבעון לא בוצעה רכישה עצמית, אחרי $2.2B ברבעון הראשון.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>הכנסות שעולות בעקביות, וה-AI כבר מגיע לכל סוגי הלקוחות</h2>
+  <p class="body">בגרף: ההכנסות הכוללות בכל רבעון, במיליארדי דולרים. העמודה המקווקוות היא הרבעון השלישי, שפורסם באוקטובר. הוספנו אותה בדיעבד, כדי להראות שההנהלה עמדה בתחזית שנתנה ביולי.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 360" role="img" aria-label="הכנסות לפי רבעון">
+<line x1="40" y1="300" x2="790" y2="300" stroke="var(--muted)"/>
+<rect x="60" y="120" width="80" height="180" fill="var(--accent)"/>
+<text x="100" y="111" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.22B</text>
+<text x="100" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q2'25</text>
+<rect x="185" y="109" width="80" height="191" fill="var(--accent)"/>
+<text x="225" y="100" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.41B</text>
+<text x="225" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q3'25</text>
+<rect x="310" y="100" width="80" height="200" fill="var(--accent)"/>
+<text x="350" y="91" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.57B</text>
+<text x="350" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q4'25</text>
+<rect x="435" y="89" width="80" height="211" fill="var(--accent)"/>
+<text x="475" y="80" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.77B</text>
+<text x="475" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q1'26</text>
+<rect x="560" y="77" width="80" height="223" fill="var(--accent)"/>
+<text x="600" y="68" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.99B</text>
+<text x="600" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed" font-weight="700">Q2'26</text>
+<rect x="685" y="70" width="80" height="230" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="725" y="61" font-size="15" font-weight="700" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$4.11B</text>
+<text x="725" y="324" font-size="14" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q3'26</text>
+</svg>
+    <figcaption>הכנסות כוללות לפי רבעון. Q3'26 (מקווקו) היא התוצאה בפועל שפורסמה ב-28.10.2026. מקור: דוחות החברה ו-FactSet.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>AI עובר משלב הניסוי לייצור</h3>
+      <p>ה-ACV החדש מ-AI צמח ביותר מ-40% מהרבעון הקודם. מספר הלקוחות עם סוכני AI בשימוש מבצעי גדל פי 9 בתשעה חודשים. עסקאות עם 5 מוצרי AI ומעלה גדלו פי 5.5. אצל כ-40 לקוחות, סוכני "תמיכה ברמה 1" סוגרים 80%–85% מהבקשות בלי מגע אדם, בתוך 20 דקות במקום יומיים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>סייבר ו"מגדל הפיקוח"</h3>
+      <p>פתרונות האבטחה והסיכונים היו ב-16 מ-20 העסקאות הגדולות, עם 24 עסקאות של יותר ממיליון דולר. ‏AI Control Tower, שמאתר, מנהל ו"מכבה" סוכני AI חריגים, צבר יותר מ-500 לקוחות בחצי השנה הראשונה שלו. ‏Armis עוקבת בזמן אמת אחרי 7 מיליארד מכשירים מחוברים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>CRM וקול</h3>
+      <p>עסקי ה-CRM הגיעו ל-$2B ACV. גודל העסקה הממוצע במכירות הוכפל. חברת תעופה גדולה מפעילה את כל מוקד השירות הקולי שלה על סוכני AI של ServiceNow: 5 מיליון שיחות בשנה הראשונה. ‏Employee Works (מ-Moveworks) צמח ביותר מ-150% ברבעון.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · התשובה לחשש מ-AI</div>
+  <h2>מקדרמוט ענה אחת-אחת על השאלות שמטרידות את המשקיעים. הנה התשובות, והמספרים שמאחוריהן</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>החשש</th><th>התשובה של ההנהלה</th><th>הנתון שהוצג</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>"AI יקטין את מספר הרישיונות"</td><td>מספר המשתמשים הפעילים עולה</td><td>50% מהעסקים החדשים כבר לא מבוססי רישיון למשתמש</td></tr>
+        <tr><td>"הלקוחות יבנו לבד"</td><td>"עוד לא פגשתי לקוח שישקול את זה"</td><td>לפי ההנהלה, לבנות סוכן לבד עולה פי 5–10</td></tr>
+        <tr><td>"מחירי ה-AI יירדו"</td><td>מתמחרים לפי פתרון, לא לפי טוקנים</td><td>תוספת מחיר של 20%–30% בחבילות AI, ויותר מ-30% ב-Pro Plus</td></tr>
+        <tr class="hl"><td>"החוזים מתקצרים"</td><td>"להפך, הם מתארכים"</td><td>RPO ‏+22%, יותר מה-cRPO. עסקאות ל-5 שנים עם Experian, ‏Maybank ו-Tech Mahindra</td></tr>
+        <tr><td>"מחזורי המכירה מתארכים"</td><td>"לא ראיתי שינוי, ואם כבר, לטובה"</td><td>123 עסקאות של יותר ממיליון דולר, ‏+40%</td></tr>
+        <tr><td>"הממשל מקצץ"</td><td>"העסק הממשלתי מעולם לא היה חזק יותר"</td><td>חזק במיוחד, עד כדי הקדמת הכנסות מהרבעון השלישי</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>זו הייתה שיחת משקיעים יוצאת דופן: המנכ"ל הקדיש חלק גדול מדבריו לתשובות על חששות שוק, עוד לפני השאלות. ככה מנסים להחזיר אמון. חלק מהתשובות נשענות על נתונים (RPO, תוספות מחיר, עסקאות גדולות), וחלק על אמירות ("לא פגשתי לקוח"). המבחן האמיתי יהיה אם הצמיחה ב-cRPO תחזיק מעל 20% ברבעונים הבאים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>העלאה צנועה לשנה, האטה ל-20% ברבעון השלישי, ויעדים שאפתניים ל-2030</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>תחזית חדשה</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות מנויים 2026</td><td class="n">$15.76–$15.78B</td><td>‏+22.5% · הועלתה ב-$15M באמצע הטווח</td></tr>
+        <tr><td>רווחיות גולמית במנויים 2026</td><td class="n">81%</td><td>ירידה קלה: יותר לקוחות בענן ציבורי ויותר AI</td></tr>
+        <tr><td>רווחיות תפעולית 2026</td><td class="n">31.5%</td><td>תזרים חופשי: 35%</td></tr>
+        <tr class="hl"><td>הכנסות מנויים Q3</td><td class="n">$3.975–$3.98B</td><td>‏+20% בנטרול מטבע. האטה בגלל ההקדמה לרבעון השני</td></tr>
+        <tr><td>cRPO ‏Q3</td><td class="n">+20%</td><td>בנטרול מטבע</td></tr>
+        <tr><td>יעדי 2030 (מיום המשקיעים, מאי)</td><td>$30B+ מנויים</td><td>30% מה-ACV מ-AI, ‏Rule of 60+, תגמול במניות מתחת ל-10% עד 2029</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="tl">
+    <li><div class="when">שבועות ספורים</div><div class="what">השקת מוצר AI חדש "בלי כרטיסים": מוקד שירות שיחתי, במכירה עצמית, שמכוון ל"Fortune 500,000", כלומר עסקים בינוניים</div></li>
+    <li><div class="when">סוף 2026</div><div class="what">ACV של AI מעל $1.5B. מספר העובדים יחזור לרמה שלפני הרכישות</div></li>
+    <li><div class="when">2027</div><div class="what">7 עסקים שכל אחד מהם מעל מיליארד דולר ("יוניקורנים פנימיים"), לעומת 6 היום</div></li>
+    <li><div class="when">2030</div><div class="what">כ-$32B הכנסות, ו-Rule of 60: סכום הצמיחה ושיעור התזרים החופשי מעל 60</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: "אנחנו מי שאמרנו שאנחנו", סייבר כמנוע חדש, AI שמשלמים עליו בגלל התוצאות, ומשמעת בעלויות</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"We are who we said we were"</h3>
+      <p>מקדרמוט פתח בסיכום של 7 שנות כהונה: עקיפה בכל רבעון, שוק יעד שגדל פי 5, ושישה עסקים שעברו מיליארד דולר. המשפט חזר שלוש פעמים, ובסוף הוא הוסיף: "זה הבסיס לתמחור מחדש של ServiceNow".</p>
+    </div>
+    <div class="col">
+      <h3>"הסייבר יהיה גדול מ-ServiceNow"</h3>
+      <p>מקדרמוט העריך שעסקי הסייבר יהיו בעתיד גדולים משאר החברה, ושהחברה תטפס מהמקום השמיני "להתמודדות על המקום הראשון". לדבריו, גל המודעות לסייבר בעקבות מודלי AI שמאתרים פרצות "היה מתנה" ל-ServiceNow.</p>
+    </div>
+    <div class="col">
+      <h3>"משלמים על פתרונות, לא על טוקנים"</h3>
+      <p>סמנכ"לית הכספים ג'ינה מסטנטואונו: "AI שרק מייעץ הוא עלות. AI שמשלים את העבודה הוא תשואה". הסוכנים של ServiceNow לא רק מנתחים, הם פועלים בתוך תהליכים קיימים, ולכן הלקוחות מוכנים לשלם יותר.</p>
+    </div>
+    <div class="col">
+      <h3>"מספר העובדים לא יגדל"</h3>
+      <p>מקדרמוט התחייב: אחרי שלוש רכישות, החברה תסיים את 2026 עם אותו מספר עובדים כמו לפני הרכישות. כך הרווחיות התפעולית והתזרים "יגדלו". מנגד, מספר אנשי המכירות עלה, כדי לקלוט את עסקי הסייבר.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>הרווחיות הגולמית במנויים יורדת (80.5% ברבעון ו-81% צפוי לשנה, לעומת יותר מ-83% בשנים הקודמות), כי AI ושרתי ענן ציבורי עולים יותר. ההנהלה הציגה את זה כ"לחץ לטווח קצר". בנוסף, הרווח החשבונאי כמעט נמחק ברבעון בגלל עלויות הרכישות, ובשיחה זה לא הוזכר. והתזרים החופשי (16% ברבעון) נמוך בהרבה מהיעד השנתי (35%). זה דפוס עונתי רגיל, אבל המשמעות היא שהרבה תלוי בחצי השני.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים חיפשו את הסדק, ושאלו על התחזית, הרווחיות והתמחור. ההנהלה ענתה בביטחון ובהרבה סיפורי לקוחות</h2>
+  <p class="body">11 אנליסטים מבתי ההשקעות הגדולים (Goldman Sachs, ‏JPMorgan, ‏Morgan Stanley, ‏BofA, ‏Citi, ‏RBC, ‏Jefferies ואחרים) שאלו שאלות ממוקדות. המנכ"ל השתמש בכל שאלה כדי לחזור למסר הסייבר.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>האם התחזית שמרנית? Citi שאל למה העלאת התחזית צנועה כל כך מול העקיפה, ו-Wells Fargo שאל על הממשל. התשובה: חצי מהעקיפה היא הקדמה מהרבעון השלישי, ו"כמו תמיד, אני זהירה בחצי השני".</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>פי 9 בלקוחות עם סוכני AI בשימוש מבצעי, בתשעה חודשים. וגם: שיעור לקוחות החידוש שקונים AI לראשונה הוכפל ברבעון אחד. זה הנתון הישיר ביותר נגד הטענה ש"ה-AI לא מגיע להכנסות".</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>Mizuho שאל ישירות אם תקציבי חומרה ו-AI "גונבים" מתקציבי התוכנה. מקדרמוט: "לא ראיתי. אם יש שינוי, הוא חיובי". תשובה חדה, בלי הסתייגות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>BMO שאל מה הגבולות של אסטרטגיית הסייבר, והאם יהיו רכישות נוספות. התשובה הייתה ארוכה וכללית: "מה שיש לנו עכשיו מדהים". לא נאמר אם יש עוד רכישות בדרך, ולא הוצגו נתוני הכנסות של Armis.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"לא צריך פרארי כדי לשלוח מכתב" (מקדרמוט, על בחירת מודלי AI). ServiceNow משתמשת במודלים זולים כשאפשר ובמודלים מתקדמים כשצריך. זה מגן על הרווחיות כשמחירי ה-AI משתנים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>מוצר "בלי כרטיסים" לעסקים בינוניים, במכירה עצמית. ServiceNow, שמכרה תמיד לחברות ענק דרך אנשי מכירות, מאמצת את המודל של הסטארט-אפים. זו הודאה שקיים איום מלמטה, וגם הזדמנות להרחיב את שוק היעד.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>הדוח נתן תשובה ראשונה, מבוססת מספרים, לחשש מ-AI. אבל ServiceNow משנה את עצמה בבת אחת: רכישות של יותר מ-$9B, כניסה לסייבר, תמחור חדש ומוצרים לשוק חדש. כל אלה מגדילים גם את ההזדמנות וגם את סיכון הביצוע. מי שמשקיע כאן מהמר על מקדרמוט ועל הצוות שלו.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · איך השוק הגיב</div>
+  <h2>זינוק של כ-7% במסחר המאוחר וחזרה מעל $100, אחרי שהמניה איבדה יותר ממחצית ערכה</h2>
+  <p class="body">ב-22.7, לפני הדוח, המניה נסחרה סביב $95.6, ירידה של כ-37% מתחילת השנה וכ-55% מתחת לשיא של 52 שבועות ($210.20). שווי השוק: קצת פחות מ-$100B (‏24/7 Wall St.). אחרי הדוח המניה עלתה בכ-7% במסחר המאוחר וחזרה מעל $100 (XTB). ב-23.7 בבוקר היא נסחרה בעלייה של כ-3%–6%, בטווח של כ-$100–$102. זאת למרות שמניות התוכנה (תעודת הסל IGV) ירדו באותו יום ביותר מ-1% (Yahoo Finance, ‏Timothy Sykes).</p>
+  <p class="body">האנליסטים העלו מחירי יעד: Truist, ‏Oppenheimer, ‏Cantor ו-RBC, לטווח של כ-$135–$140. כולם עם המלצת קנייה. מחיר היעד הממוצע לפני הדוח היה כ-$142, עם 43 המלצות קנייה ואחת מכירה (‏24/7 Wall St.). ‏KeyBanc נשארה עם המלצת "תת-משקל" ויעד של $85.</p>
+  <div class="takeaway">
+    <div class="t">בדיעבד: מה קרה מאז</div>
+    <p>הדוח הזה סימן נקודת מפנה: בשלושת החודשים הבאים המניה עלתה בכ-55%, לכ-$150 ערב דוח הרבעון השלישי (28.10). ואז, אחרי תחזית cRPO שאכזבה, היא צנחה בכ-19% בלילה אחד. השיעור למשקיע: במניות "שבורות", דוח חזק יכול להצית ריצה ארוכה. אבל ריצה כזו מעלה את הציפיות, והאכזבה הראשונה נענשת בחומרה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: האם ה-AI יוסיף הכנסות מהר יותר מהקצב שבו הוא יקטין את מספר המשתמשים אצל הלקוחות</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>שיבוש מ-AI</h3><p>אם לקוחות יצמצמו עובדים בזכות AI, מספר הרישיונות עלול לרדת. סטארט-אפים ומעבדות AI מנסים לבנות מערכות שירות חדשות מאפס.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>שילוב רכישות</h3><p>יותר מ-$9B ברכישות בתוך חודשים, כניסה לשוק סייבר תחרותי ומוניטין של $9.8B. כישלון בשילוב יוביל למחיקות ולאובדן מומנטום.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>רווחיות גולמית</h3><p>AI ושרתי ענן ציבורי מורידים את הרווחיות הגולמית במנויים ל-81%. אם המעבר יואץ, הלחץ יגדל.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>איכות העקיפה</h3><p>חצי מהעקיפה בהכנסות היא הקדמה מהרבעון השלישי. הצמיחה ברבעון השלישי צפויה להאט ל-20%, וההתאוששות תלויה ב-cRPO.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>רווח חשבונאי ודילול</h3><p>רווח חשבונאי של 4% בלבד ברבעון, ותגמול במניות של כ-16% מההכנסות. היעד (פחות מ-10% עד 2029) עוד רחוק.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>אבטחה ומוניטין</h3><p>לפי 24/7 Wall St., פרצת אבטחה קריטית במוצר של החברה נוצלה לפני הדוח. לחברה שמוכרת סייבר, זה סיכון תדמיתי.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AI</strong></td><td>ACV מעל מיליארד דולר, פי 9 בסוכנים בשימוש מבצעי, תוספת מחיר של 20%–30%, ויעד של 30% מה-ACV ב-2030.</td><td>AI מקטין את מספר העובדים אצל הלקוחות, ומעבדות AI מציעות חלופות זולות יותר.</td></tr>
+        <tr><td><strong>סייבר</strong></td><td>עסק של יותר ממיליארד דולר, הצומח במהירות. ‏Armis ו-Veza סוגרות פערים. "מגדל פיקוח" על סוכני AI הוא צורך חדש.</td><td>שוק עם ענקיות מבוססות. ServiceNow חדשה בתחום, והשילוב מסובך.</td></tr>
+        <tr><td><strong>חוזים</strong></td><td>חידוש של 98%, RPO של $29B, וחוזים שמתארכים (עסקאות ל-5 שנים).</td><td>ההאטה הצפויה ב-cRPO ל-20% ברבעון השלישי.</td></tr>
+        <tr><td><strong>רווחיות</strong></td><td>רווחיות תפעולית מתואמת של 31.5%, מספר עובדים קבוע, ו-Rule of 60 ב-2030.</td><td>רווחיות גולמית שיורדת, רווח חשבונאי נמוך ותגמול במניות גבוה.</td></tr>
+        <tr><td><strong>שווקים חדשים</strong></td><td>מכירה עצמית לעסקים בינוניים, CRM של $2B ומוקדים קוליים מבוססי AI.</td><td>פיזור על הרבה חזיתות במקביל. התחרות ב-CRM קשה.</td></tr>
+        <tr><td><strong>ממשל</strong></td><td>כמעט כל 50 המדינות בארה"ב, חיל האוויר ומשרד ההגנה. רבעון שלישי חזק עונתית.</td><td>תלות בתקציבים פדרליים ובתזמון הכרה בהכנסות.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>ירידה של כ-55% מהשיא, בצמיחה של 20%+ ורווחיות גבוהה. מחירי יעד של כ-$140.</td><td>השוק מתמחר מחדש את כל ענף התוכנה. מכפילים עלולים לא לחזור לרמות העבר.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהמניה זזה לפי הסנטימנט לענף התוכנה כולו ולפי מספר אחד בכל דוח: צמיחת ה-cRPO. משקיע לטווח ארוך צריך לעקוב אחרי שלושה מדדים: ה-ACV של AI (האם עובר את $1.5B בסוף השנה), שיעור החידוש (98%) והרווחיות הגולמית במנויים. כל עוד שלושתם מחזיקים, תזת "AI מחזק את ServiceNow" מחזיקה.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>cRPO</dt><dd>הכנסות חתומות בחוזים שיוכרו ב-12 החודשים הקרובים. המדד המוביל של החברה.</dd>
+    <dt>RPO</dt><dd>כל ההכנסות החתומות שעוד לא הוכרו, לכל אורך החוזים.</dd>
+    <dt>ACV</dt><dd>Annual Contract Value: השווי השנתי של חוזה.</dd>
+    <dt>נטרול מטבע</dt><dd>צמיחה בלי השפעת שינויי שער הדולר. מראה את הצמיחה "האמיתית".</dd>
+    <dt>AI Control Tower</dt><dd>מערכת שמאתרת, מנהלת ומפקחת על כל סוכני ה-AI בארגון, ויכולה לעצור אותם.</dd>
+    <dt>סוכן AI (Agentic AI)</dt><dd>תוכנת AI שלא רק עונה, אלא גם מבצעת פעולות בעצמה בתוך המערכות.</dd>
+    <dt>CMDB</dt><dd>מאגר של כל הנכסים הטכנולוגיים בארגון והקשרים ביניהם. הבסיס של ServiceNow.</dd>
+    <dt>ITSM / ITOM</dt><dd>ניהול שירותי מחשוב (תקלות ובקשות) וניהול תפעול המחשוב (שרתים, רשתות, ענן).</dd>
+    <dt>Rule of 60</dt><dd>סכום שיעור הצמיחה ושיעור התזרים החופשי. מעל 40 נחשב מצוין בתוכנה.</dd>
+    <dt>On-prem</dt><dd>תוכנה שמותקנת אצל הלקוח, לא בענן. ההכנסה ממנה מוכרת מראש, ולכן משפיעה על התזמון.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> ServiceNow: הודעה על תוצאות הרבעון השני 2026 (22.7.2026). תמלול שיחת המשקיעים (StockOracle / FactSet, ‏22.7.2026). נתוני מסחר וצפי: ‏24/7 Wall St., ‏XTB, ‏Yahoo Finance ו-Timothy Sykes (22–23.7.2026). נתוני הרבעון השלישי ומהלך המניה מאז מבוססים על דוח הרבעון השלישי שפורסם ב-28.10.2026. מחיר הסגירה המדויק של 23.7 לא נמצא במקורות.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי, ואינו ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
