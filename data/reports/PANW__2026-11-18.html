@@ -1,0 +1,430 @@
+<!--np-disc--><div id="np-disc" role="note" style="direction:rtl;text-align:right;font:13px/1.55 'IBM Plex Sans Hebrew',Arial,sans-serif;color:inherit;background:rgba(127,127,127,.12);border:1px solid rgba(127,127,127,.4);border-radius:6px;padding:10px 14px;margin:8px 8px 14px"><div style="margin:0"><b>הבהרה.</b> דוח זה מציג מידע וניתוחים כלליים לצורכי מחקר ולימוד. מפעיל האתר אינו בעל רישיון ייעוץ השקעות. התוכן אינו מותאם לנתוניך ולצרכיך ואינו תחליף לייעוץ השקעות אישי. הנתונים והניתוחים עשויים להיות מעוכבים או שגויים. השקעה כרוכה בסיכון להפסד. <a href="https://nditzik.github.io/nidam-markets/legal.html" target="_top" style="color:inherit;text-decoration:underline">הבהרות, סיכונים וגילוי עניין אישי</a></div><div style="margin:4px 0 0">הנתונים והניתוח מתייחסים למועד הפרסום (<span dir="ltr">18.11.2026</span>) ואינם תמונת מצב עדכנית.</div></div><!--/np-disc-->
+<title>PANW דוח רבעון Q1 FY27</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f; 
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .logo{height:76px;width:auto;background:#fff;border-radius:10px;padding:8px 12px;margin-bottom:20px;display:inline-block}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}.b-l{background:#e6f4ec;color:#1d6b45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="Palo Alto Networks">
+    <div class="eyebrow">Palo Alto Networks · NASDAQ: PANW · תוצאות רבעון ראשון, שנת כספים 2027</div>
+    <h1>גל מתקפות AI הזניק את הביקוש לסייבר: הכנסות +39%, תחזית שהועלתה בחדות והימור של 4.5 מיליארד דולר על אימון מודלי AI. המניה קפצה, ואז ירדה</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-18 בנובמבר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: אוגוסט–אוקטובר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת המשקיעים</span>
+      <span>עודכן: 21.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>פאלו אלטו היא חברת הסייבר הגדולה בעולם, ובשנה האחרונה היא הפכה לפלטפורמה שמגנה על הרשת, הזהויות וה-AI</h2>
+  <p class="lead">Palo Alto Networks נוסדה ב-2005 בידי היזם הישראלי ניר צוק, ומוכרת לארגונים הגנה מפני מתקפות סייבר. היא התחילה בחומות אש, ובהנהגת המנכ"ל ניקש ארורה התרחבה לענן, לניהול אירועי אבטחה (SOC) ולזהויות. האסטרטגיה המרכזית נקראת <strong>"פלטפורמיזציה"</strong>: לשכנע לקוחות להחליף עשרות ספקי אבטחה נפרדים בפלטפורמה אחת.</p>
+  <p class="body" style="margin-top:14px">שלושה מגזרים: <strong>Network &amp; AI Security</strong> ($2.3B ברבעון): חומות אש בחומרה ובתוכנה, ‏SASE (גישה מאובטחת מרחוק) ו-Prisma AIRS (אבטחת AI). <strong>Cortex</strong>: מרכז ניהול האבטחה (XSIAM) וניטור מערכות (Chronosphere). <strong>Idira</strong>: אבטחת זהויות, מבוססת על CyberArk הישראלית, שנרכשה השנה ב-$18.5B. לכן הצמיחה המדווחת השנה גבוהה במיוחד.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>CrowdStrike ו-Zscaler</h3>
+      <p>CrowdStrike מובילה בהגנה על מחשבים (EDR) ומתחרה ב-XSIAM. ‏Zscaler היא המתחרה העיקרית ב-SASE. שתיהן "נולדו בענן" וצומחות מהר.</p>
+    </div>
+    <div class="col">
+      <h3>Fortinet ו-Check Point</h3>
+      <p>המתחרות הוותיקות בחומות אש. Fortinet חזקה בחומרה ובשוק הבינוני. ‏Check Point הישראלית מתחרה בכל שוק הרשתות.</p>
+    </div>
+    <div class="col">
+      <h3>Microsoft, ‏Okta וחברות ה-AI</h3>
+      <p>Microsoft מצרפת אבטחה לחבילות שלה. ‏Okta מתחרה ב-Idira בזהויות. מעבדות ה-AI עצמן (עם מודלים כמו Mythos) הופכות לשחקן חדש: הן יוצרות את האיום, וגם כלים לאיתור פרצות.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון שיא, תחזית שהועלתה בחדות, ורכישה נועזת. אבל במכפיל גבוה, השוק התלבט</h2>
+  <p class="lead">ההכנסות היו $3.44B, צמיחה של 39% (צפי: $3.31B). הרווח המתואם היה $1.05 למניה (צפי: $0.97). ה-ARR של מוצרי הדור הבא (NGS ARR) הגיע ל-$9.73B, צמיחה של 66%, אחת העקיפות הגדולות בתולדות החברה. ההזמנות החתומות (RPO) צמחו ב-35%, ל-$21B. התחזית השנתית הועלתה ל-$14.5B הכנסות ו-$4.28 רווח למניה, מעל הקונצנזוס ($14.17B ו-$4.18).</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>מודלי AI חזקים (כמו Mythos) מצאו בחודשים האחרונים פרצות אבטחה בקצב חסר תקדים. לפי ארורה, פי 7 מהממוצע החודשי של השנה שעברה. ארגונים לא מספיקים לתקן, ותוקפים משתמשים במודלים פתוחים כדי לתקוף אוטומטית. כך נוצר "תקציב חירום" לסייבר, ופאלו אלטו מרוויחה ממנו. במקביל היא הכריזה על רכישת Applied Compute ב-$4.5B במניות: חברה שמאמנת מודלי AI פתוחים לארגונים. זה הימור שיכול "להיות גדול מכל מה שאנחנו עושים היום", כלשונו של ארורה, אבל הוא גם יוריד את הרווחיות בשנתיים הקרובות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>האצה בכל המגזרים, ורווחיות תפעולית בשיא</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$3.44B</div><div class="l">הכנסות</div><div class="d up">+39% · הצפי: $3.31B</div></div>
+    <div class="kpi"><div class="v num">$1.05</div><div class="l">רווח מתואם למניה</div><div class="d up">+13% · הצפי: $0.97</div></div>
+    <div class="kpi"><div class="v num">$9.73B</div><div class="l">NGS ARR</div><div class="d up">+66% · ה-ARR החדש יותר מהוכפל</div></div>
+    <div class="kpi"><div class="v num">$21.0B</div><div class="l">RPO (הזמנות חתומות)</div><div class="d up">+35%</div></div>
+    <div class="kpi"><div class="v num">30.7%</div><div class="l">רווחיות תפעולית</div><div class="d up">שיא לרבעון ראשון · ‏+0.5 נק'</div></div>
+    <div class="kpi"><div class="v num">$1.9B</div><div class="l">תזרים חופשי</div><div class="d up">56% מההכנסות</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: הרווח המתואם למניה צמח רק ב-13%, הרבה פחות מההכנסות, כי מספר המניות גדל בכ-22% אחרי רכישת CyberArk, שמומנה ברובה במניות. הרווח החשבונאי (GAAP) היה $0.57 למניה, אבל הרווח התפעולי החשבונאי היה רק $96M, בגלל הפחתות ותגמול במניות. הרווחיות הגולמית ירדה ל-75.2% (‏−1.7 נקודות), בגלל עליית מחירי רכיבי חומרה ויותר מוצרי ענן חדשים. ברבעון לא בוצעה רכישה עצמית של מניות.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>CyberArk הקפיצה את ההכנסות, והביקוש לאבטחה ב-AI ממשיך לדחוף</h2>
+  <p class="body">בגרף: ההכנסות בכל רבעון, במיליארדי דולרים. הקפיצה מהרבעון השני לשלישי של 2026 משקפת, ככל הנראה, את תחילת איחוד CyberArk בדוחות. העמודה האחרונה היא אמצע התחזית לרבעון השני (נובמבר 2026–ינואר 2027).</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 360" role="img" aria-label="הכנסות לפי רבעון">
+<line x1="40" y1="300" x2="790" y2="300" stroke="var(--muted)"/>
+<rect x="60" y="140" width="80" height="160" fill="var(--accent)"/>
+<text x="100" y="131" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$2.47B</text>
+<text x="100" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q1'26</text>
+<rect x="185" y="132" width="80" height="168" fill="var(--accent)"/>
+<text x="225" y="123" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$2.59B</text>
+<text x="225" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q2'26</text>
+<rect x="310" y="105" width="80" height="195" fill="var(--accent)"/>
+<text x="350" y="96" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.00B</text>
+<text x="350" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q3'26</text>
+<rect x="435" y="78" width="80" height="222" fill="var(--accent)"/>
+<text x="475" y="69" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.41B</text>
+<text x="475" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q4'26</text>
+<rect x="560" y="76" width="80" height="224" fill="var(--accent)"/>
+<text x="600" y="67" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$3.44B</text>
+<text x="600" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed" font-weight="700">Q1'27</text>
+<rect x="685" y="70" width="80" height="230" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="725" y="61" font-size="15" font-weight="700" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">~$3.54B</text>
+<text x="725" y="324" font-size="14" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q2'27E</text>
+</svg>
+    <figcaption>הכנסות לפי רבעון (שנת הכספים מסתיימת בסוף יולי). Q2'27E היא אמצע התחזית: ‎$3.53–3.55B. מקור: דוחות החברה ו-FactSet.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>רשת ואבטחת AI (+20%)</h3>
+      <p>ה-ARR של SASE צמח ב-30%, וחומות האש בתוכנה ב-34%. ‏Prisma AIRS הגיע לכמעט $170M ARR אצל יותר מ-1,000 לקוחות, תוך 5 רבעונים: המוצר הצומח ביותר בתולדות החברה. תעבורת סוכני ה-AI ב-SASE גדלה פי 9 בשנה. ההזמנות לחומות אש (12 חודשים) צמחו ב-28%.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>Cortex (+53%)</h3>
+      <p>ה-ARR של XSIAM, מרכז ניהול האבטחה מבוסס ה-AI, צמח ביותר מ-65%, לכ-$800M. הוא מעבד 20 פטה-בייט ביום ומקצר את זמן התגובה מימים לפחות מ-10 דקות. עסקי הניטור (Chronosphere) גדלו פי 4, כולל לקוח גדול: מעבדת AI מובילה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>Idira (+23% פרופורמה)</h3>
+      <p>מכירה צולבת בשיא: יותר מ-100 לקוחות חדשים ל-CyberArk מבסיס הלקוחות של פאלו אלטו. העסקה הגדולה בתולדות CyberArk נחתמה ברבעון, כחלק מעסקה של $83M עם מוסד פיננסי. הרווחיות של Idira תגיע לרמה של שאר החברה בחצי מהזמן שתוכנן.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · Applied Compute</div>
+  <h2>הרכישה המפתיעה: פאלו אלטו נכנסת לעסקי אימון והרצת מודלי AI פתוחים לארגונים</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>פרט</th><th>נתון</th><th>מה זה אומר</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>מחיר</td><td class="n">$4.5B במניות</td><td>כולל כ-$500M מזומן והתחייבויות מחשוב ששולמו מראש</td></tr>
+        <tr><td>היקף פעילות היום</td><td class="n">$100M+ בשנה</td><td>תוך 18 חודשים מהקמה. מייסדים ממעבדות AI מובילות</td></tr>
+        <tr class="hl"><td>יעד</td><td class="n">$1B ARR עד FY29</td><td>"העסק הבא של מיליארדים"</td></tr>
+        <tr><td>השקעות הון</td><td class="n">פחות מ-$3B עד FY30</td><td>100+ מגה-וואט כוח הרצה (inference) במשך 3–5 שנים</td></tr>
+        <tr><td>השפעה על הרווחיות</td><td class="n">‏−1 נק' ב-FY27, ‏−2 נק' ב-FY28</td><td>חזרה ל-29%–30% רווחיות תפעולית ב-FY29</td></tr>
+        <tr><td>סגירה</td><td>רבעון 3 של FY27</td><td>התחזית הנוכחית לא כוללת את העסקה</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>ההיגיון של ארורה: אי אפשר לאבטח מודל AI שאתה לא מבין. לכן צריך לאמן אותו, ובמקביל לאמן "מודל משגיח" שמפקח עליו. ארגונים רוצים מודלים פתוחים שירוצו אצלם, בשליטתם (חלק המודלים הפתוחים בתעבורה עלה מפחות מ-5% ליותר מ-60% בשנה). זה הימור גדול: פאלו אלטו נכנסת לעסק עתיר מחשוב והון, שונה מאוד מתוכנה. אנליסט Guggenheim סיכם: "עשיתם הרבה מהלכים נועזים, ועד כה הם התבררו כנכונים. נראה איך זה ילך".</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>העלאה חדה לשנה, אבל הצמיחה תאט בחצי השני, כש-CyberArk כבר תהיה בבסיס ההשוואה</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>Q2 FY27</th><th>שנת כספים 2027</th><th>קונצנזוס שנתי</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות</td><td class="n">$3.53–$3.55B · ‏+36%–37%</td><td class="n">$14.52–$14.57B · ‏+26%–27%</td><td class="n">~$14.17B</td></tr>
+        <tr><td>NGS ARR</td><td class="n">$10.20–$10.22B · ‏+61%</td><td class="n">$11.48–$11.53B · ‏+26%–27%</td><td>—</td></tr>
+        <tr><td>RPO</td><td class="n">$21.5–$21.6B</td><td class="n">$25.3–$25.5B · ‏+19%–20%</td><td>—</td></tr>
+        <tr class="hl"><td>רווח מתואם למניה</td><td class="n">$1.01–$1.03</td><td class="n">$4.26–$4.30</td><td class="n">~$4.18</td></tr>
+        <tr><td>רווחיות תפעולית</td><td>—</td><td class="n">29.5%</td><td>—</td></tr>
+        <tr><td>תזרים חופשי (% מהכנסות)</td><td>—</td><td class="n">38%</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body">שימו לב לפער: ברבעון השני ה-NGS ARR צפוי לצמוח ב-61%, ובשנה כולה רק ב-26%–27%. הסיבה: CyberArk נכנסה לדוחות במהלך השנה שעברה, וכשההשוואה תהיה "תפוחים לתפוחים", הצמיחה המדווחת תרד חזק. כדי להבין את הצמיחה האמיתית, צריך לעקוב אחרי הנתונים הפרופורמה (כאילו CyberArk הייתה תמיד חלק מהחברה).</p>
+  <ul class="tl">
+    <li><div class="when">12–18 החודשים הבאים</div><div class="what">לפי ארורה, גל התיקונים (patches) יימשך לפחות 18 חודשים, ובדיקות חדירה מבוססות AI יידרשו לפחות 12 חודשים</div></li>
+    <li><div class="when">6–9 חודשים</div><div class="what">תחילת חיוב על תעבורת סוכני AI ב-SASE, מעבר למודל של "לפי משתמש"</div></li>
+    <li><div class="when">רבעון 3 של FY27</div><div class="what">סגירת רכישת Applied Compute. מטרה: 100 חוקרי AI עד סוף השנה</div></li>
+    <li><div class="when">FY29</div><div class="what">‏$1B ARR מ-Applied Compute, וחזרה לרווחיות תפעולית של 29%–30%</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: "סביבת איומים חסרת תקדים", פלטפורמה במקום טלאים, "תיקון וירטואלי", ומודל עסקי שצמוד לצריכת AI</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"שני אפקטים במקביל"</h3>
+      <p>ארורה: לפני חצי שנה, כשיצאו מודלים כמו Mythos, "חזינו שיכולת התקפית דומה תגיע לקוד פתוח בתוך 3–6 חודשים, וזה קרה". האפקט הראשון: גל עצום של פרצות ותיקונים. ההשבתות האחרונות בחברות ובממשלות נבעו "חלקית מתיקונים חפוזים". האפקט השני: מתקפות אוטומטיות. ‏Unit 42 זיהתה צוות קטן שחדר ל-19 ארגונים בבת אחת.</p>
+    </div>
+    <div class="col">
+      <h3>"170 פלטפורמיזציות"</h3>
+      <p>שיא של כ-170 לקוחות שעברו לפלטפורמה המלאה, יותר משני הרבעונים הראשונים של השנתיים הקודמות יחד. הלקוחות האלה הם כבר שני שלישים מה-NGS ARR, ושיעור שימור ההכנסה מהם (NRR) גבוה מ-120%. "פיזור ותפילה (spray and pray) לא עבד בסייבר".</p>
+    </div>
+    <div class="col">
+      <h3>"תיקון וירטואלי"</h3>
+      <p>ליה קלריץ', מנהל המוצר: במקום לחכות לתיקון אמיתי, חומת האש חוסמת את הפרצה מיד, ונותנת לצוותים זמן לתקן בבטחה. ‏"אלפי תיקונים וירטואליים היום, עשרות אלפים עד סוף השנה". שוק פוטנציאלי של כמעט 70,000 לקוחות רשת.</p>
+    </div>
+    <div class="col">
+      <h3>"להיות בזרם הטוקנים"</h3>
+      <p>ארורה: כל העסקים של החברה יעברו לחיוב לפי צריכה. ככל שיש יותר תעבורת AI, יותר טוקנים ויותר סוכנים, כך פאלו אלטו מרוויחה יותר. "אבטחת AI עשויה להגיע ל-2%–5% מההוצאה על טוקנים". ואם ההוצאה על טוקנים תגיע לטריליון דולר, זה שוק עצום.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>ארורה עצמו אמר שהביקוש הנוכחי מגיע מ"כספי חירום", ושבתוך כשנתיים בדיקות האבטחה מבוססות ה-AI יהפכו ליכולת מובנית שכל ספק פלטפורמה מספק. כלומר, חלק מהצמיחה עכשיו עשוי להיות זמני. בנוסף, הצמיחה בחומרה נובעת חלקית מכך שלקוחות מקדימים קניות לפני העלאות מחירים. גם את זה ארורה אמר בעצמו. ולא נאמר כמה מהצמיחה של 39% היא אורגנית.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים התלהבו מהתוצאות ושאלו בעיקר על Applied Compute, ועל השאלה אם הביקוש ישרוד את "משבר הפרצות"</h2>
+  <p class="body">11 אנליסטים מבתי ההשקעות הגדולים (Barclays, ‏JPMorgan, ‏Morgan Stanley, ‏Citi, ‏Goldman Sachs, ‏Wells Fargo ואחרים), ביניהם הישראלי שאול איל מ-TD Cowen. ארבעה שאלו על Applied Compute, ושלושה על סביבת האיומים.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>הרכישה: JPMorgan, ‏Citi, ‏Goldman ו-Guggenheim שאלו למה, האם זה פוגע במעמד של פאלו אלטו כ"שווייץ" ניטרלית, וממתי היא מומחית במחשוב. התשובה של ארורה: "בניתי קריירה מלעשות דברים שאין לי ניסיון בהם".</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>פי 7 בכמות הפרצות הקריטיות שמתגלות בחודש. זה הנתון שמסביר את כל הדוח: גם את הביקוש, גם את ההשבתות האחרונות בעולם, וגם את התחזית שהועלתה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>שאול איל שאל אם הצמיחה בחומרה מחזורית או מבנית. ארורה ענה בכנות: חלק מהלקוחות מקדימים קניות כי מחירי הרכיבים עולים. חלק מהביקוש מגיע מניאו-עננים, וחלק מאיחוד ספקים. "מעולם לא ראינו צמיחה כזו בחומרה", והוא מעריך שהיא תימשך עוד 12 חודשים לפחות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>Morgan Stanley שאלה איך הלקוחות מתמודדים עם השבתות שנגרמות מתיקונים חפוזים. ארורה העביר את השאלה למנהל המוצר ("אני מתקשר לחבר"). התשובה עסקה במוצר, לא בשאלה אם ההשבתות מאטות את קצב הקנייה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"אם זה יעבוד, זה יגמד את מה שאנחנו עושים היום בסייבר" (ארורה, על Applied Compute). הצהרה יוצאת דופן ממנכ"ל של חברת סייבר בשווי של מאות מיליארדים.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>ארורה הזכיר את "תקרית Hugging Face" כנקודת המפנה שגרמה לו להבין שבקרות דטרמיניסטיות לא יספיקו מול סוכני AI. זה מעיד שהאיומים על תשתיות ה-AI עצמן כבר כאן, וזה יוצר שוק חדש לגמרי.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>פאלו אלטו נהנית מהסערה המושלמת לחברת סייבר: AI יוצר יותר פרצות, יותר מתקפות ויותר דברים שצריך להגן עליהם. השאלה היא כמה מהביקוש הזה "חירום" זמני, וכמה מבני. ובמקביל, ההנהלה מוסיפה הימור חדש וגדול (מחשוב ואימון מודלים) לחברה שעוד מעכלת את CyberArk.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · איך השוק הגיב</div>
+  <h2>זינוק של כ-9% לפני הפתיחה, ירידה ביום שאחרי, ותמחור שעדיין מחייב שלמות</h2>
+  <p class="body">ההקשר: עד תחילת נובמבר המניה עלתה בכמעט 90% מתחילת 2026, ונסחרה בכ-84 פעמים הרווח הצפוי (TIKR). ב-5.11, אחרי שהדמוקרטים זכו בשני בתי הקונגרס, מניות התוכנה "מנצחות ה-AI" נמכרו, ופאלו אלטו ירדה בכ-10%. ב-17.11, יום לפני הדוח, היא ירדה ב-3.4% (TradingKey). טווח 52 השבועות: $139.57–$432.33 (Motley Fool).</p>
+  <p class="body">אחרי הדוח: עלייה של יותר מ-9% לפני הפתיחה ב-19.11 (Yahoo Finance). במהלך היום המניה עלתה עד 8.8%, ובצהריים נסחרה בעלייה של כ-5.5% (Motley Fool). ב-20.11 היא ירדה ב-5.1%, ל-$343.32. כלומר, רוב העלייה נמחקה בתוך יומיים, והמניה כ-21% מתחת לשיא. Truist ו-Mizuho שיבחו את הרבעון ואת העלאת התחזית.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>שווי השוק הוא כ-$290B (חישוב: כ-840 מיליון מניות × $343). זה כ-80 פעמים הרווח המתואם הצפוי לשנה ($4.28), גם אחרי הירידות. במחיר כזה, אפילו דוח מצוין והעלאת תחזית נותנים רק קפיצה קצרה. העלייה נמחקה ביום שאחרי, לצד מכירות במניות הטכנולוגיה. התשואה תלויה בעיקר בשאלה אם "משבר הפרצות" יהפוך לצמיחה מתמשכת, ואם Applied Compute תצליח.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: תמחור גבוה מאוד, על ביקוש שחלקו "חירום"</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>תמחור</h3><p>כ-80 פעמים הרווח הצפוי. כל האטה, אכזבה בתחזית או שינוי בסנטימנט כלפי מניות ה-AI עלולים להוביל לירידות חדות, כמו ב-5.11 (‏−10%).</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>הימור Applied Compute</h3><p>עסק חדש ועתיר הון, שונה מתוכנה: מחשוב, GPU ומרכזי נתונים. הוא יפגע ברווחיות בשנתיים הקרובות, ויש סיכון ביצוע גבוה.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>דילול</h3><p>CyberArk ($18.5B) ו-Applied Compute ($4.5B) נקנו בעיקר במניות. מספר המניות כבר עלה ב-22%, ולכן הרווח למניה צומח הרבה פחות מההכנסות.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>ביקוש "חירום"</h3><p>חלק מהתקציבים הם כספי חירום. בתוך כשנתיים, לפי ארורה עצמו, בדיקות ה-AI יהפכו ליכולת מובנית. בחומרה יש גם הקדמת קניות.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>רווחיות גולמית</h3><p>רכיבי חומרה יקרים ויותר מוצרי ענן חדשים הורידו את הרווחיות הגולמית ל-75.2%. ב-Cortex היא תישאר מתחת לממוצע עוד כמה שנים.</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>שילוב CyberArk</h3><p>עד כה השילוב מצליח: מכירות צולבות בשיא, והרווחיות מתכנסת מהר מהתוכנון. אבל זו עדיין הרכישה הגדולה בתולדות החברה.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>סביבת האיומים</strong></td><td>פי 7 פרצות, מתקפות אוטומטיות ותקציבי חירום. ארורה צופה ש"תקציבי הסייבר יעלו בשנתיים הקרובות".</td><td>חלק מהביקוש זמני. בדיקות ה-AI יהפכו ליכולת מובנית בתוך כשנתיים.</td></tr>
+        <tr><td><strong>פלטפורמיזציה</strong></td><td>שיא של 170 לקוחות. שני שלישים מה-ARR מפלטפורמה. ‏NRR מעל 120%.</td><td>מעבר לפלטפורמה כרוך בהנחות ובתמריצים, וזה לוחץ על התזרים ועל תזמון ההכנסות.</td></tr>
+        <tr><td><strong>אבטחת AI</strong></td><td>Prisma AIRS: ‏$170M תוך 5 רבעונים. תעבורת סוכנים פי 9. אבטחה כ-2%–5% מההוצאה על טוקנים.</td><td>שוק חדש עם מתחרים רבים, כולל מעבדות AI שבונות אבטחה בעצמן.</td></tr>
+        <tr><td><strong>Applied Compute</strong></td><td>"העסק הבא של מיליארדים". מודלים פתוחים וריבוניים לארגונים. ‏$1B ARR עד FY29.</td><td>עתיר הון, שונה מתוכנה, ומוריד את הרווחיות. אין לחברה ניסיון בתחום.</td></tr>
+        <tr><td><strong>CyberArk / Idira</strong></td><td>מכירה צולבת בשיא. זהויות לסוכני AI הן קטגוריה חדשה וגדולה.</td><td>דילול של 22% במספר המניות, וצמיחה פרופורמה של "רק" 23%.</td></tr>
+        <tr><td><strong>רווחיות ותזרים</strong></td><td>רווחיות תפעולית של 30%+, תזרים חופשי של 38%, ויכולת ייצור מזומנים חזקה.</td><td>רווחיות גולמית יורדת, ו-Applied Compute תגרע עד 2 נקודות מהרווחיות התפעולית.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>המובילה בענף, בצמיחה גבוהה ובתזרים חזק. פרמיה על "האיכות".</td><td>כ-80 פעמים הרווח. השוק מכר את המניה גם אחרי דוח מצוין.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהמניה זזה יחד עם "טרייד ה-AI" ועם הסנטימנט לתוכנה, יותר מאשר עם הדוחות. משקיע לטווח ארוך צריך לעקוב אחרי שלושה מדדים: NGS ARR פרופורמה (האם הצמיחה נשארת מעל 25% גם בלי השפעת CyberArk), מספר הפלטפורמיזציות, וההתקדמות של Applied Compute. המניה מתאימה למי שמאמין שהסייבר יהיה אחד המרוויחים הגדולים מגל ה-AI, ומוכן לתנודתיות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>NGS ARR</dt><dd>ההכנסה השנתית החוזרת ממוצרי "הדור הבא" (ענן, SASE, ‏Cortex, ‏AI). המדד המרכזי של החברה.</dd>
+    <dt>RPO / cRPO</dt><dd>הכנסות חתומות שעוד לא הוכרו: בסך הכל, ובשנה הקרובה בלבד.</dd>
+    <dt>פלטפורמיזציה</dt><dd>מעבר של לקוח לפלטפורמה המלאה של פאלו אלטו, במקום מוצרים מספקים שונים.</dd>
+    <dt>SASE</dt><dd>גישה מאובטחת לרשת הארגון מכל מקום, דרך הענן.</dd>
+    <dt>XSIAM</dt><dd>מרכז ניהול אבטחה (SOC) מבוסס AI, שאוסף נתונים ומגיב למתקפות אוטומטית.</dd>
+    <dt>Prisma AIRS</dt><dd>מוצר שמגן על מודלי AI וסוכנים: מגלה, בודק ואוכף מדיניות על כל אינטראקציה.</dd>
+    <dt>תיקון וירטואלי</dt><dd>חסימה של פרצה ברמת חומת האש, עד שאפשר להתקין את התיקון האמיתי.</dd>
+    <dt>מודל משקלים פתוחים (Open-weight)</dt><dd>מודל AI שהמשקלים שלו פתוחים, ואפשר להריץ ולאמן אותו בתוך הארגון.</dd>
+    <dt>פרופורמה</dt><dd>השוואה כאילו החברה הנרכשת הייתה חלק מהחברה גם בשנה הקודמת.</dd>
+    <dt>NRR</dt><dd>Net Revenue Retention: כמה הכנסה נשארת ומתרחבת מאותם לקוחות לאחר שנה.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Palo Alto Networks: הודעה על תוצאות הרבעון הראשון של שנת הכספים 2027 (18.11.2026). תמלול שיחת המשקיעים: StockOracle / FactSet. נתוני מסחר וקונצנזוס: Motley Fool, ‏Yahoo Finance, ‏TradingKey ו-TIKR (5–20.11.2026). מחיר הסגירה של 19.11 לא פורסם במקורות. שווי השוק ומכפיל הרווח הם חישובים של הכותב. מקור הלוגו: ההודעה לעיתונות.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי, ואינו ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
