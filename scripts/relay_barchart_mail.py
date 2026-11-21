@@ -54,6 +54,11 @@ def classify(name):
         return "uoa"
     if "watchlist" in c and "500" in c and ("sp" in c or "sandp" in c):
         return "watchlist"
+    # 21.11.2026: הבוט שלח את רשימת 20.11 בשם "sp500_view_s_and_p_500_2026-11-20.csv" (בלי "watchlist") —
+    # נדחתה כ"סוג לא מזוהה" והמד/הרוחב של שישי לא נבנו. שם עם sp500/sandp500 שאינו קובץ אופציות = הרשימה;
+    # WATCHLIST_COLS עדיין בודק שהעמודות של התצוגה הנכונה קיימות.
+    if ("sp500" in c or "sandp500" in c) and "option" not in c and "flow" not in c:
+        return "watchlist"
     if "spx" in c and "option" in c and "flow" in c:
         return "flow"
     if "spy" in c and "option" in c and "flow" in c:
