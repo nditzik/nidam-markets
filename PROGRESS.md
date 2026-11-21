@@ -3,6 +3,12 @@
 קובץ זה נקרא בתחילת כל סשן ומתעדכן לפני כל push (ראו "נהלי סשן" ב-CLAUDE.md).
 שורה לכל סשן/משימה: תאריך · מה נעשה · מה נשאר פתוח.
 
+## 21.11.2026 (שבת ערב, רוטינת גיבוי) — earnings_review_notes: WMT ו-PANW
+- שער הטריות: `daily_state.date` (2026-11-20) שווה ל-date הקיים ב-claude_analysis.json — הריצה הראשית כבר כתבה את הניתוח. בדיקת שלושת החריגים (סעיף 1.5): (א) `data/fourpillars/2026-11-20/` כבר עם notes.json — אין מה לכתוב; (ב) `fundamentals.json` — 0 חברות עם cap בלי about; (ג) ב-`earnings_prep.json.recent` ל-WMT ול-PANW יש `newReport` אבל אין להן רשומה ב-`earnings_review_notes.json` (NVDA/AMAT/ONDS/CSCO כבר תואמות ב-forDate).
+- נכתבו שתי רשומות לפי `earnings_review.md`: **WMT** (forDate 2026-11-19, mixed — EPS/תפעולי/תחזית שנתית מעל הצפי, אבל comp sales בארה"ב 2.9% לא חזרו מעל 3%, והמניה ירדה 1% במכפיל 43) ו-**PANW** (forDate 2026-11-18, mixed — הכנסות/NGS ARR/רווחיות תפעולית הרבה מעל הצפי, אבל הקפיצה של ~9% נמחקה תוך יומיים על רקע תמחור של ~80 מכפיל ואי-הוודאות סביב רכישת Applied Compute). שתי הרשומות נבנו מההכנה (`earnings_prep_notes.json`), מהניתוח החדש (`data/reports/WMT__2026-11-19.html` / `PANW__2026-11-18.html`) ומהמספרים ב-`recent`.
+- `git add data/earnings_review_notes.json data/_routine_heartbeat.log`, commit "notes: earnings_review_notes WMT, PANW", heartbeat `earnings-review: WMT,PANW`, דחיפה ל-main עם ה-PAT הייעודי הצליחה ללא קונפליקט.
+- פתוח: אין.
+
 ## 21.11.2026 (שבת ערב, סשן) — ServiceNow: "אחרי הדוח" בדיעבד לדוח של 28.10
 - איציק העלה את ניתוח הדוח של יולי (`NOW__2026-07-22.html`, הסנכרון הישן במחשב שלו חזר לעבוד ב-18:48). ServiceNow לא הופיעה ב"לקראת הדוח" לפני 28.10 (לא היה ניתוח קודם), ולכן לא נשמרה תמונת "לפני".
 - נכתב בדיעבד, מסומן `retro`: `_prep_snap.json.NOW` (report = יולי, צפי רווח $1.02 מניתוח 28.10, בלי אופציות), `earnings_prep_notes.json.NOW` (5 בדיקות מתוך ניתוח יולי; writtenAt "בדיעבד מתוך ניתוח יולי"), `earnings_review_notes.json.NOW` (mixed: 3 התקיימו, 1 חלקי, 1 לא — cRPO מעל 20% ברבעון הבא; תגובה ‎−26.9% מחושבת מ-data/bars). הכרטיס ייבנה ב-`earnings_prep.json.older` בריצת ה-Action הבאה. טווחים בעברית "X עד Y" (נבדק בצילום).
