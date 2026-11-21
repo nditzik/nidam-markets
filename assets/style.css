@@ -2896,3 +2896,19 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 
 /* np210 (21.11.2026): נפילה בתוך רצף ברצועת "ימים חריגים" — שורת הסבר משנית */
 .ud-now-s { display: block; font-weight: 400; font-size: 13px; color: var(--text-soft); margin-top: 4px; }
+
+/* np211 — גלגל הרוטציה: טבלת התקופה מתחת למפה (השינוי + מול S&P 500) */
+.rw-tbl { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.rw-tbl:empty { display: none; }
+.rw-tbl-hd { font-size: .9rem; margin: 0 0 8px; }
+.rw-tbl-hd .mute { font-size: .8rem; margin-inline-start: 6px; }
+.rw-t { width: 100%; max-width: 520px; border-collapse: collapse; font-size: .86rem; }
+.rw-t th { text-align: right; font-weight: 500; font-size: .76rem; color: var(--text-3); padding: 4px 8px; border-bottom: 1px solid var(--border); }
+.rw-t td { padding: 5px 8px; border-bottom: 1px solid var(--border); }
+.rw-t th:not(:first-child), .rw-t td.num { text-align: left; width: 28%; }
+.rw-t td.up { color: var(--up); }
+.rw-t td.down { color: var(--down); }
+.rw-t tr.rw-t-spy td { font-weight: 600; background: var(--track); }
+.rw-t td.mute { text-align: left; color: var(--text-3); }
+.rw-t-note { font-size: .76rem; color: var(--text-3); margin: 8px 0 0; max-width: 76ch; }
+@media (max-width: 600px) { .rw-t { font-size: .82rem; } .rw-t th, .rw-t td { padding: 5px 4px; } }
