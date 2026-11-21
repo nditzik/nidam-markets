@@ -1006,7 +1006,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np210";
+  var TA_VER = "np211";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4108,7 +4108,34 @@
           '<span class="rw-legend"><span><i class="d"></i>העיגול: מול המדד בתקופה</span><span><i class="t"></i>הקו: מצטבר מתחילת השביל</span><span><i class="g"></i>ירוק עלה · <i class="r"></i>אדום ירד</span><span id="rw-lg-now" hidden><i class="n"></i>עכשיו · אומדן חי</span></span></div>' +
         '<div class="rw-wrap"><svg id="rw-svg" role="img" aria-label="גלגל הרוטציה של 11 הסקטורים"></svg><div class="rw-tip" id="rw-tip"></div></div>' +
         '<p class="rw-foot" id="rw-foot"></p>' +
+        '<div class="rw-tbl" id="rw-tbl"></div>' +
       "</div>";
+  }
+  // np211 (21.11.2026, איציק: "טבלה שבועית מתחת ביחס לשוק — זה עושה סדר"): המפה מראה רק מול המדד;
+  // בשבוע שבו כל הסקטורים ירדו (20.11: S&P ‎−8.6%) "חזק" = ירד פחות. הטבלה מוסיפה את השינוי עצמו.
+  // אותה תקופה כמו לחצני השביל (5 / 20 ימי מסחר), מ-sector_rs.json.closes; ממוין לפי מול המדד.
+  function rwTableHtml() {
+    var c = SRS && SRS.closes, spy = SRS && (SRS.spy || "SPY");
+    if (!c || !c.dates || !c[spy]) return "";
+    var j = c.dates.length - 1, w = RW.mode === "week" ? 5 : 20, a = j - w;
+    if (a < 0) return "";
+    function ch(k) { var v0 = c[k] && c[k][a], v1 = c[k] && c[k][j]; return v0 && v1 ? Math.round((v1 / v0 - 1) * 10000) / 100 : null; }
+    function cell(v, cls) { return '<td class="num ' + (cls || "") + (v == null ? "" : v > 0.05 ? " up" : v < -0.05 ? " down" : "") + '" dir="ltr">' + (v == null ? "—" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1) + "%") + "</td>"; }
+    var rows = Object.keys(c).filter(function (k) { return k !== "dates" && k !== spy && SECTOR_HE[k]; })
+      .map(function (k) { return { k: k, abs: ch(k), vs: rwAnch(k, a, j) }; })
+      .filter(function (r) { return r.abs != null; })
+      .sort(function (x, y) { return (y.vs == null ? -99 : y.vs) - (x.vs == null ? -99 : x.vs); });
+    if (!rows.length) return "";
+    var sp = ch(spy), dn = rows.filter(function (r) { return r.abs < 0; }).length, up = rows.length - dn;
+    function dm(iso) { var p = iso.split("-"); return (+p[2]) + "." + (+p[1]); }
+    var note = dn === rows.length ? "כל " + rows.length + " הסקטורים ירדו בתקופה — מעל המדד = ירד פחות ממנו." :
+      up === rows.length ? "כל " + rows.length + " הסקטורים עלו בתקופה — מתחת למדד = עלה פחות ממנו." :
+      up + " סקטורים עלו ו-" + dn + " ירדו בתקופה.";
+    return '<div class="rw-tbl-hd"><b>' + (w === 5 ? "השבוע" : "החודש") + ' במספרים</b> <span class="mute">' + w + ' ימי מסחר · <span class="num" dir="ltr">' + dm(c.dates[a]) + "–" + dm(c.dates[j]) + "</span></span></div>" +
+      '<table class="rw-t"><thead><tr><th>סקטור</th><th>השינוי</th><th>מול S&amp;P 500</th></tr></thead><tbody>' +
+      '<tr class="rw-t-spy"><td>S&amp;P 500 <span class="mute">(SPY)</span></td>' + cell(sp) + '<td class="mute">—</td></tr>' +
+      rows.map(function (r) { return "<tr><td>" + esc(SECTOR_HE[r.k]) + "</td>" + cell(r.abs) + cell(r.vs) + "</tr>"; }).join("") +
+      "</tbody></table>" + '<p class="rw-t-note">' + note + " מול המדד = השינוי של תעודת הסל פחות השינוי של SPY, בנקודות אחוז.</p>";
   }
   function renderRotationWheel() {
     var svg = document.getElementById("rw-svg"), tip = document.getElementById("rw-tip");
@@ -4234,6 +4261,7 @@
       g.appendChild(h);
     });
     svg.addEventListener("pointerleave", hide);
+    var tb = document.getElementById("rw-tbl"); if (tb) tb.innerHTML = rwTableHtml();
     var f = document.getElementById("rw-foot"), ld = last.date.split("-");
     if (f) f.textContent = "חוזק יחסי של 11 סקטורי S&P מול המדד" + (SRS ? " — תעודות הסל של הסקטורים מול SPY, מנרות יומיים סגורים (אותו מקור כמו מפת החום בבית)" : ", מהדשבורד") + ", עד סגירת " + (+ld[2]) + "." + (+ld[1]) + " · " + n + " ימי מסחר בארכיון. " +
       (RW.mode === "week" ? "השביל: 5 ימי המסחר האחרונים, יום-יום — על הציר האנכי מצטבר מתחילת השביל, כך שכל קטע הוא יום אחד מול המדד." : "השביל: 20 ימי המסחר האחרונים בקפיצות של שבוע — על הציר האופקי מצטבר מתחילת השביל, כך שכל קטע הוא שבוע אחד מול המדד.") + " צבע הקו והעיגול = האם הסקטור הכה את המדד (ירוק) או פיגר אחריו (אדום) לאורך התקופה. ריחוף או נגיעה על סקטור: היום, 5 ימים, 20 יום." + (live ? " הנקודה החלולה = אומדן חי מהמסחר של היום (השינוי היומי של הסקטור פחות של המדד), מתעדכן כל דקה." : "");
