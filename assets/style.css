@@ -2912,3 +2912,7 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .rw-t td.mute { text-align: left; color: var(--text-3); }
 .rw-t-note { font-size: .76rem; color: var(--text-3); margin: 8px 0 0; max-width: 76ch; }
 @media (max-width: 600px) { .rw-t { font-size: .82rem; } .rw-t th, .rw-t td { padding: 5px 4px; } }
+
+/* np212 — טבלאות הלוח: תא מספרי dir=ltr יורש text-align:left (start של LTR) בעוד הכותרת מיושרת לימין,
+   ולכן המספרים "זזו" שמאלה מתחת לכותרת הבאה (סריקת התיקון, 21.11.2026). יישור לימין כמו הכותרות. */
+.bd-tbl td[dir="ltr"], .bd-tbl td.num { text-align: right; }
