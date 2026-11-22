@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "21/11/2026 19:02",
+  "updatedAt": "22/11/2026 06:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -481,7 +481,7 @@
      "spy": -10.4
     }
    },
-   "analystsAt": "2026-11-21T11:31+00:00",
+   "analystsAt": "2026-11-21T23:46+00:00",
    "yahooDate": "2026-11-23",
    "options": {
     "asOf": "20/11 22:46",
@@ -971,7 +971,7 @@
      "spy": -9.4
     }
    },
-   "analystsAt": "2026-11-21T14:46+00:00",
+   "analystsAt": "2026-11-22T02:46+00:00",
    "yahooDate": "2026-11-24",
    "options": {
     "asOf": "20/11 22:46",
@@ -1461,7 +1461,7 @@
      "spy": -9.5
     }
    },
-   "analystsAt": "2026-11-21T11:31+00:00",
+   "analystsAt": "2026-11-21T23:46+00:00",
    "yahooDate": "2026-12-01",
    "options": {
     "asOf": "20/11 22:46",
@@ -1617,8 +1617,6 @@
      "ptPrev": 0.0
     }
    ],
-   "yahooDate": "2026-12-10",
-   "analystsAt": "2026-11-21T17:02+00:00",
    "price": {
     "close": 102.62,
     "date": "2026-11-20",
@@ -1953,6 +1951,8 @@
      "spy": -10.8
     }
    },
+   "analystsAt": "2026-11-21T23:03+00:00",
+   "yahooDate": "2026-12-10",
    "options": {
     "asOf": "20/11 22:46",
     "price": 102.905,
@@ -1984,14 +1984,14 @@
    "when": null
   },
   {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": "after"
+  },
+  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
-  },
-  {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": null
   },
   {
    "sym": "MU",
@@ -2042,7 +2042,11 @@
     "logo": "data/reports/logos/WMT.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/WMT__2026-11-19.html",
+    "date": "2026-11-19",
+    "title": "WMT דוח רבעון Q3 FY27"
+   },
    "consensus": {
     "eps": 0.63627,
     "epsLow": 0.61,
@@ -2085,7 +2089,11 @@
     "logo": "data/reports/logos/PANW.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/PANW__2026-11-18.html",
+    "date": "2026-11-18",
+    "title": "PANW דוח רבעון Q1 FY27"
+   },
    "consensus": {
     "eps": 0.97032,
     "epsLow": 0.95,
@@ -2868,6 +2876,34 @@
     "day": "2026-10-29",
     "move": -0.16,
     "close": 530.14
+   }
+  },
+  {
+   "sym": "NOW",
+   "name": "ServiceNow, Inc.",
+   "date": "2026-10-28",
+   "when": "after",
+   "report": {
+    "file": "data/reports/NOW__2026-07-22.html",
+    "date": "2026-07-22",
+    "title": "NOW דוח רבעון Q2 2026",
+    "logo": "data/reports/logos/NOW.png",
+    "logoBg": null
+   },
+   "newReport": {
+    "file": "data/reports/NOW__2026-10-28.html",
+    "date": "2026-10-28",
+    "title": "NOW דוח רבעון Q3 2026"
+   },
+   "consensus": {
+    "eps": 1.02
+   },
+   "options": null,
+   "avgMove": null,
+   "reaction": {
+    "day": "2026-10-29",
+    "move": -26.95,
+    "close": 109.67
    }
   },
   {
