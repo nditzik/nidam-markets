@@ -1,12 +1,7 @@
 {
   "today": "2026-11-23",
-  "todayCount": 17,
+  "todayCount": 15,
   "todayBig": [
-    {
-      "ticker": "CRWD",
-      "name": "CrowdStrike Holdings, Inc. Class A",
-      "capB": 234.9
-    },
     {
       "ticker": "HPE",
       "name": "Hewlett Packard Enterprise Co.",
@@ -16,11 +11,6 @@
       "ticker": "A",
       "name": "Agilent Technologies, Inc.",
       "capB": 48.0
-    },
-    {
-      "ticker": "ZS",
-      "name": "Zscaler, Inc.",
-      "capB": 31.8
     },
     {
       "ticker": "ZM",
@@ -241,12 +231,6 @@
   },
   "reporting": [
     {
-      "ticker": "CRWD",
-      "name": "CrowdStrike Holdings, Inc. Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/CRWD.png"
-    },
-    {
       "ticker": "HPE",
       "name": "Hewlett Packard Enterprise Co.",
       "when": "after",
@@ -257,12 +241,6 @@
       "name": "Agilent Technologies, Inc.",
       "when": "after",
       "logo": "data/earnings/logos/A.png"
-    },
-    {
-      "ticker": "ZS",
-      "name": "Zscaler, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/ZS.png"
     },
     {
       "ticker": "ZM",
@@ -312,9 +290,21 @@
       "name": "Danaos Corporation",
       "when": "after",
       "logo": "data/earnings/logos/DAC.png"
+    },
+    {
+      "ticker": "CENT",
+      "name": "Central Garden & Pet Company",
+      "when": "after",
+      "logo": "data/earnings/logos/CENT.png"
+    },
+    {
+      "ticker": "CENTA",
+      "name": "Central Garden & Pet Company Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/CENTA.png"
     }
   ],
-  "more": 5,
+  "more": 3,
   "upcoming": [
     {
       "date": "2026-11-24",
@@ -359,14 +349,8 @@
       "date": "2026-11-23",
       "dow": "שני",
       "label": "23.11",
-      "total": 17,
+      "total": 15,
       "companies": [
-        {
-          "ticker": "CRWD",
-          "name": "CrowdStrike Holdings, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/CRWD.png"
-        },
         {
           "ticker": "HPE",
           "name": "Hewlett Packard Enterprise Co.",
@@ -378,12 +362,6 @@
           "name": "Agilent Technologies, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/A.png"
-        },
-        {
-          "ticker": "ZS",
-          "name": "Zscaler, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/ZS.png"
         },
         {
           "ticker": "ZM",
@@ -433,6 +411,18 @@
           "name": "Danaos Corporation",
           "when": "after",
           "logo": "data/earnings/logos/DAC.png"
+        },
+        {
+          "ticker": "CENT",
+          "name": "Central Garden & Pet Company",
+          "when": "after",
+          "logo": "data/earnings/logos/CENT.png"
+        },
+        {
+          "ticker": "CENTA",
+          "name": "Central Garden & Pet Company Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CENTA.png"
         }
       ]
     },
@@ -586,10 +576,8 @@
     }
   ],
   "window": {
-    "CRWD": "2026-11-23",
     "HPE": "2026-11-23",
     "A": "2026-11-23",
-    "ZS": "2026-11-23",
     "ZM": "2026-11-23",
     "SYM": "2026-11-23",
     "J": "2026-11-23",
@@ -635,7 +623,7 @@
     "RBRK": "2026-11-30"
   },
   "_meta": {
-    "updatedAt": "23/11/2026 15:19",
+    "updatedAt": "23/11/2026 15:31",
     "source": "tradingview"
   }
 }
