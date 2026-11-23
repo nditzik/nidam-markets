@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "23/11/2026 16:31",
+  "updatedAt": "23/11/2026 16:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -483,7 +483,16 @@
    },
    "analystsAt": "2026-11-23T12:16+00:00",
    "yahooDate": "2026-11-23",
-   "options": null,
+   "options": {
+    "asOf": "23/11 16:46",
+    "price": 36.995,
+    "exp": "2026-11-27",
+    "strike": 37.0,
+    "pct": 12.03,
+    "earn": null,
+    "preExp": null,
+    "prePct": null
+   },
    "avgMove": 15.6,
    "hasNote": true
   },
@@ -964,7 +973,16 @@
    },
    "analystsAt": "2026-11-23T12:16+00:00",
    "yahooDate": "2026-11-24",
-   "options": null,
+   "options": {
+    "asOf": "23/11 16:46",
+    "price": 332.285,
+    "exp": "2026-11-27",
+    "strike": 332.5,
+    "pct": 18.85,
+    "earn": null,
+    "preExp": null,
+    "prePct": null
+   },
    "avgMove": 19.1,
    "hasNote": true
   },
@@ -1446,14 +1464,14 @@
    "analystsAt": "2026-11-23T11:46+00:00",
    "yahooDate": "2026-12-01",
    "options": {
-    "asOf": "20/11 22:46",
-    "price": 31.225,
+    "asOf": "23/11 16:46",
+    "price": 31.18,
     "exp": "2026-12-18",
     "strike": 30.0,
-    "pct": 10.09,
+    "pct": 10.1,
     "earn": null,
-    "preExp": "2026-11-20",
-    "prePct": 4.15
+    "preExp": null,
+    "prePct": null
    },
    "avgMove": 2.3,
    "hasNote": false
@@ -1936,14 +1954,14 @@
    "analystsAt": "2026-11-23T11:16+00:00",
    "yahooDate": "2026-12-10",
    "options": {
-    "asOf": "20/11 22:46",
-    "price": 102.905,
+    "asOf": "23/11 16:46",
+    "price": 102.78,
     "exp": "2026-12-04",
     "strike": 103.0,
-    "pct": 8.5,
-    "earn": 4.72,
+    "pct": 8.56,
+    "earn": 3.35,
     "preExp": "2026-11-27",
-    "prePct": 5.27
+    "prePct": 5.57
    },
    "avgMove": 9.8,
    "hasNote": false
@@ -1966,11 +1984,6 @@
    "when": null
   },
   {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
-  },
-  {
    "sym": "MU",
    "date": "2026-12-17",
    "when": "after"
@@ -1979,6 +1992,11 @@
    "sym": "NKE",
    "date": "2026-12-17",
    "when": "after"
+  },
+  {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
   },
   {
    "sym": "JPM",
@@ -1991,12 +2009,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
