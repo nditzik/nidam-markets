@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "23/11/2026 08:02",
+  "updatedAt": "23/11/2026 08:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 54.0
     }
    ],
-   "yahooDate": "2026-11-23",
-   "analystsAt": "2026-11-23T06:02+00:00",
    "price": {
     "close": 31.1,
     "date": "2026-11-20",
@@ -483,6 +481,8 @@
      "spy": -10.4
     }
    },
+   "analystsAt": "2026-11-23T06:02+00:00",
+   "yahooDate": "2026-11-23",
    "options": null,
    "avgMove": 15.6,
    "hasNote": true
@@ -628,8 +628,6 @@
      "ptPrev": 575.0
     }
    ],
-   "yahooDate": "2026-11-24",
-   "analystsAt": "2026-11-23T06:02+00:00",
    "price": {
     "close": 278.02,
     "date": "2026-11-20",
@@ -964,6 +962,8 @@
      "spy": -9.4
     }
    },
+   "analystsAt": "2026-11-23T06:02+00:00",
+   "yahooDate": "2026-11-24",
    "options": null,
    "avgMove": 19.1,
    "hasNote": true
@@ -1966,11 +1966,6 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": "after"
-  },
-  {
    "sym": "MU",
    "date": "2026-12-17",
    "when": "after"
@@ -1979,6 +1974,11 @@
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
+  },
+  {
+   "sym": "NKE",
+   "date": "2026-12-17",
+   "when": "after"
   },
   {
    "sym": "JPM",
