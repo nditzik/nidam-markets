@@ -5,32 +5,32 @@
     {
       "ticker": "CRWD",
       "name": "CrowdStrike Holdings, Inc. Class A",
-      "capB": 210.9
+      "capB": 209.3
     },
     {
       "ticker": "HPE",
       "name": "Hewlett Packard Enterprise Co.",
-      "capB": 63.7
+      "capB": 63.4
     },
     {
       "ticker": "A",
       "name": "Agilent Technologies, Inc.",
-      "capB": 49.5
+      "capB": 49.4
     },
     {
       "ticker": "ZS",
       "name": "Zscaler, Inc.",
-      "capB": 36.8
+      "capB": 36.5
     },
     {
       "ticker": "ZM",
       "name": "Zoom Communications, Inc. Class A",
-      "capB": 25.0
+      "capB": 24.9
     },
     {
       "ticker": "SYM",
       "name": "Symbotic, Inc. Class A",
-      "capB": 22.1
+      "capB": 21.8
     }
   ],
   "reactions": {
@@ -332,7 +332,7 @@
         "MDT",
         "ADSK",
         "WDAY",
-        "HPQ"
+        "DLTR"
       ]
     },
     {
@@ -480,16 +480,16 @@
           "logo": "data/earnings/logos/WDAY.png"
         },
         {
-          "ticker": "HPQ",
-          "name": "HP Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/HPQ.png"
-        },
-        {
           "ticker": "DLTR",
           "name": "Dollar Tree, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/DLTR.png"
+        },
+        {
+          "ticker": "HPQ",
+          "name": "HP Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/HPQ.png"
         },
         {
           "ticker": "BBY",
@@ -614,8 +614,8 @@
     "MDT": "2026-11-24",
     "ADSK": "2026-11-24",
     "WDAY": "2026-11-24",
-    "HPQ": "2026-11-24",
     "DLTR": "2026-11-24",
+    "HPQ": "2026-11-24",
     "BBY": "2026-11-24",
     "NTNX": "2026-11-24",
     "BURL": "2026-11-24",
@@ -641,7 +641,7 @@
     "RBRK": "2026-11-30"
   },
   "_meta": {
-    "updatedAt": "23/11/2026 20:46",
+    "updatedAt": "23/11/2026 21:01",
     "source": "tradingview"
   }
 }
