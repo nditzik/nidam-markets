@@ -5,17 +5,17 @@
     {
       "ticker": "DELL",
       "name": "Dell Technologies, Inc. Class C",
-      "capB": 212.9
+      "capB": 200.1
     },
     {
       "ticker": "ADI",
       "name": "Analog Devices, Inc.",
-      "capB": 183.5
+      "capB": 162.7
     },
     {
       "ticker": "MDT",
       "name": "Medtronic Plc",
-      "capB": 128.8
+      "capB": 123.3
     },
     {
       "ticker": "ADSK",
@@ -25,22 +25,22 @@
     {
       "ticker": "WDAY",
       "name": "Workday, Inc. Class A",
-      "capB": 42.4
+      "capB": 42.3
     },
     {
       "ticker": "DLTR",
       "name": "Dollar Tree, Inc.",
-      "capB": 26.1
+      "capB": 28.0
     },
     {
       "ticker": "HPQ",
       "name": "HP Inc.",
-      "capB": 26.1
+      "capB": 25.6
     },
     {
       "ticker": "BBY",
       "name": "Best Buy Co., Inc.",
-      "capB": 20.3
+      "capB": 20.5
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HPE.png",
-            "chg": -12.12,
-            "price": 42.2,
+            "chg": -13.99,
+            "price": 41.3,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/A.png",
-            "chg": 5.87,
-            "price": 186.37,
+            "chg": 6.24,
+            "price": 187.03,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -100,8 +100,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ZM.png",
             "logoBg": "dark",
-            "chg": 1.33,
-            "price": 87.18,
+            "chg": 7.55,
+            "price": 92.53,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SYM.png",
-            "chg": -2.92,
-            "price": 33.95,
+            "chg": 8.46,
+            "price": 37.93,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           }
@@ -319,16 +319,16 @@
       "logo": "data/earnings/logos/BURL.png"
     },
     {
-      "ticker": "SJM",
-      "name": "J.M. Smucker Company",
-      "when": "before",
-      "logo": "data/earnings/logos/SJM.png"
-    },
-    {
       "ticker": "DKS",
       "name": "Dick's Sporting Goods, Inc.",
       "when": "before",
       "logo": "data/earnings/logos/DKS.png"
+    },
+    {
+      "ticker": "SJM",
+      "name": "J.M. Smucker Company",
+      "when": "before",
+      "logo": "data/earnings/logos/SJM.png"
     }
   ],
   "more": 16,
@@ -499,16 +499,16 @@
           "logo": "data/earnings/logos/BURL.png"
         },
         {
-          "ticker": "SJM",
-          "name": "J.M. Smucker Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SJM.png"
-        },
-        {
           "ticker": "DKS",
           "name": "Dick's Sporting Goods, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/DKS.png"
+        },
+        {
+          "ticker": "SJM",
+          "name": "J.M. Smucker Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SJM.png"
         }
       ]
     },
@@ -583,23 +583,23 @@
     "BBY": "2026-11-24",
     "NTNX": "2026-11-24",
     "BURL": "2026-11-24",
-    "SJM": "2026-11-24",
     "DKS": "2026-11-24",
-    "DY": "2026-11-24",
-    "VFS": "2026-11-24",
-    "VIPS": "2026-11-24",
+    "SJM": "2026-11-24",
     "ANF": "2026-11-24",
+    "VFS": "2026-11-24",
+    "DY": "2026-11-24",
+    "VIPS": "2026-11-24",
     "CMBT": "2026-11-24",
     "MMED": "2026-11-24",
     "GGAL": "2026-11-24",
     "BILI": "2026-11-24",
-    "AMBA": "2026-11-24",
     "KSS": "2026-11-24",
+    "AMBA": "2026-11-24",
     "BBAR": "2026-11-24",
     "KC": "2026-11-24",
     "DRVN": "2026-11-24",
-    "CLSK": "2026-11-24",
     "HUBG": "2026-11-24",
+    "CLSK": "2026-11-24",
     "GDRX": "2026-11-24",
     "DE": "2026-11-25",
     "LI": "2026-11-25",
@@ -626,7 +626,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 16:31",
+    "updatedAt": "24/11/2026 16:46",
     "source": "tradingview"
   }
 }
