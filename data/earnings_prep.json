@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "24/11/2026 06:46",
+  "updatedAt": "24/11/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "Dell Technologies, Inc. Class C",
    "date": "2026-11-24",
    "when": "after",
-   "daysTo": 1,
+   "daysTo": 0,
    "report": {
     "file": "data/reports/DELL__2026-09-03.html",
     "date": "2026-09-03",
@@ -501,7 +501,7 @@
    "name": "Copart, Inc.",
    "date": "2026-12-01",
    "when": "before",
-   "daysTo": 8,
+   "daysTo": 7,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -991,7 +991,7 @@
    "name": "lululemon athletica inc.",
    "date": "2026-12-03",
    "when": null,
-   "daysTo": 10,
+   "daysTo": 9,
    "report": {
     "file": "data/reports/LULU__2026-09-03.html",
     "date": "2026-09-03",
@@ -1494,6 +1494,11 @@
    "when": null
   },
   {
+   "sym": "MU",
+   "date": "2026-12-17",
+   "when": "after"
+  },
+  {
    "sym": "NKE",
    "date": "2026-12-17",
    "when": "after"
@@ -1502,11 +1507,6 @@
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
-  },
-  {
-   "sym": "MU",
-   "date": "2026-12-17",
-   "when": "after"
   },
   {
    "sym": "JPM",
@@ -1519,12 +1519,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
