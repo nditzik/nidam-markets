@@ -5,32 +5,32 @@
     {
       "ticker": "DELL",
       "name": "Dell Technologies, Inc. Class C",
-      "capB": 189.7
+      "capB": 191.0
     },
     {
       "ticker": "ADI",
       "name": "Analog Devices, Inc.",
-      "capB": 158.4
+      "capB": 154.2
     },
     {
       "ticker": "MDT",
       "name": "Medtronic Plc",
-      "capB": 128.5
+      "capB": 127.2
     },
     {
       "ticker": "ADSK",
       "name": "Autodesk, Inc.",
-      "capB": 54.6
+      "capB": 54.5
     },
     {
       "ticker": "WDAY",
       "name": "Workday, Inc. Class A",
-      "capB": 43.8
+      "capB": 44.4
     },
     {
       "ticker": "DLTR",
       "name": "Dollar Tree, Inc.",
-      "capB": 28.9
+      "capB": 28.7
     },
     {
       "ticker": "HPQ",
@@ -40,7 +40,7 @@
     {
       "ticker": "BBY",
       "name": "Best Buy Co., Inc.",
-      "capB": 20.4
+      "capB": 20.3
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HPE.png",
-            "chg": -13.85,
-            "price": 41.37,
+            "chg": -14.55,
+            "price": 41.03,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/A.png",
-            "chg": 4.93,
-            "price": 184.71,
+            "chg": 4.68,
+            "price": 184.29,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -100,8 +100,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ZM.png",
             "logoBg": "dark",
-            "chg": 3.26,
-            "price": 88.83,
+            "chg": 4.87,
+            "price": 90.22,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SYM.png",
-            "chg": 8.09,
-            "price": 37.8,
+            "chg": 9.18,
+            "price": 38.18,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           }
@@ -417,16 +417,16 @@
           "logo": "data/earnings/logos/DAC.png"
         },
         {
-          "ticker": "CENT",
-          "name": "Central Garden & Pet Company",
-          "when": "after",
-          "logo": "data/earnings/logos/CENT.png"
-        },
-        {
           "ticker": "CENTA",
           "name": "Central Garden & Pet Company Class A",
           "when": "after",
           "logo": "data/earnings/logos/CENTA.png"
+        },
+        {
+          "ticker": "CENT",
+          "name": "Central Garden & Pet Company",
+          "when": "after",
+          "logo": "data/earnings/logos/CENT.png"
         }
       ]
     },
@@ -589,15 +589,15 @@
     "VFS": "2026-11-24",
     "VIPS": "2026-11-24",
     "DY": "2026-11-24",
-    "MMED": "2026-11-24",
     "CMBT": "2026-11-24",
+    "MMED": "2026-11-24",
     "GGAL": "2026-11-24",
     "BILI": "2026-11-24",
     "KSS": "2026-11-24",
     "AMBA": "2026-11-24",
     "BBAR": "2026-11-24",
-    "KC": "2026-11-24",
     "DRVN": "2026-11-24",
+    "KC": "2026-11-24",
     "HUBG": "2026-11-24",
     "CLSK": "2026-11-24",
     "GDRX": "2026-11-24",
@@ -626,7 +626,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 17:05",
+    "updatedAt": "24/11/2026 17:16",
     "source": "tradingview"
   }
 }
