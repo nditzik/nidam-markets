@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "24/11/2026 02:11",
+  "updatedAt": "24/11/2026 02:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,11 +147,13 @@
      "ptPrev": 575.0
     }
    ],
+   "yahooDate": "2026-11-24",
+   "analystsAt": "2026-11-24T00:16+00:00",
    "price": {
-    "close": 336.8,
+    "close": 334.91,
     "date": "2026-11-23",
     "high52": 588.4,
-    "ma50": 467.15,
+    "ma50": 467.11,
     "series": [
      [
       "2026-08-03",
@@ -471,17 +473,16 @@
      ],
      [
       "2026-11-23",
-      336.8
+      334.91
      ]
     ],
-    "off52": -42.8,
+    "off52": -43.1,
     "since": {
      "from": "2026-09-01",
-     "chg": -20.8
+     "chg": -21.2,
+     "spy": -5.2
     }
    },
-   "analystsAt": "2026-11-23T18:16+00:00",
-   "yahooDate": "2026-11-24",
    "options": {
     "asOf": "23/11 22:46",
     "price": 337.595,
@@ -1493,12 +1494,12 @@
    "when": null
   },
   {
-   "sym": "NKE",
+   "sym": "MU",
    "date": "2026-12-17",
    "when": "after"
   },
   {
-   "sym": "MU",
+   "sym": "NKE",
    "date": "2026-12-17",
    "when": "after"
   },
@@ -1518,12 +1519,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
