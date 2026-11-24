@@ -1,6 +1,6 @@
 {
   "today": "2026-11-24",
-  "todayCount": 22,
+  "todayCount": 27,
   "todayBig": [
     {
       "ticker": "DELL",
@@ -53,8 +53,12 @@
             "ticker": "CRWD",
             "name": "CrowdStrike Holdings, Inc. Class A",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/CRWD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/CRWD.png",
+            "chg": -8.92,
+            "price": 208.97,
+            "reactDate": "2026-11-23",
+            "baseDate": "2026-11-20"
           },
           {
             "ticker": "HPE",
@@ -74,8 +78,12 @@
             "ticker": "ZS",
             "name": "Zscaler, Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/ZS.png"
+            "status": "final",
+            "logo": "data/earnings/logos/ZS.png",
+            "chg": 17.67,
+            "price": 229.24,
+            "reactDate": "2026-11-23",
+            "baseDate": "2026-11-20"
           },
           {
             "ticker": "ZM",
@@ -307,7 +315,7 @@
       "logo": "data/earnings/logos/DKS.png"
     }
   ],
-  "more": 10,
+  "more": 15,
   "upcoming": [
     {
       "date": "2026-11-25",
@@ -419,7 +427,7 @@
       "date": "2026-11-24",
       "dow": "שלישי",
       "label": "24.11",
-      "total": 22,
+      "total": 27,
       "companies": [
         {
           "ticker": "DELL",
@@ -578,15 +586,20 @@
     "SJM": "2026-11-24",
     "DKS": "2026-11-24",
     "DY": "2026-11-24",
+    "VFS": "2026-11-24",
     "VIPS": "2026-11-24",
     "ANF": "2026-11-24",
     "CMBT": "2026-11-24",
+    "GGAL": "2026-11-24",
     "BILI": "2026-11-24",
     "AMBA": "2026-11-24",
     "KSS": "2026-11-24",
     "BBAR": "2026-11-24",
+    "DRVN": "2026-11-24",
     "KC": "2026-11-24",
     "CLSK": "2026-11-24",
+    "HUBG": "2026-11-24",
+    "GDRX": "2026-11-24",
     "DE": "2026-11-25",
     "LI": "2026-11-25",
     "BZ": "2026-11-25",
@@ -612,7 +625,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 04:16",
+    "updatedAt": "24/11/2026 04:31",
     "source": "tradingview"
   }
 }
