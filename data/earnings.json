@@ -346,7 +346,7 @@
       "date": "2026-11-23",
       "dow": "שני",
       "label": "23.11",
-      "total": 18,
+      "total": 12,
       "companies": [
         {
           "ticker": "CRWD",
@@ -398,28 +398,28 @@
           "logo": "data/earnings/logos/SMTC.png"
         },
         {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd.",
-          "when": "",
-          "logo": "data/earnings/logos/VFS.png"
-        },
-        {
           "ticker": "AMTM",
           "name": "Amentum Holdings, Inc.",
           "when": "",
           "logo": "data/earnings/logos/AMTM.png"
         },
         {
-          "ticker": "GGAL",
-          "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
-          "when": "",
-          "logo": "data/earnings/logos/GGAL.png"
+          "ticker": "CENT",
+          "name": "Central Garden & Pet Company",
+          "when": "after",
+          "logo": "data/earnings/logos/CENT.png"
         },
         {
-          "ticker": "DAC",
-          "name": "Danaos Corporation",
+          "ticker": "CENTA",
+          "name": "Central Garden & Pet Company Class A",
           "when": "after",
-          "logo": "data/earnings/logos/DAC.png"
+          "logo": "data/earnings/logos/CENTA.png"
+        },
+        {
+          "ticker": "CDLR",
+          "name": "Cadeler PLC",
+          "when": "before",
+          "logo": "data/earnings/logos/CDLR.png"
         }
       ]
     },
@@ -620,7 +620,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 02:01",
+    "updatedAt": "24/11/2026 02:11",
     "source": "tradingview"
   }
 }
