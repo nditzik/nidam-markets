@@ -5,42 +5,42 @@
     {
       "ticker": "DELL",
       "name": "Dell Technologies, Inc. Class C",
-      "capB": 187.8
+      "capB": 188.2
     },
     {
       "ticker": "ADI",
       "name": "Analog Devices, Inc.",
-      "capB": 153.4
+      "capB": 153.5
     },
     {
       "ticker": "MDT",
       "name": "Medtronic Plc",
-      "capB": 123.5
+      "capB": 123.0
     },
     {
       "ticker": "ADSK",
       "name": "Autodesk, Inc.",
-      "capB": 53.4
+      "capB": 53.3
     },
     {
       "ticker": "WDAY",
       "name": "Workday, Inc. Class A",
-      "capB": 42.3
+      "capB": 42.7
     },
     {
       "ticker": "DLTR",
       "name": "Dollar Tree, Inc.",
-      "capB": 29.1
+      "capB": 29.4
     },
     {
       "ticker": "HPQ",
       "name": "HP Inc.",
-      "capB": 25.3
+      "capB": 25.2
     },
     {
       "ticker": "BBY",
       "name": "Best Buy Co., Inc.",
-      "capB": 20.6
+      "capB": 20.7
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HPE.png",
-            "chg": -17.77,
-            "price": 39.49,
+            "chg": -16.22,
+            "price": 40.23,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/A.png",
-            "chg": 4.37,
-            "price": 183.74,
+            "chg": 4.26,
+            "price": 183.54,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -97,11 +97,11 @@
             "ticker": "ZM",
             "name": "Zoom Communications, Inc. Class A",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/ZM.png",
             "logoBg": "dark",
-            "chg": 3.1,
-            "price": 88.69,
+            "chg": 2.75,
+            "price": 88.4,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -109,10 +109,10 @@
             "ticker": "SYM",
             "name": "Symbotic, Inc. Class A",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/SYM.png",
-            "chg": 7.01,
-            "price": 37.42,
+            "chg": 6.92,
+            "price": 37.39,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           }
@@ -594,8 +594,8 @@
     "GGAL": "2026-11-24",
     "BILI": "2026-11-24",
     "KSS": "2026-11-24",
-    "AMBA": "2026-11-24",
     "BBAR": "2026-11-24",
+    "AMBA": "2026-11-24",
     "DRVN": "2026-11-24",
     "KC": "2026-11-24",
     "HUBG": "2026-11-24",
@@ -626,7 +626,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 22:46",
+    "updatedAt": "24/11/2026 23:01",
     "source": "tradingview"
   }
 }
