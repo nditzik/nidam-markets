@@ -338,7 +338,7 @@
       "date": "2026-11-23",
       "dow": "שני",
       "label": "23.11",
-      "total": 12,
+      "total": 13,
       "companies": [
         {
           "ticker": "CRWD",
@@ -392,8 +392,14 @@
         {
           "ticker": "AMTM",
           "name": "Amentum Holdings, Inc.",
-          "when": "",
+          "when": "after",
           "logo": "data/earnings/logos/AMTM.png"
+        },
+        {
+          "ticker": "DAC",
+          "name": "Danaos Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/DAC.png"
         },
         {
           "ticker": "CENT",
@@ -406,12 +412,6 @@
           "name": "Central Garden & Pet Company Class A",
           "when": "after",
           "logo": "data/earnings/logos/CENTA.png"
-        },
-        {
-          "ticker": "CDLR",
-          "name": "Cadeler PLC",
-          "when": "before",
-          "logo": "data/earnings/logos/CDLR.png"
         }
       ]
     },
@@ -612,7 +612,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 03:01",
+    "updatedAt": "24/11/2026 03:16",
     "source": "tradingview"
   }
 }
