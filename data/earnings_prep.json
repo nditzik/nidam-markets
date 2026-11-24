@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "24/11/2026 20:16",
+  "updatedAt": "24/11/2026 20:31",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 575.0
     }
    ],
-   "yahooDate": "2026-11-24",
-   "analystsAt": "2026-11-24T18:16+00:00",
    "price": {
     "close": 297.32,
     "date": "2026-11-24",
@@ -482,12 +480,14 @@
      "chg": -30.0
     }
    },
+   "analystsAt": "2026-11-24T18:16+00:00",
+   "yahooDate": "2026-11-24",
    "options": {
-    "asOf": "24/11 20:16",
-    "price": 297.319,
+    "asOf": "24/11 20:31",
+    "price": 296.64,
     "exp": "2026-11-27",
     "strike": 297.5,
-    "pct": 12.89,
+    "pct": 12.74,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -972,11 +972,11 @@
    "analystsAt": "2026-11-24T17:46+00:00",
    "yahooDate": "2026-12-01",
    "options": {
-    "asOf": "24/11 20:16",
-    "price": 32.725,
+    "asOf": "24/11 20:31",
+    "price": 32.625,
     "exp": "2026-12-18",
     "strike": 32.5,
-    "pct": 8.79,
+    "pct": 8.97,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -1461,14 +1461,14 @@
    "analystsAt": "2026-11-24T17:31+00:00",
    "yahooDate": "2026-12-08",
    "options": {
-    "asOf": "24/11 20:16",
-    "price": 107.9,
+    "asOf": "24/11 20:31",
+    "price": 107.505,
     "exp": "2026-12-04",
     "strike": 108.0,
-    "pct": 6.33,
-    "earn": 3.7,
+    "pct": 6.14,
+    "earn": 3.74,
     "preExp": "2026-11-27",
-    "prePct": 3.36
+    "prePct": 3.19
    },
    "avgMove": 9.8,
    "hasNote": false
@@ -1491,9 +1491,9 @@
    "when": null
   },
   {
-   "sym": "MU",
+   "sym": "ACN",
    "date": "2026-12-17",
-   "when": "after"
+   "when": "before"
   },
   {
    "sym": "NKE",
@@ -1501,9 +1501,9 @@
    "when": "after"
   },
   {
-   "sym": "ACN",
+   "sym": "MU",
    "date": "2026-12-17",
-   "when": "before"
+   "when": "after"
   },
   {
    "sym": "JPM",
@@ -1516,12 +1516,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
