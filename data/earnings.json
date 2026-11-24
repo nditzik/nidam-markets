@@ -5,42 +5,42 @@
     {
       "ticker": "DELL",
       "name": "Dell Technologies, Inc. Class C",
-      "capB": 200.1
+      "capB": 192.3
     },
     {
       "ticker": "ADI",
       "name": "Analog Devices, Inc.",
-      "capB": 162.7
+      "capB": 157.7
     },
     {
       "ticker": "MDT",
       "name": "Medtronic Plc",
-      "capB": 123.3
+      "capB": 128.4
     },
     {
       "ticker": "ADSK",
       "name": "Autodesk, Inc.",
-      "capB": 53.4
+      "capB": 54.7
     },
     {
       "ticker": "WDAY",
       "name": "Workday, Inc. Class A",
-      "capB": 42.3
+      "capB": 43.8
     },
     {
       "ticker": "DLTR",
       "name": "Dollar Tree, Inc.",
-      "capB": 28.0
+      "capB": 28.8
     },
     {
       "ticker": "HPQ",
       "name": "HP Inc.",
-      "capB": 25.6
+      "capB": 26.0
     },
     {
       "ticker": "BBY",
       "name": "Best Buy Co., Inc.",
-      "capB": 20.5
+      "capB": 20.4
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HPE.png",
-            "chg": -13.99,
-            "price": 41.3,
+            "chg": -13.18,
+            "price": 41.69,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/A.png",
-            "chg": 6.24,
-            "price": 187.03,
+            "chg": 5.01,
+            "price": 184.87,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -100,8 +100,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ZM.png",
             "logoBg": "dark",
-            "chg": 7.55,
-            "price": 92.53,
+            "chg": 3.49,
+            "price": 89.03,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SYM.png",
-            "chg": 8.46,
-            "price": 37.93,
+            "chg": 6.72,
+            "price": 37.32,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           }
@@ -307,28 +307,28 @@
       "logo": "data/earnings/logos/BBY.png"
     },
     {
-      "ticker": "NTNX",
-      "name": "Nutanix, Inc. Class A",
-      "when": "after",
-      "logo": "data/earnings/logos/NTNX.png"
-    },
-    {
       "ticker": "BURL",
       "name": "Burlington Stores, Inc.",
       "when": "before",
       "logo": "data/earnings/logos/BURL.png"
     },
     {
-      "ticker": "DKS",
-      "name": "Dick's Sporting Goods, Inc.",
-      "when": "before",
-      "logo": "data/earnings/logos/DKS.png"
+      "ticker": "NTNX",
+      "name": "Nutanix, Inc. Class A",
+      "when": "after",
+      "logo": "data/earnings/logos/NTNX.png"
     },
     {
       "ticker": "SJM",
       "name": "J.M. Smucker Company",
       "when": "before",
       "logo": "data/earnings/logos/SJM.png"
+    },
+    {
+      "ticker": "DKS",
+      "name": "Dick's Sporting Goods, Inc.",
+      "when": "before",
+      "logo": "data/earnings/logos/DKS.png"
     }
   ],
   "more": 16,
@@ -417,16 +417,16 @@
           "logo": "data/earnings/logos/DAC.png"
         },
         {
-          "ticker": "CENTA",
-          "name": "Central Garden & Pet Company Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CENTA.png"
-        },
-        {
           "ticker": "CENT",
           "name": "Central Garden & Pet Company",
           "when": "after",
           "logo": "data/earnings/logos/CENT.png"
+        },
+        {
+          "ticker": "CENTA",
+          "name": "Central Garden & Pet Company Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CENTA.png"
         }
       ]
     },
@@ -487,28 +487,28 @@
           "logo": "data/earnings/logos/BBY.png"
         },
         {
-          "ticker": "NTNX",
-          "name": "Nutanix, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/NTNX.png"
-        },
-        {
           "ticker": "BURL",
           "name": "Burlington Stores, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/BURL.png"
         },
         {
-          "ticker": "DKS",
-          "name": "Dick's Sporting Goods, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/DKS.png"
+          "ticker": "NTNX",
+          "name": "Nutanix, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/NTNX.png"
         },
         {
           "ticker": "SJM",
           "name": "J.M. Smucker Company",
           "when": "before",
           "logo": "data/earnings/logos/SJM.png"
+        },
+        {
+          "ticker": "DKS",
+          "name": "Dick's Sporting Goods, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/DKS.png"
         }
       ]
     },
@@ -581,14 +581,14 @@
     "DLTR": "2026-11-24",
     "HPQ": "2026-11-24",
     "BBY": "2026-11-24",
-    "NTNX": "2026-11-24",
     "BURL": "2026-11-24",
-    "DKS": "2026-11-24",
+    "NTNX": "2026-11-24",
     "SJM": "2026-11-24",
+    "DKS": "2026-11-24",
     "ANF": "2026-11-24",
     "VFS": "2026-11-24",
-    "DY": "2026-11-24",
     "VIPS": "2026-11-24",
+    "DY": "2026-11-24",
     "CMBT": "2026-11-24",
     "MMED": "2026-11-24",
     "GGAL": "2026-11-24",
@@ -617,8 +617,8 @@
     "MDB": "2026-12-01",
     "CRDO": "2026-12-01",
     "HQY": "2026-12-01",
-    "URBN": "2026-12-01",
     "GTLB": "2026-12-01",
+    "URBN": "2026-12-01",
     "BOX": "2026-12-01",
     "NIO": "2026-12-01",
     "NCNO": "2026-12-01",
@@ -626,7 +626,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 16:46",
+    "updatedAt": "24/11/2026 17:01",
     "source": "tradingview"
   }
 }
