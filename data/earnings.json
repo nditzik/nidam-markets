@@ -5,32 +5,32 @@
     {
       "ticker": "DELL",
       "name": "Dell Technologies, Inc. Class C",
-      "capB": 187.0
+      "capB": 188.2
     },
     {
       "ticker": "ADI",
       "name": "Analog Devices, Inc.",
-      "capB": 149.6
+      "capB": 151.6
     },
     {
       "ticker": "MDT",
       "name": "Medtronic Plc",
-      "capB": 124.7
+      "capB": 125.8
     },
     {
       "ticker": "ADSK",
       "name": "Autodesk, Inc.",
-      "capB": 53.2
+      "capB": 53.1
     },
     {
       "ticker": "WDAY",
       "name": "Workday, Inc. Class A",
-      "capB": 44.0
+      "capB": 44.1
     },
     {
       "ticker": "DLTR",
       "name": "Dollar Tree, Inc.",
-      "capB": 29.1
+      "capB": 29.2
     },
     {
       "ticker": "HPQ",
@@ -40,7 +40,7 @@
     {
       "ticker": "BBY",
       "name": "Best Buy Co., Inc.",
-      "capB": 20.8
+      "capB": 21.0
     }
   ],
   "reactions": {
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/HPE.png",
-            "chg": -16.72,
-            "price": 39.99,
+            "chg": -16.35,
+            "price": 40.17,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/A.png",
-            "chg": 3.43,
-            "price": 182.07,
+            "chg": 3.56,
+            "price": 182.32,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -100,8 +100,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ZM.png",
             "logoBg": "dark",
-            "chg": 1.46,
-            "price": 87.29,
+            "chg": 2.92,
+            "price": 88.54,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -111,8 +111,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/SYM.png",
-            "chg": 5.99,
-            "price": 37.06,
+            "chg": 4.92,
+            "price": 36.69,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           }
@@ -140,6 +140,13 @@
             "status": "na"
           },
           {
+            "ticker": "MOG.A",
+            "name": "Moog Inc. Class A",
+            "when": "before",
+            "status": "na",
+            "logo": "data/earnings/logos/MOG.A.png"
+          },
+          {
             "ticker": "FRO",
             "name": "Frontline Plc",
             "when": "before",
@@ -149,13 +156,6 @@
             "price": 45.21,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
-          },
-          {
-            "ticker": "MOG.A",
-            "name": "Moog Inc. Class A",
-            "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/MOG.A.png"
           },
           {
             "ticker": "IESC",
@@ -353,7 +353,7 @@
       "date": "2026-11-23",
       "dow": "שני",
       "label": "23.11",
-      "total": 13,
+      "total": 14,
       "companies": [
         {
           "ticker": "CRWD",
@@ -617,8 +617,8 @@
     "MDB": "2026-12-01",
     "CRDO": "2026-12-01",
     "HQY": "2026-12-01",
-    "GTLB": "2026-12-01",
     "URBN": "2026-12-01",
+    "GTLB": "2026-12-01",
     "BOX": "2026-12-01",
     "NIO": "2026-12-01",
     "NCNO": "2026-12-01",
@@ -626,7 +626,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 19:16",
+    "updatedAt": "24/11/2026 19:31",
     "source": "tradingview"
   }
 }
