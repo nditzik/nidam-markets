@@ -5,12 +5,12 @@
     {
       "ticker": "DELL",
       "name": "Dell Technologies, Inc. Class C",
-      "capB": 188.2
+      "capB": 184.7
     },
     {
       "ticker": "ADI",
       "name": "Analog Devices, Inc.",
-      "capB": 153.5
+      "capB": 151.6
     },
     {
       "ticker": "MDT",
@@ -20,17 +20,17 @@
     {
       "ticker": "ADSK",
       "name": "Autodesk, Inc.",
-      "capB": 53.3
+      "capB": 53.4
     },
     {
       "ticker": "WDAY",
       "name": "Workday, Inc. Class A",
-      "capB": 42.7
+      "capB": 43.2
     },
     {
       "ticker": "DLTR",
       "name": "Dollar Tree, Inc.",
-      "capB": 29.4
+      "capB": 29.0
     },
     {
       "ticker": "HPQ",
@@ -40,7 +40,7 @@
     {
       "ticker": "BBY",
       "name": "Best Buy Co., Inc.",
-      "capB": 20.7
+      "capB": 20.9
     }
   ],
   "reactions": {
@@ -64,10 +64,10 @@
             "ticker": "HPE",
             "name": "Hewlett Packard Enterprise Co.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/HPE.png",
-            "chg": -16.22,
-            "price": 40.23,
+            "chg": -16.31,
+            "price": 40.19,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -77,8 +77,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/A.png",
-            "chg": 4.26,
-            "price": 183.54,
+            "chg": 4.27,
+            "price": 183.55,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -626,7 +626,7 @@
     "VSTS": "2026-12-01"
   },
   "_meta": {
-    "updatedAt": "24/11/2026 23:01",
+    "updatedAt": "24/11/2026 23:16",
     "source": "tradingview"
   }
 }
