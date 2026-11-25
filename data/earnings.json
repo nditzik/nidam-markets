@@ -5,7 +5,7 @@
     {
       "ticker": "DE",
       "name": "Deere & Company",
-      "capB": 164.4
+      "capB": 167.5
     }
   ],
   "reactions": {
@@ -20,8 +20,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/DELL.png",
-            "chg": -5.23,
-            "price": 279.85,
+            "chg": -7.6,
+            "price": 272.83,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -55,8 +55,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ADSK.png",
             "logoBg": "dark",
-            "chg": -5.41,
-            "price": 241.85,
+            "chg": -4.92,
+            "price": 243.13,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WDAY.png",
-            "chg": 1.29,
-            "price": 181.54,
+            "chg": 2.29,
+            "price": 183.34,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -432,16 +432,16 @@
           "logo": "data/earnings/logos/BURL.png"
         },
         {
-          "ticker": "SJM",
-          "name": "J.M. Smucker Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SJM.png"
-        },
-        {
           "ticker": "DKS",
           "name": "Dick's Sporting Goods, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/DKS.png"
+        },
+        {
+          "ticker": "SJM",
+          "name": "J.M. Smucker Company",
+          "when": "before",
+          "logo": "data/earnings/logos/SJM.png"
         },
         {
           "ticker": "NTNX",
@@ -579,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 17:05",
+    "updatedAt": "25/11/2026 17:16",
     "source": "tradingview"
   }
 }
