@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "25/11/2026 22:31",
+  "updatedAt": "25/11/2026 22:46",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -483,11 +483,11 @@
    "analystsAt": "2026-11-25T17:46+00:00",
    "yahooDate": "2026-12-01",
    "options": {
-    "asOf": "25/11 22:31",
-    "price": 33.165,
+    "asOf": "25/11 22:46",
+    "price": 33.175,
     "exp": "2026-12-18",
     "strike": 32.5,
-    "pct": 9.05,
+    "pct": 9.27,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -972,14 +972,14 @@
    "analystsAt": "2026-11-25T17:31+00:00",
    "yahooDate": "2026-12-08",
    "options": {
-    "asOf": "25/11 22:31",
-    "price": 106.92,
+    "asOf": "25/11 22:46",
+    "price": 107.42,
     "exp": "2026-12-04",
     "strike": 107.0,
-    "pct": 6.07,
-    "earn": 4.37,
+    "pct": 5.93,
+    "earn": 4.36,
     "preExp": "2026-11-27",
-    "prePct": 2.43
+    "prePct": 2.32
    },
    "avgMove": 9.8,
    "hasNote": false
@@ -1461,14 +1461,14 @@
    "analystsAt": "2026-11-25T17:02+00:00",
    "yahooDate": "2026-12-09",
    "options": {
-    "asOf": "25/11 22:31",
-    "price": 296.74,
+    "asOf": "25/11 22:46",
+    "price": 297.36,
     "exp": "2026-12-11",
     "strike": 297.5,
-    "pct": 14.34,
-    "earn": 8.45,
+    "pct": 14.44,
+    "earn": 8.9,
     "preExp": "2026-12-07",
-    "prePct": 9.88
+    "prePct": 9.7
    },
    "avgMove": 7.9,
    "hasNote": false
@@ -1486,6 +1486,11 @@
    "when": null
   },
   {
+   "sym": "ACN",
+   "date": "2026-12-17",
+   "when": "before"
+  },
+  {
    "sym": "MU",
    "date": "2026-12-17",
    "when": "after"
@@ -1494,11 +1499,6 @@
    "sym": "NKE",
    "date": "2026-12-17",
    "when": "after"
-  },
-  {
-   "sym": "ACN",
-   "date": "2026-12-17",
-   "when": "before"
   },
   {
    "sym": "JPM",
@@ -1511,12 +1511,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
