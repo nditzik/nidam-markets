@@ -5,7 +5,7 @@
     {
       "ticker": "DE",
       "name": "Deere & Company",
-      "capB": 173.5
+      "capB": 173.4
     }
   ],
   "reactions": {
@@ -20,8 +20,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/DELL.png",
-            "chg": -0.43,
-            "price": 294.0,
+            "chg": -0.04,
+            "price": 295.17,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -55,8 +55,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ADSK.png",
             "logoBg": "dark",
-            "chg": -1.96,
-            "price": 250.69,
+            "chg": -1.97,
+            "price": 250.65,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -66,21 +66,21 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WDAY.png",
-            "chg": 1.17,
-            "price": 181.32,
+            "chg": 1.26,
+            "price": 181.49,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
           {
-            "ticker": "DLTR",
-            "name": "Dollar Tree, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/DLTR.png",
-            "chg": 11.18,
-            "price": 154.65,
-            "reactDate": "2026-11-24",
-            "baseDate": "2026-11-23"
+            "ticker": "HPQ",
+            "name": "HP Inc.",
+            "when": "after",
+            "status": "live",
+            "logo": "data/earnings/logos/HPQ.png",
+            "chg": 13.05,
+            "price": 31.58,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           }
         ]
       },
@@ -408,16 +408,16 @@
           "logo": "data/earnings/logos/WDAY.png"
         },
         {
-          "ticker": "DLTR",
-          "name": "Dollar Tree, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/DLTR.png"
-        },
-        {
           "ticker": "HPQ",
           "name": "HP Inc.",
           "when": "after",
           "logo": "data/earnings/logos/HPQ.png"
+        },
+        {
+          "ticker": "DLTR",
+          "name": "Dollar Tree, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/DLTR.png"
         },
         {
           "ticker": "BBY",
@@ -579,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 21:30",
+    "updatedAt": "25/11/2026 21:32",
     "source": "tradingview"
   }
 }
