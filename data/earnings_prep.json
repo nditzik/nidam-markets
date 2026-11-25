@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "26/11/2026 01:01",
+  "updatedAt": "26/11/2026 01:16",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -1005,12 +1005,12 @@
     "eps": 3.83018,
     "epsLow": 3.53,
     "epsHigh": 3.92,
-    "epsN": 41,
+    "epsN": 40,
     "epsYearAgo": 1.95,
-    "rev": 34903482540,
+    "rev": 34906205760,
     "revLow": 34743200000,
     "revHigh": 35591502020,
-    "revN": 39,
+    "revN": 38,
     "revYearAgo": 18015000000,
     "quarterEnd": "2026-10-31"
    },
@@ -1019,14 +1019,14 @@
     "down30": 0
    },
    "targets": {
-    "mean": 525.5147,
+    "mean": 523.28064,
     "high": 660.0,
     "low": 398.4699,
     "n": 47
    },
    "recs": {
     "strongBuy": 8,
-    "buy": 40,
+    "buy": 39,
     "hold": 3,
     "sell": 0,
     "strongSell": 0
@@ -1125,11 +1125,13 @@
      "ptPrev": 400.0
     }
    ],
+   "yahooDate": "2026-12-09",
+   "analystsAt": "2026-11-25T23:16+00:00",
    "price": {
-    "close": 284.1,
+    "close": 300.86,
     "date": "2026-11-25",
     "high52": 481.57,
-    "ma50": 340.22,
+    "ma50": 340.55,
     "series": [
      [
       "2026-08-05",
@@ -1449,17 +1451,16 @@
      ],
      [
       "2026-11-25",
-      284.1
+      300.86
      ]
     ],
-    "off52": -41.0,
+    "off52": -37.5,
     "since": {
      "from": "2026-09-02",
-     "chg": -22.6
+     "chg": -18.1,
+     "spy": -6.3
     }
    },
-   "analystsAt": "2026-11-25T17:02+00:00",
-   "yahooDate": "2026-12-09",
    "options": {
     "asOf": "25/11 22:46",
     "price": 297.36,
@@ -1486,17 +1487,17 @@
    "when": null
   },
   {
-   "sym": "NKE",
-   "date": "2026-12-17",
-   "when": "after"
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
   },
   {
    "sym": "MU",
+   "date": "2026-12-17",
+   "when": "after"
+  },
+  {
+   "sym": "NKE",
    "date": "2026-12-17",
    "when": "after"
   },
