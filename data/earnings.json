@@ -5,7 +5,7 @@
     {
       "ticker": "DE",
       "name": "Deere & Company",
-      "capB": 172.7
+      "capB": 173.1
     }
   ],
   "reactions": {
@@ -18,10 +18,10 @@
             "ticker": "DELL",
             "name": "Dell Technologies, Inc. Class C",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/DELL.png",
-            "chg": -0.82,
-            "price": 292.85,
+            "chg": 0.6,
+            "price": 297.06,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -52,11 +52,11 @@
             "ticker": "ADSK",
             "name": "Autodesk, Inc.",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/ADSK.png",
             "logoBg": "dark",
-            "chg": -2.87,
-            "price": 248.36,
+            "chg": -3.49,
+            "price": 246.79,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -64,10 +64,10 @@
             "ticker": "WDAY",
             "name": "Workday, Inc. Class A",
             "when": "after",
-            "status": "live",
+            "status": "final",
             "logo": "data/earnings/logos/WDAY.png",
-            "chg": 1.51,
-            "price": 181.95,
+            "chg": 0.68,
+            "price": 180.44,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -579,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 22:46",
+    "updatedAt": "25/11/2026 23:01",
     "source": "tradingview"
   }
 }
