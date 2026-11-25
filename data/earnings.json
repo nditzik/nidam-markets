@@ -5,7 +5,7 @@
     {
       "ticker": "DE",
       "name": "Deere & Company",
-      "capB": 173.2
+      "capB": 173.3
     }
   ],
   "reactions": {
@@ -18,45 +18,69 @@
             "ticker": "DELL",
             "name": "Dell Technologies, Inc. Class C",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/DELL.png"
+            "status": "live",
+            "logo": "data/earnings/logos/DELL.png",
+            "chg": -1.32,
+            "price": 291.38,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "ADI",
             "name": "Analog Devices, Inc.",
             "when": "before",
-            "status": "na",
+            "status": "final",
             "logo": "data/earnings/logos/ADI.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -17.37,
+            "price": 312.95,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "MDT",
             "name": "Medtronic Plc",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/MDT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MDT.png",
+            "chg": -4.56,
+            "price": 96.13,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "ADSK",
             "name": "Autodesk, Inc.",
             "when": "after",
-            "status": "na",
+            "status": "live",
             "logo": "data/earnings/logos/ADSK.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -2.85,
+            "price": 248.4,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "WDAY",
             "name": "Workday, Inc. Class A",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/WDAY.png"
+            "status": "live",
+            "logo": "data/earnings/logos/WDAY.png",
+            "chg": 0.88,
+            "price": 180.81,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "DLTR",
             "name": "Dollar Tree, Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/DLTR.png"
+            "status": "final",
+            "logo": "data/earnings/logos/DLTR.png",
+            "chg": 11.18,
+            "price": 154.65,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           }
         ]
       },
@@ -68,44 +92,68 @@
             "ticker": "CRWD",
             "name": "CrowdStrike Holdings, Inc. Class A",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/CRWD.png"
+            "status": "final",
+            "logo": "data/earnings/logos/CRWD.png",
+            "chg": -8.92,
+            "price": 208.97,
+            "reactDate": "2026-11-23",
+            "baseDate": "2026-11-20"
           },
           {
             "ticker": "HPE",
             "name": "Hewlett Packard Enterprise Co.",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/HPE.png"
+            "status": "final",
+            "logo": "data/earnings/logos/HPE.png",
+            "chg": -16.31,
+            "price": 40.19,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "A",
             "name": "Agilent Technologies, Inc.",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/A.png"
+            "status": "final",
+            "logo": "data/earnings/logos/A.png",
+            "chg": 4.25,
+            "price": 183.52,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "ZS",
             "name": "Zscaler, Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/ZS.png"
+            "status": "final",
+            "logo": "data/earnings/logos/ZS.png",
+            "chg": 17.67,
+            "price": 229.24,
+            "reactDate": "2026-11-23",
+            "baseDate": "2026-11-20"
           },
           {
             "ticker": "ZM",
             "name": "Zoom Communications, Inc. Class A",
             "when": "after",
-            "status": "na",
+            "status": "final",
             "logo": "data/earnings/logos/ZM.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": 2.75,
+            "price": 88.4,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "SYM",
             "name": "Symbotic, Inc. Class A",
             "when": "after",
-            "status": "na",
-            "logo": "data/earnings/logos/SYM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SYM.png",
+            "chg": 6.92,
+            "price": 37.39,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           }
         ]
       },
@@ -117,15 +165,23 @@
             "ticker": "BJ",
             "name": "BJ's Wholesale Club Holdings, Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/BJ.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BJ.png",
+            "chg": -5.35,
+            "price": 104.82,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
           },
           {
             "ticker": "FRO",
             "name": "Frontline Plc",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/FRO.png"
+            "status": "final",
+            "logo": "data/earnings/logos/FRO.png",
+            "chg": 1.03,
+            "price": 45.21,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
           },
           {
             "ticker": "MOG.A",
@@ -144,15 +200,23 @@
             "ticker": "IESC",
             "name": "IES Holdings, Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/IESC.png"
+            "status": "final",
+            "logo": "data/earnings/logos/IESC.png",
+            "chg": -6.49,
+            "price": 156.06,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
           },
           {
             "ticker": "BKE",
             "name": "Buckle, Inc.",
             "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/BKE.png"
+            "status": "final",
+            "logo": "data/earnings/logos/BKE.png",
+            "chg": 5.67,
+            "price": 44.15,
+            "reactDate": "2026-11-20",
+            "baseDate": "2026-11-19"
           }
         ]
       }
@@ -515,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 22:16",
+    "updatedAt": "25/11/2026 22:31",
     "source": "tradingview"
   }
 }
