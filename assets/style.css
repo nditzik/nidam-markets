@@ -2916,3 +2916,6 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 /* np212 — טבלאות הלוח: תא מספרי dir=ltr יורש text-align:left (start של LTR) בעוד הכותרת מיושרת לימין,
    ולכן המספרים "זזו" שמאלה מתחת לכותרת הבאה (סריקת התיקון, 21.11.2026). יישור לימין כמו הכותרות. */
 .bd-tbl td[dir="ltr"], .bd-tbl td.num { text-align: right; }
+
+/* np213 — תג "גיליון חדש" בפאנל המגזין בבית (3 ימים מתאריך הגיליון) */
+.mg-tag.mg-new { background: var(--accent); border-color: var(--accent); color: var(--ink-text); font-weight: 700; }
