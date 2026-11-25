@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "25/11/2026 08:04",
+  "updatedAt": "25/11/2026 08:17",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -1485,12 +1485,12 @@
    "when": "before"
   },
   {
-   "sym": "NKE",
+   "sym": "MU",
    "date": "2026-12-17",
    "when": "after"
   },
   {
-   "sym": "MU",
+   "sym": "NKE",
    "date": "2026-12-17",
    "when": "after"
   },
@@ -1505,12 +1505,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
@@ -1586,7 +1586,11 @@
     "logo": "data/reports/logos/SYM.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/SYM__2026-11-23.html",
+    "date": "2026-11-23",
+    "title": "SYM דוח רבעון Q4 FY26"
+   },
    "consensus": {
     "eps": 0.15691,
     "epsLow": 0.12,
