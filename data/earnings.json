@@ -161,12 +161,6 @@
             "baseDate": "2026-11-19"
           },
           {
-            "ticker": "MOG.B",
-            "name": "Moog Inc. Class B",
-            "when": "before",
-            "status": "na"
-          },
-          {
             "ticker": "FRO",
             "name": "Frontline Plc",
             "when": "before",
@@ -183,6 +177,12 @@
             "when": "before",
             "status": "na",
             "logo": "data/earnings/logos/MOG.A.png"
+          },
+          {
+            "ticker": "MOG.B",
+            "name": "Moog Inc. Class B",
+            "when": "before",
+            "status": "na"
           },
           {
             "ticker": "IESC",
@@ -567,7 +567,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 07:46",
+    "updatedAt": "25/11/2026 15:31",
     "source": "tradingview"
   }
 }

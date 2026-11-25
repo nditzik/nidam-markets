@@ -1,0 +1,429 @@
+<!--np-disc--><div id="np-disc" role="note" style="direction:rtl;text-align:right;font:13px/1.55 'IBM Plex Sans Hebrew',Arial,sans-serif;color:inherit;background:rgba(127,127,127,.12);border:1px solid rgba(127,127,127,.4);border-radius:6px;padding:10px 14px;margin:8px 8px 14px"><div style="margin:0"><b>הבהרה.</b> דוח זה מציג מידע וניתוחים כלליים לצורכי מחקר ולימוד. מפעיל האתר אינו בעל רישיון ייעוץ השקעות. התוכן אינו מותאם לנתוניך ולצרכיך ואינו תחליף לייעוץ השקעות אישי. הנתונים והניתוחים עשויים להיות מעוכבים או שגויים. השקעה כרוכה בסיכון להפסד. <a href="https://nditzik.github.io/nidam-markets/legal.html" target="_top" style="color:inherit;text-decoration:underline">הבהרות, סיכונים וגילוי עניין אישי</a></div><div style="margin:4px 0 0">הנתונים והניתוח מתייחסים למועד הפרסום (<span dir="ltr">23.11.2026</span>) ואינם תמונת מצב עדכנית.</div></div><!--/np-disc-->
+<title>SYM דוח רבעון Q4 FY26</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: single reading column, action titles, navy + one accent, generous white */
+:root{
+  --bg:#ffffff; --fg:#0b1f3a; --muted:#5a6b82; --rule:#d9dfe8; --soft:#f3f6fa;
+  --navy:#051c2c; --accent:#2251ff; --accent2:#00a9f4; --pos:#1a8f5a; --neg:#c43d3d; --warn:#b7791f;
+  --font:'Heebo',"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#0e1623; --fg:#eef2f8; --muted:#a3b0c4; --rule:#2a3648; --soft:#162032; --navy:#1b2a44; --accent:#6f8fff; --accent2:#4cc3ff; --pos:#4fc48a; --neg:#ef7676; --warn:#e0a94a; color-scheme:dark }
+
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.7;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.cover{background:#051c2c;color:#fff;padding-block:48px 40px}
+.cover .wrap{padding-bottom:0}
+.cover .logo{height:58px;width:auto;display:block;margin-bottom:24px;max-width:100%;box-sizing:border-box;object-fit:contain;background:#fff;border-radius:10px;padding:14px 18px}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#4cc3ff;font-weight:500}
+.cover h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-top:14px;color:#fff}
+.cover .sub{font-size:19px;color:#c9d6e8;margin-top:14px;max-width:38em;font-weight:300}
+.cover .meta{margin-top:28px;font-size:14px;color:#9fb0c8;display:flex;flex-wrap:wrap;gap:8px 24px}
+
+section{padding-block:44px 0}
+.sec-label{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:18px;max-width:28em}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:19px;max-width:38em}
+.body{max-width:38em}
+.body + .body{margin-top:12px}
+.rule{height:1px;background:var(--rule);margin-top:44px}
+
+.takeaway{border-right:4px solid var(--accent);background:var(--soft);padding:18px 22px;margin-top:22px;max-width:40em}
+.takeaway .t{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.kpi{border-top:3px solid var(--navy);padding:14px 2px 6px}
+.kpi .v{font-size:32px;font-weight:800;line-height:1.1}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi .d{font-size:14px;margin-top:6px;font-weight:500}
+.up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--warn)}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:26px}}
+
+figure{margin:22px 0 0;max-width:100%}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--font)}
+
+.tbl{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+tr.hl td{font-weight:700}
+table.vs td{vertical-align:top;font-size:15px;line-height:1.55}
+table.vs td:nth-child(2){border-right:3px solid var(--pos)}
+table.vs td:nth-child(3){border-right:3px solid var(--neg)}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.col h3{font-size:17px}
+.col p{font-size:15.5px}
+.col .idx{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.risk{border:1px solid var(--rule);padding:16px 18px}
+.risk h3{font-size:16px}
+.risk p{font-size:15px;color:var(--muted)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.b-h{background:#fdebeb;color:#9a2b2b}.b-m{background:#fff4df;color:#8a5a0e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-h,:root:not([data-theme="light"]) .b-m{background:var(--soft)}}
+:root[data-theme="dark"] .b-h,:root[data-theme="dark"] .b-m{background:var(--soft)}
+@media (max-width:620px){.risks{grid-template-columns:1fr}}
+
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 20px;margin:18px 0 0;font-size:15.5px}
+dt{font-weight:700;white-space:nowrap}
+dd{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:10px;color:var(--muted)}}
+
+.tl{list-style:none;padding:0;margin:18px 0 0;border-right:2px solid var(--rule)}
+.tl li{position:relative;padding:0 22px 16px 0}
+.tl li::before{content:"";position:absolute;right:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl .when{font-size:13px;color:var(--muted)}
+.tl .what{font-weight:500}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted);line-height:1.6}
+footer p+p{margin-top:8px}
+.b-l{background:#e6f6ec;color:#1b6b3a}
+</style>
+
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="Symbotic">
+    <div class="eyebrow">Symbotic Inc. · NASDAQ: SYM · תוצאות רבעון רביעי ושנת כספים 2026</div>
+    <h1>שנת הרווח הראשונה, עוד 7 מיליארד דולר מוולמארט בדרך, ותזרים מזומנים חזק. אבל המניה עדיין כ-60% מתחת לשיא</h1>
+    <p class="sub">סיכום דוח הרבעון שפורסם ב-23 בנובמבר 2026.</p>
+    <div class="meta">
+      <span>תקופת הדוח: יולי–ספטמבר 2026</span>
+      <span>מקורות: הודעת החברה, תמלול שיחת המשקיעים</span>
+      <span>עודכן: 25.11.2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+  <div class="sec-label">1 · רקע</div>
+  <h2>סימבוטיק הופכת מחסנים ענקיים למכונות רובוטיות. וולמארט היא הלקוחה הגדולה, השותפה ובעלת מניות</h2>
+  <p class="lead">Symbotic מתכננת ומתקינה מערכות רובוטיות למרכזי הפצה של רשתות קמעונאות ומזון. אלפי רובוטים קטנים ("בוטים") נוסעים במהירות בתוך מבנה אחסון צפוף, אוספים ארגזים ובונים משטחים מעורבים שמותאמים לכל סניף. לפי החברה, המערכת חוסכת כוח אדם ושטח, ומקטינה טעויות. כיום יש לה כ-20,000 בוטים בשטח ו-59 מערכות פעילות.</p>
+  <p class="body" style="margin-top:14px">המייסד והמנכ"ל ריק כהן הוא גם הבעלים של C&amp;S, סיטונאית המזון הגדולה בארה"ב. וולמארט היא הלקוחה המרכזית: Symbotic מתקינה מערכות בכ-42–45 מרכזי ההפצה האזוריים שלה, ובשנה שעברה קנתה ממנה את יחידת הרובוטיקה שלה. בנוסף יש מיזם משותף, <strong>GreenBox/Exol</strong>, שמציע "מחסן כשירות" לחברות שלא רוצות לקנות מערכת. לקוחות נוספים: Target, ‏Albertsons, ‏UNFI, ‏Southern Glazer's, ‏Medline ו-AWG.</p>
+
+  <div class="cols">
+    <div class="col">
+      <h3>Dematic ו-Witron</h3>
+      <p>הספקיות הוותיקות של אוטומציית מחסנים, בעיקר באירופה. הן מבוססות על מסועים ועל מבנים גבוהים במיוחד. לפי כהן, היתרון של Symbotic הוא התקנה גם במבנים קיימים ונמוכים.</p>
+    </div>
+    <div class="col">
+      <h3>AutoStore ו-Ocado</h3>
+      <p>מערכות רשת (grid) לליקוט פריטים בודדים, בעיקר למסחר מקוון. כאן Symbotic נכנסת עכשיו עם SymMicro, מערכת קטנה שמותקנת בחלק האחורי של החנות.</p>
+    </div>
+    <div class="col">
+      <h3>Amazon Robotics</h3>
+      <p>אמזון פיתחה רובוטיקה משלה למחסנים, ואינה מוכרת אותה לאחרים. זה מה שגורם למתחרות שלה, ובראשן וולמארט, לחפש פתרון כמו Symbotic.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 2 -->
+<section>
+  <div class="sec-label">2 · השורה התחתונה ב-30 שניות</div>
+  <h2>רבעון יציב עם רווחיות משתפרת, וחוזה חדש עם וולמארט שיתרום בעיקר בשנים רחוקות</h2>
+  <p class="lead">ההכנסות היו $778M, צמיחה של 26% (צפי: $774M). הרווח הנקי היה $55M, לעומת הפסד אשתקד. ה-EBITDA המתואם יותר מהוכפל, ל-$114M, מעל התחזית, בעיקר בזכות הוצאות נמוכות. לשנה כולה: הכנסות של $2.8B (+25%), ולראשונה רווח נקי שנתי, $133M. התזרים החופשי ברבעון היה $353M, והמזומן הגיע ל-$2.0B, בלי חוב.</p>
+  <div class="takeaway">
+    <div class="t">מה שחשוב להבין</div>
+    <p>הכותרת הגדולה: חוזה מורחב עם וולמארט, שיוסיף כמעט $7B לצבר ההזמנות כבר ברבעון הבא, כולל הרחבה בינלאומית ראשונה. אבל ההכנסות ממנו יגיעו בעיקר בשנים רחוקות, "מעבר לסוף העשור". התחזית לרבעון הקרוב ($815M באמצע הטווח) נמוכה מעט מהצפי ($822M), והחברה ציינה ששנת 2027 תהיה "מוטה לחצי השני". המניה איבדה כ-60% מהשיא, והשוק מחכה להוכחה שהצמיחה תאיץ באמת.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 3 -->
+<section>
+  <div class="sec-label">3 · המספרים המרכזיים</div>
+  <h2>הכנסות עולות, רווחיות משתפרת, ומאזן חזק מאוד</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v num">$778M</div><div class="l">הכנסות</div><div class="d up">+26% · הצפי: $774M</div></div>
+    <div class="kpi"><div class="v num">$114M</div><div class="l">EBITDA מתואם</div><div class="d up">פי 2.3 · רווחיות של 14.6%</div></div>
+    <div class="kpi"><div class="v num">24.8%</div><div class="l">רווחיות גולמית מתואמת</div><div class="d up">+2.7 נק' משנה שעברה</div></div>
+    <div class="kpi"><div class="v num">$22.3B</div><div class="l">צבר הזמנות</div><div class="d up">‏+~$7B ברבעון הבא</div></div>
+    <div class="kpi"><div class="v num">$353M</div><div class="l">תזרים חופשי ברבעון</div><div class="d up">$596M בשנה</div></div>
+    <div class="kpi"><div class="v num">$2.0B</div><div class="l">מזומן</div><div class="d up">בלי חוב</div></div>
+  </div>
+  <p class="body" style="margin-top:22px;color:var(--muted);font-size:15px">הערה: מתוך רווח נקי של $55M, רק $11.3M ($0.09 למניה, צפי: $0.07) שייכים לבעלי מניות Class A הנסחרות. השאר שייך למחזיקים במניות מסוג V, בעיקר ריק כהן והקרנות שלו. מהרבעון הזה החברה מפרסמת גם רווח מתואם למניה ($0.17, פי 2.4 משנה שעברה). התגמול במניות עמד על $39M ברבעון ו-$191M בשנה. הוצאות המחקר והפיתוח דווקא ירדו, מ-$56M ל-$38M. בדוחות עדיין מדווחות "חולשות מהותיות" בבקרה הפנימית.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- 4 -->
+<section>
+  <div class="sec-label">4 · מנועי הצמיחה</div>
+  <h2>צמיחה הדרגתית ויציבה, וההאצה הגדולה צפויה בחצי השני של 2027</h2>
+  <p class="body">בגרף: ההכנסות בכל רבעון, במיליוני דולרים. העמודה האחרונה היא אמצע התחזית לרבעון הראשון של שנת הכספים 2027 (אוקטובר–דצמבר 2026): ‏$805–$825M, צמיחה של כ-29%.</p>
+
+  <figure>
+    <svg class="chart" viewBox="0 0 820 360" role="img" aria-label="הכנסות לפי רבעון">
+<line x1="40" y1="300" x2="790" y2="300" stroke="var(--muted)"/>
+<rect x="60" y="126" width="80" height="174" fill="var(--accent)"/>
+<text x="100" y="117" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$618M</text>
+<text x="100" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q4'25</text>
+<rect x="185" y="122" width="80" height="178" fill="var(--accent)"/>
+<text x="225" y="113" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$630M</text>
+<text x="225" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q1'26</text>
+<rect x="310" y="109" width="80" height="191" fill="var(--accent)"/>
+<text x="350" y="100" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$676M</text>
+<text x="350" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q2'26</text>
+<rect x="435" y="97" width="80" height="203" fill="var(--accent)"/>
+<text x="475" y="88" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$721M</text>
+<text x="475" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q3'26</text>
+<rect x="560" y="80" width="80" height="220" fill="var(--accent)"/>
+<text x="600" y="71" font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed">$778M</text>
+<text x="600" y="324" font-size="14" fill="var(--fg)" text-anchor="middle" direction="ltr" unicode-bidi="embed" font-weight="700">Q4'26</text>
+<rect x="685" y="70" width="80" height="230" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="725" y="61" font-size="15" font-weight="700" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">~$815M</text>
+<text x="725" y="324" font-size="14" fill="var(--muted)" text-anchor="middle" direction="ltr" unicode-bidi="embed">Q1'27E</text>
+</svg>
+    <figcaption>הכנסות לפי רבעון (שנת הכספים מסתיימת בסוף ספטמבר). Q1'27E היא אמצע התחזית. מקור: דוחות החברה.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>מבנה אחסון מהדור הבא (NGS)</h3>
+      <p>מבנה חדש, צפוף יותר וזול יותר להתקנה. הוא מאפשר לוולמארט לאחסן יותר מוצרים באותם מבנים, ומשם הגיעה ההרחבה של $7B. התקנות NGS יגיעו לשיא בחצי השני של 2027, ואז אמור להגיע גם שיפור ברווחיות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>SymMicro: מסחר מקוון בחנות</h3>
+      <p>מערכת קטנה (2,000–3,000 מ"ר) לליקוט מוצרים בודדים בחלק האחורי של סניף. ההתקנה הראשונה עולה לאוויר בינואר, השנייה כחצי שנה אחריה, ואחר כך 20 נוספות. האופציה הגדולה: הזמנה ל-400 סניפי וולמארט, בשווי של יותר מ-$5B, שעדיין לא נחתמה. בטווח הארוך: כ-100 מערכות בשנה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>הרחבה גלובלית ורכישות</h3>
+      <p>המערכת הראשונה במקסיקו בהתקנה, והשנייה התחילה. ההסכם החדש עם וולמארט פותח שווקים נוספים בצפון ובדרום אמריקה. רכישת cellumation הגרמנית (משטח מיון חכם) נותנת דריסת רגל באירופה. בנוסף נרכשו Fox Robotics (מלגזות אוטונומיות) ו-ARMS.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 5 -->
+<section>
+  <div class="sec-label">5 · החוזה המורחב עם וולמארט</div>
+  <h2>כמעט $7 מיליארד לצבר, אבל ההכנסות מהחוזה יגיעו לאט</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>רכיב</th><th>היקף</th><th>מתי</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הרחבה ב-42–45 מרכזי ההפצה האזוריים הקיימים</td><td class="n">חלק מ-$7B</td><td>אחסון נוסף בזכות NGS, ומוצרי מסחר מקוון</td></tr>
+        <tr><td>מבנים חדשים בינלאומיים (greenfield)</td><td class="n">חלק מ-$7B</td><td>צפון ודרום אמריקה. המדינות עוד לא פורסמו</td></tr>
+        <tr><td>תוכנית פיתוח משותפת</td><td class="n">$125M</td><td>החל מסוף 2027: "זרוע מו"פ" של וולמארט</td></tr>
+        <tr class="hl"><td>SymMicro ל-400 סניפים (עוד לא נחתם)</td><td class="n">$5B+</td><td>הכרה בצבר בתוך כ-12 חודשים</td></tr>
+        <tr><td>משך הביצוע</td><td>"שנים רבות"</td><td>"ייקח אותנו מעבר לסוף העשור"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">למה זה משנה למשקיע</div>
+    <p>החוזה מחזק מאוד את הנראות לטווח הארוך: צבר של כ-$29B מול הכנסות שנתיות של $2.8B, כלומר יותר מ-10 שנות עבודה. אבל הוא גם מגדיל עוד יותר את התלות בוולמארט. היא גם הלקוחה הגדולה, גם בעלת מניות וגם ממנה דירקטור. רוב הצבר מגיע ממנה, ולכן כל שינוי באסטרטגיה שלה ישפיע ישירות על Symbotic.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 6 -->
+<section>
+  <div class="sec-label">6 · התחזית</div>
+  <h2>רבעון ראשון יציב, ושנה "מוטה לחצי השני"</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>מדד</th><th>Q1 FY27</th><th>השוואה</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>הכנסות</td><td class="n">$805–$825M</td><td>צפי: כ-$822M · צמיחה של כ-29%</td></tr>
+        <tr class="hl"><td>EBITDA מתואם</td><td class="n">$110–$120M</td><td>לעומת $114M ברבעון הרביעי</td></tr>
+        <tr><td>רווחיות גולמית (חצי ראשון)</td><td>יציבה</td><td>שיפור עם NGS בחצי השני</td></tr>
+        <tr><td>הוצאות תפעול מתואמות</td><td>~$80–$90M ברבעון</td><td>עלייה, בגלל שילוב הרכישות ומו"פ</td></tr>
+        <tr><td>צבר</td><td>~$29B</td><td>אחרי התוספת מוולמארט</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="tl">
+    <li><div class="when">ינואר 2027</div><div class="what">התקנת SymMicro הראשונה עולה לאוויר. ‏BreakPack (אספקה לבתי מרקחת) עולה במרכז Buckeye באריזונה</div></li>
+    <li><div class="when">12 החודשים הבאים</div><div class="what">לפי כהן, "כמה קמעונאיות גדולות" יחתמו. צפויים 3–5 לקוחות חדשים בשנה, לפחות פי 2 מבעבר</div></li>
+    <li><div class="when">חצי שני של 2027</div><div class="what">שיא בהתקנות NGS, האצה בהכנסות ושיפור ברווחיות</div></li>
+    <li><div class="when">5–10 שנים</div><div class="what">לפי כהן, עד 100,000 בוטים בשטח (היום כ-20,000)</div></li>
+  </ul>
+</section>
+
+<div class="rule"></div>
+
+<!-- 7 -->
+<section>
+  <div class="sec-label">7 · מה ההנהלה אמרה בשיחה</div>
+  <h2>ארבעה מסרים: עמדנו בהתחייבויות, שוק היעד גדל, אוטומציה היא צורך, ורכישות עדיפות על רכישה עצמית</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div class="col">
+      <h3>"עמדנו בכל ההתחייבויות"</h3>
+      <p>כהן חזר על שלוש המטרות של 2026: להרחיב לקוחות (וולמארט, ‏Southern Glazer's ו-AWG), לשפר רווחיות, ולהשקיע בחדשנות. כל השלוש הושגו, ולראשונה נרשם רווח שנתי.</p>
+    </div>
+    <div class="col">
+      <h3>"תמיד הערכנו בחסר את שוק היעד"</h3>
+      <p>Symbotic התחילה בליקוט ארגזים למרכזי הפצה. היום היא מלקטת גם פריטים בודדים (מסחר מקוון) וגם אריזות פנימיות (בתי מרקחת), ונכנסת לציוד רפואי, לאספקה למסעדות ובקרוב לטריים ולקפואים. "אנחנו יכולים לטפל בכל הקטגוריות".</p>
+    </div>
+    <div class="col">
+      <h3>"כולם יצטרכו לעשות אוטומציה"</h3>
+      <p>כהן צופה אינפלציית שכר ומחירים משמעותית בשנים הקרובות, ולכן קמעונאים "חייבים להיות פרואקטיביים". רשתות גדולות שעוד לא עשו אוטומציה אומרות: "צפינו בוולמארט, ונהיה עוקבים מהירים". באירופה ובאוסטרליה הסיבה היא מחסור בעובדים.</p>
+    </div>
+    <div class="col">
+      <h3>"רכישות, לא רכישה עצמית"</h3>
+      <p>לשאלה אם החברה תקנה מניות במחיר של $35: "יש כל כך הרבה הזדמנויות לרכישות כדרך להשיג לקוחות חדשים". ו"הכסף לא בוער לנו בכיס", כלומר רכישות נוספות צפויות, ייתכן שגם באירופה.</p>
+    </div>
+  </div>
+  <div class="takeaway">
+    <div class="t">הדבר שלא נאמר במפורש</div>
+    <p>Exol, המיזם המשותף שהוצג בעבר כהזדמנות של $7.5B, מתקדם לאט: רק אתר אחד (אטלנטה) פעיל, ו-5 אתרים בבנייה. ההפסד מהמיזם גדל ל-$12M ברבעון. גם התחזית לרבעון הקרוב נמוכה מעט מהצפי, וההאצה תלויה ב-NGS, טכנולוגיה חדשה שעוד לא הוכחה בהיקף מלא. ולבסוף, ההכנסות מתחזוקה ותפעול צומחות יפה, אבל הן עדיין רק כ-7% מסך ההכנסות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 8 -->
+<section>
+  <div class="sec-label">8 · מה ניתן ללמוד משיחת המשקיעים</div>
+  <h2>האנליסטים שאלו "מתי?". מתי NGS, מתי SymMicro, ומתי לקוחות חדשים. התשובות היו בעיקר "בקרוב"</h2>
+  <p class="body">כ-10 אנליסטים מבתי ההשקעות (Deutsche Bank, ‏Citi, ‏TD Cowen, ‏KeyBanc, ‏Oppenheimer, ‏Goldman Sachs, ‏D.A. Davidson, ‏Baird, ‏Needham ואחרים) התמקדו בתזמון: מתי ההזמנות יהפכו להכנסות, ומתי הלקוחות החדשים יחתמו.</p>
+
+  <div class="cols">
+    <div class="col">
+      <span class="idx">1</span>
+      <h3>על מה חזרו שוב ושוב</h3>
+      <p>תזמון: Deutsche שאל על NGS, ‏Goldman שאל מתי ייכנס לצבר חוזה SymMicro ומתי יבוצע חוזה ה-$7B, ו-Baird שאל על תוכנית הפיתוח. התשובות: "החצי השני של 2027", "בתוך 12 חודשים", "מעבר לסוף העשור".</p>
+    </div>
+    <div class="col">
+      <span class="idx">2</span>
+      <h3>המספר שהכי הפתיע</h3>
+      <p>חיישן LiDAR שעלה $5,000 עולה היום $300. כהן הסביר שהאסטרטגיה היא להשקיע בטכנולוגיה כשהיא עוד יקרה, ו"לרכב על גל הוזלת המחירים". כך מערכות קטנות כמו SymMicro נעשות כלכליות.</p>
+    </div>
+    <div class="col">
+      <span class="idx">3</span>
+      <h3>איפה ההנהלה הייתה הכי ישירה</h3>
+      <p>לשאלה על רכישה עצמית, כהן חשף שהדירקטוריון דן בה לראשונה, והחליט שרכישות של חברות עדיפות. תשובה כנה, שאולי לא תשמח את המשקיעים שמחכים לתמיכה במניה.</p>
+    </div>
+    <div class="col">
+      <span class="idx">4</span>
+      <h3>איפה ההנהלה עקפה</h3>
+      <p>Exol (שאלה של TD Cowen): "הלקוחות לא פורסמו מסיבות שונות". כמה הכנסות יתרמו הרכישות ב-2027 (D.A. Davidson): "מוקדם מדי לומר". וקצב הלקוחות החדשים: "קשה לנו לענות. אם ננחש, 3 עד 5 בשנה".</p>
+    </div>
+    <div class="col">
+      <span class="idx">5</span>
+      <h3>המשפט שכדאי לזכור</h3>
+      <p>"פעם התבדחתי: אם אוטומציה כל כך טובה, למה אף אחד לא קונה מערכת שנייה? היום כל אחד מהלקוחות שלנו קנה כמה אתרים" (כהן). זו ההוכחה החזקה ביותר שהמערכת עובדת.</p>
+    </div>
+    <div class="col">
+      <span class="idx">6</span>
+      <h3>הסיגנל השקט</h3>
+      <p>מספר הפרוטוטיפים של SymMicro ירד משלושה לשניים, כי "למדנו כל כך הרבה מהסימולציות". הפרוטוטיפ השלישי יהיה כבר קרוב לגרסה הסופית, וזה מקצר את הדרך להזמנת 400 הסניפים. זו האצה שקטה בלוח הזמנים.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="t">הלקח למשקיע</div>
+    <p>Symbotic נמצאת במעבר: מחברה שתלויה כמעט כולה במרכזי ההפצה של וולמארט, לפלטפורמת אוטומציה רחבה (מסחר מקוון, בתי מרקחת, רפואה, בינלאומי). הכיוון ברור, אבל הקצב איטי. רוב ההבטחות הגדולות (SymMicro, ‏Exol, אירופה, NGS) צפויות להבשיל רק בעוד 12–24 חודשים.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 9 -->
+<section>
+  <div class="sec-label">9 · איך השוק הגיב</div>
+  <h2>זינוק של 12% ביום הדוח עוד לפני הפרסום, יציבות במסחר המאוחר, ועלייה נוספת למחרת</h2>
+  <p class="body">ב-23.11, יום הדוח, המניה עלתה ב-12.4% במסחר הרגיל, מ-$31.10 ל-$34.97, עוד לפני הפרסום (Investing.com). במסחר המאוחר, אחרי התוצאות, היא כמעט לא זזה: ירידה של 0.2%–0.8% (Investing.com, ‏Yahoo Finance). ב-24.11 נרשמה עלייה של כ-7%, לכ-$37.39 (לפי עמוד Motley Fool). טווח 52 השבועות: $30.33–$87.88. המניה כ-57% מתחת לשיא, וקרובה לשפל השנתי.</p>
+  <p class="body">ניתוח ב-Yahoo Finance מסכם: התוצאות טובות, אבל ההשקעה "תלויה בסבלנות". רוב התוספת לצבר רחוקה, ההזמנה של 400 הסניפים עוד לא נחתמה, ועדיין יש חולשות בבקרה הפנימית. וולמארט עצמה עלתה ב-1.3% ביום הדוח.</p>
+  <div class="takeaway">
+    <div class="t">איך לקרוא את זה</div>
+    <p>שווי השוק הוא כ-$22.6B (חישוב: כ-605 מיליון מניות מכל הסוגים × $37.39). בניכוי המזומן, השווי הוא כ-58 פעמים ה-EBITDA המתואם השנתי, או כ-45 פעמים קצב הרבעון האחרון. זה מכפיל של חברת צמיחה, שמתמחר הצלחה של NGS, ‏SymMicro והרחבה בינלאומית. אחרי ירידה של יותר מחצי מהשיא, השוק כבר פחות אופטימי. אבל המניה תזוז בעיקר לפי חתימות חדשות, ולא לפי התוצאות הרבעוניות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 10 -->
+<section>
+  <div class="sec-label">10 · סיכונים שכדאי להכיר</div>
+  <h2>הסיכון המרכזי: תלות בלקוח אחד, וביצוע של הרבה פרויקטים חדשים במקביל</h2>
+  <div class="risks">
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>תלות בוולמארט</h3><p>רוב הצבר וההכנסות מוולמארט, שהיא גם בעלת מניות. שינוי באסטרטגיה שלה, או החלטה לא להזמין את 400 הסניפים, ישפיעו דרמטית.</p></div>
+    <div class="risk"><span class="badge b-h">גבוה</span><h3>ביצוע וטכנולוגיה חדשה</h3><p>NGS, ‏SymMicro, ‏BreakPack, קפואים ובינלאומי: הרבה מוצרים חדשים בבת אחת. עיכוב או תקלה (כמו החלפת המבנה בעבר) יפגעו ברווחיות ובאמון.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>בקרה ודיווח</h3><p>"חולשות מהותיות" בבקרה הפנימית עדיין לא תוקנו. לחברה כבר היו בעבר תיקונים בדוחות, וזה מעלה את רמת הזהירות הנדרשת.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>קצב גיוס לקוחות</h3><p>החלטות של $50M ומעלה מתקבלות לאט. לפי כהן, "קצב איטי, שינוי מהיר". אם הלקוחות החדשים לא יחתמו, הצמיחה תישאר תלויה בוולמארט.</p></div>
+    <div class="risk"><span class="badge b-m">בינוני</span><h3>מבנה הבעלות</h3><p>רק כ-20% מהרווח שייכים לבעלי המניות הנסחרות (Class A). ריק כהן שולט בחברה, ויש תגמול גבוה במניות ($191M בשנה).</p></div>
+    <div class="risk"><span class="badge b-l">נמוך</span><h3>מאזן</h3><p>$2.0B מזומן, בלי חוב ותזרים חיובי. יש גמישות לרכישות ולהשקעות, וכאן הסיכון נמוך.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 11 -->
+<section>
+  <div class="sec-label">11 · סיכונים מול הזדמנויות</div>
+  <h2>על כל סיכון יש הזדמנות מולו — ההכרעה תלויה באופק ההשקעה שלך</h2>
+  <div class="tbl">
+    <table class="vs">
+      <thead><tr><th style="width:22%">הנושא</th><th style="width:39%">ההזדמנות (התזה החיובית)</th><th style="width:39%">הסיכון (התזה השלילית)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>צבר</strong></td><td>כ-$29B אחרי ההרחבה, יותר מ-10 שנות הכנסות. ועוד $5B+ אפשריים מ-SymMicro.</td><td>רוב הצבר רחוק בזמן ותלוי בלקוח אחד.</td></tr>
+        <tr><td><strong>רווחיות</strong></td><td>שנה ראשונה של רווח, EBITDA פי 2.4, ושיפור צפוי עם NGS.</td><td>רווחיות גולמית יציבה בלבד בחצי הראשון, והוצאות שיעלו.</td></tr>
+        <tr><td><strong>שוק יעד</strong></td><td>מסחר מקוון, בתי מרקחת, רפואה, קפואים, מסעדות. "תמיד הערכנו בחסר".</td><td>כל שוק חדש דורש פיתוח, הוכחה ומכירה מחדש.</td></tr>
+        <tr><td><strong>בינלאומי</strong></td><td>מקסיקו, הרחבה דרך וולמארט, ואירופה דרך cellumation. מחסור בעובדים בעולם.</td><td>אירופה "פרובינציאלית" ומעדיפה ספקים מקומיים. ההתקדמות שם תהיה איטית.</td></tr>
+        <tr><td><strong>Exol</strong></td><td>מודל "מחסן כשירות" עם כמה לקוחות, ופוטנציאל של $7.5B.</td><td>רק אתר אחד פעיל, והפסד מהמיזם שגדל.</td></tr>
+        <tr><td><strong>מאזן</strong></td><td>$2B מזומן, בלי חוב, ו-$596M תזרים חופשי בשנה.</td><td>אין רכישה עצמית, ויש רכישות שעלולות להיות יקרות או מסובכות.</td></tr>
+        <tr><td><strong>התמחור</strong></td><td>כ-57% מתחת לשיא. כל חתימה גדולה עשויה להצית תנועה חדה כלפי מעלה.</td><td>כ-45–58 פעמים ה-EBITDA, תמחור גבוה לצמיחה של כ-25%.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="takeaway">
+    <div class="t">איך להשתמש בטבלה</div>
+    <p>משקיע לטווח קצר צריך לדעת שהמניה תנודתית מאוד ומגיבה בחדות לחדשות על וולמארט ועל לקוחות חדשים. ‏+12% ביום אחד, לפני הדוח, הם דוגמה. משקיע לטווח ארוך צריך לעקוב אחרי שלושה דברים: חתימת הזמנת 400 הסניפים, חתימת לקוחות קמעונאות גדולים חדשים, והאצה בהכנסות בחצי השני של 2027 עם NGS. אם שלושתם יקרו, התמחור הנוכחי עשוי להתברר כהזדמנות.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 12 -->
+<section>
+  <div class="sec-label">12 · מילון מונחים</div>
+  <h2>עשרה מונחים שחוזרים בדוח, במשפט אחד כל אחד</h2>
+  <dl>
+    <dt>מרכז הפצה אזורי (RDC)</dt><dd>מחסן גדול שמספק סחורה לעשרות או מאות סניפים באזור.</dd>
+    <dt>צבר (Backlog)</dt><dd>הזמנות חתומות שעוד לא בוצעו ולא הוכרו כהכנסה.</dd>
+    <dt>NGS</dt><dd>Next-Generation Storage: מבנה האחסון החדש, צפוף וזול יותר.</dd>
+    <dt>SymMicro</dt><dd>מערכת קטנה בחלק האחורי של החנות, לליקוט הזמנות מקוונות.</dd>
+    <dt>BreakPack</dt><dd>מערכת לליקוט אריזות פנימיות קטנות, למשל לבתי מרקחת.</dd>
+    <dt>ליקוט ארגזים מול ליקוט פריטים</dt><dd>הוצאת ארגז שלם לסניף, לעומת הוצאת מוצר בודד להזמנה של לקוח.</dd>
+    <dt>Greenfield / Brownfield</dt><dd>התקנה במבנה חדש, לעומת התקנה במבנה קיים.</dd>
+    <dt>Exol (GreenBox)</dt><dd>מיזם משותף שמשכיר שטח מחסן ממוכן ללקוחות, במקום שיקנו מערכת.</dd>
+    <dt>EBITDA מתואם</dt><dd>רווח תפעולי לפני פחת, הפחתות, תגמול במניות ופריטים חד-פעמיים.</dd>
+    <dt>Class A / Class V</dt><dd>סוגי מניות: A נסחרות בבורסה, V מוחזקות בעיקר על ידי המייסד וקרנותיו.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p><strong>מקורות:</strong> Symbotic: הודעה על תוצאות הרבעון הרביעי ושנת הכספים 2026 (23.11.2026). תמלול שיחת המשקיעים (Motley Fool). נתוני מסחר וצפי: Investing.com, ‏Yahoo Finance ו-Motley Fool (23–24.11.2026). הכנסות הרבעון הראשון של 2026: דוח החברה ב-SEC. שווי השוק והמכפיל חושבו על ידי הכותב. מחיר 24.11 נלקח מנתון שוק המוצג בעמוד התמלול, ולא נמצא אישור נוסף לו.</p>
+  <p>מסמך זה הוא סיכום חינוכי של מידע פומבי, ואינו מהווה ייעוץ השקעות, המלצה או הצעה לרכישת ניירות ערך. הנתונים נכונים למועד הפרסום ועשויים להשתנות. כל החלטת השקעה היא באחריות הקורא בלבד.</p>
+</footer>
+
+</main>
