@@ -16,12 +16,12 @@
         {
           "label": "ללא שינוי",
           "pct": 3,
-          "chg": 0.5
+          "chg": -0.2
         },
         {
           "label": "העלאה של 50+ נ\"ב",
           "pct": 3,
-          "chg": 0.4
+          "chg": 0.2
         }
       ],
       "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
@@ -40,8 +40,8 @@
       "key": "hike_again_2026",
       "label": "העלאת ריבית נוספת עד סוף 2026",
       "sub": "ההימור המוביל: תהיה העלאה נוספת",
-      "pct": 95,
-      "chg": -0.8,
+      "pct": 96,
+      "chg": -0.2,
       "url": "https://polymarket.com/event/another-fed-rate-hike-in-2026",
       "src": "Polymarket"
     },
@@ -49,7 +49,7 @@
       "key": "cpi_next",
       "label": "אינפלציה שנתית — נתון נובמבר · יתפרסם 10.12",
       "sub": "ההימור המוביל: תישאר מעל 3.6%",
-      "pct": 68,
+      "pct": 66,
       "chg": null,
       "src": "Kalshi",
       "url": "https://kalshi.com/markets/kxcpiyoy"
@@ -67,7 +67,7 @@
       "key": "spx_eoy",
       "label": "יעד S&P 500 לסוף 2026",
       "sub": "ההימור המוביל: ייסגר מעל 7,200",
-      "pct": 53,
+      "pct": 55,
       "chg": null,
       "src": "Kalshi",
       "url": "https://kalshi.com/markets/kxinxy"
@@ -178,13 +178,13 @@
       },
       {
         "d": "2026-11-25",
-        "pct": 95
+        "pct": 96
       }
     ],
     "cpi_next": [
       {
         "d": "2026-11-25",
-        "pct": 68
+        "pct": 66
       }
     ],
     "recession": [
@@ -224,12 +224,12 @@
     "spx_eoy": [
       {
         "d": "2026-11-25",
-        "pct": 53
+        "pct": 55
       }
     ]
   },
   "_meta": {
-    "updatedAt": "25/11/2026 16:16",
+    "updatedAt": "25/11/2026 16:31",
     "source": "polymarket"
   }
 }

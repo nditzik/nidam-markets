@@ -18,8 +18,12 @@
             "ticker": "DELL",
             "name": "Dell Technologies, Inc. Class C",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/DELL.png"
+            "status": "live",
+            "logo": "data/earnings/logos/DELL.png",
+            "chg": -9.05,
+            "price": 268.55,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "ADI",
@@ -48,16 +52,24 @@
             "ticker": "ADSK",
             "name": "Autodesk, Inc.",
             "when": "after",
-            "status": "pending",
+            "status": "live",
             "logo": "data/earnings/logos/ADSK.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -4.16,
+            "price": 245.07,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "WDAY",
             "name": "Workday, Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WDAY.png"
+            "status": "live",
+            "logo": "data/earnings/logos/WDAY.png",
+            "chg": -1.17,
+            "price": 177.12,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "DLTR",
@@ -567,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 16:16",
+    "updatedAt": "25/11/2026 16:31",
     "source": "tradingview"
   }
 }
