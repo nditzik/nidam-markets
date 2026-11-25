@@ -1,66 +1,6 @@
 {
  "entries": [
   {
-   "date": "2026-08-28",
-   "symbols": [
-    {
-     "sym": "WTRG",
-     "ref": 41.1
-    },
-    {
-     "sym": "ZBH",
-     "ref": 100.91
-    },
-    {
-     "sym": "JNJ",
-     "ref": 268.04
-    },
-    {
-     "sym": "KO",
-     "ref": 89.66
-    },
-    {
-     "sym": "COP",
-     "ref": 130.35
-    },
-    {
-     "sym": "PK",
-     "ref": 15.83
-    }
-   ],
-   "result": {
-    "date_next": "2026-08-31",
-    "per": [
-     {
-      "sym": "WTRG",
-      "pct": 0.17
-     },
-     {
-      "sym": "ZBH",
-      "pct": -0.86
-     },
-     {
-      "sym": "JNJ",
-      "pct": -0.82
-     },
-     {
-      "sym": "KO",
-      "pct": -1.1
-     },
-     {
-      "sym": "COP",
-      "pct": 1.64
-     },
-     {
-      "sym": "PK",
-      "pct": -3.35
-     }
-    ],
-    "avg": -0.72,
-    "spx": -0.33
-   }
-  },
-  {
    "date": "2026-08-31",
    "symbols": [
     {
@@ -3099,11 +3039,63 @@
      "sym": "CHD",
      "ref": 110.87
     }
+   ],
+   "result": {
+    "date_next": "2026-11-24",
+    "per": [
+     {
+      "sym": "AAPL",
+      "pct": 1.43
+     },
+     {
+      "sym": "SJM",
+      "pct": -1.45
+     },
+     {
+      "sym": "SONO",
+      "pct": -0.5
+     },
+     {
+      "sym": "CL",
+      "pct": 1.34
+     },
+     {
+      "sym": "CHD",
+      "pct": 1.31
+     }
+    ],
+    "avg": 0.42,
+    "spx": -0.5
+   }
+  },
+  {
+   "date": "2026-11-24",
+   "symbols": [
+    {
+     "sym": "AAPL",
+     "ref": 354.07
+    },
+    {
+     "sym": "SJM",
+     "ref": 130.85
+    },
+    {
+     "sym": "SONO",
+     "ref": 17.81
+    },
+    {
+     "sym": "CL",
+     "ref": 99.24
+    },
+    {
+     "sym": "CHD",
+     "ref": 112.32
+    }
    ]
   }
  ],
  "_meta": {
-  "updatedAt": "24/11/2026 05:32",
+  "updatedAt": "25/11/2026 05:31",
   "source": "focus archive"
  }
 }
