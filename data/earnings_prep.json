@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "25/11/2026 07:46",
+  "updatedAt": "25/11/2026 08:04",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,8 +147,6 @@
      "ptPrev": 32.0
     }
    ],
-   "yahooDate": "2026-12-01",
-   "analystsAt": "2026-11-25T05:46+00:00",
    "price": {
     "close": 32.35,
     "date": "2026-11-24",
@@ -483,6 +481,8 @@
      "spy": -5.7
     }
    },
+   "analystsAt": "2026-11-25T05:46+00:00",
+   "yahooDate": "2026-12-01",
    "options": {
     "asOf": "24/11 22:46",
     "price": 32.435,
@@ -1480,17 +1480,17 @@
    "when": null
   },
   {
-   "sym": "MU",
-   "date": "2026-12-17",
-   "when": "after"
-  },
-  {
    "sym": "ACN",
    "date": "2026-12-17",
    "when": "before"
   },
   {
    "sym": "NKE",
+   "date": "2026-12-17",
+   "when": "after"
+  },
+  {
+   "sym": "MU",
    "date": "2026-12-17",
    "when": "after"
   },
@@ -1543,7 +1543,11 @@
     "logo": "data/reports/logos/DELL.png",
     "logoBg": null
    },
-   "newReport": null,
+   "newReport": {
+    "file": "data/reports/DELL__2026-11-24.html",
+    "date": "2026-11-24",
+    "title": "DELL דוח רבעון Q3 FY27"
+   },
    "consensus": {
     "eps": 6.58732,
     "epsLow": 6.34,
