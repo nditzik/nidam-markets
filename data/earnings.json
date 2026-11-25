@@ -5,7 +5,7 @@
     {
       "ticker": "DE",
       "name": "Deere & Company",
-      "capB": 165.5
+      "capB": 158.4
     }
   ],
   "reactions": {
@@ -20,8 +20,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/DELL.png",
-            "chg": -9.05,
-            "price": 268.55,
+            "chg": -6.93,
+            "price": 274.83,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -55,8 +55,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ADSK.png",
             "logoBg": "dark",
-            "chg": -4.16,
-            "price": 245.07,
+            "chg": -6.26,
+            "price": 239.69,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WDAY.png",
-            "chg": -1.17,
-            "price": 177.12,
+            "chg": -1.87,
+            "price": 175.88,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -100,17 +100,6 @@
             "baseDate": "2026-11-20"
           },
           {
-            "ticker": "HPE",
-            "name": "Hewlett Packard Enterprise Co.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/HPE.png",
-            "chg": -16.31,
-            "price": 40.19,
-            "reactDate": "2026-11-24",
-            "baseDate": "2026-11-23"
-          },
-          {
             "ticker": "A",
             "name": "Agilent Technologies, Inc.",
             "when": "after",
@@ -118,6 +107,17 @@
             "logo": "data/earnings/logos/A.png",
             "chg": 4.25,
             "price": 183.52,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
+          },
+          {
+            "ticker": "HPE",
+            "name": "Hewlett Packard Enterprise Co.",
+            "when": "after",
+            "status": "final",
+            "logo": "data/earnings/logos/HPE.png",
+            "chg": -16.31,
+            "price": 40.19,
             "reactDate": "2026-11-24",
             "baseDate": "2026-11-23"
           },
@@ -184,17 +184,17 @@
             "baseDate": "2026-11-19"
           },
           {
+            "ticker": "MOG.B",
+            "name": "Moog Inc. Class B",
+            "when": "before",
+            "status": "na"
+          },
+          {
             "ticker": "MOG.A",
             "name": "Moog Inc. Class A",
             "when": "before",
             "status": "na",
             "logo": "data/earnings/logos/MOG.A.png"
-          },
-          {
-            "ticker": "MOG.B",
-            "name": "Moog Inc. Class B",
-            "when": "before",
-            "status": "na"
           },
           {
             "ticker": "IESC",
@@ -301,16 +301,16 @@
           "logo": "data/earnings/logos/CRWD.png"
         },
         {
-          "ticker": "HPE",
-          "name": "Hewlett Packard Enterprise Co.",
-          "when": "after",
-          "logo": "data/earnings/logos/HPE.png"
-        },
-        {
           "ticker": "A",
           "name": "Agilent Technologies, Inc.",
           "when": "after",
           "logo": "data/earnings/logos/A.png"
+        },
+        {
+          "ticker": "HPE",
+          "name": "Hewlett Packard Enterprise Co.",
+          "when": "after",
+          "logo": "data/earnings/logos/HPE.png"
         },
         {
           "ticker": "ZS",
@@ -373,7 +373,7 @@
       "date": "2026-11-24",
       "dow": "שלישי",
       "label": "24.11",
-      "total": 26,
+      "total": 25,
       "companies": [
         {
           "ticker": "DELL",
@@ -432,12 +432,6 @@
           "logo": "data/earnings/logos/BURL.png"
         },
         {
-          "ticker": "NTNX",
-          "name": "Nutanix, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/NTNX.png"
-        },
-        {
           "ticker": "SJM",
           "name": "J.M. Smucker Company",
           "when": "before",
@@ -448,6 +442,12 @@
           "name": "Dick's Sporting Goods, Inc.",
           "when": "before",
           "logo": "data/earnings/logos/DKS.png"
+        },
+        {
+          "ticker": "NTNX",
+          "name": "Nutanix, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/NTNX.png"
         }
       ]
     },
@@ -579,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 16:31",
+    "updatedAt": "25/11/2026 16:46",
     "source": "tradingview"
   }
 }
