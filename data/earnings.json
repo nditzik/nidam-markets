@@ -25,16 +25,24 @@
             "ticker": "ADI",
             "name": "Analog Devices, Inc.",
             "when": "before",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/ADI.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -17.37,
+            "price": 312.95,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "MDT",
             "name": "Medtronic Plc",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/MDT.png"
+            "status": "final",
+            "logo": "data/earnings/logos/MDT.png",
+            "chg": -4.56,
+            "price": 96.13,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "ADSK",
@@ -55,8 +63,12 @@
             "ticker": "DLTR",
             "name": "Dollar Tree, Inc.",
             "when": "before",
-            "status": "pending",
-            "logo": "data/earnings/logos/DLTR.png"
+            "status": "final",
+            "logo": "data/earnings/logos/DLTR.png",
+            "chg": 11.18,
+            "price": 154.65,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           }
         ]
       },
@@ -79,15 +91,23 @@
             "ticker": "HPE",
             "name": "Hewlett Packard Enterprise Co.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/HPE.png"
+            "status": "final",
+            "logo": "data/earnings/logos/HPE.png",
+            "chg": -16.31,
+            "price": 40.19,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "A",
             "name": "Agilent Technologies, Inc.",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/A.png"
+            "status": "final",
+            "logo": "data/earnings/logos/A.png",
+            "chg": 4.25,
+            "price": 183.52,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "ZS",
@@ -104,16 +124,24 @@
             "ticker": "ZM",
             "name": "Zoom Communications, Inc. Class A",
             "when": "after",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/ZM.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": 2.75,
+            "price": 88.4,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           },
           {
             "ticker": "SYM",
             "name": "Symbotic, Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/SYM.png"
+            "status": "final",
+            "logo": "data/earnings/logos/SYM.png",
+            "chg": 6.92,
+            "price": 37.39,
+            "reactDate": "2026-11-24",
+            "baseDate": "2026-11-23"
           }
         ]
       },
@@ -309,7 +337,7 @@
       "date": "2026-11-24",
       "dow": "שלישי",
       "label": "24.11",
-      "total": 26,
+      "total": 25,
       "companies": [
         {
           "ticker": "DELL",
@@ -487,7 +515,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 04:16",
+    "updatedAt": "25/11/2026 04:31",
     "source": "tradingview"
   }
 }
