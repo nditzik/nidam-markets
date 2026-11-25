@@ -448,6 +448,13 @@
       return bdTile(esc(n.label), esc(n.v), n.sub ? esc(n.sub) : "", n.dir === "up" ? "up" : n.dir === "down" ? "down" : "");
     }).join("") + "</div>" : "";
   }
+  // np213 (25.11.2026, איציק: "לציין שהגיליון החדש עלה"): תג "גיליון חדש" בבית, 3 ימים מתאריך הגיליון (שעון ישראל)
+  var MAG_NEW_DAYS = 3;
+  function magIsNew(a) {
+    if (!a || !a.date) return false;
+    var d = (Date.parse(ilNowParts().iso + "T12:00:00Z") - Date.parse(a.date + "T12:00:00Z")) / 864e5;
+    return d >= 0 && d < MAG_NEW_DAYS;
+  }
   function magHero(a, full) {
     var n = (a.sources || []).length, meta = [];
     if (full) meta.push("פורסם " + magDate(a.date, true));
@@ -456,7 +463,7 @@
     if (n) meta.push(n + " מקורות");
     var go = "__goTab('magazine');return false";
     return '<div class="mg-hero">' +
-      '<div class="mg-tags"><span class="mg-tag fill">' + esc(a.kindLabel || "כתבה") + (a.sym ? ' · <span class="num" dir="ltr">' + esc(a.sym) + "</span>" : "") + "</span>" +
+      '<div class="mg-tags">' + (!full && magIsNew(a) ? '<span class="mg-tag mg-new">גיליון חדש</span>' : "") + '<span class="mg-tag fill">' + esc(a.kindLabel || "כתבה") + (a.sym ? ' · <span class="num" dir="ltr">' + esc(a.sym) + "</span>" : "") + "</span>" +
         '<span class="mg-tag">מידע בלבד, לא המלצה</span>' + (a.tags || []).map(function (t) { return '<span class="mg-tag">' + esc(t) + "</span>"; }).join("") + "</div>" +
       (full ? '<h2 class="mg-h">' + esc(a.title) + "</h2>" : '<h3 class="mg-h">' + esc(a.title) + "</h3>") +
       (a.dek ? '<p class="mg-dek">' + magTx(a.dek) + "</p>" : "") +
@@ -654,7 +661,7 @@
         if (sg === MAG_SIG && document.querySelector("#panel-magazine .mg-hero")) return;
         MAG_SIG = sg; MAG = ix; MAGA = {}; MAGA[ix.current] = a;
         if (MAG_SEL && MAG_SEL !== ix.current) MAG_SEL = null;
-        renderHomeMag(); renderMagazine();
+        renderHomeMag(); renderMagazine(); renderHomeChanged();
         noteSig("magazine", { id: a.id, title: a.title, brief: a.brief, sections: a.sections, timeline: (a.timeline || []).length });
       });
     }).catch(function () { if (!MAG) { renderHomeMag(); renderMagazine(); } });
@@ -1006,7 +1013,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np212";
+  var TA_VER = "np213";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -5456,6 +5463,11 @@
     if (WEEKLY && WEEKLY.narrative && WEEKLY.weekOf > a.date) {
       var wm = /^(\d{1,2})\/(\d{1,2})\//.exec(WEEKLY.narrative.writtenAt || "");
       docs.push('<a class="wc-n" href="#indices" onclick="__goTab(\'indices\');return false"><span>סיכום השבוע</span><span class="num mute" dir="ltr">' + (wm ? (+wm[1]) + "." + (+wm[2]) : wcDm(WEEKLY.weekOf)) + "</span></a>");
+    }
+    var mg = MAG && MAGA && MAGA[MAG.current];
+    if (mg && mg.date && mg.date > a.date) {
+      docs.unshift('<a class="wc-n" href="#magazine" onclick="__goTab(\'magazine\');return false"><span>גיליון ' + esc(mg.no) + " במגזין · " +
+        esc(String(mg.title || "").split(":")[0]) + '</span><span class="num mute" dir="ltr">' + wcDm(mg.date) + "</span></a>");
     }
     var none = '<p class="wc-none">אין שינוי מאז הסגירה הקודמת.</p>';
     var pd = new Date(a.date + "T12:00:00");
