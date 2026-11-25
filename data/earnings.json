@@ -5,7 +5,7 @@
     {
       "ticker": "DE",
       "name": "Deere & Company",
-      "capB": 173.1
+      "capB": 172.8
     }
   ],
   "reactions": {
@@ -173,6 +173,13 @@
             "baseDate": "2026-11-19"
           },
           {
+            "ticker": "MOG.A",
+            "name": "Moog Inc. Class A",
+            "when": "before",
+            "status": "na",
+            "logo": "data/earnings/logos/MOG.A.png"
+          },
+          {
             "ticker": "FRO",
             "name": "Frontline Plc",
             "when": "before",
@@ -182,13 +189,6 @@
             "price": 45.21,
             "reactDate": "2026-11-20",
             "baseDate": "2026-11-19"
-          },
-          {
-            "ticker": "MOG.A",
-            "name": "Moog Inc. Class A",
-            "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/MOG.A.png"
           },
           {
             "ticker": "MOG.B",
@@ -579,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 23:01",
+    "updatedAt": "25/11/2026 23:16",
     "source": "tradingview"
   }
 }
