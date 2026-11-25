@@ -5,7 +5,7 @@
     {
       "ticker": "DE",
       "name": "Deere & Company",
-      "capB": 171.8
+      "capB": 172.0
     }
   ],
   "reactions": {
@@ -20,8 +20,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/DELL.png",
-            "chg": -2.23,
-            "price": 288.68,
+            "chg": -1.85,
+            "price": 289.83,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -55,8 +55,8 @@
             "status": "live",
             "logo": "data/earnings/logos/ADSK.png",
             "logoBg": "dark",
-            "chg": -1.53,
-            "price": 251.79,
+            "chg": -1.97,
+            "price": 250.66,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -66,8 +66,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/WDAY.png",
-            "chg": 1.97,
-            "price": 182.76,
+            "chg": 2.05,
+            "price": 182.91,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
           },
@@ -184,17 +184,17 @@
             "baseDate": "2026-11-19"
           },
           {
-            "ticker": "MOG.B",
-            "name": "Moog Inc. Class B",
-            "when": "before",
-            "status": "na"
-          },
-          {
             "ticker": "MOG.A",
             "name": "Moog Inc. Class A",
             "when": "before",
             "status": "na",
             "logo": "data/earnings/logos/MOG.A.png"
+          },
+          {
+            "ticker": "MOG.B",
+            "name": "Moog Inc. Class B",
+            "when": "before",
+            "status": "na"
           },
           {
             "ticker": "IESC",
@@ -579,7 +579,7 @@
     "AHG": "2026-12-02"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 20:16",
+    "updatedAt": "25/11/2026 20:31",
     "source": "tradingview"
   }
 }
