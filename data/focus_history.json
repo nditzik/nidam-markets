@@ -1,66 +1,6 @@
 {
  "entries": [
   {
-   "date": "2026-08-31",
-   "symbols": [
-    {
-     "sym": "WTRG",
-     "ref": 41.17
-    },
-    {
-     "sym": "FLYW",
-     "ref": 18.89
-    },
-    {
-     "sym": "DLTR",
-     "ref": 126.59
-    },
-    {
-     "sym": "JNJ",
-     "ref": 265.85
-    },
-    {
-     "sym": "LYV",
-     "ref": 179.89
-    },
-    {
-     "sym": "DE",
-     "ref": 654.91
-    }
-   ],
-   "result": {
-    "date_next": "2026-09-01",
-    "per": [
-     {
-      "sym": "WTRG",
-      "pct": -0.15
-     },
-     {
-      "sym": "FLYW",
-      "pct": -3.73
-     },
-     {
-      "sym": "DLTR",
-      "pct": 4.04
-     },
-     {
-      "sym": "JNJ",
-      "pct": 2.01
-     },
-     {
-      "sym": "LYV",
-      "pct": -1.5
-     },
-     {
-      "sym": "DE",
-      "pct": 3.23
-     }
-    ],
-    "avg": 0.65,
-    "spx": -0.71
-   }
-  },
-  {
    "date": "2026-09-01",
    "symbols": [
     {
@@ -3091,11 +3031,59 @@
      "sym": "CHD",
      "ref": 112.32
     }
+   ],
+   "result": {
+    "date_next": "2026-11-25",
+    "per": [
+     {
+      "sym": "AAPL",
+      "pct": 0.43
+     },
+     {
+      "sym": "SJM",
+      "pct": -0.6
+     },
+     {
+      "sym": "SONO",
+      "pct": -1.8
+     },
+     {
+      "sym": "CL",
+      "pct": 0.42
+     },
+     {
+      "sym": "CHD",
+      "pct": 0.88
+     }
+    ],
+    "avg": -0.13,
+    "spx": -0.25
+   }
+  },
+  {
+   "date": "2026-11-25",
+   "symbols": [
+    {
+     "sym": "SJM",
+     "ref": 130.06
+    },
+    {
+     "sym": "PRGO",
+     "ref": 16.3
+    },
+    {
+     "sym": "WH",
+     "ref": 80.76
+    },
+    {
+     "sym": "CHYM",
+     "ref": 33.03
+    }
    ]
   }
  ],
  "_meta": {
-  "updatedAt": "25/11/2026 05:31",
+  "updatedAt": "26/11/2026 05:47",
   "source": "focus archive"
  }
 }

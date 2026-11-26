@@ -1,15 +1,60 @@
 {
-  "today": "2026-11-25",
-  "todayCount": 10,
-  "todayBig": [
-    {
-      "ticker": "DE",
-      "name": "Deere & Company",
-      "capB": 165.5
-    }
-  ],
+  "today": "2026-11-26",
+  "todayCount": 3,
+  "todayBig": [],
   "reactions": {
     "days": [
+      {
+        "date": "2026-11-25",
+        "label": "25.11",
+        "items": [
+          {
+            "ticker": "DE",
+            "name": "Deere & Company",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/DE.png",
+            "chg": 4.44,
+            "price": 641.02,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
+          },
+          {
+            "ticker": "LI",
+            "name": "Li Auto, Inc. Sponsored ADR Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/LI.png",
+            "logoBg": "dark",
+            "chg": 11.03,
+            "price": 11.88,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
+          },
+          {
+            "ticker": "BZ",
+            "name": "Kanzhun Ltd. Sponsored ADR",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/BZ.png",
+            "chg": 12.56,
+            "price": 14.34,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
+          },
+          {
+            "ticker": "GDS",
+            "name": "GDS Holdings Ltd. Sponsored ADR Class A",
+            "when": "before",
+            "status": "final",
+            "logo": "data/earnings/logos/GDS.png",
+            "chg": 0.07,
+            "price": 13.8,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
+          }
+        ]
+      },
       {
         "date": "2026-11-24",
         "label": "24.11",
@@ -18,8 +63,12 @@
             "ticker": "DELL",
             "name": "Dell Technologies, Inc. Class C",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/DELL.png"
+            "status": "final",
+            "logo": "data/earnings/logos/DELL.png",
+            "chg": 0.6,
+            "price": 297.06,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "ADI",
@@ -48,16 +97,24 @@
             "ticker": "ADSK",
             "name": "Autodesk, Inc.",
             "when": "after",
-            "status": "pending",
+            "status": "final",
             "logo": "data/earnings/logos/ADSK.png",
-            "logoBg": "dark"
+            "logoBg": "dark",
+            "chg": -3.48,
+            "price": 246.79,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "WDAY",
             "name": "Workday, Inc. Class A",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/WDAY.png"
+            "status": "final",
+            "logo": "data/earnings/logos/WDAY.png",
+            "chg": 0.68,
+            "price": 180.44,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           },
           {
             "ticker": "DLTR",
@@ -144,86 +201,10 @@
             "baseDate": "2026-11-23"
           }
         ]
-      },
-      {
-        "date": "2026-11-20",
-        "label": "20.11",
-        "items": [
-          {
-            "ticker": "BJ",
-            "name": "BJ's Wholesale Club Holdings, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BJ.png",
-            "chg": -5.35,
-            "price": 104.82,
-            "reactDate": "2026-11-20",
-            "baseDate": "2026-11-19"
-          },
-          {
-            "ticker": "FRO",
-            "name": "Frontline Plc",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/FRO.png",
-            "chg": 1.03,
-            "price": 45.21,
-            "reactDate": "2026-11-20",
-            "baseDate": "2026-11-19"
-          },
-          {
-            "ticker": "MOG.A",
-            "name": "Moog Inc. Class A",
-            "when": "before",
-            "status": "na",
-            "logo": "data/earnings/logos/MOG.A.png"
-          },
-          {
-            "ticker": "MOG.B",
-            "name": "Moog Inc. Class B",
-            "when": "before",
-            "status": "na"
-          },
-          {
-            "ticker": "IESC",
-            "name": "IES Holdings, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/IESC.png",
-            "chg": -6.49,
-            "price": 156.06,
-            "reactDate": "2026-11-20",
-            "baseDate": "2026-11-19"
-          },
-          {
-            "ticker": "BKE",
-            "name": "Buckle, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BKE.png",
-            "chg": 5.67,
-            "price": 44.15,
-            "reactDate": "2026-11-20",
-            "baseDate": "2026-11-19"
-          }
-        ]
       }
     ]
   },
   "reporting": [
-    {
-      "ticker": "DE",
-      "name": "Deere & Company",
-      "when": "before",
-      "logo": "data/earnings/logos/DE.png"
-    },
-    {
-      "ticker": "LI",
-      "name": "Li Auto, Inc. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/LI.png",
-      "logoBg": "dark"
-    },
     {
       "ticker": "VFS",
       "name": "VinFast Auto Ltd.",
@@ -231,40 +212,10 @@
       "logo": "data/earnings/logos/VFS.png"
     },
     {
-      "ticker": "BZ",
-      "name": "Kanzhun Ltd. Sponsored ADR",
-      "when": "before",
-      "logo": "data/earnings/logos/BZ.png"
-    },
-    {
-      "ticker": "GGAL",
-      "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
-      "when": "",
-      "logo": "data/earnings/logos/GGAL.png"
-    },
-    {
-      "ticker": "BMA",
-      "name": "Banco Macro SA Sponsored ADR Class B",
-      "when": "after",
-      "logo": "data/earnings/logos/BMA.png"
-    },
-    {
-      "ticker": "GDS",
-      "name": "GDS Holdings Ltd. Sponsored ADR Class A",
-      "when": "before",
-      "logo": "data/earnings/logos/GDS.png"
-    },
-    {
       "ticker": "DRVN",
       "name": "Driven Brands Holdings, Inc.",
       "when": "",
       "logo": "data/earnings/logos/DRVN.png"
-    },
-    {
-      "ticker": "IMKTA",
-      "name": "Ingles Markets, Incorporated Class A",
-      "when": "",
-      "logo": "data/earnings/logos/IMKTA.png"
     },
     {
       "ticker": "HUBG",
@@ -361,7 +312,7 @@
       "date": "2026-11-24",
       "dow": "שלישי",
       "label": "24.11",
-      "total": 26,
+      "total": 25,
       "companies": [
         {
           "ticker": "DELL",
@@ -420,10 +371,10 @@
           "logo": "data/earnings/logos/BURL.png"
         },
         {
-          "ticker": "NTNX",
-          "name": "Nutanix, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/NTNX.png"
+          "ticker": "DKS",
+          "name": "Dick's Sporting Goods, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/DKS.png"
         },
         {
           "ticker": "SJM",
@@ -432,10 +383,10 @@
           "logo": "data/earnings/logos/SJM.png"
         },
         {
-          "ticker": "DKS",
-          "name": "Dick's Sporting Goods, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/DKS.png"
+          "ticker": "NTNX",
+          "name": "Nutanix, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/NTNX.png"
         }
       ]
     },
@@ -443,7 +394,7 @@
       "date": "2026-11-25",
       "dow": "רביעי",
       "label": "25.11",
-      "total": 10,
+      "total": 5,
       "companies": [
         {
           "ticker": "DE",
@@ -459,28 +410,10 @@
           "logoBg": "dark"
         },
         {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd.",
-          "when": "",
-          "logo": "data/earnings/logos/VFS.png"
-        },
-        {
           "ticker": "BZ",
           "name": "Kanzhun Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/BZ.png"
-        },
-        {
-          "ticker": "GGAL",
-          "name": "Grupo Financiero Galicia SA Sponsored ADR Class B",
-          "when": "",
-          "logo": "data/earnings/logos/GGAL.png"
-        },
-        {
-          "ticker": "BMA",
-          "name": "Banco Macro SA Sponsored ADR Class B",
-          "when": "after",
-          "logo": "data/earnings/logos/BMA.png"
         },
         {
           "ticker": "GDS",
@@ -489,16 +422,30 @@
           "logo": "data/earnings/logos/GDS.png"
         },
         {
-          "ticker": "DRVN",
-          "name": "Driven Brands Holdings, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/DRVN.png"
-        },
-        {
           "ticker": "IMKTA",
           "name": "Ingles Markets, Incorporated Class A",
           "when": "",
           "logo": "data/earnings/logos/IMKTA.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "dow": "חמישי",
+      "label": "26.11",
+      "total": 3,
+      "companies": [
+        {
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd.",
+          "when": "",
+          "logo": "data/earnings/logos/VFS.png"
+        },
+        {
+          "ticker": "DRVN",
+          "name": "Driven Brands Holdings, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/DRVN.png"
         },
         {
           "ticker": "HUBG",
@@ -509,13 +456,6 @@
       ]
     },
     {
-      "date": "2026-11-26",
-      "dow": "חמישי",
-      "label": "26.11",
-      "total": 0,
-      "companies": []
-    },
-    {
       "date": "2026-11-27",
       "dow": "שישי",
       "label": "27.11",
@@ -524,16 +464,9 @@
     }
   ],
   "window": {
-    "DE": "2026-11-25",
-    "LI": "2026-11-25",
-    "VFS": "2026-11-25",
-    "BZ": "2026-11-25",
-    "GGAL": "2026-11-25",
-    "BMA": "2026-11-25",
-    "GDS": "2026-11-25",
-    "DRVN": "2026-11-25",
-    "IMKTA": "2026-11-25",
-    "HUBG": "2026-11-25",
+    "VFS": "2026-11-26",
+    "DRVN": "2026-11-26",
+    "HUBG": "2026-11-26",
     "RBRK": "2026-11-30",
     "CHA": "2026-11-30",
     "MRVL": "2026-12-01",
@@ -564,10 +497,38 @@
     "CBRL": "2026-12-02",
     "CXM": "2026-12-02",
     "NAT": "2026-12-02",
-    "AHG": "2026-12-02"
+    "AHG": "2026-12-02",
+    "RY": "2026-12-03",
+    "TD": "2026-12-03",
+    "CM": "2026-12-03",
+    "VEEV": "2026-12-03",
+    "KR": "2026-12-03",
+    "DG": "2026-12-03",
+    "ULTA": "2026-12-03",
+    "IOT": "2026-12-03",
+    "DOCU": "2026-12-03",
+    "BF.A": "2026-12-03",
+    "BF.B": "2026-12-03",
+    "HRL": "2026-12-03",
+    "LULU": "2026-12-03",
+    "GWRE": "2026-12-03",
+    "COO": "2026-12-03",
+    "S": "2026-12-03",
+    "TTAN": "2026-12-03",
+    "VSXY": "2026-12-03",
+    "PATH": "2026-12-03",
+    "SAIC": "2026-12-03",
+    "ASO": "2026-12-03",
+    "PVH": "2026-12-03",
+    "DOO": "2026-12-03",
+    "AGX": "2026-12-03",
+    "FIZZ": "2026-12-03",
+    "RH": "2026-12-03",
+    "PD": "2026-12-03",
+    "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "25/11/2026 15:46",
+    "updatedAt": "26/11/2026 06:01",
     "source": "tradingview"
   }
 }
