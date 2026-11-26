@@ -12,46 +12,30 @@
             "ticker": "DE",
             "name": "Deere & Company",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/DE.png",
-            "chg": 4.44,
-            "price": 641.02,
-            "reactDate": "2026-11-25",
-            "baseDate": "2026-11-24"
+            "status": "pending",
+            "logo": "data/earnings/logos/DE.png"
           },
           {
             "ticker": "LI",
             "name": "Li Auto, Inc. Sponsored ADR Class A",
             "when": "before",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/LI.png",
-            "logoBg": "dark",
-            "chg": 11.03,
-            "price": 11.88,
-            "reactDate": "2026-11-25",
-            "baseDate": "2026-11-24"
+            "logoBg": "dark"
           },
           {
             "ticker": "BZ",
             "name": "Kanzhun Ltd. Sponsored ADR",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/BZ.png",
-            "chg": 12.56,
-            "price": 14.34,
-            "reactDate": "2026-11-25",
-            "baseDate": "2026-11-24"
+            "status": "pending",
+            "logo": "data/earnings/logos/BZ.png"
           },
           {
             "ticker": "GDS",
             "name": "GDS Holdings Ltd. Sponsored ADR Class A",
             "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/GDS.png",
-            "chg": 0.07,
-            "price": 13.8,
-            "reactDate": "2026-11-25",
-            "baseDate": "2026-11-24"
+            "status": "pending",
+            "logo": "data/earnings/logos/GDS.png"
           }
         ]
       },
@@ -63,12 +47,8 @@
             "ticker": "DELL",
             "name": "Dell Technologies, Inc. Class C",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/DELL.png",
-            "chg": 0.6,
-            "price": 297.06,
-            "reactDate": "2026-11-25",
-            "baseDate": "2026-11-24"
+            "status": "pending",
+            "logo": "data/earnings/logos/DELL.png"
           },
           {
             "ticker": "ADI",
@@ -97,24 +77,16 @@
             "ticker": "ADSK",
             "name": "Autodesk, Inc.",
             "when": "after",
-            "status": "final",
+            "status": "pending",
             "logo": "data/earnings/logos/ADSK.png",
-            "logoBg": "dark",
-            "chg": -3.49,
-            "price": 246.79,
-            "reactDate": "2026-11-25",
-            "baseDate": "2026-11-24"
+            "logoBg": "dark"
           },
           {
             "ticker": "WDAY",
             "name": "Workday, Inc. Class A",
             "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/WDAY.png",
-            "chg": 0.68,
-            "price": 180.44,
-            "reactDate": "2026-11-25",
-            "baseDate": "2026-11-24"
+            "status": "pending",
+            "logo": "data/earnings/logos/WDAY.png"
           },
           {
             "ticker": "DLTR",
@@ -487,7 +459,7 @@
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "26/11/2026 02:46",
+    "updatedAt": "26/11/2026 03:01",
     "source": "tradingview"
   }
 }
