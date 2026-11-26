@@ -43,6 +43,13 @@
             "baseDate": "2026-11-24"
           },
           {
+            "ticker": "BMA",
+            "name": "Banco Macro SA Sponsored ADR Class B",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/BMA.png"
+          },
+          {
             "ticker": "GDS",
             "name": "GDS Holdings Ltd. Sponsored ADR Class A",
             "when": "before",
@@ -394,7 +401,7 @@
       "date": "2026-11-25",
       "dow": "רביעי",
       "label": "25.11",
-      "total": 5,
+      "total": 6,
       "companies": [
         {
           "ticker": "DE",
@@ -414,6 +421,12 @@
           "name": "Kanzhun Ltd. Sponsored ADR",
           "when": "before",
           "logo": "data/earnings/logos/BZ.png"
+        },
+        {
+          "ticker": "BMA",
+          "name": "Banco Macro SA Sponsored ADR Class B",
+          "when": "after",
+          "logo": "data/earnings/logos/BMA.png"
         },
         {
           "ticker": "GDS",
@@ -528,7 +541,7 @@
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "26/11/2026 11:16",
+    "updatedAt": "26/11/2026 11:31",
     "source": "tradingview"
   }
 }
