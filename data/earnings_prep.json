@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "26/11/2026 14:31",
+  "updatedAt": "26/11/2026 15:02",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -499,9 +499,9 @@
   {
    "sym": "LULU",
    "name": "lululemon athletica inc.",
-   "date": "2026-12-03",
-   "when": null,
-   "daysTo": 7,
+   "date": "2026-12-08",
+   "when": "after",
+   "daysTo": 12,
    "report": {
     "file": "data/reports/LULU__2026-09-03.html",
     "date": "2026-09-03",
@@ -637,6 +637,8 @@
      "ptPrev": 0.0
     }
    ],
+   "yahooDate": "2026-12-08",
+   "analystsAt": "2026-11-26T13:02+00:00",
    "price": {
     "close": 107.44,
     "date": "2026-11-25",
@@ -971,20 +973,9 @@
      "spy": -7.3
     }
    },
-   "analystsAt": "2026-11-26T11:31+00:00",
-   "yahooDate": "2026-12-08",
-   "options": {
-    "asOf": "25/11 22:46",
-    "price": 107.42,
-    "exp": "2026-12-04",
-    "strike": 107.0,
-    "pct": 5.93,
-    "earn": 4.36,
-    "preExp": "2026-11-27",
-    "prePct": 2.32
-   },
+   "options": null,
    "avgMove": 9.8,
-   "hasNote": true
+   "hasNote": false
   },
   {
    "sym": "AVGO",
@@ -1514,12 +1505,12 @@
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
