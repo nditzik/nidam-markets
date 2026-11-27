@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np218";
+  var TA_VER = "np219";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2291,7 +2291,9 @@
   function leadMoreHtml(tldr) {
     var first = firstSentence(tldr), rest = String(tldr || "").slice(first.length).trim();
     if (rest.length < 20) return "";
-    var parts = rest.split(/(?<=[^\d]\.)\s+/).filter(Boolean).slice(0, 2);   // np218: עד שני משפטים — לא קיר של מספרים
+    var parts = rest.split(/(?<=[^\d]\.)\s+/).filter(function (x) { return x && !/סטלמנט|מגלמ|מגלם/.test(x); }).slice(0, 2);
+    // np218: עד שני משפטים — לא קיר של מספרים. np219 (איציק: "מיותר ומבלבל"): בלי משפט "מול הסטלמנט… רמה שמגלמת N נקודות".
+    if (!parts.length) return "";
     return '<p class="np-dek np-dek-more" hidden>' + parts.map(function (x) { return "<span hidden>" + esc(x) + " </span>"; }).join("") + "</p>";
   }
   function leadFill() {
@@ -2631,7 +2633,9 @@
     var fullLink = '<a href="#indices" onclick="__goTab(\'indices\');return false">הניתוח המלא ←</a>';
     // 24.9.2026: שורת מעקב הצפי במקום המכוונים; בכותרת "לקראת שבוע המסחר" בלוק הצפי כבר מוצג → בלי השורה
     var footPlain = '<div class="np-leadfoot">' + fullLink + "</div>";
-    var foot = '<div class="np-leadfoot">' + fcTrackLine() + fullLink + "</div>";
+    // np219 (27.11.2026, איציק: "הכותרת עמוסה נתונים — מה הקורא הממוצע יעשה איתם?"): שורת מעקב הצפי 🎯 ירדה מהכותרת
+    // בבית (נשארה בטאב השוק, fcTrackHtml), וכך גם שורת ההימור 🎲 בכותרות הרגועות (נשארה בעדכון מאקרו אדום, שם היא הסיפור).
+    var foot = footPlain;
 
     renderLeadRail(d);
     var ls = document.getElementById("lead-sub");
@@ -2674,7 +2678,7 @@
         (eu.action ? (eu.action.indexOf(" · ") > 0
           ? '<p class="np-bottom np-watch-h">⚡ <b>למה לשים לב השבוע</b></p><ul class="np-watch">' + eu.action.split(" · ").map(function (x) { return "<li>" + esc(x.trim()) + "</li>"; }).join("") + "</ul>"
           : '<p class="np-bottom">⚡ <b>למה לשים לב:</b> ' + esc(eu.action) + "</p>") : "") +
-        (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
+        (eu.odds && !euCalm ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
         ((eu.kind === "preview" && (eu.forecast || (FCAST && FCAST.current))) ? footPlain : foot);
       leadFill();
       return;
