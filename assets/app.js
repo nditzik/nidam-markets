@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np219";
+  var TA_VER = "np220";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2224,6 +2224,15 @@
     });
     return '<span class="np-fc"><span class="np-fc-k">🎯 הצפי · יום ' + '<span class="num" dir="ltr">' + w.n + "/5</span></span>" + items.join("") + link + "</span>";
   }
+  // np220 (27.11.2026, איציק: "מאשר את 3"): שורת מצב קצרה בכותרת בבית — כמה טענות מתקיימות + קישור למעקב, בלי מספרים ותנאים
+  function fcTrackShort() {
+    var w = fcWeek();
+    if (!w) return "";
+    var link = '<a href="#indices" onclick="__goTab(\'indices\');var m=document.getElementById(\'fc-track\');if(m)setTimeout(function(){m.scrollIntoView({behavior:\'smooth\',block:\'start\'})},50);return false">מעקב ←</a>';
+    var n = '<b><span class="num" dir="ltr">' + w.hits + "</span> מתוך " + '<span class="num" dir="ltr">' + w.total + "</span></b>";
+    return '<span class="np-fc np-fc-short"><span class="np-fc-k">🎯 הצפי השבועי:</span><span>' +
+      (w.r ? "התקיימו " + n : n + " מתקיימים כרגע") + "</span>" + link + "</span>";
+  }
   // הבלוק בטאב מדדים
   function fcTrackHtml() {
     var w = fcWeek();
@@ -2635,7 +2644,8 @@
     var footPlain = '<div class="np-leadfoot">' + fullLink + "</div>";
     // np219 (27.11.2026, איציק: "הכותרת עמוסה נתונים — מה הקורא הממוצע יעשה איתם?"): שורת מעקב הצפי 🎯 ירדה מהכותרת
     // בבית (נשארה בטאב השוק, fcTrackHtml), וכך גם שורת ההימור 🎲 בכותרות הרגועות (נשארה בעדכון מאקרו אדום, שם היא הסיפור).
-    var foot = footPlain;
+    // np220: חזרה בגרסה קצרה (fcTrackShort) — שורת מצב וקישור בלבד
+    var foot = '<div class="np-leadfoot">' + fcTrackShort() + fullLink + "</div>";
 
     renderLeadRail(d);
     var ls = document.getElementById("lead-sub");
