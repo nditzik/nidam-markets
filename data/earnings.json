@@ -46,8 +46,12 @@
             "ticker": "BMA",
             "name": "Banco Macro SA Sponsored ADR Class B",
             "when": "after",
-            "status": "pending",
-            "logo": "data/earnings/logos/BMA.png"
+            "status": "live",
+            "logo": "data/earnings/logos/BMA.png",
+            "chg": 6.97,
+            "price": 53.86,
+            "reactDate": "2026-11-27",
+            "baseDate": "2026-11-25"
           },
           {
             "ticker": "GDS",
@@ -302,16 +306,16 @@
           "logo": "data/earnings/logos/DAC.png"
         },
         {
-          "ticker": "CENT",
-          "name": "Central Garden & Pet Company",
-          "when": "after",
-          "logo": "data/earnings/logos/CENT.png"
-        },
-        {
           "ticker": "CENTA",
           "name": "Central Garden & Pet Company Class A",
           "when": "after",
           "logo": "data/earnings/logos/CENTA.png"
+        },
+        {
+          "ticker": "CENT",
+          "name": "Central Garden & Pet Company",
+          "when": "after",
+          "logo": "data/earnings/logos/CENT.png"
         }
       ]
     },
@@ -486,13 +490,13 @@
     "OKTA": "2026-12-01",
     "NTAP": "2026-12-01",
     "CPRT": "2026-12-01",
-    "TCOM": "2026-12-01",
     "MDB": "2026-12-01",
+    "TCOM": "2026-12-01",
     "CRDO": "2026-12-01",
     "HQY": "2026-12-01",
     "GTLB": "2026-12-01",
-    "NIO": "2026-12-01",
     "BOX": "2026-12-01",
+    "NIO": "2026-12-01",
     "NCNO": "2026-12-01",
     "ASAN": "2026-12-01",
     "VSTS": "2026-12-01",
@@ -521,8 +525,8 @@
     "ULTA": "2026-12-03",
     "IOT": "2026-12-03",
     "DOCU": "2026-12-03",
-    "BF.B": "2026-12-03",
     "BF.A": "2026-12-03",
+    "BF.B": "2026-12-03",
     "HRL": "2026-12-03",
     "GWRE": "2026-12-03",
     "COO": "2026-12-03",
@@ -541,7 +545,7 @@
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "27/11/2026 16:01",
+    "updatedAt": "27/11/2026 16:46",
     "source": "tradingview"
   }
 }
