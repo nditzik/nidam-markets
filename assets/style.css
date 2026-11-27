@@ -2959,3 +2959,10 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .bd-lead .np-k.np-evt b, .bd-lead .np-k.np-evt-mid b { font-weight: 700; font-family: "IBM Plex Mono", monospace; background: var(--link-bg, rgba(29,95,184,.12)); color: var(--link-text, var(--accent)); padding: 1px 7px; border-radius: 4px; }
 .bd-lead .np-k.np-evt b { background: none; color: inherit; padding: 0; }
 @media (min-width: 701px) { .bd-lead .np-k.np-evt, .bd-lead .np-k.np-evt-mid { font-size: 17px; } }
+
+/* np223 (27.11.2026): נקודות Barchart טרום מסחר בפאנל התדרוך בבית */
+.bd-pm { border-top: 1px solid var(--border); padding: 10px 14px 12px; background: var(--bg); }
+.bd-pm-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 12px; font-weight: 600; color: var(--text-3); margin-bottom: 6px; }
+.bd-pm-h .go { font-weight: 500; color: var(--accent); text-decoration: none; }
+.bd-pm-li { font-size: 14px; line-height: 1.55; color: var(--text-soft); padding: 4px 0; }
+.bd-pm-li b { color: var(--text); font-weight: 600; }

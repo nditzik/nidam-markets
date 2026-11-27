@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np222";
+  var TA_VER = "np223";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2081,9 +2081,24 @@
         (sent.text ? '<span class="pill state">' + esc(sent.text.replace(/^סנטימנט:\s*/, "")) + "</span>" : "") +
         '<a class="go" href="#briefing" onclick="__goTab(\'briefing\');return false">התדרוך המלא</a></div>' +
       '<div class="bd-list">' + news.map(function (t, i) { return '<div class="li"><span class="num mute">' + (i + 1) + "</span><span>" + bidiHe(t) + "</span></div>"; }).join("") + "</div>" +
+      premktPointsHtml() +
       (sched.length ? '<div class="led bd-sched">' + sched.slice(0, 3).map(function (x) {
           return x.day ? "" : '<div><span class="num mute" dir="ltr">' + esc(x.time) + "</span><span>" + esc(x.text) + "</span></div>";
         }).join("") + "</div>" : "");
+  }
+  // np223 (27.11.2026, איציק: "להשתמש גם במידע של Barchart בשעה 14:00 בדף הבית"): עד 3 נקודות ממייל
+  // "טרום מסחר" של אותו יום (morning.json.premkt.points — scripts/premkt_points.py), מתחת לידיעות התדרוך
+  function premktPointsHtml() {
+    var p = MORND && MORND.premkt, pts = p && p.points;
+    if (!pts || !pts.length) return "";
+    var m = /(\d{2})\/(\d{2})\/(\d{4})/.exec(p.dateLabel || "");
+    if (!m || (m[3] + "-" + m[2] + "-" + m[1]) !== ilNowParts().iso) return "";   // רק של היום
+    return '<div class="bd-pm"><div class="bd-pm-h"><span>Barchart · טרום מסחר' + (p.time ? ' <span class="num" dir="ltr">' + esc(p.time) + "</span>" : "") +
+      '</span><a class="go" href="#morning" onclick="__goTab(\'morning\');return false">המייל המלא</a></div>' +
+      pts.slice(0, 3).map(function (t) {
+        var k = /^([^:]{3,40}):\s*(.+)$/.exec(t);
+        return '<div class="bd-pm-li">' + (k ? "<b>" + bidiHe(k[1]) + ":</b> " + bidiHe(k[2]) : bidiHe(t)) + "</div>";
+      }).join("") + "</div>";
   }
 
   /* ---------- כותרת סוף-השבוע: סיכום שבועי בבית (שבת → ראשון 15:00) ---------- */
@@ -5908,7 +5923,7 @@
         .then(function (r) { WKND = r[1]; WORLDD = r[0]; renderWorld(document.getElementById("panel-world"), r[0]); renderHomeAround(); })
         .catch(function () { emptyPanel(document.getElementById("panel-world"), "🌍", "שווקים בינלאומיים — בקרוב", ""); });
       fetchJSON("data/morning.json")
-        .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); renderNewsSiblings(); noteSig("morning", d); })
+        .then(function (d) { if (!freshD("morning", d)) return; MORND = d; renderMorning(document.getElementById("panel-morning"), d); renderNewsSiblings(); renderHomeBriefing(); noteSig("morning", d); })
         .catch(function () { if (!("morning" in DAILY_SIGS)) emptyPanel(document.getElementById("panel-morning"), "📊", "Barchart — בקרוב", ""); });
       loadMagazine();   // np207: מגזין סוף השבוע (הבית + חדשות › מגזין)
       Promise.all([fetchJSON("data/econ.json"), fetchJSON("data/special_events.json").catch(function () { return null; })])
