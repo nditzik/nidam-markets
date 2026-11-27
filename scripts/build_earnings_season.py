@@ -113,7 +113,9 @@ def tv_dates(fetch):
         ],
         # שלב 2 (3.10.2026): בפועל מול צפי של הרבעון האחרון — נבדק ב-probe_surprise.py על ה-runner
         "columns": ["name", "earnings_release_date", "earnings_release_next_date", "earnings_release_time",
-                    "eps_surprise_percent_fq", "revenue_surprise_percent_fq", "sector", "market_cap_basic"],
+                    "eps_surprise_percent_fq", "revenue_surprise_percent_fq", "sector", "market_cap_basic",
+                    # 27.11.2026 (סיכום העונה): רווח 12 חודשים + צפי לשנת הכספים הבאה — אותן עמודות כמו build_fundamentals
+                    "earnings_per_share_diluted_ttm", "earnings_per_share_forecast_next_fy"],
         "sort": {"sortBy": "market_cap_basic", "sortOrder": "desc"},
         "range": [0, 2500],
     }
@@ -123,11 +125,12 @@ def tv_dates(fetch):
         return datetime.fromtimestamp(ts, timezone.utc).astimezone(NY).date() if ts else None
     out, extra = {}, {}
     for row in data:
-        sym, last_ts, next_ts, t_flag, eps_s, rev_s, sector, cap = row["d"]
+        sym, last_ts, next_ts, t_flag, eps_s, rev_s, sector, cap, eps_ttm, eps_fy = row["d"]
         if sym and sym not in out:
             out[sym] = (day(last_ts), day(next_ts), last_ts)
             extra[sym] = {"when": {1: "after", -1: "before"}.get(t_flag), "eps": eps_s, "rev": rev_s, "sector": sector,
-                          "capB": round(cap / 1e9) if cap else None}
+                          "capB": round(cap / 1e9) if cap else None,
+                          "epsTtm": eps_ttm, "epsFy": eps_fy}
     tv_dates.extra = extra
     return out
 
@@ -195,6 +198,11 @@ def scoreboard(fetch, now, start, end, syms, tv, extra, season_day):
                      "react": r.get("v") if r.get("d") == d.isoformat() else None})
     with open(REACT_CACHE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, separators=(",", ":"))
+    for r in rows:                       # לסיכום העונה (season_summary)
+        x = extra.get(r["sym"]) or {}
+        t, fy = x.get("epsTtm"), x.get("epsFy")
+        r["fwd"] = (fy / t - 1) * 100 if (t and fy is not None and t > 0) else None
+    scoreboard.rows = rows
 
     def pct(a, b):
         return round(a / b * 100) if b else None
@@ -222,6 +230,105 @@ def scoreboard(fetch, now, start, end, syms, tv, extra, season_day):
             "sectors": sectors,
             "movers": [{"sym": r["sym"], "react": r["react"], "eps": round(r["eps"], 1)} for r in top]}
 
+
+
+# ---------- סיכום העונה לפי סקטורים (27.11.2026, איציק — מוקאפ https://claude.ai/artifact/ScPxHkCv4ipKJHhzVbu8ik) ----------
+SUMMARY = os.path.join(DATA, "season_summary.json")
+FWD_SNAP = os.path.join(DATA, "_season_fwd.json")
+SUMMARY_MIN = 0.9          # הסיכום נכתב כש-90% מחברות העונה דיווחו
+MIN_SIDE = 5               # פחות מ-5 עוקפות/מחטיאות בסקטור — אין ממוצע ("אין מספיק")
+
+
+def _med(v):
+    v = sorted(v)
+    if not v:
+        return None
+    m = len(v) // 2
+    return v[m] if len(v) % 2 else (v[m - 1] + v[m]) / 2
+
+
+def _r(v, n=1):
+    return None if v is None else round(v, n)
+
+
+def sector_stats(rows):
+    """שורה לכל סקטור: עקיפות ברווח/בהכנסות, תגובת המניות, פרס/עונש, צמיחה צפויה, הבולטות."""
+    by = {}
+    for r in rows:
+        by.setdefault(r["sector"], []).append(r)
+    out = []
+    for name, rs in by.items():
+        if name == "אחר":
+            continue
+        eps = [r for r in rs if r["eps"] is not None]
+        rev = [r for r in rs if r["rev"] is not None]
+        re_ = [r for r in rs if r["react"] is not None]
+        beat = [r["react"] for r in eps if r["eps"] > 0 and r["react"] is not None]
+        miss = [r["react"] for r in eps if r["eps"] < 0 and r["react"] is not None]
+        fwd = [r["fwd"] for r in rs if r.get("fwd") is not None]
+        srt = sorted(re_, key=lambda r: r["react"])
+        out.append({
+            "name": name, "n": len(rs),
+            "epsN": len(eps), "epsBeatPct": round(100 * sum(1 for r in eps if r["eps"] > 0) / len(eps)) if eps else None,
+            "revN": len(rev), "revBeatPct": round(100 * sum(1 for r in rev if r["rev"] > 0) / len(rev)) if rev else None,
+            "react": _r(sum(r["react"] for r in re_) / len(re_), 2) if re_ else None, "reactN": len(re_),
+            "upPct": round(100 * sum(1 for r in re_ if r["react"] > 0) / len(re_)) if re_ else None,
+            "reward": _r(sum(beat) / len(beat), 2) if len(beat) >= MIN_SIDE else None, "rewardN": len(beat),
+            "punish": _r(sum(miss) / len(miss), 2) if len(miss) >= MIN_SIDE else None, "punishN": len(miss),
+            "fwd": _r(_med(fwd)), "fwdN": len(fwd),
+            "best": [[r["sym"], _r(r["react"])] for r in srt[::-1][:3] if r["react"] > 0],
+            "worst": [[r["sym"], _r(r["react"])] for r in srt[:3] if r["react"] < 0],
+        })
+    out.sort(key=lambda z: (-(z["epsBeatPct"] or 0), -z["n"]))
+    return out
+
+
+def season_summary(out, rows, now, today):
+    """data/season_summary.json — נכתב כשרוב העונה דיווחה, ונשאר עד שהעונה הבאה מגיעה לאותו סף.
+    + צילום הצפי לשנה הבאה בתחילת העונה (data/_season_fwd.json) → "השתנה בעונה" (מהעונה שצולמה בתחילתה)."""
+    key = "%d-Q%s" % (out["year"], out["season"].split()[-1])
+    sectors = sector_stats(rows)
+    fwd_all = _r(_med([r["fwd"] for r in rows if r.get("fwd") is not None]))
+    # צילום תחילת העונה: רק אם נלקח עד 10 ימים מתחילתה (אחרת אין "לפני")
+    snap = load(FWD_SNAP) or {}
+    start = datetime.strptime(out["start"], "%Y-%m-%d").date()
+    if key not in snap and (today - start).days <= 10:
+        ext = getattr(tv_dates, "extra", {})
+        by = {}
+        for sym, x in ext.items():
+            t, fy = x.get("epsTtm"), x.get("epsFy")
+            if t and fy is not None and t > 0:
+                by.setdefault(SECTOR_HE.get(x.get("sector") or "", "אחר"), {})[sym] = round(fy, 4)
+        snap = {k: v for k, v in snap.items() if k >= "%d" % (out["year"] - 1)}
+        snap[key] = {"date": today.isoformat(), "fy": by}
+        with open(FWD_SNAP, "w", encoding="utf-8") as f:
+            json.dump(snap, f, ensure_ascii=False, separators=(",", ":"))
+    base = (snap.get(key) or {}).get("fy")
+    if base:
+        ext = getattr(tv_dates, "extra", {})
+        for s in sectors:
+            ch = []
+            for sym, old in (base.get(s["name"]) or {}).items():
+                new = (ext.get(sym) or {}).get("epsFy")
+                if new is not None and old:
+                    ch.append((new / old - 1) * 100)
+            s["fwdChg"] = _r(_med(ch)) if len(ch) >= 5 else None
+    if not out["total"] or out["reported"] / out["total"] < SUMMARY_MIN:
+        return
+    b = out["board"]
+    res = {"key": key, "season": out["season"], "year": out["year"], "start": out["start"], "end": out["end"],
+           "total": out["total"], "reported": out["reported"],
+           "totals": {k: b.get(k) for k in ("epsN", "epsBeat", "epsBeatPct", "revN", "revBeat", "revBeatPct",
+                                             "reactBeat", "reactBeatN", "reactMiss", "reactMissN")},
+           "sectors": sectors, "fwdAll": fwd_all, "fwdSnap": (snap.get(key) or {}).get("date"),
+           "_meta": {"updatedAt": now.astimezone(IL).strftime("%d/%m/%Y %H:%M"),
+                     "source": "TradingView (הפתעות, צפי אנליסטים) + Yahoo (תגובת המניה)"}}
+    prev = load(SUMMARY) or {}
+    if {k: v for k, v in prev.items() if k != "_meta"} == {k: v for k, v in res.items() if k != "_meta"}:
+        return
+    with open(SUMMARY, "w", encoding="utf-8") as f:
+        json.dump(res, f, ensure_ascii=False, indent=1)
+    print(f"[done] סיכום העונה {key}: {len(sectors)} סקטורים")
 
 
 def main(fetch=None, now=None):
@@ -336,6 +443,10 @@ def main(fetch=None, now=None):
            "anchor": {"sym": ANCHOR, "date": anchor.isoformat()}, "weeks": weeks, "milestones": miles,
            "total": total, "reported": reported, "members": len(syms), "board": board,
            "_meta": {"updatedAt": now.astimezone(IL).strftime("%d/%m/%Y %H:%M"), "source": "TradingView + S&P 500 watchlist"}}
+    try:
+        season_summary(out, getattr(scoreboard, "rows", []), now, today)
+    except Exception as e:
+        print(f"[warn] סיכום העונה: {e}")
     prev = load(OUT) or {}
     if {k: v for k, v in prev.items() if k != "_meta"} == {k: v for k, v in out.items() if k != "_meta"}:
         print("[same] עונת הדוחות לא השתנתה")

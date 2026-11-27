@@ -33,7 +33,7 @@
   // insider, briefing, morning, world) — הסטטיסטיקה רציפה. "movers" (הבולטות) חדש — ירד מהבית.
   var GROUPS = {
     market:   { subs: [["indices", "מדדים"], ["sectors", "סקטורים"], ["unusual", "ימים חריגים"]], def: "indices" },
-    calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["after", "אחרי הדוח"], ["reports", "ניתוח דוחות"]], def: "weekcal" },
+    calendar: { subs: [["weekcal", "לוח הדיווחים"], ["prep", "לקראת הדוח"], ["after", "אחרי הדוח"], ["reports", "ניתוח דוחות"], ["season", "סיכום העונה"]], def: "weekcal" },
     stocks:   { subs: [["consensus", "סיכום"], ["analyze", "נתח מניה"], ["picks", "עומדות בתנאים"], ["candidates", "סריקת תיקון"], ["momentum", "מומנטום"], ["trades", "ארבעת העמודים"], ["insider", "Insider"], ["movers", "הבולטות"]], def: "picks" },
     news:     { subs: [["briefing", "תדרוך"], ["morning", "Barchart"], ["magazine", "מגזין סוף השבוע"]], def: "briefing" }
   };
@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np227";
+  var TA_VER = "np228";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -4789,6 +4789,104 @@
     if (det) det.addEventListener("toggle", function () { EP_OLD_OPEN = det.open; });
   }
 
+
+  /* ---------- סיכום עונת הדוחות (np228, 27.11.2026, איציק — מוקאפ https://claude.ai/artifact/ScPxHkCv4ipKJHhzVbu8ik) ----------
+     לשונית-משנה באירועים (#panel-season, hash #season). data/season_summary.json (build_earnings_season.season_summary):
+     נכתב כש-90% מהעונה דיווחה ונשאר עד העונה הבאה. המילים: data/season_summary_notes.json {key: {headline, paras[{h,t}]}} — נכתב בסשן. */
+  var SNSUM = null, SNNOTES = null;
+  function snPct(v, d) {
+    if (v == null) return '<span class="num mute">—</span>';
+    var a = Math.abs(v).toFixed(d == null ? 1 : d);
+    return '<bdi class="num ' + (v > 0 ? "up" : v < 0 ? "down" : "") + '" dir="ltr">' + (v > 0 ? "+" : v < 0 ? "−" : "") + a + "%</bdi>";
+  }
+  function snTk(list) {
+    return (list || []).map(function (x) {
+      return '<span class="sn-tk"><a href="https://www.tradingview.com/symbols/' + encodeURIComponent(x[0]) + '/" target="_blank" rel="noopener">' + esc(x[0]) + "</a> " + snPct(x[1], 0) + "</span>";
+    }).join("") || '<span class="mute">—</span>';
+  }
+  function snScatter(S, fwdAll, beatAll) {
+    var pts = S.filter(function (s) { return s.fwd != null && s.epsBeatPct != null; });
+    if (pts.length < 4) return "";
+    var W = 640, H = 360, L = 46, R = 16, T = 16, B = 34;
+    var x0 = Math.min(60, Math.floor(Math.min.apply(null, pts.map(function (p) { return p.epsBeatPct; })) / 10) * 10);
+    var yMax = Math.max(20, Math.ceil(Math.max.apply(null, pts.map(function (p) { return p.fwd; })) / 10) * 10 + 5);
+    var yMin = Math.min(0, Math.floor(Math.min.apply(null, pts.map(function (p) { return p.fwd; })) / 10) * 10);
+    function X(v) { return L + (v - x0) / (100 - x0) * (W - L - R); }
+    function Y(v) { return H - B - (v - yMin) / (yMax - yMin) * (H - T - B); }
+    var g = "", labs = "", v;
+    for (v = x0; v <= 100; v += 10) g += '<line class="g" x1="' + X(v) + '" y1="' + T + '" x2="' + X(v) + '" y2="' + (H - B) + '"/><text x="' + X(v) + '" y="' + (H - 12) + '" text-anchor="middle">' + v + "%</text>";
+    for (v = yMin; v <= yMax; v += 10) g += '<line class="g" x1="' + L + '" y1="' + Y(v) + '" x2="' + (W - R) + '" y2="' + Y(v) + '"/><text x="' + (L - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + v + "%</text>";
+    if (beatAll != null && beatAll >= x0) g += '<line class="m" x1="' + X(beatAll) + '" y1="' + T + '" x2="' + X(beatAll) + '" y2="' + (H - B) + '"/>';
+    if (fwdAll != null) g += '<line class="m" x1="' + L + '" y1="' + Y(fwdAll) + '" x2="' + (W - R) + '" y2="' + Y(fwdAll) + '"/>';
+    pts.forEach(function (p) {
+      var x = X(p.epsBeatPct), y = Y(p.fwd), r = 5 + Math.sqrt(p.n) * 0.9, left = x / W > 0.3;
+      g += '<circle class="p' + (p.n < 10 ? " thin" : "") + '" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r.toFixed(1) + '"/>';
+      labs += '<span class="sn-sl ' + (left ? "l" : "r") + '" style="left:' + ((x + (left ? -r - 5 : r + 5)) / W * 100).toFixed(2) + "%;top:" + (y / H * 100).toFixed(2) + '%">' + esc(p.name) + "</span>";
+    });
+    return '<div class="sn-sc" dir="ltr"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="כל סקטור לפי אחוז העקיפות ולפי הצמיחה הצפויה">' + g + "</svg>" + labs + "</div>" +
+      '<div class="sn-axes"><span>ציר אופקי: כמה מהחברות עקפו את צפי הרווח בעונה</span><span>ציר אנכי: צמיחת הרווח הצפויה לשנה הבאה</span></div>';
+  }
+  function renderSeasonSum() {
+    var el = document.getElementById("panel-season");
+    if (!el) return;
+    var d = SNSUM;
+    if (!d || !(d.sectors || []).length) {
+      emptyPanel(el, "🧾", "סיכום עונת הדוחות — בקרוב", "הסיכום נכתב כשרוב חברות המדד מסיימות לדווח.");
+      return;
+    }
+    var t = d.totals || {}, S = d.sectors, dm = function (iso) { var p = String(iso || "").split("-"); return p.length === 3 ? (+p[2]) + "." + (+p[1]) : ""; };
+    var head = '<section class="pan"' + bdSpan(12) + ">" +
+      panHd("סיכום עונת הדוחות · " + esc(d.season) + ", " + '<span class="num" dir="ltr">' + esc(d.year) + "</span>",
+        '<span class="mute"><span class="num" dir="ltr">' + d.reported + "</span> חברות ב-S&amp;P 500 · " + '<span class="num" dir="ltr">' + dm(d.start) + "–" + dm(d.end) + "</span></span>") +
+      '<div class="sn-tiles">' +
+        '<div class="sn-tile"><span class="l">עקפו את צפי הרווח</span><span class="v num" dir="ltr">' + t.epsBeatPct + '%</span><span class="s"><span class="num" dir="ltr">' + t.epsBeat + "</span> מתוך <span class=\"num\" dir=\"ltr\">" + t.epsN + "</span></span></div>" +
+        '<div class="sn-tile"><span class="l">עקפו את צפי ההכנסות</span><span class="v num" dir="ltr">' + t.revBeatPct + '%</span><span class="s"><span class="num" dir="ltr">' + t.revBeat + "</span> מתוך <span class=\"num\" dir=\"ltr\">" + t.revN + "</span></span></div>" +
+        '<div class="sn-tile"><span class="l">מי שעקפה, ביום שאחרי</span><span class="v">' + snPct(t.reactBeat) + '</span><span class="s">ממוצע של <span class="num" dir="ltr">' + t.reactBeatN + "</span> מניות</span></div>" +
+        '<div class="sn-tile"><span class="l">מי שהחטיאה, ביום שאחרי</span><span class="v">' + snPct(t.reactMiss) + '</span><span class="s">ממוצע של <span class="num" dir="ltr">' + t.reactMissN + "</span> מניות</span></div>" +
+      "</div></section>";
+    function bar(p, alt) { return p == null ? '<span class="mute">—</span>' : '<div class="sn-bc"><span class="sn-bar' + (alt ? " alt" : "") + '"><i style="width:' + p + '%"></i></span><b class="num" dir="ltr">' + p + "%</b></div>"; }
+    var tbl = '<section class="pan"' + bdSpan(12) + ">" + panHd("מה היה לפי סקטורים") +
+      '<div class="sn-tw"><table class="sn-tbl"><thead><tr><th>סקטור</th><th>עקפו ברווח</th><th>עקפו בהכנסות</th><th>תגובה ממוצעת</th><th>מניות שעלו</th><th>הבולטות למעלה</th><th>הבולטות למטה</th></tr></thead><tbody>' +
+      S.map(function (s) {
+        return "<tr" + (s.n < 10 ? ' class="thin"' : "") + '><th scope="row">' + esc(s.name) + '<small><span class="num" dir="ltr">' + s.n + "</span> חברות</small></th>" +
+          "<td>" + bar(s.epsBeatPct) + "</td><td>" + bar(s.revBeatPct, true) + "</td><td>" + snPct(s.react) + '</td><td class="num">' + (s.upPct == null ? "—" : '<span dir="ltr">' + s.upPct + "%</span>") + "</td>" +
+          '<td class="sn-tks">' + snTk(s.best) + '</td><td class="sn-tks">' + snTk(s.worst) + "</td></tr>";
+      }).join("") + "</tbody></table></div>" +
+      '<div class="pb"><p class="sn-note">"תגובה" היא השינוי במניה ביום המסחר שאחרי הדוח. שורה אפורה = פחות מ-10 חברות בסקטור. חברות הנדל"ן נספרות בתוך פיננסים.</p></div></section>';
+    function seg(v, n) {
+      if (v == null) return '<span class="sn-na">אין מספיק (' + '<span class="num" dir="ltr">' + (n || 0) + "</span>)</span>";
+      return '<span class="sn-rt"><i class="' + (v >= 0 ? "pos" : "neg") + '" style="width:' + (Math.min(100, Math.abs(v) / 10 * 100) / 2).toFixed(1) + '%"></i></span>' + snPct(v);
+    }
+    var rp = '<section class="pan"' + bdSpan(6) + ">" + panHd("פרס ועונש לפי סקטור") + '<div class="pb">' +
+      '<div class="sn-rh"><span></span><span>מי שעקפה, ביום שאחרי</span><span>מי שהחטיאה, ביום שאחרי</span></div>' +
+      S.slice().sort(function (a, b) { return (b.reward == null ? -99 : b.reward) - (a.reward == null ? -99 : a.reward); }).map(function (s) {
+        return '<div class="sn-rr"><span class="k">' + esc(s.name) + '</span><div class="c">' + seg(s.reward, s.rewardN) + '</div><div class="c">' + seg(s.punish, s.punishN) + "</div></div>";
+      }).join("") +
+      '<p class="sn-note">באיזה סקטור השוק תגמל דוח טוב, ובאיזה גם מי שעקפה ירדה. כשגם העוקפות יורדות, הציפיות היו גבוהות מהתוצאות. פחות מ-5 חברות בצד מסוים = אין ממוצע.</p></div></section>';
+    var F = S.filter(function (s) { return s.fwd != null; }).sort(function (a, b) { return b.fwd - a.fwd; });
+    var hasChg = F.some(function (s) { return s.fwdChg != null; }), mx = Math.max.apply(null, F.map(function (s) { return Math.max(1, s.fwd); }));
+    var fg = !F.length ? "" : '<section class="pan"' + bdSpan(6) + ">" + panHd("צמיחת הרווח הצפויה לשנה הבאה", '<span class="mute">צפי האנליסטים</span>') + '<div class="pb">' +
+      '<div class="sn-fh' + (hasChg ? " chg" : "") + '"><span></span><span>חציון הסקטור</span><span></span>' + (hasChg ? "<span>השתנה בעונה</span>" : "") + "</div>" +
+      F.map(function (s) {
+        return '<div class="sn-fr' + (hasChg ? " chg" : "") + '"><span class="k">' + esc(s.name) + '</span><span class="sn-bar wide"><i style="width:' + Math.max(0, s.fwd / mx * 100).toFixed(0) + '%"></i></span>' + snPct(s.fwd, 0) +
+          (hasChg ? '<span class="chgv">' + snPct(s.fwdChg) + "</span>" : "") + "</div>";
+      }).join("") +
+      '<p class="sn-note">נתון של צד שלישי, לא הערכה של האתר: הרווח למניה שהאנליסטים צופים לשנת הכספים הבאה, מול הרווח המדווח ב-12 החודשים האחרונים, לכל חברה, והחציון של הסקטור. הרווח המדווח כולל סעיפים חד-פעמיים, ולכן ההשוואה גסה: הסדר בין הסקטורים חשוב יותר מהמספר עצמו.' +
+      (hasChg ? "" : " בעונות הבאות תתווסף עמודה שמראה אם הצפי עלה או ירד במהלך העונה.") + "</p></div></section>";
+    var sc = snScatter(S, d.fwdAll, t.epsBeatPct);
+    var map = !sc ? "" : '<section class="pan"' + bdSpan(12) + ">" + panHd("היום מול מחר") + '<div class="pb"><div class="sn-two"><div>' + sc + "</div>" +
+      '<ul class="sn-reads"><li><b>איך קוראים את זה</b>כל עיגול הוא סקטור. ימינה = יותר חברות עקפו את הצפי בעונה. למעלה = האנליסטים צופים צמיחת רווח מהירה יותר. גודל העיגול = מספר החברות.</li>' +
+      "<li><b>ארבע הפינות</b>ימין למעלה: דיווחו טוב וצפויים לצמוח. ימין למטה: דיווחו טוב, צמיחה צפויה נמוכה. שמאל למעלה: דיווחו חלש אבל צפויים לצמוח. שמאל למטה: חלש עכשיו וגם בצפי.</li>" +
+      '<li><b>הקווים המקווקווים</b>האמצע של כל המדד: <span class="num" dir="ltr">' + t.epsBeatPct + "%</span> עקיפות" + (d.fwdAll != null ? ', ו-<span class="num" dir="ltr">' + Math.round(d.fwdAll) + "%</span> צמיחה צפויה (חציון)" : "") + ".</li></ul></div></div></section>";
+    var n = SNNOTES && SNNOTES[d.key];
+    var story = !n ? "" : '<section class="pan"' + bdSpan(12) + ">" + panHd("הסיכום במילים", n.writtenAt ? '<span class="mute">נכתב ' + esc(n.writtenAt) + "</span>" : "") +
+      '<div class="pb"><div class="sn-story"><h3>' + bidiHe(n.headline || "") + "</h3>" +
+      (n.paras || []).map(function (p) { return (p.h ? '<p class="sub">' + bidiHe(p.h) + "</p>" : "") + "<p>" + bidiHe(p.t || "") + "</p>"; }).join("") + "</div></div></section>";
+    var foot = '<div class="pan sn-foot"' + bdSpan(12) + '><p class="sn-note">מידע בלבד, לא המלצה. מה שקרה בעונה אחת אינו מעיד על הבאה. מקור: ' + esc((d._meta && d._meta.source) || "TradingView, Yahoo") +
+      (d._meta && d._meta.updatedAt ? ' · עודכן <span class="num" dir="ltr">' + esc(d._meta.updatedAt) + "</span>" : "") + ".</p></div>";
+    el.innerHTML = '<div class="board sn-board">' + head + story + tbl + rp + fg + map + foot + "</div>";
+  }
+
   /* ---------- הנבחרות (30.9.2026, np93) ----------
      data/picks.json = המהדורה של היום מ-scripts/build_picks.js: המועמדים+המומנטום
      שקיבלו "אישור מחיר לקנייה" מהמנוע הטכני על הסגירה האחרונה. data/picks_ledger.json =
@@ -5914,6 +6012,9 @@
       fetchJSON("data/weekly.json")
         .then(function (d) { if (!freshD("weekly", d)) return; WEEKLY = d; renderWeekly(d); renderLead(); renderHomeChanged(); refreshRotationWheel(); })
         .catch(function () {});
+      // np228: סיכום העונה לפי סקטורים (אירועים › סיכום העונה)
+      Promise.all([fetchJSON("data/season_summary.json").catch(function () { return null; }), fetchJSON("data/season_summary_notes.json").catch(function () { return null; })])
+        .then(function (r) { if (!freshD("seasonsum", r)) return; SNSUM = r[0]; SNNOTES = r[1]; renderSeasonSum(); });
       // עונת הדוחות (3.10.2026): ציר מתחת לכותרת, רק בזמן העונה
       fetchJSON("data/earnings_season.json")
         .then(function (d) { if (!freshD("season", d)) return; SEASON = d; renderSeason(); if (EARN) renderWeekCal(document.getElementById("weekcal-body"), EARN); })
