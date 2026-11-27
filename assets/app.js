@@ -1013,7 +1013,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np215";
+  var TA_VER = "np216";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1652,16 +1652,46 @@
   }
 
 
+  /* np216: משפט עברי עם קטעים לטיניים. כל רצף של מילים לטיניות / מספרים (עם סימן, %, $) שמחוברים
+     רק ברווחים ובפיסוק נעטף ב-<bdi dir=ltr>, כך שהסדר הפנימי שלו נשמר: "Imperial Brands (IMB.L; IMBBY)",
+     "S&P +1.64% · Nasdaq 100 +2.23%", "+8.1%". מילה לטינית בודדת בלי סימנים לא נעטפת (אין צורך).
+     מחזיר HTML (כבר אחרי esc). טקסט בלי עברית חוזר כמו שהוא. */
+  function bidiHe(t) {
+    t = String(t || "");
+    if (!/[֐-׿]/.test(t)) return /[A-Za-z]/.test(t) ? '<bdi dir="ltr">' + esc(t) + "</bdi>" : esc(t);
+    var TOK = /(?:[+\-−](?=[\d$]))?\$?\d[\d.,]*(?:%|\$|[KMB]\b)?|[A-Za-z][A-Za-z0-9&'.]*/g;
+    var toks = [], m;
+    while ((m = TOK.exec(t))) {
+      var st = m.index, tx = m[0];
+      // סימן צמוד לאות עברית ("ל-110$") הוא מקף של המילה, לא סימן המספר
+      if (/^[+\-−]/.test(tx) && st > 0 && /[֐-׿״׳]/.test(t[st - 1])) { st++; tx = tx.slice(1); }
+      tx = tx.replace(/[.']+$/, "");
+      if (tx) toks.push([st, st + tx.length]);
+    }
+    var runs = [];
+    toks.forEach(function (k) {
+      var last = runs[runs.length - 1];
+      if (last && /^[ ]{0,2}[;:,·&\/()\-–]{0,3}[ ]{0,2}$/.test(t.slice(last[1], k[0]))) last[1] = k[1];
+      else runs.push([k[0], k[1]]);
+    });
+    var out = "", pos = 0;
+    runs.forEach(function (r) {
+      var a = r[0], b = r[1], seg = t.slice(a, b);
+      var open = (seg.match(/\(/g) || []).length, close = (seg.match(/\)/g) || []).length;
+      if (open > close && t[b] === ")") { b++; seg = t.slice(a, b); }
+      else if (close > open) { var ix = seg.lastIndexOf(")"); b = a + ix; seg = t.slice(a, b).replace(/\s+$/, ""); b = a + seg.length; }
+      var need = /[\s+\-−%$()·;:&]/.test(seg);
+      out += esc(t.slice(pos, a)) + (need && seg ? '<bdi dir="ltr">' + esc(seg) + "</bdi>" : esc(seg));
+      pos = b;
+    });
+    return out + esc(t.slice(pos));
+  }
   /* np215: טקסט של בזק. עברית (X Scan של גרוק) → RTL מפורש: dir="auto" קבע כיוון לפי האות
-     הראשונה, ושורה שנפתחת בשם לטיני ("Needham שומר על…") יצאה LTR ומבולבלת. מספר חתום
-     או אחוז ("+8.1%", "-2.3%", "$110") נעטף ב-bdi כדי שהסימן לא יקפוץ לסוף ("8.1%+"). */
+     הראשונה, ושורה שנפתחת בשם לטיני ("Needham שומר על…") יצאה LTR ומבולבלת. */
   function pulseTx(t) {
     t = String(t || "");
-    if (!/[\u0590-\u05FF]/.test(t)) return '<span class="tx" dir="ltr">' + esc(t) + "</span>";
-    var h = esc(t).replace(/(^|[\s(])([+\-−–]?\$?\d[\d.,]*(?:%|\$|[KMB]\b)?|[+\-−]\d[\d.,]*%?)(?=$|[\s),.;:!?])/g, function (m, pre, num) {
-      return /[+\-−–$%]/.test(num) ? pre + '<bdi dir="ltr">' + num + "</bdi>" : m;
-    });
-    return '<span class="tx" dir="rtl">' + h + "</span>";
+    if (!/[֐-׿]/.test(t)) return '<span class="tx" dir="ltr">' + esc(t) + "</span>";
+    return '<span class="tx" dir="rtl">' + bidiHe(t) + "</span>";
   }
   var PULSE_X_ALL = false;   // "כל העדכונים" — הרחבה במקום (4 ↔ כל הרשימה)
   function renderPulseX() {
@@ -2025,7 +2055,7 @@
     var sentHtml = sent.text
       ? '<span class="brief-sent">' + h(sent.emoji || "") + " " + esc(sent.text) + "</span>" : "";
     var newsHtml = news.length
-      ? '<ol class="brief-news">' + news.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ol>" : "";
+      ? '<ol class="brief-news">' + news.map(function (t) { return "<li>" + bidiHe(t) + "</li>"; }).join("") + "</ol>" : "";
     // במייל של סופ"ש "מה נשאר ביומן" מתייחס ליום המסחר הבא — מציגים כותרת כנה
     var lozTitle = tradingDay(new Date()) ? "🕐 לוז יומי צפוי" : "🕐 לוז ליום המסחר הבא";
     var schedHtml = sched.length
@@ -2042,7 +2072,7 @@
       '<div class="ph"><h2>התדרוך · ' + esc(label) + ' <span class="num" dir="ltr">' + asOf + "</span></h2>" +
         (sent.text ? '<span class="pill state">' + esc(sent.text.replace(/^סנטימנט:\s*/, "")) + "</span>" : "") +
         '<a class="go" href="#briefing" onclick="__goTab(\'briefing\');return false">התדרוך המלא</a></div>' +
-      '<div class="bd-list">' + news.map(function (t, i) { return '<div class="li"><span class="num mute">' + (i + 1) + "</span><span>" + esc(t) + "</span></div>"; }).join("") + "</div>" +
+      '<div class="bd-list">' + news.map(function (t, i) { return '<div class="li"><span class="num mute">' + (i + 1) + "</span><span>" + bidiHe(t) + "</span></div>"; }).join("") + "</div>" +
       (sched.length ? '<div class="led bd-sched">' + sched.slice(0, 3).map(function (x) {
           return x.day ? "" : '<div><span class="num mute" dir="ltr">' + esc(x.time) + "</span><span>" + esc(x.text) + "</span></div>";
         }).join("") + "</div>" : "");
@@ -3707,7 +3737,7 @@
     var m = d.morning, a = d.afternoon, lead;
     if (m && a) lead = briefKey(a) >= briefKey(m) ? [a, "אחר הצהריים", m, "בוקר"] : [m, "בוקר", a, "אחר הצהריים"];
     else lead = m ? [m, "בוקר"] : [a, "אחר הצהריים"];
-    function hl(list) { return '<div class="bd-list">' + (list || []).map(function (t, i) { return '<div class="li"><span class="num mute">' + (i + 1) + "</span><span>" + esc(t) + "</span></div>"; }).join("") + "</div>"; }
+    function hl(list) { return '<div class="bd-list">' + (list || []).map(function (t, i) { return '<div class="li"><span class="num mute">' + (i + 1) + "</span><span>" + bidiHe(t) + "</span></div>"; }).join("") + "</div>"; }
     function sentPill(s) { return s && s.sentiment && s.sentiment.text ? '<span class="pill state">' + esc(s.sentiment.text.replace(/^סנטימנט:\s*/, "")) + "</span>" : ""; }
     function tm(s) { return s.time ? ' · <span class="num" dir="ltr">' + esc(s.time) + "</span>" : ""; }
     var sched = (lead[0].schedule || []).filter(function (x) { return !x.day; }).slice(0, 3);
