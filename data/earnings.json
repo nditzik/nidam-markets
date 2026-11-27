@@ -1,6 +1,6 @@
 {
-  "today": "2026-11-27",
-  "todayCount": 3,
+  "today": "2026-11-28",
+  "todayCount": 0,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -139,351 +139,343 @@
             "baseDate": "2026-11-24"
           }
         ]
-      },
-      {
-        "date": "2026-11-23",
-        "label": "23.11",
-        "items": [
-          {
-            "ticker": "CRWD",
-            "name": "CrowdStrike Holdings, Inc. Class A",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/CRWD.png",
-            "chg": -8.92,
-            "price": 208.97,
-            "reactDate": "2026-11-23",
-            "baseDate": "2026-11-20"
-          },
-          {
-            "ticker": "HPE",
-            "name": "Hewlett Packard Enterprise Co.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/HPE.png",
-            "chg": -16.31,
-            "price": 40.19,
-            "reactDate": "2026-11-24",
-            "baseDate": "2026-11-23"
-          },
-          {
-            "ticker": "A",
-            "name": "Agilent Technologies, Inc.",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/A.png",
-            "chg": 4.25,
-            "price": 183.52,
-            "reactDate": "2026-11-24",
-            "baseDate": "2026-11-23"
-          },
-          {
-            "ticker": "ZS",
-            "name": "Zscaler, Inc.",
-            "when": "before",
-            "status": "final",
-            "logo": "data/earnings/logos/ZS.png",
-            "chg": 17.67,
-            "price": 229.24,
-            "reactDate": "2026-11-23",
-            "baseDate": "2026-11-20"
-          },
-          {
-            "ticker": "ZM",
-            "name": "Zoom Communications, Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/ZM.png",
-            "logoBg": "dark",
-            "chg": 2.75,
-            "price": 88.4,
-            "reactDate": "2026-11-24",
-            "baseDate": "2026-11-23"
-          },
-          {
-            "ticker": "SYM",
-            "name": "Symbotic, Inc. Class A",
-            "when": "after",
-            "status": "final",
-            "logo": "data/earnings/logos/SYM.png",
-            "chg": 6.92,
-            "price": 37.39,
-            "reactDate": "2026-11-24",
-            "baseDate": "2026-11-23"
-          }
-        ]
       }
     ]
   },
-  "reporting": [
+  "reporting": [],
+  "more": 0,
+  "upcoming": [
     {
-      "ticker": "VFS",
-      "name": "VinFast Auto Ltd.",
-      "when": "",
-      "logo": "data/earnings/logos/VFS.png"
+      "date": "2026-11-30",
+      "label": "30/11",
+      "dow": "ב׳",
+      "count": 2,
+      "tickers": [
+        "RBRK",
+        "CHA"
+      ]
     },
     {
-      "ticker": "DRVN",
-      "name": "Driven Brands Holdings, Inc.",
-      "when": "",
-      "logo": "data/earnings/logos/DRVN.png"
+      "date": "2026-12-01",
+      "label": "1/12",
+      "dow": "ג׳",
+      "count": 14,
+      "tickers": [
+        "MRVL",
+        "OKTA",
+        "NTAP",
+        "CPRT",
+        "MDB",
+        "TCOM"
+      ]
     },
     {
-      "ticker": "HUBG",
-      "name": "Hub Group, Inc. Class A",
-      "when": "",
-      "logo": "data/earnings/logos/HUBG.png"
+      "date": "2026-12-02",
+      "label": "2/12",
+      "dow": "ד׳",
+      "count": 16,
+      "tickers": [
+        "CRM",
+        "BMO",
+        "BNS",
+        "SNOW",
+        "FIVE",
+        "DCI"
+      ]
+    },
+    {
+      "date": "2026-12-03",
+      "label": "3/12",
+      "dow": "ה׳",
+      "count": 27,
+      "tickers": [
+        "RY",
+        "TD",
+        "CM",
+        "VEEV",
+        "KR",
+        "DG"
+      ]
     }
   ],
-  "more": 0,
-  "upcoming": [],
   "week": [
     {
-      "date": "2026-11-23",
+      "date": "2026-11-30",
       "dow": "שני",
-      "label": "23.11",
+      "label": "30.11",
+      "total": 2,
+      "companies": [
+        {
+          "ticker": "RBRK",
+          "name": "Rubrik, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/RBRK.png"
+        },
+        {
+          "ticker": "CHA",
+          "name": "Chagee Holdings Limited Unsponsored ADR",
+          "when": "before",
+          "logo": "data/earnings/logos/CHA.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-01",
+      "dow": "שלישי",
+      "label": "1.12",
       "total": 14,
       "companies": [
         {
-          "ticker": "CRWD",
-          "name": "CrowdStrike Holdings, Inc. Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/CRWD.png"
-        },
-        {
-          "ticker": "HPE",
-          "name": "Hewlett Packard Enterprise Co.",
-          "when": "after",
-          "logo": "data/earnings/logos/HPE.png"
-        },
-        {
-          "ticker": "A",
-          "name": "Agilent Technologies, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/A.png"
-        },
-        {
-          "ticker": "ZS",
-          "name": "Zscaler, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/ZS.png"
-        },
-        {
-          "ticker": "ZM",
-          "name": "Zoom Communications, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/ZM.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "SYM",
-          "name": "Symbotic, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/SYM.png"
-        },
-        {
-          "ticker": "J",
-          "name": "Jacobs Solutions Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/J.png"
-        },
-        {
-          "ticker": "SMTC",
-          "name": "Semtech Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/SMTC.png"
-        },
-        {
-          "ticker": "AMTM",
-          "name": "Amentum Holdings, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/AMTM.png"
-        },
-        {
-          "ticker": "DAC",
-          "name": "Danaos Corporation",
-          "when": "after",
-          "logo": "data/earnings/logos/DAC.png"
-        },
-        {
-          "ticker": "CENTA",
-          "name": "Central Garden & Pet Company Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CENTA.png"
-        },
-        {
-          "ticker": "CENT",
-          "name": "Central Garden & Pet Company",
-          "when": "after",
-          "logo": "data/earnings/logos/CENT.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-24",
-      "dow": "שלישי",
-      "label": "24.11",
-      "total": 25,
-      "companies": [
-        {
-          "ticker": "DELL",
-          "name": "Dell Technologies, Inc. Class C",
-          "when": "after",
-          "logo": "data/earnings/logos/DELL.png"
-        },
-        {
-          "ticker": "ADI",
-          "name": "Analog Devices, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/ADI.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "MDT",
-          "name": "Medtronic Plc",
-          "when": "before",
-          "logo": "data/earnings/logos/MDT.png"
-        },
-        {
-          "ticker": "ADSK",
-          "name": "Autodesk, Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/ADSK.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "WDAY",
-          "name": "Workday, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/WDAY.png"
-        },
-        {
-          "ticker": "HPQ",
-          "name": "HP Inc.",
-          "when": "after",
-          "logo": "data/earnings/logos/HPQ.png"
-        },
-        {
-          "ticker": "DLTR",
-          "name": "Dollar Tree, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/DLTR.png"
-        },
-        {
-          "ticker": "BBY",
-          "name": "Best Buy Co., Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BBY.png"
-        },
-        {
-          "ticker": "BURL",
-          "name": "Burlington Stores, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/BURL.png"
-        },
-        {
-          "ticker": "DKS",
-          "name": "Dick's Sporting Goods, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/DKS.png"
-        },
-        {
-          "ticker": "SJM",
-          "name": "J.M. Smucker Company",
-          "when": "before",
-          "logo": "data/earnings/logos/SJM.png"
-        },
-        {
-          "ticker": "NTNX",
-          "name": "Nutanix, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/NTNX.png"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-25",
-      "dow": "רביעי",
-      "label": "25.11",
-      "total": 6,
-      "companies": [
-        {
-          "ticker": "DE",
-          "name": "Deere & Company",
-          "when": "before",
-          "logo": "data/earnings/logos/DE.png"
-        },
-        {
-          "ticker": "LI",
-          "name": "Li Auto, Inc. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/LI.png",
-          "logoBg": "dark"
-        },
-        {
-          "ticker": "BZ",
-          "name": "Kanzhun Ltd. Sponsored ADR",
-          "when": "before",
-          "logo": "data/earnings/logos/BZ.png"
-        },
-        {
-          "ticker": "BMA",
-          "name": "Banco Macro SA Sponsored ADR Class B",
-          "when": "after",
-          "logo": "data/earnings/logos/BMA.png"
-        },
-        {
-          "ticker": "GDS",
-          "name": "GDS Holdings Ltd. Sponsored ADR Class A",
-          "when": "before",
-          "logo": "data/earnings/logos/GDS.png"
-        },
-        {
-          "ticker": "IMKTA",
-          "name": "Ingles Markets, Incorporated Class A",
+          "ticker": "MRVL",
+          "name": "Marvell Technology, Inc.",
           "when": "",
-          "logo": "data/earnings/logos/IMKTA.png"
+          "logo": "data/earnings/logos/MRVL.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "OKTA",
+          "name": "Okta, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/OKTA.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "NTAP",
+          "name": "NetApp, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/NTAP.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "CPRT",
+          "name": "Copart, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/CPRT.png"
+        },
+        {
+          "ticker": "MDB",
+          "name": "MongoDB, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/MDB.png"
+        },
+        {
+          "ticker": "TCOM",
+          "name": "Trip.com Group Ltd. Sponsored ADR",
+          "when": "after",
+          "logo": "data/earnings/logos/TCOM.png"
+        },
+        {
+          "ticker": "CRDO",
+          "name": "Credo Technology Group Holding Ltd.",
+          "when": "after",
+          "logo": "data/earnings/logos/CRDO.png"
+        },
+        {
+          "ticker": "HQY",
+          "name": "HealthEquity Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/HQY.png"
+        },
+        {
+          "ticker": "GTLB",
+          "name": "Gitlab, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/GTLB.png"
+        },
+        {
+          "ticker": "BOX",
+          "name": "Box, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/BOX.png"
+        },
+        {
+          "ticker": "NIO",
+          "name": "NIO Inc. Sponsored ADR Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/NIO.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "NCNO",
+          "name": "nCino Inc",
+          "when": "after",
+          "logo": "data/earnings/logos/NCNO.png"
         }
       ]
     },
     {
-      "date": "2026-11-26",
+      "date": "2026-12-02",
+      "dow": "רביעי",
+      "label": "2.12",
+      "total": 16,
+      "companies": [
+        {
+          "ticker": "CRM",
+          "name": "Salesforce, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/CRM.png"
+        },
+        {
+          "ticker": "BMO",
+          "name": "Bank of Montreal",
+          "when": "before",
+          "logo": "data/earnings/logos/BMO.png"
+        },
+        {
+          "ticker": "BNS",
+          "name": "Bank of Nova Scotia",
+          "when": "before",
+          "logo": "data/earnings/logos/BNS.png"
+        },
+        {
+          "ticker": "SNOW",
+          "name": "Snowflake, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/SNOW.png"
+        },
+        {
+          "ticker": "FIVE",
+          "name": "Five Below, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/FIVE.png"
+        },
+        {
+          "ticker": "DCI",
+          "name": "Donaldson Company, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/DCI.png"
+        },
+        {
+          "ticker": "DSGX",
+          "name": "Descartes Systems Group Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/DSGX.png"
+        },
+        {
+          "ticker": "M",
+          "name": "Macy's, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/M.png"
+        },
+        {
+          "ticker": "SIG",
+          "name": "Signet Jewelers Limited",
+          "when": "before",
+          "logo": "data/earnings/logos/SIG.png"
+        },
+        {
+          "ticker": "AEO",
+          "name": "American Eagle Outfitters, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/AEO.png"
+        },
+        {
+          "ticker": "BLBD",
+          "name": "Blue Bird Corporation",
+          "when": "after",
+          "logo": "data/earnings/logos/BLBD.png"
+        },
+        {
+          "ticker": "CBRL",
+          "name": "Cracker Barrel Old Country Store, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/CBRL.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-03",
       "dow": "חמישי",
-      "label": "26.11",
+      "label": "3.12",
+      "total": 27,
+      "companies": [
+        {
+          "ticker": "RY",
+          "name": "Royal Bank of Canada",
+          "when": "before",
+          "logo": "data/earnings/logos/RY.png"
+        },
+        {
+          "ticker": "TD",
+          "name": "Toronto-Dominion Bank",
+          "when": "before",
+          "logo": "data/earnings/logos/TD.png"
+        },
+        {
+          "ticker": "CM",
+          "name": "Canadian Imperial Bank of Commerce",
+          "when": "before",
+          "logo": "data/earnings/logos/CM.png"
+        },
+        {
+          "ticker": "VEEV",
+          "name": "Veeva Systems Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/VEEV.png"
+        },
+        {
+          "ticker": "KR",
+          "name": "Kroger Co.",
+          "when": "before",
+          "logo": "data/earnings/logos/KR.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "DG",
+          "name": "Dollar General Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/DG.png"
+        },
+        {
+          "ticker": "ULTA",
+          "name": "Ulta Beauty Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/ULTA.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "IOT",
+          "name": "Samsara, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/IOT.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "DOCU",
+          "name": "DocuSign, Inc.",
+          "when": "after",
+          "logo": "data/earnings/logos/DOCU.png",
+          "logoBg": "dark"
+        },
+        {
+          "ticker": "BF.A",
+          "name": "Brown-Forman Corporation Class A",
+          "when": "before",
+          "logo": "data/earnings/logos/BF.A.png"
+        },
+        {
+          "ticker": "BF.B",
+          "name": "Brown-Forman Corporation Class B",
+          "when": "before",
+          "logo": "data/earnings/logos/BF.B.png"
+        },
+        {
+          "ticker": "HRL",
+          "name": "Hormel Foods Corporation",
+          "when": "before",
+          "logo": "data/earnings/logos/HRL.png"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-04",
+      "dow": "שישי",
+      "label": "4.12",
       "total": 0,
       "companies": []
-    },
-    {
-      "date": "2026-11-27",
-      "dow": "שישי",
-      "label": "27.11",
-      "total": 3,
-      "companies": [
-        {
-          "ticker": "VFS",
-          "name": "VinFast Auto Ltd.",
-          "when": "",
-          "logo": "data/earnings/logos/VFS.png"
-        },
-        {
-          "ticker": "DRVN",
-          "name": "Driven Brands Holdings, Inc.",
-          "when": "",
-          "logo": "data/earnings/logos/DRVN.png"
-        },
-        {
-          "ticker": "HUBG",
-          "name": "Hub Group, Inc. Class A",
-          "when": "",
-          "logo": "data/earnings/logos/HUBG.png"
-        }
-      ]
     }
   ],
   "window": {
-    "VFS": "2026-11-27",
-    "DRVN": "2026-11-27",
-    "HUBG": "2026-11-27",
     "RBRK": "2026-11-30",
     "CHA": "2026-11-30",
     "MRVL": "2026-12-01",
@@ -545,7 +537,7 @@
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "27/11/2026 23:46",
+    "updatedAt": "28/11/2026 00:01",
     "source": "tradingview"
   }
 }
