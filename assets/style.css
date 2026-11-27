@@ -2943,3 +2943,13 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .mg-mini-go { flex: none; color: var(--accent); font-size: 14px; font-weight: 500; }
 .mg-mini:hover .mg-mini-t { color: var(--accent); }
 @media (max-width: 700px) { .pan > .mg-mini { flex-direction: column; align-items: flex-start; gap: 8px; } .mg-mini-t { flex: none; } }
+
+/* np220 (27.11.2026): במחשב הטקסט בפאנל הכותרת מעט גדול יותר — ממלא את החלל שנוצר אחרי הורדת האריחים והשורות */
+@media (min-width: 701px) {
+  .bd-lead .np-h1 { font-size: 31px; line-height: 1.28; }
+  .bd-lead .np-h1.np-h1-long { font-size: 24px; }
+  .bd-lead .np-dek, .bd-lead .np-bottom, .bd-lead .np-reg { font-size: 18px; line-height: 1.7; }
+  .bd-lead .np-k { font-size: 13px; }
+  .bd-lead .np-leadfoot, .bd-lead .np-fc { font-size: 14px; }
+}
+.np-fc-short b { font-weight: 600; color: var(--text); }
