@@ -1,0 +1,466 @@
+{
+ "key": "2026-Q3",
+ "season": "רבעון 3",
+ "year": 2026,
+ "start": "2026-10-05",
+ "end": "2026-11-29",
+ "total": 461,
+ "reported": 461,
+ "totals": {
+  "epsN": 459,
+  "epsBeat": 390,
+  "epsBeatPct": 85,
+  "revN": 459,
+  "revBeat": 341,
+  "revBeatPct": 74,
+  "reactBeat": 0.38,
+  "reactBeatN": 389,
+  "reactMiss": -1.61,
+  "reactMissN": 68
+ },
+ "sectors": [
+  {
+   "name": "צריכה בסיסית",
+   "n": 23,
+   "epsN": 23,
+   "epsBeatPct": 100,
+   "revN": 23,
+   "revBeatPct": 83,
+   "react": 0.44,
+   "reactN": 23,
+   "upPct": 52,
+   "reward": 0.44,
+   "rewardN": 23,
+   "punish": null,
+   "punishN": 0,
+   "fwd": 8.2,
+   "fwdN": 22,
+   "best": [
+    [
+     "TSN",
+     8.7
+    ],
+    [
+     "LW",
+     7.5
+    ],
+    [
+     "PG",
+     5.6
+    ]
+   ],
+   "worst": [
+    [
+     "RL",
+     -7.3
+    ],
+    [
+     "KDP",
+     -5.7
+    ],
+    [
+     "DECK",
+     -4.9
+    ]
+   ]
+  },
+  {
+   "name": "אנרגיה",
+   "n": 13,
+   "epsN": 13,
+   "epsBeatPct": 100,
+   "revN": 13,
+   "revBeatPct": 92,
+   "react": -0.43,
+   "reactN": 13,
+   "upPct": 38,
+   "reward": -0.43,
+   "rewardN": 13,
+   "punish": null,
+   "punishN": 0,
+   "fwd": 31.6,
+   "fwdN": 13,
+   "best": [
+    [
+     "XOM",
+     2.2
+    ],
+    [
+     "OXY",
+     2.0
+    ],
+    [
+     "PSX",
+     1.9
+    ]
+   ],
+   "worst": [
+    [
+     "FANG",
+     -3.7
+    ],
+    [
+     "EXE",
+     -3.2
+    ],
+    [
+     "VLO",
+     -2.4
+    ]
+   ]
+  },
+  {
+   "name": "תקשורת",
+   "n": 3,
+   "epsN": 3,
+   "epsBeatPct": 100,
+   "revN": 3,
+   "revBeatPct": 67,
+   "react": -3.49,
+   "reactN": 3,
+   "upPct": 0,
+   "reward": null,
+   "rewardN": 3,
+   "punish": null,
+   "punishN": 0,
+   "fwd": 28.8,
+   "fwdN": 3,
+   "best": [],
+   "worst": [
+    [
+     "T",
+     -6.5
+    ],
+    [
+     "VZ",
+     -3.5
+    ],
+    [
+     "TMUS",
+     -0.5
+    ]
+   ]
+  },
+  {
+   "name": "בריאות",
+   "n": 52,
+   "epsN": 52,
+   "epsBeatPct": 94,
+   "revN": 52,
+   "revBeatPct": 92,
+   "react": 1.5,
+   "reactN": 52,
+   "upPct": 62,
+   "reward": 1.8,
+   "rewardN": 49,
+   "punish": null,
+   "punishN": 2,
+   "fwd": 36.2,
+   "fwdN": 47,
+   "best": [
+    [
+     "IDXX",
+     21.9
+    ],
+    [
+     "ZBH",
+     13.5
+    ],
+    [
+     "REGN",
+     13.3
+    ]
+   ],
+   "worst": [
+    [
+     "ZTS",
+     -8.0
+    ],
+    [
+     "BAX",
+     -7.7
+    ],
+    [
+     "SYK",
+     -6.4
+    ]
+   ]
+  },
+  {
+   "name": "טכנולוגיה",
+   "n": 89,
+   "epsN": 89,
+   "epsBeatPct": 91,
+   "revN": 89,
+   "revBeatPct": 85,
+   "react": -2.13,
+   "reactN": 89,
+   "upPct": 40,
+   "reward": -1.03,
+   "rewardN": 81,
+   "punish": -13.31,
+   "punishN": 8,
+   "fwd": 21.2,
+   "fwdN": 86,
+   "best": [
+    [
+     "APP",
+     31.0
+    ],
+    [
+     "EPAM",
+     20.6
+    ],
+    [
+     "GEN",
+     15.8
+    ]
+   ],
+   "worst": [
+    [
+     "INTC",
+     -28.6
+    ],
+    [
+     "NOW",
+     -26.9
+    ],
+    [
+     "FIS",
+     -23.7
+    ]
+   ]
+  },
+  {
+   "name": "תשתיות",
+   "n": 33,
+   "epsN": 33,
+   "epsBeatPct": 91,
+   "revN": 33,
+   "revBeatPct": 70,
+   "react": 0.93,
+   "reactN": 33,
+   "upPct": 58,
+   "reward": 1.01,
+   "rewardN": 30,
+   "punish": null,
+   "punishN": 3,
+   "fwd": 5.3,
+   "fwdN": 33,
+   "best": [
+    [
+     "VST",
+     10.6
+    ],
+    [
+     "CEG",
+     10.5
+    ],
+    [
+     "NRG",
+     10.3
+    ]
+   ],
+   "worst": [
+    [
+     "TRGP",
+     -4.6
+    ],
+    [
+     "SRE",
+     -3.7
+    ],
+    [
+     "ED",
+     -2.4
+    ]
+   ]
+  },
+  {
+   "name": "תעשייה",
+   "n": 76,
+   "epsN": 76,
+   "epsBeatPct": 88,
+   "revN": 76,
+   "revBeatPct": 75,
+   "react": 0.64,
+   "reactN": 76,
+   "upPct": 62,
+   "reward": 1.08,
+   "rewardN": 67,
+   "punish": -2.6,
+   "punishN": 9,
+   "fwd": 14.1,
+   "fwdN": 73,
+   "best": [
+    [
+     "XYZ",
+     15.3
+    ],
+    [
+     "POOL",
+     14.4
+    ],
+    [
+     "PNR",
+     12.8
+    ]
+   ],
+   "worst": [
+    [
+     "XYL",
+     -14.2
+    ],
+    [
+     "ROK",
+     -14.2
+    ],
+    [
+     "LRCX",
+     -11.8
+    ]
+   ]
+  },
+  {
+   "name": "צריכה מחזורית",
+   "n": 51,
+   "epsN": 51,
+   "epsBeatPct": 75,
+   "revN": 51,
+   "revBeatPct": 69,
+   "react": 1.45,
+   "reactN": 51,
+   "upPct": 51,
+   "reward": 1.26,
+   "rewardN": 38,
+   "punish": 2.02,
+   "punishN": 13,
+   "fwd": 6.0,
+   "fwdN": 49,
+   "best": [
+    [
+     "CVNA",
+     15.7
+    ],
+    [
+     "NCLH",
+     13.4
+    ],
+    [
+     "SWK",
+     13.1
+    ]
+   ],
+   "worst": [
+    [
+     "WSM",
+     -15.2
+    ],
+    [
+     "EXPE",
+     -13.7
+    ],
+    [
+     "NWSA",
+     -13.3
+    ]
+   ]
+  },
+  {
+   "name": "פיננסים",
+   "n": 93,
+   "epsN": 92,
+   "epsBeatPct": 74,
+   "revN": 92,
+   "revBeatPct": 55,
+   "react": -0.1,
+   "reactN": 92,
+   "upPct": 50,
+   "reward": 0.18,
+   "rewardN": 67,
+   "punish": -0.87,
+   "punishN": 24,
+   "fwd": 4.1,
+   "fwdN": 87,
+   "best": [
+    [
+     "BX",
+     8.4
+    ],
+    [
+     "NDAQ",
+     7.5
+    ],
+    [
+     "PRU",
+     6.6
+    ]
+   ],
+   "worst": [
+    [
+     "IRM",
+     -11.1
+    ],
+    [
+     "COIN",
+     -10.6
+    ],
+    [
+     "ARE",
+     -5.8
+    ]
+   ]
+  },
+  {
+   "name": "חומרים",
+   "n": 27,
+   "epsN": 26,
+   "epsBeatPct": 65,
+   "revN": 26,
+   "revBeatPct": 65,
+   "react": 0.71,
+   "reactN": 26,
+   "upPct": 62,
+   "reward": -0.39,
+   "rewardN": 17,
+   "punish": 2.77,
+   "punishN": 9,
+   "fwd": 19.0,
+   "fwdN": 23,
+   "best": [
+    [
+     "MOS",
+     17.4
+    ],
+    [
+     "DD",
+     8.6
+    ],
+    [
+     "CF",
+     6.2
+    ]
+   ],
+   "worst": [
+    [
+     "CTVA",
+     -24.3
+    ],
+    [
+     "BALL",
+     -7.1
+    ],
+    [
+     "ADM",
+     -6.8
+    ]
+   ]
+  }
+ ],
+ "fwdAll": 12.1,
+ "fwdSnap": null,
+ "_meta": {
+  "updatedAt": "27/11/2026 19:33",
+  "source": "TradingView (הפתעות, צפי אנליסטים) + Yahoo (תגובת המניה)"
+ }
+}
