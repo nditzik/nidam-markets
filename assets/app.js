@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np221";
+  var TA_VER = "np222";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2667,6 +2667,8 @@
       // preview/preopen: ה-event הוא כבר כותרת שלמה ("לקראת פתיחת המסחר") — בלי "עדכון"
       var euLbl = (eu.kind === "preview" || eu.kind === "preopen" ? "" : "עדכון ") + esc(eu.event || "אירוע");
       var pst = eu.kind === "preview" ? previewStamp(eu) : null;
+      // np222 (איציק: "סגירת יום רביעי… מיותר ומבלבל"): בעדכון-אירוע הכותרת היא של היום — תאריך העדכון, לא הסגירה האחרונה
+      if (ls && !pst && /^\d{4}-\d\d-\d\d$/.test(eu.date || "")) ls.innerHTML = 'יום ' + MD_DOW[new Date(eu.date + "T12:00:00").getDay()] + ' · <b class="num" dir="ltr">' + esc(fmtTradeDate(eu.date)) + "</b>";
       if (pst && ls) ls.innerHTML = pst.sub;   // "שבוע המסחר · 26–30.10.2026" במקום "סגירת יום שישי"
       el.innerHTML =
         '<span class="np-today">' + todayLine() + "</span>" +
@@ -5583,7 +5585,7 @@
     var none = '<p class="wc-none">אין שינוי מאז הסגירה הקודמת.</p>';
     var pd = new Date(a.date + "T12:00:00");
     var sum = "המד " + a.combined + " ← " + b.combined + (nNew ? " · " + (nNew === 1 ? "מניה חדשה" : nNew + " מניות חדשות") : "") + (docs.length ? " · " + (docs.length === 1 ? "ניתוח חדש" : docs.length + " ניתוחים") : "");
-    var html = '<details class="wc"><summary class="ph"><h2>מה השתנה · מאז סגירת ' + WC_DOW[pd.getDay()] + ' <span class="num" dir="ltr">' + wcDm(a.date) + "</span></h2>" +
+    var html = '<details class="wc"><summary class="ph"><h2>מה השתנה · סגירת ' + WC_DOW[new Date(b.date + "T12:00:00").getDay()] + ' <span class="num" dir="ltr">' + wcDm(b.date) + '</span> מול ' + WC_DOW[pd.getDay()] + ' <span class="num" dir="ltr">' + wcDm(a.date) + "</span></h2>" +
       '<span class="mute wc-sub">מתעדכן לבד עם כל סגירה</span><span class="mute wc-sum">' + sum + '</span><i class="wc-chev" aria-hidden="true"></i></summary>' +
       '<div class="wc-cols"><div class="wc-col"><h3>השוק</h3>' + mkt + '</div><div class="wc-col"><h3>הרשימות והסריקות</h3>' + (lists.join("") || none) +
       '</div><div class="wc-col"><h3>ניתוחים חדשים</h3>' + (docs.join("") || none) + "</div></div></details>";
