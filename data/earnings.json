@@ -48,8 +48,8 @@
             "when": "after",
             "status": "live",
             "logo": "data/earnings/logos/BMA.png",
-            "chg": 3.67,
-            "price": 52.2,
+            "chg": 4.63,
+            "price": 52.68,
             "reactDate": "2026-11-27",
             "baseDate": "2026-11-25"
           },
@@ -128,15 +128,15 @@
             "baseDate": "2026-11-24"
           },
           {
-            "ticker": "DLTR",
-            "name": "Dollar Tree, Inc.",
-            "when": "before",
+            "ticker": "HPQ",
+            "name": "HP Inc.",
+            "when": "after",
             "status": "final",
-            "logo": "data/earnings/logos/DLTR.png",
-            "chg": 11.18,
-            "price": 154.65,
-            "reactDate": "2026-11-24",
-            "baseDate": "2026-11-23"
+            "logo": "data/earnings/logos/HPQ.png",
+            "chg": 11.49,
+            "price": 31.15,
+            "reactDate": "2026-11-25",
+            "baseDate": "2026-11-24"
           }
         ]
       },
@@ -306,16 +306,16 @@
           "logo": "data/earnings/logos/DAC.png"
         },
         {
-          "ticker": "CENTA",
-          "name": "Central Garden & Pet Company Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/CENTA.png"
-        },
-        {
           "ticker": "CENT",
           "name": "Central Garden & Pet Company",
           "when": "after",
           "logo": "data/earnings/logos/CENT.png"
+        },
+        {
+          "ticker": "CENTA",
+          "name": "Central Garden & Pet Company Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/CENTA.png"
         }
       ]
     },
@@ -358,16 +358,16 @@
           "logo": "data/earnings/logos/WDAY.png"
         },
         {
-          "ticker": "DLTR",
-          "name": "Dollar Tree, Inc.",
-          "when": "before",
-          "logo": "data/earnings/logos/DLTR.png"
-        },
-        {
           "ticker": "HPQ",
           "name": "HP Inc.",
           "when": "after",
           "logo": "data/earnings/logos/HPQ.png"
+        },
+        {
+          "ticker": "DLTR",
+          "name": "Dollar Tree, Inc.",
+          "when": "before",
+          "logo": "data/earnings/logos/DLTR.png"
         },
         {
           "ticker": "BBY",
@@ -545,7 +545,7 @@
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "27/11/2026 17:01",
+    "updatedAt": "27/11/2026 17:16",
     "source": "tradingview"
   }
 }
