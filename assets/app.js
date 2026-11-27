@@ -1013,7 +1013,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np213";
+  var TA_VER = "np214";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1201,6 +1201,11 @@
       });
       doc.body.addEventListener("click", function (e) {
         var t = e.target;
+        // np214: טיקר שהדוח עצמו מקשר ל-TradingView (ארבעת העמודים: <a href=tradingview…/symbols/SYM>)
+        // נפתח בחלון הניתוח שלנו, כמו קישור כזה בשאר האתר — במקום טאב חדש ב-TradingView.
+        var a = t && t.closest ? t.closest('a[href*="tradingview.com/symbols/"]') : null;
+        var am = a && TV_SYM_RE.exec(a.getAttribute("href") || "");
+        if (am) { e.preventDefault(); openChart(decodeURIComponent(am[1])); return; }
         while (t && t !== doc.body && !(t.getAttribute && t.getAttribute("data-sym"))) t = t.parentNode;
         var sym = t && t.getAttribute && t.getAttribute("data-sym");
         if (sym) { e.preventDefault(); openChart(sym); }
