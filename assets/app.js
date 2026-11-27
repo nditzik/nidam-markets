@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np224";
+  var TA_VER = "np225";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1702,6 +1702,30 @@
     return '<span class="tx" dir="rtl">' + bidiHe(t) + "</span>";
   }
   var PULSE_X_ALL = false;   // "כל העדכונים" — הרחבה במקום (4 ↔ כל הרשימה)
+  // np225 (27.11.2026, איציק: "שבבזק מהרשתות יצוין מתי העדכון הבא, האנגלית והעברית"): לוח הריצות של X Scan אצל גרוק
+  // (שעון ישראל, שני–שישי): מלאות 07:00/14:30/17:30/21:00/23:30 + מצומצמות 15:30/16:30/18:30/19:30.
+  // ⚠️ הלוח נקבע אצל הבוט — כשמשנים שם, לעדכן כאן. האנגלית (טלגרם) נמשכת בכל ריצת Action, כרבע שעה.
+  var X_SCAN_SLOTS = [[7, 0], [14, 30], [15, 30], [16, 30], [17, 30], [18, 30], [19, 30], [21, 0], [23, 30]];
+  function pulseNextHtml() {
+    var f = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Jerusalem", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+    var o = {}; f.forEach(function (x) { o[x.type] = x.value; });
+    var DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], HE = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+    var d0 = DOW.indexOf(o.weekday), now = (parseInt(o.hour, 10) % 24) * 60 + parseInt(o.minute, 10), nxt = null;
+    for (var k = 0; k < 8 && !nxt; k++) {
+      var d = (d0 + k) % 7;
+      if (d < 1 || d > 5) continue;   // שני–שישי בלבד
+      for (var i = 0; i < X_SCAN_SLOTS.length; i++) {
+        var t = X_SCAN_SLOTS[i][0] * 60 + X_SCAN_SLOTS[i][1];
+        if (k > 0 || t > now) { nxt = { k: k, d: d, h: X_SCAN_SLOTS[i][0], m: X_SCAN_SLOTS[i][1] }; break; }
+      }
+    }
+    if (!nxt) return "";
+    var hm = (nxt.h < 10 ? "0" : "") + nxt.h + ":" + (nxt.m < 10 ? "0" : "") + nxt.m;
+    var day = nxt.k === 0 ? "" : nxt.k === 1 ? "מחר " : "יום " + HE[nxt.d] + " ";
+    return '<div class="pulse-next" title="הזמנים לפי לוח הסריקות; הידיעות מופיעות באתר עד רבע שעה אחרי">' +
+      '<span>העדכון הבא בעברית: <b>' + day + '<span class="num" dir="ltr">' + hm + "</span></b></span>" +
+      "<span>באנגלית: כל רבע שעה</span></div>";
+  }
   function renderPulseX() {
     var el = document.getElementById("tri-x");
     if (!el) return;
@@ -1718,7 +1742,7 @@
         return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
           '<span class="num mute" dir="ltr">' + esc(it.time) + '</span><span class="mute src" dir="ltr">' + esc(it.source) + "</span>" +
           '' + pulseTx(it.text) + "</a>";
-      }).join("") + "</div>" +
+      }).join("") + "</div>" + pulseNextHtml() +
       '<a class="np-more" href="#" id="news-toggle" hidden>📰 חדשות השוק ⌄</a>';
     var pm = document.getElementById("pulse-more");
     if (pm) pm.addEventListener("click", function (ev) {
@@ -2088,7 +2112,7 @@
   }
   // np223 (27.11.2026, איציק: "להשתמש גם במידע של Barchart בשעה 14:00 בדף הבית"): עד 3 נקודות ממייל
   // "טרום מסחר" של אותו יום (morning.json.premkt.points — scripts/premkt_points.py), מתחת לידיעות התדרוך
-  setInterval(function () { if (BRIEF) renderHomeBriefing(); }, 5 * 60 * 1000);   // שהבלוק ירד ב-23:00 גם בלי נתון חדש
+  setInterval(function () { if (BRIEF) renderHomeBriefing(); if (PULSE_X) renderPulseX(); }, 5 * 60 * 1000);   // שהבלוק ירד ב-23:00 גם בלי נתון חדש
   function premktPointsHtml() {
     var il = ilNowParts();
     // רק של היום, ועד 23:00 שעון ישראל (איציק: "לא רלוונטי בסיום המסחר — יורד ב-23 וחוזר כשמתקבל העדכון")
@@ -5734,7 +5758,7 @@
         : panHd("בזק מהרשת", '<span class="mute">4 ערוצים + X Scan</span>', items.length > 8 ? '<a class="go" href="#" id="nb-pulse-more">' + (NB_PULSE_ALL ? "פחות" : "כל " + items.length + " הבזקים") + "</a>" : "") +
           '<div class="bd-list">' + shown.map(function (it) {
             return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener"><span class="num mute" dir="ltr">' + esc(it.time) + '</span><span class="mute src" dir="ltr">' + esc(it.source) + '</span>' + pulseTx(it.text) + "</a>";
-          }).join("") + "</div>";
+          }).join("") + "</div>" + pulseNextHtml();
       var pm = document.getElementById("nb-pulse-more");
       if (pm) pm.addEventListener("click", function (ev) { ev.preventDefault(); NB_PULSE_ALL = !NB_PULSE_ALL; renderNewsSiblings(); });
     }

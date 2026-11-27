@@ -2966,3 +2966,7 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 .bd-pm-h .go { font-weight: 500; color: var(--accent); text-decoration: none; }
 .bd-pm-li { font-size: 14px; line-height: 1.55; color: var(--text-soft); padding: 4px 0; }
 .bd-pm-li b { color: var(--text); font-weight: 600; }
+
+/* np225 (27.11.2026): "העדכון הבא" בתחתית בזק מהרשת */
+.pulse-next { display: flex; flex-wrap: wrap; gap: 4px 16px; padding: 8px 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-3); }
+.pulse-next b { color: var(--text-soft); font-weight: 600; }
