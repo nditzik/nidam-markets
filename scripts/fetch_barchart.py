@@ -149,6 +149,14 @@ def write_if_changed(review=None, premkt=None, notice=None):
 
     if premkt:
         entry, html_changed = entry_of(*premkt, OUT_HTML_PREMKT, HTML_REL_PREMKT)
+        # 27.11.2026: עד 3 נקודות לדף הבית (פרק "לדף הבית", נפילה לכרטיס "מאקרו ופד")
+        try:
+            import premkt_points
+            pts = premkt_points.points(premkt[2])
+            if pts:
+                entry["points"] = pts
+        except Exception as e:
+            print(f"[warn] premkt points: {e}")
         if html_changed or out.get("premkt") != entry:
             changed = True
         out["premkt"] = entry
