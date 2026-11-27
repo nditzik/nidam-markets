@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np225";
+  var TA_VER = "np226";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1724,39 +1724,54 @@
     var day = nxt.k === 0 ? "" : nxt.k === 1 ? "מחר " : "יום " + HE[nxt.d] + " ";
     return '<div class="pulse-next" title="הזמנים לפי לוח הסריקות; הידיעות מופיעות באתר עד רבע שעה אחרי">' +
       '<span>העדכון הבא בעברית: <b>' + day + '<span class="num" dir="ltr">' + hm + "</span></b></span>" +
-      "<span>באנגלית: כל רבע שעה</span></div>";
+      "<span>באנגלית: כל רבע שעה</span>" +
+      '<a class="go" href="#briefing" onclick="__goTab(\'briefing\');setTimeout(function(){var m=document.getElementById(\'nb-rss\');if(m)m.scrollIntoView({behavior:\'smooth\',block:\'start\'})},80);return false">חדשות השוק ←</a></div>';
   }
   function renderPulseX() {
     var el = document.getElementById("tri-x");
     if (!el) return;
     if (!PULSE_X || !(PULSE_X.items || []).length) { el.innerHTML = ""; return; }
     var items = PULSE_X.items;
-    var shown = PULSE_X_ALL ? items : items.slice(0, 4);
     var moreLbl = PULSE_X_ALL ? "פחות" : "כל " + items.length + " הבזקים";
+    // np226: כל הפריטים ב-DOM; מעבר ל-4 הראשונים מוסתרים, ו-pulseFill חושף כמה שנכנס בגובה פאנל התדרוך שליד
     el.innerHTML =
       '<div class="ph"><h2>בזק מהרשת</h2>' +
         (items.length > 4 ? '<a class="go" href="#" id="pulse-more">' + moreLbl + "</a>" : "") + "</div>" +
-      '<div class="bd-list">' + shown.map(function (it) {
-        // dir="auto": הפריטים מעורבים — עברית מהדיג'סט ואנגלית מהטלגרם —
-        // והדפדפן קובע כיוון לכל פריט לפי התו החזק הראשון שבו (6.9.2026)
-        return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
+      '<div class="bd-list">' + items.map(function (it, i) {
+        return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener"' + (!PULSE_X_ALL && i >= 4 ? " hidden" : "") + ">" +
           '<span class="num mute" dir="ltr">' + esc(it.time) + '</span><span class="mute src" dir="ltr">' + esc(it.source) + "</span>" +
           '' + pulseTx(it.text) + "</a>";
-      }).join("") + "</div>" + pulseNextHtml() +
-      '<a class="np-more" href="#" id="news-toggle" hidden>📰 חדשות השוק ⌄</a>';
+      }).join("") + "</div>" + pulseNextHtml();
     var pm = document.getElementById("pulse-more");
     if (pm) pm.addEventListener("click", function (ev) {
       ev.preventDefault();
       PULSE_X_ALL = !PULSE_X_ALL;
       renderPulseX();
     });
-    var nt = document.getElementById("news-toggle");
-    if (nt) nt.addEventListener("click", function (ev) {
-      ev.preventDefault();
-      var n = document.getElementById("tri-news");
-      if (n) n.style.display = n.style.display === "none" ? "block" : "none";
-    });
+    pulseFill();
   }
+  // np226 (27.11.2026, איציק: "יש פער ואפשר להוסיף עוד ידיעות"): במחשב, כשפאנל התדרוך שליד גבוה יותר,
+  // נחשפות עוד ידיעות אחת-אחת כל עוד הבזק לא עובר את גובה התדרוך. בטלפון (הפאנלים זה מתחת לזה) — 4 כמו קודם.
+  function pulseFill() {
+    var el = document.getElementById("tri-x"), br = document.getElementById("tri-brief");
+    if (!el || !br || PULSE_X_ALL) return;
+    var rows = el.querySelectorAll(".bd-list .fl"), i;
+    for (i = 4; i < rows.length; i++) rows[i].hidden = true;
+    var more = document.getElementById("pulse-more");
+    function lbl(n) { if (more && PULSE_X) more.hidden = n >= rows.length; }
+    lbl(4);
+    if (!br.offsetHeight || Math.abs(el.offsetTop - br.offsetTop) > 4) return;   // לא זה לצד זה
+    function natural() { var h = 0; for (var c = 0; c < el.children.length; c++) h += el.children[c].offsetHeight; return h; }
+    el.style.alignSelf = "start"; br.style.alignSelf = "start";
+    var target = br.offsetHeight;
+    el.style.alignSelf = ""; br.style.alignSelf = "";
+    for (i = 4; i < rows.length; i++) {
+      rows[i].hidden = false;
+      if (natural() > target + 2) { rows[i].hidden = true; break; }
+    }
+    lbl(i);
+  }
+  window.addEventListener("resize", function () { if (PULSE_X) pulseFill(); });
 
   /* ציטוטים חיים למניות במוקד — ישירות מהסורק של TradingView (CORS פתוח; body כ-text/plain) */
   var FOCUSQ = {}, FOCUS_SYMS = "", FHIST = null;
@@ -2109,6 +2124,7 @@
       (sched.length ? '<div class="led bd-sched">' + sched.slice(0, 3).map(function (x) {
           return x.day ? "" : '<div><span class="num mute" dir="ltr">' + esc(x.time) + "</span><span>" + esc(x.text) + "</span></div>";
         }).join("") + "</div>" : "");
+    pulseFill();
   }
   // np223 (27.11.2026, איציק: "להשתמש גם במידע של Barchart בשעה 14:00 בדף הבית"): עד 3 נקודות ממייל
   // "טרום מסחר" של אותו יום (morning.json.premkt.points — scripts/premkt_points.py), מתחת לידיעות התדרוך
