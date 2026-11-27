@@ -2953,3 +2953,9 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
   .bd-lead .np-leadfoot, .bd-lead .np-fc { font-size: 14px; }
 }
 .np-fc-short b { font-weight: 600; color: var(--text); }
+/* np221 (27.11.2026, איציק: "את המועד של הכותרת צריך להגדיל ולהבליט"): קיקר עדכון-האירוע (לקראת פתיחת המסחר · 15:37) גדול ומודגש */
+.bd-lead .np-k.np-evt, .bd-lead .np-k.np-evt-mid { font-size: 15px; font-weight: 700; color: var(--text); }
+.bd-lead .np-k.np-evt { color: var(--down); }
+.bd-lead .np-k.np-evt b, .bd-lead .np-k.np-evt-mid b { font-weight: 700; font-family: "IBM Plex Mono", monospace; background: var(--link-bg, rgba(29,95,184,.12)); color: var(--link-text, var(--accent)); padding: 1px 7px; border-radius: 4px; }
+.bd-lead .np-k.np-evt b { background: none; color: inherit; padding: 0; }
+@media (min-width: 701px) { .bd-lead .np-k.np-evt, .bd-lead .np-k.np-evt-mid { font-size: 17px; } }
