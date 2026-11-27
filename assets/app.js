@@ -2088,11 +2088,14 @@
   }
   // np223 (27.11.2026, איציק: "להשתמש גם במידע של Barchart בשעה 14:00 בדף הבית"): עד 3 נקודות ממייל
   // "טרום מסחר" של אותו יום (morning.json.premkt.points — scripts/premkt_points.py), מתחת לידיעות התדרוך
+  setInterval(function () { if (BRIEF) renderHomeBriefing(); }, 5 * 60 * 1000);   // שהבלוק ירד ב-23:00 גם בלי נתון חדש
   function premktPointsHtml() {
     var p = MORND && MORND.premkt, pts = p && p.points;
     if (!pts || !pts.length) return "";
     var m = /(\d{2})\/(\d{2})\/(\d{4})/.exec(p.dateLabel || "");
-    if (!m || (m[3] + "-" + m[2] + "-" + m[1]) !== ilNowParts().iso) return "";   // רק של היום
+    var il = ilNowParts();
+    // רק של היום, ועד 23:00 שעון ישראל (איציק: "לא רלוונטי בסיום המסחר — יורד ב-23 וחוזר כשמתקבל העדכון")
+    if (!m || (m[3] + "-" + m[2] + "-" + m[1]) !== il.iso || il.hour >= 23) return "";
     return '<div class="bd-pm"><div class="bd-pm-h"><span>Barchart · טרום מסחר' + (p.time ? ' <span class="num" dir="ltr">' + esc(p.time) + "</span>" : "") +
       '</span><a class="go" href="#morning" onclick="__goTab(\'morning\');return false">המייל המלא</a></div>' +
       pts.slice(0, 3).map(function (t) {
