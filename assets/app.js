@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np217";
+  var TA_VER = "np218";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2291,7 +2291,7 @@
   function leadMoreHtml(tldr) {
     var first = firstSentence(tldr), rest = String(tldr || "").slice(first.length).trim();
     if (rest.length < 20) return "";
-    var parts = rest.split(/(?<=[^\d]\.)\s+/).filter(Boolean);
+    var parts = rest.split(/(?<=[^\d]\.)\s+/).filter(Boolean).slice(0, 2);   // np218: עד שני משפטים — לא קיר של מספרים
     return '<p class="np-dek np-dek-more" hidden>' + parts.map(function (x) { return "<span hidden>" + esc(x) + " </span>"; }).join("") + "</p>";
   }
   function leadFill() {
@@ -2662,7 +2662,8 @@
         '<h2 class="np-h1">' + esc(eu.headline) + "</h2>" +
         // 20.9.2026: כותרות רגועות באותו שלד של שאר הכותרות — 3 נתונים חיים + משפט אחד;
         // עדכון מאקרו אדום (CPI/פד) נשאר עם הטקסט המלא, שם הפירוט הוא העיקר
-        (euCalm ? marketStats(eu.kind === "preview" ? ["es", "tnx", "vix"] : ["es", "nq", "vix"]) : "") +
+        // np218 (27.11.2026, איציק): בלי אריחי החוזים החיים בכותרות הרגועות — הטקסט נכתב בשעה מסוימת
+        // ("חוזה S&P עולה 1.7%") והאריחים המשיכו לזוז (0.99%), כך שלא הייתה הלימה; הנתונים החיים ברצועת המחירים שלמעלה.
         // np132–np133 (11.10.2026): כותרת עם צפי שבועי (ראשון 14:45, week_forecast.md מגביל לשני משפטים) מציגה את
         // ה-tldr כולו; שאר הכותרות הרגועות (שני 07:45, preopen, midday — פרומפטים בלי מגבלה) — משפט ראשון בלבד
         (eu.tldr ? '<p class="np-dek">' + esc(euCalm && !(eu.kind === "preview" && eu.forecast) ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
