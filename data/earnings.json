@@ -1,6 +1,6 @@
 {
   "today": "2026-11-27",
-  "todayCount": 0,
+  "todayCount": 3,
   "todayBig": [],
   "reactions": {
     "days": [
@@ -211,7 +211,26 @@
       }
     ]
   },
-  "reporting": [],
+  "reporting": [
+    {
+      "ticker": "VFS",
+      "name": "VinFast Auto Ltd.",
+      "when": "",
+      "logo": "data/earnings/logos/VFS.png"
+    },
+    {
+      "ticker": "DRVN",
+      "name": "Driven Brands Holdings, Inc.",
+      "when": "",
+      "logo": "data/earnings/logos/DRVN.png"
+    },
+    {
+      "ticker": "HUBG",
+      "name": "Hub Group, Inc. Class A",
+      "when": "",
+      "logo": "data/earnings/logos/HUBG.png"
+    }
+  ],
   "more": 0,
   "upcoming": [],
   "week": [
@@ -434,11 +453,33 @@
       "date": "2026-11-27",
       "dow": "שישי",
       "label": "27.11",
-      "total": 0,
-      "companies": []
+      "total": 3,
+      "companies": [
+        {
+          "ticker": "VFS",
+          "name": "VinFast Auto Ltd.",
+          "when": "",
+          "logo": "data/earnings/logos/VFS.png"
+        },
+        {
+          "ticker": "DRVN",
+          "name": "Driven Brands Holdings, Inc.",
+          "when": "",
+          "logo": "data/earnings/logos/DRVN.png"
+        },
+        {
+          "ticker": "HUBG",
+          "name": "Hub Group, Inc. Class A",
+          "when": "",
+          "logo": "data/earnings/logos/HUBG.png"
+        }
+      ]
     }
   ],
   "window": {
+    "VFS": "2026-11-27",
+    "DRVN": "2026-11-27",
+    "HUBG": "2026-11-27",
     "RBRK": "2026-11-30",
     "CHA": "2026-11-30",
     "MRVL": "2026-12-01",
@@ -500,7 +541,7 @@
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "27/11/2026 06:16",
+    "updatedAt": "27/11/2026 06:31",
     "source": "tradingview"
   }
 }
