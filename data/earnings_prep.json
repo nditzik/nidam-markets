@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "27/11/2026 19:46",
+  "updatedAt": "27/11/2026 20:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -147,16 +147,14 @@
      "ptPrev": 32.0
     }
    ],
+   "yahooDate": "2026-12-01",
+   "analystsAt": "2026-11-27T18:01+00:00",
    "price": {
-    "close": 33.17,
-    "date": "2026-11-25",
+    "close": 33.2,
+    "date": "2026-11-27",
     "high52": 41.54,
-    "ma50": 29.41,
+    "ma50": 29.48,
     "series": [
-     [
-      "2026-08-05",
-      28.91
-     ],
      [
       "2026-08-06",
       29.01
@@ -472,23 +470,24 @@
      [
       "2026-11-25",
       33.17
+     ],
+     [
+      "2026-11-27",
+      33.2
      ]
     ],
     "off52": -20.1,
     "since": {
      "from": "2026-09-09",
-     "chg": 3.6,
-     "spy": -6.0
+     "chg": 3.7
     }
    },
-   "analystsAt": "2026-11-27T12:01+00:00",
-   "yahooDate": "2026-12-01",
    "options": {
-    "asOf": "27/11 19:46",
-    "price": 33.225,
+    "asOf": "27/11 20:01",
+    "price": 33.2,
     "exp": "2026-12-18",
     "strike": 32.5,
-    "pct": 8.8,
+    "pct": 8.73,
     "earn": null,
     "preExp": null,
     "prePct": null
@@ -974,14 +973,14 @@
    "analystsAt": "2026-11-27T13:16+00:00",
    "yahooDate": "2026-12-08",
    "options": {
-    "asOf": "27/11 19:46",
-    "price": 107.84,
+    "asOf": "27/11 20:01",
+    "price": 108.01,
     "exp": "2026-12-11",
     "strike": 108.0,
-    "pct": 11.99,
-    "earn": 9.91,
+    "pct": 12.01,
+    "earn": 9.96,
     "preExp": "2026-12-04",
-    "prePct": 5.03
+    "prePct": 5.0
    },
    "avgMove": 9.8,
    "hasNote": false
@@ -1463,14 +1462,14 @@
    "analystsAt": "2026-11-27T17:17+00:00",
    "yahooDate": "2026-12-09",
    "options": {
-    "asOf": "27/11 19:46",
-    "price": 310.49,
+    "asOf": "27/11 20:01",
+    "price": 312.34,
     "exp": "2026-12-11",
-    "strike": 310.0,
-    "pct": 12.63,
-    "earn": 7.82,
+    "strike": 312.5,
+    "pct": 12.41,
+    "earn": 7.71,
     "preExp": "2026-12-07",
-    "prePct": 8.1
+    "prePct": 7.94
    },
    "avgMove": 7.9,
    "hasNote": false
@@ -1513,12 +1512,12 @@
    "when": null
   },
   {
-   "sym": "MSFT",
+   "sym": "NFLX",
    "date": "2027-01-26",
    "when": null
   },
   {
-   "sym": "NFLX",
+   "sym": "MSFT",
    "date": "2027-01-26",
    "when": null
   },
