@@ -1,5 +1,5 @@
 {
-  "today": "2026-11-26",
+  "today": "2026-11-27",
   "todayCount": 3,
   "todayBig": [],
   "reactions": {
@@ -41,6 +41,13 @@
             "price": 14.34,
             "reactDate": "2026-11-25",
             "baseDate": "2026-11-24"
+          },
+          {
+            "ticker": "BMA",
+            "name": "Banco Macro SA Sponsored ADR Class B",
+            "when": "after",
+            "status": "pending",
+            "logo": "data/earnings/logos/BMA.png"
           },
           {
             "ticker": "GDS",
@@ -394,7 +401,7 @@
       "date": "2026-11-25",
       "dow": "רביעי",
       "label": "25.11",
-      "total": 5,
+      "total": 6,
       "companies": [
         {
           "ticker": "DE",
@@ -416,6 +423,12 @@
           "logo": "data/earnings/logos/BZ.png"
         },
         {
+          "ticker": "BMA",
+          "name": "Banco Macro SA Sponsored ADR Class B",
+          "when": "after",
+          "logo": "data/earnings/logos/BMA.png"
+        },
+        {
           "ticker": "GDS",
           "name": "GDS Holdings Ltd. Sponsored ADR Class A",
           "when": "before",
@@ -433,6 +446,13 @@
       "date": "2026-11-26",
       "dow": "חמישי",
       "label": "26.11",
+      "total": 0,
+      "companies": []
+    },
+    {
+      "date": "2026-11-27",
+      "dow": "שישי",
+      "label": "27.11",
       "total": 3,
       "companies": [
         {
@@ -454,19 +474,12 @@
           "logo": "data/earnings/logos/HUBG.png"
         }
       ]
-    },
-    {
-      "date": "2026-11-27",
-      "dow": "שישי",
-      "label": "27.11",
-      "total": 0,
-      "companies": []
     }
   ],
   "window": {
-    "VFS": "2026-11-26",
-    "DRVN": "2026-11-26",
-    "HUBG": "2026-11-26",
+    "VFS": "2026-11-27",
+    "DRVN": "2026-11-27",
+    "HUBG": "2026-11-27",
     "RBRK": "2026-11-30",
     "CHA": "2026-11-30",
     "MRVL": "2026-12-01",
@@ -478,8 +491,8 @@
     "CRDO": "2026-12-01",
     "HQY": "2026-12-01",
     "GTLB": "2026-12-01",
-    "BOX": "2026-12-01",
     "NIO": "2026-12-01",
+    "BOX": "2026-12-01",
     "NCNO": "2026-12-01",
     "ASAN": "2026-12-01",
     "VSTS": "2026-12-01",
@@ -496,6 +509,7 @@
     "BLBD": "2026-12-02",
     "CBRL": "2026-12-02",
     "CXM": "2026-12-02",
+    "AI": "2026-12-02",
     "NAT": "2026-12-02",
     "AHG": "2026-12-02",
     "RY": "2026-12-03",
@@ -507,10 +521,9 @@
     "ULTA": "2026-12-03",
     "IOT": "2026-12-03",
     "DOCU": "2026-12-03",
-    "BF.A": "2026-12-03",
     "BF.B": "2026-12-03",
+    "BF.A": "2026-12-03",
     "HRL": "2026-12-03",
-    "LULU": "2026-12-03",
     "GWRE": "2026-12-03",
     "COO": "2026-12-03",
     "S": "2026-12-03",
@@ -518,17 +531,17 @@
     "VSXY": "2026-12-03",
     "PATH": "2026-12-03",
     "SAIC": "2026-12-03",
-    "ASO": "2026-12-03",
     "PVH": "2026-12-03",
     "DOO": "2026-12-03",
     "AGX": "2026-12-03",
     "FIZZ": "2026-12-03",
     "RH": "2026-12-03",
+    "IDT": "2026-12-03",
     "PD": "2026-12-03",
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "26/11/2026 06:01",
+    "updatedAt": "27/11/2026 06:46",
     "source": "tradingview"
   }
 }
