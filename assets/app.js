@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np223";
+  var TA_VER = "np224";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2090,15 +2090,20 @@
   // "טרום מסחר" של אותו יום (morning.json.premkt.points — scripts/premkt_points.py), מתחת לידיעות התדרוך
   setInterval(function () { if (BRIEF) renderHomeBriefing(); }, 5 * 60 * 1000);   // שהבלוק ירד ב-23:00 גם בלי נתון חדש
   function premktPointsHtml() {
-    var p = MORND && MORND.premkt, pts = p && p.points;
-    if (!pts || !pts.length) return "";
-    var m = /(\d{2})\/(\d{2})\/(\d{4})/.exec(p.dateLabel || "");
     var il = ilNowParts();
     // רק של היום, ועד 23:00 שעון ישראל (איציק: "לא רלוונטי בסיום המסחר — יורד ב-23 וחוזר כשמתקבל העדכון")
-    if (!m || (m[3] + "-" + m[2] + "-" + m[1]) !== il.iso || il.hour >= 23) return "";
-    return '<div class="bd-pm"><div class="bd-pm-h"><span>Barchart · טרום מסחר' + (p.time ? ' <span class="num" dir="ltr">' + esc(p.time) + "</span>" : "") +
+    if (!MORND || il.hour >= 23) return "";
+    function today(p) {
+      var m = p && p.points && p.points.length && /(\d{2})\/(\d{2})\/(\d{4})/.exec(p.dateLabel || "");
+      return !!m && (m[3] + "-" + m[2] + "-" + m[1]) === il.iso;
+    }
+    // np224: טרום מסחר (14:00) גובר; לפניו — דוח הבוקר (06:00) של אותו יום
+    var p = today(MORND.premkt) ? MORND.premkt : today(MORND) ? MORND : null;
+    if (!p) return "";
+    var lbl = p === MORND ? "דוח הבוקר" : "טרום מסחר";
+    return '<div class="bd-pm"><div class="bd-pm-h"><span>Barchart · ' + lbl + (p.time ? ' <span class="num" dir="ltr">' + esc(p.time) + "</span>" : "") +
       '</span><a class="go" href="#morning" onclick="__goTab(\'morning\');return false">המייל המלא</a></div>' +
-      pts.slice(0, 3).map(function (t) {
+      p.points.slice(0, 3).map(function (t) {
         var k = /^([^:]{3,40}):\s*(.+)$/.exec(t);
         return '<div class="bd-pm-li">' + (k ? "<b>" + bidiHe(k[1]) + ":</b> " + bidiHe(k[2]) : bidiHe(t)) + "</div>";
       }).join("") + "</div>";

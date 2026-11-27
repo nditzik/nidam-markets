@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """נקודות לדף הבית מתוך מייל "טרום מסחר" של Barchart (14:00).
 
-points(html) -> עד 3 משפטים קצרים בעברית.
+points(html, fallback=True) -> עד 3 משפטים קצרים בעברית. גם לדוח הבוקר של 06:00 (fallback=False:
+רק הפרק "לדף הבית").
 1. מקור מועדף: פרק שכותרתו מכילה "לדף הבית" (HOME_MARK) — תבליטי ה-<ul> הראשון שאחריו.
    זה הפרק שהבוט מתבקש לכתוב (docs/prompts-briefing-home.md).
 2. נפילה: תבליטי הכרטיס "מאקרו ופד" (המבנה הקיים מ-11.2026) — בלי רשימות אחוזים של מניות.
@@ -54,7 +55,7 @@ def _lis(block):
     return out
 
 
-def points(html):
+def points(html, fallback=True):
     if not html:
         return []
     i = html.find(HOME_MARK)
@@ -62,6 +63,8 @@ def points(html):
         got = _lis(html[i:i + 6000])
         if got:
             return got[:MAX_POINTS]
+    if not fallback:
+        return []
     # נפילה: הכרטיס שהתג/הכותרת שלו "מאקרו"
     for m in re.finditer(r"<(span|h2|h3)[^>]*>([^<]*מאקרו[^<]*)</\1>", html):
         got = _lis(html[m.end():m.end() + 6000])

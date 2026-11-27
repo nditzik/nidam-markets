@@ -139,6 +139,15 @@ def write_if_changed(review=None, premkt=None, notice=None):
         if notice and notice[0] and notice[0] > review[1]:
             nd = notice[0].astimezone(ist)
             entry["notice"] = {"date": nd.strftime("%Y-%m-%d"), "time": nd.strftime("%H:%M")}
+        # 27.11.2026: נקודות לדף הבית גם מדוח הבוקר — רק מהפרק "לדף הבית" (בלי נפילה: שאר הדוח
+        # כולל דעות על מניות בודדות, שלא מתאימות לבית)
+        try:
+            import premkt_points
+            pts = premkt_points.points(review[2], fallback=False)
+            if pts:
+                entry["points"] = pts
+        except Exception as e:
+            print(f"[warn] review points: {e}")
         prev_review = {k: v for k, v in out.items() if k != "premkt"}
         if html_changed or prev_review != entry:
             changed = True
