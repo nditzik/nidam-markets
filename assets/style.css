@@ -2919,3 +2919,27 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 
 /* np213 — תג "גיליון חדש" בפאנל המגזין בבית (3 ימים מתאריך הגיליון) */
 .mg-tag.mg-new { background: var(--accent); border-color: var(--accent); color: var(--ink-text); font-weight: 700; }
+
+/* ===== np217 (27.11.2026): דף הבית — מד מקופל בטלפון, מגזין מכווץ אחרי ימי "גיליון חדש" ===== */
+.mtr-fold > summary { list-style: none; }
+.mtr-fold > summary::-webkit-details-marker { display: none; }
+.mtr-sum { display: none; }
+@media (max-width: 700px) {
+  .mtr-sum { display: flex; align-items: center; gap: 10px; padding: 12px 14px; min-height: 44px; cursor: pointer; }
+  .mtr-sum .mtr-t { font-size: 13px; font-weight: 600; color: var(--text-soft); }
+  .mtr-sum > b { font-size: 24px; font-weight: 700; line-height: 1; }
+  .mtr-sum .mtr-w { font-size: 15px; font-weight: 600; }
+  .mtr-sum .mtr-seg { flex: 1; min-width: 60px; margin: 0; }
+  .mtr-chev { width: 8px; height: 8px; border-right: 1.5px solid var(--text-soft); border-bottom: 1.5px solid var(--text-soft); transform: rotate(45deg); margin: -4px 4px 0 2px; flex: none; }
+  .mtr-fold[open] .mtr-chev { transform: rotate(-135deg); margin-top: 4px; }
+  .mtr-fold[open] > .mtr-sum { border-bottom: 1px solid var(--border); }
+  .mtr-fold[open] > .mtr-sum > b, .mtr-fold[open] > .mtr-sum .mtr-w, .mtr-fold[open] > .mtr-sum .mtr-seg { visibility: hidden; }
+  .mtr-fold > .ph h2 { display: none; }
+}
+.np-dek-more { margin-top: 8px !important; }
+.pan > .mg-mini { display: flex; flex-direction: row; align-items: center; gap: 12px; text-decoration: none; color: var(--text); min-height: 44px; }
+.mg-mini .mg-tag { flex: none; color: var(--ink-text); background: var(--ink); border-color: var(--ink); }
+.mg-mini-t { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; line-height: 1.4; }
+.mg-mini-go { flex: none; color: var(--accent); font-size: 14px; font-weight: 500; }
+.mg-mini:hover .mg-mini-t { color: var(--accent); }
+@media (max-width: 700px) { .pan > .mg-mini { flex-direction: column; align-items: flex-start; gap: 8px; } .mg-mini-t { flex: none; } }
