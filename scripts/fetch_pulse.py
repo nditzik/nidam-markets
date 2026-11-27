@@ -154,6 +154,15 @@ NOISE_PATTERNS = re.compile(
 # 180 ולא 120: גרוק יצר רק 4 מ-6 הריצות המצומצמות (מגבלת משימות) — בין הריצה
 # המלאה של 21:00 לזו של 23:30 יש 150 דקות, ובלי זה האנגלית חוזרת ב-23:00.
 HE_FRESH_MIN = 180
+# מחוץ לחלון הריצות התכופות (שני–שישי 14:30–23:30 שעון ישראל) החלון קצר יותר,
+# כדי שידיעה שמגיעה בלילה/בסוף השבוע רק מהטלגרם לא תוסתר שעות (איציק, 27.11.2026).
+HE_FRESH_MIN_OFF = 90
+
+
+def he_window_min(now):
+    il = now.astimezone(timezone(timedelta(hours=il_off())))
+    busy = il.weekday() <= 4 and (14, 30) <= (il.hour, il.minute) <= (23, 30)
+    return HE_FRESH_MIN if busy else HE_FRESH_MIN_OFF
 HE_RE = re.compile(r"[֐-׿]")
 
 
@@ -359,7 +368,7 @@ def hebrew_first(fresh, now=None):
     בנוסח מעט שונה — מזוהה לפי מקור + דקה."""
     now = now or datetime.now(timezone.utc)
     he = [it for it in fresh if HE_RE.search(it["text"])]
-    if not he or (now - he[0]["_dt"]) > timedelta(minutes=HE_FRESH_MIN):
+    if not he or (now - he[0]["_dt"]) > timedelta(minutes=he_window_min(now)):
         return fresh
     seen_min, only = set(), []
     for it in he:
