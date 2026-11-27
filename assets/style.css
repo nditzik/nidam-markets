@@ -2970,3 +2970,8 @@ b.ta-mid, :root:not([data-theme="light"]) b.ta-mid { color: var(--text-soft); }
 /* np225 (27.11.2026): "העדכון הבא" בתחתית בזק מהרשת */
 .pulse-next { display: flex; flex-wrap: wrap; gap: 4px 16px; padding: 8px 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-3); }
 .pulse-next b { color: var(--text-soft); font-weight: 600; }
+
+/* np226 (27.11.2026): בזק מהרשת ממלא את גובה פאנל התדרוך; שורת "העדכון הבא" + קישור "חדשות השוק" צמודים לתחתית */
+#tri-x .bd-list .fl[hidden] { display: none; }
+#tri-x .pulse-next { margin-top: auto; align-items: baseline; }
+.pulse-next .go { margin-inline-start: auto; color: var(--accent); font-weight: 500; text-decoration: none; font-size: 13px; }
