@@ -478,6 +478,14 @@
     var a = magCur();
     if (!a || !a.title) { el.innerHTML = ""; return; }
     var nums = magNums(a), nx = magNextHtml(a, 2, true), go = "__goTab('magazine');return false";
+    /* np217: אחרי ימי "גיליון חדש" (MAG_NEW_DAYS) המגזין בבית מתכווץ לשורה אחת — סוג, כותרת, כפתור. */
+    if (!magIsNew(a)) {
+      el.innerHTML = panHd("מגזין סוף השבוע", '<span class="mute">גיליון ' + esc(a.no) + " · " + magDate(a.date, false) + "</span>",
+          '<a class="go" href="#magazine" onclick="' + go + '">' + ((MAG.issues || []).length > 1 ? "כל הגיליונות" : "הכתבה המלאה") + "</a>") +
+        '<a class="pb mg-mini" href="#magazine" onclick="' + go + '"><span class="mg-tag fill">' + esc(a.kindLabel || "כתבה") + (a.sym ? ' · <span class="num" dir="ltr">' + esc(a.sym) + "</span>" : "") + "</span>" +
+        '<b class="mg-mini-t">' + esc(a.title) + '</b><span class="mg-mini-go">לקריאה</span></a>';
+      return;
+    }
     el.innerHTML = panHd("מגזין סוף השבוע", '<span class="mute">גיליון ' + esc(a.no) + " · " + magDate(a.date, false) + "</span>",
         '<a class="go" href="#magazine" onclick="' + go + '">' + ((MAG.issues || []).length > 1 ? "כל הגיליונות" : "הכתבה המלאה") + "</a>") +
       '<div class="pb mg-teaser">' + magHero(a, false) +
@@ -1013,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np216";
+  var TA_VER = "np217";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2278,6 +2286,32 @@
     var f = String(t || "").split(/(?<=[^\d])\.\s/)[0];
     return f ? f.replace(/\.$/, "") + "." : "";
   }
+  /* np217: במחשב פאנל הכותרת נמתח לגובה המד שלידו, וכשהטקסט קצר (משפט ראשון בלבד) נשאר בו רווח ריק.
+     שאר משפטי ה-tldr מוצגים שם — רק כמה שנכנס בלי להגביה את הפאנל. בטלפון (עמודה אחת) לא מוצג. */
+  function leadMoreHtml(tldr) {
+    var first = firstSentence(tldr), rest = String(tldr || "").slice(first.length).trim();
+    if (rest.length < 20) return "";
+    var parts = rest.split(/(?<=[^\d]\.)\s+/).filter(Boolean);
+    return '<p class="np-dek np-dek-more" hidden>' + parts.map(function (x) { return "<span hidden>" + esc(x) + " </span>"; }).join("") + "</p>";
+  }
+  function leadFill() {
+    function run() {
+      var lead = document.getElementById("home-lead"), rail = document.getElementById("lead-rail");
+      var m = lead && lead.querySelector(".np-dek-more");
+      if (!m) return;
+      var sp = m.querySelectorAll("span");
+      m.hidden = true; sp.forEach(function (x) { x.hidden = true; });
+      if (!rail || !rail.offsetHeight || Math.abs(rail.offsetTop - lead.offsetTop) > 4) return;   // לא זה לצד זה (טלפון)
+      var h0 = lead.offsetHeight;
+      m.hidden = false;
+      for (var i = 0; i < sp.length; i++) {
+        sp[i].hidden = false;
+        if (lead.offsetHeight > h0 + 1) { sp[i].hidden = true; break; }
+      }
+      if (sp[0].hidden) m.hidden = true;
+    }
+    if (window.requestAnimationFrame) requestAnimationFrame(run); else run();
+  }
   function weekendNow() { var t = ilNowParts(); return t.dow === "Sat" || t.dow === "Sun"; }
   // אריחי הסקטורים: פס אפור = לפני שבוע, פס צבעוני = עכשיו
   function sectorTilesHtml(sec) {
@@ -2632,6 +2666,7 @@
         // np132–np133 (11.10.2026): כותרת עם צפי שבועי (ראשון 14:45, week_forecast.md מגביל לשני משפטים) מציגה את
         // ה-tldr כולו; שאר הכותרות הרגועות (שני 07:45, preopen, midday — פרומפטים בלי מגבלה) — משפט ראשון בלבד
         (eu.tldr ? '<p class="np-dek">' + esc(euCalm && !(eu.kind === "preview" && eu.forecast) ? firstSentence(eu.tldr) : eu.tldr) + "</p>" : "") +
+        (eu.tldr && euCalm && !(eu.kind === "preview" && eu.forecast) ? leadMoreHtml(eu.tldr) : "") +
         // הרוטינה של שני 07:45 דורסת את eventUpdate — הצפי הנעול נשמר ב-forecasts.json (current)
         (eu.kind === "preview" ? forecastHtml(eu.forecast || (FCAST && FCAST.current), true) : "") +
         // np132: action עם " · " = רשימת "למה לשים לב השבוע"; אחרת שורת "מה עושים" כמו קודם
@@ -2640,6 +2675,7 @@
           : '<p class="np-bottom">⚡ <b>למה לשים לב:</b> ' + esc(eu.action) + "</p>") : "") +
         (eu.odds ? '<p class="np-odds">🎲 ' + esc(eu.odds) + "</p>" : "") +
         ((eu.kind === "preview" && (eu.forecast || (FCAST && FCAST.current))) ? footPlain : foot);
+      leadFill();
       return;
     }
 
@@ -2668,9 +2704,11 @@
         dayStats +
         // בבית רק המשפט הראשון של ה-tldr; המלא בטאב מדדים ("הניתוח המלא ←")
         (ca.tldr ? '<p class="np-dek">' + esc(firstSentence(ca.tldr)) + "</p>" : "") +
+        (ca.tldr ? leadMoreHtml(ca.tldr) : "") +
         (ca.bottomline ? '<p class="np-bottom">💡 ' + esc(ca.bottomline).replace("שורה תחתונה:", "<b>שורה תחתונה:</b>") + "</p>" : "") +
         bigMoneyTilesHtml(d) +
         foot;
+      leadFill();
       return;
     }
 
@@ -2749,11 +2787,23 @@
 
   // ─ רייל המד ─ (פונקציה נפרדת: קודם רץ רק בענף-הנפילה, והרייל נעלם אם ניתוח
   // Claude נטען לפני indices — עכשיו מרונדר תמיד, מכל קריאת renderLead)
+  var MTR_OPEN = null;
   function renderLeadRail(d) {
     var rail = document.getElementById("lead-rail");
     if (!rail) return;
-    rail.innerHTML = leadRailHtml(d, "");
+    /* np217: בטלפון המד מקופל לשורת סיכום (ציון + מצב + הפס) ונפתח בלחיצה; במחשב פתוח תמיד והשורה מוסתרת.
+       הבחירה נשמרת עד רענון הדף (MTR_OPEN), כמו "מה השתנה". */
+    var sc = d.scores || {}, w = sc.combined != null ? meterWord(sc.combined) : ["", "var(--text)"];
+    var phone = window.matchMedia && window.matchMedia("(max-width: 700px)").matches;
+    rail.innerHTML = '<details class="mtr-fold"' + ((MTR_OPEN != null ? MTR_OPEN : !phone) ? " open" : "") + '><summary class="mtr-sum">' +
+      '<span class="mtr-t">The Edge Meter</span>' +
+      '<b class="num" style="color:' + w[1] + '">' + (sc.combined != null ? sc.combined : "—") + '</b><span class="mtr-w" style="color:' + w[1] + '">' + w[0] + "</span>" +
+      (sc.combined != null ? '<span class="seg mtr-seg" aria-hidden="true"><i style="background:var(--down)"></i><i style="background:var(--state-fill)"></i><i style="background:var(--up)"></i><b style="left:calc(' + Math.max(0, Math.min(100, sc.combined)) + '% - 1px)"></b></span>' : "") +
+      '<span class="mtr-chev" aria-hidden="true"></span></summary>' + leadRailHtml(d, "") + "</details>";
+    var det = rail.querySelector("details");
+    det.addEventListener("toggle", function () { MTR_OPEN = det.open; if (det.open) renderSpark(""); });
     renderSpark("");
+    leadFill();
   }
   /* גוף רייל המד — משותף לבית (sfx="") ולטאב השוק (sfx="-i", np120); ה-id-ים של הספארקליין מקבלים סיומת */
   function leadRailHtml(d, sfx) {
