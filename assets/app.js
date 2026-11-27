@@ -1013,7 +1013,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np214";
+  var TA_VER = "np215";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -1652,6 +1652,17 @@
   }
 
 
+  /* np215: טקסט של בזק. עברית (X Scan של גרוק) → RTL מפורש: dir="auto" קבע כיוון לפי האות
+     הראשונה, ושורה שנפתחת בשם לטיני ("Needham שומר על…") יצאה LTR ומבולבלת. מספר חתום
+     או אחוז ("+8.1%", "-2.3%", "$110") נעטף ב-bdi כדי שהסימן לא יקפוץ לסוף ("8.1%+"). */
+  function pulseTx(t) {
+    t = String(t || "");
+    if (!/[\u0590-\u05FF]/.test(t)) return '<span class="tx" dir="ltr">' + esc(t) + "</span>";
+    var h = esc(t).replace(/(^|[\s(])([+\-−–]?\$?\d[\d.,]*(?:%|\$|[KMB]\b)?|[+\-−]\d[\d.,]*%?)(?=$|[\s),.;:!?])/g, function (m, pre, num) {
+      return /[+\-−–$%]/.test(num) ? pre + '<bdi dir="ltr">' + num + "</bdi>" : m;
+    });
+    return '<span class="tx" dir="rtl">' + h + "</span>";
+  }
   var PULSE_X_ALL = false;   // "כל העדכונים" — הרחבה במקום (4 ↔ כל הרשימה)
   function renderPulseX() {
     var el = document.getElementById("tri-x");
@@ -1668,7 +1679,7 @@
         // והדפדפן קובע כיוון לכל פריט לפי התו החזק הראשון שבו (6.9.2026)
         return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
           '<span class="num mute" dir="ltr">' + esc(it.time) + '</span><span class="mute src" dir="ltr">' + esc(it.source) + "</span>" +
-          '<span class="tx" dir="auto">' + esc(it.text) + "</span></a>";
+          '' + pulseTx(it.text) + "</a>";
       }).join("") + "</div>" +
       '<a class="np-more" href="#" id="news-toggle" hidden>📰 חדשות השוק ⌄</a>';
     var pm = document.getElementById("pulse-more");
@@ -5602,7 +5613,7 @@
       ep.innerHTML = !items.length ? panHd("בזק מהרשת") + '<div class="pb mute">אין בזקים כרגע.</div>'
         : panHd("בזק מהרשת", '<span class="mute">4 ערוצים + X Scan</span>', items.length > 8 ? '<a class="go" href="#" id="nb-pulse-more">' + (NB_PULSE_ALL ? "פחות" : "כל " + items.length + " הבזקים") + "</a>" : "") +
           '<div class="bd-list">' + shown.map(function (it) {
-            return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener"><span class="num mute" dir="ltr">' + esc(it.time) + '</span><span class="mute src" dir="ltr">' + esc(it.source) + '</span><span class="tx" dir="auto">' + esc(it.text) + "</span></a>";
+            return '<a class="fl" href="' + esc(it.link) + '" target="_blank" rel="noopener"><span class="num mute" dir="ltr">' + esc(it.time) + '</span><span class="mute src" dir="ltr">' + esc(it.source) + '</span>' + pulseTx(it.text) + "</a>";
           }).join("") + "</div>";
       var pm = document.getElementById("nb-pulse-more");
       if (pm) pm.addEventListener("click", function (ev) { ev.preventDefault(); NB_PULSE_ALL = !NB_PULSE_ALL; renderNewsSiblings(); });
