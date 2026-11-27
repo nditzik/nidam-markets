@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "updatedAt": "27/11/2026 06:46",
+  "updatedAt": "27/11/2026 07:01",
   "aheadDays": 14,
   "ver": 3,
   "source": "TradingView (מועדים) · Yahoo Finance (אנליסטים, אופציות, נרות)"
@@ -11,7 +11,7 @@
    "name": "Copart, Inc.",
    "date": "2026-12-01",
    "when": "before",
-   "daysTo": 5,
+   "daysTo": 4,
    "report": {
     "file": "data/reports/CPRT__2026-09-10.html",
     "date": "2026-09-10",
@@ -501,7 +501,7 @@
    "name": "lululemon athletica inc.",
    "date": "2026-12-08",
    "when": "after",
-   "daysTo": 12,
+   "daysTo": 11,
    "report": {
     "file": "data/reports/LULU__2026-09-03.html",
     "date": "2026-09-03",
@@ -991,7 +991,7 @@
    "name": "Broadcom Inc.",
    "date": "2026-12-09",
    "when": "after",
-   "daysTo": 13,
+   "daysTo": 12,
    "report": {
     "file": "data/reports/AVGO__2026-09-03.html",
     "date": "2026-09-03",
@@ -1489,9 +1489,9 @@
    "when": null
   },
   {
-   "sym": "MU",
+   "sym": "ACN",
    "date": "2026-12-17",
-   "when": "after"
+   "when": "before"
   },
   {
    "sym": "NKE",
@@ -1499,9 +1499,9 @@
    "when": "after"
   },
   {
-   "sym": "ACN",
+   "sym": "MU",
    "date": "2026-12-17",
-   "when": "before"
+   "when": "after"
   },
   {
    "sym": "JPM",
@@ -1774,7 +1774,9 @@
     "move": -2.89,
     "close": 150.96
    }
-  },
+  }
+ ],
+ "older": [
   {
    "sym": "AMAT",
    "name": "Applied Materials, Inc.",
@@ -1915,9 +1917,7 @@
     "move": -6.24,
     "close": 95.64
    }
-  }
- ],
- "older": [
+  },
   {
    "sym": "NVO",
    "name": "Novo Nordisk A/S Sponsored ADR Class B",
