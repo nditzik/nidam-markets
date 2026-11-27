@@ -144,6 +144,16 @@ BAD_PATTERNS = re.compile(
     re.I,
 )
 
+# שורות טכניות שאינן ידיעה לקורא (27.11.2026, איציק: הבזק בבית) — מאזני פקודות
+# הפתיחה/הסגירה וריבית הפד האפקטיבית היומית.
+NOISE_PATTERNS = re.compile(
+    r"(\bMO[OC]\s+IMBALANCE\b|\bEffective\s+Fed\s+funds\s+rate\b)", re.I)
+
+# עברית קודמת (27.11.2026): כשיש ידיעה בעברית (X Scan של גרוק) מ-HE_FRESH_MIN
+# הדקות האחרונות — הרצועה מציגה רק עברית; האנגלית מהטלגרם היא גיבוי בלבד.
+HE_FRESH_MIN = 120
+HE_RE = re.compile(r"[֐-׿]")
+
 
 def keep(text):
     if not text or len(text) < 25:
@@ -153,6 +163,8 @@ def keep(text):
     if re.match(r"^(Live stream|Pinned|Forwarded)", text, re.I):
         return False
     if BAD_PATTERNS.search(text):                # הודעת-שירות, לא חדשות
+        return False
+    if NOISE_PATTERNS.search(text):              # שורה טכנית, לא ידיעה
         return False
     return True
 
@@ -292,7 +304,7 @@ def fetch_xscan():
         keep_cache, downloaded = {}, 0
         # כותרות קודם, גוף מלא רק ל-X Scan (1.10.2026 — מיילי ה-CSV של גרוק מאותו שולח האטו את הריצה)
         for h in imap_util.headers(imap, ids):   # מהחדש לישן
-            if scanned >= 15:                # תקרת בטיחות — מיילי X Scan אפשריים ב-48ש'
+            if scanned >= 30:                # תקרת בטיחות (עד 11 מיילים ביום מ-27.11.2026) — מיילי X Scan אפשריים ב-48ש'
                 break
             subject = h["subject"]
             # דורש שעה בנושא — מדלג על "X Scan דוגמה/TEST" (ניסויי-פורמט של איציק, 20/09/2026)
@@ -337,6 +349,25 @@ def fetch_xscan():
                 imap.logout()
         except Exception:
             pass
+
+
+def hebrew_first(fresh, now=None):
+    """fresh ממוין מהחדש לישן. יש עברית טרייה → רק עברית; אחרת בלי שינוי.
+    אותו פוסט שמגיע בשתי ריצות של X Scan (מלאה + מצומצמת) מתורגם פעמיים
+    בנוסח מעט שונה — מזוהה לפי מקור + דקה."""
+    now = now or datetime.now(timezone.utc)
+    he = [it for it in fresh if HE_RE.search(it["text"])]
+    if not he or (now - he[0]["_dt"]) > timedelta(minutes=HE_FRESH_MIN):
+        return fresh
+    seen_min, only = set(), []
+    for it in he:
+        k = (it["source"], it["_dt"].strftime("%Y%m%d%H%M"))
+        if k in seen_min:
+            continue
+        seen_min.add(k)
+        only.append(it)
+    print(f"[he] עברית טרייה — {len(only)} פריטים בעברית, האנגלית מוסתרת")
+    return only
 
 
 def main():
@@ -386,6 +417,7 @@ def main():
             it["_dt"] = dt
             fresh.append(it)
     fresh.sort(key=lambda x: x["_dt"], reverse=True)
+    fresh = hebrew_first(fresh)
 
     # מעבר-מקדים: מבין שתי גרסאות של אותה ידיעה — לבחור את המתורגמת. תוכנן
     # לצינור ישן שהיה שולח English+Hebrew לכל פריט (`_key`=אנגלית); X Scan
