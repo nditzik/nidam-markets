@@ -1021,7 +1021,7 @@
   function escChart(e) { if (e.key === "Escape") closeChart(); }
   /* 29.9.2026: המודאל מציג שני מבטים — "ניתוח טכני" (המנוע שלנו, assets/ta_engine.js + ta_ui.js,
      על 500 נרות שהבוט שומר ב-data/bars) ו"גרף TradingView". ברירת המחדל: ניתוח כשיש נרות לסמל. */
-  var TA_VER = "np226";
+  var TA_VER = "np227";
   // np157: "שכבה 2" של נתח מניה — כתובת ה-Cloudflare Worker (docs/cloudflare/bars-worker.js).
   // ריקה = לא מוגדר: טיקר בלי נרות שמורים מקבל ניתוח מקוצר מהסורק.
   window.__barsProxy = "https://shy-recipe-9a10.nditzik.workers.dev";   // np161: ה-Worker של איציק (27.10.2026)
@@ -2553,11 +2553,12 @@
   function ssAdd(iso, n) { var d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
   function ssDiff(a, b) { return Math.round((Date.parse(b + "T12:00:00Z") - Date.parse(a + "T12:00:00Z")) / 864e5); }
   function ssLbl(iso) { var p = iso.split("-"); return +p[2] + "." + +p[1]; }
+  // np227 (27.11.2026, איציק: "מחר אפשר להוריד"): הציר יורד בשבת שאחרי יום המסחר האחרון של העונה (end = יום ראשון, לכן end−2)
   function renderSeason() {
     var el = document.getElementById("home-season");
     if (!el) return;
     var s = SEASON, today = ilNowParts().iso;
-    if (!s || !s.weeks || !s.weeks.length || today < ssAdd(s.start, -7) || today > s.end) { el.hidden = true; el.innerHTML = ""; refreshSeasonBoard(); return; }
+    if (!s || !s.weeks || !s.weeks.length || today < ssAdd(s.start, -7) || today > ssAdd(s.end, -2)) { el.hidden = true; el.innerHTML = ""; refreshSeasonBoard(); return; }
     var nW = s.weeks.length, days = nW * 7;
     // הפתיחה = הבנקים (העוגן), לא התחנה הראשונה — טסלה דיווחה לפני תחילת העונה (3.10)
     var first = (s.milestones || []).filter(function (m) { return m.key === "banks"; })[0] || { label: "הבנקים", date: s.anchor.date };
