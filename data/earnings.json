@@ -238,15 +238,15 @@
         "OKTA",
         "NTAP",
         "CPRT",
-        "MDB",
-        "TCOM"
+        "TCOM",
+        "MDB"
       ]
     },
     {
       "date": "2026-12-02",
       "label": "2/12",
       "dow": "ד׳",
-      "count": 16,
+      "count": 17,
       "tickers": [
         "CRM",
         "BMO",
@@ -326,16 +326,16 @@
           "logo": "data/earnings/logos/CPRT.png"
         },
         {
-          "ticker": "MDB",
-          "name": "MongoDB, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/MDB.png"
-        },
-        {
           "ticker": "TCOM",
           "name": "Trip.com Group Ltd. Sponsored ADR",
           "when": "after",
           "logo": "data/earnings/logos/TCOM.png"
+        },
+        {
+          "ticker": "MDB",
+          "name": "MongoDB, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/MDB.png"
         },
         {
           "ticker": "CRDO",
@@ -356,17 +356,17 @@
           "logo": "data/earnings/logos/GTLB.png"
         },
         {
-          "ticker": "BOX",
-          "name": "Box, Inc. Class A",
-          "when": "after",
-          "logo": "data/earnings/logos/BOX.png"
-        },
-        {
           "ticker": "NIO",
           "name": "NIO Inc. Sponsored ADR Class A",
           "when": "before",
           "logo": "data/earnings/logos/NIO.png",
           "logoBg": "dark"
+        },
+        {
+          "ticker": "BOX",
+          "name": "Box, Inc. Class A",
+          "when": "after",
+          "logo": "data/earnings/logos/BOX.png"
         },
         {
           "ticker": "NCNO",
@@ -380,7 +380,7 @@
       "date": "2026-12-02",
       "dow": "רביעי",
       "label": "2.12",
-      "total": 16,
+      "total": 17,
       "companies": [
         {
           "ticker": "CRM",
@@ -555,13 +555,13 @@
     "OKTA": "2026-12-01",
     "NTAP": "2026-12-01",
     "CPRT": "2026-12-01",
-    "MDB": "2026-12-01",
     "TCOM": "2026-12-01",
+    "MDB": "2026-12-01",
     "CRDO": "2026-12-01",
     "HQY": "2026-12-01",
     "GTLB": "2026-12-01",
-    "BOX": "2026-12-01",
     "NIO": "2026-12-01",
+    "BOX": "2026-12-01",
     "NCNO": "2026-12-01",
     "ASAN": "2026-12-01",
     "VSTS": "2026-12-01",
@@ -580,6 +580,7 @@
     "CXM": "2026-12-02",
     "AI": "2026-12-02",
     "NAT": "2026-12-02",
+    "FOIL": "2026-12-02",
     "AHG": "2026-12-02",
     "RY": "2026-12-03",
     "TD": "2026-12-03",
@@ -590,8 +591,8 @@
     "ULTA": "2026-12-03",
     "IOT": "2026-12-03",
     "DOCU": "2026-12-03",
-    "BF.A": "2026-12-03",
     "BF.B": "2026-12-03",
+    "BF.A": "2026-12-03",
     "HRL": "2026-12-03",
     "GWRE": "2026-12-03",
     "COO": "2026-12-03",
@@ -610,7 +611,7 @@
     "REX": "2026-12-03"
   },
   "_meta": {
-    "updatedAt": "28/11/2026 11:46",
+    "updatedAt": "28/11/2026 12:01",
     "source": "tradingview"
   }
 }
