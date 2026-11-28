@@ -151,11 +151,22 @@ def sma(vals, n):
     return round(sum(vals[-n:]) / n, 4) if len(vals) >= n else None
 
 
+def week_ref(rows):
+    """האינדקס של הסגירה האחרונה בשבוע הקודם (28.11.2026, איציק): "שבוע" = הסגירה האחרונה של השבוע
+    הקודם מול הסגירה האחרונה של הנוכחי — לא 5 ימי מסחר אחורה. בשבוע רגיל זה אותו דבר ([-6]);
+    בשבוע עם חג (חג ההודיה: 4 ימי מסחר) 5 ימים אחורה נחתו על יום חמישי שלפני וספרו שוב את שישי."""
+    wk = rows[-1][0].isocalendar()[:2]
+    for i in range(len(rows) - 2, -1, -1):
+        if rows[i][0].isocalendar()[:2] != wk:
+            return i
+    return max(len(rows) - 6, 0)
+
+
 def perf_block(rows):
     closes = [c for _, c in rows]
     last = rows[-1][0]
     cur = closes[-1]
-    r = {"close": cur, "date": str(last), "1d": pct(cur, closes[-2]), "1w": pct(cur, closes[-6])}
+    r = {"close": cur, "date": str(last), "1d": pct(cur, closes[-2]), "1w": pct(cur, closes[week_ref(rows)])}
     for k, m in (("1m", 1), ("3m", 3), ("6m", 6), ("1y", 12)):
         ref = close_on_or_before(rows, minus_months(last, m))
         r[k] = pct(cur, ref[1])
@@ -176,7 +187,8 @@ def crs_block(sec_rows, spx_rows):
     ma = [None] * len(vals)
     for i in range(20, len(vals)):
         ma[i] = sum(vals[i - 20:i + 1]) / 21
-    cur, curma, prev5, prev5ma = vals[-1], ma[-1], vals[-6], ma[-6]
+    wi = week_ref(crs)   # "לפני שבוע" = סוף השבוע הקודם (ראו week_ref)
+    cur, curma, prev5, prev5ma = vals[-1], ma[-1], vals[wi], ma[wi]
     gap = (cur / curma - 1) * 100
     gap5 = (prev5 / prev5ma - 1) * 100
     hi10 = max(vals[-10:])
@@ -1034,12 +1046,12 @@ def render_html_v2(w, nar):
         d = S[k]
         tiles += (f'<div class="crt"><div class="crh"><b>{e(d["name_he"])}</b><small>{k}</small><span class="crs-st {CRS_TONE.get(d["crs_state"], "fl")}">{CRS_SHORT.get(d["crs_state"], "")}</span></div>'
                   f'{_crs_svg(d.get("crs_series"), 220, 56)}'
-                  f'<div class="crf"><span>פער מהממוצע {_sn(d["crs_gap_pct"])}</span><span>לפני 5 ימים {_sn(d["crs_gap_pct_5d_ago"])}</span></div></div>')
+                  f'<div class="crf"><span>פער מהממוצע {_sn(d["crs_gap_pct"])}</span><span>בסוף השבוע הקודם {_sn(d["crs_gap_pct_5d_ago"])}</span></div></div>')
     crs_read = nar.get("crs_read", "")
     H.append(f'<section class="pan"><div class="ph"><h2>CRS — עוצמה מול המדד, 3 חודשים</h2><span class="sub">ממוין מהחזק לחלש · כחול מעל אפור = הסקטור מנצח את S&amp;P 500</span></div>'
              + (f'<p class="crs-read">{crs_read}</p>' if crs_read else "")
              + f'<div class="crb">{tiles}</div>'
-             f'<p class="crs-how">CRS = מחיר מדד הסקטור חלקי S&amp;P 500. כשהקו הכחול מעל האפור (הממוצע שלו ל-21 יום), הסקטור חזק מהשוק; חצייה של הקו האפור = שינוי כיוון. "פער מהממוצע" = כמה הקו הכחול מעל או מתחת לאפור עכשיו ולפני 5 ימי מסחר. ציון גבוה בלי אישור CRS לא נחשב מאושר (וטו העוצמה מול השוק).</p></section>')
+             f'<p class="crs-how">CRS = מחיר מדד הסקטור חלקי S&amp;P 500. כשהקו הכחול מעל האפור (הממוצע שלו ל-21 יום), הסקטור חזק מהשוק; חצייה של הקו האפור = שינוי כיוון. "פער מהממוצע" = כמה הקו הכחול מעל או מתחת לאפור עכשיו ובסגירת השבוע הקודם. ציון גבוה בלי אישור CRS לא נחשב מאושר (וטו העוצמה מול השוק).</p></section>')
     # ---- 3 · מה השתנה
     cards = "".join(f'<div class="cg"><div class="cause"><b>הסיבה:</b> {c.get("cause", "")}</div><h3>{c.get("title", "")}</h3><p>{c.get("text", "")}</p>'
                     + (f'<div class="so"><b>אבל:</b> {c["but"]}</div>' if c.get("but") else "") + "</div>" for c in nar["changes"][:3])
@@ -1118,7 +1130,7 @@ def render_html_v2(w, nar):
     imtxt = " · ".join(f'{ {"us10y": "ריבית 10 שנים", "dxy": "דולר", "oil": "נפט", "gold": "זהב"}[k]} {v["sym"]} {v["close"]} (ממוצעים 20/50/200: {v["ma20"]}/{v["ma50"]}/{v["ma200"]}; שיא 52ש\' {v["hi52"]}, {pc(v["off_hi52"], 1)})' for k, v in im.items())
     radar_txt = ("נכנס: " + " · ".join(f'{e(x["name"])} {x["chg"]:+.2f}' for x in r["inflows"][:10]) + ". יוצא: " + " · ".join(f'{e(x["name"])} {x["chg"]:+.2f}' for x in r["outflows"][:10]))
     H.append(f'''<details class="pan"><summary>מדדי העומק: ציונים, רביעים, ממוצעים ועוצמה מול השוק</summary><div class="pb">
-<div class="tw"><table class="acc"><thead><tr><th>סקטור</th><th class="n">ציון (Δ)</th><th class="n">דירוג ש/ח/3ח/6ח/שנה</th><th class="n">סגירה</th><th class="n">ממוצע 20/50/200</th><th class="n">מהשיא</th><th class="n">עוצמה מול השוק (לפני 5 ימים)</th><th>מצב</th><th>רביע</th></tr></thead><tbody>{deep}</tbody></table></div>
+<div class="tw"><table class="acc"><thead><tr><th>סקטור</th><th class="n">ציון (Δ)</th><th class="n">דירוג ש/ח/3ח/6ח/שנה</th><th class="n">סגירה</th><th class="n">ממוצע 20/50/200</th><th class="n">מהשיא</th><th class="n">עוצמה מול השוק (סוף השבוע הקודם)</th><th>מצב</th><th>רביע</th></tr></thead><tbody>{deep}</tbody></table></div>
 <p class="small">הציון מנורמל מ-3 רכיבים (70 נק' → 100): מומנטום דירוג (30), רוחב (25), עוצמה מול השוק (15). עוצמה מול השוק = סגירת הסקטור ÷ S&amp;P 500 מול הממוצע שלה ל-21 יום.</p>
 <figure>{quad_svg(w)}<figcaption>מפת הרוטציה: ציון זרימת כסף מול דירוג 6 חודשים. נקודה אפורה = לפני שבוע. {nar.get("quad_caption", "")}</figcaption></figure>
 <p class="small"><b>בין-שוקי (סגירות {dmy(fri)}):</b> {imtxt}. {nar.get("intermarket_read", "")}</p>
@@ -1215,8 +1227,8 @@ def cmd_check(d):
         probs.append("חסר heatmap.csv")
     if "SPX" in files:
         rows = load_hist(files["SPX"])
-        if rows and abs(pct(rows[-1][1], rows[-6][1])) > 10:
-            probs.append("SPX: תשואת 5 ימים לא סבירה")
+        if rows and abs(pct(rows[-1][1], rows[week_ref(rows)][1])) > 10:
+            probs.append("SPX: תשואה שבועית לא סבירה")
     if probs:
         print("[check] לא מוכן:\n  " + "\n  ".join(probs))
         return 1
