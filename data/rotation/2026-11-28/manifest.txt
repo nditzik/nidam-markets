@@ -1,0 +1,44 @@
+Rotation data pull - 2026-11-28 (Saturday)
+Last trading day expected: 2026-11-27 (Friday; early close after Thanksgiving)
+Source: Barchart.com
+Drive folder: Rotation/2026-11-28
+
+=== Files (name | data rows | last-row date) ===
+hist_CLF27.csv | 519 | 2026-11-27 | earliest 2024-11-04 | OK
+hist_DXY.csv | 519 | 2026-11-27 | earliest 2024-11-27 | OK
+hist_GCZ26.csv | 519 | 2026-11-27 | earliest 2024-11-04 | OK
+hist_SPX.csv | 519 | 2026-11-27 | earliest 2024-11-04 | OK
+hist_SRCD.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRCS.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SREN.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRFI.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRHC.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRIN.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRIT.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRMA.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRRE.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRTS.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_SRUT.csv | 519 | 2026-11-27 | earliest 2024-11-01 | OK
+hist_TNX.csv | 519 | 2026-11-27 | earliest 2024-11-07 | OK
+breadth.csv | 12 | 2026-11-27 (page header "Fri, Nov 27th, 2026") | OK (12 rows required)
+industry-group-rankings.csv | 169 | as of 11-27-2026 (Barchart footer) | OK (~170 expected)
+heatmap.csv | 169 | ~2026-11-27 (heat map page dated Fri, Nov 27th, 2026; 1-Month range, 10+ stocks filter on) | OK (~170 expected)
+manifest.txt | this file | uploaded last
+
+=== Checks ===
+All 16 hist files: newest data row = 2026-11-27 (last trading day of the week; Friday early close after Thanksgiving on 2026-11-26).
+breadth.csv: 12 rows. heatmap.csv: 169 rows. industry-group-rankings.csv: 169 rows.
+heatmap and rankings both omit "Shoes and Related Apparel" vs last week (consistent with each other; likely dropped below the 10-stock filter).
+
+=== Contracts ===
+WTI oil: CLF27 (Jan '27; expires 12/21/26). Still the front contract (not expiring within 5 trading days).
+Gold: GCZ26 (Dec '26; expires 12/29/26). Still the front contract (not expiring within 5 trading days).
+
+=== Notes ===
+- hist files: Daily, 2 Years, Barchart Download button; newest row first, Barchart footer line kept as-is.
+- industry-group-rankings.csv: downloaded via Barchart's download link on the Industry Rankings page (https://www.barchart.com/stocks/sectors/industry-rankings); footer as of 11-27-2026 10:09pm CST. The /stocks/sectors/rankings URL redirects to Major Market Sectors and has no download link.
+- breadth.csv: page text of 'Percentage Of Large Cap Stocks Above Their Moving Averages' on stocks/market-performance.
+- heatmap.csv: page text from stocks/sectors/industry-heat-map, 1-Month range, 'Only show Industries with 10 or more Stocks' checked; all rows kept, no filtering.
+
+=== Missing / exceptions ===
+None.
