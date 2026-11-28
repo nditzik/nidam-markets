@@ -962,3 +962,8 @@
 - מאזן הצפי השבועי: להציג "עוד מוקדם" עד 8–10 שבועות; שורת צפי בסיכום השבועי.
 - קוד מת לשקול הסרה: write_daily_analysis.py, extract_picks, parse_xdigest, btc/eth ב-weekend.json.
 - בדיקות רגרסיה לפרסרי המיילים על `data/briefings/archive`.
+
+## 2026-11-28 (ריצה אוטומטית — ניתוח יומי)
+
+**נעשה:** `daily_state.date` (indexes-status) זהה לתאריך שכבר ב-`claude_analysis.json` (2026-11-25 — אין סגירה חדשה: חג ה-Thanksgiving ביום חמישי 26.11 וחצי יום שישי 27.11; היום שבת). לא נכתב ניתוח חדש. נבדקו שלושת חריגי סעיף 5: (א) `data/fourpillars/2026-11-25/` — יש גם report.json וגם notes.json, תקין; (ב) `data/fundamentals.json` — **16 חברות עם cap ובלי about** (BLBD, BMO, CALY, CRDO, DCI, DSGX, ES, FIVE, HRL, LION, LNTH, MDB, OSW, PECO, RY, TCOM); (ג) `data/earnings_prep.json.recent` מול `earnings_review_notes.json` — כל 5 החברות (DELL/SYM/WMT/PANW/NVDA) עם forDate תואם, תקין.
+בוצע רק סעיף 8 (`scripts/prompts/company_blurbs.md`): נכתב משפט עברי אחד לכל אחת מ-16 החברות (לפי name/sector/industry מהסורק, בלי המצאת מספרים/מוצרים) → `data/company_blurbs.json`, `python3 scripts/build_fundamentals.py` שכפל אותם ל-`fundamentals.json` (without blurb=0 בסוף). heartbeat + commit + push.
