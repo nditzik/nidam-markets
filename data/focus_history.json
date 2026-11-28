@@ -1,26 +1,6 @@
 {
  "entries": [
   {
-   "date": "2026-09-01",
-   "symbols": [
-    {
-     "sym": "ELV",
-     "ref": 403.04
-    }
-   ],
-   "result": {
-    "date_next": "2026-09-02",
-    "per": [
-     {
-      "sym": "ELV",
-      "pct": 0.69
-     }
-    ],
-    "avg": 0.69,
-    "spx": 0.46
-   }
-  },
-  {
    "date": "2026-09-02",
    "symbols": [
     {
@@ -3079,11 +3059,47 @@
      "sym": "CHYM",
      "ref": 33.03
     }
+   ],
+   "result": {
+    "date_next": "2026-11-27",
+    "per": [
+     {
+      "sym": "SJM",
+      "pct": -2.46
+     },
+     {
+      "sym": "PRGO",
+      "pct": 0.12
+     },
+     {
+      "sym": "WH",
+      "pct": 1.18
+     },
+     {
+      "sym": "CHYM",
+      "pct": 1.88
+     }
+    ],
+    "avg": 0.18,
+    "spx": 1.6
+   }
+  },
+  {
+   "date": "2026-11-27",
+   "symbols": [
+    {
+     "sym": "A",
+     "ref": 180.05
+    },
+    {
+     "sym": "SPNT",
+     "ref": 26.99
+    }
    ]
   }
  ],
  "_meta": {
-  "updatedAt": "26/11/2026 05:47",
+  "updatedAt": "28/11/2026 05:33",
   "source": "focus archive"
  }
 }
